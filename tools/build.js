@@ -13,7 +13,7 @@ webpack(webpackConfig).run((err, stats) => {
   const jsonStats = stats.toJson();
 
   if (jsonStats.hasErrors) {
-    process.stdout.write('Webpakc generated the following errors: '.red.bold);
+    process.stdout.write('Webpack generated the following errors: '.red.bold);
     return jsonStats.errors.map(error => process.stdout.write(`❌ ${error}
 `.red));
   }
@@ -26,6 +26,7 @@ webpack(webpackConfig).run((err, stats) => {
   }
   process.stdout.write(`Webpack stats: ${stats}
 `.cyan);
-  process.stdout.write('✅  Your app has been compiled in production mode and written to "/dist".\n'.green.bold);
+  process.stdout.write(`✅  Your app has been compiled in production mode and
+  written to "/dist".\n`.green.bold);
   return 0;
 });
