@@ -6,7 +6,12 @@ import apiActions from '../Redux/ApiRedux';
 import ThingList from '../Components/ThingList';
 import InputNewThing from '../Components/InputNewThing';
 
-const Things = ({ fetching, createThing, editThing, removeThing, things, apiStatus }) => {
+const Things = ({ fetching,
+  createThing,
+  editThing,
+  removeThing,
+  things,
+  apiStatus }) => {
   const propsThingList = {
     fetching,
     editThing,
@@ -22,7 +27,7 @@ const Things = ({ fetching, createThing, editThing, removeThing, things, apiStat
 
   return (
     <Card>
-      <CardHeader title="React Template" subtitle="API">
+      <CardHeader title="React Boilerplate" subtitle="MERN stack">
         <InputNewThing {...propsInputNew} />
       </CardHeader>
       <CardText>

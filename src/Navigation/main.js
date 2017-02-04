@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from '../Containers/App';
+import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 import Things from '../Containers/Things';
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={Things} />
+  <Route path="/" component={Navbar}>
+    {/* <IndexRoute component={Things} /> */}
   </Route>
 );

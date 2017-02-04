@@ -16,12 +16,11 @@ import api from './api';
 mongoose.Promise = Promise;
 dotenv.config({ silent: true });
 const PORT = process.env.PORT || 3000;
-const MONGO = process.env.MONGODB_URI || 'mongodb://13.112.149.220/template';
+const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/template';
 const BUILD = process.env.NODE_ENV || 'development';
 const app = express();
 const server = new http.Server(app);
 const io = socketIO(server);
-let indexFile;
 let socketEmitter;
 
 io.on('connection', (socket) => {
@@ -67,8 +66,8 @@ app.get('*', (req, res) => res.sendFile(path.resolve('./src/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
 server.listen(PORT, err =>
-  process.stdout.write(err || `==> 📡  Server @ ${PORT}
+  process.stdout.write(JSON.stringify(err, null, 2) || `==> 📡  Server @ ${PORT}
 `));
 mongoose.connect(MONGO, err =>
-  process.stdout.write(err || `==> 📜  MONGO @ ${MONGO}
+  process.stdout.write(JSON.stringify(err, null, 2) || `==> 📜  MONGO @ ${MONGO}
 `));

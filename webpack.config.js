@@ -3,13 +3,14 @@ import webpack from 'webpack';
 import dotenv from 'dotenv';
 
 dotenv.config({ silent: true });
+
 const BUILD = process.env.NODE_ENV;
 console.log('BUILD: ', BUILD);
 
 const envs = {
   development: {
     NODE_ENV: JSON.stringify(BUILD),
-    PORT: JSON.stringify(3001),
+    PORT: JSON.stringify(3000),
     BASE_URL: JSON.stringify(process.env.BASE_URL),
   },
   production: {

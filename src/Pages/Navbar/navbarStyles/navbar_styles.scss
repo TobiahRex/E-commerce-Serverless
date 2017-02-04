@@ -1,0 +1,175 @@
+$font-google-muli : "https://fonts.googleapis.com/css?family=Muli";
+$p-font: 'Muli', sans-serif;
+
+@if variable-exists($font-google-muli) {
+  @import url($font-google-muli);
+}
+
+$p-white: #FFFFFF;
+$p-blue: #365899;
+
+
+.navbar-comp-container {
+  font-size: 10px;
+}
+
+nav {
+  width: 100%;
+  background-color: $p-white;
+}
+.navbar.navbar-header {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar.logoContainer {
+  max-width: 22em;
+  height: 10em;
+  padding-right: 2.5em;
+}
+.navbar.navbar-logo {
+  max-width: 22em;
+}
+
+.navbar.actionSection {
+  height: 10em;
+  background-color: pink;
+  .upper {
+    display: flex;
+    height: 4em;
+    width: 83.5em;
+    margin-bottom: 2em;
+    background-color: blue;
+    .language {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 11em;
+      height: 4em;
+      background-color: $p-white;
+      .flag-us {
+        width: 2.8em;
+        height: 2.5em;
+        margin: 0;
+        .image {
+          width: 2.6em;
+          height: 1.3em;
+          margin: 0;
+        }
+      }
+      .title {
+        width: 6.2em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        color: $p-blue;
+        font-family: $p-font;
+        font-weight: bold;
+      }
+      .chevron {
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        .icon {
+          width: 1em;
+          height: 1em;
+          color: $p-blue;
+        }
+      }
+    }
+    .currency {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 11em;
+      height: 4em;
+      margin-right: .5em;
+      background-color: $p-white;
+      .dollar {
+        width: 1.4em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        .icon {
+          width: 1em;
+          height: 1em;
+          color: $p-blue;
+        }
+      }
+      .title {
+        width: 6.2em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        color: $p-blue;
+        font-weight: bold;
+      }
+      .chevron {
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        .icon {
+          width: 1em;
+          height: 1em;
+          color: $p-blue;
+        }
+      }
+    }
+    .user-action {
+      display: flex;
+      width: 45em;
+      height: 4em;
+      background-color: green;
+      .not-signed-in {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0em;
+        list-style-type: none;
+      }
+      .signed-in {
+        margin: 0em;
+        list-style-type: none;
+      }
+      .hidden {
+        display: none;
+      }
+    }
+    .mycart {
+      display: flex;
+      justify-content: center;
+      width: 16em;
+      height: 4em;
+      background-color: green;
+    }
+  }
+
+  .lower {
+    display: flex;
+    height: 4em;
+    width: 83.5em;
+    font-size: 10px;
+    background-color: red;
+    .shop {
+      display: flex;
+      height: 4em;
+      width: 12em;
+      background-color: green;
+    }
+    .media {
+      display: flex;
+      height: 4em;
+      width: 12em;
+      margin-left: 1em;
+      background-color: green;
+    }
+    .info {
+      display: flex;
+      height: 4em;
+      width: 12em;
+      margin-left: 1em;
+      background-color: green;
+    }
+  }
+}
