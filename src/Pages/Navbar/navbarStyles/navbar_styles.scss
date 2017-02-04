@@ -124,24 +124,36 @@ nav {
       width: 45em;
       height: 4em;
       background-color: green;
+      text-align: center;
       &.not-signed-in {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
         margin: 0em;
         list-style-type: none;
         & .sign-in-title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           width: 7.3em;
-          height: 3em;
+          height: 2em;
           background-color: $p-white;
           font-family: $p-font;
           font-size: 1.5em;
+          font-weight: 500;
           color: $p-blue;
         }
         & .register-title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           width: 7.3em;
-          height: 3em;
+          height: 2em;
+          margin-left: .66em;
           background-color: $p-white;
+          line-height: 1.33em;
           font-family: $p-font;
+          font-weight: 500;
           font-size: 1.5em;
           color: $p-blue;
         }

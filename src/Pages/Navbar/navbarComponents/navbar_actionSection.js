@@ -42,8 +42,12 @@ export default () => (
       </div>
       <div className="navbar actionSection upper user-action">
         <ul className="navbar actionSection upper user-action not-signed-in">
-          <li className="sign-in-title">Sign In</li>
-          <li className="register-title">Register</li>
+          <li className="sign-in-title">
+            <span>Sign In</span>
+          </li>
+          <li className="register-title">
+            <span>Register</span>
+          </li>
         </ul>
         <ul className="navbar actionSection upper user-action signed-in hidden">
           <li>My Account</li>
