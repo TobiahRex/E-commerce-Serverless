@@ -34,7 +34,7 @@ nav {
 
 .navbar.actionSection {
   height: 10em;
-  background-color: pink;
+  background-color: $p-white;
   &.upper {
     display: flex;
     height: 4em;
@@ -173,20 +173,32 @@ nav {
       align-items: center;
       width: 16em;
       height: 4em;
-      background-color: green;
+      background-color: $p-red;
       & .title {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: pink;
-        color: $p-blue;
+        background-color: $p-red;
+        color: $p-white;
         font-size: 15px;
-        font-weight: 400;
+        font-weight: 200;
+        font-family: $p-font;
         width: 6em;
         height: 2em;
-        border-width: 3px;
-        border-style: solid;
-        border-color: $p-red $p-white $p-red $p-red;
+        border-right: 1px solid $p-white;
+        border-right-color: rgba(255, 255, 255, .5);
+      }
+      & .cart-qty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $p-red;
+        color: $p-white;
+        font-size: 15px;
+        font-family: $p-font;
+        font-weight: 200;
+        width: 3em;
+        height: 2em;
       }
     }
   }
