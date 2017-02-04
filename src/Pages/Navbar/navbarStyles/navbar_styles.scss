@@ -7,6 +7,7 @@ $p-font: 'Muli', sans-serif;
 
 $p-white: #FFFFFF;
 $p-blue: #365899;
+$p-red: #FC2525;
 
 
 .navbar-comp-container {
@@ -123,7 +124,7 @@ nav {
       display: flex;
       width: 45em;
       height: 4em;
-      background-color: green;
+      background-color: $p-white;
       text-align: center;
       &.not-signed-in {
         display: flex;
@@ -169,9 +170,24 @@ nav {
     &.mycart {
       display: flex;
       justify-content: center;
+      align-items: center;
       width: 16em;
       height: 4em;
       background-color: green;
+      & .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: pink;
+        color: $p-blue;
+        font-size: 15px;
+        font-weight: 400;
+        width: 6em;
+        height: 2em;
+        border-width: 3px;
+        border-style: solid;
+        border-color: $p-red $p-white $p-red $p-red;
+      }
     }
   }
 

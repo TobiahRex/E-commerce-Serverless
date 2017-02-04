@@ -56,8 +56,12 @@ export default () => (
         </ul>
       </div>
       <div className="navbar actionSection upper mycart">
-        <span>My Cart</span>
-        <span>0</span>
+        <div className="title">
+          <span>My Cart</span>
+        </div>
+        <div className="cart-qty">
+          <span>0</span>
+        </div>
       </div>
     </div>
     <div className="navbar actionSection lower">
