@@ -34,27 +34,68 @@ nav {
 .navbar.actionSection {
   height: 10em;
   background-color: pink;
-  .upper {
+  &.upper {
     display: flex;
     height: 4em;
     width: 83.5em;
     margin-bottom: 2em;
-    background-color: blue;
-    .language {
+    // background-color: blue;
+    &.language {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 11em;
       height: 4em;
       background-color: $p-white;
-      .flag-us {
+      &.flag-us {
         width: 2.8em;
         height: 2.5em;
         margin: 0;
-        .image {
+        &.image {
           width: 2.6em;
           height: 1.3em;
           margin: 0;
+        }
+      }
+      &.title {
+        width: 6.2em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        color: $p-blue;
+        font-family: $p-font;
+        font-weight: bold;
+      }
+      &.chevron {
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        &.icon {
+          width: 1em;
+          height: 1em;
+          color: $p-blue;
+        }
+      }
+    }
+    &.currency {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 11em;
+      height: 4em;
+      margin-right: .5em;
+      background-color: $p-white;
+      .dollar {
+        width: 1.4em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        .icon {
+          width: 1em;
+          height: 1em;
+          font-size: 1.5em;
+          color: $p-blue;
         }
       }
       .title {
@@ -78,65 +119,42 @@ nav {
         }
       }
     }
-    .currency {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 11em;
-      height: 4em;
-      margin-right: .5em;
-      background-color: $p-white;
-      .dollar {
-        width: 1.4em;
-        height: 2.5em;
-        font-size: 10px;
-        margin: 0;
-        .icon {
-          width: 1em;
-          height: 1em;
-          color: $p-blue;
-        }
-      }
-      .title {
-        width: 6.2em;
-        height: 2.5em;
-        font-size: 10px;
-        margin: 0;
-        color: $p-blue;
-        font-weight: bold;
-      }
-      .chevron {
-        width: 1.1em;
-        height: 2.5em;
-        font-size: 10px;
-        margin: 0;
-        .icon {
-          width: 1em;
-          height: 1em;
-          color: $p-blue;
-        }
-      }
-    }
-    .user-action {
+    &.user-action {
       display: flex;
       width: 45em;
       height: 4em;
       background-color: green;
-      .not-signed-in {
+      &.not-signed-in {
         display: flex;
         justify-content: flex-end;
         margin: 0em;
         list-style-type: none;
+        & .sign-in-title {
+          width: 7.3em;
+          height: 3em;
+          background-color: $p-white;
+          font-family: $p-font;
+          font-size: 1.5em;
+          color: $p-blue;
+        }
+        & .register-title {
+          width: 7.3em;
+          height: 3em;
+          background-color: $p-white;
+          font-family: $p-font;
+          font-size: 1.5em;
+          color: $p-blue;
+        }
       }
-      .signed-in {
+      &.signed-in {
         margin: 0em;
         list-style-type: none;
       }
-      .hidden {
+      &.hidden {
         display: none;
       }
     }
-    .mycart {
+    &.mycart {
       display: flex;
       justify-content: center;
       width: 16em;
@@ -145,26 +163,26 @@ nav {
     }
   }
 
-  .lower {
+  &.lower {
     display: flex;
     height: 4em;
     width: 83.5em;
     font-size: 10px;
     background-color: red;
-    .shop {
+    &.shop {
       display: flex;
       height: 4em;
       width: 12em;
       background-color: green;
     }
-    .media {
+    &.media {
       display: flex;
       height: 4em;
       width: 12em;
       margin-left: 1em;
       background-color: green;
     }
-    .info {
+    &.info {
       display: flex;
       height: 4em;
       width: 12em;
