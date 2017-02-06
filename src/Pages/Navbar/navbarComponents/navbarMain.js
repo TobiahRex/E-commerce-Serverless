@@ -22,12 +22,19 @@ class Navbar extends React.Component {
   }
 
   render() {
+    const testStyle = {
+      logo: {
+        backgroundImage: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.pn',
+        maxWidth: '22em',
+      },
+    };
     return (
       <header className="navbar-comp-container">
         <nav className="navbar navbar-default">
           <div className="container">
             <div className="navbar navbar-header">
               <div className="navbar logoContainer">
+                <div style={testStyle.logo} />
                 <img
                   src="https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png"
                   alt=""
