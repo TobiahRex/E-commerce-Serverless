@@ -1,7 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react';
-import FontAwesome from 'react-fontawesome';
 
-import navbarOptionsLangauge from './navbarOptions_language';
+import NavbarOptionsLangauge from './navbarOptions_language';
+import NavbarOptionsCurrency from './navbarOptions_currency';
 
 /* TODO:
 1. Pass down via props the respective class methods shown below.
@@ -19,24 +19,8 @@ class NavbarOptions extends PureComponent {
   render() {
     return (
       <div className="navbar acitonSection upper options">
-        <navbarOptionsLangauge />
-        <div className="navbar actionSection upper currency">
-          <div className="navbar actionSection upper currency dollar">
-            <FontAwesome
-              name="usd"
-              className="navbar actionSection upper currency dollar icon"
-            />
-          </div>
-          <div className="navbar actionSection upper currency title">
-            <span>CURRENCY</span>
-          </div>
-          <div className="navbar actionSection upper currency chevron">
-            <FontAwesome
-              name="chevron-down"
-              className="navbar actionSection upper currency chevron icon"
-            />
-          </div>
-        </div>
+        <NavbarOptionsLangauge />
+        <NavbarOptionsCurrency />
       </div>
     );
   }
