@@ -1,0 +1,16 @@
+@import "./colors";
+@import "./typography";
+@import "./mixins";
+
+@import "../Pages/Navbar/navbarStyles/navbar_styles";
+
+
+body {
+  font-size: 10px;
+  background-color: #2F2F2F;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}

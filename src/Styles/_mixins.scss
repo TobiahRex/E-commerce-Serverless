@@ -1,0 +1,19 @@
+@import "./options";
+
+@mixin prefixed($property, $values) {
+  @if $webkit == true {
+    -webkit-#{$property}: $values;
+  }
+  @if $moz == true {
+    -moz-#{$property}: $values;
+  }
+  @if $ms == true {
+    -ms-#{$property}: $values;
+  }
+  @if $o == true {
+    -o-#{$property}: $values;
+  }
+
+  #{$property}: $values;
+
+}

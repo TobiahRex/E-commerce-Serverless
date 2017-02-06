@@ -1,0 +1,6 @@
+$font-google-muli : "https://fonts.googleapis.com/css?family=Muli";
+$p-font: 'Muli', sans-serif;
+
+@if variable-exists($font-google-muli) {
+  @import url($font-google-muli);
+}
