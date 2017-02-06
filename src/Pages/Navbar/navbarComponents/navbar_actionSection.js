@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import NavbarOptions from './navbarOptions';
 import NavbarUserAction from './navbarUserActions';
 import NavbarCart from './navbarCart';
+import NavbarLower form './navbarLower';
 
 
 export default () => (

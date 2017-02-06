@@ -22,7 +22,7 @@ class NavbarCart extends Component {
   render() {
     return (
       <div className="navbar actionSection upper mycart">
-        <Link>
+        <Link className="link">
           <div className="title">
             <span>My Cart</span>
           </div>
