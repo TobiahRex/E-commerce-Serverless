@@ -1,11 +1,13 @@
-// Global Imports //
+/* Global Imports */
 
 @import "../../../Styles/colors";
 @import "../../../Styles/typography";
 @import "../../../Styles/mixins";
 
-// Local Imports //
+/* Local Imports */
+@import "./navbarOptions";
 
+/* Parent Styles - Navbar */
 .flex-center {
   display: flex;
   justify-content: center;
