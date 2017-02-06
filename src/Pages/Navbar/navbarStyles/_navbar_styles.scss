@@ -6,6 +6,7 @@
 
 /* Local Imports */
 @import "./navbarOptions";
+@import "./navbarUserActions";
 
 /* Parent Styles - Navbar */
 .flex-center {
@@ -113,9 +114,6 @@ nav {
           margin-left: .66em;
           line-height: 1.33em;
         }
-      }
-      &.hidden {
-        display: none;
       }
     }
     &.mycart {
