@@ -1,6 +1,14 @@
 import React, { PropTypes, PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+/* TODO:
+1. Pass down via props the respective class methods shown below.
+- Lang change: Will set a flag in state that all SMART components will be receiving to determine how to render the language info.
+
+- Currency Change: <Same as lang change.>
+
+*/
+
 class NavbarOptions extends PureComponent {
   onLanguageChange = () => console.info('changed language');
 
@@ -8,7 +16,7 @@ class NavbarOptions extends PureComponent {
 
   render() {
     return (
-      <div className="navbar navbarOptions acitonSection upper">
+      <div className="navbar acitonSection upper options">
         <div className="navbar actionSection upper language">
           <div className="navbar actionSection upper language flag-us">
             <img
