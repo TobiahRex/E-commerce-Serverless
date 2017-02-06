@@ -3,7 +3,9 @@ import FontAwesome from 'react-fontawesome';
 
 class NavbarOptions extends PureComponent {
   onLanguageChange = () => console.info('changed language');
+
   onCurrencyChange = () => console.info('changed currency');
+
   render() {
     return (
       <div className="navbar navbarOptions acitonSection upper">

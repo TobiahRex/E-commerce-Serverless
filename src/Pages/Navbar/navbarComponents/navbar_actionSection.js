@@ -1,34 +1,15 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import NavbarOptions from './NavbarOptions';
+import NavbarOptions from './navbarOptions';
+import NavbarUserAction from './navbarUserAction';
 
 
 export default () => (
   <div className="navbar actionSection">
     <div className="navbar actionSection upper">
       <NavbarOptions />
-      <div className="navbar actionSection upper user-action">
-        <ul className="navbar actionSection upper user-action not-signed-in">
-          <li className="sign-in-title">
-            <span>Sign In</span>
-          </li>
-          <li className="register-title">
-            <span>Register</span>
-          </li>
-        </ul>
-        <ul className="hidden navbar actionSection upper user-action signed-in">
-          <li className="my-account-title">
-            <span>My Account</span>
-          </li>
-          <li className="checkout-title">
-            <span>Checkout</span>
-          </li>
-          <li className="sign-out-title">
-            <span>Sign Out</span>
-          </li>
-        </ul>
-      </div>
+      <NavbarUserAction />
       <div className="navbar actionSection upper mycart">
         <div className="title">
           <span>My Cart</span>
