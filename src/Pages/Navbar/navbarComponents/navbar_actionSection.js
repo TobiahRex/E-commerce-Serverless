@@ -1,45 +1,13 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import NavbarOptions from './NavbarOptions';
+
 
 export default () => (
   <div className="navbar actionSection">
     <div className="navbar actionSection upper">
-      <div className="navbar actionSection upper language">
-        <div className="navbar actionSection upper language flag-us">
-          <img
-            src="https://s3-ap-southeast-2.amazonaws.com/nj2jp/language_usFlagnavbar_languageGrp_us.png"
-            alt="us-flag"
-            className="navbar actionSection upper language flag-us image"
-          />
-        </div>
-        <div className="navbar actionSection upper language title">
-          <span>LANGUAGE</span>
-        </div>
-        <div className="navbar actionSection upper language chevron">
-          <FontAwesome
-            name="chevron-down"
-            className="navbar actionSection upper language chevron icon"
-          />
-        </div>
-      </div>
-      <div className="navbar actionSection upper currency">
-        <div className="navbar actionSection upper currency dollar">
-          <FontAwesome
-            name="usd"
-            className="navbar actionSection upper currency dollar icon"
-          />
-        </div>
-        <div className="navbar actionSection upper currency title">
-          <span>CURRENCY</span>
-        </div>
-        <div className="navbar actionSection upper currency chevron">
-          <FontAwesome
-            name="chevron-down"
-            className="navbar actionSection upper currency chevron icon"
-          />
-        </div>
-      </div>
+      <NavbarOptions />
       <div className="navbar actionSection upper user-action">
         <ul className="navbar actionSection upper user-action not-signed-in">
           <li className="sign-in-title">
@@ -49,10 +17,16 @@ export default () => (
             <span>Register</span>
           </li>
         </ul>
-        <ul className="navbar actionSection upper user-action signed-in hidden">
-          <li>My Account</li>
-          <li>Checkout</li>
-          <li>Sign Out</li>
+        <ul className="hidden navbar actionSection upper user-action signed-in">
+          <li className="my-account-title">
+            <span>My Account</span>
+          </li>
+          <li className="checkout-title">
+            <span>Checkout</span>
+          </li>
+          <li className="sign-out-title">
+            <span>Sign Out</span>
+          </li>
         </ul>
       </div>
       <div className="navbar actionSection upper mycart">
@@ -65,14 +39,20 @@ export default () => (
       </div>
     </div>
     <div className="navbar actionSection lower">
-      <div className="navbar actionSection lower shop container">
-        <span>SHOP</span>
+      <div className="navbar actionSection lower shop">
+        <div className="title">
+          <span>SHOP</span>
+        </div>
       </div>
-      <div className="navbar actionSection lower media container">
-        <span>MEDIA</span>
+      <div className="navbar actionSection lower media">
+        <div className="title">
+          <span>MEDIA</span>
+        </div>
       </div>
-      <div className="navbar actionSection lower info container">
-        <span>INFO</span>
+      <div className="navbar actionSection lower info">
+        <div className="title">
+          <span>INFO</span>
+        </div>
       </div>
     </div>
   </div>

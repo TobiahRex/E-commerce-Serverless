@@ -4,7 +4,7 @@ import { MuiThemeProvider } from 'material-ui/styles';
 
 import Navbar_ActionSection from './navbar_actionSection';
 
-import styles from '../navbarStyles/navbar_styles.scss';
+import styles from '../navbarStyles/_navbar_styles.scss';
 
 class Navbar extends React.Component {
   static defaultProps = {
@@ -23,25 +23,24 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div className="navbar-comp-container">
-          <nav className="navbar navbar-default">
-            <div className="container">
-              <div className="navbar navbar-header">
-                <div className="navbar logoContainer">
-                  <img
-                    src="https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp_logo_v2.jpg"
-                    alt=""
-                    className="navbar navbar-logo"
-                  />
-                </div>
-                <Navbar_ActionSection />
+      <header className="navbar-comp-container">
+        <nav className="navbar navbar-default">
+          <div className="container">
+            <div className="navbar navbar-header">
+              <div className="navbar logoContainer">
+                <img
+                  src="https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png"
+                  alt=""
+                  className="navbar navbar-logo"
+                />
               </div>
+              <Navbar_ActionSection />
+
             </div>
-          </nav>
-          {/* {this.props.children || ''} */}
-        </div>
-      </MuiThemeProvider>
+          </div>
+        </nav>
+        {/* {this.props.children || ''} */}
+      </header>
     );
   }
 }
