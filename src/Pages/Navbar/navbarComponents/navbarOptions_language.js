@@ -27,7 +27,12 @@ class NavbarOptionsLanguage extends PureComponent {
           </div>
         </span>
         <span className="dropdown-content">
-
+          <div className="japanese-flag container">
+            <div className="japanese-flag image" />
+            <div className="japanese-flag nihongo">
+              <span>日本語</span>
+            </div>
+          </div>
         </span>
       </div>
     );
