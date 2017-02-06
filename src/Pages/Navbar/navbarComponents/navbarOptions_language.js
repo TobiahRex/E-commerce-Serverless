@@ -2,25 +2,33 @@ import React, { PropTypes, PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 class NavbarOptionsLanguage extends PureComponent {
+  static styles = {
+    hidden: {
+      display: 'none',
+    },
+    show: {
+      display: 'flex',
+    },
+  }
   render() {
     return (
       <div className="navbar actionSection upper language">
-        <div className="navbar actionSection upper language flag-us">
-          <img
-            src="https://s3-ap-southeast-2.amazonaws.com/nj2jp/language_usFlagnavbar_languageGrp_us.png"
-            alt="us-flag"
-            className="navbar actionSection upper language flag-us image"
-          />
-        </div>
-        <div className="navbar actionSection upper language title">
-          <span>LANGUAGE</span>
-        </div>
-        <div className="navbar actionSection upper language chevron">
-          <FontAwesome
-            name="chevron-down"
-            className="navbar actionSection upper language chevron icon"
-          />
-        </div>
+        <span className="main-button">
+          <div className="flag-us">
+            <div className="image" />
+          </div>
+          <div className="navbar actionSection upper language title">
+            <span>ENGLISH</span>
+          </div>
+          <div className="navbar actionSection upper language chevron">
+            <FontAwesome
+              name="chevron-down" className="navbar actionSection upper language chevron icon"
+            />
+          </div>
+        </span>
+        <span className="dropdown-content">
+
+        </span>
       </div>
     );
   }
