@@ -1,0 +1,156 @@
+.navbar.actionSection {
+  .upper {
+    display: flex;
+    &.currency {
+      display: inline-block;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      color: $p-blue;
+      width: 11em;
+      height: 4em;
+      margin-right: .5em;
+      @extend .white-bg;
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $p-blue;
+        color: $p-white;
+        & .dropdown-content {
+          display: block;
+        }
+      }
+      & .main-button {
+        @extend .flex-center;
+        height: 4em;
+        background-color: inherit;
+        color: inherit;
+        & .dollar {
+          @extend .flex-center;
+          width: 1.4em;
+          height: 2.5em;
+          font-size: 15px;
+          margin: 0;
+          background-color: inherit;
+          color: inherit;
+          .icon {
+            width: 1em;
+            height: 1em;
+            font-size: 1em;
+            background-color: inherit;
+            color: inherit;
+          }
+        }
+        & .title {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 4em;
+          height: 2.5em;
+          padding-left: 1em;
+          margin: 0;
+          background-color: inherit;
+          color: inherit;
+          font-size: 10px;
+          font-family: $p-font;
+          font-weight: 200;
+        }
+        & .chevron {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 1.1em;
+          height: 2.5em;
+          font-size: 10px;
+          margin: 0;
+          background-color: inherit;
+          color: inherit;
+          .icon {
+            width: 1em;
+            height: 1em;
+            color: inherit;
+          }
+        }
+      }
+      & .dropdown-content {
+        display: none;
+        position: absolute;
+        height: 7em;
+        width: 13em;
+        background-color: $p-white;
+        z-index: 1;
+        box-shadow: 1px 2px 5px rgba(0,0,0,.6);
+        & .japanese-yen.container {
+          height: 2.5em;
+          width: 7em;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0.5em 3em 0em 3em;
+          color: $p-blue;
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: $p-blue;
+            & .yen {
+              color: $p-white;
+            }
+            & .yen-icon {
+              color: $p-white;
+            }
+          }
+          & .yen-icon {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 1.4em;
+            width: 2.4em;
+            background-color: inherit;
+            font-size: 1.2em;
+            color: inherit;
+          }
+          & .yen {
+            font-family: $p-font;
+            font-weight: 200;
+            color: $s-blue;
+            font-size: 1em;
+          }
+        }
+        & .us-dollars.container {
+          @extend .flex-center;
+          height: 2.5em;
+          width: 7em;
+          margin: 0em 3em 0.5em 3em;
+          color: $p-blue;
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: $p-blue;
+            & .dollars {
+              color: $p-white;
+            }
+            & .dollar-icon {
+              color: $p-white;
+            }
+          }
+          & .dollar-icon {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 1.4em;
+            width: 2.4em;
+            font-size: 1.2em;
+            background-color: inherit;
+            color: inherit;
+          }
+          & .dollars {
+            font-family: $p-font;
+            font-weight: 200;
+            color: $s-blue;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+}
