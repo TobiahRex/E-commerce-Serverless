@@ -33,33 +33,43 @@
           height: 2.5em;
           font-size: 15px;
           margin: 0;
+          background-color: inherit;
+          color: inherit;
           .icon {
             width: 1em;
             height: 1em;
             font-size: 1em;
-            color: $p-blue;
+            background-color: inherit;
+            color: inherit;
           }
         }
         & .title {
-          @extend .flex-center;
+          display: flex;
+          align-items: center;
           width: 6.2em;
           height: 2.5em;
           font-size: 10px;
           margin: 0;
-          color: $p-blue;
+          background-color: inherit;
+          color: inherit;
           font-family: $p-font;
           font-weight: 200;
         }
         & .chevron {
-          @extend .flex-center;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding-left: .5em;
           width: 1.1em;
           height: 2.5em;
           font-size: 10px;
           margin: 0;
+          background-color: inherit;
+          color: inherit;
           .icon {
             width: 1em;
             height: 1em;
-            color: $p-blue;
+            color: inherit;
           }
         }
       }
@@ -86,10 +96,11 @@
             }
           }
           & .yen-icon {
+            @extend .flex-center;
             height: 1.4em;
             width: 2.4em;
-            background-image: $jpn-flag-icon;
-            background-size: cover;
+            background-color: inherit;
+            color: inherit;
           }
           & .yen {
             padding-left: 1em;
@@ -114,10 +125,11 @@
             }
           }
           & .dollar-icon {
+            @extend .flex-center;
             height: 1.4em;
             width: 2.4em;
-            background-image: $us-flag-icon;
-            background-size: cover;
+            background-color: inherit;
+            color: inherit;
           }
           & .dollars {
             padding-left: 1em;
