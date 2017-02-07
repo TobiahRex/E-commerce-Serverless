@@ -69,6 +69,7 @@
               @extend .promotion-text;
             }
           }
+/* RECENTLY: ADDED; */
           & .recently-added {
             @extend .flex-center;
             @extend .ddn-cart-p-font;
@@ -77,6 +78,7 @@
             margin: 0em 1.25em .41em 1.25em;
             background-color: $p-white;
           }
+/* PRODUCTS CARD */
           & .products {
             @extend .flex-center;
             @extend .ddn-cart-p-font;
@@ -128,42 +130,63 @@
                   & .edit-product {
                     height: 1.5em;
                     width: 1.5em;
-
                     background-color: $p-red;
+                    cursor: pointer;
+                    color: $s-blue;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                      cursor: pointer;
+                      background-color: $s-blue;
+                      color: $p-white;
+                    }
                     & .edit-product-icon {
                       @extend .flex-center;
                       font-size: 15px;
-                      color: $s-blue;
+                      color: inherit;
                     }
                   }
                   & .delete-product {
                     height: 1.5em;
                     width: 1.5em;
-
                     background-color: $p-red;
+                    cursor: pointer;
+                    color: $s-blue;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                      cursor: pointer;
+                      background-color: $s-blue;
+                      color: $p-white;
+                    }
                     & .edit-product-icon {
                       @extend .flex-center;
                       font-size: 15px;
-                      color: $s-blue;
+                      color: inherit;
                     }
                   }
                 }
               }
             }
           }
+/* TOTAL PRICE */
           & .total-price {
             @extend .flex-right;
             height: 2.66em;
             width: 14.66em;
             margin: 0em 1em 1em 1em;
-            background-color: $p-white;
+            background-color: $p-grey;
             text-transform: uppercase;
             font-family: $s-font;
             color: $p-blue;
             font-weight: bold;
             font-size: 15px;
             line-height: 1.3em;
+            & .amount {
+              padding: 0 .66em;
+            }
           }
+/* ACTION BUTTONS */
           & .action-buttons {
             display: flex;
             justify-content: space-between;
@@ -184,11 +207,13 @@
               padding: .33em .33em .33em .33em;
               margin-right: 1em;
               box-shadow: 1px 2px 4px rgba(0,0,0,.5);
+              cursor: pointer;
               &:hover,
               &:focus,
               &:active {
                 background-color: $p-blue;
                 color: $p-white;
+                cursor: pointer;
               }
             }
             & .checkout {
@@ -203,11 +228,13 @@
               margin-left: 1em;
               background-color: $p-red;
               box-shadow: 1px 2px 4px rgba(0,0,0,.5);
+              cursor: pointer;
               &:hover,
               &:focus,
               &:active {
                 background-color: $p-blue;
                 color: $p-white;
+                cursor: pointer;
               }
             }
           }
