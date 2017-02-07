@@ -1,10 +1,12 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 class NavbarOptionsCurrency extends PureComponent {
-  render() {
-    return (
-      <div className="navbar actionSection upper currency">
+
+} render() {
+  return (
+    <div className="navbar actionSection upper currency">
+      <span className="main-button">
         <div className="navbar actionSection upper currency dollar">
           <FontAwesome
             name="usd"
@@ -20,9 +22,23 @@ class NavbarOptionsCurrency extends PureComponent {
             className="navbar actionSection upper currency chevron icon"
           />
         </div>
-      </div>
-    );
-  }
+      </span>
+      <span className="dropdown-content">
+        <div className="japanese-flag container">
+          <div className="image" />
+          <div className="nihongo">
+            <span>日本語</span>
+          </div>
+        </div>
+        <div className="us-flag container">
+          <div className="image" />
+          <div className="english">
+            <span>English</span>
+          </div>
+        </div>
+      </span>
+    </div>
+  );
 }
 
 export default NavbarOptionsCurrency;

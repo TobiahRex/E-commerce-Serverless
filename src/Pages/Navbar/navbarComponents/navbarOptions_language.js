@@ -1,30 +1,11 @@
-import React, { PropTypes, PureComponent } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React from 'react';
 
-class NavbarOptionsLanguage extends PureComponent {
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {
-      display: 'flex',
-    },
-  }
-  render() {
-    return (
-      <div className="navbar actionSection upper language">
-        
-        <span className="dropdown-content">
-          <div className="japanese-flag container">
-            <div className="image" />
-            <div className="nihongo">
-              <span>日本語</span>
-            </div>
-          </div>
-        </span>
-      </div>
-    );
-  }
-}
+import NavbarOptionsLanguageButton from './navbarOptions_language_mainButton';
+import NavbarOptionsDropdnContent from './navbarOptions_language_dropdnContent';
 
-export default NavbarOptionsLanguage;
+export default () => (
+  <div className="navbar actionSection upper language">
+    <NavbarOptionsLanguageButton />
+    <NavbarOptionsDropdnContent />
+  </div>
+);
