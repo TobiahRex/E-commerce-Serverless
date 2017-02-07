@@ -1,6 +1,6 @@
 # _E-commerce Distribution Site:_
 MERN Stack App
-<!-- ### Deployed on Heroku [here](https://itiner-ez.herokuapp.com/). -->
+### Deployed on Heroku [here](https://nj2jp.herokuapp.com/).
 <!-- <img src="http://imgur.com/dTXjfrU.png" /> -->
 
 
