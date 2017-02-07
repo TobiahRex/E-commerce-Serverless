@@ -1,42 +1,8 @@
+@import "./navbarOptions_language";
+
 .navbar.actionSection {
   .upper {
     display: flex;
-    &.language {
-      @extend .flex-center;
-      width: 11em;
-      height: 4em;
-      @extend .white-bg;
-      &.flag-us {
-        width: 2.8em;
-        height: 2.5em;
-        margin: 0;
-        &.image {
-          width: 2.6em;
-          height: 1.3em;
-          margin: 0;
-        }
-      }
-      &.title {
-        width: 6.2em;
-        height: 2.5em;
-        font-size: 10px;
-        margin: 0;
-        color: $p-blue;
-        font-family: $p-font;
-        font-weight: bold;
-      }
-      &.chevron {
-        width: 1.1em;
-        height: 2.5em;
-        font-size: 10px;
-        margin: 0;
-        &.icon {
-          width: 1em;
-          height: 1em;
-          color: $p-blue;
-        }
-      }
-    }
     &.currency {
       @extend .flex-center;
       width: 11em;
@@ -46,12 +12,12 @@
       .dollar {
         width: 1.4em;
         height: 2.5em;
-        font-size: 10px;
+        font-size: 15px;
         margin: 0;
         .icon {
           width: 1em;
           height: 1em;
-          font-size: 1.5em;
+          font-size: 1em;
           color: $p-blue;
         }
       }
@@ -62,7 +28,7 @@
         margin: 0;
         color: $p-blue;
         font-family: $p-font;
-        font-weight: bold;
+        font-weight: 200;
       }
       .chevron {
         width: 1.1em;

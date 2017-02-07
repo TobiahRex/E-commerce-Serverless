@@ -1,0 +1,33 @@
+.navbar.actionSection.upper {
+  &.mycart {
+    @extend .flex-center;
+    width: 16em;
+    height: 4em;
+    background-color: $p-red;
+    & .link {
+      display: flex;
+      & .title {
+        @extend .flex-center;
+        background-color: $p-red;
+        color: $p-white;
+        font-size: 15px;
+        font-weight: 200;
+        font-family: $p-font;
+        width: 6em;
+        height: 2em;
+        border-right: 1px solid $p-white;
+        @include prefixed(border-right-color, rgba(255, 255, 255, .5));
+      }
+      & .cart-qty {
+        @extend .flex-center;
+        background-color: $p-red;
+        color: $p-white;
+        font-size: 15px;
+        font-family: $p-font;
+        font-weight: 200;
+        width: 3em;
+        height: 2em;
+      }
+    }
+  }
+}

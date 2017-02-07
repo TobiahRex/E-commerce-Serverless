@@ -2,11 +2,13 @@
 
 @import "../../../Styles/colors";
 @import "../../../Styles/typography";
+@import "../../../Styles/images";
 @import "../../../Styles/mixins";
 
 /* Local Imports */
 @import "./navbarOptions";
 @import "./navbarUserActions";
+@import "./navbarCart";
 
 /* Parent Styles - Navbar */
 .flex-center {
@@ -45,105 +47,20 @@ nav {
   padding-right: 2.5em;
 }
 .navbar.navbar-logo {
+  height: 10em;
+  width: 22em;
   max-width: 22em;
+  background-image: $main-logo;
+  background-size: cover;
 }
 
 .navbar.actionSection {
   height: 10em;
   @extend .white-bg;
   &.upper {
-    display: flex;
     height: 4em;
     width: 83.5em;
     margin-bottom: 2em;
-    // background-color: blue;
-    &.user-actions {
-      @extend .white-bg;
-      display: flex;
-      width: 45em;
-      height: 4em;
-      text-align: center;
-      &.not-signed-in {
-        justify-content: flex-end;
-        align-items: center;
-        margin: 0em;
-        list-style-type: none;
-        & .sign-in-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 4.66em;
-          height: 2em;
-        }
-        & .register-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 4.66em;
-          height: 2em;
-          margin: 0em .66em;
-          line-height: 1.33em;
-        }
-      }
-      &.signed-in {
-        justify-content: flex-end;
-        margin: 0em;
-        list-style-type: none;
-        & .my-account-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 7.33em;
-          height: 2em;
-        }
-        & .checkout-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 7.33em;
-          height: 2em;
-          margin-left: .66em;
-          line-height: 1.33em;
-        }
-        & .sign-out-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 5.33em;
-          height: 2em;
-          margin-left: .66em;
-          line-height: 1.33em;
-        }
-      }
-    }
-    &.mycart {
-      @extend .flex-center;
-      width: 16em;
-      height: 4em;
-      background-color: $p-red;
-      & .title {
-        @extend .flex-center;
-        background-color: $p-red;
-        color: $p-white;
-        font-size: 15px;
-        font-weight: 200;
-        font-family: $p-font;
-        width: 6em;
-        height: 2em;
-        border-right: 1px solid $p-white;
-        @include prefixed(border-right-color, rgba(255, 255, 255, .5));
-      }
-      & .cart-qty {
-        @extend .flex-center;
-        background-color: $p-red;
-        color: $p-white;
-        font-size: 15px;
-        font-family: $p-font;
-        font-weight: 200;
-        width: 3em;
-        height: 2em;
-      }
-    }
   }
 
   &.lower {
