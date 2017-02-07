@@ -1,3 +1,6 @@
+@import "./navbarUserActions_signIn";
+@import "./navbarUserActions_noSignIn";
+
 .navbar.actionSection {
   &.upper {
     display: flex;
@@ -7,89 +10,6 @@
       width: 45em;
       height: 4em;
       text-align: center;
-      &.not-signed-in {
-        justify-content: flex-end;
-        align-items: center;
-        margin: 0em;
-        list-style-type: none;
-        & .sign-in-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 4.66em;
-          height: 2em;
-          &:hover,
-          &:active,
-          &:focus {
-            background-color: $p-blue;
-            color: $p-white;
-          }
-        }
-        & .register-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 4.66em;
-          height: 2em;
-          margin: 0em .66em;
-          line-height: 1.33em;
-          &:hover,
-          &:active,
-          &:focus {
-            background-color: $p-blue;
-            color: $p-white;
-          }
-        }
-      }
-      &.signed-in {
-        justify-content: flex-end;
-        align-items: center;;
-        margin: 0em;
-        list-style-type: none;
-        & .my-account-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 7.33em;
-          height: 2em;
-          &:hover,
-          &:active,
-          &:focus {
-            background-color: $p-blue;
-            color: $p-white;
-          }
-        }
-        & .checkout-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 7.33em;
-          height: 2em;
-          margin-left: .66em;
-          line-height: 1.33em;
-          &:hover,
-          &:active,
-          &:focus {
-            background-color: $p-blue;
-            color: $p-white;
-          }
-        }
-        & .sign-out-title {
-          @extend .flex-center;
-          @extend .white-bg;
-          @extend .ua-font-opts;
-          width: 5.33em;
-          height: 2em;
-          margin-left: .66em;
-          line-height: 1.33em;
-          &:hover,
-          &:active,
-          &:focus {
-            background-color: $p-blue;
-            color: $p-white;
-          }
-        }
-      }
     }
   }
 }

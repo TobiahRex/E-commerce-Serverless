@@ -1,0 +1,43 @@
+.navbar.actionSection {
+  &.upper {
+    display: flex;
+    &.user-actions {
+      @extend .white-bg;
+      display: flex;
+      &.not-signed-in {
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0em;
+        list-style-type: none;
+        & .sign-in-title {
+          @extend .flex-center;
+          @extend .white-bg;
+          @extend .ua-font-opts;
+          width: 4.66em;
+          height: 2em;
+          &:hover,
+          &:active,
+          &:focus {
+            background-color: $p-blue;
+            color: $p-white;
+          }
+        }
+        & .register-title {
+          @extend .flex-center;
+          @extend .white-bg;
+          @extend .ua-font-opts;
+          width: 4.66em;
+          height: 2em;
+          margin: 0em .66em;
+          line-height: 1.33em;
+          &:hover,
+          &:active,
+          &:focus {
+            background-color: $p-blue;
+            color: $p-white;
+          }
+        }
+      }
+    }
+  }
+}
