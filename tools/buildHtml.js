@@ -8,7 +8,7 @@ fs.readFile('src/index.html', (err, markup) => {
 
   const $ = cheerio.load(markup);
 
-  $('head').append('<link rel="stylesheet" href="style.css" />');
+  $('head').append('<link rel="stylesheet" href="app.css" />');
 
   fs.writeFile('dist/index.html', $.html(), 'utf8', (error) => {
     process.stdout.write('\n');
