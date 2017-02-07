@@ -2,10 +2,10 @@
   .upper {
     display: flex;
     & .language {
+      display: inline-block;
+      position: relative;
       justify-content: center;
       align-items: center;
-      position: relative;
-      display: inline-block;
       color: $p-blue;
       width: 11em;
       height: 4em;
