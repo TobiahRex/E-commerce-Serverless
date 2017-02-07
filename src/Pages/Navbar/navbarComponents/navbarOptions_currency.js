@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import NavbarOptionsCurrencyButton from './navbarOptions_currency_mainButton';
+
 class NavbarOptionsCurrency extends PureComponent {
   static styles = {
     hidden: {
@@ -12,37 +14,21 @@ class NavbarOptionsCurrency extends PureComponent {
   render() {
     return (
       <div className="navbar actionSection upper currency">
-        <span className="main-button">
-          <div className="navbar actionSection upper currency dollar">
-            <FontAwesome
-              name="usd"
-              className="navbar actionSection upper currency dollar icon"
-            />
+        <NavbarOptionsCurrencyButton />
+        <span className="dropdown-content">
+          <div className="japanese-yen container">
+            <FontAwesome name="yen" className="yen-icon" />
+            <div className="yen">
+              <span>YEN</span>
+            </div>
           </div>
-          <div className="navbar actionSection upper currency title">
-            <span>USD</span>
-          </div>
-          <div className="navbar actionSection upper currency chevron">
-            <FontAwesome
-              name="angle-down"
-              className="navbar actionSection upper currency chevron icon"
-            />
+          <div className="us-dollars container">
+            <FontAwesome name="usd" className="dollar-icon" />
+            <div className="dollars">
+              <span>USD</span>
+            </div>
           </div>
         </span>
-        {/* <span className="dropdown-content">
-          <div className="japanese-flag container">
-          <div className="image" />
-          <div className="nihongo">
-          <span>日本語</span>
-          </div>
-          </div>
-          <div className="us-flag container">
-          <div className="image" />
-          <div className="english">
-          <span>English</span>
-          </div>
-          </div>
-        </span> */}
       </div>
     );
   }
