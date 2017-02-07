@@ -10,12 +10,15 @@
       width: 11em;
       height: 4em;
       @extend .white-bg;
+      cursor: pointer;
       &:hover,
       &:focus,
       &:active {
+        transition: .5s;
         background-color: $p-blue;
         color: $p-white;
         & .dropdown-content {
+          transition: .5s;
           display: block;
         }
       }
@@ -43,10 +46,10 @@
           height: 2.5em;
           font-size: 10px;
           margin: 0;
-          background-color: inherit;
+          background-color: transparent;
           color: inherit;
           font-family: $p-font;
-          font-weight: 200;
+          font-weight: 400;
         }
         & .chevron {
           @extend .flex-center;
@@ -54,7 +57,7 @@
           height: 2.5em;
           font-size: 15px;
           margin: 0;
-          background-color: inherit;
+          background-color: transparent;
           color: inherit;
           &.icon {
             width: 1em;
@@ -80,6 +83,7 @@
           &:hover,
           &:focus,
           &:active {
+            transition: .5s;
             background-color: $p-blue;
             & .nihongo {
               color: $p-white;
@@ -108,6 +112,7 @@
           &:hover,
           &:focus,
           &:active {
+            transition: .5s;
             background-color: $p-blue;
             & .english {
               color: $p-white;

@@ -11,9 +11,11 @@
       height: 4em;
       margin-right: .5em;
       @extend .white-bg;
+      cursor: pointer;
       &:hover,
       &:active,
       &:focus {
+        transition: .5s;
         background-color: $p-blue;
         color: $p-white;
         & .dropdown-content {
@@ -31,13 +33,13 @@
           height: 2.5em;
           font-size: 15px;
           margin: 0;
-          background-color: inherit;
+          background-color: transparent;
           color: inherit;
           .icon {
             width: 1em;
             height: 1em;
             font-size: 1em;
-            background-color: inherit;
+            background-color: transparent;
             color: inherit;
           }
         }
@@ -49,11 +51,11 @@
           height: 2.5em;
           padding-left: 1em;
           margin: 0;
-          background-color: inherit;
+          background-color: transparent;
           color: inherit;
           font-size: 10px;
           font-family: $p-font;
-          font-weight: 200;
+          font-weight: 400;
         }
         & .chevron {
           display: flex;
@@ -63,7 +65,7 @@
           height: 2.5em;
           font-size: 10px;
           margin: 0;
-          background-color: inherit;
+          background-color: transparent;
           color: inherit;
           .icon {
             width: 1em;
@@ -91,6 +93,7 @@
           &:hover,
           &:focus,
           &:active {
+            transition: .5s;
             background-color: $p-blue;
             & .yen {
               color: $p-white;
@@ -105,7 +108,7 @@
             align-items: center;
             height: 1.4em;
             width: 2.4em;
-            background-color: inherit;
+            background-color: transparent;
             font-size: 1.2em;
             color: inherit;
           }
@@ -125,6 +128,7 @@
           &:hover,
           &:focus,
           &:active {
+            transition: .5s;
             background-color: $p-blue;
             & .dollars {
               color: $p-white;
@@ -140,7 +144,7 @@
             height: 1.4em;
             width: 2.4em;
             font-size: 1.2em;
-            background-color: inherit;
+            background-color: transparent;
             color: inherit;
           }
           & .dollars {

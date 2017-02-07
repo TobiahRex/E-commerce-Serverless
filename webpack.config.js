@@ -27,7 +27,7 @@ const devConfig = {
   debug: true,
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    './src/Styles/style.scss',
+    './src/Styles/app.scss',
     './src/index.js',
   ],
   output: {
@@ -112,7 +112,7 @@ const prodConfig = {
   debug: true,
   target: 'web',
   entry: [
-    './src/Styles/style.scss',
+    './src/Styles/app.scss',
     './src/index.js',
   ],
   output: {

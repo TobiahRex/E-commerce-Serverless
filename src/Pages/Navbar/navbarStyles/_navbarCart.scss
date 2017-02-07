@@ -28,12 +28,13 @@
             background-color: $p-red;
             color: $p-white;
             font-size: 15px;
-            font-weight: 200;
+            font-weight: 400;
             font-family: $p-font;
             width: 6em;
             height: 2em;
             border-right: 1px solid $p-white;
-            @include prefixed(border-right-color, rgba(255, 255, 255, .5));
+            @include prefixed(font-smoothing, antialiased);
+            border-right-color: rgba(255, 255, 255, .5);
           }
           & .cart-qty {
             @extend .flex-center;
@@ -146,6 +147,7 @@
                     &:hover,
                     &:focus,
                     &:active {
+                      transition: .5s;
                       cursor: pointer;
                       background-color: $s-blue;
                       color: $p-white;
@@ -166,6 +168,7 @@
                     &:hover,
                     &:focus,
                     &:active {
+                      transition: .5s;
                       cursor: pointer;
                       background-color: $s-blue;
                       color: $p-white;
@@ -222,6 +225,7 @@
               &:hover,
               &:focus,
               &:active {
+                transition: .5s;
                 background-color: $p-blue;
                 color: $p-white;
                 cursor: pointer;
@@ -243,6 +247,7 @@
               &:hover,
               &:focus,
               &:active {
+                transition: .5s;
                 background-color: $p-blue;
                 color: $p-white;
                 cursor: pointer;

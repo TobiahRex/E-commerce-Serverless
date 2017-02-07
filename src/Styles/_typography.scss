@@ -1,6 +1,12 @@
-$font-google-muli : "https://fonts.googleapis.com/css?family=Muli";
-$p-font: 'Muli', sans-serif;
+$font-google-muli : "https://fonts.googleapis.com/css?family=Muli::300,400,700,800,900";
+$font-google-ubuntu : "https://fonts.googleapis.com/css?family=Ubuntu:300,400,700";
+$p-font: 'Ubuntu', sans-serif;
+$s-font: 'Muli', sans-serif;
 
 @if variable-exists($font-google-muli) {
   @import url($font-google-muli);
+}
+
+@if variable-exists($font-google-ubuntu) {
+  @import url($font-google-ubuntu);
 }
