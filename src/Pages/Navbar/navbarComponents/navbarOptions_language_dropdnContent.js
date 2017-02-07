@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-export default () => (
-  <span className="dropdown-content">
-    <div className="japanese-flag container">
-      <div className="image" />
-      <div className="nihongo">
-        <span>日本語</span>
-      </div>
-    </div>
-  </span>
-);
+class NavbarOptionsLanguageDropdnContent extends PureComponent {
+  static styles = {
+    hidden: {
+      display: 'none',
+    },
+    show: {},
+  }
+
+  render() {
+    return (
+      <span className="dropdown-content">
+        <div className="japanese-flag container">
+          <div className="image" />
+          <div className="nihongo">
+            <span>日本語</span>
+          </div>
+        </div>
+        <div className="us-flag container">
+          <div className="image" />
+          <div className="english">
+            <span>English</span>
+          </div>
+        </div>
+      </span>
+    );
+  }
+}
+export default NavbarOptionsLanguageDropdnContent;
