@@ -15,6 +15,7 @@
           @extend .ua-font-opts;
           width: 4.66em;
           height: 2em;
+          cursor: pointer;
           &:hover,
           &:active,
           &:focus {
@@ -30,6 +31,7 @@
           height: 2em;
           margin: 0em .66em;
           line-height: 1.33em;
+          cursor: pointer;
           &:hover,
           &:active,
           &:focus {
