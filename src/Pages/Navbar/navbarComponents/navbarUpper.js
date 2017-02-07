@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import NavbarOptions from './navbarOptions';
+import NavbarOptions from './navbarUpper/navbarOptions';
 import NavbarUserAction from './navbarUserActions';
 import NavbarCart from './navbarCart';
 
