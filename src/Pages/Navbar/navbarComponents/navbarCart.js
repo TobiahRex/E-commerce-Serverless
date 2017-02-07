@@ -21,16 +21,22 @@ class NavbarCart extends Component {
 
   render() {
     return (
-      <div className="navbar actionSection upper mycart">
-        <Link className="link">
-          <div className="title">
-            <span>My Cart</span>
-          </div>
-          <div className="cart-qty">
-            <span>0</span>
-          </div>
-        </Link>
-        {/* <CartDetails /> */}
+      <div className="navbar actionSection upper mycart-container">
+        <div className="mycart">
+          <span className="main-button">
+            <Link className="link">
+              <div className="title">
+                <span>My Cart</span>
+              </div>
+              <div className="cart-qty">
+                <span>0</span>
+              </div>
+            </Link>
+          </span>
+          <span className="dropdown-content">
+
+          </span>
+        </div>
       </div>
     );
   }
