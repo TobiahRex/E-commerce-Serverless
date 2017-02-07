@@ -16,7 +16,7 @@ class NavbarOptionsCurrency extends PureComponent {
         </div>
         <div className="navbar actionSection upper currency chevron">
           <FontAwesome
-            name="chevron-down"
+            name="angle-down"
             className="navbar actionSection upper currency chevron icon"
           />
         </div>

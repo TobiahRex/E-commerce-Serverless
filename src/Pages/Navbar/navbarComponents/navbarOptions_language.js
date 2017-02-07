@@ -13,23 +13,11 @@ class NavbarOptionsLanguage extends PureComponent {
   render() {
     return (
       <div className="navbar actionSection upper language">
-        <span className="main-button">
-          <div className="flag-us">
-            <div className="image" />
-          </div>
-          <div className="navbar actionSection upper language title">
-            <span>ENGLISH</span>
-          </div>
-          <div className="navbar actionSection upper language chevron">
-            <FontAwesome
-              name="chevron-down" className="navbar actionSection upper language chevron icon"
-            />
-          </div>
-        </span>
+        
         <span className="dropdown-content">
           <div className="japanese-flag container">
-            <div className="japanese-flag image" />
-            <div className="japanese-flag nihongo">
+            <div className="image" />
+            <div className="nihongo">
               <span>日本語</span>
             </div>
           </div>
