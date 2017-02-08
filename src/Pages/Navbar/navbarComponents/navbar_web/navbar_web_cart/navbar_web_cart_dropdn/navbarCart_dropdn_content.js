@@ -9,7 +9,7 @@ import NavbarCartProducts from './navbarCart_dropdn_products';
 class NavbarCartDropdnContent extends PureComponent {
   render() {
     const dummyProducts = [{
-      image: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/keyLimPie_zero_tightCrop_smallSize.jpg',
+      image: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/keyLimPie_zero_tightCrop_smallSize_zero.jpg',
       title: 'Keylime Pie',
       quantity: 3,
       price: 30,

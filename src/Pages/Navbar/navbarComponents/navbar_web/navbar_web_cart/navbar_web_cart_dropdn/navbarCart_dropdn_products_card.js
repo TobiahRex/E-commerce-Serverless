@@ -10,13 +10,13 @@ import NavbarCartProductsCardInfo from './navbarCart_dropdn_products_card_info';
 
 class NavbarCartProductsCard extends PureComponent {
   static propTypes = {
-    product_info: PropTypes.objectOf(PropTypes.any),
+    productInfo: PropTypes.objectOf(PropTypes.any),
   }
 
   deleteProduct = () => console.info('deleted product from drop down cart.');
 
   render() {
-    const { image, title, quantity, price, nicotine } = this.props.product_info;
+    const { image, title, quantity, price, nicotine } = this.props.productInfo;
     return (
       <li className="products-list-card">
         <div className="products-list-card-image">

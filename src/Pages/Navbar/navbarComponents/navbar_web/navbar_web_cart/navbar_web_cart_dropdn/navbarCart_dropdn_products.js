@@ -24,7 +24,7 @@ class NavbarCartTotalPrice extends PureComponent {
       return products.map((product, i) =>
         <NavbarCartProductsCard
           key={`products-list-${i + 1}`}
-          product_info={product}
+          productInfo={product}
         />);
     }
     return 1;
