@@ -1,21 +1,38 @@
 &.navbar-actionSection-lower-shop {
-  @extend .flex-center;
+  display: inline-block;
+  position: relative;
+  justify-content: center;
+  align-items: center;
   height: 4em;
   width: 12em;
   margin-right: 1em;
   background-color: $p-blue;
   box-shadow: 1px -2px 4px rgba(0,0,0,.5);
-  & .shop-main-button {
-    display: inline-block;
-    position: relative;
-    &:hover,
-    &:active,
-    &:focus {
-      z-index: 2;
-      & .shop-dropdown-content {
-        display: block;
-      }
+  &:hover,
+  &:active,
+  &:focus {
+    &:before {
+      content: '';
+      width: 100%;
+      height: 20px;
+      position: absolute;
+      top: 40px;
+      z-index: 50;
+      left: 0;
+      background-color: $p-blue;
     }
+    & .shop-dropdown-content {
+      display: block;
+    }
+    & .shop-main-button {
+      font-size: 10px;
+      background-color: inherit;
+      z-index: 2;
+    }
+  }
+  & .shop-main-button {
+    @extend .flex-center;
+    padding: .8em 0;
     & .shop-main-button-title {
       background-color: $p-blue;
       font-size: 20px;
@@ -28,6 +45,11 @@
     display: none;
     width: 108em;
     height: 63em;
+    background-color: pink;
+    position: absolute;
+    z-index: 1;
+    top: 5em;
+    margin-left: -24.5em;
   }
 }
 &.media {
