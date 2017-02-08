@@ -85,6 +85,8 @@
           width: 30em;
           background-color: $p-white;
           margin: 1em 1em 1em .5em;
+          box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+          cursor: pointer;
         }
       }
       & .shop-dropdown-content-midThird {
@@ -111,6 +113,13 @@
             height: 22.5em;
             width: 16em;
             background-color: $p-white;
+            cursor: pointer;
+            &:hover,
+            &:focus,
+            &:active {
+              transition: .5s;
+              box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+            }
             & .shop-dropdown-content-midThird-juices-card-title {
               @extend .flex-center;
               height: 4em;
@@ -144,14 +153,26 @@
             font-family: $p-font;
             font-size: 1.8em;
             font-weight: 200;
+            box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+            cursor: pointer;
+            &:hover,
+            &:focus,
+            &:active {
+              transition: .5s;
+              background-color: $p-blue;
+            }
           }
         }
         & .shop-dropdown-content-bottomThird-rightSide {
           @extend .flex-right;
           & h4.shop-dropdown-content-bottomThird-rightSide-promoSoft {
+            font-size: 2em;
+            text-transform: uppercase;
             font-weight: 200;
           }
           & h4.shop-dropdown-content-bottomThird-rightSide-promoHard {
+            font-size: 2em;
+            text-transform: uppercase;
             font-weight: 800;
             padding-left: .2em;
           }

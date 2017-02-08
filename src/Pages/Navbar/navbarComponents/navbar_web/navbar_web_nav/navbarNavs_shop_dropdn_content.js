@@ -83,3 +83,8 @@ class NavbarNavsShopDropdnContent extends PureComponent {
 }
 
 export default NavbarNavsShopDropdnContent;
+
+/* TODO
+1. Each of these Juice Cards are links to that specific product.
+
+*/
