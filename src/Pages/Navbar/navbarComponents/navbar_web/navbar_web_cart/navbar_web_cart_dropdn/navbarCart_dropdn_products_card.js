@@ -20,7 +20,7 @@ class NavbarCartProductsCard extends PureComponent {
     return (
       <li className="products-list-card">
         <div className="products-list-card-image">
-          <img className="products-list-card-image-src" src={image} alt="juice-pohoto" />
+          <img className="products-list-card-image-src" src={image} alt={`${title} juice`} />
         </div>
         <NavbarCartProductsCardInfo
           title={title}
