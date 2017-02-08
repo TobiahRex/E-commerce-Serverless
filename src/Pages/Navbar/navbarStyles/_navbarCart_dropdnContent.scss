@@ -47,7 +47,7 @@
       margin: 0em 1.25em .41em 1.25em;
       background-color: $p-white;
       background-color: green;
-      & .product-list {
+      & .products-list {
         font-size: 10px;
         @extend .flex-center;
         min-height: 7em;
@@ -56,20 +56,20 @@
         list-style: none;
         margin: 0;
         padding: 0;
-        & .product-card {
+        & .products-list-card {
           font-size: 1.2em;
           @extend .flex-center;
           background-color: $p-grey;
           height: 5.833em;
           width: 18.33em;
-          & .product-image {
+          & .products-list-cart-image {
             font-size: 10px;
             @extend .flex-center;
             height: 5em;
             width: 5em;
             padding: .5em;
           }
-          & .product-info {
+          & .products-list-card-info {
             font-size: 10px;
             display: flex;
             align-items: flex-start;
@@ -79,14 +79,14 @@
             width: 10.5em;
             font-family: $p-blue;
           }
-          & .product-edit {
+          & .products-list-card-actions {
             font-size: 10px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             height: 5.5em;
             width: 4em;
-            & .edit-product {
+            & .products-list-card-actions-edit {
               height: 1.5em;
               width: 1.5em;
               background-color: $p-red;
@@ -101,13 +101,13 @@
                 background-color: $s-blue;
                 color: $p-white;
               }
-              & .edit-product-icon {
+              & .products-list-card-actions-edit-icon {
                 @extend .flex-center;
                 font-size: 15px;
                 color: inherit;
               }
             }
-            & .delete-product {
+            & .products-list-card-actions-delete {
               height: 1.5em;
               width: 1.5em;
               background-color: $p-red;
@@ -122,7 +122,7 @@
                 background-color: $s-blue;
                 color: $p-white;
               }
-              & .edit-product-icon {
+              & .products-list-card-actions-delete-icon {
                 @extend .flex-center;
                 font-size: 15px;
                 color: inherit;

@@ -6,7 +6,7 @@ import NavbarCartPromotion from './navbarCart_dropdn_promotion';
 import NavbarCartRecentadd from './navbarCart_dropdn_recentadd';
 import NavbarCartTotalPrice from './navbarCart_dropdn_totalPrice';
 import NavbarCartActionLinks from './navbarCart_dropdn_actionLinks';
-import NavbarCartActionProducts from './navbarCart_dropdn_products';
+import NavbarCartProducts from './navbarCart_dropdn_products';
 
 class NavbarCartDropdnContent extends PureComponent {
   render() {

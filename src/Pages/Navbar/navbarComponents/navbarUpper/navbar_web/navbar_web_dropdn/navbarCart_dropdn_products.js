@@ -1,4 +1,6 @@
 import React, { PropTypes, PureComponent } from 'react';
+import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 
 /* TODO
 1. Link to product page for edit-product.
@@ -11,33 +13,33 @@ class NavbarCartTotalPrice extends PureComponent {
     products: PropTypes.arrayOf(PropTypes.object),
   }
 
-  renderProducts = () => console.info('rendered products');
-
   deleteProduct = () => console.info('deleted product from drop down cart.');
+
+  renderProducts = () => console.info('rendered products');
 
   render() {
     return (
       <div className="products">
-        <ul className="product-list">
-          <li className="product-card">
-            <div className="product-image">image</div>
-            <div className="product-info">
+        <ul className="products-list">
+          <li className="products-list-card">
+            <div className="products-list-card-image">image</div>
+            <div className="products-list-card-info">
               <div className="product-title">Fruity Bamm-Bamm</div>
               <div className="product-qty">3 x $ 15.00</div>
               <div className="nic-strength"><i>6mg</i></div>
             </div>
-            <div className="product-edit">
-              <div href="" className="edit-product">
+            <div className="products-list-card-actions">
+              <div href="" className="products-list-card-actions-edit">
                 <Link>
                   <FontAwesome
-                    className="edit-product-icon"
+                    className="products-list-card-actions-edit-icon"
                     name="pencil"
                   />
                 </Link>
               </div>
-              <div href="" className="delete-product">
+              <div href="" className="products-list-card-actions-delete">
                 <FontAwesome
-                  className="edit-product-icon"
+                  className="products-list-card-actions-delete-icon"
                   name="trash-o"
                 />
               </div>
