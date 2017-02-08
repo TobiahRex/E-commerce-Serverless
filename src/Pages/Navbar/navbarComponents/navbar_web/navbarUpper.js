@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 
-import NavbarOptions from './navbarOptions';
-import NavbarUserAction from './navbarUserActions';
-import NavbarCart from './navbarCart';
+import NavbarOptions from './navbar_web_options/navbarOptions';
+import NavbarUserAction from './navbar_web_userActions/navbarUserActions';
+import NavbarCart from './navbar_web_cart/navbarCart';
 
 class NavbarUpper extends PureComponent {
   render() {

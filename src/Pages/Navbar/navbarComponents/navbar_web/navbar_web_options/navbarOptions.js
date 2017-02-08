@@ -1,7 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react';
 
-import NavbarOptionsLangauge from './navbarOptions_language';
-import NavbarOptionsCurrency from './navbarOptions_currency';
+import NavbarOptionsLangauge from './navbar_web_options_language/navbarOptions_language';
+import NavbarOptionsCurrency from './navbar_web_options_currency/navbarOptions_currency';
 
 /* TODO:
 1. Pass down via props the respective class methods shown below.
