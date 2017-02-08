@@ -25,35 +25,20 @@ class NavbarCartTotalPrice extends PureComponent {
     return 1;
   }
 
+  emptyCart = () =>
+    <div className="products-list-empty">
+      Your Cart Is Currently Empty
+    </div>
+
   render() {
     return (
       <div className="products">
         <ul className="products-list">
-          {this.renderProducts(this.props.products)}
-          {/* <li className="products-list-card">
-            <div className="products-list-card-image">image</div>
-            <div className="products-list-card-info">
-            <div className="product-title">Fruity Bamm-Bamm</div>
-            <div className="product-qty">3 x $ 15.00</div>
-            <div className="nic-strength"><i>6mg</i></div>
-            </div>
-            <div className="products-list-card-actions">
-            <div href="" className="products-list-card-actions-edit">
-            <Link>
-            <FontAwesome
-            className="products-list-card-actions-edit-icon"
-            name="pencil"
-            />
-            </Link>
-            </div>
-            <div href="" className="products-list-card-actions-delete">
-            <FontAwesome
-            className="products-list-card-actions-delete-icon"
-            name="trash-o"
-            />
-            </div>
-            </div>
-          </li> */}
+          {
+            this.props.products ?
+            this.renderProducts(this.props.products) :
+            this.emptyCart()
+          }
         </ul>
       </div>
     );

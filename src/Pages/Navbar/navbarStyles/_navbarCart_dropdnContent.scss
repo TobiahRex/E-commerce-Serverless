@@ -46,16 +46,17 @@
       max-width: 18.33em;
       margin: 0em 1.25em .41em 1.25em;
       background-color: $p-white;
-      background-color: green;
       & .products-list {
         font-size: 10px;
         @extend .flex-center;
         min-height: 7em;
         max-width: 22em;
-        background-color: blue;
         list-style: none;
         margin: 0;
         padding: 0;
+        & .products-list-empty {
+          background-color: inherit;
+        }
         & .products-list-card {
           font-size: 1.2em;
           @extend .flex-center;

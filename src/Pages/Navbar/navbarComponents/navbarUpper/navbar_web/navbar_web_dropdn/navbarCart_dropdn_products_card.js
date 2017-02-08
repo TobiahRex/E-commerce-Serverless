@@ -44,12 +44,12 @@ class NavbarCartProductsCard extends PureComponent {
               />
             </Link>
           </div>
-          <div href="" className="products-list-card-actions-delete">
+          <button href="" className="products-list-card-actions-delete">
             <FontAwesome
               className="products-list-card-actions-delete-icon"
               name="trash-o"
             />
-          </div>
+          </button>
         </div>
       </li>
     );
