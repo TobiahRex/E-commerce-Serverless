@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import NavbarCartDropdnContent from './navbarUpper/navbarCart_dropdnContent';
-import NavbarCartMainButton from './navbarUpper/navbarCart_mainButton';
+import NavbarCartDropdnContent from './navbarUpper/navbar_web/navbar_web_dropdn/navbarCart_dropdnContent';
+import NavbarCartMainButton from './navbarUpper/navbar_web/navbarCart_mainButton';
 
 /* TODO
 1. Navbar has an entire CRUD capability if hovered over.  Therefore the component that is revealed upon hover, will be passed down several CRUD like methods via props to PureComponents.
