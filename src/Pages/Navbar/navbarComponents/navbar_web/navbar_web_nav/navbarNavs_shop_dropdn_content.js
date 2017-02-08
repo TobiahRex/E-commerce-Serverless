@@ -11,7 +11,9 @@ class NavbarNavsShopDropdnContent extends PureComponent {
                 <h1>Nicotine Juices:</h1>
               </div>
               <div className="shop-dropdown-content-topThird-parent-desc">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reprehenderit laborum dolorem nesciunt eaque quas, rem ullam quia! Quasi, itaque quos inventore magni aliquam at autem dolor harum accusamus et.
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reprehenderit laborum dolorem nesciunt eaque quas, rem ullam quia! Quasi, itaque quos inventore magni aliquam at autem dolor harum accusamus et.
+                </p>
               </div>
             </div>
             <div className="shop-dropdown-content-topThird-video">Video</div>

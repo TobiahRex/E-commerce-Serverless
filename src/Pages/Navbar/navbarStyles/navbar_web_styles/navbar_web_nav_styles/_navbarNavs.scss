@@ -45,7 +45,7 @@
     display: none;
     width: 108em;
     height: 63em;
-    background-color: pink;
+    background-color: $p-white;
     position: absolute;
     z-index: 1;
     top: 5em;
@@ -57,32 +57,33 @@
         @extend .flex-center;
         height: 18em;
         width: 104em;
-        background-color: blue;
+        background-color: $p-white;
         margin-top: 1.5em;
+        border-bottom: 1px solid rgba(1,1,1,.2);
         & .shop-dropdown-content-topThird-parent {
           @extend .flex-center;
           flex-direction: column;
           height: 16em;
           width: 71em;
-          background-color: pink;
+          background-color: $p-white;
           margin: 1em .5em 1em 1em;
           & .shop-dropdown-content-topThird-parent-title {
             height: 5em;
             width: 70em;
             padding-left: .5em;
-            background-color: green;
+            background-color: $p-white;
           }
           & .shop-dropdown-content-topThird-parent-desc {
             height: 11em;
             width: 70em;
             padding-left: .5em;
-            background-color: orange;
+            background-color: $p-white;
           }
         }
         & .shop-dropdown-content-topThird-video {
           height: 16em;
           width: 30em;
-          background-color: purple;
+          background-color: $p-white;
           margin: 1em 1em 1em .5em;
         }
       }
@@ -91,12 +92,13 @@
         flex-direction: column;
         height: 31.5em;
         width: 104em;
-        background-color: green;
+        background-color: $p-white;
+        border-bottom: 1px solid rgba(1,1,1,.2);
         & .shop-dropdown-content-midThird-title {
           @extend .flex-center;
           width: 104em;
           height: 7.5em;
-          background-color: red;
+          background-color: $p-white;
         }
         & .shop-dropdown-content-midThird-juices {
           display: flex;
@@ -104,11 +106,11 @@
           align-items: center;
           height: 24em;
           width: 104em;
-          background-color: orange;
+          background-color: $p-white;
           & .shop-dropdown-content-midThird-juices-card {
             height: 22.5em;
             width: 16em;
-            background-color: blue;
+            background-color: $p-white;
             & .shop-dropdown-content-midThird-juices-card-title {
               @extend .flex-center;
               height: 4em;
@@ -128,16 +130,20 @@
         align-items: center;
         height: 9.7em;
         width: 104em;
-        background-color: green;
+        background-color: $p-white;
         margin-bottom: 1.5em;
         & .shop-dropdown-content-bottomThird-leftSide {
             @extend .flex-left;
+            width: 50%;
           & button.shop-dropdown-content-bottomThird-leftSide-recommend {
+            height: 3.05em;
+            width: 16.38em;
             border: none;
             background-color: $p-red;
             color: $p-white;
             font-family: $p-font;
             font-size: 1.8em;
+            font-weight: 200;
           }
         }
         & .shop-dropdown-content-bottomThird-rightSide {
@@ -147,6 +153,7 @@
           }
           & h4.shop-dropdown-content-bottomThird-rightSide-promoHard {
             font-weight: 800;
+            padding-left: .2em;
           }
         }
       }
