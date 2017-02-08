@@ -14,6 +14,11 @@ class NavbarCartTotalPrice extends PureComponent {
     products: PropTypes.arrayOf(PropTypes.object),
   }
 
+  emptyCart = () =>
+    <div className="products-list-empty">
+      Your Cart Is Currently Empty
+    </div>
+
   renderProducts = (products) => {
     if (products.length) {
       return products.map((product, i) =>
@@ -24,11 +29,6 @@ class NavbarCartTotalPrice extends PureComponent {
     }
     return 1;
   }
-
-  emptyCart = () =>
-    <div className="products-list-empty">
-      Your Cart Is Currently Empty
-    </div>
 
   render() {
     return (

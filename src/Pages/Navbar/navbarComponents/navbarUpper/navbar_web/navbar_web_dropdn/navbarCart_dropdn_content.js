@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 
 import NavbarCartPromotion from './navbarCart_dropdn_promotion';
 import NavbarCartRecentadd from './navbarCart_dropdn_recentadd';
@@ -10,12 +8,22 @@ import NavbarCartProducts from './navbarCart_dropdn_products';
 
 class NavbarCartDropdnContent extends PureComponent {
   render() {
+    const products = {
+      image: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/keyLimPie_zero_tightCrop_smallSize.jpg',
+      title: 'Keylime Pie',
+      quantity: 3,
+      price: 30,
+      nicotine: 6,
+    };
+
     return (
       <span className="dropdown-content">
         <div className="container">
           <NavbarCartPromotion />
           <NavbarCartRecentadd />
-          <NavbarCartProducts />
+          <NavbarCartProducts
+            products={products}
+          />
           <NavbarCartTotalPrice />
           <NavbarCartActionLinks />
         </div>
@@ -25,3 +33,7 @@ class NavbarCartDropdnContent extends PureComponent {
 }
 
 export default NavbarCartDropdnContent;
+
+/* TODO
+1. Remove dummy data.
+*/

@@ -17,7 +17,7 @@ class NavbarCartTotalPrice extends PureComponent {
       <div className="total-price">
         <span className="total-price-title">Total Price</span>
         <span className="total-price-amount">
-
+          <FontAwesome name="usd" />&nbsp;
           {this.props.cart_total || '00'}.00
         </span>
       </div>

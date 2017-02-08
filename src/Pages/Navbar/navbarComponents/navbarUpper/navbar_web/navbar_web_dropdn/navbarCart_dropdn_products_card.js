@@ -1,7 +1,6 @@
 import React, { PropTypes, PureComponent } from 'react';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 
+import NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_actions';
 /* TODO
 1. Link to product page for edit-product.
 
@@ -35,22 +34,7 @@ class NavbarCartProductsCard extends PureComponent {
             </i>
           </div>
         </div>
-        <div className="products-list-card-actions">
-          <div href="" className="products-list-card-actions-edit">
-            <Link>
-              <FontAwesome
-                className="products-list-card-actions-edit-icon"
-                name="pencil"
-              />
-            </Link>
-          </div>
-          <button href="" className="products-list-card-actions-delete">
-            <FontAwesome
-              className="products-list-card-actions-delete-icon"
-              name="trash-o"
-            />
-          </button>
-        </div>
+        <NavbarCartProductsCardActions />
       </li>
     );
   }
