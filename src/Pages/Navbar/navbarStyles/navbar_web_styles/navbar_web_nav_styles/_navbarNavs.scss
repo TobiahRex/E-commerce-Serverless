@@ -89,27 +89,45 @@
       & .shop-dropdown-content-midThird {
         @extend .flex-center;
         flex-direction: column;
-        height: 32em;
+        height: 31.5em;
         width: 104em;
         background-color: green;
         & .shop-dropdown-content-midThird-title {
           @extend .flex-center;
-          @extend .h1;
-          width: 41.6em;
-          height: 3em;
+          width: 104em;
+          height: 75em;
           background-color: red;
         }
         & .shop-dropdown-content-midThird-juices {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
           align-items: center;
-          background-color: blue;
+          height: 24em;
+          width: 104em;
+          background-color: orange;
+          & .shop-dropdown-content-midThird-juices-card {
+            height: 22.5em;
+            width: 16em;
+            background-color: blue;
+            & .shop-dropdown-content-midThird-juices-card-title {
+
+              height: 3em;
+              width: 16em;
+              margin-bottom: .5em;
+            }
+            & .shop-dropdown-content-midThird-juices-card-image {
+              height: 18em;
+              width: 16em;
+              margin-top: .5em;
+              padding-top: .5em;
+            }
+          }
         }
       }
       & .shop-dropdown-content-bottomThird {
         height: 9.7em;
         width: 104em;
-        background-color: red;
+        background-color: green;
         margin-bottom: 1.5em;
       }
     }

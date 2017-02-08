@@ -21,41 +21,41 @@ class NavbarNavsShopDropdnContent extends PureComponent {
               <h1>Switch Juice</h1>
             </div>
             <div className="shop-dropdown-content-midThird-juices">
-              <div className="shop-dropdown-content-midThird-juices-fbb">
-                <div className="shop-dropdown-content-midThird-juices-fbb-title">
+              <div className="shop-dropdown-content-midThird-juices-card">
+                <div className="shop-dropdown-content-midThird-juices-card-title">
                   <span>Fruity Bamm Bamm</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-fbb-image" />
+                <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
-              <div className="shop-dropdown-content-midThird-juices-klp">
-                <div className="shop-dropdown-content-midThird-juices-klp-title">
+              <div className="shop-dropdown-content-midThird-juices-card">
+                <div className="shop-dropdown-content-midThird-juices-card-title">
                   <span>Keylime Pie</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-klp-image" />
+                <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
-              <div className="shop-dropdown-content-midThird-juices-pc">
-                <div className="shop-dropdown-content-midThird-juices-pc-title">
+              <div className="shop-dropdown-content-midThird-juices-card">
+                <div className="shop-dropdown-content-midThird-juices-card-title">
                   <span>Pina Colada</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-pc-image" />
+                <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
-              <div className="shop-dropdown-content-midThird-juices-fvm">
-                <div className="shop-dropdown-content-midThird-juices-fvm-title">
+              <div className="shop-dropdown-content-midThird-juices-card">
+                <div className="shop-dropdown-content-midThird-juices-card-title">
                   <span>French Vanilla Mocha</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-fvm-image" />
+                <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
-              <div className="shop-dropdown-content-midThird-juices-snc">
-                <div className="shop-dropdown-content-midThird-juices-snc-title">
+              <div className="shop-dropdown-content-midThird-juices-card">
+                <div className="shop-dropdown-content-midThird-juices-card-title">
                   <span>Strawberries {('N\'')} Cream</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-snc-image" />
+                <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
-              <div className="shop-dropdown-content-midThird-juices-pb">
-                <div className="shop-dropdown-content-midThird-juices-pb-title">
+              <div className="shop-dropdown-content-midThird-juices-card">
+                <div className="shop-dropdown-content-midThird-juices-card-title">
                   <span>Papple Berry</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-pb-image" />
+                <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
             </div>
           </div>
