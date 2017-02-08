@@ -12,7 +12,7 @@ class NavbarUserActions extends PureComponent {
 
   render() {
     return (
-      <div className="navbar actionSection upper user-actions">
+      <div className="navbar-actionSection-upper-actions">
         <NavbarUserActionsNoSignin />
         <NavbarUserActionsSignin />
       </div>

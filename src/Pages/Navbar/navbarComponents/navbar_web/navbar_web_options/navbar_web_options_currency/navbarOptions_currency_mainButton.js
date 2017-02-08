@@ -2,11 +2,11 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 export default () => (
-  <span className="main-button">
-    <div className="navbar actionSection upper currency dollar">
+  <span className="currency-main-button">
+    <div className="currency-main-button-dollar">
       <FontAwesome
         name="usd"
-        className="navbar actionSection upper currency dollar icon"
+        className="currency-main-button-dollar-icon"
       />
     </div>
     <div className="navbar actionSection upper currency title">

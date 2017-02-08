@@ -14,7 +14,7 @@ class NavbarUserActionsSignin extends PureComponent {
   render() {
     return (
       <ul
-        className="navbar actionSection upper user-actions signed-in"
+        className="navbar-actionSection-upper-actions-signedIn"
       >
         <li className="my-account-title">
           <Link>My Account</Link>

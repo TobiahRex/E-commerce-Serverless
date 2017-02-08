@@ -7,7 +7,7 @@ import NavbarCart from './navbar_web_cart/navbarCart';
 class NavbarUpper extends PureComponent {
   render() {
     return (
-      <div className="navbar actionSection upper">
+      <div className="navbar-actionSection-upper">
         <NavbarOptions />
         <NavbarUserAction />
         <NavbarCart />

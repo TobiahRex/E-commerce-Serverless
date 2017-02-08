@@ -18,7 +18,7 @@ class NavbarOptions extends PureComponent {
 
   render() {
     return (
-      <div className="navbar acitonSection upper options">
+      <div className="navbar-actionSection-upper-options">
         <NavbarOptionsLangauge />
         <NavbarOptionsCurrency />
       </div>

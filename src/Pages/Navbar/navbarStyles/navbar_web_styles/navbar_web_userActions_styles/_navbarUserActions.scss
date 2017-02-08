@@ -1,15 +1,17 @@
-@import "./navbarUserActions_signIn";
-@import "./navbarUserActions_noSignIn";
+@import "./navbarUserActions_signedIn";
+@import "./navbarUserActions_notSignedIn";
 
-.navbar.actionSection {
-  &.upper {
-    display: flex;
-    &.user-actions {
-      @extend .white-bg;
-      display: flex;
-      width: 45em;
-      height: 4em;
-      text-align: center;
-    }
-  }
+.navbar-actionSection-upper-actions {
+  @extend .flex-right;
+  @extend .white-bg;
+  width: 45em;
+  height: 4em;
+  text-align: center;
+}
+.navbar-actionSection-upper-options {
+  @extend .flex-center;
+  // @extend .white-bg;
+  // width: 45em;
+  // height: 4em;
+  // text-align: center;
 }

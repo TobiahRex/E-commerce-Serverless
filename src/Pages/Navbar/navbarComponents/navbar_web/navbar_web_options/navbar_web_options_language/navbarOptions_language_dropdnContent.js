@@ -17,19 +17,19 @@ class NavbarOptionsLanguageDropdnContent extends PureComponent {
 
   render() {
     return (
-      <span className="dropdown-content">
-        <div className="dropdown-content-japanese">
-          <div className="dropdown-content-japanese-image" />
-          <div className="dropdown-content-japanese-nihongo">
+      <span className="language-dropdown-content">
+        <div className="language-dropdown-content-japanese">
+          <div className="language-dropdown-content-japanese-image" />
+          <div className="language-dropdown-content-japanese-nihongo">
             <span>日本語</span>
           </div>
         </div>
         <div
-          className="dropdown-content-us"
+          className="language-dropdown-content-us"
           style={NavbarOptionsLanguageDropdnContent.styles.hidden}
         >
-          <div className="dropdown-content-us-image" />
-          <div className="dropdown-content-us-english">
+          <div className="language-dropdown-content-us-image" />
+          <div className="language-dropdown-content-us-english">
             <span>English</span>
           </div>
         </div>

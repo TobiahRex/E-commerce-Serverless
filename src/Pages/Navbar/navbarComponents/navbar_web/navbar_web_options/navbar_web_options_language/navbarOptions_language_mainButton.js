@@ -2,16 +2,16 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 export default () => (
-  <span className="main-button">
-    <div className="flag-us">
-      <div className="image" />
+  <span className="language-main-button">
+    <div className="language-main-button-us">
+      <div className="language-main-button-us-flag" />
     </div>
-    <div className="navbar actionSection upper language title">
+    <div className="language-main-button-us-title">
       <span>ENGLISH</span>
     </div>
-    <div className="navbar actionSection upper language chevron">
+    <div className="language-main-button-us-chevron">
       <FontAwesome
-        name="angle-down" className="navbar actionSection upper language chevron icon"
+        name="angle-down" className="language-main-button-us-chevron-icon"
       />
     </div>
   </span>

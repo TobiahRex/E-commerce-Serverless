@@ -13,7 +13,7 @@ class NavbarUserActionsNoSignin extends PureComponent {
     return (
       <ul
         style={NavbarUserActionsNoSignin.styles.hidden}
-        className="navbar actionSection upper user-actions not-signed-in hidden"
+        className="navbar-actionSection-upper-actions-notSignedIn hidden"
       >
         <li className="sign-in-title">
           <Link>Sign In</Link>
