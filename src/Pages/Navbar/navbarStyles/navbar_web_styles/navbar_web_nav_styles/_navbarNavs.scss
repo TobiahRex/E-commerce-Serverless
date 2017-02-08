@@ -124,11 +124,31 @@
       }
       & .shop-dropdown-content-bottomThird {
         display: flex;
-
+        justify-content: space-around;
+        align-items: center;
         height: 9.7em;
         width: 104em;
         background-color: green;
         margin-bottom: 1.5em;
+        & .shop-dropdown-content-bottomThird-leftSide {
+            @extend .flex-left;
+          & button.shop-dropdown-content-bottomThird-leftSide-recommend {
+            border: none;
+            background-color: $p-red;
+            color: $p-white;
+            font-family: $p-font;
+            font-size: 1.8em;
+          }
+        }
+        & .shop-dropdown-content-bottomThird-rightSide {
+          @extend .flex-right;
+          & h4.shop-dropdown-content-bottomThird-rightSide-promoSoft {
+            font-weight: 200;
+          }
+          & h4.shop-dropdown-content-bottomThird-rightSide-promoHard {
+            font-weight: 800;
+          }
+        }
       }
     }
   }

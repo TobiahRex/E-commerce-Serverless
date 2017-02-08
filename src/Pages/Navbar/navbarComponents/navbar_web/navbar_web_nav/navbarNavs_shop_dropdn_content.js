@@ -61,7 +61,7 @@ class NavbarNavsShopDropdnContent extends PureComponent {
           </div>
           <div className="shop-dropdown-content-bottomThird">
             <span className="shop-dropdown-content-bottomThird-leftSide">
-              <button className="shop-dropdown-content-bottomThird-recommend">
+              <button className="shop-dropdown-content-bottomThird-leftSide-recommend">
                 <span>Recommend Another Juice Line</span>
               </button>
             </span>
