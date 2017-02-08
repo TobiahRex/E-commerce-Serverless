@@ -1,11 +1,7 @@
 import React, { PropTypes } from 'react';
-import { browserHistory, Link } from 'react-router';
-import { MuiThemeProvider } from 'material-ui/styles';
 
-import NavbarLogo from './navbarLogo';
-import NavbarActionSection from './navbarActionSection';
-
-import styles from '../navbarStyles/_navbar_styles.scss';
+import NavbarLogo from './navbar_web/navbarLogo';
+import NavbarActionSection from './navbar_web/navbarActionSection';
 
 class Navbar extends React.Component {
   static defaultProps = {

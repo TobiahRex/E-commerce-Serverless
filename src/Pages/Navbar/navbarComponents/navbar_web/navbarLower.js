@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router';
 
 class NavbarLower extends PureComponent {
   static styles = {

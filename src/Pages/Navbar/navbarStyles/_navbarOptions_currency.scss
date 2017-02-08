@@ -84,11 +84,11 @@
         box-shadow: 1px 2px 5px rgba(0,0,0,.6);
         & .dropdown-content-yen {
           height: 2.5em;
-          width: 7em;
+          width: 9em;
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 0.5em 3em 0em 3em;
+          margin: 2em 2em 2em 2em;
           color: $p-blue;
           &:hover,
           &:focus,
@@ -116,25 +116,22 @@
             font-size: 1em;
           }
         }
-        & .us-dollars.container {
+        & .dropdown-content-dollars {
           @extend .flex-center;
           height: 2.5em;
-          width: 7em;
-          margin: 0em 3em 0.5em 3em;
+          width: 9em;
+          margin: 0em 2em 2em 2em;
           color: $p-blue;
           &:hover,
           &:focus,
           &:active {
             transition: .5s;
             background-color: $p-blue;
-            & .dollars {
-              color: $p-white;
-            }
-            & .dollar-icon {
+            & .dropdown-content-dollars-title, .dropdown-content-dollars-icon {
               color: $p-white;
             }
           }
-          & .dollar-icon {
+          & .dropdown-content-dollars-icon {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -144,7 +141,7 @@
             background-color: transparent;
             color: inherit;
           }
-          & .dollars {
+          & .dropdown-content-dollars-title {
             font-family: $p-font;
             font-weight: 200;
             color: $s-blue;
