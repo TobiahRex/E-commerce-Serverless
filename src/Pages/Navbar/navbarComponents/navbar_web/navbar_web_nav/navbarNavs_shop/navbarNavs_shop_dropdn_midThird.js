@@ -1,6 +1,6 @@
 import React, { PropTypes, PureComponent } from 'react';
 
-
+import NavbarNavsShopDropdnJuiceCards from './navbarNavs_shop_dropdn_midThird_juiceCard';
 /* TODO
 This component will receive 6 popular juice products.
 
@@ -18,16 +18,13 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
   renderJuiceCards = (juices) => {
     if (juices.length) {
       return juices.map((juice, i) =>
-      <div className="shop-dropdown-content-midThird-juices-card">
-        <div className="shop-dropdown-content-midThird-juices-card-title">
-          <h4>{juice.title}</h4>
-        </div>
-        <div className="shop-dropdown-content-midThird-juices-card-image">
-          <img className="shop-dropdown-content-midThird-juices-card-image-src" src={juice.image} alt="juice-pohoto" />
-        </div>
-      </div>
+        <NavbarNavsShopDropdnJuiceCards
+          key={`shop-dropdown-content-midThird-juices-${i + 1}`}
+          juice_info={juice}
+        />
       );
     }
+    return '<JUICE CARDS>';
   }
 
   render() {
