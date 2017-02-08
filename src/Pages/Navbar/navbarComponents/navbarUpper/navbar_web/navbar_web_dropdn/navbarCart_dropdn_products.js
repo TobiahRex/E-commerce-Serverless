@@ -13,8 +13,6 @@ class NavbarCartTotalPrice extends PureComponent {
     products: PropTypes.arrayOf(PropTypes.object),
   }
 
-  deleteProduct = () => console.info('deleted product from drop down cart.');
-
   renderProducts = () => console.info('rendered products');
 
   render() {
