@@ -1,5 +1,12 @@
 import React, { PureComponent } from 'react';
 
+/* TODO
+1. Modularize Shop dropdown.
+- into thirds.
+- middle third needs a render function.
+
+*/
+
 class NavbarNavsShopDropdnContent extends PureComponent {
   render() {
     return (
