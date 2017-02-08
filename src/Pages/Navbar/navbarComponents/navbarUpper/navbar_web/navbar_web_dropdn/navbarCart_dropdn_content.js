@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 
 import NavbarCartPromotion from './navbarCart_dropdn_promotion';
 import NavbarCartRecentadd from './navbarCart_dropdn_recentadd';
+import NavbarCartTotalPrice from './navbarCart_dropdn_totalPrice';
 
 class NavbarCartDropdnContent extends PureComponent {
   render() {
