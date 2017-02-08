@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
+
 class NavbarNavsShop extends PureComponent {
   render() {
     return (
@@ -9,11 +11,7 @@ class NavbarNavsShop extends PureComponent {
             <span>SHOP</span>
           </div>
         </span>
-        <span className="shop-dropdown-content">
-          <div className="title">
-            <span>SHOP</span>
-          </div>
-        </span>
+        <NavbarNavsShopDropdnContent />
       </div>
     );
   }
