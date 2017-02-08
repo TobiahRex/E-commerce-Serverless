@@ -63,12 +63,15 @@
           background-color: $p-grey;
           height: 5.833em;
           width: 18.33em;
-          & .products-list-cart-image {
+          & .products-list-card-image {
             font-size: 10px;
             @extend .flex-center;
             height: 5em;
             width: 5em;
             padding: .5em;
+            & .products-list-card-image-src {
+              max-width: 1em;
+            }
           }
           & .products-list-card-info {
             font-size: 10px;
