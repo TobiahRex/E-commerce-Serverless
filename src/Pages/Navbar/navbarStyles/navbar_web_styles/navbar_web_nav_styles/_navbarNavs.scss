@@ -114,9 +114,20 @@
             width: 16em;
             background-color: $p-white;
             cursor: pointer;
+            text-decoration: none;
             &:hover,
             &:focus,
             &:active {
+              & .shop-dropdown-content-midThird-juices-card-title h4 {
+                transition: .5s;
+                color: $p-red;
+              }
+              & .shop-dropdown-content-midThird-juices-card-image
+              .shop-dropdown-content-midThird-juices-card-image-src {
+                transition: .3s;
+                font-size: 10px;
+                max-width: 3.7em;
+              }
               transition: .5s;
               box-shadow: 3px 3px 2px rgba(1,1,1,.2);
             }
@@ -126,9 +137,14 @@
               width: 16em;
             }
             & .shop-dropdown-content-midThird-juices-card-image {
+              @extend .flex-center;
               height: 18em;
               width: 16em;
               margin-top: .5em;
+              & .shop-dropdown-content-midThird-juices-card-image-src {
+                font-size: 10px;
+                max-width: 3.5em;
+              }
             }
           }
         }
@@ -142,8 +158,8 @@
         background-color: $p-white;
         margin-bottom: 1.5em;
         & .shop-dropdown-content-bottomThird-leftSide {
-            @extend .flex-left;
-            width: 50%;
+          @extend .flex-left;
+          width: 50%;
           & button.shop-dropdown-content-bottomThird-leftSide-recommend {
             height: 3.05em;
             width: 16.38em;

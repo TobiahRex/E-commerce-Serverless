@@ -6,8 +6,6 @@ This component will receive 6 popular juice products.
 
 1. Each of these Juice Cards are links to that specific product.
 
-2. "Recommend Another Juice Line" needs to send the user to the "/contact_us" page.
-
 */
 
 class NavbarNavsShopDropdnMidthird extends PureComponent {
@@ -17,10 +15,10 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
 
   renderJuiceCards = (juices) => {
     if (juices.length) {
-      return juices.map((juice, i) =>
+      return juices.map((juiceObj, i) =>
         <NavbarNavsShopDropdnJuiceCards
           key={`shop-dropdown-content-midThird-juices-${i + 1}`}
-          juiceInfo={juice}
+          juiceInfo={juiceObj}
         />
       );
     }
