@@ -1,6 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react';
 
 import NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_actions';
+import NavbarCartProductsCardInfo from './navbarCart_dropdn_products_card_info';
 /* TODO
 1. Link to product page for edit-product.
 
@@ -21,19 +22,12 @@ class NavbarCartProductsCard extends PureComponent {
         <div className="products-list-card-image">
           <img className="products-list-card-image-src" src={image} alt="juice-pohoto" />
         </div>
-        <div className="products-list-card-info">
-          <div className="product-title">
-            {title ? `${this.props.product_info.title}` : '<TITLE HERE>'}
-          </div>
-          <div className="product-qty">
-            {quantity ? `${quantity} x $ ${price}.00` : '<QTY HERE>'}
-          </div>
-          <div className="nic-strength">
-            <i>
-              {nicotine ? `${nicotine}mg` : '<NIC STRENGTH HERE>'}
-            </i>
-          </div>
-        </div>
+        <NavbarCartProductsCardInfo
+          title={title}
+          price={price}
+          quantity={quantity}
+          nicotine={nicotine}
+        />
         <NavbarCartProductsCardActions />
       </li>
     );
