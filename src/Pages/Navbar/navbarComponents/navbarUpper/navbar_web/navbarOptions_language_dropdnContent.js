@@ -18,7 +18,7 @@ class NavbarOptionsLanguageDropdnContent extends PureComponent {
   render() {
     return (
       <span className="dropdown-content">
-        <div className="japanese-flag container">
+        <div className="dropdown-content-japanese">
           <div className="image" />
           <div className="nihongo">
             <span>日本語</span>

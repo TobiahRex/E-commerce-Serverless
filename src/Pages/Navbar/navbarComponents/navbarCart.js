@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import NavbarCartDropdnContent from './navbarUpper/navbar_web/navbar_web_dropdn/navbarCart_dropdn_content';
+import NavbarCartDropdnContent from './navbarUpper/navbar_web/navbar_web_cart_dropdn/navbarCart_dropdn_content';
 import NavbarCartMainButton from './navbarUpper/navbar_web/navbarCart_mainButton';
 
 /* TODO
