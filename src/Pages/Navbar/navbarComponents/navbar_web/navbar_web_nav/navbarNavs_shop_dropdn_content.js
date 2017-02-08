@@ -60,11 +60,19 @@ class NavbarNavsShopDropdnContent extends PureComponent {
             </div>
           </div>
           <div className="shop-dropdown-content-bottomThird">
-            <button className="shop-dropdown-content-bottomThird-recommend">
-              <span>Recommend Another Juice Line</span>
-            </button>
-            <h4 className="shop-dropdown-content-bottomThird-promoSoft"></h4>
-            <h4 className="shop-dropdown-content-bottomThird-promoHard"></h4>
+            <span className="shop-dropdown-content-bottomThird-leftSide">
+              <button className="shop-dropdown-content-bottomThird-recommend">
+                <span>Recommend Another Juice Line</span>
+              </button>
+            </span>
+            <span className="shop-dropdown-content-bottomThird-rightSide">
+              <h4 className="shop-dropdown-content-bottomThird-rightSide-promoSoft">
+                <span>Get 10% OFF</span>
+              </h4>
+              <h4 className="shop-dropdown-content-bottomThird-rightSide-promoHard">
+                <span>When You Become A Member</span>
+              </h4>
+            </span>
           </div>
         </span>
       </span>
