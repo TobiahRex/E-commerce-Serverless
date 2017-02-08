@@ -9,13 +9,13 @@ export default () => (
         className="currency-main-button-dollar-icon"
       />
     </div>
-    <div className="navbar actionSection upper currency title">
+    <div className="currency-main-button-dollar-title">
       <span>USD</span>
     </div>
-    <div className="navbar actionSection upper currency chevron">
+    <div className="currency-main-button-dollar-chevron">
       <FontAwesome
         name="angle-down"
-        className="navbar actionSection upper currency chevron icon"
+        className="currency-main-button-dollar-chevron-icon"
       />
     </div>
   </span>

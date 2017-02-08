@@ -21,19 +21,19 @@ class NavbarOptionsCurrencyDropdnContent extends PureComponent {
 
   render() {
     return (
-      <span className="dropdown-content">
-        <div className="dropdown-content-yen">
-          <FontAwesome name="yen" className="dropdown-content-yen-icon" />
-          <div className="dropdown-content-yen-title">
+      <span className="currency-dropdown-content">
+        <div className="currency-dropdown-content-yen">
+          <FontAwesome name="yen" className="currency-dropdown-content-yen-icon" />
+          <div className="currency-dropdown-content-yen-title">
             <span>YEN</span>
           </div>
         </div>
         <div
-          className="dropdown-content-dollars"
+          className="currency-dropdown-content-dollars"
           style={NavbarOptionsCurrencyDropdnContent.styles.hidden}
         >
-          <FontAwesome name="usd" className="dropdown-content-dollars-icon" />
-          <div className="dropdown-content-dollars-title">
+          <FontAwesome name="usd" className="currency-dropdown-content-dollars-icon" />
+          <div className="currency-dropdown-content-dollars-title">
             <span>USD</span>
           </div>
         </div>
