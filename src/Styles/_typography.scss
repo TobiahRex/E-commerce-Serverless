@@ -10,3 +10,12 @@ $s-font: 'Muli', sans-serif;
 @if variable-exists($font-google-ubuntu) {
   @import url($font-google-ubuntu);
 }
+
+.h1 {
+  font-size: 2.5em;
+  font-family: $p-font;
+  font-weight: 800;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-blue;
+  line-height: 1em;
+}

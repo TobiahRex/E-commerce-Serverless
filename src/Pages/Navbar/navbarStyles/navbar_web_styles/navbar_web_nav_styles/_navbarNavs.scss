@@ -54,33 +54,56 @@
       @extend .flex-center;
       flex-direction: column;
       & .shop-dropdown-content-topThird {
+        @extend .flex-center;
         height: 18em;
         width: 104em;
         background-color: blue;
         margin-top: 1.5em;
         & .shop-dropdown-content-topThird-parent {
           @extend .flex-center;
+          flex-direction: column;
           height: 16em;
           width: 71em;
           background-color: pink;
-          & .shop-dropdown-content-topThird-title {
+          margin: 1em .5em 1em 1em;
+          & .shop-dropdown-content-topThird-parent-title {
             height: 5em;
             width: 70em;
             padding-left: .5em;
             background-color: green;
           }
-          & .shop-dropdown-content-topThird-desc {
+          & .shop-dropdown-content-topThird-parent-desc {
             height: 11em;
             width: 70em;
-            padding: .5em;
+            padding-left: .5em;
             background-color: orange;
           }
         }
+        & .shop-dropdown-content-topThird-video {
+          height: 16em;
+          width: 30em;
+          background-color: purple;
+          margin: 1em 1em 1em .5em;
+        }
       }
       & .shop-dropdown-content-midThird {
+        @extend .flex-center;
+        flex-direction: column;
         height: 32em;
         width: 104em;
         background-color: green;
+        & .shop-dropdown-content-midThird-title {
+          @extend .flex-center;
+          @extend .h1;
+          width: 41.6em;
+          height: 3em;
+          background-color: red;
+        }
+        & .shop-dropdown-content-midThird-juices {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
       }
       & .shop-dropdown-content-bottomThird {
         height: 9.7em;

@@ -7,11 +7,19 @@ class NavbarNavsShopDropdnContent extends PureComponent {
         <span className="shop-dropdown-content-parent">
           <div className="shop-dropdown-content-topThird">
             <div className="shop-dropdown-content-topThird-parent">
-              <div className="shop-dropdown-content-topThird-title"></div>
-              <div className="shop-dropdown-content-topThird-desc"></div>
+              <div className="shop-dropdown-content-topThird-parent-title"></div>
+              <div className="shop-dropdown-content-topThird-parent-desc"></div>
+            </div>
+            <div className="shop-dropdown-content-topThird-video">Video</div>
+          </div>
+          <div className="shop-dropdown-content-midThird">
+            <div className="shop-dropdown-content-midThird-title">
+              <h1>Switch Juice</h1>
+            </div>
+            <div className="shop-dropdown-content-midThird-juices">
+              
             </div>
           </div>
-          <div className="shop-dropdown-content-midThird"></div>
           <div className="shop-dropdown-content-bottomThird"></div>
         </span>
       </span>
