@@ -3,7 +3,7 @@
 .navbar.actionSection.upper {
   &.mycart-container {
     @extend .flex-center;
-    & .mycart {
+    & .mycart-main {
       display: inline-block;
       position: relative;
       float: right;
@@ -17,13 +17,13 @@
           display: block;
         }
       }
-      & .main-button {
+      & .mainbtn {
         @extend .flex-center;
         padding: .5em 0em;
         cursor: pointer;
-        & .link {
+        & .mainbtn-mycart-link {
           display: flex;
-          & .title {
+          & .mainbtn-mycart-link-title {
             @extend .flex-center;
             background-color: $p-red;
             color: $p-white;
@@ -36,7 +36,7 @@
             @include prefixed(font-smoothing, antialiased);
             border-right-color: rgba(255, 255, 255, .5);
           }
-          & .cart-qty {
+          & .mainbtn-mycart-link-cartqty {
             @extend .flex-center;
             background-color: $p-red;
             color: $p-white;
