@@ -18,9 +18,10 @@ class NavbarCartProductsCard extends PureComponent {
     const { image, title, quantity, price, nicotine } = this.props.product_info;
     return (
       <li className="products-list-card">
-        <div className="products-list-card-image">
-          {image ? '' : '<IMAGE HERE>'}
-        </div>
+        <div
+          style={{ backgroundImage: `url(${image})` }}
+          className="products-list-card-image"
+        />
         <div className="products-list-card-info">
           <div className="product-title">
             {title ? `${this.props.product_info.title}` : '<TITLE HERE>'}

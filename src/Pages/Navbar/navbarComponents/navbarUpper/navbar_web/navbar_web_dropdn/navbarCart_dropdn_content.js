@@ -8,13 +8,14 @@ import NavbarCartProducts from './navbarCart_dropdn_products';
 
 class NavbarCartDropdnContent extends PureComponent {
   render() {
-    const products = {
+    const dummyProducts = [{
       image: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/keyLimPie_zero_tightCrop_smallSize.jpg',
       title: 'Keylime Pie',
       quantity: 3,
       price: 30,
       nicotine: 6,
-    };
+    }];
+    const dummyCartTotal = 30;
 
     return (
       <span className="dropdown-content">
@@ -22,9 +23,11 @@ class NavbarCartDropdnContent extends PureComponent {
           <NavbarCartPromotion />
           <NavbarCartRecentadd />
           <NavbarCartProducts
-            products={products}
+            products={dummyProducts}
           />
-          <NavbarCartTotalPrice />
+          <NavbarCartTotalPrice
+            cartTotal={dummyCartTotal}
+          />
           <NavbarCartActionLinks />
         </div>
       </span>

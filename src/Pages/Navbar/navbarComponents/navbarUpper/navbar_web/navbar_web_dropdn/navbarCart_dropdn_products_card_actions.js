@@ -15,7 +15,10 @@ class NavbarCartProductsCardActions extends PureComponent {
             />
           </Link>
         </div>
-        <button href="" className="products-list-card-actions-delete">
+        <button
+          onClick={() => console.warn('DELETE this products')}
+          className="products-list-card-actions-delete"
+        >
           <FontAwesome
             className="products-list-card-actions-delete-icon"
             name="trash-o"
