@@ -8,9 +8,7 @@ class NavbarNavsInfo extends PureComponent {
           <div className="info-main-button-title">
             <span>INFO</span>
           </div>
-          {/* <div className="info-dropdown-content">
-
-          </div> */}
+          
         </span>
       </div>
     );

@@ -50,6 +50,45 @@
     z-index: 1;
     top: 5em;
     margin-left: -24.5em;
+    & .shop-dropdown-content-parent {
+      @extend .flex-center;
+      flex-direction: column;
+      & .shop-dropdown-content-topThird {
+        height: 18em;
+        width: 104em;
+        background-color: blue;
+        margin-top: 1.5em;
+        & .shop-dropdown-content-topThird-parent {
+          @extend .flex-center;
+          height: 16em;
+          width: 71em;
+          background-color: pink;
+          & .shop-dropdown-content-topThird-title {
+            height: 5em;
+            width: 70em;
+            padding-left: .5em;
+            background-color: green;
+          }
+          & .shop-dropdown-content-topThird-desc {
+            height: 11em;
+            width: 70em;
+            padding: .5em;
+            background-color: orange;
+          }
+        }
+      }
+      & .shop-dropdown-content-midThird {
+        height: 32em;
+        width: 104em;
+        background-color: green;
+      }
+      & .shop-dropdown-content-bottomThird {
+        height: 9.7em;
+        width: 104em;
+        background-color: red;
+        margin-bottom: 1.5em;
+      }
+    }
   }
 }
 &.media {
