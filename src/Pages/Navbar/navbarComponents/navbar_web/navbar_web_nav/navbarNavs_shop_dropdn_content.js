@@ -7,8 +7,12 @@ class NavbarNavsShopDropdnContent extends PureComponent {
         <span className="shop-dropdown-content-parent">
           <div className="shop-dropdown-content-topThird">
             <div className="shop-dropdown-content-topThird-parent">
-              <div className="shop-dropdown-content-topThird-parent-title"></div>
-              <div className="shop-dropdown-content-topThird-parent-desc"></div>
+              <div className="shop-dropdown-content-topThird-parent-title">
+                <h1>Nicotine Juices:</h1>
+              </div>
+              <div className="shop-dropdown-content-topThird-parent-desc">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reprehenderit laborum dolorem nesciunt eaque quas, rem ullam quia! Quasi, itaque quos inventore magni aliquam at autem dolor harum accusamus et.
+              </div>
             </div>
             <div className="shop-dropdown-content-topThird-video">Video</div>
           </div>
@@ -21,8 +25,7 @@ class NavbarNavsShopDropdnContent extends PureComponent {
                 <div className="shop-dropdown-content-midThird-juices-fbb-title">
                   <span>Fruity Bamm Bamm</span>
                 </div>
-                <div
-                  className="shop-dropdown-content-midThird-juices-fbb-image" />
+                <div className="shop-dropdown-content-midThird-juices-fbb-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-klp">
                 <div className="shop-dropdown-content-midThird-juices-klp-title">
@@ -38,22 +41,25 @@ class NavbarNavsShopDropdnContent extends PureComponent {
               </div>
               <div className="shop-dropdown-content-midThird-juices-fvm">
                 <div className="shop-dropdown-content-midThird-juices-fvm-title">
+                  <span>French Vanilla Mocha</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-fvm-image"></div>
+                <div className="shop-dropdown-content-midThird-juices-fvm-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-snc">
                 <div className="shop-dropdown-content-midThird-juices-snc-title">
+                  <span>Strawberries {('N\'')} Cream</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-snc-image"></div>
+                <div className="shop-dropdown-content-midThird-juices-snc-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-pb">
                 <div className="shop-dropdown-content-midThird-juices-pb-title">
+                  <span>Papple Berry</span>
                 </div>
-                <div className="shop-dropdown-content-midThird-juices-pb-image"></div>
+                <div className="shop-dropdown-content-midThird-juices-pb-image" />
               </div>
             </div>
           </div>
-          <div className="shop-dropdown-content-bottomThird"></div>
+          <div className="shop-dropdown-content-bottomThird">yo</div>
         </span>
       </span>
     );
