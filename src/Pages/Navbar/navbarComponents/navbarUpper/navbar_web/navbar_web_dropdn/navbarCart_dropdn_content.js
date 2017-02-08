@@ -2,22 +2,16 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
+import NavbarCartPromotion from './navbarCart_dropdn_promotion';
+import NavbarCartRecentadd from './navbarCart_dropdn_recentadd';
+
 class NavbarCartDropdnContent extends PureComponent {
   render() {
     return (
       <span className="dropdown-content">
         <div className="container">
-          <div className="promotion">
-            <span className="top-line">
-              Buy 4 Bottles
-            </span>
-            <span className="bottom-line">
-              Get 25% Off
-            </span>
-          </div>
-          <div className="recently-added">
-            <span>Recently Added Item(s)</span>
-          </div>
+          <NavbarCartPromotion />
+          <NavbarCartRecentadd />
           <div className="products">
             <ul className="product-list">
               <li className="product-card">
@@ -44,10 +38,7 @@ class NavbarCartDropdnContent extends PureComponent {
               </li>
             </ul>
           </div>
-          <div className="total-price">
-            <span className="title">Total Price</span>
-            <span className="amount">&nbsp; $ 10.00</span>
-          </div>
+          <NavbarCartTotalPrice />
           <div className="action-buttons">
             <Link className="view-cart">
               <span>View Cart</span>
