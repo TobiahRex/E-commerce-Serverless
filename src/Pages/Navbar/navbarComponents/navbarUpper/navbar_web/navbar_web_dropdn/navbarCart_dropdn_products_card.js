@@ -8,23 +8,32 @@ import FontAwesome from 'react-fontawesome';
 2. finish deleteProduct().
 */
 
-class NavbarCartTotalPrice extends PureComponent {
+class NavbarCartProductsCard extends PureComponent {
   static propTypes = {
-    product_info: PropTypes.arrayOf(PropTypes.object),
+    product_info: PropTypes.objectOf(PropTypes.any),
   }
 
   deleteProduct = () => console.info('deleted product from drop down cart.');
 
   render() {
+    const { image, title, quantity, price, nicotine } = this.props.product_info;
     return (
       <li className="products-list-card">
         <div className="products-list-card-image">
-          {this.props.product_info.image ? '' : '<IMAGE HERE>'}
+          {image ? '' : '<IMAGE HERE>'}
         </div>
         <div className="products-list-card-info">
-          <div className="product-title">Fruity Bamm-Bamm</div>
-          <div className="product-qty">3 x $ 15.00</div>
-          <div className="nic-strength"><i>6mg</i></div>
+          <div className="product-title">
+            {title ? `${this.props.product_info.title}` : '<TITLE HERE>'}
+          </div>
+          <div className="product-qty">
+            {quantity ? `${quantity} x $ ${price}.00` : '<QTY HERE>'}
+          </div>
+          <div className="nic-strength">
+            <i>
+              {nicotine ? `${nicotine}mg` : '<NIC STRENGTH HERE>'}
+            </i>
+          </div>
         </div>
         <div className="products-list-card-actions">
           <div href="" className="products-list-card-actions-edit">
@@ -47,4 +56,4 @@ class NavbarCartTotalPrice extends PureComponent {
   }
 }
 
-export default NavbarCartTotalPrice;
+export default NavbarCartProductsCard;
