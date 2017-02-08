@@ -87,4 +87,6 @@ export default NavbarNavsShopDropdnContent;
 /* TODO
 1. Each of these Juice Cards are links to that specific product.
 
+2. "Recommend Another Juice Line" needs to send the user to the "/contact_us" page.
+
 */
