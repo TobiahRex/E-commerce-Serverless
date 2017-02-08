@@ -10,12 +10,12 @@ class NavbarCartTotalPrice extends PureComponent {
   static propTypes = {
     total: PropTypes.number,
   }
-a
+
   render() {
     return (
       <div className="total-price">
-        <span className="title">Total Price</span>
-        <span className="amount">&nbsp; $ 10.00</span>
+        <span className="total-price-title">Total Price</span>
+        <span className="total-price-amount">&nbsp; $ 10.00</span>
       </div>
     );
   }
