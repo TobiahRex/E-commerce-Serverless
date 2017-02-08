@@ -18,48 +18,54 @@ class NavbarNavsShopDropdnContent extends PureComponent {
           </div>
           <div className="shop-dropdown-content-midThird">
             <div className="shop-dropdown-content-midThird-title">
-              <h1>Switch Juice</h1>
+              <h2>Switch Juice</h2>
             </div>
             <div className="shop-dropdown-content-midThird-juices">
               <div className="shop-dropdown-content-midThird-juices-card">
                 <div className="shop-dropdown-content-midThird-juices-card-title">
-                  <span>Fruity Bamm Bamm</span>
+                  <h4>French Vanilla Mocha</h4>
                 </div>
                 <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-card">
                 <div className="shop-dropdown-content-midThird-juices-card-title">
-                  <span>Keylime Pie</span>
+                  <h4>Keylime Pie</h4>
                 </div>
                 <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-card">
                 <div className="shop-dropdown-content-midThird-juices-card-title">
-                  <span>Pina Colada</span>
+                  <h4>Pina Colada</h4>
                 </div>
                 <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-card">
                 <div className="shop-dropdown-content-midThird-juices-card-title">
-                  <span>French Vanilla Mocha</span>
+                  <h4>Fruity Bamm Bamm</h4>
                 </div>
                 <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-card">
                 <div className="shop-dropdown-content-midThird-juices-card-title">
-                  <span>Strawberries {('N\'')} Cream</span>
+                  <h4>Strawberries {('N\'')} Cream</h4>
                 </div>
                 <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
               <div className="shop-dropdown-content-midThird-juices-card">
                 <div className="shop-dropdown-content-midThird-juices-card-title">
-                  <span>Papple Berry</span>
+                  <h4>Papple Berry</h4>
                 </div>
                 <div className="shop-dropdown-content-midThird-juices-card-image" />
               </div>
             </div>
           </div>
-          <div className="shop-dropdown-content-bottomThird">yo</div>
+          <div className="shop-dropdown-content-bottomThird">
+            <button className="shop-dropdown-content-bottomThird-recommend">
+              <span>Recommend Another Juice Line</span>
+            </button>
+            <h4 className="shop-dropdown-content-bottomThird-promoSoft"></h4>
+            <h4 className="shop-dropdown-content-bottomThird-promoHard"></h4>
+          </div>
         </span>
       </span>
     );

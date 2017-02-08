@@ -95,7 +95,7 @@
         & .shop-dropdown-content-midThird-title {
           @extend .flex-center;
           width: 104em;
-          height: 75em;
+          height: 7.5em;
           background-color: red;
         }
         & .shop-dropdown-content-midThird-juices {
@@ -110,16 +110,14 @@
             width: 16em;
             background-color: blue;
             & .shop-dropdown-content-midThird-juices-card-title {
-
-              height: 3em;
+              @extend .flex-center;
+              height: 4em;
               width: 16em;
-              margin-bottom: .5em;
             }
             & .shop-dropdown-content-midThird-juices-card-image {
               height: 18em;
               width: 16em;
               margin-top: .5em;
-              padding-top: .5em;
             }
           }
         }
