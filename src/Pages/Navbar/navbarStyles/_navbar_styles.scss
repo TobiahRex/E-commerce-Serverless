@@ -6,9 +6,10 @@
 @import "../../../Styles/mixins";
 
 /* Local Imports */
-@import "./navbarOptions";
-@import "./navbarUserActions";
-@import "./navbarCart";
+@import "./navbar_web_styles/navbar_web_options_styles/navbarOptions";
+@import "./navbar_web_styles/navbar_web_userActions_styles/navbarUserActions";
+@import "./navbar_web_styles/navbar_web_cart_styles/navbarCart";
+@import "./navbar_web_styles/navbar_web_nav_styles/navbarNavs";
 
 /* Parent Styles - Navbar */
 .flex-center {
