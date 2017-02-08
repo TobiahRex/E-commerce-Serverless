@@ -82,7 +82,7 @@
         background-color: $p-white;
         z-index: 1;
         box-shadow: 1px 2px 5px rgba(0,0,0,.6);
-        & .japanese-yen.container {
+        & .dropdown-content-yen {
           height: 2.5em;
           width: 7em;
           display: flex;
@@ -95,14 +95,11 @@
           &:active {
             transition: .5s;
             background-color: $p-blue;
-            & .yen {
-              color: $p-white;
-            }
-            & .yen-icon {
+            & .dropdown-content-yen-icon, .dropdown-content-yen-title {
               color: $p-white;
             }
           }
-          & .yen-icon {
+          & .dropdown-content-yen-icon {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -112,7 +109,7 @@
             font-size: 1.2em;
             color: inherit;
           }
-          & .yen {
+          & .dropdown-content-yen-title {
             font-family: $p-font;
             font-weight: 200;
             color: $s-blue;

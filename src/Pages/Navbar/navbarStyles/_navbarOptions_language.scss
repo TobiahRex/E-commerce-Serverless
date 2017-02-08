@@ -79,23 +79,23 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 0.5em 2em;
+          margin: 2em 2em;
           &:hover,
           &:focus,
           &:active {
             transition: .5s;
             background-color: $p-blue;
-            & .nihongo {
+            & .dropdown-content-japanese-nihongo {
               color: $p-white;
             }
           }
-          & .image {
+          & .dropdown-content-japanese-image {
             height: 1.4em;
             width: 2.4em;
             background-image: $jpn-flag-icon;
             background-size: cover;
           }
-          & .nihongo {
+          & .dropdown-content-japanese-nihongo {
             padding-left: 1em;
             font-family: $s-font;
             font-weight: 400;
@@ -103,28 +103,28 @@
             font-size: 1em;
           }
         }
-        & .us-flag.container {
+        & .dropdown-content-us {
           height: 2.5em;
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 1em 2em;
+          margin: 0em 2em 2em 2em;
           &:hover,
           &:focus,
           &:active {
             transition: .5s;
             background-color: $p-blue;
-            & .english {
+            & .dropdown-content-us-english {
               color: $p-white;
             }
           }
-          & .image {
+          & .dropdown-content-us-image {
             height: 1.4em;
             width: 2.4em;
             background-image: $us-flag-icon;
             background-size: cover;
           }
-          & .english {
+          & .dropdown-content-us-english {
             padding-left: 1em;
             font-family: $s-font;
             font-weight: 400;

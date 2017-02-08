@@ -22,9 +22,9 @@ class NavbarOptionsCurrencyDropdnContent extends PureComponent {
   render() {
     return (
       <span className="dropdown-content">
-        <div className="japanese-yen container">
-          <FontAwesome name="yen" className="yen-icon" />
-          <div className="yen">
+        <div className="dropdown-content-yen">
+          <FontAwesome name="yen" className="dropdown-content-yen-icon" />
+          <div className="dropdown-content-yen-title">
             <span>YEN</span>
           </div>
         </div>
