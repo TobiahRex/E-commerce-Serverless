@@ -6,11 +6,11 @@ class NavbarNavsMediaDropdnBottomthird extends PureComponent {
     return (
       <div className="media-dropdown-content-bottomThird">
         <div className="media-dropdown-content-bottomThird-outterContainer">
-          <div className="media-main-button-content-bottomThird-innerContainer">
-            <div className="media-main-button-content-bottomThird-innerContainer-smedia">
+          <div className="media-dropdown-content-bottomThird-innerContainer">
+            <div className="media-dropdown-content-bottomThird-innerContainer-smedia">
               <FontAwesome
                 name="facebook"
-                className="media-main-button-content-bottomThird-innerContainer-smedia-icon"
+                className="media-dropdown-content-bottomThird-innerContainer-smedia-icon"
               />
             </div>
           </div>

@@ -42,6 +42,26 @@
       height: 6.5em;
       width: 104em;
       background-color: orange;
+      & .media-dropdown-content-bottomThird-outterContainer {
+        @extend .flex-center;
+        height: 6.5em;
+        width: 104em;
+        & .media-dropdown-content-bottomThird-innerContainer {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          height: 100%;
+          width: 6.5em;
+          & .media-dropdown-content-bottomThird-innerContainer-smedia {
+            @extend .flex-center;
+            & .media-dropdown-content-bottomThird-innerContainer-smedia-icon {
+              font-size: 3em;
+              font-color: $p-white;
+              text-shadow: 2px 2px rgba(1,1,1,.5);
+            }
+          }
+        }
+      }
     }
   }
 }
