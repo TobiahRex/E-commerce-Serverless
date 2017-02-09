@@ -11,11 +11,23 @@
     @extend .flex-center;
     flex-direction: column;
     & .media-dropdown-content-topThird {
-      @extend .flex-center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       height: 16.5em;
       width: 104em;
       background-color: blue;
       margin-top: 1.5em;
+      & .media-dropdown-content-topThird-images {
+        @extend .flex-center;
+        height: 15em;
+        width: 20em;
+        background-color: red;
+        box-shadow: 3px 5px 5px rgba(1,1,1,0.5);
+        & .media-dropdown-content-topThird-images-src {
+          max-width: 20em;
+        }
+      }
     }
     & .media-dropdown-content-midThird {
       @extend .flex-center;

@@ -13,28 +13,28 @@ class NavbarNavsMediaDropdnTopthird extends PureComponent {
           <img
             className="media-dropdown-content-topThird-images-src"
             src=""
-            alt=""
+            alt="contact us"
           />
         </div>
         <div className="media-dropdown-content-topThird-images">
           <img
             className="media-dropdown-content-topThird-images-src"
             src=""
-            alt=""
+            alt="juice review"
           />
         </div>
         <div className="media-dropdown-content-topThird-images">
           <img
             className="media-dropdown-content-topThird-images-src"
             src=""
-            alt=""
+            alt="vape news"
           />
         </div>
         <div className="media-dropdown-content-topThird-images">
           <img
             className="media-dropdown-content-topThird-images-src"
             src=""
-            alt=""
+            alt="user stories"
           />
         </div>
       </div>
