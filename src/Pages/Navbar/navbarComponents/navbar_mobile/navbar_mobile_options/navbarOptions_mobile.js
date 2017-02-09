@@ -1,12 +1,12 @@
 import React, { PropTypes, PureComponent } from 'react';
 
-import NavbarOptionsLanguage from './navbar_mobile_language/navbarOptions_mobile_language';
+import NavbarMobileOptionsLanguage from './navbar_mobile_language/navbarOptions_mobile_language';
 
-class NavbarOptionsMobile extends PureComponent {
-  static propTypes = {
-    changeLanguage: Proptypes.func,
-    changeCurrency: PropTypes.func,
-  }
+class NavbarMobileOptions extends PureComponent {
+  // static propTypes = {
+  //   changeLanguage: PropTypes.func,
+  //   changeCurrency: PropTypes.func,
+  // }
 
   onLanguageChange = () => console.info('changed language');
 
@@ -15,10 +15,10 @@ class NavbarOptionsMobile extends PureComponent {
   render() {
     return (
       <div className="navbar-mobile-options">
-        <NavbarOptionsLanguage />
+        <NavbarMobileOptionsLanguage />
       </div>
     );
   }
 }
 
-export default NavbarOptionsMobile;
+export default NavbarMobileOptions;

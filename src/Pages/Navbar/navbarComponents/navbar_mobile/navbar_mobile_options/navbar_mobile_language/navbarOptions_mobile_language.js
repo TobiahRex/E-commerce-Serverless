@@ -1,7 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react';
 
-import NavbarOptionsMobileLanguageButton from './navbarOptions_mobile_mainButton';
-import NavbarOptionsMobileLanguageDropdnContent from './navbarOptions_mobile_dropdnContent';
+import NavbarMobileOptionsLanguageButton from './navbarOptions_mobile_language_mainButton';
+import NavbarMobileOptionsLanguageDropdnContent from './navbarOptions_mobile_language_dropdnContent';
 
 /* TODO:
 1. Pass down via props the respective class methods shown below.
@@ -11,18 +11,18 @@ import NavbarOptionsMobileLanguageDropdnContent from './navbarOptions_mobile_dro
 
 */
 
-class NavbarOptions extends PureComponent {
+class NavbarMobileOptionsLanguage extends PureComponent {
   onLanguageChange = () => console.info('changed language');
 
   onCurrencyChange = () => console.info('changed currency');
 
   render() {
     return (
-      <div className="navbar-actionSection-upper-options">
-        {/* <NavbarOptionsMobileLanguageButton />
-        <NavbarOptionsMobileDropdnContent /> */}
+      <div className="navbar-mobile-options-language">
+        <NavbarMobileOptionsLanguageButton />
+        <NavbarMobileOptionsLanguageDropdnContent />
       </div>
     );
   }
 }
-export default NavbarOptions;
+export default NavbarMobileOptionsLanguage;

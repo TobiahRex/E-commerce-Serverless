@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import NavbarOptionsLanguage from '../navbar_web/navbar_web_options/navbar_web_options_language/navbarOptions_language'
+import NavbarMobileOptions from './navbar_mobile_options/navbarOptions_mobile';
 
 class NavbarMobile extends PureComponent {
   render() {
