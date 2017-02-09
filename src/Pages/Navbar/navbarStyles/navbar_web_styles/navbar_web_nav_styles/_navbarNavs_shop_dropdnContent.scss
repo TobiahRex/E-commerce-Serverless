@@ -12,7 +12,9 @@
     @extend .flex-center;
     flex-direction: column;
     & .shop-dropdown-content-topThird {
-      @extend .flex-center;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
       height: 18em;
       width: 104em;
       background-color: $p-white;

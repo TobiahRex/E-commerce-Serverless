@@ -1,5 +1,5 @@
 .media-dropdown-content {
-  display: block;
+  display: none;
   height: 35em;
   width: 108em;
   background-color: $p-white;
@@ -24,7 +24,7 @@
         height: 15em;
         width: 20em;
         background-color: purple;
-        box-shadow: 3px 5px 5px rgba(1,1,1,0.5);
+        // box-shadow: 3px 5px 5px rgba(1,1,1,0.5);
         & .media-dropdown-content-topThird-images-src {
           max-width: 20em;
         }
@@ -42,12 +42,17 @@
         text-decoration: none;
         cursor: pointer;
         & .media-dropdown-content-midThird-title {
+          @extend .flex-center;
+          height: 5em;
+          width: 20em;
           cursor: pointer;
           &:hover,
           &:focus,
           &:active {
             transition: .5s;
-            color: $p-white;
+            & h4 {
+              color: $p-white;
+            }
             background-color: $p-blue;
           }
         }
