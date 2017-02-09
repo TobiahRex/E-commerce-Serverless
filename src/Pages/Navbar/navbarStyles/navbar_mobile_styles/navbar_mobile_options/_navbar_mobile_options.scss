@@ -1,4 +1,4 @@
-.navbar-actionSection-upper-options-language {
+.navbar-mobile-actionSection-upper-options-language {
   display: inline-block;
   position: relative;
   justify-content: center;
@@ -6,7 +6,7 @@
   color: $p-blue;
   width: 11em;
   height: 4em;
-  @extend .white-bg;
+  @extend .ipp-white-bg;
   cursor: pointer;
   &:hover,
   &:focus,
@@ -19,12 +19,12 @@
     }
   }
   & .language-main-button {
-    @extend .flex-center;
+    @extend .ipp-flex-center;
     height: 4em;
     background-color: inherit;
     color: inherit;
     & .language-main-button-us {
-      @extend .flex-center;
+      @extend .ipp-flex-center;
       width: 2.5em;
       height: 2.5em;
       margin: 0;
@@ -37,7 +37,7 @@
       }
     }
     & .language-main-button-us-title {
-      @extend .flex-center;
+      @extend .ipp-flex-center;
       width: 6.2em;
       height: 2.5em;
       font-size: 10px;
@@ -48,7 +48,7 @@
       font-weight: 400;
     }
     & .language-main-button-us-chevron {
-      @extend .flex-center;
+      @extend .ipp-flex-center;
       width: 1.1em;
       height: 2.5em;
       font-size: 15px;

@@ -6,12 +6,14 @@ and (device-height : 736px)
 and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
-  .ipp-flexCenter {
+  @import './navbar_mobile_options/navbar_mobile_options';
+
+  .ipp-flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .ipp-pbgc {
+  .ipp-white-bg {
     background-color: $p-white;
   }
   .navbar.navbar-web {
@@ -30,8 +32,8 @@ and (-webkit-device-pixel-ratio : 3) {
     width: 100%;
     background: pink;
     & .navbar-mobile-logo {
-      @extend .ipp-flexCenter;
-      @extend .ipp-pbgc;
+      @extend .ipp-flex-center;
+      @extend .ipp-white-bg;
       width: 100%;
       height: 10em;
       & .navbar-mobile-logo-src {

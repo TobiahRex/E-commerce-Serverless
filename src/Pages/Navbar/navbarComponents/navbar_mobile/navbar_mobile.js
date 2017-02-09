@@ -10,9 +10,7 @@ class NavbarMobile extends PureComponent {
           <div className="navbar-mobile-logo">
             <img className="navbar-mobile-logo-src" alt="nj2jp logo" />
           </div>
-          <div className="navbar-mobile-options">
-            <NavbarOptionsLanguage />
-          </div>
+          <NavbarMobileOptions />
           <div className="navbar-mobile-actions"></div>
           <div className="navbar-mobile-navbar"></div>
         </div>
