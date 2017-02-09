@@ -1,0 +1,155 @@
+.shop-dropdown-content {
+  display: none;
+  width: 108em;
+  height: 63em;
+  background-color: $p-white;
+  position: absolute;
+  z-index: 1;
+  top: 5em;
+  margin-left: -24.5em;
+  & .shop-dropdown-content-parent {
+    @extend .flex-center;
+    flex-direction: column;
+    & .shop-dropdown-content-topThird {
+      @extend .flex-center;
+      height: 18em;
+      width: 104em;
+      background-color: $p-white;
+      margin-top: 1.5em;
+      border-bottom: 1px solid rgba(1,1,1,.2);
+      & .shop-dropdown-content-topThird-parent {
+        @extend .flex-center;
+        flex-direction: column;
+        height: 16em;
+        width: 71em;
+        background-color: $p-white;
+        margin: 1em .5em 1em 1em;
+        & .shop-dropdown-content-topThird-parent-title {
+          height: 5em;
+          width: 70em;
+          padding-left: .5em;
+          background-color: $p-white;
+        }
+        & .shop-dropdown-content-topThird-parent-desc {
+          height: 11em;
+          width: 70em;
+          padding-left: .5em;
+          background-color: $p-white;
+        }
+      }
+      & .shop-dropdown-content-topThird-video {
+        height: 16em;
+        width: 30em;
+        background-color: $p-white;
+        margin: 1em 1em 1em .5em;
+        box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+        cursor: pointer;
+      }
+    }
+    & .shop-dropdown-content-midThird {
+      @extend .flex-center;
+      flex-direction: column;
+      height: 31.5em;
+      width: 104em;
+      background-color: $p-white;
+      border-bottom: 1px solid rgba(1,1,1,.2);
+      & .shop-dropdown-content-midThird-title {
+        @extend .flex-center;
+        width: 104em;
+        height: 7.5em;
+        background-color: $p-white;
+      }
+      & .shop-dropdown-content-midThird-juices {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 24em;
+        width: 104em;
+        background-color: $p-white;
+        & .shop-dropdown-content-midThird-juices-card {
+          height: 22.5em;
+          width: 16em;
+          background-color: $p-white;
+          cursor: pointer;
+          text-decoration: none;
+          &:hover,
+          &:focus,
+          &:active {
+            & .shop-dropdown-content-midThird-juices-card-title h4 {
+              transition: .5s;
+              color: $p-red;
+            }
+            & .shop-dropdown-content-midThird-juices-card-image
+            .shop-dropdown-content-midThird-juices-card-image-src {
+              transition: .3s;
+              font-size: 10px;
+              max-width: 3.7em;
+            }
+            transition: .5s;
+            box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+          }
+          & .shop-dropdown-content-midThird-juices-card-title {
+            @extend .flex-center;
+            height: 4em;
+            width: 16em;
+          }
+          & .shop-dropdown-content-midThird-juices-card-image {
+            @extend .flex-center;
+            height: 18em;
+            width: 16em;
+            margin-top: .5em;
+            & .shop-dropdown-content-midThird-juices-card-image-src {
+              font-size: 10px;
+              max-width: 3.5em;
+            }
+          }
+        }
+      }
+    }
+    & .shop-dropdown-content-bottomThird {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 9.7em;
+      width: 104em;
+      background-color: $p-white;
+      margin-bottom: 1.5em;
+      & .shop-dropdown-content-bottomThird-leftSide {
+        @extend .flex-left;
+        width: 50%;
+        & button.shop-dropdown-content-bottomThird-leftSide-recommend {
+          height: 3.05em;
+          width: 16.38em;
+          border: none;
+          background-color: $p-red;
+          color: $p-white;
+          font-family: $p-font;
+          font-size: 1.8em;
+          font-weight: 200;
+          box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+          cursor: pointer;
+          &:hover,
+          &:focus,
+          &:active {
+            transition: .5s;
+            background-color: $p-blue;
+          }
+        }
+      }
+      & .shop-dropdown-content-bottomThird-rightSide {
+        @extend .flex-right;
+        & h4.shop-dropdown-content-bottomThird-rightSide-promoSoft {
+          font-size: 2em;
+          text-transform: uppercase;
+          font-weight: 200;
+        }
+        & h4.shop-dropdown-content-bottomThird-rightSide-promoHard {
+          font-size: 2em;
+          text-transform: uppercase;
+          font-weight: 800;
+          padding-left: .2em;
+        }
+      }
+    }
+  }
+}
