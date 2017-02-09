@@ -26,10 +26,14 @@ class NavbarUserActionsSignin extends PureComponent {
             Checkout
           </Link>
         </li>
-        <li className="sign-out-title">
-          <button onClick={() => console.warn('Sing out user!!!')}>
-            Sign Out
-          </button>
+        <li className="sign-out-title sweep-right">
+          <a
+            className="navbar-userActions-signOut-title-button"
+            onClick={(e) => {
+              e.preventDefault();
+              console.warn('Sing out user!!!');
+            }}
+          >Sign Out</a>
         </li>
       </ul>
 

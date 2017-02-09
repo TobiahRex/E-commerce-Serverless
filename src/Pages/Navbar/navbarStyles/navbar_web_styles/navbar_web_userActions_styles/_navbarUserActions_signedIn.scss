@@ -1,37 +1,3 @@
-.sweep-right {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  transform: perspective(1px) translateZ(0);
-  @include prefixed(transition-property, color);
-  @include prefixed(transition-duration, .3s);
-  &:hover,
-  &:active,
-  &:focus {
-    // transition: .5s;
-    // background-color: $p-blue;
-    &:before {
-      @include prefixed(transform, scaleX(1));
-    }
-  }
-
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color:$p-blue;
-    @include prefixed(transform, scaleX(0));
-    @include prefixed(transform-origin, 0 50%);
-    @include prefixed(transition-property, transform);
-    @include prefixed(transition-duration, .3s);
-    @include prefixed(transition-timing-function, ease-out);
-  }
-}
-
 .navbar-actionSection-upper-actions-signedIn {
   @extend .flex-center;
   justify-content: flex-end;
@@ -48,7 +14,9 @@
     cursor: pointer;
     &:hover,
     &:active,
-    &:hover {
+    &:focus {
+      transition: .5s;
+      background-color: $p-blue;
       & a {
         color: $p-white;
       }
@@ -83,24 +51,25 @@
   }
   & .sign-out-title {
     @extend .flex-center;
+    @extend .white-bg;
+    @extend .ua-font-opts;
+    width: 7.33em;
+    height: 2em;
     margin-left: .66em;
     line-height: 1.33em;
+    cursor: pointer;
     &:hover,
     &:active,
     &:focus {
       transition: .5s;
       background-color: $p-blue;
-      & button {
+      & a {
         color: $p-white;
       }
     }
-    & button {
-      width: 5.33em;
-      height: 2em;
-      @extend .white-bg;
-      @extend .ua-font-opts;
-      border: none;
-      cursor: pointer;
+    & .navbar-userActions-signOut-title-button {
+      color: $p-blue;
+      text-decoration: none;
     }
   }
 }
