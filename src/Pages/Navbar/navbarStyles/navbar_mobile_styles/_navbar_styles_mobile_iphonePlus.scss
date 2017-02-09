@@ -6,10 +6,31 @@ and (device-height : 736px)
 and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
+  .ipp-flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ipp-pbgc {
+    background-color: $p-white;
+  }
   .navbar.navbar-web {
     display: none;
   }
   nav.navbar-mobile {
     display: flex;
+    height: 26em;
+    width: 98em;
+    background: pink;
+    & .navbar-mobile-logo {
+      @extend .ipp-flexCenter;
+      width: inherit;
+      height: 10em;
+      background-color: blue;
+      & .navbar-mobile-logo-src {
+        max-width: 22.3em;
+        content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
+      }
+    }
   }
 }

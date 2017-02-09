@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import NavbarWeb from './navbar_web/navbar_web';
-import NavbarLogo from './navbar_web/navbarLogo';
-import NavbarActionSection from './navbar_web/navbarActionSection';
+import NavbarMobile from './navbar_mobile/navbar_mobile';
 
 class Navbar extends React.Component {
   static defaultProps = {
@@ -13,16 +12,19 @@ class Navbar extends React.Component {
     children: PropTypes.objectOf(PropTypes.any),
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
-
+    this.state = {
+      something: '',
+    };
   }
 
   render() {
     return (
       <header className="navbar-comp-container">
-
+        <NavbarWeb />
+        <NavbarMobile />
         {/* {this.props.children || ''} */}
       </header>
     );
