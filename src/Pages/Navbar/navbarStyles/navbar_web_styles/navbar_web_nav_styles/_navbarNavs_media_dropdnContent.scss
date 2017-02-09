@@ -30,7 +30,9 @@
       }
     }
     & .media-dropdown-content-midThird {
-      @extend .flex-center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       height: 8.5em;
       width: 104em;
       background-color: green;

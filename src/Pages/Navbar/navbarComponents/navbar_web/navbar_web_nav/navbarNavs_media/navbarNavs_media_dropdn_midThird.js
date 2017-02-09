@@ -5,7 +5,16 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
     return (
       <div className="media-dropdown-content-midThird">
         <div className="media-dropdown-content-midThird-title">
-          h4{}
+          <h4>Contact Us</h4>
+        </div>
+        <div className="media-dropdown-content-midThird-title">
+          <h4>Juice Reviews</h4>
+        </div>
+        <div className="media-dropdown-content-midThird-title">
+          <h4>Vape News</h4>
+        </div>
+        <div className="media-dropdown-content-midThird-title">
+          <h4>User Stories</h4>
         </div>
       </div>
     );
