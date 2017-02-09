@@ -8,8 +8,30 @@ class NavbarNavsInfoDropdnContent extends PureComponent {
   render() {
     return (
       <span className="info-dropdown-content">
-        <span className="info-dropdown-content-parent">
-
+        <span className="info-dropdown-content-outterContainer">
+          <div className="info-dropdown-content-innerContainer-left">
+            <ul>
+              <li>
+                <p>About</p>
+              </li>
+              <li>
+                <p>FAQs</p>
+              </li>
+              <li>
+                <p>Shipping Information</p>
+              </li>
+              <li>
+                <p>Wholesale</p>
+              </li>
+              <li>
+                <p>Mission Statement</p>
+              </li>
+              <li>
+                <p>Affiliate Program</p>
+              </li>
+            </ul>
+          </div>
+          <div className="info-dropdown-content-innerContainer-right"></div>
         </span>
       </span>
     );
