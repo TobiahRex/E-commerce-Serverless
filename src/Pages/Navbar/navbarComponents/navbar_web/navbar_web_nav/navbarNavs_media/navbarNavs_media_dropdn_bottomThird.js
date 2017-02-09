@@ -3,7 +3,9 @@ import React, { PropTypes, PureComponent } from 'react';
 class NavbarNavsMediaDropdnBottomthird extends PureComponent {
   render() {
     return (
-      <span>Bottom Third</span>
+      <div className="media-dropdown-content-bottomThird">
+        Social Media Icons
+      </div>
     );
   }
 }

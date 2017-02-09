@@ -14,10 +14,20 @@
       @extend .flex-center;
       height: 16.5em;
       width: 104em;
-      background: blue;
+      background-color: blue;
+      margin-top: 1.5em;
     }
     & .media-dropdown-content-midThird {
-
+      @extend .flex-center;
+      height: 8.5em;
+      width: 104em;
+      background-color: green;
+    }
+    & .media-dropdown-content-bottomThird {
+      @extend .flex-center;
+      height: 6.5em;
+      width: 104em;
+      background-color: orange;
     }
   }
 }
