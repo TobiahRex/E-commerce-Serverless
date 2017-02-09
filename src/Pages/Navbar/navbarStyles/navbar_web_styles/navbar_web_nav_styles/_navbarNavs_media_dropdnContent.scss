@@ -2,7 +2,7 @@
   display: block;
   height: 35em;
   width: 108em;
-  background-color: pink;
+  background-color: $p-white;
   position: absolute;
   z-index: 1;
   top: 5em;
@@ -16,13 +16,13 @@
       align-items: center;
       height: 16.5em;
       width: 104em;
-      background-color: blue;
+      background-color: $p-white;
       margin-top: 1.5em;
       & .media-dropdown-content-topThird-images {
         @extend .flex-center;
         height: 15em;
         width: 20em;
-        background-color: red;
+        background-color: purple;
         box-shadow: 3px 5px 5px rgba(1,1,1,0.5);
         & .media-dropdown-content-topThird-images-src {
           max-width: 20em;
@@ -35,13 +35,14 @@
       align-items: center;
       height: 8.5em;
       width: 104em;
-      background-color: green;
+      background-color: $p-white;
+      border-bottom: 1px solid rgba(1,1,1,.5);
     }
     & .media-dropdown-content-bottomThird {
       @extend .flex-center;
       height: 6.5em;
       width: 104em;
-      background-color: orange;
+      background-color: $p-white;
       & .media-dropdown-content-bottomThird-outterContainer {
         @extend .flex-center;
         height: 6.5em;
@@ -51,13 +52,30 @@
           justify-content: space-around;
           align-items: center;
           height: 100%;
-          width: 6.5em;
+          width: 40em;
+          & #media-dropdown-facebook-icon{
+            background-color: $p-blue;
+          }
+          & #media-dropdown-twitter-icon{
+            background-color: #4990E2;
+          }
+          & #media-dropdown-youtube-icon{
+            background-color: #CC181E;
+          }
+          & #media-dropdown-linkedin-icon{
+            background-color: #0077B5;
+          }
+          & #media-dropdown-instagram-icon{
+            background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+          }
           & .media-dropdown-content-bottomThird-innerContainer-smedia {
             @extend .flex-center;
+            height: 5em;
+            width: 5em;
             & .media-dropdown-content-bottomThird-innerContainer-smedia-icon {
               font-size: 3em;
-              font-color: $p-white;
-              text-shadow: 2px 2px rgba(1,1,1,.5);
+              color: $p-white;
+              text-shadow: 3px 3px rgba(1,1,1,.25);
             }
           }
         }
