@@ -1,8 +1,15 @@
 .info-dropdown-content {
   display: block;
+  height: 25em;
+  width: 53em;
   background-color: pink;
   margin-left: -34em;
   position: absolute;
   z-index: 1;
+  top: 5em;
   box-shadow: 3px 3px 3px rgba(1,1,1,.5);
+  & .info-dropdown-content-outterContainer {
+    @extend .flex-center;
+    background-color: blue;
+  }
 }
