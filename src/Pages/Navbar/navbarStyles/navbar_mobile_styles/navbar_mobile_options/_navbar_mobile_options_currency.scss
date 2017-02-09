@@ -7,7 +7,7 @@
   width: 11.5em;
   height: 3em;
   margin-left: .5em;
-  @extend .ipp-white-bg;
+  background-color: $p-grey;
   cursor: pointer;
   &:hover,
   &:active,

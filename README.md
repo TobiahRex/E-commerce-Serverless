@@ -1,6 +1,6 @@
 # _E-commerce Distribution Site:_
 MERN Stack App
-### Deployed on Heroku [here](https://nj2jp.herokuapp.com/).
+### Deployed on Heroku [here](https://nj2jp.herokuapp.com/). This is a temporary development deployment. Final Production site will be at http://www.nj2jp.com.
 <!-- <img src="http://imgur.com/dTXjfrU.png" /> -->
 
 

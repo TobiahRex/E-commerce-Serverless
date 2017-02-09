@@ -6,7 +6,7 @@
   color: $p-blue;
   width: 11.5em;
   height: 3em;
-  @extend .ipp-white-bg;
+  background-color: $p-grey;
   cursor: pointer;
   &:hover,
   &:focus,

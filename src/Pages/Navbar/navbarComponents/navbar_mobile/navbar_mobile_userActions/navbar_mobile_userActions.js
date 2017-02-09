@@ -27,11 +27,25 @@ class NavbarMobileActions extends Component {
     return (
       <div className="navbar-mobile-actions">
         <div className="navbar-mobile-actions-signedIn">
-          <Link>My Account</Link>
-          <Link>Checkout</Link>
-          <button>
-            Sign Out
-          </button>
+          <div className="navbar-mobile-actions-signedIn-myaccount-title sweep-right">
+            <Link
+              to={'/my_account'}
+              className="navbar-mobile-actions-signedIn-myaccount-title-link"
+            >My Account</Link>
+          </div>
+          <div className="navbar-mobile-actions-signedIn-checkout-title sweep-right">
+            <Link
+              to={'/checkout'}
+              className="navbar-mobile-actions-signedIn-checkout-title-link"
+            >Checkout</Link>
+          </div>
+          <div className="navbar-mobile-actions-signedIn-signOut-title sweep-right">
+            <button
+              className="navbar-mobile-actions-signedIn-signOut-title-button"
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
         <div className="navbar-mobile-actions-notSignedIn hidden">
           <Link>Sign In</Link>

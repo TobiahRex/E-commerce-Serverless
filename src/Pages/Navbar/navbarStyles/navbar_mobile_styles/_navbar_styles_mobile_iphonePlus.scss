@@ -7,8 +7,10 @@ and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
   @import './navbar_mobile_options/navbar_mobile_options';
-  @import './navbar_mobile_userAction/navbar_mobile_userActions';
-
+  @import './navbar_mobile_userActions/navbar_mobile_userActions';
+  .hidden {
+    display: none;
+  }
   .ipp-flex-center {
     display: flex;
     justify-content: center;
@@ -57,12 +59,13 @@ and (-webkit-device-pixel-ratio : 3) {
         @extend .ipp-flex-center;
         height: 5em;
         width: 100%;
-        background-color: blue;
+        background-color: $p-grey;
+        border-bottom: 1px solid rgba(1,1,1,0.05);
       }
       & .navbar-mobile-actions {
         height: 4em;
         width: 100%;
-        background-color: green;
+        background-color: $p-grey;
       }
       & .navbar-mobile-navbar {
         height: 6em;
