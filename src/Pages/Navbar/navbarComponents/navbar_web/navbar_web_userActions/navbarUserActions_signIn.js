@@ -16,16 +16,20 @@ class NavbarUserActionsSignin extends PureComponent {
       <ul
         className="navbar-actionSection-upper-actions-signedIn"
       >
-        <li className="my-account-title">
-          <Link>
+        <li className="my-account-title sweep-right">
+          <Link to={'/my_account'} className="navbar-userActions-myaccount-title-link">
             My Account
           </Link>
         </li>
-        <li className="checkout-title">
-          <Link>Checkout</Link>
+        <li className="checkout-title sweep-right">
+          <Link to={'/checkout'} className="navbar-userActions-checkout-title-link">
+            Checkout
+          </Link>
         </li>
         <li className="sign-out-title">
-          <span>Sign Out</span>
+          <button onClick={() => console.warn('Sing out user!!!')}>
+            Sign Out
+          </button>
         </li>
       </ul>
 
