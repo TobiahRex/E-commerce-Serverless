@@ -1,5 +1,5 @@
 .info-dropdown-content {
-  display: block;
+  display: none;
   height: 25em;
   width: 53em;
   background-color: $p-white;
@@ -25,6 +25,7 @@
         list-style-type: none;
         & li {
           height: 3em;
+          cursor: pointer;
           &:hover,
           &:focus,
           &:active {
@@ -51,10 +52,18 @@
         list-style-type: none;
         & li {
           height: 3em;
+          cursor: pointer;
           &:hover,
           &:focus,
           &:active {
-            background-color: $p-grey;
+            background-color: $p-blue;
+            & p {
+              color: $p-white;
+            }
+          }
+          & p {
+            padding: 0 .5em;
+            line-height: 2.14em;
           }
         }
       }
