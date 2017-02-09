@@ -1,12 +1,12 @@
-.navbar-mobile-actionSection-upper-options-currency {
+.navbar-mobile-options-currency {
   display: inline-block;
   position: relative;
   justify-content: center;
   align-items: center;
   color: $p-blue;
-  width: 11em;
-  height: 4em;
-  margin-right: .5em;
+  width: 11.5em;
+  height: 3em;
+  margin-left: .5em;
   @extend .ipp-white-bg;
   cursor: pointer;
   &:hover,
@@ -21,13 +21,13 @@
   }
   & .mobile-currency-main-button {
     @extend .ipp-flex-center;
-    height: 4em;
+    height: 3em;
     background-color: inherit;
     color: inherit;
     & .mobile-currency-main-button-dollar {
-      @extend .ipp-flex-center;
+      @extend .ipp-flex-right;
       width: 1.4em;
-      height: 2.5em;
+      height: 2em;
       font-size: 15px;
       margin: 0;
       background-color: transparent;
@@ -42,12 +42,12 @@
     }
     & .mobile-currency-main-button-dollar-title {
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
-      width: 4em;
+      width: 5em;
       height: 2.5em;
-      padding-left: 1em;
       margin: 0;
+      padding-right: 1em;
       background-color: transparent;
       color: inherit;
       font-size: 10px;
@@ -60,7 +60,7 @@
       justify-content: center;
       width: 1.1em;
       height: 2.5em;
-      font-size: 10px;
+      font-size: 15px;
       margin: 0;
       background-color: transparent;
       color: inherit;
