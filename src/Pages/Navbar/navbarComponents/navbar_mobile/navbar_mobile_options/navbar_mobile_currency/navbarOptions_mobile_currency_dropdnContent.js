@@ -1,5 +1,4 @@
-import React, { PureComponent } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes, PureComponent } from 'react';
 
 /* TODO
 1. Add dynamic show & hide for drop down options based on current active currency.
@@ -8,31 +7,17 @@ import FontAwesome from 'react-fontawesome';
 
 */
 class NavbarMobileOptionsCurrencyDropdnContent extends PureComponent {
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {},
+  static propTypes = {
+    renderCurrencyDropdown: PropTypes.func,
   }
+
+  renderCurrencyDropdown = () => this.props.renderCurrencyDropdown();
 
   render() {
     return (
       <span className="mobile-currency-dropdown-content">
-        <div className="mobile-currency-dropdown-content-yen">
-          <FontAwesome name="yen" className="mobile-currency-dropdown-content-yen-icon" />
-          <div className="mobile-currency-dropdown-content-yen-title">
-            <span>YEN</span>
-          </div>
-        </div>
-        <div
-          className="mobile-currency-dropdown-content-dollars"
-          style={NavbarMobileOptionsCurrencyDropdnContent.styles.hidden}
-        >
-          <FontAwesome name="usd" className="mobile-currency-dropdown-content-dollars-icon" />
-          <div className="mobile-currency-dropdown-content-dollars-title">
-            <span>USD</span>
-          </div>
-        </div>
+        {/* {this.renderCurrencyDropdown()} */}
+        DYNAMIC
       </span>
     );
   }
