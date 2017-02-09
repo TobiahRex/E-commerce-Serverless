@@ -7,6 +7,7 @@ and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
   @import './navbar_mobile_options/navbar_mobile_options';
+  @import './navbar_mobile_userAction/navbar_mobile_userActions';
 
   .ipp-flex-center {
     display: flex;
