@@ -17,7 +17,9 @@ class NavbarUserActionsSignin extends PureComponent {
         className="navbar-actionSection-upper-actions-signedIn"
       >
         <li className="my-account-title">
-          <Link>My Account</Link>
+          <Link>
+            My Account
+          </Link>
         </li>
         <li className="checkout-title">
           <Link>Checkout</Link>
