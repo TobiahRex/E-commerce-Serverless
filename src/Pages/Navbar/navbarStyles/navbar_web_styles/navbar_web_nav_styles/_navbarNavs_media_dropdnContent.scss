@@ -38,8 +38,19 @@
       width: 104em;
       background-color: $p-white;
       border-bottom: 1px solid rgba(1,1,1,.25);
-      & .media-dropdown-content-midThird-title {
+      & .media-dropdown-content-midThird-links {
+        text-decoration: none;
         cursor: pointer;
+        & .media-dropdown-content-midThird-title {
+          cursor: pointer;
+          &:hover,
+          &:focus,
+          &:active {
+            transition: .5s;
+            color: $p-white;
+            background-color: $p-blue;
+          }
+        }
       }
     }
     & .media-dropdown-content-bottomThird {
