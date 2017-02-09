@@ -6,7 +6,6 @@ import NavbarMobileOptionsCurrencyDropdnContent from './navbarOptions_mobile_cur
 /* TODO:
 1. Pass down via props the respective class methods shown below.
 - Currency change: Will set a flag in state that all SMART components will be receiving to determine how to render the currency info.
-
 */
 
 class NavbarMobileOptionsCurrency extends PureComponent {

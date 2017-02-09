@@ -1,6 +1,10 @@
 import React, { PropTypes, PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+
+import NavbarMobileOptionsCurrencyButtonDollar from './navbarOptions_mobile_currency_button_dollars';
+import NavbarMobileOptionsCurrencyButtonYen from './navbarOptions_mobile_currency_button_yen';
+
 /* TODO
 1. This component receives a State property of the "active_currency"  that will change display of the currency button details.
 
@@ -18,42 +22,17 @@ class NavbarMobileOptionsCurrencyButton extends PureComponent {
     active_currency: PropTypes.string,
   }
 
+  renderCurrency = (currency) => {
+    if (currency === 'usd') return <NavbarMobileOptionsCurrencyButtonDollar />;
+    if (currency === 'yen') return <NavbarMobileOptionsCurrencyButtonYen />;
+    throw new Error('Cannot render the Active Currency - Check NavbarMobileOptionsCurrencyButton component.');
+  }
+
   render() {
     return (
       <span className="mobile-currency-main-button">
-        <div className="mobile-currency-main-button-dollar">
-          <FontAwesome
-            name={this.props.active_currency}
-            className="mobile-currency-main-button-dollar-icon"
-          />
-        </div>
-        <div className="mobile-currency-main-button-dollar-title">
-          <span>{this.props.active_currency.toUpperCase()}</span>
-        </div>
-        <div className="mobile-currency-main-button-dollar-chevron">
-          <FontAwesome
-            name="angle-down"
-            className="mobile-currency-main-button-dollar-chevron-icon"
-          />
-        </div>
-        <div
-          style={NavbarMobileOptionsCurrencyButton.styles.hidden}
-          className="mobile-currency-main-button-yen"
-        >
-          <FontAwesome
-            name={this.props.active_currency}
-            className="mobile-currency-main-button-yen-icon"
-          />
-        </div>
-        <div className="mobile-currency-main-button-yen-title">
-          <span>{this.props.active_currency.toUpperCase()}</span>
-        </div>
-        <div className="mobile-currency-main-button-yen-chevron">
-          <FontAwesome
-            name="angle-down"
-            className="mobile-currency-main-button-yen-chevron-icon"
-          />
-        </div>
+        {/* {this.renderCurrency(this.props.active_currency)} */}
+        DYNAMIC
       </span>
     );
   }
