@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import NavbarOptionsLanguage from '../navbar_web/navbar_web_options/navbar_web_options_language/navbarOptions_language'
+
 class NavbarMobile extends PureComponent {
   render() {
     return (
@@ -9,7 +11,7 @@ class NavbarMobile extends PureComponent {
             <img className="navbar-mobile-logo-src" alt="nj2jp logo" />
           </div>
           <div className="navbar-mobile-options">
-
+            <NavbarOptionsLanguage />
           </div>
           <div className="navbar-mobile-actions"></div>
           <div className="navbar-mobile-navbar"></div>

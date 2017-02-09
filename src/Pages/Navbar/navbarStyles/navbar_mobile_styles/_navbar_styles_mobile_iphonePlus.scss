@@ -17,20 +17,42 @@ and (-webkit-device-pixel-ratio : 3) {
   .navbar.navbar-web {
     display: none;
   }
-  nav.navbar-mobile {
+  body {
+    display: -webkit-box;
     display: flex;
-    height: 26em;
-    width: 98em;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+    padding: 7px;
+    box-sizing: border-box;
+  }
+  nav.navbar-mobile {
+    height: 25em;
+    width: 100%;
     background: pink;
     & .navbar-mobile-logo {
       @extend .ipp-flexCenter;
-      width: inherit;
+      @extend .ipp-pbgc;
+      width: 100%;
       height: 10em;
-      background-color: blue;
       & .navbar-mobile-logo-src {
-        max-width: 22.3em;
+        max-width: 20em;
         content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
       }
+    }
+    & .navbar-mobile-options {
+      height: 5em;
+      width: 100%;
+      background-color: blue;
+    }
+    & .navbar-mobile-actions {
+      height: 4em;
+      width: 100%;
+      background-color: green;
+    }
+    & .navbar-mobile-navbar {
+      height: 6em;
+      width: 100%;
+      background-color: orange
     }
   }
 }
