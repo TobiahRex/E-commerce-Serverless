@@ -1,0 +1,15 @@
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px)
+and (device-width : 414px)
+and (device-height : 736px)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio : 3)
+and (-webkit-device-pixel-ratio : 3) {
+  .navbar.navbar-web {
+    display: none;
+  }
+  nav.navbar-mobile {
+    display: flex;
+  }
+}

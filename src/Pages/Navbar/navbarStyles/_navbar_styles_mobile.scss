@@ -1,0 +1,14 @@
+/* Global Imports */
+
+@import "../../../Styles/colors";
+@import "../../../Styles/typography";
+@import "../../../Styles/images";
+@import "../../../Styles/mixins";
+@import "../../../Styles/transitions";
+
+// /* Local Imports */
+// @import "./navbar_web_styles/navbar_web_upper";
+// @import "./navbar_web_styles/navbar_web_lower";
+
+/* Galaxy S6 & S7 devices */
+@import "./navbar_mobile_styles/navbar_styles_mobile_iphonePlus";

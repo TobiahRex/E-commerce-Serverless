@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import NavbarWeb from './navbar_web/navbar_web';
 import NavbarLogo from './navbar_web/navbarLogo';
 import NavbarActionSection from './navbar_web/navbarActionSection';
 
@@ -21,14 +22,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <header className="navbar-comp-container">
-        <nav className="navbar navbar-default">
-          <div className="container">
-            <div className="navbar navbar-header">
-              <NavbarLogo />
-              <NavbarActionSection />
-            </div>
-          </div>
-        </nav>
+
         {/* {this.props.children || ''} */}
       </header>
     );

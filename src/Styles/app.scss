@@ -2,15 +2,11 @@
 @import "./mixins";
 @import "./typography";
 
-@import "../Pages/Navbar/navbarStyles/navbar_styles";
-
+@import "../Pages/Navbar/navbarStyles/navbar_styles_mobile";
+@import "../Pages/Navbar/navbarStyles/navbar_styles_web";
 
 body {
   font-size: 10px;
   background-color: #2F2F2F;
   margin: 0;
-}
-
-.hidden {
-  display: none;
 }
