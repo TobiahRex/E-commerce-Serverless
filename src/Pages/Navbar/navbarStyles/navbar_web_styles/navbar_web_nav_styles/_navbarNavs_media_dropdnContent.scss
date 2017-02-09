@@ -1,0 +1,23 @@
+.media-dropdown-content {
+  display: block;
+  height: 35em;
+  width: 108em;
+  background-color: pink;
+  position: absolute;
+  z-index: 1;
+  top: 5em;
+  margin-left: -37.5em;
+  & .media-dropdown-content-parent {
+    @extend .flex-center;
+    flex-direction: column;
+    & .media-dropdown-content-topThird {
+      @extend .flex-center;
+      height: 16.5em;
+      width: 104em;
+      background: blue;
+    }
+    & .media-dropdown-content-midThird {
+
+    }
+  }
+}
