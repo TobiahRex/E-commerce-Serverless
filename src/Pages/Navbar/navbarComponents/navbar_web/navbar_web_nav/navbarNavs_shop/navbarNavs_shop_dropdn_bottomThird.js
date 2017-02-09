@@ -12,7 +12,7 @@ class NavbarNavsShopDropdnBottomthird extends PureComponent {
       <div className="shop-dropdown-content-bottomThird">
         <span className="shop-dropdown-content-bottomThird-leftSide">
           <button
-            className="shop-dropdown-content-bottomThird-leftSide-recommend"
+            className="shop-dropdown-content-bottomThird-leftSide-recommend sweep-right"
             onClick={() => console.warn(`browserHistory.push('/contact_us')`)}
           >
             <span>Recommend Another Juice Line</span>

@@ -29,6 +29,7 @@
           &:hover,
           &:focus,
           &:active {
+            transition: all .5s;
             background-color: $p-blue;
             & p {
               color: $p-white;
@@ -56,6 +57,7 @@
           &:hover,
           &:focus,
           &:active {
+            transition: all .5s;
             background-color: $p-blue;
             & p {
               color: $p-white;

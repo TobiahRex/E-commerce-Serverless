@@ -7,22 +7,22 @@ class NavbarNavsInfoDropdnRighthalf extends PureComponent {
         <ul
           className="info-dropdown-content-innerContainer-right-list"
         >
-          <li>
+          <li className="sweep-right">
             <p>Contact Us</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Shipping & Returns Policy</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Return Policy</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Privacy Policy</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Nicotine Disclaimer</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Terms & Conditions</p>
           </li>
         </ul>

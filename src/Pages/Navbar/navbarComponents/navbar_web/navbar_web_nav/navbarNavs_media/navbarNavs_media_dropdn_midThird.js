@@ -8,7 +8,7 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
         <Link
           to={'/contact_us'} className="media-dropdown-content-midThird-links"
         >
-          <div className="media-dropdown-content-midThird-title">
+          <div className="media-dropdown-content-midThird-title sweep-right">
             <h4>Contact Us</h4>
           </div>
         </Link>
@@ -16,7 +16,7 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
           to={'/juice_reviews'}
           className="media-dropdown-content-midThird-links"
         >
-          <div className="media-dropdown-content-midThird-title">
+          <div className="media-dropdown-content-midThird-title sweep-right">
             <h4>Juice Reviews</h4>
           </div>
         </Link>
@@ -24,7 +24,7 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
           to={'/vape_news'}
           className="media-dropdown-content-midThird-links"
         >
-          <div className="media-dropdown-content-midThird-title">
+          <div className="media-dropdown-content-midThird-title sweep-right">
             <h4>Vape News</h4>
           </div>
         </Link>
@@ -32,7 +32,7 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
           to={'/user_stories'}
           className="media-dropdown-content-midThird-links"
         >
-          <div className="media-dropdown-content-midThird-title">
+          <div className="media-dropdown-content-midThird-title sweep-right">
             <h4>User Stories</h4>
           </div>
         </Link>

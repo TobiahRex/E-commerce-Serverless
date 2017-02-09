@@ -7,19 +7,19 @@ class NavbarNavsInfoDropdnLefthalf extends PureComponent {
         <ul
           className="info-dropdown-content-innerContainer-left-list"
         >
-          <li>
+          <li className="sweep-right">
             <p>About</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>FAQs</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Wholesale</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Mission Statement</p>
           </li>
-          <li>
+          <li className="sweep-right">
             <p>Affiliate Program</p>
           </li>
         </ul>
