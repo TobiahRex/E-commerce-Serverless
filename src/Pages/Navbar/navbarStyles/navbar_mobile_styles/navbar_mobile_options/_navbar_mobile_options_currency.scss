@@ -70,6 +70,52 @@
         color: inherit;
       }
     }
+    & .mobile-currency-main-button-yen {
+      @extend .ipp-flex-right;
+      width: 1.4em;
+      height: 2em;
+      font-size: 15px;
+      margin: 0;
+      background-color: transparent;
+      color: inherit;
+      .mobile-currency-main-button-yen-icon {
+        width: 1em;
+        height: 1em;
+        font-size: 1em;
+        background-color: transparent;
+        color: inherit;
+      }
+    }
+    & .mobile-currency-main-button-yen-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 5em;
+      height: 2.5em;
+      margin: 0;
+      padding-right: 1em;
+      background-color: transparent;
+      color: inherit;
+      font-size: 10px;
+      font-family: $p-font;
+      font-weight: 400;
+    }
+    & .mobile-currency-main-button-yen-chevron {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.1em;
+      height: 2.5em;
+      font-size: 15px;
+      margin: 0;
+      background-color: transparent;
+      color: inherit;
+      .mobile-currency-main-button-yen-chevron-icon {
+        width: 1em;
+        height: 1em;
+        color: inherit;
+      }
+    }
   }
   & .mobile-currency-dropdown-content {
     display: none;
