@@ -6,7 +6,6 @@ import React, { PureComponent } from 'react';
 2. Add swipe-right animation for hovering over options.
 
 */
-
 class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
   static styles = {
     hidden: {
@@ -17,19 +16,19 @@ class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
 
   render() {
     return (
-      <span className="language-dropdown-content">
-        <div className="language-dropdown-content-japanese">
-          <div className="language-dropdown-content-japanese-image" />
-          <div className="language-dropdown-content-japanese-nihongo">
+      <span className="mobile-language-dropdown-content">
+        <div className="mobile-language-dropdown-content-japanese">
+          <div className="mobile-language-dropdown-content-japanese-image" />
+          <div className="mobile-language-dropdown-content-japanese-nihongo">
             <span>日本語</span>
           </div>
         </div>
         <div
-          className="language-dropdown-content-us"
-          style={NavbarOptionsLanguageDropdnContent.styles.hidden}
+          className="mobile-language-dropdown-content-us"
+          style={NavbarMobileOptionsLanguageDropdnContent.styles.hidden}
         >
-          <div className="language-dropdown-content-us-image" />
-          <div className="language-dropdown-content-us-english">
+          <div className="mobile-language-dropdown-content-us-image" />
+          <div className="mobile-language-dropdown-content-us-english">
             <span>English</span>
           </div>
         </div>
@@ -37,4 +36,5 @@ class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
     );
   }
 }
-export default NavbarOptionsLanguageDropdnContent;
+
+export default NavbarMobileOptionsLanguageDropdnContent;

@@ -43,6 +43,7 @@ and (-webkit-device-pixel-ratio : 3) {
         }
       }
       & .navbar-mobile-options {
+        @extend .ipp-flex-center;
         height: 5em;
         width: 100%;
         background-color: blue;
