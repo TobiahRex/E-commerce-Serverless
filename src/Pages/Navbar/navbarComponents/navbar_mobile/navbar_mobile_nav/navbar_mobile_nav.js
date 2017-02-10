@@ -59,7 +59,7 @@ class NavbarMobileNav extends Component {
             </div>
           </span>
         </div>
-        <div className="navbar-mobile-nav-dropdown-content">
+        <ul className="navbar-mobile-nav-dropdown-content">
           <li className="navbar-mobile-nav-dropdown-shop">
             <div className="navbar-mobile-nav-dropdown-shop-dropdown">
               <div className="navbar-mobile-nav-dropdown-shop-hover-container">
@@ -147,7 +147,7 @@ class NavbarMobileNav extends Component {
               </div>
             </div>
           </li>
-        </div>
+        </ul>
       </div>
     );
   }
