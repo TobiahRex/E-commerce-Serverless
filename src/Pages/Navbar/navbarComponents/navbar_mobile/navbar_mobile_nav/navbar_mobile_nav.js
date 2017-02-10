@@ -75,8 +75,13 @@ class NavbarMobileNav extends Component {
           </div>
           <div className="navbar-mobile-nav-dropdown-media">
             <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
-            <div className="navbar-mobile-nav-dropdown-shop-title-expand-icon">
-              <FontAwesome name="plus"/>
+            <div className="navbar-mobile-nav-dropdown-shop-expand-container">
+              <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
+                <FontAwesome
+                  className="navbar-mobile-nav-dropdown-shop-expand-icon-fa"
+                  name="plus"
+                />
+              </div>
             </div>
             <div className="navbar-mobile-nav-dropdown-media-expanded hidden">
               <ul>

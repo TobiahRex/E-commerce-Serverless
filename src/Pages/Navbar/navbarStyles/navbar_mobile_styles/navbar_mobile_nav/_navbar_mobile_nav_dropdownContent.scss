@@ -19,6 +19,19 @@
       width: 50%;
       padding: 1em 0 1em 1em;
     }
-    & .navbar-mobile-nav-dropdown-shop-
+    & .navbar-mobile-nav-dropdown-shop-expand-container {
+      justify-content: flex-end;
+      width: 50%;
+      & .navbar-mobile-nav-dropdown-shop-expand-icon {
+        @extend .ipp-flex-center;
+        height: 2.5;
+        width: 2.5;
+        & .navbar-mobile-nav-dropdown-shop-expand-icon-fa {
+          font-size: 2em;
+          line-height: 2em;
+          color: $p-white;
+        }
+      }
+    }
   }
 }
