@@ -33,6 +33,17 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  font-size: 2em;
+  font-family: $p-font;
+  font-weight: 200;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-blue;
+  line-height: 1em;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
 h4 {
   font-size: 1.8em;
   font-family: $p-font;

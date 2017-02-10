@@ -14,19 +14,98 @@
     height: 4.5em;
     width: 35.5em;
     background-color: blue;
-    & .navbar-mobile-nav-dropdown-shop-title {
+    & .navbar-mobile-nav-dropdown-shop-hover-container {
+      height: 3.5em;
+      width: 34.5;
+      &:hover,
+      &:active,
+      &:focus {
+        transition: 0.5s
+        background-color: $p-blue;
+      }
+      & .navbar-mobile-nav-dropdown-shop-title {
+        text-transform: uppercase;
+        justify-content: flex-start;
+        width: 50%;
+        padding: 1em 0 1em 1em;
+        color: $p-white;
+      }
+      & .navbar-mobile-nav-dropdown-shop-expand-container {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+        & .navbar-mobile-nav-dropdown-shop-expand-icon {
+          @extend .ipp-flex-center;
+          height: 2.5em;
+          width: 2.5em;
+          margin-right: 1.5em;
+          background-color: red;
+          & .navbar-mobile-nav-dropdown-shop-expand-icon-fa {
+            font-size: 2em;
+            line-height: 2em;
+            color: $p-white;
+          }
+        }
+      }
+    }
+  }
+  & .navbar-mobile-nav-dropdown-media {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5em;
+    width: 35.5em;
+    background-color: blue;
+    & .navbar-mobile-nav-dropdown-media-title {
+      text-transform: uppercase;
       justify-content: flex-start;
       width: 50%;
       padding: 1em 0 1em 1em;
+      color: $p-white;
     }
-    & .navbar-mobile-nav-dropdown-shop-expand-container {
+    & .navbar-mobile-nav-dropdown-media-expand-container {
+      display: flex;
       justify-content: flex-end;
       width: 50%;
-      & .navbar-mobile-nav-dropdown-shop-expand-icon {
+      & .navbar-mobile-nav-dropdown-media-expand-icon {
         @extend .ipp-flex-center;
-        height: 2.5;
-        width: 2.5;
-        & .navbar-mobile-nav-dropdown-shop-expand-icon-fa {
+        height: 2.5em;
+        width: 2.5em;
+        margin-right: 1.5em;
+        background-color: red;
+        & .navbar-mobile-nav-dropdown-media-expand-icon-fa {
+          font-size: 2em;
+          line-height: 2em;
+          color: $p-white;
+        }
+      }
+    }
+  }
+  & .navbar-mobile-nav-dropdown-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5em;
+    width: 35.5em;
+    background-color: blue;
+    & .navbar-mobile-nav-dropdown-info-title {
+      text-transform: uppercase;
+      justify-content: flex-start;
+      width: 50%;
+      padding: 1em 0 1em 1em;
+      color: $p-white;
+    }
+    & .navbar-mobile-nav-dropdown-info-expand-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+      & .navbar-mobile-nav-dropdown-info-expand-icon {
+        @extend .ipp-flex-center;
+        height: 2.5em;
+        width: 2.5em;
+        margin-right: 1.5em;
+        background-color: red;
+        & .navbar-mobile-nav-dropdown-info-expand-icon-fa {
           font-size: 2em;
           line-height: 2em;
           color: $p-white;

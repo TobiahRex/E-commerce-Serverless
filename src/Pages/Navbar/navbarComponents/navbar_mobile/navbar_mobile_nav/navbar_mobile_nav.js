@@ -61,24 +61,34 @@ class NavbarMobileNav extends Component {
         </div>
         <div className="navbar-mobile-nav-dropdown-content">
           <div className="navbar-mobile-nav-dropdown-shop">
-            <h3 className="navbar-mobile-nav-dropdown-shop-title">Shop</h3>
-            <div className="navbar-mobile-nav-dropdown-shop-expanded hidden">
-              <ul>
-                <li>Fruity Bamm Bamm</li>
-                <li>Keylime Pie</li>
-                <li>Pina Colada</li>
-                <li>French Vanilla Mocha</li>
-                <li>Strawberries {('N\'')} Cream</li>
-                <li>Papple Berry</li>
-              </ul>
+            <div className="navbar-mobile-nav-dropdown-shop-hover-container">
+              <h3 className="navbar-mobile-nav-dropdown-shop-title">Shop</h3>
+              <div className="navbar-mobile-nav-dropdown-shop-expand-container">
+                <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
+                  <FontAwesome
+                    className="navbar-mobile-nav-dropdown-shop-expand-icon-fa"
+                    name="plus"
+                  />
+                </div>
+              </div>
+              <div className="navbar-mobile-nav-dropdown-shop-expanded hidden">
+                <ul>
+                  <li>Fruity Bamm Bamm</li>
+                  <li>Keylime Pie</li>
+                  <li>Pina Colada</li>
+                  <li>French Vanilla Mocha</li>
+                  <li>Strawberries {('N\'')} Cream</li>
+                  <li>Papple Berry</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="navbar-mobile-nav-dropdown-media">
             <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
-            <div className="navbar-mobile-nav-dropdown-shop-expand-container">
-              <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
+            <div className="navbar-mobile-nav-dropdown-media-expand-container">
+              <div className="navbar-mobile-nav-dropdown-media-expand-icon">
                 <FontAwesome
-                  className="navbar-mobile-nav-dropdown-shop-expand-icon-fa"
+                  className="navbar-mobile-nav-dropdown-media-expand-icon-fa"
                   name="plus"
                 />
               </div>
@@ -95,6 +105,14 @@ class NavbarMobileNav extends Component {
           </div>
           <div className="navbar-mobile-nav-dropdown-info">
             <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
+            <div className="navbar-mobile-nav-dropdown-info-expand-container">
+              <div className="navbar-mobile-nav-dropdown-info-expand-icon">
+                <FontAwesome
+                  className="navbar-mobile-nav-dropdown-info-expand-icon-fa"
+                  name="plus"
+                />
+              </div>
+            </div>
             <div className="navbar-mobile-nav-dropdown-info-expanded hidden">
               <ul>
                 <li>About Us</li>
