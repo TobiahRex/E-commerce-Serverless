@@ -1,33 +1,37 @@
 .navbar-mobile-nav-dropdown-content {
-  list-style: none;
   display: block;
-  z-index: 1;
   position: absolute;
   height: 16.5em;
   width: 40em;
-  padding: 0;
+  padding: 1.5em 1em 1.5em 1em;
   margin: 0;
+  z-index: 1;
+  list-style: none;
   @extend .ipp-white-bg;
-  @extend .ipp-flex-center;
   flex-direction: column;
   & .navbar-mobile-nav-dropdown-shop {
-    @extend .ipp-flex-center;
+    display: inline-block;
+    position: relative;
     height: 4.5em;
     width: 35.5em;
-    @extend .ipp-white-bg;
+    position: static;
+    // @extend .ipp-white-bg;
+    background-color: red;
     & .navbar-mobile-nav-dropdown-shop-dropdown {
       display: block;
       position: relative;
       float: none;
+      background-color: white;
       &:hover,
       &:focus,
       &:active {
         & .navbar-mobile-nav-dropdown-shop-expanded {
           height: 10em;
           display: block;
-          overflow: hidden;
+          overflow-y: hidden;
         }
         & .navbar-mobile-nav-dropdown-shop-hover-container {
+          padding: .5em;
           transition: 0.5s;
           background-color: $p-blue;
           & .navbar-mobile-nav-dropdown-shop-title {
@@ -51,6 +55,8 @@
         align-items: center;
         height: 3.5em;
         width: 34.5em;
+        margin: .5em;
+        background-color: purple;
         & .navbar-mobile-nav-dropdown-shop-title {
           text-transform: uppercase;
           justify-content: flex-start;
@@ -86,12 +92,14 @@
       }
       & .navbar-mobile-nav-dropdown-shop-expanded {
         display: none;
-        position: absolute;
+        position: relative;
         height: 10em;
         width: 34em;
+        background-color: green;
         & .navbar-mobile-nav-dropdown-shop-expanded-list {
           max-height: 10em;
           position: static;
+          background-color: $p-blue;
           & li {
             float: none;
             display: block;
