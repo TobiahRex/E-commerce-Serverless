@@ -52,7 +52,7 @@ class NavbarMobileNav extends Component {
                   name="shopping-cart"
                 />
               </div>
-              <span className="navbar-mobile-cart-icon-divider"></span>
+              <span className="navbar-mobile-cart-icon-divider" />
               <div className="navbar-mobile-cart-qty">
                 <span className="navbar-mobile-cart-qty-value">0</span>
               </div>
@@ -60,23 +60,25 @@ class NavbarMobileNav extends Component {
           </span>
         </div>
         <div className="navbar-mobile-nav-dropdown-content">
-          <div className="navbar-mobile-nav-dropdown-shop">
-            <div className="navbar-mobile-nav-dropdown-shop-hover-container">
-              <h3 className="navbar-mobile-nav-dropdown-shop-title">Shop</h3>
-              <div className="navbar-mobile-nav-dropdown-shop-expand-container">
-                <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
-                  <FontAwesome
-                    className="navbar-mobile-nav-dropdown-shop-expand-icon-plus-fa"
-                    name="plus"
-                  />
-                  <FontAwesome
-                    className="navbar-mobile-nav-dropdown-shop-expand-icon-minus-fa"
-                    name="minus"
-                  />
+          <li className="navbar-mobile-nav-dropdown-shop">
+            <div className="navbar-mobile-nav-dropdown-shop-dropdown">
+              <div className="navbar-mobile-nav-dropdown-shop-hover-container">
+                <h3 className="navbar-mobile-nav-dropdown-shop-title">Shop</h3>
+                <div className="navbar-mobile-nav-dropdown-shop-expand-container">
+                  <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
+                    <FontAwesome
+                      className="navbar-mobile-nav-dropdown-shop-expand-icon-plus-fa"
+                      name="plus"
+                    />
+                    <FontAwesome
+                      className="navbar-mobile-nav-dropdown-shop-expand-icon-minus-fa"
+                      name="minus"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="navbar-mobile-nav-dropdown-shop-expanded hidden">
-                <ul>
+              <div className="navbar-mobile-nav-dropdown-shop-expanded">
+                <ul className="navbar-mobile-nav-dropdown-shop-expanded-list">
                   <li>Fruity Bamm Bamm</li>
                   <li>Keylime Pie</li>
                   <li>Pina Colada</li>
@@ -86,8 +88,8 @@ class NavbarMobileNav extends Component {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="navbar-mobile-nav-dropdown-media">
+          </li>
+          <li className="navbar-mobile-nav-dropdown-media">
             <div className="navbar-mobile-nav-dropdown-media-hover-container">
               <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
               <div className="navbar-mobile-nav-dropdown-media-expand-container">
@@ -95,6 +97,10 @@ class NavbarMobileNav extends Component {
                   <FontAwesome
                     className="navbar-mobile-nav-dropdown-media-expand-icon-plus-fa"
                     name="plus"
+                  />
+                  <FontAwesome
+                    className="navbar-mobile-nav-dropdown-media-expand-icon-minus-fa"
+                    name="minus"
                   />
                 </div>
               </div>
@@ -108,35 +114,39 @@ class NavbarMobileNav extends Component {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="navbar-mobile-nav-dropdown-info">
+          </li>
+          <li className="navbar-mobile-nav-dropdown-info">
             <div className="navbar-mobile-nav-dropdown-info-hover-container">
-            <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
-            <div className="navbar-mobile-nav-dropdown-info-expand-container">
-              <div className="navbar-mobile-nav-dropdown-info-expand-icon">
-                <FontAwesome
-                  className="navbar-mobile-nav-dropdown-info-expand-icon-fa"
-                  name="plus"
-                />
+              <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
+              <div className="navbar-mobile-nav-dropdown-info-expand-container">
+                <div className="navbar-mobile-nav-dropdown-info-expand-icon">
+                  <FontAwesome
+                    className="navbar-mobile-nav-dropdown-info-expand-icon-plus-fa"
+                    name="plus"
+                  />
+                  <FontAwesome
+                    className="navbar-mobile-nav-dropdown-info-expand-icon-minus-fa"
+                    name="minus"
+                  />
+                </div>
+              </div>
+              <div className="navbar-mobile-nav-dropdown-info-expanded hidden">
+                <ul>
+                  <li>About Us</li>
+                  <li>Contact Us</li>
+                  <li>{('FAQ\'s')}</li>
+                  <li>Wholesale</li>
+                  <li>Mission Statement</li>
+                  <li>Shipping Policy</li>
+                  <li>Privacy Policy</li>
+                  <li>Terms & Conditions</li>
+                  <li>Nicotine Disclaimer</li>
+                  <li>Return Policy</li>
+                  <li>Affiliate Program</li>
+                </ul>
               </div>
             </div>
-            <div className="navbar-mobile-nav-dropdown-info-expanded hidden">
-              <ul>
-                <li>About Us</li>
-                <li>Contact Us</li>
-                <li>{('FAQ\'s')}</li>
-                <li>Wholesale</li>
-                <li>Mission Statement</li>
-                <li>Shipping Policy</li>
-                <li>Privacy Policy</li>
-                <li>Terms & Conditions</li>
-                <li>Nicotine Disclaimer</li>
-                <li>Return Policy</li>
-                <li>Affiliate Program</li>
-              </ul>
-            </div>
-          </div>
-          </div>
+          </li>
         </div>
       </div>
     );
