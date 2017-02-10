@@ -66,8 +66,12 @@ class NavbarMobileNav extends Component {
               <div className="navbar-mobile-nav-dropdown-shop-expand-container">
                 <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
                   <FontAwesome
-                    className="navbar-mobile-nav-dropdown-shop-expand-icon-fa"
+                    className="navbar-mobile-nav-dropdown-shop-expand-icon-plus-fa"
                     name="plus"
+                  />
+                  <FontAwesome
+                    className="navbar-mobile-nav-dropdown-shop-expand-icon-minus-fa"
+                    name="minus"
                   />
                 </div>
               </div>
@@ -84,26 +88,29 @@ class NavbarMobileNav extends Component {
             </div>
           </div>
           <div className="navbar-mobile-nav-dropdown-media">
-            <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
-            <div className="navbar-mobile-nav-dropdown-media-expand-container">
-              <div className="navbar-mobile-nav-dropdown-media-expand-icon">
-                <FontAwesome
-                  className="navbar-mobile-nav-dropdown-media-expand-icon-fa"
-                  name="plus"
-                />
+            <div className="navbar-mobile-nav-dropdown-media-hover-container">
+              <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
+              <div className="navbar-mobile-nav-dropdown-media-expand-container">
+                <div className="navbar-mobile-nav-dropdown-media-expand-icon">
+                  <FontAwesome
+                    className="navbar-mobile-nav-dropdown-media-expand-icon-plus-fa"
+                    name="plus"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="navbar-mobile-nav-dropdown-media-expanded hidden">
-              <ul>
-                <li>Contact Us</li>
-                <li>Juice Reviews</li>
-                <li>Vape News</li>
-                <li>User Stories</li>
-                <li>(Social Media Icons)</li>
-              </ul>
+              <div className="navbar-mobile-nav-dropdown-media-expanded hidden">
+                <ul>
+                  <li>Contact Us</li>
+                  <li>Juice Reviews</li>
+                  <li>Vape News</li>
+                  <li>User Stories</li>
+                  <li>(Social Media Icons)</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="navbar-mobile-nav-dropdown-info">
+            <div className="navbar-mobile-nav-dropdown-info-hover-container">
             <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
             <div className="navbar-mobile-nav-dropdown-info-expand-container">
               <div className="navbar-mobile-nav-dropdown-info-expand-icon">
@@ -128,6 +135,7 @@ class NavbarMobileNav extends Component {
                 <li>Affiliate Program</li>
               </ul>
             </div>
+          </div>
           </div>
         </div>
       </div>
