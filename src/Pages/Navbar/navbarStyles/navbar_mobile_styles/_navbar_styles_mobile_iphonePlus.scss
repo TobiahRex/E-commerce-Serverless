@@ -8,6 +8,15 @@ and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
   @import './navbar_mobile_options/navbar_mobile_options';
   @import './navbar_mobile_userActions/navbar_mobile_userActions';
+  @import './navbar_mobile_nav/navbar_mobile_nav';
+  h5 {
+    font-size: 1.5em;
+    font-family: $p-font;
+    font-weight: 200;
+    color: $p-white;
+    line-height: 1em;
+  }
+
   .hidden {
     display: none;
   }
@@ -29,6 +38,9 @@ and (-webkit-device-pixel-ratio : 3) {
   .ipp-white-bg {
     background-color: $p-white;
   }
+  .ipp-blue-bg {
+    background-color: $p-blue;
+  }
   .navbar.navbar-web {
     display: none;
   }
@@ -41,9 +53,9 @@ and (-webkit-device-pixel-ratio : 3) {
     box-sizing: border-box;
   }
   nav.navbar-mobile {
-    height: 25em;
+    height: 26em;
     width: 100%;
-    background: pink;
+    @extend .ipp-white-bg;
     & .navbar-mobile-container {
       & .navbar-mobile-logo {
         @extend .ipp-flex-center;
@@ -63,14 +75,14 @@ and (-webkit-device-pixel-ratio : 3) {
         border-bottom: 1px solid rgba(1,1,1,0.05);
       }
       & .navbar-mobile-actions {
-        height: 4em;
+        height: 5em;
         width: 100%;
         background-color: $p-grey;
       }
-      & .navbar-mobile-navbar {
+      & .navbar-mobile-nav {
         height: 6em;
         width: 100%;
-        background-color: orange
+        @extend .ipp-blue-bg;
       }
     }
   }

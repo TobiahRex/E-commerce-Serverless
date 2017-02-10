@@ -18,6 +18,7 @@ h1 {
   @include prefixed(font-smoothing, antialiased);
   color: $p-blue;
   line-height: 1em;
+  letter-spacing: 1em;
   margin: 0;
 }
 
@@ -28,6 +29,7 @@ h2 {
   @include prefixed(font-smoothing, antialiased);
   color: $p-blue;
   line-height: 1em;
+  letter-spacing: 1em;
   margin: 0;
 }
 
@@ -39,6 +41,7 @@ h4 {
   @include prefixed(font-smoothing, antialiased);
   color: $p-blue;
   line-height: 1em;
+  letter-spacing: 1em;
   margin: 0;
 }
 
