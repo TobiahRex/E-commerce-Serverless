@@ -1,0 +1,24 @@
+.navbar-mobile-nav-dropdown-content {
+  display: block;
+  z-index: 1;
+  position: absolute;
+  height: 16.5em;
+  width: 40em;
+  background-color: pink;
+  @extend .ipp-flex-center;
+  flex-direction: column;
+  & .navbar-mobile-nav-dropdown-shop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5em;
+    width: 35.5em;
+    background-color: blue;
+    & .navbar-mobile-nav-dropdown-shop-title {
+      justify-content: flex-start;
+      width: 50%;
+      padding: 1em 0 1em 1em;
+    }
+    & .navbar-mobile-nav-dropdown-shop-
+  }
+}

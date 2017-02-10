@@ -8,14 +8,8 @@ and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
   @import './navbar_mobile_options/navbar_mobile_options';
   @import './navbar_mobile_userActions/navbar_mobile_userActions';
-  @import './navbar_mobile_nav/navbar_mobile_nav';
-  h5 {
-    font-size: 1.5em;
-    font-family: $p-font;
-    font-weight: 200;
-    color: $p-white;
-    line-height: 1em;
-  }
+  @import './navbar_mobile_nav/navbar_mobile_nav_main';
+  @import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent';
 
   .hidden {
     display: none;
@@ -80,6 +74,8 @@ and (-webkit-device-pixel-ratio : 3) {
         background-color: $p-grey;
       }
       & .navbar-mobile-nav {
+        display: inline-block;
+        position: relative;
         height: 6em;
         width: 100%;
         @extend .ipp-blue-bg;

@@ -57,52 +57,55 @@ class NavbarMobileNav extends Component {
                 <span className="navbar-mobile-cart-qty-value">0</span>
               </div>
             </div>
-            <div className="navbar-mobile-nav-dropdown-content hidden">
-              <div className="navbar-mobile-nav-dropdown-shop">
-                <h3 className="navbar-mobile-nav-dropdown-shop-title">Shop</h3>
-                <div className="navbar-mobile-nav-dropdown-shop-expanded">
-                  <ul>
-                    <li>Fruity Bamm Bamm</li>
-                    <li>Keylime Pie</li>
-                    <li>Pina Colada</li>
-                    <li>French Vanilla Mocha</li>
-                    <li>Strawberries {('N\'')} Cream</li>
-                    <li>Papple Berry</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="navbar-mobile-nav-dropdown-media">
-                <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
-                <div className="navbar-mobile-nav-dropdown-media-expanded">
-                  <ul>
-                    <li>Contact Us</li>
-                    <li>Juice Reviews</li>
-                    <li>Vape News</li>
-                    <li>User Stories</li>
-                    <li>(Social Media Icons)</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="navbar-mobile-nav-dropdown-info">
-                <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
-                <div className="navbar-mobile-nav-dropdown-info-expanded">
-                  <ul>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>{('FAQ\'s')}</li>
-                    <li>Wholesale</li>
-                    <li>Mission Statement</li>
-                    <li>Shipping Policy</li>
-                    <li>Privacy Policy</li>
-                    <li>Terms & Conditions</li>
-                    <li>Nicotine Disclaimer</li>
-                    <li>Return Policy</li>
-                    <li>Affiliate Program</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </span>
+        </div>
+        <div className="navbar-mobile-nav-dropdown-content">
+          <div className="navbar-mobile-nav-dropdown-shop">
+            <h3 className="navbar-mobile-nav-dropdown-shop-title">Shop</h3>
+            <div className="navbar-mobile-nav-dropdown-shop-expanded hidden">
+              <ul>
+                <li>Fruity Bamm Bamm</li>
+                <li>Keylime Pie</li>
+                <li>Pina Colada</li>
+                <li>French Vanilla Mocha</li>
+                <li>Strawberries {('N\'')} Cream</li>
+                <li>Papple Berry</li>
+              </ul>
+            </div>
+          </div>
+          <div className="navbar-mobile-nav-dropdown-media">
+            <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
+            <div className="navbar-mobile-nav-dropdown-shop-title-expand-icon">
+              <FontAwesome name="plus"/>
+            </div>
+            <div className="navbar-mobile-nav-dropdown-media-expanded hidden">
+              <ul>
+                <li>Contact Us</li>
+                <li>Juice Reviews</li>
+                <li>Vape News</li>
+                <li>User Stories</li>
+                <li>(Social Media Icons)</li>
+              </ul>
+            </div>
+          </div>
+          <div className="navbar-mobile-nav-dropdown-info">
+            <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
+            <div className="navbar-mobile-nav-dropdown-info-expanded hidden">
+              <ul>
+                <li>About Us</li>
+                <li>Contact Us</li>
+                <li>{('FAQ\'s')}</li>
+                <li>Wholesale</li>
+                <li>Mission Statement</li>
+                <li>Shipping Policy</li>
+                <li>Privacy Policy</li>
+                <li>Terms & Conditions</li>
+                <li>Nicotine Disclaimer</li>
+                <li>Return Policy</li>
+                <li>Affiliate Program</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     );
