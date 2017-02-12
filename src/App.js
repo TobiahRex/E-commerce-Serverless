@@ -4,7 +4,7 @@ import Navbar from './Pages/Navbar/navbarComponents/navbarMain';
 const App = ({ children }) => (
   <div>
     <Navbar />
-    <section>
+    <section className="main-body">
       {children}
     </section>
     <footer />

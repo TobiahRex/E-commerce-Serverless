@@ -6,7 +6,7 @@ import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 1. Remove UUID hard code.
 
 */
-import Splash from '../Pages/Splash/splash';
+import Homepage from '../Pages/Home/homepage';
 import AgeVerification from '../Pages/Legal/ageVerification';
 import SingleProduct from '../Pages/Products/singleProduct';
 import Cart from '../Pages/Cart/cart';
@@ -37,7 +37,7 @@ import Affiliates from '../Pages/Legal/affiliateProgram';
 
 export default (
   <Route path="/" component={Navbar}>
-    <IndexRoute component={Splash} />
+    <IndexRoute component={Homepage} />
     {/* User Experience */}
     <Router path={'/welcome'} component={AgeVerification} />
     <Router path={'/product/:id'} component={SingleProduct} />

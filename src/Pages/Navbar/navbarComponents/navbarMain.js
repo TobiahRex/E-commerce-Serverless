@@ -25,7 +25,6 @@ class Navbar extends React.Component {
       <header className="navbar-comp-container">
         <NavbarWeb />
         <NavbarMobile />
-        {/* {this.props.children || ''} */}
       </header>
     );
   }
