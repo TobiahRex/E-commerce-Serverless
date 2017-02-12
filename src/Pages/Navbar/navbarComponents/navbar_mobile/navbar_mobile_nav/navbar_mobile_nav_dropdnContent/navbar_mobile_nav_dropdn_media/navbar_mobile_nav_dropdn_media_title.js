@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function NavbarMobileNavTitleDropdnContent() {
+export default function NavbarMobileNavMediaTitle() {
   return (
     <div className="navbar-mobile-nav-dropdown-media-hover-container sweep-right-white">
       <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
