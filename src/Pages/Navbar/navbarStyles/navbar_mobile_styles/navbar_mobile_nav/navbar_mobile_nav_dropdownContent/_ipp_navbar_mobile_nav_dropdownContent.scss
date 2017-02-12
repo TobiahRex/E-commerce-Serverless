@@ -22,7 +22,7 @@
   width: 37em;
   margin: 0;
   @include prefixed(transition, all .5s ease-in-out);
-  @import './navbar_mobile_nav_dropdown_shop';
-  @import './navbar_mobile_nav_dropdown_media';
-  @import './navbar_mobile_nav_dropdown_info';
+  @import './ipp_navbar_mobile_nav_dropdown_shop';
+  @import './ipp_navbar_mobile_nav_dropdown_media';
+  @import './ipp_navbar_mobile_nav_dropdown_info';
 }
