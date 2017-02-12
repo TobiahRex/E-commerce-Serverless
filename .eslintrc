@@ -21,7 +21,7 @@
     "react/jsx-boolean-value": 1,
     "no-param-reassign": [2, { "props": false }],
     "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": 0,
     "import/no-extraneous-dependencies": [2, { "devDependencies": true } ],
     "no-underscore-dangle":["error",{"allow": ["_id"]}],
     "no-use-before-define": [2, { "functions": false, "classes": true }]

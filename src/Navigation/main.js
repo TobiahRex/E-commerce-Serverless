@@ -1,60 +1,60 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, Router, IndexRoute } from 'react-router';
 import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 
 /* NOTE:
 1. Remove UUID hard code.
 
 */
-import Splash from './Pages/splash';
-import AgeVerification from './Pages/ageVerification';
-import SingleProduct from './Pages/Products/singleProduct';
-import Cart from './Pages/cart';
-import EmptyCart from './Pages/EmptyCart/emptyCart';
-import ExpressCheckout from './Pages/expressCheckout';
-import Login from './Pages/Login/login';
-import Register from './Pages/'
-import Forgot from './Pages/'
-import UserDash from './Pages/'
-import AdminDash from './Pages/'
-import About from './Pages/'
-import ContactUs from './Pages/'
-import Faqs from './Pages/'
-import MissionStatement from './Pages/'
-import SocialMedia from './Pages/'
-import NicotineDisclaimer from './Pages/'
-import ShippingReturns from './Pages/'
-import TermsConditions from './Pages/'
-import Wholesale from './Pages/'
-import Affiliates from './Pages/'
+import Splash from '../Pages/Splash/splash';
+import AgeVerification from '../Pages/Legal/ageVerification';
+import SingleProduct from '../Pages/Products/singleProduct';
+import Cart from '../Pages/Cart/cart';
+import EmptyCart from '../Pages/Cart/EmptyCart/emptyCart';
+import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';
+import Login from '../Pages/Auth/Login/login';
+import Register from '../Pages/Auth/Register/register';
+import Forgot from '../Pages/Auth/Forgot/forgot';
+import UserDashboard from '../Pages/UserDashboard/userDashboard';
+import AdminDashboard from '../Pages/AdminDashboard/adminDashboard';
+import About from '../Pages/Legal/about';
+import ContactUs from '../Pages/Legal/contactUs';
+import Faqs from '../Pages/Legal/faqs';
+import MissionStatement from '../Pages/Legal/missionStatement';
+import SocialMedia from '../Pages/Legal/socialMedia';
+import NicotineDisclaimer from '../Pages/Legal/nicotineDisclaimer';
+import ShippingReturns from '../Pages/Legal/shippingReturnPolicy';
+import TermsConditions from '../Pages/Legal/termsConditions';
+import Wholesale from '../Pages/Legal/wholesale';
+import Affiliates from '../Pages/Legal/affiliateProgram';
 
 
 export default (
   <Route path="/" component={Navbar}>
     <IndexRoute component={Splash} />
     {/* User Experience */}
-    <Router path={"/welcome"} component={AgeVerification} />
-    <Router path={"/product/:id"} component={SingleProduct} />
-    <Router path={"/cart"} component={Cart} />
-    <Router path={"/empty"} component={EmptyCart} />
-    <Router path={"/checkout"} component={ExpressCheckout} />
+    <Router path={'/welcome'} component={AgeVerification} />
+    <Router path={'/product/:id'} component={SingleProduct} />
+    <Router path={'/cart'} component={Cart} />
+    <Router path={'/empty'} component={EmptyCart} />
+    <Router path={'/checkout'} component={ExpressCheckout} />
     {/* AUTH */}
-    <Router path={"/login"} component={Login} />
-    <Router path={"/register"} component={Register} />
-    <Router path={"/forgot"} component={Forgot} />
+    <Router path={'/login'} component={Login} />
+    <Router path={'/register'} component={Register} />
+    <Router path={'/forgot'} component={Forgot} />
     {/* DASHBOARDS */}
-    <Router path={"/user/:id"} component={UserDash} />
-    <Router path={"/admin/:id"} component={AdminDash} />
+    <Router path={'/user/:id'} component={UserDashboard} />
+    <Router path={'/admin/:id'} component={AdminDashboard} />
     {/* LEGAL */}
-    <Router path={"/about"} component={} />
-    <Router path={"/contact"} component={} />
-    <Router path={"/faqs"} component={} />
-    <Router path={"/mission_statement"} component={} />
-    <Router path={"/social_media"} component={} />
-    <Router path={"/nicotine_disclaimer"} component={} />
-    <Router path={"/shipping_return"} component={} />
-    <Router path={"/terms_and_conditions"} component={} />
-    <Router path={"/wholsesale"} component={} />
-    <Router path={"/affiliates"} component={} />
+    <Router path={'/about'} component={About} />
+    <Router path={'/contact'} component={ContactUs} />
+    <Router path={'/faqs'} component={Faqs} />
+    <Router path={'/mission_statement'} component={MissionStatement} />
+    <Router path={'/social_media'} component={SocialMedia} />
+    <Router path={'/nicotine_disclaimer'} component={NicotineDisclaimer} />
+    <Router path={'/shipping_return'} component={ShippingReturns} />
+    <Router path={'/terms_and_conditions'} component={TermsConditions} />
+    <Router path={'/wholsesale'} component={Wholesale} />
+    <Router path={'/affiliates'} component={Affiliates} />
   </Route>
 );
