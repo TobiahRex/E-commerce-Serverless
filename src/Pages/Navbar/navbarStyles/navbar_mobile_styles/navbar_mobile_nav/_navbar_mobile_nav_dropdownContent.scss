@@ -2,13 +2,20 @@
   @extend .ipp-blue-bg;
   display: block;
   position: absolute;
-  max-height: 81.5em;
-  width: 37em;
+  // max-height: 81.5em;
+  // width: 37em;
   padding: 1.5em;
   margin: 0;
   z-index: 1;
   list-style: none;
   flex-direction: column;
+
+  clear: both;
+  overflow: hidden;
+  opacity: 0;
+  width: 37em;
+  margin: 0;
+  @include prefixed(transition, all .5s ease-in-out);
   & .navbar-mobile-nav-dropdown-shop {
     @extend .ipp-blue-bg;
     display: inline-block;
@@ -413,5 +420,4 @@
       }
     }
   }
-
 }

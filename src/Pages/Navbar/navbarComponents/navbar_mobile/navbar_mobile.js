@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router';
 
 import NavbarMobileOptions from './navbar_mobile_options/navbarOptions_mobile';
 import NavbarMobileActions from './navbar_mobile_userActions/navbar_mobile_userActions';

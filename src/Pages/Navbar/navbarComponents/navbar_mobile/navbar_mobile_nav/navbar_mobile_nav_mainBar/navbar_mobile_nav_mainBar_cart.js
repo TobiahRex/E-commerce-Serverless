@@ -17,7 +17,7 @@ export default function NavbarMobileNavCart({ cartQty }) {
       </div>
       <span className="navbar-mobile-cart-icon-divider" />
       <div className="navbar-mobile-cart-qty">
-        <span className="navbar-mobile-cart-qty-value">{cartQty}</span>
+        <span className="navbar-mobile-cart-qty-value">{cartQty || 0}</span>
       </div>
     </div>
   );

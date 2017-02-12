@@ -16,12 +16,6 @@ class NavbarMobileNav extends Component {
     _id: null,
   }
 
-  static propTypes = {
-    mobileNavbarExpanded: PropTypes.bool,
-    activePage: PropTypes.string,
-    cartQty: PropTypes.number,
-  }
-
   constructor(props) {
     super(props);
 
@@ -29,6 +23,10 @@ class NavbarMobileNav extends Component {
       logoutToast: null,
       loginFail: null,
       loginSuccess: null,
+    };
+
+    this.state = {
+      ddOpen: false,
     };
   }
 
@@ -49,20 +47,28 @@ class NavbarMobileNav extends Component {
     }
   }
 
+  toggleHamburger = (e) => {
+    e.preventDefault();
+    console.warn('hi')
+    this.setState({ ddOpen: !this.state.ddOpen });
+  };
+
   render() {
     const {
-      mobileNavbarExpanded,
       activePage,
       cartQty } = this.props;
     return (
       <div className="navbar-mobile-nav">
         <NavbarMobileNavMainBar
-          mobileNavbarExpanded={mobileNavbarExpanded}
           activePage={activePage}
           cartQty={cartQty}
+          toggleHamburger={this.toggleHamburger}
+          ddOpen={this.state.ddOpen}
         />
 
-        <NavbarMobileNavDropdnContent />
+        <NavbarMobileNavDropdnContent
+          ddOpen={this.state.ddOpen}
+        />
       </div>
     );
   }

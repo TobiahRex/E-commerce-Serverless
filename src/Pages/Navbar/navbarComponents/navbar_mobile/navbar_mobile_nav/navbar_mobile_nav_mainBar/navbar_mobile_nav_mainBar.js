@@ -7,9 +7,10 @@ import NavbarMobileNavCart from './navbar_mobile_nav_mainBar_cart';
 
 class NavbarMobileNavMain extends PureComponent {
   static propTypes = {
-    mobileNavbarExpanded: PropTypes.bool,
     activePage: PropTypes.string,
     cartQty: PropTypes.number,
+    toggleHamburger: PropTypes.func,
+    ddOpen: PropTypes.bool,
   }
 
   constructor(props) {
@@ -22,12 +23,17 @@ class NavbarMobileNavMain extends PureComponent {
   render() {
     const { activePage,
     cartQty,
-    mobileNavbarExpanded } = this.props;
+    toggleHamburger,
+    ddOpen,
+    } = this.props;
 
     return (
       <div className="navbar-mobile-nav-main">
         <span className="navbar-mobile-nav-main-left">
-          <NavbarMobileNavHamburger mobileNavbarExpanded={mobileNavbarExpanded} />
+          <NavbarMobileNavHamburger
+            ddOpen={ddOpen}
+            toggleHamburger={toggleHamburger}
+          />
           <NavbarMobileNavTitle activePage={activePage} />
         </span>
         <span className="navbar-mobile-nav-main-right">

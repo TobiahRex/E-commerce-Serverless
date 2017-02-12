@@ -13,7 +13,19 @@
       @extend .ipp-blue-bg;
       & .navbar-mobile-nav-hamburger-icon-button {
         @extend .ipp-flex-center;
-
+        height: 2.5em;
+        width: 2.5em;
+        &.active span {
+          background-color: transparent;
+          &:before {
+            top: 0;
+            transform: rotate(45deg);
+          }
+          &:after {
+            top: 0;
+            transform: rotate(-45deg);
+          }
+        }
         & span {
           cursor: pointer;
           border-radius: .1em;
@@ -23,6 +35,7 @@
           position: absolute;
           display: block;
           content: '';
+          transition: all 500ms ease-in-out;
           &:before {
             cursor: pointer;
             border-radius: .1em;
@@ -33,6 +46,7 @@
             display: block;
             content: '';
             top: -1em;
+            transition: all 500ms ease-in-out;
           }
           &:after {
             cursor: pointer;
@@ -44,6 +58,7 @@
             display: block;
             content: '';
             top: 1em;
+            transition: all 500ms ease-in-out;
           }
         }
       }
