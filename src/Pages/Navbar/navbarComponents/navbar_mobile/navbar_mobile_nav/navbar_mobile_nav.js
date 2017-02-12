@@ -47,8 +47,11 @@ class NavbarMobileNav extends Component {
     }
   }
 
-  toggleHamburger = (e) => {
-    e.preventDefault();
+  toggleDropdown = (id, e) => {
+    console.warn('id: ', id);
+    if (id === 'hamburger') {
+      e.preventDefault();
+    }
     this.setState({ ddOpen: !this.state.ddOpen });
   };
 
@@ -61,12 +64,13 @@ class NavbarMobileNav extends Component {
         <NavbarMobileNavMainBar
           activePage={activePage}
           cartQty={cartQty}
-          toggleHamburger={this.toggleHamburger}
+          toggleDropdown={this.toggleDropdown}
           ddOpen={this.state.ddOpen}
         />
 
         <NavbarMobileNavDropdnContent
           ddOpen={this.state.ddOpen}
+          toggleDropdown={this.toggleDropdown}
         />
       </div>
     );

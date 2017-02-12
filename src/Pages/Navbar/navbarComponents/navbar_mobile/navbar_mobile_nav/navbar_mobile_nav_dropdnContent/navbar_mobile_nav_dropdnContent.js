@@ -6,9 +6,10 @@ import NavbarMobileNavDropdnInfo from './navbar_mobile_nav_dropdn_info/navbar_mo
 
 const propTypes = {
   ddOpen: PropTypes.bool,
+  toggleDropdown: PropTypes.func,
 };
 
-function NavbarMobileNavDropdnContent({ ddOpen }) {
+function NavbarMobileNavDropdnContent({ ddOpen, toggleDropdown }) {
   const showDropdown = ddOpen ? {
     opacity: 1,
     maxHeight: '81.5em',
@@ -24,9 +25,9 @@ function NavbarMobileNavDropdnContent({ ddOpen }) {
       style={showDropdown}
       className="navbar-mobile-nav-dropdown-content"
     >
-      <NavbarMobileNavDropdnShop />
-      <NavbarMobileNavDropdnMedia />
-      <NavbarMobileNavDropdnInfo />
+      <NavbarMobileNavDropdnShop toggleDropdown={toggleDropdown} />
+      <NavbarMobileNavDropdnMedia toggleDropdown={toggleDropdown} />
+      <NavbarMobileNavDropdnInfo toggleDropdown={toggleDropdown} />
     </ul>
   );
 }

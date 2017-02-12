@@ -9,7 +9,7 @@ class NavbarMobileNavMain extends PureComponent {
   static propTypes = {
     activePage: PropTypes.string,
     cartQty: PropTypes.number,
-    toggleHamburger: PropTypes.func,
+    toggleDropdown: PropTypes.func,
     ddOpen: PropTypes.bool,
   }
 
@@ -23,7 +23,7 @@ class NavbarMobileNavMain extends PureComponent {
   render() {
     const { activePage,
     cartQty,
-    toggleHamburger,
+    toggleDropdown,
     ddOpen,
     } = this.props;
 
@@ -32,7 +32,7 @@ class NavbarMobileNavMain extends PureComponent {
         <span className="navbar-mobile-nav-main-left">
           <NavbarMobileNavHamburger
             ddOpen={ddOpen}
-            toggleHamburger={toggleHamburger}
+            toggleDropdown={toggleDropdown}
           />
           <NavbarMobileNavTitle activePage={activePage} />
         </span>

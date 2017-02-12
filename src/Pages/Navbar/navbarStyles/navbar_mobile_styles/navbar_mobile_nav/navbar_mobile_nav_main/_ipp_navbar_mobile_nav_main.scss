@@ -70,9 +70,9 @@
       }
     }
     & .navbar-mobile-nav-title {
-      @extend .ipp-flex-center;
+      @extend .ipp-flex-left;
       height: 6em;
-      width: 12em;
+      width: 22em;
       @extend .ipp-blue-bg;
       & h5 {
         margin: 0;

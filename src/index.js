@@ -10,10 +10,18 @@ import routes from './Navigation/main';
 injectTapEventPlugin();
 const store = createStore();
 
+function showLocation() {
+  return (console.info(window.location.pathname));
+}
+
 render(
   <Provider store={store} >
-    <Router history={browserHistory} routes={routes} />
-  </Provider >
+    <Router
+      history={browserHistory}
+      routes={routes}
+      onUpdate={showLocation}
+    />
+    </Provider >
   ,
   document.getElementById('app')
 );

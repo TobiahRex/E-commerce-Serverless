@@ -1,18 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes } from 'react';
 
 import NavbarMobileNavDropdnShopTitle from './navbar_mobile_nav_dropdn_shop_title';
 import NavbarMobileNavDropdnShopDropdnContent from './navbar_mobile_nav_dropdn_shop_dropdownContent';
 
+const propTypes = {
+  toggleDropdown: PropTypes.func,
+};
 
-export default function NavbarMobileNavDropdnShop() {
+function NavbarMobileNavDropdnShop({ toggleDropdown }) {
   return (
     <li className="navbar-mobile-nav-dropdown-shop">
       <div className="navbar-mobile-nav-dropdown-shop-dropdown">
         <NavbarMobileNavDropdnShopTitle />
-        <NavbarMobileNavDropdnShopDropdnContent />
+        <NavbarMobileNavDropdnShopDropdnContent toggleDropdown={toggleDropdown} />
       </div>
     </li>
   );
 }
+
+NavbarMobileNavDropdnShop.propTypes = propTypes;
+export default NavbarMobileNavDropdnShop;

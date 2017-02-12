@@ -30,6 +30,7 @@
             &:focus {
               & > a {
                 color: $p-blue;
+                text-decoration: none;
               }
             }
           }
@@ -110,7 +111,7 @@
       padding: 0 1em 0em 1em;
       @include prefixed(transition, all 1s ease-in-out);
       & .navbar-mobile-nav-dropdown-shop-expanded-list {
-        // position: static;
+        text-decoration: none;
         max-height: 19em;
         padding: 0;
         margin: 0;
@@ -128,6 +129,7 @@
           height: 2.5em;
           width: 29.16em;
           & > a {
+            color: $p-white;
             @extend .ipp-flex-left;
             height: 2.5em;
             width: 29.16em;

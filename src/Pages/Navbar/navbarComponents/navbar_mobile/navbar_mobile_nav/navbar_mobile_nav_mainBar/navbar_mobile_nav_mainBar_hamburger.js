@@ -3,10 +3,11 @@ import React, { PropTypes, PureComponent } from 'react';
 class NavbarMobileNavHamburger extends PureComponent {
   static propTypes = {
     ddOpen: PropTypes.bool,
-    toggleHamburger: PropTypes.func,
+    toggleDropdown: PropTypes.func,
   };
 
-  toggleHamburger = e => this.props.toggleHamburger(e);
+  toggleHamburger = e =>
+  this.props.toggleDropdown(e.target.parentElement.getAttribute('id'), e);
 
   render() {
     const hamClass = this.props.ddOpen ? 'active' : '';
@@ -14,6 +15,7 @@ class NavbarMobileNavHamburger extends PureComponent {
       <div className="navbar-mobile-nav-hamburger">
         <div className="navbar-mobile-nav-hamburger-icon">
           <a
+            id="hamburger"
             href="/"
             onClick={this.toggleHamburger}
             className={`navbar-mobile-nav-hamburger-icon-button ${hamClass}`}
