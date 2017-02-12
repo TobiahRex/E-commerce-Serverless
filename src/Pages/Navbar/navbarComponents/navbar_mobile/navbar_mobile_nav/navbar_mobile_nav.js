@@ -49,7 +49,6 @@ class NavbarMobileNav extends Component {
 
   toggleHamburger = (e) => {
     e.preventDefault();
-    console.warn('hi')
     this.setState({ ddOpen: !this.state.ddOpen });
   };
 
