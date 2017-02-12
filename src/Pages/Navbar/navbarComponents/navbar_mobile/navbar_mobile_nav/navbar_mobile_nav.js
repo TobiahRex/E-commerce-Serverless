@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 class NavbarMobileNav extends Component {
@@ -79,70 +80,157 @@ class NavbarMobileNav extends Component {
               </div>
               <div className="navbar-mobile-nav-dropdown-shop-expanded">
                 <ul className="navbar-mobile-nav-dropdown-shop-expanded-list">
-                  <li>Fruity Bamm Bamm</li>
-                  <li>Keylime Pie</li>
-                  <li>Pina Colada</li>
-                  <li>French Vanilla Mocha</li>
-                  <li>Strawberries {('N\'')} Cream</li>
-                  <li>Papple Berry</li>
+                  <li>
+                    <Link to="/product_fbb">
+                      Fruity Bamm Bamm
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Keylime Pie
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Pina Colada
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      French Vanilla Mocha
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Strawberries {('N\'')} Cream
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Papple Berry
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
           </li>
-          <li className="navbar-mobile-nav-dropdown-media">
-            <div className="navbar-mobile-nav-dropdown-media-hover-container">
-              <h3 className="navbar-mobile-nav-dropdown-media-title">Media</h3>
-              <div className="navbar-mobile-nav-dropdown-media-expand-container">
-                <div className="navbar-mobile-nav-dropdown-media-expand-icon">
-                  <FontAwesome
-                    className="navbar-mobile-nav-dropdown-media-expand-icon-plus-fa"
-                    name="plus"
-                  />
-                  <FontAwesome
-                    className="navbar-mobile-nav-dropdown-media-expand-icon-minus-fa"
-                    name="minus"
-                  />
+          <li className="navbar-mobile-nav-dropdown-shop">
+            <div className="navbar-mobile-nav-dropdown-shop-dropdown">
+              <div className="navbar-mobile-nav-dropdown-shop-hover-container">
+                <h3 className="navbar-mobile-nav-dropdown-shop-title">Media</h3>
+                <div className="navbar-mobile-nav-dropdown-shop-expand-container">
+                  <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
+                    <FontAwesome
+                      className="navbar-mobile-nav-dropdown-shop-expand-icon-plus-fa"
+                      name="plus"
+                    />
+                    <FontAwesome
+                      className="navbar-mobile-nav-dropdown-shop-expand-icon-minus-fa"
+                      name="minus"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="navbar-mobile-nav-dropdown-media-expanded hidden">
-                <ul>
-                  <li>Contact Us</li>
-                  <li>Juice Reviews</li>
-                  <li>Vape News</li>
-                  <li>User Stories</li>
-                  <li>(Social Media Icons)</li>
+              <div className="navbar-mobile-nav-dropdown-shop-expanded">
+                <ul className="navbar-mobile-nav-dropdown-shop-expanded-list">
+                  <li>
+                    <Link to="/product_fbb">
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Vape News
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Juice Reviews
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      User Stories
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Social Media
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
           </li>
-          <li className="navbar-mobile-nav-dropdown-info">
-            <div className="navbar-mobile-nav-dropdown-info-hover-container">
-              <h3 className="navbar-mobile-nav-dropdown-info-title">Info</h3>
-              <div className="navbar-mobile-nav-dropdown-info-expand-container">
-                <div className="navbar-mobile-nav-dropdown-info-expand-icon">
-                  <FontAwesome
-                    className="navbar-mobile-nav-dropdown-info-expand-icon-plus-fa"
-                    name="plus"
-                  />
-                  <FontAwesome
-                    className="navbar-mobile-nav-dropdown-info-expand-icon-minus-fa"
-                    name="minus"
-                  />
+          <li className="navbar-mobile-nav-dropdown-shop">
+            <div className="navbar-mobile-nav-dropdown-shop-dropdown">
+              <div className="navbar-mobile-nav-dropdown-shop-hover-container">
+                <h3 className="navbar-mobile-nav-dropdown-shop-title">Info</h3>
+                <div className="navbar-mobile-nav-dropdown-shop-expand-container">
+                  <div className="navbar-mobile-nav-dropdown-shop-expand-icon">
+                    <FontAwesome
+                      className="navbar-mobile-nav-dropdown-shop-expand-icon-plus-fa"
+                      name="plus"
+                    />
+                    <FontAwesome
+                      className="navbar-mobile-nav-dropdown-shop-expand-icon-minus-fa"
+                      name="minus"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="navbar-mobile-nav-dropdown-info-expanded hidden">
-                <ul>
-                  <li>About Us</li>
-                  <li>Contact Us</li>
-                  <li>{('FAQ\'s')}</li>
-                  <li>Wholesale</li>
-                  <li>Mission Statement</li>
-                  <li>Shipping Policy</li>
-                  <li>Privacy Policy</li>
-                  <li>Terms & Conditions</li>
-                  <li>Nicotine Disclaimer</li>
-                  <li>Return Policy</li>
-                  <li>Affiliate Program</li>
+              <div className="navbar-mobile-nav-dropdown-shop-expanded">
+                <ul className="navbar-mobile-nav-dropdown-shop-expanded-list">
+                  <li>
+                    <Link to="/product_fbb">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      {('FAQ\'s')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Return Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Nicotine Disclaimer
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Terms & Conditions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Mission Statement
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Wholesale
+                    </Link>
+                  </li>
+                  <li>
+                    <Link>
+                      Affiliate Program
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
