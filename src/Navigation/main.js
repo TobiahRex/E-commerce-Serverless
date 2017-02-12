@@ -6,7 +6,7 @@ import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 1. Remove UUID hard code.
 
 */
-import Homepage from '../Pages/Home/homepage';
+import Homepage from '../Pages/Home/homePage';
 import AgeVerification from '../Pages/Legal/ageVerification';
 import SingleProduct from '../Pages/Products/singleProduct';
 import Cart from '../Pages/Cart/cart';
