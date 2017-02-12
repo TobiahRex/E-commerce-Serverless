@@ -4,6 +4,12 @@ import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_na
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
 
 class NavbarMobileNav extends Component {
+  static propTypes = {
+    mobileNavbarExpanded: PropTypes.bool,
+    activePage: PropTypes.string,
+    cartQty: PropTypes.number,
+  }
+
   static defaultProps = {
     active: false,
     role: 'user',
@@ -26,10 +32,36 @@ class NavbarMobileNav extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {
+      mobileNavbarExpanded,
+      activePage,
+      cartQty,
+    } = nextProps;
+    if (mobileNavbarExpanded !== this.state.mobileNavbarExpanded) {
+      this.setState({ mobileNavbarExpanded });
+    }
+    if (activePage !== this.state.activePage) {
+      this.setState({ activePage });
+    }
+    if (cartQty !== this.state.cartQty) {
+      this.setState({ cartQty });
+    }
+  }
+
   render() {
+    const {
+      mobileNavbarExpanded,
+      activePage,
+      cartQty } = this.props;
     return (
       <div className="navbar-mobile-nav">
-        <NavbarMobileNavMainBar />
+        <NavbarMobileNavMainBar
+          mobileNavbarExpanded={mobileNavbarExpanded}
+          activePage={activePage}
+          cartQty={cartQty}
+        />
+
         <NavbarMobileNavDropdnContent />
       </div>
     );

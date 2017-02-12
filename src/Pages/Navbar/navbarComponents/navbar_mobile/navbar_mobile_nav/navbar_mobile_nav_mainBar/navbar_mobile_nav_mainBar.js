@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes, PureComponent } from 'react';
 
-class NavbarMobileNavMain extends Component {
+import NavbarMobileNavHamburger from './navbar_mobile_nav_mainBar_hamburger';
+import NavbarMobileNavTitle from './navbar_mobile_nav_mainBar_title';
+import NavbarMobileNavCart from './navbar_mobile_nav_mainBar_cart';
+
+
+class NavbarMobileNavMain extends PureComponent {
+  static propTypes = {
+    mobileNavbarExpanded: PropTypes.bool,
+    activePage: PropTypes.string,
+    cartQty: PropTypes.number,
+  }
 
   constructor(props) {
     super(props);
@@ -11,37 +20,18 @@ class NavbarMobileNavMain extends Component {
   }
 
   render() {
+    const { activePage,
+    cartQty,
+    mobileNavbarExpanded } = this.props;
+
     return (
       <div className="navbar-mobile-nav-main">
         <span className="navbar-mobile-nav-main-left">
-          <div className="navbar-mobile-nav-hamburger">
-            <div className="navbar-mobile-nav-hamburger-icon">
-              <a
-                onClick={e => e.preventDefault()}
-                href=""
-                className="navbar-mobile-nav-hamburger-icon-button"
-              >
-                <span />
-              </a>
-            </div>
-          </div>
-          <div className="navbar-mobile-nav-title">
-            <h5>My Account</h5>
-          </div>
+          <NavbarMobileNavHamburger mobileNavbarExpanded={mobileNavbarExpanded} />
+          <NavbarMobileNavTitle activePage={activePage} />
         </span>
         <span className="navbar-mobile-nav-main-right">
-          <div className="navbar-mobile-nav-cart">
-            <div className="navbar-mobile-cart-icon">
-              <FontAwesome
-                className="navbar-mobile-cart-icon-fa"
-                name="shopping-cart"
-              />
-            </div>
-            <span className="navbar-mobile-cart-icon-divider" />
-            <div className="navbar-mobile-cart-qty">
-              <span className="navbar-mobile-cart-qty-value">0</span>
-            </div>
-          </div>
+          <NavbarMobileNavCart cartQty={cartQty} />
         </span>
       </div>
     );
