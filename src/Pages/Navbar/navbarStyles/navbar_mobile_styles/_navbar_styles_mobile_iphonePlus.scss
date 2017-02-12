@@ -8,8 +8,8 @@ and (-webkit-min-device-pixel-ratio : 3)
 and (-webkit-device-pixel-ratio : 3) {
   @import './navbar_mobile_options/navbar_mobile_options';
   @import './navbar_mobile_userActions/navbar_mobile_userActions';
-  @import './navbar_mobile_nav/navbar_mobile_nav_main';
-  @import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent';
+  @import './navbar_mobile_nav/navbar_mobile_nav_main/navbar_mobile_nav_main';
+  @import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/navbar_mobile_nav_dropdownContent';
 
   .hidden {
     display: none;
