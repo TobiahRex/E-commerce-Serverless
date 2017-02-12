@@ -131,9 +131,10 @@
             color: $p-white;
             float: none;
             cursor: pointer;
-            height: 0;
-            width: 0;
+            height: 2.5em;
+            width: 29.16em;
             & > a {
+              @extend .ipp-flex-left;
               height: 2.5em;
               width: 29.16em;
               text-decoration: none;
@@ -265,9 +266,10 @@
             color: $p-white;
             float: none;
             cursor: pointer;
-            height: 0;
-            width: 0;
+            height: 2.5em;
+            width: 29.16em;
             & > a {
+              @extend .ipp-flex-left;
               height: 2.5em;
               width: 29.16em;
               text-decoration: none;
@@ -397,10 +399,11 @@
             font-family: $p-font;
             color: $p-white;
             float: none;
-            height: 0;
-            width: 0;
+            height: 2.5em;
+            width: 29.16em;
             cursor: pointer;
             & > a {
+              @extend .ipp-flex-left;
               height: 2.5em;
               width: 29.16em;
               text-decoration: none;
