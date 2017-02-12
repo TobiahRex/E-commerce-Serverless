@@ -81,32 +81,32 @@ class NavbarMobileNav extends Component {
               <div className="navbar-mobile-nav-dropdown-shop-expanded">
                 <ul className="navbar-mobile-nav-dropdown-shop-expanded-list">
                   <li className="sweep-right-white">
-                    <Link className="sweep-right" to="/product_fbb">
+                    <Link >
                       Fruity Bamm Bamm
                     </Link>
                   </li>
                   <li className="sweep-right-white">
-                    <Link className="sweep-right">
+                    <Link >
                       Keylime Pie
                     </Link>
                   </li>
                   <li className="sweep-right-white">
-                    <Link className="sweep-right">
+                    <Link >
                       Pina Colada
                     </Link>
                   </li>
                   <li className="sweep-right-white">
-                    <Link className="sweep-right">
+                    <Link >
                       French Vanilla Mocha
                     </Link>
                   </li>
                   <li className="sweep-right-white">
-                    <Link className="sweep-right">
+                    <Link >
                       Strawberries {('N\'')} Cream
                     </Link>
                   </li>
                   <li className="sweep-right-white">
-                    <Link className="sweep-right">
+                    <Link >
                       Papple Berry
                     </Link>
                   </li>
@@ -133,28 +133,28 @@ class NavbarMobileNav extends Component {
               </div>
               <div className="navbar-mobile-nav-dropdown-media-expanded">
                 <ul className="navbar-mobile-nav-dropdown-media-expanded-list">
-                  <li>
-                    <Link className="sweep-right" to="/product_fbb">
+                  <li className="sweep-right-white">
+                    <Link >
                       Contact Us
                     </Link>
                   </li>
-                  <li>
-                    <Link className="sweep-right">
+                  <li className="sweep-right-white">
+                    <Link >
                       Vape News
                     </Link>
                   </li>
-                  <li>
-                    <Link className="sweep-right">
+                  <li className="sweep-right-white">
+                    <Link >
                       Juice Reviews
                     </Link>
                   </li>
-                  <li>
-                    <Link className="sweep-right">
+                  <li className="sweep-right-white">
+                    <Link >
                       User Stories
                     </Link>
                   </li>
-                  <li>
-                    <Link className="sweep-right">
+                  <li className="sweep-right-white">
+                    <Link >
                       Social Media
                     </Link>
                   </li>
