@@ -20,7 +20,7 @@ class NavbarNavsShopDropdnJuiceCards extends PureComponent {
     const { title, imageSrc, urlSuffix } = this.props.juiceInfo;
     return (
       <Link
-        to={`/${urlSuffix}`}
+        to={`/product/${urlSuffix}`}
         className="shop-dropdown-content-midThird-juices-card"
       >
         <div className="shop-dropdown-content-midThird-juices-card-title">

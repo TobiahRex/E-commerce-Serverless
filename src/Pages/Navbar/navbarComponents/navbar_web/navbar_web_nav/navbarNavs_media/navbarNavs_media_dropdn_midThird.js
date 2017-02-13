@@ -13,7 +13,7 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
           </div>
         </Link>
         <Link
-          to={'/juice_reviews'}
+          to={'/reviews'}
           className="media-dropdown-content-midThird-links"
         >
           <div className="media-dropdown-content-midThird-title sweep-right">
@@ -29,7 +29,7 @@ class NavbarNavsMediaDropdnMidthird extends PureComponent {
           </div>
         </Link>
         <Link
-          to={'/user_stories'}
+          to={'/stories'}
           className="media-dropdown-content-midThird-links"
         >
           <div className="media-dropdown-content-midThird-title sweep-right">

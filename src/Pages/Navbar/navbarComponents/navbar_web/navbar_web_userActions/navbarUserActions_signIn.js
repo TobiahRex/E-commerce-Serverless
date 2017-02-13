@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router';
+import uuid from 'uuid'; // TODO Remove this once you have user ID's from BE.
 
 class NavbarUserActionsSignin extends PureComponent {
   static styles = {
@@ -17,7 +18,7 @@ class NavbarUserActionsSignin extends PureComponent {
         className="navbar-actionSection-upper-actions-signedIn"
       >
         <li className="my-account-title sweep-right">
-          <Link to={'/my_account'} className="navbar-userActions-myaccount-title-link">
+          <Link to={`/user/${uuid()}`} className="navbar-userActions-myaccount-title-link">
             My Account
           </Link>
         </li>

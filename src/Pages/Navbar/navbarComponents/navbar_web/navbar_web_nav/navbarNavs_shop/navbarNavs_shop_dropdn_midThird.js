@@ -26,7 +26,7 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
   }
 
   render() {
-    const dummyJuiceinfo = [{
+    const dummyJuiceinfo = [{ // TODO - remove this dummy data.
       title: 'Fruitty Bamm Bamm',
       imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/fruity_BammBamm_cutout_smallSize_zero.jpg',
       urlSuffix: 'fruity_bamm_bamm',

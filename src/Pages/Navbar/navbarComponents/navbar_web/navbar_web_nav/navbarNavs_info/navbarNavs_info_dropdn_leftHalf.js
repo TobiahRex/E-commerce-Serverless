@@ -1,31 +1,38 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 
-class NavbarNavsInfoDropdnLefthalf extends PureComponent {
-  render() {
-    return (
-      <div className="info-dropdown-content-innerContainer-left">
-        <ul
-          className="info-dropdown-content-innerContainer-left-list"
-        >
-          <li className="sweep-right">
+export default function NavbarNavsInfoDropdnLefthalf() {
+  return (
+    <div className="info-dropdown-content-innerContainer-left">
+      <ul
+        className="info-dropdown-content-innerContainer-left-list"
+      >
+        <li className="sweep-right">
+          <Link to={'/about'}>
             <p>About</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/about'}>
             <p>FAQs</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/about'}>
             <p>Wholesale</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/about'}>
             <p>Mission Statement</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/about'}>
             <p>Affiliate Program</p>
-          </li>
-        </ul>
-      </div>
-    );
-  }
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
 }
-
-export default NavbarNavsInfoDropdnLefthalf;

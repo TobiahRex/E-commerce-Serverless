@@ -22,7 +22,7 @@ class NavbarUserActionsNoSignin extends PureComponent {
       >
         <li className="sign-in-title sweep-right">
           <Link
-            to={'/sign_in'}
+            to={'/login'}
             className="sign-in-title-link"
           >Sign In</Link>
         </li>
