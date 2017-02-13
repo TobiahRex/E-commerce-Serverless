@@ -1,18 +1,25 @@
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes, PureComponent } from 'react';
 
-export default () => (
-  <span className="language-main-button">
-    <div className="language-main-button-us">
-      <div className="language-main-button-us-flag" />
-    </div>
-    <div className="language-main-button-us-title">
-      <span>ENGLISH</span>
-    </div>
-    <div className="language-main-button-us-chevron">
-      <FontAwesome
-        name="angle-down" className="language-main-button-us-chevron-icon"
-      />
-    </div>
-  </span>
-);
+/* TODO
+1. This component receives a State property of the "active_language"  that will change display of the language button details.
+
+*/
+
+class NavbarOptionsLanguageButton extends PureComponent {
+  static propTypes = {
+    activeLanguage: PropTypes.string.isRequired,
+    renderLanguageTitle: PropTypes.func.isRequired,
+  }
+
+  renderLanguageTitle = () => this.props.renderLanguageTitle();
+
+  render() {
+    return (
+      <span className="language-main-button">
+        {this.renderLanguageTitle()}
+      </span>
+    );
+  }
+}
+
+export default NavbarOptionsLanguageButton;

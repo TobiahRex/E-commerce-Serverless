@@ -24,42 +24,86 @@
     height: 4em;
     background-color: inherit;
     color: inherit;
-    & .language-main-button-us {
+    & .language-main-button-us-parent {
       @extend .flex-center;
-      width: 2.5em;
-      height: 2.5em;
-      margin: 0;
-      & .language-main-button-us-flag {
-        height: 1.3em;
-        width: 2.6em;
-        background-image: $us-flag-icon;
-        background-size: cover;
+      & .language-main-button-us {
+        @extend .flex-center;
+        width: 2.5em;
+        height: 2.5em;
         margin: 0;
+        & .language-main-button-us-flag {
+          height: 1.3em;
+          width: 2.6em;
+          background-image: $us-flag-icon;
+          background-size: cover;
+          margin: 0;
+        }
+      }
+      & .language-main-button-us-title {
+        @extend .flex-center;
+        width: 6.2em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        font-family: $p-font;
+        font-weight: 400;
+      }
+      & .language-main-button-us-chevron {
+        @extend .flex-center;
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        &.language-main-button-us-chevron-icon {
+          width: 1em;
+          height: 1em;
+          color: inherit;
+        }
       }
     }
-    & .language-main-button-us-title {
+    & .language-main-button-japanese-parent {
       @extend .flex-center;
-      width: 6.2em;
-      height: 2.5em;
-      font-size: 10px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      font-family: $p-font;
-      font-weight: 400;
-    }
-    & .language-main-button-us-chevron {
-      @extend .flex-center;
-      width: 1.1em;
-      height: 2.5em;
-      font-size: 15px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      &.language-main-button-us-chevron-icon {
-        width: 1em;
-        height: 1em;
+      & .language-main-button-japanese {
+        @extend .flex-center;
+        width: 2.5em;
+        height: 2.5em;
+        margin: 0;
+        & .language-main-button-japanese-flag {
+          height: 1.5em;
+          width: 2.6em;
+          background-image: $jpn-flag-icon;
+          background-size: cover;
+          margin: 0;
+        }
+      }
+      & .language-main-button-japanese-title {
+        @extend .flex-center;
+        width: 6.2em;
+        height: 2.5em;
+        font-size: 10px;
+        margin: 0;
+        background-color: transparent;
         color: inherit;
+        font-family: $p-font;
+        font-weight: 400;
+      }
+      & .language-main-button-japanese-chevron {
+        @extend .flex-center;
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        &.language-main-button-japanese-chevron-icon {
+          width: 1em;
+          height: 1em;
+          color: inherit;
+        }
       }
     }
   }
