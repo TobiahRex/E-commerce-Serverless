@@ -8,7 +8,7 @@ const propTypes = {
 function NavbarMobileOptionsCurrencyDropdnDollar({ onCurrencyChange }) {
   function preventDefault(e) {
     e.preventDefault();
-    onCurrencyChange('dollars');
+    onCurrencyChange('usd');
   }
   return (
     <a

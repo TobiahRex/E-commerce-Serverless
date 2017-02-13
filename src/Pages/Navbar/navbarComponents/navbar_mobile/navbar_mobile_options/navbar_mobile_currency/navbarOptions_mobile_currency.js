@@ -48,7 +48,7 @@ class NavbarMobileOptionsCurrency extends Component {
   }
 
   onCurrencyChange = (currency) => {
-    this.setState({ activeCurrency: [currency] });
+    this.setState({ activeCurrency: currency });
     // TODO this.props.onLanguageChange(currency);
   };
 
@@ -61,8 +61,8 @@ class NavbarMobileOptionsCurrency extends Component {
 
   renderCurrencyDropdown = () => {
     const currency = this.state.activeCurrency;
-    if (currency === 'usd') return <NavbarMobileOptionsCurrencyDropdnYen />;
-    if (currency === 'yen') return <NavbarMobileOptionsCurrencyDropdnDollar />;
+    if (currency === 'usd') return <NavbarMobileOptionsCurrencyDropdnYen onCurrencyChange={this.onCurrencyChange} />;
+    if (currency === 'yen') return <NavbarMobileOptionsCurrencyDropdnDollar onCurrencyChange={this.onCurrencyChange} />;
     throw new Error('Cannot render the Active Currency - Check NavbarMobileOptionsCurrencyButton component.');
   }
 
