@@ -4,7 +4,7 @@
   align-items: center;;
   margin: 0em;
   list-style-type: none;
-  padding: 0em 1em 0em 3em;
+  padding: 0em .5em 0em .5em;
   & .navbar-mobile-actions-signedIn-myaccount-title {
     @extend .iphone-flex-center;
     background-color: $p-grey;
