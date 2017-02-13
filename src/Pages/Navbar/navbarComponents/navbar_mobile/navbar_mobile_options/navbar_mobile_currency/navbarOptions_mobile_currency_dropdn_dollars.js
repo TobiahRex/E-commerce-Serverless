@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function NavbarMobileOptionsCurrencyDropdnDollar({ onCurrencyChange }) {
+const propTypes = {
+  onCurrencyChange: PropTypes.func.isRequired,
+};
+
+function NavbarMobileOptionsCurrencyDropdnDollar({ onCurrencyChange }) {
   function preventDefault(e) {
     e.preventDefault();
     onCurrencyChange('dollars');
@@ -19,3 +23,6 @@ export default function NavbarMobileOptionsCurrencyDropdnDollar({ onCurrencyChan
     </a>
   );
 }
+
+NavbarMobileOptionsCurrencyDropdnDollar.propTypes = propTypes;
+export default NavbarMobileOptionsCurrencyDropdnDollar;
