@@ -17,9 +17,19 @@
     flex-direction: column;
     width: 76.5em;
     height: 28em;
+    border: 2px solid $p-red;
+    background-color: rgba(1,1,1, 0.5);
     & .homepage-header-inner-container-img-src {
       content: $logo-one-line;
       width: 40em;
+    }
+    & .hompage-header-title-1 {
+      color: $p-white;
+      line-height: 2.5em;
+    }
+    & .hompage-header-title-2 {
+      color: $p-white;
+      line-height: 1.5em;
     }
   }
 }
