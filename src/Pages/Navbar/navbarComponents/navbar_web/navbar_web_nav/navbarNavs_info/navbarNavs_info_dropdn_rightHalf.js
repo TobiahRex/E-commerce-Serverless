@@ -34,5 +34,5 @@ export default function NavbarNavsInfoDropdnRighthalf() {
         </li>
       </ul>
     </div>
-);
+  );
 }
