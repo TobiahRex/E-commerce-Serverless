@@ -56,7 +56,7 @@ export default (
     <Router path={'/contact_us'} component={ContactUs} />
     <Router path={'/reviews'} component={Reviews} />
     <Router path={'/vape_news'} component={VapeNews} />
-    <Router path={'/user_stories'} component={UserStories} />
+    <Router path={'/stories'} component={UserStories} />
     <Router path={'/social_media'} component={SocialMedia} />
     <Router path={'/mission_statement'} component={MissionStatement} />
     <Router path={'/faqs'} component={Faqs} />

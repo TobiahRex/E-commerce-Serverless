@@ -1,26 +1,24 @@
-import React, { PropTypes } from 'react';
-import { browserHistory } from 'react-router';
+import React, { PropTypes, PureComponent } from 'react';
+import { connect } from 'react-redux';
 
-const propTypes = {
-  activePage: PropTypes.string,
-};
-NavbarMobileNavTitle.propTypes = propTypes;
+class NavbarMobileNavTitle extends PureComponent {
+  static propTypes = {
+    activePage: PropTypes.string,
+  };
 
-export default function NavbarMobileNavTitle() {
-  /*
-  1. remove the forward slash. filter with regex expression
-  2. split on underscore.
-  3. iterate over length, and for each item,
-  if the word is "and" replaced with &
-  capitalize its first letter.
-  4. return and join on spaces.
-  */
-
-  return (
-    <div className="navbar-mobile-nav-title">
-      <h5>
-        {}
-      </h5>
-    </div>
-  );
+  render() {
+    return (
+      <div className="navbar-mobile-nav-title">
+        <h5>
+          {this.props.activePage}
+        </h5>
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = ({ active_page }) => ({
+  activePage: active_page.current_active_page,
+});
+
+export default connect(mapStateToProps, null)(NavbarMobileNavTitle);

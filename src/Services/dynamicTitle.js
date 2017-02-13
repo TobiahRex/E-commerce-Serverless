@@ -1,15 +1,18 @@
-import saveLocationAction from '../Redux/LocationRedux';
+import saveActivePageActions from '../Redux/ActivePageRedux';
 
 export default (dispatch) => {
-  let path = window.location.pathname;
-  path = path.replace(/[\/]/g, '_')
+  const currentPath = window.location.pathname;
+  const path = currentPath.replace(/[\/]/g, '_')
   .split('_');
   let title = '';
   for (let i = 1; i < path.length; i += 1) {
     if (path[i] === 'and') {
       title += '& ';
+    } else if (path[i] === 'stories') {
+      title += 'User Stories';
+      break;
     } else if (path[i] === 'user') {
-      title += 'My Dashboard';
+      title += 'My Account';
       break;
     } else if (path[i] === 'product') {
       title += 'Juice';
@@ -28,6 +31,5 @@ export default (dispatch) => {
       title += `${path[i].slice(1)} `;
     }
   }
-  dispatch(saveLocationAction(title));
-  return 1;
+  dispatch(saveActivePageActions.saveActivePage(title, currentPath));
 };

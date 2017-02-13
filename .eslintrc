@@ -24,6 +24,7 @@
     "react/jsx-filename-extension": 0,
     "import/no-extraneous-dependencies": [2, { "devDependencies": true } ],
     "no-useless-escape": 0,
+    "camelcase": 1,
     "no-underscore-dangle":["error",{"allow": ["_id"]}],
     "no-use-before-define": [2, { "functions": false, "classes": true }]
   }

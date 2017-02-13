@@ -25,7 +25,7 @@ function NavbarMobileNavMediaDropdnContent({ toggleDropdown }) {
           </Link>
         </li>
         <li className="sweep-right-white">
-          <Link to={'/user_stories'} onClick={toggleDropdown}>
+          <Link to={'/stories'} onClick={toggleDropdown}>
             User Stories
           </Link>
         </li>
