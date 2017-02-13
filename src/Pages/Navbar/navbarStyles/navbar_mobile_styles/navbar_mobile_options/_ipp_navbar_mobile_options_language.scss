@@ -63,13 +63,18 @@
     }
   }
   & .mobile-language-dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
-    height: 7em;
+    height: 4.5em;
     width: 13em;
     background-color: $p-white;
     z-index: 1;
+    padding: .8em .5em;
     box-shadow: 1px 2px 5px rgba(0,0,0,.6);
+    clear: both;
+    overflow: hidden;
+    opacity: 0;
+    @include prefixed(transition, all .3s ease-in-out);
     & .mobile-language-dropdown-content-japanese {
       height: 2.5em;
       display: flex;

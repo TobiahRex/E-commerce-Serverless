@@ -4,7 +4,6 @@ import React, { PropTypes, PureComponent } from 'react';
 1. Add dynamic show & hide for drop down options based on current active currency.
 
 2. Add swipe-right animation for hovering over options.
-
 */
 class NavbarMobileOptionsCurrencyDropdnContent extends PureComponent {
   static propTypes = {
