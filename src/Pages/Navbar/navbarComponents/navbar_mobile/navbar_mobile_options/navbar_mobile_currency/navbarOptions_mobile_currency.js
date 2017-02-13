@@ -49,7 +49,7 @@ class NavbarMobileOptionsCurrency extends Component {
 
   onCurrencyChange = (currency) => {
     this.setState({ activeCurrency: [currency] });
-    // this.props.onLanguageChange(currency);
+    // TODO this.props.onLanguageChange(currency);
   };
 
   renderCurrencyTitle = () => {
@@ -70,9 +70,11 @@ class NavbarMobileOptionsCurrency extends Component {
     return (
       <div className="navbar-mobile-options-currency">
         <NavbarMobileOptionsCurrencyButton
+          activeCurrency={this.state.activeCurrency}
           renderCurrencyTitle={this.renderCurrencyTitle}
         />
         <NavbarMobileOptionsCurrencyDropdnContent
+          activeCurrency={this.state.activeCurrency}
           renderCurrencyDropdown={this.renderCurrencyDropdown}
         />
       </div>

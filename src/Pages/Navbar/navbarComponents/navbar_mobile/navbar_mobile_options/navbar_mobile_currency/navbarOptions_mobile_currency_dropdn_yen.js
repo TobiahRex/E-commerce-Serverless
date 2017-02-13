@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function NavbarMobileOptionsCurrencyDropdnYen() {
+const propTypes = {
+  onCurrencyChange: PropTypes.func.isRequired,
+};
+
+function NavbarMobileOptionsCurrencyDropdnYen({ onCurrencyChange }) {
+  function preventDefault(e) {
+    e.preventDefault();
+    onCurrencyChange('english');
+  }
+
   return (
     <a
       href=""
-      onClick={e => e.preventDefault()}
+      onClick={preventDefault}
       className="mobile-currency-dropdown-content-yen"
     >
       <FontAwesome name="yen" className="mobile-currency-dropdown-content-yen-icon" />
@@ -15,3 +24,6 @@ export default function NavbarMobileOptionsCurrencyDropdnYen() {
     </a>
   );
 }
+
+NavbarMobileOptionsCurrencyDropdnYen.propTypes = propTypes;
+export default NavbarMobileOptionsCurrencyDropdnYen;

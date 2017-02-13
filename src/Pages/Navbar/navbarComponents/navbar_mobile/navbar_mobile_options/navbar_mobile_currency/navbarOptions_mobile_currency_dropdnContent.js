@@ -7,7 +7,8 @@ import React, { PropTypes, PureComponent } from 'react';
 */
 class NavbarMobileOptionsCurrencyDropdnContent extends PureComponent {
   static propTypes = {
-    renderCurrencyDropdown: PropTypes.func,
+    activeCurrency: PropTypes.string.isRequired,
+    renderCurrencyDropdown: PropTypes.func.isRequired,
   }
 
   renderCurrencyDropdown = () => this.props.renderCurrencyDropdown();

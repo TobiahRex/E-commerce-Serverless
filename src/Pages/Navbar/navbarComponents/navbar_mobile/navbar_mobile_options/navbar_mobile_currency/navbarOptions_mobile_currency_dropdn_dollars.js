@@ -1,11 +1,15 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function NavbarMobileOptionsCurrencyDropdnDollar() {
+export default function NavbarMobileOptionsCurrencyDropdnDollar({ onCurrencyChange }) {
+  function preventDefault(e) {
+    e.preventDefault();
+    onCurrencyChange('dollars');
+  }
   return (
     <a
       href=""
-      onClick={e => e.preventDefault()}
+      onClick={preventDefault}
       className="mobile-currency-dropdown-content-dollars"
     >
       <FontAwesome name="usd" className="mobile-currency-dropdown-content-dollars-icon" />

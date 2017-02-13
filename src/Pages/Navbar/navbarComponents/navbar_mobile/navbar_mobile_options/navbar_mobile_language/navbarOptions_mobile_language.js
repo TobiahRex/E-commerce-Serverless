@@ -49,7 +49,7 @@ class NavbarMobileOptionsLanguage extends Component {
 
   onLanguageChange = (language) => {
     this.setState({ activeLanguage: [language] });
-    // this.props.onLanguageChange(language);
+    // TODO this.props.onLanguageChange(language);
   };
 
   renderLanguageTitle = () => {
