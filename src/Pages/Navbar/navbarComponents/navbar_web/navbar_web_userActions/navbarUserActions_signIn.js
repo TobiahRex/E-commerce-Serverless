@@ -35,7 +35,7 @@ class NavbarUserActionsSignin extends PureComponent {
               e.preventDefault();
               console.warn('Sing out user!!!');
             }}
-          >Sign Out</a>
+          >Logout</a>
         </li>
       </ul>
 

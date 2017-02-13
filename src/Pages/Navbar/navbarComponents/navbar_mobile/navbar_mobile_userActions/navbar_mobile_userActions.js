@@ -27,7 +27,7 @@ class NavbarMobileActions extends Component {
   render() {
     return (
       <div className="navbar-mobile-actions">
-        <div className="navbar-mobile-actions-signedIn">
+        <div className="navbar-mobile-actions-signedIn hidden">
           <div className="navbar-mobile-actions-signedIn-myaccount-title sweep-right">
             <Link
               to={`/user/${uuid()}`}
@@ -44,13 +44,23 @@ class NavbarMobileActions extends Component {
             <button
               className="navbar-mobile-actions-signedIn-signOut-title-button"
             >
-              Sign Out
+              Logout
             </button>
           </div>
         </div>
-        <div className="navbar-mobile-actions-notSignedIn hidden">
-          <Link>Sign In</Link>
-          <Link>Register</Link>
+        <div className="navbar-mobile-actions-notSignedIn">
+          <div className="navbar-mobile-actions-notSignedIn-sign-in-title sweep-right">
+            <Link
+              to={'/login'}
+              className="navbar-mobile-actions-notSignedIn-sign-in-title-link"
+            >Login</Link>
+          </div>
+          <div className="navbar-mobile-actions-notSignedIn-register-title sweep-right">
+            <Link
+              to={'/register'}
+              className="navbar-mobile-actions-notSignedIn-register-title-link"
+            >Register</Link>
+          </div>
         </div>
       </div>
     );

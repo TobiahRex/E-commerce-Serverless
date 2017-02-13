@@ -1,4 +1,58 @@
-/* BUG
-1. Add styles here
-
-*/
+.navbar-mobile-actions-notSignedIn {
+  @extend .ipp-flex-center;
+  justify-content: flex-end;
+  align-items: center;;
+  margin: 0em;
+  list-style-type: none;
+  padding: 0em 1em 0em 1em;
+  & .navbar-mobile-actions-notSignedIn-sign-in-title {
+    @extend .ipp-flex-center;
+    background-color: $p-grey;
+    font-family: $p-font;
+    font-weight: 200;
+    font-size: 1.5em;
+    color: $p-blue;
+    width: 7.33em;
+    height: 2em;
+    cursor: pointer;
+    &:hover,
+    &:active,
+    &:focus {
+      transition: .5s;
+      background-color: $p-blue;
+      & a {
+        color: $p-white;
+      }
+    }
+    & .navbar-mobile-actions-notSignedIn-sign-in-title-link {
+      color: $p-blue;
+      text-decoration: none;
+    }
+  }
+  & .navbar-mobile-actions-notSignedIn-register-title {
+    @extend .ipp-flex-center;
+    background-color: $p-grey;
+    font-family: $p-font;
+    font-weight: 200;
+    font-size: 1.5em;
+    color: $p-blue;
+    width: 7.33em;
+    height: 2em;
+    margin-left: .66em;
+    line-height: 1.33em;
+    cursor: pointer;
+    &:hover,
+    &:active,
+    &:focus {
+      transition: .5s;
+      background-color: $p-blue;
+      & a {
+        color: $p-white;
+      }
+    }
+    & .navbar-mobile-actions-notSignedIn-register-title-link {
+      color: $p-blue;
+      text-decoration: none;
+    }
+  }
+}
