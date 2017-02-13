@@ -16,12 +16,13 @@
     background-color: $p-blue;
     color: $p-white;
     & .currency-dropdown-content {
-      display: block;
+      opacity: 1;
+      height: 2.9em;
     }
   }
   & .currency-main-button {
     @extend .flex-center;
-    height: 4em;
+    height: 3em;
     background-color: inherit;
     color: inherit;
     & .currency-main-button-dollar {

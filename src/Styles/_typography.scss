@@ -29,7 +29,7 @@ h2 {
   @include prefixed(font-smoothing, antialiased);
   color: $p-blue;
   line-height: 1em;
-  letter-spacing: 1em;
+  letter-spacing: .033em;
   margin: 0;
 }
 
@@ -53,7 +53,7 @@ h4 {
   @include prefixed(font-smoothing, antialiased);
   color: $p-blue;
   line-height: 1em;
-  letter-spacing: 1em;
+  letter-spacing: .055em;
   margin: 0;
 }
 
