@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
-import uuid from 'uuid';
+
+import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notSignedIn';
+import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
+
 
 /* TODO
 1. Redux Action method "logoutUser"
@@ -27,41 +29,8 @@ class NavbarMobileActions extends Component {
   render() {
     return (
       <div className="navbar-mobile-actions">
-        <div className="navbar-mobile-actions-signedIn hidden">
-          <div className="navbar-mobile-actions-signedIn-myaccount-title sweep-right">
-            <Link
-              to={`/user/${uuid()}`}
-              className="navbar-mobile-actions-signedIn-myaccount-title-link"
-            >My Account</Link>
-          </div>
-          <div className="navbar-mobile-actions-signedIn-checkout-title sweep-right">
-            <Link
-              to={'/checkout'}
-              className="navbar-mobile-actions-signedIn-checkout-title-link"
-            >Checkout</Link>
-          </div>
-          <div className="navbar-mobile-actions-signedIn-signOut-title sweep-right">
-            <button
-              className="navbar-mobile-actions-signedIn-signOut-title-button"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-        <div className="navbar-mobile-actions-notSignedIn">
-          <div className="navbar-mobile-actions-notSignedIn-sign-in-title sweep-right">
-            <Link
-              to={'/login'}
-              className="navbar-mobile-actions-notSignedIn-sign-in-title-link"
-            >Login</Link>
-          </div>
-          <div className="navbar-mobile-actions-notSignedIn-register-title sweep-right">
-            <Link
-              to={'/register'}
-              className="navbar-mobile-actions-notSignedIn-register-title-link"
-            >Register</Link>
-          </div>
-        </div>
+        <NavbarMobileUserActionsNotSignedIn />
+        <NavbarMobileUserActionsSignedIn />
       </div>
     );
   }

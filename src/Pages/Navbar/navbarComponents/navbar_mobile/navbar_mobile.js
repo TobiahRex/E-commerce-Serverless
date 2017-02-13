@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router';
 
 import NavbarMobileOptions from './navbar_mobile_options/navbarOptions_mobile';
 import NavbarMobileActions from './navbar_mobile_userActions/navbar_mobile_userActions';
@@ -9,9 +10,11 @@ class NavbarMobile extends PureComponent {
     return (
       <nav className="navbar navbar-mobile">
         <div className="navbar-mobile-container">
-          <div className="navbar-mobile-logo">
-            <img className="navbar-mobile-logo-src" alt="nj2jp logo" />
-          </div>
+          <Link to={'/'} className="navbar-mobile-logo-link">
+            <div className="navbar-mobile-logo">
+              <img className="navbar-mobile-logo-src" alt="nj2jp logo" />
+            </div>
+          </Link>
           <NavbarMobileOptions />
           <NavbarMobileActions />
           <NavbarMobileNav />

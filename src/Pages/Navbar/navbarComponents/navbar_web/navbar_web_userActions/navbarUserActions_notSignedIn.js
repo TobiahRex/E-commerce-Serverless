@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 */
 
-class NavbarUserActionsNoSignin extends PureComponent {
+class NavbarUserActionsNotSignedIn extends PureComponent {
   static styles = {
     hidden: {
       display: 'none',
@@ -17,7 +17,7 @@ class NavbarUserActionsNoSignin extends PureComponent {
   render() {
     return (
       <ul
-        // style={NavbarUserActionsNoSignin.styles.hidden}
+        style={NavbarUserActionsNotSignedIn.styles.hidden}
         className="navbar-actionSection-upper-actions-notSignedIn"
       >
         <li className="sign-in-title sweep-right">
@@ -37,4 +37,4 @@ class NavbarUserActionsNoSignin extends PureComponent {
   }
 }
 
-export default NavbarUserActionsNoSignin;
+export default NavbarUserActionsNotSignedIn;
