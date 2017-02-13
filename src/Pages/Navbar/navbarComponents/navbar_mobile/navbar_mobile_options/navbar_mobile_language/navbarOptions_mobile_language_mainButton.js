@@ -7,7 +7,8 @@ import React, { PropTypes, PureComponent } from 'react';
 
 class NavbarMobileOptionsLanguageButton extends PureComponent {
   static propTypes = {
-    renderLanguageTitle: PropTypes.func,
+    activeLanguage: PropTypes.string.isRequired,
+    renderLanguageTitle: PropTypes.func.isRequired,
   }
 
   renderLanguageTitle = () => this.props.renderLanguageTitle();

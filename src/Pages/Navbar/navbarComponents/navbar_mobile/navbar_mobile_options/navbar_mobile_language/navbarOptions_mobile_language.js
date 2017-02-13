@@ -12,6 +12,8 @@ import NavbarMobileOptionsLanguageDropdnNihongo from './navbarOptions_mobile_lan
 /* TODO:
 1. Pass down via props the respective class methods shown below.
 - Language change: Will set a flag in state that all SMART components will be receiving to determine how to render the Language info.
+
+2. Finish mapping Redux action "onLanguageChange" to this components props.
 */
 
 class NavbarMobileOptionsLanguage extends Component {
@@ -24,7 +26,8 @@ class NavbarMobileOptionsLanguage extends Component {
     super(props);
 
     this.state = {
-      activeLanguage: this.props.activeLanguage || 'english',
+      // activeLanguage: this.props.activeLanguage || 'english',
+      activeLanguage: 'nihongo', // <---- this is FAKE
     };
   }
 
@@ -34,7 +37,9 @@ class NavbarMobileOptionsLanguage extends Component {
   }
 
   shouldComponentUpdate(nextProps, { activeLanguage }) {
-    if (this.state.activeLanguage !== activeLanguage) return true;
+    if (this.state.activeLanguage !== activeLanguage) {
+      return true;
+    }
     return false;
   }
 
@@ -43,16 +48,8 @@ class NavbarMobileOptionsLanguage extends Component {
   }
 
   onLanguageChange = (language) => {
-    if (language === 'english') {
-      this.setState({ activeLanguage: 'english' });
-      this.props.onLanguageChange('english');
-    } else if (language === 'japanese') {
-      this.setState({ activeLanguage: 'japanese' });
-      this.props.onLanguageChange('japanese');
-    } else {
-      console.warn('Make this an actual user message');
-      throw new Error('Something went wrong with changing the language');
-    }
+    this.setState({ activeLanguage: [language] });
+    // this.props.onLanguageChange(language);
   };
 
   renderLanguageTitle = () => {
@@ -73,9 +70,11 @@ class NavbarMobileOptionsLanguage extends Component {
     return (
       <div className="navbar-mobile-options-language">
         <NavbarMobileOptionsLanguageButton
+          activeLanguage={this.state.activeLanguage}
           renderLanguageTitle={this.renderLanguageTitle}
         />
         <NavbarMobileOptionsLanguageDropdnContent
+          activeLanguage={this.state.activeLanguage}
           renderLanguageDropdown={this.renderLanguageDropdown}
         />
       </div>

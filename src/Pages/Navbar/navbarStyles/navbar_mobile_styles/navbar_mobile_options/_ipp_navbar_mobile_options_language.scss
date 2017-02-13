@@ -73,7 +73,7 @@
         height: 2.5em;
         margin: 0;
         & .mobile-language-main-button-japanese-flag {
-        height: 1.3em;
+        height: 1.5em;
         width: 2.5em;
         background-image: $jpn-flag-icon;
         background-size: cover;
@@ -157,6 +157,7 @@
       justify-content: center;
       align-items: center;
       margin: 0em 2em 2em 2em;
+      text-decoration: none;
       &:hover,
       &:focus,
       &:active {
@@ -172,12 +173,11 @@
         background-image: $us-flag-icon;
         background-size: cover;
       }
-      & .mobile-language-dropdown-content-us-english {
-        padding-left: 1em;
+      & .mobile-language-dropdown-content-us-english > span {
+        padding-left: .71em;
+        font-size: 1.4em;
         font-family: $s-font;
-        font-weight: 400;
         color: $s-blue;
-        font-size: 1em;
       }
     }
   }

@@ -146,7 +146,7 @@
         align-items: center;
         color: $p-blue;
         text-decoration: none;
-        margin: .2em 0 0 .2em; 
+        margin: .2em 0 0 .2em;
         &:hover,
         &:focus,
         &:active {
@@ -171,9 +171,8 @@
         }
         & .mobile-currency-dropdown-content-yen-title > span {
           font-family: $p-font;
-          font-size: 1.2em;
+          font-size: 1.3em;
           line-height: 0.85;
-          font-weight: bold;
           color: $p-blue;
           margin: .58em 0 .33em .416em;
         }
@@ -212,9 +211,8 @@
         }
         & .mobile-currency-dropdown-content-dollars-title > span {
           font-family: $p-font;
-          font-size: 1.2em;
+          font-size: 1.3em;
           line-height: 0.85;
-          font-weight: bold;
           color: $p-blue;
           margin: .58em 0 .33em .416em;
         }

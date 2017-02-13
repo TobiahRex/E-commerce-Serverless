@@ -12,6 +12,8 @@ import NavbarMobileOptionsCurrencyDropdnYen from './navbarOptions_mobile_currenc
 /* TODO:
 1. Pass down via props the respective class methods shown below.
 - Currency change: Will set a flag in state that all SMART components will be receiving to determine how to render the currency info.
+
+2. Finish mapping Redux action to this comp's props for Currency Change.
 */
 
 class NavbarMobileOptionsCurrency extends Component {
@@ -24,7 +26,8 @@ class NavbarMobileOptionsCurrency extends Component {
     super(props);
 
     this.state = {
-      activeCurrency: this.props.activeCurrency || 'usd',
+      // activeCurrency: this.props.activeCurrency || 'usd', <-- this is REAL
+      activeCurrency: 'usd', // <---- this is FAKE
     };
   }
 
@@ -33,7 +36,21 @@ class NavbarMobileOptionsCurrency extends Component {
     return 1;
   }
 
-  onCurrencyChange = () => this.props.onCurrencyChange;
+  shouldComponentUpdate(nextProps, { activeCurrency }) {
+    if (this.state.activeCurrency !== activeCurrency) {
+      return true;
+    }
+    return false;
+  }
+
+  componentWillUpdate(nextProps, { activeCurrency }) {
+    console.info('Currency Changed: ', activeCurrency);
+  }
+
+  onCurrencyChange = (currency) => {
+    this.setState({ activeCurrency: [currency] });
+    // this.props.onLanguageChange(currency);
+  };
 
   renderCurrencyTitle = () => {
     const currency = this.state.activeCurrency;
