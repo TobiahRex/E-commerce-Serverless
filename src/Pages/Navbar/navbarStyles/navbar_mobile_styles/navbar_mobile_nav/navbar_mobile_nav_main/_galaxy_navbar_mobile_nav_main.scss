@@ -1,0 +1,124 @@
+/* NOTE
+  This style sheet is for Mobile Navbar. It's styles are contained to the Hamburger button, the dynamically set Title bar, and the Dynamically set Cart.
+
+  This style sheet does NOT include the Mobile Navbar drop down content.
+*/
+
+.navbar-mobile-nav-main {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  & .navbar-mobile-nav-main-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    & .navbar-mobile-nav-hamburger {
+      @extend .galaxy-flex-center;
+      height: 6em;
+      width: 6em;
+      @extend .galaxy-blue-bg;
+      & .navbar-mobile-nav-hamburger-icon-button {
+        @extend .galaxy-flex-center;
+        height: 2.5em;
+        width: 2.5em;
+        &.active span {
+          background-color: transparent;
+          &:before {
+            top: 0;
+            transform: rotate(45deg);
+          }
+          &:after {
+            top: 0;
+            transform: rotate(-45deg);
+          }
+        }
+        & span {
+          cursor: pointer;
+          border-radius: .1em;
+          height: .5em;
+          width: 2.6em;
+          background-color: $p-white;
+          position: absolute;
+          display: block;
+          content: '';
+          transition: all 500ms ease-in-out;
+          &:before {
+            cursor: pointer;
+            border-radius: .1em;
+            height: .5em;
+            width: 2.6em;
+            background-color: $p-white;
+            position: absolute;
+            display: block;
+            content: '';
+            top: -1em;
+            transition: all 500ms ease-in-out;
+          }
+          &:after {
+            cursor: pointer;
+            border-radius: .1em;
+            height: .5em;
+            width: 2.6em;
+            background-color: $p-white;
+            position: absolute;
+            display: block;
+            content: '';
+            top: 1em;
+            transition: all 500ms ease-in-out;
+          }
+        }
+      }
+    }
+    & .navbar-mobile-nav-title {
+      @extend .galaxy-flex-left;
+      height: 6em;
+      width: 21.5em;
+      @extend .galaxy-blue-bg;
+      & h5 {
+        margin: 0;
+      }
+    }
+  }
+  & .navbar-mobile-nav-main-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    & .navbar-mobile-nav-cart {
+      @extend .galaxy-flex-center;
+      height: 6em;
+      width: 8.5em;
+      @extend .galaxy-blue-bg;
+      & .navbar-mobile-cart-icon {
+        @extend .galaxy-flex-center;
+        height: 4em;
+        width: 4em;
+        background-color: transparent;
+        &:after {
+          content: '';
+          display: inline-block;
+          background-color: rgba(255,255,255,.25);
+          width: 1px;
+          height: 20px;
+          margin: 0 0 -1px 12px;
+        }
+        & .navbar-mobile-cart-icon-fa {
+          font-size: 2.5em;
+          line-height: 2.5em;
+          color: $p-white;
+          background-color: transparent;
+        }
+      }
+      & .navbar-mobile-cart-qty {
+        @extend .galaxy-flex-center;
+        height: 4em;
+        width: 3em;
+        & .navbar-mobile-cart-qty-value {
+          color: $p-white;
+          font-size: 1.5em;
+          font-family: $p-font;
+          line-height: 1em;
+        }
+      }
+    }
+  }
+}
