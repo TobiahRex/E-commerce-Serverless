@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
+import uuid from 'uuid';
 
 /* TODO
 1. Redux Action method "logoutUser"
 2. Redux State property "active_user : true/false"
-
+3. Remove UUID as dummy generator.
 */
 
 class NavbarMobileActions extends Component {
@@ -29,7 +30,7 @@ class NavbarMobileActions extends Component {
         <div className="navbar-mobile-actions-signedIn">
           <div className="navbar-mobile-actions-signedIn-myaccount-title sweep-right">
             <Link
-              to={'/my_account'}
+              to={`/user/${uuid()}`}
               className="navbar-mobile-actions-signedIn-myaccount-title-link"
             >My Account</Link>
           </div>

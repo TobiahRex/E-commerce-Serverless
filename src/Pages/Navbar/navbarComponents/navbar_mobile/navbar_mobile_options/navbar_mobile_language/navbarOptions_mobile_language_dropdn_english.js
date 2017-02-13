@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default function NavbarMobileOptionsLanguageDropdnEnglish() {
+const propTypes = {
+  onLanguageChange: PropTypes.func.isRequired,
+};
+
+function NavbarMobileOptionsLanguageDropdnEnglish({ onLanguageChange }) {
+  function preventDefault(e) {
+    e.preventDefault();
+    onLanguageChange('english');
+  }
   return (
     <a
       href=""
-      onClick={e => e.preventDefault()}
+      onClick={preventDefault}
       className="mobile-language-dropdown-content-us"
     >
       <div className="mobile-language-dropdown-content-us-image" />
@@ -15,3 +23,6 @@ export default function NavbarMobileOptionsLanguageDropdnEnglish() {
 
   );
 }
+
+NavbarMobileOptionsLanguageDropdnEnglish.propTypes = propTypes;
+export default NavbarMobileOptionsLanguageDropdnEnglish;

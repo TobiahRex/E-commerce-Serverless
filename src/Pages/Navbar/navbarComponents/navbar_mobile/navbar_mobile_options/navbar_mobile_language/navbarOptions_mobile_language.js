@@ -33,7 +33,27 @@ class NavbarMobileOptionsLanguage extends Component {
     return 1;
   }
 
-  onLanguageChange = () => this.props.onLanguageChange;
+  shouldComponentUpdate(nextProps, { activeLanguage }) {
+    if (this.state.activeLanguage !== activeLanguage) return true;
+    return false;
+  }
+
+  componentWillUpdate(nextProps, { activeLanguage }) {
+    console.info('Language Changed: ', activeLanguage);
+  }
+
+  onLanguageChange = (language) => {
+    if (language === 'english') {
+      this.setState({ activeLanguage: 'english' });
+      this.props.onLanguageChange('english');
+    } else if (language === 'japanese') {
+      this.setState({ activeLanguage: 'japanese' });
+      this.props.onLanguageChange('japanese');
+    } else {
+      console.warn('Make this an actual user message');
+      throw new Error('Something went wrong with changing the language');
+    }
+  };
 
   renderLanguageTitle = () => {
     const Language = this.state.activeLanguage;
@@ -44,14 +64,14 @@ class NavbarMobileOptionsLanguage extends Component {
 
   renderLanguageDropdown = () => {
     const Language = this.state.activeLanguage;
-    if (Language === 'english') return <NavbarMobileOptionsLanguageDropdnNihongo />;
-    if (Language === 'nihongo') return <NavbarMobileOptionsLanguageDropdnEnglish />;
+    if (Language === 'english') return <NavbarMobileOptionsLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
+    if (Language === 'nihongo') return <NavbarMobileOptionsLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
     throw new Error('Cannot render the Active Language - Check NavbarMobileOptionsLanguageButton component.');
   }
 
   render() {
     return (
-      <div className="navbar-mobile-options-Language">
+      <div className="navbar-mobile-options-language">
         <NavbarMobileOptionsLanguageButton
           renderLanguageTitle={this.renderLanguageTitle}
         />
