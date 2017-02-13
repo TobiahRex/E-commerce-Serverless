@@ -4,7 +4,7 @@
   align-items: center;;
   margin: 0em;
   list-style-type: none;
-  padding: 0em .5em 0em .5em;
+  padding: 0em 0em 0em 0em;
   & .navbar-mobile-actions-signedIn-myaccount-title {
     @extend .galaxy-flex-center;
     background-color: $p-grey;
@@ -12,7 +12,7 @@
     font-weight: 200;
     font-size: 1.5em;
     color: $p-blue;
-    width: 7.33em;
+    width: 6.33em;
     height: 2em;
     cursor: pointer;
     &:hover,
@@ -36,7 +36,7 @@
     font-weight: 200;
     font-size: 1.5em;
     color: $p-blue;
-    width: 7.33em;
+    width: 6.33em;
     height: 2em;
     margin-left: .66em;
     line-height: 1.33em;
@@ -62,7 +62,7 @@
     font-weight: 200;
     font-size: 1.5em;
     color: $p-blue;
-    width: 7.33em;
+    width: 6.33em;
     height: 2em;
     margin-left: .66em;
     line-height: 1.33em;
