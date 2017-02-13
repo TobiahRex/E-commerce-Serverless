@@ -1,34 +1,38 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 
-class NavbarNavsInfoDropdnRighthalf extends PureComponent {
-  render() {
-    return (
-      <div className="info-dropdown-content-innerContainer-right">
-        <ul
-          className="info-dropdown-content-innerContainer-right-list"
-        >
-          <li className="sweep-right">
+export default function NavbarNavsInfoDropdnRighthalf() {
+  return (
+    <div className="info-dropdown-content-innerContainer-right">
+      <ul
+        className="info-dropdown-content-innerContainer-right-list"
+      >
+        <li className="sweep-right">
+          <Link to={'/contact_us'}>
             <p>Contact Us</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/shipping_and_return_policy'}>
             <p>Shipping & Returns Policy</p>
-          </li>
-          <li className="sweep-right">
-            <p>Return Policy</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/privacy_policy'}>
             <p>Privacy Policy</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/nicotine_disclaimer'}>
             <p>Nicotine Disclaimer</p>
-          </li>
-          <li className="sweep-right">
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/terms_and_conditions'}>
             <p>Terms & Conditions</p>
-          </li>
-        </ul>
-      </div>
-    );
-  }
+          </Link>
+        </li>
+      </ul>
+    </div>
+);
 }
-
-export default NavbarNavsInfoDropdnRighthalf;

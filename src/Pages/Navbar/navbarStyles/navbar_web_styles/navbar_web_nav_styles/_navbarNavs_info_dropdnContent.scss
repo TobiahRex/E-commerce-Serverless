@@ -23,16 +23,21 @@
         @extend .flex-align-left;
         flex-direction: column;
         list-style-type: none;
-        & li {
+        & li > a {
           height: 3em;
+          text-decoration: none;
           cursor: pointer;
-          &:hover,
-          &:focus,
-          &:active {
+          &:hover {
             transition: all .5s;
             background-color: $p-blue;
             & p {
               color: $p-white;
+            }
+          }
+          &:focus,
+          &:active {
+            & p {
+              color: $p-blue;
             }
           }
           & p {
@@ -54,13 +59,17 @@
         & li {
           height: 3em;
           cursor: pointer;
-          &:hover,
-          &:focus,
-          &:active {
+          &:hover {
             transition: all .5s;
             background-color: $p-blue;
             & p {
               color: $p-white;
+            }
+          }
+          &:focus,
+          &:active {
+            & p {
+              color: $p-blue;
             }
           }
           & p {
