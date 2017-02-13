@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 export default () => (
-  <span>
+  <span className="mobile-currency-main-button-dollar-parent">
     <div className="mobile-currency-main-button-dollar">
       <FontAwesome
         name="usd"

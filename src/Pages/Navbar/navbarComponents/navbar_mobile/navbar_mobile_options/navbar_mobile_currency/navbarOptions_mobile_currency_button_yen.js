@@ -2,10 +2,8 @@ import React, { PropTypes, PureComponent } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 export default () => (
-  <span>
-    <div
-      className="mobile-currency-main-button-yen"
-    >
+  <span className="mobile-currency-main-button-yen-parent">
+    <div className="mobile-currency-main-button-yen">
       <FontAwesome
         name="yen"
         className="mobile-currency-main-button-yen-icon"

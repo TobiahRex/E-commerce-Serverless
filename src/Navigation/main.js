@@ -67,6 +67,5 @@ export default (
     <Router path={'/terms_and_conditions'} component={TermsConditions} />
     <Router path={'/wholesale'} component={Wholesale} />
     <Router path={'/affiliate_program'} component={Affiliates} />
-
   </Route>
 );

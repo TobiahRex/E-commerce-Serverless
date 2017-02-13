@@ -22,10 +22,13 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <header className="navbar-comp-container">
-        <NavbarWeb />
-        <NavbarMobile />
-      </header>
+      <div>
+        <header className="navbar-comp-container">
+          <NavbarWeb />
+          <NavbarMobile />
+        </header>
+        {this.props.children}
+      </div>
     );
   }
 }

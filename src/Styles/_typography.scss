@@ -18,7 +18,7 @@ h1 {
   @include prefixed(font-smoothing, antialiased);
   color: $p-blue;
   line-height: 1em;
-  letter-spacing: 1em;
+  letter-spacing: 0.028em;
   margin: 0;
 }
 

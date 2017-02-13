@@ -16,8 +16,7 @@ class NavbarMobileOptionsCurrencyDropdnContent extends PureComponent {
   render() {
     return (
       <span className="mobile-currency-dropdown-content">
-        {/* {this.renderCurrencyDropdown()} */}
-        DYNAMIC
+        {this.renderCurrencyDropdown()}
       </span>
     );
   }

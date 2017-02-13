@@ -16,8 +16,7 @@ class NavbarMobileOptionsCurrencyButton extends PureComponent {
   render() {
     return (
       <span className="mobile-currency-main-button">
-        {/* {this.renderCurrencyTitle(this.props.active_currency)} */}
-        DYNAMIC
+        {this.renderCurrencyTitle()}
       </span>
     );
   }

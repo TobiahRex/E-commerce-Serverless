@@ -16,7 +16,8 @@
     background-color: $p-blue;
     color: $p-white;
     & .mobile-currency-dropdown-content {
-      display: block;
+      opacity: 1;
+      height: 2.9em;
     }
   }
   & .mobile-currency-main-button {
@@ -24,174 +25,198 @@
     height: 3em;
     background-color: inherit;
     color: inherit;
-    & .mobile-currency-main-button-dollar {
-      @extend .ipp-flex-right;
-      width: 1.4em;
-      height: 2em;
-      font-size: 15px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      .mobile-currency-main-button-dollar-icon {
-        width: 1em;
-        height: 1em;
-        font-size: 1em;
+    & .mobile-currency-main-button-dollar-parent {
+      @extend .ipp-flex-center;
+      & .mobile-currency-main-button-dollar {
+        @extend .ipp-flex-right;
+        width: 1.4em;
+        height: 2em;
+        font-size: 15px;
+        margin: 0;
         background-color: transparent;
         color: inherit;
+        .mobile-currency-main-button-dollar-icon {
+          width: 1em;
+          height: 1em;
+          font-size: 1em;
+          background-color: transparent;
+          color: inherit;
+        }
       }
-    }
-    & .mobile-currency-main-button-dollar-title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 5em;
-      height: 2.5em;
-      margin: 0;
-      padding-right: 1em;
-      background-color: transparent;
-      color: inherit;
-      font-size: 10px;
-      font-family: $p-font;
-      font-weight: 400;
-    }
-    & .mobile-currency-main-button-dollar-chevron {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.1em;
-      height: 2.5em;
-      font-size: 15px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      .mobile-currency-main-button-dollar-chevron-icon {
-        width: 1em;
-        height: 1em;
-        color: inherit;
-      }
-    }
-    & .mobile-currency-main-button-yen {
-      @extend .ipp-flex-right;
-      width: 1.4em;
-      height: 2em;
-      font-size: 15px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      .mobile-currency-main-button-yen-icon {
-        width: 1em;
-        height: 1em;
-        font-size: 1em;
+      & .mobile-currency-main-button-dollar-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5em;
+        height: 2.5em;
+        margin: 0;
+        padding-right: 1em;
         background-color: transparent;
         color: inherit;
+        font-size: 10px;
+        font-family: $p-font;
+        font-weight: 400;
+      }
+      & .mobile-currency-main-button-dollar-chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        .mobile-currency-main-button-dollar-chevron-icon {
+          width: 1em;
+          height: 1em;
+          color: inherit;
+        }
       }
     }
-    & .mobile-currency-main-button-yen-title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 5em;
-      height: 2.5em;
-      margin: 0;
-      padding-right: 1em;
-      background-color: transparent;
-      color: inherit;
-      font-size: 10px;
-      font-family: $p-font;
-      font-weight: 400;
-    }
-    & .mobile-currency-main-button-yen-chevron {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.1em;
-      height: 2.5em;
-      font-size: 15px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      .mobile-currency-main-button-yen-chevron-icon {
-        width: 1em;
-        height: 1em;
+    & .mobile-currency-main-button-yen-parent {
+      @extend .ipp-flex-center;
+      & .mobile-currency-main-button-yen {
+        @extend .ipp-flex-right;
+        width: 1.4em;
+        height: 2em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
         color: inherit;
+        .mobile-currency-main-button-yen-icon {
+          width: 1em;
+          height: 1em;
+          font-size: 1em;
+          background-color: transparent;
+          color: inherit;
+        }
+      }
+      & .mobile-currency-main-button-yen-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5em;
+        height: 2.5em;
+        margin: 0;
+        padding-right: 1em;
+        background-color: transparent;
+        color: inherit;
+        font-size: 10px;
+        font-family: $p-font;
+        font-weight: 400;
+      }
+      & .mobile-currency-main-button-yen-chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        .mobile-currency-main-button-yen-chevron-icon {
+          width: 1em;
+          height: 1em;
+          color: inherit;
+        }
       }
     }
   }
   & .mobile-currency-dropdown-content {
-    display: none;
-    position: absolute;
-    height: 7em;
-    width: 13em;
-    background-color: $p-white;
-    z-index: 1;
-    box-shadow: 1px 2px 5px rgba(0,0,0,.6);
-    & .mobile-currency-dropdown-content-yen {
-      height: 2.5em;
-      width: 9em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 2em 2em 2em 2em;
-      color: $p-blue;
-      &:hover,
-      &:focus,
-      &:active {
-        transition: .5s;
-        background-color: $p-blue;
-        & .mobile-currency-dropdown-content-yen-icon,
-        .mobile-currency-dropdown-content-yen-title {
-          color: $p-white;
+      display: block;
+      position: absolute;
+      height: 0em;
+      width: 12em;
+      background-color: $p-white;
+      z-index: 1;
+      padding: .8em .5em;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.6);
+      clear: both;
+      overflow: hidden;
+      opacity: 0;
+      @include prefixed(transition, all .3s ease-in-out);
+      & .mobile-currency-dropdown-content-yen {
+        @extend .ipp-flex-center;
+        height: 2.5em;
+        width: 11.6em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $p-blue;
+        text-decoration: none;
+        &:hover,
+        &:focus,
+        &:active {
+          transition: .5s;
+          background-color: $p-blue;
+          &  .mobile-currency-dropdown-content-yen-icon {
+            color: $p-white;
+          }
+          &  .mobile-currency-dropdown-content-yen-title > span {
+            color: $p-white;
+          }
+        }
+        & .mobile-currency-dropdown-content-yen-icon {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 1.5em;
+          line-height: 1.2em;
+          margin: .26em .53em .2em .053em;
+          background-color: transparent;
+          color: $p-blue;
+        }
+        & .mobile-currency-dropdown-content-yen-title > span {
+          font-family: $p-font;
+          font-size: 1.2em;
+          line-height: 0.85;
+          font-weight: bold;
+          color: $p-blue;
+          margin: .58em 0 .33em .416em;
         }
       }
-      & .mobile-currency-dropdown-content-yen-icon {
+      & .mobile-currency-dropdown-content-dollars {
+        @extend .ipp-flex-center;
+        height: 2.5em;
+        width: 11.6em;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        height: 1.4em;
-        width: 2.4em;
-        background-color: transparent;
-        font-size: 1.2em;
-        color: inherit;
-      }
-      & .mobile-currency-dropdown-content-yen-title {
-        font-family: $p-font;
-        font-weight: 200;
-        color: $s-blue;
-        font-size: 1em;
-      }
-    }
-    & .mobile-currency-dropdown-content-dollars {
-      @extend .ipp-flex-center;
-      height: 2.5em;
-      width: 9em;
-      margin: 0em 2em 2em 2em;
-      color: $p-blue;
-      &:hover,
-      &:focus,
-      &:active {
-        transition: .5s;
-        background-color: $p-blue;
-        & .mobile-currency-dropdown-content-dollars-title,
-        .mobile-currency-dropdown-content-dollars-icon {
-          color: $p-white;
+        padding: .2em;
+        color: $p-blue;
+        text-decoration: none;
+        &:hover,
+        &:focus,
+        &:active {
+          transition: .5s;
+          background-color: $p-blue;
+          &  .mobile-currency-dropdown-content-dollars-icon {
+            color: $p-white;
+          }
+          & .mobile-currency-dropdown-content-dollars-title > span {
+            color: $p-white;
+          }
+        }
+        & .mobile-currency-dropdown-content-dollars-icon {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 1.5em;
+          line-height: 1.2em;
+          margin: .26em .53em .2em .053em;
+          background-color: transparent;
+          color: $p-blue;
+        }
+        & .mobile-currency-dropdown-content-dollars-title > span {
+          font-family: $p-font;
+          font-size: 1.2em;
+          line-height: 0.85;
+          font-weight: bold;
+          color: $p-blue;
+          margin: .58em 0 .33em .416em;
         }
       }
-      & .mobile-currency-dropdown-content-dollars-icon {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 1.4em;
-        width: 2.4em;
-        font-size: 1.2em;
-        background-color: transparent;
-        color: inherit;
-      }
-      & .mobile-currency-dropdown-content-dollars-title {
-        font-family: $p-font;
-        font-weight: 200;
-        color: $s-blue;
-        font-size: 1em;
-      }
     }
-  }
 }

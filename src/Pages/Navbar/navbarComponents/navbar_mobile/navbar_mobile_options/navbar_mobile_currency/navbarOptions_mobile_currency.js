@@ -6,6 +6,9 @@ import NavbarMobileOptionsCurrencyDropdnContent from './navbarOptions_mobile_cur
 import NavbarMobileOptionsCurrencyButtonDollar from './navbarOptions_mobile_currency_button_dollars';
 import NavbarMobileOptionsCurrencyButtonYen from './navbarOptions_mobile_currency_button_yen';
 
+import NavbarMobileOptionsCurrencyDropdnDollar from './navbarOptions_mobile_currency_dropdn_dollars';
+import NavbarMobileOptionsCurrencyDropdnYen from './navbarOptions_mobile_currency_dropdn_yen';
+
 /* TODO:
 1. Pass down via props the respective class methods shown below.
 - Currency change: Will set a flag in state that all SMART components will be receiving to determine how to render the currency info.
@@ -13,7 +16,7 @@ import NavbarMobileOptionsCurrencyButtonYen from './navbarOptions_mobile_currenc
 
 class NavbarMobileOptionsCurrency extends Component {
   static propTypes = {
-    active_currency: PropTypes.string,
+    activeCurrency: PropTypes.string,
     onCurrencyChange: PropTypes.func,
   }
 
@@ -21,28 +24,28 @@ class NavbarMobileOptionsCurrency extends Component {
     super(props);
 
     this.state = {
-      active_currency: this.props.active_currency,
+      activeCurrency: this.props.activeCurrency || 'usd',
     };
   }
 
-  componentWillReceiveProps({ active_currency }) {
-    if (this.props.active_currency !== active_currency) return this.setState({ active_currency });
+  componentWillReceiveProps({ activeCurrency }) {
+    if (this.props.activeCurrency !== activeCurrency) return this.setState({ activeCurrency });
     return 1;
   }
 
   onCurrencyChange = () => this.props.onCurrencyChange;
 
   renderCurrencyTitle = () => {
-    const currency = this.state.active_currency;
+    const currency = this.state.activeCurrency;
     if (currency === 'usd') return <NavbarMobileOptionsCurrencyButtonDollar />;
     if (currency === 'yen') return <NavbarMobileOptionsCurrencyButtonYen />;
     throw new Error('Cannot render the Active Currency - Check NavbarMobileOptionsCurrencyButton component.');
   }
 
   renderCurrencyDropdown = () => {
-    const currency = this.state.active_currency;
-    if (currency === 'usd') return <NavbarMobileOptionsCurrencyButtonYen />;
-    if (currency === 'yen') return <NavbarMobileOptionsCurrencyButtonDollar />;
+    const currency = this.state.activeCurrency;
+    if (currency === 'usd') return <NavbarMobileOptionsCurrencyDropdnYen />;
+    if (currency === 'yen') return <NavbarMobileOptionsCurrencyDropdnDollar />;
     throw new Error('Cannot render the Active Currency - Check NavbarMobileOptionsCurrencyButton component.');
   }
 
