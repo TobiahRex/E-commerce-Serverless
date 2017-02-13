@@ -1,42 +1,22 @@
-import React, { PureComponent } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes, PureComponent } from 'react';
 
 /* TODO
+1. Add dynamic show & hide for drop down options based on current active currency.
 
-1. This component will show or hide, the appropriate currency based on global state value set as true
-Example:
-  currency: {
-  japansese: true,
-  usd: false
-}
+2. Add swipe-right animation for hovering over options.
 */
-
 class NavbarOptionsCurrencyDropdnContent extends PureComponent {
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {},
+  static propTypes = {
+    activeCurrency: PropTypes.string.isRequired,
+    renderCurrencyDropdown: PropTypes.func.isRequired,
   }
+
+  renderCurrencyDropdown = () => this.props.renderCurrencyDropdown();
 
   render() {
     return (
       <span className="currency-dropdown-content">
-        <div className="currency-dropdown-content-yen">
-          <FontAwesome name="yen" className="currency-dropdown-content-yen-icon" />
-          <div className="currency-dropdown-content-yen-title">
-            <span>YEN</span>
-          </div>
-        </div>
-        <div
-          className="currency-dropdown-content-dollars"
-          style={NavbarOptionsCurrencyDropdnContent.styles.hidden}
-        >
-          <FontAwesome name="usd" className="currency-dropdown-content-dollars-icon" />
-          <div className="currency-dropdown-content-dollars-title">
-            <span>USD</span>
-          </div>
-        </div>
+        {this.renderCurrencyDropdown()}
       </span>
     );
   }

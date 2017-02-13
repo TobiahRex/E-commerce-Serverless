@@ -1,4 +1,4 @@
-.navbar-actionSection-upper-options-currency {
+.navbar-options-currency {
   display: inline-block;
   position: relative;
   justify-content: center;
@@ -22,131 +22,185 @@
   }
   & .currency-main-button {
     @extend .flex-center;
-    height: 3em;
+    height: 4em;
     background-color: inherit;
     color: inherit;
-    & .currency-main-button-dollar {
+    & .currency-main-button-dollar-parent {
       @extend .flex-center;
-      width: 1.4em;
-      height: 2.5em;
-      font-size: 15px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      .currency-main-button-dollar-icon {
-        width: 1em;
-        height: 1em;
-        font-size: 1em;
+      & .currency-main-button-dollar {
+        @extend .flex-center;
+        width: 1.4em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
         background-color: transparent;
         color: inherit;
+        .currency-main-button-dollar-icon {
+          width: 1em;
+          height: 1em;
+          font-size: 1em;
+          background-color: transparent;
+          color: inherit;
+        }
+      }
+      & .currency-main-button-dollar-title {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 4em;
+        height: 2.5em;
+        padding-left: 1em;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        font-size: 10px;
+        font-family: $p-font;
+        font-weight: 400;
+      }
+      & .currency-main-button-dollar-chevron {
+        @extend .flex-center;
+        width: 1.1em;
+        height: 2em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        .currency-main-button-dollar-chevron-icon {
+          width: 1em;
+          height: 1em;
+          color: inherit;
+        }
       }
     }
-    & .currency-main-button-dollar-title {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 4em;
-      height: 2.5em;
-      padding-left: 1em;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      font-size: 10px;
-      font-family: $p-font;
-      font-weight: 400;
-    }
-    & .currency-main-button-dollar-chevron {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.1em;
-      height: 2.5em;
-      font-size: 10px;
-      margin: 0;
-      background-color: transparent;
-      color: inherit;
-      .currency-main-button-dollar-chevron-icon {
-        width: 1em;
-        height: 1em;
+    & .currency-main-button-yen-parent {
+      @extend .flex-center;
+      & .currency-main-button-yen {
+        @extend .flex-center;
+        width: 1.4em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
         color: inherit;
+        .currency-main-button-yen-icon {
+          width: 1em;
+          height: 1em;
+          font-size: 1em;
+          background-color: transparent;
+          color: inherit;
+        }
+      }
+      & .currency-main-button-yen-title {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 4em;
+        height: 2.5em;
+        padding-left: 1em;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        font-size: 10px;
+        font-family: $p-font;
+        font-weight: 400;
+      }
+      & .currency-main-button-yen-chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.1em;
+        height: 2.5em;
+        font-size: 15px;
+        margin: 0;
+        background-color: transparent;
+        color: inherit;
+        .currency-main-button-yen-chevron-icon {
+          width: 1em;
+          height: 1em;
+          color: inherit;
+        }
       }
     }
   }
   & .currency-dropdown-content {
-    display: none;
-    position: absolute;
-    height: 7em;
-    width: 13em;
-    background-color: $p-white;
-    z-index: 1;
-    box-shadow: 1px 2px 5px rgba(0,0,0,.6);
-    & .currency-dropdown-content-yen {
-      height: 2.5em;
-      width: 9em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 2em 2em 2em 2em;
-      color: $p-blue;
-      &:hover,
-      &:focus,
-      &:active {
-        transition: .5s;
-        background-color: $p-blue;
-        & .currency-dropdown-content-yen-icon,
-        .currency-dropdown-content-yen-title {
-          color: $p-white;
+      display: block;
+      position: absolute;
+      height: 0;
+      width: 12em;
+      background-color: $p-white;
+      z-index: 1;
+      padding: .8em .5em;
+      // margin: .2em 0 0 .5em;
+      clear: both;
+      overflow: hidden;
+      opacity: 0;
+      @include prefixed(box-shadow, 1px 2px 5px rgba(0,0,0,.6));
+      @include prefixed(transition, all .3s ease-in-out);
+      & .currency-dropdown-content-yen {
+        @extend .flex-center;
+        height: 2.5em;
+        width: 11.5em;
+        margin: .2em 0 0 .2em;
+        color: $p-blue;
+        text-decoration: none;
+        &:hover,
+        &:focus,
+        &:active {
+          transition: .5s;
+          background-color: $p-blue;
+          & .currency-dropdown-content-yen-icon,
+          .currency-dropdown-content-yen-title > span {
+            color: $p-white;
+          }
+        }
+        & .currency-dropdown-content-yen-icon {
+          @extend .flex-left;
+          font-size: 1.5em;
+          line-height: 1.2em;
+          margin: .26em .53em .2em .053em;
+          background-color: transparent;
+          color: $p-blue;
+        }
+        & .currency-dropdown-content-yen-title > span {
+          font-family: $p-font;
+          font-size: 1.3em;
+          line-height: 0.85;
+          color: $p-blue;
+          margin: .58em 0 .33em .416em;
         }
       }
-      & .currency-dropdown-content-yen-icon {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 1.4em;
-        width: 2.4em;
-        background-color: transparent;
-        font-size: 1.2em;
-        color: inherit;
-      }
-      & .currency-dropdown-content-yen-title {
-        font-family: $p-font;
-        font-weight: 200;
-        color: $s-blue;
-        font-size: 1em;
-      }
-    }
-    & .currency-dropdown-content-dollars {
-      @extend .flex-center;
-      height: 2.5em;
-      width: 9em;
-      margin: 0em 2em 2em 2em;
-      color: $p-blue;
-      &:hover,
-      &:focus,
-      &:active {
-        transition: .5s;
-        background-color: $p-blue;
-        & .currency-dropdown-content-dollars-title,
-        .currency-dropdown-content-dollars-icon {
-          color: $p-white;
+      & .currency-dropdown-content-dollars {
+        @extend .flex-center;
+        height: 2.5em;
+        width: 11.5em;
+        margin: .2em 0 0 .2em;
+        color: $p-blue;
+        text-decoration: none;
+        &:hover,
+        &:focus,
+        &:active {
+          transition: .5s;
+          background-color: $p-blue;
+          & .currency-dropdown-content-dollars-icon,
+          .currency-dropdown-content-dollars-title > span {
+            color: $p-white;
+          }
+        }
+        & .currency-dropdown-content-dollars-icon {
+          @extend .flex-left;
+          font-size: 1.5em;
+          line-height: 1.2em;
+          margin: .26em .53em .2em .053em;
+          background-color: transparent;
+          color: $p-blue;
+        }
+        & .currency-dropdown-content-dollars-title > span{
+          font-family: $p-font;
+          font-size: 1.3em;
+          line-height: 0.85;
+          color: $p-blue;
+          margin: .58em 0 .33em .416em;
         }
       }
-      & .currency-dropdown-content-dollars-icon {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 1.4em;
-        width: 2.4em;
-        font-size: 1.2em;
-        background-color: transparent;
-        color: inherit;
-      }
-      & .currency-dropdown-content-dollars-title {
-        font-family: $p-font;
-        font-weight: 200;
-        color: $s-blue;
-        font-size: 1em;
-      }
     }
-  }
 }

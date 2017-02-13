@@ -1,4 +1,4 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 export default () => (

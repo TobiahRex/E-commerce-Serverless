@@ -1,22 +1,26 @@
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes, PureComponent } from 'react';
 
-export default () => (
-  <span className="currency-main-button">
-    <div className="currency-main-button-dollar">
-      <FontAwesome
-        name="usd"
-        className="currency-main-button-dollar-icon"
-      />
-    </div>
-    <div className="currency-main-button-dollar-title">
-      <span>USD</span>
-    </div>
-    <div className="currency-main-button-dollar-chevron">
-      <FontAwesome
-        name="angle-down"
-        className="currency-main-button-dollar-chevron-icon"
-      />
-    </div>
-  </span>
-);
+/* TODO
+  1. This component receives a State property of the
+  "active_currency"  that will change display of the currency button details.
+
+*/
+
+class NavbarOptionsCurrencyButton extends PureComponent {
+  static propTypes = {
+    activeCurrency: PropTypes.string.isRequired,
+    renderCurrencyTitle: PropTypes.func.isRequired,
+  }
+
+  renderCurrencyTitle = () => this.props.renderCurrencyTitle();
+
+  render() {
+    return (
+      <span className="currency-main-button">
+        {this.renderCurrencyTitle()}
+      </span>
+    );
+  }
+}
+
+export default NavbarOptionsCurrencyButton;
