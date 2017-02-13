@@ -17,19 +17,19 @@ class NavbarUserActionsNoSignin extends PureComponent {
   render() {
     return (
       <ul
-        style={NavbarUserActionsNoSignin.styles.hidden}
-        className="navbar-actionSection-upper-actions-notSignedIn hidden"
+        // style={NavbarUserActionsNoSignin.styles.hidden}
+        className="navbar-actionSection-upper-actions-notSignedIn"
       >
         <li className="sign-in-title sweep-right">
           <Link
             to={'/login'}
-            className="sign-in-title-link"
+            className="navbar-userActions-signin-title-link"
           >Sign In</Link>
         </li>
         <li className="register-title sweep-right">
           <Link
             to={'/register'}
-            className="register-title-link"
+            className="navbar-userActions-register-title-link"
           >Register</Link>
         </li>
       </ul>
