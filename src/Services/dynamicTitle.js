@@ -1,4 +1,6 @@
-export default () => {
+import saveLocationAction from '../Redux/LocationRedux';
+
+export default (dispatch) => {
   let path = window.location.pathname;
   path = path.replace(/[\/]/g, '_')
   .split('_');
@@ -15,13 +17,17 @@ export default () => {
     } else if (path[i] === 'admin') {
       title += 'Admin Dashboard';
       break;
+    } else if (path[i] === 'faqs') {
+      title += 'FAQ\'s';
+      break;
     } else if (path[i] === '') {
       title += 'Home';
       break;
     } else {
-      title += `${path[0].toUpperCase().slice(1)} `;
+      title += `${path[i][0].toUpperCase()}`;
+      title += `${path[i].slice(1)} `;
     }
-    return title;
   }
-  console.log('newWord: ', title);
+  dispatch(saveLocationAction(title));
+  return 1;
 };
