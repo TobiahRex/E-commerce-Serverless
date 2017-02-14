@@ -7,7 +7,7 @@ import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 
 */
 import Homepage from '../Pages/Home/homePage';
-import AgeVerification from '../Pages/Legal/ageVerification';
+import AgeVerification from '../Pages/Home/homeComponents/homepage_ageVerification';
 import SingleProduct from '../Pages/Products/products_singleProduct';
 import AllProducts from '../Pages/Products/products_allProducts';
 import Cart from '../Pages/Cart/cart';
@@ -35,16 +35,11 @@ import TermsConditions from '../Pages/Legal/termsConditions';
 import Wholesale from '../Pages/Legal/wholesale';
 import Affiliates from '../Pages/Legal/affiliateProgram';
 
-
-// <Route path="/" component={Navbar}>
-//   <IndexRoute component={Homepage} />
 export default (
-  <Router path="/" component={AgeVerification}>
-    <IndexRouter component={Navbar}>
-      <Router path={'/home'} component={HomePage}>
-        {/* User Experience */}
-
-    <Router path={'/welcome'} component={AgeVerification} />
+  <Route path="/" component={AgeVerification}>
+    <IndexRoute component={Homepage} />
+    {/* User Experience */}
+    <Router path={'/home'} component={Homepage} />
     <Router path={'/product/:id'} component={SingleProduct} />
     <Router path={'/products'} component={AllProducts} />
     <Router path={'/cart'} component={Cart} />

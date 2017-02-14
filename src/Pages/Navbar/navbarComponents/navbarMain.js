@@ -46,12 +46,12 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <AgeVerification />
+        {/* <AgeVerification /> */}
         <header className="navbar-comp-container">
           <NavbarWeb />
           <NavbarMobile />
         </header>
-        {this.props.children}
+        {/* {this.props.children} */}
       </div>
     );
   }
