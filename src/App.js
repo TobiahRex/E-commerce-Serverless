@@ -1,13 +1,19 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import NavbarWeb from './navbar_web/navbar_web';
-import NavbarMobile from './navbar_mobile/navbar_mobile';
-import saveActivePageActions from '../../../Redux/ActivePageRedux';
-import genDynamicTitle from '../../../Services/dynamicTitle';
 
-class Navbar extends Component {
+import AgeVerification from './Pages/AgeVerification/ageVerification';
+import NavbarWeb from './Pages/Navbar/navbarComponents/navbar_web/navbar_web';
+import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_mobile';
+import saveActivePageActions from './Redux/ActivePageRedux';
+import genDynamicTitle from './Services/dynamicTitle';
+
+class App extends Component {
+  static defaultProps = {
+
+  }
 
   static propTypes = {
+    children: PropTypes.objectOf(PropTypes.any),
     saveActivePage: PropTypes.func.isRequired,
     activePage: PropTypes.objectOf(PropTypes.string),
   }
@@ -31,10 +37,12 @@ class Navbar extends Component {
   render() {
     return (
       <div>
+        <AgeVerification />
         <header className="navbar-comp-container">
           <NavbarWeb />
           <NavbarMobile />
         </header>
+        {this.props.children}
       </div>
     );
   }
@@ -48,5 +56,4 @@ const mapDispatchToProps = dispatch => ({
   dispatch(saveActivePageActions.saveActivePage(title, currentPath)),
 });
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
