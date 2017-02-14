@@ -19,10 +19,6 @@ export default class HomepageHowCarousel extends Component {
   handleNextClick = () =>
   this.setState({ showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1) });
 
-  renderNav = () => {
-
-  }
-
   render() {
     const slideDescs = {
       couple: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
@@ -90,6 +86,7 @@ export default class HomepageHowCarousel extends Component {
             name="left"
             size="3x"
             faName="chevron-left"
+            onPrevious={this.handlePreviousClick} onNext={this.handleNextClick} hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
           />
 
           <CarouselNav
@@ -97,6 +94,7 @@ export default class HomepageHowCarousel extends Component {
             name="right"
             size="3x"
             faName="chevron-right"
+            onPrevious={this.handlePreviousClick} onNext={this.handleNextClick} hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
           />
         </div>
       </div>

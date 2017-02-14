@@ -11,16 +11,17 @@ const propTypes = {
 function CarouselSlide({ className, name, description, alt }) {
   return (
     <div className={`${className}-${name}`}>
-      <div alt={`${alt}`} className={`${className}-${name}-image`} />
-      <div className={`${className}-${name}-description-container`}>
-        <p>
-          {description}
-        </p>
-        <Link
-          style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
-          to="/products"
-          className={`${className}-${name}-buy-btn`}
-        >Buy Now</Link>
+      <div alt={`${alt}`} className={`${className}-${name}-image`}>
+        <div className={`${className}-${name}-description-container`}>
+          <p>
+            {description}
+          </p>
+          <Link
+            style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
+            to="/products"
+            className={`${className}-${name}-buy-btn`}
+          >Buy Now</Link>
+        </div>
       </div>
     </div>
   );

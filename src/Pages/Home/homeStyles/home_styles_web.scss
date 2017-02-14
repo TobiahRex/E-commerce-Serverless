@@ -114,8 +114,8 @@
       margin: .45em;
     }
     & .homepage-how-carousel-container {
-      height: 53em;
-      width: 90em;
+      height: 57.2em;
+      width: 94.1em;
       background-color: pink;
       & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
         @extend .flex-center;
@@ -128,24 +128,25 @@
       }
       & .homepage-how-carousel-couple {
         & .homepage-how-carousel-couple-image {
+          @extend .flex-center;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-couple;
           background-position: cover;
           background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-couple-description-container {
-          @extend .flex-center;
-          height: 15.5em;
-          width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
-          background-color: rgba(1,1,1,.75);
-          & p {
-            text-align: center;
-            color: $p-white;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 2em;
+          & .homepage-how-carousel-couple-description-container {
+            @extend .flex-center;
+            height: 15.5em;
+            width: 72.5em;
+            // padding: 38em 6.4em 3em 6.4em;
+            background-color: rgba(1,1,1,.75);
+            & p {
+              text-align: center;
+              color: $p-white;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 2em;
+            }
           }
         }
       }
@@ -251,7 +252,6 @@
         }
         & .homepage-how-carousel-delivery-description-container {
           @extend .flex-center;
-          flex-direction: column;
           height: 16.5em;
           width: 72.5em;
           // padding: 38em 6.4em 3em 6.4em;
