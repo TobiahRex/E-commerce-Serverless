@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 
 const propTypes = {
-  ageVerified: PropTypes.func.isRequired,
+  avStyle: PropTypes.objectOf(PropTypes.string),
+  verifyAge: PropTypes.func.isRequired,
 };
 
-function AgeVerification({ ageVerified }) {
+function AgeVerification({ verifyAge, avStyle }) {
   return (
-    <div className="age-verification">
+    <div className="age-verification" style={avStyle}>
       <div className="age-verification-modal">
         <img alt="Age Verification Logo" className="age-verification-logo-img" />
         <div className="age-verification-modal-description">
@@ -23,8 +24,8 @@ function AgeVerification({ ageVerified }) {
         </div>
         <div className="age-verification-modal-buttons-container">
           <a
-            href="/home"
-            onClick={ageVerified}
+            href=""
+            onClick={verifyAge}
             className="age-verification-modal-buttons-confirm"
           >Confirm</a>
           <a

@@ -8,12 +8,15 @@ export const AgeVerificationTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  age_verified: false,
+  age_verified: Boolean(localStorage.getItem('ageVerified')) || false,
 };
 
-const verified = () => ({
-  age_verified: true,
-});
+const verified = () => {
+  localStorage.setItem('ageVerified', true);
+  return ({
+    age_verified: true,
+  });
+};
 
 export const ageVerificationReducer = createReducer(INITIAL_STATE, {
   [Types.AGE_VERIFIED]: verified,

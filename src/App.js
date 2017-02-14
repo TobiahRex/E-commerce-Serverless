@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 import AgeVerification from './Pages/AgeVerification/ageVerification';
@@ -11,16 +12,19 @@ import genDynamicTitle from './Services/dynamicTitle';
 
 class App extends Component {
   static styles = {
-    hidden: {
+    hide: {
       display: 'none',
     },
-    show: {},
+    show: {
+      display: 'flex',
+    },
   }
 
   static propTypes = {
     children: PropTypes.objectOf(PropTypes.any),
     saveActivePage: PropTypes.func.isRequired,
-    ageVerified: PropTypes.func.isRequired,
+    ageVerified: PropTypes.bool,
+    verifyAge: PropTypes.func.isRequired,
     activePage: PropTypes.objectOf(PropTypes.string),
   }
 
@@ -47,12 +51,22 @@ class App extends Component {
     this.props.saveActivePage(title, url);
   }
 
-  ageVerified = () => this.props.ageVerified();
+  verifyAge = (event) => {
+    event.preventDefault();
+    this.props.verifyAge();
+    browserHistory.push('/home');
+  };
 
   render() {
+    const { ageVerified } = this.state;
+    const { hide, show } = App.styles;
+    const avStyle = ageVerified ? hide : show;
     return (
       <div>
-        <AgeVerification ageVerified={this.ageVerified} />
+        <AgeVerification
+          avStyle={avStyle}
+          verifyAge={this.verifyAge}
+        />
         <header className="navbar-comp-container">
           <NavbarWeb />
           <NavbarMobile />
@@ -70,7 +84,7 @@ const mapStateToProps = ({ active_page, age_verification }) => ({
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>
   dispatch(saveActivePageActions.saveActivePage(title, currentPath)),
-  ageVerified: () => dispatch(ageVerificationActions.ageVerified()),
+  verifyAge: () => dispatch(ageVerificationActions.ageVerified()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
