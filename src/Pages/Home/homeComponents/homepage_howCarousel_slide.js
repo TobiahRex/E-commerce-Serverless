@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const propTypes = {
+  className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  
-}
+  description: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};
 
-export default function CarouselSlide({ name, description, alt }) {
+function CarouselSlide({ className, name, description, alt }) {
   return (
-
+    <div className={`${className}-${name}`}>
+      <div alt={`${alt}`} className={`${className}-${name}-image`} />
+      <div className={`${className}-${name}-description-container`}>
+        <p>
+          {description}
+        </p>
+      </div>
+    </div>
   );
 }
+
+CarouselSlide.propTypes = propTypes;
+export default CarouselSlide;
+
+/* NOTE
+1. className example = "homepage-how-carousel"
+2. name exmaple = "couple"
+ - Result = homepage-how-carousel-couple
+*/

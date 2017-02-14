@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
-import 
+import CarouselSlide from './homepage_howCarousel_slide';
 
 export default class HomepageHowCarousel extends Component {
   constructor(props) {
@@ -22,19 +22,12 @@ export default class HomepageHowCarousel extends Component {
   }
 
   render() {
+    const coupleSlideDesc = 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.';
     return (
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
-          <div className="homepage-how-carousel-couple">
-            <div alt="Buy NJ2JP Juices" className="homepage-how-carousel-couple-image" />
-            <div className="homepage-how-carousel-couple-description-container">
-              <p>
-                Start by choosing from our delicious Juice Flavors
-                with 4 different Nicotine Strengths and place your order.
-              </p>
-            </div>
-          </div>
+          <CarouselSlide className="homepage-how-carousel" name="couple" description={coupleSlideDesc} alt="Buy NJ2JP Juices" />
           <div className="homepage-how-carousel-distro">
             <img alt="Distribution Center" className="homepage-how-carousel-distro-image" />
             <div className="homepage-how-carousel-distro-description-container">
