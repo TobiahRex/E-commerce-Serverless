@@ -74,7 +74,7 @@ export default function HomePage() {
             <FontAwesome name="chevron-left" size="3x" />
           </div>
           <div className="homepage-how-carousel-right-arrow" >
-            <FontAwesome name="chevron-left" size="3x" />
+            <FontAwesome name="chevron-right" size="3x" />
           </div>
         </div>
       </div>

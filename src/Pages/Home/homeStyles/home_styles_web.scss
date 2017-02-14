@@ -117,7 +117,8 @@
       height: 53em;
       width: 90em;
       background-color: pink;
-      & .homepage-how-carousel-left-arrow {
+      & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
+        @extend .flex-center;
         height: 9em;
         width: 6em;
         background-color: rgba(1,1,1,.75);
