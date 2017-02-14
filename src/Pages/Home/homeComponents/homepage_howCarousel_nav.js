@@ -5,6 +5,7 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   onNext: PropTypes.func,
   onPrevious: PropTypes.func,
+  show: PropTypes.objectOf(PropTypes.string.isRequired),
 };
 
 function CarouselNav({
@@ -12,6 +13,7 @@ function CarouselNav({
   name,
   onNext,
   onPrevious,
+  show,
 }) {
   function handleClick(event) {
     event.preventDefault();
@@ -23,6 +25,7 @@ function CarouselNav({
 
   return (
     <a
+      style={show}
       href=""
       id={name}
       onClick={handleClick}

@@ -126,7 +126,7 @@
         display: flex;
         position: absolute;
         left: -94.1em;
-        transition: left 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
         & .homepage-how-carousel-couple {
           & .homepage-how-carousel-couple-image {
             @extend .flex-bottom;

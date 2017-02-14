@@ -25,13 +25,12 @@ export default class HomepageHowCarousel extends Component {
   handleNextClick = () => {
     const showIndex = Math.min(this.state.showIndex + 1, this.state.numSlides - 1);
     const hasPrevious = showIndex !== 0;
-    const hasNext = showIndex !== 6;
+    const hasNext = showIndex !== 5;
     this.setState({ showIndex, hasPrevious, hasNext });
   }
 
   render() {
     const { showIndex, hasPrevious, hasNext } = this.state;
-
     const stylesObj = {
       slides: {
         left: `${(-941 * showIndex) / 10}em`,
@@ -57,7 +56,6 @@ export default class HomepageHowCarousel extends Component {
 
       delivery: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
     };
-
     return (
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
@@ -105,7 +103,7 @@ export default class HomepageHowCarousel extends Component {
           </div>
           {/* NAVS */}
           <CarouselNav
-            style={stylesObj.left}
+            show={stylesObj.leftNav}
             className="homepage-how-carousel"
             name="left"
             onNext={null}
@@ -113,7 +111,7 @@ export default class HomepageHowCarousel extends Component {
           />
 
           <CarouselNav
-            style={stylesObj.right}
+            show={{ ...stylesObj.rightNav }}
             className="homepage-how-carousel"
             name="right"
             onNext={this.handleNextClick}
