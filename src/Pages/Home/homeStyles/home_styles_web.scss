@@ -1,4 +1,9 @@
 // $homepg-pano-margin-top: percentage($)
+.flex-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
 .homepage {
   @extend .flex-center;
@@ -72,11 +77,9 @@
           font-weight: bold;
         }
         & .homepage-fastest-delivery-description-message-body {
+          @extend .flex-left;
           height: 23.3em;
           width: 42.6em;
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
           flex-direction: column;
           & p {
             font-size: 1.6em;
@@ -128,7 +131,8 @@
       }
       & .homepage-how-carousel-couple {
         & .homepage-how-carousel-couple-image {
-          @extend .flex-center;
+          @extend .flex-bottom;
+          @extend .flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-couple;
@@ -138,9 +142,12 @@
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
-            // padding: 38em 6.4em 3em 6.4em;
             background-color: rgba(1,1,1,.75);
+            margin-bottom: 3em;
+            margin-bottom: 3em;
             & p {
+              max-width: 680px;
+              max-width: 680px;
               text-align: center;
               color: $p-white;
               font-size: 20px;
@@ -152,6 +159,7 @@
       }
       & .homepage-how-carousel-distro {
         & .homepage-how-carousel-distro-image {
+          @extend .flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-distro;
@@ -164,7 +172,9 @@
           width: 72.5em;
           // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
+          margin-bottom: 3em;
           & p {
+            max-width: 680px;
             text-align: center;
             color: $p-white;
             font-size: 20px;
@@ -175,6 +185,7 @@
       }
       & .homepage-how-carousel-warehouse {
         & .homepage-how-carousel-warehouse-image {
+          @extend .flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-warehouse;
@@ -187,7 +198,9 @@
           width: 72.5em;
           // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
+          margin-bottom: 3em;
           & p {
+            max-width: 680px;
             text-align: center;
             color: $p-white;
             font-size: 20px;
@@ -198,6 +211,7 @@
       }
       & .homepage-how-carousel-flight {
         & .homepage-how-carousel-flight-image {
+          @extend .flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-flight;
@@ -210,7 +224,9 @@
           width: 72.5em;
           // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
+          margin-bottom: 3em;
           & p {
+            max-width: 680px;
             text-align: center;
             color: $p-white;
             font-size: 20px;
@@ -221,6 +237,7 @@
       }
       & .homepage-how-carousel-truck {
         & .homepage-how-carousel-truck-image {
+          @extend .flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-truck;
@@ -233,7 +250,9 @@
           width: 72.5em;
           // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
+          margin-bottom: 3em;
           & p {
+            max-width: 680px;
             text-align: center;
             color: $p-white;
             font-size: 20px;
@@ -244,6 +263,7 @@
       }
       & .homepage-how-carousel-delivery {
         & .homepage-how-carousel-delivery-image {
+          @extend .flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-delivery;
@@ -252,11 +272,13 @@
         }
         & .homepage-how-carousel-delivery-description-container {
           @extend .flex-center;
+          flex-direction: column;
           height: 16.5em;
           width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
+          margin-bottom: 3em;
           & p {
+            max-width: 680px;
             text-align: center;
             color: $p-white;
             font-size: 20px;
@@ -274,7 +296,7 @@
             letter-spacing: .02em;
             background-color: $p-red;
             z-index: 1;
-            // margin-left: 225px;
+            margin-top: 1em;
             text-decoration: none;
             @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
           }
