@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 const propTypes = {
   className: PropTypes.string.isRequired,
@@ -15,6 +16,11 @@ function CarouselSlide({ className, name, description, alt }) {
         <p>
           {description}
         </p>
+        <Link
+          style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
+          to="/products"
+          className={`${className}-${name}-buy-btn`}
+        >Buy Now</Link>
       </div>
     </div>
   );

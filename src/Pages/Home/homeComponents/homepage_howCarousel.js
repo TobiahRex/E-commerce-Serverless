@@ -21,37 +21,72 @@ export default class HomepageHowCarousel extends Component {
 
   }
 
+  renderNav = () => {
+
+  }
+
   render() {
-    const coupleSlideDesc = 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.';
-    const distroSlideDesc = 'Moments later, we receive your order at our Distribution Center in California.';
-    const warehouseSlideDesc = 'Our distribution warehouse then quickly prepares your Nictoine Juice parcel per your order invoice.';
-    const flightSlideDesc = 'Shortly thereafter, your parcel is put on the soonest direct flight from California to Japan.';
-    const truckSlideDesc = 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.';
-    const deliverySlideDesc = 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.';
+    const slideDescs = {
+      couple: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
+
+      distro: 'Moments later, we receive your order at our Distribution Center in California.',
+
+      warehouse: 'Our distribution warehouse then quickly prepares your Nictoine Juice parcel per your order invoice.',
+
+      flights: 'Shortly thereafter, your parcel is put on the soonest direct flight from California to Japan.',
+
+      truck: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
+
+      delivery: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
+    };
 
     return (
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
-          <CarouselSlide className="homepage-how-carousel" name="couple" description={coupleSlideDesc} alt="Buy NJ2JP Juices" />
-          <CarouselSlide className="homepage-how-carousel" name="distro" description={distroSlideDesc} alt="Distribution Center" />
-          <CarouselSlide className="homepage-how-carousel" name="warehouse" description={warehouseSlideDesc} alt="Warehouse" />
-          <CarouselSlide className="homepage-how-carousel" name="flight" description={flightSlideDesc} alt="Shipping Flight" />
-          <CarouselSlide className="homepage-how-carousel" name="truck" description={truckSlideDesc} alt="Delivery Truck" />
-          <CarouselSlide className="homepage-how-carousel" name="delivery" description={deliverySlideDesc} alt="Delivery Man" />
 
-          <div className="homepage-how-carousel-delivery">
-            <img alt="Shipping Plane" className="homepage-how-carousel-delivery-image" />
-            <div className="homepage-how-carousel-delivery-description-container">
-              <p>
-                Finally, you receive your Nicotine Juice from NicJuice2Japan faster than ever before.  Don’t believe us?
-              </p>
-              <br />
-              <Link className="homepage-how-carousel-delivery-buy-btn" to="/products">
-                Buy Now
-              </Link>
-            </div>
-          </div>
+          <CarouselSlide
+            className="homepage-how-carousel"
+            name="couple"
+            description={slideDescs.couple}
+            alt="Buy NJ2JP Juices"
+          />
+
+          <CarouselSlide
+            className="homepage-how-carousel"
+            name="distro"
+            description={slideDescs.distro}
+            alt="Distribution Center"
+          />
+
+          <CarouselSlide
+            className="homepage-how-carousel"
+            name="warehouse"
+            description={slideDescs.warehouse}
+            alt="Warehouse"
+          />
+
+          <CarouselSlide
+            className="homepage-how-carousel"
+            name="flight"
+            description={slideDescs.flight}
+            alt="Shipping Flight"
+          />
+
+          <CarouselSlide
+            className="homepage-how-carousel"
+            name="truck"
+            description={slideDescs.truck}
+            alt="Delivery Truck"
+          />
+
+          <CarouselSlide
+            className="homepage-how-carousel"
+            name="delivery"
+            description={slideDescs.delivery}
+            alt="Delivery Man"
+          />
+          
           <div className="homepage-how-carousel-left-arrow" >
             <FontAwesome name="chevron-left" size="3x" />
           </div>
