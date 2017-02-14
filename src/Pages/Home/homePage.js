@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 
 import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
@@ -13,7 +14,8 @@ export default function HomePage() {
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
           <div className="homepage-how-carousel-couple">
-            <img alt="Buy NJ2JP Juices" className="homepage-how-carousel-couple-image" />
+            <div alt="Buy NJ2JP Juices" className="homepage-how-carousel-couple-image">
+            </div>
             <div className="homepage-how-carousel-couple-description-container">
               <p>
                 Start by choosing from our delicious Juice Flavors
@@ -62,10 +64,17 @@ export default function HomePage() {
               <p>
                 Finally, you receive your Nicotine Juice from NicJuice2Japan faster than ever before.  Don’t believe us?
               </p>
+              <br />
               <Link className="homepage-how-carousel-delivery-buy-btn" to="/products">
                 Buy Now
               </Link>
             </div>
+          </div>
+          <div className="homepage-how-carousel-left-arrow" >
+            <FontAwesome name="chevron-left" size="3x" />
+          </div>
+          <div className="homepage-how-carousel-right-arrow" >
+            <FontAwesome name="chevron-left" size="3x" />
           </div>
         </div>
       </div>
