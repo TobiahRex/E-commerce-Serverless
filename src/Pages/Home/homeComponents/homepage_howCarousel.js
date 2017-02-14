@@ -38,7 +38,37 @@ export default class HomepageHowCarousel extends Component {
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
-          <<div className="homepage-how-carousel-container-slides">
+          <div className="homepage-how-carousel-container-slides">
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="truck"
+              description={slideDescs.truck}
+              alt="Delivery Truck"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="delivery"
+              description={slideDescs.delivery}
+              alt="Delivery Man"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="flight"
+              description={slideDescs.flight}
+              alt="Shipping Flight"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="warehouse"
+              description={slideDescs.warehouse}
+              alt="Warehouse"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="distro"
+              description={slideDescs.distro}
+              alt="Distribution Center"
+            />
             <CarouselSlide
               className="homepage-how-carousel"
               name="couple"
@@ -46,40 +76,6 @@ export default class HomepageHowCarousel extends Component {
               alt="Buy NJ2JP Juices"
             />
 
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="distro"
-              description={slideDescs.distro}
-              alt="Distribution Center"
-            />
-
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="warehouse"
-              description={slideDescs.warehouse}
-              alt="Warehouse"
-            />
-
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="flight"
-              description={slideDescs.flight}
-              alt="Shipping Flight"
-            />
-
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="truck"
-              description={slideDescs.truck}
-              alt="Delivery Truck"
-            />
-
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="delivery"
-              description={slideDescs.delivery}
-              alt="Delivery Man"
-            />
           </div>
           {/* NAVS */}
           <CarouselNav

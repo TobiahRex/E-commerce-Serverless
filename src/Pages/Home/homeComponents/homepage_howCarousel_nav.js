@@ -10,9 +10,7 @@ const propTypes = {
 
 function CarouselNav({ className, name, size, faName }) {
   return (
-    <div className={`${className}-${name}-arrow`}>
-      <FontAwesome name={faName} size={size} />
-    </div>
+    <div className={`${className}-${name}-arrow`} />
   );
 }
 
