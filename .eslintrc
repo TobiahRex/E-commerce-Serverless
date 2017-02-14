@@ -17,14 +17,17 @@
     "mocha": true
   },
   "rules": {
-    "max-len": [1, 100],
+    # "max-len": ["error", 100, { "ignoreComments": true, "ignoreTrailingComments": true, "ignoreStrings": true, "ignoreUrls": true, "ignoreTemplateLiterals": true}],
+    "max-len": 0,
     "react/jsx-boolean-value": 1,
     "no-param-reassign": [2, { "props": false }],
     "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
     "react/jsx-filename-extension": 0,
     "import/no-extraneous-dependencies": [2, { "devDependencies": true } ],
+    "no-irregular-whitespace": [1, { "skipStrings": true, "skipComments": true, "skipTemplates": true }],
     "no-useless-escape": 0,
     "camelcase": 1,
+    "linebreak-style": 0,
     "no-underscore-dangle":["error",{"allow": ["_id"]}],
     "no-use-before-define": [2, { "functions": false, "classes": true }]
   }

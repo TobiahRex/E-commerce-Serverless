@@ -8,7 +8,8 @@ import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 */
 import Homepage from '../Pages/Home/homePage';
 import AgeVerification from '../Pages/Legal/ageVerification';
-import SingleProduct from '../Pages/Products/singleProduct';
+import SingleProduct from '../Pages/Products/products_singleProduct';
+import AllProducts from '../Pages/Products/products_allProducts';
 import Cart from '../Pages/Cart/cart';
 import EmptyCart from '../Pages/Cart/EmptyCart/emptyCart';
 import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';
@@ -41,6 +42,7 @@ export default (
     {/* User Experience */}
     <Router path={'/welcome'} component={AgeVerification} />
     <Router path={'/product/:id'} component={SingleProduct} />
+    <Router path={'/products'} component={AllProducts} />
     <Router path={'/cart'} component={Cart} />
     <Router path={'/empty'} component={EmptyCart} />
     <Router path={'/checkout'} component={ExpressCheckout} />
