@@ -1,7 +1,10 @@
-import React from 'react';
-import { browserHistory } from 'react-router';
+import React, { PropTypes } from 'react';
 
-export default function AgeVerification() {
+const propTypes = {
+  ageVerified: PropTypes.func.isRequired,
+};
+
+function AgeVerification({ ageVerified }) {
   return (
     <div className="age-verification">
       <div className="age-verification-modal">
@@ -20,8 +23,8 @@ export default function AgeVerification() {
         </div>
         <div className="age-verification-modal-buttons-container">
           <a
-            href=""
-            onClick={() => browserHistory.push('/home')}
+            href="/home"
+            onClick={ageVerified}
             className="age-verification-modal-buttons-confirm"
           >Confirm</a>
           <a
@@ -33,3 +36,6 @@ export default function AgeVerification() {
     </div>
   );
 }
+
+AgeVerification.propTypes = propTypes;
+export default AgeVerification;
