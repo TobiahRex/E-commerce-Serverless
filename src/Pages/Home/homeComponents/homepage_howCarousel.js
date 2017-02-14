@@ -9,16 +9,15 @@ export default class HomepageHowCarousel extends Component {
 
     this.state = {
       numSlides: 6,
+      showIndex: 0,
     };
   }
 
-  handlePreviousClick = () => {
+  handlePreviousClick = () =>
+  this.setState({ showIndex: Math.max(this.state.showIndex - 1, 0) });
 
-  }
-
-  handleNextClick = () => {
-
-  }
+  handleNextClick = () =>
+  this.setState({ showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1) });
 
   renderNav = () => {
 
