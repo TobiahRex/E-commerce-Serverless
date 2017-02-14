@@ -2,6 +2,7 @@
 @import "./mixins";
 @import "./typography";
 
+@import "../Pages/AgeVerification/ageVerification";
 @import "../Pages/Navbar/navbarStyles/navbar_styles_mobile";
 @import "../Pages/Navbar/navbarStyles/navbar_styles_web";
 
@@ -11,78 +12,4 @@ body {
   font-size: 10px;
   background-color: #2F2F2F;
   margin: 0;
-}
-
-.age-verification {
-  position: fixed;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(1,1,1,.9);
-  & .age-verification-modal {
-    @extend .flex-center;
-    flex-direction: column;
-    height: 33.5em;
-    width: 68.5em;
-    padding: 1.5em;
-    margin: 10% auto;
-    background-color: $p-white;
-    & .age-verification-logo-img {
-      content: $logo-one-line;
-      width: 27em;
-      height: 4em;
-      margin: 4em auto 5em auto;
-    }
-    & .age-verification-modal-description {
-      @extend .flex-center;
-      flex-direction: column;
-      height: 14.5;
-      width: 53em;
-      margin: 0 auto 6em auto;
-      & p {
-        text-align: center;
-        font-size: 1.6em;
-        line-height: 1.27em;
-      }
-    }
-    & .age-verification-modal-buttons-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      & a {
-        @extend .flex-center;
-        text-decoration: none;
-      }
-      & .age-verification-modal-buttons-confirm {
-        width: 7.33em;
-        height: 2.66em;
-        color: $p-white;
-        font-size: 1.5em;
-        font-family: $p-font;
-        font-weight: bold;
-        letter-spacing: .02em;
-        background-color: $p-red;
-        z-index: 1;
-        margin-right: 225px;
-        @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
-      }
-      & .age-verification-modal-buttons-deny {
-        @extend .flex-center;
-        width: 7.33em;
-        height: 2.66em;
-        color: $p-white;
-        font-size: 1.5em;
-        font-family: $p-font;
-        font-weight: bold;
-        letter-spacing: .02em;
-        background-color: $p-red;
-        z-index: 1;
-        margin-left: 225px;
-        text-decoration: none;
-        @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
-      }
-    }
-  }
 }
