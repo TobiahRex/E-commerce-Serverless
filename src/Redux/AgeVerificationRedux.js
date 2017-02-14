@@ -4,7 +4,7 @@ const { Types, Creators } = createActions({
   ageVerified: null,
 });
 
-export const AgeVerifyTypes = Types;
+export const AgeVerificationTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
@@ -15,6 +15,6 @@ const verified = () => ({
   age_verified: true,
 });
 
-export const AgevVerifyReducer = createReducer(INITIAL_STATE, {
+export const ageVerificationReducer = createReducer(INITIAL_STATE, {
   [Types.AGE_VERIFIED]: verified,
 });

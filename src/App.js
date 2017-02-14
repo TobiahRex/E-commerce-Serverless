@@ -48,12 +48,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ active_page }) => ({
+const mapStateToProps = ({ active_page, age_verification }) => ({
   activePage: active_page,
+  ageVerified: age_verification.age_verified,
 });
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>
   dispatch(saveActivePageActions.saveActivePage(title, currentPath)),
+  ageVerified: () => dispatch(ageVerificationActions.)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
