@@ -36,10 +36,14 @@ import Wholesale from '../Pages/Legal/wholesale';
 import Affiliates from '../Pages/Legal/affiliateProgram';
 
 
+// <Route path="/" component={Navbar}>
+//   <IndexRoute component={Homepage} />
 export default (
-  <Route path="/" component={Navbar}>
-    <IndexRoute component={Homepage} />
-    {/* User Experience */}
+  <Router path="/" component={AgeVerification}>
+    <IndexRouter component={Navbar}>
+      <Router path={'/home'} component={HomePage}>
+        {/* User Experience */}
+
     <Router path={'/welcome'} component={AgeVerification} />
     <Router path={'/product/:id'} component={SingleProduct} />
     <Router path={'/products'} component={AllProducts} />

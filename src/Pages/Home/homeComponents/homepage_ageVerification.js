@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 export default function AgeVerification() {
   return (
@@ -14,12 +15,19 @@ export default function AgeVerification() {
           <br />
           <p>
             By confirming, you are verifying that you are at least
-            20 years of age per Japanese Law.
+            20 years of age as per Japanese Law.
           </p>
         </div>
         <div className="age-verification-modal-buttons-container">
-          <button className="age-verification-modal-buttons-confirm">Confirm</button>
-          <button className="age-verification-modal-buttons-deny">Deny</button>
+          <a
+            href=""
+            onClick={() => browserHistory.push('/home')}
+            className="age-verification-modal-buttons-confirm"
+          >Confirm</a>
+          <a
+            href="http://www.google.com"
+            className="age-verification-modal-buttons-deny"
+          >Deny</a>
         </div>
       </div>
     </div>
