@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 
 import CarouselSlide from './homepage_howCarousel_slide';
+import CarouselNav from './homepage_howCarousel_nav';
 
 export default class HomepageHowCarousel extends Component {
   constructor(props) {
@@ -86,13 +85,20 @@ export default class HomepageHowCarousel extends Component {
             description={slideDescs.delivery}
             alt="Delivery Man"
           />
-          
-          <div className="homepage-how-carousel-left-arrow" >
-            <FontAwesome name="chevron-left" size="3x" />
-          </div>
-          <div className="homepage-how-carousel-right-arrow" >
-            <FontAwesome name="chevron-right" size="3x" />
-          </div>
+          {/* NAVS */}
+          <CarouselNav
+            className="homepage-how-carousel"
+            name="left"
+            size="3x"
+            faName="chevron-left"
+          />
+
+          <CarouselNav
+            className="homepage-how-carousel"
+            name="right"
+            size="3x"
+            faName="chevron-right"
+          />
         </div>
       </div>
     );

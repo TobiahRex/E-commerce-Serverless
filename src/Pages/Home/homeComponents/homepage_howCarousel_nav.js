@@ -16,8 +16,8 @@ function CarouselNav({ className, name, size, faName }) {
   );
 }
 
-CarouselSlide.propTypes = propTypes;
-export default CarouselSlide;
+CarouselNav.propTypes = propTypes;
+export default CarouselNav;
 
 /* NOTE
 1. className example = "homepage-how-carousel"
