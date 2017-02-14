@@ -10,16 +10,26 @@ export default class HomepageHowCarousel extends Component {
     this.state = {
       numSlides: 6,
       showIndex: 0,
+      hasPrevious: false,
+      hasNext: true,
     };
   }
 
-  handlePreviousClick = () =>
-  this.setState({ showIndex: Math.max(this.state.showIndex - 1, 0) });
+  handlePreviousClick = () => {
+    const showIndex = Math.max(this.state.showIndex - 1, 0);
+    const hasPrevious = showIndex === 0 ? false : true;
+    const hasNext = showIndex === 6 ? false : true;
+    this.setState({ showIndex,  });
+  }
 
   handleNextClick = () =>
   this.setState({ showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1) });
 
   render() {
+    const { showIndex } = this.state;
+    const styleObj = {
+      left: `${(-941 * showIndex) / 10}em`,
+    };
     const slideDescs = {
       couple: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
 
@@ -38,7 +48,34 @@ export default class HomepageHowCarousel extends Component {
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
-          <div className="homepage-how-carousel-container-slides">
+          <div
+            style={styleObj}
+            className="homepage-how-carousel-container-slides"
+          >
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="couple"
+              description={slideDescs.couple}
+              alt="Buy NJ2JP Juices"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="distro"
+              description={slideDescs.distro}
+              alt="Distribution Center"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="warehouse"
+              description={slideDescs.warehouse}
+              alt="Warehouse"
+            />
+            <CarouselSlide
+              className="homepage-how-carousel"
+              name="flight"
+              description={slideDescs.flight}
+              alt="Shipping Flight"
+            />
             <CarouselSlide
               className="homepage-how-carousel"
               name="truck"
@@ -51,47 +88,21 @@ export default class HomepageHowCarousel extends Component {
               description={slideDescs.delivery}
               alt="Delivery Man"
             />
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="flight"
-              description={slideDescs.flight}
-              alt="Shipping Flight"
-            />
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="warehouse"
-              description={slideDescs.warehouse}
-              alt="Warehouse"
-            />
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="distro"
-              description={slideDescs.distro}
-              alt="Distribution Center"
-            />
-            <CarouselSlide
-              className="homepage-how-carousel"
-              name="couple"
-              description={slideDescs.couple}
-              alt="Buy NJ2JP Juices"
-            />
-
           </div>
           {/* NAVS */}
           <CarouselNav
             className="homepage-how-carousel"
             name="left"
-            size="3x"
-            faName="chevron-left"
-            onPrevious={this.handlePreviousClick} onNext={this.handleNextClick} hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
+            onNext={null}
+            onPrevious={this.handlePreviousClick} hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
           />
 
           <CarouselNav
             className="homepage-how-carousel"
             name="right"
-            size="3x"
-            faName="chevron-right"
-            onPrevious={this.handlePreviousClick} onNext={this.handleNextClick} hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
+            onNext={this.handleNextClick}
+            onPrevious={null}
+            hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
           />
         </div>
       </div>

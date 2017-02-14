@@ -126,6 +126,7 @@
         display: flex;
         position: absolute;
         left: -94.1em;
+        transition: left 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         & .homepage-how-carousel-couple {
           & .homepage-how-carousel-couple-image {
             @extend .flex-bottom;
@@ -306,6 +307,13 @@
         //   color: $p-white;
         // }
         color: $p-white;
+        &:hover,
+        &:active,
+        &:focus {
+          &:after {
+            opacity: 1;
+          }
+        }
         &:after, {
           @extend .flex-center;
           content: $fa-right-chevron-white;
@@ -315,7 +323,9 @@
           height: 9em;
           width: 6em;
           background-color: rgba(1,1,1,.75);
-          
+          opacity: 0.25;
+          transition: opacity .3s linear;
+          cursor: pointer;
         }
       }
       & .homepage-how-carousel-left-arrow {

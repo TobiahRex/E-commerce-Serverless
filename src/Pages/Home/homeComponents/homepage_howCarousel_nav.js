@@ -1,16 +1,33 @@
 import React, { PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
-  faName: PropTypes.string.isRequired,
+  onNext: PropTypes.func,
+  onPrevious: PropTypes.func,
 };
 
-function CarouselNav({ className, name, size, faName }) {
+function CarouselNav({
+  className,
+  name,
+  onNext,
+  onPrevious,
+}) {
+  function handleClick(event) {
+    event.preventDefault();
+    const button = event.target.getAttribute('id');
+
+    if (button === 'left') onPrevious();
+    if (button === 'right') onNext();
+  }
+
   return (
-    <div className={`${className}-${name}-arrow`} />
+    <a
+      href=""
+      id={name}
+      onClick={handleClick}
+      className={`${className}-${name}-arrow`}
+    >{''}</a>
   );
 }
 
