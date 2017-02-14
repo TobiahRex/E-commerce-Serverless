@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
+import 
+
 export default class HomepageHowCarousel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      numSlides:
-    }
+      numSlides: 6,
+    };
+  }
+
+  handlePreviousClick = () => {
+
+  }
+
+  handleNextClick = () => {
+
   }
 
   render() {
@@ -17,8 +27,7 @@ export default class HomepageHowCarousel extends Component {
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
           <div className="homepage-how-carousel-couple">
-            <div alt="Buy NJ2JP Juices" className="homepage-how-carousel-couple-image">
-            </div>
+            <div alt="Buy NJ2JP Juices" className="homepage-how-carousel-couple-image" />
             <div className="homepage-how-carousel-couple-description-container">
               <p>
                 Start by choosing from our delicious Juice Flavors
@@ -80,7 +89,7 @@ export default class HomepageHowCarousel extends Component {
             <FontAwesome name="chevron-right" size="3x" />
           </div>
         </div>
-      </div>      
+      </div>
     );
   }
 }
