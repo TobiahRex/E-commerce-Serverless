@@ -5,6 +5,8 @@ import NavbarMobile from './navbar_mobile/navbar_mobile';
 import saveActivePageActions from '../../../Redux/ActivePageRedux';
 import genDynamicTitle from '../../../Services/dynamicTitle';
 
+import AgeVerification from '../../Home/homeComponents/homepage_ageVerification';
+
 class Navbar extends Component {
   static defaultProps = {
 
@@ -44,6 +46,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
+        <AgeVerification />
         <header className="navbar-comp-container">
           <NavbarWeb />
           <NavbarMobile />

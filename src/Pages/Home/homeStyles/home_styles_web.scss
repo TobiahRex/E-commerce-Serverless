@@ -7,19 +7,23 @@
   height: 100%;
   // padding: 1em;
   background-color: $p-white;
-  & .age-verification {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(1,1,1,.9);
-    & .age-verification-modal {
-      @extend .flex-center;
-      flex-direction: column;
-      margin: 10% auto;
-
-    }
-  }
+  // & .age-verification {
+  //   position: fixed;
+  //   z-index: 10;
+  //   display: flex;
+  //   justify-content: center;
+  //   height: 100%;
+  //   width: 100%;
+  //   background-color: rgba(1,1,1,.9);
+  //   & .age-verification-modal {
+  //     @extend .flex-center;
+  //     flex-direction: column;
+  //     height: 33.5em;
+  //     width: 68.5em;
+  //     padding: 1.5em;
+  //     margin: 10% auto;
+  //   }
+  // }
   & .homepage-header-img-src {
     @extend .flex-center;
     width: 100%;

@@ -12,3 +12,29 @@ body {
   background-color: #2F2F2F;
   margin: 0;
 }
+
+.age-verification {
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(1,1,1,.9);
+  & .age-verification-modal {
+    @extend .flex-center;
+    flex-direction: column;
+    height: 33.5em;
+    width: 68.5em;
+    padding: 1.5em;
+    margin: 10% auto;
+    background-color: $p-white;
+    @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+    & .age-verification-logo-img {
+      content: $logo-one-line;
+      width: 27em;
+      height: 4em;
+      margin: 3em auto;
+    }
+  }
+}

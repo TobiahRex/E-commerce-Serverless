@@ -7,7 +7,7 @@ import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
 export default function HomePage() {
   return (
     <div className="homepage">
-      <HomepageAgeVerification />
+      {/* <HomepageAgeVerification /> */}
       <HomepageHeader />
       <HomepageFastestDelivery />
     </div>
