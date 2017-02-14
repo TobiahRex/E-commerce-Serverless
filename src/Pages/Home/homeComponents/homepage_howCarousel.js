@@ -23,46 +23,23 @@ export default class HomepageHowCarousel extends Component {
 
   render() {
     const coupleSlideDesc = 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.';
+    const distroSlideDesc = 'Moments later, we receive your order at our Distribution Center in California.';
+    const warehouseSlideDesc = 'Our distribution warehouse then quickly prepares your Nictoine Juice parcel per your order invoice.';
+    const flightSlideDesc = 'Shortly thereafter, your parcel is put on the soonest direct flight from California to Japan.';
+    const truckSlideDesc = 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.';
+    const deliverySlideDesc = 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.';
+
     return (
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
           <CarouselSlide className="homepage-how-carousel" name="couple" description={coupleSlideDesc} alt="Buy NJ2JP Juices" />
-          <div className="homepage-how-carousel-distro">
-            <img alt="Distribution Center" className="homepage-how-carousel-distro-image" />
-            <div className="homepage-how-carousel-distro-description-container">
-              <p>
-                Moments later, we receive your order at our
-                Distribution Center in California.
-              </p>
-            </div>
-          </div>
-          <div className="homepage-how-carousel-warehouse">
-            <img alt="Warehouse" className="homepage-how-carousel-warehouse-image" />
-            <div className="homepage-how-carousel-warehouse-description-container">
-              <p>
-                Our distribution warehouse then quickly prepares your
-                Nictoine Juice parcel per your order invoice.
-              </p>
-            </div>
-          </div>
-          <div className="homepage-how-carousel-flight">
-            <img alt="Shipping Plane" className="homepage-how-carousel-flight-image" />
-            <div className="homepage-how-carousel-flight-description-container">
-              <p>
-                Shortly thereafter, your parcel is put on the soonest
-                direct flight from California to Japan.
-              </p>
-            </div>
-          </div>
-          <div className="homepage-how-carousel-truck">
-            <img alt="Shipping Plane" className="homepage-how-carousel-truck-image" />
-            <div className="homepage-how-carousel-truck-description-container">
-              <p>
-                Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.
-              </p>
-            </div>
-          </div>
+          <CarouselSlide className="homepage-how-carousel" name="distro" description={distroSlideDesc} alt="Distribution Center" />
+          <CarouselSlide className="homepage-how-carousel" name="warehouse" description={warehouseSlideDesc} alt="Warehouse" />
+          <CarouselSlide className="homepage-how-carousel" name="flight" description={flightSlideDesc} alt="Shipping Flight" />
+          <CarouselSlide className="homepage-how-carousel" name="truck" description={truckSlideDesc} alt="Delivery Truck" />
+          <CarouselSlide className="homepage-how-carousel" name="delivery" description={deliverySlideDesc} alt="Delivery Man" />
+
           <div className="homepage-how-carousel-delivery">
             <img alt="Shipping Plane" className="homepage-how-carousel-delivery-image" />
             <div className="homepage-how-carousel-delivery-description-container">
