@@ -17,19 +17,33 @@ export default class HomepageHowCarousel extends Component {
 
   handlePreviousClick = () => {
     const showIndex = Math.max(this.state.showIndex - 1, 0);
-    const hasPrevious = showIndex === 0 ? false : true;
-    const hasNext = showIndex === 6 ? false : true;
-    this.setState({ showIndex,  });
+    const hasPrevious = showIndex !== 0;
+    const hasNext = showIndex !== 6;
+    this.setState({ showIndex, hasPrevious, hasNext });
   }
 
-  handleNextClick = () =>
-  this.setState({ showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1) });
+  handleNextClick = () => {
+    const showIndex = Math.min(this.state.showIndex + 1, this.state.numSlides - 1);
+    const hasPrevious = showIndex !== 0;
+    const hasNext = showIndex !== 6;
+    this.setState({ showIndex, hasPrevious, hasNext });
+  }
 
   render() {
-    const { showIndex } = this.state;
-    const styleObj = {
-      left: `${(-941 * showIndex) / 10}em`,
+    const { showIndex, hasPrevious, hasNext } = this.state;
+
+    const stylesObj = {
+      slides: {
+        left: `${(-941 * showIndex) / 10}em`,
+      },
+      leftNav: {
+        display: hasPrevious ? 'inline' : 'none',
+      },
+      rightNav: {
+        display: hasNext ? 'inline' : 'none',
+      },
     };
+
     const slideDescs = {
       couple: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
 
@@ -49,7 +63,7 @@ export default class HomepageHowCarousel extends Component {
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
           <div
-            style={styleObj}
+            style={stylesObj.slides}
             className="homepage-how-carousel-container-slides"
           >
             <CarouselSlide
@@ -91,6 +105,7 @@ export default class HomepageHowCarousel extends Component {
           </div>
           {/* NAVS */}
           <CarouselNav
+            style={stylesObj.left}
             className="homepage-how-carousel"
             name="left"
             onNext={null}
@@ -98,6 +113,7 @@ export default class HomepageHowCarousel extends Component {
           />
 
           <CarouselNav
+            style={stylesObj.right}
             className="homepage-how-carousel"
             name="right"
             onNext={this.handleNextClick}
