@@ -215,31 +215,31 @@
     }
   }
   & .homepage-reviews-carousel-dots {
-        height: 5em;
-        width: 100%;
-        margin-top: 2.5em;
-        @extend .flex-center;
-        & .homepage-reviews-carousel-dots-list {
-          @extend .flex-center;
-          list-style-type: none;
-          & li {
-            & .homepage-reviews-carousel-dots-list-each {
-              height: 2.8em;
-              width: 2.8em;
-              border-radius: 50%;
-              border: 1px solid $s-grey;
-              background-color: $s-grey;
-              margin-left: 1.7em;
-              cursor: pointer;
-              transition: background-color .3s ease-in-out;
-              &:hover,
-              &:active,
-              &:focus {
-                background-color: $p-red;
-                outline: none;
-              }
-            }
+    height: 5em;
+    width: 100%;
+    margin-top: 2.5em;
+    @extend .flex-center;
+    & .homepage-reviews-carousel-dots-list {
+      @extend .flex-center;
+      list-style-type: none;
+      & li {
+        & .homepage-reviews-carousel-dots-list-each {
+          height: 2.8em;
+          width: 2.8em;
+          border-radius: 50%;
+          border: 1px solid $s-grey;
+          background-color: $s-grey;
+          margin-left: 1.7em;
+          cursor: pointer;
+          transition: background-color .3s ease-in-out;
+          &:hover,
+          &:active,
+          &:focus {
+            background-color: $p-red;
+            outline: none;
           }
         }
       }
+    }
+  }
 }
