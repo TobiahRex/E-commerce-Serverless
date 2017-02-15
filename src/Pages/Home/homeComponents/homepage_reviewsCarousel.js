@@ -8,19 +8,16 @@ class HomepageReviewsCarousel extends Component {
     super(props);
 
     this.state = {
-      firstRender: false,
       showIndex: 0,
       leftAdjust: {
-        left: '',
+        left: '0em',
       },
     };
   }
 
   componentDidMount() {
     setTimeout(() => {
-      console.log('ONLY ONCE');
       this.setState({
-        firstRender: true,
         showIndex: 1,
         leftAdjust: {
           left: `${-1000 / 10}em`,
@@ -29,50 +26,39 @@ class HomepageReviewsCarousel extends Component {
     }, 3000);
   }
 
-  shouldComponentUpdate(nextProps, { showIndex, firstRender }) {
+  shouldComponentUpdate(nextProps, { showIndex }) {
     const newIndex = showIndex + 1;
-    if (firstRender) {
-      this.setState({ firstRender: false });
-      return true;
-    }
     setTimeout(() => {
-      if (showIndex === 4) {
+      if (showIndex === 3) {
         this.setState({ showIndex: 0, leftAdjust: { left: '0em' } });
       } else {
-        this.setState({ showIndex: newIndex,
-          leftAdjust: {
-            left: `${(-1000 * newIndex) / 10}em`,
-          },
-        });
+        this.configSetState(newIndex);
       }
     }, 3000);
     return true;
   }
 
+  configSetState = index =>
+  this.setState({ showIndex: index,
+    leftAdjust: {
+      left: `${(-1000 * index) / 10}em`,
+    },
+  })
+
   handleClick = (e) => {
     e.preventDefault();
     switch (event.target.getAttribute('id')) {
-      case 'alpha': {
-        this.setState({ showIndex: 0 });
-      } break;
-      case 'beta': {
-        this.setState({ showIndex: 1 });
-      } break;
-      case 'gamma': {
-        this.setState({ showIndex: 2 });
-      } break;
-      case 'delta': {
-        this.setState({ showIndex: 3 });
-      } break;
-      default: {
-        this.setState({ showIndex: 0 });
-      }
+      case 'alpha': this.configSetState(0); break;
+      case 'beta': this.configSetState(1); break;
+      case 'gamma': this.configSetState(2); break;
+      case 'delta': this.configSetState(3); break;
+      default: this.configSetState(0);
     }
-  };
+  }
 
   render() {
     const { showIndex, leftAdjust } = this.state;
-    console.log('showIndex: ', showIndex);
+    console.log('showIndex: ', showIndex, 'leftAdjust: ', leftAdjust);
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
