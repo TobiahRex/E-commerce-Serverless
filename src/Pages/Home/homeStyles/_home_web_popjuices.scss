@@ -5,11 +5,57 @@
   width: 100%;
   padding: 3em 0;
   margin-top: 6em;
+  background-color: pink;
   & .homepage-juices-title {
     color: $p-red;
     line-height: 2.28em;
   }
   & .homepage-juices-grid-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    width: 90em;
     height: 100em;
+    margin: 0 23em;
+    padding: 2.5em 0;
+    background-color: blue;
+    & .homepage-juices-grid-card-parent {
+      @extend .flex-center;
+      flex-direction: column;
+      height: 45em;
+      width: 25em;
+      margin: 2.5em;
+      background-color: green;
+      & .homepage-juices-grid-card-image {
+        content: '';
+        width: 25em;
+        height: 27em;
+        background-color: black;
+      }
+      & .homepage-juices-grid-card-desc-parent {
+        height: 18em;
+        width: 25em;
+        background-color: purple;
+        & .homepage-juices-grid-card-desc-title {
+          @extend .flex-center;
+          width: 11.3;
+          color: #9012FE;
+          line-height: 1.36em;
+        }
+        & .homepage-juices-grid-card-desc-price {
+          @extend .flex-center;
+          & .homepage-juices-grid-card-desc-price-title {
+            font-size: 3em;
+            line-height: 1.33em;
+            & .homepage-juices-grid-card-desc-price-tax {
+              color: $p-grey;
+              font-size: 11px;
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+    }
   }
 }

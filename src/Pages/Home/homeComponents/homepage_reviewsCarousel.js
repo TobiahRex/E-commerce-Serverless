@@ -56,7 +56,6 @@ class HomepageReviewsCarousel extends Component {
 
   render() {
     const { slideIndex, leftAdjust } = this.state;
-    console.log('slideIndex @ render: ', slideIndex);
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
