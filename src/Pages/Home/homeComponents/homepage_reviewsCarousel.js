@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import HomepageReviewsSlide from '../../../Components/CarouselTextSlide/carouselTextSlide';
 import HomepageReviewsCarourselDots from '../../../Components/CarouselDots/carouselDots';
+
+let globalTimer;
 
 class HomepageReviewsCarousel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userChange: false,
-      showIndex: 0,  // 1
+      showIndex: 0,
       leftAdjust: {
         left: '0em',
       },
@@ -17,37 +19,42 @@ class HomepageReviewsCarousel extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        showIndex: 1,
-        leftAdjust: {
-          left: `${-1000 / 10}em`,
-        },
-      });
-    }, 3000);
+    // setTimeout(() => {
+    //   this.setState({
+    //     showIndex: 1,
+    //     leftAdjust: {
+    //       left: `${-1000 / 10}em`,
+    //     },
+    //   });
+    // }, 3000);
+    startTimer(0);
   }
 
-  shouldComponentUpdate(nextProps, { showIndex, userChange }) { // 1
-    console.log('userChange @ SCU: ', userChange);
-    if (userChange) {
-      setTimeout(() => {
-        console.log('turned off flag');
-        this.setState({ userChange: !userChange });
-      }, 3000);
-      return true; // yes render.
-    } else if (!userChange) {
-      const newIndex = showIndex + 1;  // 2
-      setTimeout(() => {
-        if (showIndex === 3) {
-          this.configState(0);
-        } else {
-          this.configSetState(newIndex);
-        }
-      }, 3000);
-      return true;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps, { userChange }) {
+  //   if (userChange) {
+  //     this.stopTimeout();
+  //     return true;
+  //   } else if (!userChange) {
+  //     this.startTimeout();
+  //     return true;
+  //   }
+  //   return false;
+  // }
+  // startTimeout = () => {
+  //   if (!this.state.slideTimer) {
+  //     this.setState({
+  //       slideTimer: setTimeout(() => {
+  //         if (this.state.showIndex === 3) {
+  //           this.configSetState(0);
+  //         } else {
+  //           this.configSetState(this.state.showIndex + 1);
+  //         }
+  //       }, 3000),
+  //     });
+  //   }
+  // }
+  //
+  // stopTimeout = () => this.setState({ slideTimer: '', userChange: false })
 
   configSetState = index =>  // 0
   this.setState({ showIndex: index, // 0
@@ -59,9 +66,9 @@ class HomepageReviewsCarousel extends Component {
   userSetSlide = (index) => {
     this.setState({
       userChange: true,
-      showIndex: index, // 0
+      showIndex: index,
       leftAdjust: {
-        left: `${(-1000 * index) / 10}em`, // 0em
+        left: `${(-1000 * index) / 10}em`,
       },
     });
   }
@@ -69,18 +76,18 @@ class HomepageReviewsCarousel extends Component {
   handleClick = (e) => {
     e.preventDefault();
     switch (e.target.getAttribute('id')) {
-      case 'alpha': this.userSetSlide(0); break;
-      case 'beta': this.userSetSlide(1); break;
-      case 'gamma': this.userSetSlide(2); break;
-      case 'delta': this.userSetSlide(3); break;
-      default: this.userSetSlide(0);
+      case 'alpha': stopTimer(0); break;
+      case 'beta': stopTimer(1); break;
+      case 'gamma': stopTimer(2); break;
+      case 'delta': stopTimer(3); break;
+      default: stopTimer(0);
     }
-    console.log('target: ', e.target.getAttribute('id'));
+    // console.log('target: ', e.target.getAttribute('id'));
   }
 
   render() {
-    const { showIndex, leftAdjust, userChange } = this.state;
-    console.log('userChange @ render: ', userChange);
+    const { showIndex, leftAdjust } = this.state;
+    console.log('showIndex @ render: ', showIndex);
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
@@ -122,4 +129,30 @@ class HomepageReviewsCarousel extends Component {
     );
   }
 }
-export default HomepageReviewsCarousel;
+
+// function startTimer(index) {
+//   console.dir(HomepageReviewsCarousel);
+//   // globalTimer = setInterval(() => {
+//   //   HomepageReviewsCarousel.setState({
+//   //     showIndex: index,
+//   //     leftAdjust: {
+//   //       left: `${(-1000 * index) / 10}em`,
+//   //     },
+//   //   });
+//   // }, 3000);
+// }
+//
+// function stopTimer(index) {
+//   globalTimer.clearInterval();
+//   startTimer(index);
+// }
+
+const mapStateToProps = ({ homepage }) => ({
+  slideIndex: homepage.reviews.carouselIndex,
+});
+const mapDispatchToProps = dispatch => ({
+  startTimer: (index) => dispatch(HomepageActions.startReviewsTimer(index)),
+  stopTimer: (index) => dispatch(HomepageActions.stopReviewsTimer(index)),
+})
+
+export default connect(mapStateToProps, mapDispatchTopProps)(HomepageReviewsCarousel);
