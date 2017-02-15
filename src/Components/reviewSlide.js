@@ -10,31 +10,33 @@ const propTypes = {
 function ReviewSlide({ className, name, review, author }) {
   return (
     <div className={`${className}-${name}`}>
-      <div alt={`${alt}`} className={`${className}-${name}-review`}>
-        <p className={`${className}-${name}-review-body`}>
+      <div className={`${className}-${name}-review`}>
+        <div className={`${className}-${name}-review-body`}>
           <p className={`${className}-${name}-review-body-quotes`}>
-            {description}
+            {'\u2018\u2018'}
           </p>
           <p className={`${className}-${name}-review-body-main`}>
-            {description}
+            {review}
           </p>
           <p className={`${className}-${name}-review-body-quotes`}>
-            {description}
+            {'\u2019\u2019'}
           </p>
-        </p>
-          <Link
-            style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
-            to="/products"
-            className={`${className}-${name}-buy-btn`}
-          >Buy Now</Link>
+        </div>
+        <div className={`${className}-${name}-author-body`}>
+          <p className={`${className}-${name}-author-body-dash`}>
+            {'-'}
+          </p>
+          <p className={`${className}-${name}-author-body-main`}>
+            {author}
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-CarouselSlide.propTypes = propTypes;
-export default CarouselSlide;
+ReviewSlide.propTypes = propTypes;
+export default ReviewSlide;
 
 /* NOTE
 1. className example = "homepage-how-carousel"

@@ -3,7 +3,7 @@ import React from 'react';
 import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
 import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
-import 
+import HomepageReviewSlide from '../../Components/reviewSlide';
 
 export default function HomePage() {
   return (
@@ -15,7 +15,12 @@ export default function HomePage() {
         <h1 className="homepage-reviews-title">Reviews</h1>
         <div className="homepage-reviews-carousel-container">
           <div className="homepage-reviews-carousel-slides">
-            {/* SLIDES */}
+            <HomepageReviewSlide
+              className={'homepage-reviews-carousel'}
+              name={'alpha'}
+              review={''}
+              author={'Matt Shipmen'}
+            />
 
           </div>
           <div className="homepage-reviews-carousel-dots">
