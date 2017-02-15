@@ -10,6 +10,22 @@ export default function HomePage() {
       <HomepageHeader />
       <HomepageFastestDelivery />
       <HomepageHowCarousel />
+      <div className="homepage-reviews">
+        <h1 className="homepage-reviews-title">Reviews</h1>
+        <div className="homepage-reviews-carousel-container">
+          <div className="homepage-reviews-carousel-slides">
+            {/* SLIDES */}
+          </div>
+          <div className="homepage-reviews-carousel-dots">
+            <ul className="hompage-reviews-carousel-dots-list">
+              <li className="homepage-reviews-carousel-dots-list-each" />
+              <li className="homepage-reviews-carousel-dots-list-each" />
+              <li className="homepage-reviews-carousel-dots-list-each" />
+              <li className="homepage-reviews-carousel-dots-list-each" />
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

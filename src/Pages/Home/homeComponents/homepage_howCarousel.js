@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import CarouselSlide from './homepage_howCarousel_slide';
-import CarouselNav from './homepage_howCarousel_nav';
+import CarouselSlide from '../../../Components/carouselSlide';
+import CarouselNav from '../../../Components/carouselNav';
 
 export default class HomepageHowCarousel extends Component {
   constructor(props) {
