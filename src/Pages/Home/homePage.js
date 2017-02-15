@@ -26,31 +26,31 @@ export default function HomePage() {
                 {juiceName || 'Strawberries N\' Cream'}
               </h4>
               <div className="homepage-juices-grid-card-desc-price">
-                <h2 clasName="homepage-juices-grid-card-desc-price-title">
+                <h2 className="homepage-juices-grid-card-desc-price-title">
                   <FontAwesome name="usd" />
                   {price || ' 30.00'}
-                  <p className="homepage-juices-grid-card-desc-price-tax">+TAX</p>
                 </h2>
+                <p className="homepage-juices-grid-card-desc-price-tax">+TAX</p>
               </div>
               <div className="homepage-juices-grid-card-desc-shipping">
                 <p>Free Shipping</p>
               </div>
               <div className="homepage-juices-grid-card-desc-nicotine-title">
-                <p>Nicotine Strengths</p>
+                Nicotine Strengths
               </div>
               <div className="homepage-juices-grid-card-desc-nicotine-options">
                 <ul className="homepage-juices-grid-card-desc-nicotine-options-list">
                   <li className="homepage-juices-grid-card-desc-nicotine-options-2mg">
-                    <p>2mg</p>
+                    2mg
                   </li>
                   <li className="homepage-juices-grid-card-desc-nicotine-options-4mg">
-                    <p>4mg</p>
+                    4mg
                   </li>
                   <li className="homepage-juices-grid-card-desc-nicotine-options-6mg">
-                    <p>6mg</p>
+                    6mg
                   </li>
                   <li className="homepage-juices-grid-card-desc-nicotine-options-8mg">
-                    <p>8mg</p>
+                    8mg
                   </li>
                 </ul>
               </div>

@@ -34,24 +34,69 @@
         background-color: black;
       }
       & .homepage-juices-grid-card-desc-parent {
-        height: 18em;
-        width: 25em;
+        height: 17em;
+        width: 24em;
+        padding: .5em;
         background-color: purple;
         & .homepage-juices-grid-card-desc-title {
           @extend .flex-center;
           width: 11.3;
           color: #9012FE;
-          line-height: 1.36em;
+          line-height: 1.86em;
         }
         & .homepage-juices-grid-card-desc-price {
           @extend .flex-center;
           & .homepage-juices-grid-card-desc-price-title {
+            @extend .flex-center;
+            height: 1.16em;
+            color: $p-red;
             font-size: 3em;
             line-height: 1.33em;
             & .homepage-juices-grid-card-desc-price-tax {
-              color: $p-grey;
               font-size: 11px;
+              padding-top: 15px;
+              color: $p-grey;
               text-transform: capitalize;
+            }
+          }
+        }
+        & .homepage-juices-grid-card-desc-shipping {
+          @extend .flex-center;
+          height: 2.5em;
+          width: 24em;
+          & p {
+            color: $p-red;
+            font-size: 1.3em;
+          }
+        }
+        & .homepage-juices-grid-card-desc-nicotine-title {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          height: 2em;
+          width: 12.5em;
+          font-family: $p-font;
+          font-size: 2em;
+          color: $s-grey;
+        }
+        & .homepage-juices-grid-card-desc-nicotine-options {
+          height: 40em;
+          width: 23em;
+          & .homepage-juices-grid-card-desc-nicotine-options-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: .5em;
+            margin: 0;
+            list-style-type: none;
+            & .homepage-juices-grid-card-desc-nicotine-options-2mg,
+            .homepage-juices-grid-card-desc-nicotine-options-4mg,
+            .homepage-juices-grid-card-desc-nicotine-options-6mg,
+            .homepage-juices-grid-card-desc-nicotine-options-8mg {
+              padding: 0 10px;
+              font-size: 2em;
+              font-family: $p-font;
+              color: $s-grey;
             }
           }
         }
