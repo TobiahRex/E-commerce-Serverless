@@ -22,7 +22,7 @@ const envs = {
 
 const devConfig = {
   noInfo: true,
-  devtool: 'inline-source-map',
+  devtool: 'inelin-source-map',
   target: 'web',
   debug: true,
   entry: [
