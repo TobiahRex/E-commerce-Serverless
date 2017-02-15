@@ -4,8 +4,8 @@
   height: 113em;
   width: 100%;
   padding: 3em 0;
-  margin-top: 6em;
-  background-color: pink;
+  margin-top: 4em;
+  background-color: $p-white;
   & .homepage-juices-title {
     color: $p-red;
     line-height: 2.28em;
@@ -15,18 +15,18 @@
     justify-content: center;
     align-items: center;
     flex-flow: wrap;
-    width: 90em;
     height: 100em;
-    margin: 0 23em;
+    margin: 0 16em;
     padding: 2.5em 0;
-    background-color: blue;
+    background-color: $p-white;
     & .homepage-juices-grid-card-parent {
       @extend .flex-center;
       flex-direction: column;
       height: 45em;
       width: 25em;
       margin: 2.5em;
-      background-color: green;
+      background-color: $p-white;
+      @include prefixed(box-shadow, 5px 5px 4px rgba(1,1,1,.25));
       & .homepage-juices-grid-card-image {
         content: '';
         width: 25em;
@@ -37,27 +37,29 @@
         height: 17em;
         width: 24em;
         padding: .5em;
-        background-color: purple;
+        background-color: $p-white;
         & .homepage-juices-grid-card-desc-title {
           @extend .flex-center;
           width: 11.3;
           color: #9012FE;
-          line-height: 1.86em;
+          line-height: 2.4em;
         }
         & .homepage-juices-grid-card-desc-price {
           @extend .flex-center;
+          height: 3.5em;
           & .homepage-juices-grid-card-desc-price-title {
             @extend .flex-center;
             height: 1.16em;
             color: $p-red;
             font-size: 3em;
             line-height: 1.33em;
-            & .homepage-juices-grid-card-desc-price-tax {
-              font-size: 11px;
-              padding-top: 15px;
-              color: $p-grey;
-              text-transform: capitalize;
-            }
+          }
+          & .homepage-juices-grid-card-desc-price-tax {
+            font-size: 11px;
+            font-family: $p-font;
+            padding-top: 15px;
+            color: $s-grey;
+            text-transform: capitalize;
           }
         }
         & .homepage-juices-grid-card-desc-shipping {
@@ -73,8 +75,8 @@
           display: flex;
           justify-content: center;
           align-items: flex-end;
-          height: 2em;
-          width: 12.5em;
+          height: 1.5em;
+          width: 12em;
           font-family: $p-font;
           font-size: 2em;
           color: $s-grey;
@@ -86,17 +88,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: .5em;
+            padding: .5em 0 0 .5em;
             margin: 0;
             list-style-type: none;
             & .homepage-juices-grid-card-desc-nicotine-options-2mg,
             .homepage-juices-grid-card-desc-nicotine-options-4mg,
             .homepage-juices-grid-card-desc-nicotine-options-6mg,
             .homepage-juices-grid-card-desc-nicotine-options-8mg {
+              border-right: 1px solid rgba(1,1,1,.2);
               padding: 0 10px;
               font-size: 2em;
               font-family: $p-font;
               color: $s-grey;
+            }
+            & .homepage-juices-grid-card-desc-nicotine-options-8mg {
+              border-right: 0;
             }
           }
         }
