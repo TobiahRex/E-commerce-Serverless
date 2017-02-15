@@ -1,0 +1,15 @@
+.homepage-juices {
+  @extend .flex-center;
+  flex-direction: column;
+  height: 113em;
+  width: 100%;
+  padding: 3em 0;
+  margin-top: 6em;
+  & .homepage-juices-title {
+    color: $p-red;
+    line-height: 2.28em;
+  }
+  & .homepage-juices-grid-parent {
+    height: 100em;
+  }
+}

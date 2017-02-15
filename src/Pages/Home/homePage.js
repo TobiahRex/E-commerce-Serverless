@@ -8,6 +8,8 @@ import HomepageReviewsCarousel from './homeComponents/homepage_reviewsCarousel';
 
 export default function HomePage() {
   const price = null;
+  const juiceName = null;
+
   return (
     <div className="homepage">
       <HomepageHeader />
@@ -19,9 +21,11 @@ export default function HomePage() {
         <div className="homepage-juices-grid-parent">
           <div className="homepage-juices-grid-card">
             <div className="homepage-juices-grid-card-parent">
-              <img alt="" className="homepage-juices-grid-card-image"/>
+              <img alt="" className="homepage-juices-grid-card-image" />
               <div className="homepage-juices-grid-card-desc-parent">
-                <h4 className="homepage-juices-grid-card-desc-title"></h4>
+                <h4 className="homepage-juices-grid-card-desc-title">
+                  {juiceName || 'Strawberries N\' Cream'}
+                </h4>
                 <div className="homepage-juices-grid-card-desc-price">
                   <h2>
                     <FontAwesome name="usd" size="3x" />&nbsp
