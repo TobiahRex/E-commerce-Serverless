@@ -28,13 +28,18 @@ class HomepageReviewsCarousel extends Component {
   }
 
   shouldComponentUpdate(nextProps, { showIndex, userChange }) { // 1
+    console.log('userChange @ SCU: ', userChange);
     if (userChange) {
+      setTimeout(() => {
+        console.log('turned off flag');
+        this.setState({ userChange: !userChange });
+      }, 3000);
       return true; // yes render.
     } else if (!userChange) {
       const newIndex = showIndex + 1;  // 2
       setTimeout(() => {
         if (showIndex === 3) {
-          this.setState({ showIndex: 0, leftAdjust: { left: '0em' } });
+          this.configState(0);
         } else {
           this.configSetState(newIndex);
         }
@@ -74,8 +79,8 @@ class HomepageReviewsCarousel extends Component {
   }
 
   render() {
-    const { showIndex, leftAdjust } = this.state;
-    console.log('showIndex: ', showIndex, 'leftAdjust: ', leftAdjust);
+    const { showIndex, leftAdjust, userChange } = this.state;
+    console.log('userChange @ render: ', userChange);
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
