@@ -8,7 +8,8 @@ class HomepageReviewsCarousel extends Component {
     super(props);
 
     this.state = {
-      showIndex: 0,
+      userChange: false,
+      showIndex: 0,  // 1
       leftAdjust: {
         left: '0em',
       },
@@ -26,34 +27,50 @@ class HomepageReviewsCarousel extends Component {
     }, 3000);
   }
 
-  shouldComponentUpdate(nextProps, { showIndex }) {
-    const newIndex = showIndex + 1;
-    setTimeout(() => {
-      if (showIndex === 3) {
-        this.setState({ showIndex: 0, leftAdjust: { left: '0em' } });
-      } else {
-        this.configSetState(newIndex);
-      }
-    }, 3000);
-    return true;
+  shouldComponentUpdate(nextProps, { showIndex, userChange }) { // 1
+    if (userChange) {
+      return true; // yes render.
+    } else if (!userChange) {
+      const newIndex = showIndex + 1;  // 2
+      setTimeout(() => {
+        if (showIndex === 3) {
+          this.setState({ showIndex: 0, leftAdjust: { left: '0em' } });
+        } else {
+          this.configSetState(newIndex);
+        }
+      }, 3000);
+      return true;
+    }
+    return false;
   }
 
-  configSetState = index =>
-  this.setState({ showIndex: index,
+  configSetState = index =>  // 0
+  this.setState({ showIndex: index, // 0
     leftAdjust: {
-      left: `${(-1000 * index) / 10}em`,
+      left: `${(-1000 * index) / 10}em`, // 0em
     },
   })
 
+  userSetSlide = (index) => {
+    this.setState({
+      userChange: true,
+      showIndex: index, // 0
+      leftAdjust: {
+        left: `${(-1000 * index) / 10}em`, // 0em
+      },
+    });
+  }
+
   handleClick = (e) => {
     e.preventDefault();
-    switch (event.target.getAttribute('id')) {
-      case 'alpha': this.configSetState(0); break;
-      case 'beta': this.configSetState(1); break;
-      case 'gamma': this.configSetState(2); break;
-      case 'delta': this.configSetState(3); break;
-      default: this.configSetState(0);
+    switch (e.target.getAttribute('id')) {
+      case 'alpha': this.userSetSlide(0); break;
+      case 'beta': this.userSetSlide(1); break;
+      case 'gamma': this.userSetSlide(2); break;
+      case 'delta': this.userSetSlide(3); break;
+      default: this.userSetSlide(0);
     }
+    console.log('target: ', e.target.getAttribute('id'));
   }
 
   render() {
