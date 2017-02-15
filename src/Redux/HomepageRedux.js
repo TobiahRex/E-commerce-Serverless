@@ -10,30 +10,34 @@ export default Creators;
 
 export const INITIAL_STATE = {
   reviews: {
-    timer: null,
     slideIndex: null,
     slideAdjust: null,
   },
 };
 
-const startTimer = (state, { index }) => ({
-  reviews: {
-    timer: setInterval(() => ({
-      reviews: {
-        slideIndex: index,
-        slideAdjust: `${(-1000 * index) / 10}em`,
-      },
-    }), 3000),
-  },
-});
+let reduxTimer;
 
-const stopTimer = () => ({
-  reviews: {
-    timer: null,
-    slideIndex: null,
-    slideAdjust: null,
-  },
-});
+function asyncTimer(newIndex, oldIndex) {
+  reduxTimer = setInterval(() => ({
+    reviews: {
+      slideIndex: newIndex || oldIndex + 1,
+      slideAdjust: `${(-1000 * (newIndex || oldIndex + 1)) / 10}em`,
+    },
+  }), 3000);
+}
+
+const startTimer = ({ reviews }, { index }) => asyncTimer(index, reviews.slideIndex);
+
+const stopTimer = () => {
+  reduxTimer.clearInterval();
+  return ({
+    reviews: {
+      timer: null,
+      slideIndex: null,
+      slideAdjust: null,
+    },
+  });
+};
 
 export const homepageReducer = createReducer(INITIAL_STATE, {
   [Types.START_TIMER]: startTimer,
