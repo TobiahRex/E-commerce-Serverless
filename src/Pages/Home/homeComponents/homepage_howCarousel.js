@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CarouselSlide from '../../../Components/carouselSlide';
+import CarouselImageSlide from '../../../Components/CarouselImageSlide/carouselImageSlide';
 import CarouselNav from '../../../Components/carouselNav';
 
 export default class HomepageHowCarousel extends Component {
@@ -64,37 +64,37 @@ export default class HomepageHowCarousel extends Component {
             style={stylesObj.slides}
             className="homepage-how-carousel-container-slides"
           >
-            <CarouselSlide
+            <CarouselImageSlide
               className="homepage-how-carousel"
               name="couple"
               description={slideDescs.couple}
               alt="Buy NJ2JP Juices"
             />
-            <CarouselSlide
+            <CarouselImageSlide
               className="homepage-how-carousel"
               name="distro"
               description={slideDescs.distro}
               alt="Distribution Center"
             />
-            <CarouselSlide
+            <CarouselImageSlide
               className="homepage-how-carousel"
               name="warehouse"
               description={slideDescs.warehouse}
               alt="Warehouse"
             />
-            <CarouselSlide
+            <CarouselImageSlide
               className="homepage-how-carousel"
               name="flight"
               description={slideDescs.flight}
               alt="Shipping Flight"
             />
-            <CarouselSlide
+            <CarouselImageSlide
               className="homepage-how-carousel"
               name="truck"
               description={slideDescs.truck}
               alt="Delivery Truck"
             />
-            <CarouselSlide
+            <CarouselImageSlide
               className="homepage-how-carousel"
               name="delivery"
               description={slideDescs.delivery}

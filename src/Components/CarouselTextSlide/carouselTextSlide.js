@@ -1,34 +1,42 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 
 const propTypes = {
   className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  review: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 };
 
-function CarouselSlide({ className, name, description, alt }) {
+function ReviewSlide({ className, name, review, author }) {
   return (
     <div className={`${className}-${name}`}>
-      <div alt={`${alt}`} className={`${className}-${name}-image`}>
-        <div className={`${className}-${name}-description-container`}>
-          <p>
-            {description}
+      <div className={`${className}-${name}-review`}>
+        <div className={`${className}-${name}-review-body`}>
+          <p className={`${className}-${name}-review-body-quotes`}>
+            {'\u2018\u2018'}
           </p>
-          <Link
-            style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
-            to="/products"
-            className={`${className}-${name}-buy-btn`}
-          >Buy Now</Link>
+          <p className={`${className}-${name}-review-body-main`}>
+            {review}
+          </p>
+          <p className={`${className}-${name}-review-body-quotes`}>
+            {'\u2019\u2019'}
+          </p>
+        </div>
+        <div className={`${className}-${name}-author-body`}>
+          <p className={`${className}-${name}-author-body-dash`}>
+            {'-'}
+          </p>
+          <p className={`${className}-${name}-author-body-main`}>
+            {author}
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-CarouselSlide.propTypes = propTypes;
-export default CarouselSlide;
+ReviewSlide.propTypes = propTypes;
+export default ReviewSlide;
 
 /* NOTE
 1. className example = "homepage-how-carousel"

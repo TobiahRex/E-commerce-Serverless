@@ -29,7 +29,7 @@
         position: absolute;
         background-color: $p-blue;
         // height: 30em;
-        left: -100em;
+        // left: -100em;
         transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
         & .homepage-reviews-carousel-alpha {
           @extend .flex-center;

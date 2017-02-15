@@ -19,6 +19,7 @@ class HomepageReviewsCarousel extends Component {
   componentDidMount() {
     const activeIndex = this.state.showIndex;
     setInterval(() => {
+      console.info('firing!');
       if (activeIndex === 3) {
         this.setState({
           showIndex: 0,
@@ -37,7 +38,26 @@ class HomepageReviewsCarousel extends Component {
     }, 3000);
   }
 
-  handleClick = dotId => this.setState({ showIndex: dotId });
+  handleClick = (e) => {
+    e.preventDefault();
+    switch (event.target.getAttribute('id')) {
+      case 'alpha': {
+        this.setState({ showIndex: 1 });
+      } break;
+      case 'beta': {
+        this.setState({ showIndex: 2 });
+      } break;
+      case 'gamma': {
+        this.setState({ showIndex: 3 });
+      } break;
+      case 'delta': {
+        this.setState({ showIndex: 4 });
+      } break;
+      default: {
+        this.setState({ showIndex: 4 });
+      }
+    }
+  };
 
   render() {
     const { showIndex, leftAdjust } = this.state;
@@ -48,28 +68,24 @@ class HomepageReviewsCarousel extends Component {
           <div className="homepage-reviews-carousel-container">
             <div style={leftAdjust} className="homepage-reviews-carousel-slides">
               <HomepageReviewsSlide
-                show={leftAdjust}
                 className={'homepage-reviews-carousel'}
                 name={'alpha'}
                 review={'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.'}
                 author={'Matt Shipmen'}
               />
               <HomepageReviewsSlide
-                show={leftAdjust}
                 className={'homepage-reviews-carousel'}
                 name={'beta'}
                 review={'Wow! Fruity Bamm-Bamm = Delicious.  4 Day Delivery = Fast. My New Juice Source = NJ2JP.'}
                 author={'Gene Smith, Okinawa'}
               />
               <HomepageReviewsSlide
-                show={leftAdjust}
                 className={'homepage-reviews-carousel'}
                 name={'gamma'}
                 review={'“NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to them carrying more juices flavors.”'}
                 author={'Robert McNair, Sasebo'}
               />
               <HomepageReviewsSlide
-                show={left}
                 className={'homepage-reviews-carousel'}
                 name={'delta'}
                 review={'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!'}
