@@ -5,15 +5,17 @@ import rootSaga from '../Sagas/';
 // ------- Reducer Imports ------- //
 
 // import { thingReducer as things } from '../Redux/ThingRedux';
-import { apiReducer as api } from '../Redux/ApiRedux';
-import { activePageReducer as active_page } from '../Redux/ActivePageRedux';
-import { ageVerificationReducer as age_verification } from '../Redux/AgeVerificationRedux';
+import { apiReducer as api } from './ApiRedux';
+import { activePageReducer as active_page } from './ActivePageRedux';
+import { ageVerificationReducer as age_verification } from './AgeVerificationRedux';
+import { homepageReducer as homepage } from './HomepageRedux';
 
 export default () => {
   const rootReducer = combineReducers({
     api,
     active_page,
     age_verification,
+    homepage,
   });
   return configureStore(rootReducer, rootSaga);
 };
