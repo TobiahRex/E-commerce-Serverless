@@ -3,8 +3,7 @@ import React from 'react';
 import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
 import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
-import HomepageReviewSlide from '../../Components/reviewSlide';
-import HomepageReviewsCarourselDots from '../../Components/CarouselDots/carouselDots';
+import HomepageReviewsCarousel from '../../Components/reviewSlide';
 
 export default function HomePage() {
   return (
@@ -12,7 +11,7 @@ export default function HomePage() {
       <HomepageHeader />
       <HomepageFastestDelivery />
       <HomepageHowCarousel />
-      
+      <HomepageReviewsCarousel />
     </div>
   );
 }
