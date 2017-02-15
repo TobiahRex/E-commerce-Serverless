@@ -3,6 +3,7 @@ import React from 'react';
 import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
 import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
+import 
 
 export default function HomePage() {
   return (
@@ -15,13 +16,21 @@ export default function HomePage() {
         <div className="homepage-reviews-carousel-container">
           <div className="homepage-reviews-carousel-slides">
             {/* SLIDES */}
+
           </div>
           <div className="homepage-reviews-carousel-dots">
-            <ul className="hompage-reviews-carousel-dots-list">
-              <li className="homepage-reviews-carousel-dots-list-each" />
-              <li className="homepage-reviews-carousel-dots-list-each" />
-              <li className="homepage-reviews-carousel-dots-list-each" />
-              <li className="homepage-reviews-carousel-dots-list-each" />
+            <ul className="homepage-reviews-carousel-dots-list">
+              <li
+                onClick={() => console.log('alpha')} className="homepage-reviews-carousel-dots-list-each" />
+              <li
+
+                onClick={() => console.log('beta')} className="homepage-reviews-carousel-dots-list-each" />
+              <li
+
+                onClick={() => console.log('gamma')} className="homepage-reviews-carousel-dots-list-each" />
+              <li
+
+                onClick={() => console.log('delta')} className="homepage-reviews-carousel-dots-list-each" />
             </ul>
           </div>
         </div>
