@@ -1,8 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  'startTimer': ['index'],
-  'stopTimer': null,
+  startTimer: ['index'],
+  stopTimer: null,
 });
 
 export const HomepageTypes = Types;
@@ -15,18 +15,23 @@ export const INITIAL_STATE = {
   },
 };
 
-let reduxTimer;
 
-function asyncTimer(newIndex, oldIndex) {
-  reduxTimer = setInterval(() => ({
-    reviews: {
-      slideIndex: newIndex || oldIndex + 1,
-      slideAdjust: `${(-1000 * (newIndex || oldIndex + 1)) / 10}em`,
-    },
-  }), 3000);
+let reduxTimer;
+function asyncTimer() {
+  let index = -1;
+  reduxTimer = setInterval(() => {
+    index += 1;
+    return ({
+      reviews: {
+        slideIndex: index,
+        slideAdjust: `${(-1000 * index) / 10}em`,
+      },
+    });
+  }, 3000);
 }
 
-const startTimer = ({ reviews }, { index }) => asyncTimer(index, reviews.slideIndex);
+const startTimer = ({ reviews }, { index }) =>
+asyncTimer(index, reviews.slideIndex);
 
 const stopTimer = () => {
   reduxTimer.clearInterval();
