@@ -5,9 +5,10 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import './Services/socket-init';
 import createStore from './Redux/index';
 import routes from './Navigation/main';
-import saveLocation from './Services/dynamicTitle';
+import asynchServices from './Services/asynchDispatchServices';
 
 injectTapEventPlugin();
 const store = createStore();
@@ -17,7 +18,10 @@ render(
     <Router
       history={browserHistory}
       routes={routes}
-      onUpdate={() => saveLocation(store.dispatch)}
+      onUpdate={() => {
+        asynchServices.saveGeoLocation(store.dispatch);
+        asynchServices.generateDynamicTitle(store.dispatch);
+      }}
     />
   </Provider >
   ,

@@ -1,4 +1,6 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import geoActions from '../../../../../../Redux/GeoRedux';
 
 import NavbarOptionsCurrencyButton from './navbarOptions_currency_mainButton';
 import NavbarOptionsCurrencyDropdnContent from './navbarOptions_currency_dropdnContent';
@@ -81,4 +83,11 @@ class NavbarOptionsCurrency extends Component {
     );
   }
 }
-export default NavbarOptionsCurrency;
+const mapStateToProps = ({ geo }) => ({
+  activeCurrency: geo.active_currency,
+});
+const mapDispatchToProps = dispatch => ({
+  onCurrencyChange: currency => dispatch(geoActions.setCurrency(currency)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarOptionsCurrency);

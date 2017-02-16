@@ -8,7 +8,7 @@ import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_m
 /* Redux Actions */
 import saveActivePageActions from './Redux/ActivePageRedux';
 import ageVerificationActions from './Redux/AgeVerificationRedux';
-import genDynamicTitle from './Services/dynamicTitle';
+import { genDynamicTitle } from './Services/asynchDispatchServices';
 
 class App extends Component {
   static styles = {

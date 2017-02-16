@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import NavbarWeb from './navbar_web/navbar_web';
 import NavbarMobile from './navbar_mobile/navbar_mobile';
 import saveActivePageActions from '../../../Redux/ActivePageRedux';
-import genDynamicTitle from '../../../Services/dynamicTitle';
+import { genDynamicTitle } from '../../../Services/asynchDispatchServices';
 
 class Navbar extends Component {
 

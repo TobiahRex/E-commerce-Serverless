@@ -21,6 +21,10 @@ class HomepageReviewsCarousel extends Component {
     this.startTimer(0);
   }
 
+  componentWillUnmount() {
+    this.unMountTimer();
+  }
+
   returnNewSlide = index =>
   this.setState({
     slideIndex: index,
@@ -42,6 +46,8 @@ class HomepageReviewsCarousel extends Component {
     clearTimeout(globalTimer);
     this.startTimer(newIndex);
   }
+
+  unMountTimer = () => clearTimeout(globalTimer);
 
   handleClick = (e) => {
     e.preventDefault();

@@ -1,4 +1,5 @@
 import express from 'express';
+import request from 'request';
 import http from 'http';
 import path from 'path';
 import morgan from 'morgan';
@@ -25,6 +26,10 @@ let socketEmitter;
 
 io.on('connection', (socket) => {
   process.stdout.write('\n>>> Socket Connection!\n');
+  request('http://ipinfo.io', (err, res, body) => {
+    console.log('location: ', JSON.parse(body));
+    socket.emit('user_ip_location', JSON.parse(body));
+  });
   socketEmitter = (type, data) => socket.emit(type, data);
 });
 
