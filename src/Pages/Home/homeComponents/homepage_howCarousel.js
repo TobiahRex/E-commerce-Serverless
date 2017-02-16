@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 
 import CarouselImageSlide from '../../../Components/CarouselImageSlide/carouselImageSlide';
 import CarouselNav from '../../../Components/carouselNav';
 
-export default class HomepageHowCarousel extends Component {
+class HomepageHowCarousel extends Component {
+  static propTypes = {
+     screenSize: PropTypes.string,
+  }
   constructor(props) {
     super(props);
 
     this.state = {
+      screenSize: props.screenSize,
       numSlides: 6,
       showIndex: 0,
       hasPrevious: false,
@@ -30,10 +35,10 @@ export default class HomepageHowCarousel extends Component {
   }
 
   render() {
-    const { showIndex, hasPrevious, hasNext } = this.state;
+    const { showIndex, hasPrevious, hasNext, screenSize } = this.state;
     const stylesObj = {
       slides: {
-        left: `${(-346 * showIndex) / 10}em`,
+        left: `${(-screenSize * showIndex) / 10}em`,
       },
       leftNav: {
         display: hasPrevious ? 'inline' : 'none',
@@ -123,3 +128,7 @@ export default class HomepageHowCarousel extends Component {
     );
   }
 }
+const mapStateToProps = ({ screen_size }) => ({
+  screenSize: screen_size,
+});
+export default connect(mapStateToProps, null)(HomepageHowCarousel);

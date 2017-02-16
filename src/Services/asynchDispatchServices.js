@@ -43,7 +43,7 @@ export default {
     }
   },
   determineMobileDevice: (dispatch) => {
-    const screenSize = window.screen.width;
+    const screenSize = String(window.screen.width);
     const mobileDevice = new MobileDetect(window.navigator.userAgent);
     dispatch(geoActions.setMobileDevice(screenSize, mobileDevice.mobile))
   }
