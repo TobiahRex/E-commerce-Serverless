@@ -2,7 +2,7 @@ import React, { PropTypes, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 
-import JuiceCard from '../../../Components/ProductCards/propCard';
+import JuiceCard from '../../../Components/ProductCards/productCard';
 
 const price = null;
 const juiceName = null;
@@ -12,16 +12,19 @@ class HomepagePopJuices extends PureComponent {
     popJuices: PropTypes.arrayOf(PropTypes.object.isRequired),
   }
 
-  renderJuicesCard = () => {
-
-  }
+  renderJuiceCards = () =>
+    this.props.popJuices.map((juiceObj, i) => (
+      <JuiceCard key={`homepage-juices-grid-card-parent-${i}`} juiceObj={juiceObj} />
+    )
+  )
 
   render() {
     return (
       <div className="homepage-juices">
         <h1 className="homepage-juices-title">Popular Juices</h1>
         <div className="homepage-juices-grid-parent">
-          <div className="homepage-juices-grid-card-parent">
+          {this.renderJuiceCards()}
+          {/* <div className="homepage-juices-grid-card-parent">
             <img alt="" className="homepage-juices-grid-card-image" />
             <div className="homepage-juices-grid-card-desc-parent">
               <h4 className="homepage-juices-grid-card-desc-title">
@@ -57,8 +60,8 @@ class HomepagePopJuices extends PureComponent {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="homepage-juices-grid-card-parent">
+            </div>
+            <div className="homepage-juices-grid-card-parent">
             <img alt="" className="homepage-juices-grid-card-image" />
             <div className="homepage-juices-grid-card-desc-parent">
               <h4 className="homepage-juices-grid-card-desc-title">
@@ -94,8 +97,8 @@ class HomepagePopJuices extends PureComponent {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="homepage-juices-grid-card-parent">
+            </div>
+            <div className="homepage-juices-grid-card-parent">
             <img alt="" className="homepage-juices-grid-card-image" />
             <div className="homepage-juices-grid-card-desc-parent">
               <h4 className="homepage-juices-grid-card-desc-title">
@@ -131,8 +134,8 @@ class HomepagePopJuices extends PureComponent {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="homepage-juices-grid-card-parent">
+            </div>
+            <div className="homepage-juices-grid-card-parent">
             <img alt="" className="homepage-juices-grid-card-image" />
             <div className="homepage-juices-grid-card-desc-parent">
               <h4 className="homepage-juices-grid-card-desc-title">
@@ -168,8 +171,8 @@ class HomepagePopJuices extends PureComponent {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="homepage-juices-grid-card-parent">
+            </div>
+            <div className="homepage-juices-grid-card-parent">
             <img alt="" className="homepage-juices-grid-card-image" />
             <div className="homepage-juices-grid-card-desc-parent">
               <h4 className="homepage-juices-grid-card-desc-title">
@@ -205,8 +208,8 @@ class HomepagePopJuices extends PureComponent {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="homepage-juices-grid-card-parent">
+            </div>
+            <div className="homepage-juices-grid-card-parent">
             <img alt="" className="homepage-juices-grid-card-image" />
             <div className="homepage-juices-grid-card-desc-parent">
               <h4 className="homepage-juices-grid-card-desc-title">
@@ -243,7 +246,7 @@ class HomepagePopJuices extends PureComponent {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     );
