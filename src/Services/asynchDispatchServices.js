@@ -1,5 +1,5 @@
 import saveActivePageActions from '../Redux/ActivePageRedux';
-import navbarActions from '../Redux/NavbarRedux';
+import geoActions from '../Redux/GeoRedux';
 export default {
   generateDynamicTitle: (dispatch) => {
     const url = window.location.pathname;
@@ -37,8 +37,8 @@ export default {
   saveGeoLocation: (dispatch) => {
     const activeLocation = JSON.parse(localStorage.getItem('active_location'));
     if (activeLocation) {
-      const { ip_address, country, lat_long } = activeLocation;
-      dispatch(navbarActions.updateGeo(ip_address, country, lat_long));
+      const { ip, country, loc } = activeLocation;
+      dispatch(geoActions.updateGeo(ip, country, loc));
     }
-  }
+  },
 };
