@@ -1,3 +1,4 @@
+import MobileDetect from 'mobile-detect';
 import saveActivePageActions from '../Redux/ActivePageRedux';
 import geoActions from '../Redux/GeoRedux';
 
@@ -45,6 +46,7 @@ export default {
   determineMobileDevice: (dispatch) => {
     const screenSize = String(window.screen.width);
     const mobileDevice = new MobileDetect(window.navigator.userAgent);
-    dispatch(geoActions.setMobileDevice(screenSize, mobileDevice.mobile))
-  }
+    const type = mobileDevice.mobile();
+    dispatch(geoActions.setMobileDevice(screenSize, type));
+  },
 };

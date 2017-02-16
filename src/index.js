@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import MobileDetect from 'mobile-detect';
 
 import './Services/socket-init';
 import createStore from './Redux/index';

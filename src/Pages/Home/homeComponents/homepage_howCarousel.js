@@ -6,18 +6,23 @@ import CarouselNav from '../../../Components/carouselNav';
 
 class HomepageHowCarousel extends Component {
   static propTypes = {
-     screenSize: PropTypes.string,
+    screenSize: PropTypes.string,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      screenSize: props.screenSize,
+      screenSize: Number(this.props.screenSize),
       numSlides: 6,
       showIndex: 0,
       hasPrevious: false,
       hasNext: true,
     };
+  }
+
+  componentWillReceiveProps({ screenSize }) {
+    const screen = Number(screenSize);
+    this.setState({ screenSize: screen });
   }
 
   handlePreviousClick = () => {
@@ -36,9 +41,17 @@ class HomepageHowCarousel extends Component {
 
   render() {
     const { showIndex, hasPrevious, hasNext, screenSize } = this.state;
+    let screenAdjust = 0;
+
+    if (screenSize > 1000) {
+      screenAdjust = -941;
+    } else {
+      screenAdjust = (screenSize - 14) * -1;
+    }
+
     const stylesObj = {
       slides: {
-        left: `${(-screenSize * showIndex) / 10}em`,
+        left: `${(screenAdjust * showIndex) / 10}em`,
       },
       leftNav: {
         display: hasPrevious ? 'inline' : 'none',
@@ -112,7 +125,9 @@ class HomepageHowCarousel extends Component {
             className="homepage-how-carousel"
             name="left"
             onNext={null}
-            onPrevious={this.handlePreviousClick} hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
+            onPrevious={this.handlePreviousClick}
+            hasPrevious={this.state.showIndex > 0}
+            hasNext={this.state.showIndex < this.state.numSlides - 1}
           />
 
           <CarouselNav
@@ -121,14 +136,15 @@ class HomepageHowCarousel extends Component {
             name="right"
             onNext={this.handleNextClick}
             onPrevious={null}
-            hasPrevious={this.state.showIndex > 0} hasNext={this.state.showIndex < this.state.numSlides - 1}
+            hasPrevious={this.state.showIndex > 0}
+            hasNext={this.state.showIndex < this.state.numSlides - 1}
           />
         </div>
       </div>
     );
   }
 }
-const mapStateToProps = ({ screen_size }) => ({
-  screenSize: screen_size,
+const mapStateToProps = ({ geo }) => ({
+  screenSize: geo.screen_size,
 });
 export default connect(mapStateToProps, null)(HomepageHowCarousel);

@@ -3,7 +3,7 @@ import { createReducer, createActions } from 'reduxsauce';
 const { Types, Creators } = createActions({
   setLanguage: ['language'],
   setCurrency: ['currency'],
-  setMobileInfo: ['screen_size', 'mobile_type'],
+  setMobileDevice: ['screen_size', 'mobile_type'],
   updateGeo: ['ip_address', 'country', 'lat_long'],
 });
 
@@ -40,9 +40,9 @@ const setCurrency = (state, { currency }) => ({
   lat_long: state.lat_long,
 });
 
-const setMobileInfo = (state, { screen_size, mobile_type }) => ({
+const setMobileDevice = (state, { screen_size, mobile_type }) => ({
   active_language: state.active_language,
-  active_currency: state.currency,
+  active_currency: state.active_currency,
   screen_size,
   mobile_type,
   ip_address: state.ip_address,
@@ -63,6 +63,6 @@ const updateGeo = (state, { ip_address, country, lat_long }) => ({
 export const geoReducer = createReducer(INITIAL_STATE, {
   [Types.SET_LANGUAGE]: setLanguage,
   [Types.SET_CURRENCY]: setCurrency,
-  [Types.SET_MOBILE_INFO]: setMobileInfo,
+  [Types.SET_MOBILE_DEVICE]: setMobileDevice,
   [Types.UPDATE_GEO]: updateGeo,
 });
