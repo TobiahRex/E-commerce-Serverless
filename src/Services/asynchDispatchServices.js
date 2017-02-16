@@ -1,5 +1,6 @@
 import saveActivePageActions from '../Redux/ActivePageRedux';
 import geoActions from '../Redux/GeoRedux';
+
 export default {
   generateDynamicTitle: (dispatch) => {
     const url = window.location.pathname;
@@ -44,6 +45,6 @@ export default {
   determineMobileDevice: (dispatch) => {
     const screenSize = window.screen.width;
     const mobileDevice = new MobileDetect(window.navigator.userAgent);
-
+    dispatch(geoActions.setMobileDevice(screenSize, mobileDevice.mobile))
   }
 };
