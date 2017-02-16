@@ -41,4 +41,9 @@ export default {
       dispatch(geoActions.updateGeo(ip, country, loc));
     }
   },
+  determineMobileDevice: (dispatch) => {
+    const screenSize = window.screen.width;
+    const mobileDevice = new MobileDetect(window.navigator.userAgent);
+
+  }
 };
