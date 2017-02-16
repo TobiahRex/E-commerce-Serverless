@@ -1,9 +1,9 @@
 import saveActivePageActions from '../Redux/ActivePageRedux';
 import navbarActions from '../Redux/NavbarRedux';
 
-function saveActivePageLocation(dispatch) {
-  const currentPath = window.location.pathname;
-  const path = currentPath.replace(/[\/]/g, '_')
+export function saveActivePageLocation(dispatch) {
+  const url = window.location.pathname;
+  const path = url.replace(/[\/]/g, '_')
   .split('_');
   let title = '';
   for (let i = 1; i < path.length; i += 1) {
@@ -32,15 +32,18 @@ function saveActivePageLocation(dispatch) {
       title += `${path[i].slice(1)} `;
     }
   }
-  dispatch(saveActivePageActions.saveActivePage(title, currentPath));
+  dispatch(saveActivePageActions.saveActivePage(title, url));
+  return { title, url };
 }
-
-export default (dispatch) => {
-  saveActivePageLocation(dispatch);
-
+function saveGeoLocation(dispatch) {
   const activeLocation = JSON.parse(localStorage.getItem('active_location'));
   if (activeLocation) {
     const { ip_address, country, lat_long } = activeLocation;
-    dispatch(navbarActions.updateGEO, ip_address, country, lat_long);
+    dispatch(navbarActions.updateGeo, ip_address, country, lat_long);
   }
+}
+
+export default {
+  saveActivePageLocation,
+  saveGeoLocation,
 };
