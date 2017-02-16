@@ -13,6 +13,68 @@ and (device-height : 640px)
 and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio : 4)
 and (-webkit-device-pixel-ratio : 4) {
+  h1 {
+    font-size: 2.5em;
+    font-family: $p-font;
+    font-weight: 800;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: 0.028em;
+    margin: 0;
+  }
+  h2 {
+    font-size: 2em;
+    font-family: $p-font;
+    font-weight: 800;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: .033em;
+    margin: 0;
+  }
+  h3 {
+    font-size: 1.8em;
+    font-family: $p-font;
+    font-weight: 200;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+    margin: 0;
+    padding: 0;
+  }
+  h4 {
+    font-size: 1.6em;
+    font-family: $p-font;
+    font-weight: 800;
+    text-align: center;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: .055em;
+    margin: 0;
+  }
+
+  h5 {
+    font-size: 1.2em;
+    font-family: $p-font;
+    font-weight: 200;
+    text-align: center;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-white;
+    line-height: 1.5em;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+
+  p {
+    font-family: $p-font;
+    font-size: 1em;
+    color: $p-blue;
+    line-height: 1.78em;
+    margin: 0;
+  }
   $gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/_galaxy_header_image.png');
   @import './_galaxy_home_mobile_header';
   @import './_galaxy_home_mobile_fastest_delivery';

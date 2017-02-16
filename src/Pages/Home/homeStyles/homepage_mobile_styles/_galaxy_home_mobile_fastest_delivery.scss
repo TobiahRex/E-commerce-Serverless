@@ -1,56 +1,58 @@
 .homepage-fastest-delivery {
   @extend .galaxy-flex-center;
   flex-direction: column;
-  height: 47em;
+  height: 58em;
   width: 100%;
-  margin-top: 4em;
+  margin-top: 0;
   background-color: $p-grey;
   & h1.homepage-fastest-delivery-title {
     color: $p-red;
     line-height: 1.5em;
-    margin: .45em;
+    margin: .6em;
   }
   & .homepage-fastest-delivery-description-container {
     @extend .galaxy-flex-center;
-    height: 31em;
+    flex-direction: column;
+    height: 54.5em;
     width: 100%;
-    margin-bottom: 5em;
+    margin: 0;
     & .homepage-fastest-delivery-description-image {
       content: $img-fastest;
-      width: 46em;
-      height: 30.5em;
-      margin: 1.1em;
+      max-width: 30em;
+      height: 20.8em;
+      margin: 0;
+      @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
     }
     & .homepage-fastest-delivery-description-message-container {
       @extend .galaxy-flex-center;
       flex-direction: column;
-      width: 43em;
+      width: 28em;
       height: 27.5em;
-      margin: 1.1em;
-      padding: 1.5em;
+      margin: 1em auto 3em auto;
+      padding: 1em;
       background-color: $p-white;
       @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
       & h3 {
         color: $p-red;
-        font-size: 22px;
-        line-height: 2.045em;
+        font-size: 18px;
+        line-height: 1.38em;
         font-weight: bold;
       }
       & .homepage-fastest-delivery-description-message-body {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
-        height: 23.3em;
-        width: 42.6em;
+        height: 17em;
+        width: 27em;
+        margin-top: 2em;
         flex-direction: column;
         & p {
-          font-size: 1.6em;
+          font-size: 1.2em;
           line-height: 1.27em;
         }
       }
       & .homepage-fastest-delivery-description-message-buy-btn {
-        display: block;
-        width: 7.33em;
+        width: 16.6em;
         height: 2.66em;
         color: $p-white;
         font-size: 1.5em;
@@ -58,11 +60,9 @@
         font-weight: bold;
         letter-spacing: .02em;
         background-color: $p-red;
-        z-index: 1;
-        margin-top: -30px;
-        margin-right: -320px;
         border: none;
         cursor: pointer;
+        margin: 0;
         @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
       }
     }

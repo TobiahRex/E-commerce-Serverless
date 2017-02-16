@@ -33,7 +33,7 @@ export default class HomepageHowCarousel extends Component {
     const { showIndex, hasPrevious, hasNext } = this.state;
     const stylesObj = {
       slides: {
-        left: `${(-941 * showIndex) / 10}em`,
+        left: `${(-346 * showIndex) / 10}em`,
       },
       leftNav: {
         display: hasPrevious ? 'inline' : 'none',
@@ -111,7 +111,7 @@ export default class HomepageHowCarousel extends Component {
           />
 
           <CarouselNav
-            show={{ ...stylesObj.rightNav }}
+            show={stylesObj.rightNav}
             className="homepage-how-carousel"
             name="right"
             onNext={this.handleNextClick}

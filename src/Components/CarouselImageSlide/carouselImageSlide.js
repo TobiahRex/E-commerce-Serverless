@@ -19,7 +19,7 @@ function CarouselSlide({ className, name, description, alt }) {
           <Link
             style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
             to="/products"
-            className={`${className}-${name}-buy-btn`}
+            className={`${className}-${name}-buy-btn sweep-right`}
           >Buy Now</Link>
         </div>
       </div>

@@ -17,23 +17,20 @@ function HomepageFastestDelivery() {
               faster than us.
             </p>
             <br />
-            <br />
             <p>
               Once you shop with us and see how fast we are, {('we\'re')} confident you {('won\'t')} want to buy Nicotine vape juice from anywhere else.
             </p>
             <br />
-            <br />
             <p>
               Hard to believe? Try us now!
             </p>
-            <br />
             <br />
             <p>
               You’ll be happy you did.
             </p>
           </div>
           <button
-            className="homepage-fastest-delivery-description-message-buy-btn"
+            className="homepage-fastest-delivery-description-message-buy-btn sweep-right"
             onClick={() => browserHistory.push('/products')}
           >Buy Now</button>
         </div>
