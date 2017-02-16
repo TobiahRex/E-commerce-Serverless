@@ -17,8 +17,8 @@
     "mocha": true
   },
   "rules": {
-    # "max-len": ["error", 100, { "ignoreComments": true, "ignoreTrailingComments": true, "ignoreStrings": true, "ignoreUrls": true, "ignoreTemplateLiterals": true}],
-    "max-len": 0,
+    "max-len": ["error", 100, { "ignoreComments": true, "ignoreTrailingComments": true, "ignoreStrings": true, "ignoreUrls": true, "ignoreTemplateLiterals": true}],
+    # "max-len": 0,
     "react/jsx-boolean-value": 1,
     "no-param-reassign": [1, { "props": false }],
     "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
