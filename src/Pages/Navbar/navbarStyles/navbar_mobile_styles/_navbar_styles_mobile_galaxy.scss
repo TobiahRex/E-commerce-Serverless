@@ -6,10 +6,15 @@ and (device-height : 640px)
 and (orientation : portrait)
 and (-webkit-min-device-pixel-ratio : 4)
 and (-webkit-device-pixel-ratio : 4) {
+
+  // NOTE Navbar Styles
   @import './navbar_mobile_options/galaxy_navbar_mobile_options';
   @import './navbar_mobile_userActions/galaxy_navbar_mobile_userActions';
   @import './navbar_mobile_nav/navbar_mobile_nav_main/galaxy_navbar_mobile_nav_main';
   @import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/galaxy_navbar_mobile_nav_dropdownContent';
+
+  // NOTE Homepage Styles
+  @import 
 
   .hidden {
     display: none;

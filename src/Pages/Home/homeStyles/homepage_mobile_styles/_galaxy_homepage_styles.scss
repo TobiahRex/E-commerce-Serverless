@@ -1,0 +1,66 @@
+// @import './homepage_web_styles/_galaxy_home_web_header';
+// @import './homepage_web_styles/_galaxy_home_web_fastest_delivery';
+// @import './homepage_web_styles/_galaxy_home_web_how';
+// @import './homepage_web_styles/_galaxy_home_web_reviews';
+// @import './homepage_web_styles/_galaxy_home_web_popjuices';
+
+/* NOTE Galaxy Styles */
+@media only screen
+and (min-device-width : 360px)
+and (max-device-width : 640px)
+and (device-width : 360px)
+and (device-height : 640px)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio : 4)
+and (-webkit-device-pixel-ratio : 4) {
+  @import './homepage_web_styles/_galaxy_home_web_header';
+  @import './homepage_web_styles/_galaxy_home_web_fastest_delivery';
+  @import './homepage_web_styles/_galaxy_home_web_how';
+  @import './homepage_web_styles/_galaxy_home_web_reviews';
+  @import './homepage_web_styles/_galaxy_home_web_popjuices';
+  .homepage {
+    @extend .flex-center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    // padding: 1em;
+    background-color: $p-white;
+    & .homepage-header-img-src {
+      @extend .flex-center;
+      width: 100%;
+      background-image: $homepg-juices-pano;
+      background-size: cover;
+    }
+  }
+
+  .galaxy-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .galaxy-flex-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .galaxy-flex-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .galaxy-flex-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .galaxy-white-bg {
+    background-color: $p-white;
+  }
+  .galaxy-blue-bg {
+    background-color: $p-blue;
+  }
+
+}
+/* NOTE iPhone 6 & 7 Styles */
+
+/* NOTE iPhone 6 & 7 PLUS Styles */

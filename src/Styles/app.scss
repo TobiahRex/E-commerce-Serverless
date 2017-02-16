@@ -1,14 +1,27 @@
+// ------------------------------------------------------------
+// NOTE: _Global_ Master Stylesheets
 @import "./images";
 @import "./colors";
 @import "./mixins";
 @import "./typography";
 
+// ------------------------------------------------------------
+// NOTE: "Age Verification" Master Stylesheets
 @import "../Pages/AgeVerification/ageVerification";
+
+
+// ------------------------------------------------------------
+// NOTE: "Navbar" Master Stylesheets
 @import "../Pages/Navbar/navbarStyles/navbar_styles_mobile";
 @import "../Pages/Navbar/navbarStyles/navbar_styles_web";
 
+// ------------------------------------------------------------
+// NOTE: "Homepage" Master Stylesheets
 @import "../Pages/Home/homeStyles/home_styles_web";
 
+
+// ------------------------------------------------------------
+// NOTE: General Styles
 body {
   font-size: 10px;
   background-color: #2F2F2F;

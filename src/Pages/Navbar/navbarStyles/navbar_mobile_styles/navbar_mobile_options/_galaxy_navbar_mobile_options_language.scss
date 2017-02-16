@@ -25,6 +25,7 @@
     background-color: inherit;
     color: inherit;
     border: 1px solid rgba(1,1,1,.15);
+    border-radius: 3%;
     & .mobile-language-main-button-us-parent {
       @extend .galaxy-flex-center;
       & .mobile-language-main-button-us {
@@ -34,7 +35,7 @@
         margin: 0;
         & .mobile-language-main-button-us-flag {
         height: 1.3em;
-        width: 2.5em;
+        width: 2.6em;
         background-image: $us-flag-icon;
         background-size: cover;
         margin: 0;
@@ -75,7 +76,7 @@
         margin: 0;
         & .mobile-language-main-button-japanese-flag {
         height: 1.5em;
-        width: 2.5em;
+        width: 2.6em;
         background-image: $jpn-flag-icon;
         background-size: cover;
         margin: 0;
