@@ -221,6 +221,8 @@
     @extend .flex-center;
     & .homepage-reviews-carousel-dots-list {
       @extend .flex-center;
+      padding-left: 0;
+      margin-left: 0;
       list-style-type: none;
       & li {
         & .homepage-reviews-carousel-dots-list-each {
@@ -239,6 +241,9 @@
             outline: none;
           }
         }
+      }
+      &:first-child {
+        margin-left: 0;
       }
     }
   }

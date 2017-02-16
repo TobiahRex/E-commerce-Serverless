@@ -34,7 +34,7 @@ class HomepageReviewsCarousel extends Component {
       return this.startTimer(0);
     }
     this.returnNewSlide(index);
-    globalTimer = setTimeout(() => this.startTimer(index += 1), 3000);
+    globalTimer = setTimeout(() => this.startTimer(index += 1), 10000);
     return globalTimer;
   }
 
