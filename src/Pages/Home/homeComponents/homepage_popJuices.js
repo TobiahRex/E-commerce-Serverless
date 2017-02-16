@@ -1,11 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react';
 import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
 
 import JuiceCard from '../../../Components/ProductCards/productCard';
-
-const price = null;
-const juiceName = null;
 
 class HomepagePopJuices extends PureComponent {
   static propTypes = {

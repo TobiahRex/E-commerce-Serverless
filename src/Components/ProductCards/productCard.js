@@ -1,21 +1,31 @@
 import React, { PropTypes } from 'react';
+import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   juiceObj: PropTypes.objectOf(PropTypes.string),
-}
+};
 
-fuction ProductCard({ juiceObj }) {
-  return(
+function ProductCard({ juiceObj }) {
+  const { title, price, nicotine_strengths, image_url } = juiceObj;
+
+  const renderNicStrength = () =>
+  nicotine_strengths.map(strength => (
+    <li className={`homepage-juices-grid-card-desc-nicotine-options-${strength}`}>
+      {strength}
+    </li>
+  ));
+
+  return (
     <div className="homepage-juices-grid-card-parent">
       <img alt="" className="homepage-juices-grid-card-image" />
       <div className="homepage-juices-grid-card-desc-parent">
         <h4 className="homepage-juices-grid-card-desc-title">
-          {juiceName || 'Strawberries N\' Cream'}
+          {title}
         </h4>
         <div className="homepage-juices-grid-card-desc-price">
           <h2 className="homepage-juices-grid-card-desc-price-title">
             <FontAwesome name="usd" />
-            {price || ' 30.00'}
+            {`${price}.00` || ' 30.00'}
           </h2>
           <p className="homepage-juices-grid-card-desc-price-tax">+TAX</p>
         </div>
@@ -45,3 +55,6 @@ fuction ProductCard({ juiceObj }) {
     </div>
   );
 }
+
+ProductCard.propTypes = propTypes;
+export default ProductCard;
