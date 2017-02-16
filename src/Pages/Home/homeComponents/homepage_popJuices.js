@@ -10,7 +10,11 @@ class HomepagePopJuices extends PureComponent {
 
   renderJuiceCards = () =>
     this.props.popJuices.map((juiceObj, i) => (
-      <JuiceCard key={`homepage-juices-grid-card-parent-${i}`} juiceObj={juiceObj} />
+      <JuiceCard
+        key={`homepage-juices-grid-card-parent-${i}`}
+        juiceObj={juiceObj}
+        className={'homepage-juices-grid-card'}
+      />
     )
   )
 
