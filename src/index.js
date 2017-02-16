@@ -13,7 +13,7 @@ import asynchServices from './Services/asynchDispatchServices';
 injectTapEventPlugin();
 const store = createStore();
 
-alert(navigator.userAgent);
+alert(/Android 6.0| Android Android 5.1|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent));
 
 render(
   <Provider store={store} >
