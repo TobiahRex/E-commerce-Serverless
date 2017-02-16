@@ -1,5 +1,5 @@
 .homepage-how {
-  @extend .flex-center;
+  @extend .galaxy-flex-center;
   flex-direction: column;
   height: 66em;
   margin-top: 2em;
@@ -21,15 +21,14 @@
       transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
       & .homepage-how-carousel-couple {
         & .homepage-how-carousel-couple-image {
-          @extend .flex-bottom;
-          @extend .flex-bottom;
+          @extend .galaxy-flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-couple;
           background-position: cover;
           background-repeat: no-repeat;
           & .homepage-how-carousel-couple-description-container {
-            @extend .flex-center;
+            @extend .galaxy-flex-center;
             height: 15.5em;
             width: 72.5em;
             background-color: rgba(1,1,1,.75);
@@ -49,7 +48,7 @@
       }
       & .homepage-how-carousel-distro {
         & .homepage-how-carousel-distro-image {
-          @extend .flex-bottom;
+          @extend .galaxy-flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-distro;
@@ -57,7 +56,7 @@
           background-repeat: no-repeat;
         }
         & .homepage-how-carousel-distro-description-container {
-          @extend .flex-center;
+          @extend .galaxy-flex-center;
           height: 15.5em;
           width: 72.5em;
           background-color: rgba(1,1,1,.75);
@@ -74,7 +73,7 @@
       }
       & .homepage-how-carousel-warehouse {
         & .homepage-how-carousel-warehouse-image {
-          @extend .flex-bottom;
+          @extend .galaxy-flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-warehouse;
@@ -82,10 +81,9 @@
           background-repeat: no-repeat;
         }
         & .homepage-how-carousel-warehouse-description-container {
-          @extend .flex-center;
+          @extend .galaxy-flex-center;
           height: 15.5em;
           width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
           margin-bottom: 3em;
           & p {
@@ -100,7 +98,7 @@
       }
       & .homepage-how-carousel-flight {
         & .homepage-how-carousel-flight-image {
-          @extend .flex-bottom;
+          @extend .galaxy-flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-flight;
@@ -108,10 +106,9 @@
           background-repeat: no-repeat;
         }
         & .homepage-how-carousel-flight-description-container {
-          @extend .flex-center;
+          @extend .galaxy-flex-center;
           height: 15.5em;
           width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
           margin-bottom: 3em;
           & p {
@@ -126,7 +123,7 @@
       }
       & .homepage-how-carousel-truck {
         & .homepage-how-carousel-truck-image {
-          @extend .flex-bottom;
+          @extend .galaxy-flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-truck;
@@ -134,10 +131,9 @@
           background-repeat: no-repeat;
         }
         & .homepage-how-carousel-truck-description-container {
-          @extend .flex-center;
+          @extend .galaxy-flex-center;
           height: 15.5em;
           width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
           background-color: rgba(1,1,1,.75);
           margin-bottom: 3em;
           & p {
@@ -152,7 +148,7 @@
       }
       & .homepage-how-carousel-delivery {
         & .homepage-how-carousel-delivery-image {
-          @extend .flex-bottom;
+          @extend .galaxy-flex-bottom;
           height: 57.2em;
           width: 94.1em;
           background-image: $img-carousel-delivery;
@@ -160,7 +156,7 @@
           background-repeat: no-repeat;
         }
         & .homepage-how-carousel-delivery-description-container {
-          @extend .flex-center;
+          @extend .galaxy-flex-center;
           flex-direction: column;
           height: 16.5em;
           width: 72.5em;
@@ -175,7 +171,7 @@
             line-height: 2em;
           }
           & a.homepage-how-carousel-delivery-buy-btn {
-            @extend .flex-center;
+            @extend .galaxy-flex-center;
             width: 10.66em;
             height: 2.66em;
             color: $p-white;
@@ -193,10 +189,6 @@
       }
     }
     & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
-      // @extend .flex-center;
-      // & span {
-      //   color: $p-white;
-      // }
       color: $p-white;
       &:hover,
       &:active,
@@ -206,7 +198,7 @@
         }
       }
       &:after, {
-        @extend .flex-center;
+        @extend .galaxy-flex-center;
         content: $fa-right-chevron-white;
         position: absolute;
         top: 50%;
@@ -220,12 +212,9 @@
       }
     }
     & .homepage-how-carousel-left-arrow {
-      // & span {
-      //   color: $p-white;
-      // }
       color: $p-white;
       &:after {
-        @extend .flex-center;
+        @extend .galaxy-flex-center;
         content: $fa-left-chevron-white;
         left: 1.5em;
       }

@@ -1,5 +1,5 @@
 .homepage-fastest-delivery {
-  @extend .flex-center;
+  @extend .galaxy-flex-center;
   flex-direction: column;
   height: 47em;
   width: 100%;
@@ -11,7 +11,7 @@
     margin: .45em;
   }
   & .homepage-fastest-delivery-description-container {
-    @extend .flex-center;
+    @extend .galaxy-flex-center;
     height: 31em;
     width: 100%;
     margin-bottom: 5em;
@@ -22,7 +22,7 @@
       margin: 1.1em;
     }
     & .homepage-fastest-delivery-description-message-container {
-      @extend .flex-center;
+      @extend .galaxy-flex-center;
       flex-direction: column;
       width: 43em;
       height: 27.5em;
