@@ -1,7 +1,7 @@
 .homepage-reviews {
   @extend .galaxy-flex-center;
   flex-direction: column;
-  height: 40em;
+  height: 33em;
   width: 100%;
   margin-top: 0;
   background-color: $p-grey;
@@ -36,8 +36,6 @@
             flex-direction: column;
             & .homepage-reviews-carousel-alpha-review-body {
               display: flex;
-              height: 19em;
-              background-color: purple;
               & .homepage-reviews-carousel-alpha-review-body-quotes {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
@@ -48,32 +46,31 @@
               & .homepage-reviews-carousel-alpha-review-body-main {
                 color: $p-white;
                 font-family: $p-font;
-                height: 7.5em;
+                height: 6em;
                 font-size: 2em;
                 line-height: 1.6em;
                 text-align: center;
-                background-color: pink;
               }
             }
             & .homepage-reviews-carousel-alpha-author-body {
               display: flex;
-              background-color: green;
+              margin-top: 1em;
               & .homepage-reviews-carousel-alpha-author-body-dash {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
                 font-size: 3em;
                 font-weight: 800;
-                line-height: 1em;
-                margin-top: .88em;
+                line-height: .8em;
+                margin: 0;
                 padding-right: .5em;
               }
               & .homepage-reviews-carousel-alpha-author-body-main {
                 font-family: $p-font;
                 font-size: 2em;
                 color: $p-white;
-                height: 2.5em;
+                // height: 2.5em;
                 line-height: 1.6em;
-                margin: 1.2em auto;
+                margin: 0;
               }
             }
           }
@@ -98,31 +95,79 @@
               & .homepage-reviews-carousel-beta-review-body-main {
                 color: $p-white;
                 font-family: $p-font;
-                font-size: 2.5em;
+                height: 6em;
+                font-size: 2em;
+                line-height: 1.6em;
                 text-align: center;
               }
             }
             & .homepage-reviews-carousel-beta-author-body {
               display: flex;
+              margin-top: 1em;
               & .homepage-reviews-carousel-beta-author-body-dash {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
-                font-size: 4.5em;
+                font-size: 3em;
                 font-weight: 800;
-                line-height: 1.11em;
-                margin-top: .88em;
+                line-height: .8em;
+                margin: 0;
                 padding-right: .5em;
               }
               & .homepage-reviews-carousel-beta-author-body-main {
                 font-family: $p-font;
-                font-size: 2.5em;
+                font-size: 2em;
                 color: $p-white;
-                line-height: 2em;
-                margin-top: 1.6em;
+                line-height: 1.6em;
+                margin: 0;
               }
             }
           }
         }
+        // & .homepage-reviews-carousel-beta {
+        //   @extend .galaxy-flex-center;
+        //   flex-direction: column;
+        //   height: 21em;
+        //   width: 34.6em;
+        //   & .homepage-reviews-carousel-beta-review {
+        //     @extend .galaxy-flex-center;
+        //     flex-direction: column;
+        //     & .homepage-reviews-carousel-beta-review-body {
+        //       display: flex;
+        //       & .homepage-reviews-carousel-beta-review-body-quotes {
+        //         color: $p-red;
+        //         font-family: "Arial Black", sans-serif;
+        //         font-size: 2.5em;
+        //         font-weight: 800;
+        //         line-height: 1em;
+        //       }
+        //       & .homepage-reviews-carousel-beta-review-body-main {
+        //         color: $p-white;
+        //         font-family: $p-font;
+        //         font-size: 2.5em;
+        //         text-align: center;
+        //       }
+        //     }
+        //     & .homepage-reviews-carousel-beta-author-body {
+        //       display: flex;
+        //       & .homepage-reviews-carousel-beta-author-body-dash {
+        //         color: $p-red;
+        //         font-family: "Arial Black", sans-serif;
+        //         font-size: 4.5em;
+        //         font-weight: 800;
+        //         line-height: 1.11em;
+        //         margin-top: .88em;
+        //         padding-right: .5em;
+        //       }
+        //       & .homepage-reviews-carousel-beta-author-body-main {
+        //         font-family: $p-font;
+        //         font-size: 2.5em;
+        //         color: $p-white;
+        //         line-height: 2em;
+        //         margin-top: 1.6em;
+        //       }
+        //     }
+        //   }
+        // }
         & .homepage-reviews-carousel-gamma {
           @extend .galaxy-flex-center;
           flex-direction: column;

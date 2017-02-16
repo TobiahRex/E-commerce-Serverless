@@ -13,6 +13,8 @@ import asynchServices from './Services/asynchDispatchServices';
 injectTapEventPlugin();
 const store = createStore();
 
+alert(navigator.userAgent);
+
 render(
   <Provider store={store} >
     <Router
