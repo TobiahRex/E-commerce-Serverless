@@ -11,6 +11,7 @@ export default Creators;
 
 export const INITIAL_STATE = {
   active_language: localStorage.getItem('active_language') || 'english',
+  active_currency: 'usd',
   ip_address: null,
   country: null,
   lat_long: null,
@@ -18,7 +19,7 @@ export const INITIAL_STATE = {
 
 const setLanguage = (state, { language }) => ({
   active_language: language,
-  active_currrency: state.active_currency,
+  active_currency: state.active_currency,
   ip_address: state.ip_address,
   country: state.country,
   lat_long: state.lat_long,
@@ -26,7 +27,7 @@ const setLanguage = (state, { language }) => ({
 
 const setCurrency = (state, { currency }) => ({
   active_language: state.active_language,
-  active_currrency: currency,
+  active_currency: currency,
   ip_address: state.ip_address,
   country: state.country,
   lat_long: state.lat_long,
@@ -34,6 +35,7 @@ const setCurrency = (state, { currency }) => ({
 
 const updateGeo = (state, { ip_address, country, lat_long }) => ({
   active_language: state.active_language,
+  active_currency: state.active_currency,
   ip_address,
   country,
   lat_long,

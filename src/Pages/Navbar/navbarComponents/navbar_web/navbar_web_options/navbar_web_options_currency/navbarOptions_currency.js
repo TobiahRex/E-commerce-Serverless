@@ -28,8 +28,7 @@ class NavbarOptionsCurrency extends Component {
     super(props);
 
     this.state = {
-      // activeCurrency: this.props.activeCurrency || 'usd', <-- this is REAL
-      activeCurrency: 'usd', // <---- this is FAKE
+      activeCurrency: props.activeCurrency || 'usd',
     };
   }
 
@@ -45,14 +44,8 @@ class NavbarOptionsCurrency extends Component {
     return false;
   }
 
-  componentWillUpdate(nextProps, { activeCurrency }) {
-    console.info('Currency Changed: ', activeCurrency);
-  }
-
-  onCurrencyChange = (currency) => {
-    this.setState({ activeCurrency: currency });
-    // TODO this.props.onLanguageChange(currency);
-  };
+  onCurrencyChange = currency =>
+  this.props.onCurrencyChange(currency);
 
   renderCurrencyTitle = () => {
     const currency = this.state.activeCurrency;

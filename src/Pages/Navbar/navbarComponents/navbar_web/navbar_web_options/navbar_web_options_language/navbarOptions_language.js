@@ -44,14 +44,8 @@ class NavbarOptionsLanguage extends Component {
     return false;
   }
 
-  componentWillUpdate(nextProps, { activeLanguage }) {
-    console.info('Language Changed: ', activeLanguage);
-  }
-
-  onLanguageChange = (language) => {
-    this.setState({ activeLanguage: language });
-    this.props.onLanguageChange(language);
-  };
+  onLanguageChange = language =>
+  this.props.onLanguageChange(language);
 
   renderLanguageTitle = () => {
     const Language = this.state.activeLanguage;
