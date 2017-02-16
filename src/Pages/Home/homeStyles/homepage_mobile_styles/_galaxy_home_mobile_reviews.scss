@@ -1,24 +1,24 @@
 .homepage-reviews {
   @extend .galaxy-flex-center;
   flex-direction: column;
-  height: 58em;
+  height: 40em;
   width: 100%;
-  margin-top: 4em;
+  margin-top: 0;
   background-color: $p-grey;
   & h1.homepage-reviews-title {
     color: $p-red;
-    line-height: 1.5em;
-    margin: .57em auto 1.71em auto;
+    line-height: 1em;
+    margin: .6em;
   }
   & .homepage-reviews-carousel-parent {
     @extend .galaxy-flex-center;
     flex-direction: column;
-    height: 30em;
+    height: 22em;
     width: 100%;
     background-color: $p-blue;
     & .homepage-reviews-carousel-container {
-      height: 30em;
-      width: 100em;
+      height: 21em;
+      width: 34.6em;
       overflow: hidden;
       position: relative;
       & .homepage-reviews-carousel-slides {
@@ -29,44 +29,51 @@
         & .homepage-reviews-carousel-alpha {
           @extend .galaxy-flex-center;
           flex-direction: column;
-          height: 30em;
-          width: 100em;
+          height: 21em;
+          width: 34.6em;
           & .homepage-reviews-carousel-alpha-review {
             @extend .galaxy-flex-center;
             flex-direction: column;
             & .homepage-reviews-carousel-alpha-review-body {
               display: flex;
+              height: 19em;
+              background-color: purple;
               & .homepage-reviews-carousel-alpha-review-body-quotes {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
-                font-size: 4.5em;
+                font-size: 2.5em;
                 font-weight: 800;
                 line-height: 1em;
               }
               & .homepage-reviews-carousel-alpha-review-body-main {
                 color: $p-white;
                 font-family: $p-font;
-                font-size: 2.5em;
+                height: 7.5em;
+                font-size: 2em;
+                line-height: 1.6em;
                 text-align: center;
+                background-color: pink;
               }
             }
             & .homepage-reviews-carousel-alpha-author-body {
               display: flex;
+              background-color: green;
               & .homepage-reviews-carousel-alpha-author-body-dash {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
-                font-size: 4.5em;
+                font-size: 3em;
                 font-weight: 800;
-                line-height: 1.11em;
+                line-height: 1em;
                 margin-top: .88em;
                 padding-right: .5em;
               }
               & .homepage-reviews-carousel-alpha-author-body-main {
                 font-family: $p-font;
-                font-size: 2.5em;
+                font-size: 2em;
                 color: $p-white;
-                line-height: 2em;
-                margin-top: 1.6em;
+                height: 2.5em;
+                line-height: 1.6em;
+                margin: 1.2em auto;
               }
             }
           }
@@ -74,8 +81,8 @@
         & .homepage-reviews-carousel-beta {
           @extend .galaxy-flex-center;
           flex-direction: column;
-          height: 30em;
-          width: 100em;
+          height: 21em;
+          width: 34.6em;
           & .homepage-reviews-carousel-beta-review {
             @extend .galaxy-flex-center;
             flex-direction: column;
@@ -84,7 +91,7 @@
               & .homepage-reviews-carousel-beta-review-body-quotes {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
-                font-size: 4.5em;
+                font-size: 2.5em;
                 font-weight: 800;
                 line-height: 1em;
               }
@@ -119,8 +126,8 @@
         & .homepage-reviews-carousel-gamma {
           @extend .galaxy-flex-center;
           flex-direction: column;
-          height: 30em;
-          width: 100em;
+          height: 21em;
+          width: 34.6em;
           & .homepage-reviews-carousel-gamma-review {
             @extend .galaxy-flex-center;
             flex-direction: column;
@@ -129,7 +136,7 @@
               & .homepage-reviews-carousel-gamma-review-body-quotes {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
-                font-size: 4.5em;
+                font-size: 2.5em;
                 font-weight: 800;
                 line-height: 1em;
               }
@@ -164,8 +171,8 @@
         & .homepage-reviews-carousel-delta {
           @extend .galaxy-flex-center;
           flex-direction: column;
-          height: 30em;
-          width: 100em;
+          height: 21em;
+          width: 34.6em;
           & .homepage-reviews-carousel-delta-review {
             @extend .galaxy-flex-center;
             flex-direction: column;
@@ -174,7 +181,7 @@
               & .homepage-reviews-carousel-delta-review-body-quotes {
                 color: $p-red;
                 font-family: "Arial Black", sans-serif;
-                font-size: 4.5em;
+                font-size: 2.5em;
                 font-weight: 800;
                 line-height: 1em;
               }
@@ -210,9 +217,9 @@
     }
   }
   & .homepage-reviews-carousel-dots {
-    height: 5em;
+    height: 2.5em;
     width: 100%;
-    margin-top: 2.5em;
+    margin-top: 1.5em;
     @extend .galaxy-flex-center;
     & .homepage-reviews-carousel-dots-list {
       @extend .galaxy-flex-center;
@@ -221,12 +228,12 @@
       list-style-type: none;
       & li {
         & .homepage-reviews-carousel-dots-list-each {
-          height: 2.8em;
-          width: 2.8em;
+          height: 1.5em;
+          width: 1.5em;
           border-radius: 50%;
           border: 1px solid $s-grey;
           background-color: $s-grey;
-          margin-left: 1.7em;
+          margin-left: .7em;
           cursor: pointer;
           transition: background-color .3s ease-in-out;
           &:hover,
