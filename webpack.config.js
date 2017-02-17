@@ -1,28 +1,11 @@
 import path from 'path';
 import webpack from 'webpack';
-import dotenv from 'dotenv';
-
-dotenv.config({ silent: true });
-
-const BUILD = process.env.NODE_ENV;
-console.log('BUILD: ', BUILD);
-
-const envs = {
-  development: {
-    NODE_ENV: JSON.stringify(BUILD),
-    PORT: JSON.stringify(3000),
-    BASE_URL: JSON.stringify(process.env.BASE_URL),
-  },
-  production: {
-    NODE_ENV: JSON.stringify(BUILD),
-    PORT: JSON.stringify(process.env.PORT),
-    DEPLOY_URL: JSON.stringify(process.env.DEPLOY_URL),
-  },
-};
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import webpackEnvs from './tools/webpack_envs';
 
 const devConfig = {
   noInfo: true,
-  devtool: 'inelin-source-map',
+  devtool: 'source-map',
   target: 'web',
   debug: true,
   entry: [
@@ -42,7 +25,7 @@ const devConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({ 'process.env': envs.development }),
+    new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -62,7 +45,12 @@ const devConfig = {
       },
       {
         test: /\.s[ac]ss$/,
-        loaders: ['style', 'css', 'sass', 'postcss-loader'],
+        loaders: [
+          'style',
+          'css?sourceMap=true',
+          'postcss-loader?sourceMap=true',
+          'sass?sourceMap=true',
+        ],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -105,9 +93,13 @@ const devConfig = {
     extensions: ['', '.js', '.jsx'],
   },
 };
+// -----------------------------------------------------------------------------
+// NOTE : Production Webpack configuration below.
+
+const extractCSS = new ExtractTextPlugin('stylesheets/app.css');
 
 const prodConfig = {
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   noInfo: true,
   debug: true,
   target: 'web',
@@ -121,8 +113,9 @@ const prodConfig = {
     filename: 'bundle.js',
   },
   plugins: [
+    new ExtractTextPlugin('app.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({ 'process.env': envs.production }),
+    new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -139,13 +132,13 @@ const prodConfig = {
         include: path.resolve('src'),
       },
       {
-        test: /\.s[ac]ss$/,
-        loaders: ['style', 'css', 'sass', 'postcss-loader'],
-      },
-      {
         test: /\.css$/,
         loader: 'style!css',
         exclude: /(node_modules|bower_components)/,
+      },
+      {
+        test: /\.s[ac]ss$/,
+        loader: extractCSS.extract(['css', 'sass']),
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -188,4 +181,5 @@ const prodConfig = {
     extensions: ['', '.js', '.jsx'],
   },
 };
-export default (BUILD === 'production') ? prodConfig : devConfig;
+
+export default (process.env.NODE_ENV === 'production') ? prodConfig : devConfig;
