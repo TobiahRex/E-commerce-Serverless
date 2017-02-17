@@ -10,9 +10,11 @@ import { activePageReducer as active_page } from './ActivePageRedux';
 import { ageVerificationReducer as age_verification } from './AgeVerificationRedux';
 import { homepageReducer as homepage } from './HomepageRedux';
 import { geoReducer as geo } from './GeoRedux';
+import { userReducer as user } from './UserRedux';
 
 export default () => {
   const rootReducer = combineReducers({
+    user,
     geo,
     api,
     active_page,

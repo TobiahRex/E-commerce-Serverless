@@ -2,7 +2,7 @@ import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
   receivedPopJuices: ['juiceArray'], // array of objects
-  receivedError: ['problem'],
+  productsError: ['problem'],
 });
 
 export const homepageActions = Types;
@@ -50,7 +50,7 @@ function receivedPopJuices(state, { juiceArray }) {
   });
 }
 
-function receivedError({ pop_juices }, { problem }) {
+function productsError({ pop_juices }, { problem }) {
   return ({
     pop_juices,
     error: problem,
@@ -59,5 +59,5 @@ function receivedError({ pop_juices }, { problem }) {
 
 export const homepageReducer = createReducer(INITIAL_STATE, {
   [Types.RECEIVED_POP_JUICES]: receivedPopJuices,
-  [Types.RECEIVED_ERROR]: receivedError,
+  [Types.PRODUCTS_ERROR]: productsError,
 });
