@@ -5,7 +5,7 @@ const { Types, Creators } = createActions({
   ageVerified: null,
 });
 
-export const userActions = Types;
+export const userTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
