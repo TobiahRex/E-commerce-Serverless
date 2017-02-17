@@ -1,13 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import NavbarMobileOptions from './navbar_mobile_options/navbarOptions_mobile';
 import NavbarMobileActions from './navbar_mobile_userActions/navbar_mobile_userActions';
 import NavbarMobileNav from './navbar_mobile_nav/navbar_mobile_nav';
 import $ from 'jquery';
-class NavbarMobile extends PureComponent {
+class NavbarMobile extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      navbarFixed: false,
+    }
+  }
   componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
     // const num = 200; //number of pixels before modifying styles
     // console.log('hello from navbar');
     // $(window).bind('scroll', () => {
@@ -19,6 +26,17 @@ class NavbarMobile extends PureComponent {
     //     console.info('not yet...');
     //   }
     // });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll');
+  }
+
+  handleScroll = (e) => {
+    const position = e.srcElement.body.scrollTop;
+    if (position > 200) {
+      this.setState({ navbarFixed: true });
+    }
   }
 
   render() {
