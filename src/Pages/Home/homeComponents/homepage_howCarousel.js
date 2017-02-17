@@ -65,8 +65,9 @@ class HomepageHowCarousel extends Component {
       desc: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
       alt: 'Delivered',
     }];
-    return slideDescs.map(slideObj => (
+    return slideDescs.map((slideObj, i) => (
       <CarouselImageSlide
+        key={`homepage-how-carousel-${i}`}
         className="homepage-how-carousel"
         name={slideObj.name}
         description={slideObj.desc}

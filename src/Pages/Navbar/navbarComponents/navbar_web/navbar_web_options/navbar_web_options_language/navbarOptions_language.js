@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import geoActions from '../../../../../../Redux/GeoRedux';
+import localeActions from '../../../../../../Redux/LocaleRedux';
 
 import NavbarOptionsLanguageButton from './navbarOptions_language_mainButton';
 import NavbarOptionsLanguageDropdnContent from './navbarOptions_language_dropdnContent';
@@ -76,11 +76,11 @@ class NavbarOptionsLanguage extends Component {
     );
   }
 }
-const mapStateToProps = ({ geo }) => ({
-  activeLanguage: geo.active_language,
+const mapStateToProps = ({ locale }) => ({
+  activeLanguage: locale.activeLanguage,
 });
 const mapDispatchToProps = dispatch => ({
-  onLanguageChange: language => dispatch(geoActions.setLanguage(language)),
+  onLanguageChange: language => dispatch(localeActions.setLanguage(language)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarOptionsLanguage);

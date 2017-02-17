@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import NavbarWeb from './navbar_web/navbar_web';
 import NavbarMobile from './navbar_mobile/navbar_mobile';
-import saveActivePageActions from '../../../Redux/ActivePageRedux';
+import sessionActions from '../../../Redux/SessionRedux';
 import { genDynamicTitle } from '../../../Services/asynchDispatchServices';
 
 class Navbar extends Component {
@@ -40,12 +40,12 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = ({ active_page }) => ({
-  activePage: active_page,
+const mapStateToProps = ({ session }) => ({
+  activePage: session.currentActivePage,
 });
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>
-  dispatch(saveActivePageActions.saveActivePage(title, currentPath)),
+  dispatch(sessionActions.saveActivePage(title, currentPath)),
 });
 
 

@@ -21,7 +21,7 @@ class NavbarMobileNavMain extends PureComponent {
   }
 
   render() {
-    const { activePage,
+    const {
     cartQty,
     toggleDropdown,
     ddOpen,
@@ -34,7 +34,7 @@ class NavbarMobileNavMain extends PureComponent {
             ddOpen={ddOpen}
             toggleDropdown={toggleDropdown}
           />
-          <NavbarMobileNavTitle activePage={activePage} />
+          <NavbarMobileNavTitle />
         </span>
         <span className="navbar-mobile-nav-main-right">
           <NavbarMobileNavCart cartQty={cartQty} />

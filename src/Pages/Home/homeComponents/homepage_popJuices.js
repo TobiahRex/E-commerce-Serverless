@@ -29,7 +29,7 @@ class HomepagePopJuices extends PureComponent {
     );
   }
 }
-const mapStateToProps = ({ homepage }) => ({
-  popJuices: homepage.pop_juices,
+const mapStateToProps = ({ products }) => ({
+  popJuices: products.popJuices,
 });
 export default connect(mapStateToProps, null)(HomepagePopJuices);

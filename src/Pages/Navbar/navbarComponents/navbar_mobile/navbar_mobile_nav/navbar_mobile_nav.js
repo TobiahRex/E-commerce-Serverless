@@ -96,7 +96,6 @@ class NavbarMobileNav extends Component {
           toggleDropdown={this.toggleDropdown}
           ddOpen={this.state.ddOpen}
         />
-
         <NavbarMobileNavDropdnContent
           ddOpen={this.state.ddOpen}
           toggleDropdown={this.toggleDropdown}
@@ -105,8 +104,9 @@ class NavbarMobileNav extends Component {
     );
   }
 }
-const mapStateToProps = ({ geo }) => ({
-  screenSize: geo.screen_size,
+const mapStateToProps = ({ mobile, session }) => ({
+  screenSize: mobile.screenSize,
+  activePage: session.currentActivePage,
 });
 export default connect(mapStateToProps, null)(NavbarMobileNav);
 

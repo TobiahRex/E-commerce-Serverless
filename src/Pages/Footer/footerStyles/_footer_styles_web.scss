@@ -1,4 +1,85 @@
 .footer-main {
-  height: 31em;
+  height: 35em;
   width: 100%;
+  padding: 1em 0;
+  background-color: $p-blue;
+  & .footer-main-sections-container {
+    @extend .flex-center;
+    flex-direction: column;
+    & ul.footer-main-sections-list {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      // width: 90em;
+      & .footer-main-sections-list-contactus,
+      .footer-main-sections-list-memberships,
+      .footer-main-sections-list-myaccount,
+      .footer-main-sections-list-customercare {
+        display: flex;
+        flex-direction: column;
+        height: 30em;
+        width: 30em;
+        & h3 {
+          color: $p-white;
+          font-size: 2.5em;
+          margin: 1em;
+          font-weight: normal;
+        }
+        & .footer-main-sections-contactus-list,
+        .footer-main-sections-myaccount-list,
+        .footer-main-sections-memberships-list,
+        .footer-main-sections-customercare-list {
+          list-style-type: none;
+          & li {
+            font-size: 1.5em;
+            font-family: $s-font;
+            font-weight: 100;
+            line-height: 2em;
+            letter-spacing: 0.06em;         
+            color: #DDD;
+          }
+        }
+      }
+      & .footer-main-sections-list-memberships {
+        display: none;
+      }
+    }
+  }
+  & .footer-line-break {    
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    border: 1px solid rgba(255, 255, 255, .15);
+  }
+  & .footer-copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & p.copyright-message {
+      display: inline-block;
+      font-weight: 100;
+      padding: 1.2em 0;
+      color: $p-white;
+      &:after {
+        content: '';
+        margin-bottom: -3px;
+        margin-left: 10px;
+        display: inline-block;
+        width: 1px;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+    & p.developer-message {
+      font-weight: 100;
+      padding: 1.2em;
+      color: $p-white;
+      & .developer-heart {
+        color: $p-red;
+      }
+    }
+  }
 }

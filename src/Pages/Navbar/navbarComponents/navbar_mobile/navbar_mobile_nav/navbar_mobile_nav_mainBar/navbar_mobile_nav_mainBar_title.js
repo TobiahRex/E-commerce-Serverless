@@ -17,8 +17,8 @@ class NavbarMobileNavTitle extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ active_page }) => ({
-  activePage: active_page.current_active_page,
+const mapStateToProps = ({ session }) => ({
+  activePage: session.currentActivePage,
 });
 
 export default connect(mapStateToProps, null)(NavbarMobileNavTitle);

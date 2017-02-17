@@ -1,6 +1,9 @@
 import MobileDetect from 'mobile-detect';
-import saveActivePageActions from '../Redux/ActivePageRedux';
+import sessionActions from '../Redux/SessionRedux';
+import mobileActions from '../Redux/MobileRedux';
 import geoActions from '../Redux/GeoRedux';
+import localeActions from '../Redux/LocaleRedux';
+
 
 export default {
   generateDynamicTitle: (dispatch) => {
@@ -34,19 +37,20 @@ export default {
         title += `${path[i].slice(1)} `;
       }
     }
-    dispatch(saveActivePageActions.saveActivePage(title, url));
+    dispatch(sessionActions.saveActivePage(title, url));
   },
   saveGeoLocation: (dispatch) => {
     const activeLocation = JSON.parse(localStorage.getItem('active_location'));
     if (activeLocation) {
       const { ip, country, loc } = activeLocation;
-      dispatch(geoActions.updateGeo(ip, country, loc));
+      dispatch(geoActions.updateGeo(ip, loc));
+      dispatch(localeActions.setCountry(country));
     }
   },
   determineMobileDevice: (dispatch) => {
     const screenSize = String(window.screen.width);
     const mobileDevice = new MobileDetect(window.navigator.userAgent);
     const type = mobileDevice.mobile();
-    dispatch(geoActions.setMobileDevice(screenSize, type));
+    dispatch(mobileActions.setMobileDevice(screenSize, type));
   },
 };
