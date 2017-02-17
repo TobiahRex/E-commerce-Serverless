@@ -11,8 +11,9 @@ class NavbarMobile extends Component {
 
     this.state = {
       navbarFixed: false,
-    }
+    };
   }
+
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     // const num = 200; //number of pixels before modifying styles
@@ -40,8 +41,24 @@ class NavbarMobile extends Component {
   }
 
   render() {
+    const { navbarFixed } = this.state;
+    let navbarStyle;
+    if (!navbarFixed) {
+      navbarStyle = {
+        transform: 'translateZ(0px)',
+      };
+    } else {
+      navbarStyle = {
+        transform: 'translateZ(0px)',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+      };
+    }
+
     return (
-      <nav className="navbar navbar-mobile">
+      <nav style={navbarStyle} className="navbar navbar-mobile">
         <div className="navbar-mobile-container">
           <Link to={'/'} className="navbar-mobile-logo-link">
             <div className="navbar-mobile-logo">
