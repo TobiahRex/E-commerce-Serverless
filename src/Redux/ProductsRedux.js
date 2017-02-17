@@ -57,7 +57,7 @@ function productsError({ pop_juices }, { problem }) {
   });
 }
 
-export const homepageReducer = createReducer(INITIAL_STATE, {
+export const productsReducer = createReducer(INITIAL_STATE, {
   [Types.RECEIVED_POP_JUICES]: receivedPopJuices,
   [Types.PRODUCTS_ERROR]: productsError,
 });
