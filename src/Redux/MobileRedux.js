@@ -4,7 +4,7 @@ const { Types, Creators } = createActions({
   setMobileDevice: ['screen_size', 'mobile_type'],
 });
 
-export const metaTypes = Types;
+export const mobileTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
@@ -17,6 +17,6 @@ const setMobileDevice = (state, { screen_size, mobile_type }) => ({
   mobile_type,
 });
 
-export const metaReducer = createReducer(INITIAL_STATE, {
+export const mobileReducer = createReducer(INITIAL_STATE, {
   [Types.SET_MOBILE_DEVICE]: setMobileDevice,
 });

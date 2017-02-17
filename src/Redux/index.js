@@ -12,15 +12,16 @@ import { metaReducer as meta } from './MetaRedux';
 import { userReducer as user } from './UserRedux';
 import { geoReducer as geo } from './GeoRedux';
 import { localeReducer as locale } from './LocaleRedux';
+import { mobileReducer as mobile } from './MobileRedux';
 
 export default () => {
   const rootReducer = combineReducers({
     user,
     products,
-    geo,
-    locale,
-    meta,
     api,
+    geo,
+    mobile,
+    locale,
     active_page,
   });
   return configureStore(rootReducer, rootSaga);
