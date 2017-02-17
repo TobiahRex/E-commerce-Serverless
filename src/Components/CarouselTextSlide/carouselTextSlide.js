@@ -6,7 +6,6 @@ const propTypes = {
   review: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
-
 function ReviewSlide({ className, name, review, author }) {
   return (
     <div className={`${className}-${name}`}>

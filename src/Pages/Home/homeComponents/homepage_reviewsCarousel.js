@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import HomepageReviewsSlide from '../../../Components/CarouselTextSlide/carouselTextSlide';
 import HomepageReviewsCarourselDots from '../../../Components/CarouselDots/carouselDots';
@@ -103,5 +104,7 @@ class HomepageReviewsCarousel extends Component {
     );
   }
 }
-
-export default HomepageReviewsCarousel;
+const mapStateToProps({ geo }) => ({
+  
+})
+export default connect(mapStateToProps, null)(HomepageReviewsCarousel);
