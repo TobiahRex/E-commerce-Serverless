@@ -2,19 +2,19 @@
 
 @mixin prefixed($property, $values) {
   @if $webkit == true {
-    -webkit-#{$property}: $values;
+    -webkit-#{$property}: #{$values};
   }
   @if $moz == true {
-    -moz-#{$property}: $values;
+    -moz-#{$property}: #{$values};
   }
   @if $ms == true {
-    -ms-#{$property}: $values;
+    -ms-#{$property}: #{$values};
   }
   @if $o == true {
-    -o-#{$property}: $values;
+    -o-#{$property}: #{$values};
   }
 
-  #{$property}: $values;
+  #{$property}: #{$values};
 
 }
 

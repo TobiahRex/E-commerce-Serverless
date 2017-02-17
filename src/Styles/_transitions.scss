@@ -8,8 +8,8 @@
   &:hover,
   &:active,
   &:focus {
-    // transition: .5s;
-    // background-color: $p-blue;
+    transition: .5s;
+    background-color: $p-blue;
     &:before {
       @include prefixed(transform, scaleX(1));
     }
@@ -43,6 +43,8 @@
   &:hover,
   &:active,
   &:focus {
+    background-color: $p-white;
+    color: $p-blue;
     &:before {
       @include prefixed(transform, scaleX(1));
     }
@@ -65,6 +67,43 @@
   }
 }
 
-.bob {
-  
+@include keyframes(#{$nameSpace}-bob){
+  0% {
+    @include prefixed(transform, translateY(-8px));
+  }
+  50% {
+    @include prefixed(transform, translateY(-4px));
+  }
+  100% {
+    @include prefixed(transform, translateY(-4px));
+  }
+}
+
+@include keyframes(#{$nameSpace}-bob-float){
+  100% {
+    @include prefixed(transform, translateY(-8px));
+  }
+}
+@mixin bob {
+  display: inline-block;
+  vertical-align: middle;
+  @include prefixed(transform, perspective(1px) translateZ(0));
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+
+  &:hover,
+  &:focus,
+  &:active {
+    @include prefixed(animation-name, '#{$nameSpace}-bob-float, #{$nameSpace}-bob');
+    @include prefixed(animation-duration, '.3s, 1.5s');
+    @include prefixed(animation-delay, '0s, .3s');
+    @include prefixed(animation-timing-function, 'ease-out, ease-in-out');
+    @include prefixed(animation-iteration-count, '1, infinite');
+    @include prefixed(animation-fill-mode, 'forwards');
+    @include prefixed(animation-direction, 'normal, alternate');
+  }
+}
+
+.#{$nameSpace}-bob {
+  @include bob();
 }

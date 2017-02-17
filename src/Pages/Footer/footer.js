@@ -11,13 +11,13 @@ export default function Footer() {
               Contact Us
             </h3>
             <ul className="footer-main-sections-contactus-list">
-              <li className="footer-main-sections-contactus-email sweep-right">
+              <li className="footer-main-sections-contactus-email hvr-bob">
                 Email
               </li>
-              <li className="footer-main-sections-contactus-phone sweep-right">
+              <li className="footer-main-sections-contactus-phone hvr-bob">
                 Phone
               </li>
-              <li className="footer-main-sections-contactus-phone sweep-right">
+              <li className="footer-main-sections-contactus-phone hvr-bob">
                 About
               </li>
             </ul>
@@ -27,16 +27,16 @@ export default function Footer() {
               My Account
             </h3>
             <ul className="footer-main-sections-myaccount-list">
-              <li className="footer-main-sections-myaccount-register sweep-right">
+              <li className="footer-main-sections-myaccount-register hvr-bob">
                 Order History
               </li>
-              <li className="footer-main-sections-myaccount-affiliate sweep-right">
+              <li className="footer-main-sections-myaccount-affiliate hvr-bob">
                 Order Status
               </li>
-              <li className="footer-main-sections-myaccount-wholesale sweep-right">
+              <li className="footer-main-sections-myaccount-wholesale hvr-bob">
                 Change Password
               </li>
-              <li className="footer-main-sections-myaccount-forgot sweep-right">
+              <li className="footer-main-sections-myaccount-forgot hvr-bob">
                 Forgot Login Info
               </li>
             </ul>
@@ -46,16 +46,16 @@ export default function Footer() {
               Memberships
             </h3>
             <ul className="footer-main-sections-memberships-list">
-              <li className="footer-main-sections-memberships-register sweep-right">
+              <li className="footer-main-sections-memberships-register hvr-bob">
                 Register
               </li>
-              <li className="footer-main-sections-memberships-affiliate sweep-right">
+              <li className="footer-main-sections-memberships-affiliate hvr-bob">
                 Affiliate Program
               </li>
-              <li className="footer-main-sections-memberships-wholesale sweep-right">
+              <li className="footer-main-sections-memberships-wholesale hvr-bob">
                 Wholesale
               </li>
-              <li className="footer-main-sections-memberships-forgot sweep-right">
+              <li className="footer-main-sections-memberships-forgot hvr-bob">
                 Forgot Login Info
               </li>
             </ul>
@@ -65,22 +65,22 @@ export default function Footer() {
               Customer Care
             </h3>
             <ul className="footer-main-sections-customercare-list">
-              <li className="footer-main-sections-customercare-shop sweep-right">
+              <li className="footer-main-sections-customercare-shop hvr-bob">
                 Shop
               </li>
-              <li className="footer-main-sections-customercare-shipping sweep-right">
+              <li className="footer-main-sections-customercare-shipping hvr-bob">
                 Shipping Policy
               </li>
-              <li className="footer-main-sections-customercare-returns sweep-right">
+              <li className="footer-main-sections-customercare-returns hvr-bob">
                 Return Policy
               </li>
-              <li className="footer-main-sections-customercare-privacy sweep-right">
+              <li className="footer-main-sections-customercare-privacy hvr-bob">
                 Privacy Policy
               </li>
-              <li className="footer-main-sections-customercare-terms sweep-right">
+              <li className="footer-main-sections-customercare-terms hvr-bob">
                 Terms & Conditions
               </li>
-              <li className="footer-main-sections-customercare-nicotine sweep-right">
+              <li className="footer-main-sections-customercare-nicotine hvr-bob">
                 Nicotine Disclaimer
               </li>
             </ul>

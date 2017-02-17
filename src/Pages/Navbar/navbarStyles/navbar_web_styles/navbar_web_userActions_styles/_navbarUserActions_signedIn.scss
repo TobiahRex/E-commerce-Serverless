@@ -38,8 +38,8 @@
     &:hover,
     &:active,
     &:focus {
-      transition: .5s;
-      background-color: $p-blue;
+/*       transition: .5s; */
+/*       background-color: $p-blue; */
       & a {
         color: $p-white;
       }
