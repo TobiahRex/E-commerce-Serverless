@@ -18,7 +18,23 @@ export default function Footer() {
           </li>
           <li className="footer-main-sections-list-myaccount">
             <div className="footer-main-sections-myaccount-container">
-              <h1 className="footer-main-sections-myaccount-title">My Account</h1>
+              <h1 className="footer-main-sections-myaccount-title">
+                My Account
+              </h1>
+              <ul className="footer-main-sections-myaccount-list">
+                <li className="footer-main-sections-myaccount-orderhistory">
+                  Order History
+                </li>
+                <li className="footer-main-sections-myaccount-orderstatus">
+                  Order Status
+                </li>
+                <li className="footer-main-sections-myaccount-password">
+                  Change Password
+                </li>
+                <li className="footer-main-sections-myaccount-forgot">
+                  My Account
+                </li>
+              </ul>
             </div>
           </li>
           <li className="footer-main-sections-list-customercare">
