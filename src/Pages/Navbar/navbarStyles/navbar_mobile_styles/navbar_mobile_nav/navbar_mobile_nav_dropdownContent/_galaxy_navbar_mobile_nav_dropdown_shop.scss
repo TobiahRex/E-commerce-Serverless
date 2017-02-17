@@ -8,7 +8,7 @@
   display: inline-block;
   position: relative;
   height: 4.5em;
-  width: 37em;
+  width: 33em;
   // position: static;
   & .navbar-mobile-nav-dropdown-shop-dropdown {
     opacity: 1;
@@ -22,7 +22,7 @@
         opacity: 1;
         overflow-y: hidden;
         height: 19em;
-        width: 35em;
+        width: 31em;
         & .navbar-mobile-nav-dropdown-shop-expanded-list {
           & li {
             &:hover,
@@ -41,7 +41,7 @@
         justify-content: space-between;
         align-items: center;
         height: 3.5em;
-        width: 36em;
+        width: 32em;
         margin : .5em;
         & .navbar-mobile-nav-dropdown-shop-title {
           color: $p-blue;
@@ -64,7 +64,7 @@
       justify-content: space-between;
       align-items: center;
       height: 3.5em;
-      width: 36em;
+      width: 32em;
       margin : .5em;
       & .navbar-mobile-nav-dropdown-shop-title {
         text-transform: uppercase;

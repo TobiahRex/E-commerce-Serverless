@@ -5,15 +5,16 @@ import NavbarMobileNavDropdnMedia from './navbar_mobile_nav_dropdn_media/navbar_
 import NavbarMobileNavDropdnInfo from './navbar_mobile_nav_dropdn_info/navbar_mobile_nav_dropdn_info';
 
 const propTypes = {
+  navbarSize: PropTypes.string,
   ddOpen: PropTypes.bool,
   toggleDropdown: PropTypes.func,
 };
 
-function NavbarMobileNavDropdnContent({ ddOpen, toggleDropdown }) {
+function NavbarMobileNavDropdnContent({ navbarSize, ddOpen, toggleDropdown }) {
   const showDropdown = ddOpen ? {
     opacity: 1,
     maxHeight: '81.5em',
-    width: '37em',
+    width: navbarSize,
   } : {
     opacity: 0,
     maxHeight: 0,

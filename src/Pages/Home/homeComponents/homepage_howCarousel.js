@@ -22,6 +22,7 @@ class HomepageHowCarousel extends Component {
 
   componentWillReceiveProps({ screenSize }) {
     const screen = Number(screenSize);
+    console.log('new Screen: ', screen);
     this.setState({ screenSize: screen });
   }
 
@@ -97,7 +98,7 @@ class HomepageHowCarousel extends Component {
         display: hasNext ? 'inline' : 'none',
       },
     };
-
+    console.warn('stylesObj: ', stylesObj);
     return (
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
@@ -132,7 +133,7 @@ class HomepageHowCarousel extends Component {
     );
   }
 }
-const mapStateToProps = ({ geo }) => ({
-  screenSize: geo.screen_size,
+const mapStateToProps = ({ mobile }) => ({
+  screenSize: mobile.screenSize,
 });
 export default connect(mapStateToProps, null)(HomepageHowCarousel);

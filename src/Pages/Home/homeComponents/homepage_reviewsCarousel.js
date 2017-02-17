@@ -120,7 +120,7 @@ class HomepageReviewsCarousel extends Component {
     );
   }
 }
-const mapStateToProps = ({ geo }) => ({
-  screenSize: geo.screen_size,
+const mapStateToProps = ({ mobile }) => ({
+  screenSize: mobile.screenSize,
 });
 export default connect(mapStateToProps, null)(HomepageReviewsCarousel);

@@ -80,11 +80,12 @@ class NavbarMobileNav extends Component {
       cartQty,
       screenSize,
     } = this.props;
+    const navbarSize = parseInt(screenSize, 10) - 14;
     const style = this.state.navbarFixed ? {
       transform: 'translateX(0px)',
       top: 0,
       position: 'fixed',
-      width: `${parseInt(screenSize, 10) - 14}px`,
+      width: `${navbarSize}px`,
       zIndex: 20,
     } : {};
 
@@ -97,6 +98,7 @@ class NavbarMobileNav extends Component {
           ddOpen={this.state.ddOpen}
         />
         <NavbarMobileNavDropdnContent
+          screenSize={navbarSize}
           ddOpen={this.state.ddOpen}
           toggleDropdown={this.toggleDropdown}
         />
