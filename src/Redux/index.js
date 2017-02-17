@@ -11,11 +11,14 @@ import { productsReducer as products } from './ProductsRedux';
 import { metaReducer as meta } from './MetaRedux';
 import { userReducer as user } from './UserRedux';
 import { geoReducer as geo } from './GeoRedux';
+import { localeReducer as locale } from './LocaleRedux';
 
 export default () => {
   const rootReducer = combineReducers({
     user,
     products,
+    geo,
+    locale,
     meta,
     api,
     active_page,
