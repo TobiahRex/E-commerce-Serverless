@@ -39,86 +39,70 @@ class HomepageHowCarousel extends Component {
     this.setState({ showIndex, hasPrevious, hasNext });
   }
 
-  render() {
-    const { showIndex, hasPrevious, hasNext, screenSize } = this.state;
-    let screenAdjust = 0;
-
-    if (screenSize > 1000) {
-      screenAdjust = -941;
-    } else {
-      screenAdjust = (screenSize - 14) * -1;
-    }
-
-    const stylesObj = {
-      slides: {
-        left: `${(screenAdjust * showIndex) / 10}em`,
-      },
-      leftNav: {
-        display: hasPrevious ? 'inline' : 'none',
-      },
-      rightNav: {
-        display: hasNext ? 'inline' : 'none',
-      },
-    };
-
-    const slideDescs = {
+  renderCarouselSlide = () => {
+    const slideDescs = [{
       couple: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
-
+      couple_alt: 'Buy NJ2JP Juices',
+    }, {
       distro: 'Moments later, we receive your order at our Distribution Center in California.',
-
+      distro_alt: 'Distribution Center',
+    }, {
       warehouse: 'Our distribution warehouse then quickly prepares your Nicotine Juice parcel per your order invoice.',
-
+      warehouse_alt: 'Warehouse',
+    }, {
       flight: 'Shortly thereafter, your parcel is put on the soonest direct flight from California to Japan.',
-
+      flight_alt: 'Overnight Flight',
+    }, {
       truck: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
-
+      truck_alt: 'Delivery Truck',
+    }, {
       delivery: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
-    };
-    return (
-      <div className="homepage-how">
-        <h1 className="homepage-how-title">How?</h1>
-        <div className="homepage-how-carousel-container">
-          <div
-            style={stylesObj.slides}
-            className="homepage-how-carousel-container-slides"
+      delivery_alt: 'Delivered',
+    }];
+    slideDesc.map((slideObj) => (
+      <CarouselImageSlide
+        className="homepage-how-carousel"
+        name="couple"
+        description={slideDescs.couple}
+        alt="Buy NJ2JP Juices"
+      />
+
+    ));
+}
+
+render() {
+  const { showIndex, hasPrevious, hasNext, screenSize } = this.state;
+  let screenAdjust = 0;
+
+  if (screenSize > 1000) {
+    screenAdjust = -941;
+  } else {
+    screenAdjust = (screenSize - 14) * -1;
+  }
+
+  const stylesObj = {
+    slides: {
+      left: `${(screenAdjust * showIndex) / 10}em`,
+    },
+    leftNav: {
+      display: hasPrevious ? 'inline' : 'none',
+    },
+    rightNav: {
+      display: hasNext ? 'inline' : 'none',
+    },
+  };
+
+  return (
+    <div className="homepage-how">
+      <h1 className="homepage-how-title">How?</h1>
+      <div className="homepage-how-carousel-container">
+        <div
+          style={stylesObj.slides}
+          className="homepage-how-carousel-container-slides"
           >
-            <CarouselImageSlide
-              className="homepage-how-carousel"
-              name="couple"
-              description={slideDescs.couple}
-              alt="Buy NJ2JP Juices"
-            />
-            <CarouselImageSlide
-              className="homepage-how-carousel"
-              name="distro"
-              description={slideDescs.distro}
-              alt="Distribution Center"
-            />
-            <CarouselImageSlide
-              className="homepage-how-carousel"
-              name="warehouse"
-              description={slideDescs.warehouse}
-              alt="Warehouse"
-            />
-            <CarouselImageSlide
-              className="homepage-how-carousel"
-              name="flight"
-              description={slideDescs.flight}
-              alt="Shipping Flight"
-            />
-            <CarouselImageSlide
-              className="homepage-how-carousel"
-              name="truck"
-              description={slideDescs.truck}
-              alt="Delivery Truck"
-            />
-            <CarouselImageSlide
-              className="homepage-how-carousel"
-              name="delivery"
-              description={slideDescs.delivery}
-              alt="Delivery Man"
-            />
+            {this.renderCarouselSlides()}
           </div>
+
           {/* NAVS */}
           <CarouselNav
             show={stylesObj.leftNav}
