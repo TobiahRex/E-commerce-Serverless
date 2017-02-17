@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
@@ -8,6 +9,7 @@ class NavbarMobileNav extends Component {
     mobileNavbarExpanded: PropTypes.bool,
     activePage: PropTypes.string,
     cartQty: PropTypes.number,
+    screenSize: PropTypes.string,
   }
 
   static defaultProps = {
@@ -27,7 +29,12 @@ class NavbarMobileNav extends Component {
 
     this.state = {
       ddOpen: false,
+      navbarFixed: false,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,8 +54,20 @@ class NavbarMobileNav extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll');
+  }
+
+  handleScroll = (e) => {
+    const position = e.srcElement.body.scrollTop;
+    if (position > 200) {
+      this.setState({ navbarFixed: true });
+    } else if (position < 200) {
+      this.setState({ navbarFixed: false });
+    }
+  }
+
   toggleDropdown = (id, e) => {
-    console.warn('id: ', id);
     if (id === 'hamburger') {
       e.preventDefault();
     }
@@ -58,9 +77,16 @@ class NavbarMobileNav extends Component {
   render() {
     const {
       activePage,
-      cartQty } = this.props;
+      cartQty,
+      screenSize,
+    } = this.props;
+    const style = this.state.navbarFixed ? {
+      position: 'fixed',
+      width: `${Number(screenSize) - 14}px`,
+    } : {};
+
     return (
-      <div className="navbar-mobile-nav">
+      <div className="navbar-mobile-nav" style={style}>
         <NavbarMobileNavMainBar
           activePage={activePage}
           cartQty={cartQty}
@@ -76,12 +102,12 @@ class NavbarMobileNav extends Component {
     );
   }
 }
-
-export default NavbarMobileNav;
+const mapStateToProps = ({ geo }) => ({
+  screenSize: geo.screen_size,
+});
+export default connect(mapStateToProps, null)(NavbarMobileNav);
 
 /* TODO
 1. This component is mapped to State and received the three props defined in propTypes.
-
 2. Hamburger Icon reference = http://elijahmanor.com/css-animated-hamburger-icon/
-
 */
