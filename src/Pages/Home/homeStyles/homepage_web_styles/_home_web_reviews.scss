@@ -17,19 +17,14 @@
     width: 100%;
     background-color: $p-blue;
     & .homepage-reviews-carousel-container {
-      // @extend .flex-center;
-      // flex-direction: column;
       height: 30em;
       width: 100em;
-      // background-color: $s-grey;
       overflow: hidden;
       position: relative;
       & .homepage-reviews-carousel-slides {
         display: flex;
         position: absolute;
         background-color: $p-blue;
-        // height: 30em;
-        // left: -100em;
         transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
         & .homepage-reviews-carousel-alpha {
           @extend .flex-center;

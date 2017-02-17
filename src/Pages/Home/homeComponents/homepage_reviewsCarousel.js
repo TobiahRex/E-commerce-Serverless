@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 import HomepageReviewsSlide from '../../../Components/CarouselTextSlide/carouselTextSlide';
@@ -7,14 +7,16 @@ import HomepageReviewsCarourselDots from '../../../Components/CarouselDots/carou
 let globalTimer;
 
 class HomepageReviewsCarousel extends Component {
+  static propTypes = {
+    screenSize: PropTypes.string,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      slideIndex: 0,
-      leftAdjust: {
-        left: '0em',
-      },
+      screenSize: Number(this.props.screenSize),
+      showIndex: 0,
     };
   }
 
@@ -22,17 +24,31 @@ class HomepageReviewsCarousel extends Component {
     this.startTimer(0);
   }
 
+  componentWillReceiveProps({ screenSize }) {
+    const screen = Number(screenSize);
+    this.setState({ screenSize: screen });
+  }
+
   componentWillUnmount() {
     this.unMountTimer();
   }
 
-  returnNewSlide = index =>
-  this.setState({
-    slideIndex: index,
-    leftAdjust: {
-      left: `${(-1000 * index) / 10}em`,
-    },
-  })
+  returnNewSlide = index => {
+    const { screenSize } = this.state;
+    let screenAdjust = 0;
+    if (screenSize > 1000) {
+      screenAdjust = -1000;
+    } else {
+      screenAdjust = (screenSize - 14) * -1;
+    }
+
+    this.setState({
+      showIndex: index,
+      leftAdjust: {
+        left: `${(screenAdjust * index) / 10}em`,
+      },
+    });
+  }
 
   startTimer = (index) => {
     if (index === 4) {
@@ -62,7 +78,7 @@ class HomepageReviewsCarousel extends Component {
   }
 
   render() {
-    const { slideIndex, leftAdjust } = this.state;
+    const { showIndex, leftAdjust } = this.state;
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
@@ -97,14 +113,14 @@ class HomepageReviewsCarousel extends Component {
           </div>
         </div>
         <HomepageReviewsCarourselDots
-          show={slideIndex}
+          show={showIndex}
           handleClick={this.handleClick}
         />
       </div>
     );
   }
 }
-const mapStateToProps({ geo }) => ({
-  
-})
+const mapStateToProps = ({ geo }) => ({
+  screenSize: geo.screen_size,
+});
 export default connect(mapStateToProps, null)(HomepageReviewsCarousel);

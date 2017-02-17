@@ -118,9 +118,11 @@ and (-webkit-device-pixel-ratio : 4) {
     & .homepage-header-img-src {
       @extend .galaxy-flex-center;
       width: 100%;
-      min-height: 15.5em;
-      background-image: $gxy-header-img;
-      background-size: cover;
+      min-height: 36.5em;
+      background-image: $gxy-header-img;     
+      background-size: 241%;
+      background-position-x: -250px;
+      background-repeat: no-repeat;
     }
   }
 }

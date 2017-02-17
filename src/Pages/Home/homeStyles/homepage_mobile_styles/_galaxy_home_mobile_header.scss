@@ -1,8 +1,8 @@
 .homepage-header-innner-container {
   @extend .galaxy-flex-center;
   flex-direction: column;
-  width: 26.5em;
-  height: 7.5em;
+  width: 27em;
+  height: 20.8em;
   border: 2px solid $p-red;
   background-color: rgba(1,1,1, 0.5);
   & .homepage-header-inner-container-img-src {
@@ -11,12 +11,15 @@
   }
   & .hompage-header-title-1 {
     color: $p-white;
-    font-size: 1.2em;
+    font-size: 2em;
     line-height: 1.25em;
+    text-align: center;
+    margin-top: 1em;
   }
   & .hompage-header-title-2 {
     color: $p-white;
-    font-size: 1.5em;
+    font-size: 2em;
     line-height: 1.25em;
+    margin-top: 1em;
   }
 }
