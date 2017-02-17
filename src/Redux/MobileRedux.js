@@ -8,13 +8,13 @@ export const mobileTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  screen_size: null,
-  mobile_type: null,
+  screenSize: null,
+  mobileType: null,
 };
 
-const setMobileDevice = (state, { screen_size, mobile_type }) => ({
-  screen_size,
-  mobile_type,
+const setMobileDevice = (state, { screenSize, mobileType }) => ({
+  screenSize,
+  mobileType,
 });
 
 export const mobileReducer = createReducer(INITIAL_STATE, {

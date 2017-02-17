@@ -7,15 +7,12 @@ import rootSaga from '../Sagas/';
 // import { thingReducer as things } from '../Redux/ThingRedux';
 import { userReducer as user } from './UserRedux';
 import { productsReducer as products } from './ProductsRedux';
+import { orderReducer as orders } from './OrdersRedux';
 import { apiReducer as api } from './ApiRedux';
 import { geoReducer as geo } from './GeoRedux';
 import { mobileReducer as mobile } from './MobileRedux';
 import { localeReducer as locale } from './LocaleRedux';
-
-import { activePageReducer as active_page } from './ActivePageRedux';
-import { metaReducer as meta } from './MetaRedux';
-
-import { orderReducer as orders } from './OrdersRedux';
+import { sessionReducer as session } from './SessionRedux';
 
 export default () => {
   const rootReducer = combineReducers({
@@ -26,7 +23,7 @@ export default () => {
     geo,
     mobile,
     locale,
-    active_page,
+    session,
   });
   return configureStore(rootReducer, rootSaga);
 };

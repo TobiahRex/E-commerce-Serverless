@@ -9,7 +9,7 @@ export const homepageActions = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  pop_juices: [{
+  popJuices: [{
     title: 'Fruity Bamm-Bamm',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
@@ -45,14 +45,14 @@ export const INITIAL_STATE = {
 
 function receivedPopJuices(state, { juiceArray }) {
   return ({
-    pop_juices: [...juiceArray],
+    popJuices: [...juiceArray],
     error: null,
   });
 }
 
-function productsError({ pop_juices }, { problem }) {
+function productsError({ popJuices }, { problem }) {
   return ({
-    pop_juices,
+    popJuices,
     error: problem,
   });
 }

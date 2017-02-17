@@ -10,19 +10,19 @@ export const localeTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  active_language: localStorage.getItem('active_language') || 'english',
-  active_currency: 'usd',
+  activeLanguage: localStorage.getItem('active_language') || 'english',
+  activeCurrency: 'usd',
   country: null,
 };
 
 const setLanguage = (state, { language }) => ({
   activeLanguage: language,
-  activeCurrency: state.active_currency,
+  activeCurrency: state.activeCurrency,
   country: state.country,
 });
 
 const setCurrency = (state, { currency }) => ({
-  activeLanguage: state.active_language,
+  activeLanguage: state.activeLanguage,
   activeCurrency: currency,
   country: state.country,
 });
