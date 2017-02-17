@@ -1,5 +1,5 @@
 .footer-main {
-  height: 35em;
+  height: 77.5em;
   width: 100%;
   padding: 1em 0;
   background-color: $p-blue;
@@ -9,7 +9,8 @@
     & ul.footer-main-sections-list {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      flex-direction: column;
       margin: 0;
       padding: 0;
       list-style-type: none;
@@ -19,8 +20,10 @@
       .footer-main-sections-list-myaccount,
       .footer-main-sections-list-customercare {
         display: flex;
+        justify-content:center;
+        align-items: center;
         flex-direction: column;
-        height: 30em;
+        height: 25em;
         width: 30em;
         & h3 {
           color: $p-white;
@@ -33,9 +36,12 @@
         .footer-main-sections-memberships-list,
         .footer-main-sections-customercare-list {
           display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
           flex-direction: column;          
           list-style-type: none;
-          & li {
+          padding: 0;
+          & li {            
             font-size: 1.5em;
             font-family: $s-font;
             font-weight: 100;
@@ -47,15 +53,18 @@
           }
         }
       }
-      & .footer-main-sections-list-memberships {
-        display: none;
+      & .footer-main-sections-list-contactus, {
+        height: 18em;
+      }
+      & .footer-main-sections-list-customercare {
+        height: 30em;
       }
     }
   }
   & .footer-line-break {    
     display: flex;
     justify-content: center;
-    width: 80%;
+    width: 100%;
     border: 1px solid rgba(255, 255, 255, .15);
   }
   & .footer-copyright {
