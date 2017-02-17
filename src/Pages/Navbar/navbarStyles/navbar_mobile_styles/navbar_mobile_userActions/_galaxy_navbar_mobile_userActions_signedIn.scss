@@ -86,6 +86,8 @@
       &:hover,
       &:active,
       &:focus {
+        outline: none;
+        background-color: transparent;
         color: $p-white;
       }
     }

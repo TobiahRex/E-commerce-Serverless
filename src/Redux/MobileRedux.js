@@ -1,7 +1,7 @@
 import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  setMobileDevice: ['screen_size', 'mobile_type'],
+  setMobileDevice: ['screenSize', 'mobileType'],
 });
 
 export const mobileTypes = Types;

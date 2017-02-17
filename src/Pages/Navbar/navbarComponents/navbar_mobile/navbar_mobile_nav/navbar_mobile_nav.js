@@ -84,7 +84,7 @@ class NavbarMobileNav extends Component {
       transform: 'translateX(0px)',
       top: 0,
       position: 'fixed',
-      width: `${Number(screenSize) - 14}px`,
+      width: `${parseInt(screenSize, 10) - 14}px`,
       zIndex: 20,
     } : {};
 

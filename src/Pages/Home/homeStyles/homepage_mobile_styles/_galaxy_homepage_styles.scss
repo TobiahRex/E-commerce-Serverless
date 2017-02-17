@@ -1,10 +1,5 @@
-// @import './homepage_web_styles/_galaxy_home_mobile_header';
-// @import './homepage_web_styles/_galaxy_home_mobile_fastest_delivery';
-// @import './homepage_web_styles/_galaxy_home_mobile_how';
-// @import './homepage_web_styles/_galaxy_home_mobile_reviews';
-// @import './homepage_web_styles/_galaxy_home_mobile_popjuices';
-
 /* NOTE Galaxy Styles */
+
 @media only screen
 and (min-device-width : 360px)
 and (max-device-width : 640px)
@@ -119,7 +114,7 @@ and (-webkit-device-pixel-ratio : 4) {
       @extend .galaxy-flex-center;
       width: 100%;
       min-height: 36.5em;
-      background-image: $gxy-header-img;     
+      background-image: $gxy-header-img;
       background-size: 241%;
       background-position-x: -250px;
       background-repeat: no-repeat;
