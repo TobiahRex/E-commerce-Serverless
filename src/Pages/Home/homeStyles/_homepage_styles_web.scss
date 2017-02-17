@@ -32,7 +32,12 @@
 }
 @media only screen and (max-width: 1920px) {
   .homepage-header-img-src {
-    min-height: 640px;
+    min-height: 755px;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .homepage-header-img-src {
+    min-height: 580px;
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -42,6 +47,6 @@
 }
 @media only screen and (max-width: 1088px) {
   .homepage-header-img-src {
-    min-height: 400px;
+    min-height: 990px;
   }
 }

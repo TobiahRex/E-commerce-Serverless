@@ -1,14 +1,15 @@
 .homepage-reviews {
   @extend .flex-center;
   flex-direction: column;
-  height: 58em;
+  height: 48em;
   width: 100%;
   margin-top: 4em;
+  padding-bottom: 2.7em;
   background-color: $p-grey;
   & h1.homepage-reviews-title {
     color: $p-red;
     line-height: 1.5em;
-    margin: .57em auto 1.71em auto;
+    margin: .8em;
   }
   & .homepage-reviews-carousel-parent {
     @extend .flex-center;

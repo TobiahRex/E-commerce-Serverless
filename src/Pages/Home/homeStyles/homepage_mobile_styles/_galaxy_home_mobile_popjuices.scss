@@ -1,11 +1,11 @@
 .homepage-juices {
   @extend .galaxy-flex-center;
   flex-direction: column;
-  height: 310em;
+  height: 307em;
   width: 100%;
   padding-top: 0;
   margin-top: 0;
-  background-color: $p-grey;
+  background-color: $p-white;
   & .homepage-juices-title {
     color: $p-red;
     line-height: 2.28em;
@@ -17,7 +17,7 @@
     height: 296em;
     margin: 0 6em;
     padding: 0;
-    background-color: $p-grey;
+    background-color: $p-white;
     & .homepage-juices-grid-card-parent {
       @extend .galaxy-flex-center;
       flex-direction: column;
@@ -27,10 +27,9 @@
       background-color: $p-white;
       @include prefixed(box-shadow, 5px 5px 4px rgba(1,1,1,.25));
       & .homepage-juices-grid-card-image {
-        content: '';
         width: 25em;
-        height: 27em;
-        background-color: black;
+        height: 25em;
+        background-color: $p-white;
       }
       & .homepage-juices-grid-card-desc-parent {
         height: 17em;

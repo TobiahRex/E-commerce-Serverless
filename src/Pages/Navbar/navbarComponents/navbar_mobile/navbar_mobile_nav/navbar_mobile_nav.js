@@ -81,8 +81,11 @@ class NavbarMobileNav extends Component {
       screenSize,
     } = this.props;
     const style = this.state.navbarFixed ? {
+      transform: 'translateX(0px)',
+      top: 0,
       position: 'fixed',
       width: `${Number(screenSize) - 14}px`,
+      zIndex: 20,
     } : {};
 
     return (

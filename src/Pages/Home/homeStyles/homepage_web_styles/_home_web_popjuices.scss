@@ -1,23 +1,22 @@
 .homepage-juices {
   @extend .flex-center;
   flex-direction: column;
-  height: 113em;
   width: 100%;
-  padding: 3em 0;
-  margin-top: 2em;
+  padding: 0;
+  margin: 0;
   background-color: $p-white;
   & .homepage-juices-title {
     color: $p-red;
     line-height: 2.28em;
+    margin: .8em;
   }
   & .homepage-juices-grid-parent {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: wrap;
-    height: 100em;
     margin: 0 6em;
-    padding: 2.5em 0;
+    padding: 0;
     background-color: $p-white;
     & .homepage-juices-grid-card-parent {
       @extend .flex-center;
@@ -30,7 +29,7 @@
       & .homepage-juices-grid-card-image {
         content: '';
         width: 25em;
-        height: 27em;
+        height: 25em;
         background-color: black;
       }
       & .homepage-juices-grid-card-desc-parent {
@@ -82,7 +81,7 @@
           color: $s-grey;
         }
         & .homepage-juices-grid-card-desc-nicotine-options {
-          height: 40em;
+          height: 4em;
           width: 23em;
           & .homepage-juices-grid-card-desc-nicotine-options-list {
             display: flex;

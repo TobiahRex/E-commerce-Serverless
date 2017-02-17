@@ -2,11 +2,11 @@
   @extend .galaxy-flex-center;
   flex-direction: column;
   height: 30em;
-  margin: 0;
+  margin: 0 auto 5em auto;
   & h1.homepage-how-title {
     color: $p-red;
     line-height: 1.5em;
-    margin: .45em;
+    margin: 1em;
   }
   & .homepage-how-carousel-container {
     height: 24em;

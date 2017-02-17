@@ -2,11 +2,11 @@
   @extend .flex-center;
   flex-direction: column;
   height: 66em;
-  margin-top: 2em;
+  margin-top: 0;
   & h1.homepage-how-title {
     color: $p-red;
     line-height: 1.5em;
-    margin: .45em;
+    margin: .8em;
   }
   & .homepage-how-carousel-container {
     height: 57.2em;

@@ -57,6 +57,8 @@
   nav.navbar-web {
     display: flex;
     justify-content: center;
+    position: fixed;
+    z-index: 20;
   }
   nav.navbar-mobile {
     display: none;
