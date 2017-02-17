@@ -1,7 +1,8 @@
 import path from 'path';
+import dotenv from 'dotenv';
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpackEnvs from './tools/webpack_envs';
+dotenv.load({ silent: true });
 
 const devConfig = {
   noInfo: true,
@@ -96,8 +97,6 @@ const devConfig = {
 // -----------------------------------------------------------------------------
 // NOTE : Production Webpack configuration below.
 
-const extractCSS = new ExtractTextPlugin('stylesheets/app.css');
-
 const prodConfig = {
   devtool: 'inline-source-map',
   noInfo: true,
@@ -113,7 +112,6 @@ const prodConfig = {
     filename: 'bundle.js',
   },
   plugins: [
-    new ExtractTextPlugin('app.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
     new webpack.ProvidePlugin({
@@ -138,7 +136,7 @@ const prodConfig = {
       },
       {
         test: /\.s[ac]ss$/,
-        loader: extractCSS.extract(['css', 'sass']),
+        loaders: ['style', 'css', 'sass', 'postcss-loader'],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -181,5 +179,5 @@ const prodConfig = {
     extensions: ['', '.js', '.jsx'],
   },
 };
-
+console.log(process.env.NODE_ENV);
 export default (process.env.NODE_ENV === 'production') ? prodConfig : devConfig;

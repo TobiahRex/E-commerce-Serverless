@@ -24,6 +24,7 @@
     height: 3em;
     background-color: inherit;
     color: inherit;
+    border: 1px solid rgba(1,1,1,.15);
     & .mobile-language-main-button-us-parent {
       @extend .ipp-flex-center;
       & .mobile-language-main-button-us {
