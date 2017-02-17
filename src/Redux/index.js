@@ -7,19 +7,18 @@ import rootSaga from '../Sagas/';
 // import { thingReducer as things } from '../Redux/ThingRedux';
 import { apiReducer as api } from './ApiRedux';
 import { activePageReducer as active_page } from './ActivePageRedux';
-import { ageVerificationReducer as age_verification } from './AgeVerificationRedux';
 import { productsReducer as products } from './ProductsRedux';
-import { geoReducer as geo } from './GeoRedux';
+import { metaReducer as meta } from './MetaRedux';
 import { userReducer as user } from './UserRedux';
+import { geoReducer as geo } from './GeoRedux';
 
 export default () => {
   const rootReducer = combineReducers({
     user,
     products,
-    geo,
+    meta,
     api,
     active_page,
-    age_verification,
   });
   return configureStore(rootReducer, rootSaga);
 };

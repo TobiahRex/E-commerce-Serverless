@@ -9,21 +9,25 @@ export const userActions = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  age_verified: false,
-  logged_in: false,
+  ageVerified: Boolean(localStorage.getItem('ageVerified')) || false,
+  loggedIn: false,
 };
 
 const loggedIn = state => ({
-  age_verified: state.age_verified,
-  logged_in: true,
+  ageVerified: state.age_verified,
+  loggedIn: true,
 });
 
-const verified = state => ({
-  age_verified: true,
-  logged_in: state.logged_in,
-});
+const verified = state => {
+  localStorage.setItem('ageVerified', true);
+  return ({
+    ageVerified: true,
+    loggedIn: state.loggedIn,
+  });
+};
 
 export const userReducer = createReducer(INITIAL_STATE, {
   [Types.USER_LOGGED_IN]: loggedIn,
   [Types.AGE_VERIFIED]: verified,
 });
+// ------------------------------  ageVerified: null,

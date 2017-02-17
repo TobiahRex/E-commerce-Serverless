@@ -8,13 +8,13 @@ export const AgeVerificationTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  age_verified: Boolean(localStorage.getItem('ageVerified')) || false,
+  ageVerified: Boolean(localStorage.getItem('ageVerified')) || false,
 };
 
 const verified = () => {
   localStorage.setItem('ageVerified', true);
   return ({
-    age_verified: true,
+    ageVerified: true,
   });
 };
 
