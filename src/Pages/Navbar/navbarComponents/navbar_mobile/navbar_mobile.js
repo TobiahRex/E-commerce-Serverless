@@ -4,23 +4,23 @@ import { Link } from 'react-router';
 import NavbarMobileOptions from './navbar_mobile_options/navbarOptions_mobile';
 import NavbarMobileActions from './navbar_mobile_userActions/navbar_mobile_userActions';
 import NavbarMobileNav from './navbar_mobile_nav/navbar_mobile_nav';
-
-checScrolling() {
-  const num = 200; //number of pixels before modifying styles
-  console.log('hello from navbar');
-  window.bind('scroll', () => {
-    console.warn('scrolling...');
-    if (window.scrollTop() > num) {
-        // $('.menu').addClass('fixed');
-        console.info('passed navbar', window.scrollTop());
-    } else {
-        console.info('not yet...');
-    }
-  });
-}
-
+import $ from 'jquery';
 class NavbarMobile extends PureComponent {
-  checkScrolling();
+
+  componentDidMount() {
+    // const num = 200; //number of pixels before modifying styles
+    // console.log('hello from navbar');
+    // $(window).bind('scroll', () => {
+    //   console.warn('scrolling...');
+    //   if ($(window).scrollTop() > num) {
+    //     // $('.menu').addClass('fixed');
+    //     console.info('passed navbar', window.scrollTop());
+    //   } else {
+    //     console.info('not yet...');
+    //   }
+    // });
+  }
+
   render() {
     return (
       <nav className="navbar navbar-mobile">

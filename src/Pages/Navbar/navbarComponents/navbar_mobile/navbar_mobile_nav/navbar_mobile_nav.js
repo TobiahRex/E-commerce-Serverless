@@ -30,6 +30,10 @@ class NavbarMobileNav extends Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
   componentWillReceiveProps(nextProps) {
     const {
       mobileNavbarExpanded,
@@ -44,6 +48,13 @@ class NavbarMobileNav extends Component {
     }
     if (cartQty !== this.state.cartQty) {
       this.setState({ cartQty });
+    }
+  }
+
+  handleScroll = (e) => {
+    const position = e.srcElement.body.scrollTop;
+    if (position > 200) {
+      this.setState({ navbarFixed: true });
     }
   }
 
