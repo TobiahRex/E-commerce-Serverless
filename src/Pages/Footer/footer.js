@@ -11,9 +11,15 @@ export default function Footer() {
               Contact Us
             </h3>
             <ul className="footer-main-sections-contactus-list">
-              <li className="footer-main-sections-contactus-email">Email</li>
-              <li className="footer-main-sections-contactus-phone">Phone</li>
-              <li className="footer-main-sections-contactus-phone">About</li>
+              <li className="footer-main-sections-contactus-email sweep-right">
+                Email
+              </li>
+              <li className="footer-main-sections-contactus-phone sweep-right">
+                Phone
+              </li>
+              <li className="footer-main-sections-contactus-phone sweep-right">
+                About
+              </li>
             </ul>
           </li>
           <li className="footer-main-sections-list-myaccount">
@@ -21,16 +27,16 @@ export default function Footer() {
               My Account
             </h3>
             <ul className="footer-main-sections-myaccount-list">
-              <li className="footer-main-sections-myaccount-register">
+              <li className="footer-main-sections-myaccount-register sweep-right">
                 Order History
               </li>
-              <li className="footer-main-sections-myaccount-affiliate">
+              <li className="footer-main-sections-myaccount-affiliate sweep-right">
                 Order Status
               </li>
-              <li className="footer-main-sections-myaccount-wholesale">
+              <li className="footer-main-sections-myaccount-wholesale sweep-right">
                 Change Password
               </li>
-              <li className="footer-main-sections-myaccount-forgot">
+              <li className="footer-main-sections-myaccount-forgot sweep-right">
                 Forgot Login Info
               </li>
             </ul>
@@ -40,16 +46,16 @@ export default function Footer() {
               Memberships
             </h3>
             <ul className="footer-main-sections-memberships-list">
-              <li className="footer-main-sections-memberships-register">
+              <li className="footer-main-sections-memberships-register sweep-right">
                 Register
               </li>
-              <li className="footer-main-sections-memberships-affiliate">
+              <li className="footer-main-sections-memberships-affiliate sweep-right">
                 Affiliate Program
               </li>
-              <li className="footer-main-sections-memberships-wholesale">
+              <li className="footer-main-sections-memberships-wholesale sweep-right">
                 Wholesale
               </li>
-              <li className="footer-main-sections-memberships-forgot">
+              <li className="footer-main-sections-memberships-forgot sweep-right">
                 Forgot Login Info
               </li>
             </ul>
@@ -59,22 +65,22 @@ export default function Footer() {
               Customer Care
             </h3>
             <ul className="footer-main-sections-customercare-list">
-              <li className="footer-main-sections-customercare-shop">
+              <li className="footer-main-sections-customercare-shop sweep-right">
                 Shop
               </li>
-              <li className="footer-main-sections-customercare-shipping">
+              <li className="footer-main-sections-customercare-shipping sweep-right">
                 Shipping Policy
               </li>
-              <li className="footer-main-sections-customercare-returns">
+              <li className="footer-main-sections-customercare-returns sweep-right">
                 Return Policy
               </li>
-              <li className="footer-main-sections-customercare-privacy">
+              <li className="footer-main-sections-customercare-privacy sweep-right">
                 Privacy Policy
               </li>
-              <li className="footer-main-sections-customercare-terms">
+              <li className="footer-main-sections-customercare-terms sweep-right">
                 Terms & Conditions
               </li>
-              <li className="footer-main-sections-customercare-nicotine">
+              <li className="footer-main-sections-customercare-nicotine sweep-right">
                 Nicotine Disclaimer
               </li>
             </ul>
@@ -85,7 +91,7 @@ export default function Footer() {
           <p className="copyright-message">
             Copyright <FontAwesome name="copyright" /> 2017
           </p>
-          <p className="developer-message">Made with <FontAwesome className="developer-heart" name="heart" /> by TobiahRex
+          <p className="developer-message">Made with <FontAwesome className="developer-heart" name="heart" /> by @TobiahRex
           </p>
         </div>
       </div>
