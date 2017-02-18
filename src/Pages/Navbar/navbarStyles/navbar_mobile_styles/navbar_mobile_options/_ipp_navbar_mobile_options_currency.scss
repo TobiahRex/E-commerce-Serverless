@@ -25,6 +25,8 @@
     height: 3em;
     background-color: inherit;
     color: inherit;
+    border-radius: 5%;
+    border: 1px solid rgba(1,1,1,.15);
     & .mobile-currency-main-button-dollar-parent {
       @extend .ipp-flex-center;
       & .mobile-currency-main-button-dollar {

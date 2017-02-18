@@ -33,14 +33,14 @@
         .footer-main-sections-memberships-list,
         .footer-main-sections-customercare-list {
           display: flex;
-          flex-direction: column;          
+          flex-direction: column;
           list-style-type: none;
           & li {
             font-size: 1.5em;
             font-family: $s-font;
             font-weight: 100;
             line-height: 2em;
-            letter-spacing: 0.06em;         
+            letter-spacing: 0.06em;
             color: #DDD;
             cursor: pointer;
             transition: all .3s;
@@ -49,7 +49,7 @@
       }
     }
   }
-  & .footer-line-break {    
+  & .footer-line-break {
     display: flex;
     justify-content: center;
     width: 80%;
