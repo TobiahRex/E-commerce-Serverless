@@ -1,11 +1,6 @@
 @media only screen
 and (min-device-width : 414px)
-and (max-device-width : 736px)
-and (device-width : 414px)
-and (device-height : 736px)
-and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio : 3)
-and (-webkit-device-pixel-ratio : 3) {
+and (device-width : 414px){
   @import './navbar_mobile_options/ipp_navbar_mobile_options';
   @import './navbar_mobile_userActions/ipp_navbar_mobile_userActions';
   @import './navbar_mobile_nav/navbar_mobile_nav_main/ipp_navbar_mobile_nav_main';

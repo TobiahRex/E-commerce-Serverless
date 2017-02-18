@@ -60,9 +60,9 @@ class NavbarMobileNav extends Component {
 
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
-    if (position > 200) {
+    if (position > 205) {
       this.setState({ navbarFixed: true });
-    } else if (position < 200) {
+    } else if (position < 205) {
       this.setState({ navbarFixed: false });
     }
   }

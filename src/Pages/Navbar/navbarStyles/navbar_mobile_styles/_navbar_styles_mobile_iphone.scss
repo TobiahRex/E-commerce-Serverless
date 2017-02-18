@@ -1,11 +1,6 @@
 @media only screen
 and (min-device-width : 375px)
-and (max-device-width : 667px)
-and (device-width : 375px)
-and (device-height : 667px)
-and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio : 2)
-and (-webkit-device-pixel-ratio : 2) {
+and (device-width : 375px) {
   @import './navbar_mobile_options/iphone_navbar_mobile_options';
   @import './navbar_mobile_userActions/iphone_navbar_mobile_userActions';
   @import './navbar_mobile_nav/navbar_mobile_nav_main/iphone_navbar_mobile_nav_main';
@@ -77,7 +72,7 @@ and (-webkit-device-pixel-ratio : 2) {
         display: inline-block;
         position: relative;
         height: 6em;
-        width: 100%;
+        width: 36.1em;
         @extend .iphone-blue-bg;
       }
     }

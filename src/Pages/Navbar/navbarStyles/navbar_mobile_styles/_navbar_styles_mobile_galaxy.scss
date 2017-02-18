@@ -1,5 +1,93 @@
 @media only screen
 and (min-device-width : 360px)
+and (device-width : 360px)
+and (orientation : portrait) {
+
+  // NOTE Navbar Styles
+  @import './navbar_mobile_options/galaxy_navbar_mobile_options';
+  @import './navbar_mobile_userActions/galaxy_navbar_mobile_userActions';
+  @import './navbar_mobile_nav/navbar_mobile_nav_main/galaxy_navbar_mobile_nav_main';
+  @import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/galaxy_navbar_mobile_nav_dropdownContent';
+
+  // NOTE Homepage Styles
+
+
+  .hidden {
+    display: none;
+  }
+  .galaxy2-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .galaxy2-flex-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .galaxy2-flex-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .galaxy2-white-bg {
+    background-color: $p-white;
+  }
+  .galaxy2-blue-bg {
+    background-color: $p-blue;
+  }
+  .navbar.navbar-web {
+    display: none;
+  }
+  body {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+    padding: 7px;
+    box-sizing: border-box;
+  }
+  nav.navbar-mobile {
+    height: 26em;
+    width: 100%;
+    @extend .galaxy2-white-bg;
+    & .navbar-mobile-container {
+      & .navbar-mobile-logo {
+        @extend .galaxy2-flex-center;
+        @extend .galaxy2-white-bg;
+        width: 100%;
+        height: 10em;
+        & .navbar-mobile-logo-src {
+          max-width: 20em;
+          content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
+        }
+      }
+      & .navbar-mobile-options {
+        @extend .galaxy2-flex-center;
+        height: 5em;
+        width: 100%;
+        background-color: $p-grey;
+        // border-bottom: 1px solid rgba(1,1,1,0.05);
+      }
+      & .navbar-mobile-actions {
+        height: 5em;
+        width: 100%;
+        background-color: $p-grey;
+      }
+      & .navbar-mobile-nav {
+        display: inline-block;
+        position: relative;
+        height: 6em;
+        width: 34.6em;
+        @extend .galaxy2-blue-bg;
+      }
+    }
+  }
+}
+
+
+@media only screen
+and (min-device-width : 360px)
 and (max-device-width : 640px)
 and (device-width : 360px)
 and (device-height : 640px)
@@ -82,7 +170,7 @@ and (-webkit-device-pixel-ratio : 4) {
         display: inline-block;
         position: relative;
         height: 6em;
-        width: 100%;
+        width: 34.6em;
         @extend .galaxy-blue-bg;
       }
     }

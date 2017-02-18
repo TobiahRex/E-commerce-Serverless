@@ -2,12 +2,7 @@
 
 @media only screen
 and (min-device-width : 375px)
-and (max-device-width : 667px)
-and (device-width : 375px)
-and (device-height : 667px)
-and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio : 2)
-and (-webkit-device-pixel-ratio : 2) {
+and (device-width : 375px) {
   h1 {
     font-size: 2.5em;
     font-family: $p-font;
@@ -70,7 +65,7 @@ and (-webkit-device-pixel-ratio : 2) {
     line-height: 1.78em;
     margin: 0;
   }
-  $gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/_galaxy_header_image.png');
+  $iphone-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_black_juice_pano.jpg');
   @import './_iphone_home_mobile_header';
   @import './_iphone_home_mobile_fastest_delivery';
   @import './_iphone_home_mobile_how';
@@ -113,10 +108,10 @@ and (-webkit-device-pixel-ratio : 2) {
     & .homepage-header-img-src {
       @extend .iphone-flex-center;
       width: 100%;
-      min-height: 40.5em;
-      background-image: $gxy-header-img;
+      min-height: 34.5em;
+      background-image: $iphone-header-img;
       background-size: 241%;
-      background-position-x: -250px;
+      background-position-x: -262px;
       background-repeat: no-repeat;
     }
   }

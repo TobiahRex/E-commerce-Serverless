@@ -82,11 +82,14 @@
       font-family: $p-font;
       color: $p-blue;
       border: none;
+      background-color: $p-grey;
       text-decoration: none;
       &:hover,
       &:active,
       &:focus {
+        outline: none;
         color: $p-white;
+        background-color: transparent;
       }
     }
   }

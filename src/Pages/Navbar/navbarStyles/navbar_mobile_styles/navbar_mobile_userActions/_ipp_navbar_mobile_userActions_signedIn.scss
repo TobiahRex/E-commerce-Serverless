@@ -82,10 +82,13 @@
       font-family: $p-font;
       color: $p-blue;
       border: none;
+      background-color: $p-grey;
       text-decoration: none;
       &:hover,
       &:active,
       &:focus {
+        outline: none;
+        background-color: transparent;
         color: $p-white;
       }
     }

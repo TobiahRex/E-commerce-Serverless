@@ -70,7 +70,7 @@ and (-webkit-device-pixel-ratio : 4) {
     line-height: 1.78em;
     margin: 0;
   }
-  $gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/_galaxy_header_image.png');
+  $gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_black_juice_pano.jpg');
   @import './_galaxy_home_mobile_header';
   @import './_galaxy_home_mobile_fastest_delivery';
   @import './_galaxy_home_mobile_how';
@@ -113,11 +113,11 @@ and (-webkit-device-pixel-ratio : 4) {
     & .homepage-header-img-src {
       @extend .galaxy-flex-center;
       width: 100%;
-      min-height: 36.5em;
+      min-height: 31.5em;
       background-image: $gxy-header-img;
       background-size: 241%;
       background-position-x: -250px;
-      background-repeat: no-repeat;
+      background-position-y: -23px;
     }
   }
 }
