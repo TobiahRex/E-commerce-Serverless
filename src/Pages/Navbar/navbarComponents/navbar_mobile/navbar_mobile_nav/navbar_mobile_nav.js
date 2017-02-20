@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
-
+import { determineMobileDevice } from '../../../../../Services/asynchDispatchServices';
+console.log(determineMobileDevice)
 class NavbarMobileNav extends Component {
   static propTypes = {
     mobileNavbarExpanded: PropTypes.bool,
     activePage: PropTypes.string,
     cartQty: PropTypes.number,
     screenSize: PropTypes.string,
+    refreshMobileSize: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -61,6 +63,7 @@ class NavbarMobileNav extends Component {
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
     if (position > 205) {
+      this.props.refreshMobileSize();
       this.setState({ navbarFixed: true });
     } else if (position < 205) {
       this.setState({ navbarFixed: false });
@@ -110,7 +113,10 @@ const mapStateToProps = ({ mobile, session }) => ({
   screenSize: mobile.screenSize,
   activePage: session.currentActivePage,
 });
-export default connect(mapStateToProps, null)(NavbarMobileNav);
+const mapDispatchToProp = dispatch => ({
+  refreshMobileSize: () => determineMobileDevice(dispatch),
+});
+export default connect(mapStateToProps, mapDispatchToProp)(NavbarMobileNav);
 
 /* TODO
 1. This component is mapped to State and received the three props defined in propTypes.

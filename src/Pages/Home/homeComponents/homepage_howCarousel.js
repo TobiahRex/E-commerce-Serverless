@@ -87,6 +87,7 @@ class HomepageHowCarousel extends Component {
       screenAdjust = (screenSize - 14) * -1;
     }
     alert(`Screen Size: ${screenSize}`);
+
     const stylesObj = {
       slides: {
         left: `${(screenAdjust * showIndex) / 10}em`,

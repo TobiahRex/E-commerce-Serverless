@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import './Services/socket-init';
 import createStore from './Redux/index';
 import routes from './Navigation/main';
-import asynchServices from './Services/asynchDispatchServices';
+import initiateActions from './Services/asynchDispatchServices';
 
 injectTapEventPlugin();
 const store = createStore();
@@ -17,11 +17,7 @@ render(
     <Router
       history={browserHistory}
       routes={routes}
-      onUpdate={() => {
-        asynchServices.determineMobileDevice(store.dispatch);
-        asynchServices.saveGeoLocation(store.dispatch);
-        asynchServices.generateDynamicTitle(store.dispatch);
-      }}
+      onUpdate={() => initiateActions(store.dispatch)}
     />
   </Provider >
   ,
