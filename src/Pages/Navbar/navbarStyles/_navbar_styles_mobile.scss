@@ -5,9 +5,9 @@
 @import "../../../Styles/mixins";
 @import "../../../Styles/transitions";
 
-/* Galaxy S6 & S7 portrait devices */
-@media screen and (max-width : 360px) {
-  @import "./navbar_mobile_styles/navbar_styles_mobile_galaxy";
+/* iPhone 6 & 7 Plus Portrait devices */
+@media screen and (min-width : 376px) and (max-width : 415px) {
+  @import "./navbar_mobile_styles/navbar_styles_mobile_iphonePlus";
 }
 
 /* iPhone 6 & 7 Portrait devices */
@@ -15,7 +15,6 @@
   @import "./navbar_mobile_styles/navbar_styles_mobile_iphone";
 }
 
-/* iPhone 6 & 7 Plus Portrait devices */
-@media screen and (min-width : 376px) and (max-width : 415px) {
-  @import "./navbar_mobile_styles/navbar_styles_mobile_iphonePlus";
+@media screen and (max-width : 360px) {
+  @import "./navbar_mobile_styles/navbar_styles_mobile_galaxy";
 }
