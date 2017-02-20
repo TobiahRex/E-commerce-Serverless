@@ -1,121 +1,112 @@
-/* NOTE iPhone 6 & 7 Homepage Styles
+$iphone-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_black_juice_pano.jpg');
+@import './_iphone_home_mobile_header';
+@import './_iphone_home_mobile_fastest_delivery';
+@import './_iphone_home_mobile_how';
+@import './_iphone_home_mobile_reviews';
+@import './_iphone_home_mobile_popjuices';
+h1 {
+  font-size: 2.5em;
+  font-family: $p-font;
+  font-weight: 800;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-blue;
+  line-height: 1em;
+  letter-spacing: 0.028em;
+  margin: 0;
+}
+h2 {
+  font-size: 2em;
+  font-family: $p-font;
+  font-weight: 800;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-blue;
+  line-height: 1em;
+  letter-spacing: .033em;
+  margin: 0;
+}
+h3 {
+  font-size: 1.8em;
+  font-family: $p-font;
+  font-weight: 200;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-blue;
+  line-height: 1em;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding: 0;
+}
+h4 {
+  font-size: 1.6em;
+  font-family: $p-font;
+  font-weight: 800;
+  text-align: center;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-blue;
+  line-height: 1em;
+  letter-spacing: .055em;
+  margin: 0;
+}
 
-Capture screens greater than or equal to 361 pixels wide,
-and less than or equal to 375pxs wide.
-*/
+h5 {
+  font-size: 1.2em;
+  font-family: $p-font;
+  font-weight: 200;
+  text-align: center;
+  @include prefixed(font-smoothing, antialiased);
+  color: $p-white;
+  line-height: 1.5em;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
 
-@media only screen
-and (min-width : 361px) and (max-width : 375px) {
-  h1 {
-    font-size: 2.5em;
-    font-family: $p-font;
-    font-weight: 800;
-    @include prefixed(font-smoothing, antialiased);
-    color: $p-blue;
-    line-height: 1em;
-    letter-spacing: 0.028em;
-    margin: 0;
-  }
-  h2 {
-    font-size: 2em;
-    font-family: $p-font;
-    font-weight: 800;
-    @include prefixed(font-smoothing, antialiased);
-    color: $p-blue;
-    line-height: 1em;
-    letter-spacing: .033em;
-    margin: 0;
-  }
-  h3 {
-    font-size: 1.8em;
-    font-family: $p-font;
-    font-weight: 200;
-    @include prefixed(font-smoothing, antialiased);
-    color: $p-blue;
-    line-height: 1em;
-    letter-spacing: 0.05em;
-    margin: 0;
-    padding: 0;
-  }
-  h4 {
-    font-size: 1.6em;
-    font-family: $p-font;
-    font-weight: 800;
-    text-align: center;
-    @include prefixed(font-smoothing, antialiased);
-    color: $p-blue;
-    line-height: 1em;
-    letter-spacing: .055em;
-    margin: 0;
-  }
+p {
+  font-family: $p-font;
+  font-size: 1em;
+  color: $p-blue;
+  line-height: 1.78em;
+  margin: 0;
+}
 
-  h5 {
-    font-size: 1.2em;
-    font-family: $p-font;
-    font-weight: 200;
-    text-align: center;
-    @include prefixed(font-smoothing, antialiased);
-    color: $p-white;
-    line-height: 1.5em;
-    letter-spacing: 0.06em;
-    margin: 0;
-  }
+.iphone-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.iphone-flex-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.iphone-flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.iphone-flex-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.iphone-white-bg {
+  background-color: $p-white;
+}
+.iphone-blue-bg {
+  background-color: $p-blue;
+}
 
-  p {
-    font-family: $p-font;
-    font-size: 1em;
-    color: $p-blue;
-    line-height: 1.78em;
-    margin: 0;
-  }
-  $iphone-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_black_juice_pano.jpg');
-  @import './_iphone_home_mobile_header';
-  @import './_iphone_home_mobile_fastest_delivery';
-  @import './_iphone_home_mobile_how';
-  @import './_iphone_home_mobile_reviews';
-  @import './_iphone_home_mobile_popjuices';
-
-  .iphone-flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .iphone-flex-right {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .iphone-flex-left {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .iphone-flex-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  .iphone-white-bg {
-    background-color: $p-white;
-  }
-  .iphone-blue-bg {
-    background-color: $p-blue;
-  }
-
-  .homepage {
+.homepage {
+  @extend .iphone-flex-center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: $p-white;
+  & .homepage-header-img-src {
     @extend .iphone-flex-center;
-    flex-direction: column;
     width: 100%;
-    height: 100%;
-    background-color: $p-white;
-    & .homepage-header-img-src {
-      @extend .iphone-flex-center;
-      width: 100%;
-      min-height: 34.5em;
-      background-image: $iphone-header-img;
-      background-size: 241%;
-      background-position-x: -262px;
-      background-repeat: no-repeat;
-    }
+    min-height: 34.5em;
+    background-image: $iphone-header-img;
+    background-size: 241%;
+    background-position-x: -262px;
+    background-repeat: no-repeat;
   }
 }

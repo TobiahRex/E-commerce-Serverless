@@ -1,85 +1,76 @@
-/* NOTE iPhone 6 & 7 Portrait Homepage Styles
+@import './navbar_mobile_options/iphone_navbar_mobile_options';
+@import './navbar_mobile_userActions/iphone_navbar_mobile_userActions';
+@import './navbar_mobile_nav/navbar_mobile_nav_main/iphone_navbar_mobile_nav_main';
+@import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/iphone_navbar_mobile_nav_dropdownContent';
 
-Capture screens greater than or equal to 361 pixels wide,
-and less than or equal to 375pxs wide.
-*/
-
-@media only screen
-and (min-width : 361px) and (max-width : 375px) {
-  @import './navbar_mobile_options/iphone_navbar_mobile_options';
-  @import './navbar_mobile_userActions/iphone_navbar_mobile_userActions';
-  @import './navbar_mobile_nav/navbar_mobile_nav_main/iphone_navbar_mobile_nav_main';
-  @import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/iphone_navbar_mobile_nav_dropdownContent';
-
-  .hidden {
-    display: none;
-  }
-  .iphone-flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .iphone-flex-right {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .iphone-flex-left {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .iphone-white-bg {
-    background-color: $p-white;
-  }
-  .iphone-blue-bg {
-    background-color: $p-blue;
-  }
-  .navbar.navbar-web {
-    display: none;
-  }
-  body {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: vertical;
-    flex-direction: column;
-    padding: 7px;
-    box-sizing: border-box;
-  }
-  nav.navbar-mobile {
-    height: 26em;
-    width: 100%;
-    @extend .iphone-white-bg;
-    & .navbar-mobile-container {
-      & .navbar-mobile-logo {
-        @extend .iphone-flex-center;
-        @extend .iphone-white-bg;
-        width: 100%;
-        height: 10em;
-        & .navbar-mobile-logo-src {
-          max-width: 20em;
-          content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
-        }
+.hidden {
+  display: none;
+}
+.iphone-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.iphone-flex-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.iphone-flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.iphone-white-bg {
+  background-color: $p-white;
+}
+.iphone-blue-bg {
+  background-color: $p-blue;
+}
+.navbar.navbar-web {
+  display: none;
+}
+body {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+  padding: 7px;
+  box-sizing: border-box;
+}
+nav.navbar-mobile {
+  height: 26em;
+  width: 100%;
+  @extend .iphone-white-bg;
+  & .navbar-mobile-container {
+    & .navbar-mobile-logo {
+      @extend .iphone-flex-center;
+      @extend .iphone-white-bg;
+      width: 100%;
+      height: 10em;
+      & .navbar-mobile-logo-src {
+        max-width: 20em;
+        content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
       }
-      & .navbar-mobile-options {
-        @extend .iphone-flex-center;
-        height: 5em;
-        width: 100%;
-        background-color: $p-grey;
-        border-bottom: 1px solid rgba(1,1,1,0.05);
-      }
-      & .navbar-mobile-actions {
-        height: 5em;
-        width: 100%;
-        background-color: $p-grey;
-      }
-      & .navbar-mobile-nav {
-        display: inline-block;
-        position: relative;
-        height: 6em;
-        width: 36.1em;
-        @extend .iphone-blue-bg;
-      }
+    }
+    & .navbar-mobile-options {
+      @extend .iphone-flex-center;
+      height: 5em;
+      width: 100%;
+      background-color: $p-grey;
+      border-bottom: 1px solid rgba(1,1,1,0.05);
+    }
+    & .navbar-mobile-actions {
+      height: 5em;
+      width: 100%;
+      background-color: $p-grey;
+    }
+    & .navbar-mobile-nav {
+      display: inline-block;
+      position: relative;
+      height: 6em;
+      width: 36.1em;
+      @extend .iphone-blue-bg;
     }
   }
 }
