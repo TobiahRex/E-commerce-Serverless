@@ -29,11 +29,10 @@ class HomepageReviewsCarousel extends Component {
 
   componentWillReceiveProps({ screenSize }) {
     const { maxWidth } = this.calcMaxWidth(screenSize, 0);
-    console.log('new max width: ', maxWidth);
+    console.log('received new max width: ', maxWidth);
     this.setState({
       screenSize: Number(screenSize),
       maxWidth,
-      // maxWidth: this.calcMaxWidth(screenSize, 0).maxWidth,
     });
   }
 
@@ -100,7 +99,8 @@ class HomepageReviewsCarousel extends Component {
 
   render() {
     const { showIndex, leftAdjust, maxWidth } = this.state;
-    console.log('maxWidth: ', maxWidth);
+    let newMaxWidth = this.state
+    newMaxWidth = String(newMaxWidth);
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
@@ -108,28 +108,28 @@ class HomepageReviewsCarousel extends Component {
           <div className="homepage-reviews-carousel-container">
             <div style={leftAdjust} className="homepage-reviews-carousel-slides">
               <HomepageReviewsSlide
-                maxWidth={maxWidth}
+                maxWidth={newMaxWidth}
                 className={'homepage-reviews-carousel'}
                 name={'alpha'}
                 review={'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.'}
                 author={'Matt Shipmen'}
               />
               <HomepageReviewsSlide
-                maxWidth={maxWidth}
+                maxWidth={newMaxWidth}
                 className={'homepage-reviews-carousel'}
                 name={'beta'}
                 review={'Wow! Fruity Bamm-Bamm = Delicious.  4 Day Delivery = Fast. My New Juice Source = NJ2JP.'}
                 author={'Gene Smith, Okinawa'}
               />
               <HomepageReviewsSlide
-                maxWidth={maxWidth}
+                maxWidth={newMaxWidth}
                 className={'homepage-reviews-carousel'}
                 name={'gamma'}
                 review={'“NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to them carrying more juices flavors.”'}
                 author={'Robert McNair, Sasebo'}
               />
               <HomepageReviewsSlide
-                maxWidth={maxWidth}
+                maxWidth={newMaxWidth}
                 className={'homepage-reviews-carousel'}
                 name={'delta'}
                 review={'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!'}
