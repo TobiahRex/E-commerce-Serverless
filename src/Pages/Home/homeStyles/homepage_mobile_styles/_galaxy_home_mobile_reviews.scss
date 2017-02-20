@@ -19,7 +19,8 @@
     background-color: $p-blue;
     & .homepage-reviews-carousel-container {
       height: 21em;
-      width: 34.6em;
+      width: 100%;
+      max-width: 34.6em;
       overflow: hidden;
       position: relative;
       & .homepage-reviews-carousel-slides {
@@ -34,18 +35,19 @@
           @extend .galaxy-flex-center;
           flex-direction: column;
           height: 21em;
-          width: 34.6em;
+/*           width: 34.6em; */
           & .homepage-reviews-carousel-alpha-review,
           .homepage-reviews-carousel-beta-review,
           .homepage-reviews-carousel-gamma-review,
-          .homepage-reviews-carousel-delta-review {
+          .homepage-reviews-carousel-delta-review {            
             @extend .galaxy-flex-center;
             flex-direction: column;
+            padding: 1em;
             & .homepage-reviews-carousel-alpha-review-body,
             .homepage-reviews-carousel-beta-review-body,
             .homepage-reviews-carousel-gamma-review-body,
             .homepage-reviews-carousel-delta-review-body {
-              width: 32em;
+              width: 100%;
               display: flex;
               & .homepage-reviews-carousel-alpha-review-body-quotes,
               .homepage-reviews-carousel-beta-review-body-quotes,

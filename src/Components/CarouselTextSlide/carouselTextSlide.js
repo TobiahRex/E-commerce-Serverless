@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 
 const propTypes = {
+  maxWidth: PropTypes.string,
   className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   review: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
-function ReviewSlide({ className, name, review, author }) {
+function ReviewSlide({ maxWidth, className, name, review, author }) {
   return (
-    <div className={`${className}-${name}`}>
+    <div className={`${className}-${name}`} style={{ maxWidth }}>
       <div className={`${className}-${name}-review`}>
         <div className={`${className}-${name}-review-body`}>
           <p className={`${className}-${name}-review-body-quotes`}>

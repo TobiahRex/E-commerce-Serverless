@@ -2,16 +2,22 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const propTypes = {
+  maxWidth: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
-function CarouselSlide({ className, name, description, alt }) {
+function CarouselSlide({ maxWidth, className, name, description, alt }) {
   return (
     <div className={`${className}-${name}`}>
-      <div alt={`${alt}`} className={`${className}-${name}-image`}>
+      <div
+        alt={`${alt}`}
+        className={`${className}-${name}-image`}
+        style={{ maxWidth }}
+      >
+
         <div className={`${className}-${name}-description-container`}>
           <p>
             {description}

@@ -2,6 +2,7 @@
   @extend .galaxy-flex-center;
   flex-direction: column;
   height: 30em;
+  width: 100%;
   margin: 0 auto 5em auto;
   & h1.homepage-how-title {
     color: $p-red;
@@ -10,14 +11,15 @@
   }
   & .homepage-how-carousel-container {
     height: 24em;
-    width: 34.6em;
+    width: 100%;
+    max-width: 34.6em;
     background-color: $p-white;
     overflow: hidden;
     position: relative;
     & .homepage-how-carousel-container-slides {
       display: flex;
       position: absolute;
-      left: -34.6em;
+/*       left: -34.6em; */
       transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
       & .homepage-how-carousel-couple,
       .homepage-how-carousel-distro,
@@ -34,6 +36,7 @@
           @extend .galaxy-flex-bottom;
           height: 24em;
           max-width: 34.6em;
+/*           width: 100%; */
           background-image: $img-carousel-couple;
           background-size: cover;
           background-repeat: no-repeat;
@@ -45,7 +48,7 @@
           & .homepage-how-carousel-delivery-description-container {
             @extend .galaxy-flex-center;
             height: 6.5em;
-            width: 32em;
+            width: 34.6em;
             background-color: rgba(1,1,1,.75);
             margin-bottom: 3.5em;
             & p {
@@ -93,150 +96,6 @@
           background-image: $img-carousel-delivery;
         }
       }
-      /*
-      & .homepage-how-carousel-distro {
-        & .homepage-how-carousel-distro-image {
-          @extend .galaxy-flex-bottom;
-          height: 24em;
-          max-width: 34.6em;
-          background-image: $img-carousel-distro;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-distro-description-container {
-          @extend .galaxy-flex-center;
-          height: 7.5em;
-          width: 32em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 30em;
-            text-align: center;
-            color: $p-white;
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-warehouse {
-        & .homepage-how-carousel-warehouse-image {
-          @extend .galaxy-flex-bottom;
-          height: 24em;
-          max-width: 34.6em;
-          background-image: $img-carousel-warehouse;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-warehouse-description-container {
-          @extend .galaxy-flex-center;
-          height: 7.5em;
-          width: 32em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 30em;
-            text-align: center;
-            color: $p-white;
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-flight {
-        & .homepage-how-carousel-flight-image {
-          @extend .galaxy-flex-bottom;
-          height: 24em;
-          max-width: 34.6em;
-          background-image: $img-carousel-flight;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-flight-description-container {
-          @extend .galaxy-flex-center;
-          height: 7.5em;
-          width: 32em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 30em;
-            text-align: center;
-            color: $p-white;
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-truck {
-        & .homepage-how-carousel-truck-image {
-          @extend .galaxy-flex-bottom;
-          height: 24em;
-          max-width: 34.6em;
-          background-image: $img-carousel-truck;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-truck-description-container {
-          @extend .galaxy-flex-center;
-          height: 7.5em;
-          width: 32em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 30em;
-            text-align: center;
-            color: $p-white;
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-delivery {
-        & .homepage-how-carousel-delivery-image {
-          @extend .galaxy-flex-bottom;
-          height: 24em;
-          max-width: 34.6em;
-          background-image: $img-carousel-delivery;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-delivery-description-container {
-          @extend .galaxy-flex-center;
-          flex-direction: column;
-          height: 10em;
-          width: 32em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 1em;
-          & p {
-            max-width: 30em;
-            text-align: center;
-            color: $p-white;
-            font-size: 10px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-          & a.homepage-how-carousel-delivery-buy-btn {
-            @extend .galaxy-flex-center;
-            width: 10.66em;
-            height: 2.66em;
-            color: $p-white;
-            font-size: 1.5em;
-            font-family: $p-font;
-            font-weight: bold;
-            letter-spacing: .02em;
-            background-color: $p-red;
-            z-index: 1;
-            margin-top: 0;
-            cursor: pointer;
-            text-decoration: none;
-            @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
-          }
-        }
-      }
-      */
     }
     & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
       color: $p-white;

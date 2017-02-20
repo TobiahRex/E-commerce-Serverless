@@ -40,7 +40,7 @@ class HomepageHowCarousel extends Component {
     this.setState({ showIndex, hasPrevious, hasNext });
   }
 
-  renderCarouselSlides = () => {
+  renderCarouselSlides = (maxWidth) => {
     const slideDescs = [{
       name: 'couple',
       desc: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
@@ -68,6 +68,7 @@ class HomepageHowCarousel extends Component {
     }];
     return slideDescs.map((slideObj, i) => (
       <CarouselImageSlide
+        maxWidth={maxWidth}
         key={`homepage-how-carousel-${i}`}
         className="homepage-how-carousel"
         name={slideObj.name}
@@ -80,19 +81,21 @@ class HomepageHowCarousel extends Component {
   render() {
     const { showIndex, hasPrevious, hasNext, screenSize } = this.state;
     let screenAdjust = 0;
-
-    if (screenSize > 1000) {
+    let maxWidth = 0;
+    if (screenSize > 1079) {
       screenAdjust = -941;
-    } else {
+      maxWidth = '346px';
+    } else if (screenSize < 1080 && screenSize > 359) {
+      screenAdjust = -346;
+      maxWidth = '346px';
+    } else if (screenSize < 360) {
       screenAdjust = (screenSize - 14) * -1;
+      maxWidth = screenAdjust * -1;
     }
 
     const stylesObj = {
-      // slides: {
-      //   left: `${(screenAdjust * showIndex) / 10}em`,
-      // },
       slides: {
-        left: `${(-346 * showIndex) / 10}em`,
+        left: `${(screenAdjust * showIndex) / 10}em`,
       },
       leftNav: {
         display: hasPrevious ? 'inline' : 'none',
@@ -101,7 +104,6 @@ class HomepageHowCarousel extends Component {
         display: hasNext ? 'inline' : 'none',
       },
     };
-    console.warn('stylesObj: ', stylesObj);
     return (
       <div className="homepage-how">
         <h1 className="homepage-how-title">How?</h1>
@@ -109,7 +111,7 @@ class HomepageHowCarousel extends Component {
           <div
             style={stylesObj.slides}
             className="homepage-how-carousel-container-slides"
-          >{this.renderCarouselSlides()}</div>
+          >{this.renderCarouselSlides(maxWidth)}</div>
 
           {/* NAVS */}
           <CarouselNav
