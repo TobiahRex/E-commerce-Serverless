@@ -33,19 +33,21 @@ class HomepageReviewsCarousel extends Component {
     this.unMountTimer();
   }
 
-  returnNewSlide = index => {
+  returnNewSlide = (index) => {
     const { screenSize } = this.state;
     let screenAdjust = 0;
     if (screenSize > 1000) {
       screenAdjust = -1000;
-    } else {
+    } else if (screenSize < 360) {
       screenAdjust = (screenSize - 14) * -1;
+    } else {
+      screenAdjust = -346;
     }
 
     this.setState({
       showIndex: index,
       leftAdjust: {
-        left: `${(-346 * index) / 10}em`,
+        left: `${(screenAdjust * index) / 10}em`,
       },
     });
   }

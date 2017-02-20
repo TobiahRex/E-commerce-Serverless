@@ -59,6 +59,10 @@ export function orientationSpy(dispatch) {
   });
 }
 
+function scrollToTop() {
+  window.scrollTo(0, 1);
+}
+
 export default function initiateActions(dispatch) {
   generateDynamicTitle(dispatch);
   saveGeoLocation(dispatch);
@@ -69,4 +73,5 @@ export default function initiateActions(dispatch) {
     angle: orientation.angle,
     type: orientation.type,
   }));
-};
+  scrollToTop();
+}
