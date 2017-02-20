@@ -100,8 +100,9 @@ class HomepageReviewsCarousel extends Component {
 
   render() {
     const { showIndex, leftAdjust, maxWidth } = this.state;
-    let newMaxWidth = this.state
+    let newMaxWidth = this.state.maxWidth;
     newMaxWidth = String(newMaxWidth);
+
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
