@@ -8,6 +8,7 @@ const propTypes = {
   author: PropTypes.string.isRequired,
 };
 function ReviewSlide({ maxWidth, className, name, review, author }) {
+  console.log('reviews maxWidth slide: ', maxWidth);
   return (
     <div className={`${className}-${name}`} style={{ maxWidth }}>
       <div className={`${className}-${name}-review`}>

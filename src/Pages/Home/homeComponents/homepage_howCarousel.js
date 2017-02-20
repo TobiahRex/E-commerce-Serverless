@@ -17,6 +17,7 @@ class HomepageHowCarousel extends Component {
       showIndex: 0,
       hasPrevious: false,
       hasNext: true,
+      maxWidth: '346px',
     };
   }
 
@@ -83,7 +84,7 @@ class HomepageHowCarousel extends Component {
     let maxWidth = 0;
     if (screenSize > 1079) {
       screenAdjust = -941;
-      maxWidth = '346px';
+      maxWidth = '941px';
     } else if (screenSize < 1080 && screenSize > 359) {
       screenAdjust = -346;
       maxWidth = '346px';
