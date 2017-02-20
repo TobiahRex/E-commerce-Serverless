@@ -28,9 +28,12 @@ class HomepageReviewsCarousel extends Component {
   }
 
   componentWillReceiveProps({ screenSize }) {
+    const { maxWidth } = this.calcMaxWidth(screenSize, 0);
+    console.log('new max width: ', maxWidth);
     this.setState({
       screenSize: Number(screenSize),
-      maxWidth: this.calcMaxWidth(screenSize, 0).maxWidth,
+      maxWidth,
+      // maxWidth: this.calcMaxWidth(screenSize, 0).maxWidth,
     });
   }
 
@@ -97,7 +100,7 @@ class HomepageReviewsCarousel extends Component {
 
   render() {
     const { showIndex, leftAdjust, maxWidth } = this.state;
-
+    console.log('maxWidth: ', maxWidth);
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
