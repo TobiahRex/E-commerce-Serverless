@@ -40,11 +40,11 @@ body {
 }
 nav.navbar-mobile {
   height: 26em;
-  width: 100%;
+  width: 36.1em;
   @extend .iphone-white-bg;
   & .navbar-mobile-container {
     & .navbar-mobile-logo {
-      width: 100%;
+      // width: 100%;
       height: 10em;
       @extend .iphone-flex-center;
       @extend .iphone-white-bg;

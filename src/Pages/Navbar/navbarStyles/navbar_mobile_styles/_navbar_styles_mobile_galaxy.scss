@@ -40,11 +40,11 @@ body {
 }
 nav.navbar-mobile {
   height: 26em;
-  width: 100%;
+  width: 34.6em;
   @extend .galaxy2-white-bg;
   & .navbar-mobile-container {
     & .navbar-mobile-logo {
-      width: 100%;
+      // width: 100%;
       height: 10em;
       @extend .galaxy2-flex-center;
       @extend .galaxy2-white-bg;

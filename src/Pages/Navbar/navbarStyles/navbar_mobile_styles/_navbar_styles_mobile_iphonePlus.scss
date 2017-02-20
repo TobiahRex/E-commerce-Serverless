@@ -40,12 +40,11 @@ body {
 }
 nav.navbar-mobile {
   height: 26em;
-  width: 100%;
+  width: 40em;
   @extend .ipp-white-bg;
   & .navbar-mobile-container {
     & .navbar-mobile-logo-link {
       text-decoration: none;
-      width: 40em;
       height: 10em;
       & .navbar-mobile-logo {
         width: 100%;
