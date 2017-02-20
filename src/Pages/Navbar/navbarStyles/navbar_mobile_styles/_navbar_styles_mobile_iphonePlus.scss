@@ -1,6 +1,11 @@
+/* NOTE
+iPhone 6 & 7 Plus Homepage Styles
+Capture screens at least 376px wide and
+less than than or equal to 415px;
+*/
+
 @media only screen
-and (min-device-width : 414px)
-and (device-width : 414px){
+and (min-width : 376px) and (max-width : 415px) {
   @import './navbar_mobile_options/ipp_navbar_mobile_options';
   @import './navbar_mobile_userActions/ipp_navbar_mobile_userActions';
   @import './navbar_mobile_nav/navbar_mobile_nav_main/ipp_navbar_mobile_nav_main';

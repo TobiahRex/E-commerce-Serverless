@@ -1,6 +1,11 @@
+/* NOTE iPhone 6 & 7 Portrait Homepage Styles
+
+Capture screens greater than or equal to 361 pixels wide,
+and less than or equal to 375pxs wide.
+*/
+
 @media only screen
-and (min-device-width : 375px)
-and (device-width : 375px) {
+and (min-width : 361px) and (max-width : 375px) {
   @import './navbar_mobile_options/iphone_navbar_mobile_options';
   @import './navbar_mobile_userActions/iphone_navbar_mobile_userActions';
   @import './navbar_mobile_nav/navbar_mobile_nav_main/iphone_navbar_mobile_nav_main';
