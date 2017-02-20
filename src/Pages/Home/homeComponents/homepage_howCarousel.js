@@ -22,7 +22,6 @@ class HomepageHowCarousel extends Component {
 
   componentWillReceiveProps({ screenSize }) {
     const screen = Number(screenSize);
-    console.log('new Screen: ', screen);
     this.setState({ screenSize: screen });
   }
 
@@ -90,7 +89,7 @@ class HomepageHowCarousel extends Component {
       maxWidth = '346px';
     } else if (screenSize < 360) {
       screenAdjust = (screenSize - 14) * -1;
-      maxWidth = screenAdjust * -1;
+      maxWidth = `${screenAdjust * -1}px`;
     }
 
     const stylesObj = {

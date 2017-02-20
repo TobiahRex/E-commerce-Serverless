@@ -13,11 +13,13 @@ class HomepageReviewsCarousel extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      screenSize: Number(this.props.screenSize),
+      screenSize: Number(this.props.screenSize || '360'),
       showIndex: 0,
-      maxWidth: 0,
+      maxWidth: '346px',
+      leftAdjust: {
+        left: 0,
+      },
     };
   }
 
@@ -26,16 +28,18 @@ class HomepageReviewsCarousel extends Component {
   }
 
   componentWillReceiveProps({ screenSize }) {
-    const screen = Number(screenSize);
-    this.setState({ screenSize: screen });
+    this.setState({
+      screenSize: Number(screenSize),
+      maxWidth: this.calcMaxWidth(screenSize, 0).maxWidth,
+    });
   }
 
   componentWillUnmount() {
     this.unMountTimer();
   }
 
-  returnNewSlide = (index) => {
-    const { screenSize } = this.state;
+  calcMaxWidth = (screen, index = 0) => {
+    const screenSize = screen;
     let screenAdjust = 0;
     let maxWidth = 0;
     if (screenSize > 1079) {
@@ -45,12 +49,17 @@ class HomepageReviewsCarousel extends Component {
       maxWidth = '346px';
     } else if (screenSize < 360) {
       screenAdjust = (screenSize - 14) * -1;
-      maxWidth = screenAdjust * -1;
+      maxWidth = `${screenAdjust * -1}px`;
     }
+    return { maxWidth, screenAdjust, index };
+  }
 
+  returnNewSlide = (inputIndex) => {
+    const { screenSize } = this.state;
+    const { maxWidth, screenAdjust, index } = this.calcMaxWidth(screenSize, inputIndex);
     this.setState({
-      showIndex: index,
       maxWidth,
+      showIndex: index,
       leftAdjust: {
         left: `${(screenAdjust * index) / 10}em`,
       },
@@ -61,7 +70,9 @@ class HomepageReviewsCarousel extends Component {
     if (index === 4) {
       return this.startTimer(0);
     }
-    this.returnNewSlide(index);
+    if (index !== this.state.index) {
+      this.returnNewSlide(index);
+    }
     globalTimer = setTimeout(() => this.startTimer(index += 1), 10000);
     return globalTimer;
   }
@@ -86,6 +97,7 @@ class HomepageReviewsCarousel extends Component {
 
   render() {
     const { showIndex, leftAdjust, maxWidth } = this.state;
+
     return (
       <div className="homepage-reviews">
         <h1 className="homepage-reviews-title">Reviews</h1>
