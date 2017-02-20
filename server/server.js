@@ -12,6 +12,7 @@ import devMiddleware from 'webpack-dev-middleware';
 import socketIO from 'socket.io';
 import webpackConfig from '../webpack.config';
 import api from './api';
+console.log();
 
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
