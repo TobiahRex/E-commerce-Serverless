@@ -1,8 +1,11 @@
-/* NOTE iPhone 6 & 7 Homepage Styles */
+/* NOTE iPhone 6 & 7 Homepage Styles
+
+Capture screens greater than or equal to 361 pixels wide,
+and less than or equal to 375pxs wide.
+*/
 
 @media only screen
-and (min-device-width : 375px)
-and (device-width : 375px) {
+and (min-width : 361px) and (max-width : 375px) {
   h1 {
     font-size: 2.5em;
     font-family: $p-font;

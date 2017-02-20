@@ -1,13 +1,8 @@
-/* NOTE Galaxy Styles */
+/* NOTE Galaxy Styles
+Capture screens that are less than or equal to 360px.
+*/
 
-@media only screen
-and (min-device-width : 360px)
-and (max-device-width : 640px)
-and (device-width : 360px)
-and (device-height : 640px)
-and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio : 4)
-and (-webkit-device-pixel-ratio : 4) {
+@media only screen (max-width : 360px) {
   h1 {
     font-size: 2.5em;
     font-family: $p-font;
