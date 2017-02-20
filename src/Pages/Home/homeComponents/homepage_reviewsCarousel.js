@@ -41,11 +41,12 @@ class HomepageReviewsCarousel extends Component {
   }
 
   calcMaxWidth = (screen, index = 0) => {
-    const screenSize = screen;
+    const screenSize = Number(screen);
     let screenAdjust = 0;
     let maxWidth = 0;
     if (screenSize > 1079) {
-      screenAdjust = -941;
+      screenAdjust = -1000;
+      maxWidth = '1000px';
     } else if (screenSize < 1080 && screenSize > 359) {
       screenAdjust = -346;
       maxWidth = '346px';
