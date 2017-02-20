@@ -44,10 +44,10 @@ nav.navbar-mobile {
   @extend .galaxy2-white-bg;
   & .navbar-mobile-container {
     & .navbar-mobile-logo {
-      @extend .galaxy2-flex-center;
-      @extend .galaxy2-white-bg;
       width: 100%;
       height: 10em;
+      @extend .galaxy2-flex-center;
+      @extend .galaxy2-white-bg;
       & .navbar-mobile-logo-src {
         max-width: 20em;
         content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
@@ -69,7 +69,7 @@ nav.navbar-mobile {
       display: inline-block;
       position: relative;
       height: 6em;
-      width: 34.6em;
+      width: 100%;
       @extend .galaxy2-blue-bg;
     }
   }

@@ -44,10 +44,10 @@ nav.navbar-mobile {
   @extend .iphone-white-bg;
   & .navbar-mobile-container {
     & .navbar-mobile-logo {
-      @extend .iphone-flex-center;
-      @extend .iphone-white-bg;
       width: 100%;
       height: 10em;
+      @extend .iphone-flex-center;
+      @extend .iphone-white-bg;
       & .navbar-mobile-logo-src {
         max-width: 20em;
         content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
@@ -69,7 +69,7 @@ nav.navbar-mobile {
       display: inline-block;
       position: relative;
       height: 6em;
-      width: 36.1em;
+      width: 100%;
       @extend .iphone-blue-bg;
     }
   }
