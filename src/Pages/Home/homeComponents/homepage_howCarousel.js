@@ -86,11 +86,13 @@ class HomepageHowCarousel extends Component {
     } else {
       screenAdjust = (screenSize - 14) * -1;
     }
-    alert(`Screen Size: ${screenSize}`);
 
     const stylesObj = {
+      // slides: {
+      //   left: `${(screenAdjust * showIndex) / 10}em`,
+      // },
       slides: {
-        left: `${(screenAdjust * showIndex) / 10}em`,
+        left: `${(-346 * showIndex) / 10}em`,
       },
       leftNav: {
         display: hasPrevious ? 'inline' : 'none',

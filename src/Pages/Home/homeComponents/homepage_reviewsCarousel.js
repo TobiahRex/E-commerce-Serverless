@@ -45,7 +45,7 @@ class HomepageReviewsCarousel extends Component {
     this.setState({
       showIndex: index,
       leftAdjust: {
-        left: `${(screenAdjust * index) / 10}em`,
+        left: `${(-346 * index) / 10}em`,
       },
     });
   }

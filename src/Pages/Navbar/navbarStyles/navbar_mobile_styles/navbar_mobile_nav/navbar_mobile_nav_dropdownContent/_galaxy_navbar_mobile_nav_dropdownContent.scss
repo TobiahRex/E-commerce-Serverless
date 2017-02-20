@@ -1,7 +1,6 @@
 /* NOTE
   This style sheet is for Mobile Navbar Drop down content. It's styles are
-  restricted to the 3 navigation categories "Shop", "Media" & "Info", whose
-  respective style sheets are imported.
+  restricted to the 3 navigation categories "Shop", "Media" & "Info".
 
   This style sheet does NOT include the Mobile Navbar Title section.
 */
@@ -10,7 +9,7 @@
   @extend .galaxy-blue-bg;
   display: block;
   position: absolute;
-  padding: 1.5em;
+  padding: 0;
   margin: 0;
   z-index: 1;
   list-style: none;
@@ -19,10 +18,8 @@
   clear: both;
   overflow: hidden;
   opacity: 0;
-  width: 31.6em;
+  width: 100%;
   margin: 0;
   @include prefixed(transition, all .5s ease-in-out);
-  @import './galaxy_navbar_mobile_nav_dropdown_shop';
-  @import './galaxy_navbar_mobile_nav_dropdown_media';
-  @import './galaxy_navbar_mobile_nav_dropdown_info';
+  @import './galaxy_navbar_mobile_nav_dropdown_list';
 }

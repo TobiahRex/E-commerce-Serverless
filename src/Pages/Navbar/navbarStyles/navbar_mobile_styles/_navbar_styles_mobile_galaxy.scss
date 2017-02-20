@@ -40,7 +40,7 @@ body {
 }
 nav.navbar-mobile {
   height: 26em;
-  width: 34.6em;
+  width: 100%;
   @extend .galaxy2-white-bg;
   & .navbar-mobile-container {
     & .navbar-mobile-logo {

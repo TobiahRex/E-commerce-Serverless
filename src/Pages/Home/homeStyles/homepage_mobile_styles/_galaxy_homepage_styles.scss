@@ -103,8 +103,8 @@ $gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_bla
   background-color: $p-white;
   & .homepage-header-img-src {
     @extend .galaxy-flex-center;
-    width: 100%;
-    min-height: 31.5em;
+   
+    min-height: 30.5em;
     background-image: $gxy-header-img;
     background-size: 241%;
     background-position-x: -250px;
