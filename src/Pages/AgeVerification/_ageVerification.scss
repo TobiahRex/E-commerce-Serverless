@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1079) and (max-width : 1921px) {
+@media only screen and (min-width: 1079px) and (max-width : 1921px) {
   .age-verification {
     position: fixed;
     z-index: 10;
@@ -13,9 +13,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      max-width: 38.6em;
       max-height: 40em;
-      width: 26.6em;
+      width: 70em;
       padding: 1.5em;
       margin: 10% auto;
       background-color: #FFFFFF;
@@ -31,7 +30,7 @@
         align-items: center;
         flex-direction: column;
         height: 14.5;
-        width: 100%;
+        width: 70%;
         margin: 0 auto 6em auto;
         & p {
           text-align: center;
