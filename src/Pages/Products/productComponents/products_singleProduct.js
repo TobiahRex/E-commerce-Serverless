@@ -16,20 +16,19 @@ export default function SingleProduct() {
         </ul>
       </div>
       <div className="single-product-main-title">
-        <h1>Juice</h1>
+        <h1>Switch Juice</h1>
       </div>
       <div className="single-product-info-parent">
         <div className="single-product-info-image">
           <img
-            src=""
-            alt="Buy 4 get 25% off" className="single-product-info-image-promotion-src"
-          />
-
-          <img
-            src=""
-            alt="Fruity Bamm Bamm"
+            alt="Switch Juice"
             className="single-product-info-image-src"
           />
+          <div className="single-product-info-image-promotion">
+            <p>Buy 4 Bottles</p>
+            <br />
+            <p>Get 25% Off Your Order</p>
+          </div>
         </div>
         <div className="single-product-info-desc-parent">
           <div className="single-product-info-desc-title">

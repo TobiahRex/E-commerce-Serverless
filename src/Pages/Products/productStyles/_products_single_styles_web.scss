@@ -9,7 +9,7 @@
       width: 100%;
       height: 4em;
       padding-right: 3em;
-      background-color: pink;
+      background-color: $p-white;
       & .single-product-breadcrumb-list {
         @include prefixflex();
         justify-content: flex-start;
@@ -47,25 +47,47 @@
       justify-content: center;
       align-items: center;
       max-height: 71em;
+      height: 100%;
       background-color: pink;
       & .single-product-info-image {
-        & .single-product-info-image-promotion-src {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        text-align: center;
+        background-color: $p-white;
+        & .single-product-info-image-promotion {
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          @include prefixed(transform, rotate(-45deg))
+          flex-direction: column;
+          @include prefixed(transform, rotate(-45deg));
           height: 6.2em;
           width: 47em;
-          position: relative;
+          position: absolute;
           z-index: 2;
           background-color: $p-red;
-          color: $p-white;
           font-family: $p-font;
           font-size: 1.5em;
           font-weight: 800;
           letter-spacing: .06em;
-          line-height: 1.73em;
+          line-height: .2em;
           text-transform: capitalize;
+          left: -17.5em;
+          top: 3em;
+          @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
+          @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
+          p {
+            color: $p-white;
+          }
+        }
+        & .single-product-info-image-src {
+          position: relative;
+          content: $pina-colada;
+          margin: 0 auto;
+          max-width: 60em;
+          max-height: 71em;
+          top: 100px;
         }
       }
     }
