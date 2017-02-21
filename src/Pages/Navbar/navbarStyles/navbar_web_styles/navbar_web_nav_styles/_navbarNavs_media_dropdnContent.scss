@@ -12,7 +12,7 @@
     @extend .flex-center;
     flex-direction: column;
     & .media-dropdown-content-topThird {
-      display: flex;
+      @include prefixflex();
       justify-content: space-around;
       align-items: center;
       // height: 16.5em;
@@ -46,7 +46,7 @@
       }
     }
     & .media-dropdown-content-midThird {
-      display: flex;
+      @include prefixflex();
       justify-content: space-around;
       align-items: center;
       height: 8.5em;
@@ -83,7 +83,7 @@
         height: 6.5em;
         width: 104em;
         & .media-dropdown-content-bottomThird-innerContainer {
-          display: flex;
+          @include prefixflex();
           justify-content: space-around;
           align-items: flex-end;
           height: 100%;

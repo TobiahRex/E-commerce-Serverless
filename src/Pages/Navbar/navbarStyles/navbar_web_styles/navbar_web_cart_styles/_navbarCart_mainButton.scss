@@ -3,7 +3,7 @@
   padding: .5em 0em;
   cursor: pointer;
   & .mainbtn-mycart-link {
-    display: flex;
+    @include prefixflex();
     & .mainbtn-mycart-link-title {
       @extend .flex-center;
       background-color: $p-red;

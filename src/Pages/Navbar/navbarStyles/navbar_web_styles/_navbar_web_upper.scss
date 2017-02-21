@@ -4,7 +4,7 @@
 @import "./navbar_web_cart_styles/navbarCart";
 
 .navbar-actionSection-upper {
-  display: flex;
+  @include prefixflex();
   height: 4em;
   width: 83.5em;
   margin-bottom: 2em;

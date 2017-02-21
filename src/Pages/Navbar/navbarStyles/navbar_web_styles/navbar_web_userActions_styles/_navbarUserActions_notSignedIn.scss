@@ -1,7 +1,7 @@
 .navbar-actionSection-upper-actions-notSignedIn {
-  @extend .flex-center;
+  @include prefixflex();
   justify-content: flex-end;
-  align-items: center;;
+  align-items: center;
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 3em;

@@ -44,7 +44,7 @@
         }
       }
       & .currency-main-button-dollar-title {
-        display: flex;
+        @include prefixflex();
         align-items: center;
         justify-content: flex-start;
         width: 4em;
@@ -91,7 +91,7 @@
         }
       }
       & .currency-main-button-yen-title {
-        display: flex;
+        @include prefixflex();
         align-items: center;
         justify-content: flex-start;
         width: 4em;
@@ -105,9 +105,7 @@
         font-weight: 400;
       }
       & .currency-main-button-yen-chevron {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @extend .flex-center;
         width: 1.1em;
         height: 2.5em;
         font-size: 15px;

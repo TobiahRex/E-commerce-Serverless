@@ -9,9 +9,7 @@
   box-shadow: 1px 2px 4px rgba(0,0,0,.5);
   z-index: 1;
   & .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend .flex-center;
     flex-direction: column;
     & .promotion {
       @extend .flex-center;
@@ -75,7 +73,7 @@
           }
           & .products-list-card-info {
             font-size: 10px;
-            display: flex;
+            @include prefixflex();
             align-items: flex-start;
             flex-direction: column;
             line-height: 1.33em;
@@ -85,7 +83,7 @@
           }
           & .products-list-card-actions {
             font-size: 10px;
-            display: flex;
+            @include prefixflex();
             justify-content: space-between;
             align-items: flex-start;
             height: 5.5em;
@@ -156,7 +154,7 @@
     }
 /* ACTION BUTTONS */
     & .action-links {
-      display: flex;
+      @include prefixflex();
       justify-content: space-between;
       align-items: center;
       height: 4em;

@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import MobileDetect from 'mobile-detect';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -34,7 +35,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      ageVerified: this.props.ageVerified,
+      ageVerified: props.ageVerified,
     };
   }
 
@@ -55,10 +56,23 @@ class App extends Component {
     browserHistory.push('/home');
   };
 
+  catchMobileType = () => {
+    const mobileDevice = new MobileDetect(window.navigator.userAgent);
+    return mobileDevice.mobile();
+  }
+
   render() {
     const { ageVerified } = this.state;
     const { hide, show } = App.styles;
     const avStyle = ageVerified ? hide : show;
+    let sectionStyle;
+    if (!this.catchMobileType()) {
+      sectionStyle = {
+        paddingTop: 100,
+        minHeight: 510,
+      };
+      console.log('sectionStyle: ', sectionStyle);
+    }
     return (
       <div id="yo">
         <AgeVerification
@@ -69,7 +83,7 @@ class App extends Component {
           <NavbarWeb />
           <NavbarMobile />
         </header>
-        <section style={{ paddingTop: 100, minHeight: 510 }}>
+        <section style={{ ...sectionStyle }}>
           {this.props.children}
         </section>
         <footer>
@@ -80,9 +94,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ session, user }) => ({
+const mapStateToProps = ({ user, session, mobile }) => ({
   activePage: session.currentActivePage,
   ageVerified: user.ageVerified,
+  mobileActive: mobile.mobileTypes,
 });
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>
