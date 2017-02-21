@@ -219,7 +219,38 @@
             letter-spacing: .06em;
             text-transform: uppercase;
             background-color: $p-red;
-            @include prefixed(text-shadow, 0 2px 2px rgba(1,1,1,.5));
+            @include prefixed(text-shadow, 0 3px 3px rgba(0,0,0,.5));
+          }
+        }
+        & .single-product-info-desc-nicotine {
+          h3 {
+            font-weight: 800;
+            margin: .5em;
+          }
+          & .single-product-info-desc-nictoine-list {
+            height: 6em;
+            max-width: 35.5em;
+            width: 100%;
+            @include prefixflex();
+            justify-content: space-around;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & .single-product-info-desc-nictoine-strength {
+              height: 3.12em;
+              width: 3.12em;
+              color: $p-white;
+              font-family: $p-font;
+              font-size: 1.6em;
+              background-color: $p-blue;
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $s-blue;
+                border: 1px solid $p-red;
+              }
+            }
           }
         }
       }
