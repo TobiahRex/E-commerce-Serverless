@@ -133,13 +133,13 @@
               justify-content: center;
               align-items: center;
               max-width: 21em;
-              width: 21em;
+              width: 14em;
               height: 7em;
               h1 {
                 @include prefixflex();
-                font-size: 4.5em;
+                font-size: 3.5em;
                 font-weight: 800;
-                line-height: 1.36em;
+                line-height: 1.42em;
                 color: $p-blue;
                 @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
                 & .single-product-price-sign {
@@ -154,15 +154,15 @@
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              max-width: 12.5em;
-              width: 12.4em;
+              max-width: 8em;
+              width: 8em;
               height: 7em;
               flex-direction: column;
               & .single-product-info-desc-taxbox-item-msg-tax,
               .single-product-info-desc-stockbox-item-msg-sku {
                 & p {
                   color: $s-grey;
-                  font-size: 1.2em;
+                  font-size: 1em;
                   text-transform: uppercase;
                 }
               }
@@ -170,18 +170,19 @@
               .single-product-info-desc-stockbox-item-msg-instock {
                 & p {
                   color: $p-blue;
-                  font-size: 1.2em;
+                  font-size: 1em;
                 }
               }
               & .single-product-info-desc-stockbox-item-msg-instock {
                 h3 {
+                  font-size: 1.6em;
                   font-weight: 800;
                 }
               }
             }
             & .single-product-info-desc-stockbox-item {
-              max-width: 15.5em;
-              width: 15.5em;
+              max-width: 8em;
+              width: 8em;
               height: 7em;
             }
           }
@@ -190,13 +191,13 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          max-width: 47.6em;
-          width: 47.6em;
+          max-width: 30.6em;
+          width: 30.6em;
           height: 12em;
           padding: 1em;
           p {
             font-family: $p-font;
-            font-size: 2em;
+            font-size: 1.6em;
             color: $p-blue;
             line-height: 1.35em;
           }
@@ -205,21 +206,22 @@
           @include prefixflex();
           justify-content: center;
           align-items: flex-start;
-          height: 9em;
-          max-width: 48.6em;
-          width: 48.6em;
+          height: 12em;
+          max-width: 30.6em;
+          width: 30.6em;
           & p {
             @include prefixflex();
             justify-content: center;
             align-items: center;
-            height: 3em;
-            width: 28.33em;
+            height: 7.5em;
+            width: 30.6em;
             font-size: 1.5em;
             font-family: $p-font;
             font-weight: 800;
             color: $s-blue;
             letter-spacing: .06em;
             text-transform: uppercase;
+            text-align: center;
             background-color: $p-grey;
             @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
             // &:before {
