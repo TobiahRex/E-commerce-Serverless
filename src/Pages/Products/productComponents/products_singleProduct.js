@@ -47,7 +47,7 @@ export default function SingleProduct() {
                   </p>
                 </div>
               </li>
-              <li className="single-product-info-desc-price-item">
+              <li className="single-product-info-desc-instock-item">
                 <div className="single-product-info-desc-price-sku">
                   <p>SKU: 123123123</p>
                 </div>

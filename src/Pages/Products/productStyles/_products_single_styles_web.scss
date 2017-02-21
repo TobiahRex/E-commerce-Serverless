@@ -53,6 +53,7 @@
         display: inline-block;
         position: relative;
         overflow: hidden;
+        max-width: 60em;
         width: 100%;
         text-align: center;
         background-color: $p-white;
@@ -88,6 +89,50 @@
           max-width: 60em;
           max-height: 71em;
           top: 100px;
+        }
+      }
+      & .single-product-info-desc-parent {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 48.6em;
+        width: 100%;
+        & .single-product-info-desc-title {
+          @include prefixflex();
+          align-items: center;
+          height: 7em;
+          width: 100%;
+          & h1 {
+            font-size: 4em;
+            line-height: 1.37em;
+            padding-left: .25em;
+          }
+        }
+        & .single-product-info-desc-price-row {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 7em;
+          max-width: 48.6em;
+          width: 100%;
+          & .single-product-info-desc-price-row-list {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            & .single-product-info-desc-price-item {
+              max-width: 21em;
+              width: 100%;
+            }
+            & .single-product-info-desc-tax-item {
+              max-width: 12.5em;
+              width: 100%;
+            }
+            & .single-product-info-desc-instock-item {
+              max-width: 15.5em;
+              width: 100%;
+            }
+          }
         }
       }
     }
