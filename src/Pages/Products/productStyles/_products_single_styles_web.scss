@@ -151,7 +151,7 @@
               }
             }
             & .single-product-info-desc-taxbox-item,
-             .single-product-info-desc-stockbox-item {
+            .single-product-info-desc-stockbox-item {
               @include prefixflex();
               justify-content: center;
               align-items: center;
@@ -467,6 +467,34 @@
         &:active,
         &:focus {
           background-color: $p-blue;
+        }
+      }
+    }
+    & .single-product-add-success-modal {
+      z-index: 10;
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0,0,0,.75);
+      & .single-product-add-success-modal-dialogue {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 23em;
+        width: 56em;
+        background-color: $p-white;
+        & .single-product-add-success-modal-dialogue-exit-container {
+          
+          & .single-product-add-success-modal-dialogue-exit-btn {
+            height: 3em;
+            width: 3em;
+            border: none;
+          }
         }
       }
     }
