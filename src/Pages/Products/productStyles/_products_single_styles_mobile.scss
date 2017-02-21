@@ -49,8 +49,7 @@
       align-items: center;
       flex-direction: column;
       align-content: center;
-      max-height: 71em;
-      height: 100%;
+      max-height: 120em;
       & .single-product-info-image {
         display: inline-block;
         position: relative;
@@ -65,7 +64,7 @@
           align-items: center;
           flex-direction: column;
           @include prefixed(transform, rotate(-45deg));
-          height: 6.2em;
+          height: 5.2em;
           width: 47em;
           position: absolute;
           z-index: 2;
@@ -76,8 +75,8 @@
           letter-spacing: .06em;
           line-height: .2em;
           text-transform: uppercase;
-          left: -16.5em;
-          top: 4em;
+          left: -18.5em;
+          top: 2em;
           @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
           @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
           p {
@@ -88,9 +87,9 @@
           position: relative;
           content: $pina-colada;
           margin: 0 auto;
-          max-width: 60em;
-          max-height: 71em;
-          top: 100px;
+          max-width: 44em;
+          max-height: 37em;
+          top: 5.5em;
         }
       }
       & .single-product-info-desc-parent {
@@ -106,7 +105,7 @@
           height: 7em;
           width: 100%;
           & h1 {
-            font-size: 4em;
+            font-size: 3em;
             line-height: 1.37em;
             padding-left: .25em;
             color: $p-blue;
