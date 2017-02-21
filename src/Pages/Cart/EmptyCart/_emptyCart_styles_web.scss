@@ -1,0 +1,48 @@
+.empty-cart-main {
+  @include prefixflex();
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1080px;
+  width: 100%;
+  min-height: 50em;
+  & .empty-cart-main-title {
+    @include prefixflex();
+    align-items: center;
+    height: 8em;
+    h1 {
+      font-size: 5em;
+      padding-left: .1em;
+    }
+  }
+  & .empty-cart-main-icon {
+    span {
+      font-size: 25em;
+      color: $p-blue;
+      font-weight: 800;
+      margin: .1em;
+    }
+  }
+  & .empty-cart-sub-msg {
+    p {
+      font-size: 3.5em;
+      line-height: 1.5em;
+    }
+  }
+  & .empty-cart-shopping-btn {
+    min-height: 14em;
+    button {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 4.33em;
+      width: 16.6em;
+      padding: 0;
+      border: none;
+      font-family: $p-font;
+      font-size: 1.5em;
+      background-color: $p-red;
+      color: $p-white;
+    }
+  }
+}
