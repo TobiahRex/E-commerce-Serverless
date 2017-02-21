@@ -223,7 +223,16 @@
           }
         }
         & .single-product-info-desc-nicotine {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          max-width: 48.6em;
+          width: 48.6em;
+          height: 12em;
           h3 {
+            @include prefixflex();
+            justify-content: center;
             font-weight: 800;
             margin: .5em;
           }
@@ -238,12 +247,19 @@
             padding: 0;
             margin: 0;
             & .single-product-info-desc-nictoine-strength {
-              height: 3.12em;
-              width: 3.12em;
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 3.33em;
+              width: 3.33em;
               color: $p-white;
               font-family: $p-font;
-              font-size: 1.6em;
+              font-size: 1.5em;
               background-color: $p-blue;
+              margin: 0 1em;
+              border: 1px solid $p-blue;
+              cursor: pointer;
+              transition: all .3s ease-in-out;
               &:hover,
               &:active,
               &:focus {
