@@ -44,18 +44,28 @@
     }
     & .single-product-info-parent {
       @include prefixflex();
-      align-items: center;
       justify-content: center;
+      align-items: center;
       max-height: 71em;
       background-color: pink;
       & .single-product-info-image {
         & .single-product-info-image-promotion-src {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          @include prefixed(transform, rotate(-45deg))
           height: 6.2em;
           width: 47em;
           position: relative;
           z-index: 2;
           background-color: $p-red;
           color: $p-white;
+          font-family: $p-font;
+          font-size: 1.5em;
+          font-weight: 800;
+          letter-spacing: .06em;
+          line-height: 1.73em;
+          text-transform: capitalize;
         }
       }
     }
