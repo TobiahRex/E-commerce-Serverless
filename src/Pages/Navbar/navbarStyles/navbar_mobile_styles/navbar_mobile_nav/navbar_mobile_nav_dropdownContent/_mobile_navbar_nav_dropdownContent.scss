@@ -21,5 +21,5 @@
   width: 100%;
   margin: 0;
   @include prefixed(transition, all .5s ease-in-out);
-  @import './galaxy_navbar_mobile_nav_dropdown_list';
+  @import './mobile_navbar_nav_dropdown_list';
 }
