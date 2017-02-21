@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Router, IndexRoute } from 'react-router';
-import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
+// import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 
 /* NOTE:
 1. Remove UUID hard code.
@@ -8,8 +8,8 @@ import Navbar from '../Pages/Navbar/navbarComponents/navbarMain';
 */
 import App from '../App';
 import Homepage from '../Pages/Home/homePage';
-import SingleProduct from '../Pages/Products/products_singleProduct';
-import AllProducts from '../Pages/Products/products_allProducts';
+import SingleProduct from '../Pages/Products/productComponents/products_singleProduct';
+import AllProducts from '../Pages/Products/productComponents/products_allProducts';
 import Cart from '../Pages/Cart/cart';
 import EmptyCart from '../Pages/Cart/EmptyCart/emptyCart';
 import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';

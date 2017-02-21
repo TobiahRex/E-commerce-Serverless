@@ -12,25 +12,25 @@
   }
   /* Parent Styles - Navbar */
   .flex-center {
-    display: flex;
+    @include prefixflex();
     justify-content: center;
     align-items: center;
   }
 
   .flex-right {
-    display: flex;
+    @include prefixflex();
     justify-content: flex-end;
     align-items: center;
   }
 
   .flex-left {
-    display: flex;
+    @include prefixflex();
     justify-content: flex-start;
     align-items: center;
   }
 
   .flex-align-left {
-    display: flex;
+    @include prefixflex();
     justify-content: flex-start;
     align-items: flex-start;
   }
@@ -55,7 +55,7 @@
     @extend .white-bg;
   }
   nav.navbar-web {
-    display: flex;
+    @include prefixflex();
     justify-content: center;
     position: fixed;
     z-index: 20;
@@ -65,7 +65,7 @@
     display: none;
   }
   .navbar.navbar-header {
-    display: flex;
+    @include prefixflex();
     justify-content: center;
   }
   .navbar-actionSection {

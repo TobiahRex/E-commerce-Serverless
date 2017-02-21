@@ -18,6 +18,20 @@
 
 }
 
+@mixin prefixflex() {
+  @if $webkit == true {
+    display: -webkit-box;
+    display: -webkit-flex;
+  }
+  @if $moz == true {
+    display: -moz-box;
+  }
+  @if $ms == true {
+    display: -ms-flexbox
+  }
+  display: flex;
+}
+
 @mixin keyframes($name) {
   @if $webkit == true {
     @-webkit-keyframes #{$name} {

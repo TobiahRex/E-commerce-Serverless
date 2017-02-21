@@ -60,7 +60,7 @@ class App extends Component {
     const { hide, show } = App.styles;
     const avStyle = ageVerified ? hide : show;
     return (
-      <div>
+      <div id="yo">
         <AgeVerification
           avStyle={avStyle}
           verifyAge={this.verifyAge}
@@ -69,7 +69,9 @@ class App extends Component {
           <NavbarWeb />
           <NavbarMobile />
         </header>
-        {this.props.children}
+        <section style={{ paddingTop: 100, minHeight: 510 }}>
+          {this.props.children}
+        </section>
         <footer>
           <Footer />
         </footer>

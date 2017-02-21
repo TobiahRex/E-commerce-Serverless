@@ -1,9 +1,0 @@
-@import "./iphone_navbar_mobile_UserActions_signedIn";
-@import "./iphone_navbar_mobile_UserActions_notSignedIn";
-
-.navbar-mobile-actions {
-  @extend .iphone-flex-center;
-  @extend .iphone-white-bg;
-  width: 40em;
-  height: 4em;
-}
