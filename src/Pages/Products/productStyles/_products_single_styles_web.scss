@@ -478,8 +478,12 @@
       position: fixed;
       top: 0;
       left: 0;
+      opacity: 0;
+      height: 0;
+      width: 0;
+/*    opacity: 1;
       height: 100%;
-      width: 100%;
+      width: 100%; */
       background-color: rgba(0,0,0,.75);
       & .single-product-add-success-modal-dialogue {
         @include prefixflex();
@@ -518,6 +522,7 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
+          flex-direction: column;
           height: 9em;
           width: 56em;
           p {

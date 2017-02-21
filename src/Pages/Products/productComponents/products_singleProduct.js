@@ -168,3 +168,7 @@ export default function SingleProduct() {
     </div>
   );
 }
+
+/* TODO make sure you add the success modal styles dynamically.
+See the style sheet for detials.
+*/
