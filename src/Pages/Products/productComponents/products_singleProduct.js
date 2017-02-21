@@ -74,11 +74,11 @@ export default function SingleProduct() {
           </div>
           <div className="single-product-info-desc-nicotine">
             <h3>Nicotine Strength</h3>
-            <ul className="single-product-info-desc-nictoine-list">
-              <li className="single-product-info-desc-nictoine-strength">2mg</li>
-              <li className="single-product-info-desc-nictoine-strength">4mg</li>
-              <li className="single-product-info-desc-nictoine-strength">6mg</li>
-              <li className="single-product-info-desc-nictoine-strength">8mg</li>
+            <ul className="single-product-info-desc-nicotine-list">
+              <li className="single-product-info-desc-nicotine-strength">2mg</li>
+              <li className="single-product-info-desc-nicotine-strength">4mg</li>
+              <li className="single-product-info-desc-nicotine-strength">6mg</li>
+              <li className="single-product-info-desc-nicotine-strength">8mg</li>
             </ul>
           </div>
           <div className="single-product-info-desc-actions">

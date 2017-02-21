@@ -236,7 +236,7 @@
             font-weight: 800;
             margin: .5em;
           }
-          & .single-product-info-desc-nictoine-list {
+          & .single-product-info-desc-nicotine-list {
             height: 6em;
             max-width: 35.5em;
             width: 100%;
@@ -246,7 +246,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
-            & .single-product-info-desc-nictoine-strength {
+            & .single-product-info-desc-nicotine-strength {
               @include prefixflex();
               justify-content: center;
               align-items: center;
@@ -297,7 +297,7 @@
                 list-style-type: none;
                 padding: 0;
                 margin: 0;
-                background-color: $s-grey;
+                background-color: $p-grey;
                 & .single-product-info-desc-actions-btn-qty-title,
                 .single-product-info-desc-actions-btn-qty-readout,
                 .single-product-info-desc-actions-btn-qty-btns {
