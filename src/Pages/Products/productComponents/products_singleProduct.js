@@ -38,14 +38,14 @@ export default function SingleProduct() {
             <ul className="single-product-info-desc-price-row-list">
               <li className="single-product-info-desc-price-item">
                 <h1>
-                  <FontAwesome name="usd" /> 30.00
+                  <FontAwesome name="usd" className="single-product-price-sign" /> 30.00
                 </h1>
               </li>
               <li className="single-product-info-desc-tax-item">
-                <div className="single-product-info-desc-tax-item-msg">
+                <div className="single-product-info-desc-tax-item-msg-tax">
                   <p>+ Tax</p>
                 </div>
-                <div className="single-product-info-desc-tax-item-msg">
+                <div className="single-product-info-desc-tax-item-msg-shipping">
                   <p>
                     Free Shipping
                   </p>
