@@ -142,6 +142,23 @@ export default function SingleProduct() {
           Back to Homepage
         </button>
       </div>
+      <div className="single-product-add-success-modal">
+        <div className="single-product-add-success-modal-dialogue">
+          <button className="single-product-add-success-modal-dialogue-exit-btn">
+            <FontAwesome name="plus" />
+          </button>
+          <div className="single-product-add-success-modal-dialogue-msg-product">
+            <p>{'<Product Title>'}</p>
+            <br/>
+            <p>has been successfully added to your cart.</p>
+          </div>
+          <div className="single-product-add-success-modal-action-btns">
+            <button className="single-product-add-success-modal-cart">View Cart</button>
+            <button className="single-product-add-success-modal-continue"></button>
+            <button className="single-product-add-success-modal-checkout"></button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
