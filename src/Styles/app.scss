@@ -22,10 +22,14 @@
 @import "../Pages/Home/homeStyles/homepage_styles_mobile";
 
 // ------------------------------------------------------------
+// NOTE: "Single Product" Master Stylesheets
+@import "../Pages/Products/productStyles/products_single_styles_web";
+@import "../Pages/Products/productStyles/products_single_styles_mobile";
+
+// ------------------------------------------------------------
 // NOTE: "Footer" Master Stylesheets
 @import "../Pages/Footer/footerStyles/footer_styles_web";
 @import "../Pages/Footer/footerStyles/footer_styles_mobile";
-
 
 // ------------------------------------------------------------
 // NOTE: General Styles
@@ -33,4 +37,9 @@ body {
   font-size: 10px;
   background-color: #FFFFFF;
   margin: 0;
+}
+
+#main-section {
+  @include prefixflex();
+  justify-content: center;
 }

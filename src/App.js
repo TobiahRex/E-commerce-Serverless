@@ -83,7 +83,7 @@ class App extends Component {
           <NavbarWeb />
           <NavbarMobile />
         </header>
-        <section style={{ ...sectionStyle }}>
+        <section id="main-section" style={{ ...sectionStyle }}>
           {this.props.children}
         </section>
         <footer>
