@@ -1,12 +1,12 @@
 .navbar-mobile-actions-notSignedIn {
-  @extend .galaxy-flex-center;
+  @extend .mobile-flex-center;
   justify-content: flex-end;
   align-items: center;;
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 1em;
   & .navbar-mobile-actions-notSignedIn-sign-in-title {
-    @extend .galaxy-flex-center;
+    @extend .mobile-flex-center;
     background-color: $p-grey;
     font-family: $p-font;
     font-weight: 200;
@@ -30,7 +30,7 @@
     }
   }
   & .navbar-mobile-actions-notSignedIn-register-title {
-    @extend .galaxy-flex-center;
+    @extend .mobile-flex-center;
     background-color: $p-grey;
     font-family: $p-font;
     font-weight: 200;

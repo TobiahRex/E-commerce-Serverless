@@ -1,12 +1,12 @@
 .navbar-mobile-actions-signedIn {
-  @extend .galaxy-flex-center;
+  @extend .mobile-flex-center;
   justify-content: flex-end;
   align-items: center;;
   margin: 0em;
   list-style-type: none;
   padding: 0em 0em 0em 0em;
   & .navbar-mobile-actions-signedIn-myaccount-title {
-    @extend .galaxy-flex-center;
+    @extend .mobile-flex-center;
     background-color: $p-grey;
     font-family: $p-font;
     font-weight: 200;
@@ -30,7 +30,7 @@
     }
   }
   & .navbar-mobile-actions-signedIn-checkout-title {
-    @extend .galaxy-flex-center;
+    @extend .mobile-flex-center;
     background-color: $p-grey;
     font-family: $p-font;
     font-weight: 200;
@@ -56,7 +56,7 @@
     }
   }
   & .navbar-mobile-actions-signedIn-signOut-title {
-    @extend .galaxy-flex-center;
+    @extend .mobile-flex-center;
     background-color: $p-grey;
     font-family: $p-font;
     font-weight: 200;

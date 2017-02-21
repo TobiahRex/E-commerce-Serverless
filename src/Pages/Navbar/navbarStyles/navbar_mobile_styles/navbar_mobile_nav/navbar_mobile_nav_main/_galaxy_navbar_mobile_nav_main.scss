@@ -5,20 +5,20 @@
 */
 
 .navbar-mobile-nav-main {
-  display: flex;
+  @include prefixflex();
   justify-content: space-between;
   align-content: center;
   & .navbar-mobile-nav-main-left {
-    display: flex;
+    @include prefixflex();
     justify-content: flex-start;
     align-items: center;
     & .navbar-mobile-nav-hamburger {
-      @extend .galaxy-flex-center;
+      @extend .mobile-flex-center;
       height: 6em;
       width: 6em;
-      @extend .galaxy-blue-bg;
+      @extend .mobile-blue-bg;
       & .navbar-mobile-nav-hamburger-icon-button {
-        @extend .galaxy-flex-center;
+        @extend .mobile-flex-center;
         height: 2.5em;
         width: 2.5em;
         &.active span {
@@ -70,26 +70,26 @@
       }
     }
     & .navbar-mobile-nav-title {
-      @extend .galaxy-flex-left;
+      @extend .mobile-flex-left;
       height: 6em;
       width: 75%;
-      @extend .galaxy-blue-bg;
+      @extend .mobile-blue-bg;
       & h5 {
         margin: 0;
       }
     }
   }
   & .navbar-mobile-nav-main-right {
-    display: flex;
+    @include prefixflex();
     justify-content: flex-end;
     align-items: center;
     & .navbar-mobile-nav-cart {
-      @extend .galaxy-flex-center;
+      @extend .mobile-flex-center;
       height: 6em;
       width: 8.5em;
-      @extend .galaxy-blue-bg;
+      @extend .mobile-blue-bg;
       & .navbar-mobile-cart-icon {
-        @extend .galaxy-flex-center;
+        @extend .mobile-flex-center;
         height: 4em;
         width: 4em;
         background-color: transparent;
@@ -109,7 +109,7 @@
         }
       }
       & .navbar-mobile-cart-qty {
-        @extend .galaxy-flex-center;
+        @extend .mobile-flex-center;
         height: 4em;
         width: 3em;
         & .navbar-mobile-cart-qty-value {

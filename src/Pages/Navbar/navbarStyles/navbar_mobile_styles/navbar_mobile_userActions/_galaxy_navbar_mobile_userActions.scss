@@ -2,8 +2,8 @@
 @import "./galaxy_navbar_mobile_UserActions_notSignedIn";
 
 .navbar-mobile-actions {
-  @extend .galaxy-flex-center;
-  @extend .galaxy-white-bg;
+  @extend .mobile-flex-center;
+  @extend .mobile-white-bg;
   width: 40em;
   height: 4em;
 }
