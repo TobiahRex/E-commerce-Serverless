@@ -20,10 +20,11 @@
         & .single-product-breadcrumb-path {
           font-size: 1.8em;
           font-family: $p-font;
-          color: $s-blue;
+          font-weight: normal;
+          color: $p-blue;
           & .breadcrumb-chevron-right {
             font-size: 18px;
-            color: $s-blue;
+            color: $p-blue;
             margin: 0 .5em -1em .5em;
             bottom: -1px;
             position: relative;
@@ -36,10 +37,9 @@
       align-items: center;
       height: 5em;
       h1 {
-        font-size: 3.5em;
+        font-size: 5em;
         font-weight: 200;
-        line-height: 1.37em;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.01em;
       }
     }
     & .single-product-info-parent {
@@ -107,6 +107,8 @@
             font-size: 4em;
             line-height: 1.37em;
             padding-left: .25em;
+            color: $p-blue;
+            @include prefixed(text-shadow, 0px 1px 1px rgba(1,1,1,.25));
           }
         }
         & .single-product-info-desc-price-row {
@@ -137,6 +139,7 @@
                 font-size: 4.5em;
                 font-weight: 800;
                 line-height: 1.36em;
+                color: $p-blue;
                 & .single-product-price-sign {
                   position: relative;
                   padding-right: .2em;
@@ -144,26 +147,44 @@
                 }
               }
             }
-            & .single-product-info-desc-tax-item {
+            & .single-product-info-desc-taxbox-item {
               max-width: 12.5em;
+              width: 12.4em;
+              height: 7em;
               flex-direction: column;
-              & .single-product-info-desc-tax-item-msg-tax {
+              & .single-product-info-desc-taxbox-item-msg-tax {
                 & p {
                   color: $p-grey;
                   font-size: 1.2em;
                   text-transform: capitalize;
                 }
               }
-              & .single-product-info-desc-tax-item-msg-shipping {
-                & p {                  
-                  color: $s-blue;
+              & .single-product-info-desc-taxbox-item-msg-shipping {
+                & p {
+                  color: $p-blue;
                   font-size: 1.2em;
                 }
               }
             }
-            & .single-product-info-desc-instock-item {
+            & .single-product-info-desc-stockbox-item {
               max-width: 15.5em;
               flex-direction: column;
+              width: 15.5em;
+              height: 7em;
+              & .single-product-info-desc-stockbox-item-msg-sku {
+                & p {
+                  color: $p-grey;
+                  font-size: 1em;
+                  text-transform: capitalize;
+                }
+              }
+              & .single-product-info-desc-stockbox-item-msg-instock {
+                &  p {
+                  color: $p-blue;
+                  font-size: 1.2em;
+                  font-weight: 800;
+                }
+              }
             }
           }
         }

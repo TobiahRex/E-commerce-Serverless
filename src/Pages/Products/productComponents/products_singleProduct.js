@@ -8,7 +8,7 @@ export default function SingleProduct() {
         <ul className="single-product-breadcrumb-list">
           <li className="single-product-breadcrumb-path">
             Home
-            <FontAwesome className="breadcrumb-chevron-right" name="chevron-right" />
+            <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
           </li>
           <li className="single-product-breadcrumb-path">
             Fruity Bamm-Bamm
@@ -41,21 +41,21 @@ export default function SingleProduct() {
                   <FontAwesome name="usd" className="single-product-price-sign" /> 30.00
                 </h1>
               </li>
-              <li className="single-product-info-desc-tax-item">
-                <div className="single-product-info-desc-tax-item-msg-tax">
+              <li className="single-product-info-desc-taxbox-item">
+                <div className="single-product-info-desc-taxbox-item-msg-tax">
                   <p>+ Tax</p>
                 </div>
-                <div className="single-product-info-desc-tax-item-msg-shipping">
+                <div className="single-product-info-desc-taxbox-item-msg-shipping">
                   <p>
                     Free Shipping
                   </p>
                 </div>
               </li>
-              <li className="single-product-info-desc-instock-item">
-                <div className="single-product-info-desc-price-sku">
+              <li className="single-product-info-desc-stockbox-item">
+                <div className="single-product-info-desc-stockbox-item-msg-sku">
                   <p>SKU: 123123123</p>
                 </div>
-                <div className="single-product-info-desc-price-instock">
+                <div className="single-product-info-desc-stockbox-item-msg-instock">
                   <h3>IN STOCK</h3>
                 </div>
               </li>
