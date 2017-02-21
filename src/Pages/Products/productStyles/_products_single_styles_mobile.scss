@@ -1,7 +1,7 @@
 @media only screen and (max-width : 640px) {
   .single-product-main {
     width: 100%;
-    height: 160em;
+    height: 150em;
     & .single-product-breadcrumb-container {
       @include prefixflex();
       justify-content: flex-start;
@@ -228,7 +228,7 @@
             &:before {
               height: 19px;
               width: 306px;
-              top: 1110px;
+              top: 1090px;
               left: 0;
               content: '';
               position: absolute;
@@ -241,14 +241,14 @@
           justify-content: flex-start;
           align-items: center;
           flex-direction: column;
-          max-width: 48.6em;
-          width: 48.6em;
-          height: 12em;
+          max-width: 30.6em;
+          width: 30.6em;
+          height: 13em;
           h3 {
             @include prefixflex();
             justify-content: center;
             font-weight: 800;
-            margin: .5em;
+            margin: .7em auto;
           }
           & .single-product-info-desc-nicotine-list {
             height: 6em;
@@ -270,7 +270,7 @@
               font-family: $p-font;
               font-size: 1.5em;
               background-color: $p-red;
-              margin: 0 1em;
+              margin: 0 .5em;
               border: 1px solid $p-red;
               cursor: pointer;
               transition: all .3s ease-in-out;
@@ -290,21 +290,23 @@
           align-content: space-between;
           align-items: center;
           flex-direction: column;
-          max-width: 48.6em;
-          width: 48.6em;
-          height: 14em;
+          max-width: 30.6em;
+          width: 30.6em;
+          height: 29em;
           border-bottom: 1px solid rgba(0,0,0,.25);
           & .single-product-info-desc-actions-btn-container {
             @include prefixflex();
-            justify-content: space-around;;
-            align-content: space-between;;
-            height: 9em;
-            max-width: 46.6em;
-            width: 46.6em;
+            justify-content: space-around;
+            align-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            height: 19em;
+            max-width: 30.6em;
+            width: 30.6em;
             & .single-product-info-desc-actions-btn-qty {
-              height: 6em;
-              max-width: 19em;
-              width: 19em;
+              height: 8em;
+              max-width: 21em;
+              width: 21em;
               & .single-product-info-desc-actions-btn-qty-items {
                 @include prefixflex();
                 justify-content: center;
@@ -331,8 +333,8 @@
                     @include prefixflex();
                     justify-content: center;
                     align-items: center;
-                    height: 2.8em;
-                    width: 2.8em;
+                    height: 3.8em;
+                    width: 3.61em;
                     line-height: 1em;
                     background-color: $p-white;
                     border: 1px solid $s-grey;
@@ -341,10 +343,10 @@
                 }
                 & .single-product-info-desc-actions-btn-qty-btns {
                   button {
-                    font-size: 10px;
+                    font-size: 1.8em;
                     border: none;
-                    height: 2.5em;
-                    width: 4.5em;
+                    height: 1.94em;
+                    width: 2.77em;
                     padding: 0;
                     margin: 1px;
                     background-color: $p-red;
@@ -370,8 +372,8 @@
                 padding-right: .4em;
               }
               height: 3.33em;
-              max-width: 10em;
-              width: 10em;
+              max-width: 16.5em;
+              width: 16.5em;
               color: $p-white;
               font-size: 1.8em;
               font-weight: 200;
@@ -389,6 +391,9 @@
             }
           }
           & .single-product-info-desc-actions-warning-msg {
+                margin: 3em auto 2em auto;
+                text-align: center;
+                width: 20em;
             p {
               span {
                 text-transform: uppercase;
@@ -403,8 +408,8 @@
           justify-content: center;
           align-items: center;
           height: 6.5em;
-          max-width: 48.6em;
-          width: 48.6em;
+          max-width: 30.6em;
+          width: 30.6em;
           & .single-product-info-desc-smedia-btns-list {
             @include prefixflex();
             justify-content: space-around;
@@ -413,9 +418,11 @@
             padding: 0;
             margin: 0;
             & li {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
               color: $p-white;
-              height: 3em;
-              width: 8.6em;
+              width: 7.08em;
               span {
                 font-size: 1.8em;
                 padding: .27em;
@@ -424,13 +431,11 @@
             & .single-product-info-desc-smedia-btn-like,
             .single-product-info-desc-smedia-btn-share,
             .single-product-info-desc-smedia-btn-tweet {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
+ 
               background-color: $p-blue;
               font-size: 1.2em;
               line-height: 1.42em;
-              margin: 0 1.5em;
+              margin: 0 .75em;
               cursor: pointer;
               @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
               p {
@@ -453,8 +458,8 @@
       @include prefixflex();
       justify-content: center;
       align-items: center;
-      height: 26em;
-      max-width: 1080px;
+      height: 14em;
+      max-width: 30.6em;
       width: 100%;
       & .single-product-back-btn {
         height: 3.33em;
