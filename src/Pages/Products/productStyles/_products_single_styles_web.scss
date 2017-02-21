@@ -269,6 +269,17 @@
             }
           }
         }
+        & .single-product-info-desc-actions {
+          @include prefixflex();
+          justify-content: center;
+          align-content: space-between;
+          max-width: 48.6em;
+          width: 48.6em;
+          height: 14em;
+          & .single-product-info-desc-actions-btn-container {
+
+          }
+        }
       }
     }
   }
