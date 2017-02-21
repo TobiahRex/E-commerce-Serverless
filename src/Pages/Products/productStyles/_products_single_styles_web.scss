@@ -116,21 +116,33 @@
           height: 7em;
           max-width: 48.6em;
           width: 100%;
+          background-color: green;
           & .single-product-info-desc-price-row-list {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
             padding: 0;
             margin: 0;
             list-style-type: none;
-            & .single-product-info-desc-price-item {
+            & .single-product-info-desc-price-item,
+            .single-product-info-desc-tax-item,
+            .single-product-info-desc-instock-item {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
               max-width: 21em;
               width: 100%;
+              height: 7em;
+              font-size: 5em;
+              font-weight: 800;
+              line-spa;
+              line-height: 1.36em;
             }
             & .single-product-info-desc-tax-item {
               max-width: 12.5em;
-              width: 100%;
             }
             & .single-product-info-desc-instock-item {
               max-width: 15.5em;
-              width: 100%;
             }
           }
         }

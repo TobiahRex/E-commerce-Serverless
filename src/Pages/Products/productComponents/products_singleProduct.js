@@ -36,7 +36,11 @@ export default function SingleProduct() {
           </div>
           <div className="single-product-info-desc-price-row">
             <ul className="single-product-info-desc-price-row-list">
-              <li className="single-product-info-desc-price-item">$30.00</li>
+              <li className="single-product-info-desc-price-item">
+                <h1>
+                  <FontAwesome name="usd" /> 30.00
+                </h1>
+              </li>
               <li className="single-product-info-desc-tax-item">
                 <div className="single-product-info-desc-tax-item-msg">
                   <p>+ Tax</p>
