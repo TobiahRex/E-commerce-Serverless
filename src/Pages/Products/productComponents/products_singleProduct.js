@@ -117,18 +117,18 @@ export default function SingleProduct() {
           </div>
           <div className="single-product-info-desc-smedia-btns-container">
             <ul className="single-product-info-desc-smedia-btns-list">
-              <li className="single-product-info-desc-smedia-btn-like">
+              <li className="single-product-info-desc-smedia-btn-like hvr-bob">
                 <FontAwesome name="thumbs-o-up" />
                 <p>Like</p>
-                <p>99</p>
+                <p className="single-product-info-desc-smedia-btn-like-readout">99</p>
               </li>
-              <li className="single-product-info-desc-smedia-btn-share">
+              <li className="single-product-info-desc-smedia-btn-share hvr-bob">
                 <FontAwesome name="facebook" />
                 <p>Share</p>
               </li>
-              <li className="single-product-info-desc-smedia-btn-tweet">
+              <li className="single-product-info-desc-smedia-btn-tweet hvr-bob">
                 <FontAwesome name="twitter" />
-                <p>Tweet</p>
+                <p>tweet</p>
               </li>
             </ul>
           </div>
