@@ -364,6 +364,7 @@
               border: none;
               cursor: pointer;
               transition: all .3s ease-in-out;
+              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .5));
               &:hover,
               &:active,
               &:focus {
@@ -420,6 +421,31 @@
               background-color: #1B95E0;
             }
           }
+        }
+      }
+    }
+    & .single-product-back-btn-container {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 26em;
+      max-width: 1080px;
+      width: 100%;
+      & .single-product-back-btn {
+        height: 3.33em;
+        width: 13.8em;
+        border: none;
+        background-color: $p-red;
+        font-family: $p-font;
+        font-size: 1.8em;
+        text-transform: uppercase;
+        color: $p-white;
+        cursor: pointer;
+        @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .25));
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $p-blue;
         }
       }
     }

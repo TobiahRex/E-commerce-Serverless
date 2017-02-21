@@ -135,7 +135,7 @@ export default function SingleProduct() {
         </div>
       </div>
       <div className="single-product-back-btn-container">
-        <button className="single-product-back-btn">
+        <button className="single-product-back-btn sweep-right">
           Back to Homepage
         </button>
       </div>
