@@ -278,15 +278,13 @@
           max-width: 48.6em;
           width: 48.6em;
           height: 14em;
-          background-color: green;
           & .single-product-info-desc-actions-btn-container {
             @include prefixflex();
-            justify-content: center;
-            align-content: center;
+            justify-content: space-around;;
+            align-content: space-between;;
             height: 9em;
             max-width: 46.6em;
             width: 46.6em;
-            background-color: red;
             & .single-product-info-desc-actions-btn-qty {
               height: 6em;
               max-width: 19em;
@@ -322,7 +320,7 @@
                     line-height: 1em;
                     background-color: $p-white;
                     border: 1px solid $s-grey;
-                    margin-right: .1em;
+                    margin-right: .2em;
                   }
                 }
                 & .single-product-info-desc-actions-btn-qty-btns {
@@ -334,16 +332,61 @@
                     padding: 0;
                     margin: 1px;
                     background-color: $p-red;
+                    cursor: pointer;
+                    transition: all .3s ease-in-out;
                     span {
                       color: $p-white;
+                    }
+                    &:active,
+                    &:hover,
+                    &:focus {
+                      background-color: $p-blue;
                     }
                   }
                 }
               }
             }
             & .single-product-info-desc-actions-btn-add {
+              & .sp-cart-icon {
+                font-size: 25px;
+                position: relative;
+                bottom: -2px;
+                padding-right: .4em;
+              }
+              height: 3.33em;
+              max-width: 10em;
+              width: 10em;
+              color: $p-white;
+              font-size: 1.8em;
+              font-weight: 200;
+              text-transform: uppercase;
+              background-color: $p-red;
               border: none;
+              cursor: pointer;
+              transition: all .3s ease-in-out;
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $p-blue;
+              }
             }
+          }
+        }
+        & .single-product-info-desc-smedia-btns-container {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 6.5em;
+          max-width: 48.6em;
+          width: 48.6em;
+          background-color: green;
+          & .single-product-info-desc-smedia-btns-list {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
           }
         }
       }

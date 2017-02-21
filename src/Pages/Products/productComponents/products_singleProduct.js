@@ -92,17 +92,17 @@ export default function SingleProduct() {
                     <p>4</p>
                   </li>
                   <li className="single-product-info-desc-actions-btn-qty-btns">
-                    <button className="single-product-info-desc-actions-btn-qty-plus">
+                    <button className="single-product-info-desc-actions-btn-qty-plus sweep-right">
                       <FontAwesome name="plus" />
                     </button>
-                    <button className="single-product-info-desc-actions-btn-qty-minus">
+                    <button className="single-product-info-desc-actions-btn-qty-minus sweep-right">
                       <FontAwesome name="minus" />
                     </button>
                   </li>
                 </ul>
               </div>
-              <button className="single-product-info-desc-actions-btn-add">
-                <FontAwesome name="shopping-cart" />
+              <button className="single-product-info-desc-actions-btn-add sweep-right">
+                <FontAwesome className="sp-cart-icon" name="shopping-cart" />
                 Add To Cart
               </button>
             </div>
