@@ -1,11 +1,11 @@
 .empty-cart-main {
   @include prefixflex();
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   max-width: 1080px;
   width: 100%;
-  min-height: 50em;
+  min-height: 60em;
   & .empty-cart-main-title {
     @include prefixflex();
     align-items: center;
@@ -30,19 +30,24 @@
     }
   }
   & .empty-cart-shopping-btn {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
     min-height: 14em;
     button {
       @include prefixflex();
       justify-content: center;
       align-items: center;
-      height: 4.33em;
-      width: 16.6em;
+      height: 2.4em;
+      width: 10em;
       padding: 0;
       border: none;
       font-family: $p-font;
-      font-size: 1.5em;
+      font-size: 2.5em;
+      letter-spacing: .02em;
       background-color: $p-red;
       color: $p-white;
+      cursor: pointer;
     }
   }
 }
