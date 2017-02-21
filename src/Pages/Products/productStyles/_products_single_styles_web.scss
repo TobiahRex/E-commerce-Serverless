@@ -8,7 +8,7 @@
       justify-content: flex-start;
       align-items: center;
       width: 100%;
-      height: 4em;
+      height: 6em;
       padding-right: 3em;
       background-color: $p-white;
       & .single-product-breadcrumb-list {
@@ -35,8 +35,8 @@
     }
     & .single-product-main-title {
       @include prefixflex();
-      align-items: center;
-      height: 5em;
+      align-items: flex-start;
+      height: 8em;
       h1 {
         font-size: 5em;
         font-weight: 200;
@@ -225,8 +225,8 @@
             @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
             &:before {
               height: 19px;
-              width: 40%;
-              top: 49%;
+              width: 440px;
+              top: 590px;
               content: '';
               position: absolute;
               background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
