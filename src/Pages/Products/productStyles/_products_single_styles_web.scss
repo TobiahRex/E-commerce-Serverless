@@ -73,7 +73,7 @@
           font-weight: 800;
           letter-spacing: .06em;
           line-height: .2em;
-          text-transform: capitalize;
+          text-transform: uppercase;
           left: -17.5em;
           top: 3em;
           @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
@@ -161,7 +161,7 @@
                 & p {
                   color: $p-grey;
                   font-size: 1.2em;
-                  text-transform: capitalize;
+                  text-transform: uppercase;
                 }
               }
               & .single-product-info-desc-taxbox-item-msg-shipping,
@@ -206,11 +206,20 @@
           height: 9em;
           max-width: 48.6em;
           width: 48.6em;
-          & h3 {
-            width: 42.5em;
-            height: 4.5em;
+          & p {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 3em;
+            width: 28.33em;
+            font-size: 1.5em;
+            font-family: $p-font;
+            font-weight: 800em;
             color: $p-white;
+            letter-spacing: .06em;
+            text-transform: uppercase;
             background-color: $p-red;
+            @include prefixed(text-shadow, 0 2px 2px rgba(1,1,1,.5));
           }
         }
       }

@@ -68,9 +68,9 @@ export default function SingleProduct() {
             </p>
           </div>
           <div className="single-product-info-desc-promotion">
-            <h3>
-              BUY 4 Bottles Get 25% Off Your Order
-            </h3>
+            <p>
+              New members get 10% off their first order
+            </p>
           </div>
           <div className="single-product-info-desc-nicotine">
             <h3>Nicotine Strength</h3>
