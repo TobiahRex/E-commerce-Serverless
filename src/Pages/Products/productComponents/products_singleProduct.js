@@ -86,7 +86,7 @@ export default function SingleProduct() {
               <div className="single-product-info-desc-actions-btn-qty">
                 <ul className="single-product-info-desc-actions-btn-qty-items">
                   <li className="single-product-info-desc-actions-btn-qty-title">
-                    <p>QTY</p>
+                    <p>Quantity</p>
                   </li>
                   <li className="single-product-info-desc-actions-btn-qty-readout">
                     <p>4</p>
@@ -102,6 +102,7 @@ export default function SingleProduct() {
                 </ul>
               </div>
               <button className="single-product-info-desc-actions-btn-add">
+                <FontAwesome name="shopping-cart" />
                 Add To Cart
               </button>
             </div>
