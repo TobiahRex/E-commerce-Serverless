@@ -1,18 +1,3 @@
-// /* iPhone 6 & 7 Plus Portrait devices */
-// @media screen and (min-width : 376px) and (max-width : 415px) {
-//   @import './homepage_mobile_styles/ipp_homepage_styles';
-// }
-//
-// /* iPhone 6 & 7 Portrait devices */
-// @media screen and (min-width : 361px) and (max-width : 375px) {
-//   @import './homepage_mobile_styles/iphone_homepage_styles';
-// }
-//
-// /* Galaxy S6 & S7 portrait devices */
-// @media screen and (max-width : 360px) {
-//   @import "./homepage_mobile_styles/galaxy_homepage_styles";
-// }
-/* iPhone 6 & 7 Plus Portrait devices */
 @media only screen and (max-width : 640px) {
   @import './homepage_mobile_styles/galaxy_homepage_styles';
 }

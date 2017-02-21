@@ -1,0 +1,475 @@
+@media only screen and (max-width : 640px) {
+  .single-product-main {
+    width: 100%;
+    height: 160em;
+    & .single-product-breadcrumb-container {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      height: 6em;
+      background-color: $p-white;
+      & .single-product-breadcrumb-list {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 1em;
+        & .single-product-breadcrumb-path {
+          font-size: 1.6em;
+          font-family: $p-font;
+          font-weight: normal;
+          color: $p-blue;
+          & .breadcrumb-chevron-right {
+            font-size: 18px;
+            color: $p-blue;
+            margin: 0 .5em -1em .5em;
+            bottom: -1px;
+            position: relative;
+          }
+        }
+      }
+    }
+    & .single-product-main-title {
+      @include prefixflex();
+      align-items: flex-start;
+      height: 5em;
+      h1 {
+        font-size: 3.5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
+    & .single-product-info-parent {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      align-content: center;
+      max-height: 71em;
+      height: 100%;
+      & .single-product-info-image {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        max-width: 60em;
+        width: 100%;
+        text-align: center;
+        background-color: $p-white;
+        & .single-product-info-image-promotion {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          @include prefixed(transform, rotate(-45deg));
+          height: 6.2em;
+          width: 47em;
+          position: absolute;
+          z-index: 2;
+          background-color: $s-blue;
+          font-family: $p-font;
+          font-size: 1.5em;
+          font-weight: 800;
+          letter-spacing: .06em;
+          line-height: .2em;
+          text-transform: uppercase;
+          left: -16.5em;
+          top: 4em;
+          @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
+          @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
+          p {
+            color: $p-white;
+          }
+        }
+        & .single-product-info-image-src {
+          position: relative;
+          content: $pina-colada;
+          margin: 0 auto;
+          max-width: 60em;
+          max-height: 71em;
+          top: 100px;
+        }
+      }
+      & .single-product-info-desc-parent {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 48.6em;
+        width: 100%;
+        & .single-product-info-desc-title {
+          @include prefixflex();
+          align-items: center;
+          height: 7em;
+          width: 100%;
+          & h1 {
+            font-size: 4em;
+            line-height: 1.37em;
+            padding-left: .25em;
+            color: $p-blue;
+            @include prefixed(text-shadow, 0px 1px 1px rgba(1,1,1,.25));
+          }
+        }
+        & .single-product-info-desc-price-row {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 7em;
+          max-width: 48.6em;
+          width: 100%;
+          & .single-product-info-desc-price-row-list {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            & .single-product-info-desc-price-item,
+            .single-product-info-desc-tax-item,
+            .single-product-info-desc-instock-item {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              max-width: 21em;
+              width: 21em;
+              height: 7em;
+              h1 {
+                @include prefixflex();
+                font-size: 4.5em;
+                font-weight: 800;
+                line-height: 1.36em;
+                color: $p-blue;
+                @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+                & .single-product-price-sign {
+                  position: relative;
+                  padding-right: .2em;
+                  bottom: -.2em;
+                }
+              }
+            }
+            & .single-product-info-desc-taxbox-item,
+             .single-product-info-desc-stockbox-item {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              max-width: 12.5em;
+              width: 12.4em;
+              height: 7em;
+              flex-direction: column;
+              & .single-product-info-desc-taxbox-item-msg-tax,
+              .single-product-info-desc-stockbox-item-msg-sku {
+                & p {
+                  color: $s-grey;
+                  font-size: 1.2em;
+                  text-transform: uppercase;
+                }
+              }
+              & .single-product-info-desc-taxbox-item-msg-shipping,
+              .single-product-info-desc-stockbox-item-msg-instock {
+                & p {
+                  color: $p-blue;
+                  font-size: 1.2em;
+                }
+              }
+              & .single-product-info-desc-stockbox-item-msg-instock {
+                h3 {
+                  font-weight: 800;
+                }
+              }
+            }
+            & .single-product-info-desc-stockbox-item {
+              max-width: 15.5em;
+              width: 15.5em;
+              height: 7em;
+            }
+          }
+        }
+        & .single-product-info-desc-blurb {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          max-width: 47.6em;
+          width: 47.6em;
+          height: 12em;
+          padding: 1em;
+          p {
+            font-family: $p-font;
+            font-size: 2em;
+            color: $p-blue;
+            line-height: 1.35em;
+          }
+        }
+        & .single-product-info-desc-promotion {
+          @include prefixflex();
+          justify-content: center;
+          align-items: flex-start;
+          height: 9em;
+          max-width: 48.6em;
+          width: 48.6em;
+          & p {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 3em;
+            width: 28.33em;
+            font-size: 1.5em;
+            font-family: $p-font;
+            font-weight: 800;
+            color: $s-blue;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            background-color: $p-grey;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+            // &:before {
+            //   height: 19px;
+            //   width: 440px;
+            //   top: 590px;
+            //   content: '';
+            //   position: absolute;
+            //   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
+            // }
+          }
+        }
+        & .single-product-info-desc-nicotine {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          max-width: 48.6em;
+          width: 48.6em;
+          height: 12em;
+          h3 {
+            @include prefixflex();
+            justify-content: center;
+            font-weight: 800;
+            margin: .5em;
+          }
+          & .single-product-info-desc-nicotine-list {
+            height: 6em;
+            max-width: 35.5em;
+            width: 100%;
+            @include prefixflex();
+            justify-content: space-around;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & .single-product-info-desc-nicotine-strength {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 3.33em;
+              width: 3.33em;
+              color: $p-white;
+              font-family: $p-font;
+              font-size: 1.5em;
+              background-color: $p-red;
+              margin: 0 1em;
+              border: 1px solid $p-red;
+              cursor: pointer;
+              transition: all .3s ease-in-out;
+              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.5));
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $s-blue;
+                border: 1px solid $p-blue;
+              }
+            }
+          }
+        }
+        & .single-product-info-desc-actions {
+          @include prefixflex();
+          justify-content: center;
+          align-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          max-width: 48.6em;
+          width: 48.6em;
+          height: 14em;
+          border-bottom: 1px solid rgba(0,0,0,.25);
+          & .single-product-info-desc-actions-btn-container {
+            @include prefixflex();
+            justify-content: space-around;;
+            align-content: space-between;;
+            height: 9em;
+            max-width: 46.6em;
+            width: 46.6em;
+            & .single-product-info-desc-actions-btn-qty {
+              height: 6em;
+              max-width: 19em;
+              width: 19em;
+              & .single-product-info-desc-actions-btn-qty-items {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                background-color: $p-grey;
+                & .single-product-info-desc-actions-btn-qty-title,
+                .single-product-info-desc-actions-btn-qty-readout,
+                .single-product-info-desc-actions-btn-qty-btns {
+                  p {
+                    font-size: 1.8em;
+                    font-family: $p-font;
+                    color: $p-blue;
+                  }
+                }
+                & .single-product-info-desc-actions-btn-qty-title {
+                  padding: 0 .5em;
+                }
+                & .single-product-info-desc-actions-btn-qty-readout {
+                  p {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    height: 2.8em;
+                    width: 2.8em;
+                    line-height: 1em;
+                    background-color: $p-white;
+                    border: 1px solid $s-grey;
+                    margin-right: .2em;
+                  }
+                }
+                & .single-product-info-desc-actions-btn-qty-btns {
+                  button {
+                    font-size: 10px;
+                    border: none;
+                    height: 2.5em;
+                    width: 4.5em;
+                    padding: 0;
+                    margin: 1px;
+                    background-color: $p-red;
+                    cursor: pointer;
+                    transition: all .3s ease-in-out;
+                    span {
+                      color: $p-white;
+                    }
+                    &:active,
+                    &:hover,
+                    &:focus {
+                      background-color: $p-blue;
+                    }
+                  }
+                }
+              }
+            }
+            & .single-product-info-desc-actions-btn-add {
+              & .sp-cart-icon {
+                font-size: 25px;
+                position: relative;
+                bottom: -2px;
+                padding-right: .4em;
+              }
+              height: 3.33em;
+              max-width: 10em;
+              width: 10em;
+              color: $p-white;
+              font-size: 1.8em;
+              font-weight: 200;
+              text-transform: uppercase;
+              background-color: $p-red;
+              border: none;
+              cursor: pointer;
+              transition: all .3s ease-in-out;
+              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .5));
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $p-blue;
+              }
+            }
+          }
+          & .single-product-info-desc-actions-warning-msg {
+            p {
+              span {
+                text-transform: uppercase;
+                color: $p-blue;
+
+              }
+            }
+          }
+        }
+        & .single-product-info-desc-smedia-btns-container {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 6.5em;
+          max-width: 48.6em;
+          width: 48.6em;
+          & .single-product-info-desc-smedia-btns-list {
+            @include prefixflex();
+            justify-content: space-around;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & li {
+              color: $p-white;
+              height: 3em;
+              width: 8.6em;
+              span {
+                font-size: 1.8em;
+                padding: .27em;
+              }
+            }
+            & .single-product-info-desc-smedia-btn-like,
+            .single-product-info-desc-smedia-btn-share,
+            .single-product-info-desc-smedia-btn-tweet {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              background-color: $p-blue;
+              font-size: 1.2em;
+              line-height: 1.42em;
+              margin: 0 1.5em;
+              cursor: pointer;
+              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
+              p {
+                color: $p-white;
+                padding: 0 .5em;
+              }
+              & .single-product-info-desc-smedia-btn-like-readout {
+                font-size: 1em;
+                padding-left: 0;
+              }
+            }
+            & .single-product-info-desc-smedia-btn-tweet {
+              background-color: #1B95E0;
+            }
+          }
+        }
+      }
+    }
+    & .single-product-back-btn-container {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 26em;
+      max-width: 1080px;
+      width: 100%;
+      & .single-product-back-btn {
+        height: 3.33em;
+        width: 13.8em;
+        border: none;
+        background-color: $p-red;
+        font-family: $p-font;
+        font-size: 1.8em;
+        text-transform: uppercase;
+        color: $p-white;
+        cursor: pointer;
+        @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .25));
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $p-blue;
+        }
+      }
+    }
+  }
+}

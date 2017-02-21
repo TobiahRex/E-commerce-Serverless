@@ -58,6 +58,7 @@ class App extends Component {
 
   catchMobileType = () => {
     const mobileDevice = new MobileDetect(window.navigator.userAgent);
+    console.log(mobileDevice.mobile());
     return mobileDevice.mobile();
   }
 
