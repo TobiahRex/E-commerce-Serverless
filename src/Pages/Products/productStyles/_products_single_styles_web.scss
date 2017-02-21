@@ -41,6 +41,8 @@
         font-size: 5em;
         font-weight: 200;
         letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
     & .single-product-info-parent {
@@ -67,15 +69,15 @@
           width: 47em;
           position: absolute;
           z-index: 2;
-          background-color: $p-red;
+          background-color: $s-blue;
           font-family: $p-font;
           font-size: 1.5em;
           font-weight: 800;
           letter-spacing: .06em;
           line-height: .2em;
           text-transform: uppercase;
-          left: -17.5em;
-          top: 3em;
+          left: -16.5em;
+          top: 4em;
           @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
           @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
           p {
@@ -140,6 +142,7 @@
                 font-weight: 800;
                 line-height: 1.36em;
                 color: $p-blue;
+                @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
                 & .single-product-price-sign {
                   position: relative;
                   padding-right: .2em;
@@ -202,7 +205,7 @@
         & .single-product-info-desc-promotion {
           @include prefixflex();
           justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           height: 9em;
           max-width: 48.6em;
           width: 48.6em;
@@ -214,17 +217,25 @@
             width: 28.33em;
             font-size: 1.5em;
             font-family: $p-font;
-            font-weight: 800em;
-            color: $p-white;
+            font-weight: 800;
+            color: $s-blue;
             letter-spacing: .06em;
             text-transform: uppercase;
-            background-color: $p-red;
-            @include prefixed(text-shadow, 0 3px 3px rgba(0,0,0,.5));
+            background-color: $p-grey;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+            &:before {
+              height: 19px;
+              width: 40%;
+              top: 49%;
+              content: '';
+              position: absolute;
+              background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
+            }
           }
         }
         & .single-product-info-desc-nicotine {
           @include prefixflex();
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           flex-direction: column;
           max-width: 48.6em;
@@ -255,16 +266,17 @@
               color: $p-white;
               font-family: $p-font;
               font-size: 1.5em;
-              background-color: $p-blue;
+              background-color: $p-red;
               margin: 0 1em;
-              border: 1px solid $p-blue;
+              border: 1px solid $p-red;
               cursor: pointer;
               transition: all .3s ease-in-out;
+              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.5));
               &:hover,
               &:active,
               &:focus {
                 background-color: $s-blue;
-                border: 1px solid $p-red;
+                border: 1px solid $p-blue;
               }
             }
           }
@@ -278,6 +290,7 @@
           max-width: 48.6em;
           width: 48.6em;
           height: 14em;
+          border-bottom: 1px solid rgba(0,0,0,.25);
           & .single-product-info-desc-actions-btn-container {
             @include prefixflex();
             justify-content: space-around;;
@@ -369,6 +382,15 @@
               &:active,
               &:focus {
                 background-color: $p-blue;
+              }
+            }
+          }
+          & .single-product-info-desc-actions-warning-msg {
+            p {
+              span {
+                text-transform: uppercase;
+                color: $p-blue;
+
               }
             }
           }

@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router';
 
 export default function SingleProduct() {
   return (
@@ -108,10 +109,12 @@ export default function SingleProduct() {
             </div>
             <div className="single-product-info-desc-actions-warning-msg">
               <p>
-                Maximum of 4 bottles per customer per address. More info
-                <span className="single-product-info-desc-actions-warning-msg-infolnk">
-                  here.
-                </span>
+                Maximum of 4 bottles per customer per address. More info {'\u00A0'}
+                <Link
+                  to={'/shipping_and_return_policy'}
+                  className="single-product-info-desc-actions-warning-msg-infolnk"
+                >here.
+                </Link>
               </p>
             </div>
           </div>
