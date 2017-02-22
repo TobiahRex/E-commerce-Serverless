@@ -20,10 +20,10 @@ export default function CartTable() {
   }];
 
   const renderJuices = () =>
-  juices.map((juiceObj) => {
+  juices.map((juiceObj, i) => {
     const subTotal = juiceObj.qty * Number(juiceObj.price);
     return (
-      <tr className="shopping-cart-table-body-container">
+      <tr key={`shopping-cart-table-row-${juiceObj.name}-${i}`} className="shopping-cart-table-body-container">
         <td className="shopping-cart-table-body-infobox">
           <div className="shopping-cart-table-body-infobox-img">
             <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.imgSrc} />
@@ -94,10 +94,18 @@ export default function CartTable() {
         <table className="shopping-cart-table">
           <thead className="shopping-cart-table-header-container">
             <tr className="shopping-cart-table-header-titles">
-              <th className="shopping-cart-table-header">Juice</th>
-              <th className="shopping-cart-table-header">Price</th>
-              <th className="shopping-cart-table-header">Quantity</th>
-              <th className="shopping-cart-table-header">Total</th>
+              <th className="shopping-cart-table-header-juice">
+                <h3>Juice</h3>
+              </th>
+              <th className="shopping-cart-table-header-price">
+                <h3>Price</h3>
+              </th>
+              <th className="shopping-cart-table-header-qty">
+                <h3>Quantity</h3>
+              </th>
+              <th className="shopping-cart-table-header-total">
+                <h3>Total</h3>
+              </th>
             </tr>
           </thead>
           <tbody>

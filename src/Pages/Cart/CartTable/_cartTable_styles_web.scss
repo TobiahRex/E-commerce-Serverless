@@ -55,7 +55,19 @@
     width: 100%;
     & .shopping-cart-table {
       width: 100%;
-      
+      & .shopping-cart-header-container {
+        width: 100%;
+        & .shopping-cart-table-header-titles {
+          & .shopping-cart-table-header-juice,
+          .shopping-cart-table-header-price,
+          .shopping-cart-table-header-qty,
+          .shopping-cart-table-header-total {
+          & h3 {
+              line-height: 2.25em;
+            }
+          }
+        }
+      }
     }
   }
 }
