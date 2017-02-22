@@ -123,16 +123,37 @@
                   align-items: center;
                   height: 4.5em;
                   width: 23em;
-                  p {
+                  & p, i {
                     color: $p-blue;
                     font-family: $p-font;
                     font-size: 1.8em;
                   }
-                  button {
+                  & button {
+                    font-size: 3.5em;
+                    height: 1.42em;
+                    width: 1.42em;
                     border: none;
                     background-color: $p-red;
                     color: $p-white;
+                    @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.5));
+                    cursor: pointer;
+
                   }
+                }
+                & .shopping-cart-table-body-infobox-nicotine,
+                & .shopping-cart-table-body-infobox-sku {
+                  height: 3em;
+                  & p, i {
+                    font-size: 1.2em;
+                  }
+                }
+                & .shopping-cart-table-body-infobox-sku {
+                  & p {
+                    font-size: 1em;
+                  }
+                }
+                & .shopping-cart-table-body-infobox-trash {
+                  height: 10em
                 }
               }
             }

@@ -37,13 +37,15 @@ export default function CartTable() {
                 <p>{juiceObj.name}</p>
               </li>
               <li className="shopping-cart-table-body-infobox-nicotine">
-                <p>{juiceObj.nicotine}</p>
+                <p>Nicotine Strength:{'\u00A0'}</p>
+                <i>{juiceObj.nicotine}</i>
               </li>
               <li className="shopping-cart-table-body-infobox-sku">
+                <p>SKU:{'\u00A0'}</p>
                 <p>{juiceObj.sku}</p>
               </li>
               <li className="shopping-cart-table-body-infobox-trash">
-                <button>
+                <button className="sweep-right">
                   <FontAwesome name="trash-o" />
                 </button>
               </li>
@@ -51,29 +53,35 @@ export default function CartTable() {
           </div>
         </td>
         <td className="shopping-cart-table-body-price">
-          {juiceObj.price}
+          <div className="shopping-cart-table-body-price-flexparent">
+            {juiceObj.price}
+          </div>
         </td>
         <td className="shopping-cart-table-body-qty">
-          <ul className="shopping-cart-table-body-qty-items">
-            <li className="shopping-cart-table-body-qty-readout">
-              <p>{juiceObj.qty}</p>
-            </li>
-            <li className="shopping-cart-table-body-qty-btns">
-              <button className="shopping-cart-table-body-qty-plus sweep-right">
-                <FontAwesome name="plus" />
-              </button>
-              <button className="shopping-cart-table-body-qty-minus sweep-right">
-                <FontAwesome name="minus" />
-              </button>
-            </li>
-          </ul>
+          <div className="shopping-cart-table-body-qty-flexparent">
+            <ul className="shopping-cart-table-body-qty-items">
+              <li className="shopping-cart-table-body-qty-readout">
+                <p>{juiceObj.qty}</p>
+              </li>
+              <li className="shopping-cart-table-body-qty-btns">
+                <button className="shopping-cart-table-body-qty-plus sweep-right">
+                  <FontAwesome name="plus" />
+                </button>
+                <button className="shopping-cart-table-body-qty-minus sweep-right">
+                  <FontAwesome name="minus" />
+                </button>
+              </li>
+            </ul>
+          </div>
           <div className="shopping-cart-table-body-qty-msg">
             <p>Maximum 4 bottles per customer, per address.</p>
           </div>
         </td>
         <td className="shopping-cart-table-body-total">
-          <FontAwesome name="usd" />
-          {'\u0020'}{`${subTotal}.00`}
+          <div className="shopping-cart-table-body-total-flexparent">
+            <FontAwesome name="usd" />
+            {'\u0020'}{`${subTotal}.00`}
+          </div>
         </td>
       </tr>
     );
