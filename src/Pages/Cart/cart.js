@@ -8,37 +8,69 @@ export default function CartTable() {
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
+    price: '30',
+    qty: 2,
   }, {
     imgSrc: '',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
+    price: '30',
+    qty: 2,
   }];
 
   const renderJuices = () =>
-  juices.map(juiceObj => (
-    <tr className="shopping-cart-table-body-container">
-      <td className="shopping-cart-table-body-infobox">
-        <div className="shopping-cart-table-body-infobox-img">
-          <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.imgSrc} />
-        </div>
-        <ul className="shopping-cart-table-body-infobox-list">
-          <li className="shopping-cart-table-body-infobox-title">
-            {juiceObj.name}
-          </li>
-          <li className="shopping-cart-table-body-infobox-nicotine">
-            {juiceObj.nicotine}
-          </li>
-          <li className="shopping-cart-table-body-infobox-sku">
-            {juiceObj.sku}
-          </li>
-          <li className="shopping-cart-table-body-infobox-trash">
-            <FontAwesome name="trash-o" />
-          </li>
-        </ul>
-      </td>
-    </tr>)
-  );
+  juices.map((juiceObj) => {
+    const subTotal = juiceObj.qty * Number(juiceObj.price);
+    return (
+      <tr className="shopping-cart-table-body-container">
+        <td className="shopping-cart-table-body-infobox">
+          <div className="shopping-cart-table-body-infobox-img">
+            <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.imgSrc} />
+          </div>
+          <ul className="shopping-cart-table-body-infobox-list">
+            <li className="shopping-cart-table-body-infobox-title">
+              {juiceObj.name}
+            </li>
+            <li className="shopping-cart-table-body-infobox-nicotine">
+              {juiceObj.nicotine}
+            </li>
+            <li className="shopping-cart-table-body-infobox-sku">
+              {juiceObj.sku}
+            </li>
+            <li className="shopping-cart-table-body-infobox-trash">
+              <FontAwesome name="trash-o" />
+            </li>
+          </ul>
+        </td>
+        <td className="shopping-cart-table-body-price">
+          {juiceObj.price}
+        </td>
+        <td className="shopping-cart-table-body-qty">
+          <ul className="shopping-cart-table-body-qty-items">
+            <li className="shopping-cart-table-body-qty-readout">
+              <p>{juiceObj.qty}</p>
+            </li>
+            <li className="shopping-cart-table-body-qty-btns">
+              <button className="shopping-cart-table-body-qty-plus sweep-right">
+                <FontAwesome name="plus" />
+              </button>
+              <button className="shopping-cart-table-body-qty-minus sweep-right">
+                <FontAwesome name="minus" />
+              </button>
+            </li>
+          </ul>
+          <div className="shopping-cart-table-body-qty-msg">
+            <p>Maximum 4 bottles per customer, per address.</p>
+          </div>
+        </td>
+        <td className="shopping-cart-table-body-total">
+          <FontAwesome name="usd" />
+          {'\u0020'}{`${subTotal}.00`}
+        </td>
+      </tr>
+    );
+  });
   const taxesAmt = 99;
   const grandTotalAmt = 99;
 
