@@ -265,7 +265,7 @@
                 height: 100%;
                 width: 50%;
                 padding-right: 1.5em;
-                p {
+                h3, p {
                   font-family: $p-font;
                   color: $p-blue;
                   font-size: 1.2em;
@@ -278,6 +278,15 @@
                 height: 100%;
                 width: 50%;
                 padding-left: 1.5em;
+                & h3, p {
+                  font-size: 1.8em;
+                }
+                & span {
+                  position: relative;
+                  top: 2px;
+                  color: $p-blue;
+                  font-size: 1.8em;
+                }
               }
             }
           }

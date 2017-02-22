@@ -76,7 +76,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotal, taxes, gran
             </div>
             <div className="shopping-cart-mobile-product-subtotal-qty">
               <FontAwesome name="usd" />
-              <h3>{'\u00A0'}{`${subTotal}`}</h3>
+              <p>{'\u00A0'}{`${subTotal}.00`}</p>
             </div>
           </li>
           <li className="shopping-cart-mobile-product-actions-trash">
