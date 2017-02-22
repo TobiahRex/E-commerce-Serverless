@@ -54,7 +54,8 @@ export default function CartTable() {
         </td>
         <td className="shopping-cart-table-body-price">
           <div className="shopping-cart-table-body-price-flexparent">
-            {juiceObj.price}
+            <FontAwesome name="usd" />
+            <h3>{'\u00A0'}{`${juiceObj.price}.00`}</h3>
           </div>
         </td>
         <td className="shopping-cart-table-body-qty">
