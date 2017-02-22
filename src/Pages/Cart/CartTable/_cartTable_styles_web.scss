@@ -267,6 +267,9 @@
         align-items: center;
         height: 7em;
         width: 26em;
+        background-color: $p-grey;
+        border: 1px solid $s-grey;
+        margin-top: .5em;
         & .shopping-cart-analysis-taxes-title,
         .shopping-cart-analysis-taxes-cost,
         .shopping-cart-analysis-grand-total-title,
@@ -276,11 +279,29 @@
           align-items: center;
           height: 6em;
           width: 12.5em;
+          h3 {
+            font-weight: 600;
+          }
           span {
             font-size: 2em;
             color: $p-blue;
           }
         }
+        & .shopping-cart-analysis-taxes-title,
+        .shopping-cart-analysis-grand-total-title {
+          &:after {
+            content: '';
+            margin-bottom: -3px;
+            margin-left: 10px;
+            display: inline-block;
+            width: 1px;
+            height: 20px;
+            background-color: $s-grey;
+          }
+        }
+      }
+      & .shopping-cart-analysis-grand-total {
+        margin: 0 0 1em 0;
       }
     }
     & .shopping-cart-action-btns-parent {
@@ -294,15 +315,19 @@
       span {
         font-size: 1.8em;
         color: $p-white;
-        margin-right: 1em;
+        margin-right: .5em;
       }
       button {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        font-weight: 100;
         border: none;
-        height: 6em;
-        width: 26em;
-        font-size: 1.8em
+        height: 3.33em;
+        width: 14.4em;
+        font-size: 1.8em;
         color: $p-white;
-        margin: .27em auto .55em auto;
+        margin: .27em 0 .55em 0;
         background-color: $p-red;
         cursor: pointer;
       }
