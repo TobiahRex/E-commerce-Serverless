@@ -210,7 +210,7 @@
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
-                  width: 10.5em;
+                  width: 16.5em;
                   height: 6em;
                   background-color: $p-grey;
                   border: 1px solid $s-grey;
@@ -218,8 +218,8 @@
                     @include prefixflex();
                     justify-content: center;
                     align-items: center;
-                    height: 5em;
-                    width: 4.7em;
+                    height: 5.4em;
+                    width: 5em;
                     background-color: $p-white;
                     p {
                       font-family: $p-font;
@@ -227,7 +227,57 @@
                       color: $p-blue;
                     }
                   }
+                  & .shopping-cart-mobile-product-actions-qty-btns {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    & .shopping-cart-mobile-product-actions-qty-btn-plus,
+                     .shopping-cart-mobile-product-actions-qty-btn-minus {
+                      button {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        height: 2.3em;
+                        width: 4.5em;
+                        margin: .2em 0 .2em .5em;
+                        border: none;
+                        background-color: $p-red;
+                        span {
+                          color: $p-white;
+                          font-size: 1.2em;
+                        }
+                      }
+                    }
+                  }
                 }
+              }
+            }
+            & li.shopping-cart-mobile-product-subtotal {
+              @include prefixflex();
+              width: 100%;
+              height: 4.5em;
+              & .shopping-cart-mobile-product-subtotal-title,
+              .shopping-cart-mobile-product-subtotal-qty {
+                @include prefixflex();
+                justify-content: flex-end;
+                align-items: center;
+                height: 100%;
+                width: 50%;
+                padding-right: 1.5em;
+                p {
+                  font-family: $p-font;
+                  color: $p-blue;
+                  font-size: 1.2em;
+                }
+              }
+              & .shopping-cart-mobile-product-subtotal-qty {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 50%;
+                padding-left: 1.5em;
               }
             }
           }
