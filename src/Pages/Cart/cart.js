@@ -3,25 +3,42 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
 export default function CartTable() {
-  const juice1 = {
+  const juices = [{
     imgSrc: '',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
-  }
-  const juice2 = {
+  }, {
     imgSrc: '',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
-  }
-  const juices = [juiceObj1, juiceObj2];
+  }];
 
-  const renderJuices = () => {
-    jucies.map((juiceObj) => {
-
-    })
-  }
+  const renderJuices = () =>
+  juices.map(juiceObj => (
+    <tr className="shopping-cart-table-body-container">
+      <td className="shopping-cart-table-body-infobox">
+        <div className="shopping-cart-table-body-infobox-img">
+          <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.imgSrc} />
+        </div>
+        <ul className="shopping-cart-table-body-infobox-list">
+          <li className="shopping-cart-table-body-infobox-title">
+            {juiceObj.name}
+          </li>
+          <li className="shopping-cart-table-body-infobox-nicotine">
+            {juiceObj.nicotine}
+          </li>
+          <li className="shopping-cart-table-body-infobox-sku">
+            {juiceObj.sku}
+          </li>
+          <li className="shopping-cart-table-body-infobox-trash">
+            <FontAwesome name="trash-o" />
+          </li>
+        </ul>
+      </td>
+    </tr>)
+  );
 
   return (
     <div className="shopping-cart-main">
@@ -41,54 +58,17 @@ export default function CartTable() {
       </div>
       <div className="shopping-cart-table-container">
         <table className="shopping-cart-table">
-          <tr className="shopping-cart-table-header-container">
-            <th className="shopping-cart-table-header">Juice</th>
-            <th className="shopping-cart-table-header">Price</th>
-            <th className="shopping-cart-table-header">Quantity</th>
-            <th className="shopping-cart-table-header">Total</th>
-          </tr>
-          <tr className="shopping-cart-table-body-container">
-            <td className="shopping-cart-table-body-infobox">
-              <div className="shopping-cart-table-body-infobox-img">
-                <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj1.imgSrc} />
-              </div>
-              <ul className="shopping-cart-table-body-infobox-list">
-                <li className="shopping-cart-table-body-infobox-title">
-                  {juiceObj1.name}
-                </li>
-                <li className="shopping-cart-table-body-infobox-nicotine">
-                  {juiceObj1.nicotine}
-                </li>
-                <li className="shopping-cart-table-body-infobox-sku">
-                  {juiceObj1.sku}
-                </li>
-                <li className="shopping-cart-table-body-infobox-trash">
-                  <FontAwesome name="trash-o" />
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr className="shopping-cart-table-body-container">
-            <td className="shopping-cart-table-body-infobox">
-              <div className="shopping-cart-table-body-infobox-img">
-                <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj2.imgSrc} />
-              </div>
-              <ul className="shopping-cart-table-body-infobox-list">
-                <li className="shopping-cart-table-body-infobox-title">
-                  {juiceObj2.name}
-                </li>
-                <li className="shopping-cart-table-body-infobox-nicotine">
-                  {juiceObj2.nicotine}
-                </li>
-                <li className="shopping-cart-table-body-infobox-sku">
-                  {juiceObj2.sku}
-                </li>
-                <li className="shopping-cart-table-body-infobox-trash">
-                  <FontAwesome name="trash-o" />
-                </li>
-              </ul>
-            </td>
-          </tr>
+          <thead>
+            <tr className="shopping-cart-table-header-container">
+              <th className="shopping-cart-table-header">Juice</th>
+              <th className="shopping-cart-table-header">Price</th>
+              <th className="shopping-cart-table-header">Quantity</th>
+              <th className="shopping-cart-table-header">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderJuices()}
+          </tbody>
         </table>
       </div>
     </div>
