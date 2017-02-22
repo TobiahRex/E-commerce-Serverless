@@ -139,6 +139,39 @@
               }
             }
           }
+          & ul.shopping-cart-mobile-product-actions-list {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & li.shopping-cart-mobile-product-actions-price {
+              & .shopping-cart-mobile-product-actions-price-title {
+                @include prefixflex();
+                justify-content: center;
+                align-items: flex-end;
+                width: 50%;
+                p {
+                  font-family: $p-font;
+                  color: $p-blue;
+                  padding-right: 1em;
+                  font-size: 1.2em;
+                }
+              }
+              & .shopping-cart-mobile-product-actions-price-amt {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                width: 50%;
+                p {
+                  font-family: $p-font;
+                  color: $p-blue;
+                  font-size: 1.8em;
+                }
+              }
+            }
+          }
         }
       }
     }
