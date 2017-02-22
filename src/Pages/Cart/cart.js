@@ -16,6 +16,8 @@ class CartTable extends Component {
 
     this.state = {
       mobileActive: props.mobileActive,
+      grandTotalAmt: 0,
+      taxesAmt: 0,
     };
     this.juices = [{
       imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
@@ -36,7 +38,11 @@ class CartTable extends Component {
 
   renderDeviceCart = () => (
     this.state.mobileActive ?
-      <ShoppingCartWeb renderJuices={this.renderJuices} /> : <ShoppingCartMobile />
+      <ShoppingCartWeb
+        renderJuices={this.renderJuices}
+        grandTotalAmt={this.state.grandTotalAmt}
+        taxesAmt={this.state.taxesAmt}
+      /> : <ShoppingCartMobile />
   );
 
   renderJuices = () =>
@@ -111,8 +117,6 @@ class CartTable extends Component {
   });
 
   render() {
-    const taxesAmt = 99;
-    const grandTotalAmt = 99;
     return (
       <div className="shopping-cart-main">
         <div className="shopping-cart-breadcrumb-container">
@@ -130,10 +134,6 @@ class CartTable extends Component {
           <h1>Shopping Cart</h1>
         </div>
         {this.renderDeviceCart()}
-
-        <div className="shopping-cart-mobile-parent">
-
-        </div>
       </div>
     );
   }
