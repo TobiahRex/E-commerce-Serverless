@@ -39,6 +39,8 @@ export default function CartTable() {
       </td>
     </tr>)
   );
+  const taxesAmt = 99;
+  const grandTotalAmt = 99;
 
   return (
     <div className="shopping-cart-main">
@@ -56,7 +58,7 @@ export default function CartTable() {
       <div className="shopping-cart-main-title">
         <h1>Shopping Cart</h1>
       </div>
-      <div className="shopping-cart-table-container">
+      <div className="shopping-cart-parent">
         <table className="shopping-cart-table">
           <thead className="shopping-cart-table-header-container">
             <tr className="shopping-cart-table-header-titles">
@@ -70,6 +72,38 @@ export default function CartTable() {
             {renderJuices()}
           </tbody>
         </table>
+        <div className="shopping-cart-analysis-main">
+          <div className="shopping-cart-analysis-taxes">
+            <div className="shopping-cart-analysis-taxes-title">Taxes</div>
+            <div className="shopping-cart-analysis-taxes-cost">
+              <FontAwesome name="usd" />
+              <p>{'\u0020'}{`${taxesAmt}.00`}</p>
+            </div>
+          </div>
+          <div className="shopping-cart-analysis-grandt">
+            <div className="shopping-cart-analysis-grandt-title">
+              Grand Total
+            </div>
+            <div className="shopping-cart-analysis-grandt-cost">
+              <FontAwesome name="usd" />
+              <p>{'\u0020'}{`${grandTotalAmt}.00`}</p>
+            </div>
+          </div>
+        </div>
+        <div className="shopping-cart-action-btns-parent">
+          <button className="shopping-cart-action-btn-checkout">
+            <FontAwesome name="credit-card-alt" />
+            {'\u0020'}Express Checkout
+          </button>
+          <button className="shopping-cart-action-btn-clear">
+            Clear Shopping Cart
+          </button>
+        </div>
+        <div className="shopping-cart-back-parent">
+          <button className="shopping-cart-back">
+            Back To Homepage
+          </button>
+        </div>
       </div>
     </div>
   );
