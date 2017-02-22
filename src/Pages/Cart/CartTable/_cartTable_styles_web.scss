@@ -278,14 +278,22 @@
           justify-content: center;
           align-items: center;
           height: 6em;
-          width: 12.5em;
+          width: 15em;
           h3 {
             font-weight: 600;
+          }
+          h3.title {
+            text-align: center;
+            width: 14em;
           }
           span {
             font-size: 2em;
             color: $p-blue;
           }
+        }
+        & .shopping-cart-analysis-taxes-cost,
+        .shopping-cart-analysis-grand-total-cost {
+          width: 10em;
         }
         & .shopping-cart-analysis-taxes-title,
         .shopping-cart-analysis-grand-total-title {
@@ -330,6 +338,29 @@
         margin: .27em 0 .55em 0;
         background-color: $p-red;
         cursor: pointer;
+        @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
+      }
+    }
+    & .shopping-cart-back-parent {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 15em;
+      & button {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        font-weight: 100;
+        border: none;
+        height: 3.33em;
+        width: 14.4em;
+        font-size: 1.8em;
+        color: $p-white;
+        margin: .27em 0 .55em 0;
+        background-color: $p-red;
+        cursor: pointer;
+        @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
       }
     }
   }

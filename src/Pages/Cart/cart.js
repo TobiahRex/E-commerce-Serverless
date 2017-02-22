@@ -75,6 +75,8 @@ export default function CartTable() {
             </ul>
             <div className="shopping-cart-table-body-qty-msg">
               <p>Maximum 4 bottles per customer, per address.</p>
+              <br />
+              <p>Japanese Statute # 123123123.</p>
             </div>
           </div>
         </td>
@@ -131,7 +133,7 @@ export default function CartTable() {
         <div className="shopping-cart-analysis-main">
           <div className="shopping-cart-analysis-taxes">
             <div className="shopping-cart-analysis-taxes-title">
-              <h3>Taxes</h3>
+              <h3 className="title">Taxes</h3>
             </div>
             <div className="shopping-cart-analysis-taxes-cost">
               <FontAwesome name="usd" />
@@ -140,7 +142,7 @@ export default function CartTable() {
           </div>
           <div className="shopping-cart-analysis-grand-total">
             <div className="shopping-cart-analysis-grand-total-title">
-              <h3>Grand Total</h3>
+              <h3 className="title">Grand Total</h3>
             </div>
             <div className="shopping-cart-analysis-grand-total-cost">
               <FontAwesome name="usd" />
@@ -149,16 +151,16 @@ export default function CartTable() {
           </div>
         </div>
         <div className="shopping-cart-action-btns-parent">
-          <button className="shopping-cart-action-btn-checkout">
+          <button className="shopping-cart-action-btn-checkout sweep-right">
             <FontAwesome name="credit-card-alt" />
             {'\u0020'}Express Checkout
           </button>
-          <button className="shopping-cart-action-btn-clear">
+          <button className="shopping-cart-action-btn-clear sweep-right">
             Clear Shopping Cart
           </button>
         </div>
         <div className="shopping-cart-back-parent">
-          <button className="shopping-cart-back">
+          <button className="shopping-cart-back sweep-right">
             Back To Homepage
           </button>
         </div>
