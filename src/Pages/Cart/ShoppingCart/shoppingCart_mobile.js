@@ -2,12 +2,10 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  // juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
-  // keyNum: PropTypes.number.isRequired,
-  // subTotal: PropTypes.number.isRequired,
+  renderMobileJuices: PropTypes.func.isRequired,
 };
 
-function ShoppingCartMobile() {
+function ShoppingCartMobile({ renderMobileJuices }) {
   return (
     <div className="shopping-cart-mobile-parent">
       <div className="shopping-cart-mobile-action-btn-top">
@@ -16,7 +14,9 @@ function ShoppingCartMobile() {
           {'\u0020'}Express Checkout
         </button>
       </div>
-      div.shopping-cart-mobile-
+      <ul className="shopping-cart-mobile-product-list">
+
+      </ul>
     </div>
   );
 }
