@@ -2,7 +2,7 @@
   display: none;
   height: 35em;
   width: 108em;
-  background-color: $p-white;
+  background-color: #EEE;
   position: absolute;
   z-index: 1;
   top: 5em;
@@ -17,7 +17,7 @@
       align-items: center;
       // height: 16.5em;
       width: 104em;
-      background-color: $p-white;
+      background-color: #EEE;
       margin-top: 1.5em;
       & .media-dropdown-content-topThird-images {
         @extend .flex-center;
@@ -51,7 +51,7 @@
       align-items: center;
       height: 8.5em;
       width: 104em;
-      background-color: $p-white;
+      background-color: #EEE;
       border-bottom: 1px solid rgba(1,1,1,.25);
       & .media-dropdown-content-midThird-links {
         text-decoration: none;
@@ -77,7 +77,7 @@
       @extend .flex-center;
       height: 6.5em;
       width: 104em;
-      background-color: $p-white;
+      background-color: #EEE;
       & .media-dropdown-content-bottomThird-outterContainer {
         @extend .flex-center;
         height: 6.5em;

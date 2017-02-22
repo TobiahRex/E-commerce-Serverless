@@ -2,7 +2,7 @@
   display: none;
   height: 25em;
   width: 53em;
-  background-color: $p-white;
+  background-color: #EEE;
   margin-left: -34em;
   position: absolute;
   z-index: 1;
@@ -12,13 +12,13 @@
     @extend .flex-center;
     height: 21em;
     width: 49em;
-    background-color: $p-white;
+    background-color: #EEE;
     margin: 2em;
     & .info-dropdown-content-innerContainer-left {
       @extend .flex-align-left;
       height: 21em;
       width: 25em;
-      background-color: $p-white;
+      background-color: #EEE;
       & .info-dropdown-content-innerContainer-left-list {
         @extend .flex-align-left;
         flex-direction: column;
@@ -51,7 +51,7 @@
       @extend .flex-align-left;
       height: 21em;
       width: 24em;
-      background-color: $p-white;
+      background-color: #EEE;
       & .info-dropdown-content-innerContainer-right-list {
         @extend .flex-align-left;
         flex-direction: column;

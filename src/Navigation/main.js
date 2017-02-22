@@ -29,7 +29,8 @@ import MissionStatement from '../Pages/Legal/missionStatement';
 import SocialMedia from '../Pages/Legal/socialMedia';
 
 import NicotineDisclaimer from '../Pages/Legal/nicotineDisclaimer';
-import ShippingReturns from '../Pages/Legal/shippingReturnPolicy';
+import Shipping from '../Pages/Legal/shippingPolicy';
+import Returns from '../Pages/Legal/returnsPolicy';
 import PrivacyPolicy from '../Pages/Legal/privacyPolicy';
 import TermsConditions from '../Pages/Legal/termsConditions';
 import Wholesale from '../Pages/Legal/wholesale';
@@ -63,7 +64,8 @@ export default (
     <Router path={'/faqs'} component={Faqs} />
     {/* LEGAL */}
     <Router path={'/nicotine_disclaimer'} component={NicotineDisclaimer} />
-    <Router path={'/shipping_and_return_policy'} component={ShippingReturns} />
+    <Router path={'/return_policy'} component={Returns} />
+    <Router path={'/shipping_policy'} component={Shipping} />
     <Router path={'/privacy_policy'} component={PrivacyPolicy} />
     <Router path={'/terms_and_conditions'} component={TermsConditions} />
     <Router path={'/wholesale'} component={Wholesale} />

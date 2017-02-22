@@ -13,6 +13,7 @@
     h1 {
       font-size: 5em;
       padding-left: .1em;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
     }
   }
   & .empty-cart-main-icon {
@@ -21,12 +22,12 @@
       color: $p-blue;
       font-weight: 800;
       margin: .1em;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
     }
   }
-  & .empty-cart-sub-msg {
-    p {
-      font-size: 3.5em;
-      line-height: 1.5em;
+  & .empty-cart-oops-msg {
+    h1 {
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
     }
   }
   & .empty-cart-shopping-btn {
@@ -48,6 +49,7 @@
       background-color: $p-red;
       color: $p-white;
       cursor: pointer;
+      @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.5));
     }
   }
 }

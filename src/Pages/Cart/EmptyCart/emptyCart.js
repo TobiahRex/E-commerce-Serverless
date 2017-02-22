@@ -13,9 +13,6 @@ export default function EmptyCart() {
       <div className="empty-cart-oops-msg">
         <h1>Oops :(</h1>
       </div>
-      {/* <div className="empty-cart-sub-msg">
-        <p>You have no items in your shopping cart.</p>
-      </div> */}
       <div className="empty-cart-shopping-btn">
         <button className="sweep-right">Start Shopping</button>
       </div>

@@ -12,9 +12,11 @@
   & .hompage-header-title-1 {
     color: $p-white;
     line-height: 2.5em;
+    text-shadow: 0 2px 2px rgba(255,255,255,.3);
   }
   & .hompage-header-title-2 {
     color: $p-white;
     line-height: 1.5em;
+    text-shadow: 0 2px 2px rgba(255,255,255,.3);
   }
 }

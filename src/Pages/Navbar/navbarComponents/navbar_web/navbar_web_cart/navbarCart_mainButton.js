@@ -16,7 +16,7 @@ class NavbarCartMainButton extends PureComponent {
   render() {
     return (
       <span className="mainbtn">
-        <Link className="mainbtn-mycart-link">
+        <Link to="/cart" className="mainbtn-mycart-link">
           <div className="mainbtn-mycart-link-title">
             <span>My Cart</span>
           </div>
