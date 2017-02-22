@@ -22,7 +22,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotalAmt }) {
         </div>
         <div className="shopping-cart-mobile-product-infobox">
           <div className="shopping-cart-mobile-product-infobox-title">
-            <h3>juiceObj.name</h3>
+            <h3>{juiceObj.name}</h3>
           </div>
           <div className="shopping-cart-mobile-product-infobox-nicotine">
             <p>Nicotine Strength:{'\u00A0'}</p>

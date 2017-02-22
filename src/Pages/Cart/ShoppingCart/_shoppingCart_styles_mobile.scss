@@ -93,10 +93,12 @@
         margin-bottom: 1em;
         & .shopping-cart-mobile-product-parent {
           @include prefixflex();
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
-          overflow: hidden;
+          flex-direction: column;
           & .shopping-cart-mobile-product-img {
+            height: 28.5em;
+            overflow: hidden;
             img {
               position: relative;
               top: 15px;
@@ -107,12 +109,33 @@
             @include prefixflex();
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 15em;
             width: 100%;
-            & .shopping-cart-mobile-product-infobox-title {
+            & .shopping-cart-mobile-product-infobox-title,
+            & .shopping-cart-mobile-product-infobox-nicotine,
+            .shopping-cart-mobile-product-infobox-sku {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
               height: 4.5;
               & h3 {
-                font-size: 
+                font-size: 2em;
+                line-height: 2.25em;
+              }
+              & p, i {
+                font-size: 1.2em;
+                font-family: $p-font;
+                color: $p-blue;
+              }
+            }
+            & .shopping-cart-mobile-product-infobox-nicotine,
+            .shopping-cart-mobile-product-infobox-sku {
+              height: 3em;
+            }
+            & .shopping-cart-mobile-product-infobox-sku {
+              p {
+                font-size: 1em;
               }
             }
           }
