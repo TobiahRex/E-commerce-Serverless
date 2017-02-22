@@ -55,6 +55,7 @@
     width: 100%;
     & table.shopping-cart-table {
       width: 100%;
+      border-collapse: collapse;
       & thead.shopping-cart-table-header-container {
         width: 100%;
         & tr.shopping-cart-table-header-titles {
@@ -90,6 +91,8 @@
         max-width: 108.6px;
         width: 100%;
         & tr.shopping-cart-table-body-row {
+          border-bottom: 1px solid rgba(0,0,0,.1);
+          border-top: 1px solid rgba(0,0,0,.1);
           & td.shopping-cart-table-body-infobox,
           td.shopping-cart-table-body-price,
           td.shopping-cart-table-body-qty,
@@ -233,6 +236,41 @@
           }
           & td.shopping-cart-table-body-total {
             width: 29em;
+            & .shopping-cart-table-body-total-flexparent {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              h3 {
+                font-weight: 600;
+              }
+              & span {
+                font-size: 2em;
+                font-weight: 200;
+                color: $p-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    & .shopping-cart-analysis-main {
+      @include prefixflex();
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+      & .shopping-cart-analysis-taxes {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 7em;
+        width: 26em;
+        & .shopping-cart-analysis-taxes-title,
+         .shopping-cart-analysis-taxes-cost {
+          height: 6em;
+          width: 12.5em;
+          span {
+            font-size: 2em;
+            color: $p-blue;
           }
         }
       }
