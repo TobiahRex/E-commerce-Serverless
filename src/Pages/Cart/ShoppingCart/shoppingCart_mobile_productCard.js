@@ -20,6 +20,19 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotalAmt }) {
             className="shopping-cart-mobile-product-img-src"
           />
         </div>
+        <div className="shopping-cart-mobile-product-infobox">
+          <div className="shopping-cart-mobile-product-infobox-title">
+            <h3>juiceObj.name</h3>
+          </div>
+          <div className="shopping-cart-mobile-product-infobox-nicotine">
+            <p>Nicotine Strength:{'\u00A0'}</p>
+            <i>{juiceObj.nicotine}</i>
+          </div>
+          <div className="shopping-cart-mobile-product-infobox-sku">
+            <p>SKU:{'\u00A0'}</p>
+            <p>{juiceObj.sku}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

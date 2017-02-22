@@ -86,8 +86,11 @@
       & .shopping-cart-mobile-row {
         @include prefixflex();
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
+        width: 100%;
+        border: 1px solid rgba(0,0,0,.25);
+        margin-bottom: 1em;
         & .shopping-cart-mobile-product-parent {
           @include prefixflex();
           justify-content: center;
@@ -98,6 +101,19 @@
               position: relative;
               top: 15px;
               width: 7.3em;
+            }
+          }
+          & .shopping-cart-mobile-product-infobox {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 15em;
+            width: 100%;
+            & .shopping-cart-mobile-product-infobox-title {
+              height: 4.5;
+              & h3 {
+                font-size: 
+              }
             }
           }
         }
