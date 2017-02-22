@@ -34,16 +34,18 @@ export default function CartTable() {
             </div>
             <ul className="shopping-cart-table-body-infobox-list">
               <li className="shopping-cart-table-body-infobox-title">
-                {juiceObj.name}
+                <p>{juiceObj.name}</p>
               </li>
               <li className="shopping-cart-table-body-infobox-nicotine">
-                {juiceObj.nicotine}
+                <p>{juiceObj.nicotine}</p>
               </li>
               <li className="shopping-cart-table-body-infobox-sku">
-                {juiceObj.sku}
+                <p>{juiceObj.sku}</p>
               </li>
               <li className="shopping-cart-table-body-infobox-trash">
-                <FontAwesome name="trash-o" />
+                <button>
+                  <FontAwesome name="trash-o" />
+                </button>
               </li>
             </ul>
           </div>

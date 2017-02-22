@@ -102,12 +102,37 @@
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              flex-direction: column;
               & .shopping-cart-table-body-infobox-img {
+                overflow: hidden;
                 img {
                   position: relative;
                   max-width: 7.2em;
                   top: 6em;
+                }
+              }
+              & ul.shopping-cart-table-body-infobox-list {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                & .shopping-cart-table-body-infobox-title,
+                 .shopping-cart-table-body-infobox-nicotine,
+                 .shopping-cart-table-body-infobox-sku,
+                 .shopping-cart-table-body-infobox-trash {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  height: 4.5em;
+                  width: 23em;
+                  p {
+                    color: $p-blue;
+                    font-family: $p-font;
+                    font-size: 1.8em;
+                  }
+                  button {
+                    border: none;
+                    background-color: $p-red;
+                    color: $p-white;
+                  }
                 }
               }
             }
