@@ -58,8 +58,8 @@ export default function CartTable() {
       </div>
       <div className="shopping-cart-table-container">
         <table className="shopping-cart-table">
-          <thead>
-            <tr className="shopping-cart-table-header-container">
+          <thead className="shopping-cart-table-header-container">
+            <tr className="shopping-cart-table-header-titles">
               <th className="shopping-cart-table-header">Juice</th>
               <th className="shopping-cart-table-header">Price</th>
               <th className="shopping-cart-table-header">Quantity</th>
