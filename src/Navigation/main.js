@@ -21,6 +21,7 @@ import AdminDashboard from '../Pages/AdminDashboard/adminDashboard';
 
 import About from '../Pages/Legal/about';
 import ContactUs from '../Pages/Legal/contactUs';
+import Phone from '../Pages/Legal/phone';
 import Reviews from '../Pages/Media/reviews';
 import UserStories from '../Pages/Media/userStories';
 import VapeNews from '../Pages/Media/vapeNews';
@@ -41,8 +42,8 @@ export default (
     <IndexRoute component={Homepage} />
     {/* User Experience */}
     <Router path={'/home'} component={Homepage} />
-    <Router path={'/product/:id'} component={SingleProduct} />
-    <Router path={'/products'} component={AllProducts} />
+    <Router path={'/juice/:id'} component={SingleProduct} />
+    <Router path={'/juices'} component={AllProducts} />
     <Router path={'/cart'} component={Cart} />
     <Router path={'/empty'} component={EmptyCart} />
     <Router path={'/checkout'} component={ExpressCheckout} />
@@ -56,6 +57,7 @@ export default (
     {/* MEDIA */}
     <Router path={'/about'} component={About} />
     <Router path={'/contact_us'} component={ContactUs} />
+    <Router path={'/phone'} component={Phone} />
     <Router path={'/reviews'} component={Reviews} />
     <Router path={'/vape_news'} component={VapeNews} />
     <Router path={'/stories'} component={UserStories} />

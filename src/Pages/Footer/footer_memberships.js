@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default function FooterMemberships() {
   return (
@@ -8,16 +9,16 @@ export default function FooterMemberships() {
       </h3>
       <ul className="footer-main-sections-memberships-list">
         <li className="footer-main-sections-memberships-register hvr-bob">
-          Register
+          <Link to="/register">Register</Link>
         </li>
         <li className="footer-main-sections-memberships-affiliate hvr-bob">
-          Affiliate Program
+          <Link to="/affiliate_program">Affiliate Program</Link>
         </li>
         <li className="footer-main-sections-memberships-wholesale hvr-bob">
-          Wholesale
+          <Link to="/wholesale">Wholesale</Link>
         </li>
         <li className="footer-main-sections-memberships-forgot hvr-bob">
-          Forgot Login Info
+          <Link to="/forgot">Forgot Login Info</Link>
         </li>
       </ul>
     </li>

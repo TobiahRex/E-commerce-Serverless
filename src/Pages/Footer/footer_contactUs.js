@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default function FooterContactUs() {
   return (
@@ -8,13 +9,13 @@ export default function FooterContactUs() {
       </h3>
       <ul className="footer-main-sections-contactus-list">
         <li className="footer-main-sections-contactus-email hvr-bob">
-          Email
+          <Link to="/contact_us">Email</Link>
         </li>
         <li className="footer-main-sections-contactus-phone hvr-bob">
-          Phone
+          <Link to="/phone">Phone</Link>
         </li>
         <li className="footer-main-sections-contactus-phone hvr-bob">
-          About
+          <Link to="/about">About</Link>
         </li>
       </ul>
     </li>

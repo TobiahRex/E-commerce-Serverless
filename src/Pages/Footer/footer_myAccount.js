@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default function FooterMyAccount() {
   return (
@@ -8,16 +9,16 @@ export default function FooterMyAccount() {
       </h3>
       <ul className="footer-main-sections-myaccount-list">
         <li className="footer-main-sections-myaccount-register hvr-bob">
-          Order History
+          <Link to="/user/order_history">Order History</Link>
         </li>
         <li className="footer-main-sections-myaccount-affiliate hvr-bob">
-          Order Status
+          <Link to="/user/order_status">Order Status</Link>
         </li>
         <li className="footer-main-sections-myaccount-wholesale hvr-bob">
-          Change Password
+          <Link to="/user/change_password">Change Password</Link>
         </li>
         <li className="footer-main-sections-myaccount-forgot hvr-bob">
-          Forgot Login Info
+          <Link to="/forgot">Forgot Login Info</Link>
         </li>
       </ul>
     </li>
