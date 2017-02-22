@@ -55,7 +55,7 @@
     width: 100%;
     & .shopping-cart-table {
       width: 100%;
-      & .shopping-cart-header-container {
+      & .shopping-cart-table-header-container {
         width: 100%;
         & .shopping-cart-table-header-titles {
           & .shopping-cart-table-header-juice,
@@ -65,6 +65,28 @@
           & h3 {
               line-height: 2.25em;
             }
+          }
+          & .shopping-cart-table-header-juice {
+            width: 38em;
+          }
+          & .shopping-cart-table-header-price {
+            width: 20.5em;
+          }
+          & .shopping-cart-table-header-qty {
+            width: 20.5em;
+          }
+          & .shopping-cart-table-header-total {
+            width: 29em;
+          }
+        }
+      }
+      & .shopping-cart-table-body-container {
+        & tr.shopping-cart-table-body-row {
+          & td.shopping-cart-table-body-infobox,
+          td.shopping-cart-table-body-price,
+          td.shopping-cart-table-body-qty,
+          td.shopping-cart-table-body-total {
+            height: 28.5em; 
           }
         }
       }

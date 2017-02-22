@@ -23,7 +23,7 @@ export default function CartTable() {
   juices.map((juiceObj, i) => {
     const subTotal = juiceObj.qty * Number(juiceObj.price);
     return (
-      <tr key={`shopping-cart-table-row-${juiceObj.name}-${i}`} className="shopping-cart-table-body-container">
+      <tr key={`shopping-cart-table-row-${juiceObj.name}-${i}`} className="shopping-cart-table-body-row">
         <td className="shopping-cart-table-body-infobox">
           <div className="shopping-cart-table-body-infobox-img">
             <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.imgSrc} />
@@ -108,7 +108,7 @@ export default function CartTable() {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="shopping-cart-table-body-container">
             {renderJuices()}
           </tbody>
         </table>
