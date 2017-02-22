@@ -135,16 +135,16 @@ export default function CartTable() {
             </div>
             <div className="shopping-cart-analysis-taxes-cost">
               <FontAwesome name="usd" />
-              <h3>{'\u00A0'}{`${taxesAmt}.00`}</h3>
+              <h3>{'\u00A0'}{`${taxesAmt}`}</h3>
             </div>
           </div>
           <div className="shopping-cart-analysis-grand-total">
-            <div className="shopping-cart-analysis-grandt-title">
-              Grand Total
+            <div className="shopping-cart-analysis-grand-total-title">
+              <h3>Grand Total</h3>
             </div>
-            <div className="shopping-cart-analysis-grandt-cost">
+            <div className="shopping-cart-analysis-grand-total-cost">
               <FontAwesome name="usd" />
-              <p>{'\u0020'}{`${grandTotalAmt}.00`}</p>
+              <h3>{'\u00A0'}{`${grandTotalAmt}`}</h3>
             </div>
           </div>
         </div>

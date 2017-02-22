@@ -118,9 +118,9 @@
                 padding: 0;
                 margin: 0;
                 & .shopping-cart-table-body-infobox-title,
-                 .shopping-cart-table-body-infobox-nicotine,
-                 .shopping-cart-table-body-infobox-sku,
-                 .shopping-cart-table-body-infobox-trash {
+                .shopping-cart-table-body-infobox-nicotine,
+                .shopping-cart-table-body-infobox-sku,
+                .shopping-cart-table-body-infobox-trash {
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
@@ -255,17 +255,25 @@
     }
     & .shopping-cart-analysis-main {
       @include prefixflex();
-      justify-content: flex-end;
-      align-items: center;
+      justify-content: center;
+      align-items: flex-end;;
+      flex-direction: column;
+      align-content: flex-end;
       width: 100%;
-      & .shopping-cart-analysis-taxes {
+      & .shopping-cart-analysis-taxes,
+      & .shopping-cart-analysis-grand-total {
         @include prefixflex();
         justify-content: center;
         align-items: center;
         height: 7em;
         width: 26em;
         & .shopping-cart-analysis-taxes-title,
-         .shopping-cart-analysis-taxes-cost {
+        .shopping-cart-analysis-taxes-cost,
+        .shopping-cart-analysis-grand-total-title,
+        .shopping-cart-analysis-grand-total-cost {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
           height: 6em;
           width: 12.5em;
           span {
@@ -273,6 +281,30 @@
             color: $p-blue;
           }
         }
+      }
+    }
+    & .shopping-cart-action-btns-parent {
+      @include prefixflex();
+      justify-content: center;
+      align-items: flex-end;;
+      flex-direction: column;
+      align-content: flex-end;
+      width: 100%;
+      height: 14.5em;
+      span {
+        font-size: 1.8em;
+        color: $p-white;
+        margin-right: 1em;
+      }
+      button {
+        border: none;
+        height: 6em;
+        width: 26em;
+        font-size: 1.8em
+        color: $p-white;
+        margin: .27em auto .55em auto;
+        background-color: $p-red;
+        cursor: pointer;
       }
     }
   }
