@@ -77,6 +77,34 @@
         @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
       }
     }
+    & .shopping-cart-mobile-product-list {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      & .shopping-cart-mobile-row {
+        @include prefixflex();
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        & .shopping-cart-mobile-product-parent {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          & .shopping-cart-mobile-product-img {
+            img {
+              position: relative;
+              top: 15px;
+              width: 7.3em;
+            }
+          }
+        }
+      }
+    }
+
+
     & .shopping-cart-back-parent {
       @include prefixflex();
       justify-content: center;

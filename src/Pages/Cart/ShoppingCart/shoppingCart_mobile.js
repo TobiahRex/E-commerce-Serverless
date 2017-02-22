@@ -14,9 +14,9 @@ function ShoppingCartMobile({ renderMobileJuices }) {
           {'\u0020'}Express Checkout
         </button>
       </div>
-      <ul className="shopping-cart-mobile-product-list">
-
-      </ul>
+      <div className="shopping-cart-mobile-product-list">
+        {renderMobileJuices()}
+      </div>
     </div>
   );
 }
