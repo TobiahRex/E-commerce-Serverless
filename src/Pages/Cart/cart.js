@@ -1,26 +1,46 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
-export default function CartTable() {
-  const juices = [{
-    imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
-    name: 'Fruity Bamm-Bamm',
-    sku: '123123123',
-    nicotine: '6mg',
-    price: '30',
-    qty: 2,
-  }, {
-    imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
-    name: 'Fruity Bamm-Bamm',
-    sku: '123123123',
-    nicotine: '6mg',
-    price: '30',
-    qty: 2,
-  }];
+import ShoppingCartWeb from './ShoppingCart/shoppingCart_web';
+import ShoppingCartMobile from './ShoppingCart/shoppingCart_mobile';
 
-  const renderJuices = () =>
-  juices.map((juiceObj, i) => {
+
+class CartTable extends Component {
+  static propTypes = {
+    mobileActive: PropTypes.bool.isRequired,
+  }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mobileActive: props.mobileActive,
+    };
+    this.juices = [{
+      imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
+      name: 'Fruity Bamm-Bamm',
+      sku: '123123123',
+      nicotine: '6mg',
+      price: '30',
+      qty: 2,
+    }, {
+      imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
+      name: 'Fruity Bamm-Bamm',
+      sku: '123123123',
+      nicotine: '6mg',
+      price: '30',
+      qty: 2,
+    }];
+  }
+
+  renderDeviceCart = () => (
+    this.state.mobileActive ?
+      <ShoppingCartWeb renderJuices={this.renderJuices} /> : <ShoppingCartMobile />
+  );
+
+  renderJuices = () =>
+  this.juices.map((juiceObj, i) => {
     const subTotal = juiceObj.qty * Number(juiceObj.price);
     return (
       <tr key={`shopping-cart-table-row-${juiceObj.name}-${i}`} className="shopping-cart-table-body-row">
@@ -89,82 +109,36 @@ export default function CartTable() {
       </tr>
     );
   });
-  const taxesAmt = 99;
-  const grandTotalAmt = 99;
 
-  return (
-    <div className="shopping-cart-main">
-      <div className="shopping-cart-breadcrumb-container">
-        <ul className="shopping-cart-breadcrumb-list">
-          <li className="shopping-cart-breadcrumb-path">
-            <Link className="breadcrumb-link" to="/">Home</Link>
-            <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
-          </li>
-          <li className="shopping-cart-breadcrumb-path">
-            Shopping Cart
-          </li>
-        </ul>
-      </div>
-      <div className="shopping-cart-main-title">
-        <h1>Shopping Cart</h1>
-      </div>
-      <div className="shopping-cart-parent">
-        <table className="shopping-cart-table">
-          <thead className="shopping-cart-table-header-container">
-            <tr className="shopping-cart-table-header-titles">
-              <th className="shopping-cart-table-header-juice">
-                <h3>Juice</h3>
-              </th>
-              <th className="shopping-cart-table-header-price">
-                <h3>Price</h3>
-              </th>
-              <th className="shopping-cart-table-header-qty">
-                <h3>Quantity</h3>
-              </th>
-              <th className="shopping-cart-table-header-total">
-                <h3>Total</h3>
-              </th>
-            </tr>
-          </thead>
-          <tbody className="shopping-cart-table-body-container">
-            {renderJuices()}
-          </tbody>
-        </table>
-        <div className="shopping-cart-analysis-main">
-          <div className="shopping-cart-analysis-taxes">
-            <div className="shopping-cart-analysis-taxes-title">
-              <h3 className="title">Taxes</h3>
-            </div>
-            <div className="shopping-cart-analysis-taxes-cost">
-              <FontAwesome name="usd" />
-              <h3>{'\u00A0'}{`${taxesAmt}`}</h3>
-            </div>
-          </div>
-          <div className="shopping-cart-analysis-grand-total">
-            <div className="shopping-cart-analysis-grand-total-title">
-              <h3 className="title">Grand Total</h3>
-            </div>
-            <div className="shopping-cart-analysis-grand-total-cost">
-              <FontAwesome name="usd" />
-              <h3>{'\u00A0'}{`${grandTotalAmt}`}</h3>
-            </div>
-          </div>
+  render() {
+    const taxesAmt = 99;
+    const grandTotalAmt = 99;
+    return (
+      <div className="shopping-cart-main">
+        <div className="shopping-cart-breadcrumb-container">
+          <ul className="shopping-cart-breadcrumb-list">
+            <li className="shopping-cart-breadcrumb-path">
+              <Link className="breadcrumb-link" to="/">Home</Link>
+              <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
+            </li>
+            <li className="shopping-cart-breadcrumb-path">
+              Shopping Cart
+            </li>
+          </ul>
         </div>
-        <div className="shopping-cart-action-btns-parent">
-          <button className="shopping-cart-action-btn-checkout sweep-right">
-            <FontAwesome name="credit-card-alt" />
-            {'\u0020'}Express Checkout
-          </button>
-          <button className="shopping-cart-action-btn-clear sweep-right">
-            Clear Shopping Cart
-          </button>
+        <div className="shopping-cart-main-title">
+          <h1>Shopping Cart</h1>
         </div>
-        <div className="shopping-cart-back-parent">
-          <button className="shopping-cart-back sweep-right">
-            Back To Homepage
-          </button>
+        {this.renderDeviceCart()}
+
+        <div className="shopping-cart-mobile-parent">
+
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+const mapStateToProps = ({ mobile }) => ({
+  mobileActive: mobile.mobileType,
+});
+export default connect(mapStateToProps, null)(CartTable);
