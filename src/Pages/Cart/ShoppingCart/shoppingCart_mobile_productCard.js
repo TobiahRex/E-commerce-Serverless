@@ -4,10 +4,12 @@ import FontAwesome from 'react-fontawesome';
 const propTypes = {
   juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
   keyNum: PropTypes.number.isRequired,
-  subTotalAmt: PropTypes.number.isRequired,
+  taxes: PropTypes.number.isRequired,
+  subTotal: PropTypes.number.isRequired,
+  grandTotal: PropTypes.number.isRequired,
 };
 
-function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotalAmt }) {
+function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotal, taxes, grandTotal }) {
   return (
     <div
       key={`shopping-cart-mobile-row-${juiceObj.name}-${keyNum}`}
@@ -43,7 +45,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotalAmt }) {
               <p>{juiceObj.price}</p>
             </div>
           </li>
-          <li className="shopping-cart-mobile-product-actions-price">
+          <li className="shopping-cart-mobile-product-actions-quantity">
             <div className="shopping-cart-mobile-product-actions-qty-title">
               <p>Quantity</p>
             </div>
@@ -61,10 +63,44 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotalAmt }) {
               </div>
             </div>
           </li>
+          <li className="shopping-cart-mobile-product-subtotal">
+            <p>{subTotal}</p>
+          </li>
           <li className="shopping-cart-mobile-product-actions-trash">
             <FontAwesome name="trash-o" />
           </li>
         </ul>
+        <div className="shopping-cart-mobile-user-actions-btns">
+          <button className="shopping-cart-mobile-user-actions-btns-clear">
+            Clear Shopping Cart
+          </button>
+          <button className="shopping-cart-mobile-user-actions-btns-checkout">
+            <FontAwesome name="credit-card-alt" />
+            {'\u0020'}Express Checkout
+          </button>
+        </div>
+        <div className="shopping-cart-mobile-analysis-main">
+          <div className="shopping-cart-mobile-analysis-taxes">
+            <div className="shopping-cart-mobile-analysis-taxes-title">
+              <h3 className="title">Taxes</h3>
+            </div>
+            <div className="shopping-cart-mobile-analysis-taxes-cost">
+              <FontAwesome name="usd" />
+              <h3>
+                {'\u00A0'}{taxes}
+              </h3>
+            </div>
+          </div>
+          <div className="shopping-cart-mobile-analysis-grand-total">
+            <div className="shopping-cart-mobile-analysis-grand-total-title">
+              <h3 className="title">Grand Total</h3>
+            </div>
+            <div className="shopping-cart-mobile-analysis-grand-total-cost">
+              <FontAwesome name="usd" />
+              <h3>{'\u00A0'}{`${grandTotal}`}</h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
