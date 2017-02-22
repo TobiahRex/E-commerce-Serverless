@@ -4,14 +4,14 @@ import { Link } from 'react-router';
 
 export default function CartTable() {
   const juices = [{
-    imgSrc: '',
+    imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
     price: '30',
     qty: 2,
   }, {
-    imgSrc: '',
+    imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
@@ -25,23 +25,28 @@ export default function CartTable() {
     return (
       <tr key={`shopping-cart-table-row-${juiceObj.name}-${i}`} className="shopping-cart-table-body-row">
         <td className="shopping-cart-table-body-infobox">
-          <div className="shopping-cart-table-body-infobox-img">
-            <img className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.imgSrc} />
+          <div className="shopping-cart-table-body-infobox-flexparent">
+            <div className="shopping-cart-table-body-infobox-img">
+              <img
+                src={juiceObj.imgSrc}
+                className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.name}
+              />
+            </div>
+            <ul className="shopping-cart-table-body-infobox-list">
+              <li className="shopping-cart-table-body-infobox-title">
+                {juiceObj.name}
+              </li>
+              <li className="shopping-cart-table-body-infobox-nicotine">
+                {juiceObj.nicotine}
+              </li>
+              <li className="shopping-cart-table-body-infobox-sku">
+                {juiceObj.sku}
+              </li>
+              <li className="shopping-cart-table-body-infobox-trash">
+                <FontAwesome name="trash-o" />
+              </li>
+            </ul>
           </div>
-          <ul className="shopping-cart-table-body-infobox-list">
-            <li className="shopping-cart-table-body-infobox-title">
-              {juiceObj.name}
-            </li>
-            <li className="shopping-cart-table-body-infobox-nicotine">
-              {juiceObj.nicotine}
-            </li>
-            <li className="shopping-cart-table-body-infobox-sku">
-              {juiceObj.sku}
-            </li>
-            <li className="shopping-cart-table-body-infobox-trash">
-              <FontAwesome name="trash-o" />
-            </li>
-          </ul>
         </td>
         <td className="shopping-cart-table-body-price">
           {juiceObj.price}

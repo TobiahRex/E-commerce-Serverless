@@ -64,7 +64,7 @@
           .shopping-cart-table-header-price,
           .shopping-cart-table-header-qty,
           .shopping-cart-table-header-total {
-          & h3 {
+            & h3 {
               line-height: 2.25em;
             }
           }
@@ -98,6 +98,19 @@
           }
           & td.shopping-cart-table-body-infobox {
             width: 38em;
+            .shopping-cart-table-body-infobox-flexparent {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              & .shopping-cart-table-body-infobox-img {
+                img {
+                  position: relative;
+                  max-width: 7.2em;
+                  top: 6em;
+                }
+              }
+            }
           }
           & td.shopping-cart-table-body-price {
             width: 20.5em;
