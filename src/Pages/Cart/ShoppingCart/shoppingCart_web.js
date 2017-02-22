@@ -2,12 +2,12 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  renderJuices: PropTypes.func.isRequired,
+  renderWebJuices: PropTypes.func.isRequired,
   grandTotalAmt: PropTypes.number,
   taxesAmt: PropTypes.number,
 };
 
-function ShoppingCartWeb({ renderJuices, grandTotalAmt, taxesAmt }) {
+function ShoppingCartWeb({ renderWebJuices, grandTotalAmt, taxesAmt }) {
   return (
     <div className="shopping-cart-web-parent">
       <table className="shopping-cart-table">
@@ -28,7 +28,7 @@ function ShoppingCartWeb({ renderJuices, grandTotalAmt, taxesAmt }) {
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {renderJuices()}
+          {renderWebJuices()}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">

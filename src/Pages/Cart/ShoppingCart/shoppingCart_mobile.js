@@ -1,16 +1,22 @@
 import React, { PropTypes } from 'react';
-// import FontAwesome from 'react-fontawesome';
+import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  // renderJuices: PropTypes.func.isRequired,
-  // grandTotalAmt: PropTypes.number,
-  // taxesAmt: PropTypes.number,
+  // juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
+  // keyNum: PropTypes.number.isRequired,
+  // subTotal: PropTypes.number.isRequired,
 };
 
 function ShoppingCartMobile() {
   return (
-    <div className="shopping-cart-web-parent">
-      <h1>Shopping Cart Mobile</h1>
+    <div className="shopping-cart-mobile-parent">
+      <div className="shopping-cart-mobile-action-btn-top">
+        <button className="shopping-cart-mobile-action-btn-top-checkout sweep-right">
+          <FontAwesome name="credit-card-alt" />
+          {'\u0020'}Express Checkout
+        </button>
+      </div>
+      div.shopping-cart-mobile-
     </div>
   );
 }
