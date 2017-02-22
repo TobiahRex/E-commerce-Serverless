@@ -73,9 +73,9 @@ export default function CartTable() {
                 </button>
               </li>
             </ul>
-          </div>
-          <div className="shopping-cart-table-body-qty-msg">
-            <p>Maximum 4 bottles per customer, per address.</p>
+            <div className="shopping-cart-table-body-qty-msg">
+              <p>Maximum 4 bottles per customer, per address.</p>
+            </div>
           </div>
         </td>
         <td className="shopping-cart-table-body-total">
