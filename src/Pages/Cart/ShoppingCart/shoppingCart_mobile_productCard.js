@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
@@ -33,6 +34,37 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotalAmt }) {
             <p>{juiceObj.sku}</p>
           </div>
         </div>
+        <ul className="shopping-cart-mobile-product-actions-list">
+          <li className="shopping-cart-mobile-product-actions-price">
+            <div className="shopping-cart-mobile-product-actions-price-title">
+              <p>Price</p>
+            </div>
+            <div className="shopping-cart-mobile-product-actions-price-amt">
+              <p>{juiceObj.price}</p>
+            </div>
+          </li>
+          <li className="shopping-cart-mobile-product-actions-price">
+            <div className="shopping-cart-mobile-product-actions-qty-title">
+              <p>Quantity</p>
+            </div>
+            <div className="shopping-cart-mobile-product-actions-qty-btns">
+              <div className="shopping-cart-mobile-product-actions-qty-btns-container">
+                <div className="shopping-cart-mobile-product-actions-qty-readout">
+                  {juiceObj.qty}
+                </div>
+                <div className="shopping-cart-mobile-product-actions-qty-btns-plus">
+                  <FontAwesome name="plus" />
+                </div>
+                <div className="shopping-cart-mobile-product-actions-qty-btns-minus">
+                  <FontAwesome name="minus" />
+                </div>
+              </div>
+            </div>
+          </li>
+          <li className="shopping-cart-mobile-product-actions-trash">
+            <FontAwesome name="trash-o" />
+          </li>
+        </ul>
       </div>
     </div>
   );
