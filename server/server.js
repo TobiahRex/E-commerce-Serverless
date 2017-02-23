@@ -12,13 +12,12 @@ import devMiddleware from 'webpack-dev-middleware';
 import socketIO from 'socket.io';
 import webpackConfig from '../webpack.config';
 import api from './api';
-console.log();
 
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
 dotenv.config({ silent: true });
 const PORT = process.env.PORT || 3000;
-const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/template';
+const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
 const BUILD = process.env.NODE_ENV || 'development';
 const app = express();
 const server = new http.Server(app);
@@ -28,7 +27,7 @@ let socketEmitter;
 io.on('connection', (socket) => {
   process.stdout.write('\n>>> Socket Connection!\n');
   request('http://ipinfo.io', (err, res, body) => {
-    console.log('location: ', JSON.parse(body));
+    process.stdout.write(`${JSON.parse(body)}`);
     socket.emit('user_ip_location', JSON.parse(body));
   });
   socketEmitter = (type, data) => socket.emit(type, data);

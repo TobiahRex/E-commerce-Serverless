@@ -1,0 +1,56 @@
+// ------------------------------------------------------------
+// NOTE: _Global_ Master Stylesheets
+@import "./images";
+@import "./colors";
+@import "./mixins";
+@import "./typography";
+
+// ------------------------------------------------------------
+// NOTE: "Age Verification" Master Stylesheets
+@import "../Pages/AgeVerification/ageVerification_web";
+@import "../Pages/AgeVerification/ageVerification_mobile";
+
+
+// ------------------------------------------------------------
+// NOTE: "Navbar" Master Stylesheets
+@import "../Pages/Navbar/navbarStyles/navbar_styles_web";
+@import "../Pages/Navbar/navbarStyles/navbar_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "Homepage" Master Stylesheets
+@import "../Pages/Home/homeStyles/homepage_styles_web";
+@import "../Pages/Home/homeStyles/homepage_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "Single Product" Master Stylesheets
+@import "../Pages/Products/productStyles/products_single_styles_web";
+@import "../Pages/Products/productStyles/products_single_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "Cart" Master Stylesheets
+@import "../Pages/Cart/cart_styles_web";
+@import "../Pages/Cart/cart_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "Footer" Master Stylesheets
+@import "../Pages/Footer/footerStyles/footer_styles_web";
+@import "../Pages/Footer/footerStyles/footer_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: General Styles
+
+body {
+  font-size: 10px;
+  background-color: #FFFFFF;
+  margin: 0;
+}
+
+#main-section {
+  @include prefixflex();
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: $p-white;
+}

@@ -1,4 +1,5 @@
 import express from 'express';
+import request from 'request';
 import http from 'http';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -18,6 +19,9 @@ let socketEmitter;
 
 io.on('connection', (socket) => {
   process.stdout.write('\n>>> Socket Connection!\n');
+  request('http://ipinfo.io', (err, res, body) => {
+    socket.emit('user_ip_location', JSON.parse(body));
+  });
   socketEmitter = (type, data) => socket.emit(type, data);
 });
 
@@ -38,7 +42,7 @@ app.get('*', (req, res) => res.sendFile(path.resolve('dist/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
 const PORT = process.env.PORT || 3000;
-const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/template';
+const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
 server.listen(PORT, err =>
   process.stdout.write(err || `==> 📡  Server @ ${PORT}
 `));

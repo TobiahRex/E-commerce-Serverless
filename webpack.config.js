@@ -6,12 +6,12 @@ dotenv.load({ silent: true });
 
 const devConfig = {
   noInfo: false,
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   target: 'web',
   debug: true,
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    './src/Styles/app.scss',
+    './src/Styles/styles.scss',
     './src/index',
   ],
   output: {
@@ -94,12 +94,12 @@ const devConfig = {
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   noInfo: true,
   debug: false,
   target: 'web',
   entry: [
-    './src/Styles/app.scss',
+    './src/Styles/styles.scss',
     './src/index.js',
   ],
   output: {
