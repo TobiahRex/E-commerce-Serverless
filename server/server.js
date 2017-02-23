@@ -27,8 +27,8 @@ let socketEmitter;
 io.on('connection', (socket) => {
   process.stdout.write('\n>>> Socket Connection!\n');
   request('http://ipinfo.io', (err, res, body) => {
-    process.stdout.write(JSON.parse(body));
-    socket.emit('user_ip_location', JSON.parse(body));
+    console.log('location: ', JSON.parse(body));
+    socket.emit('user_ip_location', JSON.parse(body, null, 2));
   });
   socketEmitter = (type, data) => socket.emit(type, data);
 });
