@@ -1,40 +1,40 @@
 // ------------------------------------------------------------
 // NOTE: _Global_ Master Stylesheets
-@import "./images";
-@import "./colors";
-@import "./mixins";
-@import "./typography";
+@import "Styles/images";
+@import "Styles/colors";
+@import "Styles/mixins";
+@import "Styles/typography";
 
 // ------------------------------------------------------------
 // NOTE: "Age Verification" Master Stylesheets
-@import "../Pages/AgeVerification/ageVerification_web";
-@import "../Pages/AgeVerification/ageVerification_mobile";
+@import "Pages/AgeVerification/ageVerification_web";
+@import "Pages/AgeVerification/ageVerification_mobile";
 
 
-// ------------------------------------------------------------
-// NOTE: "Navbar" Master Stylesheets
-@import "../Pages/Navbar/navbarStyles/navbar_styles_web";
-@import "../Pages/Navbar/navbarStyles/navbar_styles_mobile";
+// // ------------------------------------------------------------
+// // NOTE: "Navbar" Master Stylesheets
+@import "Pages/Navbar/navbarStyles/navbar_styles_web";
+@import "Pages/Navbar/navbarStyles/navbar_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: "Homepage" Master Stylesheets
-@import "../Pages/Home/homeStyles/homepage_styles_web";
-@import "../Pages/Home/homeStyles/homepage_styles_mobile";
+@import "Pages/Home/homeStyles/homepage_styles_web";
+@import "Pages/Home/homeStyles/homepage_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: "Single Product" Master Stylesheets
-@import "../Pages/Products/productStyles/products_single_styles_web";
-@import "../Pages/Products/productStyles/products_single_styles_mobile";
+@import "Pages/Products/productStyles/products_single_styles_web";
+@import "Pages/Products/productStyles/products_single_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: "Cart" Master Stylesheets
-@import "../Pages/Cart/cart_styles_web";
-@import "../Pages/Cart/cart_styles_mobile";
+@import "Pages/Cart/cart_styles_web";
+@import "Pages/Cart/cart_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: "Footer" Master Stylesheets
-@import "../Pages/Footer/footerStyles/footer_styles_web";
-@import "../Pages/Footer/footerStyles/footer_styles_mobile";
+@import "Pages/Footer/footerStyles/footer_styles_web";
+@import "Pages/Footer/footerStyles/footer_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: General Styles

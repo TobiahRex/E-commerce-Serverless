@@ -29,7 +29,22 @@
   @if $ms == true {
     display: -ms-flexbox
   }
+
   display: flex;
+}
+
+@mixin prefixflex-child() {
+  @if $webkit == true {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+  }
+  @if $moz == true {
+    -moz-box-flex: 1;
+  }
+  @if $ms == true {
+    -ms-flex: 1;
+  }
+  flex: 1;
 }
 
 @mixin keyframes($name) {

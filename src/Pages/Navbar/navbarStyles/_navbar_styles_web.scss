@@ -1,10 +1,4 @@
 @media only screen and (min-width: 1085px) {
-  /* Local Imports */
-  @import "../../../Styles/colors";
-  @import "../../../Styles/typography";
-  @import "../../../Styles/images";
-  @import "../../../Styles/mixins";
-  @import "../../../Styles/transitions";
   @import "./navbar_web_styles/navbar_web_upper";
   @import "./navbar_web_styles/navbar_web_lower";
   .hidden {
