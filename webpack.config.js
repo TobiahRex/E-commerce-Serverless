@@ -5,14 +5,14 @@ import webpackEnvs from './tools/webpack_envs';
 dotenv.load({ silent: true });
 
 const devConfig = {
-  noInfo: true,
+  noInfo: false,
   devtool: 'source-map',
   target: 'web',
   debug: true,
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/Styles/app.scss',
-    './src/index.js',
+    './src/index',
   ],
   output: {
     path: path.resolve('public'),
@@ -98,9 +98,9 @@ const devConfig = {
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
   noInfo: true,
-  debug: true,
+  debug: false,
   target: 'web',
   entry: [
     './src/Styles/app.scss',
@@ -136,7 +136,12 @@ const prodConfig = {
       },
       {
         test: /\.s[ac]ss$/,
-        loaders: ['style', 'css', 'sass', 'postcss-loader'],
+        loaders: [
+          'style',
+          'css?sourceMap=false',
+          'postcss-loader?sourceMap=false',
+          'sass?sourceMap=false',
+        ],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
