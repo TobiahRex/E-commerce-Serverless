@@ -1,5 +1,6 @@
+/* NOTE: These are the web addresses for s3
 // theme images
-$main-logo: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
+// $main-logo: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
 $us-flag-icon: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/language_usFlagnavbar_languageGrp_us.png");
 $jpn-flag-icon: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nihongo-flag.png");
 $logo-one-line: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp_oneLine_2.png");
@@ -32,3 +33,38 @@ $jc-klp: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp_juice_card_klp
 
 // general juice images - large
 $pina-colada: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg");
+*/
+
+$main-logo: url("../Images/nj2jp.png");
+$us-flag-icon: url("../Images/english-flag.png");
+$jpn-flag-icon: url("../Images/nihongo-flag.png");
+$logo-one-line: url("../Images/nj2jp_oneLine_2.png");
+$homepg-juices-pano: url("../Images/nj2jp-splash-blackPano-web.png");
+
+// navbar web images
+$img-contact-us: url("../Images/navbar_web_media_contactUs.png");
+$img-juice-reviews: url("../Images/navbar_web_media_juiceReviews.png");
+$img-vape-news: url("../Images/navbar_web_media_vapeNews.png");
+$img-user-stories: url("../Images/navbar_web_media_userStories.png");
+
+// splash web images
+$img-fastest: url("../Images/nj2jp-homepage-scanner.png");
+$img-carousel-couple: url("../Images/nj2jp-homepage-carousel-couple.png");
+$img-carousel-distro: url("../Images/nj2jp-homepage-carousel-distribution.png");
+$img-carousel-warehouse: url("../Images/nj2jp-homepage-carousel-warehouse.png");
+$img-carousel-flight: url("../Images/nj2jp-homepage-carousel-flight.png");
+$img-carousel-truck: url("../Images/nj2jp-homepage-carousel-truck.png");
+$img-carousel-delivery: url("../Images/nj2jp-homepage-carousel-delivery.png");
+
+// navigation images
+$fa-left-chevron-white: url("../Images/chevron-left-fontAwesome.png");
+$fa-right-chevron-white: url("../Images/chevron-right-fontawesome.png");
+
+// juice card images
+$jc-fbb: url("../Images/nj2jp_juice_card_fbb.png");
+$jc-pc: url("../Images/nj2jp_juice_card_pc.png");
+$jc-fvm: url("../Images/nj2jp_juice_card_fvm.png");
+$jc-klp: url("../Images/nj2jp_juice_card_klp.png");
+
+// general juice images - large
+$pina-colada: url("../Images/nj2jp-fvm.jpg");
