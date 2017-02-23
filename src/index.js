@@ -10,7 +10,10 @@ import createStore from './Redux/index';
 import routes from './Navigation/main';
 import initiateActions from './Services/asynchDispatchServices';
 
+
 const store = createStore();
+initiateActions(store.dispatch);
+
 render(
   <Provider store={store} >
     <Router

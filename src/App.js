@@ -2,13 +2,10 @@ import React, { PropTypes, Component } from 'react';
 import MobileDetect from 'mobile-detect';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-
 import AgeVerification from './Pages/AgeVerification/ageVerification';
 import NavbarWeb from './Pages/Navbar/navbarComponents/navbar_web/navbar_web';
 import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_mobile';
 import Footer from './Pages/Footer/footer';
-
-/* Redux Actions */
 import sessionActions from './Redux/SessionRedux';
 import userActions from './Redux/UserRedux';
 
@@ -58,7 +55,6 @@ class App extends Component {
 
   catchMobileType = () => {
     const mobileDevice = new MobileDetect(window.navigator.userAgent);
-    console.log(mobileDevice.mobile());
     return mobileDevice.mobile();
   }
 
@@ -72,7 +68,6 @@ class App extends Component {
         paddingTop: 100,
         minHeight: 510,
       };
-      console.log('sectionStyle: ', sectionStyle);
     }
     return (
       <div id="yo">

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
 import { determineMobileDevice } from '../../../../../Services/asynchDispatchServices';
-console.log(determineMobileDevice)
+
 class NavbarMobileNav extends Component {
   static propTypes = {
     mobileNavbarExpanded: PropTypes.bool,
@@ -63,7 +63,7 @@ class NavbarMobileNav extends Component {
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
     if (position > 205) {
-      this.props.refreshMobileSize();
+      // this.props.refreshMobileSize();
       this.setState({ navbarFixed: true });
     } else if (position < 205) {
       this.setState({ navbarFixed: false });
