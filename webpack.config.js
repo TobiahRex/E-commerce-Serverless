@@ -94,9 +94,9 @@ const devConfig = {
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
+  debug: false,
   devtool: 'source-map',
   noInfo: true,
-  debug: false,
   target: 'web',
   entry: [
     './src/Styles/styles.scss',

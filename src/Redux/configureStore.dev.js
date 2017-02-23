@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import createLogger from 'redux-logger';
-import MobileDetect from 'mobile-detect';
 import apiActions from '../Redux/ApiRedux';
-import mobileActions from '../Redux/MobileRedux';
 
 export default (rootReducer, rootSaga) => {
   const enhancers = [];
@@ -22,12 +20,6 @@ export default (rootReducer, rootSaga) => {
   sagaMiddleware.run(rootSaga);
 
   store.dispatch(apiActions.fetching());
-
-  // store.dispatch(
-  //   mobileActions.setMobileDevice(
-  //     String(window.screen.width), mobileDevice.mobile()
-  //   )
-  // );
 
   return store;
 };
