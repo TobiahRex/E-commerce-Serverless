@@ -8,7 +8,7 @@ dotenv.load({ silent: true });
 
 const devConfig = {
   noInfo: false,
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-eval-source-map',
   target: 'web',
   debug: true,
   entry: [
@@ -36,16 +36,14 @@ const devConfig = {
         include: path.resolve('src'),
       },
       {
+        test: /\.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        exclude: /(node_modules|bower_components)/,
+      },
+      {
         test: /\.s[ac]ss$/,
-        loaders: [
-          'style',
-          'css',
-          // 'postcss-loader',
-          // 'resolve-url-loader',
-          // 'sass?sourceMap=true',
-
-          'sass',
-        ],
+        loader: ExtractTextPlugin.extract('style', 'css?modules$importLoaders=1&localIdentName=[name]_[local]!sass'),
+        exclude: /node_modules|lib/,
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -70,7 +68,8 @@ const devConfig = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'url?limit=100000?',
+          // 'file?hash=sha512&digest=hex&name=[hash].[ext]',
           'image-webpack',
         ],
       },
@@ -112,7 +111,7 @@ const prodConfig = {
   noInfo: true,
   target: 'web',
   entry: [
-    './src/Styles/styles.scss',
+    './src/styles.scss',
     './src/index.js',
   ],
   output: {
@@ -173,35 +172,40 @@ const prodConfig = {
         loader: 'file?emitFile=false',
       },
       {
-        test: /\.(jpe?g|png|giff|svg|ico)$/i,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]', {
-            loader: 'image-webpack-loader',
-            query: {
-              mozjpeg: {
-                progressive: true,
-              },
-              optipng: {
-                optimizationLevel: 4,
-              },
-              pngquant: {
-                quality: '75-90',
-                speed: 3,
-              },
-            },
-          }],
-          exclude: /node_modules/,
-          include: __dirname,
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack',
+        ],
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
+  imageWebpackLoader: {
+    mozjpeg: {
+      quality: 65,
+    },
+    pngquant: {
+      quality: '65-90',
+      speed: 4,
+    },
+    svgo: {
+      plugins: [
+        {
+          removeViewBox: false,
         },
         {
-          test: /\.json$/,
-          loader: 'json-loader',
+          removeEmptyAttrs: false,
         },
       ],
     },
-    resolve: {
-      extensions: ['', '.js', '.jsx'],
-    },
-  };
-  console.log(process.env.NODE_ENV);
-  export default (process.env.NODE_ENV === 'production') ? prodConfig : devConfig;
+  },
+};
+console.log(process.env.NODE_ENV);
+export default (process.env.NODE_ENV === 'production') ? prodConfig : devConfig;
