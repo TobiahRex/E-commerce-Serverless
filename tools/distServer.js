@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import socketIO from 'socket.io';
+import compression from 'compression';
 import api from '../server/api';
 
 // ---------------------------- CONFIG -----------------------------------------
@@ -28,6 +29,7 @@ io.on('connection', (socket) => {
 // ---------------------- Express Middleware -----------------------------------
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(compression());
 app.use(express.static('dist'));
 app.use((req, res, next) => {
   const resRef = res;

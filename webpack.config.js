@@ -1,7 +1,9 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpackEnvs from './tools/webpack_envs';
+
 dotenv.load({ silent: true });
 
 const devConfig = {
@@ -106,12 +108,20 @@ const prodConfig = {
     path: path.resolve('dist'),
     publicPath: '/',
     filename: 'bundle.js',
+    // filename: '/[name]-[hash].min.js',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
+    new ExtractTextPlugin('/styles.min.css', {
+      allChunks: true,
+    }),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    }),
   ],
   module: {
     loaders: [
@@ -123,17 +133,13 @@ const prodConfig = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css',
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
         exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.s[ac]ss$/,
-        loaders: [
-          'style',
-          'css?sourceMap=false',
-          'postcss-loader?sourceMap=false',
-          'sass?sourceMap=false',
-        ],
+        loader: ExtractTextPlugin.extract('style', 'css?modules$importLoaders=1&localIdentName=[name]_[local]!sass'),
+        exclude: /node_modules|lib/,
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

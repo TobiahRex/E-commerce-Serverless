@@ -73,6 +73,7 @@
     "babel-watch": "^2.0.6",
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
+    "compression": "^1.6.2",
     "copy-files": "^0.1.0",
     "css-loader": "^0.25.0",
     "dotenv": "^2.0.0",
