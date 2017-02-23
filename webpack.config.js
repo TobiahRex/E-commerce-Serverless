@@ -39,8 +39,9 @@ const devConfig = {
         include: path.resolve('src'),
       },
       {
-        test: /(\.css)$/,
-        loaders: ['style', 'css'],
+        test: /\.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.s[ac]ss$/,
