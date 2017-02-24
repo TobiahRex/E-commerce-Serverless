@@ -18,6 +18,9 @@
     position: relative;
     float: none;
     background-color: $p-blue;
+    width: 100%;
+    height: 4.5em;
+    border: none;
     &:hover,
     &:focus,
     &:active {

@@ -10,7 +10,7 @@ const propTypes = {
 function NavbarMobileNavDropdnMedia({ toggleDropdown }) {
   return (
     <li className="navbar-mobile-nav-dropdown-media">
-      <div className="navbar-mobile-nav-dropdown-media-dropdown">
+      <div className="navbar-mobile-nav-dropdown-media-dropdown" onClick={console.log}>
         <NavbarMobileNavDropdnMediaTitle />
         <NavbarMobileNavDropdnMediaDropdnContent toggleDropdown={toggleDropdown} />
       </div>
