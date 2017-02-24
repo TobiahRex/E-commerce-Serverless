@@ -41,9 +41,9 @@
             cursor: pointer;
             border-radius: .1em;
             height: .5em;
-            width: 2.6em;
+            width: 2.5em;
             background-color: $p-white;
-            position: absolute;
+            position: relative;
             display: block;
             content: '';
             transition: all 500ms ease-in-out;
@@ -51,7 +51,7 @@
               cursor: pointer;
               border-radius: .1em;
               height: .5em;
-              width: 2.6em;
+              width: 2.5em;
               background-color: $p-white;
               position: absolute;
               display: block;
@@ -63,7 +63,7 @@
               cursor: pointer;
               border-radius: .1em;
               height: .5em;
-              width: 2.6em;
+              width: 2.5em;
               background-color: $p-white;
               position: absolute;
               display: block;
@@ -78,7 +78,6 @@
     & .navbar-mobile-nav-title {
       @extend .mobile-flex-left;
       height: 6em;
-      // width: 55%;
       @extend .mobile-blue-bg;
       & h5 {
         margin: 0;
