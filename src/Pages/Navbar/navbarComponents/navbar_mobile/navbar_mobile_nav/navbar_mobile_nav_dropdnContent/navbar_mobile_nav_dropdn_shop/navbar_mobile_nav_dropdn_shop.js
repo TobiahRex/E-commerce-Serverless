@@ -10,7 +10,7 @@ const propTypes = {
 function NavbarMobileNavDropdnShop({ toggleDropdown }) {
   return (
     <li className="navbar-mobile-nav-dropdown-shop">
-      <div className="navbar-mobile-nav-dropdown-shop-dropdown">
+      <div className="navbar-mobile-nav-dropdown-shop-dropdown" onClick={(e) => alert(e.target)}>
         <NavbarMobileNavDropdnShopTitle />
         <NavbarMobileNavDropdnShopDropdnContent toggleDropdown={toggleDropdown} />
       </div>
