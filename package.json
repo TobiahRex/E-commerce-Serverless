@@ -12,7 +12,7 @@
     "open:dev": "babel-watch ./server/server.js",
     "open:dist": "babel-node ./tools/distServer.js",
     "remove-dist": "rimraf ./dist && mkdir dist",
-    "copy-images": "copyfiles -u 1 './tools/Images/**' ./dist/",
+    "copy-images": "copyfiles -u 1 './src/Images/**' ./dist/",
     "copy-package": "copyfiles 'package.json' ./dist/",
     "prebuild": "npm run remove-dist",
     "build:html": "babel-node ./tools/buildHtml.js",
