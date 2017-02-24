@@ -17,35 +17,27 @@
       height: 6em;
       width: 6em;
       @extend .mobile-blue-bg;
-      & .navbar-mobile-nav-hamburger-icon-button {
-        // @extend .mobile-flex-center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 2.5em;
-        width: 2.5em;
-        &.active span {
-          background-color: transparent;
-          &:before {
-            top: 0;
-            transform: rotate(45deg);
+      & .navbar-mobile-nav-hamburger-icon {
+        @extend .mobile-flex-center;
+        & .navbar-mobile-nav-hamburger-icon-button {
+          @extend .mobile-flex-center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 2.5em;
+          width: 2.5em;
+          &.active span {
+            background-color: transparent;
+            &:before {
+              top: 0;
+              transform: rotate(45deg);
+            }
+            &:after {
+              top: 0;
+              transform: rotate(-45deg);
+            }
           }
-          &:after {
-            top: 0;
-            transform: rotate(-45deg);
-          }
-        }
-        & span {
-          cursor: pointer;
-          border-radius: .1em;
-          height: .5em;
-          width: 2.6em;
-          background-color: $p-white;
-          position: absolute;
-          display: block;
-          content: '';
-          transition: all 500ms ease-in-out;
-          &:before {
+          & span {
             cursor: pointer;
             border-radius: .1em;
             height: .5em;
@@ -54,20 +46,31 @@
             position: absolute;
             display: block;
             content: '';
-            top: -1em;
             transition: all 500ms ease-in-out;
-          }
-          &:after {
-            cursor: pointer;
-            border-radius: .1em;
-            height: .5em;
-            width: 2.6em;
-            background-color: $p-white;
-            position: absolute;
-            display: block;
-            content: '';
-            top: 1em;
-            transition: all 500ms ease-in-out;
+            &:before {
+              cursor: pointer;
+              border-radius: .1em;
+              height: .5em;
+              width: 2.6em;
+              background-color: $p-white;
+              position: absolute;
+              display: block;
+              content: '';
+              top: -1em;
+              transition: all 500ms ease-in-out;
+            }
+            &:after {
+              cursor: pointer;
+              border-radius: .1em;
+              height: .5em;
+              width: 2.6em;
+              background-color: $p-white;
+              position: absolute;
+              display: block;
+              content: '';
+              top: 1em;
+              transition: all 500ms ease-in-out;
+            }
           }
         }
       }
