@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
-import { determineMobileDevice } from '../../../../../Services/asynchDispatchServices';
+import { setScreenSize } from '../../../../../Services/asynchDispatchServices';
 
 class NavbarMobileNav extends Component {
   static propTypes = {
@@ -110,7 +110,7 @@ const mapStateToProps = ({ mobile }) => ({
   screenSize: mobile.screenSize,
 });
 const mapDispatchToProp = dispatch => ({
-  refreshMobileSize: () => determineMobileDevice(dispatch),
+  refreshMobileSize: () => setScreenSize(dispatch),
 });
 export default connect(mapStateToProps, mapDispatchToProp)(NavbarMobileNav);
 

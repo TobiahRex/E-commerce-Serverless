@@ -46,12 +46,15 @@ export function saveGeoLocation(dispatch) {
   }
 }
 
-export function determineMobileDevice(dispatch) {
-  const screenSize = String(window.screen.width);
+export function setMobileDevice(dispatch) {
   const mobileDevice = new MobileDetect(window.navigator.userAgent);
-  alert(`user agent: ${window.navigator.userAgent}`);
   const type = mobileDevice.mobile();
-  dispatch(mobileActions.setMobileDevice(screenSize, type));
+  dispatch(mobileActions.setMobileDevice(type));
+}
+
+export function setScreenSize(dispatch) {
+  const screenSize = String(window.screen.width);
+  dispatch(mobileActions.setScreenWidth(screenSize));
 }
 
 export function orientationSpy(dispatch) {
@@ -81,7 +84,8 @@ function scrollToTop() {
 export default function initiateActions(dispatch) {
   generateDynamicTitle(dispatch);
   saveGeoLocation(dispatch);
-  determineMobileDevice(dispatch);
+  setMobileDevice(dispatch);
+  setScreenSize(dispatch);
   orientationSpy(dispatch);
   if (screen.orientation) {
     dispatch(mobileActions.orientationChanged({
