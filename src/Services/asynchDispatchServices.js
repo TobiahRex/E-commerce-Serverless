@@ -63,13 +63,12 @@ export function orientationSpy(dispatch) {
         width: screen.width,
       }));
     } else {
-      const screenSize = {
+      dispatch(mobileActions.orientationChanged({
         height: screen.height,
         width: screen.width,
         angle: null,
         type: null,
-      };
-      dispatch(mobileActions.orientationChanged({ screenSize }));
+      }));
     }
   });
 }

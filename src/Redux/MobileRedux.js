@@ -15,6 +15,8 @@ export const INITIAL_STATE = {
   orientation: {
     angle: 0,
     type: '',
+    height: 0,
+    width: 0,
   },
 };
 
