@@ -56,13 +56,20 @@ export function determineMobileDevice(dispatch) {
 export function orientationSpy(dispatch) {
   window.addEventListener('orientationchange', () => {
     if (screen.orientation) {
-      dispatch(mobileActions.orientationChanged(screen.orientation));
-    } else {
       dispatch(mobileActions.orientationChanged({
-        width: screen.width,
+        angle: screen.orientation.angle,
+        type: screen.orientation.type,
         height: screen.height,
-      })
-     );
+        width: screen.width,
+      }));
+    } else {
+      const screenSize = {
+        height: screen.height,
+        width: screen.width,
+        angle: null,
+        type: null,
+      };
+      dispatch(mobileActions.orientationChanged({ screenSize }));
     }
   });
 }
@@ -80,11 +87,15 @@ export default function initiateActions(dispatch) {
     dispatch(mobileActions.orientationChanged({
       angle: screen.orientation.angle,
       type: screen.orientation.type,
+      height: screen.height,
+      width: screen.width,
     }));
   } else {
     const screenSize = {
       height: screen.height,
       width: screen.width,
+      angle: null,
+      type: null,
     };
     dispatch(mobileActions.orientationChanged({ screenSize }));
   }
