@@ -68,10 +68,12 @@ export default function initiateActions(dispatch) {
   saveGeoLocation(dispatch);
   determineMobileDevice(dispatch);
   orientationSpy(dispatch);
-  const orientation = screen.orientation;
-  dispatch(mobileActions.orientationChanged({
-    angle: orientation.angle,
-    type: orientation.type,
-  }));
+  alert(`${screen.orientation}`);
+  alert(`screen: ${screen}`);
+  // const orientation = screen.orientation;
+  // dispatch(mobileActions.orientationChanged({
+  //   angle: orientation.angle,
+  //   type: orientation.type,
+  // }));
   scrollToTop();
 }
