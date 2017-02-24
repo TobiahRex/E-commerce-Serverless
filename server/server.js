@@ -12,6 +12,7 @@ import devMiddleware from 'webpack-dev-middleware';
 import socketIO from 'socket.io';
 import webpackConfig from '../webpack.config';
 import api from './api';
+import socketActions from './services/socketAsynchActions';
 
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
@@ -26,10 +27,7 @@ let socketEmitter;
 
 io.on('connection', (socket) => {
   process.stdout.write('\n>>> Socket Connection!\n');
-  request('http://ipinfo.io', (err, res, body) => {
-    console.log('location: ', JSON.parse(body));
-    socket.emit('user_ip_location', JSON.parse(body, null, 2));
-  });
+  socketActions(socket);
   socketEmitter = (type, data) => socket.emit(type, data);
 });
 
@@ -37,7 +35,7 @@ io.on('connection', (socket) => {
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('src'));
 app.use((req, res, next) => {
   const resRef = res;
   resRef.socketEmitter = socketEmitter;

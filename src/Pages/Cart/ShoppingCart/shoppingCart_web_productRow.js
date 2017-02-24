@@ -4,10 +4,9 @@ import FontAwesome from 'react-fontawesome';
 const propTypes = {
   juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
   keyNum: PropTypes.number.isRequired,
-  subTotal: PropTypes.number.isRequired,
 };
 
-function ShoppingCartWebProductRow({ juiceObj, keyNum, subTotal }) {
+function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
   return (
     <tr key={`shopping-cart-table-row-${juiceObj.name}-${keyNum}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">
@@ -69,7 +68,7 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum, subTotal }) {
       <td className="shopping-cart-table-body-total">
         <div className="shopping-cart-table-body-total-flexparent">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{`${subTotal}.00`}</h3>
+          <h3>{'\u00A0'}{`${juiceObj.subTotal}.00`}</h3>
         </div>
       </td>
     </tr>

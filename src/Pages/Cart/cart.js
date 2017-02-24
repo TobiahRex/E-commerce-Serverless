@@ -12,21 +12,24 @@ import ShoppingCartMobileProductCard from './ShoppingCart/shoppingCart_mobile_pr
 class ShoppingCart extends Component {
   static propTypes = {
     mobileActive: PropTypes.string.isRequired,
+    taxRate: PropTypes.number,
   }
   static juices = [{
-    imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
+    imgSrc: './Images/nj2jp_juice_card_fbb.png',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
     price: '30',
     qty: 2,
+    subTotal: 0,
   }, {
-    imgSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
-    name: 'Fruity Bamm-Bamm',
+    imgSrc: './Images/nj2jp_juice_card_fvm.png',
+    name: 'French Vanilla Mocha',
     sku: '123123123',
     nicotine: '6mg',
     price: '30',
     qty: 2,
+    subTotal: 0,
   }];
   constructor(props) {
     super(props);
@@ -35,7 +38,6 @@ class ShoppingCart extends Component {
       mobileActive: props.mobileActive,
       grandTotal: 0,
       taxes: 0,
-      subTotal: 0,
     };
   }
 
@@ -43,24 +45,28 @@ class ShoppingCart extends Component {
     this.calcProductAnalysis();
   }
 
-  componentWillReceiveProps({ mobileActive }) {
+  componentWillReceiveProps({ mobileActive, taxRate }) {
     if (this.state.mobileActive !== mobileActive) {
       this.setState({ mobileActive });
+    }
+    if (this.state.taxRate !== taxRate) {
+      this.setState({ taxRate });
     }
   }
 
   calcProductAnalysis = () => {
-    let subTotal = 0;
-    let taxes = 0;
     let grandTotal = 0;
 
     ShoppingCart.juices.forEach((juiceObj) => {
-      subTotal += (juiceObj.qty * Number(juiceObj.price));
-      taxes += (((juiceObj.qty * Number(juiceObj.price)) * this.state.taxesPercentage) * 100);
-      grandTotal += subTotal + taxes;
+      const subTotal = (juiceObj.qty * Number(juiceObj.price));
+      juiceObj.subTotal = subTotal;
+      grandTotal += subTotal;
     });
+    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
+    console.log('taxes: ', taxes, '\ngrandTotal: ', grandTotal);
+    grandTotal += taxes;
 
-    this.setState({ subTotal, taxes, grandTotal });
+    this.setState({ taxes, grandTotal });
   }
 
   renderDeviceCart = () => {
@@ -85,7 +91,7 @@ class ShoppingCart extends Component {
 
   renderJuices = () => (
     ShoppingCart.juices.map((juiceObj, i) => {
-      const { subTotal, grandTotal, taxes } = this.state;
+      const { grandTotal, taxes } = this.state;
 
       if (this.state.mobileActive === 'false') {
         return (
@@ -93,7 +99,6 @@ class ShoppingCart extends Component {
             key={`shopping-cart-table-row-${juiceObj.name}-${i}`}
             keyNum={i}
             juiceObj={juiceObj}
-            subTotal={subTotal}
           />
         );
       }
@@ -102,7 +107,6 @@ class ShoppingCart extends Component {
           key={`shopping-cart-table-row-${juiceObj.name}-${i}`}
           keyNum={i}
           juiceObj={juiceObj}
-          subTotal={subTotal}
           taxes={taxes}
           grandTotal={grandTotal}
         />
@@ -132,7 +136,8 @@ class ShoppingCart extends Component {
     );
   }
 }
-const mapStateToProps = ({ mobile }) => ({
+const mapStateToProps = ({ mobile, orders }) => ({
   mobileActive: mobile.mobileType || 'false',
+  taxRate: orders.taxRate.totalRate,
 });
 export default connect(mapStateToProps, null)(ShoppingCart);

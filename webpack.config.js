@@ -68,7 +68,7 @@ const devConfig = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
-          'url?limit=100000?', // Using url loader allows relative file paths when using the "url("<path>")" css property.
+          'url-loader', // Using url loader allows relative file paths when using the "url("<path>")" css property.
           // 'file?hash=sha512&digest=hex&name=[hash].[ext]',
           'image-webpack',
         ],

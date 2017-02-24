@@ -5,13 +5,14 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 
-import './Services/socket-init';
+import { taxRateListener } from './Services/socket-init';
 import createStore from './Redux/index';
 import routes from './Navigation/main';
 import initiateActions from './Services/asynchDispatchServices';
 
 const store = createStore();
 initiateActions(store.dispatch);
+taxRateListener(store.dispatch);
 
 render(
   <Provider store={store} >

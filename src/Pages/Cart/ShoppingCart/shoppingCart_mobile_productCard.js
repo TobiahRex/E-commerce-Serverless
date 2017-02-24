@@ -5,11 +5,10 @@ const propTypes = {
   juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
   keyNum: PropTypes.number.isRequired,
   taxes: PropTypes.number.isRequired,
-  subTotal: PropTypes.number.isRequired,
   grandTotal: PropTypes.number.isRequired,
 };
 
-function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotal, taxes, grandTotal }) {
+function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) {
   return (
     <div
       key={`shopping-cart-mobile-row-${juiceObj.name}-${keyNum}`}
@@ -76,7 +75,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, subTotal, taxes, gran
             </div>
             <div className="shopping-cart-mobile-product-subtotal-qty">
               <FontAwesome name="usd" />
-              <p>{'\u00A0'}{`${subTotal}.00`}</p>
+              <p>{'\u00A0'}{`${juiceObj.subTotal}.00`}</p>
             </div>
           </li>
           <li className="shopping-cart-mobile-product-actions-trash">

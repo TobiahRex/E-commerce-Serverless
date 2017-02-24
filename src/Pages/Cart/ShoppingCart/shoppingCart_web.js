@@ -3,11 +3,11 @@ import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   renderWebJuices: PropTypes.func.isRequired,
-  grandTotalAmt: PropTypes.number,
-  taxesAmt: PropTypes.number,
+  grandTotal: PropTypes.number,
+  taxes: PropTypes.number,
 };
 
-function ShoppingCartWeb({ renderWebJuices, grandTotalAmt, taxesAmt }) {
+function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
   return (
     <div className="shopping-cart-web-parent">
       <table className="shopping-cart-table">
@@ -38,7 +38,7 @@ function ShoppingCartWeb({ renderWebJuices, grandTotalAmt, taxesAmt }) {
           </div>
           <div className="shopping-cart-analysis-taxes-cost">
             <FontAwesome name="usd" />
-            <h3>{'\u00A0'}{`${taxesAmt}`}</h3>
+            <h3>{'\u00A0'}{`${taxes}`}</h3>
           </div>
         </div>
         <div className="shopping-cart-analysis-grand-total">
@@ -47,7 +47,7 @@ function ShoppingCartWeb({ renderWebJuices, grandTotalAmt, taxesAmt }) {
           </div>
           <div className="shopping-cart-analysis-grand-total-cost">
             <FontAwesome name="usd" />
-            <h3>{'\u00A0'}{`${grandTotalAmt}`}</h3>
+            <h3>{'\u00A0'}{`${grandTotal}`}</h3>
           </div>
         </div>
       </div>
