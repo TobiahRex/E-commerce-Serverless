@@ -9,7 +9,7 @@ class NavbarMobileNav extends Component {
   static propTypes = {
     mobileNavbarExpanded: PropTypes.bool,
     cartQty: PropTypes.number,
-    screenSize: PropTypes.string,
+    screenSize: PropTypes.number,
     refreshMobileSize: PropTypes.func.isRequired,
   }
 
@@ -66,9 +66,14 @@ class NavbarMobileNav extends Component {
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
     if (position > 205) {
-      this.props.refreshMobileSize();
+      if (this.props.screenSize !== window.screen.width) {
+        this.props.refreshMobileSize();
+      }
       this.setState({ navbarFixed: true });
     } else if (position < 205) {
+      if (this.props.screenSize !== window.screen.width) {
+        this.props.refreshMobileSize();
+      }
       this.setState({ navbarFixed: false });
     }
   }
@@ -85,7 +90,7 @@ class NavbarMobileNav extends Component {
       cartQty,
       screenSize,
     } = this.props;
-    const navbarSize = parseInt(screenSize, 10) - 14;
+    const navbarSize = screenSize - 14;
     const style = this.state.navbarFixed ? {
       transform: 'translateX(0px)',
       top: 0,
@@ -111,7 +116,7 @@ class NavbarMobileNav extends Component {
   }
 }
 const mapStateToProps = ({ mobile }) => ({
-  screenSize: mobile.screenSize,
+  screenSize: Number(mobile.screenWidth),
 });
 const mapDispatchToProp = dispatch => ({
   refreshMobileSize: () => setScreenSize(dispatch),

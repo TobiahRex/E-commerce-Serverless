@@ -12,7 +12,7 @@ class HomepageHowCarousel extends Component {
     super(props);
 
     this.state = {
-      screenSize: Number(this.props.screenSize),
+      screenSize: props.screenSize,
       numSlides: 6,
       showIndex: 0,
       hasPrevious: false,
@@ -22,7 +22,7 @@ class HomepageHowCarousel extends Component {
   }
 
   componentWillReceiveProps({ screenSize }) {
-    const screen = Number(screenSize);
+    const screen = screenSize;
     this.setState({ screenSize: screen });
   }
 
@@ -139,6 +139,6 @@ class HomepageHowCarousel extends Component {
   }
 }
 const mapStateToProps = ({ mobile }) => ({
-  screenSize: mobile.screenSize,
+  screenSize: Number(mobile.screenWidth),
 });
 export default connect(mapStateToProps, null)(HomepageHowCarousel);

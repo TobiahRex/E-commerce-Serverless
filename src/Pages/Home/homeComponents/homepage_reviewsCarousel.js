@@ -149,6 +149,6 @@ class HomepageReviewsCarousel extends Component {
   }
 }
 const mapStateToProps = ({ mobile }) => ({
-  screenSize: mobile.screenSize,
+  screenSize: mobile.screenWidth,
 });
 export default connect(mapStateToProps, null)(HomepageReviewsCarousel);
