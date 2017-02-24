@@ -23,6 +23,7 @@ const devConfig = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
@@ -36,13 +37,12 @@ const devConfig = {
         include: path.resolve('src'),
       },
       {
-        test: /\.css$/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        exclude: /(node_modules|bower_components)/,
-      },
-      {
         test: /\.s[ac]ss$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules$importLoaders=1&localIdentName=[name]_[local]!sass'),
+        loaders: [
+          'style',
+          'css?sourceMap=true',
+          'sass?sourceMap=true',
+        ],
         exclude: /node_modules|lib/,
       },
       {
@@ -68,7 +68,7 @@ const devConfig = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
-          'url?limit=100000?',
+          'url?limit=100000?', // Using url loader allows relative file paths when using the "url("<path>")" css property.
           // 'file?hash=sha512&digest=hex&name=[hash].[ext]',
           'image-webpack',
         ],

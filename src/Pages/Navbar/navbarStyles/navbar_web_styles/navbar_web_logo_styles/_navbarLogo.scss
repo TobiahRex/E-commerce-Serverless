@@ -8,6 +8,7 @@
   height: 10em;
   width: 22em;
   max-width: 22em;
-  background-image: url('./Images/nj2jp-main-logo.png');
+  background-image: $main-logo;
+  // background-image: url('./Images/nj2jp-main-logo.png');
   background-size: cover;
 }
