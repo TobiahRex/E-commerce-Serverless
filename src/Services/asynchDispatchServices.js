@@ -48,6 +48,7 @@ export function saveGeoLocation(dispatch) {
 
 export function setMobileDevice(dispatch) {
   const mobileDevice = new MobileDetect(window.navigator.userAgent);
+  alert(`user Agent: ${window.navigator.userAgent}`);
   const type = mobileDevice.mobile();
   dispatch(mobileActions.setMobileDevice(type));
 }
