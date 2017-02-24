@@ -36,10 +36,10 @@ class NavbarMobileNav extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-
+    alert(`screen width: ${window.screen.width}`);
     const element = document.querySelector('.navbar-mobile-nav-hamburger');
     const hamStyle = window.getComputedStyle(element);
-    alert(`${hamStyle.alignItem} | ${hamStyle.justifyContent} | ${hamStyle.justifyContent} | ${hamStyle.position} | `);
+    alert(`${hamStyle.alignItems} | ${hamStyle.justifyContent} | ${hamStyle.position} | `);
   }
 
   componentWillReceiveProps(nextProps) {

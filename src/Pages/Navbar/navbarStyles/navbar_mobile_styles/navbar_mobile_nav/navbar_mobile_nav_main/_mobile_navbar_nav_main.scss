@@ -14,11 +14,14 @@
     align-items: center;
     & .navbar-mobile-nav-hamburger {
       @extend .mobile-flex-center;
-      // height: 6em;
+      height: 6em;
       width: 6em;
       @extend .mobile-blue-bg;
       & .navbar-mobile-nav-hamburger-icon-button {
-        @extend .mobile-flex-center;
+        // @extend .mobile-flex-center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 2.5em;
         width: 2.5em;
         &.active span {

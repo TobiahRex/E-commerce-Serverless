@@ -1,8 +1,3 @@
-@import './navbar_mobile_options/mobile_navbar_options';
-@import './navbar_mobile_userActions/mobile_navbar_userActions';
-@import './navbar_mobile_nav/navbar_mobile_nav_main/mobile_navbar_nav_main';
-@import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/mobile_navbar_nav_dropdownContent';
-
 .hidden {
   display: none;
 }
@@ -73,3 +68,7 @@ nav.navbar-mobile {
     }
   }
 }
+@import './navbar_mobile_options/mobile_navbar_options';
+@import './navbar_mobile_userActions/mobile_navbar_userActions';
+@import './navbar_mobile_nav/navbar_mobile_nav_main/mobile_navbar_nav_main';
+@import './navbar_mobile_nav/navbar_mobile_nav_dropdownContent/mobile_navbar_nav_dropdownContent';
