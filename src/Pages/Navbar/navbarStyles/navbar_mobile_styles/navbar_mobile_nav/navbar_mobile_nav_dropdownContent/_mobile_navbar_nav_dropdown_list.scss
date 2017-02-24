@@ -19,7 +19,7 @@
     float: none;
     background-color: $p-blue;
     &:hover,
-    &:focus,
+/*     &:focus, */
     &:active {
       & .navbar-mobile-nav-dropdown-shop-expanded,
       .navbar-mobile-nav-dropdown-media-expanded,
