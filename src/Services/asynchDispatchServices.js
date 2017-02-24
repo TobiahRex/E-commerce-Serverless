@@ -54,6 +54,7 @@ export function setMobileDevice(dispatch) {
 
 export function setScreenSize(dispatch) {
   const screenSize = String(window.screen.width);
+  alert('screen width: ', screenSize);
   dispatch(mobileActions.setScreenWidth(screenSize));
 }
 

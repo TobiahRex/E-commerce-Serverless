@@ -39,7 +39,7 @@ class NavbarMobileNav extends Component {
 
     const element = document.querySelector('.navbar-mobile-nav-hamburger');
     const hamStyle = window.getComputedStyle(element);
-    alert(`display: ${hamStyle.display}| webkitBoxFlex: ${hamStyle.webkitBoxFlex}`);
+    alert(`${hamStyle.alignItem} | ${hamStyle.justifyContent} | ${hamStyle.justifyContent} | ${hamStyle.position} | `);
   }
 
   componentWillReceiveProps(nextProps) {

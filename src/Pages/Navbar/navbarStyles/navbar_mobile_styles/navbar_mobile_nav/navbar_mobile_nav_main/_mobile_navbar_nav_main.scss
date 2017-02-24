@@ -14,7 +14,7 @@
     align-items: center;
     & .navbar-mobile-nav-hamburger {
       @extend .mobile-flex-center;
-      height: 6em;
+      // height: 6em;
       width: 6em;
       @extend .mobile-blue-bg;
       & .navbar-mobile-nav-hamburger-icon-button {

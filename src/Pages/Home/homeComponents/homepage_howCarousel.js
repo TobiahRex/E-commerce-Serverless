@@ -6,7 +6,7 @@ import CarouselNav from '../../../Components/carouselNav';
 
 class HomepageHowCarousel extends Component {
   static propTypes = {
-    screenSize: PropTypes.string,
+    screenSize: PropTypes.number,
   }
   constructor(props) {
     super(props);
