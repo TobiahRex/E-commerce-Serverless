@@ -55,7 +55,15 @@ export function determineMobileDevice(dispatch) {
 
 export function orientationSpy(dispatch) {
   window.addEventListener('orientationchange', () => {
-    dispatch(mobileActions.orientationChanged(screen.orientation));
+    if (screen.orientation) {
+      dispatch(mobileActions.orientationChanged(screen.orientation));
+    } else {
+      dispatch(mobileActions.orientationChanged({
+        width: screen.width,
+        height: screen.height,
+      })
+     );
+    }
   });
 }
 
@@ -68,12 +76,17 @@ export default function initiateActions(dispatch) {
   saveGeoLocation(dispatch);
   determineMobileDevice(dispatch);
   orientationSpy(dispatch);
-  alert(`${screen.orientation}`);
-  alert(`screen: ${screen}`);
-  // const orientation = screen.orientation;
-  // dispatch(mobileActions.orientationChanged({
-  //   angle: orientation.angle,
-  //   type: orientation.type,
-  // }));
+  if (screen.orientation) {
+    dispatch(mobileActions.orientationChanged({
+      angle: screen.orientation.angle,
+      type: screen.orientation.type,
+    }));
+  } else {
+    const screenSize = {
+      height: screen.height,
+      width: screen.width,
+    };
+    dispatch(mobileActions.orientationChanged({ screenSize }));
+  }
   scrollToTop();
 }
