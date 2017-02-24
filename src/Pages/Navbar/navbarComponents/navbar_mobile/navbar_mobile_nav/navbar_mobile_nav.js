@@ -8,7 +8,6 @@ import { determineMobileDevice } from '../../../../../Services/asynchDispatchSer
 class NavbarMobileNav extends Component {
   static propTypes = {
     mobileNavbarExpanded: PropTypes.bool,
-    activePage: PropTypes.string,
     cartQty: PropTypes.number,
     screenSize: PropTypes.string,
     refreshMobileSize: PropTypes.func.isRequired,
@@ -79,7 +78,6 @@ class NavbarMobileNav extends Component {
 
   render() {
     const {
-      activePage,
       cartQty,
       screenSize,
     } = this.props;
@@ -95,7 +93,6 @@ class NavbarMobileNav extends Component {
     return (
       <div className="navbar-mobile-nav" style={style}>
         <NavbarMobileNavMainBar
-          activePage={activePage}
           cartQty={cartQty}
           toggleDropdown={this.toggleDropdown}
           ddOpen={this.state.ddOpen}
@@ -109,9 +106,8 @@ class NavbarMobileNav extends Component {
     );
   }
 }
-const mapStateToProps = ({ mobile, session }) => ({
+const mapStateToProps = ({ mobile }) => ({
   screenSize: mobile.screenSize,
-  activePage: session.currentActivePage,
 });
 const mapDispatchToProp = dispatch => ({
   refreshMobileSize: () => determineMobileDevice(dispatch),

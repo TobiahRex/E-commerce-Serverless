@@ -7,7 +7,6 @@ import NavbarMobileNavCart from './navbar_mobile_nav_mainBar_cart';
 
 class NavbarMobileNavMain extends PureComponent {
   static propTypes = {
-    activePage: PropTypes.string,
     cartQty: PropTypes.number,
     toggleDropdown: PropTypes.func,
     ddOpen: PropTypes.bool,
