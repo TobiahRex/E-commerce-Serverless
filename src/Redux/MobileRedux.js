@@ -1,8 +1,9 @@
 import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  setMobileDevice: ['screenSize', 'mobileType'],
-  refreshMobileDevice: ['screenSize', 'mobileTypes'],
+  setMobileDevice: ['mobileType'],
+  refreshMobileType: ['mobileTypes'],
+  setScreenWidth: ['screenWidth'],
   orientationChanged: ['orientation'],
 });
 
@@ -10,7 +11,7 @@ export const mobileTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  screenSize: null,
+  screenWidth: null,
   mobileType: null,
   orientation: {
     angle: 0,
@@ -20,26 +21,33 @@ export const INITIAL_STATE = {
   },
 };
 
-const setMobileDevice = ({ orientation }, { screenSize, mobileType }) => ({
-  screenSize,
+const setMobileDevice = ({ orientation }, { screenWidth, mobileType }) => ({
+  screenWidth,
   mobileType,
   orientation,
 });
 
-const refreshMobileSize = ({ orientation }, { screenSize, mobileType }) => ({
-  screenSize,
+const refreshMobileType = ({ screenWidth, orientation }, { mobileType }) => ({
+  screenWidth,
   mobileType,
   orientation,
 });
 
-const orientationChanged = ({ screenSize, mobileType }, { orientation }) => ({
-  screenSize,
+const setScreenWidth = ({ mobileType, orientation }, { screenWidth }) => ({
+  screenWidth,
+  mobileType,
+  orientation,
+});
+
+const orientationChanged = ({ screenWidth, mobileType }, { orientation }) => ({
+  screenWidth,
   mobileType,
   orientation,
 });
 
 export const mobileReducer = createReducer(INITIAL_STATE, {
   [Types.SET_MOBILE_DEVICE]: setMobileDevice,
-  [Types.REFRESH_MOBILE_DEVICE]: refreshMobileSize,
+  [Types.REFRESH_MOBILE_TYPE]: refreshMobileType,
+  [Types.SET_SCREEN_WIDTH]: setScreenWidth,
   [Types.ORIENTATION_CHANGED]: orientationChanged,
 });
