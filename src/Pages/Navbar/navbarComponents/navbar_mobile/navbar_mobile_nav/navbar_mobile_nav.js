@@ -36,6 +36,10 @@ class NavbarMobileNav extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+
+    const element = document.querySelector('.navbar-mobile-nav-hamburger');
+    const hamStyle = window.getComputedStyle(element);
+    alert(`display: ${hamStyle.display}| webkitBoxFlex: ${hamStyle.webkitBoxFlex}`);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,7 +62,7 @@ class NavbarMobileNav extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll');
   }
-
+  // TODO refactor handle Scroll to only dispatch action if the current screenSize is different than the screenSize in state.
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
     if (position > 205) {
