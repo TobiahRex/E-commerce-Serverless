@@ -14,6 +14,10 @@ const store = createStore();
 initiateActions(store.dispatch);
 taxRateListener(store.dispatch);
 
+const element = document.querySelector('.navbar-mobile-nav-hamburger')
+const hamStyle = window.getComputedStyle(element)
+alert(`display: ${hamStyle.display}| webkitBoxFlex: ${hamStyle.webkitBoxFlex}`);
+
 render(
   <Provider store={store} >
     <Router
