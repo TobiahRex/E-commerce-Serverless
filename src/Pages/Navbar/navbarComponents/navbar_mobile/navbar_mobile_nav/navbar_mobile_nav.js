@@ -77,12 +77,8 @@ class NavbarMobileNav extends Component {
     }
   }
 
-  toggleDropdown = (id, e) => {
-    if (id === 'hamburger') {
-      e.preventDefault();
-    }
+  toggleDropdown = () =>
     this.setState({ ddOpen: !this.state.ddOpen });
-  };
 
   render() {
     const {

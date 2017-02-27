@@ -6,8 +6,10 @@ class NavbarMobileNavHamburger extends PureComponent {
     toggleDropdown: PropTypes.func,
   };
 
-  toggleHamburger = e =>
-  this.props.toggleDropdown(e.target.parentElement.getAttribute('id'), e);
+  toggleHamburger = (e) => {
+    e.preventDefault();
+    this.props.toggleDropdown(e.target.parentElement.getAttribute('id'), e);
+  }
 
   render() {
     const hamClass = this.props.ddOpen ? 'active' : '';

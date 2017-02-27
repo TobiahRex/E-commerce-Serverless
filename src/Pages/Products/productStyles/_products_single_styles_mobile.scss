@@ -484,6 +484,7 @@
       }
     }
     & .single-product-add-success-modal {
+      display: none;
       z-index: 30;
       @include prefixflex();
       justify-content: center;
@@ -491,12 +492,9 @@
       position: fixed;
       top: 0;
       left: 0;
-      opacity: 1;
-      height: 100%;
-      width: 100%;
-      // opacity: 1;
+      opacity: 0;
       // height: 100%;
-      // padding: 7px;
+      // width: 100%;
       background-color: rgba(0,0,0,.75);
       & .single-product-add-success-modal-dialogue {
         @include prefixflex();
