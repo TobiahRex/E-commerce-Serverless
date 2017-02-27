@@ -53,11 +53,15 @@ function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
       </div>
       <div className="shopping-cart-action-btns-parent">
         <button className="shopping-cart-action-btn-checkout sweep-right">
-          <FontAwesome name="credit-card-alt" />
-          {'\u0020'}Express Checkout
+          <span className="btn-flex-parent">
+            <FontAwesome name="credit-card-alt" />
+            {'\u0020'}Express Checkout
+          </span>
         </button>
         <button className="shopping-cart-action-btn-clear sweep-right">
-          Clear Shopping Cart
+          <span className="btn-flex-parent">
+            Clear Shopping Cart
+          </span>
         </button>
       </div>
       <div className="shopping-cart-back-parent">
