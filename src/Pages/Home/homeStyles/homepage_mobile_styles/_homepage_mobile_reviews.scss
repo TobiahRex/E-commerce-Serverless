@@ -121,6 +121,7 @@
       list-style-type: none;
       background-color: pink;
       & li {
+        height: 1.5em;
         & .homepage-reviews-carousel-dots-list-each {
           height: 1.5em;
           width: 1.5em;
@@ -137,7 +138,6 @@
             outline: none;
           }
         }
-        background-color: blue;
       }
       &:first-child {
         margin-left: 0;
