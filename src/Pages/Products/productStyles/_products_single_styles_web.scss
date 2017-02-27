@@ -385,11 +385,12 @@
             }
           }
           & .single-product-info-desc-actions-warning-msg {
+            text-align: center;
             p {
-              span {
-                text-transform: uppercase;
+              color: $p-blue;
+              a {
+                text-decoration: underline;
                 color: $p-blue;
-
               }
             }
           }
@@ -471,7 +472,7 @@
       }
     }
     & .single-product-add-success-modal {
-      z-index: 10;
+      z-index: 30;
       @include prefixflex();
       justify-content: center;
       align-items: center;

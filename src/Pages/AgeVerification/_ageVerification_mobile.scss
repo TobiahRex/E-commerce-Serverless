@@ -1,11 +1,11 @@
 @media only screen and (max-width: 640px) {
   .age-verification {
-    position: fixed;
     z-index: 10;
-    display: none;
     justify-content: center;
+    position: fixed;
+    display: none;
+    padding: 7px;
     height: 100%;
-    width: 100%;
     background-color: rgba(1,1,1,.9);
     & .age-verification-modal {
       display: flex;
@@ -63,6 +63,7 @@
           background-color: $p-red;
           z-index: 1;
           margin-bottom: 1em;
+          cursor: pointer;
           @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
         }
         & .age-verification-modal-buttons-deny {

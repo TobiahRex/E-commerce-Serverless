@@ -111,11 +111,12 @@ export default function SingleProduct() {
               <p>
                 Maximum of 4 bottles per customer per address. More info {'\u00A0'}
                 <Link
-                  to={'/shipping_and_return_policy'}
+                  to={'/shipping_policy'}
                   className="single-product-info-desc-actions-warning-msg-infolnk"
                 >here.
                 </Link>
               </p>
+              <p>Japanese Statute # 123123123.</p>
             </div>
           </div>
           <div className="single-product-info-desc-smedia-btns-container">
