@@ -121,7 +121,9 @@
       list-style-type: none;
       background-color: pink;
       & li {
-        height: 1.5em;
+        @extend .homepage-flex-center;
+        height: 25em;
+        width: 100%;
         & .homepage-reviews-carousel-dots-list-each {
           height: 1.5em;
           width: 1.5em;
