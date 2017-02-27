@@ -149,6 +149,7 @@
             flex-direction: column;
             padding: 0;
             margin: 0;
+            border-bottom: 1px solid rgba(0,0,0,.2);
             & li.shopping-cart-mobile-product-actions-price {
               @include prefixflex();
               width: 100%;
@@ -160,10 +161,10 @@
                 align-items: center;
                 height: 100%;
                 width: 50%;
+                padding-right: 1.5em;
                 & p {
                   font-family: $p-font;
                   color: $p-blue;
-                  padding-right: 1em;
                   font-size: 1.2em;
                 }
               }
@@ -171,6 +172,7 @@
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
+                padding-right: 0;
                 padding-left: 2em;
                 & span, p {
                   color: $p-blue;
@@ -279,6 +281,7 @@
                 align-items: center;
                 height: 100%;
                 width: 50%;
+                padding-right: 0;
                 padding-left: 1.5em;
                 & p {
                   font-size: 1.8em;
@@ -295,8 +298,7 @@
               @include prefixflex();
               width: 100%;
               height: 4.5em;
-              & .shopping-cart-mobile-product-actions-trash-title,
-              .shopping-cart-mobile-product-actions-trash-qty {
+              & .shopping-cart-mobile-product-actions-trash-title {
                 @include prefixflex();
                 justify-content: flex-end;
                 align-items: center;
@@ -308,22 +310,50 @@
                   color: $p-blue;
                   font-size: 1.2em;
                 }
-                & .shopping-cart-mobile-product-trash-btn-container {
+              }
+              & .shopping-cart-mobile-product-actions-trash-btn-container {
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
+                  width: 50%;
+                  padding-left: 1.5em;
                   & button {
+                    height: 3.5em;
+                    width: 3.5em;
                     border: none;
                     padding: 0;
                     margin: 0;
                     background-color: $p-red;
+                    cursor: pointer;
+                    @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
                     & span {
                       color: $p-white;
                       font-size: 1.8em;
                     }
                   }
                 }
-              }
+            }
+          }
+          & .shopping-cart-mobile-user-actions-btns {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 15em;
+            width: 100%;
+            button {
+              width: 80%;
+              height: 2.8em;
+              color: $p-white;
+              font-size: 1.5em;
+              font-family: $p-font;
+              letter-spacing: .02em;
+              background-color: $p-red;
+              z-index: 1;
+              margin: 1em auto;
+              cursor: pointer;
+              border: none;
+              @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
             }
           }
         }

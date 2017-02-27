@@ -83,7 +83,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
               <p>Actions</p>
             </div>
             <div className="shopping-cart-mobile-product-actions-trash-btn-container">
-              <button className="shopping-cart-mobile-product-actions-trash-btn">
+              <button className="shopping-cart-mobile-product-actions-trash-btn sweep-right">
                 <FontAwesome name="trash-o" />
               </button>
             </div>

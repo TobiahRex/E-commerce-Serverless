@@ -143,7 +143,7 @@ export default function SingleProduct() {
           Back to Homepage
         </button>
       </div>
-      <div className="single-product-add-success-modal">
+      <div style={{ display: 'none' }} className="single-product-add-success-modal">
         <div className="single-product-add-success-modal-dialogue">
           <div className="single-product-add-success-modal-dialogue-exit-container">
             <button className="single-product-add-success-modal-dialogue-exit-btn">
@@ -171,5 +171,8 @@ export default function SingleProduct() {
 }
 
 /* TODO make sure you add the success modal styles dynamically.
+
+Must control the display property from the JSX NOT the style sheet.
+
 See the style sheet for detials.
 */

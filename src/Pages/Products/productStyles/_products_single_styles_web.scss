@@ -472,6 +472,7 @@
       }
     }
     & .single-product-add-success-modal {
+      display: none;
       z-index: 30;
       @include prefixflex();
       justify-content: center;
@@ -487,6 +488,7 @@
       width: 100%; */
       background-color: rgba(0,0,0,.75);
       & .single-product-add-success-modal-dialogue {
+        display: none;
         @include prefixflex();
         justify-content: center;
         align-items: center;
