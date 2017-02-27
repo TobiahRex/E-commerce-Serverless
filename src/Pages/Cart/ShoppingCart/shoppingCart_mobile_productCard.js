@@ -95,8 +95,10 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
             Clear Shopping Cart
           </button>
           <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => browserHistory.push('/checkout')}>
-            <FontAwesome name="credit-card-alt" />
-            {'\u0020'}Express Checkout
+            <span className="btn-flex-parent">
+              <FontAwesome name="credit-card-alt" />
+              {'\u0020'}Express Checkout
+            </span>
           </button>
         </div>
         <div className="shopping-cart-mobile-analysis-main">

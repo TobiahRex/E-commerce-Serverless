@@ -73,6 +73,11 @@
           background-color: $p-red;
           cursor: pointer;
           @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
+          & .btn-flex-parent {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
       & .shopping-cart-mobile-product-list {
@@ -353,6 +358,11 @@
                 cursor: pointer;
                 border: none;
                 @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+                & span.btn-flex-parent {
+                  @include prefixflex();
+                  justify-content: space-between;;
+                  align-items: center;
+                }
               }
             }
             & .shopping-cart-mobile-analysis-main {

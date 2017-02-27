@@ -10,8 +10,10 @@ function ShoppingCartMobile({ renderMobileJuices }) {
     <div className="shopping-cart-mobile-parent">
       <div className="shopping-cart-mobile-action-btn-top">
         <button className="shopping-cart-mobile-action-btn-top-checkout sweep-right">
-          <FontAwesome name="credit-card-alt" />
-          {'\u0020'}Express Checkout
+          <span className="btn-flex-parent">
+            <FontAwesome name="credit-card-alt" />
+            {'\u0020'}Express Checkout
+          </span>
         </button>
       </div>
       <div className="shopping-cart-mobile-product-list">
