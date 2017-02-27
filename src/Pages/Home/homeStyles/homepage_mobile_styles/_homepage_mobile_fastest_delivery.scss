@@ -1,5 +1,5 @@
 .homepage-fastest-delivery {
-  @extend .galaxy-flex-center;
+  @extend .homepage-flex-center;
   flex-direction: column;
   height: 58em;
   width: 100%;
@@ -11,7 +11,7 @@
     margin: .6em;
   }
   & .homepage-fastest-delivery-description-container {
-    @extend .galaxy-flex-center;
+    @extend .homepage-flex-center;
     flex-direction: column;
     height: 54.5em;
     width: 100%;
@@ -24,7 +24,7 @@
       @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
     }
     & .homepage-fastest-delivery-description-message-container {
-      @extend .galaxy-flex-center;
+      @extend .homepage-flex-center;
       flex-direction: column;
       width: 28em;
       height: 27.5em;

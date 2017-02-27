@@ -1,5 +1,5 @@
 .homepage-reviews {
-  @extend .galaxy-flex-center;
+  @extend .homepage-flex-center;
   flex-direction: column;
   height: 33em;
   width: 100%;
@@ -12,7 +12,7 @@
     margin: .6em;
   }
   & .homepage-reviews-carousel-parent {
-    @extend .galaxy-flex-center;
+    @extend .homepage-flex-center;
     flex-direction: column;
     height: 22em;
     width: 100%;
@@ -32,15 +32,15 @@
         .homepage-reviews-carousel-beta,
         .homepage-reviews-carousel-gamma,
         .homepage-reviews-carousel-delta {
-          @extend .galaxy-flex-center;
+          @extend .homepage-flex-center;
           flex-direction: column;
           height: 21em;
 /*           width: 34.6em; */
           & .homepage-reviews-carousel-alpha-review,
           .homepage-reviews-carousel-beta-review,
           .homepage-reviews-carousel-gamma-review,
-          .homepage-reviews-carousel-delta-review {            
-            @extend .galaxy-flex-center;
+          .homepage-reviews-carousel-delta-review {
+            @extend .homepage-flex-center;
             flex-direction: column;
             padding: 1em;
             & .homepage-reviews-carousel-alpha-review-body,
@@ -112,9 +112,9 @@
     height: 2.5em;
     width: 100%;
     margin-top: 1.5em;
-    @extend .galaxy-flex-center;
+    @extend .homepage-flex-center;
     & .homepage-reviews-carousel-dots-list {
-      @extend .galaxy-flex-center;
+      @extend .homepage-flex-center;
       padding-left: 0;
       margin-left: 0;
       list-style-type: none;

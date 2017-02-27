@@ -28,27 +28,27 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
   render() {
     const dummyJuiceinfo = [{ // TODO - remove this dummy data.
       title: 'Fruitty Bamm Bamm',
-      imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/fruity_BammBamm_cutout_smallSize_zero.jpg',
+      imageSrc: './Images/nj2jp_juice_card_fbb.png',
       urlSuffix: 'fruity_bamm_bamm',
     }, {
       title: 'French Vanilla Mocha',
-      imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/frenchVanilla_zero_tightCrop_smallSize_zero.jpg',
+      imageSrc: './Images/nj2jp_juice_card_fvm.png',
       urlSuffix: 'french_vanilla_mocha',
     }, {
       title: 'Keylime Pie',
-      imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/keyLimPie_zero_tightCrop_smallSize_zero.jpg',
+      imageSrc: './Images/nj2jp_juice_card_klp.png',
       urlSuffix: 'keylime_pie',
     }, {
       title: 'Pina Colada',
-      imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/pinaColada_zero_tightCrop_smallSize_zero.jpg',
+      imageSrc: './Images/nj2jp_juice_card_pc.png',
       urlSuffix: 'pina_colada',
     }, {
       title: 'Fruitty Bamm Bamm',
-      imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/fruity_BammBamm_cutout_smallSize_zero.jpg',
+      imageSrc: './Images/nj2jp_juice_card_fbb.png',
       urlSuffix: 'fruity_bamm_bamm',
     }, {
       title: 'Strawberries N\' Cream',
-      imageSrc: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/fruity_BammBamm_cutout_smallSize_zero.jpg',
+      imageSrc: './Images/nj2jp_juice_card_fbb.png',
       urlSuffix: 'strawberries_n_cream',
     }];
 

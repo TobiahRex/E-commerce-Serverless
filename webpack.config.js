@@ -8,7 +8,7 @@ dotenv.load({ silent: true });
 
 const devConfig = {
   noInfo: false,
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   target: 'web',
   debug: true,
   entry: [
@@ -26,6 +26,7 @@ const devConfig = {
 
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
   ],
   module: {
@@ -35,6 +36,11 @@ const devConfig = {
         loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/,
         include: path.resolve('src'),
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.s[ac]ss$/,

@@ -1,5 +1,5 @@
 .homepage-how {
-  @extend .galaxy-flex-center;
+  @extend .homepage-flex-center;
   flex-direction: column;
   height: 30em;
   width: 100%;
@@ -33,7 +33,7 @@
         & .homepage-how-carousel-flight-image,
         & .homepage-how-carousel-truck-image,
         & .homepage-how-carousel-delivery-image {
-          @extend .galaxy-flex-bottom;
+          @extend .homepage-flex-bottom;
           height: 24em;
           max-width: 34.6em;
 /*           width: 100%; */
@@ -46,7 +46,7 @@
           & .homepage-how-carousel-flight-description-container,
           & .homepage-how-carousel-truck-description-container,
           & .homepage-how-carousel-delivery-description-container {
-            @extend .galaxy-flex-center;
+            @extend .homepage-flex-center;
             height: 6.5em;
             width: 34.6em;
             background-color: rgba(1,1,1,.75);
@@ -63,7 +63,7 @@
           & .homepage-how-carousel-delivery-description-container {
             height: 9em;
             & a.homepage-how-carousel-delivery-buy-btn {
-              @extend .galaxy-flex-center;
+              @extend .homepage-flex-center;
               width: 10.66em;
               height: 2.66em;
               color: $p-white;
@@ -107,7 +107,7 @@
         }
       }
       &:after, {
-        @extend .galaxy-flex-center;
+        @extend .homepage-flex-center;
         content: $fa-right-chevron-white;
         // background: $fa-right-chevron-white no-repeat 0 9px;
         background-size: content;
@@ -125,7 +125,7 @@
     & .homepage-how-carousel-left-arrow {
       color: $p-white;
       &:after {
-        @extend .galaxy-flex-center;
+        @extend .homepage-flex-center;
         content: $fa-left-chevron-white;
         left: .7em;
       }

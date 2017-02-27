@@ -61,53 +61,53 @@ p {
   line-height: 1.78em;
   margin: 0;
 }
-$gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_black_juice_pano.jpg');
-@import './_galaxy_home_mobile_header';
-@import './_galaxy_home_mobile_fastest_delivery';
-@import './_galaxy_home_mobile_how';
-@import './_galaxy_home_mobile_reviews';
-@import './_galaxy_home_mobile_popjuices';
 
-.galaxy-flex-center {
+@import './_homepage_mobile_header';
+@import './_homepage_mobile_fastest_delivery';
+@import './_homepage_mobile_how';
+@import './_homepage_mobile_reviews';
+@import './_homepage_mobile_popjuices';
+
+.homepage-flex-center {
   @include prefixflex();
   justify-content: center;
   align-items: center;
 }
-.galaxy-flex-right {
+.homepage-flex-right {
   @include prefixflex();
   justify-content: flex-end;
   align-items: center;
 }
-.galaxy-flex-left {
+.homepage-flex-left {
   @include prefixflex();
   justify-content: flex-start;
   align-items: center;
 }
-.galaxy-flex-bottom {
+.homepage-flex-bottom {
   @include prefixflex();
   justify-content: center;
   align-items: flex-end;
 }
-.galaxy-white-bg {
+.homepage-white-bg {
   background-color: $p-white;
 }
-.galaxy-blue-bg {
+.homepage-blue-bg {
   background-color: $p-blue;
 }
 
 .homepage {
-  @extend .galaxy-flex-center;
+  @extend .homepage-flex-center;
   flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: $p-white;
   & .homepage-header-img-src {
-    @extend .galaxy-flex-center;
-   
+    @extend .homepage-flex-center;
+
     min-height: 30.5em;
-    background-image: $gxy-header-img;
-    background-size: 241%;
-    background-position-x: -250px;
-    background-position-y: -23px;
+    background-image: $homepg-juices-pano;;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
