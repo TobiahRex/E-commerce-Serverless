@@ -110,14 +110,16 @@
   }
   & .homepage-reviews-carousel-dots {
     height: 2.5em;
-/*     width: 100%; */
+    width: 100%;
     margin-top: 1.5em;
     @extend .homepage-flex-center;
     & .homepage-reviews-carousel-dots-list {
       @extend .homepage-flex-center;
       padding-left: 0;
       margin-left: 0;
+      max-width: 10em;
       list-style-type: none;
+      background-color: pink;
       & li {
         & .homepage-reviews-carousel-dots-list-each {
           height: 1.5em;
@@ -135,6 +137,7 @@
             outline: none;
           }
         }
+        background-color: blue;
       }
       &:first-child {
         margin-left: 0;
