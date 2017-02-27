@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
@@ -90,10 +91,10 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
           </li>
         </ul>
         <div className="shopping-cart-mobile-user-actions-btns">
-          <button className="shopping-cart-mobile-user-actions-btns-clear">
+          <button className="shopping-cart-mobile-user-actions-btns-clear sweep-right">
             Clear Shopping Cart
           </button>
-          <button className="shopping-cart-mobile-user-actions-btns-checkout">
+          <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => browserHistory.push('/checkout')}>
             <FontAwesome name="credit-card-alt" />
             {'\u0020'}Express Checkout
           </button>
@@ -118,6 +119,11 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
               <FontAwesome name="usd" />
               <h3>{'\u00A0'}{`${grandTotal}`}</h3>
             </div>
+          </div>
+          <div className="shopping-cart-mobile-continue-shopping">
+            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/juices')}>
+              Continue Shopping
+            </button>
           </div>
         </div>
       </div>
