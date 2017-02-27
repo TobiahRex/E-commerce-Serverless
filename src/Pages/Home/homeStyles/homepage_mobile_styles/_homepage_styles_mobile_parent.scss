@@ -69,22 +69,22 @@ $gxy-header-img: url('https://s3-ap-southeast-2.amazonaws.com/nj2jp/homepage_bla
 @import './_galaxy_home_mobile_popjuices';
 
 .galaxy-flex-center {
-  display: flex;
+  @include prefixflex();
   justify-content: center;
   align-items: center;
 }
 .galaxy-flex-right {
-  display: flex;
+  @include prefixflex();
   justify-content: flex-end;
   align-items: center;
 }
 .galaxy-flex-left {
-  display: flex;
+  @include prefixflex();
   justify-content: flex-start;
   align-items: center;
 }
 .galaxy-flex-bottom {
-  display: flex;
+  @include prefixflex();
   justify-content: center;
   align-items: flex-end;
 }
