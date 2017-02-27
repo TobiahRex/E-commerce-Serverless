@@ -8,8 +8,6 @@ const propTypes = {
 
 function ProductCard({ juiceObj, className }) {
   const { title, price, nicotine_strengths, image_url } = juiceObj;
-  console.warn('image_url: ', image_url);
-  const imgUrl = image_url;
   const renderNicOptions = () =>
   nicotine_strengths.map(strength => (
     <li
@@ -22,8 +20,7 @@ function ProductCard({ juiceObj, className }) {
   return (
     <div className={`${className}-parent`}>
       <img
-        // style={{ content: `url(${image_url})` }}
-        style={imgUrl}
+        style={{ content: `url(${image_url})` }}
         alt="Juice Card"
         className={`${className}-image`}
       />
