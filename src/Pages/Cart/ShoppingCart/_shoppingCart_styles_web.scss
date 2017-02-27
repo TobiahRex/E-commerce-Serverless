@@ -1,365 +1,365 @@
-.shopping-cart-main {
-  max-width: 1086px;
-  width: 100%;
-  & .shopping-cart-breadcrumb-container {
-    @include prefixflex();
-    justify-content: flex-start;
-    align-items: center;
+@media only screen and (min-width: 1079px) and (max-width : 1921px) {
+  .shopping-cart-main {
+    max-width: 1086px;
     width: 100%;
-    height: 6em;
-    padding-right: 3em;
-    background-color: $p-white;
-    & .shopping-cart-breadcrumb-list {
+    & .shopping-cart-breadcrumb-container {
       @include prefixflex();
       justify-content: flex-start;
       align-items: center;
-      list-style-type: none;
-      margin: 0;
-      padding: 0 1em;
-      & .shopping-cart-breadcrumb-path {
-        font-size: 1.8em;
-        font-family: $p-font;
-        font-weight: normal;
-        color: $p-blue;
-        & .breadcrumb-chevron-right {
-          font-size: 18px;
-          color: $p-blue;
-          margin: 0 .5em -1em .5em;
-          bottom: -1px;
-          position: relative;
-        }
-        & .breadcrumb-link {
-          color: $p-blue;
-        }
-      }
-    }
-  }
-  & .shopping-cart-main-title {
-    @include prefixflex();
-    align-items: flex-start;
-    height: 8em;
-    h1 {
-      font-size: 5em;
-      font-weight: 200;
-      letter-spacing: 0.01em;
-      color: $p-blue;
-      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
-    }
-  }
-  & .shopping-cart-web-parent {
-    @include prefixflex();
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    & table.shopping-cart-table {
       width: 100%;
-      border-collapse: collapse;
-      & thead.shopping-cart-table-header-container {
-        width: 100%;
-        & tr.shopping-cart-table-header-titles {
-          max-width: 108.6em;
-          width: 100%;
-          & .shopping-cart-table-header-juice,
-          .shopping-cart-table-header-price,
-          .shopping-cart-table-header-qty,
-          .shopping-cart-table-header-total {
-            & h3 {
-              line-height: 2.25em;
-            }
-          }
-          & .shopping-cart-table-header-juice {
-            max-width: 38em;
-            width: 38em;
-          }
-          & .shopping-cart-table-header-price {
-            max-width: 20.5em;
-            width: 20.5em;
-          }
-          & .shopping-cart-table-header-qty {
-            max-width: 20.5em;
-            width: 20.5em;
-          }
-          & .shopping-cart-table-header-total {
-            max-width: 29em;
-            width: 29em;
-          }
-        }
-      }
-      & .shopping-cart-table-body-container {
-        max-width: 108.6px;
-        width: 100%;
-        & tr.shopping-cart-table-body-row {
-          border-bottom: 1px solid rgba(0,0,0,.1);
-          border-top: 1px solid rgba(0,0,0,.1);
-          & td.shopping-cart-table-body-infobox,
-          td.shopping-cart-table-body-price,
-          td.shopping-cart-table-body-qty,
-          td.shopping-cart-table-body-total {
-            height: 28.5em;
-          }
-          & td.shopping-cart-table-body-infobox {
-            width: 38em;
-            .shopping-cart-table-body-infobox-flexparent {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              & .shopping-cart-table-body-infobox-img {
-                overflow: hidden;
-                img {
-                  position: relative;
-/*                   max-width: 7.2em;
-                  top: 6em; */
-                }
-              }
-              & ul.shopping-cart-table-body-infobox-list {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-                & .shopping-cart-table-body-infobox-title,
-                .shopping-cart-table-body-infobox-nicotine,
-                .shopping-cart-table-body-infobox-sku,
-                .shopping-cart-table-body-infobox-trash {
-                  @include prefixflex();
-                  justify-content: center;
-                  align-items: center;
-                  height: 4.5em;
-                  width: 23em;
-                  & p, i {
-                    color: $p-blue;
-                    font-family: $p-font;
-                    font-size: 1.8em;
-                  }
-                  & button {
-                    font-size: 3.5em;
-                    height: 1.42em;
-                    width: 1.42em;
-                    border: none;
-                    background-color: $p-red;
-                    color: $p-white;
-                    @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.5));
-                    cursor: pointer;
-
-                  }
-                }
-                & .shopping-cart-table-body-infobox-nicotine,
-                & .shopping-cart-table-body-infobox-sku {
-                  height: 3em;
-                  & p, i {
-                    font-size: 1.2em;
-                  }
-                }
-                & .shopping-cart-table-body-infobox-sku {
-                  & p {
-                    font-size: 1em;
-                  }
-                }
-                & .shopping-cart-table-body-infobox-trash {
-                  height: 10em
-                }
-              }
-            }
-          }
-          & td.shopping-cart-table-body-price {
-            width: 20.5em;
-            & .shopping-cart-table-body-price-flexparent {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              h3 {
-                font-weight: 600;
-              }
-              & span {
-                font-size: 2em;
-                font-weight: 200;
-                color: $p-blue;
-              }
-            }
-          }
-          & td.shopping-cart-table-body-qty {
-            width: 20.5em;
-            & .shopping-cart-table-body-qty-flexparent {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              align-content: space-around;
-              flex-direction: column;
-              & ul.shopping-cart-table-body-qty-items {
-                @include prefixflex();
-                justify-content: center;
-                align-items: center;
-                list-style-type: none;
-                height: 7em;
-                width: 12.5em;
-                padding: 0;
-                margin: 3.2em;
-                background-color: $p-grey;
-                & .shopping-cart-table-body-qty-readout {
-                  @include prefixflex();
-                  justify-content: center;
-                  align-items: center;
-                  background-color: $p-white;
-                  height: 5.7em;
-                  width: 5.7em;
-                  margin-right: 4px;
-                  p {
-                    color: $p-blue;
-                    font-size: 1.8em;
-                  }
-                }
-                & .shopping-cart-table-body-qty-btns {
-                  @include prefixflex();
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  button {
-                    border: none;
-                    height: 2.5em;
-                    width: 4.5em;
-                    color: $p-white;
-                    background-color: $p-red;
-                    margin: .1em;
-                    cursor: pointer;
-                  }
-                }
-              }
-              & .shopping-cart-table-body-qty-msg {
-                text-align: center;
-                width: 13em;
-                p {
-                  font-size: 1.2em;
-                  color: $s-grey;
-                }
-              }
-            }
-          }
-          & td.shopping-cart-table-body-total {
-            width: 29em;
-            & .shopping-cart-table-body-total-flexparent {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              h3 {
-                font-weight: 600;
-              }
-              & span {
-                font-size: 2em;
-                font-weight: 200;
-                color: $p-blue;
-              }
-            }
-          }
-        }
-      }
-    }
-    & .shopping-cart-analysis-main {
-      @include prefixflex();
-      justify-content: center;
-      align-items: flex-end;;
-      flex-direction: column;
-      align-content: flex-end;
-      width: 100%;
-      & .shopping-cart-analysis-taxes,
-      & .shopping-cart-analysis-grand-total {
+      height: 6em;
+      padding-right: 3em;
+      background-color: $p-white;
+      & .shopping-cart-breadcrumb-list {
         @include prefixflex();
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        height: 7em;
-        width: 26em;
-        background-color: $p-grey;
-        border: 1px solid $s-grey;
-        margin-top: .5em;
-        & .shopping-cart-analysis-taxes-title,
-        .shopping-cart-analysis-taxes-cost,
-        .shopping-cart-analysis-grand-total-title,
-        .shopping-cart-analysis-grand-total-cost {
-          @include prefixflex();
-          justify-content: center;
-          align-items: center;
-          height: 6em;
-          width: 15em;
-          h3 {
-            font-weight: 600;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 1em;
+        & .shopping-cart-breadcrumb-path {
+          font-size: 1.8em;
+          font-family: $p-font;
+          font-weight: normal;
+          color: $p-blue;
+          & .breadcrumb-chevron-right {
+            font-size: 18px;
+            color: $p-blue;
+            margin: 0 .5em -1em .5em;
+            bottom: -1px;
+            position: relative;
           }
-          h3.title {
-            text-align: center;
-            width: 14em;
-          }
-          span {
-            font-size: 2em;
+          & .breadcrumb-link {
             color: $p-blue;
           }
         }
-        & .shopping-cart-analysis-taxes-cost,
-        .shopping-cart-analysis-grand-total-cost {
-          width: 10em;
+      }
+    }
+    & .shopping-cart-main-title {
+      @include prefixflex();
+      align-items: flex-start;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
+    & .shopping-cart-web-parent {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      & table.shopping-cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        & thead.shopping-cart-table-header-container {
+          width: 100%;
+          & tr.shopping-cart-table-header-titles {
+            max-width: 108.6em;
+            width: 100%;
+            & .shopping-cart-table-header-juice,
+            .shopping-cart-table-header-price,
+            .shopping-cart-table-header-qty,
+            .shopping-cart-table-header-total {
+              & h3 {
+                line-height: 2.25em;
+              }
+            }
+            & .shopping-cart-table-header-juice {
+              max-width: 38em;
+              width: 38em;
+            }
+            & .shopping-cart-table-header-price {
+              max-width: 20.5em;
+              width: 20.5em;
+            }
+            & .shopping-cart-table-header-qty {
+              max-width: 20.5em;
+              width: 20.5em;
+            }
+            & .shopping-cart-table-header-total {
+              max-width: 29em;
+              width: 29em;
+            }
+          }
         }
-        & .shopping-cart-analysis-taxes-title,
-        .shopping-cart-analysis-grand-total-title {
-          &:after {
-            content: '';
-            margin-bottom: -3px;
-            margin-left: 10px;
-            display: inline-block;
-            width: 1px;
-            height: 20px;
-            background-color: $s-grey;
+        & .shopping-cart-table-body-container {
+          max-width: 108.6px;
+          width: 100%;
+          & tr.shopping-cart-table-body-row {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            border-top: 1px solid rgba(0,0,0,.1);
+            & td.shopping-cart-table-body-infobox,
+            td.shopping-cart-table-body-price,
+            td.shopping-cart-table-body-qty,
+            td.shopping-cart-table-body-total {
+              height: 28.5em;
+            }
+            & td.shopping-cart-table-body-infobox {
+              width: 38em;
+              .shopping-cart-table-body-infobox-flexparent {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                & .shopping-cart-table-body-infobox-img {
+                  overflow: hidden;
+                  img {
+                    position: relative;
+                  }
+                }
+                & ul.shopping-cart-table-body-infobox-list {
+                  list-style-type: none;
+                  padding: 0;
+                  margin: 0;
+                  & .shopping-cart-table-body-infobox-title,
+                  .shopping-cart-table-body-infobox-nicotine,
+                  .shopping-cart-table-body-infobox-sku,
+                  .shopping-cart-table-body-infobox-trash {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    height: 4.5em;
+                    width: 23em;
+                    & p, i {
+                      color: $p-blue;
+                      font-family: $p-font;
+                      font-size: 1.8em;
+                    }
+                    & button {
+                      font-size: 3.5em;
+                      height: 1.42em;
+                      width: 1.42em;
+                      border: none;
+                      background-color: $p-red;
+                      color: $p-white;
+                      @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.5));
+                      cursor: pointer;
+
+                    }
+                  }
+                  & .shopping-cart-table-body-infobox-nicotine,
+                  & .shopping-cart-table-body-infobox-sku {
+                    height: 3em;
+                    & p, i {
+                      font-size: 1.2em;
+                    }
+                  }
+                  & .shopping-cart-table-body-infobox-sku {
+                    & p {
+                      font-size: 1em;
+                    }
+                  }
+                  & .shopping-cart-table-body-infobox-trash {
+                    height: 10em
+                  }
+                }
+              }
+            }
+            & td.shopping-cart-table-body-price {
+              width: 20.5em;
+              & .shopping-cart-table-body-price-flexparent {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                h3 {
+                  font-weight: 600;
+                }
+                & span {
+                  font-size: 2em;
+                  font-weight: 200;
+                  color: $p-blue;
+                }
+              }
+            }
+            & td.shopping-cart-table-body-qty {
+              width: 20.5em;
+              & .shopping-cart-table-body-qty-flexparent {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                align-content: space-around;
+                flex-direction: column;
+                & ul.shopping-cart-table-body-qty-items {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  list-style-type: none;
+                  height: 7em;
+                  width: 12.5em;
+                  padding: 0;
+                  margin: 3.2em;
+                  background-color: $p-grey;
+                  & .shopping-cart-table-body-qty-readout {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $p-white;
+                    height: 5.7em;
+                    width: 5.7em;
+                    margin-right: 4px;
+                    p {
+                      color: $p-blue;
+                      font-size: 1.8em;
+                    }
+                  }
+                  & .shopping-cart-table-body-qty-btns {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    button {
+                      border: none;
+                      height: 2.5em;
+                      width: 4.5em;
+                      color: $p-white;
+                      background-color: $p-red;
+                      margin: .1em;
+                      cursor: pointer;
+                    }
+                  }
+                }
+                & .shopping-cart-table-body-qty-msg {
+                  text-align: center;
+                  width: 13em;
+                  p {
+                    font-size: 1.2em;
+                    color: $s-grey;
+                  }
+                }
+              }
+            }
+            & td.shopping-cart-table-body-total {
+              width: 29em;
+              & .shopping-cart-table-body-total-flexparent {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                h3 {
+                  font-weight: 600;
+                }
+                & span {
+                  font-size: 2em;
+                  font-weight: 200;
+                  color: $p-blue;
+                }
+              }
+            }
           }
         }
       }
-      & .shopping-cart-analysis-grand-total {
-        margin: 0 0 1em 0;
+      & .shopping-cart-analysis-main {
+        @include prefixflex();
+        justify-content: center;
+        align-items: flex-end;;
+        flex-direction: column;
+        align-content: flex-end;
+        width: 100%;
+        & .shopping-cart-analysis-taxes,
+        & .shopping-cart-analysis-grand-total {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 7em;
+          width: 26em;
+          background-color: $p-grey;
+          border: 1px solid $s-grey;
+          margin-top: .5em;
+          & .shopping-cart-analysis-taxes-title,
+          .shopping-cart-analysis-taxes-cost,
+          .shopping-cart-analysis-grand-total-title,
+          .shopping-cart-analysis-grand-total-cost {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 6em;
+            width: 15em;
+            h3 {
+              font-weight: 600;
+            }
+            h3.title {
+              text-align: center;
+              width: 14em;
+            }
+            span {
+              font-size: 2em;
+              color: $p-blue;
+            }
+          }
+          & .shopping-cart-analysis-taxes-cost,
+          .shopping-cart-analysis-grand-total-cost {
+            width: 10em;
+          }
+          & .shopping-cart-analysis-taxes-title,
+          .shopping-cart-analysis-grand-total-title {
+            &:after {
+              content: '';
+              margin-bottom: -3px;
+              margin-left: 10px;
+              display: inline-block;
+              width: 1px;
+              height: 20px;
+              background-color: $s-grey;
+            }
+          }
+        }
+        & .shopping-cart-analysis-grand-total {
+          margin: 0 0 1em 0;
+        }
       }
-    }
-    & .shopping-cart-action-btns-parent {
-      @include prefixflex();
-      justify-content: center;
-      align-items: flex-end;;
-      flex-direction: column;
-      align-content: flex-end;
-      width: 100%;
-      height: 14.5em;
-      span {
-        font-size: 1.8em;
-        color: $p-white;
-        margin-right: .5em;
+      & .shopping-cart-action-btns-parent {
+        @include prefixflex();
+        justify-content: center;
+        align-items: flex-end;;
+        flex-direction: column;
+        align-content: flex-end;
+        width: 100%;
+        height: 14.5em;
+        span {
+          font-size: 1.8em;
+          color: $p-white;
+          margin-right: .5em;
+        }
+        button {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          font-weight: 100;
+          border: none;
+          height: 3.33em;
+          width: 14.4em;
+          font-size: 1.8em;
+          color: $p-white;
+          margin: .27em 0 .55em 0;
+          background-color: $p-red;
+          cursor: pointer;
+          @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
+        }
       }
-      button {
+      & .shopping-cart-back-parent {
         @include prefixflex();
         justify-content: center;
         align-items: center;
-        font-weight: 100;
-        border: none;
-        height: 3.33em;
-        width: 14.4em;
-        font-size: 1.8em;
-        color: $p-white;
-        margin: .27em 0 .55em 0;
-        background-color: $p-red;
-        cursor: pointer;
-        @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
-      }
-    }
-    & .shopping-cart-back-parent {
-      @include prefixflex();
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 15em;
-      & button {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        font-weight: 100;
-        border: none;
-        height: 3.33em;
-        width: 14.4em;
-        font-size: 1.8em;
-        color: $p-white;
-        margin: .27em 0 .55em 0;
-        background-color: $p-red;
-        cursor: pointer;
-        @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
+        width: 100%;
+        height: 15em;
+        & button {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          font-weight: 100;
+          border: none;
+          height: 3.33em;
+          width: 14.4em;
+          font-size: 1.8em;
+          color: $p-white;
+          margin: .27em 0 .55em 0;
+          background-color: $p-red;
+          cursor: pointer;
+          @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
+        }
       }
     }
   }
