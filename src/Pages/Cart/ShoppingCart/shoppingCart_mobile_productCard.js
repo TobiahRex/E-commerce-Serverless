@@ -69,17 +69,24 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
               </div>
             </div>
           </li>
-          <li className="shopping-cart-mobile-product-subtotal">
-            <div className="shopping-cart-mobile-product-subtotal-title">
+          <li className="shopping-cart-mobile-product-actions-subtotal">
+            <div className="shopping-cart-mobile-product-actions-subtotal-title">
               <p>Subtotal</p>
             </div>
-            <div className="shopping-cart-mobile-product-subtotal-qty">
+            <div className="shopping-cart-mobile-product-actions-subtotal-qty">
               <FontAwesome name="usd" />
               <p>{'\u00A0'}{`${juiceObj.subTotal}.00`}</p>
             </div>
           </li>
           <li className="shopping-cart-mobile-product-actions-trash">
-            <FontAwesome name="trash-o" />
+            <div className="shopping-cart-mobile-product-actions-trash-title">
+              <p>Actions</p>
+            </div>
+            <div className="shopping-cart-mobile-product-actions-trash-btn-container">
+              <button className="shopping-cart-mobile-product-actions-trash-btn">
+                <FontAwesome name="trash-o" />
+              </button>
+            </div>
           </li>
         </ul>
         <div className="shopping-cart-mobile-user-actions-btns">

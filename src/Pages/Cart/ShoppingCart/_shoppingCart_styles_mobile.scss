@@ -83,6 +83,7 @@
       align-items: center;
       flex-direction: column;
       width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,.2);
       & .shopping-cart-mobile-row {
         @include prefixflex();
         justify-content: center;
@@ -102,7 +103,7 @@
             img {
               position: relative;
               top: 15px;
-              width: 7.3em;
+              width: 25em;
             }
           }
           & .shopping-cart-mobile-product-infobox {
@@ -112,6 +113,7 @@
             flex-direction: column;
             height: 15em;
             width: 100%;
+            border-bottom: 1px solid rgba(0,0,0,.2);
             & .shopping-cart-mobile-product-infobox-title,
             & .shopping-cart-mobile-product-infobox-nicotine,
             .shopping-cart-mobile-product-infobox-sku {
@@ -253,12 +255,12 @@
                 }
               }
             }
-            & li.shopping-cart-mobile-product-subtotal {
+            & li.shopping-cart-mobile-product-actions-subtotal {
               @include prefixflex();
               width: 100%;
               height: 4.5em;
-              & .shopping-cart-mobile-product-subtotal-title,
-              .shopping-cart-mobile-product-subtotal-qty {
+              & .shopping-cart-mobile-product-actions-subtotal-title,
+              .shopping-cart-mobile-product-actions-subtotal-qty {
                 @include prefixflex();
                 justify-content: flex-end;
                 align-items: center;
@@ -271,14 +273,14 @@
                   font-size: 1.2em;
                 }
               }
-              & .shopping-cart-mobile-product-subtotal-qty {
+              & .shopping-cart-mobile-product-actions-subtotal-qty {
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
                 height: 100%;
                 width: 50%;
                 padding-left: 1.5em;
-                & h3, p {
+                & p {
                   font-size: 1.8em;
                 }
                 & span {
@@ -289,12 +291,44 @@
                 }
               }
             }
+            & li.shopping-cart-mobile-product-actions-trash {
+              @include prefixflex();
+              width: 100%;
+              height: 4.5em;
+              & .shopping-cart-mobile-product-actions-trash-title,
+              .shopping-cart-mobile-product-actions-trash-qty {
+                @include prefixflex();
+                justify-content: flex-end;
+                align-items: center;
+                height: 100%;
+                width: 50%;
+                padding-right: 1.5em;
+                & p {
+                  font-family: $p-font;
+                  color: $p-blue;
+                  font-size: 1.2em;
+                }
+                & .shopping-cart-mobile-product-trash-btn-container {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  & button {
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    background-color: $p-red;
+                    & span {
+                      color: $p-white;
+                      font-size: 1.8em;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
-
-
     & .shopping-cart-back-parent {
       @include prefixflex();
       justify-content: center;
