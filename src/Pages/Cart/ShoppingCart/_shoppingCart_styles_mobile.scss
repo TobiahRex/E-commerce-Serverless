@@ -57,11 +57,6 @@
         align-items: center;
         width: 100%;
         height: 10em;
-        span {
-          font-size: 1.5em;
-          color: $p-white;
-          margin-right: .5em;
-        }
         button {
           font-family: $p-font;
           font-weight: 100;
@@ -73,10 +68,15 @@
           background-color: $p-red;
           cursor: pointer;
           @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
-          & .btn-flex-parent {
+          & span.btn-flex-parent {
             @include prefixflex();
             justify-content: center;
             align-items: center;
+            span {
+              font-size: 1.5em;
+              color: $p-white;
+              margin-right: .5em;
+            }
           }
         }
       }
@@ -360,8 +360,11 @@
                 @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
                 & span.btn-flex-parent {
                   @include prefixflex();
-                  justify-content: space-between;;
+                  justify-content: center;
                   align-items: center;
+                  & span {
+                    margin-right: .5em;
+                  }
                 }
               }
             }

@@ -15,13 +15,13 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  // padding: 1em;
   background-color: $p-white;
   & .homepage-header-img-src {
     @extend .flex-center;
     width: 100%;
     background-image: $homepg-juices-pano;
     background-size: cover;
+    background-position: center;
   }
 }
 
