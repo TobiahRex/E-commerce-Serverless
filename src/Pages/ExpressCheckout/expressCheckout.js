@@ -47,7 +47,7 @@ export default function ExpressCheckout() {
             </div>
             <div className="input__row">
               <div className="input__row--email">
-                <p>Email</p>{'\u00A0'}<p className="required">*</p>
+                <p>Email <span className="required">*</span></p>
                 <input
                   type="text"
                   onChange={e => console.log(e.target.value)}

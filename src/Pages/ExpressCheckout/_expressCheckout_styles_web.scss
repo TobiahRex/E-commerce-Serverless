@@ -71,7 +71,7 @@
         flex-direction: column;
         height: 90em;
         width: 34em;
-        background-color: pink;
+        background-color: $p-grey;
         margin: 0 0 2em 0;
         order: 1;
         & .title {
@@ -79,9 +79,10 @@
           align-items: center;
           width: 29em;
           height: 6.5em;
-          background-color: $s-grey;
+          background-color: $p-blue;
           margin: 2em auto 2em auto;
           & h3 {
+            color: $p-white;
             padding-left: 1em;
           }
         }
@@ -99,6 +100,7 @@
             width: 20em;
             height: 2.5em;
             padding-left: .71em;
+            border: 1px solid $s-grey;
           }
           & div > p {
             font-size: 1.4em;
