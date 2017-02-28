@@ -1,4 +1,8 @@
 @media only screen and (min-width: 1079px) {
+  .required {
+    color: $p-red;
+  }
+
   .checkout__container {
     max-width: 1086px;
     width: 100%;
@@ -62,8 +66,9 @@
       .checkout__error-dialogue,
       .checkout__back-home-btn {
         @include prefixflex();
-        justify-content: center;
-        align-items: flex-start;
+        justify-content: flex-start;;
+        align-items: center;
+        flex-direction: column;
         height: 90em;
         width: 34em;
         background-color: pink;
@@ -75,14 +80,51 @@
           width: 29em;
           height: 6.5em;
           background-color: $s-grey;
-          margin: 2em auto 3em auto;
+          margin: 2em auto 2em auto;
           & h3 {
             padding-left: 1em;
           }
         }
-        & .input--row {
+        & .input__row {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
           height: 6.5em;
           width: 29em;
+          margin-top: 1em;
+          & div > input {
+            color: $p-blue;
+            font-family: $p-font;
+            font-size: 1.4em;
+            width: 20em;
+            height: 2.5em;
+            padding-left: .71em;
+          }
+          & div > p {
+            font-size: 1.4em;
+            font-family: $p-font;
+            color: $p-blue;
+          }
+        }
+      }
+      & .checkout__billing {
+        & .input__row {
+          & .input__row--first-name,
+          & .input__row--last-name {
+            & p {
+              margin-left: .71em;
+            }
+            & input {
+              height: 2.5em;
+              width: 9em;
+              margin-left: .71em;
+            }
+          }
+          & .input__row--first-name {
+            & input, p {
+              margin-left: 0;
+            }
+          }
         }
       }
       & .checkout__shipping-method {

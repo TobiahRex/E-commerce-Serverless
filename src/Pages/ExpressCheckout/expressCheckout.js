@@ -45,6 +45,15 @@ export default function ExpressCheckout() {
                 />
               </div>
             </div>
+            <div className="input__row">
+              <div className="input__row--email">
+                <p>Email</p>{'\u00A0'}<p className="required">*</p>
+                <input
+                  type="text"
+                  onChange={e => console.log(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
           <div className="checkout__shipping">
             <h3>Shipping Address</h3>
