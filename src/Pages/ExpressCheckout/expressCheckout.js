@@ -494,6 +494,26 @@ export default function ExpressCheckout() {
                 <p>Subtotal</p>
                 <p><FontAwesome name="usd" />{'\u00A0'}90.00</p>
               </div>
+              <div className="analysis-container--shipping">
+                <p>Shipping & Handling</p>
+                <p><i>Free</i></p>
+              </div>
+              <div className="analysis-container--discount">
+                <p>New Member Discount</p>
+                <p><FontAwesome name="usd" />{'\u00A0'}-9.00</p>
+              </div>
+              <div className="analysis-container--taxes">
+                <p>Taxes</p>
+                <p><FontAwesome name="usd" />{'\u00A0'}8.10</p>
+              </div>
+              <div className="analysis-container--grand-total">
+                <h3>Grand Total</h3>
+                <h3><FontAwesome name="usd" />{'\u00A0'}8.10</h3>
+              </div>
+            </div>
+            <div className="checkout__grand-total--terms-agreement">
+              <input type="checkbox" className="checkbox" />
+              <p>I have read & agree to all Terms & Conditions</p>
             </div>
           </div>
           <div className="checkout__error-dialogue ">
