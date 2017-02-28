@@ -290,8 +290,8 @@ export default function ExpressCheckout() {
 
             <div className="input__row">
               <div className="input__row--exp-date">
-                <p>Expiration Date <span className="required">*</span></p>
                 <div className="input__container--exp-month">
+                  <p>Expiration Date <span className="required">*</span></p>
                   <select className="input--select">
                     <option value="Month" className="input--option">Month</option>
                     <option value="01 - January" className="input--option">
@@ -333,6 +333,7 @@ export default function ExpressCheckout() {
                   </select>
                 </div>
                 <div className="input__container--exp-year">
+                  <p>{'\u00A0'}</p>
                   <select className="input--select">
                     <option value="Month" className="input--option">Year</option>
                     <option value="2017" className="input--option">

@@ -161,19 +161,29 @@
         order: 5;
         & .input__row {
           & .input__row--exp-date {
-            & .input__container--exp-month {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            & .input__container--exp-month,
+            .input__container--exp-year {
               @include prefixflex();
-              justify-content: center;
+              justify-content: flex-start;
               align-items: center;
+              flex-direction: column;
               select {
                 color: $p-blue;
                 font-family: $p-font;
                 font-size: 1.4em;
-                width: 20em;
+                width: 10em;
                 height: 2.5em;
                 padding-left: .71em;
-                border: 1px solid $s-grey;
+                border: 0;
+                outline: 2px solid $s-grey;
+                background-color: $p-white;
               }
+            }
+            & .input__container--exp-year {
+              margin-left: .71em;
             }
           }
         }
