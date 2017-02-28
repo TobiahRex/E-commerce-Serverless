@@ -62,7 +62,7 @@
       .checkout__grand-total,
       .checkout__shipping,
       .checkout__credit-card,
-      .checkout__order-review,
+      .checkout__product-review,
       .checkout__error-dialogue,
       .checkout__back-home-btn {
         @include prefixflex();
@@ -378,30 +378,13 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          & input[type="checkbox"] {
-            @include prefixed(appearance, none);
+          & input {
             cursor: pointer;
-            width: 2em;
-            height: 2em;
-            border: 1px solid rgba(0,0,0,.25);
-            background-color: $p-white;
-            & span {
-              color: $p-white;
-            }
-            &:checked {
-              & span {
-                color: $p-blue;
-              }
-            }
-            &:focus {
-              outline: 0 none;
-              box-shadow: none;
-            }
           }
           & p {
             color: $p-blue;
             font-size: 1.4em;
-            margin-right: .71em;
+            margin-left: .71em;
           }
         }
         & .checkout__grand-total--purchase-btn {
