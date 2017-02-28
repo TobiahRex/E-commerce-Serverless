@@ -157,7 +157,7 @@
         order: 3;
       }
       & .checkout__credit-card {
-        height: 45em;
+        height: 51em;
         order: 5;
         & .input__row {
           & .input__row--exp-date {
@@ -167,8 +167,7 @@
             & .input__container--exp-month,
             .input__container--exp-year {
               @include prefixflex();
-              justify-content: flex-start;
-              align-items: center;
+              align-items: flex-start;
               flex-direction: column;
               select {
                 color: $p-blue;
@@ -183,6 +182,19 @@
               }
             }
             & .input__container--exp-year {
+              margin-left: .71em;
+            }
+          }
+          & .input__row--cvn-number {
+            & input {
+              width: 8em;
+            }
+            & button {
+              font-size: 1.4em;
+              font-family: $p-font;
+              color: $p-blue;
+              border: none;
+              background-color: transparent;
               margin-left: .71em;
             }
           }

@@ -377,6 +377,20 @@ export default function ExpressCheckout() {
               </div>
             </div>
 
+            <div className="input__row">
+              <div className="input__row--cvn-number">
+                <p>Card Verification Number (CVN) <span className="required">*</span></p>
+                <input
+                  type="text"
+                  onChange={e => console.log(e.target.value)}
+                />
+                <button
+                  className="button--cvn-modal"
+                  onClick={() => console.info('Show CVN modal')}
+                >Whats this ?</button>
+              </div>
+            </div>
+
           </div>
           <div className="checkout__order-review">
             <h3>Order Review</h3>
