@@ -1,0 +1,48 @@
+.checkout__main {
+  max-width: 1086px;
+  width: 100%;
+  & .shopping-cart-breadcrumb-container {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 6em;
+    padding-right: 3em;
+    background-color: $p-white;
+    & .shopping-cart-breadcrumb-list {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      list-style-type: none;
+      margin: 0;
+      padding: 0 1em;
+      & .shopping-cart-breadcrumb-path {
+        font-size: 1.8em;
+        font-family: $p-font;
+        font-weight: normal;
+        color: $p-blue;
+        & .breadcrumb-chevron-right {
+          font-size: 18px;
+          color: $p-blue;
+          margin: 0 .5em -1em .5em;
+          bottom: -1px;
+          position: relative;
+        }
+        & .breadcrumb-link {
+          color: $p-blue;
+        }
+      }
+    }
+  }
+  & .shopping-cart-main-title {
+    @include prefixflex();
+    align-items: flex-start;
+    height: 8em;
+    h1 {
+      font-size: 5em;
+      font-weight: 200;
+      letter-spacing: 0.01em;
+      color: $p-blue;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+    }
+  }
