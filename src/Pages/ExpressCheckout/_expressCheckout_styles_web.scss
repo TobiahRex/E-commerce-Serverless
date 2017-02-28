@@ -47,17 +47,24 @@
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
-    & .chekout__body {
-
+    & .checkout__body {
+      @include prefixflex();
+      justify-content: space-between;
+      align-items: flex-start;
       & .checkout__billing,
       .checkout__shipping-method,
       .checkout__grand-total {
+        height: 90em;
         width: 34em;
         background-color: pink;
         margin: 0 0 2em 0;
       }
       & .checkout__grand-total {
         margin-right: 0;
+        height: 41.5em;
+      }
+      & .checkout__shipping-method {
+        height: 16.5em;
       }
     }
   }

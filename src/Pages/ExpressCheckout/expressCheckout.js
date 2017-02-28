@@ -20,18 +20,33 @@ export default function ExpressCheckout() {
           </li>
         </ul>
       </div>
+      <div className="checkout__title">
+        <h1>Express Checkout</h1>
+      </div>
       <div className="checkout__body">
-        <div className="checkout__title">
-          <h1>Express Checkout</h1>
-        </div>
         <div className="checkout__billing">
-
+          <h3>Billing Address</h3>
         </div>
-        <div className="checkout__shipping-Method">
-
+        <div className="checkout__shipping-method">
+          <h3>Shipping Method</h3>
         </div>
         <div className="checkout__grand-total">
-
+          <h3>Grand Total</h3>
+        </div>
+        <div className="checkout__shipping">
+          <h3>Shipping Address</h3>
+        </div>
+        <div className="checkout__credit-card">
+          <h3>Credit Card Information</h3>
+        </div>
+        <div className="checkout__order-review">
+          <h3>Order Review</h3>
+        </div>
+        <div className="checkout__error-dialogue">
+          <h3>Error</h3>
+        </div>
+        <div className="checkout__back-home-btn">
+          <button>Back To Homepage</button>
         </div>
       </div>
     </div>
