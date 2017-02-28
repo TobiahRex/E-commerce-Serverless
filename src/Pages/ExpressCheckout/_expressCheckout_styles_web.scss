@@ -150,6 +150,9 @@
       & .checkout__shipping-method {
         height: 18.5em;
         order: 4;
+        .input__row {
+          margin-top: 0;
+        }
       }
       & .checkout__grand-total {
         margin-right: 0;
@@ -159,7 +162,7 @@
       & .checkout__credit-card {
         height: 51em;
         order: 5;
-        & .input__row {
+        & .input__row, .input__row.cvn {
           & .input__row--exp-date {
             @include prefixflex();
             justify-content: center;
@@ -196,8 +199,18 @@
               border: none;
               background-color: transparent;
               margin-left: .71em;
+              cursor: help;
+              &:hover,
+              &:active,
+              &:focus {
+                outline: none;
+
+              }
             }
           }
+        }
+        & .input__row.cvn {
+          justify-content: flex-start;
         }
       }
       & .checkout__order-review {

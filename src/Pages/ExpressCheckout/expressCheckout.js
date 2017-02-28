@@ -247,9 +247,10 @@ export default function ExpressCheckout() {
               <div className="input__row--free-shipping">
                 <input
                   type="checkbox"
+                  checked
                   onChange={e => console.log(e.target.value)}
                 />
-                <p>Use same address for shipping.<span className="required">*</span></p>
+                <p>Free International Shipping.</p>
               </div>
             </div>
           </div>
@@ -377,7 +378,7 @@ export default function ExpressCheckout() {
               </div>
             </div>
 
-            <div className="input__row">
+            <div className="input__row cvn">
               <div className="input__row--cvn-number">
                 <p>Card Verification Number (CVN) <span className="required">*</span></p>
                 <input
