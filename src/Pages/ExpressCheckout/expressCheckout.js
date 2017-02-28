@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 
@@ -535,12 +535,12 @@ export default function ExpressCheckout() {
             </p>
           </div>
           <div className="checkout__loading-icon">
-            <FontAwesome className="spinner-icon" name="undo" spin />
+            <FontAwesome className="spinner-icon" name="spinner" spin />
             <p>One moment please</p>
             <p>while we process your order...</p>
           </div>
           <div className="checkout__back-home-btn ">
-            <button>Back To Homepage</button>
+            <button className="sweep-right" onClick={() => browserHistory.push('/')}>Back To Homepage</button>
           </div>
         </div>
       </div>

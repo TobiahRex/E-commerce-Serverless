@@ -454,7 +454,7 @@
         width: 31em;
         padding: 1.5em;
         & .spinner-icon {
-          @include prefixed(tranform, -1, 1);
+          @include prefixed(transform, scale(1, -1));
           color: $p-blue;
           font-size: 5em;
           font-weight: 200;
@@ -467,9 +467,24 @@
         }
       }
       & .checkout__back-home-btn {
-        height: 4em;
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 8em;
         order: 8;
         margin-right: 0;
+        background-color: $p-white;
+        & button {
+          height: 4em;
+          width: 80%;
+          color: $p-white;
+          font-family: $p-font;
+          font-size: 1.5em;
+          border: none;
+          background-color: $p-red;
+          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+          cursor: pointer;
+        }
       }
     }
   }
