@@ -233,7 +233,21 @@
       & .checkout__order-review {
         height: 63em;
         order: 6;
-        
+        & table {
+          width: 28em;
+          & .table-header {
+            height: 4em;
+            width: 100%;
+            & tr {
+              & th {
+                font-size: 1.4em;
+                color: $p-blue;
+                font-family: $p-font;
+                
+              }
+            }
+          }
+        }
       }
       & .checkout__error-dialogue {
         height: 24em;
