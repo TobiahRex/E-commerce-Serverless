@@ -454,11 +454,21 @@ export default function ExpressCheckout() {
                 </tr>
               </tbody>
             </table>
+
             <div className="checkout__comments">
-              <textarea name="" id="" cols="30" rows="10">
-                
-              </textarea>
+              <textarea cols="40" rows="5" value={'Coments'} />
             </div>
+
+            <div className="input__row">
+              <div className="input__row--newsletter">
+                <input
+                  type="checkbox"
+                  onChange={e => console.log(e.target.value)}
+                />
+                <p>Sign Up for Newsletter</p>
+              </div>
+            </div>
+
           </div>
         </div>
         <div className="checkout__grid">
