@@ -260,6 +260,18 @@ export default function ExpressCheckout() {
             </div>
 
             <div className="input__row">
+              <div className="input__row--cc-type">
+                <p>Accepted Credit Card Types</p>
+                <div className="types">
+                  <FontAwesome name="cc-visa" />
+                  <FontAwesome name="cc-mastercard" />
+                  <FontAwesome name="cc-discover" />
+                  <FontAwesome name="cc-amex" />
+                </div>
+              </div>
+            </div>
+
+            <div className="input__row">
               <div className="input__row--name-on-card">
                 <p>Name on Card <span className="required">*</span></p>
                 <input
@@ -269,15 +281,6 @@ export default function ExpressCheckout() {
               </div>
             </div>
 
-            <div className="input__row">
-              <div className="input__row--cc-type">
-                <p>Credit Card Type <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
 
             <div className="input__row">
               <div className="input__row--cc-number">

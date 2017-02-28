@@ -163,6 +163,22 @@
         height: 51em;
         order: 5;
         & .input__row, .input__row.cvn {
+          & .input__row--cc-type {
+            @include prefixflex();
+            align-items: center;
+            flex-direction: column;
+            & div {
+              @include prefixflex();
+              justify-content: space-between;
+              align-items: center;
+              width: 22em;
+              margin-top: 1em;
+              & span {
+                font-size: 3.5em;
+                color: $p-blue;
+              }
+            }
+          }
           & .input__row--exp-date {
             @include prefixflex();
             justify-content: center;
