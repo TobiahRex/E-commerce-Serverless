@@ -64,6 +64,7 @@
       .checkout__credit-card,
       .checkout__product-review,
       .checkout__error-dialogue,
+      .checkout__loading-icon,
       .checkout__back-home-btn {
         @include prefixflex();
         justify-content: flex-start;;
@@ -336,7 +337,6 @@
       & .checkout__grand-total {
         margin-right: 0;
         height: 48em;
-        order: 3;
         & .analysis-container {
           @include prefixflex();
           justify-content: flex-start;
@@ -375,7 +375,7 @@
             }
           }
         }
-        & .checkout__grand-total--terms-agreement {
+        & .terms-agreement {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -388,7 +388,7 @@
             margin-left: .71em;
           }
         }
-        & .checkout__grand-total--purchase-btn {
+        & .purchase-btn {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -418,9 +418,53 @@
         }
       }
       & .checkout__error-dialogue {
-        height: 24em;
-        order: 7;
+        display: none;
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: flex-start;
         margin-right: 0;
+        height: 10em;
+        width: 31em;
+        padding: 1.5em;
+        & p {
+          color: $p-red;
+          font-weight: 200;
+          & .error-icon {
+            position: relative;
+            top: 3px;
+            color: $p-red;
+            font-size: 2em;
+            margin-right: .3em;
+          }
+          & .error-title {
+            color: $p-red;
+            font-weight: 400;
+            font-size: 1.4em;
+          }
+        }
+      }
+      & .checkout__loading-icon {
+        display: none;
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
+        height: 10em;
+        width: 31em;
+        padding: 1.5em;
+        & .spinner-icon {
+          @include prefixed(tranform, -1, 1);
+          color: $p-blue;
+          font-size: 5em;
+          font-weight: 200;
+          line-height: 1.25em;
+          & p {
+            font-size: 1.4em;
+            line-height: 1.21em;
+            font-weight: 200;
+          }
+        }
       }
       & .checkout__back-home-btn {
         height: 4em;

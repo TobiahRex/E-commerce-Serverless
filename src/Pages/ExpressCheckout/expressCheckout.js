@@ -484,7 +484,7 @@ export default function ExpressCheckout() {
           </div>
         </div>
         <div className="checkout__grid">
-          <div className="checkout__grand-total ">
+          <div className="checkout__grand-total">
             <div className="title">
               <h3>Total</h3>
             </div>
@@ -511,11 +511,11 @@ export default function ExpressCheckout() {
                 <h3><FontAwesome name="usd" />{'\u00A0'}8.10</h3>
               </div>
             </div>
-            <div className="checkout__grand-total--terms-agreement">
+            <div className="terms-agreement">
               <input type="checkbox" className="checkbox" value={'\f067'} />
               <p>I have read & agree to all Terms & Conditions</p>
             </div>
-            <div className="checkout__grand-total--purchase-btn">
+            <div className="purchase-btn">
               <button
                 onClick={() => console.info('PLACE ORDER')}
               >
@@ -527,15 +527,17 @@ export default function ExpressCheckout() {
               </button>
             </div>
           </div>
-          <div className="checkout__error-dialogue ">
-            <FontAwesome name="times-circle" />
+          <div className="checkout__error-dialogue" style={{ display: 'none' }}>
             <p>
+              <FontAwesome className="error-icon" name="times-circle" />
               <span className="error-title">ERROR: </span>
-              There was an error placing your order:
+              There was an error placing your order: Credit card information was invalid.
             </p>
-            <p>
-              Credit Card information was invalid.
-            </p>
+          </div>
+          <div className="checkout__loading-icon">
+            <FontAwesome className="spinner-icon" name="undo" spin />
+            <p>One moment please</p>
+            <p>while we process your order...</p>
           </div>
           <div className="checkout__back-home-btn ">
             <button>Back To Homepage</button>
