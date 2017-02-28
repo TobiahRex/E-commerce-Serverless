@@ -528,7 +528,14 @@ export default function ExpressCheckout() {
             </div>
           </div>
           <div className="checkout__error-dialogue ">
-            <h3>Error</h3>
+            <FontAwesome name="times-circle" />
+            <p>
+              <span className="error-title">ERROR: </span>
+              There was an error placing your order:
+            </p>
+            <p>
+              Credit Card information was invalid.
+            </p>
           </div>
           <div className="checkout__back-home-btn ">
             <button>Back To Homepage</button>
