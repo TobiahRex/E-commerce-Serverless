@@ -29,6 +29,22 @@ export default function ExpressCheckout() {
             <div className="title">
               <h3>Billing Address</h3>
             </div>
+            <div className="input__row">
+              <div className="input__row--first-name">
+                <p>First Name</p>
+                <input
+                  type="text"
+                  onChange={e => console.log(e.target.value)}
+                />
+              </div>
+              <div className="input__row--last-name">
+                <p>Last Name</p>
+                <input
+                  type="text"
+                  onChange={e => console.log(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
           <div className="checkout__shipping">
             <h3>Shipping Address</h3>

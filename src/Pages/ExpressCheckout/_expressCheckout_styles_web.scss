@@ -61,12 +61,17 @@
       .checkout__order-review,
       .checkout__error-dialogue,
       .checkout__back-home-btn {
+        @include prefixflex();
+        justify-content: center;
+        align-items: flex-start;
         height: 90em;
         width: 34em;
         background-color: pink;
         margin: 0 0 2em 0;
         order: 1;
         & .title {
+          @include prefixflex();
+          align-items: center;
           width: 29em;
           height: 6.5em;
           background-color: $s-grey;
@@ -74,6 +79,10 @@
           & h3 {
             padding-left: 1em;
           }
+        }
+        & .input--row {
+          height: 6.5em;
+          width: 29em;
         }
       }
       & .checkout__shipping-method {
