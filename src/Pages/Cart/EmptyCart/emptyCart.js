@@ -11,7 +11,7 @@ export default function EmptyCart() {
         <FontAwesome name="shopping-basket" size="5x" />
       </div>
       <div className="empty-cart-oops-msg">
-        <h1>Oops :(</h1>
+        <h1>Oops <img className="confused_emoji" alt="Confused Face" /></h1>
       </div>
       <div className="empty-cart-shopping-btn">
         <button className="sweep-right">Start Shopping</button>

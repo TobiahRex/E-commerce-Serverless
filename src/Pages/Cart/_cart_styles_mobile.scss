@@ -1,6 +1,4 @@
 @media only screen and (max-width : 640px) {
-  /*
-    @import './EmptyCart/emptyCart_styles_web';
-  */
+  @import './EmptyCart/emptyCart_styles_mobile.scss';
   @import './ShoppingCart/shoppingCart_styles_mobile.scss';
 }
