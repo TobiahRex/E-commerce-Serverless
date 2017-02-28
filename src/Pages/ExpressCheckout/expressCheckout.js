@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 
 export default function ExpressCheckout() {
   return (
-    <div className="checkout__main">
+    <div className="checkout__container">
       <div className="checkout__breadcrumb--container">
         <ul className="list">
           <li className="path">

@@ -1,7 +1,8 @@
-.checkout__main {
+@media only screen and (min-width: 1079px) and (max-width : 1921px) {
+.checkout__container {
   max-width: 1086px;
   width: 100%;
-  & .shopping-cart-breadcrumb-container {
+  & .checkout__breadcrumb--container {
     @include prefixflex();
     justify-content: flex-start;
     align-items: center;
@@ -9,32 +10,32 @@
     height: 6em;
     padding-right: 3em;
     background-color: $p-white;
-    & .shopping-cart-breadcrumb-list {
+    & ul.list {
       @include prefixflex();
       justify-content: flex-start;
       align-items: center;
       list-style-type: none;
       margin: 0;
       padding: 0 1em;
-      & .shopping-cart-breadcrumb-path {
+      & li.path {
         font-size: 1.8em;
         font-family: $p-font;
         font-weight: normal;
         color: $p-blue;
-        & .breadcrumb-chevron-right {
+        & li.path__link {
+          color: $p-blue;
+        }
+        & .path__link--rightChevron {
           font-size: 18px;
           color: $p-blue;
           margin: 0 .5em -1em .5em;
           bottom: -1px;
           position: relative;
         }
-        & .breadcrumb-link {
-          color: $p-blue;
-        }
       }
     }
   }
-  & .shopping-cart-main-title {
+  & .checkout__title {
     @include prefixflex();
     align-items: flex-start;
     height: 8em;
@@ -46,3 +47,4 @@
       @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
     }
   }
+}
