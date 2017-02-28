@@ -25,7 +25,7 @@
           & .path__link {
             color: $p-blue;
           }
-          & .path__link--rightChevron {
+          & .path__link--right-chevron {
             font-size: 18px;
             color: $p-blue;
             margin: 0 .5em -1em .5em;
@@ -45,6 +45,19 @@
         letter-spacing: 0.01em;
         color: $p-blue;
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
+    & .chekout__body {
+
+      & .checkout__billing,
+      .checkout__shipping-method,
+      .checkout__grand-total {
+        width: 34em;
+        background-color: pink;
+        margin: 0 0 2em 0;
+      }
+      & .checkout__grand-total {
+        margin-right: 0;
       }
     }
   }

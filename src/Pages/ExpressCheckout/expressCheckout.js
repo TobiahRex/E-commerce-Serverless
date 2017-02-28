@@ -11,17 +11,28 @@ export default function ExpressCheckout() {
           <li className="path">
             <Link className="path__link" to="/">Home</Link>
             <FontAwesome
-              className="path__link--rightChevron"
+              className="path__link--right-chevron"
               name="angle-right"
             />
           </li>
           <li className="path">
-            Shopping Cart
+            Express Checkout
           </li>
         </ul>
       </div>
-      <div className="checkout__title">
-        <h1>Shopping Cart</h1>
+      <div className="checkout__body">
+        <div className="checkout__title">
+          <h1>Express Checkout</h1>
+        </div>
+        <div className="checkout__billing">
+
+        </div>
+        <div className="checkout__shipping-Method">
+
+        </div>
+        <div className="checkout__grand-total">
+
+        </div>
       </div>
     </div>
   );
