@@ -335,11 +335,43 @@
       }
       & .checkout__grand-total {
         margin-right: 0;
-        height: 41.5em;
+        height: 50em;
         order: 3;
         & .analysis-container {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          width: 28em;
+          height: 17.5em;
           padding: .5em;
+          & div {
+            @include prefixflex();
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            & p {
+              font-size: 1.4em;
+              line-height: 1.42em;
+              font-weight: 200;
+              & span {
+                color: $p-blue;
+                font-weight: 200;
+                font-size: 1.4em;
+                line-height: 1em;
+                position: relative;
+                top: 2px;
+              }
+              & i {
+                color: $p-blue;
+                font-weight: 200;
+                font-size: 1.4em;
+                line-height: 1em;
+              }
+            }
+            & h3 {
 
+            }
+          }
         }
       }
       & .checkout__error-dialogue {
