@@ -26,8 +26,15 @@
     }
   }
   & .empty-cart-oops-msg {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
     h1 {
       @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+    }
+    & .confused_emoji {
+      content: $confused_emoji;
+      max-width: 5em;
     }
   }
   & .empty-cart-shopping-btn {
@@ -36,20 +43,20 @@
     align-items: center;
     min-height: 14em;
     button {
-      @include prefixflex();
+       @include prefixflex();
       justify-content: center;
       align-items: center;
-      height: 2.4em;
-      width: 10em;
+      height: 4em;
+      width: 13.8em;
       padding: 0;
       border: none;
       font-family: $p-font;
-      font-size: 2.5em;
+      font-size: 1.8em;
       letter-spacing: .02em;
       background-color: $p-red;
       color: $p-white;
       cursor: pointer;
-      @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.5));
+      @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
     }
   }
 }

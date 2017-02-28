@@ -8,10 +8,10 @@ import { Link } from 'react-router';
 
 export default () => (
   <div className="action-links">
-    <Link className="action-links-cart sweep-right">
+    <Link to="/cart" className="action-links-cart sweep-right">
       <span>View Cart</span>
     </Link>
-    <Link className="action-links-checkout sweep-right">
+    <Link to="/express_checkout" className="action-links-checkout sweep-right">
       <span>Checkout</span>
     </Link>
   </div>

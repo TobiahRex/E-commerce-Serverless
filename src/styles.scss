@@ -33,6 +33,11 @@
 @import "Pages/Cart/cart_styles_mobile";
 
 // ------------------------------------------------------------
+// NOTE: "Checkout" Master Stylesheets
+@import "Pages/ExpressCheckout/expressCheckout_styles_web";
+// @import "Pages/ExpressCheckout/expressCheckout_styles_mobile";
+
+// ------------------------------------------------------------
 // NOTE: "Footer" Master Stylesheets
 @import "Pages/Footer/footerStyles/footer_styles_web";
 @import "Pages/Footer/footerStyles/footer_styles_mobile";

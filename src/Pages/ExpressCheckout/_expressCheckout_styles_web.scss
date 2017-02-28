@@ -1,7 +1,8 @@
-@media only screen and (min-width: 1079px) and (max-width : 1921px) {
+@media only screen and (min-width: 1079px) {
   .checkout__container {
     max-width: 1086px;
     width: 100%;
+    height: 200em;
     & .checkout__breadcrumb--container {
       @include prefixflex();
       justify-content: flex-start;
@@ -47,24 +48,65 @@
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
-    & .checkout__body {
+    & .checkout__body.grid {
       @include prefixflex();
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-start;
       & .checkout__billing,
       .checkout__shipping-method,
-      .checkout__grand-total {
+      .checkout__grand-total,
+      .checkout__shipping,
+      .checkout__credit-card,
+      .checkout__order-review,
+      .checkout__error-dialogue,
+      .checkout__back-home-btn {
         height: 90em;
         width: 34em;
         background-color: pink;
         margin: 0 0 2em 0;
+        order: 1;
+        & .title {
+          width: 29em;
+          height: 6.5em;
+          background-color: $s-grey;
+          margin: 2em auto 3em auto;
+          & h3 {
+            padding-left: 1em;
+          }
+        }
+      }
+      & .checkout__shipping-method {
+        height: 16.5em;
+        order: 2;
+
       }
       & .checkout__grand-total {
         margin-right: 0;
         height: 41.5em;
+        order: 3;
       }
-      & .checkout__shipping-method {
-        height: 16.5em;
+      & .checkout__shipping {
+        height: 90em;
+        order: 4;
+      }
+      & .checkout__credit-card {
+        height: 45em;
+        order: 5;
+      }
+      & .checkout__order-review {
+        height: 63em;
+        order: 6;
+      }
+      & .checkout__error-dialogue {
+        height: 24em;
+        order: 7;
+        margin-right: 0;
+      }
+      & .checkout__back-home-btn {
+        height: 4em;
+        order: 8;
+        margin-right: 0;
       }
     }
   }

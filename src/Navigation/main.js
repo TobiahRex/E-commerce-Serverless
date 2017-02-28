@@ -46,7 +46,7 @@ export default (
     <Router path={'/juices'} component={AllProducts} />
     <Router path={'/cart'} component={Cart} />
     <Router path={'/empty'} component={EmptyCart} />
-    <Router path={'/checkout'} component={ExpressCheckout} />
+    <Router path={'/express_checkout'} component={ExpressCheckout} />
     {/* AUTH */}
     <Router path={'/login'} component={Login} />
     <Router path={'/register'} component={Register} />
