@@ -127,6 +127,17 @@
               margin-left: 0;
             }
           }
+          & .input__row--same-as-billing {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            input {
+              color: $p-blue;
+              outline: none;
+              width: 4em;
+              cursor: pointer;
+            }
+          }
         }
       }
       & .checkout__shipping-method {
