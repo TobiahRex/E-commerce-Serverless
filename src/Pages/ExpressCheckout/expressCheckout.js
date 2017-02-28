@@ -397,7 +397,20 @@ export default function ExpressCheckout() {
 
           </div>
           <div className="checkout__order-review">
-            <h3>Order Review</h3>
+            <div className="title">
+              <h3>Order Review</h3>
+            </div>
+
+            <table className="table--container">
+              <thead className="table__header">
+                <tr className="header__row">
+                  <th className="header__row--product-name">Product Name</th>
+                  <th className="header__row--qty">Qty</th>
+                  <th className="header__row--subtotal">Subtotal</th>
+                </tr>
+              </thead>
+            </table>
+
           </div>
         </div>
         <div className="checkout__grid">

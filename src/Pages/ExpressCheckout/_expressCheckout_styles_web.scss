@@ -198,6 +198,7 @@
                 border: 0;
                 outline: 2px solid $s-grey;
                 background-color: $p-white;
+                cursor: pointer;
               }
             }
             & .input__container--exp-year {
@@ -232,6 +233,7 @@
       & .checkout__order-review {
         height: 63em;
         order: 6;
+        
       }
       & .checkout__error-dialogue {
         height: 24em;
