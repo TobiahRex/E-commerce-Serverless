@@ -396,9 +396,9 @@ export default function ExpressCheckout() {
             </div>
 
           </div>
-          <div className="checkout__order-review">
+          <div className="checkout__product-review">
             <div className="title">
-              <h3>Order Review</h3>
+              <h3>Product Review</h3>
             </div>
 
             <table className="table__container">
@@ -456,7 +456,7 @@ export default function ExpressCheckout() {
             </table>
 
             <div className="checkout__comments">
-              <textarea cols="40" rows="5" value={'Coments'} />
+              <textarea cols="40" rows="5" value={'Comments'} />
             </div>
 
             <div className="input__row">
@@ -469,11 +469,32 @@ export default function ExpressCheckout() {
               </div>
             </div>
 
+            <div className="input__row">
+              <div className="input__row--guest-warning">
+                <p><span className="warning-bold">Warning: </span>You are currently checking out as a “Guest”. If you would like to save your checkout info for future purchases, register now and we will save your information & you will receive 10% off your first order as a new member.</p>
+              </div>
+            </div>
+
+            <div className="input__row">
+              <div className="input__row--guest-register">
+                <button className="guest-register sweep-right">Register & Save 10%</button>
+              </div>
+            </div>
+
           </div>
         </div>
         <div className="checkout__grid">
           <div className="checkout__grand-total ">
-            <h3>Grand Total</h3>
+            <div className="title">
+              <h3>Total</h3>
+            </div>
+
+            <div className="analysis-container">
+              <div className="analysis-container--subtotal">
+                <p>Subtotal</p>
+                <p><FontAwesome name="usd" />{'\u00A0'}90.00</p>
+              </div>
+            </div>
           </div>
           <div className="checkout__error-dialogue ">
             <h3>Error</h3>

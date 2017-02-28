@@ -154,11 +154,6 @@
           margin-top: 0;
         }
       }
-      & .checkout__grand-total {
-        margin-right: 0;
-        height: 41.5em;
-        order: 3;
-      }
       & .checkout__credit-card {
         height: 51em;
         order: 5;
@@ -230,8 +225,8 @@
           justify-content: flex-start;
         }
       }
-      & .checkout__order-review {
-        height: 63em;
+      & .checkout__product-review {
+        max-height: 75em;
         order: 6;
         & .table__container {
           width: 28em;
@@ -285,6 +280,14 @@
           }
         }
         & .input__row {
+          &:nth-child(5) {
+            height: 12em;
+          }
+          &:nth-child(6) {
+            @include prefixflex();
+            align-items: center;
+            height: 8.5em;
+          }
           & .input__row--newsletter {
             @include prefixflex();
             justify-content: center;
@@ -296,6 +299,47 @@
               cursor: pointer;
             }
           }
+          & .input__row--guest-warning {
+            height: 12em;
+            width: 26em;
+            margin-top: 2em;
+            & p {
+              color: $p-blue;
+              font-family: $p-font;
+              font-size: 1.4em;
+              line-height: 1.4em;
+              font-weight: 200;
+              & .warning-bold {
+                font-weight: 400;
+                text-transform: uppercase;
+                color: $p-red;
+              }
+            }
+          }
+          & .input__row--guest-register {
+            & button {
+              height: 3.57em;
+              width: 17.8em;
+              color: $p-white;
+              font-size: 1.4em;
+              font-family: $p-font;
+              border: none;
+              background-color: $p-red;
+              cursor: pointer;
+            }
+          }
+        }
+        & .input__row:nth-child(1) {
+          height: 12em;
+        }
+      }
+      & .checkout__grand-total {
+        margin-right: 0;
+        height: 41.5em;
+        order: 3;
+        & .analysis-container {
+          padding: .5em;
+
         }
       }
       & .checkout__error-dialogue {
