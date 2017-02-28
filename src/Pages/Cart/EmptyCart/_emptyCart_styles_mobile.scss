@@ -5,7 +5,7 @@
   flex-direction: column;
   max-width: 1080px;
   width: 100%;
-  min-height: 60em;
+  min-height: 50em;
   & .empty-cart-main-title {
     @include prefixflex();
     align-items: center;
@@ -24,14 +24,18 @@
       font-weight: 800;
       margin: .1em;
       @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
-      & .confused_face {
-        content: $confused_emoji;
-      }
     }
   }
   & .empty-cart-oops-msg {
-    h1 {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    & h1 {
       @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+    }
+    & .confused_emoji {
+      content: $confused_emoji;
+      max-width: 5em;
     }
   }
   & .empty-cart-shopping-btn {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 export default function EmptyCart() {
@@ -11,10 +12,10 @@ export default function EmptyCart() {
         <FontAwesome name="shopping-basket" size="5x" />
       </div>
       <div className="empty-cart-oops-msg">
-        <h1>Oops <img className="confused_emoji" alt="Confused Face" /></h1>
+        <h1>Oops </h1>{'\u00A0'}<img className="confused_emoji" alt="Confused Face" />
       </div>
       <div className="empty-cart-shopping-btn">
-        <button className="sweep-right">Start Shopping</button>
+        <button className="sweep-right" onClick={() => browserHistory.push('/juices')}>Start Shopping</button>
       </div>
     </div>
   );
