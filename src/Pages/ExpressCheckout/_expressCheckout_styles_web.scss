@@ -69,7 +69,7 @@
         justify-content: flex-start;;
         align-items: center;
         flex-direction: column;
-        height: 90em;
+        height: 86em;
         width: 34em;
         background-color: $p-grey;
         margin: 0 0 2em 0;
@@ -109,7 +109,9 @@
           }
         }
       }
-      & .checkout__billing {
+      & .checkout__billing,
+      .checkout__shipping,
+      .checkout__shipping-method {
         & .input__row {
           & .input__row--first-name,
           & .input__row--last-name {
@@ -127,11 +129,12 @@
               margin-left: 0;
             }
           }
-          & .input__row--same-as-billing {
+          & .input__row--same-as-billing,
+          .input__row--free-shipping {
             @include prefixflex();
             justify-content: center;
             align-items: center;
-            input {
+            & input {
               color: $p-blue;
               outline: none;
               width: 4em;
@@ -140,23 +143,40 @@
           }
         }
       }
-      & .checkout__shipping-method {
-        height: 16.5em;
+      & .checkout__shipping {
+        height: 82em;
         order: 2;
-
+      }
+      & .checkout__shipping-method {
+        height: 18.5em;
+        order: 4;
       }
       & .checkout__grand-total {
         margin-right: 0;
         height: 41.5em;
         order: 3;
       }
-      & .checkout__shipping {
-        height: 90em;
-        order: 4;
-      }
       & .checkout__credit-card {
         height: 45em;
         order: 5;
+        & .input__row {
+          & .input__row--exp-date {
+            & .input__container--exp-month {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              select {
+                color: $p-blue;
+                font-family: $p-font;
+                font-size: 1.4em;
+                width: 20em;
+                height: 2.5em;
+                padding-left: .71em;
+                border: 1px solid $s-grey;
+              }
+            }
+          }
+        }
       }
       & .checkout__order-review {
         height: 63em;
