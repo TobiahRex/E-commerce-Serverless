@@ -401,7 +401,7 @@ export default function ExpressCheckout() {
               <h3>Order Review</h3>
             </div>
 
-            <table className="table--container">
+            <table className="table__container">
               <thead className="table__header">
                 <tr className="header__row">
                   <th className="header__row--product-name">Product Name</th>
@@ -454,7 +454,11 @@ export default function ExpressCheckout() {
                 </tr>
               </tbody>
             </table>
-            
+            <div className="checkout__comments">
+              <textarea name="" id="" cols="30" rows="10">
+                
+              </textarea>
+            </div>
           </div>
         </div>
         <div className="checkout__grid">

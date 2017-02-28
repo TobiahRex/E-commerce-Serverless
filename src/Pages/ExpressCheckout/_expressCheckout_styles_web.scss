@@ -233,17 +233,46 @@
       & .checkout__order-review {
         height: 63em;
         order: 6;
-        & table {
+        & .table__container {
           width: 28em;
-          & .table-header {
-            height: 4em;
+          border-collapse: collapse;
+          & .table__header {
             width: 100%;
-            & tr {
+            & .header__row {
               & th {
                 font-size: 1.4em;
+                line-height: 2.85em;
                 color: $p-blue;
                 font-family: $p-font;
-                
+                font-weight: 200;
+              }
+            }
+          }
+          & .table__body {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & .body__row {
+              border-top: 1px solid rgba(0,0,0,.1);
+              & td {
+                padding: .5em;
+                & div {
+                  & p {
+                    font-size: 1.1em;
+                    font-weight: 200;
+                  }
+                }
+                & .image__container,
+                .description__container {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  & img {
+                    content: $jc-fbb;
+                    width: 5.5em;
+                  }
+                }
+                & .description__container {
+                  flex-direction: column;
+                }
               }
             }
           }
