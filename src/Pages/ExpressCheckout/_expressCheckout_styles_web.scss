@@ -335,16 +335,16 @@
       }
       & .checkout__grand-total {
         margin-right: 0;
-        height: 50em;
+        height: 48em;
         order: 3;
         & .analysis-container {
           @include prefixflex();
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
           flex-direction: column;
           width: 28em;
           height: 17.5em;
-          padding: .5em;
+          padding: 1em;
           & div {
             @include prefixflex();
             justify-content: space-between;
@@ -352,25 +352,25 @@
             width: 100%;
             & p {
               font-size: 1.4em;
-              line-height: 1.42em;
+              line-height: 2.14em;
               font-weight: 200;
               & span {
                 color: $p-blue;
                 font-weight: 200;
-                font-size: 1.4em;
+                font-size: 1em;
                 line-height: 1em;
-                position: relative;
-                top: 2px;
               }
               & i {
                 color: $p-blue;
                 font-weight: 200;
-                font-size: 1.4em;
-                line-height: 1em;
+                font-size: 1em;
+                line-height: 2.14em;
               }
             }
             & h3 {
+              line-height: 2.2em;
               color: $p-blue;
+              font-weight: bold;
             }
           }
         }
@@ -378,13 +378,58 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          & input {
+          & input[type="checkbox"] {
+            @include prefixed(appearance, none);
+            cursor: pointer;
             width: 2em;
+            height: 2em;
+            border: 1px solid rgba(0,0,0,.25);
+            background-color: $p-white;
+            & span {
+              color: $p-white;
+            }
+            &:checked {
+              & span {
+                color: $p-blue;
+              }
+            }
+            &:focus {
+              outline: 0 none;
+              box-shadow: none;
+            }
           }
           & p {
             color: $p-blue;
             font-size: 1.4em;
             margin-right: .71em;
+          }
+        }
+        & .checkout__grand-total--purchase-btn {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 14.5em;
+          margin-top: 2em;
+          background-color: $p-blue;
+          & button {
+            border: none;
+            height: 4em;
+            width: 14em;
+            font-size: 2em;
+            background-color: $p-red;
+            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+            cursor: pointer;
+            & span {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & p, span {
+                color: $p-white;
+                font-size: 1em;
+                font-weight: 200;
+              }
+            }
           }
         }
       }

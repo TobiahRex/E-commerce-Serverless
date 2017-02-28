@@ -512,13 +512,19 @@ export default function ExpressCheckout() {
               </div>
             </div>
             <div className="checkout__grand-total--terms-agreement">
-              <input type="checkbox" className="checkbox" />
+              <input type="checkbox" className="checkbox">
+                <FontAwesome name="plus" />
+              </input>
               <p>I have read & agree to all Terms & Conditions</p>
             </div>
             <div className="checkout__grand-total--purchase-btn">
-              <button>
+              <button
+                className="sweep-right"
+                onClick={() => console.info('PLACE ORDER')}
+              >
                 <span className="btn-flex-parent">
                   <FontAwesome name="barcode" />
+                  {'\u00A0'}
                   <p>Place Order Now</p>
                 </span>
               </button>
