@@ -1,50 +1,51 @@
 @media only screen and (min-width: 1079px) and (max-width : 1921px) {
-.checkout__container {
-  max-width: 1086px;
-  width: 100%;
-  & .checkout__breadcrumb--container {
-    @include prefixflex();
-    justify-content: flex-start;
-    align-items: center;
+  .checkout__container {
+    max-width: 1086px;
     width: 100%;
-    height: 6em;
-    padding-right: 3em;
-    background-color: $p-white;
-    & ul.list {
+    & .checkout__breadcrumb--container {
       @include prefixflex();
       justify-content: flex-start;
       align-items: center;
-      list-style-type: none;
-      margin: 0;
-      padding: 0 1em;
-      & li.path {
-        font-size: 1.8em;
-        font-family: $p-font;
-        font-weight: normal;
-        color: $p-blue;
-        & li.path__link {
+      width: 100%;
+      height: 6em;
+      padding-right: 3em;
+      background-color: $p-white;
+      & ul.list {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 1em;
+        & li.path {
+          font-size: 1.8em;
+          font-family: $p-font;
+          font-weight: normal;
           color: $p-blue;
-        }
-        & .path__link--rightChevron {
-          font-size: 18px;
-          color: $p-blue;
-          margin: 0 .5em -1em .5em;
-          bottom: -1px;
-          position: relative;
+          & .path__link {
+            color: $p-blue;
+          }
+          & .path__link--rightChevron {
+            font-size: 18px;
+            color: $p-blue;
+            margin: 0 .5em -1em .5em;
+            bottom: -1px;
+            position: relative;
+          }
         }
       }
     }
-  }
-  & .checkout__title {
-    @include prefixflex();
-    align-items: flex-start;
-    height: 8em;
-    h1 {
-      font-size: 5em;
-      font-weight: 200;
-      letter-spacing: 0.01em;
-      color: $p-blue;
-      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+    & .checkout__title {
+      @include prefixflex();
+      align-items: flex-start;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
     }
   }
 }
