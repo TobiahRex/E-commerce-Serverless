@@ -341,6 +341,7 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
+          flex-direction: column;
           width: 28em;
           height: 17.5em;
           padding: .5em;
@@ -369,8 +370,21 @@
               }
             }
             & h3 {
-
+              color: $p-blue;
             }
+          }
+        }
+        & .checkout__grand-total--terms-agreement {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & input {
+            width: 2em;
+          }
+          & p {
+            color: $p-blue;
+            font-size: 1.4em;
+            margin-right: .71em;
           }
         }
       }

@@ -515,6 +515,14 @@ export default function ExpressCheckout() {
               <input type="checkbox" className="checkbox" />
               <p>I have read & agree to all Terms & Conditions</p>
             </div>
+            <div className="checkout__grand-total--purchase-btn">
+              <button>
+                <span className="btn-flex-parent">
+                  <FontAwesome name="barcode" />
+                  <p>Place Order Now</p>
+                </span>
+              </button>
+            </div>
           </div>
           <div className="checkout__error-dialogue ">
             <h3>Error</h3>
