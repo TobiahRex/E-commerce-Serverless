@@ -120,11 +120,13 @@
                 display: block;
                 position: absolute;
                 opacity: 1;
-                height: 9em;
+                height: 8em;
                 width: 21em;
                 padding: 1em;
                 z-index: 5;
-                background-color: orange;
+                background-color: $s-white;
+                border: 1px solid $p-grey;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, .25);
                 & .dd-content__list {
                   list-style-type: none;
                   padding: 0;
@@ -134,23 +136,37 @@
                     justify-content: flex-start;
                     align-items: center;
                     transition: all .3s ease-in-out;
+                    cursor: pointer;
                     &:hover,
                     &:focus,
                     &:active {
                       background-color: $p-blue;
                       & .list__option--icon,
-                      .list__option--icon > span  {
-                        color: $p-white;
+                      .list__option--label {
+                        & p, span {
+                          color: $p-white;
+                        }
                       }
                     }
                     & .list__option--icon {
                       @include prefixflex();
                       justify-content: center;
                       align-items: center;
+                      height: 2.5em;
+                      width: 2.5em;
                       & span {
                         color: $p-blue;
-                        font-size: 1.8em;
+                        font-size: 2em;
                         font-weight: 400;
+                      }
+                    }
+                    & .list__option--label {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      & p {
+                        color: $p-blue;
+                        font-weight: 200;
                       }
                     }
                   }
