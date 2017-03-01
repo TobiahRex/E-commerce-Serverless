@@ -132,8 +132,8 @@ export default function AllProducts() {
             </div>
           </div>
           <div className="main--table">
-            <div className="table__row">
-              <div className="row__image">
+            <div className="table__row--list-view" style={{ display: 'none' }}>
+              <div className="row--image">
                 <img className="image--src" alt="NJ2JP Juice" />
                 {/* TODO: Set this image--label dynamically based on sales analytics. */}
                 <div className="image--label">Hot</div>
@@ -143,7 +143,7 @@ export default function AllProducts() {
                   <h3>Buy 4 Bottles Get 25% Off</h3>
                 </div>
                 <div className="row__title">
-                  <h3>Strawberries N' Cream</h3>
+                  <h3>Strawberries {'N\''} Cream</h3>
                 </div>
                 <div className="row__price">
                   <h3 className="row__price--label">
@@ -205,6 +205,41 @@ export default function AllProducts() {
                       Maximum of 4 bottles per Customer, per Address, per Japanese Law.
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div className="table__row--grid-view">
+              <div className="row--card">
+                <div className="row__image">
+                  <img className="image--src" alt="NJ2JP Juice" />
+                  {/* TODO: Set this image--label dynamically based on sales analytics. */}
+                  <div className="image--label">Hot</div>
+                </div>
+                <div className="row__desc">
+                  <div className="desc__title">
+                    <h3>
+                      Strawberries N' Cream
+                    </h3>
+                    <span className="nicotine-sub-label">
+                      Nicotine
+                    </span>
+                  </div>
+                  <div className="desc__price">
+                    <h3>
+                      <FontAwesome name="usd" />
+                      {/* TODO: dynamically set this value */}
+                      30.00
+                    </h3>
+                  </div>
+                </div>
+                <div className="row__nicotine-strengths">
+                  <p>Nicotine Strength (mg)</p>
+                  <ul className="nicotine-strenghts--list">
+                    <li className="list--option">2</li>
+                    <li className="list--option">4</li>
+                    <li className="list--option">6</li>
+                    <li className="list--option">8</li>
+                  </ul>
                 </div>
               </div>
             </div>
