@@ -5,7 +5,7 @@
   .checkout__container {
     max-width: 1086px;
     width: 100%;
-    height: 200em;
+    height: 500em;
     & .checkout__breadcrumb--container {
       @include prefixflex();
       justify-content: flex-start;
@@ -42,9 +42,9 @@
     & .checkout__title {
       @include prefixflex();
       align-items: flex-start;
-      height: 8em;
+      height: 6em;
       h1 {
-        font-size: 5em;
+        font-size: 3.5em;
         font-weight: 200;
         letter-spacing: 0.01em;
         color: $p-blue;
@@ -56,6 +56,10 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-start;
+      width: 100%;
+      & .checkout__grid {
+        width: 100%;
+      }
       & .checkout__billing,
       .checkout__shipping-method,
       .checkout__grand-total,
@@ -70,14 +74,14 @@
         align-items: center;
         flex-direction: column;
         height: 86em;
-        width: 34em;
+        width: 100%;
         background-color: $p-grey;
         margin: 0 0 2em 0;
         order: 1;
         & .title {
           @include prefixflex();
           align-items: center;
-          width: 29em;
+          width: 90%;
           height: 6.5em;
           background-color: $p-blue;
           margin: 2em auto 2em auto;
@@ -91,7 +95,7 @@
           justify-content: center;
           align-items: center;
           height: 6.5em;
-          width: 29em;
+          width: 90%;
           margin-top: 1em;
           & div > input {
             color: $p-blue;
@@ -149,7 +153,6 @@
       }
       & .checkout__shipping-method {
         height: 18.5em;
-        order: 4;
         .input__row {
           margin-top: 0;
         }
