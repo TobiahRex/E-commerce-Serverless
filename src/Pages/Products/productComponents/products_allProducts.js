@@ -39,7 +39,10 @@ export default function AllProducts() {
                     </span>
                   </button>
                 </div>
-                <div className="sort-position--dd-content">
+                <div
+                  className="sort-position--dd-content"
+                  style={{ display: 'none' }}
+                >
                   <ul className="dd-content__list">
                     <li className="list__option">
                       <div className="list__option--icon">
@@ -78,43 +81,50 @@ export default function AllProducts() {
               </div>
             </div>
             <div className="toolbar--show-per">
-              <div className="title-bar">
-                {/* TODO: Change number in title to dynamic quality */}
-                <p>Show 5 per page</p>
-                <button>
-                  <span className="btn-flex-parent">
-                    <FontAwesome name="angle-down" />
-                  </span>
-                </button>
-              </div>
-              <div className="dd-content">
-                <ul className="dd-content__list">
-                  <li className="option">
-                    <div className="option__icon">
-                      <FontAwesome name="angle-right" />
-                    </div>
-                    <div className="option__label">
-                      <p>Name</p>
-                    </div>
-                  </li>
-                  <li className="option">
-                    <div className="option__icon">
-                      <FontAwesome name="angle-right" />
-                    </div>
-                    <div className="option__label">
-                      <p>Price</p>
-                    </div>
-                  </li>
-                  <li className="option">
-                    <div className="option__icon">
-                      <FontAwesome name="angle-right" />
-                    </div>
-                    <div className="option__label">
-                      <p>Popularity</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <span className="relative-parent">
+                <div className="show-per--title-bar">
+                  <p>Show
+                    <span className="show-per--label">
+                      {/* TODO: Change number in title to dynamic quality */}
+                      {'\u00A0'}5{'\u00A0'}
+                    </span>
+                    per page
+                  </p>
+                  <button className="dd-button">
+                    <span className="btn-flex-parent">
+                      <FontAwesome name="angle-down" />
+                    </span>
+                  </button>
+                </div>
+                <div className="show-per--dd-content">
+                  <ul className="dd-content__list">
+                    <li className="option">
+                      <div className="option__icon">
+                        <FontAwesome name="angle-right" />
+                      </div>
+                      <div className="option__label">
+                        <p>Name</p>
+                      </div>
+                    </li>
+                    <li className="option">
+                      <div className="option__icon">
+                        <FontAwesome name="angle-right" />
+                      </div>
+                      <div className="option__label">
+                        <p>Price</p>
+                      </div>
+                    </li>
+                    <li className="option">
+                      <div className="option__icon">
+                        <FontAwesome name="angle-right" />
+                      </div>
+                      <div className="option__label">
+                        <p>Popularity</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </span>
             </div>
             <div className="toolbar--visible">
               {/* TODO: Set interger dynamically */}
