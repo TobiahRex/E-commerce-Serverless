@@ -68,7 +68,7 @@
         height: 100%;
         width: 78.8em;
         background-color: pink;
-        & .body__toolbar {
+        & .main--toolbar {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -77,8 +77,8 @@
           height: 5.5em;
           background-color: blue;
         }
-        & .body__main--table {
-          height: 100%;
+        & .main--table {
+          height: 100em;
           width: 100%;
           margin-top: 1em;
           background-color: green;

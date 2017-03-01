@@ -133,11 +133,34 @@ export default function AllProducts() {
           </div>
           <div className="main--table">
             <div className="table__row">
-              <div className="row--image">
-                
+              <div className="row__image">
+                <img className="image--src" alt="NJ2JP Juice" />
+                {/* TODO: Set this image--label dynamically based on sales analytics. */}
+                <div className="image--label">Hot</div>
               </div>
               <div className="row--desc">
-
+                <div className="row__promotion">
+                  <h3>Buy 4 Bottles Get 25% Off</h3>
+                </div>
+                <div className="row__title">
+                  <h3>Strawberries N' Cream</h3>
+                </div>
+                <div className="row__price">
+                  <h3 className="row__price--label">
+                    <FontAwesome name="usd" />
+                    {/* TODO: Set this value dynamically */}
+                    30.00
+                  </h3>
+                  <p className="row__price--tax-label">
+                    <FontAwesome name="plus" />{'\u00A0'}Tax
+                  </p>
+                  <p className="row__price--include-shipping">
+                    Free Shipping
+                  </p>
+                </div>
+                <div className="row__nicotine-strengths">
+                  
+                </div>
               </div>
             </div>
           </div>
