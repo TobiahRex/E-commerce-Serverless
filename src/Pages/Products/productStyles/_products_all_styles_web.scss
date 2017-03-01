@@ -62,13 +62,15 @@
         background-color: pink;
         & .main--toolbar {
           @include prefixflex();
-          justify-content: flex-start;
+          justify-content: space-between;;
           align-items: center;
           padding: 1.2em;
           max-width: 106.2em;
           width: 100%;
           height: 5.5em;
-          background-color: blue;
+          background-color: $p-grey;
+          & .toolbar--left {
+
           & .toolbar--sort-position,
           .toolbar--show-per {
             @include prefixflex();
@@ -182,9 +184,9 @@
                 }
               }
             }
-            & .toolbar--show-per {
-              margin-left: 2em;
-            }
+          }
+          & .toolbar--show-per {
+            margin-left: 2em;
           }
           & .toolbar--view {
             @include prefixflex();
@@ -217,15 +219,30 @@
             }
           }
           & .toolbar--visible,
-          .toolbar--visbile-total {
-            margin-left: 2em;
+          .toolbar--visible-total {
+            margin-left: .5em;
             & p {
               color: $t-grey;
-              font-size: 1.8em;
-              font-weight: 400;
+              font-size: 1.6em;
+              font-weight: 200;
+              & .visible--label,
+              .visible-total--label {
+                font-weight: 400;
+              }
             }
           }
         }
+        & .toolbar--right {
+          & .toolbar--pagination {
+            justify-content: flex-end;
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            max-width: 33em;
+            width: 6em;
+          }
+        }
+      }
         & .main--table {
           height: 100em;
           width: 100%;

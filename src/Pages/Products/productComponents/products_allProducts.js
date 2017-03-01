@@ -25,123 +25,131 @@ export default function AllProducts() {
       <div className="products__body">
         <div className="body--main">
           <div className="main--toolbar">
-            <div className="toolbar--sort-position">
-              <span className="relative-parent">
-                <div className="sort-position--title-bar">
-                  <p>Sort By{'\u00A0'}
-                    <span className="sort-position--label">
-                      Position
-                    </span>
-                  </p>
-                  <button className="ddn-button">
-                    <span className="btn-flex-parent">
-                      <FontAwesome name="angle-down" />
-                    </span>
-                  </button>
-                </div>
-                <div
-                  className="sort-position--dd-content"
-                  style={{ display: 'none' }}
-                >
-                  <ul className="dd-content__list">
-                    <li className="list__option">
-                      <div className="list__option--icon">
-                        <FontAwesome name="angle-right" />
-                      </div>
-                      <div className="list__option--label">
-                        <p>Name</p>
-                      </div>
-                    </li>
-                    <li className="list__option">
-                      <div className="list__option--icon">
-                        <FontAwesome name="angle-right" />
-                      </div>
-                      <div className="list__option--label">
-                        <p>Price</p>
-                      </div>
-                    </li>
-                    <li className="list__option">
-                      <div className="list__option--icon">
-                        <FontAwesome name="angle-right" />
-                      </div>
-                      <div className="list__option--label">
-                        <p>Popularity</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </span>
-            </div>
-            <div className="toolbar--view">
-              <div className="view--grid">
-                <FontAwesome name="th-large" />
-              </div>
-              <div className="view--list">
-                <FontAwesome name="list-alt" />
-              </div>
-            </div>
-            <div className="toolbar--show-per">
-              <span className="relative-parent">
-                <div className="show-per--title-bar">
-                  <p>Show
-                    <span className="show-per--label">
-                      {/* TODO: Change number in title to dynamic quality */}
-                      {'\u00A0'}5{'\u00A0'}
-                    </span>
-                    per page
-                  </p>
-                  <button className="ddn-button">
-                    <span className="btn-flex-parent">
-                      <FontAwesome name="angle-down" />
-                    </span>
-                  </button>
-                </div>
-                <div className="show-per--dd-content">
-                  <ul className="dd-content__list">
-                    <li className="list__option">
-                      <div className="list__option--icon">
-                        <FontAwesome name="angle-right" />
-                      </div>
-                      <div className="list__option--label">
-                        <p>Name</p>
-                      </div>
-                    </li>
-                    <li className="list__option">
-                      <div className="list__option--icon">
-                        <FontAwesome name="angle-right" />
-                      </div>
-                      <div className="list__option--label">
-                        <p>Price</p>
-                      </div>
-                    </li>
-                    <li className="list__option">
-                      <div className="list__option--icon">
-                        <FontAwesome name="angle-right" />
-                      </div>
-                      <div className="list__option--label">
-                        <p>Popularity</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </span>
-            </div>
-            <div className="toolbar--visible">
-              {/* TODO: Set interger dynamically */}
-              <p>5 item(s)</p>
-            </div>
-            <div className="toolbar--visible-total">
-              {/* TODO: set interger dynamically */}
-              <p>of
-                <span className="visible-total--label">
-                  {'\u00A0'}10{'\u00A0'}
+            <div className="toolbar--left">
+              <div className="toolbar--sort-position">
+                <span className="relative-parent">
+                  <div className="sort-position--title-bar">
+                    <p>Sort By{'\u00A0'}
+                      <span className="sort-position--label">
+                        Position
+                      </span>
+                    </p>
+                    <button className="ddn-button">
+                      <span className="btn-flex-parent">
+                        <FontAwesome name="angle-down" />
+                      </span>
+                    </button>
+                  </div>
+                  <div
+                    className="sort-position--dd-content"
+                    style={{ display: 'none' }}
+                  >
+                    <ul className="dd-content__list">
+                      <li className="list__option">
+                        <div className="list__option--icon">
+                          <FontAwesome name="angle-right" />
+                        </div>
+                        <div className="list__option--label">
+                          <p>Name</p>
+                        </div>
+                      </li>
+                      <li className="list__option">
+                        <div className="list__option--icon">
+                          <FontAwesome name="angle-right" />
+                        </div>
+                        <div className="list__option--label">
+                          <p>Price</p>
+                        </div>
+                      </li>
+                      <li className="list__option">
+                        <div className="list__option--icon">
+                          <FontAwesome name="angle-right" />
+                        </div>
+                        <div className="list__option--label">
+                          <p>Popularity</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </span>
-              total</p>
+              </div>
+              <div className="toolbar--view">
+                <div className="view--grid">
+                  <FontAwesome name="th-large" />
+                </div>
+                <div className="view--list">
+                  <FontAwesome name="list-alt" />
+                </div>
+              </div>
+              <div className="toolbar--show-per">
+                <span className="relative-parent">
+                  <div className="show-per--title-bar">
+                    <p>Show
+                      <span className="show-per--label">
+                        {/* TODO: Change number in title to dynamic quality */}
+                        {'\u00A0'}5{'\u00A0'}
+                      </span>
+                      per page
+                    </p>
+                    <button className="ddn-button">
+                      <span className="btn-flex-parent">
+                        <FontAwesome name="angle-down" />
+                      </span>
+                    </button>
+                  </div>
+                  <div className="show-per--dd-content">
+                    <ul className="dd-content__list">
+                      <li className="list__option">
+                        <div className="list__option--icon">
+                          <FontAwesome name="angle-right" />
+                        </div>
+                        <div className="list__option--label">
+                          <p>Name</p>
+                        </div>
+                      </li>
+                      <li className="list__option">
+                        <div className="list__option--icon">
+                          <FontAwesome name="angle-right" />
+                        </div>
+                        <div className="list__option--label">
+                          <p>Price</p>
+                        </div>
+                      </li>
+                      <li className="list__option">
+                        <div className="list__option--icon">
+                          <FontAwesome name="angle-right" />
+                        </div>
+                        <div className="list__option--label">
+                          <p>Popularity</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </span>
+              </div>
+              <div className="toolbar--visible">
+                {/* TODO: Set interger dynamically */}
+                <p>
+                  <span className="visible--label">
+                    {'\u00A0'}5{'\u00A0'}
+                  </span>
+                item(s)</p>
+              </div>
+              <div className="toolbar--visible-total">
+                {/* TODO: set interger dynamically */}
+                <p>{'\u00A0'}of
+                  <span className="visible-total--label">
+                    {'\u00A0'}10{'\u00A0'}
+                  </span>
+                total</p>
+              </div>
             </div>
-            <div className="toolbar--pagination">
-              <ul className="pagination--list">
-                <li>hi</li>
-              </ul>
+            <div className="toolbar--right">
+              <div className="toolbar--pagination">
+                <ul className="pagination--list">
+                  <li>hi</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="main--table">
