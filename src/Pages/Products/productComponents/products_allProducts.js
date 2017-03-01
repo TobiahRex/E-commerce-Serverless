@@ -318,21 +318,25 @@ export default function AllProducts() {
                   <div className="desc__title-top">
                     <h3>
                       Strawberries N' Cream
+                      <span className="nicotine-sub-label">
+                        {'\u00A0'}Nicotine
+                      </span>
                     </h3>
-                    <span className="nicotine-sub-label">
-                      Nicotine
-                    </span>
                   </div>
                   <div className="desc__title-bottom">
                     <div className="title-bottom--price">
                       <h3>
                         <FontAwesome name="usd" />
                         {/* TODO: dynamically set this value */}
-                        30.00
+                        {'\u00A0'}30.00
                       </h3>
+                      <p>
+                        <FontAwesome name="plus" />
+                        {'\u00A0'}Tax
+                      </p>
                     </div>
                     <div className="title-bottom--in-stock">
-                      <h3>In Stock</h3>
+                      <p>In Stock</p>
                       <p>SKU:
                         {/* TODO: dynamically set this SKU value */}
                         <span className="sku-number">
@@ -347,16 +351,16 @@ export default function AllProducts() {
                   <p>Nicotine Strength (mg)</p>
                   <ul className="nicotine-strenghts--list">
                     <li className="list--option">
-                      <button className="option--button" >2</button>
+                      <button className="option--button sweep-right" >2</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >4</button>
+                      <button className="option--button sweep-right" >4</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >6</button>
+                      <button className="option--button sweep-right" >6</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >8</button>
+                      <button className="option--button sweep-right" >8</button>
                     </li>
                   </ul>
                 </div>
