@@ -61,9 +61,24 @@
         background-color: pink;
       }
       & .products__main {
-        height: 5em;
+        height: 100%;
         width: 78.8em;
         background-color: pink;
+        & .products__main--toolbar {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          padding: 1.2em;
+          width: 76.4em;
+          height: 5.5em;
+          background-color: blue;
+        }
+        & .products__main--table {
+          height: 100%;
+          width: 100%;
+          margin-top: 1em;
+          background-color: green;
+        }
       }
     }
   }
