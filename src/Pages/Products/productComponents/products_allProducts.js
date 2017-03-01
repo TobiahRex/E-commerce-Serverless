@@ -151,15 +151,60 @@ export default function AllProducts() {
                     {/* TODO: Set this value dynamically */}
                     30.00
                   </h3>
-                  <p className="row__price--tax-label">
+                  <p className="price--tax-label">
                     <FontAwesome name="plus" />{'\u00A0'}Tax
                   </p>
-                  <p className="row__price--include-shipping">
+                  <p className="price--include-shipping">
                     Free Shipping
                   </p>
                 </div>
                 <div className="row__nicotine-strengths">
-                  
+                  <p className="nicotine-strengths--label">
+                    Nicotine Strengths (mgs)
+                  </p>
+                  <ul className="nicotine-strenghts--list">
+                    <li className="list--option">2</li>
+                    <li className="list--option">4</li>
+                    <li className="list--option">6</li>
+                    <li className="list--option">8</li>
+                  </ul>
+                </div>
+                <div className="row__product-blurb">
+                  <p>A delicious and intense Fruity Pebbles Cereal flavor. It’s D-licious!!!</p>
+                </div>
+                <div className="row__action-btns">
+                  <div className="action-btns--container">
+                    <div className="action-btns__qty">
+                      <ul className="qty--list">
+                        <li className="list--label">
+                          <p>Quantity</p>
+                        </li>
+                        <li className="list--readout">
+                          {/* TODO: Set this dynamically */}
+                          <p>0</p>
+                        </li>
+                        <li className="list--pm-btns">
+                          <button className="pm-btns--plus">
+                            <FontAwesome name="plus" />
+                          </button>
+                          <button className="pm-btns--minus">
+                            <FontAwesome name="minus" />
+                          </button>
+                        </li>
+                      </ul>
+                      <div className="qty--atc">
+                        <button className="atc--btn">
+                          <span className="btn-flex-parent">
+                            <FontAwesome name="shopping-cart" />
+                            Add To Cart
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                    <p className="action-btns--qty-msg">
+                      Maximum of 4 bottles per Customer, per Address, per Japanese Law.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
