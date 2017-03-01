@@ -130,9 +130,13 @@ export default function AllProducts() {
               {/* TODO: Set interger dynamically */}
               <p>5 item(s)</p>
             </div>
-            <div className="toolbar--visible--total">
+            <div className="toolbar--visible-total">
               {/* TODO: set interger dynamically */}
-              <p>of 10 total</p>
+              <p>of
+                <span className="visible-total--label">
+                  {'\u00A0'}10{'\u00A0'}
+                </span>
+              total</p>
             </div>
             <div className="toolbar--pagination">
               <ul className="pagination--list">

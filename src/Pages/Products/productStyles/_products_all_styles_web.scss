@@ -216,6 +216,15 @@
               margin-left: .1em;
             }
           }
+          & .toolbar--visible,
+          .toolbar--visbile-total {
+            margin-left: 2em;
+            & p {
+              color: $t-grey;
+              font-size: 1.8em;
+              font-weight: 400;
+            }
+          }
         }
         & .main--table {
           height: 100em;
