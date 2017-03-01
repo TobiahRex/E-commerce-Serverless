@@ -286,9 +286,11 @@ export default function AllProducts() {
             <div className="table__row--grid-view">
               <div className="row--card">
                 <div className="row__image">
+                  <div className="image--label">
+                    <p>Hot</p>
+                  </div>
                   <img className="image--src" alt="NJ2JP Juice" />
                   {/* TODO: Set this image--label dynamically based on sales analytics. */}
-                  <div className="image--label">Hot</div>
                   <div className="image--rating">
                     <ul className="image__stars-list">
                       <li className="stars--star">
@@ -307,7 +309,7 @@ export default function AllProducts() {
                         <FontAwesome name="star" />
                       </li>
                     </ul>
-                    <Link to="/reviews/123123" className="image__read-reviews">
+                    <Link to="/reviews/123123" className="image__read-reviews" style={{ display: 'none' }}>
                       Read Reviews
                     </Link>
                   </div>

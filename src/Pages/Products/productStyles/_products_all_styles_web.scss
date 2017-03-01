@@ -305,7 +305,8 @@
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              height: 31.5em;
+              flex-direction: column;
+              // height: 31.5em;
               width: 31.5em;
               background-color: $p-white;
               & .row__image {
@@ -313,17 +314,57 @@
                 justify-content: center;
                 align-items: center;
                 overflow: hidden;
+                height: 17.5em;
+                width: 20.5em;
+                & .image--label {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  text-transform: uppercase;
+                  height: 100%;
+                  width: 8em;
+                  & p {
+                    height: 1em;
+                    width: 2em;
+                    color: $p-white;
+                    font-size: 2em;
+                    font-weight: 800;
+                    font-family: $p-font;
+                    background-color: $p-blue;
+                  }
+                }
                 & .image--src {
+                  // height: 100%;
+                  max-width: 4.5em;
                   content: $jc-fbb;
                   top: 2em;
-                  max-width: 3.2em;
                 }
-                & .image--label {
-                  height: 2em;
-                  width: 4em;
-                  position: absolute;
-                  z-index: 2;
-                  background-color: $p-blue;
+                & .image--rating {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: flex-end;
+                  height: 100%;
+                  width: 8em;
+                  & .image__stars-list {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    list-style-type: none;
+                    background-color: $p-red;
+                    box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                    & .starts-star {
+                      margin-left: 1px;
+                      color: $p-white;
+                      font-size: 2em;
+                      font-weight: 800;
+                    }
+                    & .image__read-reviews {
+                      color: $p-white;
+                      font-weight: 200;
+                      font-size: 1em;
+                      font-family: $p-font;
+                    }
+                  }
                 }
               }
             }
