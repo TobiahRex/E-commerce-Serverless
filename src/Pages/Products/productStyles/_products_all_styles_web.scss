@@ -85,6 +85,26 @@
                 & p {
                   font-size: 1.4em;
                   font-weight: 200;
+                  & .sort-position--label {
+                    color: $p-blue;
+                    font-size: 1.4em;
+                    font-family: $p-font;
+                    font-weight: 400;
+                  }
+                }
+                & .ddn-button {
+                  border: none;
+                  background-color: $p-red;
+                  & .btn-flex-parent {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    & span {
+                      color: $p-white;
+                      font-size: 1.8em;
+                      font-weight: 400;
+                    }
+                  }
                 }
               }
               & .sort-position--dd-content {

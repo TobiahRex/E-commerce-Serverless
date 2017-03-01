@@ -29,7 +29,7 @@ export default function AllProducts() {
               <span className="relative-parent">
                 <div className="sort-position--title-bar">
                   <p>Sort By
-                    <span className="sort-position_label">
+                    <span className="sort-position--label">
                       Position
                     </span>
                   </p>
