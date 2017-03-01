@@ -30,40 +30,40 @@ export default function AllProducts() {
             </h1>
           </div>
         </div>
-        <div className="products__main">
-          <div className="products__main--toolbar">
+        <div className="body--main">
+          <div className="main--toolbar">
             <div className="toolbar--sort-position">
-              <div className="title-bar">
+              <div className="sort-position--title-bar">
                 <p>Sort By Position</p>
-                <button>
+                <button className="ddn-button">
                   <span className="btn-flex-parent">
                     <FontAwesome name="angle-down" />
                   </span>
                 </button>
               </div>
-              <div className="dd-content">
+              <div className="sort-position--dd-content">
                 <ul className="dd-content__list">
-                  <li className="option">
-                    <div className="option__icon">
+                  <li className="list__option">
+                    <div className="list__option--icon">
                       <FontAwesome name="angle-right" />
                     </div>
-                    <div className="option__label">
+                    <div className="list__option--label">
                       <p>Name</p>
                     </div>
                   </li>
-                  <li className="option">
-                    <div className="option__icon">
+                  <li className="list__option">
+                    <div className="list__option--icon">
                       <FontAwesome name="angle-right" />
                     </div>
-                    <div className="option__label">
+                    <div className="list__option--label">
                       <p>Price</p>
                     </div>
                   </li>
-                  <li className="option">
-                    <div className="option__icon">
+                  <li className="list__option">
+                    <div className="list__option--icon">
                       <FontAwesome name="angle-right" />
                     </div>
-                    <div className="option__label">
+                    <div className="list__option--label">
                       <p>Popularity</p>
                     </div>
                   </li>
@@ -131,8 +131,15 @@ export default function AllProducts() {
               </ul>
             </div>
           </div>
-          <div className="products__main--table">
-            <h1>Table</h1>
+          <div className="main--table">
+            <div className="table__row">
+              <div className="row--image">
+                
+              </div>
+              <div className="row--desc">
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
