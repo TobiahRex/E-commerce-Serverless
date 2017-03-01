@@ -1,18 +1,70 @@
 @media only screen and (min-width: 1079px) {
   .products__container {
-    @include prefixflex();
-    justify-content: space-between;
-    align-items: center;
     max-width: 1086px;
     width: 100%;
     height: 100%;
-    & .products__sidebar {
+    & .products__breadcrumb--container {
       @include prefixflex();
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      height: 30.5em;
-      width: 28.8em;
-      
+      width: 100%;
+      height: 6em;
+      padding-right: 3em;
+      background-color: $p-white;
+      & ul.list {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 1em;
+        & li.path {
+          font-size: 1.8em;
+          font-family: $p-font;
+          font-weight: normal;
+          color: $p-blue;
+          & .path__link {
+            color: $p-blue;
+          }
+          & .path__link--right-chevron {
+            font-size: 18px;
+            color: $p-blue;
+            margin: 0 .5em -1em .5em;
+            bottom: -1px;
+            position: relative;
+          }
+        }
+      }
+    }
+    & .products__title {
+      @include prefixflex();
+      align-items: flex-start;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
+    & .products__body {
+      @include prefixflex();
+      justify-content: space-between;;
+      align-items: flex-start;
+      & .products__sidebar {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 30.5em;
+        width: 28.8em;
+        background-color: pink;
+      }
+      & .products__main {
+        height: 5em;
+        width: 78.8em;
+        background-color: pink;
+      }
     }
   }
 }
