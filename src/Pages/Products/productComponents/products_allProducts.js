@@ -23,14 +23,16 @@ export default function AllProducts() {
         <h1>Juices</h1>
       </div>
       <div className="products__body">
-        <div className="products__sidebar">
-          <div className="products__sidebar--nicotine">
-            <h1>Nicotine Strength</h1>
+        <div className="body--sidebar">
+          <div className="sidebar__title">
+            <h1 className="sidebar__title--nicotine-strength">
+              Nicotine Strength
+            </h1>
           </div>
         </div>
         <div className="products__main">
           <div className="products__main--toolbar">
-            <div className="toolbar__sort-position">
+            <div className="toolbar--sort-position">
               <div className="title-bar">
                 <p>Sort By Position</p>
                 <button>
@@ -68,7 +70,7 @@ export default function AllProducts() {
                 </ul>
               </div>
             </div>
-            <div className="toolbar__view">
+            <div className="toolbar--view">
               <div className="view--grid">
                 <FontAwesome name="th-large" />
               </div>
@@ -76,7 +78,7 @@ export default function AllProducts() {
                 <FontAwesome name="list-alt" />
               </div>
             </div>
-            <div className="toolbar__show-per">
+            <div className="toolbar--show-per">
               <div className="title-bar">
                 {/* TODO: Change number in title to dynamic quality */}
                 <p>Show 5 per page</p>
@@ -115,15 +117,15 @@ export default function AllProducts() {
                 </ul>
               </div>
             </div>
-            <div className="toolbar__visible">
+            <div className="toolbar--visible">
               {/* TODO: Set interger dynamically */}
               <p>5 item(s)</p>
             </div>
-            <div className="toolbar__visible--total">
+            <div className="toolbar--visible--total">
               {/* TODO: set interger dynamically */}
               <p>of 10 total</p>
             </div>
-            <div className="toolbar__pagination">
+            <div className="toolbar--pagination">
               <ul className="pagination--list">
                 <li>hi</li>
               </ul>
