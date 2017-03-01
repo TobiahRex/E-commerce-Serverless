@@ -94,7 +94,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
           <button className="shopping-cart-mobile-user-actions-btns-clear sweep-right">
             Clear Shopping Cart
           </button>
-          <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => browserHistory.push('/checkout')}>
+          <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
             <span className="btn-flex-parent">
               <FontAwesome name="credit-card-alt" />
               {'\u0020'}Express Checkout
@@ -123,7 +123,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
             </div>
           </div>
           <div className="shopping-cart-mobile-continue-shopping">
-            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/juices')}>
+            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/')}>
               Continue Shopping
             </button>
           </div>

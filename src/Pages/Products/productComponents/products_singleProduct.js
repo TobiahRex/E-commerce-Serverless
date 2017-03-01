@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 export default function SingleProduct() {
   return (
@@ -103,8 +103,10 @@ export default function SingleProduct() {
                 </ul>
               </div>
               <button className="single-product-info-desc-actions-btn-add sweep-right">
-                <FontAwesome className="sp-cart-icon" name="shopping-cart" />
-                Add To Cart
+                <span className="btn-flex-parent">
+                  <FontAwesome className="sp-cart-icon" name="shopping-cart" />
+                  Add To Cart
+                </span>
               </button>
             </div>
             <div className="single-product-info-desc-actions-warning-msg">
@@ -139,7 +141,7 @@ export default function SingleProduct() {
         </div>
       </div>
       <div className="single-product-back-btn-container">
-        <button className="single-product-back-btn sweep-right">
+        <button className="single-product-back-btn sweep-right" onClick={() => browserHistory.push('/')}>
           Back to Homepage
         </button>
       </div>

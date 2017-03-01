@@ -369,9 +369,7 @@
               height: 3.33em;
               max-width: 10em;
               width: 10em;
-              color: $p-white;
               font-size: 1.8em;
-              font-weight: 200;
               background-color: $p-red;
               border: none;
               cursor: pointer;
@@ -381,6 +379,14 @@
               &:active,
               &:focus {
                 background-color: $p-blue;
+              }
+              & .btn-flex-parent {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                color: $p-white;
+                font-weight: 200;
+                font-family: $p-font;
               }
             }
           }
@@ -460,7 +466,7 @@
         background-color: $p-red;
         font-family: $p-font;
         font-size: 1.8em;
-        text-transform: uppercase;
+        font-weight: 200;
         color: $p-white;
         cursor: pointer;
         @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .25));

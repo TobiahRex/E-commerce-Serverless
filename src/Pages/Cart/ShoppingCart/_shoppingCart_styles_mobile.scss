@@ -58,13 +58,13 @@
         width: 100%;
         height: 10em;
         button {
+          height: 3.33em;
+          width: 80%;
+          color: $p-white;
           font-family: $p-font;
+          font-size: 1.8em;
           font-weight: 100;
           border: none;
-          height: 4em;
-          width: 80%;
-          font-size: 1.5em;
-          color: $p-white;
           background-color: $p-red;
           cursor: pointer;
           @include prefixed(box-shadow, 0 3px 3px rgba(0,0,0,.25));
@@ -242,11 +242,11 @@
                       & .shopping-cart-mobile-product-actions-qty-btn-plus,
                       .shopping-cart-mobile-product-actions-qty-btn-minus {
                         button {
+                          height: 2.3em;
+                          width: 4.5em;
                           @include prefixflex();
                           justify-content: center;
                           align-items: center;
-                          height: 2.3em;
-                          width: 4.5em;
                           margin: .2em 0 .2em .5em;
                           border: none;
                           background-color: $p-red;
@@ -347,10 +347,11 @@
               border-bottom: 1px solid rgba(0,0,0,.2);
               button {
                 width: 100%;
-                height: 4em;
+                height: 3.33em;
                 color: $p-white;
-                font-size: 1.5em;
+                font-size: 1.8em;
                 font-family: $p-font;
+                font-weight: 200;
                 letter-spacing: .02em;
                 background-color: $p-red;
                 z-index: 1;
@@ -439,14 +440,12 @@
         width: 100%;
         height: 15em;
         & button {
-          // @include prefixflex();
-          // justify-content: center;
-          // align-items: center;
-          height: 4em;
+          height: 3.33em;
           width: 100%;
           color: $p-white;
           font-family: $p-font;
-          font-size: 1.5em;
+          font-size: 1.8em;
+          font-weight: 200;
           border: none;
           background-color: $p-red;
           cursor: pointer;

@@ -381,11 +381,14 @@
               &:focus {
                 background-color: $p-blue;
               }
-              & .sp-cart-icon {
-                font-size: 25px;
-                position: relative;
-                bottom: -2px;
-                padding-right: .4em;
+              & .btn-flex-parent {
+                font-family: $p-font;
+                & .sp-cart-icon {
+                  font-size: 25px;
+                  position: relative;
+                  bottom: -2px;
+                  padding-right: .4em;
+                }
               }
             }
           }
@@ -471,8 +474,8 @@
         border: none;
         background-color: $p-red;
         font-family: $p-font;
+        font-weight: 200;
         font-size: 1.8em;
-        text-transform: uppercase;
         color: $p-white;
         cursor: pointer;
         @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .25));

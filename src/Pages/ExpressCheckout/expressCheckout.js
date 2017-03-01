@@ -513,7 +513,9 @@ export default function ExpressCheckout() {
             </div>
             <div className="terms-agreement">
               <input type="checkbox" className="checkbox" value={'\f067'} />
-              <p>I have read & agree to all Terms & Conditions</p>
+              <p>I have read & agree to all <Link to="/terms_and_conditions">
+                Terms & Conditions
+              </Link></p>
             </div>
             <div className="purchase-btn">
               <button

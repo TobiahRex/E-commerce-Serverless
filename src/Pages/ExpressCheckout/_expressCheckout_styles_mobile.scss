@@ -321,14 +321,16 @@
           }
           & .input__row--guest-register {
             & button {
-              height: 3.57em;
-              width: 17.8em;
+              height: 3.33em;
+              width: 16em;
               color: $p-white;
-              font-size: 1.4em;
+              font-size: 1.8em;
               font-family: $p-font;
+              font-weight: 200;
               border: none;
               background-color: $p-red;
               cursor: pointer;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
             }
           }
         }
@@ -388,6 +390,13 @@
             color: $p-blue;
             font-size: 1.4em;
             margin-left: .71em;
+            max-width: 13em;
+            text-align: center;
+            a {
+              color: $p-blue;
+              text-decoration: underline;
+              cursor: pointer;
+            }
           }
         }
         & .purchase-btn {
@@ -453,8 +462,8 @@
         flex-direction: column;
         margin-right: 0;
         height: 10em;
-        width: 31em;
-        padding: 1.5em;
+        width: 100%;
+        padding: 1.5em 0 1.5em 0;
         & .spinner-icon {
           @include prefixed(transform, scale(1, -1));
           color: $p-blue;
@@ -477,11 +486,12 @@
         margin-right: 0;
         background-color: $p-white;
         & button {
-          height: 4em;
-          width: 80%;
+          height: 3.33em;
+          width: 16em;
           color: $p-white;
           font-family: $p-font;
-          font-size: 1.5em;
+          font-size: 1.8em;
+          font-weight: 200;
           border: none;
           background-color: $p-red;
           box-shadow: 3px 3px 3px rgba(0,0,0,.25);

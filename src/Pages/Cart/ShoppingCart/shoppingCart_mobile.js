@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
@@ -9,7 +10,7 @@ function ShoppingCartMobile({ renderMobileJuices }) {
   return (
     <div className="shopping-cart-mobile-parent">
       <div className="shopping-cart-mobile-action-btn-top">
-        <button className="shopping-cart-mobile-action-btn-top-checkout sweep-right">
+        <button className="shopping-cart-mobile-action-btn-top-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
           <span className="btn-flex-parent">
             <FontAwesome name="credit-card-alt" />
             {'\u0020'}Express Checkout
