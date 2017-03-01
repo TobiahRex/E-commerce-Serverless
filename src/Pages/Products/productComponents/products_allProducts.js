@@ -90,7 +90,7 @@ export default function AllProducts() {
                     </span>
                     per page
                   </p>
-                  <button className="dd-button">
+                  <button className="ddn-button">
                     <span className="btn-flex-parent">
                       <FontAwesome name="angle-down" />
                     </span>
@@ -98,27 +98,27 @@ export default function AllProducts() {
                 </div>
                 <div className="show-per--dd-content">
                   <ul className="dd-content__list">
-                    <li className="option">
-                      <div className="option__icon">
+                    <li className="list__option">
+                      <div className="list__option--icon">
                         <FontAwesome name="angle-right" />
                       </div>
-                      <div className="option__label">
+                      <div className="list__option--label">
                         <p>Name</p>
                       </div>
                     </li>
-                    <li className="option">
-                      <div className="option__icon">
+                    <li className="list__option">
+                      <div className="list__option--icon">
                         <FontAwesome name="angle-right" />
                       </div>
-                      <div className="option__label">
+                      <div className="list__option--label">
                         <p>Price</p>
                       </div>
                     </li>
-                    <li className="option">
-                      <div className="option__icon">
+                    <li className="list__option">
+                      <div className="list__option--icon">
                         <FontAwesome name="angle-right" />
                       </div>
-                      <div className="option__label">
+                      <div className="list__option--label">
                         <p>Popularity</p>
                       </div>
                     </li>

@@ -182,6 +182,9 @@
                 }
               }
             }
+            & .toolbar--show-per {
+              margin-left: 2em;
+            }
           }
           & .toolbar--view {
             @include prefixflex();
