@@ -97,7 +97,7 @@ export default function AllProducts() {
                       </span>
                     </button>
                   </div>
-                  <div className="show-per--dd-content">
+                  <div className="show-per--dd-content" style={{ display: 'none' }}>
                     <ul className="dd-content__list">
                       <li className="list__option">
                         <div className="list__option--icon">
@@ -147,7 +147,61 @@ export default function AllProducts() {
             <div className="toolbar--right">
               <div className="toolbar--pagination">
                 <ul className="pagination--list">
-                  <li>hi</li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      1
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      2
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      3
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      4
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      5
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      6
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      7
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      8
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      9
+                    </button>
+                  </li>
+                  <li className="pagination__number">
+                    <button className="number--button" onClick={() => console.info('go to next page')} >
+                      10
+                    </button>
+                  </li>
+                  <li className="pagination__next">
+                    <button className="next--icon">
+                      <FontAwesome name="angle-right" />
+                    </button>
+                  </li>
                 </ul>
               </div>
             </div>
