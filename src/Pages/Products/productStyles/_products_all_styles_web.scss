@@ -69,233 +69,265 @@
           height: 4em;
           background-color: $p-grey;
           & .toolbar--left {
-          @include prefixflex;
-          justify-content: center;
-          align-items: center;
-          & .toolbar--sort-position,
-          .toolbar--show-per {
-            @include prefixflex();
+            @include prefixflex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            width: 17.7em;
-            height: 3em;
-            & .relative-parent {
-              display: inline-block;
-              position: relative;
-              & .sort-position--title-bar,
-              .show-per--title-bar {
-                @include prefixflex();
-                justify-content: space-between;
-                align-items: center;
-                background-color: $p-white;
-                padding: 0 0 0 .5em;
-                width: 17em;
-                & p {
-                  font-size: 1.4em;
-                  font-weight: 200;
-                  & .sort-position--label,
-                  .show-per--label {
-                    color: $p-blue;
-                    font-family: $p-font;
-                    font-weight: 400;
-                  }
-                }
-                & .ddn-button {
-                  height: 3em;
-                  width: 3em;
-                  border: none;
-                  background-color: $p-red;
-                  cursor: pointer;
-                  &:hover,
-                  &:active,
-                  &:focus {
-                    background-color: $p-blue;
-                    outline: none;
-                  }
-                  & .btn-flex-parent {
-                    @include prefixflex();
-                    justify-content: center;
-                    align-items: center;
-                    & span {
-                      color: $p-white;
+            & .toolbar--sort-position,
+            .toolbar--show-per {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 17.7em;
+              height: 3em;
+              & .relative-parent {
+                display: inline-block;
+                position: relative;
+                & .sort-position--title-bar,
+                .show-per--title-bar {
+                  @include prefixflex();
+                  justify-content: space-between;
+                  align-items: center;
+                  background-color: $p-white;
+                  padding: 0 0 0 .5em;
+                  width: 17em;
+                  & p {
+                    font-size: 1.4em;
+                    font-weight: 200;
+                    & .sort-position--label,
+                    .show-per--label {
+                      color: $p-blue;
+                      font-family: $p-font;
                       font-weight: 400;
-                      font-size: 2em;
+                    }
+                  }
+                  & .ddn-button {
+                    height: 3em;
+                    width: 3em;
+                    border: none;
+                    background-color: $p-red;
+                    cursor: pointer;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                      background-color: $p-blue;
+                      outline: none;
+                    }
+                    & .btn-flex-parent {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      & span {
+                        color: $p-white;
+                        font-weight: 400;
+                        font-size: 2em;
+                      }
                     }
                   }
                 }
-              }
-              & .sort-position--dd-content,
-              .show-per--dd-content {
-                @include prefixflex();
-                justify-content: center;
-                align-items: center;
-                display: block;
-                position: absolute;
-                opacity: 1;
-                height: 8em;
-                width: 21em;
-                padding: 1em;
-                z-index: 5;
-                background-color: $s-white;
-                border: 1px solid $p-grey;
-                box-shadow: 4px 4px 4px rgba(0, 0, 0, .25);
-                & .dd-content__list {
-                  list-style-type: none;
-                  padding: 0;
-                  margin: 0;
-                  & .list__option {
-                    @include prefixflex();
-                    justify-content: flex-start;
-                    align-items: center;
-                    transition: all .3s ease-in-out;
-                    cursor: pointer;
-                    &:hover,
-                    &:focus,
-                    &:active {
-                      background-color: $p-blue;
-                      & .list__option--icon,
-                      .list__option--label {
-                        & p, span {
-                          color: $p-white;
+                & .sort-position--dd-content,
+                .show-per--dd-content {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  display: block;
+                  position: absolute;
+                  opacity: 1;
+                  height: 8em;
+                  width: 21em;
+                  padding: 1em;
+                  z-index: 5;
+                  background-color: $s-white;
+                  border: 1px solid $p-grey;
+                  box-shadow: 4px 4px 4px rgba(0, 0, 0, .25);
+                  & .dd-content__list {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    & .list__option {
+                      @include prefixflex();
+                      justify-content: flex-start;
+                      align-items: center;
+                      transition: all .3s ease-in-out;
+                      cursor: pointer;
+                      &:hover,
+                      &:focus,
+                      &:active {
+                        background-color: $p-blue;
+                        & .list__option--icon,
+                        .list__option--label {
+                          & p, span {
+                            color: $p-white;
+                          }
+                        }
+                      }
+                      & .list__option--icon {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        height: 2.5em;
+                        width: 2.5em;
+                        & span {
+                          color: $p-blue;
+                          font-size: 2em;
+                          font-weight: 400;
+                        }
+                      }
+                      & .list__option--label {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        & p {
+                          color: $p-blue;
+                          font-weight: 200;
                         }
                       }
                     }
-                    & .list__option--icon {
-                      @include prefixflex();
-                      justify-content: center;
-                      align-items: center;
-                      height: 2.5em;
-                      width: 2.5em;
-                      & span {
-                        color: $p-blue;
-                        font-size: 2em;
-                        font-weight: 400;
-                      }
-                    }
-                    & .list__option--label {
-                      @include prefixflex();
-                      justify-content: center;
-                      align-items: center;
-                      & p {
-                        color: $p-blue;
-                        font-weight: 200;
-                      }
-                    }
                   }
                 }
               }
             }
-          }
-          & .toolbar--show-per {
-            margin-left: 2em;
-          }
-          & .toolbar--view {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            margin-left: 2em;
-            & .view--grid,
-            .view--list {
+            & .toolbar--show-per {
+              margin-left: 2em;
+            }
+            & .toolbar--view {
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              height: 3.3em;
-              width: 4em;
-              background-color: $p-red;
-              cursor: pointer;
-              transition: all .3s ease-in-out;
-              &:hover,
-              &:active,
-              &:focus {
-                background-color: $p-blue;
-              }
-              & span {
-                color: $p-white;
-                font-size: 1.7em;
-                font-weight: 400;
-              }
-            }
-            & .view--list {
-              margin-left: .1em;
-            }
-          }
-          & .toolbar--visible,
-          .toolbar--visible-total {
-            margin-left: .5em;
-            & p {
-              color: $t-grey;
-              font-size: 1.6em;
-              font-weight: 200;
-              & .visible--label,
-              .visible-total--label {
-                font-weight: 400;
-              }
-            }
-          }
-        }
-        & .toolbar--right {
-          @include prefixflex;
-          justify-content: center;
-          align-items: center;
-          & .toolbar--pagination {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            padding: 0 .1em;
-            // width: 6em;
-            // background-color: blue;
-            & .pagination--list {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              max-width: 36em;
-              height: 3.3em;
-              list-style-type: none;
-              padding: 0;
-              margin: 0;
-              overflow: hidden;
-              & .pagination__number,
-               .pagination__next {
+              margin-left: 2em;
+              & .view--grid,
+              .view--list {
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
-                // margin-left: .05em;
-                & .number--button,
-                .next--icon {
-                  height: 1.8em;
-                  width: 1.8em;
-                  border: none;
+                height: 3.3em;
+                width: 4em;
+                background-color: $p-red;
+                cursor: pointer;
+                transition: all .3s ease-in-out;
+                &:hover,
+                &:active,
+                &:focus {
+                  background-color: $p-blue;
+                }
+                & span {
                   color: $p-white;
-                  font-size: 1.8em;
-                  font-weight: 200;
-                  font-family: $p-font;
-                  background-color: $p-red;
-                  cursor: pointer;
-                  padding: 0;
-                  transition: all .3s ease-in-out;
-                  &:hover,
-                  &:active,
-                  &:focus {
-                    background-color: $p-blue;
-                    outline: none;
-                  }
-                  & span {
+                  font-size: 1.7em;
+                  font-weight: 400;
+                }
+              }
+              & .view--list {
+                margin-left: .1em;
+              }
+            }
+            & .toolbar--visible,
+            .toolbar--visible-total {
+              margin-left: .5em;
+              & p {
+                color: $t-grey;
+                font-size: 1.6em;
+                font-weight: 200;
+                & .visible--label,
+                .visible-total--label {
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+          & .toolbar--right {
+            @include prefixflex;
+            justify-content: center;
+            align-items: center;
+            & .toolbar--pagination {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              padding: 0 .1em;
+              // width: 6em;
+              // background-color: blue;
+              & .pagination--list {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                max-width: 36em;
+                height: 3.3em;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+                & .pagination__number,
+                .pagination__next {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  // margin-left: .05em;
+                  & .number--button,
+                  .next--icon {
+                    height: 1.8em;
+                    width: 1.8em;
+                    border: none;
                     color: $p-white;
-                    font-size: 1.11em;
-                    font-weight: 400;
+                    font-size: 1.8em;
+                    font-weight: 200;
+                    font-family: $p-font;
+                    background-color: $p-red;
+                    cursor: pointer;
+                    padding: 0;
+                    transition: all .3s ease-in-out;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                      background-color: $p-blue;
+                      outline: none;
+                    }
+                    & span {
+                      color: $p-white;
+                      font-size: 1.11em;
+                      font-weight: 400;
+                    }
                   }
                 }
               }
             }
           }
         }
-      }
         & .main--table {
           height: 100em;
           width: 100%;
           margin-top: 1em;
           background-color: green;
+          & .table__row--grid-view {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            & .row--card {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 31.5em;
+              width: 31.5em;
+              background-color: $p-white;
+              & .row__image {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                & .image--src {
+                  content: $jc-fbb;
+                  top: 2em;
+                  max-width: 3.2em;
+                }
+                & .image--label {
+                  height: 2em;
+                  width: 4em;
+                  position: absolute;
+                  z-index: 2;
+                  background-color: $p-blue;
+                }
+              }
+            }
+          }
         }
       }
     }
