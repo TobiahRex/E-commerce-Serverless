@@ -114,13 +114,47 @@
                 }
               }
               & .sort-position--dd-content {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
                 display: block;
                 position: absolute;
                 opacity: 1;
-                height: 10em;
-                width: 22em;
+                height: 9em;
+                width: 21em;
+                padding: 1em;
                 z-index: 5;
                 background-color: orange;
+                & .dd-content__list {
+                  list-style-type: none;
+                  padding: 0;
+                  margin: 0;
+                  & .list__option {
+                    @include prefixflex();
+                    justify-content: flex-start;
+                    align-items: center;
+                    transition: all .3s ease-in-out;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                      background-color: $p-blue;
+                      & .list__option--icon,
+                      .list__option--icon > span  {
+                        color: $p-white;
+                      }
+                    }
+                    & .list__option--icon {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      & span {
+                        color: $p-blue;
+                        font-size: 1.8em;
+                        font-weight: 400;
+                      }
+                    }
+                  }
+                }
               }
             }
           }
