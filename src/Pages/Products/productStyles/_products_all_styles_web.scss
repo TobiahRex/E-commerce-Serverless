@@ -54,7 +54,7 @@
     }
     & .products__body {
       @include prefixflex();
-      justify-content: space-between;;
+      justify-content: space-between;
       align-items: flex-start;
       & .body--main {
         height: 100%;
@@ -293,12 +293,13 @@
         }
         & .main--table {
           height: 100em;
-          width: 100%;
+          width: 104.6em;
           margin-top: 1em;
-          background-color: green;
+          padding: 2em;
+          background-color: $p-grey;
           & .table__row--grid-view {
             @include prefixflex();
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: flex-start;
             width: 100%;
             & .row--card {
@@ -306,9 +307,10 @@
               justify-content: center;
               align-items: center;
               flex-direction: column;
-              // height: 31.5em;
-              width: 31.5em;
+              height: 31.5em;
+              width: 21.5em;
               background-color: $p-white;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               & .row__image {
                 @include prefixflex();
                 justify-content: center;
@@ -392,6 +394,9 @@
                   justify-content: flex-start;
                   align-items: center;
                   max-width: 20.5em;
+                  height: 3.5em;
+                  text-align: center;
+                  border-top: 1px solid rgba(0,0,0,.1);
                   & h3 {
                     font-size: 1.6em;
                     font-weight: 800;
@@ -409,6 +414,7 @@
                   justify-content: flex-start;
                   align-items: center;
                   width: 20.5em;
+                  border-top: 1px solid rgba(0,0,0,.1);
                   & .title-bottom--price {
                     @include prefixflex();
                     justify-content: flex-end;
@@ -449,6 +455,7 @@
                     & p {
                       font-size: 1em;
                       font-weight: 200;
+                      line-height: 1.3em;
                     }
                   }
                 }
@@ -459,7 +466,9 @@
                 align-items: center;
                 height: 4em;
                 width: 20.5em;
+                border-top: 1px solid rgba(0,0,0,.1);
                 & p {
+                  text-align: center;
                   font-size: 1em;
                   font-weight: 400;
                   text-transform: uppercase;
@@ -485,6 +494,7 @@
                       font-size: 1em;
                       font-weight: 400;
                       cursor: pointer;
+                      box-shadow: 2px 2px 2px rgba(0,0,0,.25);
                     }
                   }
                 }

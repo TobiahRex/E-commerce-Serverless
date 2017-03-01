@@ -367,9 +367,11 @@ export default function AllProducts() {
               </div>
               <div className="row--card">
                 <div className="row__image">
+                  <div className="image--label">
+                    <p>Hot</p>
+                  </div>
                   <img className="image--src" alt="NJ2JP Juice" />
                   {/* TODO: Set this image--label dynamically based on sales analytics. */}
-                  <div className="image--label">Hot</div>
                   <div className="image--rating">
                     <ul className="image__stars-list">
                       <li className="stars--star">
@@ -388,7 +390,7 @@ export default function AllProducts() {
                         <FontAwesome name="star" />
                       </li>
                     </ul>
-                    <Link to="/reviews/123123" className="image__read-reviews">
+                    <Link to="/reviews/123123" className="image__read-reviews" style={{ display: 'none' }}>
                       Read Reviews
                     </Link>
                   </div>
@@ -397,21 +399,25 @@ export default function AllProducts() {
                   <div className="desc__title-top">
                     <h3>
                       Strawberries N' Cream
+                      <span className="nicotine-sub-label">
+                        {'\u00A0'}Nicotine
+                      </span>
                     </h3>
-                    <span className="nicotine-sub-label">
-                      Nicotine
-                    </span>
                   </div>
                   <div className="desc__title-bottom">
                     <div className="title-bottom--price">
                       <h3>
                         <FontAwesome name="usd" />
                         {/* TODO: dynamically set this value */}
-                        30.00
+                        {'\u00A0'}30.00
                       </h3>
+                      <p>
+                        <FontAwesome name="plus" />
+                        {'\u00A0'}Tax
+                      </p>
                     </div>
                     <div className="title-bottom--in-stock">
-                      <h3>In Stock</h3>
+                      <p>In Stock</p>
                       <p>SKU:
                         {/* TODO: dynamically set this SKU value */}
                         <span className="sku-number">
@@ -426,25 +432,27 @@ export default function AllProducts() {
                   <p>Nicotine Strength (mg)</p>
                   <ul className="nicotine-strenghts--list">
                     <li className="list--option">
-                      <button className="option--button" >2</button>
+                      <button className="option--button sweep-right" >2</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >4</button>
+                      <button className="option--button sweep-right" >4</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >6</button>
+                      <button className="option--button sweep-right" >6</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >8</button>
+                      <button className="option--button sweep-right" >8</button>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="row--card">
                 <div className="row__image">
+                  <div className="image--label">
+                    <p>Hot</p>
+                  </div>
                   <img className="image--src" alt="NJ2JP Juice" />
                   {/* TODO: Set this image--label dynamically based on sales analytics. */}
-                  <div className="image--label">Hot</div>
                   <div className="image--rating">
                     <ul className="image__stars-list">
                       <li className="stars--star">
@@ -463,7 +471,7 @@ export default function AllProducts() {
                         <FontAwesome name="star" />
                       </li>
                     </ul>
-                    <Link to="/reviews/123123" className="image__read-reviews">
+                    <Link to="/reviews/123123" className="image__read-reviews" style={{ display: 'none' }}>
                       Read Reviews
                     </Link>
                   </div>
@@ -472,21 +480,25 @@ export default function AllProducts() {
                   <div className="desc__title-top">
                     <h3>
                       Strawberries N' Cream
+                      <span className="nicotine-sub-label">
+                        {'\u00A0'}Nicotine
+                      </span>
                     </h3>
-                    <span className="nicotine-sub-label">
-                      Nicotine
-                    </span>
                   </div>
                   <div className="desc__title-bottom">
                     <div className="title-bottom--price">
                       <h3>
                         <FontAwesome name="usd" />
                         {/* TODO: dynamically set this value */}
-                        30.00
+                        {'\u00A0'}30.00
                       </h3>
+                      <p>
+                        <FontAwesome name="plus" />
+                        {'\u00A0'}Tax
+                      </p>
                     </div>
                     <div className="title-bottom--in-stock">
-                      <h3>In Stock</h3>
+                      <p>In Stock</p>
                       <p>SKU:
                         {/* TODO: dynamically set this SKU value */}
                         <span className="sku-number">
@@ -501,25 +513,27 @@ export default function AllProducts() {
                   <p>Nicotine Strength (mg)</p>
                   <ul className="nicotine-strenghts--list">
                     <li className="list--option">
-                      <button className="option--button" >2</button>
+                      <button className="option--button sweep-right" >2</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >4</button>
+                      <button className="option--button sweep-right" >4</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >6</button>
+                      <button className="option--button sweep-right" >6</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >8</button>
+                      <button className="option--button sweep-right" >8</button>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="row--card">
                 <div className="row__image">
+                  <div className="image--label">
+                    <p>Hot</p>
+                  </div>
                   <img className="image--src" alt="NJ2JP Juice" />
                   {/* TODO: Set this image--label dynamically based on sales analytics. */}
-                  <div className="image--label">Hot</div>
                   <div className="image--rating">
                     <ul className="image__stars-list">
                       <li className="stars--star">
@@ -538,7 +552,7 @@ export default function AllProducts() {
                         <FontAwesome name="star" />
                       </li>
                     </ul>
-                    <Link to="/reviews/123123" className="image__read-reviews">
+                    <Link to="/reviews/123123" className="image__read-reviews" style={{ display: 'none' }}>
                       Read Reviews
                     </Link>
                   </div>
@@ -547,21 +561,25 @@ export default function AllProducts() {
                   <div className="desc__title-top">
                     <h3>
                       Strawberries N' Cream
+                      <span className="nicotine-sub-label">
+                        {'\u00A0'}Nicotine
+                      </span>
                     </h3>
-                    <span className="nicotine-sub-label">
-                      Nicotine
-                    </span>
                   </div>
                   <div className="desc__title-bottom">
                     <div className="title-bottom--price">
                       <h3>
                         <FontAwesome name="usd" />
                         {/* TODO: dynamically set this value */}
-                        30.00
+                        {'\u00A0'}30.00
                       </h3>
+                      <p>
+                        <FontAwesome name="plus" />
+                        {'\u00A0'}Tax
+                      </p>
                     </div>
                     <div className="title-bottom--in-stock">
-                      <h3>In Stock</h3>
+                      <p>In Stock</p>
                       <p>SKU:
                         {/* TODO: dynamically set this SKU value */}
                         <span className="sku-number">
@@ -576,95 +594,22 @@ export default function AllProducts() {
                   <p>Nicotine Strength (mg)</p>
                   <ul className="nicotine-strenghts--list">
                     <li className="list--option">
-                      <button className="option--button" >2</button>
+                      <button className="option--button sweep-right" >2</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >4</button>
+                      <button className="option--button sweep-right" >4</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >6</button>
+                      <button className="option--button sweep-right" >6</button>
                     </li>
                     <li className="list--option">
-                      <button className="option--button" >8</button>
+                      <button className="option--button sweep-right" >8</button>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="row--card">
-                <div className="row__image">
-                  <img className="image--src" alt="NJ2JP Juice" />
-                  {/* TODO: Set this image--label dynamically based on sales analytics. */}
-                  <div className="image--label">Hot</div>
-                  <div className="image--rating">
-                    <ul className="image__stars-list">
-                      <li className="stars--star">
-                        <FontAwesome name="star" />
-                      </li>
-                      <li className="stars--star">
-                        <FontAwesome name="star" />
-                      </li>
-                      <li className="stars--star">
-                        <FontAwesome name="star" />
-                      </li>
-                      <li className="stars--star">
-                        <FontAwesome name="star" />
-                      </li>
-                      <li className="stars--star">
-                        <FontAwesome name="star" />
-                      </li>
-                    </ul>
-                    <Link to="/reviews/123123" className="image__read-reviews">
-                      Read Reviews
-                    </Link>
-                  </div>
-                </div>
-                <div className="row__desc">
-                  <div className="desc__title-top">
-                    <h3>
-                      Strawberries N' Cream
-                    </h3>
-                    <span className="nicotine-sub-label">
-                      Nicotine
-                    </span>
-                  </div>
-                  <div className="desc__title-bottom">
-                    <div className="title-bottom--price">
-                      <h3>
-                        <FontAwesome name="usd" />
-                        {/* TODO: dynamically set this value */}
-                        30.00
-                      </h3>
-                    </div>
-                    <div className="title-bottom--in-stock">
-                      <h3>In Stock</h3>
-                      <p>SKU:
-                        {/* TODO: dynamically set this SKU value */}
-                        <span className="sku-number">
-                          {'\u00A0'}123123{'\u00A0'}
-                        </span>
-                      </p>
-                      <p>Free Shipping</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="row__nicotine-strengths">
-                  <p>Nicotine Strength (mg)</p>
-                  <ul className="nicotine-strenghts--list">
-                    <li className="list--option">
-                      <button className="option--button" >2</button>
-                    </li>
-                    <li className="list--option">
-                      <button className="option--button" >4</button>
-                    </li>
-                    <li className="list--option">
-                      <button className="option--button" >6</button>
-                    </li>
-                    <li className="list--option">
-                      <button className="option--button" >8</button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+
+
             </div>
           </div>
         </div>
