@@ -74,7 +74,29 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 
+            width: 17em;
+            height: 3em;
+            & .relative-parent {
+              display: inline-block;
+              & .sort-position--title-bar {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                & p {
+                  font-size: 1.4em;
+                  font-weight: 200;
+                }
+              }
+              & .sort-position--dd-content {
+                opacity: 1;
+                height: 10em;
+                width: 22em;
+                display: block;
+                position: relative;
+                z-index: 5;
+                background-color: orange;
+              }
+            }
           }
         }
         & .main--table {

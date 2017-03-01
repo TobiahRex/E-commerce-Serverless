@@ -28,7 +28,11 @@ export default function AllProducts() {
             <div className="toolbar--sort-position">
               <span className="relative-parent">
                 <div className="sort-position--title-bar">
-                  <p>Sort By Position</p>
+                  <p>Sort By
+                    <span className="sort-position_label">
+                      Position
+                    </span>
+                  </p>
                   <button className="ddn-button">
                     <span className="btn-flex-parent">
                       <FontAwesome name="angle-down" />
