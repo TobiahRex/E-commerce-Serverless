@@ -74,49 +74,66 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 17em;
+            width: 17.7em;
             height: 3em;
             & .relative-parent {
               display: inline-block;
+              position: relative;
               & .sort-position--title-bar {
                 @include prefixflex();
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
+                background-color: $p-white;
+                padding: 0 0 0 .5em;
+                width: 17em;
                 & p {
                   font-size: 1.4em;
                   font-weight: 200;
                   & .sort-position--label {
                     color: $p-blue;
-                    font-size: 1.4em;
                     font-family: $p-font;
                     font-weight: 400;
                   }
                 }
                 & .ddn-button {
+                  height: 3em;
+                  width: 3em;
                   border: none;
                   background-color: $p-red;
+                  cursor: pointer;
                   & .btn-flex-parent {
                     @include prefixflex();
                     justify-content: center;
                     align-items: center;
                     & span {
                       color: $p-white;
-                      font-size: 1.8em;
                       font-weight: 400;
+                      font-size: 1.4em;
                     }
                   }
                 }
               }
               & .sort-position--dd-content {
+                display: block;
+                position: absolute;
                 opacity: 1;
                 height: 10em;
                 width: 22em;
-                display: block;
-                position: relative;
                 z-index: 5;
                 background-color: orange;
               }
             }
+          }
+          & .toolbar--view {
+
+          }
+          & .toolbar--show-per {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 17em;
+            height: 3em;
           }
         }
         & .main--table {

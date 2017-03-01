@@ -28,7 +28,7 @@ export default function AllProducts() {
             <div className="toolbar--sort-position">
               <span className="relative-parent">
                 <div className="sort-position--title-bar">
-                  <p>Sort By
+                  <p>Sort By{'\u00A0'}
                     <span className="sort-position--label">
                       Position
                     </span>
