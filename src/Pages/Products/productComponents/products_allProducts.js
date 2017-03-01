@@ -4,18 +4,18 @@ import FontAwesome from 'react-fontawesome';
 
 export default function AllProducts() {
   return (
-    <div className="products__container">
-      <div className="products__breadcrumb--container">
-        <ul className="list">
-          <li className="path">
-            <Link className="path__link" to="/">Home</Link>
+    <div className="products products--container">
+      <div className="products__breadcrumb">
+        <ul className="products__breadcrumb--list">
+          <li className="breadcrumb__path">
+            <Link className="breadcrumb__path--link" to="/">Home</Link>
             <FontAwesome
-              className="path__link--right-chevron"
+              className="breadcrumb__path--right-chevron"
               name="angle-right"
             />
           </li>
-          <li className="path">
-            Juices
+          <li className="breadcrumb__path">
+            <p className="breadcrumb__path--label">Juices</p>
           </li>
         </ul>
       </div>
@@ -30,7 +30,7 @@ export default function AllProducts() {
         </div>
         <div className="products__main">
           <div className="products__main--toolbar">
-            <div className="toolbar__position-sort">
+            <div className="toolbar__sort-position">
               <div className="title-bar">
                 <p>Sort By Position</p>
                 <button>
@@ -41,27 +41,27 @@ export default function AllProducts() {
               </div>
               <div className="dd-content">
                 <ul className="dd-content__list">
-                  <li className="option--name">
+                  <li className="option">
                     <div className="option__icon">
                       <FontAwesome name="angle-right" />
                     </div>
-                    <div className="option__name">
+                    <div className="option__label">
                       <p>Name</p>
                     </div>
                   </li>
-                  <li className="option--price">
+                  <li className="option">
                     <div className="option__icon">
                       <FontAwesome name="angle-right" />
                     </div>
-                    <div className="option__price">
+                    <div className="option__label">
                       <p>Price</p>
                     </div>
                   </li>
-                  <li className="option--popularity">
+                  <li className="option">
                     <div className="option__icon">
                       <FontAwesome name="angle-right" />
                     </div>
-                    <div className="option__popularity">
+                    <div className="option__label">
                       <p>Popularity</p>
                     </div>
                   </li>
@@ -75,6 +75,58 @@ export default function AllProducts() {
               <div className="view--list">
                 <FontAwesome name="list-alt" />
               </div>
+            </div>
+            <div className="toolbar__show-per">
+              <div className="title-bar">
+                {/* TODO: Change number in title to dynamic quality */}
+                <p>Show 5 per page</p>
+                <button>
+                  <span className="btn-flex-parent">
+                    <FontAwesome name="angle-down" />
+                  </span>
+                </button>
+              </div>
+              <div className="dd-content">
+                <ul className="dd-content__list">
+                  <li className="option">
+                    <div className="option__icon">
+                      <FontAwesome name="angle-right" />
+                    </div>
+                    <div className="option__label">
+                      <p>Name</p>
+                    </div>
+                  </li>
+                  <li className="option">
+                    <div className="option__icon">
+                      <FontAwesome name="angle-right" />
+                    </div>
+                    <div className="option__label">
+                      <p>Price</p>
+                    </div>
+                  </li>
+                  <li className="option">
+                    <div className="option__icon">
+                      <FontAwesome name="angle-right" />
+                    </div>
+                    <div className="option__label">
+                      <p>Popularity</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="toolbar__visible">
+              {/* TODO: Set interger dynamically */}
+              <p>5 item(s)</p>
+            </div>
+            <div className="toolbar__visible--total">
+              {/* TODO: set interger dynamically */}
+              <p>of 10 total</p>
+            </div>
+            <div className="toolbar__pagination">
+              <ul className="pagination--list">
+                <li>hi</li>
+              </ul>
             </div>
           </div>
           <div className="products__main--table">

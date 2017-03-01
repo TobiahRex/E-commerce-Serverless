@@ -1,9 +1,11 @@
 @media only screen and (min-width: 1079px) {
-  .products__container {
-    max-width: 1086px;
-    width: 100%;
-    height: 100%;
-    & .products__breadcrumb--container {
+  .products {
+    &.products--container {
+      max-width: 1086px;
+      width: 100%;
+      height: 100%;
+    }
+    & .products__breadcrumb {
       @include prefixflex();
       justify-content: flex-start;
       align-items: center;
@@ -11,22 +13,24 @@
       height: 6em;
       padding-right: 3em;
       background-color: $p-white;
-      & ul.list {
+      & .products__breadcrumb--list {
         @include prefixflex();
         justify-content: flex-start;
         align-items: center;
         list-style-type: none;
         margin: 0;
         padding: 0 1em;
-        & li.path {
+        & .breadcrumb__path {
           font-size: 1.8em;
           font-family: $p-font;
           font-weight: normal;
           color: $p-blue;
-          & .path__link {
+          & .breadcrumb__path--link,
+          .breadcrumb__path--label {
+            font-size: 1em;
             color: $p-blue;
           }
-          & .path__link--right-chevron {
+          & .breadcrumb__path--right-chevron {
             font-size: 18px;
             color: $p-blue;
             margin: 0 .5em -1em .5em;
