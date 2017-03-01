@@ -23,52 +23,47 @@ export default function AllProducts() {
         <h1>Juices</h1>
       </div>
       <div className="products__body">
-        <div className="body--sidebar">
-          <div className="sidebar__title">
-            <h1 className="sidebar__title--nicotine-strength">
-              Nicotine Strength
-            </h1>
-          </div>
-        </div>
         <div className="body--main">
           <div className="main--toolbar">
             <div className="toolbar--sort-position">
-              <div className="sort-position--title-bar">
-                <p>Sort By Position</p>
-                <button className="ddn-button">
-                  <span className="btn-flex-parent">
-                    <FontAwesome name="angle-down" />
-                  </span>
-                </button>
-              </div>
-              <div className="sort-position--dd-content">
-                <ul className="dd-content__list">
-                  <li className="list__option">
-                    <div className="list__option--icon">
-                      <FontAwesome name="angle-right" />
-                    </div>
-                    <div className="list__option--label">
-                      <p>Name</p>
-                    </div>
-                  </li>
-                  <li className="list__option">
-                    <div className="list__option--icon">
-                      <FontAwesome name="angle-right" />
-                    </div>
-                    <div className="list__option--label">
-                      <p>Price</p>
-                    </div>
-                  </li>
-                  <li className="list__option">
-                    <div className="list__option--icon">
-                      <FontAwesome name="angle-right" />
-                    </div>
-                    <div className="list__option--label">
-                      <p>Popularity</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <span className="relative-parent">
+                <div className="sort-position--title-bar">
+                  <p>Sort By Position</p>
+                  <button className="ddn-button">
+                    <span className="btn-flex-parent">
+                      <FontAwesome name="angle-down" />
+                    </span>
+                  </button>
+                </div>
+                <div className="sort-position--dd-content">
+                  <ul className="dd-content__list">
+                    <li className="list__option">
+                      <div className="list__option--icon">
+                        <FontAwesome name="angle-right" />
+                      </div>
+                      <div className="list__option--label">
+                        <p>Name</p>
+                      </div>
+                    </li>
+                    <li className="list__option">
+                      <div className="list__option--icon">
+                        <FontAwesome name="angle-right" />
+                      </div>
+                      <div className="list__option--label">
+                        <p>Price</p>
+                      </div>
+                    </li>
+                    <li className="list__option">
+                      <div className="list__option--icon">
+                        <FontAwesome name="angle-right" />
+                      </div>
+                      <div className="list__option--label">
+                        <p>Popularity</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </span>
             </div>
             <div className="toolbar--view">
               <div className="view--grid">
@@ -209,6 +204,138 @@ export default function AllProducts() {
               </div>
             </div>
             <div className="table__row--grid-view">
+              <div className="row--card">
+                <div className="row__image">
+                  <img className="image--src" alt="NJ2JP Juice" />
+                  {/* TODO: Set this image--label dynamically based on sales analytics. */}
+                  <div className="image--label">Hot</div>
+                </div>
+                <div className="row__desc">
+                  <div className="desc__title">
+                    <h3>
+                      Strawberries N' Cream
+                    </h3>
+                    <span className="nicotine-sub-label">
+                      Nicotine
+                    </span>
+                  </div>
+                  <div className="desc__price">
+                    <h3>
+                      <FontAwesome name="usd" />
+                      {/* TODO: dynamically set this value */}
+                      30.00
+                    </h3>
+                  </div>
+                </div>
+                <div className="row__nicotine-strengths">
+                  <p>Nicotine Strength (mg)</p>
+                  <ul className="nicotine-strenghts--list">
+                    <li className="list--option">2</li>
+                    <li className="list--option">4</li>
+                    <li className="list--option">6</li>
+                    <li className="list--option">8</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row--card">
+                <div className="row__image">
+                  <img className="image--src" alt="NJ2JP Juice" />
+                  {/* TODO: Set this image--label dynamically based on sales analytics. */}
+                  <div className="image--label">Hot</div>
+                </div>
+                <div className="row__desc">
+                  <div className="desc__title">
+                    <h3>
+                      Strawberries N' Cream
+                    </h3>
+                    <span className="nicotine-sub-label">
+                      Nicotine
+                    </span>
+                  </div>
+                  <div className="desc__price">
+                    <h3>
+                      <FontAwesome name="usd" />
+                      {/* TODO: dynamically set this value */}
+                      30.00
+                    </h3>
+                  </div>
+                </div>
+                <div className="row__nicotine-strengths">
+                  <p>Nicotine Strength (mg)</p>
+                  <ul className="nicotine-strenghts--list">
+                    <li className="list--option">2</li>
+                    <li className="list--option">4</li>
+                    <li className="list--option">6</li>
+                    <li className="list--option">8</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row--card">
+                <div className="row__image">
+                  <img className="image--src" alt="NJ2JP Juice" />
+                  {/* TODO: Set this image--label dynamically based on sales analytics. */}
+                  <div className="image--label">Hot</div>
+                </div>
+                <div className="row__desc">
+                  <div className="desc__title">
+                    <h3>
+                      Strawberries N' Cream
+                    </h3>
+                    <span className="nicotine-sub-label">
+                      Nicotine
+                    </span>
+                  </div>
+                  <div className="desc__price">
+                    <h3>
+                      <FontAwesome name="usd" />
+                      {/* TODO: dynamically set this value */}
+                      30.00
+                    </h3>
+                  </div>
+                </div>
+                <div className="row__nicotine-strengths">
+                  <p>Nicotine Strength (mg)</p>
+                  <ul className="nicotine-strenghts--list">
+                    <li className="list--option">2</li>
+                    <li className="list--option">4</li>
+                    <li className="list--option">6</li>
+                    <li className="list--option">8</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row--card">
+                <div className="row__image">
+                  <img className="image--src" alt="NJ2JP Juice" />
+                  {/* TODO: Set this image--label dynamically based on sales analytics. */}
+                  <div className="image--label">Hot</div>
+                </div>
+                <div className="row__desc">
+                  <div className="desc__title">
+                    <h3>
+                      Strawberries N' Cream
+                    </h3>
+                    <span className="nicotine-sub-label">
+                      Nicotine
+                    </span>
+                  </div>
+                  <div className="desc__price">
+                    <h3>
+                      <FontAwesome name="usd" />
+                      {/* TODO: dynamically set this value */}
+                      30.00
+                    </h3>
+                  </div>
+                </div>
+                <div className="row__nicotine-strengths">
+                  <p>Nicotine Strength (mg)</p>
+                  <ul className="nicotine-strenghts--list">
+                    <li className="list--option">2</li>
+                    <li className="list--option">4</li>
+                    <li className="list--option">6</li>
+                    <li className="list--option">8</li>
+                  </ul>
+                </div>
+              </div>
               <div className="row--card">
                 <div className="row__image">
                   <img className="image--src" alt="NJ2JP Juice" />
