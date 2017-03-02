@@ -324,8 +324,8 @@ export default function AllProducts() {
                 </div>
                 <div className="row--social">
                   <ul className="row__social-list">
-                    <li className="social-list--like">
-                      <button className="like-btn hvr-bob">
+                    <li className="social-list--like hvr-bob">
+                      <button className="like-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
                             className="like-btn--thumb-icon"
@@ -339,8 +339,8 @@ export default function AllProducts() {
                         </span>
                       </button>
                     </li>
-                    <li className="social-list--share">
-                      <button className="share-btn hvr-bob">
+                    <li className="social-list--share hvr-bob">
+                      <button className="share-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
                             className="share-btn--facebook-icon"
@@ -350,8 +350,8 @@ export default function AllProducts() {
                         </span>
                       </button>
                     </li>
-                    <li className="social-list--tweet">
-                      <button className="tweet-btn hvr-bob">
+                    <li className="social-list--tweet hvr-bob">
+                      <button className="tweet-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
                             className="tweet-btn--twitter-icon"

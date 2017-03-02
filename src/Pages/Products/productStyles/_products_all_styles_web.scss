@@ -296,6 +296,7 @@
           width: 104.6em;
           margin-top: 1em;
           padding: 2em;
+          background-color: $p-grey;
           & .table__row--grid-view {
             @include prefixflex();
             justify-content: space-between;
@@ -573,7 +574,7 @@
                     justify-content: flex-start;
                     align-items: flex-start;
                     flex-direction: column;
-                    width: 33.5em;
+                    width: 34.5em;
                     margin: .5em 0 0 .5em;
                     & .top-left--title,
                     .top-left--price {
@@ -686,11 +687,13 @@
                   }
                   & .desc__top-right {
                     @include prefixflex();
-                    justify-content: center;
+                    justify-content: space-around;
                     align-items: center;
-                    background-color: $p-grey;
-                    width: 21em;
+                    flex-direction: column;
+                    width: 21.1em;
+                    height: 11.5em;
                     margin: .5em 0 0 .5em;
+                    border-left: 1px solid rgba(0,0,0,.2);
                     & .right-top__rating-label {
                       margin: .6em auto;
                       h3 {
@@ -702,13 +705,30 @@
                       justify-content: center;
                       align-items: center;
                       height: 3.3em;
-                      width: 20em;
+                      width: 16em;
                       background-color: $p-red;
                       & span {
                         color: $p-white;
                         font-size: 2.5em;
                         font-weight: 400;
-                        
+                        margin-left: .1em;
+                      }
+                    }
+                    & .right-top__read-reviews-label {
+                      a {
+                        color: $p-blue;
+                        font-size: 1.4em;
+                        font-family: $p-font;
+                        font-weight: 200;
+                        transition: all .3s ease-in-out;
+                        text-shadow: 1px 1px 1px rgba(0,0,0,.05);
+                        cursor: pointer;
+                        &:hover,
+                        &:active,
+                        &:focus {
+                          color: $p-red;
+                          font-weight: 400;
+                        }
                       }
                     }
                   }
