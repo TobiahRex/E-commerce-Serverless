@@ -638,6 +638,39 @@
                       }
                     }
                   }
+                  & .top-left--nic-strengths {
+                    @include prefixflex();
+                    justify-content: flex-start;
+                    align-items: center;
+                    height: 4em;
+                    width: 33.5em;
+                    & p {
+                      font-weight: 800;
+                      max-width: 17em;
+                    }
+                    & .nic-strengths--list {
+                      @include prefixflex();
+                      justify-content: space-between;
+                      align-items: center;
+                      list-style-type: none;
+                      margin: 0;
+                      padding: 0;
+                      & .list--option {
+                        @include prefixflex();
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 2.8em;
+                        height: 2.8em;
+                        & .list-btn {
+                          border: none;
+                          color: $p-white;
+                          background-color: $p-blue;
+                          box-shadow: 3px 3px 3px (0,0,0,.25);
+                          cursor: pointer;
+                        }
+                      }
+                    }
+                  }
                 }
                 & .desc__top-right {
                   width: 21em;

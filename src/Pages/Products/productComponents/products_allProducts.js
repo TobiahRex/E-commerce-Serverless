@@ -249,13 +249,21 @@ export default function AllProducts() {
                     </div>
                     <div className="top-left--nic-strengths">
                       <p className="nic-strengths--label">
-                        Nicotine Strengths (mgs)
+                        NICOTINE STRENGTHS (mgs)
                       </p>
-                      <ul className="nic-strenghts--list">
-                        <li className="list--option">2</li>
-                        <li className="list--option">4</li>
-                        <li className="list--option">6</li>
-                        <li className="list--option">8</li>
+                      <ul className="nic-strengths--list">
+                        <li className="list--option">
+                          <button className="list-btn sweep-right">2</button>
+                        </li>
+                        <li className="list--option">
+                          <button className="list-btn sweep-right">4</button>
+                        </li>
+                        <li className="list--option">
+                          <button className="list-btn sweep-right">6</button>
+                        </li>
+                        <li className="list--option">
+                          <button className="list-btn sweep-right">8</button>
+                        </li>
                       </ul>
                     </div>
                   </div>
