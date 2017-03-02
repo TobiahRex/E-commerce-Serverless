@@ -325,20 +325,22 @@ export default function AllProducts() {
                 <div className="row--social">
                   <ul className="row__social-list">
                     <li className="social-list--like">
-                      <button className="like-btn">
+                      <button className="like-btn hvr-bob">
                         <span className="btn-flex-parent">
                           <FontAwesome
                             className="like-btn--thumb-icon"
                             name="thumbs-up"
                           />
-                          <p className="like-btn--label">Like</p>
+                          <p className="like-btn--label">
+                            Like{'\u00A0'}
+                          </p>
                           {/* TODO Dynamically set this value */}
                           <p className="like-btn--number">99</p>
                         </span>
                       </button>
                     </li>
                     <li className="social-list--share">
-                      <button className="share-btn">
+                      <button className="share-btn hvr-bob">
                         <span className="btn-flex-parent">
                           <FontAwesome
                             className="share-btn--facebook-icon"
@@ -349,7 +351,7 @@ export default function AllProducts() {
                       </button>
                     </li>
                     <li className="social-list--tweet">
-                      <button className="tweet-btn">
+                      <button className="tweet-btn hvr-bob">
                         <span className="btn-flex-parent">
                           <FontAwesome
                             className="tweet-btn--twitter-icon"

@@ -296,7 +296,6 @@
           width: 104.6em;
           margin-top: 1em;
           padding: 2em;
-          background-color: $p-grey;
           & .table__row--grid-view {
             @include prefixflex();
             justify-content: space-between;
@@ -686,8 +685,32 @@
                     }
                   }
                   & .desc__top-right {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $p-grey;
                     width: 21em;
                     margin: .5em 0 0 .5em;
+                    & .right-top__rating-label {
+                      margin: .6em auto;
+                      h3 {
+                        font-weight: 800;
+                      }
+                    }
+                    & .right-top__rating-stars {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      height: 3.3em;
+                      width: 20em;
+                      background-color: $p-red;
+                      & span {
+                        color: $p-white;
+                        font-size: 2.5em;
+                        font-weight: 400;
+                        
+                      }
+                    }
                   }
                 }
                 & .desc__middle {
@@ -804,6 +827,10 @@
                 }
               }
               & .row--social {
+                @include prefixflex();
+                justify-content: center;
+                align-items: flex-end;
+                height: 29em;
                 width: 26.7em;
                 & .row__social-list {
                   @include prefixflex();
@@ -812,6 +839,8 @@
                   flex-direction: column;
                   padding: 0;
                   margin: 0;
+                  height: 17.5em;
+                  width: 26em;
                   list-style-type: none;
                   & .social-list--like,
                   .social-list--share,
@@ -819,8 +848,8 @@
                     @include prefixflex();
                     justify-content: center;
                     align-items: center;
-                    height: 3em;
-                    width: 8.6em;
+                    height: 3.3em;
+                    width: 10.2em;
                     cursor: pointer;
                     @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
                     & button {
@@ -830,16 +859,26 @@
                       border: none;
                       cursor: pointer;
                       background-color: $p-blue;
+                      height: 100%;
+                      width: 100%;
+                      padding: 0;
+                      margin: 0;
                       .btn-flex-parent {
                         @include prefixflex();
-                        justify-content: space-around;
+                        justify-content: center;
                         align-items: center;
                         & span {
                           font-size: 1.8em;
                           padding: .27em;
                         }
-                        p {
-                          font-weight: 800;
+                        & p {
+                          font-size: 1.2em;
+                          color: $p-white;
+                          font-weight: 400;
+                          line-height: 1em;
+                        }
+                        & p:nth-child(3) {
+                          font-weight: 200;
                         }
                       }
                     }
