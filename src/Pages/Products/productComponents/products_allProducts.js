@@ -218,66 +218,67 @@ export default function AllProducts() {
                 </div>
               </div>
               <div className="row--desc">
-                <div className="desc__left-top">
-
-                  <div className="left-top--title">
-                    <h3>Strawberries {'N\''} Cream</h3>
-                  </div>
-                  <div className="left-top--price">
-                    <h3 className="price--label">
-                      <FontAwesome name="usd" />
-                      {/* TODO: Set this value dynamically */}
-                      30.00
-                    </h3>
-                    <div className="price--tax">
-                      <p className="price--tax-label">
-                        <FontAwesome name="plus" />{'\u00A0'}Tax
-                      </p>
-                      <p className="price--include-shipping">
-                        Free Shipping
-                      </p>
+                <div className="desc__top">
+                  <div className="desc__top-left">
+                    <div className="top-left--title">
+                      <h3>Strawberries {'N\''} Cream</h3>
                     </div>
-                    <div className="price--in-stock">
-                      <p>In Stock</p>
-                      <p>SKU:
-                        {/* TODO: Dynamically set this value */}
-                        <span className="price--in-stock__sku">
-                          {'\u00A0'}123123
-                        </span>
+                    <div className="top-left--price">
+                      <h3 className="price--label">
+                        <FontAwesome name="usd" />
+                        {/* TODO: Set this value dynamically */}
+                        30.00
+                      </h3>
+                      <div className="price--tax">
+                        <p className="price--tax-label">
+                          <FontAwesome name="plus" />{'\u00A0'}Tax
+                        </p>
+                        <p className="price--include-shipping">
+                          Free Shipping
+                        </p>
+                      </div>
+                      <div className="price--in-stock">
+                        <p>In Stock</p>
+                        <p>SKU:
+                          {/* TODO: Dynamically set this value */}
+                          <span className="price--in-stock__sku">
+                            {'\u00A0'}123123
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="top-left--nic-strengths">
+                      <p className="nic-strengths--label">
+                        Nicotine Strengths (mgs)
                       </p>
+                      <ul className="nic-strenghts--list">
+                        <li className="list--option">2</li>
+                        <li className="list--option">4</li>
+                        <li className="list--option">6</li>
+                        <li className="list--option">8</li>
+                      </ul>
                     </div>
                   </div>
-                  <div className="left-top--nic-strengths">
-                    <p className="nic-strengths--label">
-                      Nicotine Strengths (mgs)
-                    </p>
-                    <ul className="nic-strenghts--list">
-                      <li className="list--option">2</li>
-                      <li className="list--option">4</li>
-                      <li className="list--option">6</li>
-                      <li className="list--option">8</li>
-                    </ul>
+                  <div className="desc__top-right">
+                    <div className="right-top__rating-label">
+                      <h3>Rating</h3>
+                    </div>
+                    <div className="right-top__rating-stars">
+                      <FontAwesome name="star" />
+                      <FontAwesome name="star" />
+                      <FontAwesome name="star" />
+                      <FontAwesome name="star" />
+                      <FontAwesome name="star" />
+                    </div>
+                    <div className="right-top__read-reviews-label">
+                      <Link to="/reviews">Read Reviews</Link>
+                    </div>
                   </div>
                 </div>
-                <div className="desc__right-top">
-                  <div className="right-top__rating-label">
-                    <h3>Rating</h3>
-                  </div>
-                  <div className="right-top__rating-stars">
-                    <FontAwesome name="star" />
-                    <FontAwesome name="star" />
-                    <FontAwesome name="star" />
-                    <FontAwesome name="star" />
-                    <FontAwesome name="star" />
-                  </div>
-                  <div className="right-top__read-reviews-label">
-                    <Link to="/reviews">Read Reviews</Link>
-                  </div>
-                </div>
-                <div className="desc__bottom">
+                <div className="desc__middle">
                   <p>A delicious and intense Fruity Pebbles Cereal flavor. It’s D-licious!!!</p>
                 </div>
-                <div className="desc__action-btns">
+                <div className="desc__bottom">
                   <div className="action-btns--container">
                     <p className="action-btns--qty-msg">
                       Maximum of 4 bottles per Customer, per Address, per Japanese Law.
