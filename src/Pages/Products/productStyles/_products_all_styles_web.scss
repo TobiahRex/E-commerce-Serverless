@@ -501,6 +501,52 @@
               }
             }
           }
+          & .table__row--list-view {
+            @include prefixflex();
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            & .row--image {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: center;
+              width: 20.5em;
+              max-height: 28.5em;
+              background-color: $p-white;
+              overflow: hidden;
+              & .image--label {
+                @include prefixflex();
+                justify-content: center;
+                align-items: flex-start;
+                height: 28em;
+                width: 5.5em;
+                & p {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  width: 3.125em;
+                  height: 1.57em;
+                  color: $p-white;
+                  font-size: 1.6em;
+                  font-family: $p-font;
+                  font-weight: 800;
+                  text-transform: uppercase;
+                  background-color: $p-blue;
+                }
+              }
+              & .image--src-container {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                & img {
+                  position: relative;
+                  top: 4em;
+                  content: $pina-colada;
+                  max-width: 7.5em;
+                }
+              }
+            }
+          }
         }
       }
     }
