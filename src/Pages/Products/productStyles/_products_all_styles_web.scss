@@ -310,7 +310,6 @@
               height: 31.5em;
               width: 21.5em;
               background-color: $p-white;
-              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               & .row__image {
                 @include prefixflex();
                 justify-content: center;
@@ -506,256 +505,382 @@
             justify-content: center;
             align-items: flex-start;
             width: 100%;
-            & .row--image {
+            & .row__card {
+              position: relative;
               @include prefixflex();
-              justify-content: flex-start;
+              justify-content: center;
               align-items: center;
-              width: 20.5em;
-              max-height: 28.5em;
-              background-color: $p-white;
               overflow: hidden;
-              & .image--label {
-                @include prefixflex();
-                justify-content: center;
-                align-items: flex-start;
-                height: 28em;
-                width: 5.5em;
-                margin-left: .1em;
-                & p {
-                  @include prefixflex();
-                  justify-content: center;
-                  align-items: center;
-                  width: 3.125em;
-                  height: 1.57em;
-                  color: $p-white;
-                  font-size: 1.6em;
-                  font-family: $p-font;
-                  font-weight: 800;
-                  text-transform: uppercase;
-                  background-color: $p-blue;
-                }
-              }
-              & .image--src-container {
+              background-color: $p-white;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+              & .row--image {
                 @include prefixflex();
                 justify-content: flex-start;
                 align-items: center;
-                width: 15em;
-                padding-left: 2em;
-                & img {
-                  position: relative;
-                  top: 4em;
-                  content: $pina-colada;
-                  max-width: 7.5em;
+                width: 20.5em;
+                max-height: 28em;
+                background-color: $p-white;
+                padding: .5em;
+                & .image--label {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: flex-start;
+                  height: 28em;
+                  width: 5.5em;
+                  & p {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    width: 3.125em;
+                    height: 1.57em;
+                    color: $p-white;
+                    font-size: 1.6em;
+                    font-family: $p-font;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    background-color: $p-blue;
+                  }
+                }
+                & .image--src-container {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: center;
+                  width: 15em;
+                  max-height: 28em;
+                  padding-left: 2em;
+                  overflow: hidden;
+                  & img {
+                    position: relative;
+                    top: 4em;
+                    content: $pina-colada;
+                    max-width: 7.5em;
+                  }
                 }
               }
-            }
-            & .row--desc {
-              @include prefixflex();
-              justify-content: flex-start;
-              align-items: flex-start;
-              flex-direction: column;
-              // height:
-              width: 56em;
-              background-color: pink;
-              & .desc__top {
+              & .row--desc {
                 @include prefixflex();
                 justify-content: flex-start;
                 align-items: flex-start;
-                & .desc__top-left {
+                flex-direction: column;
+                // height:
+                width: 56em;
+                background-color: white;
+                & .desc__top {
                   @include prefixflex();
                   justify-content: flex-start;
                   align-items: flex-start;
-                  flex-direction: column;
-                  width: 33.5em;
-                  margin: .5em 0 0 .5em;
-                  & .top-left--title,
-                  .top-left--price {
+                  & .desc__top-left {
                     @include prefixflex();
                     justify-content: flex-start;
-                    align-items: center;
-                    height: 3em;
-                    margin-bottom: .5em;
-                    & h3 {
-                      font-weight: 800;
-                      font-size: 2.5em;
-                      line-height: 1.2em;
-                      & span {
-                        font-size: .8em;
-                        position: relative;
-                        top: 2px;
-                      }
-                    }
-                  }
-                  & .top-left--price {
-                    @include prefixflex();
-                    justify-content: space-between;
-                    align-items: center;
-                    height: 4em;
+                    align-items: flex-start;
+                    flex-direction: column;
                     width: 33.5em;
-                    & h3.price--label {
-                      font-size: 2.5em;
-                      font-weight: 800;
-                      line-height: 1em;
-                      width: 4.4em;
-                      padding-left: .5em;
-                      & span {
-                        position: relative;
-                        font-weight: 800;
-                        top: -1px;
-                      }
-                    }
-                    & .price--tax {
+                    margin: .5em 0 0 .5em;
+                    & .top-left--title,
+                    .top-left--price {
                       @include prefixflex();
-                      justify-content: center;
+                      justify-content: flex-start;
                       align-items: center;
-                      flex-direction: column;
-                      width: 10em;
-                      & p:nth-child(1) {
-                        font-size: 1.2em;
-                        font-weight: 400;
-                        text-transform: uppercase;
+                      height: 3em;
+                      margin-bottom: .5em;
+                      & h3 {
+                        font-weight: 800;
+                        font-size: 2.5em;
+                        line-height: 1.2em;
                         & span {
-                          font-size: .9em;
+                          font-size: .8em;
+                          position: relative;
+                          top: 2px;
                         }
                       }
-                      & p {
-                        font-size: 1.2em;
-                        line-height: 1.3em;
-                      }
                     }
-                    & .price--in-stock {
+                    & .top-left--price {
                       @include prefixflex();
-                      justify-content: center;
+                      justify-content: space-between;
                       align-items: center;
-                      flex-direction: column;
-                      width: 12em;
-                      & p:nth-child(1) {
-                        font-size: 1.4em;
-                        text-transform: uppercase;
-                        line-height: 1em;
+                      height: 4em;
+                      width: 33.5em;
+                      & h3.price--label {
+                        font-size: 2.5em;
                         font-weight: 800;
+                        line-height: 1em;
+                        width: 4.4em;
+                        padding-left: .5em;
+                        & span {
+                          position: relative;
+                          font-weight: 800;
+                          top: -1px;
+                        }
                       }
-                      & p {
-                        font-size: 1.2em;
-                        line-height: 1.3em;
-                      }
-                    }
-                  }
-                  & .top-left--nic-strengths {
-                    @include prefixflex();
-                    justify-content: space-around;
-                    align-items: center;
-                    height: 4em;
-                    width: 33.5em;
-                    & p {
-                      font-weight: 800;
-                      max-width: 17em;
-                    }
-                    & .nic-strengths--list {
-                      @include prefixflex();
-                      align-items: center;
-                      list-style-type: none;
-                      margin: 0;
-                      padding: 0;
-                      & .list--option {
+                      & .price--tax {
                         @include prefixflex();
                         justify-content: center;
                         align-items: center;
-                        width: 2.8em;
-                        height: 2.8em;
-                        margin-right: .2em;
-                        & .list-btn {
-                          height: 100%;
-                          width: 100%;
-                          border: none;
-                          color: $p-white;
-                          background-color: $p-red;
-                          cursor: pointer;
-                          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                        flex-direction: column;
+                        width: 10em;
+                        & p:nth-child(1) {
+                          font-size: 1.2em;
+                          font-weight: 400;
+                          text-transform: uppercase;
+                          & span {
+                            font-size: .9em;
+                          }
+                        }
+                        & p {
+                          font-size: 1.2em;
+                          line-height: 1.3em;
+                        }
+                      }
+                      & .price--in-stock {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        width: 12em;
+                        & p:nth-child(1) {
+                          font-size: 1.4em;
+                          text-transform: uppercase;
+                          line-height: 1em;
+                          font-weight: 800;
+                        }
+                        & p {
+                          font-size: 1.2em;
+                          line-height: 1.3em;
                         }
                       }
                     }
-                  }
-                }
-                & .desc__top-right {
-                  width: 21em;
-                  margin: .5em 0 0 .5em;
-                }
-              }
-              & .desc__middle {
-                @include prefixflex();
-                justify-content: flex-start;
-                align-items: flex-start;
-                margin: .5em 0 0 .5em;
-                padding: .5em;
-                width: 54.5em;
-                height: 7em;
-              }
-              & .desc__bottom {
-                @include prefixflex();
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 8em;
-                & .action-btns--container {
-                  @include prefixflex();
-                  justify-content: space-around;
-                  align-items: center;
-                  width: 100%;
-                  height: 8em;
-                  & .action-btns--qty-msg {
-                    max-width: 14em;
-                    font-size: 1em;
-                    line-height: 1.3em;
-                    text-align: center;
-                  }
-                  & .action-btns__qty {
-                    height: 6em;
-                    max-width: 19em;
-                    width: 19em;
-                    & .qty--list {
+                    & .top-left--nic-strengths {
                       @include prefixflex();
-                      justify-content: center;
+                      justify-content: space-around;
                       align-items: center;
-                      height: 100%;
-                      list-style-type: none;
-                      padding: 0;
-                      margin: 0;
-                      background-color: $p-grey;
-                      & .list--label,
-                      .list--readout,
-                      .list--pm-btns {
-                        & p {
-                          font-size: 1.8em;
-                        }
+                      height: 4em;
+                      width: 33.5em;
+                      & p {
+                        font-weight: 800;
+                        max-width: 17em;
                       }
-                      & .list--label {
-                        padding: 0 .5em;
-                      }
-                      & .list--readout {
-                        & p {
+                      & .nic-strengths--list {
+                        @include prefixflex();
+                        align-items: center;
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        & .list--option {
                           @include prefixflex();
                           justify-content: center;
                           align-items: center;
-                          height: 2.8em;
                           width: 2.8em;
-                          line-height: 1em;
-                          background-color: $p-white;
-                          border: 1px solid $s-grey;
+                          height: 2.8em;
                           margin-right: .2em;
+                          & .list-btn {
+                            height: 100%;
+                            width: 100%;
+                            border: none;
+                            color: $p-white;
+                            background-color: $p-red;
+                            cursor: pointer;
+                            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                          }
+                        }
+                      }
+                    }
+                  }
+                  & .desc__top-right {
+                    width: 21em;
+                    margin: .5em 0 0 .5em;
+                  }
+                }
+                & .desc__middle {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  margin: .5em 0 0 .5em;
+                  padding: .5em;
+                  width: 54.5em;
+                  height: 7em;
+                }
+                & .desc__bottom {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                  height: 8em;
+                  & .action-btns--container {
+                    @include prefixflex();
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 100%;
+                    height: 8em;
+                    & .action-btns--qty-msg {
+                      max-width: 14em;
+                      font-size: 1em;
+                      line-height: 1.3em;
+                      text-align: center;
+                    }
+                    & .action-btns__qty {
+                      height: 6em;
+                      max-width: 19em;
+                      width: 19em;
+                      & .qty--list {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+                        background-color: $p-grey;
+                        & .list--label,
+                        .list--readout,
+                        .list--pm-btns {
+                          & p {
+                            font-size: 1.8em;
+                          }
+                        }
+                        & .list--label {
+                          padding: 0 .5em;
+                        }
+                        & .list--readout {
+                          & p {
+                            @include prefixflex();
+                            justify-content: center;
+                            align-items: center;
+                            height: 2.8em;
+                            width: 2.8em;
+                            line-height: 1em;
+                            background-color: $p-white;
+                            border: 1px solid $s-grey;
+                            margin-right: .2em;
+                          }
+                        }
+                        .list--pm-btns {
+                          button {
+                            font-size: 10px;
+                            border: none;
+                            height: 2.5em;
+                            width: 4.5em;
+                            padding: 0;
+                            margin: 1px;
+                            background-color: $p-red;
+                            cursor: pointer;
+                            transition: all .3s ease-in-out;
+                            span {
+                              color: $p-white;
+                            }
+                            &:active,
+                            &:hover,
+                            &:focus {
+                              background-color: $p-blue;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    & .action-btns__add-to-cart {
+                      & .add-to-cart--btn {
+                        height: 3.33em;
+                        max-width: 10em;
+                        width: 10em;
+                        color: $p-white;
+                        font-size: 1.8em;
+                        font-weight: 200;
+                        font-family: $p-font;
+                        background-color: $p-red;
+                        border: none;
+                        cursor: pointer;
+                        box-shadow: 3px 3px 3px rgba(0,0,0, .5);
+                        & .btn-flex-parent {
+                          @include prefixflex();
+                          justify-content: center;
+                          align-items: center;
+                          & span {
+                            position: relative;
+                            bottom: -2px;
+                          }
                         }
                       }
                     }
                   }
                 }
               }
-            }
-            & .row--social {
-              width: 26.7em;
-            }
-            & .row--promotion-banner {
-              position: absolute;
-              width: 38em;
+              & .row--social {
+                width: 26.7em;
+                & .row__social-list {
+                  @include prefixflex();
+                  justify-content: space-around;
+                  align-items: center;
+                  flex-direction: column;
+                  padding: 0;
+                  margin: 0;
+                  list-style-type: none;
+                  & .social-list--like,
+                  .social-list--share,
+                  .social-list--tweet {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    height: 3em;
+                    width: 8.6em;
+                    cursor: pointer;
+                    @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
+                    & button {
+                      font-size: 1.2em;
+                      line-height: 1.42em;
+                      color: $p-white;
+                      border: none;
+                      cursor: pointer;
+                      background-color: $p-blue;
+                      .btn-flex-parent {
+                        @include prefixflex();
+                        justify-content: space-around;
+                        align-items: center;
+                        & span {
+                          font-size: 1.8em;
+                          padding: .27em;
+                        }
+                        p {
+                          font-weight: 800;
+                        }
+                      }
+                    }
+                  }
+                  & .social-list--tweet {
+                    & button {
+                      background-color: #1B95E0;
+                    }
+                  }
+                }
+              }
+              & .row--promotion-banner {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                @include prefixed(transform, rotate(45deg));
+                height: 8.5em;
+                width: 38em;
+                position: absolute;
+                z-index: 2;
+                background-color: $s-blue;
+                font-family: $p-font;
+                // font-size: 1.5em;
+                font-weight: 800;
+                letter-spacing: .06em;
+                line-height: 1.38em;
+                text-transform: uppercase;
+                text-align: center;
+                left: 78.5em;
+                top: 3em;
+                @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
+                @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
+                h3 {
+                  max-width: 10.5em;
+                  font-size: 1.8em;
+                  font-weight: 800;
+                  text-transform: uppercase;
+                  color: $p-white;
+                }
+              }
             }
           }
         }
@@ -763,72 +888,3 @@
     }
   }
 }
-{
-
-        & .single-product-info-desc-actions-btn-qty-readout {
-          p {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            height: 2.8em;
-            width: 2.8em;
-            line-height: 1em;
-            background-color: $p-white;
-            border: 1px solid $s-grey;
-            margin-right: .2em;
-          }
-        }
-        & .single-product-info-desc-actions-btn-qty-btns {
-          button {
-            font-size: 10px;
-            border: none;
-            height: 2.5em;
-            width: 4.5em;
-            padding: 0;
-            margin: 1px;
-            background-color: $p-red;
-            cursor: pointer;
-            transition: all .3s ease-in-out;
-            span {
-              color: $p-white;
-            }
-            &:active,
-            &:hover,
-            &:focus {
-              background-color: $p-blue;
-            }
-          }
-        }
-      }
-    }
-    & .single-product-info-desc-actions-btn-add {
-      & .sp-cart-icon {
-        font-size: 25px;
-        position: relative;
-        bottom: -2px;
-        padding-right: .4em;
-      }
-      height: 3.33em;
-      max-width: 10em;
-      width: 10em;
-      font-size: 1.8em;
-      background-color: $p-red;
-      border: none;
-      cursor: pointer;
-      transition: all .3s ease-in-out;
-      @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .5));
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: $p-blue;
-      }
-      & .btn-flex-parent {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        color: $p-white;
-        font-weight: 200;
-        font-family: $p-font;
-      }
-    }
-  }
