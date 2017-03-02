@@ -576,6 +576,11 @@
                       font-weight: 800;
                       font-size: 2.5em;
                       line-height: 1.2em;
+                      & span {
+                        font-size: .8em;
+                        position: relative;
+                        top: 2px;
+                      }
                     }
                   }
                   & .top-left--price {
@@ -583,6 +588,31 @@
                     justify-content: space-between;
                     align-items: center;
                     height: 4em;
+                    width: 33.5em;
+                    h3 {
+                      font-size: 2.5em;
+                      font-weight: 800;
+                      line-height: 1em;
+                      width: 4.4em;
+                    }
+                    & .price--tax {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      flex-direction: column;
+                      width: 10em;
+                      & p {
+                        font-size: 1.2em;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        & span {
+                          font-size: .9em;
+                        }
+                      }
+                    }
+                    & .price--in-stock {
+                      width: 1.2em;
+                    }
                   }
                 }
                 & .desc__top-right {
