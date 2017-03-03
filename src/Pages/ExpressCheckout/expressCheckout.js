@@ -529,14 +529,14 @@ export default function ExpressCheckout() {
               </button>
             </div>
           </div>
-          <div className="checkout__error-dialogue" style={{ display: 'none' }}>
+          <div className="checkout__error-dialogue">
             <p>
               <FontAwesome className="error-icon" name="times-circle" />
               <span className="error-title">ERROR: </span>
               There was an error placing your order: Credit card information was invalid.
             </p>
           </div>
-          <div className="checkout__loading-icon">
+          <div className="checkout__loading-icon"  style={{ display: 'none' }}>
             <FontAwesome className="spinner-icon" name="spinner" spin />
             <p>One moment please</p>
             <p>while we process your order...</p>

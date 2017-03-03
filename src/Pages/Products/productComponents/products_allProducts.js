@@ -207,7 +207,7 @@ export default function AllProducts() {
             </div>
           </div>
           <div className="main--table">
-            <div className="table__row--list-view">
+            <div className="table__row--list-view" style={{ display: 'none' }}>
               <div className="row__card">
                 <div className="row--image">
                   {/* TODO: Set this image--label dynamically based on sales analytics. */}
@@ -368,7 +368,7 @@ export default function AllProducts() {
                 </div>
               </div>
             </div>
-            <div className="table__row--grid-view" style={{ display: 'none' }}>
+            <div className="table__row--grid-view">
               <div className="row--card">
                 <div className="row__image">
                   <div className="image--label">
