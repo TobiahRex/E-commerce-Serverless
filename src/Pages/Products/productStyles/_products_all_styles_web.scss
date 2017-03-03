@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1079px) {
+@media only screen and (min-width: 641px) {
   .products {
     &.products--container {
       max-width: 1086px;
@@ -58,20 +58,22 @@
       align-items: flex-start;
       & .body--main {
         height: 100%;
-        width: 100%;
+        max-width: 108.6em;
         & .main--toolbar {
           @include prefixflex();
-          justify-content: space-between;;
+          justify-content: center;
           align-items: center;
-          padding: 1.2em;
+          flex-wrap: wrap;
+          /*           padding: 1.2em; */
           max-width: 106.2em;
           width: 100%;
-          height: 4em;
+          max-height: 14em;
           background-color: $p-grey;
           & .toolbar--left {
             @include prefixflex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
             & .toolbar--sort-position,
             .toolbar--show-per {
               @include prefixflex();
@@ -80,6 +82,7 @@
               flex-direction: column;
               width: 17.7em;
               height: 3em;
+              padding: 1.2em;
               & .relative-parent {
                 display: inline-block;
                 position: relative;
@@ -220,16 +223,21 @@
                 margin-left: .1em;
               }
             }
-            & .toolbar--visible,
-            .toolbar--visible-total {
-              margin-left: .5em;
-              & p {
-                color: $t-grey;
-                font-size: 1.6em;
-                font-weight: 200;
-                & .visible--label,
-                .visible-total--label {
-                  font-weight: 400;
+            & .toolbar--results {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & .results--visible,
+              .results--visible-total {
+                margin-left: .5em;
+                & p {
+                  color: $t-grey;
+                  font-size: 1.6em;
+                  font-weight: 200;
+                  & .visible--label,
+                  .visible-total--label {
+                    font-weight: 400;
+                  }
                 }
               }
             }
@@ -252,7 +260,7 @@
                 max-width: 36em;
                 height: 3.3em;
                 list-style-type: none;
-                padding: 0;
+                padding: 1.2em;
                 margin: 0;
                 overflow: hidden;
                 & .pagination__number,
@@ -292,15 +300,16 @@
           }
         }
         & .main--table {
-          height: 100em;
-          width: 104.6em;
+          /*           height: 100em; */
+          max-width: 104.6em;
           margin-top: 1em;
-          padding: 2em;
+          padding: 1em 2em 1em 2em;
           background-color: $p-grey;
           & .table__row--grid-view {
             @include prefixflex();
             justify-content: space-between;
             align-items: flex-start;
+            flex-wrap: wrap;
             width: 100%;
             & .row--card {
               @include prefixflex();
@@ -308,7 +317,9 @@
               align-items: center;
               flex-direction: column;
               height: 31.5em;
-              width: 21.5em;
+              max-width: 21.5em;
+              width: 50%;
+              margin: 1em 0;
               background-color: $p-white;
               & .row__image {
                 @include prefixflex();

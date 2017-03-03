@@ -15,7 +15,9 @@ export default function AllProducts() {
             />
           </li>
           <li className="breadcrumb__path">
-            <p className="breadcrumb__path--label">Juices</p>
+            <p className="breadcrumb__path--label">
+              {'\u00A0'}Juices
+            </p>
           </li>
         </ul>
       </div>
@@ -127,21 +129,23 @@ export default function AllProducts() {
                   </div>
                 </span>
               </div>
-              <div className="toolbar--visible">
-                {/* TODO: Set interger dynamically */}
-                <p>
-                  <span className="visible--label">
-                    {'\u00A0'}5{'\u00A0'}
-                  </span>
-                item(s)</p>
-              </div>
-              <div className="toolbar--visible-total">
-                {/* TODO: set interger dynamically */}
-                <p>{'\u00A0'}of
-                  <span className="visible-total--label">
-                    {'\u00A0'}10{'\u00A0'}
-                  </span>
-                total</p>
+              <div className="toolbar--results">
+                <div className="results--visible">
+                  {/* TODO: Set interger dynamically */}
+                  <p>
+                    <span className="visible--label">
+                      {'\u00A0'}5{'\u00A0'}
+                    </span>
+                  item(s)</p>
+                </div>
+                <div className="results--visible-total">
+                  {/* TODO: set interger dynamically */}
+                  <p>{'\u00A0'}of
+                    <span className="visible-total--label">
+                      {'\u00A0'}10{'\u00A0'}
+                    </span>
+                  total</p>
+                </div>
               </div>
             </div>
             <div className="toolbar--right">
