@@ -527,6 +527,9 @@
             align-items: center;
             flex-direction: column;
             padding: .5em;
+            & .row__card:nth-child(1) {
+              margin-top: 0;
+            }
             & .row__card {
               position: relative;
               @include prefixflex();
@@ -536,7 +539,8 @@
               overflow: hidden;
               background-color: $p-white;
               box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-              margin-top: 2em;
+              padding-bottom: 2em;
+              margin-top: 1em;
               & .row--image {
                 @include prefixflex();
                 justify-content: center;
@@ -549,7 +553,7 @@
                 & .image--label {
                   position: absolute;
                   top: .5em;
-                  left: .5em;
+                  left: 1em;
                   & p {
                     @include prefixflex();
                     justify-content: center;
@@ -769,7 +773,7 @@
                     align-items: center;
                     flex-direction: column;
                     width: 100%;
-                    height: 8em;
+                    height: 10em;
                     & .action-btns__add-to-cart {
                       & .add-to-cart--btn {
                         height: 3.33em;
