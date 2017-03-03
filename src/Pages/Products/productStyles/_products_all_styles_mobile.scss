@@ -300,10 +300,8 @@
           }
         }
         & .main--table {
-          /*           height: 100em; */
-          max-width: 104.6em;
+          max-width: 64em;
           margin-top: 1em;
-/*           padding: 0 .5em; */
           background-color: $p-grey;
           & .table__row--grid-view {
             @include prefixflex();
@@ -321,6 +319,7 @@
               width: 48%;
               margin: .5em 0;
               background-color: $p-white;
+              padding-bottom: 2em;
               & .row__image {
                 @include prefixflex();
                 justify-content: center;
@@ -338,8 +337,6 @@
                   top: .5em;
                   left: .5em;
                   z-index: 3;
-/*                   height: 100%; */
-/*                   width: 8em; */
                   & p {
                     @include prefixflex();
                     justify-content: center;
@@ -363,8 +360,6 @@
                   @include prefixflex();
                   justify-content: center;
                   align-items: flex-end;
-/*                   height: 100%;
-                  width: 8em; */
                   position: absolute;
                   top: 15em;
                   right: .5em;
@@ -373,7 +368,7 @@
                     justify-content: center;
                     align-items: center;
                     list-style-type: none;
-                    width: 7em;
+                    width: 8em;
                     height: 2em;
                     margin: 0 0 1em 0;
                     padding: 0;
@@ -386,7 +381,7 @@
                       margin-left: 1px;
                       & span {
                         color: $p-white;
-                        font-size: 1.2em;
+                        font-size: 1em;
                         font-weight: 800;
                       }
                     }
@@ -509,7 +504,7 @@
                     @include prefixflex();
                     justify-content: center;
                     align-items: center;
-/*                     width: 2.5em;
+                    /*                     width: 2.5em;
                     height: 3em; */
                     margin-left: .2em;
                     & .option--button {
@@ -529,30 +524,32 @@
           & .table__row--list-view {
             @include prefixflex();
             justify-content: center;
-            align-items: flex-start;
-            width: 100%;
+            align-items: center;
+            flex-direction: column;
+            padding: .5em;
             & .row__card {
               position: relative;
               @include prefixflex();
               justify-content: center;
               align-items: center;
+              flex-direction: column;
               overflow: hidden;
               background-color: $p-white;
               box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+              margin-top: 2em;
               & .row--image {
                 @include prefixflex();
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
-                width: 20.5em;
+                position: relative;
+                width: 100%;
                 max-height: 28em;
                 background-color: $p-white;
                 padding: .5em;
                 & .image--label {
-                  @include prefixflex();
-                  justify-content: center;
-                  align-items: flex-start;
-                  height: 28em;
-                  width: 5.5em;
+                  position: absolute;
+                  top: .5em;
+                  left: .5em;
                   & p {
                     @include prefixflex();
                     justify-content: center;
@@ -569,11 +566,10 @@
                 }
                 & .image--src-container {
                   @include prefixflex();
-                  justify-content: flex-start;
+                  justify-content: center;
                   align-items: center;
-                  width: 15em;
+                  width: 100%;
                   max-height: 28em;
-                  padding-left: 2em;
                   overflow: hidden;
                   & img {
                     position: relative;
@@ -585,22 +581,20 @@
               }
               & .row--desc {
                 @include prefixflex();
-                justify-content: flex-start;
-                align-items: flex-start;
+                justify-content: center;
+                align-items: center;
                 flex-direction: column;
-                // height:
-                width: 56em;
                 background-color: white;
                 & .desc__top {
                   @include prefixflex();
-                  justify-content: flex-start;
-                  align-items: flex-start;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
                   & .desc__top-left {
                     @include prefixflex();
-                    justify-content: flex-start;
-                    align-items: flex-start;
+                    justify-content: center;
+                    align-items: center;
                     flex-direction: column;
-                    width: 34.5em;
                     margin: .5em 0 0 .5em;
                     & .top-left--title,
                     .top-left--price {
@@ -611,7 +605,7 @@
                       margin-bottom: .5em;
                       & h3 {
                         font-weight: 800;
-                        font-size: 2.5em;
+                        font-size: 2em;
                         line-height: 1.2em;
                         & span {
                           font-size: .8em;
@@ -625,12 +619,11 @@
                       justify-content: space-between;
                       align-items: center;
                       height: 4em;
-                      width: 33.5em;
+                      width: 100%;
                       & h3.price--label {
                         font-size: 2.5em;
                         font-weight: 800;
                         line-height: 1em;
-                        width: 4.4em;
                         padding-left: .5em;
                         & span {
                           position: relative;
@@ -643,7 +636,6 @@
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
-                        width: 10em;
                         & p:nth-child(1) {
                           font-size: 1.2em;
                           font-weight: 400;
@@ -662,7 +654,6 @@
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
-                        width: 12em;
                         & p:nth-child(1) {
                           font-size: 1.4em;
                           text-transform: uppercase;
@@ -680,7 +671,7 @@
                       justify-content: space-around;
                       align-items: center;
                       height: 4em;
-                      width: 33.5em;
+                      width: 100%;
                       & p {
                         font-weight: 800;
                         max-width: 17em;
@@ -689,7 +680,7 @@
                         @include prefixflex();
                         align-items: center;
                         list-style-type: none;
-                        margin: 0;
+                        margin: 0 0 0 1em;
                         padding: 0;
                         & .list--option {
                           @include prefixflex();
@@ -712,15 +703,9 @@
                     }
                   }
                   & .desc__top-right {
-                    @include prefixflex();
-                    justify-content: space-around;
-                    align-items: center;
-                    flex-direction: column;
-                    width: 21.1em;
-                    height: 11.5em;
-                    margin: .5em 0 0 .5em;
-                    border-left: 1px solid rgba(0,0,0,.2);
+                    position: relative;
                     & .right-top__rating-label {
+                      display: none;
                       margin: .6em auto;
                       h3 {
                         font-weight: 800;
@@ -730,17 +715,21 @@
                       @include prefixflex();
                       justify-content: center;
                       align-items: center;
-                      height: 3.3em;
-                      width: 16em;
+                      height: 2.5em;
+                      width: 9em;
                       background-color: $p-red;
+                      top: -17em;
+                      right: -13em;
+                      position: absolute;
                       & span {
                         color: $p-white;
-                        font-size: 2.5em;
+                        font-size: 1.6em;
                         font-weight: 400;
                         margin-left: .1em;
                       }
                     }
                     & .right-top__read-reviews-label {
+                      display: none;
                       a {
                         color: $p-blue;
                         font-size: 1.4em;
@@ -763,88 +752,24 @@
                   @include prefixflex();
                   justify-content: flex-start;
                   align-items: flex-start;
-                  margin: .5em 0 0 .5em;
-                  padding: .5em;
-                  width: 54.5em;
+                  padding: 1em;
                   height: 7em;
+                  & p {
+                    font-size: 1.4em;
+                  }
                 }
                 & .desc__bottom {
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
                   width: 100%;
-                  height: 8em;
                   & .action-btns--container {
                     @include prefixflex();
-                    justify-content: space-around;
+                    justify-content: center;
                     align-items: center;
+                    flex-direction: column;
                     width: 100%;
                     height: 8em;
-                    & .action-btns--qty-msg {
-                      max-width: 14em;
-                      font-size: 1em;
-                      line-height: 1.3em;
-                      text-align: center;
-                    }
-                    & .action-btns__qty {
-                      height: 6em;
-                      max-width: 19em;
-                      width: 19em;
-                      & .qty--list {
-                        @include prefixflex();
-                        justify-content: center;
-                        align-items: center;
-                        height: 100%;
-                        list-style-type: none;
-                        padding: 0;
-                        margin: 0;
-                        background-color: $p-grey;
-                        & .list--label,
-                        .list--readout,
-                        .list--pm-btns {
-                          & p {
-                            font-size: 1.8em;
-                          }
-                        }
-                        & .list--label {
-                          padding: 0 .5em;
-                        }
-                        & .list--readout {
-                          & p {
-                            @include prefixflex();
-                            justify-content: center;
-                            align-items: center;
-                            height: 2.8em;
-                            width: 2.8em;
-                            line-height: 1em;
-                            background-color: $p-white;
-                            border: 1px solid $s-grey;
-                            margin-right: .2em;
-                          }
-                        }
-                        .list--pm-btns {
-                          button {
-                            font-size: 10px;
-                            border: none;
-                            height: 2.5em;
-                            width: 4.5em;
-                            padding: 0;
-                            margin: 1px;
-                            background-color: $p-red;
-                            cursor: pointer;
-                            transition: all .3s ease-in-out;
-                            span {
-                              color: $p-white;
-                            }
-                            &:active,
-                            &:hover,
-                            &:focus {
-                              background-color: $p-blue;
-                            }
-                          }
-                        }
-                      }
-                    }
                     & .action-btns__add-to-cart {
                       & .add-to-cart--btn {
                         height: 3.33em;
@@ -869,6 +794,12 @@
                         }
                       }
                     }
+                    & p {
+                      display: none;
+                    }
+                    & .action-btns__qty {
+                      display: none;
+                    }
                   }
                 }
               }
@@ -876,7 +807,6 @@
                 @include prefixflex();
                 justify-content: center;
                 align-items: flex-end;
-                height: 29em;
                 width: 26.7em;
                 & .row__social-list {
                   @include prefixflex();
@@ -885,7 +815,7 @@
                   flex-direction: column;
                   padding: 0;
                   margin: 0;
-                  height: 17.5em;
+                  height: 13.5em;
                   width: 26em;
                   list-style-type: none;
                   & .social-list--like,

@@ -1,4 +1,4 @@
-@media only screen and (min-width: 641px) {
+@media only screen and (min-width: 1010px) {
   .products {
     &.products--container {
       max-width: 1086px;
@@ -301,7 +301,7 @@
         }
         & .main--table {
           /*           height: 100em; */
-          max-width: 104.6em;
+          width: 100%;
           margin-top: 1em;
           padding: 1em 2em 1em 2em;
           background-color: $p-grey;
@@ -317,8 +317,8 @@
               align-items: center;
               flex-direction: column;
               height: 31.5em;
-              max-width: 21.5em;
-              width: 50%;
+/*               max-width: 64em; */
+              width: 100%;
               margin: 1em 0;
               background-color: $p-white;
               & .row__image {
@@ -514,7 +514,8 @@
           & .table__row--list-view {
             @include prefixflex();
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            flex-direction: column;
             width: 100%;
             & .row__card {
               position: relative;
@@ -522,6 +523,7 @@
               justify-content: center;
               align-items: center;
               overflow: hidden;
+              margin-top: 2em;
               background-color: $p-white;
               box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               & .row--image {
@@ -862,7 +864,7 @@
                 justify-content: center;
                 align-items: flex-end;
                 height: 29em;
-                width: 26.7em;
+                width: 20.7em;
                 & .row__social-list {
                   @include prefixflex();
                   justify-content: space-around;
@@ -871,7 +873,7 @@
                   padding: 0;
                   margin: 0;
                   height: 17.5em;
-                  width: 26em;
+                  max-width: 26em;
                   list-style-type: none;
                   & .social-list--like,
                   .social-list--share,
@@ -939,7 +941,964 @@
                 line-height: 1.38em;
                 text-transform: uppercase;
                 text-align: center;
-                left: 78.5em;
+                left: 72.5em;
+                top: 3em;
+                @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
+                @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
+                h3 {
+                  max-width: 10.5em;
+                  font-size: 1.8em;
+                  font-weight: 800;
+                  text-transform: uppercase;
+                  color: $p-white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 641px) and (max-width: 1009px) {
+  .products {
+    &.products--container {
+      max-width: 1086px;
+      width: 100%;
+      height: 100%;
+    }
+    & .products__breadcrumb {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      height: 6em;
+      padding-right: 3em;
+      background-color: $p-white;
+      & .products__breadcrumb--list {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0 1em;
+        & .breadcrumb__path {
+          font-size: 1.8em;
+          font-family: $p-font;
+          font-weight: normal;
+          color: $p-blue;
+          & .breadcrumb__path--link,
+          .breadcrumb__path--label {
+            font-size: 1em;
+            color: $p-blue;
+          }
+          & .breadcrumb__path--right-chevron {
+            font-size: 18px;
+            color: $p-blue;
+            margin: 0 .5em -1em .5em;
+            bottom: -1px;
+            position: relative;
+          }
+        }
+      }
+    }
+    & .products__title {
+      @include prefixflex();
+      align-items: flex-start;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
+    & .products__body {
+      @include prefixflex();
+      justify-content: space-between;
+      align-items: flex-start;
+      & .body--main {
+        height: 100%;
+        max-width: 108.6em;
+        & .main--toolbar {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          /*           padding: 1.2em; */
+          max-width: 106.2em;
+          width: 100%;
+          max-height: 14em;
+          background-color: $p-grey;
+          & .toolbar--left {
+            @include prefixflex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            & .toolbar--sort-position,
+            .toolbar--show-per {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 17.7em;
+              height: 3em;
+              padding: 1.2em;
+              & .relative-parent {
+                display: inline-block;
+                position: relative;
+                & .sort-position--title-bar,
+                .show-per--title-bar {
+                  @include prefixflex();
+                  justify-content: space-between;
+                  align-items: center;
+                  background-color: $p-white;
+                  padding: 0 0 0 .5em;
+                  width: 17em;
+                  & p {
+                    font-size: 1.4em;
+                    font-weight: 200;
+                    & .sort-position--label,
+                    .show-per--label {
+                      color: $p-blue;
+                      font-family: $p-font;
+                      font-weight: 400;
+                    }
+                  }
+                  & .ddn-button {
+                    height: 3em;
+                    width: 3em;
+                    border: none;
+                    background-color: $p-red;
+                    cursor: pointer;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                      background-color: $p-blue;
+                      outline: none;
+                    }
+                    & .btn-flex-parent {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      & span {
+                        color: $p-white;
+                        font-weight: 400;
+                        font-size: 2em;
+                      }
+                    }
+                  }
+                }
+                & .sort-position--dd-content,
+                .show-per--dd-content {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  display: block;
+                  position: absolute;
+                  opacity: 1;
+                  height: 8em;
+                  width: 21em;
+                  padding: 1em;
+                  z-index: 5;
+                  background-color: $s-white;
+                  border: 1px solid $p-grey;
+                  box-shadow: 4px 4px 4px rgba(0, 0, 0, .25);
+                  & .dd-content__list {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    & .list__option {
+                      @include prefixflex();
+                      justify-content: flex-start;
+                      align-items: center;
+                      transition: all .3s ease-in-out;
+                      cursor: pointer;
+                      &:hover,
+                      &:focus,
+                      &:active {
+                        background-color: $p-blue;
+                        & .list__option--icon,
+                        .list__option--label {
+                          & p, span {
+                            color: $p-white;
+                          }
+                        }
+                      }
+                      & .list__option--icon {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        height: 2.5em;
+                        width: 2.5em;
+                        & span {
+                          color: $p-blue;
+                          font-size: 2em;
+                          font-weight: 400;
+                        }
+                      }
+                      & .list__option--label {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        & p {
+                          color: $p-blue;
+                          font-weight: 200;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            & .toolbar--show-per {
+              margin-left: 2em;
+            }
+            & .toolbar--view {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              margin-left: 2em;
+              & .view--grid {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 3.3em;
+                width: 4em;
+                background-color: $p-red;
+                cursor: pointer;
+                transition: all .3s ease-in-out;
+                &:hover,
+                &:active,
+                &:focus {
+                  background-color: $p-blue;
+                }
+                & span {
+                  color: $p-white;
+                  font-size: 1.7em;
+                  font-weight: 400;
+                }
+              }
+              & .view--list {
+              display: none;
+              }
+            }
+            & .toolbar--results {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & .results--visible,
+              .results--visible-total {
+                margin-left: .5em;
+                & p {
+                  color: $t-grey;
+                  font-size: 1.6em;
+                  font-weight: 200;
+                  & .visible--label,
+                  .visible-total--label {
+                    font-weight: 400;
+                  }
+                }
+              }
+            }
+          }
+          & .toolbar--right {
+            @include prefixflex;
+            justify-content: center;
+            align-items: center;
+            & .toolbar--pagination {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              padding: 0 .1em;
+              // width: 6em;
+              // background-color: blue;
+              & .pagination--list {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                max-width: 36em;
+                height: 3.3em;
+                list-style-type: none;
+                padding: 1.2em;
+                margin: 0;
+                overflow: hidden;
+                & .pagination__number,
+                .pagination__next {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  // margin-left: .05em;
+                  & .number--button,
+                  .next--icon {
+                    height: 1.8em;
+                    width: 1.8em;
+                    border: none;
+                    color: $p-white;
+                    font-size: 1.8em;
+                    font-weight: 200;
+                    font-family: $p-font;
+                    background-color: $p-red;
+                    cursor: pointer;
+                    padding: 0;
+                    transition: all .3s ease-in-out;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                      background-color: $p-blue;
+                      outline: none;
+                    }
+                    & span {
+                      color: $p-white;
+                      font-size: 1.11em;
+                      font-weight: 400;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        & .main--table {
+          /*           height: 100em; */
+          max-width: 104.6em;
+          margin-top: 1em;
+          padding: 1em 2em 1em 2em;
+          background-color: $p-grey;
+          & .table__row--grid-view {
+            @include prefixflex();
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            width: 100%;
+            & .row--card {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              height: 31.5em;
+              max-width: 21.5em;
+              width: 50%;
+              margin: 1em 0;
+              background-color: $p-white;
+              & .row__image {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                height: 17.5em;
+                width: 20.5em;
+                & .image--label {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  text-transform: uppercase;
+                  height: 100%;
+                  width: 8em;
+                  & p {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    height: 1.67em;
+                    width: 3.33em;
+                    color: $p-white;
+                    font-size: 1.2em;
+                    font-weight: 800;
+                    font-family: $p-font;
+                    background-color: $p-blue;
+                  }
+                }
+                & .image--src {
+                  position: relative;
+                  max-width: 4.5em;
+                  content: $pina-colada;
+                  top: 2em;
+                }
+                & .image--rating {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: flex-end;
+                  height: 100%;
+                  width: 8em;
+                  & .image__stars-list {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    list-style-type: none;
+                    width: 7em;
+                    height: 2em;
+                    margin: 0 0 1em 0;
+                    padding: 0;
+                    background-color: $p-red;
+                    box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                    & .stars--star {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      margin-left: 1px;
+                      & span {
+                        color: $p-white;
+                        font-size: 1.2em;
+                        font-weight: 800;
+                      }
+                    }
+                    & .image__read-reviews {
+                      color: $p-white;
+                      font-weight: 200;
+                      font-size: 1em;
+                      font-family: $p-font;
+                    }
+                  }
+                }
+              }
+              & .row__desc {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 8.2em;
+                width: 20.5em;
+                margin-top: .6em;
+                & .desc__title-top {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: center;
+                  max-width: 20.5em;
+                  height: 3.5em;
+                  text-align: center;
+                  border-top: 1px solid rgba(0,0,0,.1);
+                  & h3 {
+                    font-size: 1.6em;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    line-height: 1em;
+                    & span {
+                      font-size: .625em;
+                      text-transform: uppercase;
+                      font-weight: 200;
+                    }
+                  }
+                }
+                & .desc__title-bottom {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: center;
+                  width: 20.5em;
+                  border-top: 1px solid rgba(0,0,0,.1);
+                  & .title-bottom--price {
+                    @include prefixflex();
+                    justify-content: flex-end;
+                    align-items: center;
+                    flex-direction: column;
+                    width: 13em;
+                    height: 4.5em;
+                    & h3 {
+                      font-size: 2.5em;
+                      font-weight: 800;
+                      line-height: 1em;
+                      & span {
+                        position: relative;
+                        top: -2px;
+                        font-size: .8em;
+                      }
+                    }
+                    & p {
+                      font-size: 1em;
+                      text-transform: uppercase;
+                      & span {
+                        font-size: 1em;
+                        font-weight: 200;
+                      }
+                    }
+                  }
+                  & .title-bottom--in-stock {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    & p:nth-child(1) {
+                      font-size: 1.4;
+                      line-height: 1.2em;
+                      font-weight: 800;
+                      text-transform: uppercase;
+                    }
+                    & p {
+                      font-size: 1em;
+                      font-weight: 200;
+                      line-height: 1.3em;
+                    }
+                  }
+                }
+              }
+              & .row__nicotine-strengths {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 4em;
+                width: 20.5em;
+                border-top: 1px solid rgba(0,0,0,.1);
+                & p {
+                  text-align: center;
+                  font-size: 1em;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                  max-width: 8em;
+                }
+                & .nicotine-strenghts--list {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  list-style-type: none;
+                  margin: 0;
+                  padding: 0;
+                  & .list--option {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    width: 2.5em;
+                    height: 3em;
+                    & .option--button {
+                      border: none;
+                      color: $p-white;
+                      background-color: $p-red;
+                      font-size: 1em;
+                      font-weight: 400;
+                      cursor: pointer;
+                      box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          & .table__row--list-view {
+            display: none;
+            & .row__card {
+              position: relative;
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
+              margin-top: 2em;
+              background-color: $p-white;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+              & .row--image {
+                @include prefixflex();
+                justify-content: flex-start;
+                align-items: center;
+                width: 20.5em;
+                max-height: 28em;
+                background-color: $p-white;
+                padding: .5em;
+                & .image--label {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: flex-start;
+                  height: 28em;
+                  width: 5.5em;
+                  & p {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    width: 3.125em;
+                    height: 1.57em;
+                    color: $p-white;
+                    font-size: 1.6em;
+                    font-family: $p-font;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    background-color: $p-blue;
+                  }
+                }
+                & .image--src-container {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: center;
+                  width: 15em;
+                  max-height: 28em;
+                  padding-left: 2em;
+                  overflow: hidden;
+                  & img {
+                    position: relative;
+                    top: 4em;
+                    content: $pina-colada;
+                    max-width: 7.5em;
+                  }
+                }
+              }
+              & .row--desc {
+                @include prefixflex();
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                // height:
+                width: 56em;
+                background-color: white;
+                & .desc__top {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  & .desc__top-left {
+                    @include prefixflex();
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: 34.5em;
+                    margin: .5em 0 0 .5em;
+                    & .top-left--title,
+                    .top-left--price {
+                      @include prefixflex();
+                      justify-content: flex-start;
+                      align-items: center;
+                      height: 3em;
+                      margin-bottom: .5em;
+                      & h3 {
+                        font-weight: 800;
+                        font-size: 2.5em;
+                        line-height: 1.2em;
+                        & span {
+                          font-size: .8em;
+                          position: relative;
+                          top: 2px;
+                        }
+                      }
+                    }
+                    & .top-left--price {
+                      @include prefixflex();
+                      justify-content: space-between;
+                      align-items: center;
+                      height: 4em;
+                      width: 33.5em;
+                      & h3.price--label {
+                        font-size: 2.5em;
+                        font-weight: 800;
+                        line-height: 1em;
+                        width: 4.4em;
+                        padding-left: .5em;
+                        & span {
+                          position: relative;
+                          font-weight: 800;
+                          top: -1px;
+                        }
+                      }
+                      & .price--tax {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        width: 10em;
+                        & p:nth-child(1) {
+                          font-size: 1.2em;
+                          font-weight: 400;
+                          text-transform: uppercase;
+                          & span {
+                            font-size: .9em;
+                          }
+                        }
+                        & p {
+                          font-size: 1.2em;
+                          line-height: 1.3em;
+                        }
+                      }
+                      & .price--in-stock {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        width: 12em;
+                        & p:nth-child(1) {
+                          font-size: 1.4em;
+                          text-transform: uppercase;
+                          line-height: 1em;
+                          font-weight: 800;
+                        }
+                        & p {
+                          font-size: 1.2em;
+                          line-height: 1.3em;
+                        }
+                      }
+                    }
+                    & .top-left--nic-strengths {
+                      @include prefixflex();
+                      justify-content: space-around;
+                      align-items: center;
+                      height: 4em;
+                      width: 33.5em;
+                      & p {
+                        font-weight: 800;
+                        max-width: 17em;
+                      }
+                      & .nic-strengths--list {
+                        @include prefixflex();
+                        align-items: center;
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        & .list--option {
+                          @include prefixflex();
+                          justify-content: center;
+                          align-items: center;
+                          width: 2.8em;
+                          height: 2.8em;
+                          margin-right: .2em;
+                          & .list-btn {
+                            height: 100%;
+                            width: 100%;
+                            border: none;
+                            color: $p-white;
+                            background-color: $p-red;
+                            cursor: pointer;
+                            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                          }
+                        }
+                      }
+                    }
+                  }
+                  & .desc__top-right {
+                    @include prefixflex();
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-direction: column;
+                    width: 21.1em;
+                    height: 11.5em;
+                    margin: .5em 0 0 .5em;
+                    border-left: 1px solid rgba(0,0,0,.2);
+                    & .right-top__rating-label {
+                      margin: .6em auto;
+                      h3 {
+                        font-weight: 800;
+                      }
+                    }
+                    & .right-top__rating-stars {
+                      @include prefixflex();
+                      justify-content: center;
+                      align-items: center;
+                      height: 3.3em;
+                      width: 16em;
+                      background-color: $p-red;
+                      & span {
+                        color: $p-white;
+                        font-size: 2.5em;
+                        font-weight: 400;
+                        margin-left: .1em;
+                      }
+                    }
+                    & .right-top__read-reviews-label {
+                      a {
+                        color: $p-blue;
+                        font-size: 1.4em;
+                        font-family: $p-font;
+                        font-weight: 200;
+                        transition: all .3s ease-in-out;
+                        text-shadow: 1px 1px 1px rgba(0,0,0,.05);
+                        cursor: pointer;
+                        &:hover,
+                        &:active,
+                        &:focus {
+                          color: $p-red;
+                          font-weight: 400;
+                        }
+                      }
+                    }
+                  }
+                }
+                & .desc__middle {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  margin: .5em 0 0 .5em;
+                  padding: .5em;
+                  width: 54.5em;
+                  height: 7em;
+                }
+                & .desc__bottom {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                  height: 8em;
+                  & .action-btns--container {
+                    @include prefixflex();
+                    justify-content: space-around;
+                    align-items: center;
+                    width: 100%;
+                    height: 8em;
+                    & .action-btns--qty-msg {
+                      max-width: 14em;
+                      font-size: 1em;
+                      line-height: 1.3em;
+                      text-align: center;
+                    }
+                    & .action-btns__qty {
+                      height: 6em;
+                      max-width: 19em;
+                      width: 19em;
+                      & .qty--list {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+                        background-color: $p-grey;
+                        & .list--label,
+                        .list--readout,
+                        .list--pm-btns {
+                          & p {
+                            font-size: 1.8em;
+                          }
+                        }
+                        & .list--label {
+                          padding: 0 .5em;
+                        }
+                        & .list--readout {
+                          & p {
+                            @include prefixflex();
+                            justify-content: center;
+                            align-items: center;
+                            height: 2.8em;
+                            width: 2.8em;
+                            line-height: 1em;
+                            background-color: $p-white;
+                            border: 1px solid $s-grey;
+                            margin-right: .2em;
+                          }
+                        }
+                        .list--pm-btns {
+                          button {
+                            font-size: 10px;
+                            border: none;
+                            height: 2.5em;
+                            width: 4.5em;
+                            padding: 0;
+                            margin: 1px;
+                            background-color: $p-red;
+                            cursor: pointer;
+                            transition: all .3s ease-in-out;
+                            span {
+                              color: $p-white;
+                            }
+                            &:active,
+                            &:hover,
+                            &:focus {
+                              background-color: $p-blue;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    & .action-btns__add-to-cart {
+                      & .add-to-cart--btn {
+                        height: 3.33em;
+                        max-width: 10em;
+                        width: 10em;
+                        color: $p-white;
+                        font-size: 1.8em;
+                        font-weight: 200;
+                        font-family: $p-font;
+                        background-color: $p-red;
+                        border: none;
+                        cursor: pointer;
+                        box-shadow: 3px 3px 3px rgba(0,0,0, .5);
+                        & .btn-flex-parent {
+                          @include prefixflex();
+                          justify-content: center;
+                          align-items: center;
+                          & span {
+                            position: relative;
+                            bottom: -2px;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              & .row--social {
+                @include prefixflex();
+                justify-content: center;
+                align-items: flex-end;
+                height: 29em;
+                width: 20.7em;
+                & .row__social-list {
+                  @include prefixflex();
+                  justify-content: space-around;
+                  align-items: center;
+                  flex-direction: column;
+                  padding: 0;
+                  margin: 0;
+                  height: 17.5em;
+                  max-width: 26em;
+                  list-style-type: none;
+                  & .social-list--like,
+                  .social-list--share,
+                  .social-list--tweet {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    height: 3.3em;
+                    width: 10.2em;
+                    cursor: pointer;
+                    @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
+                    & button {
+                      font-size: 1.2em;
+                      line-height: 1.42em;
+                      color: $p-white;
+                      border: none;
+                      cursor: pointer;
+                      background-color: $p-blue;
+                      height: 100%;
+                      width: 100%;
+                      padding: 0;
+                      margin: 0;
+                      .btn-flex-parent {
+                        @include prefixflex();
+                        justify-content: center;
+                        align-items: center;
+                        & span {
+                          font-size: 1.8em;
+                          padding: .27em;
+                        }
+                        & p {
+                          font-size: 1.2em;
+                          color: $p-white;
+                          font-weight: 400;
+                          line-height: 1em;
+                        }
+                        & p:nth-child(3) {
+                          font-weight: 200;
+                        }
+                      }
+                    }
+                  }
+                  & .social-list--tweet {
+                    & button {
+                      background-color: #1B95E0;
+                    }
+                  }
+                }
+              }
+              & .row--promotion-banner {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                @include prefixed(transform, rotate(45deg));
+                height: 8.5em;
+                width: 38em;
+                position: absolute;
+                z-index: 2;
+                background-color: $s-blue;
+                font-family: $p-font;
+                // font-size: 1.5em;
+                font-weight: 800;
+                letter-spacing: .06em;
+                line-height: 1.38em;
+                text-transform: uppercase;
+                text-align: center;
+                left: 72.5em;
                 top: 3em;
                 @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
                 @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
