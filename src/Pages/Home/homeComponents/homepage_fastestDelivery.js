@@ -31,7 +31,7 @@ function HomepageFastestDelivery() {
           </div>
           <button
             className="homepage-fastest-delivery-description-message-buy-btn sweep-right"
-            onClick={() => browserHistory.push('/products')}
+            onClick={() => browserHistory.push('/juices')}
           >Buy Now</button>
         </div>
       </div>

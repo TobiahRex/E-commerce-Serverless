@@ -123,7 +123,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
             </div>
           </div>
           <div className="shopping-cart-mobile-continue-shopping">
-            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/')}>
+            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/juices')}>
               Continue Shopping
             </button>
           </div>
