@@ -171,11 +171,11 @@ export default function SingleProduct() {
             <p>has been successfully added to your cart.</p>
           </div>
           <div className="single-product-add-success-modal-action-btns">
-            <button className="single-product-add-success-modal-cart sweep-right">View Cart</button>
-            <button className="single-product-add-success-modal-continue sweep-right">
+            <button className="single-product-add-success-modal-cart sweep-right" onClick={() => browserHistory.push('/cart')}>View Cart</button>
+            <button className="single-product-add-success-modal-continue sweep-right" onClick={() => browserHistory.push('/juices')}>
               Continue Shopping
             </button>
-            <button className="single-product-add-success-modal-checkout sweep-right">
+            <button className="single-product-add-success-modal-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
               Express Checkout
             </button>
           </div>

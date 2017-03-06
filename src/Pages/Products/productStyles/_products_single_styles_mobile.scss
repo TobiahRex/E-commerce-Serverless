@@ -472,7 +472,7 @@
       & .single-product-back-btn,
       .single-product-juices-btn {
         height: 3.33em;
-        width: 13.8em;
+        width: 100%;
         border: none;
         background-color: $p-red;
         font-family: $p-font;
@@ -480,6 +480,7 @@
         font-size: 1.8em;
         color: $p-white;
         cursor: pointer;
+        margin-top: 1em;
         @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .25));
         &:hover,
         &:active,

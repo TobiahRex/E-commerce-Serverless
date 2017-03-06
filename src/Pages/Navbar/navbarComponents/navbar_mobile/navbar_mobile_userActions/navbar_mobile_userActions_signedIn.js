@@ -26,7 +26,7 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
         </li>
         <li className="navbar-mobile-actions-signedIn-checkout-title sweep-right">
           <Link
-            to={'/checkout'}
+            to={'/express_checkout'}
             className="navbar-mobile-actions-signedIn-checkout-title-link"
           >Checkout</Link>
         </li>
