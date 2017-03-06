@@ -6,7 +6,7 @@ export default function Forgot() {
   return (
     <div className="forgot--main">
       <div className="forgot--container">
-        <div className="fogot__title">
+        <div className="forgot__title">
           <h1>
             Forgot Your Username or Password?
           </h1>
@@ -35,7 +35,7 @@ export default function Forgot() {
         <div className="forgot__input">
           <label htmlFor="input--email">
             Email{'\u00A0'}
-            <span className="requried">*</span>
+            <span className="required">*</span>
           </label>
           <input type="text" id="input--email" />
         </div>
@@ -43,15 +43,15 @@ export default function Forgot() {
           <button className="submit--btn sweep-right">Submit</button>
         </div>
       </div>
-      <div className="action-btns">
-        <button className="back-to-home sweep-right">
+      <div className="forgot--action-btns">
+        <button className="action-btns__back-to-home sweep-right">
           <span className="flex-btn-parent">
             <FontAwesome name="angle-double-left" />
             Back
           </span>
         </button>
         <button
-          className="register sweep-right"
+          className="action-btns__register sweep-right"
           onClick={() => browserHistory.push('/register')}
         >Register</button>
       </div>
