@@ -15,7 +15,7 @@ class NavbarUserActionsSignin extends PureComponent {
   render() {
     return (
       <ul
-        // style={NavbarUserActionsSignin.styles.hidden}
+        style={NavbarUserActionsSignin.styles.hidden}
         className="navbar-actionSection-upper-actions-signedIn"
       >
         <li className="my-account-title sweep-right">
