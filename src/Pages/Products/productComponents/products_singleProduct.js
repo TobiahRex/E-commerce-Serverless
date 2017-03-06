@@ -69,9 +69,10 @@ export default function SingleProduct() {
             </p>
           </div>
           <div className="single-product-info-desc-promotion">
-            <button className="sweep-right" onClick={() => browserHistory.push('/register')}>
-              New members get 10% off their first order
-            </button>
+            <button
+              className="sweep-right"
+              onClick={() => browserHistory.push('/register')}
+            >New members get 10% off their first order</button>
           </div>
           <div className="single-product-info-desc-nicotine">
             <h3>Nicotine Strength</h3>

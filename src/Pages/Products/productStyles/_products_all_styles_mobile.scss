@@ -187,24 +187,19 @@
                 }
               }
             }
-            & .toolbar--show-per {
-              margin-left: 2em;
-            }
             & .toolbar--view {
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              margin-left: 2em;
               width: 50%;
-              & .view--grid,
-              .view--list {
+              & .view--grid {
+                display: none;
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
                 height: 3.3em;
                 width: 4em;
                 background-color: $p-red;
-                cursor: pointer;
                 transition: all .3s ease-in-out;
                 &:hover,
                 &:active,
@@ -218,7 +213,7 @@
                 }
               }
               & .view--list {
-                margin-left: .1em;
+                display: none;
               }
             }
             & .toolbar--results {

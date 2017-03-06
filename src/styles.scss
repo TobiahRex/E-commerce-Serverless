@@ -26,6 +26,11 @@
 @import "Pages/Auth/Forgot/forgot_styles_web";
 @import "Pages/Auth/Forgot/forgot_styles_mobile";
 
+// ------------------------------------------------------------
+// NOTE: "Reset Password" Master Stylesheets
+@import "Pages/Auth/ResetEmail/reset_styles_web";
+// @import "Pages/Auth/Forgot/forgot_styles_mobile";
+
 // // ------------------------------------------------------------
 // // NOTE: "Navbar" Master Stylesheets
 @import "Pages/Navbar/navbarStyles/navbar_styles_web";

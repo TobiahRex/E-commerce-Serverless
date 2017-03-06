@@ -209,7 +209,7 @@
           height: 12em;
           max-width: 30.6em;
           width: 30.6em;
-          & p {
+          & button {
             @include prefixflex();
             justify-content: center;
             align-items: center;
@@ -224,15 +224,13 @@
             text-transform: uppercase;
             text-align: center;
             background-color: $p-grey;
+            border: none;
             @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
-            &:before {
-              height: 19px;
-              width: 306px;
-              top: 1090px;
-              left: 0;
-              content: '';
-              position: absolute;
-              background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
+            box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+            &:active,
+            &:focus,
+            &:hover {
+              color: $p-white;
             }
           }
         }

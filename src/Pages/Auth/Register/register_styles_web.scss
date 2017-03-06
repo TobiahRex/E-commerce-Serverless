@@ -30,6 +30,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        padding: 2em 7em;
         & .success--icon,
         .error--icon {
           @include prefixflex();
@@ -39,12 +40,16 @@
           width: 4.5em;
           background-color: $p-green;
           & span {
+            text-align: center;
             font-size: 3.5em;
             color: $p-white;
           }
         }
         & .error--icon {
           background-color: $p-red;
+          width: 4.5em;
+          height: 4.5em;
+          padding: 0 .7em;
           & .fa-error-icon {
             @include prefixed(transform, rotate(45deg));
           }
@@ -53,15 +58,18 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          padding: 1em;
+          padding: 0;
+          margin-left: 1em;
           & .pwds-do-not-match,
           .missing-req-field,
           .duplicate-login-info,
           .register-success-email,
           .register-success-social {
             color: $p-red;
-            text-align: center;
             font-weight: 200;
+            & .reset-password {
+              color: $p-blue;
+            }
           }
           & .register-success-email,
           .register-success-social {
@@ -199,7 +207,7 @@
                 justify-content: center;
                 align-items: center;
                 margin-top: 2em;
-                & .newsletter--icon-container {
+                & .newsletter--btn {
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
