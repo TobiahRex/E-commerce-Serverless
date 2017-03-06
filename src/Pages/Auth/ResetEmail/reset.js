@@ -1,11 +1,52 @@
 import React from 'react';
-// import FontAwesome from 'react-fontawesome';
+import FontAwesome from 'react-fontawesome';
 // import { browserHistory } from 'react-router';
 
 export default function Forgot() {
   return (
     <div className="reset--main">
-      <h1>Reset Email Sent</h1>
+      <div className="reset--container">
+        <div className="reset__verify">
+          <div className="verify--title">
+            <div className="verify__icon">
+              <FontAwesome name="question-circle" />
+            </div>
+            <div className="verify__title">
+              <h1>Do you want to reset your password?</h1>
+              <h4>Please confirm if you want to reset your password or,{'\u00A0'}
+                <br />
+              press “Cancel” to return to the homepage.</h4>
+            </div>
+            <div className="verify__action-btns">
+              <button className="yes-btn">
+                Yes, Reset my password
+              </button>
+              <button className="cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="reset__success">
+          <div className="success--title">
+            <div className="success__icon">
+              <FontAwesome name="exclamation-circle" />
+            </div>
+            <div className="success__title">
+              <h1>Ok, {'we\'ve'} sent you an email!</h1>
+              <h4>Please follow the instructions in the email to reset your password.</h4>
+            </div>
+            <div className="success__btn">
+              <button className="go-back-home">
+                <span className="flex-btn-parent">
+                  <FontAwesome name="double-angled-left" />
+                  Back To Homepage
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
