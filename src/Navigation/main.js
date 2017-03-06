@@ -37,7 +37,7 @@ import TermsConditions from '../Pages/Legal/termsConditions';
 import Wholesale from '../Pages/Legal/wholesale';
 import Affiliates from '../Pages/Legal/affiliateProgram';
 import NotFound from '../Pages/404/notFound404';
-import ResetPasswordEmail from '../Auth/ResetEmail/reset';
+import ResetPasswordEmail from '../Pages/Auth/ResetEmail/reset';
 
 export default (
   <Route path="/" component={App}>
@@ -50,6 +50,7 @@ export default (
     <Router path={'/empty'} component={EmptyCart} />
     <Router path={'/express_checkout'} component={ExpressCheckout} />
     <Router path={'/not_found'} component={NotFound} />
+    <Router path={'/reset_email'} component={ResetPasswordEmail} />
     {/* AUTH */}
     <Router path={'/login'} component={Login} />
     <Router path={'/register'} component={Register} />

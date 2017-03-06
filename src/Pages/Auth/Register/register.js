@@ -2,8 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 
-console.warn(browserHistory)
-
 export default function Register() {
   return (
     <div className="register--main">
@@ -37,7 +35,7 @@ export default function Register() {
               You will be re-directed to the homepage in {'<5>'} seconds.
               </p>
             */}
-            <p className="duplicate-login-info">There is already an account with this user information. If you are sure that this information is yours, Click <Link className="reset-password" onClick="/reset_email_sent">Here</Link> to reset your password to access your account.</p>
+            <p className="duplicate-login-info">There is already an account with this user information. If you are sure that this information is yours, Click <Link className="reset-password" to="/reset_email">Here</Link> to reset your password.</p>
           </div>
         </div>
         <div className="register__social-container">
@@ -108,7 +106,7 @@ export default function Register() {
                   <input type="text" id="input-confirm-pwd" />
                 </div>
                 <div className="input__newsletter--sign-up">
-                  <button className="newsletter--icon-container">
+                  <button className="newsletter--btn">
                     <FontAwesome name="plus" />
                   </button>
                   <div className="newsletter--msg">
