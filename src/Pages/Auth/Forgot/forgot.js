@@ -20,7 +20,7 @@ export default function Forgot() {
           </div> */}
           <div className="error--msg">
             <p className="email-not-found">
-              The email address you provided does not appear in our records.
+              The email address you provided does not appear in our records. Please try again.
             </p>
             {/* <p className="incorrect-format">
               The email format you provided is incorrect.  Please use a valid email address.

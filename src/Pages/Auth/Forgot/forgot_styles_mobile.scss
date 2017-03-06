@@ -11,9 +11,10 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 2em;
-      margin-top: 8em;
+      padding-top: 2em;
+      margin-top: 1em;
       background-color: $s-white;
+      width: 100%;
       & .forgot__title {
         @include prefixflex();
         justify-content: center;
@@ -31,6 +32,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         & .success--icon,
         .error--icon {
           @include prefixflex();
@@ -60,6 +62,7 @@
             color: $p-red;
             text-align: center;
             font-weight: 200;
+            font-size: 1.4em;
           }
           & .email-msg-sent {
             color: $s-green;
@@ -89,6 +92,11 @@
           max-width: 23.3em;
           padding-left: .7em;
           margin-top: 1em;
+          border: 1px solid rgba(0,0,0,.1);
+          &:active,
+          &:focus {
+            outline: none;
+          }
         }
       }
       & .forgot__submit {
