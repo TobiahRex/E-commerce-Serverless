@@ -44,14 +44,14 @@ export default function Forgot() {
         </div>
       </div>
       <div className="forgot--action-btns">
-        <button className="action-btns__back-to-home sweep-right">
+        <button className="action-btns--back sweep-right">
           <span className="flex-btn-parent">
             <FontAwesome name="angle-double-left" />
-            Back
+            {'\u00A0'}Back
           </span>
         </button>
         <button
-          className="action-btns__register sweep-right"
+          className="action-btns--register sweep-right"
           onClick={() => browserHistory.push('/register')}
         >Register</button>
       </div>

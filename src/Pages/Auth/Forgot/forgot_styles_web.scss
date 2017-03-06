@@ -11,6 +11,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      padding: 2em;
       margin-top: 8em;
       background-color: $s-white;
       & .forgot__title {
@@ -19,8 +20,7 @@
         align-items: center;
         height: 20em;
         width: 31.5em;
-        padding: 1.5em;
-        margin-top: 3em;
+        padding: 1.5em 0;
         & h1 {
           text-align: center;
           font-weight: 200;
@@ -107,7 +107,38 @@
       }
     }
     & .forgot--action-btns {
-
+      @include prefixflex();
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      // height: 7em;
+      max-width: 50em;
+      width: 100%;
+      padding: 2em 0 0 0;
+      & button:nth-child(2) {
+        margin-top: 1em;
+      }
+      & .action-btns--back,
+      .action-btns--register {
+        height: 3.125em;
+        width: 10.93em;
+        border: none;
+        color: $p-white;
+        background-color: $p-red;
+        font-size: 1.6em;
+        font-weight: 400;
+        font-family: $p-font;
+        cursor: pointer;
+        & .flex-btn-parent {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & span {
+            color: $p-white;
+            font-size: 1.6em;
+          }
+        }
+      }
     }
   }
 }
