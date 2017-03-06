@@ -71,10 +71,10 @@
       }
       & .register__social-container {
         @include prefixflex();
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         flex-direction: column;
-        height: 18em;
+        height: 14em;
         padding: 1em;
         & .social--title {
           & p {
@@ -121,6 +121,7 @@
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          margin: 2em auto;
           & ul {
             @include prefixflex();
             justify-content: center;
@@ -141,6 +142,8 @@
               width: 7em;
               & p {
                 text-transform: uppercase;
+                font-size: 1.6em;
+                font-weight: 200;
               }
             }
           }
@@ -159,6 +162,9 @@
               align-items: center;
               flex-direction: column;
               width: 30em;
+              & h3 {
+                margin: 1em auto;
+              }
               & .input__first-name,
               .input__lastname,
               .input__email,
@@ -169,13 +175,10 @@
                 align-items: flex-start;
                 flex-direction: column;
                 width: 100%;
-                & h3 {
-                  margin: 1em auto 1em auto;
-                }
                 & label {
                   color: $p-blue;
                   font-family: $p-font;
-                  font-weigth: 200;
+                  font-weight: 200;
                   font-size: 1.4em;
                   margin-top: 1em;
                 }
@@ -199,17 +202,23 @@
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
+                  padding: 0;
+                  margin: 0;
                   height: 2.5em;
                   width: 2.5em;
                   background-color: $p-white;
                   border: 1px solid rgba(0,0,0,.25);
+                  cursor: pointer;
                   & span {
+                    position: relative;
+                    top: 1px;
                     color: $p-blue;
                     font-size: 1.8em;
+                    line-height: 1em;
                     @include prefixed(transform, rotate(45deg));
                   }
                 }
-                & .newletter--msg {
+                & .newsletter--msg {
                   margin-left: 1em;
                   & p {
                     font-weight: 200;
@@ -219,8 +228,31 @@
             }
             & .action-btns {
               @include prefixflex();
-              justify-content: center;
-              align-items: flex-start;
+              justify-content: space-between;
+              align-items: center;
+              height: 7em;
+              width: 100%;
+              padding: 2em 0 0 0;
+              & .action-btns--back,
+              .action-btns--submit {
+                height: 3.125em;
+                width: 10.93em;
+                border: none;
+                color: $p-white;
+                background-color: $p-red;
+                font-size: 1.6em;
+                font-weight: 400;
+                font-family: $p-font;
+                & .flex-btn-parent {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  & span {
+                    color: $p-white;
+                    font-size: 1.6em;
+                  }
+                }
+              }
             }
           }
         }

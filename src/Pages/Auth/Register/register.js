@@ -104,9 +104,9 @@ export default function Register() {
                   <input type="text" id="input-confirm-pwd" />
                 </div>
                 <div className="input__newsletter--sign-up">
-                  <div className="newsletter--icon-container">
+                  <button className="newsletter--icon-container">
                     <FontAwesome name="plus" />
-                  </div>
+                  </button>
                   <div className="newsletter--msg">
                     <p>Sign up for Newsletter</p>
                   </div>
@@ -116,7 +116,7 @@ export default function Register() {
                 <button className="action-btns--back">
                   <span className="flex-btn-parent">
                     <FontAwesome name="angle-double-left" />
-                    Back
+                    {'\u00A0'}Back
                   </span>
                 </button>
                 <p>
