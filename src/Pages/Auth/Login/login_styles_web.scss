@@ -1,10 +1,10 @@
 @media only screen and (min-width: 1079px) {
   .sign-in--main {
-    max-width: 1086px;
-    width: 100%;
     @include prefixflex();
     justify-content: center;
     align-items: center;
+    max-width: 1086px;
+    width: 100%;
     .sign-in--container {
       @include prefixflex();
       justify-content: flex-start;
@@ -87,12 +87,12 @@
         align-items: center;
         padding: 3em;
         & .login-btn {
-          height: 3.57em;
-          width: 13.57em;
+          height: 3.12em;
+          width: 15.62em;
           color: $p-white;
           font-family: $p-font;
           font-weight: 400em;
-          font-size: 1.4em;
+          font-size: 1.6em;
           background-color: $p-red;
           border: none;
           cursor: pointer;
@@ -134,7 +134,7 @@
                 text-transform: uppercase;
                 color: $p-blue;
                 font-weight: 200em;
-                font-size: 2em;
+                font-size: 1.6em;
               }
             }
           }

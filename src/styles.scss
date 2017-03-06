@@ -11,6 +11,19 @@
 @import "Pages/AgeVerification/ageVerification_web";
 @import "Pages/AgeVerification/ageVerification_mobile";
 
+// ------------------------------------------------------------
+// NOTE: "Login" Master Stylesheets
+@import "Pages/Auth/Login/login_styles_web";
+// @import "Pages/Auth/ageVerification_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "Register" Master Stylesheets
+@import "Pages/Auth/Register/register_styles_web";
+
+// ------------------------------------------------------------
+// NOTE: "Forgot" Master Stylesheets
+@import "Pages/Auth/Forgot/forgot_styles_web";
+
 
 // // ------------------------------------------------------------
 // // NOTE: "Navbar" Master Stylesheets

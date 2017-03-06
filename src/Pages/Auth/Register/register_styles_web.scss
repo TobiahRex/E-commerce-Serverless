@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1079px) {
+@media only screen and (min-width: 641px) {
   .register--main {
     @include prefixflex();
     justify-content: center;
@@ -243,6 +243,7 @@
                 font-size: 1.6em;
                 font-weight: 400;
                 font-family: $p-font;
+                cursor: pointer;
                 & .flex-btn-parent {
                   @include prefixflex();
                   justify-content: center;

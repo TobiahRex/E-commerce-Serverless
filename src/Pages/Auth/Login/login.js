@@ -82,7 +82,12 @@ export default function SignIn() {
             <button className="register-btn sweep-right" onClick={() => browserHistory.push('/register')}>Register</button>
           </div>
           <div className="action-btns__back-to-home">
-            <button className="back-to-home-btn sweep-right" onClick={() => browserHistory.push('/')}>Back To Homepage</button>
+            <button className="back-to-home-btn sweep-right" onClick={() => browserHistory.push('/')}>
+              <span className="flex-btn-parent">
+                <FontAwesome name="angle-double-left" />
+                Back
+              </span>
+            </button>
           </div>
         </div>
       </div>
