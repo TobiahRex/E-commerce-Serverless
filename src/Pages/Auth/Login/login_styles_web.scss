@@ -1,0 +1,65 @@
+@media only screen and (min-width: 1079px) {
+  .sign-in--main {
+    max-width: 1086px;
+    width: 100%;
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    .sign-in--container {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 78em;
+      width: 48em;
+      margin-top: 8em;
+      & .sign-in__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 6.5em;
+        width: 31.5em;
+        margin-top: 2.5em;
+        & h1 {
+          font-weight: 200;
+        }
+      }
+      & .sign-in__error {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        margin-top: 1em;
+        & .error--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          background-color: $p-red;
+          span {
+            color: $p-white;
+            font-size: 3em;
+            @include prefixed(transform, rotate(45deg));
+          }
+        }
+        & h3 {
+          color: $p-red;
+          font-weight: 200;
+        }
+      }
+      & .sign-in__form {
+        & .form--email {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+          & .email__input--label {
+            color: $p-blue;
+            font-size: 1.4em;
+            font-family: $p-font;
+            font-weight: 200;
+            & .required-star {
+              color: $p-red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
