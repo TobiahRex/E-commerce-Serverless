@@ -85,7 +85,7 @@ export default function SignIn() {
             <button className="back-to-home-btn sweep-right" onClick={() => browserHistory.push('/')}>
               <span className="flex-btn-parent">
                 <FontAwesome name="angle-double-left" />
-                Back
+                {'\u00A0'}Back
               </span>
             </button>
           </div>

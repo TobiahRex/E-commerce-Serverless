@@ -36,6 +36,7 @@ import PrivacyPolicy from '../Pages/Legal/privacyPolicy';
 import TermsConditions from '../Pages/Legal/termsConditions';
 import Wholesale from '../Pages/Legal/wholesale';
 import Affiliates from '../Pages/Legal/affiliateProgram';
+import NotFound from '../Pages/404/notFound404';
 
 export default (
   <Route path="/" component={App}>
@@ -47,6 +48,7 @@ export default (
     <Router path={'/cart'} component={Cart} />
     <Router path={'/empty'} component={EmptyCart} />
     <Router path={'/express_checkout'} component={ExpressCheckout} />
+    <Router path={'/not_found'} component={NotFound} />
     {/* AUTH */}
     <Router path={'/login'} component={Login} />
     <Router path={'/register'} component={Register} />

@@ -69,9 +69,9 @@ export default function SingleProduct() {
             </p>
           </div>
           <div className="single-product-info-desc-promotion">
-            <p>
+            <button className="sweep-right" onClick={() => browserHistory.push('/register')}>
               New members get 10% off their first order
-            </p>
+            </button>
           </div>
           <div className="single-product-info-desc-nicotine">
             <h3>Nicotine Strength</h3>
@@ -141,11 +141,24 @@ export default function SingleProduct() {
         </div>
       </div>
       <div className="single-product-back-btn-container">
-        <button className="single-product-back-btn sweep-right" onClick={() => browserHistory.push('/')}>
-          Back to Homepage
+        <button
+          className="single-product-back-btn sweep-right"
+          onClick={() => browserHistory.push('/')}
+        >
+          <span className="flex-btn-parent">
+            <FontAwesome name="angle-double-left" />
+            {'\u00A0'}Back
+          </span>
+        </button>
+        <button
+          className="single-product-juices-btn sweep-right"
+          onClick={() => browserHistory.push('/juices')}
+        >Shop All Juices
         </button>
       </div>
-      <div style={{ display: 'none' }} className="single-product-add-success-modal">
+      <div
+        style={{ display: '' }} className="single-product-add-success-modal"
+      >
         <div className="single-product-add-success-modal-dialogue">
           <div className="single-product-add-success-modal-dialogue-exit-container">
             <button className="single-product-add-success-modal-dialogue-exit-btn">
@@ -158,11 +171,11 @@ export default function SingleProduct() {
             <p>has been successfully added to your cart.</p>
           </div>
           <div className="single-product-add-success-modal-action-btns">
-            <button className="single-product-add-success-modal-cart">View Cart</button>
-            <button className="single-product-add-success-modal-continue">
+            <button className="single-product-add-success-modal-cart sweep-right">View Cart</button>
+            <button className="single-product-add-success-modal-continue sweep-right">
               Continue Shopping
             </button>
-            <button className="single-product-add-success-modal-checkout">
+            <button className="single-product-add-success-modal-checkout sweep-right">
               Express Checkout
             </button>
           </div>

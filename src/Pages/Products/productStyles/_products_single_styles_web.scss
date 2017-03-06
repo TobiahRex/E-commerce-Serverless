@@ -79,7 +79,7 @@
           left: -16.5em;
           top: 4em;
           @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
-          @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
+          box-shadow: 0px 2px 4px rgba(1,1,1,.5);
           p {
             color: $p-white;
           }
@@ -209,7 +209,7 @@
           height: 9em;
           max-width: 48.6em;
           width: 48.6em;
-          & p {
+          & button {
             @include prefixflex();
             justify-content: center;
             align-items: center;
@@ -222,15 +222,25 @@
             letter-spacing: .06em;
             text-transform: uppercase;
             background-color: $p-grey;
+            border: none;
+            cursor: pointer;
             @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
-            &:before {
-              height: 19px;
-              width: 440px;
-              top: 590px;
-              content: '';
-              position: absolute;
-              background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
+            box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+            &:hover,
+            &:active,
+            &:focus {
+              color: $p-white;
             }
+            // &:before {
+            //   height: 19px;
+            //   width: 440px;
+            //   // position: absolute;
+            //   // top: 590px;
+            //   position: relative;
+            //   top: 10px;
+            //   content: '';
+            //   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
+            // }
           }
         }
         & .single-product-info-desc-nicotine {
@@ -454,12 +464,13 @@
     }
     & .single-product-back-btn-container {
       @include prefixflex();
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       height: 26em;
       max-width: 1080px;
       width: 100%;
-      & .single-product-back-btn {
+      & .single-product-back-btn,
+      .single-product-juices-btn {
         height: 3.33em;
         width: 13.8em;
         border: none;
@@ -475,6 +486,15 @@
         &:focus {
           background-color: $p-blue;
         }
+        & .flex-btn-parent {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & span {
+            color: $p-white;
+            font-size: 1.57em;
+          }
+        }
       }
     }
     & .single-product-add-success-modal {
@@ -489,9 +509,9 @@
       opacity: 0;
       height: 0;
       width: 0;
-/*    opacity: 1;
-      height: 100%;
-      width: 100%; */
+      // opacity: 1;
+      // height: 100%;
+      // width: 100%;
       background-color: rgba(0,0,0,.75);
       & .single-product-add-success-modal-dialogue {
         display: none;
@@ -560,6 +580,8 @@
             font-size: 1.5em;
             padding: 0;
             margin: 0 auto 1em auto;
+            cursor: pointer;
+            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
           }
           & .single-product-add-success-modal-continue {
             height: 2.6em;

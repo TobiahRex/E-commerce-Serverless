@@ -102,6 +102,7 @@
               transition: all .3s ease-in-out;
               cursor: pointer;
               margin-left: .5em;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               &:hover,
               &:active,
               &:focus {
@@ -244,6 +245,7 @@
                 font-weight: 400;
                 font-family: $p-font;
                 cursor: pointer;
+                box-shadow: 3px 3px 3px rgba(0,0,0,.25);
                 & .flex-btn-parent {
                   @include prefixflex();
                   justify-content: center;
