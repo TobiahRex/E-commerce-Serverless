@@ -92,6 +92,81 @@
           border: none;
         }
       }
+      & .sign-in__social--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & .social--title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          height: 6em;
+          width: 30em;
+          margin-bottom: 2em;
+          & .social--title-list {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & .title-left-break,
+            .title-right-break {
+              // height: 2em;
+              width: 11.5em;
+              border-bottom: 1px solid rgba(0,0,0,.2);
+            }
+            & .title-or {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 4em;
+              width: 7em;
+              & p {
+                text-transform: uppercase;
+                color: $p-blue;
+                font-weight: 200em;
+                font-size: 2em;
+              }
+            }
+          }
+          & .social--title-msg {
+            & p {
+              color: $p-blue;
+              font-weight: 200;
+            }
+          }
+        }
+        & .social--btns__list {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          & .list--option {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 8em;
+            width: 8em;
+            background-color: $p-blue;
+            transition: all .3s ease-in-out;
+            &:hover,
+            &:active,
+            &:focus {
+              background-color: $p-red;
+            }
+            & span {
+              color: $p-white;
+              font-size: 4.5em;
+            }
+
+          }
+        }
+      }
     }
   }
 }

@@ -51,7 +51,9 @@ export default function SignIn() {
               </li>
               <li className="title-right-break" />
             </ul>
-            <p>Login with your Social Network</p>
+            <div className="social--title-msg">
+              <p>Login with your Social Network</p>
+            </div>
           </div>
           <div className="social--btns__list">
             <ul className="list--container">
