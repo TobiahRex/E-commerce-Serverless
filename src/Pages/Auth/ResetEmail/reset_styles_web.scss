@@ -1,0 +1,146 @@
+@media only screen and (min-width: 641px) and (max-width: 1920px) {
+  .forgot--main {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1086px;
+    width: 100%;
+    & .forgot--container {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2em;
+      margin-top: 8em;
+      background-color: $s-white;
+      & .forgot__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 20em;
+        width: 31.5em;
+        padding: 1.5em 0;
+        & h1 {
+          text-align: center;
+          font-weight: 200;
+          max-width: 4.57em;
+        }
+      }
+      & .forgot__status-msg {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        & .success--icon,
+        .error--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 4.5em;
+          width: 4.5em;
+          background-color: $p-green;
+          & span {
+            font-size: 3.5em;
+            color: $p-white;
+          }
+        }
+        & .error--icon {
+          background-color: $p-red;
+          & .fa-error-icon {
+            @include prefixed(transform, rotate(45deg));
+          }
+        }
+        & .error--msg {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          padding: 1em;
+          & .incorrect-format,
+          .email-not-found {
+            color: $p-red;
+            text-align: center;
+            font-weight: 200;
+          }
+          & .email-msg-sent {
+            color: $s-green;
+          }
+        }
+      }
+      & .forgot__input {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        & label {
+          color: $p-blue;
+          font-family: $p-font;
+          font-weight: 200;
+          font-size: 1.4em;
+          margin-top: 1em;
+        }
+        & input {
+          height: 2.9em;
+          width: 100%;
+          color: $p-blue;
+          font-size: 1.2em;
+          font-family: $p-font;
+          font-weight: 200;
+          max-width: 23.3em;
+          padding-left: .7em;
+          margin-top: 1em;
+        }
+      }
+      & .forgot__submit {
+        padding: 2em;
+        & .submit--btn {
+          height: 3.125em;
+          width: 10.93em;
+          border: none;
+          color: $p-white;
+          background-color: $p-red;
+          font-size: 1.6em;
+          font-weight: 400;
+          font-family: $p-font;
+          cursor: pointer;
+          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+        }
+      }
+    }
+    & .forgot--action-btns {
+      @include prefixflex();
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      // height: 7em;
+      max-width: 50em;
+      width: 100%;
+      padding: 2em 0 0 0;
+      & button:nth-child(2) {
+        margin-top: 1em;
+      }
+      & .action-btns--back,
+      .action-btns--register {
+        height: 3.125em;
+        width: 10.93em;
+        border: none;
+        color: $p-white;
+        background-color: $p-red;
+        font-size: 1.6em;
+        font-weight: 400;
+        font-family: $p-font;
+        cursor: pointer;
+        box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+        & .flex-btn-parent {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & span {
+            color: $p-white;
+            font-size: 1.6em;
+          }
+        }
+      }
+    }
+  }
+}

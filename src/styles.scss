@@ -14,11 +14,12 @@
 // ------------------------------------------------------------
 // NOTE: "Login" Master Stylesheets
 @import "Pages/Auth/Login/login_styles_web";
-// @import "Pages/Auth/ageVerification_mobile";
+@import "Pages/Auth/Login/login_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: "Register" Master Stylesheets
 @import "Pages/Auth/Register/register_styles_web";
+@import "Pages/Auth/Register/register_styles_mobile";
 
 // ------------------------------------------------------------
 // NOTE: "Forgot" Master Stylesheets

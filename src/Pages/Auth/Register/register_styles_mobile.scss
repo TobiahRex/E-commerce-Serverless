@@ -1,0 +1,269 @@
+@media only screen and (max-width: 640px) {
+  .register--main {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    max-width: 640px;
+    width: 100%;
+    & .register--container {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      height: 140em;
+      max-width: 64em;
+      width: 100%;
+      margin: 2em auto 5em auto;
+      padding-bottom: 2em;
+      background-color: $s-white;
+      & .register__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 6.5em;
+        // width: 31.5em;
+        margin-top: 2.5em;
+        & h1 {
+          font-weight: 200;
+        }
+      }
+      & .register__status-msg {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & .success--icon,
+        .error--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 4.5em;
+          width: 4.5em;
+          background-color: $p-green;
+          & span {
+            font-size: 3.5em;
+            color: $p-white;
+          }
+        }
+        & .error--icon {
+          background-color: $p-red;
+          & .fa-error-icon {
+            @include prefixed(transform, rotate(45deg));
+          }
+        }
+        & .error--msg {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          padding: 1em;
+          & .pwds-do-not-match,
+          .missing-req-field,
+          .duplicate-login-info,
+          .register-success-email,
+          .register-success-social {
+            font-size: 1.4em;
+            font-weight: 200;
+            color: $p-red;
+            text-align: center;
+          }
+          & .register-success-email,
+          .register-success-social {
+            color: $s-green;
+          }
+        }
+      }
+      & .register__social-container {
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        height: 14em;
+        padding: 1em;
+        & .social--title {
+          & p {
+            font-size: 1.4em;
+            font-weight: 200;
+          }
+        }
+        & .social--btns {
+          & ul {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 1em 0 0 0;
+            margin: 0;
+            & .list--option:nth-child(1) {
+              margin: 0;
+            }
+            & .list--option {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 6em;
+              width: 6em;
+              background-color: $p-blue;
+              transition: all .3s ease-in-out;
+              cursor: pointer;
+              margin-left: .5em;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $p-red;
+              }
+              & span {
+                color: $p-white;
+                font-size: 4.5em;
+              }
+            }
+          }
+        }
+      }
+      & .register__email--container {
+        & .email--title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          margin: 2em auto;
+          & ul {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & .left-break,
+            .right-break {
+              width: 11.5em;
+              border-bottom: 1px solid rgba(0,0,0,.25);
+            }
+            & .or {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 4em;
+              width: 7em;
+              & p {
+                text-transform: uppercase;
+                font-size: 1.6em;
+                font-weight: 200;
+              }
+            }
+          }
+        }
+        & .email__inputs--container {
+          & form {
+            @include prefixflex();
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 60em;
+            flex-wrap: wrap;
+            & .inputs--personal-info,
+            .inputs--login-info {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 30em;
+              & h3 {
+                margin: 1em auto;
+              }
+              & .input__first-name,
+              .input__lastname,
+              .input__email,
+              .input__password,
+              .input__confirm-pwd {
+                @include prefixflex();
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                width: 100%;
+                & label {
+                  color: $p-blue;
+                  font-family: $p-font;
+                  font-weight: 200;
+                  font-size: 1.4em;
+                  margin-top: 1em;
+                }
+                & input {
+                  color: $p-blue;
+                  font-size: 1.2em;
+                  font-family: $p-font;
+                  font-weight: 200;
+                  max-width: 23.3em;
+                  height: 2.9em;
+                  width: 100%;
+                  padding-left: .7em;
+                }
+              }
+              & .input__newsletter--sign-up {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                margin-top: 2em;
+                & .newsletter--icon-container {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  padding: 0;
+                  margin: 0;
+                  height: 2.5em;
+                  width: 2.5em;
+                  background-color: $p-white;
+                  border: 1px solid rgba(0,0,0,.25);
+                  cursor: pointer;
+                  & span {
+                    position: relative;
+                    top: 1px;
+                    color: $p-blue;
+                    font-size: 1.8em;
+                    line-height: 1em;
+                    @include prefixed(transform, rotate(45deg));
+                  }
+                }
+                & .newsletter--msg {
+                  margin-left: 1em;
+                  & p {
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+            & .action-btns {
+              @include prefixflex();
+              justify-content: space-between;
+              align-items: center;
+              height: 7em;
+              width: 100%;
+              padding: 2em 0 0 0;
+              & .action-btns--back,
+              .action-btns--submit {
+                height: 3.125em;
+                width: 10.93em;
+                border: none;
+                color: $p-white;
+                background-color: $p-red;
+                font-size: 1.6em;
+                font-weight: 400;
+                font-family: $p-font;
+                cursor: pointer;
+                box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                & .flex-btn-parent {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  & span {
+                    color: $p-white;
+                    font-size: 1.6em;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
