@@ -2,28 +2,76 @@
   .reset--main {
     @include prefixflex();
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     max-width: 1086px;
     width: 100%;
     & .reset--container {
       @include prefixflex();
       justify-content: center;
       align-items: center;
+      margin: 5em auto 2em auto;
       & .reset__verify,
       .reset__success {
         @include prefixflex();
         justify-content: center;
         align-items: center;
-        & .verify--title {
-          & .verify__icon {
-            height: 10em;
-            width: 10em;
-            background-color: $p-blue;
-            & span {
+        flex-direction: column;
+        & .verify,
+        .success {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          & .verify__top,
+          .success__top {
+            @include prefixflex();
+            justify-content: center;
+            align-items: flex-start;
+            & .verify__icon,
+            .success__icon {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 10em;
+              width: 10em;
+              background-color: $p-blue;
+              & span {
+                color: $p-white;
+                font-size: 10em;
+                line-height: 1em;
+              }
+            }
+            & .verify__title,
+            .success__title {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              margin-left: 2em;
+              & h4 {
+                margin-top: 1em;
+                line-height: 2em;
+              }
+            }
+          }
+          & .verify__action-btns,
+          .success__btn {
+            @include prefixflex();
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            margin-top: 4em;
+            & button {
+              height: 3.12em;
+              width: 15.62em;
               color: $p-white;
-              font-size: 10em;
-              line-height: 1em;
-
+              font-size: 1.6em;
+              font-weight: 400;
+              font-family: $p-font;
+              border: none;
+              background-color: $p-red;
+              cursor: pointer;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
             }
           }
         }
