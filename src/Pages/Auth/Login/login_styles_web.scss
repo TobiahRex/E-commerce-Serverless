@@ -47,12 +47,15 @@
         }
       }
       & .sign-in__form {
-        & .form--email {
+        & .form--email,
+        .form--password {
           @include prefixflex();
           justify-content: flex-start;
           align-items: flex-start;
           flex-direction: column;
-          & .email__input--label {
+          margin-top: 2em;
+          & .email__input--label,
+          .password__input--label {
             color: $p-blue;
             font-size: 1.4em;
             font-family: $p-font;
@@ -61,16 +64,33 @@
               color: $p-red;
             }
           }
-          & .email__input--email {
+          & .email__input--email,
+          .password__input--password {
             width: 25.8em;
             height: 2.91em;
+            margin-top: .7em;
             border: 1px solid $p-grey;
             font-family: $p-font;
             color: $p-blue;
             font-size: 1.2em;
           }
         }
-
+      }
+      & .form--login-btn {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        padding: 3em;
+        & .login-btn {
+          height: 3.57em;
+          width: 13.57em;
+          color: $p-white;
+          font-family: $p-font;
+          font-weight: 400em;
+          font-size: 1.4em;
+          background-color: $p-red;
+          border: none;
+        }
       }
     }
   }

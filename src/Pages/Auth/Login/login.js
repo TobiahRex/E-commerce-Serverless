@@ -18,7 +18,7 @@ export default function SignIn() {
         <form className="sign-in__form">
           <div className="form--email">
             <label htmlFor="email-input" className="email__input--label">
-              Email
+              Email{'\u00A0'}
               <span className="required-star">*</span>
             </label>
             <input
@@ -28,16 +28,16 @@ export default function SignIn() {
             />
           </div>
           <div className="form--password">
-            <label htmlFor="password-input" className="sign-in__input--label">
+            <label htmlFor="password-input" className="password__input--label">
               Password
               <span className="required-star">*</span>
             </label>
-            <input type="text" id="password-input" className="sign-in__input--password" />
+            <input type="text" id="password-input" className="password__input--password" />
           </div>
           <div className="form--login-btn">
             <button
               type="button"
-              className="sign-in__login-btn"
+              className="login-btn"
               onClick={() => console.info('Login Submit')}
             >Login</button>
           </div>
@@ -85,5 +85,5 @@ export default function SignIn() {
         </div>
       </div>
     </div>
-      );
-      }
+  );
+}
