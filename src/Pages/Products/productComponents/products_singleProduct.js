@@ -143,7 +143,7 @@ export default function SingleProduct() {
       <div className="single-product-back-btn-container">
         <button
           className="single-product-back-btn sweep-right"
-          onClick={() => browserHistory.push('/')}
+          onClick={() => browserHistory.goBack()}
         >
           <span className="flex-btn-parent">
             <FontAwesome name="angle-double-left" />
