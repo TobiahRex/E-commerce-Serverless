@@ -73,6 +73,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         height: 18em;
         padding: 1em;
         & .social--title {
@@ -115,7 +116,83 @@
         }
       }
       & .register__email--container {
-
+        & .email--title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          & ul {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & .left-break,
+            .right-break {
+              width: 11.5em;
+              border-bottom: 1px solid rgba(0,0,0,.25);
+            }
+            & .or {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 4em;
+              width: 7em;
+              & p {
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+        & .email__inputs--container {
+          & form {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            max-width: 60em;
+            flex-wrap: wrap;
+            & .inputs--personal-info,
+            .inputer--login-info {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 30em;
+              & .input__first-name,
+              .input__lastname,
+              .input__email,
+              .input__password,
+              .input__confirm-pwd {
+                @include prefixflex();
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                width: 100%;
+                & h3 {
+                  margin: 1em auto 1em auto;
+                }
+                & label {
+                  color: $p-blue;
+                  font-family: $p-font;
+                  font-weigth: 200;
+                  font-size: 1.4em;
+                  margin-top: 1em;
+                }
+                & input {
+                  color: $p-blue;
+                  font-size: 1.2em;
+                  font-family: $p-font;
+                  font-weight: 200;
+                  max-width: 23.3em;
+                  height: 2.9em;
+                  width: 100%;
+                  padding-left: .7em;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
