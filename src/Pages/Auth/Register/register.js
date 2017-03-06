@@ -37,7 +37,36 @@ export default function Register() {
             */}
           </div>
         </div>
-
+        <div className="register__social-container">
+          <div className="social--title">
+            <p>Register Quickly With...</p>
+          </div>
+          <div className="social--btns">
+            <ul>
+              <li className="list--option">
+                <FontAwesome name="facebook" />
+              </li>
+              <li className="list--option">
+                <FontAwesome name="instagram" />
+              </li>
+              <li className="list--option">
+                <FontAwesome name="twitter" />
+              </li>
+              <li className="list--option">
+                <FontAwesome name="google" />
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="register__email--container">
+          <div className="email--title">
+            <ul>
+              <li className="left-break" />
+              <li className="or"><p>Or</p></li>
+              <li className="right-break" />
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
