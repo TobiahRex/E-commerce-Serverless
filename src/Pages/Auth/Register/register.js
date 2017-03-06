@@ -114,11 +114,18 @@ export default function Register() {
                 </div>
               </div>
               <div className="action-btns">
-                <button className="back-to-home-btn">
+                <button className="action-btns--back">
                   <span className="flex-btn-parent">
                     <FontAwesome name="angle-double-left" />
                     Back
                   </span>
+                </button>
+                <p>
+                  Required Fields{'\u00A0'}
+                  <span className="required">*</span>
+                </p>
+                <button className="action-btns--submit">
+                  Submit
                 </button>
               </div>
             </form>
