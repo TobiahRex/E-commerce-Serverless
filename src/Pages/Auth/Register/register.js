@@ -66,6 +66,63 @@ export default function Register() {
               <li className="right-break" />
             </ul>
           </div>
+          <div className="email__inputs--container">
+            <form onSubmit={() => console.info(e.target.value)}>
+              <div className="inputs--personal-info">
+                <h3>Personal Information</h3>
+                <div className="input__first-name">
+                  <label htmlFor="input-first-name">First Name{'\u00A0'}
+                    <span className="required">*</span>
+                  </label>
+                  <input type="text" id="input-first-name" />
+                </div>
+                <div className="input__lastname">
+                  <label htmlFor="input-last-name">Last Name{'\u00A0'}
+                    <span className="required">*</span>
+                  </label>
+                  <input type="text" id="input-last-name" />
+                </div>
+                <div className="input__email">
+                  <label htmlFor="input-email">Email{'\u00A0'}
+                    <span className="required">*</span>
+                  </label>
+                  <input type="text" id="input-email" />
+                </div>
+              </div>
+              <div className="inputs--login-info">
+                <h3>Login Information</h3>
+                <div className="input__password">
+                  <label htmlFor="input-password">Password{'\u00A0'}
+                    <span className="required">*</span>
+                  </label>
+                  <input type="text" id="input-password" />
+                </div>
+                <div className="input__confirm-pwd">
+                  <label htmlFor="input-confirm-pwd">
+                    Confirm Password{'\u00A0'}
+                    <span className="required">*</span>
+                  </label>
+                  <input type="text" id="input-confirm-pwd" />
+                </div>
+                <div className="input__newsletter--sign-up">
+                  <div className="newsletter--icon-container">
+                    <FontAwesome name="plus" />
+                  </div>
+                  <div className="newsletter--msg">
+                    <p>Sign up for Newsletter</p>
+                  </div>
+                </div>
+              </div>
+              <div className="action-btns">
+                <button className="back-to-home-btn">
+                  <span className="flex-btn-parent">
+                    <FontAwesome name="angle-double-left" />
+                    Back
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
