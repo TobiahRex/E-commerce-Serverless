@@ -13,7 +13,8 @@ export default function SignIn() {
           <div className="error--icon">
             <FontAwesome name="plus" />
           </div>
-          <h5>Invalid Username or Password</h5>
+          {/* <h5>Invalid Username or Password</h5> */}
+          <h5>You entered an invalid email format.  Please provide a valid email and re-submit.</h5>
         </div>
         <form className="sign-in__form">
           <div className="form--email">

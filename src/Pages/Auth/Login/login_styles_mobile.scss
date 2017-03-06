@@ -1,18 +1,19 @@
-@media only screen and (min-width: 641px) {
+@media only screen and (max-width: 640px) {
   .sign-in--main {
     @include prefixflex();
     justify-content: center;
     align-items: center;
-    max-width: 1086px;
+    max-width: 640px;
     width: 100%;
     .sign-in--container {
       @include prefixflex();
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      height: 78em;
-      width: 48em;
-      margin: 8em auto 5em auto;
+      height: 140em;
+      max-width: 64em;
+      width: 100%;
+      margin: 2em auto 2em auto;
       padding-bottom: 2em;
       background-color: $s-white;
       & .sign-in__title {
@@ -30,6 +31,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         margin-top: 1em;
         & .error--icon {
           @include prefixflex();
@@ -45,12 +47,18 @@
           }
         }
         & h5 {
+          margin-top: 1em;
           padding-left: .5em;
           color: $p-red;
           font-weight: 200;
         }
       }
       & .sign-in__form {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
         & .form--email,
         .form--password {
           @include prefixflex();
@@ -70,7 +78,8 @@
           }
           & .email__input--email,
           .password__input--password {
-            width: 25.8em;
+            max-width: 25.8em;
+            min-width: 22.08em;
             height: 2.91em;
             margin-top: .7em;
             border: 1px solid $p-grey;
@@ -240,4 +249,5 @@
       }
     }
   }
+
 }
