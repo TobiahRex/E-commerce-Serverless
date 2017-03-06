@@ -10,7 +10,7 @@
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      margin-top: 2em;
+      margin-top: 5em;
       & .not-found__title {
         @include prefixflex();
         justify-content: center;
@@ -56,6 +56,7 @@
           font-weight: 400;
           font-family: $p-font;
           cursor: pointer;
+          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
         }
       }
     }
