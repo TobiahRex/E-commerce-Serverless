@@ -464,11 +464,13 @@
       @include prefixflex();
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 14em;
       max-width: 30.6em;
       width: 100%;
       margin: 0 auto;
-      & .single-product-back-btn {
+      & .single-product-back-btn,
+      .single-product-juices-btn {
         height: 3.33em;
         width: 13.8em;
         border: none;
@@ -483,6 +485,11 @@
         &:active,
         &:focus {
           background-color: $p-blue;
+        }
+        & .flex-btn-parent {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
         }
       }
     }
