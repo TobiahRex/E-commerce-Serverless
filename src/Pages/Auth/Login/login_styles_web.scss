@@ -12,7 +12,8 @@
       flex-direction: column;
       height: 78em;
       width: 48em;
-      margin-top: 8em;
+      margin: 8em auto 5em auto;
+      padding-bottom: 2em;
       background-color: $s-white;
       & .sign-in__title {
         @include prefixflex();
@@ -35,13 +36,16 @@
           justify-content: center;
           align-items: center;
           background-color: $p-red;
+          height: 4.5em;
+          width: 4.5em;
           span {
             color: $p-white;
             font-size: 3em;
             @include prefixed(transform, rotate(45deg));
           }
         }
-        & h3 {
+        & h5 {
+          padding-left: .5em;
           color: $p-red;
           font-weight: 200;
         }
@@ -73,6 +77,7 @@
             font-family: $p-font;
             color: $p-blue;
             font-size: 1.2em;
+            padding-left: 1em;
           }
         }
       }
@@ -90,6 +95,7 @@
           font-size: 1.4em;
           background-color: $p-red;
           border: none;
+          cursor: pointer;
         }
       }
       & .sign-in__social--container {
@@ -140,30 +146,83 @@
           }
         }
         & .social--btns__list {
-          @include prefixflex();
-          justify-content: center;
-          align-items: center;
-          list-style-type: none;
-          padding: 0;
-          margin: 0;
-          & .list--option {
+          margin-bottom: 2em;
+          & .list--container {
             @include prefixflex();
             justify-content: center;
             align-items: center;
-            height: 8em;
-            width: 8em;
-            background-color: $p-blue;
-            transition: all .3s ease-in-out;
-            &:hover,
-            &:active,
-            &:focus {
-              background-color: $p-red;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            & .list--option:nth-child(1) {
+              margin: 0;
             }
-            & span {
-              color: $p-white;
-              font-size: 4.5em;
-            }
+            & .list--option {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 8em;
+              width: 8em;
+              background-color: $p-blue;
+              transition: all .3s ease-in-out;
+              cursor: pointer;
+              margin-left: .5em;
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $p-red;
+              }
+              & span {
+                color: $p-white;
+                font-size: 4.5em;
+              }
 
+            }
+          }
+          & .list__forgot-msg {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            padding: 1em;
+            margin-top: 1em;
+            & a {
+              color: $p-blue;
+              font-size: 1.4em;
+              font-weight: 200;
+              cursor: pointer;
+              text-decoration: none;
+              font-family: $p-font;
+              &:hover,
+              &:focus,
+              &:active {
+                color: $p-red;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      & .sign-in__action-btns {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & .action-btns__register,
+        .action-btns__back-to-home {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          margin-top: 1em;
+          & button {
+            height: 3.12em;
+            width: 15.62em;
+            color: $p-white;
+            font-size: 1.6em;
+            font-weight: 400;
+            font-family: $p-font;
+            border: none;
+            background-color: $p-red;
+            cursor: pointer;
           }
         }
       }

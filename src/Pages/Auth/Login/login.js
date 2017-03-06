@@ -13,7 +13,7 @@ export default function SignIn() {
           <div className="error--icon">
             <FontAwesome name="plus" />
           </div>
-          <h3>Invalid Username or Password</h3>
+          <h5>Invalid Username or Password</h5>
         </div>
         <form className="sign-in__form">
           <div className="form--email">
@@ -29,7 +29,7 @@ export default function SignIn() {
           </div>
           <div className="form--password">
             <label htmlFor="password-input" className="password__input--label">
-              Password
+              Password{'\u00A0'}
               <span className="required-star">*</span>
             </label>
             <input type="text" id="password-input" className="password__input--password" />
@@ -37,7 +37,7 @@ export default function SignIn() {
           <div className="form--login-btn">
             <button
               type="button"
-              className="login-btn"
+              className="login-btn sweep-right"
               onClick={() => console.info('Login Submit')}
             >Login</button>
           </div>
@@ -79,10 +79,10 @@ export default function SignIn() {
         </div>
         <div className="sign-in__action-btns">
           <div className="action-btns__register">
-            <button className="register-btn" onClick={() => browserHistory.push('/register')}>Register</button>
+            <button className="register-btn sweep-right" onClick={() => browserHistory.push('/register')}>Register</button>
           </div>
           <div className="action-btns__back-to-home">
-            <button className="back-to-home-btn" onClick={() => browserHistory.push('/')}>Back To Homepage</button>
+            <button className="back-to-home-btn sweep-right" onClick={() => browserHistory.push('/')}>Back To Homepage</button>
           </div>
         </div>
       </div>
