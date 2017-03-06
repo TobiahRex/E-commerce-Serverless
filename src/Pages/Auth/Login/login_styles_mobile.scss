@@ -10,7 +10,7 @@
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      height: 140em;
+      min-height: 71em;
       max-width: 64em;
       width: 100%;
       margin: 2em auto 2em auto;
@@ -87,6 +87,11 @@
             color: $p-blue;
             font-size: 1.2em;
             padding-left: 1em;
+            &:hover,
+            &:active,
+            &:focus {
+              outline: none;
+            }
           }
         }
       }
@@ -150,6 +155,7 @@
           }
           & .social--title-msg {
             & p {
+              font-size: 1.4em;
               color: $p-blue;
               font-weight: 200;
             }
@@ -171,8 +177,8 @@
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              height: 8em;
-              width: 8em;
+              height: 6em;
+              width: 6em;
               background-color: $p-blue;
               transition: all .3s ease-in-out;
               cursor: pointer;
@@ -249,5 +255,8 @@
       }
     }
   }
+
+}
+
 
 }
