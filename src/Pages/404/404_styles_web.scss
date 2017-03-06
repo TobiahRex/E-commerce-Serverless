@@ -1,3 +1,63 @@
 @media only screen and (min-width: 641px) {
-    
+  .not-found--main {
+    max-width: 1086px;
+    width: 100%;
+    @include prefixflex();
+    justify-content: center;
+    align-items: flex-start;
+    & .not-found--container {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 2em;
+      & .not-found__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        & .title--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 10em;
+          width: 10em;
+          background-color: $p-red;
+          & span {
+            color: $p-white;
+            font-size: 10em;
+            line-height: 1em;
+          }
+        }
+        & h1 {
+          padding-left: 1em;
+        }
+      }
+      & .not-found__body {
+        @include prefixflex();
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        height: 20em;
+        padding-top: 5em;
+        & h5 {
+          color: $p-blue;
+        }
+      }
+      & .not-found_home-btn {
+        margin-top: 5em;
+        button {
+          height: 3.125em;
+          width: 10.93em;
+          border: none;
+          color: $p-white;
+          background-color: $p-red;
+          font-size: 1.6em;
+          font-weight: 400;
+          font-family: $p-font;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
