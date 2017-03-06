@@ -149,11 +149,11 @@
           & form {
             @include prefixflex();
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             max-width: 60em;
             flex-wrap: wrap;
             & .inputs--personal-info,
-            .inputer--login-info {
+            .inputs--login-info {
               @include prefixflex();
               justify-content: center;
               align-items: center;
@@ -190,6 +190,37 @@
                   padding-left: .7em;
                 }
               }
+              & .input__newsletter--sign-up {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                margin-top: 2em;
+                & .newsletter--icon-container {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  height: 2.5em;
+                  width: 2.5em;
+                  background-color: $p-white;
+                  border: 1px solid rgba(0,0,0,.25);
+                  & span {
+                    color: $p-blue;
+                    font-size: 1.8em;
+                    @include prefixed(transform, rotate(45deg));
+                  }
+                }
+                & .newletter--msg {
+                  margin-left: 1em;
+                  & p {
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+            & .action-btns {
+              @include prefixflex();
+              justify-content: center;
+              align-items: flex-start;
             }
           }
         }
