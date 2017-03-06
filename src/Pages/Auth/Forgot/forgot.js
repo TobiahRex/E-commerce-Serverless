@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { browserHistory } from 'react-router';
 
 export default function Forgot() {
   return (
@@ -38,6 +39,21 @@ export default function Forgot() {
           </label>
           <input type="text" id="input--email" />
         </div>
+        <div className="forgot__submit">
+          <button className="submit--btn sweep-right">Submit</button>
+        </div>
+      </div>
+      <div className="action-btns">
+        <button className="back-to-home sweep-right">
+          <span className="flex-btn-parent">
+            <FontAwesome name="angle-double-left" />
+            Back
+          </span>
+        </button>
+        <button
+          className="register sweep-right"
+          onClick={() => browserHistory.push('/register')}
+        >Register</button>
       </div>
     </div>
   );
