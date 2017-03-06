@@ -1,6 +1,40 @@
 @media only screen and (min-width: 1079px) {
   .register--main {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
     max-width: 1086px;
     width: 100%;
+    & .register--container {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      height: 78em;
+      width: 64.5em;
+      margin: 8em auto 5em auto;
+      padding-bottom: 2em;
+      background-color: $s-white;
+      & .register__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 6.5em;
+        width: 31.5em;
+        margin-top: 2.5em;
+        & h1 {
+          font-weight: 200;
+        }
+      }
+      & .register__error {
+
+      }
+      & .register__social-container {
+
+      }
+      & .register__email--container {
+
+      }
+    }
   }
 }
