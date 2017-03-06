@@ -3,15 +3,17 @@
     max-width: 1086px;
     width: 100%;
     @include prefixflex();
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     .sign-in--container {
       @include prefixflex();
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      flex-direction: column;
       height: 78em;
       width: 48em;
       margin-top: 8em;
+      background-color: $s-white;
       & .sign-in__title {
         @include prefixflex();
         justify-content: center;
@@ -48,7 +50,8 @@
         & .form--email {
           @include prefixflex();
           justify-content: flex-start;
-          align-items: center;
+          align-items: flex-start;
+          flex-direction: column;
           & .email__input--label {
             color: $p-blue;
             font-size: 1.4em;
@@ -58,7 +61,16 @@
               color: $p-red;
             }
           }
+          & .email__input--email {
+            width: 25.8em;
+            height: 2.91em;
+            border: 1px solid $p-grey;
+            font-family: $p-font;
+            color: $p-blue;
+            font-size: 1.2em;
+          }
         }
+
       }
     }
   }

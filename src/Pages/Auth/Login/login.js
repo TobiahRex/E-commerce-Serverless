@@ -21,7 +21,11 @@ export default function SignIn() {
               Email
               <span className="required-star">*</span>
             </label>
-            <input type="text" id="email-input" className="sign-in__input--email" />
+            <input
+              type="text"
+              id="email-input"
+              className="email__input--email"
+            />
           </div>
           <div className="form--password">
             <label htmlFor="password-input" className="sign-in__input--label">
