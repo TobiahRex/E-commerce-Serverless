@@ -26,11 +26,93 @@
           font-weight: 200;
         }
       }
-      & .register__error {
-
+      & .register__status-msg {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        & .success--icon,
+        .error--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 4.5em;
+          width: 4.5em;
+          background-color: $p-green;
+          & span {
+            font-size: 3.5em;
+            color: $p-white;
+          }
+        }
+        & .error--icon {
+          background-color: $p-red;
+          & .fa-error-icon {
+            @include prefixed(transform, rotate(45deg));
+          }
+        }
+        & .error--msg {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          padding: 1em;
+          & .pwds-do-not-match,
+          .missing-req-field,
+          .duplicate-login-info,
+          .register-success-email,
+          .register-success-social {
+            color: $p-red;
+            text-align: center;
+            font-weight: 200;
+          }
+          & .register-success-email,
+          .register-success-social {
+            color: $s-green;
+          }
+        }
       }
       & .register__social-container {
-
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        height: 18em;
+        padding: 1em;
+        & .social--title {
+          & p {
+            font-weight: 200;
+          }
+        }
+        & .social--btns {
+          & ul {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 1em 0 0 0;
+            margin: 0;
+            & .list--option:nth-child(1) {
+              margin: 0;
+            }
+            & .list--option {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 8em;
+              width: 8em;
+              background-color: $p-blue;
+              transition: all .3s ease-in-out;
+              cursor: pointer;
+              margin-left: .5em;
+              &:hover,
+              &:active,
+              &:focus {
+                background-color: $p-red;
+              }
+              & span {
+                color: $p-white;
+                font-size: 4.5em;
+              }
+            }
+          }
+        }
       }
       & .register__email--container {
 

@@ -9,13 +9,13 @@ export default function Register() {
         <div className="register__title">
           <h1>Create An Account</h1>
         </div>
-        <div className="register__error">
-          {/* <div className="error--icon">
-            <FontAwesome name="plus" />
-          </div> */}
-          <div className="success--icon">
-            <FontAwesome name="check-circle" />
+        <div className="register__status-msg">
+          <div className="error--icon">
+            <FontAwesome name="plus" className="fa-error-icon" />
           </div>
+          {/* <div className="success--icon">
+            <FontAwesome name="check-circle" />
+          </div> */}
           <div className="error--msg">
             <p className="pwds-do-not-match">
               Those passwords do not match.  Please Try Again & Submit.
@@ -33,8 +33,7 @@ export default function Register() {
               <br />
               You will be re-directed to the homepage in {'<5>'} seconds.
               </p>
-              <p className="duplicate-login-info">There is already an account with this user information. If you are sure that this information is yours, click here to reset your password to access your account.</p>
-            */}
+            <p className="duplicate-login-info">There is already an account with this user information. If you are sure that this information is yours, click here to reset your password to access your account.</p> */}
           </div>
         </div>
         <div className="register__social-container">
