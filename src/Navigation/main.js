@@ -62,6 +62,7 @@ export default (
     {/* DASHBOARDS */}
     <Router path={'/user_:id'} component={UserDashboard} />
     <Router path={'/user_:id/order_:orderid/tracking_:trackingid'} component={UserOrderTracking} />
+    <Router path={'/user_:id/home_dashboard'} component={UserDashboard} />
     <Router path={'/admin/:id'} component={AdminDashboard} />
     {/* MEDIA */}
     <Router path={'/about'} component={About} />

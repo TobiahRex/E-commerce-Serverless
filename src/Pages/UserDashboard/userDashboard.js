@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 export default function UserDashboard() {
@@ -36,50 +36,81 @@ export default function UserDashboard() {
               </div>
               <ul className="sidebar__menu-list">
                 <li className="list--home-dashboard">
-                  <p>Home Dashboard</p>
+                  <Link to="/user_123123123">
+                    <p>Home Dashboard</p>
+                  </Link>
                 </li>
                 <li className="list--address-book">
-                  <p>Address Book</p>
+                  <Link to="/user_123123123/address_book">
+                    <p>Address Book</p>
+                  </Link>
                 </li>
                 <li className="list--orders">
-                  <p>Your Orders</p>
+                  <Link to="/user_123123123/orders">
+                    <p>Your Orders</p>
+                  </Link>
                 </li>
                 <li className="list--product-reviews">
-                  <p>Your Product Reviews</p>
+                  <Link to="/user_123123123/product_reviews">
+                    <p>Your Product Reviews</p>
+                  </Link>
                 </li>
                 <li className="list--login-apps">
-                  <p>Your Login Apps</p>
+                  <Link to="/user_123123123/login_apps">
+                    <p>Your Login Apps</p>
+                  </Link>
                 </li>
                 <li className="list--newsletters">
-                  <p>Your Newsletter Subscriptions</p>
+                  <Link to="/user_123123123/newsletter_subscriptions">
+                    <p>Your Newsletter Subscriptions</p>
+                  </Link>
                 </li>
                 <li className="list--legal-terms-conditions">
-                  <p>Terms & Conditions</p>
+                  <Link to="/user_123123123/terms_and_conditions">
+                    <p>Terms & Conditions</p>
+                  </Link>
+
                 </li>
                 <li className="list--legal-privacy">
-                  <p>Privacy Policy</p>
+                  <Link to="/user_123123123/privacy_policy">
+                    <p>Privacy Policy</p>
+                  </Link>
+
                 </li>
                 <li className="list--legal-shipping">
-                  <p>Shipping Policy</p>
+                  <Link to="/user_123123123/shipping_policy">
+                    <p>Shipping Policy</p>
+                  </Link>
+
                 </li>
                 <li className="list--legal-return">
-                  <p>Return Policy</p>
+                  <Link to="/user_123123123/return_policy">
+                    <p>Return Policy</p>
+                  </Link>
+
                 </li>
                 <li className="list--legal-nicotine-disclaimer">
-                  <p>Nicotine Disclaimer</p>
+                  <Link to="/user_123123123/nicotine_disclaimer">
+                    <p>Nicotine Disclaimer</p>
+                  </Link>
+
                 </li>
                 <li className="list--legal-faqs">
-                  <p>{'FAQ\'s'}</p>
+                  <Link to="/faqs">
+                    <p>{'FAQ\'s'}</p>
+                  </Link>
                 </li>
                 <li className="list--legal-manage-login">
-                  <p>Manage Login</p>
+                  <Link to="/user_123123123/manage_login">
+                    <p>Manage Login</p>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
-              <h1>Main Dashboard</h1>
+              <h2>Home Dashboard</h2>
             </div>
           </div>
         </div>
