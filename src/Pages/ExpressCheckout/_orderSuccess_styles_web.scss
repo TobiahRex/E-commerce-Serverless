@@ -5,5 +5,42 @@
     @include prefixflex();
     justify-content: center;
     align-items: center;
+    & .ordered--container {
+      @include prefixflex();
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      margin: 5em auto;
+      & .ordered__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        & .title--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 10em;
+          width: 10em;
+          background-color: $p-green;
+          & span {
+            color: $p-white;
+            font-size: 10em;
+          }
+        }
+        & .title--msg {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          & h1, h4 {
+            color: $s-green;
+          }
+          & h4 {
+            margin-top: 2em;
+            line-height: 2em;
+          }
+        }
+      }
+    }
   }
 }
