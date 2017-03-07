@@ -46,7 +46,7 @@ export default function OrderSuccess() {
               </legend>
               <div className="shipto__name">
                 <p className="name--firstName">Bruce</p>
-                <p className="name--lastName">Wayne</p>
+                <p className="name--lastName">{'\u00A0'}Wayne</p>
               </div>
               <div className="shipto__address">
                 <p>{'<Address>'}</p>
@@ -79,7 +79,7 @@ export default function OrderSuccess() {
               </legend>
               <div className="billto__name">
                 <p className="name--firstName">Bruce</p>
-                <p className="name--lastName">Wayne</p>
+                <p className="name--lastName">{'\u00A0'}Wayne</p>
               </div>
               <div className="billto__address">
                 <p>{'<Address>'}</p>
@@ -97,10 +97,10 @@ export default function OrderSuccess() {
               <div className="billto__telephone">
                 <p className="telephone--area-code">({'<area code>'}){'\u2013'}</p>
                 <p className="telephone--first-half">
-                  {'\u00A0'}{'<first half>'}{'\u2013'}
+                  {'<first half>'}{'\u2013'}
                 </p>
                 <p className="telephone--second-half">
-                  {'\u00A0'}{'<second half>'}
+                  {'<second half>'}
                 </p>
               </div>
               <div className="billto__card-info">

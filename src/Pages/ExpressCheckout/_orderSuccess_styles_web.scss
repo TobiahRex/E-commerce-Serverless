@@ -83,7 +83,48 @@
         }
       }
       & .ordered__addresses {
-        
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        & .addresses--shipto,
+        .addresses--billto {
+          max-width: 35em;
+          width: 100%;
+          & fieldset {
+            width: 100%;
+            height: 22em;
+            & legend {
+              & p {
+                font-size: 2em;
+                font-weight: 400;
+              }
+            }
+            & .shipto__name,
+            .billto__name,
+            .shipto__city-prefecture,
+            .billto__city-prefecture,
+            .shipto__telephone,
+            .billto__telephone {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+            }
+          }
+        }
+      }
+      & .ordered_order-summary {
+        & fieldset {
+          & legend {
+            & p {
+              font-size: 2em;
+              font-weight: 800;
+            }
+          }
+          & .order--summary__table {
+            
+          }
+        }
       }
     }
   }
