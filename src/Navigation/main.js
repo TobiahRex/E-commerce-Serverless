@@ -16,8 +16,10 @@ import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';
 import Login from '../Pages/Auth/Login/login';
 import Register from '../Pages/Auth/Register/register';
 import Forgot from '../Pages/Auth/Forgot/forgot';
+
 import UserDashboard from '../Pages/UserDashboard/userDashboard';
 import AdminDashboard from '../Pages/AdminDashboard/adminDashboard';
+import UserOrderTracking from '../Pages/UserDashboard/userOrderTracking';
 
 import About from '../Pages/Legal/about';
 import ContactUs from '../Pages/Legal/contactUs';
@@ -59,6 +61,7 @@ export default (
     <Router path={'/forgot'} component={Forgot} />
     {/* DASHBOARDS */}
     <Router path={'/user/:id'} component={UserDashboard} />
+    <Router path={'/user/:id/orders/:orderid/tracking'} component={UserOrderTracking} />
     <Router path={'/admin/:id'} component={AdminDashboard} />
     {/* MEDIA */}
     <Router path={'/about'} component={About} />
