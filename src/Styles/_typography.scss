@@ -11,69 +11,138 @@ $s-font: 'Muli', sans-serif;
   @import url($font-google-ubuntu);
 }
 
-h1 {
-  font-size: 3.5em;
-  font-family: $p-font;
-  font-weight: 800;
-  @include prefixed(font-smoothing, antialiased);
-  color: $p-blue;
-  line-height: 1em;
-  letter-spacing: 0.028em;
-  margin: 0;
-  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+@media only screen and (min-width : 641px) {
+  h1 {
+    font-size: 3.5em;
+    font-family: $p-font;
+    font-weight: 800;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: 0.028em;
+    margin: 0;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  }
+
+  h2 {
+    font-size: 3em;
+    font-family: $p-font;
+    font-weight: 800;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: .033em;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 2em;
+    font-family: $p-font;
+    font-weight: 200;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+    margin: 0;
+    padding: 0;
+  }
+
+  h4 {
+    font-size: 1.8em;
+    font-family: $p-font;
+    font-weight: 800;
+    text-align: center;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: .055em;
+    margin: 0;
+  }
+
+  h5 {
+    font-size: 1.5em;
+    font-family: $p-font;
+    font-weight: 200;
+    text-align: center;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-white;
+    line-height: 1.5em;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  p {
+    font-family: $p-font;
+    font-size: 1.4em;
+    color: $p-blue;
+    line-height: 1.78em;
+    margin: 0;
+  }
 }
 
-h2 {
-  font-size: 3em;
-  font-family: $p-font;
-  font-weight: 800;
-  @include prefixed(font-smoothing, antialiased);
-  color: $p-blue;
-  line-height: 1em;
-  letter-spacing: .033em;
-  margin: 0;
-}
+@media only screen and (max-width : 640px) {
 
-h3 {
-  font-size: 2em;
-  font-family: $p-font;
-  font-weight: 200;
-  @include prefixed(font-smoothing, antialiased);
-  color: $p-blue;
-  line-height: 1em;
-  letter-spacing: 0.05em;
-  margin: 0;
-  padding: 0;
-}
+  h1 {
+    font-size: 2.5em;
+    font-family: $p-font;
+    font-weight: 800;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: 0.028em;
+    margin: 0;
+  }
+  h2 {
+    font-size: 2em;
+    font-family: $p-font;
+    font-weight: 800;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: .033em;
+    margin: 0;
+  }
+  h3 {
+    font-size: 1.8em;
+    font-family: $p-font;
+    font-weight: 200;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+    margin: 0;
+    padding: 0;
+  }
+  h4 {
+    font-size: 1.6em;
+    font-family: $p-font;
+    font-weight: 800;
+    text-align: center;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-blue;
+    line-height: 1em;
+    letter-spacing: .055em;
+    margin: 0;
+  }
 
-h4 {
-  font-size: 1.8em;
-  font-family: $p-font;
-  font-weight: 800;
-  text-align: center;
-  @include prefixed(font-smoothing, antialiased);
-  color: $p-blue;
-  line-height: 1em;
-  letter-spacing: .055em;
-  margin: 0;
-}
+  h5 {
+    font-size: 1.2em;
+    font-family: $p-font;
+    font-weight: 200;
+    text-align: center;
+    @include prefixed(font-smoothing, antialiased);
+    color: $p-white;
+    line-height: 1.5em;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
 
-h5 {
-  font-size: 1.5em;
-  font-family: $p-font;
-  font-weight: 200;
-  text-align: center;
-  @include prefixed(font-smoothing, antialiased);
-  color: $p-white;
-  line-height: 1.5em;
-  letter-spacing: 0.04em;
-  margin: 0;
-}
+  p {
+    font-family: $p-font;
+    font-size: 1.2em;
+    color: $p-blue;
+    line-height: 1.78em;
+    margin: 0;
+  }
 
-p {
-  font-family: $p-font;
-  font-size: 1.4em;
-  color: $p-blue;
-  line-height: 1.78em;
-  margin: 0;
 }
