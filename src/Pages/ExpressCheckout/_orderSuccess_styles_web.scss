@@ -113,16 +113,73 @@
           }
         }
       }
-      & .ordered_order-summary {
+      & .ordered__order-summary {
+        margin: 2em auto;
         & fieldset {
           & legend {
             & p {
               font-size: 2em;
-              font-weight: 800;
+              font-weight: 400;
             }
           }
-          & .order--summary__table {
-            
+          & .order-summary__table {
+            border-collapse: collapse;
+            & .table--thead {
+              & tr {
+                border-bottom: 1px solid rgba(0,0,0,.15);
+                & th {
+                  & p {
+                    font-size: 1.6em;
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+            & .table--body {
+              & .body--shipping-status-row {
+                height: 4em;
+                background-color: $s-white;
+                & td {
+                  text-align: center;
+                }
+                & p {
+                  & .tracking-id {
+                    color: $p-red;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                      text-decoration: underline;
+                    }
+                  }
+                }
+              }
+              & .body--product-row {
+                height: 4em;
+                border-bottom: 1px solid rgba(0,0,0,.1);
+                & td {
+                  text-align: center;
+                  & .product-row__list {
+                    margin: 0;
+                    list-style-type: none;
+                    & .list--nic-strength {
+                      p {
+                        font-size: 1.2em;
+                        font-weight: 200;
+                      }
+                    }
+                    & .list--sku {
+                      & p {
+                        font-size: 1em;
+                        font-weight: 200;
+                      }
+                    }
+                  }
+                }
+                & td:nth-child(2) {
+                  text-align: left;
+                }
+              }
+            }
           }
         }
       }

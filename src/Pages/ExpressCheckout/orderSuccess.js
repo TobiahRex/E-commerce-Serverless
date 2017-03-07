@@ -117,24 +117,26 @@ export default function OrderSuccess() {
             <table className="order-summary__table" cellPadding="0" cellSpacing="0">
               <thead className="table--thead">
                 <tr>
-                  <td colSpan="1">
+                  <th colSpan="1">
                     <p>Qty</p>
-                  </td>
-                  <td colSpan="3">
+                  </th>
+                  <th colSpan="3">
                     <p>Juice Description</p>
-                  </td>
-                  <td colSpan="2">
+                  </th>
+                  <th colSpan="2">
                     <p>Price</p>
-                  </td>
+                  </th>
                 </tr>
               </thead>
               <tbody className="table--body">
                 <tr className="body--shipping-status-row">
-                  <td colSpan="4">
+                  <td colSpan="5">
                     <p>{'<Shipping Status>'} {'\u2013'} Tracking #:
                       {/* TODO: These query params need to be dynamically assigned. */}
-                      <Link to="/user:123123123/orders:123123/tracking:123123123">
-                        {uuid()}
+                      <Link
+                        className="tracking-id"
+                        to="/user:123123123/orders:123123/tracking:123123123">
+                        {'\u00A0'}{uuid()}
                       </Link>
                     </p>
                   </td>
