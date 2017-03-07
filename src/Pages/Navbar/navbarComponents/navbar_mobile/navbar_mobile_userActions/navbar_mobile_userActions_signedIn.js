@@ -20,7 +20,7 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
       >
         <li className="navbar-mobile-actions-signedIn-myaccount-title sweep-right">
           <Link
-            to={`/user/${uuid()}`}
+            to={`/user_${uuid()}`}
             className="navbar-mobile-actions-signedIn-myaccount-title-link"
           >My Account</Link>
         </li>

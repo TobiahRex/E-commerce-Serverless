@@ -60,8 +60,8 @@ export default (
     <Router path={'/register'} component={Register} />
     <Router path={'/forgot'} component={Forgot} />
     {/* DASHBOARDS */}
-    <Router path={'/user/:id'} component={UserDashboard} />
-    <Router path={'/user/:id/orders/:orderid/tracking'} component={UserOrderTracking} />
+    <Router path={'/user_:id'} component={UserDashboard} />
+    <Router path={'/user_:id/order_:orderid/tracking_:trackingid'} component={UserOrderTracking} />
     <Router path={'/admin/:id'} component={AdminDashboard} />
     {/* MEDIA */}
     <Router path={'/about'} component={About} />
