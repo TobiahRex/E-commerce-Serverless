@@ -69,6 +69,11 @@
 @import "Pages/ExpressCheckout/orderSuccess_styles_mobile";
 
 // ------------------------------------------------------------
+// NOTE: "User Dashboard" Master Stylesheets
+@import "Pages/UserDashboard/userDashboard_styles_web";
+@import "Pages/UserDashboard/userDashboard_styles_mobile";
+
+// ------------------------------------------------------------
 // NOTE: "Footer" Master Stylesheets
 @import "Pages/Footer/footerStyles/footer_styles_web";
 @import "Pages/Footer/footerStyles/footer_styles_mobile";

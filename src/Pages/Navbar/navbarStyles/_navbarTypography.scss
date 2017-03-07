@@ -1,11 +1,12 @@
 .promotion-text {
   text-transform: uppercase;
   font-family: $s-font;
-  color: $p-red;
+  color: $p-white;
   font-weight: 900;
   font-size: 15px;
   line-height: 1.3em;
-  letter-spacing: 1.5px
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.25);
 }
 
 .ddn-cart-p-font {

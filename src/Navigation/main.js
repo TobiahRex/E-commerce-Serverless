@@ -19,7 +19,7 @@ import Forgot from '../Pages/Auth/Forgot/forgot';
 
 import UserDashboard from '../Pages/UserDashboard/userDashboard';
 import AdminDashboard from '../Pages/AdminDashboard/adminDashboard';
-import UserOrderTracking from '../Pages/UserDashboard/userOrderTracking';
+import UserOrderTracking from '../Pages/UserDashboard/userDashboard_orders/userOrderTracking';
 
 import About from '../Pages/Legal/about';
 import ContactUs from '../Pages/Legal/contactUs';

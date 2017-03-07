@@ -110,11 +110,14 @@
               }
             }
             & .products-list-card-actions-delete {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
               height: 1.5em;
               width: 1.5em;
               background-color: $p-red;
               cursor: pointer;
-              color: $s-blue;
+              color: $s-white;
               border: none;
               box-shadow: 1px 2px 4px rgba(0,0,0,.5);
               &:hover,

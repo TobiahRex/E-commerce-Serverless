@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1079px) {
+@media only screen and (min-width: 641px) {
   .single-product-main {
     max-width: 1080px;
     width: 100%;
@@ -35,8 +35,10 @@
     }
     & .single-product-main-title {
       @include prefixflex();
-      align-items: flex-start;
+      justify-content: flex-start;
+      align-items: center;
       height: 8em;
+      width: 100%;
       h1 {
         font-size: 5em;
         font-weight: 200;
