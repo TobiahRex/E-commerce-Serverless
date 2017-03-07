@@ -132,10 +132,10 @@ export default function OrderSuccess() {
                   </td>
                 </tr>
                 <tr className="body--product-row">
-                  <td>
+                  <td colSpan="1">
                     <p>{'<Qty>'}</p>
                   </td>
-                  <td>
+                  <td colSpan="3">
                     <ul className="product-row__list">
                       <li className="list--title">
                         <p>{'<Product Description>'}</p>
@@ -148,11 +148,29 @@ export default function OrderSuccess() {
                       </li>
                     </ul>
                   </td>
-                  <td>
+                  <td colSpan="2">
                     <p>
                       <FontAwesome name="usd" />{'\u00A0'}
                       {'<Price>'}.00
                     </p>
+                  </td>
+                </tr>
+                <tr className="body--total-analysis">
+                  <td colSpan="3">
+                    <ul className="total-analysis--list">
+                      <li className="list--subtotal-title">
+                        <p>Subtotal</p>
+                      </li>
+                      <li className="list--tax-title">
+                        <p>Tax</p>
+                      </li>
+                      <li className="list--shipping-title">
+                        Free International Shipping
+                      </li>
+                      <li className="list--order-total-title">
+                        <p>Order Title</p>
+                      </li>
+                    </ul>
                   </td>
                 </tr>
               </tbody>
