@@ -36,6 +36,17 @@ export default function OrderSuccess() {
             </div>
           </div>
         </div>
+        <div className="ordered__addresses">
+          <div className="addresses--shipto">
+            <fieldset className="shipto--fieldset">
+              <legend className="shipto--legend">Ship To</legend>
+              
+            </fieldset>
+          </div>
+          <div className="addresses--billto">
+
+          </div>
+        </div>
       </div>
     </div>
   );
