@@ -143,7 +143,9 @@
                   text-align: center;
                 }
                 & p {
+                  font-weight: 200;
                   & .tracking-id {
+                    font-weight: 200;
                     color: $p-red;
                     &:hover,
                     &:focus,
@@ -154,7 +156,7 @@
                 }
               }
               & .body--product-row {
-                height: 4em;
+                height: 10em;
                 border-bottom: 1px solid rgba(0,0,0,.1);
                 & td {
                   text-align: center;
@@ -163,6 +165,7 @@
                     list-style-type: none;
                     & .list--nic-strength {
                       p {
+                        font-style: italic;
                         font-size: 1.2em;
                         font-weight: 200;
                       }
@@ -178,6 +181,24 @@
                 & td:nth-child(2) {
                   text-align: left;
                 }
+              }
+              & .body--total-analysis {
+                & td {
+                  text-align: right;
+                  & .total-analysis--list-title,
+                  .total-analysis--list-value {
+                    margin: 0;
+                    list-style-type: none;
+                    & li {
+                      & p {
+                        font-weight: 200;
+                      }
+                    }
+                  }
+                }
+                // & td:nth-child(2) {
+                //   text-align: center;
+                // }
               }
             }
           }
