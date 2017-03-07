@@ -39,8 +39,33 @@ export default function OrderSuccess() {
         <div className="ordered__addresses">
           <div className="addresses--shipto">
             <fieldset className="shipto--fieldset">
-              <legend className="shipto--legend">Ship To</legend>
-              
+              <legend className="shipto__legend">Ship To</legend>
+              <div className="shipto__name">
+                <p className="name--firstName">Bruce</p>
+                <p className="name--lastName">Wayne</p>
+              </div>
+              <div className="shipto__address">
+                <p>{'<Address>'}</p>
+              </div>
+              <div className="shipto__city-prefecture">
+                <p className="city-prefecture--city">{'<City>'}</p>
+                <p className="city-prefecture--prefecture">{'<Prefecture>'}</p>
+              </div>
+              <div className="shipto__postal-code">
+                <p>{'<Postal Code>'}</p>
+              </div>
+              <div className="shipto__country">
+                <p>Japan</p>
+              </div>
+              <div className="shipto__telephone">
+                <p className="telephone--area-code">({'<area code>'})</p>
+                <p className="telephone--first-half">
+                  {'\u00A0'}{'<first half>'}
+                </p>
+                <p className="telephone--second-half">
+                  {'\u00A0'}{'<second half>'}
+                </p>
+              </div>
             </fieldset>
           </div>
           <div className="addresses--billto">

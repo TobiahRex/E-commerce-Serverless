@@ -23,7 +23,7 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
 
   NOTES:
   1. I Highly recommend running `npm update --save` to update package json before running `npm start` or `npm build`.
-  2. You may need to do a `brew update` for some of the dependencies.
+  2. You may need to do a `brew update` for some of the webpack image loaders to properly work.
 
 
 ## NOTE on Reducers:

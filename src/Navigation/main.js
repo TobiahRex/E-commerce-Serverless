@@ -38,6 +38,7 @@ import Wholesale from '../Pages/Legal/wholesale';
 import Affiliates from '../Pages/Legal/affiliateProgram';
 import NotFound from '../Pages/404/notFound404';
 import ResetPasswordEmail from '../Pages/Auth/ResetEmail/reset';
+import OrderSuccess from '../Pages/ExpressCheckout/orderSuccess';
 
 export default (
   <Route path="/" component={App}>
@@ -51,6 +52,7 @@ export default (
     <Router path={'/express_checkout'} component={ExpressCheckout} />
     <Router path={'/not_found'} component={NotFound} />
     <Router path={'/reset_email'} component={ResetPasswordEmail} />
+    <Router path={'/successfully_ordered'} component={OrderSuccess} />
     {/* AUTH */}
     <Router path={'/login'} component={Login} />
     <Router path={'/register'} component={Register} />
