@@ -13,6 +13,7 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   * Uses _redux-devtools-extension_ to allow for a macro perspective picture of your current store's state.
     - <img src="http://i.imgur.com/GD4VCkW.png" />
   * Configured for front end environment variables using webpack.DefinePlugin().
+  * Uses _BEM_ syntax styling for classNames.
   * Airbnb Style Guide implemented.
 
 ## Setup:
@@ -20,7 +21,10 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   - `npm start` for development server
   - `npm run build` for production server
 
-  NOTE: I Highly recommend running `npm update --save` to update package json before running `npm start` or `npm build`.
+  NOTES:
+  1. I Highly recommend running `npm update --save` to update package json before running `npm start` or `npm build`.
+  2. You may need to do a `brew update` for some of the dependencies.
+
 
 ## NOTE on Reducers:
  This bp's Redux reducer methods rely on the developer to customize the logic to maintain immutability of state. This was done _intentionally_ to strengthen developers abilities in manipulating state.  If this feels cumbersome, I highly recommend using _seamless-immutable_ (refs below) to outsource this process in a very clean, and simple way.
@@ -37,11 +41,12 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
 * [seamless-immutable](https://github.com/rtfeldman/seamless-immutable)
 
 ## Updates:
-<!-- * December 1st 2016:
-  - Extensive refactor to entire project.  WARNING in the process of re-factoring package.json and webpack.config for smoother deployment however process is not yet complete.  Will update here when it's finished and GTG.
-* December 2nd 2016:
-  - Finished major refactor and deployment. Click the "DEMO" link above to check out the latest working version.  Thanks for the interest. -->
+* March 7th, 2017:
+  - Added Sketch Mockups & Wireframes file to `tools/`
+  - Responsiveness is still in development. Media Queries are `@media only screen and (max-width : 640px)` for mobile & `@media only screen and (min-wdith : 641px)` for web.  This is a recent change, and I haven't optimized all style sheets for those settings as of yet.
+  - Not all stylesheets are implementing _BEM_.  It was recent change and previous naming conventions are still in use for some style sheets.
 
-## ScreenShots:
-<!-- * Terminal
+
+<!-- ## ScreenShots:
+* Terminal
   - <img src="http://i.imgur.com/RjJ7yfA.png" /> -->

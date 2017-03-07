@@ -31,7 +31,7 @@
 18 verbose stack     at maybeClose (internal/child_process.js:852:16)
 18 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
 19 verbose pkgid nj2jp@1.5.0
-20 verbose cwd /Users/BICKLEY/temp/nj2jp/src/Pages/Auth/Forgot
+20 verbose cwd /Users/BICKLEY/temp/nj2jp
 21 error Darwin 16.3.0
 22 error argv "/Users/BICKLEY/.nvm/versions/node/v6.2.1/bin/node" "/Users/BICKLEY/.nvm/versions/node/v6.2.1/bin/npm" "run" "build"
 23 error node v6.2.1
