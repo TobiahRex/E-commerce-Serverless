@@ -24,7 +24,7 @@ export default function OrderSuccess() {
             <p>Invoice #: {uuid()}</p>
           </div>
           <div className="header--status">
-            {'<Shipping Status>'}
+            <h3>{'<Shipping Status>'}</h3>
           </div>
           <div className="header--info">
             <div className="header__tracking">
@@ -32,14 +32,18 @@ export default function OrderSuccess() {
               <p>Order #: {uuid()}</p>
             </div>
             <div className="header__price">
-              Price: <FontAwesome name="usd" />{'\u00A0'}32.14
+              <p>
+                Price: <FontAwesome name="usd" />{'\u00A0'}32.14
+              </p>
             </div>
           </div>
         </div>
         <div className="ordered__addresses">
           <div className="addresses--shipto">
             <fieldset className="shipto--fieldset">
-              <legend className="shipto__legend">Ship To</legend>
+              <legend className="shipto__legend">
+                <p>Ship To</p>
+              </legend>
               <div className="shipto__name">
                 <p className="name--firstName">Bruce</p>
                 <p className="name--lastName">Wayne</p>
@@ -70,7 +74,9 @@ export default function OrderSuccess() {
           </div>
           <div className="addresses--billto">
             <fieldset className="billto--fieldset">
-              <legend className="billto__legend">Bill To</legend>
+              <legend className="billto__legend">
+                <p>Bill To</p>
+              </legend>
               <div className="billto__name">
                 <p className="name--firstName">Bruce</p>
                 <p className="name--lastName">Wayne</p>
@@ -105,7 +111,9 @@ export default function OrderSuccess() {
         </div>
         <div className="ordered__order-summary">
           <fieldset className="order-summary--fieldset">
-            <legend className="order-summary--legend">Order Summary</legend>
+            <legend className="order-summary--legend">
+              <p>Order Summary</p>
+            </legend>
             <table className="order-summary__table" cellPadding="0" cellSpacing="0">
               <thead className="table--thead">
                 <tr>
@@ -156,19 +164,43 @@ export default function OrderSuccess() {
                   </td>
                 </tr>
                 <tr className="body--total-analysis">
-                  <td colSpan="3">
-                    <ul className="total-analysis--list">
-                      <li className="list--subtotal-title">
+                  <td colSpan="4">
+                    <ul className="total-analysis--list-title">
+                      <li className="list-title--subtotal">
                         <p>Subtotal</p>
                       </li>
-                      <li className="list--tax-title">
+                      <li className="list-title--tax">
                         <p>Tax</p>
                       </li>
-                      <li className="list--shipping-title">
-                        Free International Shipping
+                      <li className="list-title--shipping">
+                        <p>Free International Shipping</p>
                       </li>
-                      <li className="list--order-total-title">
+                      <li className="list-title--order-total">
                         <p>Order Title</p>
+                      </li>
+                    </ul>
+                  </td>
+                  <td colSpan="2">
+                    <ul className="total-analysis--list-value">
+                      <li className="list-value--subtotal">
+                        <p>
+                          <FontAwesome name="usd" />{'\u00A0'}{'<SubTotal>'}.00
+                        </p>
+                      </li>
+                      <li className="list-value--tax">
+                        <p>
+                          <FontAwesome name="usd" />{'\u00A0'}{'<Tax>.<tax>'}
+                        </p>
+                      </li>
+                      <li className="list-value--shipping">
+                        <p>
+                          <FontAwesome name="usd" />{'\u00A0'}0.00
+                        </p>
+                      </li>
+                      <li className="list-value--order-total">
+                        <p>
+                          <FontAwesome name="usd" />{'\u00A0'}{'<Final Total>'}
+                        </p>
                       </li>
                     </ul>
                   </td>
@@ -176,6 +208,14 @@ export default function OrderSuccess() {
               </tbody>
             </table>
           </fieldset>
+        </div>
+        <div className="ordered__action-btns">
+          <button className="back-to-home sweep-right">
+            <span className="flex-btn-parent">
+              <FontAwesome name="double-angled-left" />
+              {'\u00A0'}Back To Homepage
+            </span>
+          </button>
         </div>
       </div>
     </div>
