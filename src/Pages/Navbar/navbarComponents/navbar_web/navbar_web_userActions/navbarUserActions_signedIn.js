@@ -18,7 +18,7 @@ class NavbarUserActionsSignin extends PureComponent {
         // style={NavbarUserActionsSignin.styles.hidden}
         className="navbar-actionSection-upper-actions-signedIn"
       >
-        <li className="my-account-title sweep-right" onClick={() => browserHistory.push(`/user/${uuid()}`)}>
+        <li className="my-account-title sweep-right" onClick={() => browserHistory.push(`/user_${uuid()}`)}>
           <Link to={`/user_${uuid()}`} className="navbar-userActions-myaccount-title-link">
             My Account
           </Link>

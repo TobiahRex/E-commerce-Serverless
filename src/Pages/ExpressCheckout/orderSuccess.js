@@ -109,18 +109,51 @@ export default function OrderSuccess() {
             <table className="order-summary__table" cellPadding="0" cellSpacing="0">
               <thead className="table--thead">
                 <tr>
-                  <td>Qty</td>
-                  <td>Juice Description</td>
-                  <td>Price</td>
+                  <td colSpan="1">
+                    <p>Qty</p>
+                  </td>
+                  <td colSpan="3">
+                    <p>Juice Description</p>
+                  </td>
+                  <td colSpan="2">
+                    <p>Price</p>
+                  </td>
                 </tr>
               </thead>
               <tbody className="table--body">
                 <tr className="body--shipping-status-row">
-                  <p>{'<Shipping Status>'} {'\u2013'} Tracking #:
-                    <Link to="/user/123123123/orders/id=123123/tracking">
-                      {uuid()}
-                    </Link>
-                  </p>
+                  <td colSpan="4">
+                    <p>{'<Shipping Status>'} {'\u2013'} Tracking #:
+                      {/* TODO: These query params need to be dynamically assigned. */}
+                      <Link to="/user:123123123/orders:123123/tracking:123123123">
+                        {uuid()}
+                      </Link>
+                    </p>
+                  </td>
+                </tr>
+                <tr className="body--product-row">
+                  <td>
+                    <p>{'<Qty>'}</p>
+                  </td>
+                  <td>
+                    <ul className="product-row__list">
+                      <li className="list--title">
+                        <p>{'<Product Description>'}</p>
+                      </li>
+                      <li className="list--nic-strength">
+                        <p>{'<Nic Strength>'}{'\u00A0'}mg</p>
+                      </li>
+                      <li className="list--sku">
+                        <p>SKU: {uuid()}</p>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <p>
+                      <FontAwesome name="usd" />{'\u00A0'}
+                      {'<Price>'}.00
+                    </p>
+                  </td>
                 </tr>
               </tbody>
             </table>
