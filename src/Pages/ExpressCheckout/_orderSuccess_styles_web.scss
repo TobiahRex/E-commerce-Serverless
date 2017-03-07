@@ -84,6 +84,9 @@
             @include prefixflex();
             justify-content: flex-end;
             align-items: flex-end;
+            & p {
+              font-size: 1.8em;
+            }
           }
         }
       }
@@ -153,6 +156,7 @@
                 height: 4em;
                 background-color: $s-white;
                 & td {
+                  width: 70%;
                   text-align: center;
                 }
                 & p {
@@ -215,14 +219,12 @@
                     }
                   }
                 }
-                // & td:nth-child(2) {
-                //   text-align: center;
-                // }
               }
             }
           }
         }
       }
+      
     }
   }
 }

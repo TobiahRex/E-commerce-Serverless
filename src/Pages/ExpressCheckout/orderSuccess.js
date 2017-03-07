@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 import uuid from 'uuid';
@@ -62,12 +62,12 @@ export default function OrderSuccess() {
                 <p>Japan</p>
               </div>
               <div className="shipto__telephone">
-                <p className="telephone--area-code">({'<area code>'}){'\u2013'}</p>
+                <p className="telephone--area-code">(080){'\u2013'}</p>
                 <p className="telephone--first-half">
-                  {'\u00A0'}{'<first half>'}{'\u2013'}
+                  {'\u00A0'}3918{'\u2013'}
                 </p>
                 <p className="telephone--second-half">
-                  {'\u00A0'}{'<second half>'}
+                  {'\u00A0'}8013
                 </p>
               </div>
             </fieldset>
@@ -135,9 +135,8 @@ export default function OrderSuccess() {
                       {/* TODO: These query params need to be dynamically assigned. */}
                       <Link
                         className="tracking-id"
-                        to="/user:123123123/orders:123123/tracking:123123123">
-                        {'\u00A0'}{uuid()}
-                      </Link>
+                        to="/user:123123123/orders:123123/tracking:123123123"
+                      >{'\u00A0'}{uuid()}</Link>
                     </p>
                   </td>
                 </tr>
@@ -212,9 +211,12 @@ export default function OrderSuccess() {
           </fieldset>
         </div>
         <div className="ordered__action-btns">
-          <button className="back-to-home sweep-right">
+          <button
+            className="back-to-home sweep-right primary-flex-button"
+            onClick={() => browserHistory.push('/')}
+          >
             <span className="flex-btn-parent">
-              <FontAwesome name="double-angled-left" />
+              <FontAwesome name="angle-double-left" />
               {'\u00A0'}Back To Homepage
             </span>
           </button>

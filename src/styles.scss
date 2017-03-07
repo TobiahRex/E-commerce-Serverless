@@ -5,6 +5,7 @@
 @import "Styles/mixins";
 @import "Styles/typography";
 @import "Styles/transitions";
+@import "Styles/elements";
 
 // ------------------------------------------------------------
 // NOTE: "Age Verification" Master Stylesheets
@@ -29,7 +30,7 @@
 // ------------------------------------------------------------
 // NOTE: "Reset Password" Master Stylesheets
 @import "Pages/Auth/ResetEmail/reset_styles_web";
-// @import "Pages/Auth/Forgot/forgot_styles_mobile";
+@import "Pages/Auth/ResetEmail/reset_styles_mobile";
 
 // // ------------------------------------------------------------
 // // NOTE: "Navbar" Master Stylesheets

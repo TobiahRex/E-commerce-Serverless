@@ -1,4 +1,4 @@
-@media only screen and (min-width: 641px) and (max-width: 1920px) {
+@media only screen and (min-width: 641px) {
   .reset--main {
     @include prefixflex();
     justify-content: center;
@@ -27,6 +27,7 @@
             @include prefixflex();
             justify-content: center;
             align-items: flex-start;
+            padding: 1em;
             & .verify__icon,
             .success__icon {
               @include prefixflex();
@@ -35,6 +36,7 @@
               height: 10em;
               width: 10em;
               background-color: $p-blue;
+              padding: 1em;
               & span {
                 color: $p-white;
                 font-size: 10em;

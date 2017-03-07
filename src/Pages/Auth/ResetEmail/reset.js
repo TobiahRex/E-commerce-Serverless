@@ -14,9 +14,7 @@ export default function Forgot() {
               </div>
               <div className="verify__title">
                 <h1>Do you want to reset your password?</h1>
-                <h4>Please confirm if you want to reset your password or,{'\u00A0'}
-                  <br />
-                press “Cancel” to return to the homepage.</h4>
+                <h4>Please confirm if you want to reset your password or, press “Cancel” to return to the homepage.</h4>
               </div>
             </div>
             <div className="verify__action-btns">

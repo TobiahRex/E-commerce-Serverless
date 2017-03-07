@@ -1,155 +1,88 @@
 @media only screen and (max-width : 640px) {
-  .forgot--main {
+  .reset--main {
     @include prefixflex();
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    max-width: 640px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1086px;
     width: 100%;
-    & .forgot--container {
+    & .reset--container {
       @include prefixflex();
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      padding-top: 2em;
-      margin-top: 1em;
-      background-color: $s-white;
-      width: 100%;
-      & .forgot__title {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        height: 20em;
-        width: 31.5em;
-        padding: 1.5em 0;
-        & h1 {
-          text-align: center;
-          font-weight: 200;
-          max-width: 4.57em;
-        }
-      }
-      & .forgot__status-msg {
+      margin: 2em auto 2em auto;
+      & .reset__verify,
+      .reset__success {
         @include prefixflex();
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        & .success--icon,
-        .error--icon {
+        & .verify,
+        .success {
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          height: 4.5em;
-          width: 4.5em;
-          background-color: $p-green;
-          & span {
-            font-size: 3.5em;
-            color: $p-white;
+          flex-direction: column;
+          & .verify__top,
+          .success__top {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 1em;
+            & .verify__icon,
+            .success__icon {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 10em;
+              width: 10em;
+              background-color: $p-blue;
+              padding: 1em;
+              & span {
+                color: $p-white;
+                font-size: 10em;
+                line-height: 1em;
+              }
+            }
+            & .verify__title,
+            .success__title {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              & h1 {
+                text-align: center;
+                margin-top: .5em;
+              }
+              & h4 {
+                margin-top: 1em;
+                line-height: 2em;
+              }
+            }
           }
-        }
-        & .error--icon {
-          background-color: $p-red;
-          & .fa-error-icon {
-            @include prefixed(transform, rotate(45deg));
-          }
-        }
-        & .error--msg {
-          @include prefixflex();
-          justify-content: center;
-          align-items: center;
-          padding: 1em;
-          & .incorrect-format,
-          .email-not-found {
-            color: $p-red;
-            text-align: center;
-            font-weight: 200;
-            font-size: 1.4em;
-          }
-          & .email-msg-sent {
-            color: $s-green;
-          }
-        }
-      }
-      & .forgot__input {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        & label {
-          color: $p-blue;
-          font-family: $p-font;
-          font-weight: 200;
-          font-size: 1.4em;
-          margin-top: 1em;
-        }
-        & input {
-          height: 2.9em;
-          width: 100%;
-          color: $p-blue;
-          font-size: 1.2em;
-          font-family: $p-font;
-          font-weight: 200;
-          max-width: 23.3em;
-          padding-left: .7em;
-          margin-top: 1em;
-          border: 1px solid rgba(0,0,0,.1);
-          &:active,
-          &:focus {
-            outline: none;
-          }
-        }
-      }
-      & .forgot__submit {
-        padding: 2em;
-        & .submit--btn {
-          height: 3.125em;
-          width: 10.93em;
-          border: none;
-          color: $p-white;
-          background-color: $p-red;
-          font-size: 1.6em;
-          font-weight: 400;
-          font-family: $p-font;
-          cursor: pointer;
-          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-        }
-      }
-    }
-    & .forgot--action-btns {
-      @include prefixflex();
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: column;
-      // height: 7em;
-      max-width: 50em;
-      width: 100%;
-      padding: 2em 0 0 0;
-      & button:nth-child(2) {
-        margin-top: 1em;
-      }
-      & .action-btns--back,
-      .action-btns--register {
-        height: 3.125em;
-        width: 10.93em;
-        border: none;
-        color: $p-white;
-        background-color: $p-red;
-        font-size: 1.6em;
-        font-weight: 400;
-        font-family: $p-font;
-        cursor: pointer;
-        box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-        & .flex-btn-parent {
-          @include prefixflex();
-          justify-content: center;
-          align-items: center;
-          & span {
-            color: $p-white;
-            font-size: 1.6em;
+          & .verify__action-btns,
+          .success__btn {
+            @include prefixflex();
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            & button {
+              margin-top: 3em;
+              height: 3.75em;
+              width: 80%;
+              color: $p-white;
+              font-size: 1.6em;
+              font-weight: 400;
+              font-family: $p-font;
+              border: none;
+              background-color: $p-red;
+              cursor: pointer;
+              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+            }
           }
         }
       }
     }
   }
-
 }
