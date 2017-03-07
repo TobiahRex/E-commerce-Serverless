@@ -7,8 +7,9 @@
     align-items: center;
     & .ordered--container {
       @include prefixflex();
-      justify-content: center;
-      align-items: flex-start;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
       width: 100%;
       margin: 5em auto;
       & .ordered__title {
@@ -32,6 +33,7 @@
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          margin-left: 2em;
           & h1, h4 {
             color: $s-green;
           }
@@ -41,6 +43,40 @@
           }
         }
       }
+      & .ordered__header {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 3em auto;
+        & .header--date {
+          @include prefixflex();
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          & p {
+            padding: 1em;
+          }
+        }
+        & .header--status {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          & h3 {
+            line-height: 2em;
+            font-style: italic;
+            font-weight: 800;
+          }
+        }
+        & .header--info {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+        }
+      }
+
     }
   }
 }

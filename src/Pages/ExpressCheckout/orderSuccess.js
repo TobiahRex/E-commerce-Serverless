@@ -11,7 +11,7 @@ export default function OrderSuccess() {
       <div className="ordered--container">
         <div className="ordered__title">
           <div className="title--icon">
-            <FontAwesome name="question-circle" />
+            <FontAwesome name="check-circle" />
           </div>
           <div className="title--msg">
             <h1>Your order has been successfully placed!</h1>
