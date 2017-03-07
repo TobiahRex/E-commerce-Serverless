@@ -57,45 +57,71 @@
             }
           }
         }
-        & .userdash__title {
-          @include prefixflex();
-          justify-content: flex-start;
-          align-items: center;
-          height: 8em;
-          width: 100%;
-          h1 {
-            font-size: 5em;
-            font-weight: 200;
-            letter-spacing: 0.01em;
-            color: $p-blue;
-            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
-          }
+      }
+      & .userdash__title {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        height: 8em;
+        width: 100%;
+        h1 {
+          font-size: 5em;
+          font-weight: 200;
+          letter-spacing: 0.01em;
+          color: $p-blue;
+          @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
         }
-        & .userdash__body {
+      }
+      & .userdash__body {
+        @include prefixflex();
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        background-color: $s-white;
+        & .body__sidebar {
           @include prefixflex();
           justify-content: center;
-          align-items: flex-start;
-          width: 100%;
-          & .body__sidebar {
+          align-items: center;
+          width: 27.5em;
+          background-color: $p-white;
+          & .sidebar--container {
             @include prefixflex();
             justify-content: center;
             align-items: center;
-            width: 27.5em;
-            & .sidebar--container {
+            flex-direction: column;
+            width: 100%;
+            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+            & .sidebar__title {
               @include prefixflex();
-              justify-content: center;
+              justify-content: flex-start;
               align-items: center;
-              flex-direction: column;
-              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-              & .sidebar__menu-list {
-                @include prefixflex();
-                justify-content: flex-start;
-                align-items: center;
-                list-style-type: none;
-                margin: 1.5em 0 0 0;
-                padding: 0 0 0 1em;
+              height: 7em;
+              width: 24.5em;
+              background-color: $p-blue;
+              & h3 {
+                color: $p-white;
+                margin-left: 1em;
+                font-weight: 200;
               }
             }
+            & .sidebar__menu-list {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: center;
+              flex-direction: column;
+              list-style-type: none;
+              margin: 1.5em 0 0 0;
+              padding: 0 0 0 1em;
+            }
+          }
+        }
+        & .body__dashboard {
+          max-width: 80em;
+          width: 100%;
+          background-color: $p-white;
+          & .dashboard--container {
+            width: 100%;
+            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
           }
         }
       }

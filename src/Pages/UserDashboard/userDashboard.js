@@ -77,7 +77,7 @@ export default function UserDashboard() {
               </ul>
             </div>
           </div>
-          <div className="userdash__dashboard">
+          <div className="body__dashboard">
             <div className="dashboard--container">
               <h1>Main Dashboard</h1>
             </div>
