@@ -1,4 +1,6 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
+
 import BreadCrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
@@ -125,6 +127,28 @@ export default function UserHomeDash() {
                   </div>
                 </div>
               </div>
+
+              <div className="bottom-third--login-methods">
+                <div className="login-methods__title">
+                  <h3>Login Methods</h3>
+                </div>
+                <div className="login-methods--social">
+                  <ul className="login-methods--social-list">
+                    <li className="social-list--item">
+                      <FontAwesome name="facebook" />
+                    </li>
+                  </ul>
+                  <div className="social-login__edit-btn">
+                    <button className="small-edit-btn">Edit</button>
+                  </div>
+                </div>
+                <div className="login-methods--password">
+                  <label htmlFor="login-method--password">Password</label>
+                  <input type="password" id="login-method--password" value="password1234" disabled />
+                  <button className="medium-size-btn">Change Password</button>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
