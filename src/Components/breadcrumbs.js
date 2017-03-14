@@ -1,45 +1,60 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router';
 
 const propTypes = {
-  classes: PropTypes.arrayOf(PropTypes.string.isRequired),
   paths: PropTypes.arrayOf(PropTypes.string.isRequired),
-}
-/*
+  classes: PropTypes.arrayOf(PropTypes.string.isRequired),
+  destination: PropTypes.arrayOf(PropTypes.string.isRequired),
+  lastCrumb: PropTypes.string.isRequired,
+};
+/* NOTE: This dynamically generates a breadcrumb component.  It receives an array of classes that MUST match the style sheet.  Because the styling convention for this app uses BEM syntax, dynamically assigning these values should be simple and straight forward.  An example below.
+
   paths = ['Home', 'Your Account']
   classes = ['home', 'your-account']
+  destination = ['/', 'user_123123123']
+  lastCrumb = "Home Dashboard"
 */
-function BreadCrumbs({ paths, classes }) {
-  const breadcrumbs = paths.map((path) => {
-    <li className={`list--${path}`}>
-      <Link className="breadcrumb-link" to="/">
-        Home
+function BreadCrumbs({ paths, classes, destination, lastCrumb }) {
+  const breadcrumbs = paths.map((path, i) =>
+  (
+    <li
+      key={`breadcrumb-${classes[i]}-${i}`}
+      className={`list--${classes[i]}`}
+    >
+      <Link className="breadcrumb-link" to={`${destination[i]}`}>
+        {path}
       </Link>
       <FontAwesome name="angle-right" />
     </li>
-  })
+  ));
+
   return (
     <div className="userdash__breadcrumb">
       <ul className="breadcrumb--list">
+        {breadcrumbs}
         {/* <li className="list--home">
           <Link className="breadcrumb-link" to="/">
             Home
           </Link>
           <FontAwesome name="angle-right" />
-        </li> */}
-        <li className="list--your-account">
+          </li>
+          <li className="list--your-account">
           <Link className="breadcrumb-link" to="/user_123123123">
             Your Account
           </Link>
           <FontAwesome name="angle-right" />
-        </li>
-        <li className="list--active">
-          <p>Home Dashboard</p>
+        </li> */}
+        <li
+          key="last-crumb"
+          className="list--active"
+        >
+          <p>{lastCrumb}</p>
         </li>
       </ul>
     </div>
-  )
+  );
 }
 
 BreadCrumbs.propTypes = propTypes;
-export default BreadCrumbs
+export default BreadCrumbs;
