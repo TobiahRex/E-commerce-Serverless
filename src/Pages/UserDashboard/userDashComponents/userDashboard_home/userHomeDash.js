@@ -57,7 +57,7 @@ export default function UserHomeDash() {
                 </div>
                 <div className="address-book__default--container">
                   <div className="default--shipping-address">
-                    <h5>Default Shipping Address</h5>
+                    <h3>Default Shipping Address</h3>
                     <p className="shipping-address__postal-code">
                       5-3, Yaesau 1-Chome
                     </p>
@@ -72,7 +72,7 @@ export default function UserHomeDash() {
                     </p>
                   </div>
                   <div className="default--billing-address">
-                    <h5>Default Shipping Address</h5>
+                    <h3>Default Shipping Address</h3>
                     <p className="billing-address__postal-code">
                       5-3, Yaesau 1-Chome
                     </p>
@@ -101,6 +101,27 @@ export default function UserHomeDash() {
                   <div className="cc-type--cc">
                     <label htmlFor="cc-type--cc-input">CC</label>
                     <input type="radio" id="cc-type--cc-input" />
+                  </div>
+                  <div className="cc-type--debit">
+                    <label htmlFor="cc-type--debit-input">DEBIT</label>
+                    <input type="radio" id="cc-type--debit-input" />
+                  </div>
+                </div>
+                <div className="billing-info__name">
+                  <label htmlFor="billing-info--name">Name on Card</label>
+                  <input type="text" id="billing-info--name" />
+                </div>
+                <div className="billing-info__cc-number">
+                  <label htmlFor="billing-info--cc-number">Credit Card Number</label>
+                  <input type="text" id="billing-info--cc-number" />
+                </div>
+                <div className="billing-info__expiration">
+                  <p className="expiration__title">Expiration</p>
+                  <div className="expiration__row">
+                    <label htmlFor="expiration--month">Month</label>
+                    <input type="number" id="expiration--month" disabled />
+                    <label htmlFor="expiration--year">Year</label>
+                    <input type="number" id="expiration--year" disabled />
                   </div>
                 </div>
               </div>
