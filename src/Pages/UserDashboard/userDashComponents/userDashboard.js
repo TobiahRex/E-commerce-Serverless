@@ -61,7 +61,7 @@ export default function UserDashboard() {
                   </Link>
                 </li>
                 <li className="list--newsletters sweep-right">
-                  <Link to="/user_123123123/newsletter_subscriptions">
+                  <Link to="/user_123123123/newsletter">
                     <p>Your Newsletter Subscriptions</p>
                   </Link>
                 </li>
