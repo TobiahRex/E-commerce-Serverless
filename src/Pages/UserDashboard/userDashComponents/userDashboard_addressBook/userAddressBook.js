@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
+import 'react-router';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any.isRequired),
+  location: PropTypes.objectOf(PropTypes.any),
 };
 
 function UserAddressBook({ location }) {
-  const homeDashboard = location.pathname.split('/')[0];
+  const homeDashboard = location.pathname.split('/')[1];
   return (
     <div className="address-book--container">
       <Breadcrumb
