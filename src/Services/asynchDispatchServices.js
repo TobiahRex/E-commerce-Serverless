@@ -18,9 +18,6 @@ export function generateDynamicTitle(dispatch) {
     } else if (path[i] === 'user') {
       title += 'My Account';
       break;
-    } else if (path[i] === 'product') {
-      title += 'Juice';
-      break;
     } else if (path[i] === 'admin') {
       title += 'Admin Dashboard';
       break;

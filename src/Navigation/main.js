@@ -17,9 +17,9 @@ import Login from '../Pages/Auth/Login/login';
 import Register from '../Pages/Auth/Register/register';
 import Forgot from '../Pages/Auth/Forgot/forgot';
 
-import UserDashboard from '../Pages/UserDashboard/userDashboard';
+import UserDashboard from '../Pages/UserDashboard/userDashComponents/userDashboard';
 import AdminDashboard from '../Pages/AdminDashboard/adminDashboard';
-import UserOrderTracking from '../Pages/UserDashboard/userDashboard_orders/userOrderTracking';
+import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrderTracking';
 
 import About from '../Pages/Legal/about';
 import ContactUs from '../Pages/Legal/contactUs';
@@ -45,25 +45,6 @@ import OrderSuccess from '../Pages/ExpressCheckout/orderSuccess';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Homepage} />
-    {/* User Experience */}
-    <Router path={'/home'} component={Homepage} />
-    <Router path={'/juice/:id'} component={SingleProduct} />
-    <Router path={'/juices'} component={AllProducts} />
-    <Router path={'/cart'} component={Cart} />
-    <Router path={'/empty'} component={EmptyCart} />
-    <Router path={'/express_checkout'} component={ExpressCheckout} />
-    <Router path={'/not_found'} component={NotFound} />
-    <Router path={'/reset_email'} component={ResetPasswordEmail} />
-    <Router path={'/successfully_ordered'} component={OrderSuccess} />
-    {/* AUTH */}
-    <Router path={'/login'} component={Login} />
-    <Router path={'/register'} component={Register} />
-    <Router path={'/forgot'} component={Forgot} />
-    {/* DASHBOARDS */}
-    <Router path={'/user_:id'} component={UserDashboard} />
-    <Router path={'/user_:id/order_:orderid/tracking_:trackingid'} component={UserOrderTracking} />
-    <Router path={'/user_:id/home_dashboard'} component={UserDashboard} />
-    <Router path={'/admin/:id'} component={AdminDashboard} />
     {/* MEDIA */}
     <Router path={'/about'} component={About} />
     <Router path={'/contact_us'} component={ContactUs} />
@@ -82,5 +63,36 @@ export default (
     <Router path={'/terms_and_conditions'} component={TermsConditions} />
     <Router path={'/wholesale'} component={Wholesale} />
     <Router path={'/affiliate_program'} component={Affiliates} />
+    {/* AUTH */}
+    <Router path={'/login'} component={Login} />
+    <Router path={'/register'} component={Register} />
+    <Router path={'/forgot'} component={Forgot} />
+    {/* User Experience */}
+    <Router path={'/home'} component={Homepage} />
+    <Router path={'/juice/:id'} component={SingleProduct} />
+    <Router path={'/juices'} component={AllProducts} />
+    <Router path={'/cart'} component={Cart} />
+    <Router path={'/empty'} component={EmptyCart} />
+    <Router path={'/express_checkout'} component={ExpressCheckout} />
+    <Router path={'/not_found'} component={NotFound} />
+    <Router path={'/reset_email'} component={ResetPasswordEmail} />
+    <Router path={'/successfully_ordered'} component={OrderSuccess} />
+
+    {/* -------------------- DASHBOARDS -------------------- */}
+    {/* User Dashboard */}
+    <Router
+      path={'/user_:id'}
+      component={UserDashboard}
+    />
+    <Router
+      path={'/user_:id/order_:orderid/tracking_:trackingid'} component={UserOrderTracking}
+    />
+    <Router
+      path={'/user_:id/home_dashboard'}
+      component={UserDashboard}
+    />
+
+    {/* Admin Dashboard */}
+    <Router path={'/admin/:id'} component={AdminDashboard} />
   </Route>
 );

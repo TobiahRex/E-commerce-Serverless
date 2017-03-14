@@ -8,10 +8,28 @@
 @import "Styles/elements";
 
 // ------------------------------------------------------------
+// -------------------------- Utilities------------------------
+// ------------------------------------------------------------
 // NOTE: "Age Verification" Master Stylesheets
 @import "Pages/AgeVerification/ageVerification_web";
 @import "Pages/AgeVerification/ageVerification_mobile";
 
+// // NOTE: "Navbar" Master Stylesheets
+@import "Pages/Navbar/navbarStyles/navbar_styles_web";
+@import "Pages/Navbar/navbarStyles/navbar_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "Footer" Master Stylesheets
+@import "Pages/Footer/footerStyles/footer_styles_web";
+@import "Pages/Footer/footerStyles/footer_styles_mobile";
+
+// ------------------------------------------------------------
+// NOTE: "404" Master Stylesheets
+@import "Pages/404/404_styles_web";
+// @import "Pages/AgeVerification/ageVerification_mobile";
+
+// ------------------------------------------------------------
+// --------------------------- Auth ---------------------------
 // ------------------------------------------------------------
 // NOTE: "Login" Master Stylesheets
 @import "Pages/Auth/Login/login_styles_web";
@@ -32,11 +50,8 @@
 @import "Pages/Auth/ResetEmail/reset_styles_web";
 @import "Pages/Auth/ResetEmail/reset_styles_mobile";
 
-// // ------------------------------------------------------------
-// // NOTE: "Navbar" Master Stylesheets
-@import "Pages/Navbar/navbarStyles/navbar_styles_web";
-@import "Pages/Navbar/navbarStyles/navbar_styles_mobile";
-
+// ------------------------------------------------------------
+// -------------------------- Products ------------------------
 // ------------------------------------------------------------
 // NOTE: "Homepage" Master Stylesheets
 @import "Pages/Home/homeStyles/homepage_styles_web";
@@ -52,7 +67,8 @@
 @import "Pages/Products/productStyles/products_all_styles_web";
 @import "Pages/Products/productStyles/products_all_styles_mobile";
 
-
+// ------------------------------------------------------------
+// -------------------------- Checkout ------------------------
 // ------------------------------------------------------------
 // NOTE: "Cart" Master Stylesheets
 @import "Pages/Cart/cart_styles_web";
@@ -69,19 +85,11 @@
 @import "Pages/ExpressCheckout/orderSuccess_styles_mobile";
 
 // ------------------------------------------------------------
+// ------------------------ Dashboards ------------------------
+// ------------------------------------------------------------
 // NOTE: "User Dashboard" Master Stylesheets
-@import "Pages/UserDashboard/userDashboard_styles_web";
-@import "Pages/UserDashboard/userDashboard_styles_mobile";
-
-// ------------------------------------------------------------
-// NOTE: "Footer" Master Stylesheets
-@import "Pages/Footer/footerStyles/footer_styles_web";
-@import "Pages/Footer/footerStyles/footer_styles_mobile";
-
-// ------------------------------------------------------------
-// NOTE: "404" Master Stylesheets
-@import "Pages/404/404_styles_web";
-// @import "Pages/AgeVerification/ageVerification_mobile";
+@import "Pages/UserDashboard/userDashStyles/userDashboard_styles_web";
+// @import "Pages/UserDashboard/userDashboard_styles_mobile";
 
 // ------------------------------------------------------------
 

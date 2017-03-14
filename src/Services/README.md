@@ -1,4 +1,16 @@
-# Apisauce Quick Start
+## Services Docs:
+
+### asynchDispatchServices.js
+
+##### List of Services
+  - _generateDynamicTitle_: Generates Mobile Navbar Title.  Generates a Title based on the react-router address.
+  - _saveGeolocation_: Saves User IP info.  The backend makes an API request to _ipinfo.io_ which supplies the users IP address and browser info the this service via sockets.
+  - _setMobileDevice_:  Detects & saves type of mobile device.
+  - _setScreenSize_: Finds the device with and saves.
+  - _orientationSpy_: Detects whenever a user changes their mobile device orientation.  This is useful for media query detection.
+  - _initiationActions_: The default export. Imported at `src/index.js` and invoked, passing in store.dispatch.
+
+### ApiSauce Quick Start
 
 ```js
 // showLastCommitMessageForThisLibrary.js
@@ -20,9 +32,9 @@ api
 api.post('/users', { name: 'steve' }, { headers: {'x-gigawatts': '1.21' } })
 
 ```
-# Documentation
+#### Documentation
 
-## Create an API
+###### Create an API
 
 You create an api by calling `.create()` and passing in a configuration object.
 
@@ -49,7 +61,7 @@ const api = create({
 })
 ```
 
-## Calling The API
+##### Calling The API
 
 With your fresh `api`, you can now call it like this:
 
@@ -74,7 +86,7 @@ api.put('servers/1', {live: true})
 * data - Object - the object jumping the wire
 * axiosConfig - Object - config passed along to the `axios` request (optional)
 
-## Responses
+###### Responses
 
 The responses are PROMISE_BASED, so you you'll need to handle things in a
 `.then()` function.
@@ -103,7 +115,7 @@ config   - Object - the `axios` config object used to make the request
 duration - Number - the number of milliseconds it took to run this request
 ```
 
-## Changing Headers
+###### Changing Headers
 
 Once you've created your api, you're able to change HTTP requests by
 calling `setHeader` or `setHeaders` on the api.
@@ -116,7 +128,7 @@ api.setHeaders({
 })
 ```
 
-## Adding Monitors
+##### Adding Monitors
 
 Monitors are functions you can attach to the API which will be called
 when any request is made.  You can use it to do things like:
@@ -149,7 +161,7 @@ block.
 
 Remember.  Safety first!
 
-## Adding Transforms
+###### Adding Transforms
 
 In addition to monitoring, you can change every request or response globally.
 
@@ -162,7 +174,7 @@ This can be useful if you would like to:
 Unlike monitors, exceptions are not swallowed.  They will bring down the stack, so careful!
 
 
-### Response Transforms
+###### Response Transforms
 
 For responses, you're provided an object with these properties.
 
@@ -187,7 +199,7 @@ api.addResponseTransform(response) => {
 })
 ```
 
-### Request Transforms
+##### Request Transforms
 
 For requests, you are given a `request` object.  Mutate anything in here to change anything about the request.
 
@@ -212,7 +224,7 @@ api.addRequestTransform(request => {
 ```
 
 
-# Using Async/Await
+##### Using Async/Await
 
 If you're more of a `stage-0` kinda person, you can use it like this:
 
@@ -222,7 +234,7 @@ const response = await api.get('/slowest/site/on/the/net')
 console.log(response.ok) // yay!
 ```
 
-# Problem Codes
+##### Problem Codes
 
 The `problem` property on responses is filled with the best
 guess on where the problem lies.  You can use a switch to
