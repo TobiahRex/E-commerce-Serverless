@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-const UserLegal = {
-  TermsConditions: () => (
-    <div>
-      <h1>Terms & Conditions</h1>
-    </div>
-  ),
-  PrivacyPolicy: () => (
-    <div>
-      <h1>Privacy Policy</h1>
-    </div>
-  ),
-  ShippingPolicy: () => (
-    <div>
-      <h1>Shipping Policy</h1>
-    </div>
-  ),
-  ReturnPolicy: () => (
-    <div>
-      <h1>Return Policy</h1>
-    </div>
-  ),
-  NicotineDisclaimer: () => (
-    <div>
-      <h1>Nicotine Disclaimer</h1>
-    </div>
-  ),
+import TermsConditions from './userTermsConditions';
+import PrivacyPolicy from './userPrivacyPolicy';
+import ShippingPolicy from './userShippingPolicy';
+import ReturnPolicy from './userReturnPolicy';
+import NicotineDisclaimer from './userNicotineDisclaimer';
+
+const propTypes = {
+  location: PropTypes.objectOf(PropTypes.any),
 };
 
+const UserLegal = {
+  TermsConditions: ({ location }) =>
+    <TermsConditions location={location} />,
+  PrivacyPolicy: ({ location }) =>
+    <PrivacyPolicy location={location} />,
+  ShippingPolicy: ({ location }) =>
+    <ShippingPolicy location={location} />,
+  ReturnPolicy: ({ location }) =>
+    <ReturnPolicy location={location} />,
+  NicotineDisclaimer: ({ location }) =>
+    <NicotineDisclaimer location={location} />,
+};
+
+UserLegal.TermsConditions.propTypes = propTypes;
+UserLegal.PrivacyPolicy.propTypes = propTypes;
+UserLegal.ShippingPolicy.propTypes = propTypes;
+UserLegal.ReturnPolicy.propTypes = propTypes;
+UserLegal.NicotineDisclaimer.propTypes = propTypes;
 export default UserLegal;
