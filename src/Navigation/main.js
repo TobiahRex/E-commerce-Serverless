@@ -104,36 +104,36 @@ export default (
     {/* -------------------- DASHBOARDS -------------------- */}
     {/* User Dashboard */}
     <Router
-      path={'/user_:id/home_dashboard'}
+      path={'/user_:id'}
       component={UserDashboard}
     />
     <Router
-      path={'/user_:id'}
-      component={UserDashboard}
+      path={'/user_:id/home_dashboard'}
+      component={UserHomeDash}
     />
     <Router
       path={'/user_:id/address_book'}
       component={UserAddressBook}
     />
+    {/* Orders */}
     <Router
-      path={'/user_:id/manage_login'}
-      component={UserManageLogin}
+      path={'/user_:id/orders'}
+      component={UserOrders}
     />
     <Router
-      path={'/user_:id/newsletter'}
-      component={UserNewsLetter}
-    />
-    <Router
-      path={'/user_:id/login_apps'}
-      component={UserLoginApp}
+      path={'/user_:id/order_:orderid/tracking_:trackingid'} component={UserOrderTracking}
     />
     <Router
       path={'/user_:id/product_reviews'}
       component={UserProductReviews}
     />
     <Router
-      path={'/user_:id/orders'}
-      component={UserOrders}
+      path={'/user_:id/login_apps'}
+      component={UserLoginApp}
+    />
+    <Router
+      path={'/user_:id/newsletter'}
+      component={UserNewsLetter}
     />
     <Router
       path={'/user_:id/terms_and_conditions'}
@@ -156,7 +156,8 @@ export default (
       component={UserLegal.NicotineDisclaimer}
     />
     <Router
-      path={'/user_:id/order_:orderid/tracking_:trackingid'} component={UserOrderTracking}
+      path={'/user_:id/manage_login'}
+      component={UserManageLogin}
     />
 
     {/* Admin Dashboard */}

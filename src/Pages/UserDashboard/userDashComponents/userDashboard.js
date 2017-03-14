@@ -1,12 +1,22 @@
-import React from 'react';
-import { Link, browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import BreadCrumb from '../../../Components/breadcrumbs';
 
-export default function UserDashboard() {
+const propTypes = {
+  location: PropTypes.objectOf(PropTypes.any),
+};
+
+function UserDashboard({ location }) {
   return (
     <div className="userdash--main">
       <div className="userdash--container">
-        <div className="userdash__breadcrumb">
+        <BreadCrumb
+          paths={['Home', 'Your Account']}
+          classes={['home', 'your-account']}
+          destination={['/', location.pathname]}
+          lastCrumb="Home Dashboard"
+        />
+        {/* <div className="userdash__breadcrumb">
           <ul className="breadcrumb--list">
             <li className="list--home">
               <Link className="breadcrumb-link" to="/">
@@ -24,7 +34,7 @@ export default function UserDashboard() {
               <p>Home Dashboard</p>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="userdash__title">
           <h1>Hello, {'<Bruce Wayne>'}</h1>
         </div>
@@ -118,3 +128,5 @@ export default function UserDashboard() {
     </div>
   );
 }
+UserDashboard.propTypes = propTypes;
+export default UserDashboard;
