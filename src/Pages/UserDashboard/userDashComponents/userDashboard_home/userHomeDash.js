@@ -126,6 +126,9 @@ export default function UserHomeDash() {
                     <input type="number" id="expiration--year" disabled />
                   </div>
                 </div>
+                <div className="billing-info__edit-btn">
+                  <button className="small-edit-btn">Edit</button>
+                </div>
               </div>
 
               <div className="bottom-third--login-methods">
