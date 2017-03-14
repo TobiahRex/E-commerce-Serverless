@@ -1,3 +1,5 @@
+// NOTE: Description below.
+
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
@@ -8,14 +10,7 @@ const propTypes = {
   destination: PropTypes.arrayOf(PropTypes.string.isRequired),
   lastCrumb: PropTypes.string.isRequired,
 };
-/* NOTE: This dynamically generates a breadcrumb component.  It receives an array of classes that MUST match the style sheet.  Because the styling convention for this app uses BEM syntax, dynamically assigning these values should be simple and straight forward.  An example below.
-
-  paths = ['Home', 'Your Account']
-  classes = ['home', 'your-account']
-  destination = ['/', 'user_123123123']
-  lastCrumb = "Home Dashboard"
-*/
-function BreadCrumbs({ paths, classes, destination, lastCrumb }) {
+function BreadCrumb({ paths, classes, destination, lastCrumb }) {
   const breadcrumbs = paths.map((path, i) =>
   (
     <li
@@ -33,18 +28,6 @@ function BreadCrumbs({ paths, classes, destination, lastCrumb }) {
     <div className="userdash__breadcrumb">
       <ul className="breadcrumb--list">
         {breadcrumbs}
-        {/* <li className="list--home">
-          <Link className="breadcrumb-link" to="/">
-            Home
-          </Link>
-          <FontAwesome name="angle-right" />
-          </li>
-          <li className="list--your-account">
-          <Link className="breadcrumb-link" to="/user_123123123">
-            Your Account
-          </Link>
-          <FontAwesome name="angle-right" />
-        </li> */}
         <li
           key="last-crumb"
           className="list--active"
@@ -56,5 +39,30 @@ function BreadCrumbs({ paths, classes, destination, lastCrumb }) {
   );
 }
 
-BreadCrumbs.propTypes = propTypes;
-export default BreadCrumbs;
+BreadCrumb.propTypes = propTypes;
+export default BreadCrumb;
+
+/* Description:
+This dynamically generates a breadcrumb component.  It receives an array of classes that MUST match the style sheet.  Because the styling convention for this app uses BEM syntax, dynamically assigning these values should be simple and straight forward.  An example below.
+
+paths = ['Home', 'Your Account']
+classes = ['home', 'your-account']
+destination = ['/', 'user_123123123']
+lastCrumb = "Home Dashboard"
+
+Result =
+<li className="list--home">
+  <Link className="breadcrumb-link" to="/">
+    Home
+  </Link>
+  <FontAwesome name="angle-right" />
+  </li>
+  <li className="list--your-account">
+  <Link className="breadcrumb-link" to="/user_123123123">
+    Your Account
+  </Link>
+  <FontAwesome name="angle-right" />
+</li>
+
+NOTE: Adding a "key" prop to the last crumb is important for Reconcilliation.
+*/
