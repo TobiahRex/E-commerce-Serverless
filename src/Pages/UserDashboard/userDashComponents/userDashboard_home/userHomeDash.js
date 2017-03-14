@@ -87,7 +87,20 @@ export default function UserHomeDash() {
                     </p>
                   </div>
                   <div className="default__manage-btn">
-                    button.
+                    <button className="medium-size-btn">Manage Addresses</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="dashboard__bottom-third--container">
+              <div className="bottom-third--billing-info">
+                <div className="billing-info__title">
+                  <h3>Billing Info</h3>
+                </div>
+                <div className="billing-info__cc-type">
+                  <div className="cc-type--cc">
+                    <label htmlFor="cc-type--cc-input">CC</label>
+                    <input type="radio" id="cc-type--cc-input" />
                   </div>
                 </div>
               </div>
