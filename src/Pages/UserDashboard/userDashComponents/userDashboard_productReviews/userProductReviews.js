@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import 'react-router';
+import Breadcrumb from '../../../../Components/breadcrumbs';
+import UserSideBar from '../userDashboard_sidebar/userSideBar';
+import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 
-export default function UserProductReviews() {
+const propTypes = {
+  location: PropTypes.objectOf(PropTypes.any),
+};
+
+function UserProductReviews({ location }) {
+  const homeDashboard = location.pathname.split('/')[1];
   return (
-    <div>
-      <h1>Product Reviews</h1>
+    <div className="product-reviews--main">
+      <div className="product-reviews--container">
+        <Breadcrumb
+          paths={['Home', 'Your Account']}
+          classes={['home', 'your-account']}
+          destination={['', homeDashboard]}
+          lastCrumb="Login Apps"
+        />
+        <UserWelcomeMsg />
+        <div className="product-reviews__body">
+          <UserSideBar location={location} />
+          <div className="body__dashboard">
+            <div className="dashboard--container">
+              <h2>Product Reviews</h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+UserProductReviews.propTypes = propTypes;
+export default UserProductReviews;

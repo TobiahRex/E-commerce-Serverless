@@ -9,24 +9,23 @@ const propTypes = {
 };
 
 function UserAddressBook({ location }) {
+  console.warn('location: ', location);
   const homeDashboard = location.pathname.split('/')[1];
   return (
     <div className="address-book--main">
       <div className="address-book--container">
-        <div className="address-book--container">
-          <Breadcrumb
-            paths={['Home', 'Your Account']}
-            classes={['home', 'your-account']}
-            destination={['/', homeDashboard]}
-            lastCrumb="Address Book"
-          />
-          <UserWelcomeMsg />
-          <div className="address-book__body">
-            <UserSideBar location={location} />
-            <div className="body__dashboard">
-              <div className="dashboard--container">
-                <h2>Address Book</h2>
-              </div>
+        <Breadcrumb
+          paths={['Home', 'Your Account']}
+          classes={['home', 'your-account']}
+          destination={['', homeDashboard]}
+          lastCrumb="Address Book"
+        />
+        <UserWelcomeMsg />
+        <div className="address-book__body">
+          <UserSideBar location={location} />
+          <div className="body__dashboard">
+            <div className="dashboard--container">
+              <h2>Address Book</h2>
             </div>
           </div>
         </div>

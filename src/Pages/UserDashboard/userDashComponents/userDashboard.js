@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import UserHomeDash from './userDashboard_home/userHomeDash';
-import UserAddressBook from './userDashboard_addressBook/userAddressBook';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any),
