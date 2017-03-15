@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 // --------------------------- User
 import UserDashboard from '../Pages/UserDashboard/userDashComponents/userDashboard';
 import UserHomeDash from '../Pages/UserDashboard/userDashComponents/userDashboard_home/userHomeDash';
@@ -12,63 +12,55 @@ import UserOrders from '../Pages/UserDashboard/userDashComponents/userDashboard_
 import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrderTracking';
 import UserLegal from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userLegal';
 
-const UserDashboardRoutes = () => (
-  <Switch>
-    <Route
-      path="/user_:id"
-      component={UserDashboard}
-    />
-    <Route
-      path="/user_id:/home_dashboard"
-      component={UserHomeDash}
-    />
-    <Route
-      path="/user_id:/address_book"
-      component={UserAddressBook}
-    />
-    {/* Orders */}
-    <Route
-      path="/user_id:/orders"
-      component={UserOrders}
-    />
-    <Route
-      path="/user_id:/order_:orderid/tracking_:trackingid"
-      component={UserOrderTracking}
-    />
-    <Route
-      path="/user_id:/product_reviews"
-      component={UserProductReviews}
-    />
-    <Route
-      path="/user_id:/login_apps"
-      component={UserLoginApp}
-    />
-    <Route
-      path="/user_id:/newsletter"
-      component={UserNewsLetter}
-    />
-    <Route
-      path="/user_id:/terms_and_conditions"
-      component={UserLegal.TermsConditions}
-    />
-    <Route
-      path="/user_id:/privacy_policy"
-      component={UserLegal.PrivacyPolicy}
-    />
-    <Route
-      path="/user_id:/shipping_policy"
-      component={UserLegal.ShippingPolicy}
-    />
-    <Route
-      path="/user_id:/return_policy"
-      component={UserLegal.ReturnPolicy}
-    />
-    <Route
-      path="/user_id:/nicotine_disclaimer"
-      component={UserLegal.NicotineDisclaimer}
-    />
-    <Route path="/user_id:/manage_login" component={UserManageLogin} />
-  </Switch>
-);
-
-export default UserDashboardRoutes;
+export default function UserDashboardRoutes() {
+  return (
+    <Route path="/user_:id" component={UserDashboard}>
+      <IndexRoute component={UserHomeDash} />
+      <Route
+        path="address_book"
+        component={UserAddressBook}
+      />
+      <Route
+        path="orders"
+        component={UserOrders}
+      />
+      <Route
+        path="order_:orderid/tracking_:trackingid"
+        component={UserOrderTracking}
+      />
+      <Route
+        path="product_reviews"
+        component={UserProductReviews}
+      />
+      <Route
+        path="login_apps"
+        component={UserLoginApp}
+      />
+      <Route
+        path="newsletter"
+        component={UserNewsLetter}
+      />
+      <Route
+        path="terms_and_conditions"
+        component={UserLegal.TermsConditions}
+      />
+      <Route
+        path="privacy_policy"
+        component={UserLegal.PrivacyPolicy}
+      />
+      <Route
+        path="shipping_policy"
+        component={UserLegal.ShippingPolicy}
+      />
+      <Route
+        path="return_policy"
+        component={UserLegal.ReturnPolicy}
+      />
+      <Route
+        path="nicotine_disclaimer"
+        component={UserLegal.NicotineDisclaimer}
+      />
+      <Route path="manage_login" component={UserManageLogin} />
+    </Route>
+  );
+}

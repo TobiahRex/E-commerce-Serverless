@@ -1,5 +1,5 @@
 import React, { PropTypes, PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 class NavbarNavsMediaDropdnMidthird extends PureComponent {
   render() {

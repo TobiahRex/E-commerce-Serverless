@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import history from '../../../../../../Services/history';
+import { browserHistory } from 'react-router';
 
 /* TODO
 1. Recommend Another juice buton sends user to "/contact us";
@@ -13,7 +13,7 @@ class NavbarNavsShopDropdnBottomthird extends PureComponent {
         <span className="shop-dropdown-content-bottomThird-leftSide">
           <button
             className="shop-dropdown-content-bottomThird-leftSide-recommend sweep-right"
-            onClick={() => history.push('/contact_us')}
+            onClick={() => browserHistory.push('/contact_us')}
           >
             <span>Recommend Another Juice Line</span>
           </button>

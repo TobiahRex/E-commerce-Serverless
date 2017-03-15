@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
-import UserHomeDash from './userDashboard_home/userHomeDash';
+// import UserHomeDash from './userDashboard_home/userHomeDash';
 
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
+  children: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-function UserDashboard({ location }) {
+function UserDashboard({ children }) {
   return (
     <div className="userdash--main">
       <div className="userdash--container">
-        <UserHomeDash location={location} />
+        {children}
       </div>
     </div>
   );

@@ -3,10 +3,18 @@
   "env": {
     "development": {
       "presets": ["react-hmre"],
-      "plugins": ["transform-react-jsx-source", "transform-react-display-name"],
+      "plugins": [
+        "transform-react-jsx-source",
+        "transform-react-display-name",
+        "transform-export-extensions"
+      ],
     },
     "production": {
-      "plugins": ["transform-react-jsx-source", "transform-react-display-name"],
+      "plugins": [
+        "transform-react-jsx-source",
+        "transform-react-display-name",
+        "transform-export-extensions"
+      ],
     }
   }
 }

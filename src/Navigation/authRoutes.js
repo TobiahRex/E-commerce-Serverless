@@ -7,7 +7,7 @@ import Login from '../Pages/Auth/Login/login';
 import Register from '../Pages/Auth/Register/register';
 import Forgot from '../Pages/Auth/Forgot/forgot';
 
-const authRoutes = () => (
+const AuthRoutes = () => (
   <div>
     <Route path="login" component={Login} />
     <Route path="register" component={Register} />
@@ -16,4 +16,4 @@ const authRoutes = () => (
   </div>
 );
 
-export default authRoutes;
+export default AuthRoutes;

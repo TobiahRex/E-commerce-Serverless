@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const propTypes = {
   toggleDropdown: PropTypes.func.isRequired,

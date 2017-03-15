@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import NavbarNavsMediaDropdnContent from './navbarNavs_media_dropdnContent';
 

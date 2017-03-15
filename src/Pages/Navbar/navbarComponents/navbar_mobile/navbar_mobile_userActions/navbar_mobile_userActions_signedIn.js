@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import uuid from 'uuid'; // TODO Remove this once you have user ID's from BE.
 
 class NavbarMobileUserActionsSignedIn extends PureComponent {

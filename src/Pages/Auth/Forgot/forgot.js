@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import history from '../../../Services/history';
+import { browserHistory } from 'react-router';
 
 export default function Forgot() {
   return (
@@ -46,7 +46,7 @@ export default function Forgot() {
       <div className="forgot--action-btns">
         <button
           className="action-btns--back sweep-right"
-          onClick={() => history.goBack()}
+          onClick={() => browserHistory.goBack()}
         >
           <span className="flex-btn-parent">
             <FontAwesome name="angle-double-left" />
@@ -55,7 +55,7 @@ export default function Forgot() {
         </button>
         <button
           className="action-btns--register sweep-right"
-          onClick={() => history.push('/register')}
+          onClick={() => browserHistory.push('/register')}
         >Register</button>
       </div>
     </div>

@@ -3,26 +3,28 @@ import { Route, IndexRoute } from 'react-router';
 import App from '../App';
 import Homepage from '../Pages/Home/homePage';
 import {
-  Legal,
-  Auth,
-  UserDashboard,
-  Checkout,
-  Media,
-  Products,
-  AdminDashboard,
-  NotFound,
-} from './';
+  LegalRoutes,
+  AuthRoutes,
+  UserDashboardRoutes,
+  CheckoutRoutes,
+  MediaRoutes,
+  ProductRoutes,
+  AdminDashboardRoutes,
+  NotFoundRoute,
+} from './index';
+
+console.log('UserDashboardRoutes: ', UserDashboardRoutes);
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute path="/" component={Homepage} />
-    <Products />
-    <Media />
-    <Legal />
-    <Auth />
-    <Checkout />
-    <UserDashboard />
-    <AdminDashboard />
-    <NotFound />
+    <IndexRoute component={Homepage} />
+    {ProductRoutes()}
+    {MediaRoutes()}
+    {LegalRoutes()}
+    {AuthRoutes()}
+    {CheckoutRoutes()}
+    {UserDashboardRoutes()}
+    {AdminDashboardRoutes()}
+    {NotFoundRoute()}
   </Route>
 );

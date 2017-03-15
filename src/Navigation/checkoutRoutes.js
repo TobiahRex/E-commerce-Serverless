@@ -7,7 +7,7 @@ import EmptyCart from '../Pages/Cart/EmptyCart/emptyCart';
 import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';
 import OrderSuccess from '../Pages/ExpressCheckout/orderSuccess';
 
-const authRoutes = () => (
+const CheckoutRoutes = () => (
   <div>
     <Route path="cart" component={Cart} />
     <Route path="empty" component={EmptyCart} />
@@ -16,4 +16,4 @@ const authRoutes = () => (
   </div>
 );
 
-export default authRoutes;
+export default CheckoutRoutes;

@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import ShoppingCartWeb from './ShoppingCart/shoppingCart_web';
 import ShoppingCartMobile from './ShoppingCart/shoppingCart_mobile';

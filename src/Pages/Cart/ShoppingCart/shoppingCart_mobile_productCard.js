@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import history from '../../../Services/history';
+import { browserHistory } from 'react-router';
 
 const propTypes = {
   juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
@@ -94,7 +94,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
           <button className="shopping-cart-mobile-user-actions-btns-clear sweep-right">
             Clear Shopping Cart
           </button>
-          <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => history.push('/express_checkout')}>
+          <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
             <span className="btn-flex-parent">
               <FontAwesome name="credit-card-alt" />
               {'\u0020'}Express Checkout
@@ -123,7 +123,7 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
             </div>
           </div>
           <div className="shopping-cart-mobile-continue-shopping">
-            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => history.push('/juices')}>
+            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/juices')}>
               Continue Shopping
             </button>
           </div>

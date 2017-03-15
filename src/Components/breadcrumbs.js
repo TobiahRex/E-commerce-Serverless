@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const propTypes = {
   paths: PropTypes.arrayOf(PropTypes.string).isRequired,

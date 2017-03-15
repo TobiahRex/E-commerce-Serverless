@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import history from '../../Services/history';
 
 
 export default function ExpressCheckout() {
@@ -478,7 +477,7 @@ export default function ExpressCheckout() {
 
             <div className="input__row">
               <div className="input__row--guest-register">
-                <button className="guest-register sweep-right" onClick={() => history.push('/register')}>
+                <button className="guest-register sweep-right" onClick={() => browserHistory.push('/register')}>
                   Register & Save 10%
                 </button>
               </div>
@@ -545,7 +544,7 @@ export default function ExpressCheckout() {
             <p>while we process your order...</p>
           </div>
           <div className="checkout__back-home-btn ">
-            <button className="sweep-right" onClick={() => history.push('/')}>Back To Homepage</button>
+            <button className="sweep-right" onClick={() => browserHistory.push('/')}>Back To Homepage</button>
           </div>
         </div>
       </div>

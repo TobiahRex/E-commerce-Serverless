@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import history from '../../../Services/history';
 import FontAwesome from 'react-fontawesome';
+import { browserHistory } from 'react-router';
 
 const propTypes = {
   renderWebJuices: PropTypes.func.isRequired,
@@ -53,7 +53,7 @@ function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
         </div>
       </div>
       <div className="shopping-cart-action-btns-parent">
-        <button className="shopping-cart-action-btn-checkout sweep-right" onClick={() => history.push('/express_checkout')}>
+        <button className="shopping-cart-action-btn-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
           <span className="btn-flex-parent">
             <FontAwesome name="credit-card-alt" />
             {'\u0020'}Express Checkout
@@ -66,7 +66,7 @@ function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
         </button>
       </div>
       <div className="shopping-cart-back-parent">
-        <button className="shopping-cart-back sweep-right" onClick={() => history.push('/')}>
+        <button className="shopping-cart-back sweep-right" onClick={() => browserHistory.push('/')}>
           Back To Homepage
         </button>
       </div>

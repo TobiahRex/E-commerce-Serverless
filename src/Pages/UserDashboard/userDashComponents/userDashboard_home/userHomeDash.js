@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import BreadCrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 
-export default function UserHomeDash() {
+const propTypes = {
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+function UserHomeDash({ location }) {
   return (
     <div className="user-home-dash--container">
       <BreadCrumb
@@ -160,3 +164,5 @@ export default function UserHomeDash() {
     </div>
   );
 }
+UserHomeDash.propTypes = propTypes;
+export default UserHomeDash;

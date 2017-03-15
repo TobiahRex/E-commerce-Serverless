@@ -1,7 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom';
-import history from '../../../Services/history';
+import { Link, browserHistory } from 'react-router';
 
 export default function Register() {
   return (
@@ -116,7 +115,7 @@ export default function Register() {
                 </div>
               </div>
               <div className="action-btns">
-                <button className="action-btns--back sweep-right" onClick={() => history.goBack()} type="button">
+                <button className="action-btns--back sweep-right" onClick={() => browserHistory.goBack()} type="button">
                   <span className="flex-btn-parent">
                     <FontAwesome name="angle-double-left" />
                     {'\u00A0'}Back

@@ -1,5 +1,5 @@
 import React from 'react';
-import history from '../../../Services/history';
+import { browserHistory } from 'react-router';
 
 function HomepageFastestDelivery() {
   return (
@@ -31,7 +31,7 @@ function HomepageFastestDelivery() {
           </div>
           <button
             className="homepage-fastest-delivery-description-message-buy-btn sweep-right"
-            onClick={() => history.push('/juices')}
+            onClick={() => browserHistory.push('/juices')}
           >Buy Now</button>
         </div>
       </div>

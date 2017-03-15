@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 
 export default function NotFound() {
   return (

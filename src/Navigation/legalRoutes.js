@@ -8,7 +8,7 @@ import Returns from '../Pages/Legal/returnsPolicy';
 import PrivacyPolicy from '../Pages/Legal/privacyPolicy';
 import TermsConditions from '../Pages/Legal/termsConditions';
 
-const authRoutes = () => (
+const LegalRoutes = () => (
   <div>
     <Route path="nicotine_disclaimer" component={NicotineDisclaimer} />
     <Route path="return_policy" component={Returns} />
@@ -18,4 +18,4 @@ const authRoutes = () => (
   </div>
 );
 
-export default authRoutes;
+export default LegalRoutes;
