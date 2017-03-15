@@ -98,3 +98,29 @@
     @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
   }
 }
+
+.small-edit-btn {
+  height: 1.87em;
+  width: 4.37em;
+  color: $p-white;
+  font-family: $p-font;
+  font-size: 1.6em;
+  font-weight: 200;
+  border: none;
+  background-color: $p-red;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+}
+
+.medium-size-btn {
+  height: 2.5em;
+  width: 10.93em;
+  color: $p-white;
+  font-family: $p-font;
+  font-size: 1.6em;
+  font-weight: 200;
+  border: none;
+  background-color: $p-red;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+}

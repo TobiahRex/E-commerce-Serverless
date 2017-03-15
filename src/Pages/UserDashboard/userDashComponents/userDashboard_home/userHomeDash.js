@@ -39,7 +39,7 @@ function UserHomeDash({ location }) {
                   <p className="info--phone">(123)-123-1234</p>
                 </div>
                 <div className="contact-info__edit-btn">
-                  <button className="small-edit-btn">Edit</button>
+                  <button className="small-edit-btn swipe-right">Edit</button>
                 </div>
               </div>
               <div className="top-third--newsletters">
@@ -50,7 +50,7 @@ function UserHomeDash({ location }) {
                   You are not currently subscribed to any newsletters.
                 </div>
                 <div className="newsletters__edit-btn">
-                  <button className="small-edit-btn">Edit</button>
+                  <button className="small-edit-btn swipe-right">Edit</button>
                 </div>
               </div>
             </div>
@@ -91,7 +91,7 @@ function UserHomeDash({ location }) {
                     </p>
                   </div>
                   <div className="default__manage-btn">
-                    <button className="medium-size-btn">Manage Addresses</button>
+                    <button className="medium-size-btn swipe-right">Manage Addresses</button>
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@ function UserHomeDash({ location }) {
                   </div>
                 </div>
                 <div className="billing-info__edit-btn">
-                  <button className="small-edit-btn">Edit</button>
+                  <button className="small-edit-btn swipe-right">Edit</button>
                 </div>
               </div>
 
@@ -144,13 +144,13 @@ function UserHomeDash({ location }) {
                     </li>
                   </ul>
                   <div className="social-login__edit-btn">
-                    <button className="small-edit-btn">Edit</button>
+                    <button className="small-edit-btn swipe-right">Edit</button>
                   </div>
                 </div>
                 <div className="login-methods--password">
                   <label htmlFor="login-method--password">Password</label>
                   <input type="password" id="login-method--password" value="password1234" disabled />
-                  <button className="medium-size-btn">Change Password</button>
+                  <button className="medium-size-btn swipe-right">Change Password</button>
                 </div>
               </div>
 
