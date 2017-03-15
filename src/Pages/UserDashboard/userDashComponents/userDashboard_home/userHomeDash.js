@@ -132,7 +132,6 @@ function UserHomeDash({ location }) {
                   <button className="small-edit-btn sweep-right">Edit</button>
                 </div>
               </div>
-
               <div className="bottom-third--login-methods">
                 <div className="login-methods__title">
                   <h3>Login Methods</h3>

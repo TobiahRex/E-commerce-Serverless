@@ -77,6 +77,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.1);
         & .top-third--contact-info,
         .top-third--newsletters {
           @include prefixflex();
@@ -106,6 +107,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.1);
         & .mid-third__address-book {
           @include prefixflex();
           justify-content: flex-start;
@@ -129,19 +131,31 @@
                 font-weight: bold;
               }
               & p {
-                margin-left: 1em;
-              }
-            }
-            & .default__manage-btn {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              & button {
-                margin: 2em auto;
+                margin-left: 2em;
               }
             }
           }
+          & .default__manage-btn {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            & button {
+              margin: 2em auto;
+            }
+          }
+        }
+      }
+      & .dashboard__bottom-third--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        & .buttom-third--billing-info {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
         }
       }
     }
