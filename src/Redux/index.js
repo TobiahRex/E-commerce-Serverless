@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import configureStore from './configureStore';
 import rootSaga from '../Sagas/';
 
@@ -24,6 +25,7 @@ export default () => {
     mobile,
     locale,
     session,
+    routing: routerReducer,
   });
   return configureStore(rootReducer, rootSaga);
 };

@@ -1,10 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import MobileDetect from 'mobile-detect';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Match } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-
-import routes from './Navigation/main';
 
 import AgeVerification from './Pages/AgeVerification/ageVerification';
 import NavbarWeb from './Pages/Navbar/navbarComponents/navbar_web/navbar_web';
@@ -12,71 +9,12 @@ import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_m
 import Footer from './Pages/Footer/footer';
 import sessionActions from './Redux/SessionRedux';
 import userActions from './Redux/UserRedux';
-
 import { genDynamicTitle } from './Services/asynchDispatchServices';
+
 /* NOTE:
 1. Remove UUID hard code.
 
 */
-// // ----------------------------- Other ------------------------------
-// import NotFound from './Pages/404/notFound404';
-// // ----------------------------- Media ------------------------------
-// import About from './Pages/Legal/about';
-// import ContactUs from './Pages/Legal/contactUs';
-// import Phone from './Pages/Legal/phone';
-// import Reviews from './Pages/Media/reviews';
-// import UserStories from './Pages/Media/userStories';
-// import VapeNews from './Pages/Media/vapeNews';
-// import Faqs from './Pages/Legal/faqs';
-// import MissionStatement from './Pages/Legal/missionStatement';
-// import SocialMedia from './Pages/Legal/socialMedia';
-// import Wholesale from './Pages/Legal/wholesale';
-// import Affiliates from './Pages/Legal/affiliateProgram';
-//
-// // ----------------------------- Legal ------------------------------
-// import NicotineDisclaimer from './Pages/Legal/nicotineDisclaimer';
-// import Shipping from './Pages/Legal/shippingPolicy';
-// import Returns from './Pages/Legal/returnsPolicy';
-// import PrivacyPolicy from './Pages/Legal/privacyPolicy';
-// import TermsConditions from './Pages/Legal/termsConditions';
-//
-// // ----------------------------- Auth -------------------------------
-// import ResetPasswordEmail from './Pages/Auth/ResetEmail/reset';
-// import Login from './Pages/Auth/Login/login';
-// import Register from './Pages/Auth/Register/register';
-// import Forgot from './Pages/Auth/Forgot/forgot';
-//
-// // ----------------------------- Shopping ---------------------------
-//
-// import Homepage from './Pages/Home/homePage';
-// import SingleProduct from './Pages/Products/productComponents/products_singleProduct';
-// import AllProducts from './Pages/Products/productComponents/products_allProducts';
-//
-// // ----------------------------- Checkout ---------------------------
-// import Cart from './Pages/Cart/cart';
-// import EmptyCart from './Pages/Cart/EmptyCart/emptyCart';
-// import ExpressCheckout from './Pages/ExpressCheckout/expressCheckout';
-// import OrderSuccess from './Pages/ExpressCheckout/orderSuccess';
-//
-// // --------------------------- Dashboards ---------------------------
-// // --------------------------- User
-// import UserDashboard from './Pages/UserDashboard/userDashComponents/userDashboard';
-// import UserHomeDash from './Pages/UserDashboard/userDashComponents/userDashboard_home/userHomeDash';
-// import UserAddressBook from './Pages/UserDashboard/userDashComponents/userDashboard_addressBook/userAddressBook';
-// import UserManageLogin from './Pages/UserDashboard/userDashComponents/userDashboard_manageLogin/userManageLogin';
-// import UserNewsLetter from './Pages/UserDashboard/userDashComponents/userDashboard_newsletter/userNewsLetter';
-// import UserProductReviews from './Pages/UserDashboard/userDashComponents/userDashboard_productReviews/userProductReviews';
-// import UserLoginApp from './Pages/UserDashboard/userDashComponents/userDashboard_loginApp/userLoginApp';
-// import UserOrders from './Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrders';
-// import UserOrderTracking from './Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrderTracking';
-// import UserLegal from './Pages/UserDashboard/userDashComponents/userDashboard_legal/userLegal';
-//
-// // --------------------------- Admin
-// import AdminDashboard from './Pages/AdminDashboard/adminDashboard';
-
-
-// ------------------------------------------------------------------
-
 class App extends Component {
   static styles = {
     hide: {
@@ -90,7 +28,7 @@ class App extends Component {
     ageVerified: false,
   }
   static propTypes = {
-    // children: PropTypes.objectOf(PropTypes.any.isRequired),
+    children: PropTypes.objectOf(PropTypes.any).isRequired,
     ageVerified: PropTypes.bool,
     verifyAge: PropTypes.func.isRequired,
     saveActivePage: PropTypes.func.isRequired,
@@ -149,7 +87,7 @@ class App extends Component {
           <NavbarMobile />
         </header>
         <section id="main-section" style={{ ...sectionStyle }}>
-          {routes}
+          {this.props.children}
         </section>
         <footer>
           <Footer />
