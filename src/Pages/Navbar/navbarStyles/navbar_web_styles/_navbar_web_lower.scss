@@ -1,6 +1,6 @@
 @import "./navbar_web_nav_styles/navbarNavs";
 
-&.navbar-actionSection-lower {
+.navbar-actionSection-lower {
   @include prefixflex();
   height: 4em;
   width: 83.5em;

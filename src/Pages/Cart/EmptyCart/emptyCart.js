@@ -1,6 +1,6 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import history from '../../../Services/history';
 
 export default function EmptyCart() {
   return (
@@ -15,7 +15,7 @@ export default function EmptyCart() {
         <h1>Oops </h1>{'\u00A0'}<img className="confused_emoji" alt="Confused Face" />
       </div>
       <div className="empty-cart-shopping-btn">
-        <button className="sweep-right" onClick={() => browserHistory.push('/juices')}>Start Shopping</button>
+        <button className="sweep-right" onClick={() => history.push('/juices')}>Start Shopping</button>
       </div>
     </div>
   );

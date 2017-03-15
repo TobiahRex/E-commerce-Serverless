@@ -2,12 +2,12 @@
 
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const propTypes = {
-  paths: PropTypes.arrayOf(PropTypes.string.isRequired),
-  classes: PropTypes.arrayOf(PropTypes.string.isRequired),
-  destination: PropTypes.arrayOf(PropTypes.string.isRequired),
+  paths: PropTypes.arrayOf(PropTypes.string).isRequired,
+  classes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  destination: PropTypes.arrayOf(PropTypes.string).isRequired,
   lastCrumb: PropTypes.string.isRequired,
 };
 function BreadCrumb({ paths, classes, destination, lastCrumb }) {

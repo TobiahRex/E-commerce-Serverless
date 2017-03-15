@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import history from '../../../Services/history';
 
 export default function SignIn() {
   return (
@@ -83,10 +84,10 @@ export default function SignIn() {
         </div>
         <div className="sign-in__action-btns">
           <div className="action-btns__register">
-            <button className="register-btn sweep-right" onClick={() => browserHistory.push('/register')}>Register</button>
+            <button className="register-btn sweep-right" onClick={() => history.push('/register')}>Register</button>
           </div>
           <div className="action-btns__back-to-home">
-            <button className="back-to-home-btn sweep-right" onClick={() => browserHistory.push('/')}>
+            <button className="back-to-home-btn sweep-right" onClick={() => history.push('/')}>
               <span className="flex-btn-parent">
                 <FontAwesome name="angle-double-left" />
                 {'\u00A0'}Back

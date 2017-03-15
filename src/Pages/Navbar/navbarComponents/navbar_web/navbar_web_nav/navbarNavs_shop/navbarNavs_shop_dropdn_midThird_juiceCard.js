@@ -1,5 +1,5 @@
 import React, { PropTypes, PureComponent } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 /* TODO
 This component will receive 6 popular juice products.

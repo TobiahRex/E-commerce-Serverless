@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 /* TODO
 1. Configure react-router for "/sign_in" * "/register"

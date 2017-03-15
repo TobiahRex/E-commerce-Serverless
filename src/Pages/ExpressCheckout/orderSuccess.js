@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 import uuid from 'uuid';
@@ -213,7 +213,7 @@ export default function OrderSuccess() {
         <div className="ordered__action-btns">
           <button
             className="back-to-home sweep-right primary-flex-button"
-            onClick={() => browserHistory.push('/')}
+            onClick={() => history.push('/')}
           >
             <span className="flex-btn-parent">
               <FontAwesome name="angle-double-left" />

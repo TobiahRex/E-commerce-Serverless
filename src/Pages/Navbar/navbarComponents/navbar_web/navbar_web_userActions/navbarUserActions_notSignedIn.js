@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import history from '../../../../../Services/history';
 
 /* TODO
 1. Configure react-router for "/sign_in" * "/register"
@@ -20,15 +21,21 @@ class NavbarUserActionsNotSignedIn extends PureComponent {
         style={NavbarUserActionsNotSignedIn.styles.hidden}
         className="navbar-actionSection-upper-actions-notSignedIn"
       >
-        <li className="sign-in-title sweep-right" onClick={() => browserHistory.push('/login')}>
+        <li
+          className="sign-in-title sweep-right"
+          onClick={() => history.push('/login')}
+        >
           <Link
-            to={'/login'}
+            to="/login"
             className="navbar-userActions-sign-in-title-link"
           >Login</Link>
         </li>
-        <li className="register-title sweep-right" onClick={() => browserHistory.push('/register')}>
+        <li
+          className="register-title sweep-right"
+          onClick={() => history.push('/register')}
+        >
           <Link
-            to={'/register'}
+            to="/register"
             className="navbar-userActions-register-title-link"
           >Register</Link>
         </li>

@@ -1,5 +1,5 @@
 import React, { PropTypes, PureComponent } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 /* TODO
 1. This component will receive a QTY from state to be updated as items are added to the users cart.  This will be done via the parent MyCart component.

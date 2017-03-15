@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function FooterMemberships() {
   return (
@@ -21,7 +21,7 @@ export default function FooterMemberships() {
           <Link to="/privacy_policy">Privacy Policy</Link>
         </li>
         <li className="footer-main-sections-customercare-terms hvr-bob">
-          <Link to="terms_and_conditions">Terms & Conditions</Link>
+          <Link to="/terms_and_conditions">Terms & Conditions</Link>
         </li>
         <li className="footer-main-sections-customercare-nicotine hvr-bob">
           <Link to="/nicotine_disclaimer">Nicotine Disclaimer</Link>

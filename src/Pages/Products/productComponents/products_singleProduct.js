@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import history from '../../../Services/history';
 
 export default function SingleProduct() {
   return (
@@ -71,7 +72,7 @@ export default function SingleProduct() {
           <div className="single-product-info-desc-promotion">
             <button
               className="sweep-right"
-              onClick={() => browserHistory.push('/register')}
+              onClick={() => history.push('/register')}
             >New members get 10% off their first order</button>
           </div>
           <div className="single-product-info-desc-nicotine">
@@ -144,7 +145,7 @@ export default function SingleProduct() {
       <div className="single-product-back-btn-container">
         <button
           className="single-product-back-btn sweep-right"
-          onClick={() => browserHistory.goBack()}
+          onClick={() => history.goBack()}
         >
           <span className="flex-btn-parent">
             <FontAwesome name="angle-double-left" />
@@ -153,7 +154,7 @@ export default function SingleProduct() {
         </button>
         <button
           className="single-product-juices-btn sweep-right"
-          onClick={() => browserHistory.push('/juices')}
+          onClick={() => history.push('/juices')}
         >Shop All Juices
         </button>
       </div>
@@ -172,11 +173,11 @@ export default function SingleProduct() {
             <p>has been successfully added to your cart.</p>
           </div>
           <div className="single-product-add-success-modal-action-btns">
-            <button className="single-product-add-success-modal-cart sweep-right" onClick={() => browserHistory.push('/cart')}>View Cart</button>
-            <button className="single-product-add-success-modal-continue sweep-right" onClick={() => browserHistory.push('/juices')}>
+            <button className="single-product-add-success-modal-cart sweep-right" onClick={() => history.push('/cart')}>View Cart</button>
+            <button className="single-product-add-success-modal-continue sweep-right" onClick={() => history.push('/juices')}>
               Continue Shopping
             </button>
-            <button className="single-product-add-success-modal-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
+            <button className="single-product-add-success-modal-checkout sweep-right" onClick={() => history.push('/express_checkout')}>
               Express Checkout
             </button>
           </div>

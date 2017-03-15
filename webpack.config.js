@@ -7,10 +7,8 @@ import webpackEnvs from './tools/webpack_envs';
 dotenv.load({ silent: true });
 
 const devConfig = {
-  noInfo: false,
   devtool: 'source-map',
   target: 'web',
-  debug: true,
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/styles.scss',
@@ -23,11 +21,30 @@ const devConfig = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.(gif|png|jpe?g|svg)$/i,
+      imageWebpackLoader: {
+        mozjpeg: {
+          quality: 65,
+        },
+        pngquant: {
+          quality: '65-90',
+          speed: 4,
+        },
+        svgo: {
+          plugins: [
+            {
+              removeViewBox: false,
+            },
+            {
+              removeEmptyAttrs: false,
+            },
+          ],
+        },
+      },
+    }),
   ],
   module: {
     loaders: [
@@ -39,44 +56,44 @@ const devConfig = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        loader: 'style-loader!css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
         exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.s[ac]ss$/,
         loaders: [
-          'style',
-          'css?sourceMap=true',
-          'sass?sourceMap=true',
+          'style-loader',
+          'css-loader?sourceMap=true',
+          'sass-loader?sourceMap=true',
         ],
         exclude: /node_modules|lib/,
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
       {
         test: /\.(woff|woff2)$/,
-        loader: 'url?prefix=font/&limit=5000',
+        loader: 'url-loader?prefix=font/&limit=5000',
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/octet-stream',
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml',
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
       {
         test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file?emitFile=false',
+        loader: 'file-loader?emitFile=false',
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
           'url-loader', // Using url loader allows relative file paths when using the "url("<path>")" css property.
           // 'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack',
+          'image-webpack-loader',
         ],
       },
       {
@@ -86,35 +103,14 @@ const devConfig = {
     ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-  imageWebpackLoader: {
-    mozjpeg: {
-      quality: 65,
-    },
-    pngquant: {
-      quality: '65-90',
-      speed: 4,
-    },
-    svgo: {
-      plugins: [
-        {
-          removeViewBox: false,
-        },
-        {
-          removeEmptyAttrs: false,
-        },
-      ],
-    },
+    extensions: ['.js', '.jsx'],
   },
 };
 // -----------------------------------------------------------------------------
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
-  debug: false,
   devtool: 'source-map',
-  noInfo: true,
   target: 'web',
   entry: [
     './src/styles.scss',
@@ -127,15 +123,37 @@ const prodConfig = {
     // filename: '/[name]-[hash].min.js',
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
-    new ExtractTextPlugin('/styles.min.css', {
+    new ExtractTextPlugin({
+      filename: '/styles.min.css',
       allChunks: true,
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
+      },
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.(gif|png|jpe?g|svg)$/i,
+      imageWebpackLoader: {
+        mozjpeg: {
+          quality: 65,
+        },
+        pngquant: {
+          quality: '65-90',
+          speed: 4,
+        },
+        svgo: {
+          plugins: [
+            {
+              removeViewBox: false,
+            },
+            {
+              removeEmptyAttrs: false,
+            },
+          ],
+        },
       },
     }),
   ],
@@ -154,12 +172,15 @@ const prodConfig = {
       },
       {
         test: /\.s[ac]ss$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules$importLoaders=1&localIdentName=[name]_[local]!sass'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css?modules$importLoaders=1&localIdentName=[name]_[local]!sass',
+        }),
         exclude: /node_modules|lib/,
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
       {
         test: /\.(woff|woff2)$/,
@@ -191,26 +212,7 @@ const prodConfig = {
     ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-  imageWebpackLoader: {
-    mozjpeg: {
-      quality: 65,
-    },
-    pngquant: {
-      quality: '65-90',
-      speed: 4,
-    },
-    svgo: {
-      plugins: [
-        {
-          removeViewBox: false,
-        },
-        {
-          removeEmptyAttrs: false,
-        },
-      ],
-    },
+    extensions: ['.js', '.jsx'],
   },
 };
 console.log(process.env.NODE_ENV);
