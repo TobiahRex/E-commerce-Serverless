@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 
 // ----------------------------- Legal -------------------------------
 import Cart from '../Pages/Cart/cart';
@@ -8,12 +8,12 @@ import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';
 import OrderSuccess from '../Pages/ExpressCheckout/orderSuccess';
 
 const authRoutes = () => (
-  <Switch>
+  <div>
     <Route path="cart" component={Cart} />
     <Route path="empty" component={EmptyCart} />
     <Route path="express_checkout" component={ExpressCheckout} />
     <Route path="successfully_ordered" component={OrderSuccess} />
-  </Switch>
+  </div>
 );
 
 export default authRoutes;

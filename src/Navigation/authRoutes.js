@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 
 // ----------------------------- Auth -------------------------------
 import ResetPasswordEmail from '../Pages/Auth/ResetEmail/reset';
@@ -8,12 +8,12 @@ import Register from '../Pages/Auth/Register/register';
 import Forgot from '../Pages/Auth/Forgot/forgot';
 
 const authRoutes = () => (
-  <Switch>
+  <div>
     <Route path="login" component={Login} />
     <Route path="register" component={Register} />
     <Route path="forgot" component={Forgot} />
     <Route path="reset_email" component={ResetPasswordEmail} />
-  </Switch>
+  </div>
 );
 
 export default authRoutes;

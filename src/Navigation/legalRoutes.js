@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 
 // ----------------------------- Legal -------------------------------
 import NicotineDisclaimer from '../Pages/Legal/nicotineDisclaimer';
@@ -9,13 +9,13 @@ import PrivacyPolicy from '../Pages/Legal/privacyPolicy';
 import TermsConditions from '../Pages/Legal/termsConditions';
 
 const authRoutes = () => (
-  <Switch>
+  <div>
     <Route path="nicotine_disclaimer" component={NicotineDisclaimer} />
     <Route path="return_policy" component={Returns} />
     <Route path="shipping_policy" component={Shipping} />
     <Route path="privacy_policy" component={PrivacyPolicy} />
     <Route path="terms_and_conditions" component={TermsConditions} />
-  </Switch>
+  </div>
 );
 
 export default authRoutes;
