@@ -98,17 +98,17 @@ function UserHomeDash({ location }) {
             </div>
             <div className="dashboard__bottom-third--container">
               <div className="bottom-third--billing-info">
-                <div className="billing-info__title">
+                <div className="billing-info__title userdashboard__small-title">
                   <h3>Billing Info</h3>
                 </div>
                 <div className="billing-info__cc-type">
                   <div className="cc-type--cc">
-                    <label htmlFor="cc-type--cc-input">CC</label>
                     <input type="radio" id="cc-type--cc-input" />
+                    <label htmlFor="cc-type--cc-input">CC</label>
                   </div>
                   <div className="cc-type--debit">
-                    <label htmlFor="cc-type--debit-input">DEBIT</label>
                     <input type="radio" id="cc-type--debit-input" />
+                    <label htmlFor="cc-type--debit-input">DEBIT</label>
                   </div>
                 </div>
                 <div className="billing-info__name">
@@ -133,7 +133,7 @@ function UserHomeDash({ location }) {
                 </div>
               </div>
               <div className="bottom-third--login-methods">
-                <div className="login-methods__title">
+                <div className="login-methods__title userdashboard__small-title">
                   <h3>Login Methods</h3>
                 </div>
                 <div className="login-methods--social">
