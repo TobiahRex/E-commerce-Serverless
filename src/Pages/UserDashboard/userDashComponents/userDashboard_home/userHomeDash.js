@@ -29,7 +29,7 @@ function UserHomeDash({ location }) {
             </div>
             <div className="dashboard__top-third--container">
               <div className="top-third--contact-info">
-                <div className="contact-info__title">
+                <div className="contact-info__title userdashboard__small-title">
                   <h3>Contact Info</h3>
                 </div>
                 <div className="contact-info__info">
@@ -39,24 +39,24 @@ function UserHomeDash({ location }) {
                   <p className="info--phone">(123)-123-1234</p>
                 </div>
                 <div className="contact-info__edit-btn">
-                  <button className="small-edit-btn swipe-right">Edit</button>
+                  <button className="small-edit-btn sweep-right">Edit</button>
                 </div>
               </div>
               <div className="top-third--newsletters">
-                <div className="newsletters__title">
+                <div className="newsletters__title userdashboard__small-title">
                   <h3>Newsletters</h3>
                 </div>
                 <div className="newsletters__status-msg">
-                  You are not currently subscribed to any newsletters.
+                  <p>You are currently not subscribed to any newsletters.</p>
                 </div>
                 <div className="newsletters__edit-btn">
-                  <button className="small-edit-btn swipe-right">Edit</button>
+                  <button className="small-edit-btn sweep-right">Edit</button>
                 </div>
               </div>
             </div>
             <div className="dashboard__mid-third--container">
               <div className="mid-third__address-book">
-                <div className="address-book__title">
+                <div className="address-book__title userdashboard__small-title">
                   <h3>Address Book</h3>
                 </div>
                 <div className="address-book__default--container">
@@ -76,7 +76,7 @@ function UserHomeDash({ location }) {
                     </p>
                   </div>
                   <div className="default--billing-address">
-                    <h3>Default Shipping Address</h3>
+                    <h3>Default Billing Address</h3>
                     <p className="billing-address__postal-code">
                       5-3, Yaesau 1-Chome
                     </p>
@@ -90,9 +90,9 @@ function UserHomeDash({ location }) {
                       100-8994
                     </p>
                   </div>
-                  <div className="default__manage-btn">
-                    <button className="medium-size-btn swipe-right">Manage Addresses</button>
-                  </div>
+                </div>
+                <div className="default__manage-btn">
+                  <button className="medium-size-btn sweep-right">Manage Addresses</button>
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@ function UserHomeDash({ location }) {
                   </div>
                 </div>
                 <div className="billing-info__edit-btn">
-                  <button className="small-edit-btn swipe-right">Edit</button>
+                  <button className="small-edit-btn sweep-right">Edit</button>
                 </div>
               </div>
 
@@ -144,13 +144,13 @@ function UserHomeDash({ location }) {
                     </li>
                   </ul>
                   <div className="social-login__edit-btn">
-                    <button className="small-edit-btn swipe-right">Edit</button>
+                    <button className="small-edit-btn sweep-right">Edit</button>
                   </div>
                 </div>
                 <div className="login-methods--password">
                   <label htmlFor="login-method--password">Password</label>
                   <input type="password" id="login-method--password" value="password1234" disabled />
-                  <button className="medium-size-btn swipe-right">Change Password</button>
+                  <button className="medium-size-btn sweep-right">Change Password</button>
                 </div>
               </div>
 

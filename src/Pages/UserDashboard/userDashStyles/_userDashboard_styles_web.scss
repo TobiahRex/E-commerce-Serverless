@@ -1,4 +1,16 @@
 @media only screen and (min-width : 641px) {
+  .userdashboard__small-title {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    height: 4em;
+    width: 16.5em;
+    margin: 1em;
+    background-color: $p-blue;
+    h3 {
+      color: $p-white;
+    }
+  }
   @import './userDash_web_styles/userDashboard_sidebar_styles_web';
   .userdash--main,
   .address-book--main,
