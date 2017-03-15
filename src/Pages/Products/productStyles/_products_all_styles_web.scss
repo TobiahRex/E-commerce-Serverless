@@ -524,6 +524,7 @@
               align-items: center;
               overflow: hidden;
               margin-top: 2em;
+              padding: 2em 0;
               background-color: $p-white;
               box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               & .row--image {
@@ -749,7 +750,7 @@
                 & .desc__middle {
                   @include prefixflex();
                   justify-content: flex-start;
-                  align-items: flex-start;
+                  align-items: center;
                   margin: .5em 0 0 .5em;
                   padding: .5em;
                   width: 54.5em;
@@ -943,6 +944,7 @@
                 text-align: center;
                 left: 72.5em;
                 top: 3em;
+                cursor: pointer;
                 @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
                 @include prefixed(box-shadow, 0px 2px 4px rgba(1,1,1,.5));
                 h3 {

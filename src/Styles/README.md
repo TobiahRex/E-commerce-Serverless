@@ -1,13 +1,9 @@
-# _NJ2JP Styles_
+# _NJ2JP Styles_ : Guide for understanding Style Sheet (SS) structure.
 
-### Guide for understanding Style sheet (SS) structure.
-
-## STRATEGY
-Every _Page_ has 2 "Master" SS. 1 for "Web" styles & 1 for "Mobile" styles.
+## Description
+Every _Page_ has 2 main SS's.
+  - 1st for "Web" styles
+  - 2nd for "Mobile" styles.
   * "_page_-styles-web.scss
   * "_page_-styles-mobile.scss"
-    - Mobile SS are broken down into 3 "Sub Master" categories.  Each "Sub Master" stylesheet contains it's respective "Media Query".  Inside this media query, all device specific stylesheets are imported.
-      1. _galaxy_ (S6 & S7)
-      2. _iphone_ (6 & 7)
-      3. _ipp_ (6 & 7 PLUS)
-  * Inside `src/Styles` is _app.scss_ which all "Page" specific "Master" SS's are imported into.
+  * Inside `src/Styles` is _styles.scss_ which all "Page" specific master SS's are imported into.

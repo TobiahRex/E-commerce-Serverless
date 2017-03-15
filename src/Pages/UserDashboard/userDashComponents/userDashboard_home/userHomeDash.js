@@ -20,10 +20,8 @@ function UserHomeDash({ location }) {
       />
 
       <UserWelcomeMsg />
-
       <div className="user-home-dash__body">
         <UserSideBar location={location} />
-
         <div className="body__dashboard">
           <div className="dashboard--container">
             <div className="dashboard--title">
