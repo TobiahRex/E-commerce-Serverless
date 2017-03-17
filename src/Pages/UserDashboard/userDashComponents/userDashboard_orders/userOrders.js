@@ -22,11 +22,24 @@ function UserOrders({ location }) {
         <UserWelcomeMsg />
         <div className="orders__body">
           <UserSideBar location={location} />
+
           <div className="body__dashboard">
             <div className="dashboard--container">
-              <h2>Orders</h2>
+              <div className="dashboard--title">
+                <h3>Your Order</h3>
+              </div>
+
+              <div className="dashboard__tabs">
+                <div className="tabs--completed-orders">
+                  <p>Completed Orders</p>
+                </div>
+                <div className="tabs--open-orders">
+                  <p>Open Orders</p>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
