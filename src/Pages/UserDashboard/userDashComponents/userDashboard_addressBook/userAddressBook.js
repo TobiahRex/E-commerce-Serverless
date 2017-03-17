@@ -32,13 +32,11 @@ function UserAddressBook({ location }) {
               <div className="address__form--container">
                 <div className="address__left--container">
                   <div className="options__shipping-address">
-                    <div className="options__shipping-title">
-                      <h3>Shipping Address Type</h3>
-                    </div>
-                    <div className="options__ddn--container">
+                    <label htmlFor="shipping--options">Shipping Address Type</label>
+                    <div className="options__ddn--container" id="shipping--options">
                       <div className="ddn__readout">
                         <input type="text" className="readout--display" value="Japanese" disabled />
-                        <button className="readout--btn">
+                        <button className="readout--btn sweep-right">
                           <FontAwesome name="angle-down" />
                         </button>
                       </div>
@@ -238,7 +236,7 @@ function UserAddressBook({ location }) {
                 <div className="action-section__back-btn">
                   <button className="back-btn">
                     <span className="flex-parent-btn">
-                      <FontAwesome name="double-angle-right" />
+                      <FontAwesome name="angle-double-left" />
                       {'\u00A0'}
                       Back
                     </span>
