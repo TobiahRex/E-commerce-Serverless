@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import 'react-router';
 import FontAwesome from 'react-fontawesome';
+import moment from 'moment';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
@@ -80,7 +81,22 @@ function UserOrders({ location }) {
                   <tbody className="results-table__body">
                     {/* NOTE: Obviously these rows will be dynamic. */}
                     <tr className="body__row">
-                      
+                      <td className="row__cell-date">
+                        <p>{moment().format('LLL')}</p>
+                      </td>
+                      <td className="row__cell-total">
+                        <FontAwesome name="usd" />{'\u00A0'}
+                        120.00
+                      </td>
+                      <td className="row__cell-ship-to">
+                        <p>1400012, 東京都品川...</p>
+                      </td>
+                      <td className="row__cell-bill-to">
+                        <p>2400 Roudel Lane...</p>
+                      </td>
+                      <td className="row__cell-status">
+                        <p>Shipped</p>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
