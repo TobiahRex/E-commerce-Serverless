@@ -156,12 +156,16 @@ function UserHomeDash({ location }) {
                   </div>
                 </div>
                 <div className="login-methods--password">
-                  <label htmlFor="login-method--password">Password</label>
-                  <input type="password" id="login-method--password" value="password1234" disabled />
-                  <button className="medium-size-btn sweep-right">Change Password</button>
+                  <div className="password--fields">
+                    <label htmlFor="login-method--password">Password</label>
+                    <input type="password" id="login-method--password" value="password1234" disabled />
+                  </div>
+                  <div className="password--edit-btn">
+
+                    <button className="medium-size-btn sweep-right">Change Password</button>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

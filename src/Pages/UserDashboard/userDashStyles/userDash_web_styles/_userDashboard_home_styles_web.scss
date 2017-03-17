@@ -304,26 +304,31 @@
           }
           & .login-methods--password {
             @include prefixflex();
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: flex-start;
             flex-direction: column;
-            width: 100%;
-            & label {
-              color: $p-blue;
-              font-family: $p-font;
-              font-size: 1.8em;
-              font-weight: 400;
-              margin: 0 auto 1em 1em;
-            }
-            & input {
-              height: 1.67em;
-              width: 80%;
-              font-weight: 200;
-              font-family: $p-font;
-              font-size: 1.8em;
-              padding-left: .5em;
-              border: 1px solid rgba(0,0,0,.25);
-              color: $p-blue;
+            & .password--fields {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              & label {
+                color: $p-blue;
+                font-family: $p-font;
+                font-size: 1.8em;
+                font-weight: 400;
+                margin-bottom: .5em;
+              }
+              & input {
+                height: 1.67em;
+                width: 100%;
+                font-weight: 200;
+                font-family: $p-font;
+                font-size: 1.8em;
+                padding-left: .5em;
+                border: 1px solid rgba(0,0,0,.25);
+                color: $p-blue;
+              }
             }
             & button {
               margin: 1em 0 1em auto;
