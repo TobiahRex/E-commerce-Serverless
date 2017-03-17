@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
+  juiceObj: PropTypes.objectOf(PropTypes.any).isRequired,
   keyNum: PropTypes.number.isRequired,
 };
 

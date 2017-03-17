@@ -158,7 +158,7 @@ export default function SingleProduct() {
         </button>
       </div>
       <div
-        style={{ display: '' }} className="single-product-add-success-modal"
+        style={{ display: 'none' }} className="single-product-add-success-modal"
       >
         <div className="single-product-add-success-modal-dialogue">
           <div className="single-product-add-success-modal-dialogue-exit-container">

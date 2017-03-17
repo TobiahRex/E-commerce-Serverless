@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import 'react-router';
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 import Breadcrumb from '../../../../Components/breadcrumbs';
@@ -7,7 +7,7 @@ import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 function UserOrders({ location }) {
@@ -113,6 +113,18 @@ function UserOrders({ location }) {
                       <td className="product__info" colSpan="5">
                         <div className="info--container">
                           <div className="info--product">
+                            {/* NOTE: Everything is Dynamic */}
+                            <img src="../Images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+                            <div className="product--description">
+                              <div className="description--title">
+                                <p>Strawberries {'N\''} Cream</p>
+                              </div>
+                              <div className="description--info">
+                                <p className="info__manufacturer">by VapeSwitch</p>
+                                <p className="info__nicotine">Nicotine Strength:<i>6 mg</i> </p>
+                                <p className="info__sku">SKU: 12312123</p>
+                              </div>
+                            </div>
 
                           </div>
                           <div className="info--action-section">
