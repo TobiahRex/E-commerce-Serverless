@@ -242,6 +242,24 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        & .address-same__input {
+          border: 1px solid rgba(0,0,0,.25);
+          & .input-btn {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 3em;
+            width: 3em;
+            padding: 0;
+            margin: 0;
+            height: 3em;
+            width: 3em;
+            & span {
+              font-size: 2.5em;
+              color: $s-blue;
+            }
+          }
+        }
       }
 
       & .address__action-section--container {
