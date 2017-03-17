@@ -270,13 +270,6 @@
               list-style-type: none;
               padding: 0;
               margin: 0;
-              & li:nth-child(1) {
-                margin-left: 1em;
-                background-color: $p-blue;
-                & span {
-                  color: $p-white;
-                }
-              }
               & .social-list--item {
                 @include prefixflex();
                 justify-content: center;
@@ -289,6 +282,13 @@
                   font-size: 6em;
                   color: $s-grey;
                   line-height: 1em;
+                }
+              }
+              & .social-list--item:nth-child(1) {
+                margin-left: 1em;
+                background-color: $p-blue;
+                & span {
+                  color: $p-white;
                 }
               }
             }
@@ -330,9 +330,19 @@
                 color: $p-blue;
               }
             }
-            & button {
-              margin: 1em 0 1em auto;
+            & .password--edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: flex-start;
+              flex-direction: column;
+              width: 100%;
+              & button {
+                margin: 1em 0 1em auto;
+              }
             }
+          }
+          & .login-methods--social {
+            height: 40%;
           }
         }
         & .bottom-third--login-methods {

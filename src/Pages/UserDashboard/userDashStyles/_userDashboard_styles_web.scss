@@ -43,7 +43,7 @@
       @include prefixflex();
       justify-content: center;
       flex-direction: column;
-      margin: .5em auto;
+      margin: auto;
 
       @import './userDash_web_styles/userDashboard_home_styles_web';
       @import './userDash_web_styles/userDashboard_addressBook_styles_web';

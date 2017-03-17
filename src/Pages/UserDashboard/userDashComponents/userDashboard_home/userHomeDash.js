@@ -123,9 +123,9 @@ function UserHomeDash({ location }) {
                   <p className="expiration__title">Expiration</p>
                   <div className="expiration__row">
                     <label htmlFor="expiration--month">Month</label>
-                    <input type="number" id="expiration--month" disabled />
+                    <input type="number" id="expiration--month" value="10" disabled />
                     <label htmlFor="expiration--year">Year</label>
-                    <input type="number" id="expiration--year" disabled />
+                    <input type="number" id="expiration--year" value="2019" disabled />
                   </div>
                 </div>
                 <div className="billing-info__edit-btn">
@@ -161,7 +161,6 @@ function UserHomeDash({ location }) {
                     <input type="password" id="login-method--password" value="password1234" disabled />
                   </div>
                   <div className="password--edit-btn">
-
                     <button className="medium-size-btn sweep-right">Change Password</button>
                   </div>
                 </div>
