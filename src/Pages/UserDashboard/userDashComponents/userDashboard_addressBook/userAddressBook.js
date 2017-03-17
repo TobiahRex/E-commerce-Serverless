@@ -125,6 +125,7 @@ function UserAddressBook({ location }) {
                       <input type="text" className="street__input" />
                     </div>
                   </div>
+
                 </div>
 
                 <div className="address__right--container">
@@ -224,17 +225,19 @@ function UserAddressBook({ location }) {
               </div>
 
               <div className="address__address-same--container">
+                <p className="required">Required Fields <span className="required">*</span>
+                </p>
                 <div className="address-same__input">
                   <button className="input-btn">
                     <FontAwesome name="plus" />
                   </button>
+                  <p>Billing Address is Same as Shipping Address</p>
                 </div>
-                <h3>Billing Address is Same as Shipping Address</h3>
               </div>
 
               <div className="address__action-section--container">
                 <div className="action-section__back-btn">
-                  <button className="back-btn">
+                  <button className="back-btn primary-flex-button">
                     <span className="flex-parent-btn">
                       <FontAwesome name="angle-double-left" />
                       {'\u00A0'}
@@ -243,10 +246,9 @@ function UserAddressBook({ location }) {
                   </button>
                 </div>
 
-                <p>Required Fields <span className="required">*</span> </p>
 
                 <div className="action-section__save-btn">
-                  <button className="save-btn">
+                  <button className="save-btn primary-flex-button">
                     Save Addresses
                   </button>
                 </div>
