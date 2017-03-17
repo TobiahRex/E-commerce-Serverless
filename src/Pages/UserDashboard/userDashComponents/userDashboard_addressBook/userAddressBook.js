@@ -42,7 +42,9 @@ function UserAddressBook({ location }) {
                       </div>
                       <div className="ddn__content">
                         <ul className="content--list">
-                          <li className="list--option">US / Military</li>
+                          <li className="list--option sweep-right">
+                            US / Military
+                          </li>
                         </ul>
                       </div>
                     </div>

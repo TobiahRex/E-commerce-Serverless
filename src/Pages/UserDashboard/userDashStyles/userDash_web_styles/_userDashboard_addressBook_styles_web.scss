@@ -89,17 +89,18 @@
           flex-direction: column;
           margin-top: 3em;
           width: 40%;
-          & .options__shipping-address {
+          & .options__shipping-address
+          .options__billing-address {
             @include prefixflex();
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             flex-direction: column;
             & label {
               color: $p-blue;
               font-family: $p-font;
               font-size: 1.6em;
               font-weight: 200;
-              margin-bottom: 1em;
+              margin-bottom: .5em;
             }
             & .options__ddn--container {
               display: inline-block;
@@ -123,9 +124,9 @@
                   justify-content: center;
                   align-items: center;
                   border: 0;
-                  width: 2.22em;
+                  height: 2.3em;
+                  width: 2.3em;
                   background-color: $p-red;
-                  border: 1px solid $p-red;
                   cursor: pointer;
                   padding: 0;
                   & span {
@@ -139,13 +140,15 @@
                 display: block;
                 position: absolute;
                 background-color: $p-white;
-                box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                box-shadow: 0 3px 4px rgba(0,0,0,.25);
+                width: 100%;
                 & .content--list {
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
-                  padding: 0;
                   list-style-type: none;
+                  padding: 0;
+                  margin: 0;
                   & .list--option {
                     @include prefixflex();
                     justify-content: center;
@@ -155,10 +158,12 @@
                     font-size: 1.6em;
                     font-family: $p-font;
                     font-size: 200;
+                    cursor: pointer;
                   }
                 }
               }
             }
+            & .
           }
         }
       }
