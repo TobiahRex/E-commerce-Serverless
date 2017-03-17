@@ -225,34 +225,35 @@ function UserAddressBook({ location }) {
 
               <div className="address__address-same--container">
                 <div className="address-same__input">
-                  <button calssName="input-btn">
+                  <button className="input-btn">
                     <FontAwesome name="plus" />
                   </button>
                 </div>
                 <h3>Billing Address is Same as Shipping Address</h3>
               </div>
-            </div>
+              <div className="address__action-section--container">
 
-            <div className="address__action-section--container">
-              <div className="action-section__back-btn">
-                <button className="back-btn">
-                  <span className="flex-parent-btn">
-                    <FontAwesome name="double-angle-right" />
-                    {'\u00A0'}
-                    Back
-                  </span>
-                </button>
+                <div className="action-section__back-btn">
+                  <button className="back-btn">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="double-angle-right" />
+                      {'\u00A0'}
+                      Back
+                    </span>
+                  </button>
+                </div>
+
+                <p>Required Fields <span className="required">*</span> </p>
+
+                <div className="action-section__save-btn">
+                  <button className="save-btn">
+                    Save Addresses
+                  </button>
+                </div>
+
               </div>
-
-              <p>Required Fields <span className="required">*</span> </p>
-
-              <div className="action-section__save-btn">
-                <button className="save-btn">
-                  Save Addresses
-                </button>
-              </div>
-
             </div>
+            {/* End of Container */}
           </div>
         </div>
       </div>
