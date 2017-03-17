@@ -175,8 +175,39 @@
                 font-family: $p-font;
                 font-weight: 400;
                 color: $p-blue;
-
               }
+              & input {
+                height: 2em;
+                width: 2em;
+                margin: 0;
+                cursor: pointer;
+              }
+            }
+          }
+          & .billing-info__name,
+          .billing-info__cc-number {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 1em 2em;
+            & label {
+              margin-bottom: .5em;
+              font-size: 1.8em;
+              font-family: $p-font;
+              font-weight: 400;
+              color: $p-blue;
+            }
+            & input {
+              height: 1.67em;
+              min-width: 13.8em;
+              width: 100%;
+              font-weight: 200;
+              font-family: $p-font;
+              font-size: 1.8em;
+              padding-left: .5em;
+              border: 1px solid rgba(0,0,0,.25);
+              color: $p-blue;
             }
           }
         }
