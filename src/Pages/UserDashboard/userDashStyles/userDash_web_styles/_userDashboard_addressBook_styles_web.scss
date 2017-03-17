@@ -1,4 +1,4 @@
-& .address-book__body {
+.address-book__body {
   @include prefixflex();
   justify-content: space-between;
   align-items: flex-start;
@@ -89,7 +89,7 @@
           flex-direction: column;
           margin-top: 3em;
           width: 40%;
-          & .options__shipping-address
+          & .options__shipping-address,
           .options__billing-address {
             @include prefixflex();
             justify-content: flex-start;
@@ -105,6 +105,7 @@
             & .options__ddn--container {
               display: inline-block;
               position: relative;
+              transition: all .3s linear;
               & .ddn__readout {
                 @include prefixflex();
                 justify-content: center;
@@ -113,7 +114,7 @@
                   height: 2.22em;
                   width: 8.88em;
                   color: $p-blue;
-                  font-size: 1.8em;
+                  font-size: 1.6em;
                   font-family: $p-font;
                   font-weight: 200;
                   padding: 0 0 0 .5em;
@@ -124,8 +125,8 @@
                   justify-content: center;
                   align-items: center;
                   border: 0;
-                  height: 2.3em;
-                  width: 2.3em;
+                  height: 2.4em;
+                  width: 2.4em;
                   background-color: $p-red;
                   cursor: pointer;
                   padding: 0;
@@ -142,28 +143,78 @@
                 background-color: $p-white;
                 box-shadow: 0 3px 4px rgba(0,0,0,.25);
                 width: 100%;
+                // height: 0;
+                // opacity: 0;
                 & .content--list {
                   @include prefixflex();
                   justify-content: center;
                   align-items: center;
                   list-style-type: none;
-                  padding: 0;
+                  padding: 1.5em;
                   margin: 0;
                   & .list--option {
                     @include prefixflex();
                     justify-content: center;
                     align-items: center;
-                    padding: 1em;
+                    padding: .3em;
                     color: $p-blue;
                     font-size: 1.6em;
                     font-family: $p-font;
-                    font-size: 200;
                     cursor: pointer;
+                    width: 70%;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                      color: $p-white;
+                    }
                   }
                 }
               }
             }
-            & .
+          }
+          & .left--title {
+            & h3 {
+              font-size: 1.8em;
+            }
+          }
+          & .usa,
+          .japan {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            & .usa__country,
+            .usa__street,
+            .usa__state,
+            .usa__city,
+            .usa__zip,
+            .japan__country,
+            .japan__postal,
+            .japan__prefecture,
+            .japan__ward,
+            .japan__city,
+            .japan__street {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              & label {
+                margin-bottom: .5em;
+                color: $p-blue;
+                font-size: 1.8em;
+                font-family: $p-font;
+                font-weight: 200;
+              }
+              & input {
+                height: 2.5em;
+                width: 70%;
+                color: $p-blue;
+                font-size: 1.6em;
+                font-family: $p-font;
+                font-weight: 200;
+                padding-left: .5em;
+              }
+            }
           }
         }
       }

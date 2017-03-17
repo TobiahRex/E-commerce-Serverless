@@ -12,39 +12,14 @@
     }
   }
   @import './userDash_web_styles/userDashboard_sidebar_styles_web';
-  .userdash--main,
-  .address-book--main,
-  .orders--main,
-  .product-reviews--main,
-  .login-app--main,
-  .newsletter--main,
-  .terms-conditions--main,
-  .privacy-policy--main,
-  .shipping-policy--main,
-  .return-policy--main,
-  .newsletter--main,
-  .manage-login--main,
-  .nicotine--main {
+  .userdash--main {
     max-width: 1086px;
     width: 100%;
-    & .userdash--container,
-    .address-book--container,
-    .orders--container,
-    .product-reviews--container,
-    .login-app--container,
-    .newsletter--container,
-    .terms-conditions--container,
-    .privacy-policy--container,
-    .shipping-policy--container,
-    .return-policy--container,
-    .newsletter--container,
-    .manage-login--container,
-    .nicotine--container {
+    & .userdash--container {
       @include prefixflex();
       justify-content: center;
       flex-direction: column;
-      margin: auto;
-
+      width: 100%;
       @import './userDash_web_styles/userDashboard_home_styles_web';
       @import './userDash_web_styles/userDashboard_addressBook_styles_web';
       @import './userDash_web_styles/userDashboard_orders_styles_web';

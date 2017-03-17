@@ -40,7 +40,7 @@ function UserAddressBook({ location }) {
                           <FontAwesome name="angle-down" />
                         </button>
                       </div>
-                      <div className="ddn__content">
+                      <div className="ddn__content" style={{ display: 'none' }}>
                         <ul className="content--list">
                           <li className="list--option sweep-right">
                             US / Military
@@ -87,38 +87,38 @@ function UserAddressBook({ location }) {
                     </div>
                   </div>
 
-                  <div className="japanese">
-                    <div className="japanese__country">
+                  <div className="japan">
+                    <div className="japan__country">
                       <label htmlFor="country__input">Country{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" value="JAPAN" className="contry__input" disabled />
                     </div>
-                    <div className="japanese__postal">
+                    <div className="japan__postal">
                       <label htmlFor="postal__input">Postal Code{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="postal__input" />
                     </div>
-                    <div className="japanese__prefecture">
+                    <div className="japan__prefecture">
                       <label htmlFor="prefecture__input">Prefecture{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="prefecture__input" />
                     </div>
-                    <div className="japanese__ward">
+                    <div className="japan__ward">
                       <label htmlFor="ward__input">Ward{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="ward__input" />
                     </div>
-                    <div className="japanese__city">
+                    <div className="japan__city">
                       <label htmlFor="city__input">City{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="city__input" />
                     </div>
-                    <div className="japanese__street">
+                    <div className="japan__street">
                       <label htmlFor="street__input">Street Address{'\u00A0'}
                         <span className="required">*</span>
                       </label>
@@ -128,18 +128,16 @@ function UserAddressBook({ location }) {
                 </div>
 
                 <div className="address__right--container">
-                  <div className="options__shipping-address">
-                    <div className="options__shipping-title">
-                      <h3>Billing Address Type</h3>
-                    </div>
-                    <div className="options__ddn--container">
+                  <div className="options__billing-address">
+                    <label htmlFor="billing-address-type">Billing Address Type</label>
+                    <div className="options__ddn--container" id="billing-address-type">
                       <div className="ddn__readout">
                         <input type="text" className="readout--display" value="US / Military" disabled />
                         <button className="readout--btn">
                           <FontAwesome name="angle-down" />
                         </button>
                       </div>
-                      <div className="ddn__content">
+                      <div className="ddn__content" style={{ display: 'none' }}>
                         <ul className="content--list">
                           <li className="list--option">Japanese</li>
                         </ul>
@@ -184,38 +182,38 @@ function UserAddressBook({ location }) {
                     </div>
                   </div>
 
-                  <div className="japanese">
-                    <div className="japanese__country">
+                  <div className="japan">
+                    <div className="japan__country">
                       <label htmlFor="country__input">Country{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" value="JAPAN" className="contry__input" disabled />
                     </div>
-                    <div className="japanese__postal">
+                    <div className="japan__postal">
                       <label htmlFor="postal__input">Postal Code{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="postal__input" />
                     </div>
-                    <div className="japanese__prefecture">
+                    <div className="japan__prefecture">
                       <label htmlFor="prefecture__input">Prefecture{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="prefecture__input" />
                     </div>
-                    <div className="japanese__ward">
+                    <div className="japan__ward">
                       <label htmlFor="ward__input">Ward{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="ward__input" />
                     </div>
-                    <div className="japanese__city">
+                    <div className="japan__city">
                       <label htmlFor="city__input">City{'\u00A0'}
                         <span className="required">*</span>
                       </label>
                       <input type="text" className="city__input" />
                     </div>
-                    <div className="japanese__street">
+                    <div className="japan__street">
                       <label htmlFor="street__input">Street Address{'\u00A0'}
                         <span className="required">*</span>
                       </label>
