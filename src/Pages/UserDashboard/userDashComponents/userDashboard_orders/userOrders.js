@@ -66,7 +66,25 @@ function UserOrders({ location }) {
                 </div>
               </div>
 
-              
+              <div className="dashboard__results-table">
+                <table className="results-table--container">
+                  <thead className="results-table__header">
+                    <tr className="header--row">
+                      <th className="header__date">Order Placed</th>
+                      <th className="header__total">Order Total</th>
+                      <th className="header__ship-to">Ship To</th>
+                      <th className="header__bill-to">Bill To</th>
+                      <th className="header__status">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="results-table__body">
+                    {/* NOTE: Obviously these rows will be dynamic. */}
+                    <tr className="body__row">
+                      
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
