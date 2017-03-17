@@ -46,11 +46,13 @@
         @include prefixflex();
         justify-content: flex-start;
         align-items: center;
+        padding: 2.5em 0;
+        border-bottom: 1px solid rgba(0,0,0,.1);
         & .filter__results-msg {
           @include prefixflex();
           justify-content: flex-start;
           align-items: center;
-          margin-left: 1.5em;
+          margin-left: 3.5em;
           & p {
             margin-right: .5em;
           }
@@ -101,20 +103,49 @@
             display: block;
             position: absolute;
             width: 100%;
+            background-color: $p-white;
+            box-shadow: 0 3px 4px rgba(0,0,0,.25);
             & .ddn--content__list {
               @include prefixflex();
               justify-content: center;
-              align-items: center;
+              align-items: flex-start;
               flex-direction: column;
               list-style-type: none;
-              padding: 0;
-              margin: 0;
+              padding: 1em 0;
+              margin: 0 0 0 1em;
               & .list--option {
                 padding: .5em;
+                cursor: pointer;
+                width: 90%;
+                transition: all .3 linear;
+                &:hover,
+                &:active,
+                &:focus {
+                  & p {
+                    color: $p-white;
+                  }
+                }
                 & p {
                   font-weight: 200;
                 }
               }
+            }
+          }
+        }
+      }
+      & .dashboard__results-table {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        & .results-table--container {
+          border-collapse: collapse;
+          padding: 2em;
+          & .results-table__header {
+            width: 100%;
+            height: 6em;
+            & th {
+              width: 20%;
             }
           }
         }

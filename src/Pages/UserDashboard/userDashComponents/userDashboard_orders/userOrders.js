@@ -54,22 +54,22 @@ function UserOrders({ location }) {
                       <FontAwesome name="angle-down" />
                     </button>
                   </div>
-                  <div className="periodicity__ddn--content">
+                  <div className="periodicity__ddn--content" style={{ display: 'none' }} >
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
-                      <li className="list--option sweep-right-white">
+                      <li className="list--option sweep-right">
                         <p>Week</p>
                       </li>
-                      <li className="list--option sweep-right-white">
+                      <li className="list--option sweep-right">
                         <p>Month</p>
                       </li>
-                      <li className="list--option sweep-right-white">
+                      <li className="list--option sweep-right">
                         <p>Quarter</p>
                       </li>
-                      <li className="list--option sweep-right-white">
+                      <li className="list--option sweep-right">
                         <p>Year</p>
                       </li>
-                      <li className="list--option sweep-right-white">
+                      <li className="list--option sweep-right">
                         <p>All</p>
                       </li>
                     </ul>
