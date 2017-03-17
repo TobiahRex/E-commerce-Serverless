@@ -50,18 +50,28 @@ function UserOrders({ location }) {
                 <div className="filter__periodcity-ddn--container">
                   <div className="periodicity__ddn--readout">
                     <input type="text" className="readout--msg" disabled value="Month" />
-                    <button className="readout--btn">
+                    <button className="readout--btn sweep-right">
                       <FontAwesome name="angle-down" />
                     </button>
                   </div>
                   <div className="periodicity__ddn--content">
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
-                      <li className="list--option">Week</li>
-                      <li className="list--option">Month</li>
-                      <li className="list--option">Quarter</li>
-                      <li className="list--option">Year</li>
-                      <li className="list--option">All</li>
+                      <li className="list--option sweep-right-white">
+                        <p>Week</p>
+                      </li>
+                      <li className="list--option sweep-right-white">
+                        <p>Month</p>
+                      </li>
+                      <li className="list--option sweep-right-white">
+                        <p>Quarter</p>
+                      </li>
+                      <li className="list--option sweep-right-white">
+                        <p>Year</p>
+                      </li>
+                      <li className="list--option sweep-right-white">
+                        <p>All</p>
+                      </li>
                     </ul>
                   </div>
                 </div>
