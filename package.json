@@ -17,7 +17,7 @@
     "prebuild": "npm run remove-dist",
     "build:html": "babel-node ./tools/buildHtml.js",
     "build:bundle": "babel-node ./tools/build.js",
-    "analyze-bundle": "./node_modules/webpack --profile --json > stats.json",
+    "analyze-bundle": "babel-watch webpack -p --profile --json > stats.json",
     "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images open:dist"
   },
   "author": "Tobiah Rex",
@@ -75,7 +75,6 @@
   "dependencies": {
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
-    "babel-loader": "^6.4.0",
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",
     "copy-files": "*",
