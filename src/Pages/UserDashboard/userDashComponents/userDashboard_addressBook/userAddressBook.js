@@ -53,7 +53,7 @@ function UserAddressBook({ location }) {
                     <h3>Shipping Address</h3>
                   </div>
 
-                  <div className="usa">
+                  <div className="usa" style={{ display: 'none' }}>
                     <div className="usa__country">
                       <label htmlFor="country__input">Country{'\u00A0'}
                         <span className="required">*</span>
@@ -133,7 +133,7 @@ function UserAddressBook({ location }) {
                     <div className="options__ddn--container" id="billing-address-type">
                       <div className="ddn__readout">
                         <input type="text" className="readout--display" value="US / Military" disabled />
-                        <button className="readout--btn">
+                        <button className="readout--btn sweep-right">
                           <FontAwesome name="angle-down" />
                         </button>
                       </div>
@@ -182,7 +182,7 @@ function UserAddressBook({ location }) {
                     </div>
                   </div>
 
-                  <div className="japan">
+                  <div className="japan" style={{ display: 'none' }}>
                     <div className="japan__country">
                       <label htmlFor="country__input">Country{'\u00A0'}
                         <span className="required">*</span>

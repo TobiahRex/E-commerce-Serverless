@@ -87,8 +87,9 @@
           justify-content: flex-start;
           align-items: center;
           flex-direction: column;
-          margin-top: 3em;
+          margin: 3em auto;
           width: 40%;
+          height: 72em;
           & .options__shipping-address,
           .options__billing-address {
             @include prefixflex();
@@ -172,10 +173,16 @@
               }
             }
           }
-          & .left--title {
+          & .left--title,
+          .right--title {
+            margin: 4em auto .5em 0;
+            align-self: flex-start;
             & h3 {
               font-size: 1.8em;
             }
+          }
+          & .left--title {
+            width: 17.5em;
           }
           & .usa,
           .japan {
@@ -183,6 +190,7 @@
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
+            width: 100%;
             & .usa__country,
             .usa__street,
             .usa__state,
@@ -198,24 +206,35 @@
               justify-content: flex-start;
               align-items: flex-start;
               flex-direction: column;
+              width: 100%;
               & label {
-                margin-bottom: .5em;
+                margin: 1em auto .5em 0;
                 color: $p-blue;
                 font-size: 1.8em;
                 font-family: $p-font;
-                font-weight: 200;
+                font-weight: 400;
               }
               & input {
                 height: 2.5em;
-                width: 70%;
+                width: 90%;
                 color: $p-blue;
                 font-size: 1.6em;
                 font-family: $p-font;
                 font-weight: 200;
-                padding-left: .5em;
+                padding: 0 0 0 .5em;
+              }
+              & .street__input-alpha {
+                margin-bottom: .5em;
               }
             }
           }
+        }
+        & .address__left--container {
+          margin-right: 1em;
+          border-right: 1px solid rgba(0,0,0,.1);
+        }
+        & .address__right--container {
+          margin-left: 1em;
         }
       }
 
