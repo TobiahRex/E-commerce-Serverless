@@ -141,6 +141,15 @@ function UserHomeDash({ location }) {
                     <li className="social-list--item">
                       <FontAwesome name="facebook" />
                     </li>
+                    <li className="social-list--item">
+                      <FontAwesome name="instagram" />
+                    </li>
+                    <li className="social-list--item">
+                      <FontAwesome name="google" />
+                    </li>
+                    <li className="social-list--item">
+                      <FontAwesome name="twitter" />
+                    </li>
                   </ul>
                   <div className="social-login__edit-btn">
                     <button className="small-edit-btn sweep-right">Edit</button>

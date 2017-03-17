@@ -17,6 +17,7 @@
     "prebuild": "npm run remove-dist",
     "build:html": "babel-node ./tools/buildHtml.js",
     "build:bundle": "babel-node ./tools/build.js",
+    "analyze-bundle": "webpack --profile --json > stats.json",
     "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images open:dist"
   },
   "author": "Tobiah Rex",

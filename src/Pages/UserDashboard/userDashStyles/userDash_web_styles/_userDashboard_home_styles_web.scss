@@ -210,6 +210,128 @@
               color: $p-blue;
             }
           }
+          & .billing-info__expiration {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            & .expiration__title {
+              margin-left: 1em;
+              font-size: 1.8em;
+              font-weight: 400;
+            }
+            & .expiration__row {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              margin-left: 1em;
+              & label {
+                margin-right: .5em;
+                font-size: 1.6em;
+                font-family: $p-font;
+                font-weight: 200;
+                color: $p-blue;
+              }
+              & input {
+                height: 1.67em;
+                color: $p-blue;
+                max-width: 3.33em;
+                font-weight: 200;
+                font-family: $p-font;
+                font-size: 1.8em;
+                padding-left: .5em;
+                border: 1px solid rgba(0,0,0,.25);
+                margin: .5em .5em .5em .25em;
+              }
+            }
+          }
+          & .billing-info__edit-btn {
+            @include prefixflex();
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            & button {
+              margin: 1em 3.5em 1em 0;
+            }
+          }
+          & .login-methods--social,
+          .login-methods--password {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            height: 50%;
+            width: 90%;
+            & .login-methods--social-list {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+              & li:nth-child(1) {
+                margin-left: 1em;
+                background-color: $p-blue;
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .social-list--item {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 7.5em;
+                width: 7.5em;
+                margin: 1em 0 1em 1.5em;
+                background-color: $p-grey;
+                & span {
+                  font-size: 6em;
+                  color: $s-grey;
+                  line-height: 1em;
+                }
+              }
+            }
+            & .social-login__edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: center;
+              width: 100%;
+              & button {
+                margin: .5em 0 .5em 0;
+              }
+            }
+          }
+          & .login-methods--password {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 100%;
+            & label {
+              color: $p-blue;
+              font-family: $p-font;
+              font-size: 1.8em;
+              font-weight: 400;
+              margin: 0 auto 1em 1em;
+            }
+            & input {
+              height: 1.67em;
+              width: 80%;
+              font-weight: 200;
+              font-family: $p-font;
+              font-size: 1.8em;
+              padding-left: .5em;
+              border: 1px solid rgba(0,0,0,.25);
+              color: $p-blue;
+            }
+            & button {
+              margin: 1em 0 1em auto;
+            }
+          }
+        }
+        & .bottom-third--login-methods {
+          height: 44em;
         }
       }
     }
