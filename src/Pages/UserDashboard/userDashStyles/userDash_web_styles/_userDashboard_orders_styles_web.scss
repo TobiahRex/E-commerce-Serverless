@@ -143,9 +143,38 @@
           padding: 2em;
           & .results-table__header {
             width: 100%;
-            height: 6em;
-            & th {
-              width: 20%;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & .header--row {
+              height: 6em;
+              & th {
+                width: 20%;
+                & p {
+                  font-size: 2em;
+                }
+              }
+            }
+          }
+          & .results-table__body {
+            & .body__row {
+              height: 5em;
+              text-align: center;
+              & .row__cell-total {
+                & .flex-cell-parent {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  & p {
+                    font-size: 1.6em;
+                  }
+                  & span {
+                    font-size: 1.6em;
+                    color: $p-blue;
+                  }
+                }
+              }
+            }
+            & .body_row--product {
+              border-top: 1px solid rgba(0,0,0,.1);
             }
           }
         }
