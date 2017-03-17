@@ -28,16 +28,16 @@ function UserOrders({ location }) {
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">
-                <h3>Your Order</h3>
+                <h1>Your Order</h1>
               </div>
 
               <div className="dashboard__tabs">
-                <div className="tabs--completed-orders">
+                <button className="tabs--completed-orders sweep-right">
                   <p>Completed Orders</p>
-                </div>
-                <div className="tabs--open-orders">
+                </button>
+                <button className="tabs--open-orders sweep-right">
                   <p>Open Orders</p>
-                </div>
+                </button>
               </div>
 
               <div className="dashboard__filter">
@@ -107,6 +107,65 @@ function UserOrders({ location }) {
                       </td>
                       <td className="row__cell-status">
                         <p>Shipped</p>
+                      </td>
+                    </tr>
+                    <tr className="body_row--product">
+                      <td className="product__info" colSpan="5">
+                        <div className="info--container">
+                          <div className="info--product">
+                            {/* NOTE: Everything is Dynamic */}
+                            <img src="../Images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+                            <div className="product--description">
+                              <div className="description--title">
+                                <p>Strawberries {'N\''} Cream</p>
+                              </div>
+                              <div className="description--info">
+                                <p className="info__manufacturer">by VapeSwitch</p>
+                                <p className="info__nicotine">Nicotine Strength:<i>6 mg</i> </p>
+                                <p className="info__sku">SKU: 12312123</p>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div className="info--action-section">
+                            <ul className="action-section--list">
+                              <li className="list--add-to-cart">
+                                <button>Add To Cart</button>
+                              </li>
+                              <li className="list--track-order">
+                                <button>Track Your Order</button>
+                              </li>
+                              <li className="list--tracking-number">
+                                <p>Tracking #:{'\u00A0'}
+                                  <span className="order-number--tracking">
+                                    {/* NOTE: Dyanmic */}
+                                    123123123
+                                  </span>
+                                </p>
+                              </li>
+                              <li className="list--order-number">
+
+                                {/* NOTE: RR address = Dynamic */}
+                                <p>Order #:{'\u00A0'}</p>
+
+                                {/* NOTE: Dyanmic */}
+                                <Link
+                                  to={`/${123123123}`} className="order-number--link"
+                                >123123123</Link>
+                              </li>
+                              <li className="list--order-invoice">
+
+                                {/* NOTE: RR address = Dynamic */}
+                                <p>Invoice #:{'\u00A0'}</p>
+
+                                {/* NOTE: Dyanmic */}
+                                <Link
+                                  to={`/${123123123}`} className="order-number--invoice"
+                                >123123123</Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                     <tr className="body_row--product">
