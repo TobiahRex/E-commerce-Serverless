@@ -133,19 +133,18 @@ function UserOrders({ location }) {
                               </div>
                               <div className="description--info">
                                 <p className="info__manufacturer">by VapeSwitch</p>
-                                <p className="info__nicotine">Nicotine Strength:<i>6 mg</i> </p>
+                                <p className="info__nicotine">Nicotine Strength:<i> 6mg</i> </p>
                                 <p className="info__sku">SKU: 12312123</p>
                               </div>
                             </div>
-
                           </div>
                           <div className="info--action-section">
                             <ul className="action-section--list">
                               <li className="list--add-to-cart">
-                                <button>Add To Cart</button>
+                                <button className="primary-button sweep-right">Add To Cart</button>
                               </li>
                               <li className="list--track-order">
-                                <button>Track Your Order</button>
+                                <button className="primary-button sweep-right">Track Your Order</button>
                               </li>
                               <li className="list--tracking-number">
                                 <p>Tracking #:{'\u00A0'}
