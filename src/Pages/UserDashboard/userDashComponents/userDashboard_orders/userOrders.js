@@ -71,11 +71,21 @@ function UserOrders({ location }) {
                 <table className="results-table--container">
                   <thead className="results-table__header">
                     <tr className="header--row">
-                      <th className="header__date">Order Placed</th>
-                      <th className="header__total">Order Total</th>
-                      <th className="header__ship-to">Ship To</th>
-                      <th className="header__bill-to">Bill To</th>
-                      <th className="header__status">Status</th>
+                      <th className="header__date">
+                        <p>Order Placed</p>
+                      </th>
+                      <th className="header__total">
+                        <p>Order Total</p>
+                      </th>
+                      <th className="header__ship-to">
+                        <p>Ship To</p>
+                      </th>
+                      <th className="header__bill-to">
+                        <p>Bill To</p>
+                      </th>
+                      <th className="header__status">
+                        <p>Status</p>
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="results-table__body">
@@ -85,8 +95,9 @@ function UserOrders({ location }) {
                         <p>{moment().format('LLL')}</p>
                       </td>
                       <td className="row__cell-total">
-                        <FontAwesome name="usd" />{'\u00A0'}
-                        120.00
+                        <FontAwesome name="usd" />
+                        {'\u00A0'}
+                        <p>120.00</p>
                       </td>
                       <td className="row__cell-ship-to">
                         <p>1400012, 東京都品川...</p>
@@ -96,6 +107,53 @@ function UserOrders({ location }) {
                       </td>
                       <td className="row__cell-status">
                         <p>Shipped</p>
+                      </td>
+                    </tr>
+                    <tr className="body_row--product">
+                      <td className="product__info" colSpan="5">
+                        <div className="info--container">
+                          <div className="info--product">
+
+                          </div>
+                          <div className="info--action-section">
+                            <ul className="action-section--list">
+                              <li className="list--add-to-cart">
+                                <button>Add To Cart</button>
+                              </li>
+                              <li className="list--track-order">
+                                <button>Track Your Order</button>
+                              </li>
+                              <li className="list--tracking-number">
+                                <p>Tracking #:{'\u00A0'}
+                                  <span className="order-number--tracking">
+                                    {/* NOTE: Dyanmic */}
+                                    123123123
+                                  </span>
+                                </p>
+                              </li>
+                              <li className="list--order-number">
+
+                                {/* NOTE: RR address = Dynamic */}
+                                <p>Order #:{'\u00A0'}</p>
+
+                                {/* NOTE: Dyanmic */}
+                                <Link
+                                  to={`/${123123123}`} className="order-number--link"
+                                >123123123</Link>
+                              </li>
+                              <li className="list--order-invoice">
+
+                                {/* NOTE: RR address = Dynamic */}
+                                <p>Invoice #:{'\u00A0'}</p>
+
+                                {/* NOTE: Dyanmic */}
+                                <Link
+                                  to={`/${123123123}`} className="order-number--invoice"
+                                >123123123</Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
