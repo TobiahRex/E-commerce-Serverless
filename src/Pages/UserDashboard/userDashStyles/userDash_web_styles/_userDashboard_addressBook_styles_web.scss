@@ -66,6 +66,7 @@
     & .dashboard--container {
       width: 100%;
       box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+
       & .dashboard--title {
         @include prefixflex();
         justify-content: flex-start;
@@ -73,7 +74,34 @@
         padding-left: 3em;
         height: 7.5em;
         border-bottom: 1px solid rgba(0,0,0,.1);
-        
+      }
+
+      & .address__form--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        & .address__left--container,
+        .address__right--container {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          margin-top: 3em;
+          width: 40%;
+        }
+      }
+
+      & .address__address-same--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+      }
+
+      & .address__action-section--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
       }
     }
   }
