@@ -10,11 +10,7 @@
       ],
     },
     "production": {
-      "plugins": [
-        "transform-react-jsx-source",
-        "transform-react-display-name",
-        "transform-export-extensions"
-      ],
+      "plugins": [],
     }
   }
 }
