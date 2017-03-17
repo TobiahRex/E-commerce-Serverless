@@ -73,6 +73,9 @@
     "webpack-hot-middleware": "^2.17.1"
   },
   "dependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.0",
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",
     "copy-files": "*",
