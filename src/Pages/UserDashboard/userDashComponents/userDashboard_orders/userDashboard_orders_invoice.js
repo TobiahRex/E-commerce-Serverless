@@ -19,7 +19,7 @@ export default function UserOrderTracking() {
 
       <div className="dashboard__header--status">
         <h2>
-          <i>Packaging</i>
+          <i>Delivered</i>
         </h2>
       </div>
 

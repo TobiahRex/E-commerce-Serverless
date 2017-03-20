@@ -1,4 +1,5 @@
 .dashboard__order-invoice {
+  padding: 0 2em 4em 2em;
   & .dashboard__header-title {
     @include prefixflex();
     justify-content: flex-start;
@@ -32,7 +33,7 @@
     border-bottom: 1px solid rgba(0,0,0,.15);
     & .tracking__serials,
     .tracking__price {
-      height: 4em;
+      height: 5em;
       width: 50%;
       padding: 2em;
     }
@@ -40,10 +41,152 @@
       @include prefixflex();
       justify-content: flex-end;
       align-items: flex-end;
+      & p {
+        font-size: 2em;
+      }
     }
   }
 
   & .invoice__addresses {
-
+    @include prefixflex();
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 2em;
+    & .addresses--shipto,
+    .addresses--billto {
+      max-width: 35em;
+      width: 100%;
+      & fieldset {
+        height: 22em;
+        border-color: $p-blue;
+        border-style: solid;
+        & legend {
+          & p {
+            font-size: 2em;
+            font-weight: 400;
+          }
+        }
+        & div {
+          & p {
+            font-weight: 200;
+          }
+        }
+        & .shipto__name,
+        .billto__name,
+        .shipto__city-prefecture,
+        .billto__city-prefecture,
+        .shipto__telephone,
+        .billto__telephone {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+      }
+    }
   }
+
+  & .invoice__order-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em auto;
+    & .order-summary--fieldset {
+      border-color: $p-blue;
+      border-style: solid;
+      & .order-summary--legend {
+        & p {
+          font-size: 2em;
+          font-weight: 400;
+        }
+      }
+      & .order-summary__table {
+        border-collapse: collapse;
+        & .table--thead {
+          & tr {
+            border-bottom: 1px solid rgba(0,0,0,.15);
+            & th {
+              & p {
+                font-size: 1.6em;
+                font-weight: 200;
+              }
+            }
+          }
+        }
+        & .table--body {
+          & .body--shipping-status-row {
+            height: 4em;
+            background-color: $s-white;
+            & td {
+              width: 70%;
+              text-align: center;
+            }
+            & p {
+              font-weight: 200;
+              & .tracking-id {
+                font-weight: 200;
+                color: $p-red;
+                &:hover,
+                &:focus,
+                &:active {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+          & .body--product-row {
+            height: 10em;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & td {
+              text-align: center;
+              & p {
+                font-weight: 200;
+              }
+              & .product-row__list {
+                margin: 0;
+                list-style-type: none;
+                & .list--nic-strength {
+                  p {
+                    font-style: italic;
+                    font-size: 1.2em;
+                    font-weight: 200;
+                  }
+                }
+                & .list--sku {
+                  & p {
+                    font-size: 1em;
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+            & td:nth-child(2) {
+              text-align: left;
+            }
+            & td:nth-child(3) {
+              text-align: right;
+            }
+          }
+          & .body--total-analysis {
+            & td {
+              text-align: right;
+              & .total-analysis--list-title,
+              .total-analysis--list-value {
+                margin: 0;
+                list-style-type: none;
+                & li {
+                  & p {
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
 }
