@@ -26,13 +26,11 @@ function OpenOrders() {
               <p>Packaging</p>
             </div>
           </li>
-          {/* <li className="triangle-right" /> */}
           <li className="list--option">
             <div>
               <p>Shipped</p>
             </div>
           </li>
-          {/* <li className="triangle-right" /> */}
           <li className="list--option">
             <div>
               <p>Delivered</p>

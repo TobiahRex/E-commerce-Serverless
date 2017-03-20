@@ -93,4 +93,32 @@
       }
     }
   }
+  & .order-tracking__latest-activity {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    & .activity--table {
+      border-collapse: collapse;
+      width: 100%;
+      & .table__header {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        width: 100%;
+        text-align: center;
+        & .header-row {
+          height: 6em;
+          & td {
+            width: 33%;
+            & p {
+              font-weight: 400;
+              font-size: 2em;
+            }
+          }
+        }
+      }
+      & .table__body {
+
+      }
+    }
+  }
 }

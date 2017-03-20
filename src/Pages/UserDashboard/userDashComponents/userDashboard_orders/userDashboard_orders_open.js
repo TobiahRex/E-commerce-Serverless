@@ -46,7 +46,7 @@ function OpenOrders() {
           </div>
         </div>
       </div>
-      
+
       <div className="dashboard__results-table">
         <table className="results-table--container">
           <thead className="results-table__header">

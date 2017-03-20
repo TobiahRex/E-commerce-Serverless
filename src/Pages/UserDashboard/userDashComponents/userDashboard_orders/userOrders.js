@@ -45,8 +45,8 @@ function UserOrders({ location }) {
                 </button>
               </div>
               {/* <OpenOrders /> */}
-              {/* <ClosedOrders /> */}
               <OrderTracking />
+              <ClosedOrders />
 
             </div>
           </div>
