@@ -1,3 +1,49 @@
-.dashboard__order-tracking {
-  
+.dashboard__order-invoice {
+  & .dashboard__header-title {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    height: 6em;
+    & h2 {
+      margin-left: 1em;
+    }
+  }
+
+  & .dashboard__header {
+    @include prefixflex();
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+  }
+
+  & .dashboard__header--status {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    height: 6em;
+    width: 100%;
+  }
+
+  & .dashboard__header--tracking {
+    @include prefixflex();
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    & .tracking__serials,
+    .tracking__price {
+      height: 4em;
+      width: 50%;
+      padding: 2em;
+    }
+    & .tracking__price {
+      @include prefixflex();
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+  }
+
+  & .invoice__addresses {
+
+  }
 }

@@ -18,7 +18,7 @@ function OpenOrders() {
         <h5>Shipped #: {moment().format('LLL')}</h5>
         <h5>Tracking #: 123123123123</h5>
       </div>
-      
+
       {/* NOTE: The background-colors for borders need to be dynamically created. */}
       <div className="order-tracking__status-bar">
         <ul className="status-bar--list">
