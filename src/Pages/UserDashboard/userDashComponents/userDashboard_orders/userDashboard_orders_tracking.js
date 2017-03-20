@@ -11,7 +11,7 @@ function OpenOrders() {
   return (
     <div className="dashboard__order-tracking">
       <div className="dashboard__header-title">
-        <h3>Track Your Order</h3>
+        <h2>Track Your Order</h2>
       </div>
 
       <div className="order-tracking__header">
@@ -19,6 +19,7 @@ function OpenOrders() {
         <h5>Tracking #: 123123123123</h5>
       </div>
 
+      {/* NOTE: The background-colors for borders need to be dynamically created. */}
       <div className="order-tracking__status-bar">
         <ul className="status-bar--list">
           <li className="list--option">
@@ -44,17 +45,18 @@ function OpenOrders() {
           <thead className="table__header">
             <tr className="header-row">
               <td className="header--location">
-                <p>Location</p>
+                <h3>Location</h3>
               </td>
               <td className="header--date">
-                <p>Date (YYYYMMDD)</p>
+                <h3>Date (YYYYMMDD)</h3>
               </td>
               <td className="header--activity">
-                <p>Activity</p>
+                <h3>Activity</h3>
               </td>
             </tr>
           </thead>
           <tbody className="table__body">
+            {/* NOTE: Table row needs to be dynamically generated. */}
             <tr className="body--row">
               <td className="body--location">
                 <p>Los Angeles, CA</p>

@@ -1,11 +1,13 @@
 .dashboard__order-tracking {
+  padding: 0 2em 4em 2em;
   & .dashboard__header-title {
     @include prefixflex();
     justify-content: flex-start;
     align-items: center;
     height: 5em;
     border-bottom: 1px solid rgba(0,0,0,.25);
-    & h3 {
+    & h2 {
+      color: $p-blue;
       font-weight: 400;
       margin-left: 1em;
     }
@@ -117,7 +119,11 @@
         }
       }
       & .table__body {
-
+        text-align: center;
+        & .body--row {
+          height: 3em;
+          border-bottom: 1px solid rgba(0,0,0,.1);
+        }
       }
     }
   }
