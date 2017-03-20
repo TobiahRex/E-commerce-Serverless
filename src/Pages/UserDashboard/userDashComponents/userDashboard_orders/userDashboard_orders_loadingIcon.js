@@ -9,9 +9,9 @@ function LoadingIcon() {
   return (
     <div className="dashboard__loading-container">
       <div className="dashboard__loading-icon">
-        <FontAwesome name="" />
+        <FontAwesome name="spinner" />
         <div className="loading-msg">
-          Loading Your Orders...
+          <p>Loading Your Orders...</p>
         </div>
       </div>
     </div>

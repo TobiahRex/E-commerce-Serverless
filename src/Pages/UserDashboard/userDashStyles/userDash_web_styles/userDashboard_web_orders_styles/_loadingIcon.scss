@@ -5,12 +5,26 @@
   padding-top: 4em;
   min-height: 40em;
   & .dashboard__loading-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 26em;
-    width: 200em;
+    width: 20em;
+    box-shadow: 0 1px 15px rgba(0,0,0,.25);
+    border-color: $p-white;
     & span, .loading-msg {
       display: flex;
       justify-content: center;
       align-items: center;
+      & p {
+        font-size: 1.6em;
+      }
+    }
+    & span {
+      align-self: flex-start;
+      font-size: 20em;
+      color: $p-blue;
     }
   }
 }

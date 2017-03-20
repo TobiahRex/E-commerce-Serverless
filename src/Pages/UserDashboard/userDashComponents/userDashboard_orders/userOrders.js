@@ -8,6 +8,7 @@ import OpenOrders from './userDashboard_orders_open';
 import ClosedOrders from './userDashboard_orders_closed';
 import OrderTracking from './userDashboard_orders_tracking';
 import InvoiceOrders from './userDashboard_orders_invoice';
+import LoadingIcon from './userDashboard_orders_loadingIcon';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -48,7 +49,8 @@ function UserOrders({ location }) {
               {/* <OpenOrders /> */}
               {/* <OrderTracking /> */}
               {/* <ClosedOrders /> */}
-              <InvoiceOrders />
+              {/* <InvoiceOrders /> */}
+              <LoadingIcon />
 
             </div>
           </div>
