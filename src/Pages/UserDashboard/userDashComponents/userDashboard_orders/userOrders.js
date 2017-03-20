@@ -7,6 +7,7 @@ import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 import OpenOrders from './userDashboard_orders_open';
 import ClosedOrders from './userDashboard_orders_closed';
 import OrderTracking from './userDashboard_orders_tracking';
+import InvoiceOrders from './userDashboard_orders_invoice';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -45,8 +46,9 @@ function UserOrders({ location }) {
                 </button>
               </div>
               {/* <OpenOrders /> */}
-              <OrderTracking />
+              {/* <OrderTracking /> */}
               {/* <ClosedOrders /> */}
+              <InvoiceOrders />
 
             </div>
           </div>
