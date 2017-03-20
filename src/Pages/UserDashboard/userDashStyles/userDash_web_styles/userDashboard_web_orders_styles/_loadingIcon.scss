@@ -1,0 +1,16 @@
+.dashboard__loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4em;
+  min-height: 40em;
+  & .dashboard__loading-icon {
+    height: 26em;
+    width: 200em;
+    & span, .loading-msg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
