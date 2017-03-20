@@ -6,6 +6,7 @@ import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 import OpenOrders from './userDashboard_orders_open';
 import ClosedOrders from './userDashboard_orders_closed';
+import OrderTracking from './userDashboard_orders_tracking';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -39,9 +40,14 @@ function UserOrders({ location }) {
                 <button className="tabs--open-orders sweep-right">
                   <p>Open Orders</p>
                 </button>
+                <button className="tabs--order-tracking sweep-right">
+                  <p>Order Tracking</p>
+                </button>
               </div>
               {/* <OpenOrders /> */}
-              <ClosedOrders />
+              {/* <ClosedOrders /> */}
+              <OrderTracking />
+
             </div>
           </div>
 

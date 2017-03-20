@@ -237,7 +237,7 @@ function UserAddressBook({ location }) {
 
               <div className="address__action-section--container">
                 <div className="action-section__back-btn">
-                  <button className="back-btn primary-flex-button">
+                  <button className="back-btn primary-flex-button sweep-right">
                     <span className="flex-parent-btn">
                       <FontAwesome name="angle-double-left" />
                       {'\u00A0'}
@@ -248,7 +248,7 @@ function UserAddressBook({ location }) {
 
 
                 <div className="action-section__save-btn">
-                  <button className="save-btn primary-flex-button">
+                  <button className="save-btn primary-flex-button sweep-right">
                     Save Addresses
                   </button>
                 </div>

@@ -1,0 +1,100 @@
+import React, { PropTypes } from 'react';
+import { Link, browserHistory } from 'react-router';
+import FontAwesome from 'react-fontawesome';
+import moment from 'moment';
+
+const propTypes = {
+  // location: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+function OpenOrders() {
+  return (
+    <div className="dashboard__order-tracking">
+      <div className="dashboard__header-title">
+        <h3>Track Your Order</h3>
+      </div>
+
+      <div className="order-tracking__header">
+        <h5>Shipped #: {moment().format('LLL')}</h5>
+        <h5>Tracking #: 123123123123</h5>
+      </div>
+
+      <div className="order-tracking__status-bar">
+        <ul className="status-bar--list">
+          <li className="list--option">
+            <div>
+              <p>Packaging</p>
+            </div>
+          </li>
+          {/* <li className="triangle-right" /> */}
+          <li className="list--option">
+            <div>
+              <p>Shipped</p>
+            </div>
+          </li>
+          {/* <li className="triangle-right" /> */}
+          <li className="list--option">
+            <div>
+              <p>Delivered</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div className="order-tracking__latest-activity">
+        <table className="activity--table">
+          <thead className="table__header">
+            <tr className="header-row">
+              <td className="header--location">
+                <p>Location</p>
+              </td>
+              <td className="header--date">
+                <p>Date (YYYYMMDD)</p>
+              </td>
+              <td className="header--activity">
+                <p>Activity</p>
+              </td>
+            </tr>
+          </thead>
+          <tbody className="table__body">
+            <tr className="body--row">
+              <td className="body--location">
+                <p>Los Angeles, CA</p>
+              </td>
+              <td className="body--date">
+                <p>20171017</p>
+              </td>
+              <td className="body--activity">
+                <p>Arrived at Transit Point</p>
+              </td>
+            </tr>
+            <tr className="body--row">
+              <td className="body--location">
+                <p>Tokyo, Japan</p>
+              </td>
+              <td className="body--date">
+                <p>20171017</p>
+              </td>
+              <td className="body--activity">
+                <p>Arrived</p>
+              </td>
+            </tr>
+            <tr className="body--row">
+              <td className="body--location">
+                <p>Kansai, Japan</p>
+              </td>
+              <td className="body--date">
+                <p>20171017</p>
+              </td>
+              <td className="body--activity">
+                <p>Arrived At Destination</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+OpenOrders.propTypes = propTypes;
+export default OpenOrders;
