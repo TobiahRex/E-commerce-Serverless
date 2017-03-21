@@ -113,7 +113,7 @@ function LoadingIcon() {
               </button>
             </div>
             <div className="desc--sec-title">
-              <h3>Secondary Product Title</h3>
+              <h3>Nicotine Strength: 6<i>mg</i> </h3>
               <button className="delete-review sweep-right medium-size-btn">
                 Delete Review
               </button>
@@ -127,8 +127,9 @@ function LoadingIcon() {
                 Buy Again
               </button>
             </div>
+            {/* NOTE: Dynamically set the value of the input. */}
             <div className="desc--product-details">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
             </div>
           </div>
         </div>

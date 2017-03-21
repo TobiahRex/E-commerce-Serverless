@@ -20,7 +20,10 @@
         align-items: center;
         height: 1.5em;
         width: 1.5em;
+        font-weight: 400;
+        background-color: $p-white;
         border: 1px solid rgba(0,0,0,.25);
+        border-radius: 4px 4px 4px 4px;
       }
     }
   }
@@ -124,12 +127,23 @@
           margin-right: .5em;
         }
         & .stars--container {
+          border-radius: 4px 4px 4px 4px;
+          border: 1px solid rgba(0,0,0,.25);
+          background-color: white;
+          padding: 0 .5em;
           & button {
             border: none;
             cursor: pointer;
             padding: 0;
             margin: 0;
             background-color: transparent;
+            &:hover,
+            &:active,
+            &:focus {
+              & span {
+                color: $p-blue;
+              }
+            }
             & span {
               color: $p-red;
               font-size: 2em;
@@ -143,7 +157,10 @@
           color: $p-blue;
           font-family: $p-font;
           font-size: 2em;
-          font-weight: bold;
+          letter-spacing: .05em;
+          border-radius: 4px 4px 4px 4px;
+          border: 1px solid rgba(0,0,0,.25);
+          padding-left: .25em;
         }
       }
     }
@@ -186,8 +203,13 @@
           min-height: 5.5em;
           width: 100%;
           padding: 1em 2em;
-          & p {
+          & textarea {
+            color: $p-blue;
             font-size: 1.6em;
+            width: 100%;
+            height: 5.5em;
+            border-radius: 4px 4px 4px 4px;
+            border: 1px solid rgba(0,0,0,.25);
           }
         }
       }
