@@ -7,7 +7,7 @@ const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-function OpenOrders() {
+function OrderTracking() {
   return (
     <div className="dashboard__order-tracking">
       <div className="dashboard__header-title">
@@ -96,5 +96,5 @@ function OpenOrders() {
     </div>
   );
 }
-OpenOrders.propTypes = propTypes;
-export default OpenOrders;
+OrderTracking.propTypes = propTypes;
+export default OrderTracking;

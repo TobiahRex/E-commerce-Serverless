@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
-export default function UserOrderTracking() {
+export default function InvoiceOrders() {
   return (
     <div className="dashboard__order-invoice">
       <div className="dashboard__header-title">
@@ -205,7 +205,6 @@ export default function UserOrderTracking() {
           </table>
         </fieldset>
       </div>
-
     </div>
   );
 }

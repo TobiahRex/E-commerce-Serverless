@@ -7,7 +7,7 @@ const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-function OpenOrders() {
+function ClosedOrders() {
   return (
     <div className="dashboard__closed-orders">
       <div className="dashboard__filter">
@@ -156,5 +156,5 @@ function OpenOrders() {
     </div>
   );
 }
-OpenOrders.propTypes = propTypes;
-export default OpenOrders;
+ClosedOrders.propTypes = propTypes;
+export default ClosedOrders;

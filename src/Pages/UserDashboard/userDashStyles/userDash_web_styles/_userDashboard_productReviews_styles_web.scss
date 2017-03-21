@@ -3,62 +3,7 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  & .body__sidebar {
-    @include prefixflex();
-    justify-content: center;
-    align-items: center;
-    width: 27.5em;
-    & .sidebar--container {
-      @include prefixflex();
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
-      box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-      background-color: $s-white;
-      padding: 2em 0;
-      & .sidebar__title {
-        @include prefixflex();
-        justify-content: flex-start;
-        align-items: center;
-        height: 7em;
-        width: 24.5em;
-        background-color: $p-blue;
-        & h3 {
-          color: $p-white;
-          margin-left: 1em;
-          font-weight: 200;
-        }
-      }
-      & .sidebar__menu-list {
-        @include prefixflex();
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        list-style-type: none;
-        margin: 1.5em 0 0 1em;
-        padding: 0;
-        width: 100%;
-        max-width: 24em;
-        & li:nth-child(1) {
-          margin: 0;
-        }
-        & li {
-          margin-top: 1em;
-          padding: 0 .5em 0 .5em;
-          & a {
-            text-shadow: 1px 1px 1px rgba(0,0,0,.15);
-            &:hover {
-              & p {
-                color: $p-white;
-                font-weight: 200;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  @import './userDashboard_sidebar_styles_web';
   & .body__dashboard {
     max-width: 80em;
     width: 100%;
@@ -66,6 +11,239 @@
     & .dashboard--container {
       width: 100%;
       box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+      & .dashboard--title {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        height: 7.5em;
+        border-bottom: 1px solid rgba(0,0,0,.15);
+        padding-left: 3em;
+      }
+      & .dashboard__reviews-container {
+        padding: 0 2em 4em 2em;
+        & .reviews__msg {
+          padding: 2em;
+        }
+
+        & .reviews__qty {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+          padding: 1em;
+          border-bottom: 1px solid rgba(0,0,0,.1);
+          & h3 {
+            margin-right: 1em;
+          }
+          & div {
+            & h3 {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 1.5em;
+              width: 1.5em;
+              font-weight: 400;
+              background-color: $p-white;
+              border: 1px solid rgba(0,0,0,.25);
+              border-radius: 4px 4px 4px 4px;
+            }
+          }
+        }
+
+        & .reviews--single-review {
+          & .reviews__header {
+            @include prefixflex();
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            & .header--stars {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              margin-left: 1em;
+              & h3 {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 1.5em;
+                width: 1.5em;
+                margin-right: .5em;
+              }
+              & .stars--container {
+                & span {
+                  color: $p-red;
+                  font-size: 2em;
+                }
+              }
+            }
+            & .header--title {
+              & h3 {
+                font-weight: bold;
+              }
+            }
+          }
+          & .reviews__product--info {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & .info--image {
+              padding-top: 1em;
+              align-self: flex-start;
+              & img {
+                box-shadow: 0 3px 14px rgba(0,0,0,.25);
+              }
+            }
+            & .info--desc {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              align-self: flex-start;
+              width: 100%;
+              padding: 1em 2em;
+              & .desc--main-title,
+              .desc--sec-title,
+              .desc--price {
+                @include prefixflex();
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding-bottom: 1em;
+              }
+              & div:nth-child(1),
+              div:nth-child(3) {
+                & h3 {
+                  font-weight: bold;
+                }
+              }
+              & .desc--product-details {
+                min-height: 5.5em;
+                width: 100%;
+                padding: 1em 2em;
+                & p {
+                  font-size: 1.6em;
+                }
+              }
+            }
+          }
+        }
+
+        & .reviews--single-review-edit {
+          & .reviews__header {
+            @include prefixflex();
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            & .header--stars {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              margin-left: 1em;
+              & h3 {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 1.5em;
+                width: 1.5em;
+                margin-right: .5em;
+              }
+              & .stars--container {
+                border-radius: 4px 4px 4px 4px;
+                border: 1px solid rgba(0,0,0,.25);
+                background-color: white;
+                padding: 0 .5em;
+                & button {
+                  border: none;
+                  cursor: pointer;
+                  padding: 0;
+                  margin: 0;
+                  background-color: transparent;
+                  &:hover,
+                  &:active,
+                  &:focus {
+                    & span {
+                      color: $p-blue;
+                    }
+                  }
+                  & span {
+                    color: $p-red;
+                    font-size: 2em;
+                  }
+                }
+              }
+            }
+            & .header--title {
+              & input {
+                width: 20em;
+                color: $p-blue;
+                font-family: $p-font;
+                font-size: 2em;
+                letter-spacing: .05em;
+                border-radius: 4px 4px 4px 4px;
+                border: 1px solid rgba(0,0,0,.25);
+                padding-left: .25em;
+              }
+            }
+          }
+          & .reviews__product--info {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & .info--image {
+              padding-top: 1em;
+              align-self: flex-start;
+              & img {
+                box-shadow: 0 3px 14px rgba(0,0,0,.25);
+              }
+            }
+            & .info--desc {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              align-self: flex-start;
+              width: 100%;
+              padding: 1em 2em;
+              & .desc--main-title,
+              .desc--sec-title,
+              .desc--price {
+                @include prefixflex();
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding-bottom: 1em;
+              }
+              & div:nth-child(1),
+              div:nth-child(3) {
+                & h3 {
+                  font-weight: bold;
+                }
+              }
+              & .desc--product-details {
+                min-height: 5.5em;
+                width: 100%;
+                padding: 1em 2em;
+                & textarea {
+                  color: $p-blue;
+                  font-size: 1.6em;
+                  width: 100%;
+                  height: 5.5em;
+                  border-radius: 4px 4px 4px 4px;
+                  border: 1px solid rgba(0,0,0,.25);
+                }
+              }
+            }
+          }
+        }
+
+        & .reviews__action-section--container {
+          @include prefixflex();
+          justify-content: space-between;
+          align-items: center;
+          padding: 2em;
+        }
+      }
     }
   }
 }

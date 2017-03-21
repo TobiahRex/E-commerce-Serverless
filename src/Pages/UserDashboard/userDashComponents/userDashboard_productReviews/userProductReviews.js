@@ -3,9 +3,10 @@ import 'react-router';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import OrderReviews from './userDashboard_orders_reviews';
 
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 function UserProductReviews({ location }) {
@@ -24,7 +25,10 @@ function UserProductReviews({ location }) {
           <UserSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
-              <h2>Product Reviews</h2>
+              <div className="dashboard--title">
+                <h1>Your Product Reviews</h1>
+              </div>
+              <OrderReviews />
             </div>
           </div>
         </div>

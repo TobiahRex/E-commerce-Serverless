@@ -6,7 +6,7 @@ const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-function LoadingIcon() {
+function OrderReviews() {
   return (
     <div className="dashboard__reviews-container">
       <div className="reviews__msg">
@@ -157,5 +157,5 @@ function LoadingIcon() {
     </div>
   );
 }
-LoadingIcon.propTypes = propTypes;
-export default LoadingIcon;
+OrderReviews.propTypes = propTypes;
+export default OrderReviews;

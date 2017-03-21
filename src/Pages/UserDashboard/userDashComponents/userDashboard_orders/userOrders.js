@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
@@ -9,7 +7,6 @@ import ClosedOrders from './userDashboard_orders_closed';
 import OrderTracking from './userDashboard_orders_tracking';
 import InvoiceOrders from './userDashboard_orders_invoice';
 import LoadingIcon from './userDashboard_orders_loadingIcon';
-import OrderReviews from './userDashboard_orders_reviews';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -47,11 +44,10 @@ function UserOrders({ location }) {
                   <p>Order Tracking</p>
                 </button>
               </div>
-              {/* <OpenOrders /> */}
+              <OpenOrders />
               {/* <OrderTracking /> */}
               {/* <ClosedOrders /> */}
               {/* <InvoiceOrders /> */}
-              <OrderReviews />
               {/* <LoadingIcon /> */}
 
             </div>

@@ -1,5 +1,6 @@
 .dashboard__order-invoice {
   padding: 0 2em 4em 2em;
+
   & .dashboard__header-title {
     @include prefixflex();
     justify-content: flex-start;
@@ -186,7 +187,4 @@
       }
     }
   }
-
-
-
 }
