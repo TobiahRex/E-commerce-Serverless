@@ -30,7 +30,7 @@ function UserNewsletter() {
 
         <div className="action-section__save-btn">
           <button className="save-btn primary-flex-button sweep-right">
-            Save Addresses
+            Save
           </button>
         </div>
       </div>

@@ -18,7 +18,7 @@
           align-items: center;
           height: 7.5em;
           margin-left: 3em;
-          border: 1px solid rgba(0,0,0,.15);
+          border-bottom: 1px solid rgba(0,0,0,.15);
         }
 
         & .newsletter__user-input {
@@ -27,6 +27,7 @@
           align-items: center;
           margin-left: 3em;
           padding: 2em 2em 5em 2em;
+          height: 10em;
           & .user-input__check-box {
             height: 3em;
             width: 3em;
@@ -39,6 +40,12 @@
             margin-left: 1em;
             font-size: 1.8em;
           }
+        }
+        & .newsletter__action-section--container {
+          @include prefixflex();
+          justify-content: space-around;
+          align-items: center;
+          padding: 2em;
         }
       }
     }
