@@ -9,7 +9,7 @@ import UserNewsLetter from '../Pages/UserDashboard/userDashComponents/userDashbo
 import UserProductReviews from '../Pages/UserDashboard/userDashComponents/userDashboard_productReviews/userProductReviews';
 import UserLoginApp from '../Pages/UserDashboard/userDashComponents/userDashboard_loginApp/userLoginApp';
 import UserOrders from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrders';
-import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrderTracking';
+import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userDashboard_orders_tracking';
 import UserLegal from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userLegal';
 
 export default function UserDashboardRoutes() {

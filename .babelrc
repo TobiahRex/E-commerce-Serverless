@@ -10,6 +10,7 @@
       ],
     },
     "production": {
+      "presets": ["stage-2"],
       "plugins": [],
     }
   }
