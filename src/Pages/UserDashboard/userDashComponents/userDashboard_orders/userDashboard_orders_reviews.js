@@ -40,54 +40,53 @@ function LoadingIcon() {
         <div className="info-image">
           <img src="../Images/nj2jp_juice_card_pc.png" alt="Nicotine Juice" />
         </div>
-        <div className="info-desc">
-          <div className="info-desc--main-title ">
-            <p>Main Product Title</p>
+        <div className="info--desc">
+          <div className="desc--main-title">
+            <h2>Main Product Title</h2>
             <button className="edit-review sweep-right medium-size-btn">
               Edit Review
             </button>
           </div>
-          <div className="info-desc--sec-title">
-            <p>Secondary Product Title</p>
+          <div className="desc--sec-title">
+            <h3>Secondary Product Title</h3>
             <button className="delete-review sweep-right medium-size-btn">
               Delete Review
             </button>
           </div>
-          <div className="info-desc--price">
-            <p>
+          <div className="desc--price">
+            <h2>
               <FontAwesome name="usd" />
               12.12
-            </p>
+            </h2>
             <button className="buy-again sweep-right medium-size-btn">
               Buy Again
             </button>
           </div>
-          <div className="info-desc--product-details">
+          <div className="desc--product-details">
             <p>Review Text</p>
           </div>
         </div>
+      </div>
 
-        <div className="reviews__action-section--container">
-          <div className="action-section__back-btn">
-            <button className="back-btn primary-flex-button sweep-right">
-              <span className="flex-parent-btn">
-                <FontAwesome name="angle-double-left" />
-                {'\u00A0'}
-                Back
-              </span>
-            </button>
-          </div>
-
-
-          <div className="action-section__save-btn">
-            <button className="save-btn primary-flex-button sweep-right">
-              Save Addresses
-            </button>
-          </div>
+      <div className="reviews__action-section--container">
+        <div className="action-section__back-btn">
+          <button className="back-btn primary-flex-button sweep-right">
+            <span className="flex-parent-btn">
+              <FontAwesome name="angle-double-left" />
+              {'\u00A0'}
+              Back
+            </span>
+          </button>
         </div>
 
 
+        <div className="action-section__save-btn">
+          <button className="save-btn primary-flex-button sweep-right">
+            Save Addresses
+          </button>
+        </div>
       </div>
+
     </div>
   );
 }
