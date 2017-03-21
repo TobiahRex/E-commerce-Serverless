@@ -133,7 +133,7 @@ function UserAddressBook({ location }) {
                     <label htmlFor="billing-address-type">Billing Address Type</label>
                     <div className="options__ddn--container" id="billing-address-type">
                       <div className="ddn__readout">
-                        <input type="text" className="readout--display" value="US / Military" disabled />
+                        <input type="text"  className="readout--display" value="US / Military" disabled />
                         <button className="readout--btn sweep-right">
                           <FontAwesome name="angle-down" />
                         </button>

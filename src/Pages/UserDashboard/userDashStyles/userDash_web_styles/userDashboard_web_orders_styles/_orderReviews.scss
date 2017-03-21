@@ -1,0 +1,18 @@
+.dashboard__reviews-container {
+  padding: 0 2em 4em 2em;
+  & .reviews__msg {
+    padding: 2em;
+  }
+
+  & .reviews__qty {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .reviews__header {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+  }
+}
