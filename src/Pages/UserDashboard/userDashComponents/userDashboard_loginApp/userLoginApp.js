@@ -67,24 +67,24 @@ function UserLoginApp({ location }) {
                 </div>
               </div>
 
-                <div className="login-app__action-section--container">
-                  <div className="action-section__back-btn">
-                    <button className="back-btn primary-flex-button sweep-right">
-                      <span className="flex-parent-btn">
-                        <FontAwesome name="angle-double-left" />
-                        {'\u00A0'}
-                        Back
-                      </span>
-                    </button>
-                  </div>
-
-
-                  <div className="action-section__save-btn">
-                    <button className="save-btn primary-flex-button sweep-right">
-                      Save Addresses
-                    </button>
-                  </div>
+              <div className="login-app__action-section--container">
+                <div className="action-section__back-btn">
+                  <button className="back-btn primary-flex-button sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="angle-double-left" />
+                      {'\u00A0'}
+                      Back
+                    </span>
+                  </button>
                 </div>
+
+
+                <div className="action-section__save-btn">
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Save Addresses
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

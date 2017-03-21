@@ -3,6 +3,7 @@ import 'react-router';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import NewsletterBody from './userNewsLetter_body';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any),
@@ -24,7 +25,7 @@ function UserNewsletter({ location }) {
           <UserSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
-              <h2>Newsletter Subscriptions</h2>
+              <NewsletterBody />
             </div>
           </div>
         </div>
