@@ -37,12 +37,12 @@ function LoadingIcon() {
       </div>
 
       <div className="reviews__product--info ">
-        <div className="info-image">
+        <div className="info--image">
           <img src="../Images/nj2jp_juice_card_pc.png" alt="Nicotine Juice" />
         </div>
         <div className="info--desc">
           <div className="desc--main-title">
-            <h2>Main Product Title</h2>
+            <h3>Strawberries {'N\''} Cream</h3>
             <button className="edit-review sweep-right medium-size-btn">
               Edit Review
             </button>
@@ -54,16 +54,16 @@ function LoadingIcon() {
             </button>
           </div>
           <div className="desc--price">
-            <h2>
+            <h3>
               <FontAwesome name="usd" />
               12.12
-            </h2>
+            </h3>
             <button className="buy-again sweep-right medium-size-btn">
               Buy Again
             </button>
           </div>
           <div className="desc--product-details">
-            <p>Review Text</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
         </div>
       </div>
