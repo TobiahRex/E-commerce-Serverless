@@ -20,8 +20,38 @@
         border-bottom: 1px solid rgba(0,0,0,.15);
       }
       & .manage-login__body {
-        
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & .manage-login__header {
+          height: 9em;
+          margin: 2em auto;
+          padding: 2em;
+          text-align: center;
+          & p {
+            font-size: 1.8em;
+          }
+        }
       }
+
+      & .manage-long__methods--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        & .methods__title {
+
+        }
+        & .methods--container {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+
     }
   }
 }
