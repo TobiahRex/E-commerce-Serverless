@@ -38,8 +38,33 @@ function UserManageLogin({ location }) {
                     <h3>Login Methods</h3>
                   </div>
 
-                  <div className="methods__email-password">
-                    
+                  <div className="methods--container">
+                    <div className="methods__email-password">
+                      <fieldset className="email-password--container">
+                        <legend className="email-password--legend">
+                          <p>Email & Password</p>
+                        </legend>
+                        <div className="email-password__input--username">
+                          <label htmlFor="username">Username</label>
+                          <input type="text" id="username" />
+                        </div>
+                        <div className="email-password__input--current-password">
+                          <label htmlFor="current-password">Current Password</label>
+                          <input type="text" id="current-password" />
+                        </div>
+                        <div className="email-password__input--new-password">
+                          <label htmlFor="new-password">New Password</label>
+                          <input type="text" id="new-password" />
+                        </div>
+                        <div className="email-password__input--confirm-new">
+                          <label htmlFor="confirm-new">Confirm New Password</label>
+                          <input type="text" id="confirm-new" />
+                        </div>
+                      </fieldset>
+                    </div>
+                    <div className="methods__social-login">
+
+                    </div>
                   </div>
                 </div>
               </div>
