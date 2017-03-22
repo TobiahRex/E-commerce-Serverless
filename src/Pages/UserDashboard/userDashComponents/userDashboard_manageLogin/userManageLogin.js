@@ -24,7 +24,25 @@ function UserManageLogin({ location }) {
           <UserSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
-              <h2>Manage Login</h2>
+              <div className="manage-login__title">
+                <h1>Manage Login</h1>
+              </div>
+              <div className="manage-login__body">
+                <div className="manage-login__header">
+                  <p> From this page, you can edit your Username, reset your Password, or add another  form of login to your account.  We suggest you have 2 forms of loggin in to your account.
+                  </p>
+                </div>
+
+                <div className="manage-login__methods--container">
+                  <div className="methods__title">
+                    <h3>Login Methods</h3>
+                  </div>
+
+                  <div className="methods__email-password">
+                    
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ export default function UserReturnPolicy() {
               <div className="legal__title">
                 <h1>Return Policy</h1>
               </div>
-              
+
               <div className="legal__body">
                 <p>
                   RETURNS AND EXCHANGES
