@@ -14,7 +14,7 @@ function ClosedOrders() {
         {/* TODO: These 3 element will be rendered dynamically. */}
         <div className="filter__results-msg">
           <p className="result-msg--number">99</p>
-          <p className="results-msg--periodcity">Completed Order(s)</p>
+          <p className="results-msg--periodcity">Completed</p>
           <p className="results-msg--rest">placed in the last</p>
         </div>
         <div className="filter__periodcity-ddn--container">

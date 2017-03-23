@@ -30,18 +30,18 @@ function UserOrders({ location }) {
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">
-                <h1>Your Order</h1>
+                <h1>Your Orders</h1>
               </div>
 
               <div className="dashboard__tabs">
                 <button className="tabs--completed-orders sweep-right">
-                  <p>Completed Orders</p>
+                  <p>Completed</p>
                 </button>
                 <button className="tabs--open-orders sweep-right">
-                  <p>Open Orders</p>
+                  <p>Open</p>
                 </button>
                 <button className="tabs--order-tracking sweep-right">
-                  <p>Order Tracking</p>
+                  <p>Tracking</p>
                 </button>
               </div>
               <OpenOrders />
