@@ -35,20 +35,39 @@
         }
       }
 
-      & .manage-long__methods--container {
+      & .manage-login__methods--container {
         @include prefixflex();
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
-        width: 100%;
+        width: 80%;
         & .methods__title {
-
+          align-self: flex-start;
+          padding: 0 0 2em 0;
         }
         & .methods--container {
           @include prefixflex();
           justify-content: center;
           align-items: center;
+          width: 100%;
+          & .methods__email-password {
+            width: 50%;
+            & .email-password--container {
+              font-size: 1.8em;
+            }
+          }
+          & .methods__social-login {
+            width: 50%;
+            margin-left: 2em;
+          }
         }
+      }
+
+      & .newsletter__action-section--container {
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        padding: 2em auto;
       }
 
 
