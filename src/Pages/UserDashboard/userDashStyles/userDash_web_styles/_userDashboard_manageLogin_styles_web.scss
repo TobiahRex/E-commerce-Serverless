@@ -44,6 +44,12 @@
         & .methods__title {
           align-self: flex-start;
           padding: 0 0 2em 0;
+          height: 4em;
+          width: 17em;
+          background-color: $p-blue;
+          & h3 {
+            color: $p-white;
+          }
         }
         & .methods--container {
           @include prefixflex();
@@ -54,7 +60,7 @@
             width: 50%;
             & .email-password--container {
               border-color: $p-blue;
-              & legend {
+              & .email-password--title {
                 & p {
                   font-size: 1.8em;
                 }
@@ -89,11 +95,13 @@
           & .methods__social-login {
             width: 50%;
             margin-left: 2em;
+            align-self: flex-start;
             & .social-login--container {
               @include prefixflex();
               justify-content: center;
               align-items: center;
               flex-direction: column;
+              min-height: 30em;
               border-color: $p-blue;
               & legend {
                 & p {
@@ -104,6 +112,10 @@
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
+                flex-direction: column;
+                & div:nth-child(1) {
+                  margin-top: 2em;
+                }
                 & .social-login--facebook,
                 .social-login--twitter,
                 .social-login--instagram,
@@ -111,6 +123,8 @@
                   @include prefixflex();
                   justify-content: flex-start;
                   align-items: center;
+                  width: 50%;
+                  margin-bottom: 2em;
                   & button {
                     @include prefixflex();
                     justify-content: center;
@@ -135,6 +149,9 @@
                   }
                   & label {
                     margin-left: 1em;
+                    & p {
+                      font-size: 1.8em;
+                    }
                   }
                 }
               }

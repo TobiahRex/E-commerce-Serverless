@@ -43,10 +43,10 @@ function UserManageLogin({ location }) {
 
                   <div className="methods--container">
                     <div className="methods__email-password">
-                      <fieldset className="email-password--container">
-                        <legend className="email-password--legend">
+                      <div className="email-password--container">
+                        <div className="email-password--title">
                           <p>Email & Password</p>
-                        </legend>
+                        </div>
                         <div className="email-password__input--username">
                           <label htmlFor="username">
                             <p>Username</p>
@@ -71,18 +71,18 @@ function UserManageLogin({ location }) {
                           </label>
                           <input type="password" id="confirm-new" />
                         </div>
-                      </fieldset>
+                      </div>
                     </div>
 
                     <div className="methods__social-login">
-                      <fieldset className="social-login--container">
-                        <legend className="social-login--legend">
+                      <div className="social-login--container">
+                        <div className="social-login--title">
                           <p>Social Login</p>
-                        </legend>
+                        </div>
                         <div className="social-login--options">
                           <div className="social-login--facebook">
                             <button type="text" id="facebook-checkbox">
-                              <FontAwesome name="plus" />
+                              <FontAwesome name="plus" className="social-login--ex-icon" />
                             </button>
                             <label htmlFor="facebook-checkbox">
                               <p>Facebook</p>
@@ -90,7 +90,7 @@ function UserManageLogin({ location }) {
                           </div>
                           <div className="social-login--twitter">
                             <button type="text" id="twitter-checkbox">
-                              <FontAwesome name="plus" />
+                              <FontAwesome name="plus" className="social-login--ex-icon" />
                             </button>
                             <label htmlFor="twitter-checkbox">
                               <p>Twitter</p>
@@ -98,7 +98,7 @@ function UserManageLogin({ location }) {
                           </div>
                           <div className="social-login--instagram">
                             <button type="text" id="instagram-checkbox">
-                              <FontAwesome name="plus" />
+                              <FontAwesome name="plus" className="social-login--ex-icon" />
                             </button>
                             <label htmlFor="instagram-checkbox">
                               <p>Instagram</p>
@@ -106,14 +106,14 @@ function UserManageLogin({ location }) {
                           </div>
                           <div className="social-login--google">
                             <button type="text" id="google-checkbox">
-                              <FontAwesome name="plus" />
+                              <FontAwesome name="plus" className="social-login--ex-icon" />
                             </button>
                             <label htmlFor="google-checkbox">
                               <p>Google</p>
                             </label>
                           </div>
                         </div>
-                      </fieldset>
+                      </div>
                     </div>
                   </div>
                 </div>
