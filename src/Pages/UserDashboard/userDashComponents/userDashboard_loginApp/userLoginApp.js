@@ -27,7 +27,7 @@ function UserLoginApp({ location }) {
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">
-                <h2>Your Login Apps</h2>
+                <h1>Your Login Apps</h1>
               </div>
 
               <div className="login-app--container">

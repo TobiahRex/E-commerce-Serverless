@@ -2,6 +2,7 @@
   @include prefixflex();
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   @import './userDashboard_sidebar_styles_mobile';
   & .body__dashboard {
@@ -25,6 +26,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         width: 100%;
         & .address__left--container,
         .address__right--container {
@@ -32,9 +34,9 @@
           justify-content: flex-start;
           align-items: center;
           flex-direction: column;
-          margin: 3em auto;
-          width: 40%;
-          height: 72em;
+          padding-bottom: 3em;
+          margin: 1em 0;
+          width: 100%;
           & .options__shipping-address,
           .options__billing-address {
             @include prefixflex();
@@ -120,7 +122,7 @@
           }
           & .left--title,
           .right--title {
-            margin: 4em auto .5em 0;
+            margin: 4em auto .5em 1em;
             align-self: flex-start;
             & h3 {
               font-size: 1.8em;
@@ -149,11 +151,11 @@
             .japan__street {
               @include prefixflex();
               justify-content: flex-start;
-              align-items: flex-start;
+              align-items: center;
               flex-direction: column;
               width: 100%;
               & label {
-                margin: 1em auto .5em 0;
+                margin: 1em auto .5em .5em;
                 color: $p-blue;
                 font-size: 1.8em;
                 font-family: $p-font;
@@ -167,19 +169,22 @@
                 font-family: $p-font;
                 font-weight: 200;
                 padding: 0 0 0 .5em;
+                border: 1px solid rgba(0,0,0,.25);
               }
               & .street__input-alpha {
                 margin-bottom: .5em;
               }
             }
+            & .japan__country,
+            .usa__country {
+              & input {
+                background-color: rgba(0,0,0,.1);
+              }
+            }
           }
         }
         & .address__left--container {
-          margin-right: 1em;
-          border-right: 1px solid rgba(0,0,0,.1);
-        }
-        & .address__right--container {
-          margin-left: 1em;
+          border-bottom: 1px solid rgba(0,0,0,.1);
         }
       }
 
@@ -231,11 +236,10 @@
         @include prefixflex();
         justify-content: space-around;
         align-items: center;
+        flex-direction: column;
         margin: 5em 0 0 0;
-        & .action-section__back-btn {
-          & button {
-
-          }
+        & div:nth-child(1) {
+          margin-bottom: 2em;
         }
       }
     }

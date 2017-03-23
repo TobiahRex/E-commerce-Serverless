@@ -10,7 +10,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+    box-shadow: 0px 0px 15px rgba(0,0,0,.5);
     background-color: $s-white;
     padding: 2em 0;
     & .sidebar__title {
@@ -44,6 +44,9 @@
         padding: 0 .5em 0 .5em;
         & a {
           text-shadow: 1px 1px 1px rgba(0,0,0,.15);
+          & p {
+            font-size: 1.6em;
+          }
           &:hover {
             & p {
               color: $p-white;

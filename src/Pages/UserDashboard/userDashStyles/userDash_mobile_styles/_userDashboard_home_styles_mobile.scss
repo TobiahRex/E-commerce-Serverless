@@ -202,14 +202,14 @@
             align-items: center;
             width: 100%;
             & button {
-              margin: 1em 3.5em 1em 0;
+              margin: 1em 2em 1em 0;
             }
           }
           & .login-methods--social,
           .login-methods--password {
             @include prefixflex();
             justify-content: flex-start;
-            align-items: flex-start;
+            align-items: center;
             flex-direction: column;
             width: 100%;
             & .login-methods--social-list {
@@ -220,6 +220,7 @@
               list-style-type: none;
               padding: 0;
               margin: 0;
+              width: 60%;
               & .social-list--item {
                 @include prefixflex();
                 justify-content: center;
@@ -265,7 +266,7 @@
               align-items: center;
               width: 100%;
               & button {
-                margin: .5em 0 .5em 0;
+                margin: 1em 2em 3em 0;
               }
             }
           }
@@ -282,7 +283,8 @@
               justify-content: flex-start;
               align-items: flex-start;
               flex-direction: column;
-              padding-top: 2em;
+              padding: 1em 0 0 1em;
+              width: 90%;
               & label {
                 color: $p-blue;
                 font-family: $p-font;
@@ -308,16 +310,10 @@
               flex-direction: column;
               width: 100%;
               & button {
-                margin: 1em 0 1em auto;
+                margin: 2em 2em 3em auto;
               }
             }
           }
-          & .login-methods--social {
-            height: 40%;
-          }
-        }
-        & .bottom-third--login-methods {
-          height: 44em;
         }
       }
     }

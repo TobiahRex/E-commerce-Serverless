@@ -26,7 +26,7 @@ function UserAddressBook({ location }) {
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">
-                <h2>Address Book</h2>
+                <h1>Address Book</h1>
               </div>
 
               <div className="address__form--container">
