@@ -95,5 +95,10 @@
     }
   }
 
-  
+  & .dashboard__products--container {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
 }

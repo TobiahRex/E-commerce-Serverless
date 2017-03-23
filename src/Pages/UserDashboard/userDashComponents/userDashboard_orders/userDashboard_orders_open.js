@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
+import MobileOpenOrders from './userDashboard_orders_mobile/userDashboard_orders_open_mobile';
 
 const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -156,4 +157,5 @@ function OpenOrders() {
   );
 }
 OpenOrders.propTypes = propTypes;
+OpenOrders.Mobile = MobileOpenOrders;
 export default OpenOrders;

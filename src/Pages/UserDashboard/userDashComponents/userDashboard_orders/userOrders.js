@@ -32,7 +32,7 @@ function UserOrders({ location }) {
               <div className="dashboard--title">
                 <h1>Your Orders</h1>
               </div>
-              
+
               <div className="dashboard__tabs">
                 <button className="tabs--completed-orders sweep-right">
                   <p>Completed</p>
@@ -44,12 +44,13 @@ function UserOrders({ location }) {
                   <p>Tracking</p>
                 </button>
               </div>
-              <OpenOrders />
+              {/* <OpenOrders /> */}
+              <OpenOrders.Mobile />
               <OrderTracking />
               <ClosedOrders />
               {/* <InvoiceOrders /> */}
               {/* <LoadingIcon /> */}
-
+              
             </div>
           </div>
 
