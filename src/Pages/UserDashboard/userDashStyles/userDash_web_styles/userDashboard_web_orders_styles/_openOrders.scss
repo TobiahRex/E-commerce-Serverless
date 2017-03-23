@@ -106,6 +106,9 @@
           height: 6em;
           & th {
             width: 20%;
+            & h3 {
+              font-weight: bold;
+            }
             & p {
               font-size: 2em;
             }

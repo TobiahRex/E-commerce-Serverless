@@ -42,8 +42,8 @@ function UserLoginApp({ location }) {
                       <div className="app__date">
                         <p>Added {moment().format('LL')}</p>
                       </div>
-                      <div className="app__icon">
-                        <FontAwesome name="facebook" />
+                      <div className="app__icon instagram">
+                        <FontAwesome name="instagram" />
                       </div>
                       <div className="app__delete">
                         <button className="medium-size-btn sweep-right">Delete App</button>

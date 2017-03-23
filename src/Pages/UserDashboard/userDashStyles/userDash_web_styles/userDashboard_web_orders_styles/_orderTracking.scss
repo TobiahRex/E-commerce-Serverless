@@ -111,6 +111,9 @@
           height: 6em;
           & td {
             width: 33%;
+            & h3 {
+              font-weight: bold;
+            }
             & p {
               font-weight: 400;
               font-size: 2em;

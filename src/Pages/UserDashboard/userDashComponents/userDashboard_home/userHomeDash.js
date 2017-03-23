@@ -139,10 +139,10 @@ function UserHomeDash({ location }) {
                   </div>
                   <div className="login-methods--social">
                     <ul className="login-methods--social-list">
-                      <li className="social-list--item">
+                      <li className="social-list--item active facebook">
                         <FontAwesome name="facebook" />
                       </li>
-                      <li className="social-list--item">
+                      <li className="social-list--item active instagram">
                         <FontAwesome name="instagram" />
                       </li>
                       <li className="social-list--item">

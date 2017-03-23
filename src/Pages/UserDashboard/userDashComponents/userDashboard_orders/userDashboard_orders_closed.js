@@ -52,19 +52,19 @@ function ClosedOrders() {
           <thead className="results-table__header">
             <tr className="header--row">
               <th className="header__date">
-                <p>Order Placed</p>
+                <h3>Order Placed</h3>
               </th>
               <th className="header__total">
-                <p>Order Total</p>
+                <h3>Order Total</h3>
               </th>
               <th className="header__ship-to">
-                <p>Shipped To</p>
+                <h3>Shipped To</h3>
               </th>
               <th className="header__bill-to">
-                <p>Billed To</p>
+                <h3>Billed To</h3>
               </th>
               <th className="header__status">
-                <p>Status</p>
+                <h3>Status</h3>
               </th>
             </tr>
           </thead>
