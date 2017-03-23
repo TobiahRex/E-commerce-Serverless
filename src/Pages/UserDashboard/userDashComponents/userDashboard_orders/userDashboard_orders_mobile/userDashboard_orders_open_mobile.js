@@ -59,10 +59,10 @@ function OpenOrders() {
               <p>{'Strawberries N\' Cream'}</p>
             </li>
             <li className="list--data">
-              Nicotine Strength: <i>6</i>{'\u00A0'}mg
+              <p>Nicotine Strength: <i>6</i>{'u00A0'}mg</p>
             </li>
             <li className="list--data">
-              SKU: {uuid()}
+              <p>SKU: {uuid()}</p>
             </li>
           </ul>
         </div>
