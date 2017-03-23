@@ -13,10 +13,10 @@ function OrderTracking() {
       <div className="dashboard__header-title">
         <h2>Track Your Order</h2>
       </div>
-      
+
       <div className="order-tracking__header">
-        <h5>Shipped #: {moment().format('LLL')}</h5>
-        <h5>Tracking #: 123123123123</h5>
+        <h4>Shipped #: {moment().format('LL')}</h4>
+        <h4>Tracking #: 123123123123</h4>
       </div>
 
       {/* NOTE: The background-colors for borders need to be dynamically created. */}

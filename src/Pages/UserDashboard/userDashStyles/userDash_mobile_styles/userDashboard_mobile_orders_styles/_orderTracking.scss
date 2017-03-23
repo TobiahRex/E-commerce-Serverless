@@ -1,5 +1,4 @@
 .dashboard__order-tracking {
-  padding: 0 2em 4em 2em;
   & .dashboard__header-title {
     @include prefixflex();
     justify-content: flex-start;
@@ -16,8 +15,10 @@
     @include prefixflex();
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     margin: 1em 2em;
-    & h5 {
+    & h4 {
+      padding-bottom: 1em;
       color: $p-blue;
       font-weight: 400;
     }
@@ -26,11 +27,11 @@
   & .order-tracking__status-bar {
     & .status-bar--list {
       @include prefixflex();
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
       list-style-type: none;
       position: relative;
-      padding: 2em;
+      padding: 2em 0;
       margin: 0;
       height: 5em;
       & .list--option {
@@ -40,7 +41,7 @@
           align-items: center;
           position: relative;
           height: 5em;
-          width: 22em;
+          width: 7em;
           margin-right: 2.5em;
           background-color: $p-red;
           & p {
@@ -112,7 +113,8 @@
           & td {
             width: 33%;
             & h3 {
-              font-weight: bold;
+              font-size: 1.8em;
+              font-weight: 400;
             }
             & p {
               font-weight: 400;
