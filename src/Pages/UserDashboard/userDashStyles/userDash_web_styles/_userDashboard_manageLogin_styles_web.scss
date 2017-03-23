@@ -72,16 +72,72 @@
                 }
                 & input {
                   height: 1.87em;
+                  width: 90%;
                   padding-left: .7em;
+                  margin-bottom: .7em;
+                  color: $p-blue;
                   font-family: $p-font;
                   font-weight: 200;
                   font-size: 1.6em;
                 }
               }
+              & .email-password__input--confirm-new {
+                margin-bottom: 2em;
+              }
             }
-            & .methods__social-login {
-              width: 50%;
-              margin-left: 2em;
+          }
+          & .methods__social-login {
+            width: 50%;
+            margin-left: 2em;
+            & .social-login--container {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              border-color: $p-blue;
+              & legend {
+                & p {
+                  font-size: 1.8em;
+                }
+              }
+              & .social-login--options {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                & .social-login--facebook,
+                .social-login--twitter,
+                .social-login--instagram,
+                .social-login--google {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: center;
+                  & button {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    height: 3em;
+                    width: 3em;
+                    padding: 0;
+                    border: 0;
+                    border: 1px solid $s-grey;
+                    background-color: $p-white;
+                    cursor: pointer;
+                    margin-left: 1em;
+                    & span {
+                      position: absolute;
+                      top: 3.5px;
+                      left: 4.5px;
+                      color: $p-blue;
+                      font-size: 2.5em;
+                      transform: rotate(45deg);
+                    }
+                  }
+                  & label {
+                    margin-left: 1em;
+                  }
+                }
+              }
             }
           }
         }

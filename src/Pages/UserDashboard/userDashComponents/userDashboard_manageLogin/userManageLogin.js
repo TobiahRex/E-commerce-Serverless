@@ -79,30 +79,39 @@ function UserManageLogin({ location }) {
                         <legend className="social-login--legend">
                           <p>Social Login</p>
                         </legend>
-
-                        <div className="social-login--facebook">
-                          <button type="text" id="facebook-checkbox" />
-                          <label htmlFor="facebook-checkbox">
-                            <p>Facebook</p>
-                          </label>
-                        </div>
-                        <div className="social-login--twitter">
-                          <button type="text" id="twitter-checkbox" />
-                          <label htmlFor="twitter-checkbox">
-                            <p>Twitter</p>
-                          </label>
-                        </div>
-                        <div className="social-login--instagram">
-                          <button type="text" id="instagram-checkbox" />
-                          <label htmlFor="instagram-checkbox">
-                            <p>Instagram</p>
-                          </label>
-                        </div>
-                        <div className="social-login--google">
-                          <button type="text" id="google-checkbox" />
-                          <label htmlFor="google-checkbox">
-                            <p>Google</p>
-                          </label>
+                        <div className="social-login--options">
+                          <div className="social-login--facebook">
+                            <button type="text" id="facebook-checkbox">
+                              <FontAwesome name="plus" />
+                            </button>
+                            <label htmlFor="facebook-checkbox">
+                              <p>Facebook</p>
+                            </label>
+                          </div>
+                          <div className="social-login--twitter">
+                            <button type="text" id="twitter-checkbox">
+                              <FontAwesome name="plus" />
+                            </button>
+                            <label htmlFor="twitter-checkbox">
+                              <p>Twitter</p>
+                            </label>
+                          </div>
+                          <div className="social-login--instagram">
+                            <button type="text" id="instagram-checkbox">
+                              <FontAwesome name="plus" />
+                            </button>
+                            <label htmlFor="instagram-checkbox">
+                              <p>Instagram</p>
+                            </label>
+                          </div>
+                          <div className="social-login--google">
+                            <button type="text" id="google-checkbox">
+                              <FontAwesome name="plus" />
+                            </button>
+                            <label htmlFor="google-checkbox">
+                              <p>Google</p>
+                            </label>
+                          </div>
                         </div>
                       </fieldset>
                     </div>
