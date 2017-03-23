@@ -12,6 +12,8 @@ import UserOrders from '../Pages/UserDashboard/userDashComponents/userDashboard_
 import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userDashboard_orders_tracking';
 import UserLegal from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userLegal';
 
+import UserFaqs from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userFaqs';
+
 export default function UserDashboardRoutes() {
   return (
     <Route path="/user_:id" component={UserDashboard}>
@@ -61,6 +63,7 @@ export default function UserDashboardRoutes() {
         component={UserLegal.NicotineDisclaimer}
       />
       <Route path="manage_login" component={UserManageLogin} />
+      <Route path="faqs" component={UserFaqs} />
     </Route>
   );
 }

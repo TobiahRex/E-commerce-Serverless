@@ -3,7 +3,8 @@
 .shipping-policy__body,
 .return-policy__body,
 .newsletter__body,
-.nicotine__body {
+.nicotine__body,
+.faqs__body {
   @include prefixflex();
   justify-content: space-between;
   align-items: flex-start;
@@ -26,6 +27,13 @@
         border-bottom: 1px solid rgba(0,0,0,.15);
       }
       & .legal__body {
+        & .faq-question {
+          border-bottom: 1px solid rgba(0,0,0,.15);
+          & h3 {
+            padding-left: 1em;
+            font-weight: 400;
+          }
+        }
         & p {
           padding: 2em;
         }

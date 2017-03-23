@@ -89,7 +89,7 @@ function UserSideBar({ location }) {
           </li>
 
           <li className="list--legal-faqs sweep-right">
-            <Link to="/faqs">
+            <Link to={`/${homeDashboard}/faqs`}>
               <p>{'FAQ\'s'}</p>
             </Link>
           </li>
