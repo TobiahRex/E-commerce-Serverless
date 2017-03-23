@@ -15,7 +15,12 @@
     @include prefixflex();
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     padding: 2em;
+    text-align: center;
+    & p:nth-child(1) {
+      padding-bottom: 1em;
+    }
   }
 
   & .dashboard__header--status {
@@ -30,18 +35,20 @@
     @include prefixflex();
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,.15);
-    & .tracking__serials,
-    .tracking__price {
-      height: 5em;
-      width: 50%;
-      padding: 2em;
+    & .tracking__serials {
+      text-align: center;
+      margin-bottom: 2em;
+      & p:nth-child(1) {
+        padding: 1em 0;
+      }
     }
     & .tracking__price {
       @include prefixflex();
-      justify-content: flex-end;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       & p {
         font-size: 2em;
       }
@@ -52,11 +59,11 @@
     @include prefixflex();
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     padding-top: 2em;
     & .addresses--shipto,
     .addresses--billto {
-      max-width: 35em;
       width: 100%;
       & fieldset {
         height: 22em;
@@ -108,8 +115,8 @@
             border-bottom: 1px solid rgba(0,0,0,.15);
             & th {
               & p {
-                font-size: 1.6em;
-                font-weight: 200;
+                font-size: 1.4em;
+                font-weight: 400;
               }
             }
           }
@@ -118,6 +125,7 @@
           & .body--shipping-status-row {
             height: 4em;
             background-color: $s-white;
+            border-bottom: 1px solid rgba(0,0,0,.1);
             & td {
               width: 70%;
               text-align: center;
@@ -144,8 +152,14 @@
                 font-weight: 200;
               }
               & .product-row__list {
+                padding: .5em;
                 margin: 0;
                 list-style-type: none;
+                & .list--title {
+                  & p {
+                    font-weight: 400;
+                  }
+                }
                 & .list--nic-strength {
                   p {
                     font-style: italic;

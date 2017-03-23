@@ -126,7 +126,7 @@ export default function InvoiceOrders() {
             <tbody className="table--body">
               <tr className="body--shipping-status-row">
                 <td colSpan="5">
-                  <p>{'<Shipping Status>'} {'\u2013'} Tracking #:
+                  <p>{'Delivered'} {'\u2013'} Tracking #:
                     {/* TODO: These query params need to be dynamically assigned. */}
                     <Link
                       className="tracking-id"
@@ -142,10 +142,10 @@ export default function InvoiceOrders() {
                 <td colSpan="3">
                   <ul className="product-row__list">
                     <li className="list--title">
-                      <p>{'<Product Description>'}</p>
+                      <p>{'Strawberries N Cream'}</p>
                     </li>
                     <li className="list--nic-strength">
-                      <p>{'<Nic Strength>'}{'\u00A0'}mg</p>
+                      <p>{'6'}{'\u00A0'}mg</p>
                     </li>
                     <li className="list--sku">
                       <p>SKU: {uuid()}</p>

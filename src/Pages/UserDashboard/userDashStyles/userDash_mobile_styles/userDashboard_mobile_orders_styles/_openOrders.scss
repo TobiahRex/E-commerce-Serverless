@@ -13,6 +13,7 @@
       margin-left: 3.5em;
       padding-bottom: 1em;
       & p {
+        font-size: 1.6em;
         margin-right: .5em;
       }
       & p:nth-child(1),
@@ -44,7 +45,7 @@
           border: none;
           padding: 0;
           margin: 0;
-          height: 2.4em;
+          height: 2.3em;
           width: 2.4em;
           font-size: 1.6em;
           background-color: $p-red;
