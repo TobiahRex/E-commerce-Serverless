@@ -1,0 +1,133 @@
+.dashboard__order-tracking {
+  padding: 0 2em 4em 2em;
+  & .dashboard__header-title {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    height: 5em;
+    border-bottom: 1px solid rgba(0,0,0,.25);
+    & h2 {
+      color: $p-blue;
+      font-weight: 400;
+      margin-left: 1em;
+    }
+  }
+  & .order-tracking__header {
+    @include prefixflex();
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 2em;
+    & h5 {
+      color: $p-blue;
+      font-weight: 400;
+    }
+  }
+
+  & .order-tracking__status-bar {
+    & .status-bar--list {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      list-style-type: none;
+      position: relative;
+      padding: 2em;
+      margin: 0;
+      height: 5em;
+      & .list--option {
+        & div {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          height: 5em;
+          width: 22em;
+          margin-right: 2.5em;
+          background-color: $p-red;
+          & p {
+            color: $p-white;
+            font-weight: 200;
+          }
+        }
+      }
+      & li:nth-child(1),
+      li:nth-child(2),
+      li:nth-child(3) {
+        & div {
+          &:after,
+          &:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 100%;
+            border: 0px solid $p-red;
+            border-color: transparent;
+            border-width: 2.5em 1.4em;
+            border-left-color: $p-red;
+          }
+        }
+      }
+      & li:nth-child(1) {
+        & div {
+          border-radius: 4px 0 0 4px;
+          &:before {
+            border-width: 0 0;
+          }
+        }
+      }
+      & li:nth-child(3) {
+        & div {
+          border-radius: 0 4px 4px 0;
+          &:after {
+            border-width: 0 0;
+          }
+        }
+      }
+      & li:nth-child(2),
+      li:nth-child(3) {
+        & div {
+          &:before {
+            left: -2em;
+            border-color: $p-red;
+            border-left-color: transparent;
+          }
+        }
+      }
+    }
+  }
+  & .order-tracking__latest-activity {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    & .activity--table {
+      border-collapse: collapse;
+      width: 100%;
+      & .table__header {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        width: 100%;
+        text-align: center;
+        & .header-row {
+          height: 6em;
+          & td {
+            width: 33%;
+            & h3 {
+              font-weight: bold;
+            }
+            & p {
+              font-weight: 400;
+              font-size: 2em;
+            }
+          }
+        }
+      }
+      & .table__body {
+        text-align: center;
+        & .body--row {
+          height: 3em;
+          border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+      }
+    }
+  }
+}

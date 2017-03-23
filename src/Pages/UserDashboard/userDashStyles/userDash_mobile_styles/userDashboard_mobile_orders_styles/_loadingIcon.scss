@@ -1,0 +1,36 @@
+.dashboard__loading-container {
+  @include prefixflex();
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4em;
+  min-height: 40em;
+  & .dashboard__loading-icon {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 26em;
+    width: 20em;
+    // box-shadow: 0 1px 15px rgba(0,0,0,.25);
+    // border-color: $p-white;
+    & span, .loading-msg {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      & p {
+        font-size: 1.6em;
+      }
+    }
+    & .loading-msg {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 6em;
+      width: 100%;
+    }
+    & span {
+      font-size: 19em;
+      color: $p-blue;
+    }
+  }
+}

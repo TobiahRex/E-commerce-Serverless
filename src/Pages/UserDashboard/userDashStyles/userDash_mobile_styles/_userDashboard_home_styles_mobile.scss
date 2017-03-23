@@ -1,0 +1,325 @@
+.user-home-dash__body {
+  @include prefixflex();
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  @import './userDashboard_sidebar_styles_mobile';
+  & .body__dashboard {
+    max-width: 80em;
+    width: 100%;
+    background-color: $s-white;
+    & .dashboard--container {
+      width: 100%;
+      box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+      padding-bottom: 2em;
+      & .dashboard--title {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 3em;
+        height: 7.5em;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+      }
+      & .dashboard__top-third--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        & .top-third--contact-info,
+        .top-third--newsletters {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          height: 20.5em;
+          & .contact-info__info,
+          .newsletters__status-msg {
+            margin-left: 1em;
+            height: 7.5em;
+          }
+          & .contact-info__edit-btn,
+          .newsletters__edit-btn {
+            @include prefixflex();
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            & button {
+              margin-right: 2em;
+            }
+          }
+        }
+      }
+      & .dashboard__mid-third--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        & .mid-third__address-book {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          & .address-book__default--container {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            & .default--shipping-address,
+            .default--billing-address {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              width: 100%;
+              & h3 {
+                margin: 1em;
+                font-weight: bold;
+              }
+              & p {
+                margin-left: 4em;
+              }
+            }
+          }
+          & .default__manage-btn {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            & button {
+              margin: 2em auto;
+            }
+          }
+        }
+      }
+      & .dashboard__bottom-third--container {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        & .bottom-third--billing-info,
+        .bottom-third--login-methods {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          & .billing-info__cc-type {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            margin: 2em;
+            & .cc-type--cc,
+            .cc-type--debit {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & label {
+                margin: 0 1em 0 .25em;
+                font-size: 1.4em;
+                font-family: $p-font;
+                font-weight: 400;
+                color: $p-blue;
+              }
+              & input {
+                height: 2em;
+                width: 2em;
+                margin: 0;
+                cursor: pointer;
+              }
+            }
+          }
+          & .billing-info__name,
+          .billing-info__cc-number {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 1em 2em;
+            & label {
+              margin-bottom: .5em;
+              font-size: 1.8em;
+              font-family: $p-font;
+              font-weight: 400;
+              color: $p-blue;
+            }
+            & input {
+              height: 1.67em;
+              min-width: 13.8em;
+              width: 100%;
+              font-weight: 200;
+              font-family: $p-font;
+              font-size: 1.8em;
+              padding-left: .5em;
+              border: 1px solid rgba(0,0,0,.25);
+              color: $p-blue;
+            }
+          }
+          & .billing-info__expiration {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            & .expiration__title {
+              margin-left: 1em;
+              font-size: 1.8em;
+              font-weight: 400;
+            }
+            & .expiration__row {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              margin-left: 1em;
+              & label {
+                margin-right: .5em;
+                font-size: 1.6em;
+                font-family: $p-font;
+                font-weight: 200;
+                color: $p-blue;
+              }
+              & input {
+                height: 1.67em;
+                color: $p-blue;
+                max-width: 3.33em;
+                font-weight: 200;
+                font-family: $p-font;
+                font-size: 1.8em;
+                padding-left: .5em;
+                border: 1px solid rgba(0,0,0,.25);
+                margin: .5em .5em .5em .25em;
+              }
+            }
+          }
+          & .billing-info__edit-btn {
+            @include prefixflex();
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            & button {
+              margin: 1em 3.5em 1em 0;
+            }
+          }
+          & .login-methods--social,
+          .login-methods--password {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 100%;
+            & .login-methods--social-list {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+              & .social-list--item {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 7.5em;
+                width: 7.5em;
+                margin: 1em 0 1em 1.5em;
+                background-color: $p-grey;
+                & span {
+                  font-size: 6em;
+                  color: $s-grey;
+                  line-height: 1em;
+                }
+              }
+              & .social-list--item.active.facebook {
+                background-color: $p-blue;
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .social-list--item.active.twitter {
+                background-color: #4990E2;
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .social-list--item.active.instagram {
+                background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .social-list--item.active.google {
+                background-color: blue;
+                & span {
+                  color: $p-white;
+                }
+              }
+            }
+            & .social-login__edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: center;
+              width: 100%;
+              & button {
+                margin: .5em 0 .5em 0;
+              }
+            }
+          }
+          & .login-methods--social {
+            border-bottom: 1px solid rgba(0,0,0,.15);
+          }
+          & .login-methods--password {
+            @include prefixflex();
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            & .password--fields {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              padding-top: 2em;
+              & label {
+                color: $p-blue;
+                font-family: $p-font;
+                font-size: 1.8em;
+                font-weight: 400;
+                margin-bottom: .5em;
+              }
+              & input {
+                height: 1.67em;
+                width: 100%;
+                font-weight: 200;
+                font-family: $p-font;
+                font-size: 1.8em;
+                padding-left: .5em;
+                border: 1px solid rgba(0,0,0,.25);
+                color: $p-blue;
+              }
+            }
+            & .password--edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: flex-start;
+              flex-direction: column;
+              width: 100%;
+              & button {
+                margin: 1em 0 1em auto;
+              }
+            }
+          }
+          & .login-methods--social {
+            height: 40%;
+          }
+        }
+        & .bottom-third--login-methods {
+          height: 44em;
+        }
+      }
+    }
+  }
+}

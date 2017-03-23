@@ -1,0 +1,185 @@
+& .login-app__body {
+  @include prefixflex();
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  @import './userDashboard_sidebar_styles_mobile';
+  & .body__dashboard {
+    max-width: 80em;
+    width: 100%;
+    background-color: $s-white;
+    & .dashboard--container {
+      width: 100%;
+      box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+
+      & .dashboard--title {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        height: 7.5em;
+        padding-left: 3em;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+      }
+
+      & .login-app--container {
+        & .login-app__authorized-apps {
+          @include prefixflex();
+          justify-content: space-around;
+          align-items: center;
+          height: 5em;
+          width: 24em;
+          margin: 2em;
+          & p {
+            font-size: 1.8em;
+          }
+          & h3 {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 2em;
+            width: 2em;
+            font-weight: bold;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px 4px 4px 4px;
+            background-color: $p-white;
+          }
+        }
+
+        & .authorized-apps--container {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & .authorized-apps--list {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 70%;
+            & .list--app {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 17.5em;
+              padding-bottom: 2em;
+              margin-left: 1em;
+              & .app__date {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 3em;
+                width: 100%;
+              }
+              & .app__icon {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 17.5em;
+                width: 17.5em;
+                border: 1px solid rgba(0,0,0,.25);
+                background-color: $p-white;
+                box-shadow: 0 3px 15px rgba(0,0,0,.5);
+                & span {
+                  color: $p-blue;
+                  font-size: 7.5em;
+                }
+              }
+              & .app__icon.facebook {
+                background-color: $p-blue;
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .app__icon.twitter {
+                background-color: #4990E2;
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .app__icon.instagram {
+                background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+                & span {
+                  color: $p-white;
+                }
+              }
+              & .app__icon.google {
+                background-color: blue;
+                & span {
+                  color: $p-white;
+                }
+              }
+
+              & .app__delete {
+                margin-top: 1em;
+              }
+            }
+            & .list--add-app {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              height: 17.5em;
+              width: 17.5em;
+              margin-left: 2em;
+              margin-bottom: 4em;
+              border: 1px solid rgba(0,0,0,.25);
+              background-color: $p-grey;
+              & .add-app--container {
+                & button {
+                  border: none;
+                  padding: 0;
+                  margin: 0;
+                  background-color: transparent;
+                  cursor: pointer;
+                  &:hover,
+                  &:active,
+                  &:focus {
+                    & span {
+                      color: $p-blue;
+                    }
+                  }
+                  & span {
+                    color: $p-red;
+                    font-size: 7.5em;
+                    text-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                  }
+                }
+              }
+            }
+          }
+          & .app-warning {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            align-self: flex-start;
+            padding: 1em 3em;
+            width: 30%;
+            & .app-warning--msg {
+              color: $p-red;
+              & .bold-warning {
+                font-weight: bold;
+              }
+              & a {
+                font-weight: bold;
+                color: $p-blue;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+      }
+
+      & .login-app__action-section--container {
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        border-top: 1px solid rgba(0,0,0,.15);
+        padding: 4em 0;
+
+      }
+
+    }
+  }
+}

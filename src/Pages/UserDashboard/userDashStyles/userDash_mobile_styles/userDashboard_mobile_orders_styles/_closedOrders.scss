@@ -1,0 +1,215 @@
+.dashboard__closed-orders {
+  & .dashboard__filter {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2.5em 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    & .filter__results-msg {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 3.5em;
+      & p {
+        margin-right: .5em;
+      }
+      & p:nth-child(1),
+      p:nth-child(3) {
+        font-weight: 200;
+      }
+    }
+    & .filter__periodcity-ddn--container {
+      display: inline-block;
+      position: relative;
+      & .periodicity__ddn--readout {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        & .readout--msg {
+          height: 2em;
+          width: 7.5em;
+          color: $p-blue;
+          font-family: $p-font;
+          font-size: 1.6em;
+          font-weight: 200;
+          padding-left: .5em;
+        }
+        & .readout--btn {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          border: none;
+          padding: 0;
+          margin: 0;
+          height: 2.4em;
+          width: 2.4em;
+          font-size: 1.6em;
+          background-color: $p-red;
+          cursor: pointer;
+          & span {
+            font-size: 1.8em;
+            line-height: 1em;
+            color: $p-white;
+          }
+        }
+      }
+      & .periodicity__ddn--content {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        display: block;
+        position: absolute;
+        width: 100%;
+        background-color: $p-white;
+        box-shadow: 0 3px 4px rgba(0,0,0,.25);
+        & .ddn--content__list {
+          @include prefixflex();
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          list-style-type: none;
+          padding: 1em 0;
+          margin: 0 0 0 1em;
+          & .list--option {
+            padding: .5em;
+            cursor: pointer;
+            width: 90%;
+            transition: all .3 linear;
+            &:hover,
+            &:active,
+            &:focus {
+              & p {
+                color: $p-white;
+              }
+            }
+            & p {
+              font-weight: 200;
+            }
+          }
+        }
+      }
+    }
+  }
+  & .dashboard__results-table {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    & .results-table--container {
+      border-collapse: collapse;
+      padding: 2em;
+      width: 100%;
+      & .results-table__header {
+        width: 100%;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        & .header--row {
+          height: 6em;
+          & th {
+            & h3 {
+              font-weight: bold;
+            }
+            width: 20%;
+            & p {
+              font-size: 2em;
+            }
+          }
+        }
+      }
+      & .results-table__body {
+        & .body__row {
+          height: 5em;
+          text-align: center;
+          & .row__cell-total {
+            & .flex-cell-parent {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & p {
+                font-size: 1.6em;
+              }
+              & span {
+                font-size: 1.6em;
+                color: $p-blue;
+              }
+            }
+          }
+        }
+        & .body_row--product {
+          border-bottom: 1px solid rgba(0,0,0,.1);
+          & .product__info {
+            & .info--container {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & .info--product {
+                @include prefixflex();
+                justify-content: center;
+                align-items: flex-start;
+                width: 70%;
+                margin-bottom: 2em;
+                & .product--img {
+                  box-shadow: 0 3px 10px rgba(0,0,0,.25);
+                }
+                & .product--description {
+                  margin-left: 1em;
+                  width: 100%;
+                  & .description--title {
+                    & p {
+                      font-size: 1.8em;
+                      font-weight: bold;
+                    }
+                  }
+                  & .description--info {
+                    margin-top: 1.5em;
+                    & p:nth-child(1) {
+                      font-size: 1.6em;
+                      font-weight: 400;
+                    }
+                    & p:nth-child(2) {
+                      font-size: 1.4em;
+                      font-weight: 200;
+                    }
+                    & p:nth-child(3) {
+                      font-size: 1.2em;
+                      font-weight: 200;
+                    }
+                  }
+                }
+              }
+              & .info--action-section {
+                @include prefixflex();
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                & .action-section--list {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  padding: 0;
+                  margin: 0;
+                  list-style-type: none;
+                  & li {
+                    margin-bottom: 1em;
+                  }
+                  & .list--order-number,
+                  .list--order-invoice {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    & a {
+                      color: $p-blue;
+                      font-family: $p-font;
+                      font-size: 1.4em;
+                      text-decoration: underline;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
