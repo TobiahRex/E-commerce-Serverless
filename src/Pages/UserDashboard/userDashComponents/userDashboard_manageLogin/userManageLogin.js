@@ -49,28 +49,31 @@ function UserManageLogin({ location }) {
                         </div>
                         <div className="email-password__input--username">
                           <label htmlFor="username">
-                            <p>Username</p>
+                            <p>Username<span className="required"> *</span></p>
                           </label>
                           <input type="text" id="username" />
                         </div>
                         <div className="email-password__input--current-password">
                           <label htmlFor="current-password">
-                            <p>Current Password</p>
+                            <p>Current Password<span className="required"> *</span></p>
                           </label>
                           <input type="password" id="current-password" />
                         </div>
                         <div className="email-password__input--new-password">
                           <label htmlFor="new-password">
-                            <p>New Password</p>
+                            <p>New Password<span className="required"> *</span></p>
                           </label>
                           <input type="password" id="new-password" />
                         </div>
                         <div className="email-password__input--confirm-new">
                           <label htmlFor="confirm-new">
-                            <p>Confirm New Password</p>
+                            <p>Confirm New Password<span className="required"> *</span></p>
                           </label>
                           <input type="password" id="confirm-new" />
                         </div>
+                        <span className="email-password__footer-msg">
+                          <p>Required *</p>
+                        </span>
                       </div>
                     </div>
 
