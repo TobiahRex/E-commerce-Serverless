@@ -30,8 +30,15 @@
         & .faq-question {
           border-bottom: 1px solid rgba(0,0,0,.15);
           & h3 {
-            padding-left: 1em;
-            font-weight: 400;
+            padding: 1em 0 0 1em;
+            font-weight: bold;
+          }
+          & p {
+            padding-top: 1em;
+            & a {
+              color: $p-blue;
+              text-decoration: underline;
+            }
           }
         }
         & p {
