@@ -53,24 +53,48 @@
           & .methods__email-password {
             width: 50%;
             & .email-password--container {
-              font-size: 1.8em;
+              border-color: $p-blue;
+              & legend {
+                & p {
+                  font-size: 1.8em;
+                }
+              }
+              & .email-password__input--username,
+              .email-password__input--current-password,
+              .email-password__input--new-password,
+              .email-password__input--confirm-new {
+                & label {
+                  margin-bottom: 1em;
+                  & p {
+                    font-size: 1.6em;
+                    font-weight: 200;
+                  }
+                }
+                & input {
+                  height: 1.87em;
+                  padding-left: .7em;
+                  font-family: $p-font;
+                  font-weight: 200;
+                  font-size: 1.6em;
+                }
+              }
+            }
+            & .methods__social-login {
+              width: 50%;
+              margin-left: 2em;
             }
           }
-          & .methods__social-login {
-            width: 50%;
-            margin-left: 2em;
-          }
         }
+
+        & .newsletter__action-section--container {
+          @include prefixflex();
+          justify-content: space-around;
+          align-items: center;
+          padding: 2em auto;
+        }
+
+
       }
-
-      & .newsletter__action-section--container {
-        @include prefixflex();
-        justify-content: space-around;
-        align-items: center;
-        padding: 2em auto;
-      }
-
-
     }
   }
 }
