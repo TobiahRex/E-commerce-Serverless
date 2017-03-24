@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
-import MobileProductReviews;
+import MobileProductReviews from './userDashboard_productReviews_mobile/userDashboard_productReviews_mobile';
 
 const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,

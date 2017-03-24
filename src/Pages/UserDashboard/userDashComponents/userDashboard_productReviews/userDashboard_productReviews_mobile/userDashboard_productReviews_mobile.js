@@ -31,12 +31,12 @@ function OrderReviews() {
               <FontAwesome name="star" />
               <FontAwesome name="star" />
             </div>
+            <div className="header--date">
+              <p>{moment().format('LL')}</p>
+            </div>
           </div>
           <div className="header--title">
             <h3>{'"Greatest thing since sliced bread."'}</h3>
-          </div>
-          <div className="header--date">
-            <p>{moment().format('LL')}</p>
           </div>
         </div>
         <div className="reviews__product--info">
@@ -46,29 +46,31 @@ function OrderReviews() {
           <div className="info--desc">
             <div className="desc--main-title">
               <h3>Strawberries {'N\''} Cream</h3>
-              <button className="edit-review sweep-right medium-size-btn">
-                Edit Review
-              </button>
             </div>
             <div className="desc--sec-title">
               <h3>Secondary Product Title</h3>
-              <button className="delete-review sweep-right medium-size-btn">
-                Delete Review
-              </button>
             </div>
             <div className="desc--price">
               <h3>
                 <FontAwesome name="usd" />
                 12.12
               </h3>
-              <button className="buy-again sweep-right medium-size-btn">
-                Buy Again
-              </button>
             </div>
             <div className="desc--product-details">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
           </div>
+        </div>
+        <div className="reviews__product--action-btns">
+          <button className="edit-review sweep-right medium-size-btn">
+            Edit Review
+          </button>
+          <button className="delete-review sweep-right medium-size-btn">
+            Delete Review
+          </button>
+          <button className="buy-again sweep-right medium-size-btn">
+            Buy Again
+          </button>
         </div>
       </div>
 

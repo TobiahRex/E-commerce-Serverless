@@ -3,7 +3,7 @@ import 'react-router';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
-import OrderReviews from './userDashboard_orders_reviews';
+import ProductReviews from './userDashboard_productReviews';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -28,7 +28,8 @@ function UserProductReviews({ location }) {
               <div className="dashboard--title">
                 <h1>Your Product Reviews</h1>
               </div>
-              <OrderReviews />
+              {/* <ProductReviews /> */}
+              <ProductReviews.Mobile />
             </div>
           </div>
         </div>

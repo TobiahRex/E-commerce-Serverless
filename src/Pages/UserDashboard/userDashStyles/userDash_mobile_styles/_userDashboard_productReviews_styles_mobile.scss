@@ -52,6 +52,12 @@
         }
 
         & .reviews--single-review {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          border-bottom: 1px solid rgba(0,0,0,.1);
           & .reviews__header {
             @include prefixflex();
             justify-content: center;
@@ -61,10 +67,10 @@
             width: 100%;
             & .header--stars {
               @include prefixflex();
-              justify-content: center;
+              justify-content: space-between;
               align-items: center;
-              margin-left: 1em;
               padding-bottom: 1em;
+              width: 100%;
               & h3 {
                 @include prefixflex();
                 justify-content: center;
@@ -78,7 +84,13 @@
               & .stars--container {
                 & span {
                   color: $p-red;
-                  font-size: 2em;
+                  font-size: 1.4em;
+                }
+              }
+              & .header--date {
+                & p {
+                  font-size: 1.4em;
+                  font-weight: 200;
                 }
               }
             }
@@ -89,19 +101,12 @@
                 font-weight: bold;
               }
             }
-            & .header--date {
-              padding-bottom: 1em;
-              & p {
-                font-size: 1.6em;
-                font-weight: 200;
-              }
-            }
           }
           & .reviews__product--info {
             @include prefixflex();
             justify-content: center;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,.1);
+            flex-direction: column;
             & .info--image {
               padding-top: 1em;
               align-self: flex-start;
@@ -114,9 +119,9 @@
               justify-content: center;
               align-items: center;
               flex-direction: column;
-              align-self: flex-start;
+              align-self: center;
               width: 100%;
-              padding: 1em 2em;
+              padding: 2em 2em;
               & .desc--main-title,
               .desc--sec-title,
               .desc--price {
@@ -140,6 +145,17 @@
                   font-size: 1.6em;
                 }
               }
+            }
+          }
+          & .reviews__product--action-btns {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 2em 0;
+            width: 100%;
+            & button {
+              margin-bottom: 2em;
             }
           }
         }
