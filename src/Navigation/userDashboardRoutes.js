@@ -7,7 +7,7 @@ import UserAddressBook from '../Pages/UserDashboard/userDashComponents/userDashb
 import UserManageLogin from '../Pages/UserDashboard/userDashComponents/userDashboard_manageLogin/userManageLogin';
 import UserNewsLetter from '../Pages/UserDashboard/userDashComponents/userDashboard_newsletter/userNewsLetter';
 import UserProductReviews from '../Pages/UserDashboard/userDashComponents/userDashboard_productReviews/userProductReviews';
-import UserLoginApp from '../Pages/UserDashboard/userDashComponents/userDashboard_loginApp/userDashboard_loginApp_web';
+import UserLoginApp from '../Pages/UserDashboard/userDashComponents/userDashboard_loginApp/userDashboard_loginApps';
 import UserOrders from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrders';
 import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userDashboard_orders_tracking';
 import UserLegal from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userLegal';
