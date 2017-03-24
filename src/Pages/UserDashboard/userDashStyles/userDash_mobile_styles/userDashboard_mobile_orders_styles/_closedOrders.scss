@@ -42,7 +42,7 @@
           border: none;
           padding: 0;
           margin: 0;
-          height: 2.4em;
+          height: 2.3em;
           width: 2.4em;
           font-size: 1.6em;
           background-color: $p-red;
@@ -91,126 +91,124 @@
       }
     }
   }
-  & .dashboard__results-table {
+  & .dashboard__products--container {
     @include prefixflex();
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
     width: 100%;
-    & .results-table--container {
-      border-collapse: collapse;
-      padding: 2em;
-      width: 100%;
-      & .results-table__header {
-        width: 100%;
+    & .products__product {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      & .products__image {
+        padding-top: 2em;
+        & img {
+          box-shadow: 0 1px 15px rgba(0,0,0,.35);
+        }
+      }
+
+      & .products__product-info {
+        padding-bottom: 2em;
         border-bottom: 1px solid rgba(0,0,0,.1);
-        & .header--row {
-          height: 6em;
-          & th {
+        & .product-info--list {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          list-style-type: none;
+          padding: 2em 0 0 0;
+          margin: 0;
+          & .list--data {
+            margin: .5em auto;
+          }
+          & .list--data:nth-child(1) {
             & h3 {
               font-weight: bold;
             }
-            width: 20%;
+          }
+          & .list--data:nth-child(2) {
             & p {
-              font-size: 2em;
+              font-size: 1.4em;
+              font-weight: 200;
+            }
+          }
+          & .list--data:nth-child(3) {
+            & p {
+              font-size: 1em;
+              font-weight: 200;
             }
           }
         }
       }
-      & .results-table__body {
-        & .body__row {
-          height: 5em;
-          text-align: center;
-          & .row__cell-total {
-            & .flex-cell-parent {
+
+      & .products__order-info {
+        & .order-info--list {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          & .list--data {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            & div:nth-child(1) {
               @include prefixflex();
-              justify-content: center;
+              justify-content: flex-end;
               align-items: center;
+              margin-right: 1em;
+              padding: 1em;
+              width: 50%;
               & p {
-                font-size: 1.6em;
+                font-weight: bold;
               }
-              & span {
-                font-size: 1.6em;
-                color: $p-blue;
+            }
+            & div:nth-child(2) {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: center;
+              margin-left: 1em;
+              padding: 1em;
+              width: 50%;
+              & p {
+                & a {
+                  color: $p-blue;
+                  text-decoration: underline;
+                }
               }
             }
           }
-        }
-        & .body_row--product {
-          border-bottom: 1px solid rgba(0,0,0,.1);
-          & .product__info {
-            & .info--container {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              & .info--product {
-                @include prefixflex();
-                justify-content: center;
-                align-items: flex-start;
-                width: 70%;
-                margin-bottom: 2em;
-                & .product--img {
-                  box-shadow: 0 3px 10px rgba(0,0,0,.25);
-                }
-                & .product--description {
-                  margin-left: 1em;
-                  width: 100%;
-                  & .description--title {
-                    & p {
-                      font-size: 1.8em;
-                      font-weight: bold;
-                    }
-                  }
-                  & .description--info {
-                    margin-top: 1.5em;
-                    & p:nth-child(1) {
-                      font-size: 1.6em;
-                      font-weight: 400;
-                    }
-                    & p:nth-child(2) {
-                      font-size: 1.4em;
-                      font-weight: 200;
-                    }
-                    & p:nth-child(3) {
-                      font-size: 1.2em;
-                      font-weight: 200;
-                    }
-                  }
-                }
+          & .list--data:nth-child(2),
+          .list--data:nth-child(5),
+          .list--data:nth-child(9),
+          .list--data:nth-child(10),
+          .list--data:nth-child(11) {
+            & div:nth-child(2) {
+              & p {
+                font-size: 1.6em;
               }
-              & .info--action-section {
-                @include prefixflex();
-                justify-content: flex-start;
-                align-items: center;
-                flex-direction: column;
-                & .action-section--list {
-                  @include prefixflex();
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  padding: 0;
-                  margin: 0;
-                  list-style-type: none;
-                  & li {
-                    margin-bottom: 1em;
-                  }
-                  & .list--order-number,
-                  .list--order-invoice {
-                    @include prefixflex();
-                    justify-content: center;
-                    align-items: center;
-                    & a {
-                      color: $p-blue;
-                      font-family: $p-font;
-                      font-size: 1.4em;
-                      text-decoration: underline;
-                    }
-                  }
-                }
-              }
+            }
+          }
+
+          & .list--data__action-btn {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 2em 0;
+            & button {
+              margin-bottom: 2em;
             }
           }
         }
       }
     }
   }
+
 }

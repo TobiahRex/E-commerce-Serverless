@@ -3,6 +3,8 @@ import { Link, browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 
+import MobileClosedOrders from './userDashboard_orders_mobile/userDashboard_orders_closed_mobile';
+
 const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
@@ -157,4 +159,5 @@ function ClosedOrders() {
   );
 }
 ClosedOrders.propTypes = propTypes;
+ClosedOrders.Mobile = MobileClosedOrders;
 export default ClosedOrders;
