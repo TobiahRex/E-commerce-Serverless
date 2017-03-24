@@ -130,10 +130,10 @@ function OrderReviews() {
           </div>
         </div>
         <div className="reviews__product--edit-action-btns">
-          <button className="edit-review sweep-right medium-size-btn">
+          <button className="edit-review sweep-right primary-button">
             Save Edit
           </button>
-          <button className="delete-review sweep-right medium-size-btn">
+          <button className="delete-review sweep-right primary-button">
             Cancel
           </button>
         </div>
