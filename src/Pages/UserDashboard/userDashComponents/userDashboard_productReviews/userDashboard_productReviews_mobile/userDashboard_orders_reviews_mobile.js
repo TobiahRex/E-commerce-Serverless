@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
-import MobileProductReviews;
 
 const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -159,5 +158,4 @@ function OrderReviews() {
   );
 }
 OrderReviews.propTypes = propTypes;
-OrderReviews.Mobile = MobileProductReviews;
 export default OrderReviews;
