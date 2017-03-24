@@ -48,7 +48,8 @@ function OrderTracking() {
                 <h3>Location</h3>
               </td>
               <td className="header--date">
-                <h3>Date (YYYYMMDD)</h3>
+                <h3>Date</h3>
+                <p>(YYYYMMDD)</p>
               </td>
               <td className="header--activity">
                 <h3>Activity</h3>

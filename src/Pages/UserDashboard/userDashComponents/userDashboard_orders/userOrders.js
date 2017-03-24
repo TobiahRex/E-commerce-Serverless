@@ -45,12 +45,12 @@ function UserOrders({ location }) {
                 </button>
               </div>
               {/* <OpenOrders /> */}
-              {/* <OpenOrders.Mobile /> */}
+              <OpenOrders.Mobile />
               <OrderTracking />
               {/* <ClosedOrders /> */}
               <ClosedOrders.Mobile />
-              {/* <InvoiceOrders /> */}
-              {/* <LoadingIcon /> */}
+              <InvoiceOrders />
+              <LoadingIcon />
 
             </div>
           </div>

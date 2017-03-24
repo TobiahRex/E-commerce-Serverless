@@ -43,6 +43,10 @@
       margin-bottom: 2em;
       & p:nth-child(1) {
         padding: 1em 0;
+        & a {
+          color: $p-blue;
+          text-decoration: underline;
+        }
       }
     }
     & .tracking__price {

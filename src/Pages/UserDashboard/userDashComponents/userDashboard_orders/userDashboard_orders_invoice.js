@@ -25,7 +25,11 @@ export default function InvoiceOrders() {
 
       <div className="dashboard__header--tracking">
         <div className="tracking__serials">
-          <p>Tracking #: {uuid()}</p>
+          <p>Tracking #:
+            <Link to={`/user_123123123123/order_${uuid()}/tracking?id=${uuid()}`}>
+              {uuid()}
+            </Link>
+          </p>
           <p>Order #: {uuid()}</p>
         </div>
         <div className="tracking__price">

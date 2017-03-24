@@ -14,8 +14,8 @@ function OpenOrders() {
       <div className="dashboard__filter">
         {/* TODO: These 3 element will be rendered dynamically. */}
         <div className="filter__results-msg">
-          <p className="result-msg--number">99</p>
-          <p className="results-msg--periodcity">Open Order(s)</p>
+          <p className="result-msg--number">99{'\u00A0'}</p>
+          <p className="results-msg--periodcity">Open Order(s){'\u00A0'}</p>
           <p className="results-msg--rest">placed in the last</p>
         </div>
         <div className="filter__periodcity-ddn--container">
