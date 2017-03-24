@@ -8,13 +8,11 @@
     border-bottom: 1px solid rgba(0,0,0,.1);
     & .filter__results-msg {
       @include prefixflex();
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      margin-left: 3.5em;
       padding-bottom: 1em;
       & p {
         font-size: 1.6em;
-        margin-right: .5em;
       }
       & p:nth-child(1),
       p:nth-child(3) {
