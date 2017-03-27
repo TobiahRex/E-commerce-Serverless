@@ -260,7 +260,44 @@ function AdminHomeDash({ location }) {
                         </div>
                       </div>
                       <div className="email__sent">
+                        <p>Report sent via email attaachment to...</p>
+                        <br />
+                        <p>{'<email address here>'}</p>
+                        <div className="email__action-btns">
+                          <button className="primary-button sweep-right">OK</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="msg__text">
+                      <div className="email__input--container">
+                        <p>This report will be sent via Text Message to the following number...</p>
+                        <div className="emai__input">
+                          <label htmlFor="cell-input">Cell Number</label>
+                          <div className="cell-input__flag--container">
+                            <div className="flag--readout">
+                              <img src="../Images/nihongo-flag.png" alt="Japanese Flag" />
+                            </div>
+                            <div className="flag--ddn-content">
+                              <img src="../Images/english-flag.png" alt="US Flag" />
+                            </div>
+                          </div>
 
+                          <input type="email" value="+81" disabled />
+                          <input type="email" value="+1" disabled style={{ display: 'none' }} />
+                          <input type="phone" value="(808)-3918-8013" />
+                        </div>
+                        <div className="email__action-btns">
+                          <button className="primary-button sweep-right">Cancel</button>
+                          <button className="primary-button sweep-right">Send Email</button>
+                        </div>
+                      </div>
+                      <div className="email__sent">
+                        <p>Report sent via email attaachment to...</p>
+                        <br />
+                        <p>{'<email address here>'}</p>
+                        <div className="email__action-btns">
+                          <button className="primary-button sweep-right">OK</button>
+                        </div>
                       </div>
                     </div>
                   </div>
