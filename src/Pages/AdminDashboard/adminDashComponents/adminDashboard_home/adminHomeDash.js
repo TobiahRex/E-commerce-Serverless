@@ -127,7 +127,6 @@ function AdminHomeDash({ location }) {
                     <ul className="header--list">
                       <li className="list--option">
                         <div className="option--type">
-
                           <div className="type__ddn--container">
                             <div className="type__ddn--readout">
                               <input type="text" className="readout--msg" disabled value="Sales" />
@@ -137,9 +136,45 @@ function AdminHomeDash({ location }) {
                                 </span>
                               </button>
                             </div>
-                            <div className="periodicity__ddn--content" style={{ display: 'none' }} >
+                            <div className="type__ddn--content">
                               <ul className="ddn--content__list">
                                 {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
+                                <li className="list--option sweep-right">
+                                  <p>Products</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Members</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Traffic</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Sales</p>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--periodicty">
+                          <div className="periodicty__ddn--container">
+                            <div className="periodicty__ddn--readout">
+                              <input type="text" className="readout--msg" disabled value="Today (24hrs)" />
+                              <button className="readout--btn sweep-right">
+                                <span className="flex-btn-parent">
+                                  <FontAwesome name="angle-down" />
+                                </span>
+                              </button>
+                            </div>
+                            <div className="periodicity__ddn--content">
+                              <ul className="ddn--content__list">
+                                {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
+                                <li className="list--option sweep-right">
+                                  <p>Today (24hrs)</p>
+                                </li>
                                 <li className="list--option sweep-right">
                                   <p>Week</p>
                                 </li>
@@ -150,10 +185,13 @@ function AdminHomeDash({ location }) {
                                   <p>Quarter</p>
                                 </li>
                                 <li className="list--option sweep-right">
-                                  <p>Year</p>
+                                  <p>Semi-Annual</p>
                                 </li>
                                 <li className="list--option sweep-right">
-                                  <p>All</p>
+                                  <p>Annual</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Lifetime</p>
                                 </li>
                               </ul>
                             </div>
@@ -163,13 +201,12 @@ function AdminHomeDash({ location }) {
                         </div>
                       </li>
                       <li className="list--option">
-                        <div className="option--periodicity">
-
-                        </div>
-                      </li>
-                      <li className="list--option">
                         <div className="option--file-output">
-
+                          <FontAwesome name="" />
+                          {'\u00A0'}
+                          <span className="file-output__file-name">
+                            20161225_Today_SalesReport.pdf
+                          </span>
                         </div>
                       </li>
                     </ul>
