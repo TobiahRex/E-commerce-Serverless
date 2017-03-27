@@ -140,7 +140,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-direction: column;
-            margin: 1em 2em;
+            margin: 1em 1em;
             & label {
               margin-bottom: .5em;
               font-size: 1.8em;
@@ -151,7 +151,7 @@
             & input {
               height: 1.67em;
               min-width: 13.8em;
-              width: 100%;
+              width: 90%;
               font-weight: 200;
               font-family: $p-font;
               font-size: 1.8em;
@@ -283,7 +283,7 @@
               justify-content: flex-start;
               align-items: flex-start;
               flex-direction: column;
-              padding: 1em 0 0 1em;
+              margin: 1em 0 0 1em;
               width: 90%;
               & label {
                 color: $p-blue;
@@ -294,7 +294,7 @@
               }
               & input {
                 height: 1.67em;
-                width: 100%;
+                width: 90%;
                 font-weight: 200;
                 font-family: $p-font;
                 font-size: 1.8em;
@@ -306,11 +306,11 @@
             & .password--edit-btn {
               @include prefixflex();
               justify-content: flex-end;
-              align-items: flex-start;
+              align-items: flex-end;
               flex-direction: column;
               width: 100%;
               & button {
-                margin: 2em 2em 3em auto;
+                margin: 1em 2em 3em 0;
               }
             }
           }
