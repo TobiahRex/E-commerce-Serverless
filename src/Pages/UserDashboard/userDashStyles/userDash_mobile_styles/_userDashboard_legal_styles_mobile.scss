@@ -8,6 +8,7 @@
   @include prefixflex();
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   @import './userDashboard_sidebar_styles_mobile';
   & .body__dashboard {

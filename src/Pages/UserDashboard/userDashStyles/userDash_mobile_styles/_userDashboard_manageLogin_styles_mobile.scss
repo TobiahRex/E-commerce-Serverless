@@ -2,6 +2,7 @@
   @include prefixflex();
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   @import './userDashboard_sidebar_styles_mobile';
   & .body__dashboard {
@@ -25,7 +26,6 @@
         align-items: center;
         flex-direction: column;
         & .manage-login__header {
-          height: 6em;
           padding: 2em;
           text-align: center;
           & p {
@@ -57,9 +57,11 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
+          flex-direction: column;
           width: 100%;
           & .methods__email-password {
-            width: 50%;
+            width: 100%;
+            margin-bottom: 2em;
             & .email-password--container {
               border-color: $p-blue;
               background-color: $p-white;
@@ -106,8 +108,7 @@
             }
           }
           & .methods__social-login {
-            width: 50%;
-            margin-left: 2em;
+            width: 100%;
             align-self: flex-start;
             & .social-login--container {
               @include prefixflex();
@@ -139,7 +140,7 @@
                   @include prefixflex();
                   justify-content: flex-start;
                   align-items: center;
-                  width: 40%;
+                  width: 100%;
                   margin-bottom: 2em;
                   & button {
                     @include prefixflex();
@@ -180,8 +181,12 @@
         @include prefixflex();
         justify-content: space-around;
         align-items: center;
+        flex-direction: column;
         width: 100%;
         padding: 4em 0;
+        & div {
+          margin-bottom: 2em;
+        }
       }
     }
   }
