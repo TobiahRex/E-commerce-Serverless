@@ -6,34 +6,35 @@ import AdminHomeDash from '../Pages/AdminDashboard/adminDashComponents/adminDash
 import AdminLegal from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
 import AdminFaqs from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
 import AdminManageLogin from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
+import AdminReports from './../Pages/AdminDashboard/adminDashComponents/';
+import AdminSales from './../Pages/AdminDashboard/adminDashComponents/';
+import AdminProducts from './../Pages/AdminDashboard/adminDashComponents/';
+import AdminMembers from './../Pages/AdminDashboard/adminDashComponents/';
+import AdminPromotions from './../Pages/AdminDashboard/adminDashComponents/';
 
 const AdminDashboardRoutes = () => (
   <Route path="/admin_:id" component={AdminDashboard}>
     <IndexRoute component={AdminHomeDash} />
-    {/* <Route
-      path="address_book"
-      component={AdminAddressBook}
-      />
-      <Route
+    <Route
       path="reports"
       component={AdminReports}
-      />
-      <Route
+    />
+    <Route
       path="sales"
       component={AdminSales}
-      />
-      <Route
+    />
+    <Route
       path="products"
       component={AdminProducts}
-      />
-      <Route
+    />
+    <Route
       path="members"
       component={AdminMembers}
-      />
-      <Route
+    />
+    <Route
       path="promotions_sales"
       component={AdminPromotions}
-    /> */}
+    />
     <Route
       path="terms_and_conditions"
       component={AdminLegal.TermsConditions}
