@@ -15,10 +15,9 @@ function AdminSideBar({ location }) {
           <h3>Your Account</h3>
         </div>
         <ul className="sidebar__menu-list">
-
-          <li className="list--home-dashboard sweep-right">
+          <li className="list--admin-dashboard sweep-right">
             <Link to={`/${homeDashboard}`}>
-              <p>Home Dashboard</p>
+              <p>Admin Dashboard</p>
             </Link>
           </li>
 

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default function AdminDashboard() {
+const propTypes = {
+  children: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+function AdminDashboard({ children }) {
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
+    <div className="admindash--main">
+      <div className="admindash--container">
+        {children}
+      </div>
     </div>
   );
 }
+AdminDashboard.propTypes = propTypes;
+export default AdminDashboard;
