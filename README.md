@@ -1,7 +1,6 @@
-# _E-commerce Distribution Site:_
+# _Nicotine E-Juice E-commerce Site:_
 MERN Stack App
 ### Deployed on Heroku [here](https://nj2jp.herokuapp.com/). This is a temporary development deployment. Final Production site will be at http://www.nj2jp.com.
-<!-- <img src="http://imgur.com/dTXjfrU.png" /> -->
 
 ## Setup:
   - `npm i` to install dependencies
@@ -51,6 +50,10 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   - Added Sketch Mockups & Wireframes file to `tools/`
   - Responsiveness is still in development. Media Queries are `@media only screen and (max-width : 640px)` for mobile & `@media only screen and (min-wdith : 641px)` for web.  This is a recent change, and I haven't optimized all style sheets for those settings as of yet.
   - Not all stylesheets are implementing _BEM_.  It was recent change and previous naming conventions are still in use for some style sheets.
+* March 28th, 2017:
+  - Updated `webpack-image-loader` version from `3.2` to `3.3`.
+  - Updated `webpack` to version `2.2`.
+  - Updated `node` to version `7.7.3`. Added `engines` object to `package.json`.
 
 
 <!-- ## ScreenShots:
