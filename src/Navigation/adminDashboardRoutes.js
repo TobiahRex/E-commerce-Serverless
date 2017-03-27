@@ -6,11 +6,12 @@ import AdminHomeDash from '../Pages/AdminDashboard/adminDashComponents/adminDash
 import AdminLegal from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
 import AdminFaqs from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
 import AdminManageLogin from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
-import AdminReports from './../Pages/AdminDashboard/adminDashComponents/';
-import AdminSales from './../Pages/AdminDashboard/adminDashComponents/';
-import AdminProducts from './../Pages/AdminDashboard/adminDashComponents/';
-import AdminMembers from './../Pages/AdminDashboard/adminDashComponents/';
-import AdminPromotions from './../Pages/AdminDashboard/adminDashComponents/';
+import AdminReports from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_reports/adminReports';
+import AdminSales from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_sales/adminSales';
+import AdminTraffic from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_traffic/adminTraffic';
+import AdminProducts from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_products/adminProducts';
+import AdminMembers from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_members/adminMembers';
+import AdminPromotions from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_promotionsSales/adminPromotionsSales';
 
 const AdminDashboardRoutes = () => (
   <Route path="/admin_:id" component={AdminDashboard}>
@@ -24,6 +25,10 @@ const AdminDashboardRoutes = () => (
       component={AdminSales}
     />
     <Route
+      path="traffic"
+      component={AdminTraffic}
+    />
+    <Route
       path="products"
       component={AdminProducts}
     />
@@ -32,7 +37,7 @@ const AdminDashboardRoutes = () => (
       component={AdminMembers}
     />
     <Route
-      path="promotions_sales"
+      path="promotions"
       component={AdminPromotions}
     />
     <Route
