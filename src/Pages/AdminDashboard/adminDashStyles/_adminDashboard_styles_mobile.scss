@@ -1,0 +1,33 @@
+@media only screen and (max-width : 640px) {
+  .userdashboard__small-title {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    height: 4em;
+    width: 16.5em;
+    margin: 1em;
+    background-color: $p-blue;
+    h3 {
+      color: $p-white;
+    }
+  }
+  @import './userDash_mobile_styles/userDashboard_sidebar_styles_mobile';
+  .userdash--main {
+    max-width: 1086px;
+    width: 100%;
+    & .userdash--container {
+      @include prefixflex();
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      @import './userDash_mobile_styles/userDashboard_home_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_addressBook_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_orders_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_productReviews_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_loginApp_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_newsletter_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_legal_styles_mobile';
+      @import './userDash_mobile_styles/userDashboard_manageLogin_styles_mobile';
+    }
+  }
+}
