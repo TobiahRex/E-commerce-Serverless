@@ -244,6 +244,23 @@ function AdminHomeDash({ location }) {
                     </div>
                   </div>
                 </div>
+
+                <div className="reports__modal">
+                  <div className="modal__msg--container">
+                    <div className="msg__email">
+                      <div className="email__input--container">
+                        <p>This report will be sent via email attachment to the following email...</p>
+                        <div className="emai__input">
+                          <label htmlFor="email-input">Email</label>
+                          <input type="email" id="email-input" value="admin@nj2jp.com" />
+                        </div>
+                      </div>
+                      <div className="email__sent">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
 
