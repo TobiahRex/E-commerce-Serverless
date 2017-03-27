@@ -169,7 +169,42 @@ function OrderReviews() {
           </button>
         </div>
       </div>
-
+      <div className="reviews__delete--modals">
+        <div className="delete__confirm-modal--container">
+          <div className="confirm-modal__msg--container">
+            <div className="msg">
+              <p>Are you sure you want to delete this product review?</p>
+            </div>
+            <div className="msg__action-btns">
+              <div className="action-btns__cancel-btn">
+                <button className="cancel-btn primary-flex-button sweep-right">
+                  Cancel
+                </button>
+              </div>
+              <div className="action-btns__delete-btn">
+                <button className="delete-btn primary-flex-button sweep-right">
+                  Delete
+                </button>
+              </div>
+              <div>
+                <button className="save-btn primary-flex-button-saving sweep-right">
+                  <FontAwesome name="refresh" spin />
+                  {'\u00A0'} Deleting...
+                </button>
+              </div>
+              <div>
+                <button className="save-btn primary-flex-button-saved sweep-right">
+                  <span className="flex-parent-btn">
+                    <FontAwesome name="trash" />
+                    {'\u00A0'} Deleted!
+                    {/* NOTE:  After the edit has been saved, re-render component with the Presentation Component of the Review NOT the Edit Component of the review. */}
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
