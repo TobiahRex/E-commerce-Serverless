@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 
 import BreadCrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
-// import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -20,7 +20,7 @@ function AdminHomeDash({ location }) {
           lastCrumb="Home Dashboard"
         />
 
-        <UserWelcomeMsg />
+        <AdminWelcomeMsg />
         <div className="user-home-dash__body">
           <AdminSideBar location={location} />
           <div className="body__dashboard">

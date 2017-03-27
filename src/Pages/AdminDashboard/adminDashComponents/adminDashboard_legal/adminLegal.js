@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react';
 
-import TermsConditions from './userTermsConditions';
-import PrivacyPolicy from './userPrivacyPolicy';
-import ShippingPolicy from './userShippingPolicy';
-import ReturnPolicy from './userReturnPolicy';
-import NicotineDisclaimer from './userNicotineDisclaimer';
+import TermsConditions from './adminTermsConditions';
+import PrivacyPolicy from './adminPrivacyPolicy';
+import ShippingPolicy from './adminShippingPolicy';
+import ReturnPolicy from './adminReturnPolicy';
+import NicotineDisclaimer from './adminNicotineDisclaimer';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any),
 };
 
-const UserLegal = {
+const AdminLegal = {
   TermsConditions: ({ location }) =>
     <TermsConditions location={location} />,
   PrivacyPolicy: ({ location }) =>
@@ -23,9 +23,9 @@ const UserLegal = {
     <NicotineDisclaimer location={location} />,
 };
 
-UserLegal.TermsConditions.propTypes = propTypes;
-UserLegal.PrivacyPolicy.propTypes = propTypes;
-UserLegal.ShippingPolicy.propTypes = propTypes;
-UserLegal.ReturnPolicy.propTypes = propTypes;
-UserLegal.NicotineDisclaimer.propTypes = propTypes;
-export default UserLegal;
+AdminLegal.TermsConditions.propTypes = propTypes;
+AdminLegal.PrivacyPolicy.propTypes = propTypes;
+AdminLegal.ShippingPolicy.propTypes = propTypes;
+AdminLegal.ReturnPolicy.propTypes = propTypes;
+AdminLegal.NicotineDisclaimer.propTypes = propTypes;
+export default AdminLegal;

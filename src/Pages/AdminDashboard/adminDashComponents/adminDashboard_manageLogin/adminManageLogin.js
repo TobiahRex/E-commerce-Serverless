@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import 'react-router';
+import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
-import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,

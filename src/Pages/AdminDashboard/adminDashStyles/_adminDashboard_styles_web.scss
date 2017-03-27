@@ -11,7 +11,7 @@
       color: $p-white;
     }
   }
-  @import './adminDash_web_styles/userDashboard_sidebar_styles_web';
+  // @import './adminDash_web_styles/userDashboard_sidebar_styles_web';
   .admindash--main {
     max-width: 1086px;
     width: 100%;
@@ -20,14 +20,14 @@
       justify-content: center;
       flex-direction: column;
       width: 100%;
-      @import './adminDash_web_styles/userDashboard_home_styles_web';
-      @import './adminDash_web_styles/userDashboard_addressBook_styles_web';
-      @import './adminDash_web_styles/userDashboard_orders_styles_web';
-      @import './adminDash_web_styles/userDashboard_productReviews_styles_web';
-      @import './adminDash_web_styles/userDashboard_loginApp_styles_web';
-      @import './adminDash_web_styles/userDashboard_newsletter_styles_web';
-      @import './adminDash_web_styles/userDashboard_legal_styles_web';
-      @import './adminDash_web_styles/userDashboard_manageLogin_styles_web';
+      // @import './adminDash_web_styles/userDashboard_home_styles_web';
+      // @import './adminDash_web_styles/userDashboard_addressBook_styles_web';
+      // @import './adminDash_web_styles/userDashboard_orders_styles_web';
+      // @import './adminDash_web_styles/userDashboard_productReviews_styles_web';
+      // @import './adminDash_web_styles/userDashboard_loginApp_styles_web';
+      // @import './adminDash_web_styles/userDashboard_newsletter_styles_web';
+      // @import './adminDash_web_styles/userDashboard_legal_styles_web';
+      // @import './adminDash_web_styles/userDashboard_manageLogin_styles_web';
     }
   }
 }

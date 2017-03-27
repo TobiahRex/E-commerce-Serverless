@@ -4,6 +4,8 @@ import { Route, IndexRoute } from 'react-router';
 import AdminDashboard from '../Pages/AdminDashboard/adminDashComponents/adminDashboard';
 import AdminHomeDash from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash';
 import AdminLegal from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
+import AdminFaqs from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
+import AdminManageLogin from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
 
 const AdminDashboardRoutes = () => (
   <Route path="/admin_:id" component={AdminDashboard}>

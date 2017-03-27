@@ -1,9 +1,9 @@
 import React from 'react';
 import Breadcrumb from '../../../../Components/breadcrumbs';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
-import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
+import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
-export default function UserPrivacyPolicy() {
+export default function AdminPrivacyPolicy() {
   const homeDashboard = location.pathname.split('/')[1];
   return (
     <div className="privacy-policy--main">
@@ -14,9 +14,9 @@ export default function UserPrivacyPolicy() {
           destination={['', homeDashboard]}
           lastCrumb="Privacy Policy"
         />
-        <UserWelcomeMsg />
+        <AdminWelcomeMsg />
         <div className="privacy-policy__body">
-          <UserSideBar location={location} />
+          <AdminSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">
@@ -43,7 +43,7 @@ export default function UserPrivacyPolicy() {
                   <br /><br />
                   How do we use the information we collect?
                   <br /><br />
-                  We use the information we collect to provide our products to you and make them better, develop new products, and protect our webiste and our users. For example, we may log how often people use two different versions of a product, which can help us understand which version is better.
+                  We use the information we collect to provide our products to you and make them better, develop new products, and protect our webiste and our admins. For example, we may log how often people use two different versions of a product, which can help us understand which version is better.
                   <br /><br />
                   We also use the information we collect to:
                   <br /><br />

@@ -1,10 +1,10 @@
 
 import React from 'react';
 import Breadcrumb from '../../../../Components/breadcrumbs';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
-import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
+import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
-export default function UserShippingPolicy() {
+export default function AdminShippingPolicy() {
   const homeDashboard = location.pathname.split('/')[1];
   return (
     <div className="shipping-policy--main">
@@ -15,9 +15,9 @@ export default function UserShippingPolicy() {
           destination={['', homeDashboard]}
           lastCrumb="Shipping Policy"
         />
-        <UserWelcomeMsg />
+        <AdminWelcomeMsg />
         <div className="shipping-policy__body">
-          <UserSideBar location={location} />
+          <AdminSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">

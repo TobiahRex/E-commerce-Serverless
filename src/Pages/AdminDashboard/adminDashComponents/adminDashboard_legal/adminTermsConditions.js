@@ -1,14 +1,14 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../Components/breadcrumbs';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
-import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
+import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
 // TODO:
-// 1. Send the user to this page as soon as they successfully authorize an OAuth application OR Email & Password on first register.
-// 2. Do NOT allow user to navigate away from this page if they have not agreed to the Document.
+// 1. Send the admin to this page as soon as they successfully authorize an OAuth application OR Email & Password on first register.
+// 2. Do NOT allow admin to navigate away from this page if they have not agreed to the Document.
 
-export default function UserTermsConditions() {
+export default function AdminTermsConditions() {
   const homeDashboard = location.pathname.split('/')[1];
   return (
     <div className="terms-conditions--main">
@@ -19,9 +19,9 @@ export default function UserTermsConditions() {
           destination={['', homeDashboard]}
           lastCrumb="Terms & Conditions"
         />
-        <UserWelcomeMsg />
+        <AdminWelcomeMsg />
         <div className="terms-conditions__body">
-          <UserSideBar location={location} />
+          <AdminSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">
@@ -47,15 +47,15 @@ export default function UserTermsConditions() {
                   Submissions
                   <br />
                   <br />
-                  Should any viewer of a document on this web site respond to Beyond Vape with information including feedback data, such as questions, comments, suggestions, or the like regarding the site, or the content of any item, such information shall be deemed to be non-confidential and Beyond Vape shall have no obligation of any kind with respect to such information. In addition, Beyond Vape shall be free to reproduce, use, disclose, display, exhibit, transmit, perform, create derivative works, and distribute the information to others without limitation, and to authorize others to do the same. Further, Beyond Vape shall be free to use any ideas, concepts, know-how or techniques contained in such information for any purpose whatsoever, including, but not limited to, developing, manufacturing and marketing products and other items incorporating such information. This paragraph is not intended to apply to any personal information about you (such as name, mailing address and e-mail address), the use of which will be governed by Beyond Vape’s Privacy Statement. In consideration of Beyond Vape’s continuing efforts to enhance and improve these products and to respond to feedback from users, you agree to transfer such ideas, concepts, know-how and techniques to Beyond Vape without any compensation. You agree to execute any and all documents that Beyond Vape may reasonably request in connection with confirming Beyond Vape’s ownership of and unlimited right to use such ideas, concepts, know-how and techniques. You are solely responsible for the content of any comments you make. You agree that no comments submitted by you to this web site will: (i) violate any right of any third party, including copyright, trademark, privacy or other personal or proprietary rights; (ii) be or contain libelous or otherwise unlawful, abusive, or obscene material or constitute the misappropriation of the trade secrets of any third party; and (iii) disparage the products or services of any third party. You agree not to submit any personal information (other than your email address or username) through email sent to other users or messages posted on this site by you.
+                  Should any viewer of a document on this web site respond to Beyond Vape with information including feedback data, such as questions, comments, suggestions, or the like regarding the site, or the content of any item, such information shall be deemed to be non-confidential and Beyond Vape shall have no obligation of any kind with respect to such information. In addition, Beyond Vape shall be free to reproduce, use, disclose, display, exhibit, transmit, perform, create derivative works, and distribute the information to others without limitation, and to authorize others to do the same. Further, Beyond Vape shall be free to use any ideas, concepts, know-how or techniques contained in such information for any purpose whatsoever, including, but not limited to, developing, manufacturing and marketing products and other items incorporating such information. This paragraph is not intended to apply to any personal information about you (such as name, mailing address and e-mail address), the use of which will be governed by Beyond Vape’s Privacy Statement. In consideration of Beyond Vape’s continuing efforts to enhance and improve these products and to respond to feedback from admins, you agree to transfer such ideas, concepts, know-how and techniques to Beyond Vape without any compensation. You agree to execute any and all documents that Beyond Vape may reasonably request in connection with confirming Beyond Vape’s ownership of and unlimited right to use such ideas, concepts, know-how and techniques. You are solely responsible for the content of any comments you make. You agree that no comments submitted by you to this web site will: (i) violate any right of any third party, including copyright, trademark, privacy or other personal or proprietary rights; (ii) be or contain libelous or otherwise unlawful, abusive, or obscene material or constitute the misappropriation of the trade secrets of any third party; and (iii) disparage the products or services of any third party. You agree not to submit any personal information (other than your email address or adminname) through email sent to other admins or messages posted on this site by you.
                   Termination
                   <br />
                   <br />
                   This Agreement is effective unless and until terminated by either you or Beyond Vape. You may terminate this Agreement at any time by no longer using this web site, provided that all prior uses of this web site shall be governed by this Agreement. Beyond Vape may terminate this Agreement at any time and without notice, and accordingly deny you access to this web site, in Beyond {'Vape\'s'} sole discretion for any reason, including your failure to comply with any term or provision of this Agreement. Upon any termination of this Agreement by either you or Beyond Vape, you must promptly destroy all materials downloaded or otherwise obtained from this web site, as well as all copies of such materials, whether made under the terms of this Agreement or otherwise.
                 </p>
               </div>
-              <div className="user__agree">
-                <button type="text" className="user-input__check-box" />
+              <div className="admin__agree">
+                <button type="text" className="admin-input__check-box" />
                 <p>I agree to all Terms & Conditions.</p>
               </div>
               <div className="legal__action-section--container">

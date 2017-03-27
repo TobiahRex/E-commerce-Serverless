@@ -1,9 +1,9 @@
 import React from 'react';
 import Breadcrumb from '../../../../Components/breadcrumbs';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
-import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
+import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
-export default function UserPrivacyPolicy() {
+export default function AdminPrivacyPolicy() {
   const homeDashboard = location.pathname.split('/')[1];
   return (
     <div className="faqs--main">
@@ -14,9 +14,9 @@ export default function UserPrivacyPolicy() {
           destination={['', homeDashboard]}
           lastCrumb="FAQ's"
         />
-        <UserWelcomeMsg />
+        <AdminWelcomeMsg />
         <div className="faqs__body">
-          <UserSideBar location={location} />
+          <AdminSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">
