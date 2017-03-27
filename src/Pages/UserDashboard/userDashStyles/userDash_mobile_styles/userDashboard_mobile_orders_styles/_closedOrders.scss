@@ -49,9 +49,15 @@
           background-color: $p-red;
           cursor: pointer;
           & span {
-            font-size: 1.8em;
-            line-height: 1em;
-            color: $p-white;
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            & span {
+              font-size: 1.8em;
+              line-height: 1em;
+              color: $p-white;
+            }
           }
         }
       }

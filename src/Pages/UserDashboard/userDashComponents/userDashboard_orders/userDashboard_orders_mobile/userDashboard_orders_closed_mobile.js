@@ -22,7 +22,9 @@ function OpenOrders() {
           <div className="periodicity__ddn--readout">
             <input type="text" className="readout--msg" disabled value="Month" />
             <button className="readout--btn sweep-right">
-              <FontAwesome name="angle-down" />
+              <span className="flex-btn-parent">
+                <FontAwesome name="angle-down" />
+              </span>
             </button>
           </div>
           <div className="periodicity__ddn--content" style={{ display: 'none' }} >
