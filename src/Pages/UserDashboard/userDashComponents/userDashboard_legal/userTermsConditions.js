@@ -1,7 +1,12 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
+
+// TODO:
+// 1. Send the user to this page as soon as they successfully authorize an OAuth application OR Email & Password on first register.
+// 2. Do NOT allow user to navigate away from this page if they have not agreed to the Document.
 
 export default function UserTermsConditions() {
   const homeDashboard = location.pathname.split('/')[1];
@@ -48,6 +53,41 @@ export default function UserTermsConditions() {
                   <br />
                   This Agreement is effective unless and until terminated by either you or Beyond Vape. You may terminate this Agreement at any time by no longer using this web site, provided that all prior uses of this web site shall be governed by this Agreement. Beyond Vape may terminate this Agreement at any time and without notice, and accordingly deny you access to this web site, in Beyond {'Vape\'s'} sole discretion for any reason, including your failure to comply with any term or provision of this Agreement. Upon any termination of this Agreement by either you or Beyond Vape, you must promptly destroy all materials downloaded or otherwise obtained from this web site, as well as all copies of such materials, whether made under the terms of this Agreement or otherwise.
                 </p>
+              </div>
+              <div className="user__agree">
+                <button type="text" className="user-input__check-box" />
+                <p>I agree to all Terms & Conditions.</p>
+              </div>
+              <div className="legal__action-section--container">
+                <div className="action-section__back-btn">
+                  <button className="back-btn primary-flex-button sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="angle-double-left" />
+                      {'\u00A0'}
+                      Back
+                    </span>
+                  </button>
+                </div>
+
+                <div className="action-section__save-btn">
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Save
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saving sweep-right">
+                    <FontAwesome name="refresh" spin />
+                    {'\u00A0'} Saving...
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saved sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="check-circle" />
+                      {'\u00A0'} Saved!
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

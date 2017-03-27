@@ -67,9 +67,11 @@ function OrderReviews() {
           </button>
           <button className="delete-review sweep-right primary-button">
             Delete Review
+            {/* TODO: Create a "Are you sure you want to delete this product review?" Modal. */}
           </button>
           <button className="buy-again sweep-right primary-button">
             Buy Again
+            {/* NOTE: Sends user to the single product page for this product. */}
           </button>
         </div>
       </div>
@@ -130,9 +132,26 @@ function OrderReviews() {
           </div>
         </div>
         <div className="reviews__product--edit-action-btns">
-          <button className="edit-review sweep-right primary-button">
-            Save Edit
-          </button>
+          <div className="action-section__save-btn">
+            <button className="save-btn primary-flex-button sweep-right">
+              Save Edit
+            </button>
+          </div>
+          <div>
+            <button className="save-btn primary-flex-button-saving sweep-right">
+              <FontAwesome name="refresh" spin />
+              {'\u00A0'} Saving...
+            </button>
+          </div>
+          <div>
+            <button className="save-btn primary-flex-button-saved sweep-right">
+              <span className="flex-parent-btn">
+                <FontAwesome name="check-circle" />
+                {'\u00A0'} Saved!
+                {/* NOTE:  After the edit has been saved, re-render component with the Presentation Component of the Review NOT the Edit Component of the review. */}
+              </span>
+            </button>
+          </div>
           <button className="delete-review sweep-right primary-button">
             Cancel
           </button>

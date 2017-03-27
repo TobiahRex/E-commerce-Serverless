@@ -114,9 +114,11 @@ function OpenOrders() {
                   <div className="info--action-section">
                     <ul className="action-section--list">
                       <li className="list--add-to-cart">
+                        {/* NOTE: This button will send user dynamically to the the "Single Product page for this respective product." */}
                         <button className="medium-size-btn sweep-right">Add To Cart</button>
                       </li>
                       <li className="list--track-order">
+                        {/* NOTE: This button sends user to the tracking page inside their dashboard with this order's tracking number. */}
                         <button className="medium-size-btn sweep-right">Track Your Order</button>
                       </li>
                       <li className="list--tracking-number">

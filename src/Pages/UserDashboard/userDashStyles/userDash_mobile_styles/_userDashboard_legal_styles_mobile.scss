@@ -46,6 +46,35 @@
           padding: 2em;
         }
       }
+      & .user__agree {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2em 0 2em 2em;
+        height: 10em;
+        & .user-input__check-box {
+          height: 3em;
+          width: 3em;
+          cursor: pointer;
+          border: 1px solid rgba(0,0,0,.25);
+          background-color: $p-white;
+          cursor: pointer;
+        }
+        & p {
+          margin-left: 1em;
+          font-size: 1.2em;
+        }
+      }
+      & .legal__action-section--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 2em;
+        & div {
+          margin-bottom: 2em;
+        }
+      }
     }
   }
 }
