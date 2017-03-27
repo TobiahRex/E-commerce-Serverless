@@ -202,7 +202,7 @@ function AdminHomeDash({ location }) {
                       </li>
                       <li className="list--option">
                         <div className="option--file-output">
-                          <FontAwesome name="" />
+                          <FontAwesome name="file-o" />
                           {'\u00A0'}
                           <span className="file-output__file-name">
                             20161225_Today_SalesReport.pdf
@@ -211,8 +211,41 @@ function AdminHomeDash({ location }) {
                       </li>
                     </ul>
                   </div>
+                  <div className="body__status-msg">
+                    <div className="status-msg__pre-generated ">
+                      <FontAwesome name="info-circle" />{'\u00A0'}
+                      <p>{'You\'ve'} selected a {'<Periodicity>'}, {'<TYPE>'} report.</p>
+                    </div>
+                    <div className="status-msg__generated ">
+                      <FontAwesome name="exclamation-circle" />{'\u00A0'}
+                      <p>Success!</p>
+                    </div>
+                  </div>
+                  <div className="body__action-section ">
+                    <div className="action-section__generate">
+                      <button className="medium-size-btn sweep-right">
+                        Generate
+                      </button>
+                    </div>
+                    <div className="action-section__text">
+                      <button className="medium-size-btn sweep-right">
+                        Text Report
+                      </button>
+                    </div>
+                    <div className="action-section__email">
+                      <button className="medium-size-btn sweep-right">
+                        Email
+                      </button>
+                    </div>
+                    <div className="action-section__download">
+                      <button className="medium-size-btn sweep-right">
+                        Download
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
+
 
             </div>
           </div>
