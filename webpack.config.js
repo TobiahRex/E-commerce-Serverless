@@ -24,25 +24,7 @@ const devConfig = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
     new webpack.LoaderOptionsPlugin({
-      imageWebpackLoader: {
-        mozjpeg: {
-          quality: 65,
-        },
-        pngquant: {
-          quality: '65-90',
-          speed: 4,
-        },
-        svgo: {
-          plugins: [
-            {
-              removeViewBox: false,
-            },
-            {
-              removeEmptyAttrs: false,
-            },
-          ],
-        },
-      },
+      debug: true,
     }),
   ],
   module: {
@@ -89,9 +71,21 @@ const devConfig = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        // Using url loader allows relative file paths when using the "url("<path>")" css property.
-        // 'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        loaders: ['url-loader', 'image-webpack-loader'],
+        loaders: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              progressive: true,
+              optimizationLevel: 7,
+              interlaced: false,
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.json$/,
@@ -127,31 +121,8 @@ const prodConfig = {
       },
     }),
     new webpack.LoaderOptionsPlugin({
+      debug: false,
       minimize: true,
-      options: {
-        sassLoader: {
-          includePaths: [path.resolve(__dirname, 'src', 'scss')],
-        },
-        imageWebpackLoader: {
-          mozjpeg: {
-            quality: 65,
-          },
-          pngquant: {
-            quality: '65-90',
-            speed: 4,
-          },
-          svgo: {
-            plugins: [
-              {
-                removeViewBox: false,
-              },
-              {
-                removeEmptyAttrs: false,
-              },
-            ],
-          },
-        },
-      },
     }),
   ],
   module: {
@@ -195,8 +166,25 @@ const prodConfig = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader',
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+              pngquant: {
+                quality: '75-90',
+                speed: 4,
+              },
+            },
+          },
         ],
       },
       {

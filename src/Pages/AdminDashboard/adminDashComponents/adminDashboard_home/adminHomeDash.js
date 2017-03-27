@@ -254,6 +254,10 @@ function AdminHomeDash({ location }) {
                           <label htmlFor="email-input">Email</label>
                           <input type="email" id="email-input" value="admin@nj2jp.com" />
                         </div>
+                        <div className="email__action-btns">
+                          <button className="primary-button sweep-right">Cancel</button>
+                          <button className="primary-button sweep-right">Send Email</button>
+                        </div>
                       </div>
                       <div className="email__sent">
 
