@@ -76,11 +76,17 @@ const devConfig = {
           {
             loader: 'image-webpack-loader',
             query: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
               pngquant: {
-                quality: '65-90',
+                quality: '75-90',
                 speed: 4,
               },
             },
