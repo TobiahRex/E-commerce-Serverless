@@ -294,6 +294,50 @@
           align-items: center;
           padding: 2em;
         }
+
+        & .reviews__modals--delete {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+          & .modals__confirm-delete--container {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 99;
+            height: 1000%;
+            width: 100%;
+            background-color: rgba(0,0,0,.75);
+            & .confirm-delete__msg--container {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              background-color: $p-white;
+              width: 90%;
+              & .msg {
+                padding: 2em 2em 4em 2em;
+                text-align: center;
+                & p {
+                  color: $p-red;
+                  font-size: 1.8em;
+                  font-weight: 400;
+                }
+              }
+              & .msg__action-btns {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                & div {
+                  margin-bottom: 2em;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

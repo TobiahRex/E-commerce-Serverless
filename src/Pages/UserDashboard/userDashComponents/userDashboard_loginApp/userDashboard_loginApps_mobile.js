@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
+import uuid from 'uuid';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 
 const propTypes = { };
@@ -64,26 +65,51 @@ function UserLoginAppMobile() {
                 </span>
               </button>
             </div>
-
-
-            <div className="action-section__save-btn">
-              <button className="save-btn primary-flex-button sweep-right">
-                Save Addresses
-              </button>
+          </div>
+        </div>
+      </div>
+      <div className="login-app__modals--delete" >
+        <div className="modals__confirm-delete--container">
+          <div className="confirm-delete__msg--container">
+            <div className="msg--delete-account">
+              <p>Are you sure you want to Delete this Application?  You will no longer have a way to login to NJ2JP and all your account information will be lost!!!</p>
+              <br />
+              <p>We HIGHLY recommend you add another application, OR  click <Link to={`/user_${uuid()}/manage_login`}>HERE</Link> to add an Email & Password to your account before deleting this application.</p>
             </div>
-            <div>
-              <button className="save-btn primary-flex-button-saving sweep-right">
-                <FontAwesome name="refresh" spin />
-                {'\u00A0'} Saving...
-              </button>
+            <div className="msg--delete-single-app">
+              <p>Are you sure you want to Delete this Application?</p>
             </div>
-            <div>
-              <button className="save-btn primary-flex-button-saved sweep-right">
-                <span className="flex-parent-btn">
-                  <FontAwesome name="check-circle" />
-                  {'\u00A0'} Saved!
-                </span>
-              </button>
+            <div className="msg__action-btns">
+              <div className="action-btns__cancel-btn">
+                <button className="cancel-btn primary-flex-button sweep-right">
+                  Cancel
+                </button>
+              </div>
+              <div className="action-btns__delete-btn">
+                {/* NOTE:  Depending on the situation, render the appropriate delete button from the choices below  */}
+                <button className="delete-btn primary-flex-button sweep-right">
+                  Delete Account
+                </button>
+                <button className="delete-btn primary-flex-button sweep-right">
+                  Delete Application
+                </button>
+              </div>
+              <div>
+                <button className="save-btn primary-flex-button-saving sweep-right">
+                  <FontAwesome name="refresh" spin />
+                  {'\u00A0'} Deleting...
+                  {/* NOTE:  When this button is displayed, the "Cancel" button needs to be hidden. */}
+                </button>
+              </div>
+              <div>
+                <button className="save-btn primary-flex-button-saved sweep-right">
+                  <span className="flex-parent-btn">
+                    <FontAwesome name="trash" />
+                    {'\u00A0'} Deleted!
+                    {/* NOTE:  After the reviews has been deleted, re-render component with the Presentation Component. */}
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
