@@ -351,21 +351,26 @@ function AdminHomeDash({ location }) {
                             </div>
                           </div>
 
-
                         </div>
                       </li>
                       <li className="list--option">
-                        <div className="option--periodicty">
-                          <div className="periodicty__ddn--container">
-                            <div className="periodicty__ddn--readout">
-                              <input type="text" className="readout--msg" disabled value="Today (24hrs)" />
-                              <button className="readout--btn sweep-right">
-                                <span className="flex-btn-parent">
-                                  <FontAwesome name="angle-down" />
-                                </span>
-                              </button>
+                        <div className="option--visitors">
+                          <div className="visitors__ddn--container">
+                            <div className="visitors__ddn--readout">
+                              <div className="ddn__options">
+                                <label htmlFor="ddn__btn">Visitors Per</label>
+                                <input type="text" id="ddn__btn" className="readout--msg" value="Today (24hrs)" disabled />
+                                <button className="readout--btn sweep-right">
+                                  <span className="flex-btn-parent">
+                                    <FontAwesome name="angle-down" />
+                                  </span>
+                                </button>
+                              </div>
+                              <div className="ddn__result">
+                                <h3>99</h3>
+                              </div>
                             </div>
-                            <div className="periodicity__ddn--content">
+                            <div className="visitors__ddn--content">
                               <ul className="ddn--content__list">
                                 {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
                                 <li className="list--option sweep-right">

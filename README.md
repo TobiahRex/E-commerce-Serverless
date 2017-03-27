@@ -3,6 +3,10 @@ MERN Stack App
 ### Deployed on Heroku [here](https://nj2jp.herokuapp.com/). This is a temporary development deployment. Final Production site will be at http://www.nj2jp.com.
 <!-- <img src="http://imgur.com/dTXjfrU.png" /> -->
 
+# WARNING:
+  * Uses `webpack version 2.0`.
+  * Node engine explicitly defined in `package.json` for `node@7.7.3`.
+    - If you are not compliant with these version, it's HIGHLY recommended you update.
 
 ## DESCRIPTION:
 Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
@@ -20,6 +24,7 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   - `npm start` for development server
   - `npm run build` for production server
   - OPTIONAL
+    - `touch .gitignore` I use a global `.gitignore_global` file so you should add your own so as not to push `node_modules/` once you've completed `npm i`.
     - `brew update`
     - `brew install libpng`  for some webpack loaders (image-webpack-loader [see here](https://github.com/tcoopman/image-webpack-loader))
 
