@@ -32,6 +32,29 @@
     }
   }
 }
+
+.primary-flex-button-saving,
+.primary-flex-button-saved {
+  height: 3.33em;
+  width: 13.8em;
+  color: $p-white;
+  font-family: $p-font;
+  font-size: 1.8em;
+  font-weight: 200;
+  border: none;
+  background-color: $p-blue;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+  & .flex-btn-parent {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    & span {
+      color: $p-white;
+      font-size: 1.5em;
+    }
+  }
+}
 @media only screen and (min-width : 641px) {
   .breadcrumbs {
     @include prefixflex();

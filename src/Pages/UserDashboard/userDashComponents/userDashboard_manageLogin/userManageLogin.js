@@ -131,9 +131,25 @@ function UserManageLogin({ location }) {
                       </span>
                     </button>
                   </div>
+
+                  {/* NOTE: If the user has never created a password before, then this will inititate a first time Authorization request to 3rd party API. */}
                   <div className="action-section__save-btn">
                     <button className="save-btn primary-flex-button sweep-right">
-                      Save
+                      Save Password
+                    </button>
+                  </div>
+                  <div>
+                    <button className="save-btn primary-flex-button-saving sweep-right">
+                      <FontAwesome name="refresh" spin />
+                      {'\u00A0'} Saving...
+                    </button>
+                  </div>
+                  <div>
+                    <button className="save-btn primary-flex-button-saved sweep-right">
+                      <span className="flex-parent-btn">
+                        <FontAwesome name="check-circle" />
+                        {'\u00A0'} Saved!
+                      </span>
                     </button>
                   </div>
                 </div>

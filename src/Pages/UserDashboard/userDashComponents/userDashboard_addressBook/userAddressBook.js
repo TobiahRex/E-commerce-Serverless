@@ -252,6 +252,20 @@ function UserAddressBook({ location }) {
                     Save Addresses
                   </button>
                 </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saving sweep-right">
+                    <FontAwesome name="refresh" spin />
+                    {'\u00A0'} Saving...
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saved sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="check-circle" />
+                      {'\u00A0'} Saved!
+                    </span>
+                  </button>
+                </div>
               </div>
 
             </div>

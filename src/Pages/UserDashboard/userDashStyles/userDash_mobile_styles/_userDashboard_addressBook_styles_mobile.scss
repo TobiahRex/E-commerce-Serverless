@@ -234,7 +234,7 @@
 
       & .address__action-section--container {
         @include prefixflex();
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
         margin: 5em 0 0 0;

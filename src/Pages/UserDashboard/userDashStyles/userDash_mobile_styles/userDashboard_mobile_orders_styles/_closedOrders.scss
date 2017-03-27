@@ -34,17 +34,18 @@
           font-size: 1.6em;
           font-weight: 200;
           padding-left: .5em;
+          border-radius: 0;
           border: 1px solid rgba(0,0,0,.25);
         }
         & .readout--btn {
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          border: none;
           padding: 0;
           margin: 0;
           height: 2.3em;
           width: 2.4em;
+          border: 1px solid $p-red;
           font-size: 1.6em;
           background-color: $p-red;
           cursor: pointer;
