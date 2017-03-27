@@ -25,13 +25,15 @@ function UserLoginAppMobile() {
               <p className="app-warning--msg">
                 <span className="bold-warning">
                   WARNING:{'\u00A0'}
-                </span>If you DELETE {'<App Name>'} access from your account, this will also delete your account information.  This is because you only have 1 app with authorization to login on your behalf.  If you want to avoid loosing your account information, authorize another app access by clicking the “<FontAwesome name="plus" />” button on the button.  You can also add an Email & Password as a backup login method by clicking <Link to="/user_123123123/manage_login">here</Link>.
+                </span>If you DELETE {'<App Name>'} access from your account, this will also delete your account information! {'\u00A0'}This is because you only have 1 app authorized. {'\u00A0'}If you want to avoid loosing your account information, please authorize another app by clicking the large “<FontAwesome name="plus" />” button below. {'\u00A0'}If you do not want to authorize another application, then we recommend you add an Email & Password as an additional login method by clicking <Link to="/user_123123123/manage_login">here</Link>.
               </p>
             </div>
             <div className="authorized-apps--container">
               <ul className="authorized-apps--list">
                 <li className="list--app">
                   <div className="app__date">
+                    {/* NOTE: The h4 is dynamically set.  */}
+                    <h4>Instagram</h4>
                     <p>Added {moment().format('LL')}</p>
                   </div>
                   <div className="app__icon instagram">

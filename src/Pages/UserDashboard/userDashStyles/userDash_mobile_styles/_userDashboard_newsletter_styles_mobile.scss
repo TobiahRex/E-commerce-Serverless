@@ -2,6 +2,7 @@
   @include prefixflex();
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   @import './userDashboard_sidebar_styles_mobile';
   & .body__dashboard {
@@ -25,8 +26,7 @@
           @include prefixflex();
           justify-content: flex-start;
           align-items: center;
-          margin-left: 3em;
-          padding: 2em 2em 5em 2em;
+          padding: 2em 0 2em 2em;
           height: 10em;
           & .user-input__check-box {
             height: 3em;
@@ -38,14 +38,18 @@
           }
           & p {
             margin-left: 1em;
-            font-size: 1.8em;
+            font-size: 1.2em;
           }
         }
         & .newsletter__action-section--container {
           @include prefixflex();
-          justify-content: space-around;
+          justify-content: center;
           align-items: center;
+          flex-direction: column;
           padding: 2em;
+          & div {
+            margin-bottom: 2em;
+          }
         }
       }
     }
