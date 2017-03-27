@@ -11,8 +11,8 @@ const propTypes = {
 
 function AdminHomeDash({ location }) {
   return (
-    <div className="user-home-dash--main">
-      <div className="user-home-dash--container">
+    <div className="admin-dash--main">
+      <div className="admin-dash--container">
         <BreadCrumb
           paths={['Home', 'Your Account']}
           classes={['home', 'your-account']}
@@ -21,152 +21,162 @@ function AdminHomeDash({ location }) {
         />
 
         <AdminWelcomeMsg />
-        <div className="user-home-dash__body">
+        <div className="admin-dash__body">
           <AdminSideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">
-                <h1>Home Dashboard</h1>
+                <h1>Admin Dashboard</h1>
               </div>
-              <div className="dashboard__top-third--container">
-                <div className="top-third--contact-info">
-                  <div className="contact-info__title userdashboard__small-title">
-                    <h3>Contact Info</h3>
-                  </div>
-                  <div className="contact-info__info">
-                    {/* TODO:  Render this information dynamically */}
-                    <p className="info--name">Bruce Wayne</p>
-                    <p className="info--email">bruce.wayne@wayneenterprises.com</p>
-                    <p className="info--phone">(123)-123-1234</p>
-                  </div>
-                  <div className="contact-info__edit-btn">
-                    <button className="small-edit-btn sweep-right">Edit</button>
-                  </div>
+              <div className="dashboard__header">
+                <div className="dashboard__stats--container">
+                  <ul className="stats--list">
+                    <li className="list--stat">
+                      <div className="stat--visits">
+                        <h3>230</h3>
+                        <p>Visits Today</p>
+                      </div>
+                    </li>
+                    <li className="list--stat">
+                      <div className="stat--sales">
+                        <h3>24</h3>
+                        <p>Sales Today</p>
+                      </div>
+                    </li>
+                    <li className="list--stat">
+                      <div className="stat--new-members">
+                        <h3>10</h3>
+                        <p>New Members</p>
+                        <p>Today</p>
+                      </div>
+                    </li>
+                    <li className="list--stat">
+                      <div className="stat--revenue">
+                        <h3>
+                          <FontAwesome name="usd" />{'\u00A0'}1,200</h3>
+                        <p>Revenue Today</p>
+                      </div>
+                    </li>
+                    <li className="list--stat">
+                      <div className="stat--bounce-rate">
+                        <h3>1</h3>
+                        <p>Bounce Rate</p>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-                <div className="top-third--newsletters">
-                  <div className="newsletters__title userdashboard__small-title">
-                    <h3>Newsletters</h3>
-                  </div>
-                  <div className="newsletters__status-msg">
-                    <p>You are currently not subscribed to any newsletters.</p>
-                  </div>
-                  <div className="newsletters__edit-btn">
-                    <button className="small-edit-btn sweep-right">Edit</button>
-                  </div>
-                </div>
-              </div>
-              <div className="dashboard__mid-third--container">
-                <div className="mid-third__address-book">
-                  <div className="address-book__title userdashboard__small-title">
-                    <h3>Address Book</h3>
-                  </div>
-                  <div className="address-book__default--container">
-                    <div className="default--shipping-address">
-                      <h3>Default Shipping Address</h3>
-                      <p className="shipping-address__postal-code">
-                        5-3, Yaesau 1-Chome
-                      </p>
-                      <p className="shipping-address__wards">
-                        Chuo-ku,
-                      </p>
-                      <p className="shipping-address__city">
-                        Tokyo
-                      </p>
-                      <p className="shipping-address__main-postal">
-                        100-8994
-                      </p>
+                <div className="dashboard__top-half--container">
+                  <div className="top-half--contact-info">
+                    <div className="contact-info__title admin-dash__small-title">
+                      <h3>Contact Info</h3>
                     </div>
-                    <div className="default--billing-address">
-                      <h3>Default Billing Address</h3>
-                      <p className="billing-address__postal-code">
-                        5-3, Yaesau 1-Chome
-                      </p>
-                      <p className="billing-address__wards">
-                        Chuo-ku,
-                      </p>
-                      <p className="billing-address__city">
-                        Tokyo
-                      </p>
-                      <p className="billing-address__main-postal">
-                        100-8994
-                      </p>
+                    <div className="contact-info__info">
+                      {/* TODO:  Render this information dynamically */}
+                      <p className="info--name">Bruce Wayne</p>
+                      <p className="info--email">bruce.wayne@wayneenterprises.com</p>
+                      <p className="info--phone">(123)-123-1234</p>
                     </div>
-                  </div>
-                  <div className="default__manage-btn">
-                    <button className="medium-size-btn sweep-right">Manage Addresses</button>
-                  </div>
-                </div>
-              </div>
-              <div className="dashboard__bottom-third--container">
-                <div className="bottom-third--billing-info">
-                  <div className="billing-info__title userdashboard__small-title">
-                    <h3>Billing Info</h3>
-                  </div>
-                  <div className="billing-info__cc-type">
-                    <div className="cc-type--cc">
-                      <input type="radio" id="cc-type--cc-input" />
-                      <label htmlFor="cc-type--cc-input">CC</label>
-                    </div>
-                    <div className="cc-type--debit">
-                      <input type="radio" id="cc-type--debit-input" />
-                      <label htmlFor="cc-type--debit-input">DEBIT</label>
-                    </div>
-                  </div>
-                  <div className="billing-info__name">
-                    <label htmlFor="billing-info--name">Name on Card</label>
-                    <input type="text" id="billing-info--name" />
-                  </div>
-                  <div className="billing-info__cc-number">
-                    <label htmlFor="billing-info--cc-number">Credit Card Number</label>
-                    <input type="text" id="billing-info--cc-number" />
-                  </div>
-                  <div className="billing-info__expiration">
-                    <p className="expiration__title">Expiration</p>
-                    <div className="expiration__row">
-                      <label htmlFor="expiration--month">Month</label>
-                      <input type="number" id="expiration--month" value="10" disabled />
-                      <label htmlFor="expiration--year">Year</label>
-                      <input type="number" id="expiration--year" value="2019" disabled />
-                    </div>
-                  </div>
-                  <div className="billing-info__edit-btn">
-                    <button className="small-edit-btn sweep-right">Edit</button>
-                  </div>
-                </div>
-                <div className="bottom-third--login-methods">
-                  <div className="login-methods__title userdashboard__small-title">
-                    <h3>Login Methods</h3>
-                  </div>
-                  <div className="login-methods--social">
-                    <ul className="login-methods--social-list">
-                      <li className="social-list--item active facebook">
-                        <FontAwesome name="facebook" />
-                      </li>
-                      <li className="social-list--item active instagram">
-                        <FontAwesome name="instagram" />
-                      </li>
-                      <li className="social-list--item">
-                        <FontAwesome name="google" />
-                      </li>
-                      <li className="social-list--item">
-                        <FontAwesome name="twitter" />
-                      </li>
-                    </ul>
-                    <div className="social-login__edit-btn">
+                    <div className="contact-info__edit-btn">
                       <button className="small-edit-btn sweep-right">Edit</button>
                     </div>
                   </div>
-                  <div className="login-methods--password">
-                    <div className="password--fields">
+                  <div className="top-half--password">
+                    <div className="password__input">
                       <label htmlFor="login-method--password">Password</label>
                       <input type="password" id="login-method--password" value="password1234" disabled />
                     </div>
-                    <div className="password--edit-btn">
+                    <div className="password__edit-btn">
                       <button className="medium-size-btn sweep-right">Change Password</button>
                     </div>
                   </div>
                 </div>
+                <div className="dashboard__bottom-half--container">
+                  <div className="bottom-half--login-methods">
+                    <div className="login-methods__title admin-dash__small-title">
+                      <h3>Login Methods</h3>
+                    </div>
+                    <div className="login-methods--social">
+                      <ul className="login-methods--social-list">
+                        <li className="social-list--item active facebook">
+                          <FontAwesome name="facebook" />
+                        </li>
+                        <li className="social-list--item active instagram">
+                          <FontAwesome name="instagram" />
+                        </li>
+                        <li className="social-list--item">
+                          <FontAwesome name="google" />
+                        </li>
+                        <li className="social-list--item">
+                          <FontAwesome name="twitter" />
+                        </li>
+                      </ul>
+                      <div className="social-login__edit-btn">
+                        <button className="small-edit-btn sweep-right">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <div className="dashboard__reports">
+                <div className="reports__title admin-dash__small-title">
+                  <h3>Reports</h3>
+                </div>
+                <div className="reports__body">
+                  <div className="body__header">
+                    <ul className="header--list">
+                      <li className="list--option">
+                        <div className="option--type">
+
+                          <div className="type__ddn--container">
+                            <div className="type__ddn--readout">
+                              <input type="text" className="readout--msg" disabled value="Sales" />
+                              <button className="readout--btn sweep-right">
+                                <span className="flex-btn-parent">
+                                  <FontAwesome name="angle-down" />
+                                </span>
+                              </button>
+                            </div>
+                            <div className="periodicity__ddn--content" style={{ display: 'none' }} >
+                              <ul className="ddn--content__list">
+                                {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
+                                <li className="list--option sweep-right">
+                                  <p>Week</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Month</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Quarter</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Year</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>All</p>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--periodicity">
+
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--file-output">
+
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

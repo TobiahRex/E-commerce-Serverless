@@ -124,6 +124,20 @@
       @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
     }
   }
+  .admin-dash__welcome-msg {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    height: 8em;
+    width: 100%;
+    h1 {
+      font-size: 5em;
+      font-weight: 200;
+      letter-spacing: 0.01em;
+      color: $p-blue;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+    }
+  }
 }
 
 @media only screen and (max-width : 640px) {
@@ -179,6 +193,20 @@
   }
 
   .user-dash__welcome-msg {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+    height: 8em;
+    width: 100%;
+    h1 {
+      font-size: 3em;
+      font-weight: 200;
+      letter-spacing: 0.01em;
+      color: $p-blue;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+    }
+  }
+  .admin-dash__welcome-msg {
     @include prefixflex();
     justify-content: flex-start;
     align-items: center;

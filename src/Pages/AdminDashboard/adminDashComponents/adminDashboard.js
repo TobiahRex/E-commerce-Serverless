@@ -6,8 +6,8 @@ const propTypes = {
 
 function AdminDashboard({ children }) {
   return (
-    <div className="admindash--main">
-      <div className="admindash--container">
+    <div className="admin-dash--main">
+      <div className="admin-dash--container">
         {children}
       </div>
     </div>

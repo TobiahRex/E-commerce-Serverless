@@ -44,7 +44,7 @@ function AdminSideBar({ location }) {
               <p>Products</p>
             </Link>
           </li>
-          
+
           <li className="list--newsletters sweep-right">
             <Link to={`/${adminDashboard}/members`}>
               <p>Members</p>

@@ -20,189 +20,130 @@
         height: 7.5em;
         border-bottom: 1px solid rgba(0,0,0,.1);
       }
-      & .dashboard__top-third--container {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid rgba(0,0,0,.1);
-        & .top-third--contact-info,
-        .top-third--newsletters {
-          @include prefixflex();
-          justify-content: flex-start;
-          align-items: flex-start;
-          flex-direction: column;
-          width: 50%;
-          height: 20.5em;
-          & .contact-info__info,
-          .newsletters__status-msg {
-            margin-left: 1em;
-            height: 7.5em;
-          }
-          & .contact-info__edit-btn,
-          .newsletters__edit-btn {
+      & .dashboard__header {
+        & .dashboard__stats--container {
+          border-bottom: 1px solid rgba(0,0,0,.1);
+          & .stats--list {
             @include prefixflex();
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
+            padding: 1em 0em;
+            list-style-type: none;
             width: 100%;
-            & button {
-              margin-right: 4.5em;
+            & .list--stat {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              min-height: 8em;
+              width: 18%;
+              padding: 1em 0em;
+              background-color: $p-white;
+              box-shadow: 0px 2px 10px rgba(0,0,0,.25);
+              margin: 0 1em;
+              & div {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                & h3 {
+                  text-align: center;
+                  font-weight: bold;
+                  padding-bottom: .5em;
+                }
+                & p {
+                  font-weight: 200;
+                }
+              }
+              & .stat--bounce-rate {
+                & h3, p {
+                  color: $p-red;
+                }
+              }
             }
           }
         }
-      }
-      & .dashboard__mid-third--container {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid rgba(0,0,0,.1);
-        & .mid-third__address-book {
+        & .dashboard__top-half--container {
           @include prefixflex();
-          justify-content: flex-start;
-          align-items: flex-start;
-          flex-direction: column;
-          width: 100%;
-          & .address-book__default--container {
+          justify-content: center;
+          align-items: center;
+          border-bottom: 1px solid rgba(0,0,0,.1);
+          & .top-half--contact-info {
             @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            & .default--shipping-address,
-            .default--billing-address {
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 50%;
+            height: 20.5em;
+            & .contact-info__info {
+              margin-left: 1em;
+              height: 7.5em;
+            }
+            & .contact-info__edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: center;
+              width: 100%;
+              & button {
+                margin-right: 4.5em;
+              }
+            }
+          }
+          & .top-half--password {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 50%;
+            height: 20.5em;
+            & .password__input {
               @include prefixflex();
               justify-content: flex-start;
               align-items: flex-start;
               flex-direction: column;
-              width: 50%;
-              & h3 {
-                margin: 1em;
-                font-weight: bold;
-              }
-              & p {
-                margin-left: 2em;
-              }
-            }
-          }
-          & .default__manage-btn {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            & button {
-              margin: 2em auto;
-            }
-          }
-        }
-      }
-      & .dashboard__bottom-third--container {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        & .bottom-third--billing-info,
-        .bottom-third--login-methods {
-          @include prefixflex();
-          justify-content: flex-start;
-          align-items: flex-start;
-          flex-direction: column;
-          width: 50%;
-          & .billing-info__cc-type {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            margin: 2em;
-            & .cc-type--cc,
-            .cc-type--debit {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
+              padding-top: 2em;
               & label {
-                margin: 0 1em 0 .25em;
-                font-size: 1.4em;
+                color: $p-blue;
                 font-family: $p-font;
+                font-size: 1.8em;
                 font-weight: 400;
-                color: $p-blue;
-              }
-              & input {
-                height: 2em;
-                width: 2em;
-                margin: 0;
-                cursor: pointer;
-              }
-            }
-          }
-          & .billing-info__name,
-          .billing-info__cc-number {
-            @include prefixflex();
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-            margin: 1em 2em;
-            & label {
-              margin-bottom: .5em;
-              font-size: 1.8em;
-              font-family: $p-font;
-              font-weight: 400;
-              color: $p-blue;
-            }
-            & input {
-              height: 1.67em;
-              min-width: 13.8em;
-              width: 100%;
-              font-weight: 200;
-              font-family: $p-font;
-              font-size: 1.8em;
-              padding-left: .5em;
-              border: 1px solid rgba(0,0,0,.25);
-              color: $p-blue;
-            }
-          }
-          & .billing-info__expiration {
-            @include prefixflex();
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-            & .expiration__title {
-              margin-left: 1em;
-              font-size: 1.8em;
-              font-weight: 400;
-            }
-            & .expiration__row {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              margin-left: 1em;
-              & label {
-                margin-right: .5em;
-                font-size: 1.6em;
-                font-family: $p-font;
-                font-weight: 200;
-                color: $p-blue;
+                margin-bottom: .5em;
               }
               & input {
                 height: 1.67em;
-                color: $p-blue;
-                max-width: 3.33em;
+                width: 100%;
                 font-weight: 200;
                 font-family: $p-font;
                 font-size: 1.8em;
                 padding-left: .5em;
                 border: 1px solid rgba(0,0,0,.25);
-                margin: .5em .5em .5em .25em;
+                color: $p-blue;
+              }
+            }
+            & .password__edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: flex-start;
+              flex-direction: column;
+              padding-top: 2em;
+              width: 100%;
+              & button {
+                margin: 2em 4.5em 2em auto;
               }
             }
           }
-          & .billing-info__edit-btn {
-            @include prefixflex();
-            justify-content: flex-end;
-            align-items: center;
-            width: 100%;
-            & button {
-              margin: 1em 3.5em 1em 0;
-            }
-          }
-          & .login-methods--social,
-          .login-methods--password {
+        }
+        & .dashboard__bottom-half--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        & .bottom-half--login-methods {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+          & .login-methods--social {
             @include prefixflex();
             justify-content: flex-start;
             align-items: flex-start;
@@ -216,6 +157,7 @@
               list-style-type: none;
               padding: 0;
               margin: 0;
+              width: 100%;
               & .social-list--item {
                 @include prefixflex();
                 justify-content: center;
@@ -265,55 +207,14 @@
               }
             }
           }
-          & .login-methods--social {
-            border-bottom: 1px solid rgba(0,0,0,.15);
-          }
-          & .login-methods--password {
-            @include prefixflex();
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-direction: column;
-            & .password--fields {
-              @include prefixflex();
-              justify-content: flex-start;
-              align-items: flex-start;
-              flex-direction: column;
-              padding-top: 2em;
-              & label {
-                color: $p-blue;
-                font-family: $p-font;
-                font-size: 1.8em;
-                font-weight: 400;
-                margin-bottom: .5em;
-              }
-              & input {
-                height: 1.67em;
-                width: 100%;
-                font-weight: 200;
-                font-family: $p-font;
-                font-size: 1.8em;
-                padding-left: .5em;
-                border: 1px solid rgba(0,0,0,.25);
-                color: $p-blue;
-              }
-            }
-            & .password--edit-btn {
-              @include prefixflex();
-              justify-content: flex-end;
-              align-items: flex-start;
-              flex-direction: column;
-              width: 100%;
-              & button {
-                margin: 1em 0 1em auto;
-              }
-            }
-          }
-          & .login-methods--social {
-            height: 40%;
-          }
         }
         & .bottom-third--login-methods {
           height: 44em;
+        }
+      }
+
+      & .dashboard__reports {
+
         }
       }
     }
