@@ -1,5 +1,5 @@
 @media only screen and (min-width : 641px) {
-  .userdashboard__small-title {
+  .admindashboard__small-title {
     @include prefixflex();
     justify-content: center;
     align-items: center;
@@ -12,10 +12,10 @@
     }
   }
   @import './adminDash_web_styles/userDashboard_sidebar_styles_web';
-  .userdash--main {
+  .admindash--main {
     max-width: 1086px;
     width: 100%;
-    & .userdash--container {
+    & .admindash--container {
       @include prefixflex();
       justify-content: center;
       flex-direction: column;
