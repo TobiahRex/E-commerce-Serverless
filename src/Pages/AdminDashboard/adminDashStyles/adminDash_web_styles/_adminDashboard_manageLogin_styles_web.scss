@@ -1,0 +1,188 @@
+& .manage-login__body {
+  @include prefixflex();
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  @import './adminDashboard_sidebar_styles_web';
+  & .body__dashboard {
+    max-width: 80em;
+    width: 100%;
+    background-color: $s-white;
+    & .dashboard--container {
+      width: 100%;
+      box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+      & .manage-login__title {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        height: 7.5em;
+        padding-left: 3em;
+        border-bottom: 1px solid rgba(0,0,0,.15);
+      }
+      & .manage-login__body {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & .manage-login__header {
+          height: 6em;
+          padding: 2em;
+          text-align: center;
+          & p {
+            font-weight: 400;
+          }
+        }
+      }
+
+      & .manage-login__methods--container {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 95%;
+        & .methods__title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          align-self: flex-start;
+          margin: 0 0 2em 0;
+          height: 4em;
+          width: 17em;
+          background-color: $p-blue;
+          & h3 {
+            color: $p-white;
+          }
+        }
+        & .methods--container {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          & .methods__email-password {
+            width: 50%;
+            & .email-password--container {
+              border-color: $p-blue;
+              background-color: $p-white;
+              box-shadow: 0px 3px 14px rgba(0,0,0,.25);
+              & .email-password--title {
+                padding: 1em;
+                text-align: center;
+                & p {
+                  font-size: 1.8em;
+                }
+              }
+              & .email-password__input--username,
+              .email-password__input--current-password,
+              .email-password__input--new-password,
+              .email-password__input--confirm-new {
+                margin-left: 1em;
+                & label {
+                  margin-bottom: 1em;
+                  & p {
+                    font-size: 1.6em;
+                    font-weight: 200;
+                  }
+                }
+                & input {
+                  height: 1.87em;
+                  width: 90%;
+                  padding-left: .7em;
+                  margin-bottom: .7em;
+                  background-color: $s-white;
+                  border: 1px solid rgba(0,0,0,.25);
+                  color: $p-blue;
+                  font-family: $p-font;
+                  font-weight: 200;
+                  font-size: 1.6em;
+                }
+              }
+              & .email-password__footer-msg {
+                text-align: center;
+                padding: 2em;
+                & p {
+                  color: $p-red;
+                }
+              }
+            }
+          }
+          & .methods__social-login {
+            width: 50%;
+            margin-left: 2em;
+            align-self: flex-start;
+            & .social-login--container {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              min-height: 30em;
+              border-color: $p-blue;
+              background-color: $p-white;
+              box-shadow: 0px 3px 14px rgba(0,0,0,.25);
+              & .social-login--title {
+                & p {
+                  font-size: 1.8em;
+                }
+              }
+              & .social-login--options {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                & div:nth-child(1) {
+                  margin-top: 2em;
+                }
+                & .social-login--facebook,
+                .social-login--twitter,
+                .social-login--instagram,
+                .social-login--google {
+                  @include prefixflex();
+                  justify-content: flex-start;
+                  align-items: center;
+                  width: 40%;
+                  margin-bottom: 2em;
+                  & button {
+                    @include prefixflex();
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    height: 3em;
+                    width: 3em;
+                    padding: 0;
+                    border: 0;
+                    border: 1px solid rgba(0,0,0,.25);
+                    background-color: $s-white;
+                    cursor: pointer;
+                    margin-left: 1em;
+                    & span {
+                      position: absolute;
+                      top: 3.5px;
+                      left: 4.5px;
+                      color: $p-blue;
+                      font-size: 2.5em;
+                      transform: rotate(45deg);
+                    }
+                  }
+                  & label {
+                    margin-left: 1em;
+                    & p {
+                      font-weight: 200;
+                      font-size: 1.8em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      & .newsletter__action-section--container {
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 4em 0;
+      }
+    }
+  }
+}

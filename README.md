@@ -11,7 +11,6 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   * Uses _redux_sauce_ to create Types, Creators & Reducer.
   * Uses _redux-logger_ to allow for informative workflow from the devtools console.  
   * Uses _redux-devtools-extension_ to allow for a macro perspective picture of your current store's state.
-    - <img src="http://i.imgur.com/GD4VCkW.png" />
   * Configured for front end environment variables using webpack.DefinePlugin().
   * Uses _BEM_ syntax styling for classNames.
   * Airbnb Style Guide implemented.
@@ -20,6 +19,9 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   - `npm i` to install dependencies
   - `npm start` for development server
   - `npm run build` for production server
+  - OPTIONAL
+    - `brew update`
+    - `brew install libpng`  for some webpack loaders (image-webpack-loader [see here](https://github.com/tcoopman/image-webpack-loader))
 
   NOTES:
   1. I Highly recommend running `npm update --save` to update package json before running `npm start` or `npm build`.

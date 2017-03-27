@@ -1,0 +1,49 @@
+& .terms-conditions__body,
+.privacy-policy__body,
+.shipping-policy__body,
+.return-policy__body,
+.nicotine__body,
+.faqs__body {
+  @include prefixflex();
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  @import './adminDashboard_sidebar_styles_web';
+  & .body__dashboard {
+    max-width: 80em;
+    width: 100%;
+    background-color: $s-white;
+    & .dashboard--container {
+      width: 100%;
+      box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+
+      & .legal__title {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        height: 7.5em;
+        padding-left: 3em;
+        border-bottom: 1px solid rgba(0,0,0,.15);
+      }
+      & .legal__body {
+        & .faq-question {
+          border-bottom: 1px solid rgba(0,0,0,.15);
+          & h3 {
+            padding: 1em 0 0 1em;
+            font-weight: bold;
+          }
+          & p {
+            padding-top: 1em;
+            & a {
+              color: $p-blue;
+              text-decoration: underline;
+            }
+          }
+        }
+        & p {
+          padding: 2em;
+        }
+      }
+    }
+  }
+}
