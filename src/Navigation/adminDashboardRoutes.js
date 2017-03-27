@@ -3,34 +3,35 @@ import { Route, IndexRoute } from 'react-router';
 
 import AdminDashboard from '../Pages/AdminDashboard/adminDashComponents/adminDashboard';
 import AdminHomeDash from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash';
+import AdminLegal from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
 
 const AdminDashboardRoutes = () => (
   <Route path="/admin_:id" component={AdminDashboard}>
     <IndexRoute component={AdminHomeDash} />
-    <Route
+    {/* <Route
       path="address_book"
       component={AdminAddressBook}
-    />
-    <Route
-      path="orders"
-      component={AdminOrders}
-    />
-    <Route
-      path="order_:orderid/tracking_:trackingid"
-      component={AdminOrderTracking}
-    />
-    <Route
-      path="product_reviews"
-      component={AdminProductReviews}
-    />
-    <Route
-      path="login_apps"
-      component={AdminLoginApp}
-    />
-    <Route
-      path="newsletter"
-      component={AdminNewsLetter}
-    />
+      />
+      <Route
+      path="reports"
+      component={AdminReports}
+      />
+      <Route
+      path="sales"
+      component={AdminSales}
+      />
+      <Route
+      path="products"
+      component={AdminProducts}
+      />
+      <Route
+      path="members"
+      component={AdminMembers}
+      />
+      <Route
+      path="promotions_sales"
+      component={AdminPromotions}
+    /> */}
     <Route
       path="terms_and_conditions"
       component={AdminLegal.TermsConditions}
