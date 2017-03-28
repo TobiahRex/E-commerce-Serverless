@@ -9,7 +9,7 @@ import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_m
 import Footer from './Pages/Footer/footer';
 import sessionActions from './Redux/SessionRedux';
 import userActions from './Redux/UserRedux';
-import { genDynamicTitle } from './Services/asynchDispatchServices';
+import { genDynamicTitle } from './Services/Asynch';
 
 /* NOTE:
 1. Remove UUID hard code.

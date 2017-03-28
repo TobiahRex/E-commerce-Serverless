@@ -2,6 +2,7 @@ import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
   addedToCart: ['ip_address', 'lat_long'],
+  getTaxRate: null,
   setTaxRate: ['taxRate'],
 });
 

@@ -1,8 +1,9 @@
 import MobileDetect from 'mobile-detect';
-import sessionActions from '../Redux/SessionRedux';
-import mobileActions from '../Redux/MobileRedux';
-import geoActions from '../Redux/GeoRedux';
-import localeActions from '../Redux/LocaleRedux';
+import sessionActions from '../../Redux/SessionRedux';
+import mobileActions from '../../Redux/MobileRedux';
+import geoActions from '../../Redux/GeoRedux';
+import localeActions from '../../Redux/LocaleRedux';
+import orderActions from '../../Redux/OrdersRedux';
 
 export function generateDynamicTitle(dispatch) {
   const url = window.location.pathname;
@@ -74,6 +75,10 @@ export function orientationSpy(dispatch) {
   });
 }
 
+export function getTaxRate(dispatch) {
+  dispatch(orderActions.getTaxRate());
+}
+
 function scrollToTop() {
   window.scrollTo(0, 1);
 }
@@ -84,6 +89,7 @@ export default function initiateActions(dispatch) {
   setMobileDevice(dispatch);
   setScreenSize(dispatch);
   orientationSpy(dispatch);
+  getTaxRate(dispatch);
   if (screen.orientation) {
     dispatch(mobileActions.orientationChanged({
       angle: screen.orientation.angle,

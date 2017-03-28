@@ -3,15 +3,15 @@ import TaxRateApi from '../Services/API/TaxRate';
 // import distantApi from '../Services/api.distant';
 
 // ----- Sagas ----- //
-import GetTaxRate from './TaxRate';
+import getTaxRate from './TaxRate';
 
 // ----- Types ----- //
-import { OrderTypes } from '../Redux/OrdersRedux';
+import { orderTypes } from '../Redux/OrdersRedux';
 
 const api = TaxRateApi.createAPI();
 
 export default function* rootSaga() {
   yield [
-    takeLatest(OrderTypes.SET_TAX_RATE, GetTaxRate, api),
+    takeLatest(orderTypes.GET_TAX_RATE, getTaxRate, api),
   ];
 }

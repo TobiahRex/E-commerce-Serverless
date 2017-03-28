@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
-import { setScreenSize } from '../../../../../Services/asynchDispatchServices';
+import { setScreenSize } from '../../../../../Services/Asynch';
 
 class NavbarMobileNav extends Component {
   static propTypes = {
