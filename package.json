@@ -18,7 +18,8 @@
     "build:html": "babel-node ./tools/buildHtml.js",
     "build:bundle": "babel-node ./tools/build.js",
     "analyze-bundle": "babel-watch webpack -p --profile --json > stats.json",
-    "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images open:dist"
+    "deploy-to-s3": "aws s3 sync dist/ s3://<bucket-name>",
+    "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images deploy-to-s3 open:dist"
   },
   "author": "Tobiah Rex",
   "license": "ISC",
@@ -55,7 +56,6 @@
     "eslint-plugin-react": "^6.10.0",
     "eslint-watch": "^3.0.1",
     "file-loader": "^0.10.1",
-    "image-webpack-loader": "^3.2.0",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
     "nock": "^9.0.9",
