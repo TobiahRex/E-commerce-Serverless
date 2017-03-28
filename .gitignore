@@ -2,4 +2,10 @@
 node_modules
 
 # Build files
-# dist
+dist
+
+# miscellaneous
+.DS_Store
+.sass-cache
+.env
+npm-debug.log
