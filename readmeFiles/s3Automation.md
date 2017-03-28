@@ -52,6 +52,10 @@ We have added the command to **build script**, but change the ```<bucket-name>``
 ```
 brew install awscli
 ```
+If you already have awscli installed then verify you're running the latest version with
+```
+pip install --upgrade --user awscli
+```
 
 We need AWS ```access-key``` and ```secret-key``` to work with AWS cli. Check out the next section to create access-key and secret-key. But once, these are created, make those as environment variables, like this:
 
