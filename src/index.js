@@ -16,7 +16,6 @@ import routes from './Navigation/routes';
 const store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 initiateActions(store.dispatch);
-taxRateListener(store.dispatch);
 
 render(
   <Provider store={store} >
