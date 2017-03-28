@@ -374,6 +374,12 @@ function AdminHomeDash({ location }) {
                               <ul className="ddn--content__list">
                                 {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
                                 <li className="list--option sweep-right">
+                                  <p>Minute</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Hour</p>
+                                </li>
+                                <li className="list--option sweep-right">
                                   <p>Today (24hrs)</p>
                                 </li>
                                 <li className="list--option sweep-right">
@@ -402,12 +408,97 @@ function AdminHomeDash({ location }) {
                         </div>
                       </li>
                       <li className="list--option">
-                        <div className="option--file-output">
-                          <FontAwesome name="file-o" />
-                          {'\u00A0'}
-                          <span className="file-output__file-name">
-                            20161225_Today_SalesReport.pdf
-                          </span>
+                        <div className="option--purchases">
+                          <div className="purchases__ddn--container">
+                            <div className="purchases__ddn--readout">
+                              <div className="ddn__options">
+                                <label htmlFor="ddn__btn">Purchases Per</label>
+                                <input type="text" id="ddn__btn" className="readout--msg" value="Today (24hrs)" disabled />
+                                <button className="readout--btn sweep-right">
+                                  <span className="flex-btn-parent">
+                                    <FontAwesome name="angle-down" />
+                                  </span>
+                                </button>
+                              </div>
+                              <div className="ddn__result">
+                                <h3>99</h3>
+                              </div>
+                            </div>
+                            <div className="purchases__ddn--content">
+                              <ul className="ddn--content__list">
+                                {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
+                                <li className="list--option sweep-right">
+                                  <p>Minute</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Hour</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Today (24hrs)</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Week</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Month</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Quarter</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Semi-Annual</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Annual</p>
+                                </li>
+                                <li className="list--option sweep-right">
+                                  <p>Lifetime</p>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="body__main">
+                    <ul className="main--list">
+                      <li className="list--option">
+                        <div className="option--visits">
+                          <h4>230</h4>
+                          <p>Visits</p>
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--bounce-rate">
+                          <h4>1%</h4>
+                          <p>Bounce Rate</p>
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--">
+                          <h4></h4>
+                          <p></p>
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--">
+                          <h4></h4>
+                          <p></p>
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--">
+                          <h4></h4>
+                          <p></p>
+                        </div>
+                      </li>
+                      <li className="list--option">
+                        <div className="option--">
+                          <h4></h4>
+                          <p></p>
                         </div>
                       </li>
                     </ul>
