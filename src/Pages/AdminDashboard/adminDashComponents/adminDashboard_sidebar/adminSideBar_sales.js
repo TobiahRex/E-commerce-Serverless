@@ -20,6 +20,37 @@ function AdminSalesSideBar() {
             <FontAwesome name="usd" />{'\u00A0'}
             9,800
           </p>
+          <p>112 Purchases</p>
+        </div>
+
+        <div className="today_sales__sales-growth--container">
+          <ul className="sales-growth--list">
+            <li className="list--growth">
+              <div className="yearly">
+                <h3>YTD</h3>
+                <p>+5 %</p>
+              </div>
+            </li>
+            <li className="list--growth">
+              <div className="monthly">
+                <h3>MTD</h3>
+                <p>+5 %</p>
+              </div>
+            </li>
+            <li className="list--growth">
+              <div className="weekly">
+                <h3>WTD</h3>
+                <p>+5 %</p>
+              </div>
+            </li>
+            <li className="list--growth">
+              <div className="yesterday">
+                <h3>Yesterday</h3>
+                <p>+5 %</p>
+              </div>
+            </li>
+
+          </ul>
         </div>
       </div>
     </div>
