@@ -58,6 +58,8 @@ Providing Nicotine Vape Juice to Japanese Customers faster than anyone.
   - Updated `webpack` to version `2.2`.
   - Updated `node` to version `7.7.3`. Added `engines` object to `package.json`.
 
+## Setting up S3 automation:
+Since this is going to be a brief description, I am writing it in separate [separate Readme](https://github.com/TobiahRex/nj2jp/blob/master/readmeFiles/s3Automation.md).
 
 <!-- ## ScreenShots:
 * Terminal
