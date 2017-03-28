@@ -8,6 +8,7 @@ import ReportGenerator from './adminDash_reports_web';
 import AdminDashHeader from './adminDash_header_web';
 import WebTraffic from './adminDash_webTraffic_web';
 import LatestOrders from './adminDash_latestOrders_web';
+import AwsStats from './adminDash_awsStats_web';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -39,6 +40,7 @@ function AdminHomeDash({ location }) {
 
               <LatestOrders />
 
+              <AwsStats />
             </div>
           </div>
         </div>
