@@ -1,6 +1,6 @@
 # _Nicotine E-Juice E-commerce Site:_
 MERN Stack App
-### Deployed on Heroku [here](https://nj2jp.herokuapp.com/).
+### Deployed on Heroku [here](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
 
 This is a temporary development deployment.
 Final Production site will be at http://www.nj2jp.com.

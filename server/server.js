@@ -9,10 +9,10 @@ import webpack from 'webpack';
 import dotenv from 'dotenv';
 import hotMiddleware from 'webpack-hot-middleware';
 import devMiddleware from 'webpack-dev-middleware';
-import socketIO from 'socket.io';
+// import socketIO from 'socket.io';
 import webpackConfig from '../webpack.config';
 import api from './api';
-import socketActions from './services/socketAsynchActions';
+// import socketActions from './services/socketAsynchActions';
 
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
@@ -22,14 +22,14 @@ const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
 const BUILD = process.env.NODE_ENV || 'development';
 const app = express();
 const server = new http.Server(app);
-const io = socketIO(server);
-let socketEmitter;
+// const io = socketIO(server);
+// let socketEmitter;
 
-io.on('connection', (socket) => {
-  process.stdout.write('\n>>> Socket Connection!\n');
-  socketActions(socket);
-  socketEmitter = (type, data) => socket.emit(type, data);
-});
+// io.on('connection', (socket) => {
+//   process.stdout.write('\n>>> Socket Connection!\n');
+//   socketActions(socket);
+//   socketEmitter = (type, data) => socket.emit(type, data);
+// });
 
 // ---------------------- Express Middleware -----------------------------------
 app.use(morgan('dev'));
@@ -38,7 +38,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('src'));
 app.use((req, res, next) => {
   const resRef = res;
-  resRef.socketEmitter = socketEmitter;
   resRef.handle = (err, data) => {
     if (err) {
       process.stdout.write(`Response Error: 😕
