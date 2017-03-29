@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
+const defaultProps = {
+  location: {},
+};
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
@@ -56,5 +59,6 @@ function AdminSalesSideBar({ location }) {
     </div>
   );
 }
+AdminSalesSideBar.defaultProps = defaultProps;
 AdminSalesSideBar.propTypes = propTypes;
 export default AdminSalesSideBar;

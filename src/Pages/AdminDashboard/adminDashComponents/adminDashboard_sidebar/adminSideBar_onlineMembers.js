@@ -1,106 +1,67 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import uuid from 'uuid';
+
+const defaultProps = {
+  location: {},
+};
 
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 function AdminSideBar({ location }) {
   const adminDashboard = location.pathname.split('/')[1];
   console.warn('adminDashboard: ', adminDashboard);
   return (
-    <div className="body__sidebar">
-      <div className="sidebar--container">
-        <div className="sidebar__title">
-          <h3>Your Account</h3>
+    <div className="body__online-members">
+      <div className="online-members--container">
+        <div className="online-members__title">
+          <h3>Members Online</h3>
         </div>
-        <ul className="sidebar__menu-list">
-          <li className="list--admin-dashboard sweep-right">
-            <Link to={`/${adminDashboard}`}>
-              <p>Admin Dashboard</p>
-            </Link>
-          </li>
+        <div className="online-members__readout">
+          <ul className="readout--list">
+            <li className="list--member">
+              <Link className="member-link" to={`/user_${uuid()}`}>
+                Bruce Wayne
+              </Link>
+            </li>
+            <li className="list--member">
+              <Link className="member-link" to={`/user_${uuid()}`}>
+                Clark Kent
+              </Link>
+            </li>
+            <li className="list--member">
+              <Link className="member-link" to={`/user_${uuid()}`}>
+                Barry Allen
+              </Link>
+            </li>
+            <li className="list--member">
+              <Link className="member-link" to={`/user_${uuid()}`}>
+                Diana Prince
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-          <li className="list--address-book sweep-right">
-            <Link to={`/${adminDashboard}/reports`}>
-              <p>Reports</p>
-            </Link>
-          </li>
-
-          <li className="list--orders sweep-right">
-            <Link to={`/${adminDashboard}/sales`}>
-              <p>Sales</p>
-            </Link>
-          </li>
-
-          <li className="list--product-reviews sweep-right">
-            <Link to={`/${adminDashboard}/traffic`}>
-              <p>Traffic</p>
-            </Link>
-          </li>
-
-          <li className="list--login-apps sweep-right">
-            <Link to={`/${adminDashboard}/products`}>
-              <p>Products</p>
-            </Link>
-          </li>
-
-          <li className="list--newsletters sweep-right">
-            <Link to={`/${adminDashboard}/members`}>
-              <p>Members</p>
-            </Link>
-          </li>
-
-          <li className="list--legal-terms-conditions sweep-right">
-            <Link to={`/${adminDashboard}/promotions`}>
-              <p>Promotions & Sales</p>
-            </Link>
-          </li>
-
-          <li className="list--legal-privacy sweep-right">
-            <Link to={`/${adminDashboard}/terms_and_conditions`}>
-              <p>Terms & Conditions</p>
-            </Link>
-          </li>
-
-          <li className="list--legal-return sweep-right">
-            <Link to={`/${adminDashboard}/privacy_policy`}>
-              <p>Privacy Policy</p>
-            </Link>
-          </li>
-
-          <li className="list--legal-nicotine-disclaimer sweep-right">
-            <Link to={`/${adminDashboard}/shipping_policy`}>
-              <p>Shipping Policy</p>
-            </Link>
-          </li>
-
-          <li className="list--legal-manage-login sweep-right">
-            <Link to={`/${adminDashboard}/return_policy`}>
-              <p>Returns Policy</p>
-            </Link>
-          </li>
-          <li className="list--legal-manage-login sweep-right">
-            <Link to={`/${adminDashboard}/nicotine_disclaimer`}>
-              <p>Nicotine Disclaimer</p>
-            </Link>
-          </li>
-          <li className="list--legal-manage-login sweep-right">
-            <Link to={`/${adminDashboard}/manage_login`}>
-              <p>Manage Login</p>
-            </Link>
-          </li>
-
-          <li className="list--legal-faqs sweep-right">
-            <Link to={`/${adminDashboard}/faqs`}>
-              <p>{'FAQ\'s'}</p>
-            </Link>
-          </li>
-
-        </ul>
+        <div className="online-members__table">
+          <div className="table__total">
+            <h3>Total</h3>
+            <p>45</p>
+          </div>
+          <div className="table__members">
+            <h4>Members</h4>
+            <p>30</p>
+          </div>
+          <div className="table__guests">
+            <h4>Guests</h4>
+            <p>15</p>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+AdminSideBar.defaultProps = defaultProps;
 AdminSideBar.propTypes = propTypes;
 export default AdminSideBar;
