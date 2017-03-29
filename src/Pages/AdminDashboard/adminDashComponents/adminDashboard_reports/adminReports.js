@@ -22,7 +22,11 @@ function AdminReports({ location }) {
         />
         <AdminWelcomeMsg />
         <div className="reports__body">
-          <AdminSideBar location={location} />
+          <div className="body__sidebars">
+            <AdminSideBar location={location} />
+            <AdminSideBar.Sales location={location} />
+            <AdminSideBar.Members location={location} />
+          </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
 
