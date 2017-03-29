@@ -72,8 +72,8 @@ function AdminSales({ location }) {
                     </div>
                   </div>
                 </div>
-                <div className="body__total-sales-row">
-                  <ul className="total-sales-row--list">
+                <div className="body__total-sales">
+                  <ul className="total-sales--list">
                     <li className="list--summary ">
                       <div className="summary--container">
                         <h3>Total Sales</h3>
@@ -83,16 +83,127 @@ function AdminSales({ location }) {
                       </div>
                     </li>
                     <li className="list--web">
-
+                      <div className="web--container">
+                        <div className="web__pg-bar" />
+                        <p>$ {'3,000'}.00</p>
+                        <p>Web</p>
+                      </div>
                     </li>
                     <li className="list--mobile">
-
+                      <div className="mobile--container">
+                        <div className="mobile__pg-bar" />
+                        <p>$ {'6,000'}.00</p>
+                        <p>Mobile</p>
+                      </div>
                     </li>
                     <li className="list--other">
-
+                      <div className="other--container">
+                        <div className="other__pg-bar" />
+                        <p>$ {'800'}.00</p>
+                        <p>Other</p>
+                      </div>
                     </li>
                   </ul>
                 </div>
+                <div className="body__total-profit">
+                  <ul className="total-profit--list">
+                    <li className="list--summary ">
+                      <div className="summary--container">
+                        <h3>Total Profit</h3>
+                        <p>
+                          $ {'10,000'}.00
+                        </p>
+                      </div>
+                    </li>
+                    <li className="list--expenses">
+                      <div className="expenses--container">
+                        <div className="expenses__pg-bar" />
+                        <p>$ {'4,000'}.00</p>
+                        <p>Expenses</p>
+                      </div>
+                    </li>
+                    <li className="list--revenue">
+                      <div className="revenue--container">
+                        <div className="revenue__pg-bar" />
+                        <p>$ {'14,000'}.00</p>
+                        <p>Revenue</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div className="body__sales-increase">
+                  <h3>Sales Increase</h3>
+                  <ul className="sales-increase--list">
+                    <li className="list--lifetime">
+                      <div className="lifetime--container">
+                        <h4>Lifetime</h4>
+                        <p>+ {parseFloat('.8', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--ytd">
+                      <div className="ytd--container">
+                        <h4>YTD</h4>
+                        <p>+ {parseFloat('.6', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--mtd">
+                      <div className="mtd--container">
+                        <h4>MTD</h4>
+                        <p>+ {parseFloat('.13', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--WTD">
+                      <div className="WTD--container">
+                        <h4>WTD</h4>
+                        <p>+ {parseFloat('.08', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--yesterday">
+                      <div className="yesterday--container">
+                        <h4>Yesterday</h4>
+                        <p>+ {parseFloat('.02', 10) * 100}%</p>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+                <div className="body__sales-conversions">
+                  <h3>Sales Conversions</h3>
+                  <ul className="sales-conersions--list">
+                    <li className="list--adds-to-cart">
+                      <div className="adds-to-cart--container">
+                        <h4>Adds To Cart</h4>
+                        <p>678</p>
+                      </div>
+                    </li>
+                    <li className="list--checkouts">
+                      <div className="checkouts--container">
+                        <h4>Checkouts</h4>
+                        <p>+ {parseFloat('.89', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--cart-b-rate">
+                      <div className="cart-b-rate--container">
+                        <h4>Cart B.Rate</h4>
+                        <p>+ {parseFloat('.1', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--in-cart">
+                      <div className="in-cart--container">
+                        <h4>In Cart</h4>
+                        <p>+ {parseFloat('.04', 10) * 100}%</p>
+                      </div>
+                    </li>
+                    <li className="list--yesterday">
+                      <div className="yesterday--container">
+                        <h4>Yesterday</h4>
+                        <p>+ {parseFloat('.02', 10) * 100}%</p>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+
               </div>
 
 
