@@ -3,7 +3,13 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  @import './adminDashboard_sidebar_styles_web';
+  & .body__sidebars {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    @import './adminDashboard_sidebar_styles_web';
+  }
   & .body__dashboard {
     max-width: 80em;
     width: 100%;

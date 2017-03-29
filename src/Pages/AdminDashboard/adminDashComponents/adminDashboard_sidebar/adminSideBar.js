@@ -1,5 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import SalesSidebar from './adminSideBar_sales';
+import OnlineMembersSidebar from './adminSideBar_onlineMembers';
+
+const defaultProps = {
+  location: {},
+};
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any),
@@ -103,4 +109,7 @@ function AdminSideBar({ location }) {
   );
 }
 AdminSideBar.propTypes = propTypes;
+AdminSideBar.defaultProps = defaultProps;
+AdminSideBar.Sales = SalesSidebar;
+AdminSideBar.Members = OnlineMembersSidebar;
 export default AdminSideBar;

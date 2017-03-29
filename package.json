@@ -83,6 +83,7 @@
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",
     "copy-files": "*",
+    "cors": "^2.8.1",
     "dotenv": "^4.0.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",

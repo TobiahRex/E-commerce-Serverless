@@ -1,11 +1,8 @@
 import express from 'express';
-import request from 'request';
-import http from 'http';
 import path from 'path';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import socketIO from 'socket.io';
 import compression from 'compression';
 import api from '../server/api';
 
@@ -14,17 +11,8 @@ mongoose.Promise = Promise;
 dotenv.config({ silent: true });
 
 const app = express();
-const server = new http.Server(app);
-const io = socketIO(server);
 let socketEmitter;
 
-io.on('connection', (socket) => {
-  process.stdout.write('\n>>> Socket Connection!\n');
-  request('http://ipinfo.io', (err, res, body) => {
-    socket.emit('user_ip_location', JSON.parse(body));
-  });
-  socketEmitter = (type, data) => socket.emit(type, data);
-});
 
 // ---------------------- Express Middleware -----------------------------------
 app.use(bodyParser.json());
@@ -45,7 +33,7 @@ app.get('*', (req, res) => res.sendFile(path.resolve('dist/index.html')));
 // --------------------------- Listeners ---------------------------------------
 const PORT = process.env.PORT || 3000;
 const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
-server.listen(PORT, err =>
+app.listen(PORT, err =>
   process.stdout.write(err || `==> 📡  Server @ ${PORT}
 `));
 mongoose.connect(MONGO, err =>

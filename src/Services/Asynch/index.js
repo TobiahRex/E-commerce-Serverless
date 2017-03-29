@@ -89,7 +89,7 @@ export default function initiateActions(dispatch) {
   setMobileDevice(dispatch);
   setScreenSize(dispatch);
   orientationSpy(dispatch);
-  getTaxRate(dispatch);
+  // getTaxRate(dispatch);
   if (screen.orientation) {
     dispatch(mobileActions.orientationChanged({
       angle: screen.orientation.angle,

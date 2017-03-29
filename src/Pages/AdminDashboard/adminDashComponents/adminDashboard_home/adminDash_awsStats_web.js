@@ -11,7 +11,7 @@ function AdminDashReportsWeb() {
         <h3>AWS Stats</h3>
       </div>
       <div className="aws-stats__body">
-        <p>{'<Stats Here>'}</p>
+        <p>{'<STATS HERE>'}</p>
       </div>
     </div>
   );

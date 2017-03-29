@@ -26,7 +26,11 @@ function AdminHomeDash({ location }) {
         />
         <AdminWelcomeMsg />
         <div className="admin-dash__body">
-          <AdminSideBar location={location} />
+          <div className="body__sidebars">
+            <AdminSideBar location={location} />
+            <AdminSideBar.Sales location={location} />
+            <AdminSideBar.Members location={location} />
+          </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">

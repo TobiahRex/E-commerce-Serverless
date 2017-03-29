@@ -1,6 +1,4 @@
 import express from 'express';
-import request from 'request';
-import http from 'http';
 import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -9,28 +7,23 @@ import webpack from 'webpack';
 import dotenv from 'dotenv';
 import hotMiddleware from 'webpack-hot-middleware';
 import devMiddleware from 'webpack-dev-middleware';
-// import socketIO from 'socket.io';
 import webpackConfig from '../webpack.config';
 import api from './api';
-// import socketActions from './services/socketAsynchActions';
 
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
 dotenv.config({ silent: true });
 const PORT = process.env.PORT || 3000;
 const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
-const BUILD = process.env.NODE_ENV || 'development';
 const app = express();
-const server = new http.Server(app);
-// const io = socketIO(server);
-// let socketEmitter;
 
-// io.on('connection', (socket) => {
-//   process.stdout.write('\n>>> Socket Connection!\n');
-//   socketActions(socket);
-//   socketEmitter = (type, data) => socket.emit(type, data);
-// });
-
+// ---------------------- Webpack Middleware -----------------------------------
+const compiler = webpack(webpackConfig);
+app.use(devMiddleware(compiler, {
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath,
+}));
+app.use(hotMiddleware(compiler));
 // ---------------------- Express Middleware -----------------------------------
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -52,22 +45,11 @@ ${data}
   };
   next();
 });
-
-if (BUILD === 'development') {
-  const compiler = webpack(webpackConfig);
-
-  app.use(devMiddleware(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath,
-  }));
-  app.use(hotMiddleware(compiler));
-}
-
 app.use('/api', api);
 app.get('*', (req, res) => res.sendFile(path.resolve('./src/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
-server.listen(PORT, err =>
+app.listen(PORT, err =>
   process.stdout.write(JSON.stringify(err, null, 2) || `==> 📡  Server @ ${PORT}
 `));
 mongoose.connect(MONGO, err =>
