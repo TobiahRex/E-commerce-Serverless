@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
+import uuid from 'uuid';
+import moment from 'moment';
+
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
-import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -194,16 +198,59 @@ function AdminSales({ location }) {
                         <p>+ {parseFloat('.04', 10) * 100}%</p>
                       </div>
                     </li>
-                    <li className="list--yesterday">
-                      <div className="yesterday--container">
-                        <h4>Yesterday</h4>
+                    <li className="list--payment-rejections">
+                      <div className="payment-rejections--container">
+                        <h4>Payment Rejections</h4>
                         <p>+ {parseFloat('.02', 10) * 100}%</p>
                       </div>
                     </li>
-
                   </ul>
                 </div>
-
+                <div className="body__profit-loss">
+                  <h3>Profit & Loss</h3>
+                  <div className="profit-loss__table--revenue">
+                    <table className="table--container">
+                      <thead className="table__header">
+                        <tr>
+                          <th colSPan="4">
+                            <h4>Revenue</h4>
+                          </th>
+                        </tr>
+                        <tr className="header__row">
+                          <th className="header--qty">
+                            <p>#</p>
+                          </th>
+                          <th className="header--order">
+                            <p>Order #</p>
+                          </th>
+                          <th className="header--date">
+                            <p>Date</p>
+                          </th>
+                          <th className="header--total">
+                            <p>Total</p>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="table__body ">
+                        {/* TODO: Dyanmically render rows */}
+                        <tr className="body__row">
+                          <td className="row--qty">
+                            1
+                          </td>
+                          <td className="row--order">
+                            <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
+                          </td>
+                          <td className="row--date">
+                            {moment().format('LL')}
+                          </td>
+                          <td className="row--total">
+                            $ {'98'}.00
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
 
 
