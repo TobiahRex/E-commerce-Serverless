@@ -19,7 +19,7 @@
     "build:bundle": "babel-node ./tools/build.js",
     "analyze-bundle": "babel-watch webpack -p --profile --json > stats.json",
     "deploy-to-s3": "aws s3 sync dist/ s3://nj2jp-react",
-    "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images deploy-to-s3 open:dist"
+    "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images open:dist"
   },
   "author": "Tobiah Rex",
   "license": "ISC",
