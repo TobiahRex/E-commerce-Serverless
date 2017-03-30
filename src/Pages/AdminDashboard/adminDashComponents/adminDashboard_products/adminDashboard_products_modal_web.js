@@ -327,13 +327,13 @@ function AdminProducts() {
       </div>
 
       <div className="action-section">
-        <button className="action-section--cancel medium-size-btn">
+        <button className="action-section--cancel primary-button sweep-right">
           Cancel
         </button>
-        <button className="action-section--delete-produce medium-size-btn">
+        <button className="action-section--delete-produce primary-button sweep-right">
           Delete Product
         </button>
-        <button className="action-section--add-product">
+        <button className="action-section--add-product primary-button sweep-right">
           Add Product
         </button>
       </div>

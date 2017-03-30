@@ -31,7 +31,76 @@ function AdminMembers({ location }) {
               </div>
 
               <div className="members__body">
+                <div className="body__header">
+                  <div className="header--periodicity">
+                    <div className="periodicity__ddn--readout">
+                      <input type="text" className="readout--msg" disabled value="Today" />
+                      <button className="readout--btn sweep-right">
+                        <span className="flex-btn-parent">
+                          <FontAwesome name="angle-down" />
+                        </span>
+                      </button>
+                    </div>
+                    <div className="periodicity__ddn--content">
+                      <ul className="ddn--content__list">
+                        {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
+                        <li className="list--option sweep-right">
+                          <p>Today</p>
+                        </li>
+                        <li className="list--option sweep-right">
+                          <p>Week</p>
+                        </li>
+                        <li className="list--option sweep-right">
+                          <p>Month</p>
+                        </li>
+                        <li className="list--option sweep-right">
+                          <p>Quarter</p>
+                        </li>
+                        <li className="list--option sweep-right">
+                          <p>Semi-Annual</p>
+                        </li>
+                        <li className="list--option sweep-right">
+                          <p>Annual</p>
+                        </li>
+                        <li className="list--option sweep-right">
+                          <p>Lifetime</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="header--bars">
+                    <div className="bars__visitors--web">
+                      <div className="visitors__progress">
+                        <p>1,234</p>
+                      </div>
+                      <p>Web</p>
+                    </div>
+                    <div className="bars__visitors--mobile">
+                      <div className="visitors__progress">
+                        <p>1,234</p>
+                      </div>
+                      <p>Mobile</p>
+                    </div>
+                    <div className="bars__visitors--unkown">
+                      <div className="visitors__progress">
+                        <p>1,234</p>
+                      </div>
+                      <p>Unkown</p>
+                    </div>
+                  </div>
+                </div>
 
+                <div className="body__main">
+                  <div className="main__header">
+                    <div className="header__title admin-dash__small-title">
+                      <h3>Register Stats</h3>
+                    </div>
+                    <div className="header__total">
+                      <p>Total</p>
+                      <p>234</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
 
