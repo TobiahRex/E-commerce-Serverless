@@ -325,6 +325,18 @@ function AdminProducts() {
           </ul>
         </div>
       </div>
+
+      <div className="action-section">
+        <button className="action-section--cancel medium-size-btn">
+          Cancel
+        </button>
+        <button className="action-section--delete-produce medium-size-btn">
+          Delete Product
+        </button>
+        <button className="action-section--add-product">
+          Add Product
+        </button>
+      </div>
     </div>
   );
 }
