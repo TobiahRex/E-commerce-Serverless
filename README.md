@@ -1,6 +1,6 @@
 # _Nicotine E-Juice E-commerce Site:_
 MERN Stack App: E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
-### Deployed on Heroku [here](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
+### Deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
 
 This is a temporary development deployment.
 Final Production site will be at http://www.nj2jp.com.
@@ -23,12 +23,12 @@ Final Production site will be at http://www.nj2jp.com.
 ## WARNINGS:
   * Uses `webpack version 2.0`.
   * Node engine explicitly defined in `package.json` for `node@7.7.3`.
-    - If you are not compliant with these version, it's HIGHLY recommended you update.
+  * If you are not compliant with these versions, it's HIGHLY recommended you update.
 
 ## TECHNOLOGIES:
   1. ### API's
     * [fixer.io](http://fixer.io) | Exchange Rates
-    * [taxrates.api.avalara.com](http://taxrates.api.avalara.com) | Tax Rates
+    * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates
     * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation
   2. ### Libraries & Packages
     * Uses _apisauce_ for API calls. See API README.md for details.
