@@ -7265,6 +7265,12 @@ react-router@^3.0.0:
     loose-envify "^1.2.0"
     warning "^3.0.0"
 
+react-svg-chart@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-svg-chart/-/react-svg-chart-4.0.0.tgz#9e5647b91bca9f51976e35f9f57a8abe8aa30a04"
+  dependencies:
+    svg-tween "^1.2.0"
+
 react-svg-piechart@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-svg-piechart/-/react-svg-piechart-1.2.0.tgz#8034a37ae279fda8a53789ab18212e09bfd269bd"
@@ -8250,6 +8256,22 @@ supports-color@^3.2.3:
   dependencies:
     has-flag "^1.0.0"
 
+svg-arc-to-cubic-bezier@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/svg-arc-to-cubic-bezier/-/svg-arc-to-cubic-bezier-1.0.1.tgz#4494fb85708951ce9fd006ff1269cc171849c672"
+
+svg-shapes@^1.9.1:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/svg-shapes/-/svg-shapes-1.9.2.tgz#7156b28af15441e4371345f398e10d5cc5659747"
+
+svg-tween@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/svg-tween/-/svg-tween-1.4.0.tgz#59823341597a5961e9b42086006d5a4db857e72d"
+  dependencies:
+    svg-arc-to-cubic-bezier "^1.0.0"
+    svg-shapes "^1.9.1"
+    tweening "^1.1.0"
+
 svgo@^0.7.0:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-0.7.2.tgz#9f5772413952135c6fefbf40afe6a4faa88b4bb5"
@@ -8523,6 +8545,16 @@ tunnel-agent@^0.6.0:
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
   dependencies:
     safe-buffer "^5.0.1"
+
+tween-functions@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
+
+tweening@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tweening/-/tweening-1.2.0.tgz#7e1b4f4559c32ee350610d080797390b6883a3ed"
+  dependencies:
+    tween-functions "^1.2.0"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

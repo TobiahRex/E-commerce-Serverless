@@ -261,9 +261,7 @@ function AdminTraffic({ location }) {
                   </div>
                 </div>
 
-
               </div>
-
 
             </div>
           </div>
