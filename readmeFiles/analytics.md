@@ -1,6 +1,6 @@
 # Analytics Plan
 
-#Sales
+# Sales
   ## Periodicity Options
     - Lifetime
     - Yearly
@@ -10,26 +10,26 @@
     - Week
     - Day (last 24 hours)
 
-  * Total Revenue
+  ## Total Revenue
     - Web generated ($)
     - Mobile generated ($)
     - Unknown generated (anything else) ($)
     - Card Type: `['Visa', 'Mastercard', 'Diners-Club', 'American Express', 'Discover']`
 
-  * Average Sale ($)
+  ## Average Sale ($)
 
-  * Total Expenses
+  ## Total Expenses
     - AWS Expenses ($)
     - Any other 3rd party services cost ($)
 
-  * Growth
+  ## Growth
     - Calculate the amount of growth (in percentage) from Today to the given timeframes listed above. (%)
     - Example: `Semi-Annual` = The most recent 6 months to the last 6 months.
 
-  * Purchases
+  ## Purchases
     - Per periodicity selection
 
-  * Conversions
+  ## Conversions
     - Adds to Cart (#)
       * Guests
       * Members
@@ -53,7 +53,7 @@
       * Wholesalers
 
 
-#Traffic
+# Traffic
   ## Periodicity Options
     - Lifetime
     - Yearly
@@ -63,18 +63,18 @@
     - Week
     - Day (last 24 hours)
 
-  * Visits
+  ## Visits
     - Per periodicity
     - Guests (checked out as Guest) (#)
     - Members (Logged in and browsed) (#)
     - Wholesalers (Identified through membership Type) (#)
     - Unknown (No login & No checkout) (#)
 
-  * Countries
+  ## Countries
     - Shows on a world heat map, where the users are visiting the site from.
     - example: "Japan - 123,000"
 
-  * Platform Stats
+  ## Platform Stats
     - Mobile (#)
     - Website (#)
     - Unkown (User-Agent returns a falsy value)
@@ -97,7 +97,7 @@
 
     * Unknown (%)
 
-#Products
+# Products
   ## Periodicity Options
     - Lifetime
     - Yearly
@@ -107,31 +107,31 @@
     - Week
     - Day (last 24 hours)
 
-  * Top 10 Products
+  ## Top 10 Products
 
-  * Page Views
+  ## Page Views
     - Guests
     - Members
     - Unknowns
     - Wholesalers
 
-  * Clicks
+  ## Clicks
     - Guests
     - Members
     - Unknowns
     - Wholesalers
 
-  * Time Viewed
+  ## Time Viewed
     - Guests
     - Members
     - Unknowns
     - Wholesalers
 
-  * Purchased - Identifies the following stats based on the type of visitor.
+  ## Purchased - Identifies the following stats based on the type of visitor.
     - Once (#)
     - Repeat (#)
 
-  * Rating
+  ## Rating
     - Entries (#)
     - Avg. Grade (%)
 
@@ -145,16 +145,16 @@
     - Week
     - Day (last 24 hours)
 
-  * Total (#)
+  ## Total (#)
 
-  * Register Stats
+  ## Register Stats
    - Country (#)
 
-  * Growth
+  ## Growth
     - Calculate the amount of growth (in percentage) from Today to the given timeframes listed above. (%)
     - Example: `Semi-Annual` = The most recent 6 months to the last 6 months.
 
-  * Each Member
+  ## Each Member
     - Nicotine User (if we ever sell non-nicotine juice, then if the user purchases nicotine or non-nicotine products) (bool)
     - Loyalty (yyyymmdd)
     - Purchases (#)
@@ -170,22 +170,22 @@
     - Age
 
 # Newsletters
-  * Clicks
+  ## Clicks
    - Guests
    - Members
    - Unknowns
    - Wholesalers
-  * Purchases-after
+  ## Purchases-after
    - Guests
    - Members
    - Unknowns
    - Wholesalers
-  * Un-subscribers
+  ## Un-subscribers
    - Guests
    - Members
    - Unknowns
    - Wholesalers
 
-* AWS Stats
-  - Service stats
+# AWS Stats
+  ## Service stats
     * Whatever service we've activated, we'd like to display those stats that we think are relevant here.
