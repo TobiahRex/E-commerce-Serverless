@@ -1,4 +1,4 @@
-# _Nicotine E-Juice E-commerce Site:_
+# Nic Juice 2 Japan - NJ2JP:
 MERN Stack App: E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
 ### Deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
 
