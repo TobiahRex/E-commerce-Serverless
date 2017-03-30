@@ -137,6 +137,18 @@ function AdminProducts({ location }) {
               </tr>
             </tbody>
           </table>
+
+          <div className="image__action-btns">
+            <button className="medium-size-btn">
+              Upload Image
+            </button>
+            <button className="medium-size-btn">
+              Delete Image
+            </button>
+            <button className="medium-size-btn">
+              Move Image
+            </button>
+          </div>
         </div>
       </div>
 
