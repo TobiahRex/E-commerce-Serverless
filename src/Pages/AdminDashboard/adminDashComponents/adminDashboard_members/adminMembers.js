@@ -91,19 +91,47 @@ function AdminMembers({ location }) {
                 </div>
 
                 <div className="body__main">
-                  <div className="main__header">
-                    <div className="header__title admin-dash__small-title">
-                      <h3>Register Stats</h3>
+                  <div className="main__register-stats">
+                    <div className="register-stats__header">
+                      <div className="header-title admin-dash__small-title">
+                        <h3>Register Stats</h3>
+                      </div>
+                      <div className="register-stats__total">
+                        <p>Total</p>
+                        <p>234</p>
+                      </div>
                     </div>
-                    <div className="header__total">
-                      <p>Total</p>
-                      <p>234</p>
+
+                    <div className="register-stats__left">
+                      <div className="left__country-list">
+                        <ul className="country-list--container">
+                          <li className="list--country">
+                            <p>United States</p>
+                            <p>123,000</p>
+                          </li>
+                          <li className="list--country">
+                            <p>Japan</p>
+                            <p>123,000</p>
+                          </li>
+                          <li className="list--country">
+                            <p>Canada</p>
+                            <p>123,000</p>
+                          </li>
+                          <li className="list--country">
+                            <p>Australia</p>
+                            <p>123,000</p>
+                          </li>
+                          <li className="list--country">
+                            <p>Singapore</p>
+                            <p>123,000</p>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
