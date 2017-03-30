@@ -91,22 +91,48 @@ function AdminTraffic({ location }) {
                 </div>
 
                 <div className="body__main">
-                  <div className="main__left">
-
+                  <div className="main__countries">
+                    <div className="countries__header">
+                      <div className="header__title admin-dash__small-title">
+                        <h3>Countries By Rank</h3>
+                      </div>
+                    </div>
+                    <div className="countries__left">
+                      <ul className="left__countries--list">
+                        <li className="list--country">
+                          <p>Japan - 123,000</p>
+                        </li>
+                        <li className="list--country">
+                          <p>USA - 111,000</p>
+                        </li>
+                        <li className="list--country">
+                          <p>PHILIP - 20,000</p>
+                        </li>
+                        <li className="list--country">
+                          <p>AUSTR. - 13,000</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="countries__right">
+                      <PieChart
+                        className="right_pie-chart"
+                        data={[
+                          { label: 'Facebook', value: 100, color: '#3b5998' },
+                          { label: 'Twitter', value: 60, color: '#00aced' },
+                          { label: 'Google Plus', value: 30, color: '#dd4b39' },
+                          { label: 'Pinterest', value: 20, color: '#cb2027' },
+                          { label: 'Linked In', value: 10, color: '#007bb6' },
+                        ]}
+                      />
+                    </div>
                   </div>
-                  <div className="main__right">
-                    <PieChart
-                      className="right_pie-chart"
-                      data={[
-                        { label: 'Facebook', value: 100, color: '#3b5998' },
-                        { label: 'Twitter', value: 60, color: '#00aced' },
-                        { label: 'Google Plus', value: 30, color: '#dd4b39' },
-                        { label: 'Pinterest', value: 20, color: '#cb2027' },
-                        { label: 'Linked In', value: 10, color: '#007bb6' },
-                      ]}
-                    />
+                  <div className="main__platform-stats">
+                    <div className="platform-stats__title admin-dash__small-title">
+                      <h3>Platform Stats</h3>
+                    </div>
                   </div>
                 </div>
+
 
               </div>
 
