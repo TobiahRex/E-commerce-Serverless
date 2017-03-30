@@ -35,9 +35,9 @@ const devConfig = {
       algorithm: 'gzip',
       test: /\.(js|html|scss)$/,
     }),
-    new analyzer.BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-    }),
+    // new analyzer.BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    // }),
   ],
   module: {
     loaders: [
