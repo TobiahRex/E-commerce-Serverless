@@ -130,6 +130,134 @@ function AdminTraffic({ location }) {
                     <div className="platform-stats__title admin-dash__small-title">
                       <h3>Platform Stats</h3>
                     </div>
+                    <div className="platform-stats__bars ">
+
+                      <div className="bars--web">
+                        <div className="web__bar">
+                          <p>40,000</p>
+                        </div>
+                        <div className="web__title">
+                          <p>12%</p>
+                          <p>Web</p>
+                        </div>
+                      </div>
+
+                      <div className="bars--mobile">
+                        <div className="mobile__bar">
+                          <p>40,000</p>
+                        </div>
+                        <div className="mobile__title">
+                          <p>12%</p>
+                          <p>Mobile</p>
+                        </div>
+                      </div>
+
+                      <div className="bars--na">
+                        <div className="na__bar">
+                          <p>40,000</p>
+                        </div>
+                        <div className="na__title">
+                          <p>12%</p>
+                          <p>Unkown</p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div className="main__vgrowth">
+                    <div className="vgrowth__title admin-dash__small-title">
+                      <h3>View Growth</h3>
+                    </div>
+
+                    <div className="vgrowth__total">
+                      <ul className="total--list">
+                        <li className="list--stat">
+                          <div className="stat--ytd">
+                            <h3>YTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--mtd">
+                            <h3>MTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--wtd">
+                            <h3>WTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--yesterday">
+                            <h3>Yesterday</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+
+                    <div className="vgrowth__visitors">
+                      <ul className="total--list">
+                        <li className="list--stat">
+                          <div className="stat--ytd">
+                            <h3>YTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--mtd">
+                            <h3>MTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--wtd">
+                            <h3>WTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--yesterday">
+                            <h3>Yesterday</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+
+                    <div className="vgrowth__members">
+                      <ul className="total--list">
+                        <li className="list--stat">
+                          <div className="stat--ytd">
+                            <h3>YTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--mtd">
+                            <h3>MTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--wtd">
+                            <h3>WTD</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+                        <li className="list--stat">
+                          <div className="stat--yesterday">
+                            <h3>Yesterday</h3>
+                            <p>- {0.05 * 100}%</p>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
                   </div>
                 </div>
 
