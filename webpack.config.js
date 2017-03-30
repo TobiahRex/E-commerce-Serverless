@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import webpack from 'webpack';
 import analyzer from 'webpack-bundle-analyzer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import CompressionPlugin from 'compression-webpack-plugin';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import CommonsChunkPlugin from './node_modules/webpack/lib/optimize/CommonsChunkPlugin';
 import webpackEnvs from './tools/webpack_envs';
 
@@ -17,13 +17,14 @@ const devConfig = {
     './src/index',
   ],
   output: {
-    path: 'public',
+    path: path.resolve('public'),
     publicPath: '/',
     filename: 'bundle.js',
   },
   devtool: 'eval',
   target: 'web',
   plugins: [
+    new ProgressBarPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -54,6 +55,8 @@ const devConfig = {
             options: {
               modules: true,
               minimize: false,
+              sourceMap: true,
+              importLoaders: 1,
               localIdentName: '[name]_[local]',
             },
           },
@@ -137,13 +140,14 @@ const prodConfig = {
     './src/index.js',
   ],
   output: {
-    path: 'dist',
+    path: path.resolve('dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
   devtool: 'source-map',
   target: 'web',
   plugins: [
+    new ProgressBarPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
     new CommonsChunkPlugin({
       name: 'commons',
@@ -175,7 +179,7 @@ const prodConfig = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|bower_components|client\/vendor)/,
         include: path.resolve('src'),
       },
       {
@@ -185,8 +189,9 @@ const prodConfig = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              // modules: true,
               minimize: true,
+              importLoaders: 1,
               localIdentName: '[name]_[local]',
             },
           },

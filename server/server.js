@@ -49,6 +49,7 @@ app.use('/api', api);
 app.get('*', (req, res) => res.sendFile(path.resolve('./src/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
+process.stdout.write('\n');
 app.listen(PORT, err =>
   process.stdout.write(JSON.stringify(err, null, 2) || `==> 📡  Server @ ${PORT}
 `));
