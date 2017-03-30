@@ -6,13 +6,11 @@ export default function* getTaxRate(api) {
   const response = yield call(() => api.getTaxRate());
 
   if (response.ok) {
-    const result = JSON.parse(response.data);
     const taxRate = {
-      stateRate: result.rates[0].rate / 100,
-      cityRate: result.rates[1].rate / 100,
-      totalRate: result.totalRate / 100,
+      stateRate: response.data.rates[0].rate / 100,
+      cityRate: response.data.rates[1].rate / 100,
+      totalRate: response.data.totalRate / 100,
     };
-    console.log('taxRate: ', taxRate);
     yield [put(orderActions.setTaxRate(taxRate)),
       put(apiActions.apiSuccess())];
   } else {

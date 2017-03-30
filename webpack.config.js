@@ -21,7 +21,7 @@ const devConfig = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  devtool: 'eval',
+  devtool: 'source-map',
   target: 'web',
   plugins: [
     new ProgressBarPlugin(),
@@ -33,10 +33,11 @@ const devConfig = {
     new webpack.LoaderOptionsPlugin({
       debug: true,
     }),
-    new analyzer.BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      generateStatsFile: true,
-    }),
+    // new analyzer.BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    //   generateStatsFile: true,
+    //   openAnalyzer: false,
+    // }),
   ],
   module: {
     loaders: [

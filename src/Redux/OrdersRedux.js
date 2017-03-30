@@ -12,9 +12,9 @@ export default Creators;
 export const INITIAL_STATE = {
   cart: [],
   taxRate: {
-    totalRate: 0.090,
-    cityRate: 0.030,
     stateRate: 0.060,
+    cityRate: 0.030,
+    totalRate: 0.090,
   },
 };
 

@@ -244,7 +244,7 @@ function AdminSales({ location }) {
                             <p>{moment().format('LL')}</p>
                           </td>
                           <td className="row--total">
-                            <p>1 {'98'}.00</p>
+                            <p>$ {'98'}.00</p>
                           </td>
                         </tr>
                         <tr className="body__row">
@@ -258,7 +258,7 @@ function AdminSales({ location }) {
                             <p>{moment().format('LL')}</p>
                           </td>
                           <td className="row--total">
-                            <p>1 {'98'}.00</p>
+                            <p>$ {'98'}.00</p>
                           </td>
                         </tr>
                         <tr className="body__row">
@@ -272,7 +272,7 @@ function AdminSales({ location }) {
                             <p>{moment().format('LL')}</p>
                           </td>
                           <td className="row--total">
-                            <p>1 {'98'}.00</p>
+                            <p>$ {'98'}.00</p>
                           </td>
                         </tr>
 

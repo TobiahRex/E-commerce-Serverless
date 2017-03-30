@@ -91,6 +91,11 @@ function AdminSideBar({ location }) {
               <p>Nicotine Disclaimer</p>
             </Link>
           </li>
+          <li className="list--legal-login-apps sweep-right">
+            <Link to={`/${adminDashboard}/manage_login`}>
+              <p>Login Apps</p>
+            </Link>
+          </li>
           <li className="list--legal-manage-login sweep-right">
             <Link to={`/${adminDashboard}/manage_login`}>
               <p>Manage Login</p>
