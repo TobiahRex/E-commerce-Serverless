@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import FontAwesome from 'react-fontawesome';
 import { LineChart } from 'react-svg-chart';
+
 
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
@@ -120,15 +122,42 @@ function AdminProducts({ location }) {
                         </ul>
                       </div>
                       <div className="body__right">
-
+                        <LineChart
+                          lines={[
+                            { points: [
+                              { label: 'travel', value: 11 },
+                              { label: 'accommodation', value: 27 },
+                              { label: 'food', value: 4 },
+                              { label: 'drink', value: 19 },
+                              { label: 'tourism', value: 10 },
+                              ],
+                            },
+                          ]}
+                          height={400}
+                          width={600}
+                        />
                       </div>
                     </div>
-
                   </div>
+
+                  <div className="main__product-table">
+                    <div className="product-table__header">
+                      <div className="header__title admin-dash__small-title">
+                        <h3>Product Table</h3>
+                      </div>
+                      <div className="header__add-new-btn">
+                        <button className="primary-button">
+                          Add New Product(s)
+                        </button>
+                      </div>
+                      <div className="header__msg">
+                        <p>* Double click row to modify information</p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
