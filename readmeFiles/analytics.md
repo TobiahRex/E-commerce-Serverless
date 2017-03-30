@@ -171,20 +171,20 @@
 
 # Newsletters
   ## Clicks
-   - Guests
-   - Members
-   - Unknowns
-   - Wholesalers
+    - Guests
+    - Members
+    - Unknowns
+    - Wholesalers
   ## Purchases-after
-   - Guests
-   - Members
-   - Unknowns
-   - Wholesalers
+    - Guests
+    - Members
+    - Unknowns
+    - Wholesalers
   ## Un-subscribers
-   - Guests
-   - Members
-   - Unknowns
-   - Wholesalers
+    - Guests
+    - Members
+    - Unknowns
+    - Wholesalers
 
 # AWS Stats
   ## Service stats
