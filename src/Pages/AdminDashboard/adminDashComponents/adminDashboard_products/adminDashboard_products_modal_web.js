@@ -1,13 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import uuid from 'uuid';
 
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
-function AdminProducts({ location }) {
-  const homeDashboard = location.pathname.split('/')[1];
+function AdminProducts() {
   return (
     <div className="body__modal">
       <div className="modal__title">
@@ -97,6 +91,7 @@ function AdminProducts({ location }) {
           <h3>Images</h3>
           <div className="image__instructions">
             <p>* Click <span className="bold">[image box]</span> then one of the action buttons on the right to modify images.</p>
+            <br />
             <p>** To re-order images.  Click <span className="bold">[image 1]
             </span> then <span className="bold">[image 2]</span> then <span className="bold">{'"Move Image"'}</span></p>
           </div>
@@ -218,7 +213,7 @@ function AdminProducts({ location }) {
           <div className="tech-specs__sku">
             <div className="sku__desc">
               <label htmlFor="new-sku">SKU</label>
-              <input id="new-sku" className="desc__value" disabled>123123123</input>
+              <input id="new-sku" className="desc__value" value="123123123" disabled />
             </div>
             <div className="sku__generate-btn">
               <button className="medium-size-btn">
@@ -228,10 +223,8 @@ function AdminProducts({ location }) {
           </div>
 
           <div className="tech-specs__company">
-            <div className="company__desc">
-              <label htmlFor="value">Company</label>
-              <input className="desc__value">123123123</input>
-            </div>
+            <label htmlFor="new-company">Company</label>
+            <input id="new-company" className="company__value" value="123123123" />
           </div>
 
           <div className="company__generate-btn">
@@ -239,11 +232,28 @@ function AdminProducts({ location }) {
               Save Company
             </button>
           </div>
+        </div>
 
+        <div className="modal__right--quantity">
+          <div className="quantity__title admin-dash__small-title">
+            <h3>Quantity</h3>
+          </div>
+          <div className="quantity__body">
+            <div className="body__readout">
+              <p>12</p>
+            </div>
+            <div className="body__action-btns">
+              <button className="action-btns--up" >
+                <FontAwesome name="chevron-up" />
+              </button>
+              <button className="action-btns--down" >
+                <FontAwesome name="chevron-down" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-AdminProducts.propTypes = propTypes;
 export default AdminProducts;
