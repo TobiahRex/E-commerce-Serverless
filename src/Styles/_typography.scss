@@ -1,7 +1,11 @@
 $font-google-muli : "https://fonts.googleapis.com/css?family=Muli::300,400,700,800,900";
 $font-google-ubuntu : "https://fonts.googleapis.com/css?family=Ubuntu:300,400,700";
+$font-google-lato-openSans : "https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600,700";
+
 $p-font: 'Ubuntu', sans-serif;
 $s-font: 'Muli', sans-serif;
+$lato-font: 'Lato', Arial, Helvetica, sans-serif;
+$open-sans-font: 'Open Sans', Arial, Helvetica, sans-serif;
 
 @if variable-exists($font-google-muli) {
   @import url($font-google-muli);
@@ -72,11 +76,20 @@ $s-font: 'Muli', sans-serif;
   }
 
   p {
-    font-family: $p-font;
+    font-family: $open-sans-font;
     font-size: 1.4em;
     color: $p-blue;
     line-height: 1.78em;
     margin: 0;
+  }
+
+  label {
+    font-family: $open-sans-font;
+  }
+
+  input {
+    font-family: $open-sans-font;
+    border-radius: 4px 4px 4px 4px;
   }
 }
 

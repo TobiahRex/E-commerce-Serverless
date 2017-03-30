@@ -235,18 +235,47 @@ function AdminSales({ location }) {
                         {/* TODO: Dyanmically render rows */}
                         <tr className="body__row">
                           <td className="row--qty">
-                            1
+                            <p>1</p>
                           </td>
                           <td className="row--order">
                             <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
                           </td>
                           <td className="row--date">
-                            {moment().format('LL')}
+                            <p>{moment().format('LL')}</p>
                           </td>
                           <td className="row--total">
-                            $ {'98'}.00
+                            <p>1 {'98'}.00</p>
                           </td>
                         </tr>
+                        <tr className="body__row">
+                          <td className="row--qty">
+                            <p>1</p>
+                          </td>
+                          <td className="row--order">
+                            <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
+                          </td>
+                          <td className="row--date">
+                            <p>{moment().format('LL')}</p>
+                          </td>
+                          <td className="row--total">
+                            <p>1 {'98'}.00</p>
+                          </td>
+                        </tr>
+                        <tr className="body__row">
+                          <td className="row--qty">
+                            <p>1</p>
+                          </td>
+                          <td className="row--order">
+                            <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
+                          </td>
+                          <td className="row--date">
+                            <p>{moment().format('LL')}</p>
+                          </td>
+                          <td className="row--total">
+                            <p>1 {'98'}.00</p>
+                          </td>
+                        </tr>
+
                       </tbody>
                     </table>
                   </div>
