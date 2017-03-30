@@ -152,6 +152,96 @@ function AdminProducts({ location }) {
         </div>
       </div>
 
+      <div className="modal__left">
+        <div className="modal__left--desc">
+          <div className="left-desc__title admin-dash__small-title">
+            <h3>Description</h3>
+          </div>
+
+          <div className="left-desc--name">
+            <div className="name__sub-title admin-dash__mini-title">
+              <h4>Name</h4>
+            </div>
+            <div className="name__input--container">
+              <input type="text" className="input" />
+            </div>
+          </div>
+
+          <div className="left-desc--company">
+            <div className="company__sub-title admin-dash__mini-title">
+              <h4>Company</h4>
+            </div>
+            <div className="company__input--container">
+              <input type="text" className="input" />
+            </div>
+          </div>
+
+          <div className="left-desc--save-btn">
+            <button className="medium-size-btn">Save Description</button>
+          </div>
+        </div>
+
+        <div className="modal__left--strengths">
+          <div className="left-strengths__title admin-dash__small-title">
+            <h3>Strengths</h3>
+          </div>
+
+          <div className="left-strengths--list">
+            <ul className="list">
+              <li className="list--option">
+                <span>2mg</span>
+              </li>
+              <li className="list--option">
+                <span>4mg</span>
+              </li>
+              <li className="list--option">
+                <span>6mg</span>
+              </li>
+              <li className="list--option">
+                <span>8mg</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="left-strengths--add-btn">
+            <button className="medium-size-btn">Add Option</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="modal__right">
+        <div className="modal__right--tech-specs">
+          <div className="company__title admin-dash__small-title">
+            <h3>Tech Spechs</h3>
+          </div>
+
+          <div className="tech-specs__sku">
+            <div className="sku__desc">
+              <label htmlFor="new-sku">SKU</label>
+              <input id="new-sku" className="desc__value" disabled>123123123</input>
+            </div>
+            <div className="sku__generate-btn">
+              <button className="medium-size-btn">
+                Generate SKU
+              </button>
+            </div>
+          </div>
+
+          <div className="tech-specs__company">
+            <div className="company__desc">
+              <label htmlFor="value">Company</label>
+              <input className="desc__value">123123123</input>
+            </div>
+          </div>
+
+          <div className="company__generate-btn">
+            <button className="medium-size-btn">
+              Save Company
+            </button>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }
