@@ -65,10 +65,10 @@
 
   ## Visits
   * Per periodicity
-  - Guests (checked out as Guest) (#)
-  - Members (Logged in and browsed) (#)
-  - Wholesalers (Identified through membership Type) (#)
-  - Unknown (No login & No checkout) (#)
+    - Guests (checked out as Guest) (#)
+    - Members (Logged in and browsed) (#)
+    - Wholesalers (Identified through membership Type) (#)
+    - Unknown (No login & No checkout) (#)
 
   ## Countries
   - Shows on a world heat map, where the users are visiting the site from.
@@ -80,14 +80,14 @@
   - Unkown (User-Agent returns a falsy value)
 
   * Growth
-  - Calculate the amount of growth (in percentage) from Today to the given timeframes listed above. (%)
+    - Calculate the amount of growth (in percentage) from Today to the given timeframes listed above. (%)
 
   * Page Views (# per page)
 
   * Avg. Visit Time (#)
 
   * New Visitors (non-recognized IP Address) (#)
-  - This is gonna to require us to keep a database of `IP Addresses` Perhaps have the ip-address be the key, and the value be the index # for O(1) lookup time.
+    - This is gonna to require us to keep a database of `IP Addresses` Perhaps have the ip-address be the key, and the value be the index # for O(1) lookup time.
 
   * Bounce Rate (%)
 
