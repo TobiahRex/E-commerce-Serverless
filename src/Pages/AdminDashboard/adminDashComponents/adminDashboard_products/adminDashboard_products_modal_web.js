@@ -147,110 +147,143 @@ function AdminProducts() {
         </div>
       </div>
 
-      <div className="modal__left">
-        <div className="modal__left--desc">
-          <div className="left-desc__title admin-dash__small-title">
-            <h3>Description</h3>
+      <div className="modal__product-details">
+        <div className="modal__left">
+          <div className="modal__left--desc">
+            <div className="left-desc__title admin-dash__small-title">
+              <h3>Description</h3>
+            </div>
+
+            <div className="left-desc--name">
+              <div className="name__sub-title admin-dash__mini-title">
+                <h4>Name</h4>
+              </div>
+              <div className="name__input--container">
+                <input type="text" className="input" />
+              </div>
+            </div>
+
+            <div className="left-desc--company">
+              <div className="company__sub-title admin-dash__mini-title">
+                <h4>Company</h4>
+              </div>
+              <div className="company__input--container">
+                <input type="text" className="input" />
+              </div>
+            </div>
+
+            <div className="left-desc--save-btn">
+              <button className="medium-size-btn">Save Description</button>
+            </div>
           </div>
 
-          <div className="left-desc--name">
-            <div className="name__sub-title admin-dash__mini-title">
-              <h4>Name</h4>
+          <div className="modal__left--strengths">
+            <div className="left-strengths__title admin-dash__small-title">
+              <h3>Strengths</h3>
             </div>
-            <div className="name__input--container">
-              <input type="text" className="input" />
-            </div>
-          </div>
 
-          <div className="left-desc--company">
-            <div className="company__sub-title admin-dash__mini-title">
-              <h4>Company</h4>
+            <div className="left-strengths--list">
+              <ul className="list">
+                <li className="list--option">
+                  <span>2mg</span>
+                </li>
+                <li className="list--option">
+                  <span>4mg</span>
+                </li>
+                <li className="list--option">
+                  <span>6mg</span>
+                </li>
+                <li className="list--option">
+                  <span>8mg</span>
+                </li>
+              </ul>
             </div>
-            <div className="company__input--container">
-              <input type="text" className="input" />
-            </div>
-          </div>
 
-          <div className="left-desc--save-btn">
-            <button className="medium-size-btn">Save Description</button>
+            <div className="left-strengths--add-btn">
+              <button className="medium-size-btn">Add Option</button>
+            </div>
           </div>
         </div>
 
-        <div className="modal__left--strengths">
-          <div className="left-strengths__title admin-dash__small-title">
-            <h3>Strengths</h3>
+        <div className="modal__right">
+          <div className="modal__right--tech-specs">
+            <div className="company__title admin-dash__small-title">
+              <h3>Tech Spechs</h3>
+            </div>
+
+            <div className="tech-specs__sku">
+              <div className="sku__desc">
+                <label htmlFor="new-sku">SKU</label>
+                <input id="new-sku" className="desc__value" value="123123123" disabled />
+              </div>
+              <div className="sku__generate-btn">
+                <button className="medium-size-btn">
+                  Generate SKU
+                </button>
+              </div>
+            </div>
+
+            <div className="tech-specs__company">
+              <label htmlFor="new-company">Company</label>
+              <input id="new-company" className="company__value" value="123123123" />
+            </div>
+
+            <div className="company__generate-btn">
+              <button className="medium-size-btn">
+                Save Company
+              </button>
+            </div>
           </div>
 
-          <div className="left-strengths--list">
-            <ul className="list">
-              <li className="list--option">
-                <span>2mg</span>
-              </li>
-              <li className="list--option">
-                <span>4mg</span>
-              </li>
-              <li className="list--option">
-                <span>6mg</span>
-              </li>
-              <li className="list--option">
-                <span>8mg</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="left-strengths--add-btn">
-            <button className="medium-size-btn">Add Option</button>
+          <div className="modal__right--quantity">
+            <div className="quantity__title admin-dash__small-title">
+              <h3>Quantity</h3>
+            </div>
+            <div className="quantity__body">
+              <div className="body__readout">
+                <p>12</p>
+              </div>
+              <div className="body__action-btns">
+                <button className="action-btns--up" >
+                  <FontAwesome name="chevron-up" />
+                </button>
+                <button className="action-btns--down" >
+                  <FontAwesome name="chevron-down" />
+                </button>
+              </div>
+            </div>
+            <div className="quantity__action-btn">
+              <button className="medium-size-btn">
+                Save Quantity
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="modal__right">
-        <div className="modal__right--tech-specs">
-          <div className="company__title admin-dash__small-title">
-            <h3>Tech Spechs</h3>
-          </div>
-
-          <div className="tech-specs__sku">
-            <div className="sku__desc">
-              <label htmlFor="new-sku">SKU</label>
-              <input id="new-sku" className="desc__value" value="123123123" disabled />
-            </div>
-            <div className="sku__generate-btn">
-              <button className="medium-size-btn">
-                Generate SKU
-              </button>
-            </div>
-          </div>
-
-          <div className="tech-specs__company">
-            <label htmlFor="new-company">Company</label>
-            <input id="new-company" className="company__value" value="123123123" />
-          </div>
-
-          <div className="company__generate-btn">
-            <button className="medium-size-btn">
-              Save Company
-            </button>
-          </div>
+      <div className="modal__price">
+        <div className="price__title admin-dash__small-title">
+          <h3>Price</h3>
         </div>
-
-        <div className="modal__right--quantity">
-          <div className="quantity__title admin-dash__small-title">
-            <h3>Quantity</h3>
-          </div>
-          <div className="quantity__body">
-            <div className="body__readout">
-              <p>12</p>
-            </div>
-            <div className="body__action-btns">
-              <button className="action-btns--up" >
-                <FontAwesome name="chevron-up" />
-              </button>
-              <button className="action-btns--down" >
-                <FontAwesome name="chevron-down" />
-              </button>
-            </div>
-          </div>
+        <div className="price__exg-rate">
+          <input id="exg-rate--box" type="checkbox" />
+          <label htmlFor="exg-rate--box">Use Automatic Exchange Rate for all International Currencies | Source: <a href="http://fixer.io">fixer.io</a>
+          </label>
+        </div>
+        <div className="price__price-list">
+          <ul className="price-list--container">
+            <li className="list--option">
+              <div className="option--container">
+                <label htmlFor="usd-option" className="option--title">
+                  US Dollars
+                </label>
+                <div id="usd-option" className="option--usd">
+                  <FontAwesome name="usd" />
+                  <p>120.00</p>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
