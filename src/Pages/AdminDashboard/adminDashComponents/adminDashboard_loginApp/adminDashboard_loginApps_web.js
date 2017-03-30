@@ -2,14 +2,18 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
+import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 
 const propTypes = { };
 
 function UserLoginAppWeb() {
   return (
     <div className="login-app__body">
-      <UserSideBar location={location} />
+      <div className="body__sidebars">
+        <AdminSideBar location={location} />
+        <AdminSideBar.Sales location={location} />
+        <AdminSideBar.Members location={location} />
+      </div>
       <div className="body__dashboard">
         <div className="dashboard--container">
           <div className="dashboard--title">
@@ -21,7 +25,7 @@ function UserLoginAppWeb() {
               <p>Authorized Apps</p>
               <h3>1</h3>
             </div>
-
+            
             <div className="authorized-apps--container">
               <ul className="authorized-apps--list">
                 <li className="list--app">

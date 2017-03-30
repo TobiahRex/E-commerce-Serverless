@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
 
 import BreadCrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';

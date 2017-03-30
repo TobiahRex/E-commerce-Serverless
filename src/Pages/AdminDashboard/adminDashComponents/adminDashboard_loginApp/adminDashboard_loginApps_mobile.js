@@ -3,14 +3,18 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 import uuid from 'uuid';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
+import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 
 const propTypes = { };
 
 function UserLoginAppMobile() {
   return (
     <div className="login-app__body">
-      <UserSideBar location={location} />
+      <div className="body__sidebars">
+        <AdminSideBar location={location} />
+        <AdminSideBar.Sales location={location} />
+        <AdminSideBar.Members location={location} />
+      </div>
       <div className="body__dashboard">
         <div className="dashboard--container">
           <div className="dashboard--title">

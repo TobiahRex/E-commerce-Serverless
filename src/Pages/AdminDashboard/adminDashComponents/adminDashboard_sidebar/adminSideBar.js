@@ -92,7 +92,7 @@ function AdminSideBar({ location }) {
             </Link>
           </li>
           <li className="list--legal-login-apps sweep-right">
-            <Link to={`/${adminDashboard}/manage_login`}>
+            <Link to={`/${adminDashboard}/login_apps`}>
               <p>Login Apps</p>
             </Link>
           </li>

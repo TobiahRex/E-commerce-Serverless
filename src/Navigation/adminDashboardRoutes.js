@@ -6,6 +6,7 @@ import AdminHomeDash from '../Pages/AdminDashboard/adminDashComponents/adminDash
 import AdminLegal from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
 import AdminFaqs from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
 import AdminManageLogin from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
+import AdminLoginApps from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_loginApp/adminDashboard_loginApps';
 import AdminReports from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_reports/adminReports';
 import AdminSales from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_sales/adminSales';
 import AdminTraffic from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_traffic/adminTraffic';
@@ -60,6 +61,7 @@ const AdminDashboardRoutes = () => (
       path="nicotine_disclaimer"
       component={AdminLegal.NicotineDisclaimer}
     />
+    <Route path="login_apps" component={AdminLoginApps} />
     <Route path="manage_login" component={AdminManageLogin} />
     <Route path="faqs" component={AdminFaqs} />
   </Route>

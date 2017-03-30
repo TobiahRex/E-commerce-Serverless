@@ -1,6 +1,6 @@
 import webpack from 'webpack';
+import colors from 'colors'; //eslint-disable-line
 import webpackConfig from '../webpack.config';
-import colors from 'colors';
 
 process.stdout.write('⏲  Generating minified bundle for production via Webpack. This will take a moment...\n'.white.bold);
 

@@ -29,7 +29,7 @@ function AdminReports({ location }) {
           </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
-
+              
               <div className="reports__title">
                 <h1>Reports</h1>
               </div>
