@@ -64,11 +64,11 @@
     - Day (last 24 hours)
 
   ## Visits
-    - Per periodicity
-    - Guests (checked out as Guest) (#)
-    - Members (Logged in and browsed) (#)
-    - Wholesalers (Identified through membership Type) (#)
-    - Unknown (No login & No checkout) (#)
+    * Per periodicity
+      - Guests (checked out as Guest) (#)
+      - Members (Logged in and browsed) (#)
+      - Wholesalers (Identified through membership Type) (#)
+      - Unknown (No login & No checkout) (#)
 
   ## Countries
     - Shows on a world heat map, where the users are visiting the site from.
@@ -107,21 +107,21 @@
     - Week
     - Day (last 24 hours)
 
-  ## Top 10 Products
+  ## Top 10 Products (#)
 
-  ## Page Views
+  ## Page Views (#)
     - Guests
     - Members
     - Unknowns
     - Wholesalers
 
-  ## Clicks
+  ## Clicks (#)
     - Guests
     - Members
     - Unknowns
     - Wholesalers
 
-  ## Time Viewed
+  ## Time Viewed (hh:mm:ss)
     - Guests
     - Members
     - Unknowns
@@ -167,20 +167,20 @@
     - Location (lat, long)
     - Email (text)
     - Permissions (`['member', 'admin', 'whole-seller', 'super-admin', 'staff']`),
-    - Age
+    - Age (#)
 
 # Newsletters
-  ## Clicks
+  ## Clicks (#)
     - Guests
     - Members
     - Unknowns
     - Wholesalers
-  ## Purchases-after
+  ## Purchases-after (%)
     - Guests
     - Members
     - Unknowns
     - Wholesalers
-  ## Un-subscribers
+  ## Un-subscribers (%)
     - Guests
     - Members
     - Unknowns
