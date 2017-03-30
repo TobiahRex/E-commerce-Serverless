@@ -146,12 +146,57 @@ function AdminProducts({ location }) {
                         <h3>Product Table</h3>
                       </div>
                       <div className="header__add-new-btn">
-                        <button className="primary-button">
+                        <button className="medium-size-btn">
                           Add New Product(s)
                         </button>
                       </div>
                       <div className="header__msg">
                         <p>* Double click row to modify information</p>
+                      </div>
+                    </div>
+
+                    <div className="product-table__body ">
+                      <div className="body__table">
+                        <table className="table--container">
+                          <thead className="table__header">
+                            <tr className="header--row">
+                              <th className="header--images">
+                                <p>Image(s)</p>
+                              </th>
+                              <th className="header--desc">
+                                <p>Description</p>
+                              </th>
+                              <th className="header--nicotine">
+                                <p>Nicotine</p>
+                              </th>
+                              <th className="header--prices">
+                                <p>Prices</p>
+                              </th>
+                              <th className="header--qty">
+                                <p>
+                                  Qty
+                                </p>
+                              </th>
+                              <th className="header--qty">
+                                <p>Colors</p>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="table__body">
+                            <tr className="body__row">
+                              <td className="row--image">
+                                <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice" />
+                              </td>
+                              <td className="row--desc">
+                                <label htmlFor="title">Title</label>
+                                <p id="title">French Vanilla Mocha</p>
+                              </td>
+                              <td className="row--nicotine"></td>
+                              <td className="row--prices"></td>
+                              <td className="row--qty"></td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
