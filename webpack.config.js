@@ -10,46 +10,54 @@ import webpackEnvs from './tools/webpack_envs';
 dotenv.load({ silent: true });
 
 const devConfig = {
-  devtool: 'source-map',
-  target: 'web',
+  context: __dirname,
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/styles.scss',
     './src/index',
   ],
   output: {
-    path: path.resolve('public'),
+    path: 'public',
     publicPath: '/',
     filename: 'bundle.js',
   },
+  devtool: 'eval',
+  target: 'web',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NamedModulesPlugin(),
     new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
     new webpack.LoaderOptionsPlugin({
       debug: true,
     }),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.(js|html|scss)$/,
+    new analyzer.BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      generateStatsFile: true,
     }),
-    // new analyzer.BundleAnalyzerPlugin({
-    //   analyzerMode: 'static',
-    // }),
   ],
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|bower_components|client\/vendor)/,
         include: path.resolve('src'),
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: false,
+              localIdentName: '[name]_[local]',
+            },
+          },
+        ],
         exclude: /(node_modules|bower_components)/,
       },
       {
@@ -112,6 +120,10 @@ const devConfig = {
     ],
   },
   resolve: {
+    modules: [
+      `${__dirname}/client/vendor`,
+      'node_modules',
+    ],
     extensions: ['*', '.js', '.jsx'],
   },
 };
@@ -119,28 +131,36 @@ const devConfig = {
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
-  devtool: 'source-map',
-  target: 'web',
+  context: __dirname,
   entry: [
     './src/styles.scss',
     './src/index.js',
   ],
   output: {
-    path: path.resolve('dist'),
+    path: 'dist',
     publicPath: '/',
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
+  target: 'web',
   plugins: [
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
     new CommonsChunkPlugin({
       name: 'commons',
       filename: 'commons.js',
+      minChunks: Infinity,
     }),
     new ExtractTextPlugin('styles.css'),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      compress: {
         warnings: false,
+        negate_iife: false,
       },
+      mangle: {
+        except: ['import', 'export', 'module', 'exports', 'require', 'default'],
+      },
+      comments: false,
+      sourceMap: true,
     }),
     new webpack.LoaderOptionsPlugin({
       debug: false,
@@ -160,7 +180,17 @@ const prodConfig = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css?modules&localIdentName=[name]---[local]---[hash:base64:5]',
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+            },
+          },
+        ],
         exclude: /(node_modules|bower_components)/,
       },
       {
@@ -231,6 +261,10 @@ const prodConfig = {
     ],
   },
   resolve: {
+    modules: [
+      `${__dirname}/client/vendor`,
+      'node_modules',
+    ],
     extensions: ['*', '.js', '.jsx'],
   },
 };

@@ -13,6 +13,7 @@ export default function* getTaxRate(api) {
       cityRate: result.rates[1].rate / 100,
       totalRate: result.totalRate / 100,
     };
+    console.log('taxRate: ', taxRate);
     yield [put(orderActions.setTaxRate(taxRate)),
       put(apiActions.apiSuccess())];
   } else {
