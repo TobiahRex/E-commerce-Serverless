@@ -277,10 +277,49 @@ function AdminProducts() {
                 <label htmlFor="usd-option" className="option--title">
                   US Dollars
                 </label>
-                <div id="usd-option" className="option--usd">
-                  <FontAwesome name="usd" />
-                  <p>120.00</p>
-                </div>
+                <ul className="currency-list">
+                  <li className="list--usd">
+                    <p>US Dollars</p>
+                    <div id="usd-option" className="option--usd">
+                      <p>$</p>
+                      <p>120.00</p>
+                    </div>
+                  </li>
+                  <li className="list--yen">
+                    <p>Japanese Yen</p>
+                    <div id="yen-option" className="option--yen">
+                      <p>{'\u00A5'}</p>
+                      <p>120.00</p>
+                    </div>
+                  </li>
+                  <li className="list--euro">
+                    <p>EU Euro</p>
+                    <div id="euro-option" className="option--euro">
+                      <p>{'\u20AC'}</p>
+                      <p>120.00</p>
+                    </div>
+                  </li>
+                  <li className="list--cd">
+                    <p>Canadian Dollar</p>
+                    <div id="cd-option" className="option--cd">
+                      <p>$</p>
+                      <p>120.00</p>
+                    </div>
+                  </li>
+                  <li className="list--gbp">
+                    <p>G. British Pound</p>
+                    <div id="gbp-option" className="option--gbp">
+                      <p>{'\u00A3'}</p>
+                      <p>120.00</p>
+                    </div>
+                  </li>
+                  <li className="list--save-btn">
+                    <button className="medium-size-btn">
+                      Save Price(s)
+                    </button>
+                  </li>
+                </ul>
+
               </div>
             </li>
           </ul>
