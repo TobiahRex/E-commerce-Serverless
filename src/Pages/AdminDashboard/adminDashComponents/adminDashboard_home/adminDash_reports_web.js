@@ -28,19 +28,19 @@ function AdminDashReportsWeb() {
                     </button>
                   </div>
 
-                  <div className="type__ddn--content center-xs">
+                  <div className="type__ddn--content start-xs">
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Products</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Members</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Traffic</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Sales</p>
                       </li>
                     </ul>
@@ -51,9 +51,9 @@ function AdminDashReportsWeb() {
             </li>
 
             <li className="list--option">
-              <div className="option--periodicty">
-                <div className="periodicty__ddn--container">
-                  <div className="periodicty__ddn--readout">
+              <div className="option--periodicity center-lg">
+                <div className="periodicity__ddn--container">
+                  <div className="periodicity__ddn--readout center-lg">
                     <input type="text" className="readout--msg" disabled value="Today (24hrs)" />
                     <button className="readout--btn sweep-right">
                       <span className="flex-btn-parent">
@@ -61,22 +61,22 @@ function AdminDashReportsWeb() {
                       </span>
                     </button>
                   </div>
-                  <div className="periodicity__ddn--content">
+                  <div className="periodicity__ddn--content start-xs">
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Today (24hrs)</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Week</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Month</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Quarter</p>
                       </li>
-                      <li className="list--option sweep-right">
+                      <li className="list--option sweep-right start-xs">
                         <p>Semi-Annual</p>
                       </li>
                       <li className="list--option sweep-right">

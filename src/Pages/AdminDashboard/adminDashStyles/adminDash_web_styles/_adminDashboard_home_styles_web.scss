@@ -230,17 +230,21 @@
               padding: 0;
               margin: 0;
               & li {
-                & .option--type {
+                margin: 0 1em 0 2em;
+                & .option--type,
+                .option--periodicity {
                   @include prefixflex();
-                  & .type__ddn--container {
+                  & .type__ddn--container,
+                  .periodicity__ddn--container {
                     position: relative;
-                    & .type__ddn--readout {
+                    & .type__ddn--readout,
+                    .periodicity__ddn--readout {
                       @include prefixflex();
                       & input.readout--msg {
                         @include prefixflex();
                         font-size: 1.4em;
                         background-color: $p-white;
-                        border: 1px solid $s-grey;
+                        border: 1px solid $p-grey;
                         padding: 0 0 0 .5rem;
                         border-radius: 0;
                         height: 2.9rem;
@@ -266,13 +270,26 @@
                       @include prefixflex();
                       background-color: $p-white;
                       box-shadow: 0px 3px 10px rgba(0,0,0,.25);
-                      padding: 1em 0;
+                      box-sizing: border-box;
+                      padding: 1em 0 1em 1em;
                       & .ddn--content__list {
                         @include prefixflex();
                         flex-direction: column;
                         list-style-type: none;
                         margin: 0;
                         padding: 0;
+                        & .list--option {
+                          @include prefixflex();
+                          padding: .3rem;
+                          cursor: pointer;
+                          &:hover,
+                          &:active,
+                          &:focus {
+                            & p {
+                              color: $p-white;
+                            }
+                          }
+                        }
                       }
                     }
                   }
