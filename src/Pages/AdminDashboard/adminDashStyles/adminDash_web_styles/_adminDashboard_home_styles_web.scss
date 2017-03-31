@@ -311,6 +311,21 @@
               }
             }
           }
+          & .body__status-msg {
+            @include prefixflex();
+            & .status-msg__pre-generated,
+            .status-msg__generated {
+              @include prefixflex();
+              & span {
+                font-size: 2.5em;
+                color: $p-red;
+              }
+              & p {
+                color: $p-red;
+                font-size: 1.8em;
+              }
+            }
+          }
         }
       }
     }

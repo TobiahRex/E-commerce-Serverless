@@ -94,7 +94,7 @@ function AdminDashReportsWeb() {
             </li>
 
             <li className="list--option">
-              <div className="option--file-output center-xs">
+              <div className="option--file-output center-xs middle-xs">
                 <FontAwesome className="file-output--icon" name="file-o" />
                 {'\u00A0'}
                 <span className="file-output__file-name">
@@ -104,12 +104,12 @@ function AdminDashReportsWeb() {
             </li>
           </ul>
         </div>
-        <div className="body__status-msg">
-          <div className="status-msg__pre-generated ">
+        <div className="body__status-msg center-xs middle-xs">
+          <div className="status-msg__pre-generated center-xs middle-xs">
             <FontAwesome name="info-circle" />{'\u00A0'}
             <p>{'You\'ve'} selected a {'<Periodicity>'}, {'<TYPE>'} report.</p>
           </div>
-          <div className="status-msg__generated ">
+          <div className="status-msg__generated center-xs middle-xs">
             <FontAwesome name="exclamation-circle" />{'\u00A0'}
             <p>Success!</p>
           </div>
