@@ -30,18 +30,17 @@ export default function AdminNicotineDiclaimer() {
                 <h1>Nicotine Disclaimer</h1>
               </div>
               <div className="legal__body">
-                <p>WARNING: Products sold by Nic Juice 2 Japan contains nicotine, a chemical known to the state of California to cause birth defects or other reproductive harm. Nic Juice 2 Japan products are intended for use by smokers 18 years of age or older (21 where applicable). You must be of legal smoking age in your area to purchase and/or use our products. Products sold by Nic Juice 2 Japan are not intended for use by children, women who are pregnant or breast feeding, or by those who are at risk of heart disease, high blood pressure, diabetes, or are taking medication for depression or asthma. Do not use these products if you are sensitive or allergic to nicotine or the additive propylene glycol. This product is sold for recreational use only. Products sold by Nic Juice 2 Japan are not intended to diagnose, treat or prevent any condition, disorder, disease or other conditions are not a smoking cessation method and have not tested as such. Nicotine is extremely addictive and habit forming. Keep out of reach of children and pets. Products within this site have not been evaluated by the US Food and Drug Administration (FDA) or any international health organization.
+                <p>
+                  WARNING: Products sold by Nic Juice 2 Japan contains nicotine, a chemical known to the state of California to cause birth defects or other reproductive harm. Nic Juice 2 Japan products are intended for use by smokers 18 years of age or older (21 where applicable). You must be of legal smoking age in your area to purchase and/or use our products. Products sold by Nic Juice 2 Japan are not intended for use by children, women who are pregnant or breast feeding, or by those who are at risk of heart disease, high blood pressure, diabetes, or are taking medication for depression or asthma. Do not use these products if you are sensitive or allergic to nicotine or the additive propylene glycol. This product is sold for recreational use only. Products sold by Nic Juice 2 Japan are not intended to diagnose, treat or prevent any condition, disorder, disease or other conditions are not a smoking cessation method and have not tested as such. Nicotine is extremely addictive and habit forming. Keep out of reach of children and pets. Products within this site have not been evaluated by the US Food and Drug Administration (FDA) or any international health organization.
                 </p>
-              </div>
-              <div className="admin__agree">
-                <button type="text" className="admin-input__check-box" disabled>
-                  <span className="flex-btn-parent">
-                    <FontAwesome className="nicotine-agree-plus" name="plus" />
-                  </span>
-                </button>
-                <p>I am legal Smoking Age.</p>
-              </div>
-              <div className="legal__action-section--container">
+                <div className="admin__agree">
+                  <button type="text" className="admin-input__check-box" disabled>
+                    <span className="flex-btn-parent">
+                      <FontAwesome className="nicotine-agree-plus" name="plus" />
+                    </span>
+                  </button>
+                  <p>I am legal Smoking Age.</p>
+                </div>
                 <div className="action-section__back-btn">
                   <button className="back-btn primary-flex-button sweep-right">
                     <span className="flex-parent-btn">
@@ -54,19 +53,24 @@ export default function AdminNicotineDiclaimer() {
                     Edit
                   </button>
                 </div>
-
+              </div>
+              <div className="legal__body--edit">
+                <textarea
+                  cols="30"
+                  rows="10"
+                  value="WARNING: Products sold by Nic Juice 2 Japan contains nicotine, a chemical known to the state of California to cause birth defects or other reproductive harm. Nic Juice 2 Japan products are intended for use by smokers 18 years of age or older (21 where applicable). You must be of legal smoking age in your area to purchase and/or use our products. Products sold by Nic Juice 2 Japan are not intended for use by children, women who are pregnant or breast feeding, or by those who are at risk of heart disease, high blood pressure, diabetes, or are taking medication for depression or asthma. Do not use these products if you are sensitive or allergic to nicotine or the additive propylene glycol. This product is sold for recreational use only. Products sold by Nic Juice 2 Japan are not intended to diagnose, treat or prevent any condition, disorder, disease or other conditions are not a smoking cessation method and have not tested as such. Nicotine is extremely addictive and habit forming. Keep out of reach of children and pets. Products within this site have not been evaluated by the US Food and Drug Administration (FDA) or any international health organization."
+                />
                 <div className="action-section__save-btn">
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Cancel
+                  </button>
                   <button className="save-btn primary-flex-button sweep-right">
                     Save
                   </button>
-                </div>
-                <div>
                   <button className="save-btn primary-flex-button-saving sweep-right">
                     <FontAwesome name="refresh" spin />
                     {'\u00A0'} Saving...
                   </button>
-                </div>
-                <div>
                   <button className="save-btn primary-flex-button-saved sweep-right">
                     <span className="flex-parent-btn">
                       <FontAwesome name="check-circle" />

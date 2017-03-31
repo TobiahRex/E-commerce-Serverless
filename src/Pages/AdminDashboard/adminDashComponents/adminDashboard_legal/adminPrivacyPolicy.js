@@ -27,7 +27,7 @@ export default function AdminPrivacyPolicy() {
               <div className="legal__title">
                 <h1>Privacy Policy</h1>
               </div>
-
+              
               <div className="legal__body">
                 <p>
                   Your privacy is important to us. We have developed a privacy policy to help you understand what information we collect, how we use it, and what choices you have.
@@ -168,6 +168,9 @@ export default function AdminPrivacyPolicy() {
                   We may change this policy from time to time, and if we do we’ll post any changes on this page. If you continue to use our website after those changes are in effect, you agree to the revised policy. If the changes are significant, we may provide more prominent notice or obtain your consent as required by law."
                 />
                 <div className="action-section__save-btn">
+                  <button className="cancel-btn primary-flex-button sweep-right">
+                    Cancel
+                  </button>
                   <button className="save-btn primary-flex-button sweep-right">
                     Save
                   </button>
