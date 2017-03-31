@@ -56,7 +56,7 @@ function AdminDashReportsWeb() {
                   <div className="periodicity__ddn--readout center-lg">
                     <input type="text" className="readout--msg" disabled value="Today (24hrs)" />
                     <button className="readout--btn sweep-right">
-                      <span className="flex-btn-parent">
+                      <span className="flex-btn-parent center-xs">
                         <FontAwesome name="angle-down" />
                       </span>
                     </button>
@@ -94,8 +94,8 @@ function AdminDashReportsWeb() {
             </li>
 
             <li className="list--option">
-              <div className="option--file-output">
-                <FontAwesome name="file-o" />
+              <div className="option--file-output center-xs">
+                <FontAwesome className="file-output--icon" name="file-o" />
                 {'\u00A0'}
                 <span className="file-output__file-name">
                   20161225_Today_SalesReport.pdf
