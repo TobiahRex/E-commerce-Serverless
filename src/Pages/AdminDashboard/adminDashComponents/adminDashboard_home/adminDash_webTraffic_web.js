@@ -26,7 +26,7 @@ function AdminDashWebTrafficWeb() {
                       </span>
                     </button>
                   </div>
-                  <div className="periodicity__ddn--content">
+                  <div className="periodicity__ddn--content" style={{ display: 'none' }} >
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
                       <li className="list--option sweep-right">
@@ -72,7 +72,7 @@ function AdminDashWebTrafficWeb() {
                       <h3>99</h3>
                     </div>
                   </div>
-                  <div className="visitors__ddn--content">
+                  <div className="visitors__ddn--content" style={{ display: 'none' }} >
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
                       <li className="list--option sweep-right">
@@ -111,20 +111,20 @@ function AdminDashWebTrafficWeb() {
               <div className="option--purchases">
                 <div className="purchases__ddn--container">
                   <div className="purchases__ddn--readout">
-                    <div className="ddn__options">
+                    <div className="ddn__options center-xs middle-xs ">
                       <label htmlFor="ddn__btn">Purchases Per</label>
                       <input type="text" id="ddn__btn" className="readout--msg" value="Today (24hrs)" disabled />
                       <button className="readout--btn sweep-right">
-                        <span className="flex-btn-parent">
+                        <span className="flex-btn-parent center-xs middle-xs">
                           <FontAwesome name="angle-down" />
                         </span>
                       </button>
                     </div>
-                    <div className="ddn__result">
+                    <div className="ddn__result center-xs">
                       <h3>99</h3>
                     </div>
                   </div>
-                  <div className="purchases__ddn--content">
+                  <div className="purchases__ddn--content" style={{ display: 'none' }} >
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
                       <li className="list--option sweep-right">

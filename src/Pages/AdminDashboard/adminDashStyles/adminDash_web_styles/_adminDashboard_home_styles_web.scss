@@ -354,23 +354,85 @@
                 .option--purchases {
                   @include prefixflex();
                   & .visitors__ddn--container,
-                  .periodicity__ddn--container {
+                  .periodicity__ddn--container,
+                  .purchases__ddn--container {
                     position: relative;
+                    & .periodicity__ddn--readout {
+                      @include prefixflex();
+                      & input.readout--msg {
+                        @include prefixflex();
+                        font-size: 1.4em;
+                        background-color: $p-white;
+                        border: 1px solid $p-grey;
+                        padding: 0 0 0 .5rem;
+                        border-radius: 0;
+                        height: 2.9rem;
+                        width: 16rem;
+                      }
+                      & button.readout--btn {
+                        height: 3.1rem;
+                        width: 3rem;
+                        background-color: $p-red;
+                        padding: 0;
+                        border: 0;
+                        cursor: pointer;
+                        & .flex-btn-parent {
+                          @include prefixflex();
+                          & span {
+                            font-size: 2rem;
+                            color: $p-white;
+                          }
+                        }
+                      }
+                    }
+                    & .periodicity__ddn--content {
+                      @include prefixflex();
+                      background-color: $p-white;
+                      box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+                      box-sizing: border-box;
+                      padding: 1em 0 1em 1em;
+                      & .ddn--content__list {
+                        @include prefixflex();
+                        flex-direction: column;
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        & .list--option {
+                          @include prefixflex();
+                          padding: .3rem;
+                          cursor: pointer;
+                          &:hover,
+                          &:active,
+                          &:focus {
+                            & p {
+                              color: $p-white;
+                            }
+                          }
+                        }
+                      }
+                    }
                     & .visitors__ddn--readout,
-                    .periodicity__ddn--readout {
+                    .purchases__ddn--readout {
                       @include prefixflex();
                       flex-direction: column;
                       & .ddn__options {
                         @include prefixflex();
+                        & label {
+                          font-size: 1.4em;
+                          width: 7em;
+                          color: $p-blue;
+                          text-align: center;
+                        }
                         & input.readout--msg {
                           @include prefixflex();
                           font-size: 1.4em;
                           background-color: $p-white;
                           border: 1px solid $p-grey;
+                          border-bottom: 1px solid $p-white;
                           padding: 0 0 0 .5rem;
                           border-radius: 0;
                           height: 2.9rem;
-                          width: 16rem;
+                          width: 10rem;
                         }
                         & button.readout--btn {
                           height: 3.1rem;
@@ -389,17 +451,28 @@
                         }
                       }
                       & .ddn__result {
+                        width: 100%;
+                        padding: 1em;
                         border: 1px solid $p-grey;
                         background-color: $p-white;
+                        box-sizing: border-box;
+                        & h3 {
+                          font-weight: 400;
+                        }
                       }
                     }
                     & .visitors__ddn--content,
-                    .periodicity__ddn--content {
+                    .purchases__ddn--content {
                       @include prefixflex();
+                      position: absolute;
+                      z-index: 2;
                       background-color: $p-white;
                       box-shadow: 0px 3px 10px rgba(0,0,0,.25);
                       box-sizing: border-box;
                       padding: 1em 0 1em 1em;
+                      right: 0;
+                      top: 3.1em;
+                      width: 100%;
                       & .ddn--content__list {
                         @include prefixflex();
                         flex-direction: column;
