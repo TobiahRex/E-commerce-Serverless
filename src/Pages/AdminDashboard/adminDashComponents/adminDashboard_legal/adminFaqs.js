@@ -37,6 +37,15 @@ export default function AdminPrivacyPolicy() {
                   <div className="edit-btn">
                     <button className="small-edit-btn sweep-right">Edit</button>
                   </div>
+                </div>
+                <div className="faq-question--edit">
+                  <input className="edit_title" type="text" value={'Why can\'t I buy more than 4 bottles?'} />
+                  <textarea
+                    cols="100"
+                    rows="7"
+                    required
+                    value={'Japanese law requires no more than 120 mililiters of nicotine juice to be sold per individual, per address, within 1 month.'}
+                  />
                   <div className="save__action-section--container">
                     <div className="action-section__save-btn">
                       <button className="save-btn small-btn sweep-right">
@@ -65,6 +74,36 @@ export default function AdminPrivacyPolicy() {
                   <div className="edit-btn">
                     <button className="small-edit-btn sweep-right">Edit</button>
                   </div>
+                  <div className="save__action-section--container">
+                    <div className="action-section__save-btn">
+                      <button className="save-btn small-btn sweep-right">
+                        Save
+                      </button>
+                    </div>
+                    <div>
+                      <button className="save-btn small-flex-btn sweep-right">
+                        <FontAwesome name="refresh" spin />
+                        {'\u00A0'} Saving...
+                      </button>
+                    </div>
+                    <div>
+                      <button className="save-btn small-flex-btn sweep-right">
+                        <span className="flex-btn-parent">
+                          <FontAwesome name="check-circle" />
+                          {'\u00A0'} Saved!
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="faq-question--edit">
+                  <input className="edit_title" type="text" value={'What address should I use if I\'m SOFA and live on a military base?'} />
+                  <textarea
+                    cols="100"
+                    rows="7"
+                    required
+                    value={'Many of our SOFA sponsored members use friends addresses who live off base.  Alternatively, every building (including the post office on base) has a Japanese address on military bases in Japan. We recommend you ask your post office for their Japanese "off-base" address and then you can use your postal box # to have the package assigned to your postal box and receive your juice.'}
+                  />
                   <div className="save__action-section--container">
                     <div className="action-section__save-btn">
                       <button className="save-btn small-btn sweep-right">
