@@ -16,12 +16,12 @@ function AdminDashWebTrafficWeb() {
         <div className="body__header">
           <ul className="header--list">
             <li className="list--option">
-              <div className="option--periodicty">
-                <div className="periodicty__ddn--container">
-                  <div className="periodicty__ddn--readout">
+              <div className="option--periodicity">
+                <div className="periodicity__ddn--container">
+                  <div className="periodicity__ddn--readout">
                     <input type="text" className="readout--msg" disabled value="Today (24hrs)" />
                     <button className="readout--btn sweep-right">
-                      <span className="flex-btn-parent">
+                      <span className="flex-btn-parent center-xs middle-xs">
                         <FontAwesome name="angle-down" />
                       </span>
                     </button>
@@ -53,18 +53,17 @@ function AdminDashWebTrafficWeb() {
                     </ul>
                   </div>
                 </div>
-
               </div>
             </li>
             <li className="list--option">
               <div className="option--visitors">
                 <div className="visitors__ddn--container">
-                  <div className="visitors__ddn--readout">
-                    <div className="ddn__options">
+                  <div className="visitors__ddn--readout center-xs middle-xs">
+                    <div className="ddn__options center-xs middle-xs">
                       <label htmlFor="ddn__btn">Visitors Per</label>
                       <input type="text" id="ddn__btn" className="readout--msg" value="Today (24hrs)" disabled />
                       <button className="readout--btn sweep-right">
-                        <span className="flex-btn-parent">
+                        <span className="flex-btn-parent center-xs middle-xs">
                           <FontAwesome name="angle-down" />
                         </span>
                       </button>
@@ -106,8 +105,6 @@ function AdminDashWebTrafficWeb() {
                     </ul>
                   </div>
                 </div>
-
-
               </div>
             </li>
             <li className="list--option">
@@ -160,8 +157,6 @@ function AdminDashWebTrafficWeb() {
                     </ul>
                   </div>
                 </div>
-
-
               </div>
             </li>
           </ul>
