@@ -55,15 +55,17 @@ export default function AdminShippingPolicy() {
                 </div>
               </div>
               <div className="legal__body--edit">
-                <textarea cols="30" rows="100">
-                  PROCESSING AND SHIPPING
+                <textarea
+                  cols="30"
+                  rows="100"
+                  value="PROCESSING AND SHIPPING
                   <br /><br />
                   Orders will be processed within 1-3 business days after your full payment has been received. Shipment time will be between 2-7 business days depending on your physical address. The total wait time after you place your order will be between 1-7 business days. Shipping time and cost vary depending on location, and product ordered.
                   <br /><br />
                   IN A HURRY?
                   <br /><br />
-                  We offer priority handling and delivery on most items upon request. For special instructions, PLEASE ORDER BY PHONE.
-                </textarea>
+                  We offer priority handling and delivery on most items upon request. For special instructions, PLEASE ORDER BY PHONE."
+                />
                 <div className="action-section__save-btn">
                   <div className="action-section__save-btn">
                     <button className="save-btn primary-flex-button sweep-right">
