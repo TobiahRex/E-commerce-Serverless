@@ -24,7 +24,11 @@ function AdminMembers({ location }) {
         />
         <AdminWelcomeMsg />
         <div className="members__body">
-          <AdminSideBar location={location} />
+          <div className="body__sidebars">
+            <AdminSideBar location={location} />
+            <AdminSideBar.Sales location={location} />
+            <AdminSideBar.Members location={location} />
+          </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
 
@@ -681,8 +685,8 @@ function AdminMembers({ location }) {
                                 </div>
                               </td>
                             </tr>
-
                           </tbody>
+
                         </table>
                       </div>
                     </div>

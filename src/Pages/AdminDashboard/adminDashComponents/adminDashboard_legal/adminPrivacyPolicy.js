@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
@@ -16,7 +17,11 @@ export default function AdminPrivacyPolicy() {
         />
         <AdminWelcomeMsg />
         <div className="privacy-policy__body">
-          <AdminSideBar location={location} />
+          <div className="body__sidebars">
+            <AdminSideBar location={location} />
+            <AdminSideBar.Sales location={location} />
+            <AdminSideBar.Members location={location} />
+          </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">
@@ -86,6 +91,42 @@ export default function AdminPrivacyPolicy() {
                   We may change this policy from time to time, and if we do we’ll post any changes on this page. If you continue to use our website after those changes are in effect, you agree to the revised policy. If the changes are significant, we may provide more prominent notice or obtain your consent as required by law.
                 </p>
               </div>
+
+              <div className="legal__action-section--container">
+                <div className="action-section__back-btn">
+                  <button className="back-btn primary-flex-button sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="angle-double-left" />
+                      {'\u00A0'}
+                      Back
+                    </span>
+                  </button>
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Edit
+                  </button>
+                </div>
+
+                <div className="action-section__save-btn">
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Save
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saving sweep-right">
+                    <FontAwesome name="refresh" spin />
+                    {'\u00A0'} Saving...
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saved sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="check-circle" />
+                      {'\u00A0'} Saved!
+                    </span>
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

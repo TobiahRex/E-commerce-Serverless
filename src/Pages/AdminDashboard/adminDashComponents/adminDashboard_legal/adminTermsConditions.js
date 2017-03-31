@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
@@ -21,7 +22,11 @@ export default function AdminTermsConditions() {
         />
         <AdminWelcomeMsg />
         <div className="terms-conditions__body">
-          <AdminSideBar location={location} />
+          <div className="body__sidebars">
+            <AdminSideBar location={location} />
+            <AdminSideBar.Sales location={location} />
+            <AdminSideBar.Members location={location} />
+          </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">
@@ -66,6 +71,9 @@ export default function AdminTermsConditions() {
                       {'\u00A0'}
                       Back
                     </span>
+                  </button>
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Edit
                   </button>
                 </div>
 

@@ -19,7 +19,11 @@ export default function AdminNicotineDiclaimer() {
         />
         <AdminWelcomeMsg />
         <div className="nicotine__body">
-          <AdminSideBar location={location} />
+          <div className="body__sidebars">
+            <AdminSideBar location={location} />
+            <AdminSideBar.Sales location={location} />
+            <AdminSideBar.Members location={location} />
+          </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="legal__title">
@@ -44,6 +48,29 @@ export default function AdminNicotineDiclaimer() {
                       <FontAwesome name="angle-double-left" />
                       {'\u00A0'}
                       Back
+                    </span>
+                  </button>
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Edit
+                  </button>
+                </div>
+
+                <div className="action-section__save-btn">
+                  <button className="save-btn primary-flex-button sweep-right">
+                    Save
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saving sweep-right">
+                    <FontAwesome name="refresh" spin />
+                    {'\u00A0'} Saving...
+                  </button>
+                </div>
+                <div>
+                  <button className="save-btn primary-flex-button-saved sweep-right">
+                    <span className="flex-parent-btn">
+                      <FontAwesome name="check-circle" />
+                      {'\u00A0'} Saved!
                     </span>
                   </button>
                 </div>
