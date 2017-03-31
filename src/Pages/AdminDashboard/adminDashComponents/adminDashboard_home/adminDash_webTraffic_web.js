@@ -11,7 +11,7 @@ function AdminDashWebTrafficWeb() {
       <div className="web-traffic__title admin-dash__small-title">
         <h3>Web Traffic</h3>
       </div>
-      
+
       <div className="web-traffic__body">
         <div className="body__header">
           <ul className="header--list">

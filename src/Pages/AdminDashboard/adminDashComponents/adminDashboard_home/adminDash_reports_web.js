@@ -104,17 +104,17 @@ function AdminDashReportsWeb() {
             </li>
           </ul>
         </div>
-        <div className="body__status-msg center-xs middle-xs">
+        <div className="body__status-msg start-xs middle-xs">
           <div className="status-msg__pre-generated center-xs middle-xs">
             <FontAwesome name="info-circle" />{'\u00A0'}
             <p>{'You\'ve'} selected a {'<Periodicity>'}, {'<TYPE>'} report.</p>
           </div>
-          <div className="status-msg__generated center-xs middle-xs">
+          <div className="status-msg__generated center-xs middle-xs" style={{ display: 'none' }} >
             <FontAwesome name="exclamation-circle" />{'\u00A0'}
             <p>Success!</p>
           </div>
         </div>
-        <div className="body__action-section">
+        <div className="body__action-section center-xs middle-xs">
           <div className="action-section__generate">
             <button className="medium-size-btn sweep-right">
               Generate
@@ -138,7 +138,7 @@ function AdminDashReportsWeb() {
         </div>
       </div>
 
-      <div className="reports__modal">
+      <div className="reports__modal" style={{ display: 'none' }} >
         <div className="modal__msg--container">
           <div className="msg__email">
             <div className="email__input--container">

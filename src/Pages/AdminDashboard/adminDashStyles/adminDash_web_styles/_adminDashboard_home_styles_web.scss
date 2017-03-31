@@ -313,18 +313,127 @@
           }
           & .body__status-msg {
             @include prefixflex();
+            padding: 2em;
             & .status-msg__pre-generated,
             .status-msg__generated {
               @include prefixflex();
               & span {
                 font-size: 2.5em;
-                color: $p-red;
+                color: $p-blue;
               }
               & p {
-                color: $p-red;
+                color: $p-blue;
                 font-size: 1.8em;
               }
             }
+          }
+          & .body__action-section {
+            @include prefixflex();
+            padding: 2em;
+            border-bottom: 1px solid rgba(0,0,0,.15);
+            & div {
+              margin-right: 1em;
+            }
+          }
+        }
+      }
+
+      & .dashboard__web-traffic {
+        & .web-traffic__body {
+          & .body__header {
+            @include prefixflex();
+            & .header--list {
+              @include prefixflex();
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+              & li {
+                margin: 0 1em 0 2em;
+                & .option--type,
+                .option--periodicity {
+                  @include prefixflex();
+                  & .type__ddn--container,
+                  .periodicity__ddn--container {
+                    position: relative;
+                    & .type__ddn--readout,
+                    .periodicity__ddn--readout {
+                      @include prefixflex();
+                      & input.readout--msg {
+                        @include prefixflex();
+                        font-size: 1.4em;
+                        background-color: $p-white;
+                        border: 1px solid $p-grey;
+                        padding: 0 0 0 .5rem;
+                        border-radius: 0;
+                        height: 2.9rem;
+                        width: 16rem;
+                      }
+                      & button.readout--btn {
+                        height: 3.1rem;
+                        width: 3rem;
+                        background-color: $p-red;
+                        padding: 0;
+                        border: 0;
+                        cursor: pointer;
+                        & .flex-btn-parent {
+                          @include prefixflex();
+                          & span {
+                            font-size: 2rem;
+                            color: $p-white;
+                          }
+                        }
+                      }
+                    }
+                    & .type__ddn--content,
+                    .periodicity__ddn--content {
+                      @include prefixflex();
+                      background-color: $p-white;
+                      box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+                      box-sizing: border-box;
+                      padding: 1em 0 1em 1em;
+                      & .ddn--content__list {
+                        @include prefixflex();
+                        flex-direction: column;
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        & .list--option {
+                          @include prefixflex();
+                          padding: .3rem;
+                          cursor: pointer;
+                          &:hover,
+                          &:active,
+                          &:focus {
+                            & p {
+                              color: $p-white;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                & .option--file-output {
+                  @include prefixflex();
+                  & .file-output--icon {
+                    font-size: 2.5rem;
+                    margin-right: 1rem;
+                    color: $p-blue;
+                  }
+                  & .file-output__file-name {
+                    font-size: 1.6em;
+                    font-family: $lato-font;
+                    color: $p-blue;
+                  }
+                }
+              }
+            }
+          }
+          & .body__main {
+
+          }
+          & .body__map {
+
           }
         }
       }
