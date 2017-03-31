@@ -6,7 +6,7 @@ import uuid from 'uuid';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
-import ProductsModal from './adminDashboard_products_modal_web';
+import ProductsModal from './adminDashboard_products_modal_modify_web';
 
 const propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,

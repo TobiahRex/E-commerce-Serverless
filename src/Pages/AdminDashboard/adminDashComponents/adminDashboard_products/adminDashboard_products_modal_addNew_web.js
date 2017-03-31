@@ -352,8 +352,12 @@ function AdminProducts() {
         </div>
 
         <div className="confirm-msg--error">
-          <FontAwesome className="confirm-msg--error-icon" name="plus" />
-          <p>There was an Error.  Please try again</p>
+          <div className="error__icon">
+            <FontAwesome className="confirm-msg--error-icon" name="times-circle" />
+            <p>Error</p>
+          </div>
+          <p>There was an error while attempting to save this product.</p>
+          <p>Please Try Again.</p>
           <button className="medium-size-btn sweep-right">
             OK
           </button>

@@ -1,7 +1,9 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function AdminProducts() {
+import AddNewModal from './adminDashboard_products_modal_addNew_web';
+
+function ProductsModal() {
   return (
     <div className="body__modal">
       <div className="modal__title">
@@ -340,4 +342,5 @@ function AdminProducts() {
     </div>
   );
 }
-export default AdminProducts;
+ProductsModal.NewProduct = AddNewModal;
+export default ProductsModal;

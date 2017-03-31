@@ -139,87 +139,87 @@
           }
         }
         & .dashboard__bottom-half--container {
-        @include prefixflex();
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        & .bottom-half--login-methods {
           @include prefixflex();
-          justify-content: flex-start;
-          align-items: flex-start;
-          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           width: 100%;
-          & .login-methods--social {
+          & .bottom-half--login-methods {
             @include prefixflex();
             justify-content: flex-start;
             align-items: flex-start;
             flex-direction: column;
-            height: 50%;
-            width: 90%;
-            & .login-methods--social-list {
+            width: 100%;
+            & .login-methods--social {
               @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              list-style-type: none;
-              padding: 0;
-              margin: 0;
-              width: 100%;
-              & .social-list--item {
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              height: 50%;
+              width: 90%;
+              & .login-methods--social-list {
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
-                height: 7.5em;
-                width: 7.5em;
-                margin: 1em 0 1em 1.5em;
-                background-color: $p-grey;
-                & span {
-                  font-size: 6em;
-                  color: $s-grey;
-                  line-height: 1em;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                & .social-list--item {
+                  @include prefixflex();
+                  justify-content: center;
+                  align-items: center;
+                  height: 7.5em;
+                  width: 7.5em;
+                  margin: 1em 0 1em 1.5em;
+                  background-color: $p-grey;
+                  & span {
+                    font-size: 6em;
+                    color: $s-grey;
+                    line-height: 1em;
+                  }
+                }
+                & .social-list--item.active.facebook {
+                  background-color: $p-blue;
+                  & span {
+                    color: $p-white;
+                  }
+                }
+                & .social-list--item.active.twitter {
+                  background-color: #4990E2;
+                  & span {
+                    color: $p-white;
+                  }
+                }
+                & .social-list--item.active.instagram {
+                  background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+                  & span {
+                    color: $p-white;
+                  }
+                }
+                & .social-list--item.active.google {
+                  background-color: blue;
+                  & span {
+                    color: $p-white;
+                  }
                 }
               }
-              & .social-list--item.active.facebook {
-                background-color: $p-blue;
-                & span {
-                  color: $p-white;
+              & .social-login__edit-btn {
+                @include prefixflex();
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                & button {
+                  margin: .5em 0 .5em 0;
                 }
-              }
-              & .social-list--item.active.twitter {
-                background-color: #4990E2;
-                & span {
-                  color: $p-white;
-                }
-              }
-              & .social-list--item.active.instagram {
-                background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
-                & span {
-                  color: $p-white;
-                }
-              }
-              & .social-list--item.active.google {
-                background-color: blue;
-                & span {
-                  color: $p-white;
-                }
-              }
-            }
-            & .social-login__edit-btn {
-              @include prefixflex();
-              justify-content: flex-end;
-              align-items: center;
-              width: 100%;
-              & button {
-                margin: .5em 0 .5em 0;
               }
             }
           }
+          & .bottom-third--login-methods {
+            height: 44em;
+          }
         }
-        & .bottom-third--login-methods {
-          height: 44em;
-        }
-      }
 
-      & .dashboard__reports {
+        & .dashboard__reports {
 
         }
       }
