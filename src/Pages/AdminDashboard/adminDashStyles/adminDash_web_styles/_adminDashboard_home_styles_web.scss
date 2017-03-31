@@ -238,19 +238,21 @@
                       @include prefixflex();
                       & input.readout--msg {
                         @include prefixflex();
+                        font-size: 1.4em;
                         background-color: $p-white;
                         border: 1px solid $s-grey;
-                        padding-left: .5em;
+                        padding: 0 0 0 .5rem;
                         border-radius: 0;
-                        height: 3em;
-                        width: 16em;
+                        height: 2.9rem;
+                        width: 16rem;
                       }
                       & button.readout--btn {
-                        height: 3em;
-                        width: 4em;
+                        height: 3.1rem;
+                        width: 3rem;
                         background-color: $p-red;
                         padding: 0;
-                        border: 1px solid $p-red;
+                        border: 0;
+                        cursor: pointer;
                         & .flex-btn-parent {
                           @include prefixflex();
                           & span {
@@ -258,6 +260,19 @@
                             color: $p-white;
                           }
                         }
+                      }
+                    }
+                    & .type__ddn--content {
+                      @include prefixflex();
+                      background-color: $p-white;
+                      box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+                      padding: 1em 0;
+                      & .ddn--content__list {
+                        @include prefixflex();
+                        flex-direction: column;
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
                       }
                     }
                   }

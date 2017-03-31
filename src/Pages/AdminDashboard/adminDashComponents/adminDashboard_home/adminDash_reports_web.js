@@ -28,7 +28,7 @@ function AdminDashReportsWeb() {
                     </button>
                   </div>
 
-                  <div className="type__ddn--content">
+                  <div className="type__ddn--content center-xs">
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
                       <li className="list--option sweep-right">
