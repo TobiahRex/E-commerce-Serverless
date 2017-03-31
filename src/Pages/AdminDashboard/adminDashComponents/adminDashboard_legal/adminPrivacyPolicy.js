@@ -27,7 +27,7 @@ export default function AdminPrivacyPolicy() {
               <div className="legal__title">
                 <h1>Privacy Policy</h1>
               </div>
-              
+
               <div className="legal__body">
                 <p>
                   Your privacy is important to us. We have developed a privacy policy to help you understand what information we collect, how we use it, and what choices you have.

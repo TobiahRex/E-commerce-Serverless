@@ -252,19 +252,74 @@ export default function AdminPrivacyPolicy() {
                     </div>
                   </li>
                 </ul>
+                <div className="legal__body action-section">
+                  <button className="back-btn primary-flex-button sweep-right">
+                    <span className="flex-btn-parent">
+                      <FontAwesome name="angle-double-left" />
+                      {'\u00A0'}
+                      Back
+                    </span>
+                  </button>
+                  <button className="primary-button sweep-right">
+                    Add FAQ
+                  </button>
+                </div>
               </div>
 
-              <div className="legal__body action-section">
-                <button className="back-btn primary-flex-button sweep-right">
-                  <span className="flex-btn-parent">
-                    <FontAwesome name="angle-double-left" />
-                    {'\u00A0'}
-                    Back
-                  </span>
-                </button>
-                <button className="primary-button sweep-right">
-                  Add FAQ
-                </button>
+              <div className="legal__modal">
+                <div className="modal--faq--add">
+                  <div className="faq__msg--container">
+                    <div className="msg__title admin-dash__small-title">
+                      <h3 className="">New FAQ</h3>
+                    </div>
+                    <div className="msg__body">
+                      <label htmlFor="faq--title">Title</label>
+                      <input id="faq--title" type="text" value="New FAQ" />
+                      <label htmlFor="faq--body">Body</label>
+                      <textarea id="faq--body" cols="30" rows="10" value="FAQ body here..." />
+                    </div>
+                    <div className="action-section">
+                      <button className="medium-size-btn sweep-right">
+                        Cancel
+                      </button>
+                      <button className="medium-size-btn sweep-right">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="modal--faq--delete">
+                  <div className="faq__delete--container">
+                    <div className="msg__title admin-dash__small-title">
+                      <h3 className="">Delete FAQ?</h3>
+                    </div>
+                    <div className="msg__body">
+                      <p>Are you sure you want to delete this FAQ?</p>
+                      <div className="action-section">
+                        <button className="medium-size-btn sweep-right">
+                          Cancel
+                        </button>
+                        <button className="medium-size-btn sweep-right">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="faq__success--container">
+                    <div className="msg__title admin-dash__small-title">
+                      <h3 className="">Deleted!</h3>
+                    </div>
+                    <div className="msg__body">
+                      <p>FAQ is successfully deleted!</p>
+                      <div className="action-section">
+                        <button className="medium-size-btn sweep-right">
+                          OK
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </div>

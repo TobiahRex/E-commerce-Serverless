@@ -77,6 +77,9 @@ export default function AdminReturnPolicy() {
                 <div className="action-section__save-btn">
                   <div className="action-section__save-btn">
                     <button className="save-btn primary-flex-button sweep-right">
+                      Cancel
+                    </button>
+                    <button className="save-btn primary-flex-button sweep-right">
                       Save
                     </button>
                   </div>

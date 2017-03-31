@@ -28,7 +28,6 @@ export default function AdminShippingPolicy() {
               <div className="legal__title">
                 <h1>Shipping Policy</h1>
               </div>
-
               <div className="legal__body">
                 <p>
                   PROCESSING AND SHIPPING
@@ -68,6 +67,9 @@ export default function AdminShippingPolicy() {
                 />
                 <div className="action-section__save-btn">
                   <div className="action-section__save-btn">
+                    <button className="save-btn primary-flex-button sweep-right">
+                      Cancel
+                    </button>
                     <button className="save-btn primary-flex-button sweep-right">
                       Save
                     </button>
