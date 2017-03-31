@@ -37,14 +37,23 @@ function AdminPromotionsSales({ location }) {
               <div className="promotions-sales__body">
                 <div className="body__staging-area">
                   <p>Drag & Drop your files here</p>
-                  <br />
-                  <p>Or choose a file below</p>
                 </div>
                 <div className="body__choose-file">
-                  <button type="button">
+                  <p>Choose a file below</p>
+                  <button type="button" className="medium-size-btn sweep-right">
                     Choose File
                   </button>
                   <input type="file" className="file-upload" size="60" />
+                </div>
+                <div className="body__paste-html">
+                  <p>Paste HTML here</p>
+                  <textarea cols="30" rows="10" value="" defaultValue="Paste here..." />
+                  <button type="button" className="medium-size-btn sweep-right">
+                    <span className="flex-btn-parent">
+                      <FontAwesome name="cloud-upload" />
+                      Upload HTML
+                    </span>
+                  </button>
                 </div>
                 <div className="body__action-section-top">
                   <button className="primary-button cancel">Cancel</button>

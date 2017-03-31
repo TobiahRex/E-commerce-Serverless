@@ -57,6 +57,39 @@
   }
 }
 
+.medium-size-btn {
+  height: 2.5em;
+  width: 10.93em;
+  color: $p-white;
+  font-family: $p-font;
+  font-size: 1.6em;
+  font-weight: 200;
+  border: none;
+  background-color: $p-red;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+}
+.medium-flex-btn {
+  height: 2.5em;
+  width: 10.93em;
+  color: $p-white;
+  font-family: $p-font;
+  font-size: 1.6em;
+  font-weight: 200;
+  border: none;
+  background-color: $p-red;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+  & .flex-btn-parent {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    & span {
+      color: $p-white;
+      font-size: 1.6em;
+    }
+  }
+}
 
 .small-btn {
   height: 1.87em;
@@ -103,20 +136,6 @@
   cursor: pointer;
   box-shadow: 3px 3px 3px rgba(0,0,0,.25);
 }
-
-.medium-size-btn {
-  height: 2.5em;
-  width: 10.93em;
-  color: $p-white;
-  font-family: $p-font;
-  font-size: 1.6em;
-  font-weight: 200;
-  border: none;
-  background-color: $p-red;
-  cursor: pointer;
-  box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-}
-
 
 @media only screen and (min-width : 641px) {
   .breadcrumbs {
