@@ -10,7 +10,6 @@ import webpackEnvs from './tools/webpack_envs';
 dotenv.load({ silent: true });
 
 const devConfig = {
-  context: __dirname,
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './src/styles.scss',
@@ -24,11 +23,10 @@ const devConfig = {
   devtool: 'source-map',
   target: 'web',
   plugins: [
-    new ProgressBarPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new ProgressBarPlugin(),
     new webpack.NamedModulesPlugin(),
-    new ExtractTextPlugin('styles.css'),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
     new webpack.LoaderOptionsPlugin({
       debug: true,
@@ -49,29 +47,17 @@ const devConfig = {
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              minimize: false,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]',
-            },
-          },
-        ],
+        loader: 'style-loader!css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
         exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.s[ac]ss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader?sourceMap=true', 'sass-loader?sourceMap=true'],
-          filename: '[name].css',
-        }),
-        exclude: /node_modules|lib/,
+        loaders: [
+          'style-loader',
+          'css-loader?sourceMap=true',
+          'sass-loader?sourceMap=true',
+        ],
+        exclude: /(node_modules|lib)/,
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -135,7 +121,6 @@ const devConfig = {
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
-  context: __dirname,
   entry: [
     './src/styles.scss',
     './src/index.js',

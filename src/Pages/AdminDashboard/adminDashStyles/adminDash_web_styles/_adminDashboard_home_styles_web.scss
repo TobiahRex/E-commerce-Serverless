@@ -68,82 +68,13 @@
             }
           }
         }
-        & .dashboard__top-half--container {
-          @include prefixflex();
-          justify-content: center;
-          align-items: center;
-          border-bottom: 1px solid rgba(0,0,0,.1);
-          & .top-half--contact-info {
-            @include prefixflex();
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-            width: 50%;
-            height: 20.5em;
-            & .contact-info__info {
-              margin-left: 1em;
-              height: 7.5em;
-            }
-            & .contact-info__edit-btn {
-              @include prefixflex();
-              justify-content: flex-end;
-              align-items: center;
-              width: 100%;
-              & button {
-                margin-right: 4.5em;
-              }
-            }
-          }
-          & .top-half--password {
-            @include prefixflex();
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-            width: 50%;
-            height: 20.5em;
-            & .password__input {
-              @include prefixflex();
-              justify-content: flex-start;
-              align-items: flex-start;
-              flex-direction: column;
-              padding-top: 2em;
-              & label {
-                color: $p-blue;
-                font-family: $p-font;
-                font-size: 1.8em;
-                font-weight: 400;
-                margin-bottom: .5em;
-              }
-              & input {
-                height: 1.67em;
-                width: 100%;
-                font-weight: 200;
-                font-family: $p-font;
-                font-size: 1.8em;
-                padding-left: .5em;
-                border: 1px solid rgba(0,0,0,.25);
-                color: $p-blue;
-              }
-            }
-            & .password__edit-btn {
-              @include prefixflex();
-              justify-content: flex-end;
-              align-items: flex-start;
-              flex-direction: column;
-              padding-top: 2em;
-              width: 100%;
-              & button {
-                margin: 2em 4.5em 2em auto;
-              }
-            }
-          }
-        }
-        & .dashboard__bottom-half--container {
+      }
+      & .dashboard__login-methods--container {
           @include prefixflex();
           justify-content: center;
           align-items: center;
           width: 100%;
-          & .bottom-half--login-methods {
+          & .login-methods--social {
             @include prefixflex();
             justify-content: flex-start;
             align-items: flex-start;
@@ -214,13 +145,126 @@
               }
             }
           }
+          & .login-methods--password {
+            @include prefixflex();
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 50%;
+            height: 20.5em;
+            & .password__input {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              padding-top: 2em;
+              & label {
+                color: $p-blue;
+                font-family: $p-font;
+                font-size: 1.8em;
+                font-weight: 400;
+                margin-bottom: .5em;
+              }
+              & input {
+                height: 1.67em;
+                width: 100%;
+                font-weight: 200;
+                font-family: $p-font;
+                font-size: 1.8em;
+                padding-left: .5em;
+                border: 1px solid rgba(0,0,0,.25);
+                color: $p-blue;
+              }
+            }
+            & .password__edit-btn {
+              @include prefixflex();
+              justify-content: flex-end;
+              align-items: flex-end;
+              flex-direction: column;
+              padding-top: 2em;
+              width: 100%;
+              height: 100%;
+              & button {
+                margin: .5em 1em .5em auto;
+              }
+            }
+          }
           & .bottom-third--login-methods {
             height: 44em;
           }
         }
-
-        & .dashboard__reports {
-
+      & .dashboard__contact-info--container {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        & .contact-info {
+          @include prefixflex();
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 50%;
+          height: 20.5em;
+          & .contact-info__info {
+            margin-left: 1em;
+            height: 7.5em;
+          }
+          & .contact-info__edit-btn {
+            @include prefixflex();
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            & button {
+              margin-right: 4.5em;
+            }
+          }
+        }
+      }
+      & .dashboard__reports {
+        & .reports__body {
+          & .body__header {
+            @include prefixflex();
+            & .header--list {
+              @include prefixflex();
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+              & li {
+                & .option--type {
+                  @include prefixflex();
+                  & .type__ddn--container {
+                    position: relative;
+                    & .type__ddn--readout {
+                      @include prefixflex();
+                      & input.readout--msg {
+                        @include prefixflex();
+                        background-color: $p-white;
+                        border: 1px solid $s-grey;
+                        padding-left: .5em;
+                        border-radius: 0;
+                        height: 3em;
+                        width: 16em;
+                      }
+                      & button.readout--btn {
+                        height: 3em;
+                        width: 4em;
+                        background-color: $p-red;
+                        padding: 0;
+                        border: 1px solid $p-red;
+                        & .flex-btn-parent {
+                          @include prefixflex();
+                          & span {
+                            font-size: 2rem;
+                            color: $p-white;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

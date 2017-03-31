@@ -13,18 +13,21 @@ function AdminDashReportsWeb() {
       </div>
       <div className="reports__body">
         <div className="body__header">
-          <ul className="header--list">
+          <ul className="header--list center-lg">
+
             <li className="list--option">
-              <div className="option--type">
+              <div className="option--type center-lg">
                 <div className="type__ddn--container">
-                  <div className="type__ddn--readout">
-                    <input type="text" className="readout--msg" disabled value="Sales" />
+
+                  <div className="type__ddn--readout center-lg">
+                    <input type="text" className="readout--msg start-lg" disabled value="Sales" />
                     <button className="readout--btn sweep-right">
-                      <span className="flex-btn-parent">
+                      <span className="flex-btn-parent center-xs">
                         <FontAwesome name="angle-down" />
                       </span>
                     </button>
                   </div>
+
                   <div className="type__ddn--content">
                     <ul className="ddn--content__list">
                       {/* NOTE: These need to be rendered dynamically, and the option selected, should absent from the available choices. */}
@@ -42,11 +45,11 @@ function AdminDashReportsWeb() {
                       </li>
                     </ul>
                   </div>
+
                 </div>
-
-
               </div>
             </li>
+
             <li className="list--option">
               <div className="option--periodicty">
                 <div className="periodicty__ddn--container">
@@ -89,6 +92,7 @@ function AdminDashReportsWeb() {
 
               </div>
             </li>
+
             <li className="list--option">
               <div className="option--file-output">
                 <FontAwesome name="file-o" />
@@ -110,7 +114,7 @@ function AdminDashReportsWeb() {
             <p>Success!</p>
           </div>
         </div>
-        <div className="body__action-section ">
+        <div className="body__action-section">
           <div className="action-section__generate">
             <button className="medium-size-btn sweep-right">
               Generate

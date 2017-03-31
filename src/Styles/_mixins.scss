@@ -47,6 +47,20 @@
   flex: 1;
 }
 
+@mixin prefix-child-custom($grow, $shrink, $basis) {
+  @if $webkit == true {
+    -webkit-box-flex: $grow $shrink $basis;
+    -webkit-flex: $grow $shrink $basis;
+  }
+  @if $moz == true {
+    -moz-box-flex: $grow $shrink $basis;
+  }
+  @if $ms == true {
+    -ms-flex: $grow $shrink $basis;
+  }
+  flex: $grow $shrink $basis;
+}
+
 @mixin keyframes($name) {
   @if $webkit == true {
     @-webkit-keyframes #{$name} {

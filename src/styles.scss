@@ -6,6 +6,7 @@
 @import "Styles/typography";
 @import "Styles/transitions";
 @import "Styles/elements";
+@import "Styles/flexbox";
 
 // ------------------------------------------------------------
 // -------------------------- Utilities------------------------
@@ -96,7 +97,9 @@
 @import "Pages/AdminDashboard/adminDashStyles/adminDashboard_styles_mobile";
 
 // ------------------------------------------------------------
-
+html {
+  font-size: 62.5%;
+}
 
 body {
   font-size: 10px;
