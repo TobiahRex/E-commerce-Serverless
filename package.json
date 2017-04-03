@@ -16,7 +16,9 @@
     "copy-package": "copyfiles 'package.json' ./dist/",
     "prebuild": "npm run remove-dist",
     "build:bundle": "babel-node ./tools/build.js",
-    "deploy-to-s3": "aws s3 sync dist/ s3://nj2jp-react",
+    "s3:clean": "aws s3 rm s3://nj2jp-react --recursive",
+    "s3:deploy": "aws s3 sync dist/ s3://nj2jp-react",
+    "deploy-s3": "npm-run-all s3:clean s3:deploy",
     "build": "NODE_ENV=production npm-run-all build:bundle copy-images open:dist",
     "analyze-bundle": "NODE_ENV=production babel-node ./tools/analyzeBundle.js"
   },

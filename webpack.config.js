@@ -112,6 +112,8 @@ const prodConfig = {
         minifyURLs: true,
       },
       inject: true,
+      title: 'Nic Juice 2 Japan',
+      filename: 'dist/index.html',
     }),
     new CommonsChunkPlugin({
       name: 'commons',
