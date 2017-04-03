@@ -78,10 +78,17 @@ const prodConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
-  entry: [
-    './src/styles.scss',
-    './src/index.js',
-  ],
+  // entry: [
+  //   // './src/styles.scss',
+  //   './src/index.js',
+  // ],
+  entry: {
+    app: [
+      'webpack-hot-middleware/client?reload=true',
+      path.resolve('./src/index'),
+    ],
+    vendor: ['react', 'react-dom', 'moment', 'reduxsauce', 'core-js'],
+  },
   output: {
     path: path.resolve('dist'),
     publicPath: '/',
