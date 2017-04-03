@@ -1,9 +1,9 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
-import analyzer from 'webpack-bundle-analyzer';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import analyzer from 'webpack-bundle-analyzer';
 import CommonsChunkPlugin from './node_modules/webpack/lib/optimize/CommonsChunkPlugin';
 import webpackEnvs from './tools/webpack_envs';
 
@@ -23,8 +23,8 @@ const devConfig = {
   devtool: 'source-map',
   target: 'web',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
@@ -130,7 +130,7 @@ const prodConfig = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  devtool: 'source-map',
+  devtool: false,
   target: 'web',
   plugins: [
     new ProgressBarPlugin(),
@@ -143,7 +143,7 @@ const prodConfig = {
     new ExtractTextPlugin('styles.css'),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false,
+        warnings: true,
         negate_iife: false,
       },
       mangle: {

@@ -108,7 +108,7 @@ function AdminDashWebTrafficWeb() {
               </div>
             </li>
             <li className="list--option">
-              <div className="option--purchases">
+              <div className="option--purchasems">
                 <div className="purchases__ddn--container">
                   <div className="purchases__ddn--readout">
                     <div className="ddn__options center-xs middle-xs ">

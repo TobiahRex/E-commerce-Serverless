@@ -1,6 +1,6 @@
 {
   "name": "nj2jp",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "nj2jp",
   "main": "index.js",
   "repository": "https://github.com/TobiahRex/nj2jp.git",
@@ -16,7 +16,7 @@
     "copy-package": "copyfiles 'package.json' ./dist/",
     "prebuild": "npm run remove-dist",
     "build:html": "babel-node ./tools/buildHtml.js",
-    "build:bundle": "babel-node ./tools/build.js",
+    "build:bundle": "node -r babel-register ./node_modules/.bin/webpack --progress -p --config=webpack.config",
     "analyze-bundle": "babel-watch webpack -p --profile --json > stats.json",
     "deploy-to-s3": "aws s3 sync dist/ s3://nj2jp-react",
     "build": "NODE_ENV=production npm-run-all build:html build:bundle copy-images open:dist"
@@ -35,12 +35,11 @@
     "babel-plugin-react-display-name": "^2.0.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-react-jsx-source": "^6.22.0",
-    "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.0",
+    "babel-preset-es2016": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-2": "^6.22.0",
-    "babel-register": "^6.24.0",
     "babel-watch": "^2.0.6",
     "body-parser": "^1.17.1",
     "cash-mv": "^0.2.0",
@@ -90,7 +89,6 @@
     "webpack-hot-middleware": "^2.17.1"
   },
   "dependencies": {
-    "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
