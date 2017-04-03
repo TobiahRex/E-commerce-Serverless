@@ -17,20 +17,9 @@
     "production": {
       "presets": [
         ["es2015", { "modules": false }],
-        "react",
         "stage-2"
       ],
       "plugins": [],
     }
   }
-}
-{ "presets":
-  [[ "env",
-    { "targets":
-      { "node": true },
-      "loose": true,
-      "includes": ["babel-plugin-transform-object-rest-spread"]
-    }
-  ],
-  "stage-0"]
 }

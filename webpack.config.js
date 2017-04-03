@@ -3,124 +3,73 @@ import dotenv from 'dotenv';
 import webpack from 'webpack';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WebpackMd5Hash from 'webpack-md5-hash';
 import analyzer from 'webpack-bundle-analyzer';
+import autoprefixer from 'autoprefixer';
+
 import CommonsChunkPlugin from './node_modules/webpack/lib/optimize/CommonsChunkPlugin';
 import webpackEnvs from './tools/webpack_envs';
 
 dotenv.load({ silent: true });
 
 const devConfig = {
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.json'],
+  },
+  devTool: 'source-map',
+  target: 'web',
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    './src/styles.scss',
-    './src/index',
+    path.resolve('./src/index'),
   ],
   output: {
     path: path.resolve('public'),
     publicPath: '/',
     filename: 'bundle.js',
   },
-  devtool: 'source-map',
-  target: 'web',
   plugins: [
     new ProgressBarPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
-    new webpack.LoaderOptionsPlugin({
-      debug: true,
+    new HtmlWebpackPlugin({
+
     }),
-    // new analyzer.BundleAnalyzerPlugin({
-    //   analyzerMode: 'static',
-    //   generateStatsFile: true,
-    //   openAnalyzer: false,
-    // }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: false,
+      debug: true,
+      noInfo: true,
+      options: {
+        sassLoader: {
+          includePaths: [path.resolve('src', 'scss')],
+        },
+        context: '/',
+        postcss: () => [autoprefixer],
+      },
+    }),
   ],
   module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules|bower_components|client\/vendor)/,
-        include: path.resolve('src'),
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader?modules&localIdentName=[name]---[local]---[hash:base64:5]',
-        exclude: /(node_modules|bower_components)/,
-      },
-      {
-        test: /\.s[ac]ss$/,
-        loaders: [
-          'style-loader',
-          'css-loader?sourceMap=true',
-          'sass-loader?sourceMap=true',
-        ],
-        exclude: /(node_modules|lib)/,
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-      },
-      {
-        test: /\.(woff|woff2)$/,
-        loader: 'url-loader?prefix=font/&limit=5000',
-      },
-      {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-      },
-      {
-        test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file-loader?emitFile=false',
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        loaders: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            query: {
-              mozjpeg: {
-                progressive: true,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
-              pngquant: {
-                quality: '75-90',
-                speed: 4,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
-      },
+    rules: [
+      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /(node_modules|bower_components)/ },
+      { test: /(\.css|\.s[ac]ss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap'] },
+      { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]' },
+      { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader' },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
     ],
-  },
-  resolve: {
-    modules: [
-      `${__dirname}/client/vendor`,
-      'node_modules',
-    ],
-    extensions: ['*', '.js', '.jsx'],
   },
 };
 // -----------------------------------------------------------------------------
 // NOTE : Production Webpack configuration below.
 
 const prodConfig = {
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.json'],
+  },
   entry: [
     './src/styles.scss',
     './src/index.js',
@@ -128,136 +77,67 @@ const prodConfig = {
   output: {
     path: path.resolve('dist'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
   },
   devtool: false,
   target: 'web',
   plugins: [
     new ProgressBarPlugin(),
+    new WebpackMd5Hash(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDocType: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+      inject: true,
+    }),
     new CommonsChunkPlugin({
       name: 'commons',
       filename: 'commons.js',
       minChunks: Infinity,
     }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('[name].[contenthash].css'),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: true,
-        negate_iife: false,
-      },
-      mangle: {
-        except: ['import', 'export', 'module', 'exports', 'require', 'default'],
-      },
+      compress: { warnings: true },
       comments: false,
       sourceMap: true,
     }),
     new webpack.LoaderOptionsPlugin({
-      debug: false,
       minimize: true,
+      debug: false,
+      noInfo: true,
+      options: {
+        sassLoader: {
+          includePaths: [path.resolve(__dirname, 'src', 'scss')],
+        },
+        context: '/',
+        postcss: () => [autoprefixer],
+      },
     }),
     new analyzer.BundleAnalyzerPlugin({
       analyzerMode: 'static',
     }),
   ],
   module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules|bower_components|client\/vendor)/,
-        include: path.resolve('src'),
-      },
-      {
-        test: /\.css$/,
-        loaders: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              // modules: true,
-              minimize: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]',
-            },
-          },
-        ],
-        exclude: /(node_modules|bower_components)/,
-      },
-      {
-        test: /\.s[ac]ss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-          filename: '[name].css',
-          allChunks: true,
-        }),
-        exclude: /node_modules|lib/,
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(woff|woff2)$/,
-        loader: 'url-loader?prefix=font/&limit=5000',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.tff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file-loader?emitFile=false',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        loaders: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            query: {
-              mozjpeg: {
-                progressive: true,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
-              pngquant: {
-                quality: '75-90',
-                speed: 4,
-              },
-            },
-          },
-        ],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
-        exclude: /node_modules/,
-      },
+    rules: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /(\.css|\.s[ac]ss)$/, loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader!sass-loader') },
+      { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?name=[name].[ext]' },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]' },
+      { test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]' },
+      { test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]' },
+      { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]' },
     ],
-  },
-  resolve: {
-    modules: [
-      `${__dirname}/client/vendor`,
-      'node_modules',
-    ],
-    extensions: ['*', '.js', '.jsx'],
   },
 };
-console.log(process.env.NODE_ENV);
 export default (process.env.NODE_ENV === 'production') ? prodConfig : devConfig;

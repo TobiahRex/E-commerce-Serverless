@@ -4,15 +4,15 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import webpack from 'webpack';
-import dotenv from 'dotenv';
 import hotMiddleware from 'webpack-hot-middleware';
 import devMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
 import api from './api';
 
+const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
+
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
-dotenv.config({ silent: true });
 const PORT = process.env.PORT || 3000;
 const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
 const app = express();
@@ -20,8 +20,18 @@ const app = express();
 // ---------------------- Webpack Middleware -----------------------------------
 const compiler = webpack(webpackConfig);
 app.use(devMiddleware(compiler, {
-  noInfo: true,
   publicPath: webpackConfig.output.publicPath,
+  noInfo: false,
+  quiet: false,
+  stats: {
+    assets: false,
+    colors: true,
+    version: false,
+    hash: false,
+    timings: true,
+    chunks: false,
+    chunkModules: false,
+  },
 }));
 app.use(hotMiddleware(compiler));
 // ---------------------- Express Middleware -----------------------------------
