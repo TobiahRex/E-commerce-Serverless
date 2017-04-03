@@ -17,17 +17,20 @@ const devConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
-  devTool: 'source-map',
-  target: 'web',
-  entry: [
-    'webpack-hot-middleware/client?reload=true',
-    path.resolve('./src/index'),
-  ],
+  entry: {
+    app: [
+      'webpack-hot-middleware/client?reload=true',
+      path.resolve('./src/index'),
+    ],
+    vendor: ['react', 'react-dom', 'moment', 'reduxsauce', 'core-js'],
+  },
   output: {
     path: path.resolve('public'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: 'bundle.[name].js',
   },
+  devtool: 'source-map',
+  target: 'web',
   plugins: [
     new ProgressBarPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -35,7 +38,12 @@ const devConfig = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.development }),
     new HtmlWebpackPlugin({
-
+      template: 'src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+      },
+      inject: true,
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: false,
@@ -108,7 +116,7 @@ const prodConfig = {
     }),
     new ExtractTextPlugin('[name].[contenthash].css'),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: true },
+      compress: { warnings: false },
       comments: false,
       sourceMap: true,
     }),
