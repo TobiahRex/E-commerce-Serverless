@@ -83,10 +83,7 @@ const prodConfig = {
   //   './src/index.js',
   // ],
   entry: {
-    app: [
-      'webpack-hot-middleware/client?reload=true',
-      path.resolve('./src/index'),
-    ],
+    app: path.resolve('./src/index'),
     vendor: ['react', 'react-dom', 'moment', 'reduxsauce', 'core-js'],
   },
   output: {
