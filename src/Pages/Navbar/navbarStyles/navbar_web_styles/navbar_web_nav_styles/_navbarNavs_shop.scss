@@ -8,11 +8,16 @@
   margin-right: 1em;
   background-color: inherit;
   cursor: pointer;
-  transition: all .3s ease-in-out;
   &:hover,
   &:active,
   &:focus {
     box-shadow: 1px -2px 10px rgba(0,0,0,.5);
+    & .shop-main-button {
+      font-size: 10px;
+      background-color: inherit;
+      z-index: 2;
+      background-color: $p-red;
+    }
     &:before {
       content: '';
       width: 100%;
@@ -21,19 +26,26 @@
       top: 40px;
       z-index: 50;
       left: 0;
-      background-color: $p-blue;
+      background-color: $p-red;
     }
     & .shop-dropdown-content {
       display: block;
     }
-    & .shop-main-button {
-      font-size: 10px;
-      background-color: inherit;
-      z-index: 2;
-    }
   }
   & .shop-main-button {
+    @extend .flex-center;
     cursor: pointer;
     text-decoration: none;
+    padding: .8em 0;
+    transition: all .8s ease-in-out;
+    &:hover {
+      transition: none;
+    }
+    & .shop-main-button-title {
+      font-size: 20px;
+      font-family: $p-font;
+      font-weight: 200;
+      color: $p-white;
+    }
   }
 }

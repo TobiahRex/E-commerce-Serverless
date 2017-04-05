@@ -8,6 +8,7 @@
   top: 5em;
   margin-left: -24.5em;
   box-shadow: 3px 3px 3px rgba(1,1,1,.5);
+  transition: all .6s ease-in-out;
   & .shop-dropdown-content-parent {
     @extend .flex-center;
     flex-direction: column;
