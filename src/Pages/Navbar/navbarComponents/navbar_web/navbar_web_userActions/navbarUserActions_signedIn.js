@@ -18,7 +18,7 @@ class NavbarUserActionsSignin extends PureComponent {
         // style={NavbarUserActionsSignin.styles.hidden}
         className="navbar-actionSection-upper-actions-signedIn"
       >
-        <li className="sign-out-title sweep-right-red">
+        <li className="sign-out-title">
           <a
             className="navbar-userActions-signOut-title-button"
             onClick={(e) => {
@@ -27,7 +27,7 @@ class NavbarUserActionsSignin extends PureComponent {
             }}
           >Logout</a>
         </li>
-        <li className="checkout-title sweep-right-red" onClick={() => browserHistory.push('/express_checkout')}>
+        <li className="checkout-title" onClick={() => browserHistory.push('/express_checkout')}>
           <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
             Checkout
           </Link>

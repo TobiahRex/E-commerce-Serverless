@@ -9,17 +9,31 @@
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
-    width: 7.33em;
+    width: 5.33em;
     height: 2em;
-    margin-left: .66em;
     line-height: 1.33em;
     cursor: pointer;
+    transition: all .8s ease-in-out;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: .1rem;
+      height: 2rem;
+      margin-bottom: -.3rem;
+      margin-left: 4.5rem;
+      position: absolute;
+      background-color: rgba(255, 255, 255, .5);
+    }
     &:hover,
     &:active,
     &:focus {
+      background-color: $p-red;
       & a {
         color: $p-white;
       }
+    }
+    &:hover {
+      transition: none;
     }
     & .navbar-userActions-signOut-title-button {
       color: $p-white;
@@ -30,17 +44,32 @@
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
-    width: 7.33em;
+    width: 5.33em;
     height: 2em;
     margin-left: .66em;
     line-height: 1.33em;
     cursor: pointer;
+    transition: all .8s ease-in-out;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: .1rem;
+      height: 2rem;
+      margin-bottom: -.3rem;
+      margin-left: 4.5rem;
+      position: absolute;
+      background-color: rgba(255, 255, 255, .5);
+    }
     &:hover,
     &:active,
     &:focus {
+      background-color: $p-red;
       & a {
         color: $p-white;
       }
+    }
+    &:hover {
+      transition: none;
     }
     & .navbar-userActions-checkout-title-link {
       color: $p-white;
@@ -51,27 +80,28 @@
     @include prefixflex();
     justify-content: center;
     align-items: center;
-    width: 7.33em;
+    width: 6.33em;
     height: 6em;
+    margin-left: 2em;
     cursor: pointer;
-    }
-    & .navbar-userActions-myaccount-title-link {
-      color: $p-white;
-      text-decoration: none;
-      & img {
+  }
+  & .navbar-userActions-myaccount-title-link {
+    color: $p-white;
+    text-decoration: none;
+    & img {
+      height: 4.8em;
+      width: 4.8em;
+      border-radius: 50%;
+      transition: all .3s ease-in-out;
+      &:hover {
+        height: 5.2em;
+        width: 5.2em;
+        box-shadow: 0 3px 10px rgba(0,0,0,.25);
+      }
+      &:active,
+      &:focus {
         height: 4.8em;
         width: 4.8em;
-        border-radius: 50%;
-        transition: all .3s ease-in-out;
-        &:hover {
-          height: 5.2em;
-          width: 5.2em;
-          box-shadow: 0 3px 10px rgba(0,0,0,.25);
-        }
-        &:active,
-        &:focus {
-          height: 4.8em;
-          width: 4.8em;
       }
     }
   }
