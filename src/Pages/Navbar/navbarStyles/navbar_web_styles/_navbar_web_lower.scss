@@ -3,7 +3,7 @@
 .navbar-actionSection-lower {
   @include prefixflex();
   height: 4em;
-  width: 83.5em;
+  // width: 83.5em;
   font-size: 10px;
   @extend .white-bg;
 }

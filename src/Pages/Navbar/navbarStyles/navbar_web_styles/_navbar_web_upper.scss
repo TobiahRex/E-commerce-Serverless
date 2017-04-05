@@ -10,3 +10,13 @@
   width: 83.5em;
   margin-bottom: 1em;
 }
+
+@media (max-width: 1080px) {
+  .navbar-actionSection-upper {
+    @include prefixflex();
+    align-items: baseline;
+    height: 6em;
+    width: auto;
+    margin-bottom: 1em;
+  }
+}

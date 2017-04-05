@@ -1,4 +1,5 @@
-@media only screen and (max-width : 640px) {
+@media only screen and (max-width : 930px) {
+// @media only screen and (max-width : 640px) {
   .forgot--main {
     @include prefixflex();
     justify-content: flex-start;
