@@ -39,7 +39,7 @@
       }
       & .language-main-button-us-title {
         @extend .flex-center;
-        width: 6.2em;
+        width: 5em;
         height: 2.5em;
         font-size: 10px;
         margin: 0;
@@ -78,7 +78,7 @@
       }
       & .language-main-button-japanese-title {
         @extend .flex-center;
-        width: 6.2em;
+        width: 5em;
         height: 2.5em;
         font-size: 10px;
         margin: 0;
@@ -150,7 +150,7 @@
       height: 2.5em;
       width: 9em;
       text-decoration: none;
-      margin: .2em 0 0 1.5em;
+      padding: 0 .5em;
       &:hover,
       &:focus,
       &:active {

@@ -18,17 +18,17 @@ class NavbarUserActionsSignin extends PureComponent {
         // style={NavbarUserActionsSignin.styles.hidden}
         className="navbar-actionSection-upper-actions-signedIn"
       >
-        <li className="my-account-title sweep-right" onClick={() => browserHistory.push(`/user_${uuid()}`)}>
+        <li className="my-account-title sweep-right-red" onClick={() => browserHistory.push(`/user_${uuid()}`)}>
           <Link to={`/user_${uuid()}`} className="navbar-userActions-myaccount-title-link">
             My Account
           </Link>
         </li>
-        <li className="checkout-title sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
+        <li className="checkout-title sweep-right-red" onClick={() => browserHistory.push('/express_checkout')}>
           <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
             Checkout
           </Link>
         </li>
-        <li className="sign-out-title sweep-right">
+        <li className="sign-out-title sweep-right-red">
           <a
             className="navbar-userActions-signOut-title-button"
             onClick={(e) => {

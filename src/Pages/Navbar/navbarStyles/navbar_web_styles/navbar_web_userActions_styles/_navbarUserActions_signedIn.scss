@@ -15,14 +15,12 @@
     &:hover,
     &:active,
     &:focus {
-      transition: .5s;
-      background-color: $p-blue;
       & a {
         color: $p-white;
       }
     }
     & .navbar-userActions-myaccount-title-link {
-      color: $p-blue;
+      color: $p-white;
       text-decoration: none;
     }
   }
@@ -43,7 +41,7 @@
       }
     }
     & .navbar-userActions-checkout-title-link {
-      color: $p-blue;
+      color: $p-white;
       text-decoration: none;
     }
   }
@@ -59,8 +57,6 @@
     &:hover,
     &:active,
     &:focus {
-      transition: .5s;
-      background-color: $p-blue;
       & a {
         color: $p-white;
       }
