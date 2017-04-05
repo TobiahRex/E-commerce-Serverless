@@ -9,7 +9,7 @@ import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_m
 import Footer from './Pages/Footer/footer';
 import sessionActions from './Redux/SessionRedux';
 import userActions from './Redux/UserRedux';
-import { genDynamicTitle } from './Services/Asynch';
+import { genDynamicTitle, detectMobileDevice } from './Services/Asynch';
 
 /* NOTE:
 1. Remove UUID hard code.
@@ -60,21 +60,24 @@ class App extends Component {
     history.push('/home');
   };
 
-  catchMobileType = () => {
-    const mobileDevice = new MobileDetect(window.navigator.userAgent);
-    return mobileDevice.mobile();
-  }
+  // catchMobileType = () => {
+  //   const mobileDevice = new MobileDetect(window.navigator.userAgent);
+  //   return mobileDevice.mobile();
+  // }
 
   render() {
     const { ageVerified } = this.state;
     const { hide, show } = App.styles;
     const avStyle = ageVerified ? hide : show;
     let sectionStyle;
-    if (!this.catchMobileType()) {
+    if (!detectMobileDevice()) {
+    // if (!this.catchMobileType()) {
       sectionStyle = {
-        paddingTop: 100,
+        paddingTop: 120,
         minHeight: 510,
       };
+    } else {
+      console.warn('This is a mobile device.');
     }
     return (
       <div id="yo">

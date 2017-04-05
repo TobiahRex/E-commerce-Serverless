@@ -50,10 +50,11 @@ export function saveGeoLocation(dispatch) {
   }
 }
 
-export function setMobileDevice(dispatch) {
+export function detectMobileDevice(dispatch) {
   const mobileDevice = new MobileDetect(window.navigator.userAgent);
   const type = mobileDevice.mobile();
-  dispatch(mobileActions.setMobileDevice(type));
+  if (dispatch) dispatch(mobileActions.setMobileDevice(type));
+  return type;
 }
 
 export function setScreenSize(dispatch) {
@@ -93,7 +94,7 @@ export default function initiateActions(dispatch, history) {
   cleanS3Route(history);
   generateDynamicTitle(dispatch);
   saveGeoLocation(dispatch);
-  setMobileDevice(dispatch);
+  detectMobileDevice(dispatch);
   setScreenSize(dispatch);
   orientationSpy(dispatch);
   getTaxRate(dispatch);
