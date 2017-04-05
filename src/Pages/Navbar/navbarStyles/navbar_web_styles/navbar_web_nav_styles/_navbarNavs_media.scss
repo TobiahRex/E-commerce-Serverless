@@ -7,10 +7,10 @@
   width: 12em;
   margin-right: 1em;
   background-color: $p-blue;
-  box-shadow: 1px -2px 4px rgba(0,0,0,.5);
   &:hover,
   &:active,
   &:focus {
+    box-shadow: 1px -2px 4px rgba(0,0,0,.5);
     &:before {
       content: '';
       width: 100%;
