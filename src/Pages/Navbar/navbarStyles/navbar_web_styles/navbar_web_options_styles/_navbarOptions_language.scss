@@ -104,7 +104,9 @@
     }
   }
   & .language-dropdown-content {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     height: 0em;
     width: 12em;
@@ -114,14 +116,14 @@
     opacity: 0;
     clear: both;
     overflow: hidden;
-    @include prefixed(box-shadow, 1px 2px 5px rgba(0,0,0,.6));
-    @include prefixed(transition, all .3s ease-in-out);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.6);
+    transition: all .3s ease-in-out;
     & .language-dropdown-content-japanese {
       @extend .flex-center;
       height: 2.5em;
       width: 9em;
       text-decoration: none;
-      margin: .2em 0 0 1.5em;
+      padding: 0 .5em;
       &:hover,
       &:focus,
       &:active {
@@ -137,9 +139,10 @@
         margin: 0;
       }
       & .language-dropdown-content-japanese-nihongo {
-        height: 1.4em;
-        width: 2.8em;
-        margin: 0;
+        font-size: 1.4em;
+        padding-left: 1em;
+        font-family: $s-font;
+        color: $s-blue;
       }
     }
     & .language-dropdown-content-us {
@@ -159,9 +162,8 @@
       }
       & .language-dropdown-content-us-image {
         height: 1.4em;
-        width: 2.4em;
-        background-image: $us-flag-icon;
-        background-size: cover;
+        width: 2.8em;
+        margin: 0;
       }
       & .language-dropdown-content-us-english {
         font-size: 1.4em;
