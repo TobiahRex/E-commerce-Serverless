@@ -1,0 +1,67 @@
+@media only screen and (min-width: 641px) {
+  .not-found--main {
+    max-width: 1086px;
+    width: 100%;
+    @include prefixflex();
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .not-found--main.not-found--container {
+    display: flex();
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5em;
+  }
+  .not-found--main.not-found--container.not-found__title {
+    display: flex();
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    & .title--icon {
+
+    }
+    & h1 {
+      padding-left: 1em;
+    }
+  }
+  .not-found--main.not-found--container.not-found__title.title .title--icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10em;
+    width: 10em;
+    background-color: $p-red;
+  }
+  .not-found--main.not-found--container.not-found__title.title .title--icon span {
+    color:#FFF;
+    font-size: 10em;
+    line-height: 1em;
+  }
+  .not-found--main.not-found--container.not-found__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 20em;
+    padding-top: 5em;
+  }
+  .not-found--main.not-found--container.not-found__body h5 {
+    color: #365899;
+  }
+  .not-found--main.not-found--container.not-found__home-btn {
+    margin-top: 5em;
+  }
+  .not-found--main.not-found--container.not-found__home-btn button {
+    height: 3.125em;
+    width: 10.93em;
+    border: none;
+    color: #FFF;
+    background-color: #FC2525;
+    font-size: 1.6em;
+    font-weight: 400;
+    font-family: 'Ubuntu', sans-serif;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+  }
+}
