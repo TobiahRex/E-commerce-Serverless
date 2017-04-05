@@ -15,7 +15,7 @@ function NavbarOptionsLanguageDropdnEnglish({ onLanguageChange }) {
       onClick={preventDefault}
       className="language-dropdown-content-us"
     >
-      <div className="language-dropdown-content-us-image" />
+      <img src="../Images/english-flag.png" alt="US Flag" className="language-dropdown-content-us-image" />
       <div className="language-dropdown-content-us-english">
         <span>English</span>
       </div>

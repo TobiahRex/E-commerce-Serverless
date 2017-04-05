@@ -3,7 +3,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  color: $p-blue;
+  color: $p-white;
   width: 11em;
   height: 4em;
   @extend .white-bg;
@@ -12,7 +12,7 @@
   &:focus,
   &:active {
     transition: .5s;
-    background-color: $p-blue;
+    background-color: $p-red;
     color: $p-white;
     & .language-dropdown-content {
       height: 2.9em;
@@ -32,10 +32,8 @@
         height: 2.5em;
         margin: 0;
         & .language-main-button-us-flag {
-          height: 1.3em;
-          width: 2.6em;
-          background-image: $us-flag-icon;
-          background-size: cover;
+          height: 1.4em;
+          width: 2.8em;
           margin: 0;
         }
       }
@@ -73,10 +71,8 @@
         height: 2.5em;
         margin: 0;
         & .language-main-button-japanese-flag {
-          height: 1.5em;
-          width: 2.6em;
-          background-image: $jpn-flag-icon;
-          background-size: cover;
+          height: 1.4em;
+          width: 2.8em;
           margin: 0;
         }
       }
@@ -137,15 +133,13 @@
       }
       & .language-dropdown-content-japanese-image {
         height: 1.4em;
-        width: 2.4em;
-        background-image: $jpn-flag-icon;
-        background-size: cover;
+        width: 2.8em;
+        margin: 0;
       }
       & .language-dropdown-content-japanese-nihongo {
-        font-size: 1.4em;
-        padding-left: 1em;
-        font-family: $s-font;
-        color: $s-blue;
+        height: 1.4em;
+        width: 2.8em;
+        margin: 0;
       }
     }
     & .language-dropdown-content-us {
