@@ -5,12 +5,13 @@
 .navbar.actionSection.upper {
   &.mycart-container {
     @extend .flex-center;
+    align-self: flex-start;
     & .mycart-main {
       display: inline-block;
       position: relative;
       float: right;
       width: 16em;
-      height: 4em;
+      height: 6em;
       background-color: $p-red;
       &:hover,
       &:active,

@@ -18,16 +18,6 @@ class NavbarUserActionsSignin extends PureComponent {
         // style={NavbarUserActionsSignin.styles.hidden}
         className="navbar-actionSection-upper-actions-signedIn"
       >
-        <li className="my-account-title sweep-right-red" onClick={() => browserHistory.push(`/user_${uuid()}`)}>
-          <Link to={`/user_${uuid()}`} className="navbar-userActions-myaccount-title-link">
-            My Account
-          </Link>
-        </li>
-        <li className="checkout-title sweep-right-red" onClick={() => browserHistory.push('/express_checkout')}>
-          <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
-            Checkout
-          </Link>
-        </li>
         <li className="sign-out-title sweep-right-red">
           <a
             className="navbar-userActions-signOut-title-button"
@@ -36,6 +26,16 @@ class NavbarUserActionsSignin extends PureComponent {
               console.warn('Sing out user!!!');
             }}
           >Logout</a>
+        </li>
+        <li className="checkout-title sweep-right-red" onClick={() => browserHistory.push('/express_checkout')}>
+          <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
+            Checkout
+          </Link>
+        </li>
+        <li className="my-account-title" onClick={() => browserHistory.push(`/user_${uuid()}`)}>
+          <Link to={`/user_${uuid()}`} className="navbar-userActions-myaccount-title-link">
+            <img src="../Images/mock_profile-pic.png" alt="My Account" className="signedIn--profile-pic" />
+          </Link>
         </li>
       </ul>
 

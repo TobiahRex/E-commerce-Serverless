@@ -19,7 +19,7 @@ class NavbarCartDropdnContent extends PureComponent {
 
     return (
       <span className="dropdown-content">
-        <div className="container">
+        <div className="dropdown-content__container">
           <NavbarCartPromotion />
           <NavbarCartRecentadd />
           <NavbarCartProducts

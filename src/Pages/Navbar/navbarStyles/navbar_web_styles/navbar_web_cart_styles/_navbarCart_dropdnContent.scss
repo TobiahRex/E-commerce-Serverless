@@ -8,7 +8,7 @@
   background-color: $p-white;
   box-shadow: 1px 2px 4px rgba(0,0,0,.5);
   z-index: 1;
-  & .container {
+  & .dropdown-content__container {
     @extend .flex-center;
     flex-direction: column;
     & .promotion {

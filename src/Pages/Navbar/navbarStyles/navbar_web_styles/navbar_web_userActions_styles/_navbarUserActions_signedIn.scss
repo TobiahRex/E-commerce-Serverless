@@ -5,12 +5,14 @@
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 3em;
-  & .my-account-title {
+  & .sign-out-title {
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
     width: 7.33em;
     height: 2em;
+    margin-left: .66em;
+    line-height: 1.33em;
     cursor: pointer;
     &:hover,
     &:active,
@@ -19,7 +21,7 @@
         color: $p-white;
       }
     }
-    & .navbar-userActions-myaccount-title-link {
+    & .navbar-userActions-signOut-title-button {
       color: $p-white;
       text-decoration: none;
     }
@@ -45,25 +47,30 @@
       text-decoration: none;
     }
   }
-  & .sign-out-title {
-    @extend .flex-center;
-    @extend .white-bg;
-    @extend .ua-font-opts;
+  & .my-account-title {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
     width: 7.33em;
-    height: 2em;
-    margin-left: .66em;
-    line-height: 1.33em;
+    height: 6em;
     cursor: pointer;
+    transition: all .3s ease-in-out;
     &:hover,
     &:active,
     &:focus {
-      & a {
-        color: $p-white;
+      & img {
+        height: 5.2em;
+        width: 5.2em;
       }
     }
-    & .navbar-userActions-signOut-title-button {
-      color: $p-blue;
+    & .navbar-userActions-myaccount-title-link {
+      color: $p-white;
       text-decoration: none;
+      & img {
+        height: 5em;
+        width: 5em;
+        border-radius: 50%;
+      }
     }
   }
 }

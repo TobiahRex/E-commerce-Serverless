@@ -5,7 +5,8 @@
 
 .navbar-actionSection-upper {
   @include prefixflex();
-  height: 4em;
+  align-items: baseline;
+  height: 6em;
   width: 83.5em;
   margin-bottom: 1em;
 }
