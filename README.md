@@ -2,6 +2,8 @@
 MERN Stack App: E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
 ### Deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
 
+<img src="http://i.imgur.com/40al5Mw.png" />
+
 This is a temporary development deployment.
 Final Production site will be at http://www.nj2jp.com.
 
