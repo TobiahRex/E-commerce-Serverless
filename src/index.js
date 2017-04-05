@@ -8,22 +8,20 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import './styles.scss';
 
-import './Services/history';
-// import { taxRateListener } from './Services/socket-init';
 import createStore from './Redux/index';
 import initiateActions from './Services/Asynch';
 import routes from './Navigation/routes';
 
 const store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
-initiateActions(store.dispatch);
+initiateActions(store.dispatch, history);
 
 render(
   <Provider store={store} >
     <Router
       history={history}
       routes={routes}
-      onUpdate={() => initiateActions(store.dispatch)}
+      onUpdate={() => initiateActions(store.dispatch, history)}
     />
   </Provider >
   ,

@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga';
+import { takeLatest } from 'redux-saga/effects';
 import TaxRateApi from '../Services/API/TaxRate';
 // import distantApi from '../Services/api.distant';
 

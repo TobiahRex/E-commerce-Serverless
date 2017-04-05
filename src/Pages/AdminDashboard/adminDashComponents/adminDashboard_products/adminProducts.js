@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { LineChart } from 'react-svg-chart';
+// import { LineChart } from 'react-svg-chart';
 import uuid from 'uuid';
 
 import Breadcrumb from '../../../../Components/breadcrumbs';
@@ -127,7 +127,7 @@ function AdminProducts({ location }) {
                         </ul>
                       </div>
                       <div className="body__right">
-                        <LineChart
+                        {/* <LineChart
                           lines={[
                             { points: [
                               { label: 'travel', value: 11 },
@@ -140,7 +140,7 @@ function AdminProducts({ location }) {
                           ]}
                           height={400}
                           width={600}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>

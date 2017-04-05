@@ -29,7 +29,7 @@ class HomepageReviewsCarousel extends Component {
 
   componentWillReceiveProps({ screenSize }) {
     const { maxWidth } = this.calcMaxWidth(screenSize, 0);
-    console.log('received new max width: ', maxWidth);
+    console.info('received new max width: ', maxWidth);
     this.setState({
       screenSize: Number(screenSize),
       maxWidth,

@@ -98,7 +98,7 @@ const prodConfig = {
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'tools/index.template.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -113,7 +113,7 @@ const prodConfig = {
       },
       inject: true,
       title: 'Nic Juice 2 Japan',
-      filename: 'dist/index.html',
+      filename: './index.html',
     }),
     new CommonsChunkPlugin({
       name: 'commons',

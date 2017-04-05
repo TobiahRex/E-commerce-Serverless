@@ -4,6 +4,12 @@ import mobileActions from '../../Redux/MobileRedux';
 import geoActions from '../../Redux/GeoRedux';
 import localeActions from '../../Redux/LocaleRedux';
 import orderActions from '../../Redux/OrdersRedux';
+// import { moduleCodeSplitListener } from '../utils';
+
+export function cleanS3Route({ replace }) {
+  const path = (/#!(\/.*)$/.exec(window.location.hash) || [])[1];
+  if (path) replace(path);
+}
 
 export function generateDynamicTitle(dispatch) {
   const url = window.location.pathname;
@@ -83,7 +89,8 @@ function scrollToTop() {
   window.scrollTo(0, 1);
 }
 
-export default function initiateActions(dispatch) {
+export default function initiateActions(dispatch, history) {
+  cleanS3Route(history);
   generateDynamicTitle(dispatch);
   saveGeoLocation(dispatch);
   setMobileDevice(dispatch);

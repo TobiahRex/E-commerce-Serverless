@@ -29,7 +29,7 @@ rules:
       ignoreTemplateLiterals: true
   react/jsx-boolean-value: 1
   no-param-reassign:
-    - 1
+    - 0
     - props: false
   react/prefer-stateless-function:
     - 2

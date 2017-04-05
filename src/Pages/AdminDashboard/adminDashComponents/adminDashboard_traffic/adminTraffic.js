@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import PieChart from 'react-svg-piechart';
+// import PieChart from 'react-svg-piechart';
 import Breadcrumb from '../../../../Components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
@@ -118,7 +118,7 @@ function AdminTraffic({ location }) {
                       </ul>
                     </div>
                     <div className="countries__right">
-                      <PieChart
+                      {/* <PieChart
                         className="right_pie-chart"
                         data={[
                           { label: 'Facebook', value: 100, color: '#3b5998' },
@@ -127,7 +127,7 @@ function AdminTraffic({ location }) {
                           { label: 'Pinterest', value: 20, color: '#cb2027' },
                           { label: 'Linked In', value: 10, color: '#007bb6' },
                         ]}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className="main__platform-stats">
