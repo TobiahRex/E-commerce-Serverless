@@ -3,17 +3,18 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  color: $p-blue;
+  color: $p-white;
   width: 11.5em;
   height: 3em;
   margin-left: .5em;
-  background-color: $p-grey;
+  background-color: $p-blue;
+  border: 1px solid rgba(1,1,1, .1);
   cursor: pointer;
   &:hover,
   &:active,
   &:focus {
     transition: .5s;
-    background-color: $p-blue;
+    background-color: $p-red;
     color: $p-white;
     & .mobile-currency-dropdown-content {
       opacity: 1;
