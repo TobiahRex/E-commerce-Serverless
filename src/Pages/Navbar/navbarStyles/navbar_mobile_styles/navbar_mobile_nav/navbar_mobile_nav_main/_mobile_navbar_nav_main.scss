@@ -80,6 +80,7 @@
       @extend .mobile-flex-left;
       height: 6em;
       background-color: $p-blue;;
+      flex: 1;
       & h5 {
         margin: 0;
       }

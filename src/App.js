@@ -8,7 +8,7 @@ import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_m
 import Footer from './Pages/Footer/footer';
 import sessionActions from './Redux/SessionRedux';
 import userActions from './Redux/UserRedux';
-import { genDynamicTitle, detectMobileDevice } from './Services/Asynch';
+import { genDynamicTitle } from './Services/Asynch';
 
 /* NOTE:
 1. Remove UUID hard code.
@@ -26,13 +26,15 @@ class App extends Component {
   static defaultProps = {
     ageVerified: false,
     screenWidth: '1080',
+    activeUser: {},
   }
   static propTypes = {
     children: PropTypes.objectOf(PropTypes.any).isRequired,
     ageVerified: PropTypes.bool,
     verifyAge: PropTypes.func.isRequired,
     saveActivePage: PropTypes.func.isRequired,
-    screenWidth: PropTypes.string.isRequired,
+    activeUser: PropTypes.objectOf(PropTypes.any),
+    // screenWidth: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -48,7 +50,7 @@ class App extends Component {
       this.setState({ ageVerified });
     }
   }
-
+  // ----------------------------- Utils ------------------------------------
   saveActivePage = () => {
     const { title, url } = genDynamicTitle();
     this.props.saveActivePage(title, url);
@@ -60,28 +62,13 @@ class App extends Component {
     this.props.verifyAge();
     history.push('/home');
   };
+  preRender = () => ({
+    avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
+  });
 
-  chooseNavbar = () => {
-    if (this.props.screenWidth <= 930) return (<NavbarMobile />);
-    return (<NavbarWeb />);
-  }
+  // -------------------------- Child Props ------------------------------------
 
-  // catchMobileType = () => {
-  //   const mobileDevice = new MobileDetect(window.navigator.userAgent);
-  //   return mobileDevice.mobile();
-  // }
-
-  preRender = () => {
-    // let sectionStyle;
-    // if (!detectMobileDevice()) {
-    //   sectionStyle = {
-    //     minHeight: 510,
-    //   };
-    // }
-    return ({
-      avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
-    });
-  }
+  logoutUser = () => console.info('USER LOGGED OUT!');
 
   render() {
     const { avStyle } = this.preRender();
@@ -93,9 +80,8 @@ class App extends Component {
           verifyAge={this.verifyAge}
         />
         <header className="navbar-comp-container">
-          {/* {this.chooseNavbar()} */}
-          <NavbarWeb />
-          <NavbarMobile />
+          <NavbarWeb logoutUser={this.logoutUser} activeUser={this.props.activeUser} />
+          <NavbarMobile logoutUser={this.logoutUser} activeUser={this.props.activeUser} />
         </header>
         <section id="main-section">
           {this.props.children}
@@ -113,6 +99,7 @@ const mapStateToProps = ({ user, session, mobile }) => ({
   ageVerified: user.ageVerified,
   mobileActive: mobile.mobileTypes,
   screenWidth: mobile.screenWidth,
+  activeUser: user,
 });
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>
