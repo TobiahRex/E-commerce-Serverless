@@ -1,7 +1,7 @@
 @import "./mobile_navbar_UserActions_signedIn";
 @import "./mobile_navbar_UserActions_notSignedIn";
 
-.navbar-mobile-actions {
+.navbar__mobile--actions {
   @extend .mobile-flex-center;
   background-color: $p-white;
   width: 40em;

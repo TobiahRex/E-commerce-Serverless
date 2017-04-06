@@ -1,8 +1,16 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { Link } from 'react-router';
 import uuid from 'uuid'; // TODO Remove this once you have user ID's from BE.
 
 class NavbarMobileUserActionsSignedIn extends PureComponent {
+  static defaultProps = {
+    activeUser: null,
+  }
+  static propTypes = {
+    activeUser: PropTypes.bool,
+    logoutUser: PropTypes.func.isRequired,
+  }
+
   static styles = {
     hidden: {
       display: 'none',
@@ -10,7 +18,12 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
     show: {},
   }
 
-  signOut = () => console.info('user has signed out.');
+  logout = () => this.props.logoutUser();
+
+  renderNavbarActions = () => {
+    const { profilePicture } = this.props.activeUser;
+
+  }
 
   render() {
     return (

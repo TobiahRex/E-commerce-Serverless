@@ -15,7 +15,7 @@ class NavbarMobileOptions extends PureComponent {
 
   render() {
     return (
-      <div className="navbar-mobile-options">
+      <div className="navbar__mobile--options">
         <NavbarMobileOptionsLanguage />
         <NavbarMobileOptionsCurrency />
       </div>

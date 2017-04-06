@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 
 import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notSignedIn';
 import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
@@ -10,17 +10,20 @@ import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedI
 3. Remove UUID as dummy generator.
 */
 
-class NavbarMobileActions extends Component {
+class NavbarMobileActions extends PureComponent {
+  static defaultProps = {
+    activeUser: null,
+  }
   static propTypes = {
-    active_user: PropTypes.bool,
-    logoutUser: PropTypes.func,
+    activeUser: PropTypes.bool,
+    logoutUser: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      active_user: this.props.active_user,
+      activeUser: this.props.activeUser,
     };
   }
 
@@ -28,7 +31,7 @@ class NavbarMobileActions extends Component {
 
   render() {
     return (
-      <div className="navbar-mobile-actions">
+      <div className="navbar__mobile--actions">
         <NavbarMobileUserActionsNotSignedIn />
         <NavbarMobileUserActionsSignedIn />
       </div>

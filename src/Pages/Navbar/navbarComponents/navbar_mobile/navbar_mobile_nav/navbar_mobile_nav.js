@@ -36,7 +36,7 @@ class NavbarMobileNav extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    // const element = document.querySelector('.navbar-mobile-nav-hamburger');
+    // const element = document.querySelector('.navbar__mobile--nav-hamburger');
     // const hamStyle = window.getComputedStyle(element);
     // alert(`alignItem = ${hamStyle.alignItems} | display = ${hamStyle.display} | justifyContent = ${hamStyle.justifyContent} | `);
   }
@@ -95,7 +95,7 @@ class NavbarMobileNav extends Component {
     } : {};
 
     return (
-      <div className="navbar-mobile-nav" style={style}>
+      <div className="navbar__mobile--nav" style={style}>
         <NavbarMobileNavMainBar
           cartQty={cartQty}
           toggleDropdown={this.toggleDropdown}

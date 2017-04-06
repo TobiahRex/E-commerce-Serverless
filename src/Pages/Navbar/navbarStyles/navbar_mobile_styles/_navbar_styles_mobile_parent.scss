@@ -26,34 +26,34 @@ body {
   padding: 7px;
   box-sizing: border-box;
 }
-nav.navbar-mobile {
+nav.navbar__mobile {
   height: 26em;
   width: 100%;
   background-color: $p-white;
-  & .navbar-mobile-container {
-    & .navbar-mobile-logo {
+  & .navbar__mobile--container {
+    & .navbar__mobile--logo {
       height: 10em;
       @extend .mobile-flex-center;
       background-color: $p-white;
       background-color: $p-blue;
-      & .navbar-mobile-logo-src {
+      & .logo--src {
         max-width: 20em;
         content: $main-logo;
       }
     }
-    & .navbar-mobile-options {
+    & .navbar__mobile--options {
       @extend .mobile-flex-center;
       height: 5em;
       width: 100%;
       background-color: $p-blue;
       border-bottom: 1px solid rgba(1,1,1,0.1);
     }
-    & .navbar-mobile-actions {
+    & .navbar__mobile--actions {
       height: 5em;
       width: 100%;
       background-color: $p-blue;
     }
-    & .navbar-mobile-nav {
+    & .navbar__mobile--nav {
       display: inline-block;
       position: relative;
       height: 6em;
