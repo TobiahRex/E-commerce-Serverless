@@ -1,4 +1,4 @@
-@media only screen and (min-width: 641px) {
+@media only screen and (min-width: 931px) {
   @import "./navbar_web_styles/navbar_web_upper";
   @import "./navbar_web_styles/navbar_web_lower";
   .hidden {
@@ -54,6 +54,9 @@
     position: fixed;
     z-index: 20;
     @include prefixed(box-shadow, 3px 4px 3px rgba(1,1,1,.25));
+  }
+  nav.navbar-mobile {
+    display: none;
   }
   .navbar.navbar-header {
     @include prefixflex();

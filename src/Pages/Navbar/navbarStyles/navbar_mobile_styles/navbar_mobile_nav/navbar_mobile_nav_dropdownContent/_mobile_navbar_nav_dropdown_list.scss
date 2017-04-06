@@ -6,7 +6,7 @@
 .navbar-mobile-nav-dropdown-shop,
 .navbar-mobile-nav-dropdown-media,
 .navbar-mobile-nav-dropdown-info {
-  @extend .mobile-blue-bg;
+  background-color: $p-blue;;
   display: inline-block;
   position: relative;
   height: 4.5em;
@@ -88,7 +88,7 @@
     & .navbar-mobile-nav-dropdown-shop-hover-container,
     .navbar-mobile-nav-dropdown-media-hover-container,
     .navbar-mobile-nav-dropdown-info-hover-container {
-      @extend .mobile-blue-bg;
+      background-color: $p-blue;;
       @include prefixflex();
       justify-content: space-between;
       align-items: center;
@@ -140,7 +140,7 @@
     & .navbar-mobile-nav-dropdown-shop-expanded,
     .navbar-mobile-nav-dropdown-media-expanded,
     .navbar-mobile-nav-dropdown-info-expanded {
-      @extend .mobile-blue-bg;
+      background-color: $p-blue;;
       opacity: 0;
       position: relative;
       height: 0em;

@@ -6,7 +6,7 @@
 */
 
 .navbar-mobile-nav-dropdown-content {
-  @extend .mobile-blue-bg;
+  background-color: $p-blue;;
   display: block;
   position: absolute;
   padding: 0;

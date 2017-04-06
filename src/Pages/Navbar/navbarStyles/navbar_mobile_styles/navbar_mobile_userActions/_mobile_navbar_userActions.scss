@@ -3,7 +3,7 @@
 
 .navbar-mobile-actions {
   @extend .mobile-flex-center;
-  @extend .mobile-white-bg;
+  background-color: $p-white;
   width: 40em;
   height: 4em;
 }

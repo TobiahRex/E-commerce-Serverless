@@ -71,12 +71,11 @@
       @extend .mobile-flex-center;
       & .mobile-language-main-button-japanese {
         @extend .mobile-flex-center;
-        width: 2.5em;
         height: 2.5em;
         margin: 0;
         & .mobile-language-main-button-japanese-flag {
         height: 1.5em;
-        width: 2.6em;
+        width: 2.8em;
         background-image: $jpn-flag-icon;
         background-size: cover;
         margin: 0;

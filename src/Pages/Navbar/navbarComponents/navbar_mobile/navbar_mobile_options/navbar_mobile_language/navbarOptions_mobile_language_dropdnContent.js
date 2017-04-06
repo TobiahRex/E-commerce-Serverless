@@ -7,8 +7,8 @@ import React, { PropTypes, PureComponent } from 'react';
 */
 class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
   static propTypes = {
-    activeLanguage: PropTypes.string.isRequired,
-    renderLanguageDropdown: PropTypes.func,
+    // activeLanguage: PropTypes.string.isRequired,
+    renderLanguageDropdown: PropTypes.func.isRequired,
   }
 
   renderLanguageDropdown = () => this.props.renderLanguageDropdown();

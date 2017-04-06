@@ -16,7 +16,7 @@
       @extend .mobile-flex-center;
       height: 6em;
       width: 6em;
-      @extend .mobile-blue-bg;
+      background-color: $p-blue;;
       & .navbar-mobile-nav-hamburger-icon {
         @extend .mobile-flex-center;
         & .navbar-mobile-nav-hamburger-icon-button {
@@ -78,7 +78,7 @@
     & .navbar-mobile-nav-title {
       @extend .mobile-flex-left;
       height: 6em;
-      @extend .mobile-blue-bg;
+      background-color: $p-blue;;
       & h5 {
         margin: 0;
       }
@@ -92,7 +92,7 @@
       @extend .mobile-flex-center;
       height: 6em;
       width: 8.5em;
-      @extend .mobile-blue-bg;
+      background-color: $p-blue;;
       & a {
         @extend .mobile-flex-center;
         & .navbar-mobile-cart-icon {

@@ -107,12 +107,22 @@ body {
   margin: 0;
 }
 
-#main-section {
-  @include prefixflex();
-  justify-content: center;
-}
-
 a {
   text-decoration: none;
   color: $p-white;
+}
+
+@media (min-width: 931px) {
+  #main-section {
+    @include prefixflex();
+    padding-top: 12rem;
+    min-height: 52rem;
+  }
+}
+
+@media (max-width: 930px) {
+  #main-section {
+    @include prefixflex();
+    justify-content: center;
+  }
 }

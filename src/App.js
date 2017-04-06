@@ -72,21 +72,19 @@ class App extends Component {
   // }
 
   preRender = () => {
-    let sectionStyle;
-    if (!detectMobileDevice()) {
-      sectionStyle = {
-        paddingTop: 120,
-        minHeight: 510,
-      };
-    }
+    // let sectionStyle;
+    // if (!detectMobileDevice()) {
+    //   sectionStyle = {
+    //     minHeight: 510,
+    //   };
+    // }
     return ({
-      sectionStyle,
       avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
     });
   }
 
   render() {
-    const { avStyle, sectionStyle } = this.preRender();
+    const { avStyle } = this.preRender();
 
     return (
       <div id="yo">
@@ -95,9 +93,11 @@ class App extends Component {
           verifyAge={this.verifyAge}
         />
         <header className="navbar-comp-container">
-          {this.chooseNavbar()}
+          {/* {this.chooseNavbar()} */}
+          <NavbarWeb />
+          <NavbarMobile />
         </header>
-        <section id="main-section" style={{ ...sectionStyle }}>
+        <section id="main-section">
           {this.props.children}
         </section>
         <footer>

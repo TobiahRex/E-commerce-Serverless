@@ -16,12 +16,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-.mobile-white-bg {
-  background-color: $p-white;
-}
-.mobile-blue-bg {
-  background-color: $p-blue;
-}
 .navbar.navbar-web {
   display: none;
 }
@@ -35,36 +29,36 @@ body {
 nav.navbar-mobile {
   height: 26em;
   width: 100%;
-  @extend .mobile-white-bg;
+  background-color: $p-white;
   & .navbar-mobile-container {
     & .navbar-mobile-logo {
-      // width: 100%;
       height: 10em;
       @extend .mobile-flex-center;
-      @extend .mobile-white-bg;
+      background-color: $p-white;
+      background-color: $p-blue;
       & .navbar-mobile-logo-src {
         max-width: 20em;
-        content: url("https://s3-ap-southeast-2.amazonaws.com/nj2jp/nj2jp.png");
+        content: $main-logo;
       }
     }
     & .navbar-mobile-options {
       @extend .mobile-flex-center;
       height: 5em;
       width: 100%;
-      background-color: $p-grey;
-      // border-bottom: 1px solid rgba(1,1,1,0.05);
+      background-color: $p-blue;
+      border-bottom: 1px solid rgba(1,1,1,0.05);
     }
     & .navbar-mobile-actions {
       height: 5em;
       width: 100%;
-      background-color: $p-grey;
+      background-color: $p-blue;
     }
     & .navbar-mobile-nav {
       display: inline-block;
       position: relative;
       height: 6em;
       width: 100%;
-      @extend .mobile-blue-bg;
+      background-color: $p-blue;
     }
   }
 }
