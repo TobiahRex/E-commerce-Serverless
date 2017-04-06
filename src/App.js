@@ -62,8 +62,8 @@ class App extends Component {
   };
 
   chooseNavbar = () => {
-    if (this.props.screenWidth <= 930) return <NavbarMobile />;
-    return <NavbarWeb />;
+    if (this.props.screenWidth <= 930) return (<NavbarMobile />);
+    return (<NavbarWeb />);
   }
 
   // catchMobileType = () => {
@@ -80,14 +80,13 @@ class App extends Component {
       };
     }
     return ({
-      Navbar: this.chooseNavbar(),
       sectionStyle,
       avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
     });
   }
 
   render() {
-    const { Navbar, avStyle, sectionStyle } = this.preRender();
+    const { avStyle, sectionStyle } = this.preRender();
 
     return (
       <div id="yo">
@@ -96,7 +95,7 @@ class App extends Component {
           verifyAge={this.verifyAge}
         />
         <header className="navbar-comp-container">
-          <Navbar />
+          {this.chooseNavbar()}
         </header>
         <section id="main-section" style={{ ...sectionStyle }}>
           {this.props.children}
