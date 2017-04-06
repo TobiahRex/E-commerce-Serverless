@@ -1,5 +1,6 @@
-import React, { PropTypes, PureComponent } from 'react';
+/* eslint react/no-unused-prop-types: 0 */
 
+import React, { PropTypes, PureComponent } from 'react';
 import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notSignedIn';
 import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
 
@@ -20,29 +21,21 @@ class NavbarMobileActions extends PureComponent {
     logoutUser: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeUser: this.props.activeUser,
-    };
-  }
-
   logoutUser = () => this.props.logoutUser;
 
-  preRender = () => {
-    if (this.props.loggedIn) return <NavbarMobileUserActionsNotSignedIn />;
-    return (<NavbarMobileUserActionsSignedIn activeUser={this.props.activeUser} logoutUser={this.props.logoutUser} />);
+  renderHelper = ({ loggedIn, activeUser, logoutUser }) => {
+    if (loggedIn) return <NavbarMobileUserActionsNotSignedIn />;
+    return (
+      <NavbarMobileUserActionsSignedIn
+        activeUser={activeUser}
+        logoutUser={logoutUser}
+      />);
   }
 
   render() {
     return (
       <div className="navbar__mobile--actions">
-        <NavbarMobileUserActionsNotSignedIn />
-        <NavbarMobileUserActionsSignedIn
-          activeUser={this.props.activeUser}
-          logoutUser={this.props.logoutUser}
-        />
+        {this.renderHelper(this.props)}
       </div>
     );
   }
