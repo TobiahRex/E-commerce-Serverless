@@ -13,36 +13,44 @@
     font-weight: 200;
     font-size: 1.5em;
     color: $p-white;
-    width: 6.33em;
+    width: 5em;
     height: 2em;
     cursor: pointer;
     &:hover,
-    &:active,
     &:focus {
       transition: .5s;
       background-color: $p-red;
     }
-    & .checkout__link {
+    & .checkout__link,
+    .signOut__button {
       color: $p-white;
       text-decoration: none;
       border: none;
       padding: none;
     }
-    & .signOut__button {
-      border: none;
-      padding: none;
-      color: $p-white;
-      background-color: inherit;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: .1rem;
+      height: 2rem;
+      margin-bottom: -.3rem;
+      margin-left: 4.5rem;
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.5);
     }
+  }
+  & .list--checkout {
+    margin-left: 1em;
   }
   & .list--myAccount {
     @extend .mobile-flex-center;
     background-color: $p-blue;
+    margin-left: 1.5em;
     & .myAccount__link {
       text-decoration: none;
       & img {
-        width: 3em;
-        height: 3em;
+        width: 4em;
+        height: 4em;
         border-radius: 50%;
         transition: all .3s ease-in-out;
         &:hover,

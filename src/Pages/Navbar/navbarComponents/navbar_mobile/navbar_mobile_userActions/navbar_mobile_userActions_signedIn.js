@@ -29,9 +29,9 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
     return (
       <ul className="actions__signedIn--list">
         <li className="list--signOut sweep-right-red">
-          <button className="signOut__button">
+          <a href="" className="signOut__button" onClick={() => this.logout()}>
             Logout
-          </button>
+          </a>
         </li>
         <li className="list--checkout sweep-right-red">
           <Link to={'/express_checkout'} className="checkout__link" >

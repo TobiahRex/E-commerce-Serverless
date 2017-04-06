@@ -32,10 +32,10 @@ nav.navbar__mobile {
   background-color: $p-white;
   & .navbar__mobile--container {
     & .navbar__mobile--logo {
-      height: 10em;
       @extend .mobile-flex-center;
-      background-color: $p-white;
+      height: 10em;
       background-color: $p-blue;
+      border-bottom: 1px solid rgba(255,255,255,.1);
       & .logo--src {
         max-width: 20em;
         content: $main-logo;
@@ -46,12 +46,12 @@ nav.navbar__mobile {
       height: 5em;
       width: 100%;
       background-color: $p-blue;
-      border-bottom: 1px solid rgba(1,1,1,0.1);
     }
     & .navbar__mobile--actions {
       height: 5em;
       width: 100%;
       background-color: $p-blue;
+      border-bottom: 1px solid rgba(255,255,255, .1);
     }
     & .navbar__mobile--nav {
       display: inline-block;

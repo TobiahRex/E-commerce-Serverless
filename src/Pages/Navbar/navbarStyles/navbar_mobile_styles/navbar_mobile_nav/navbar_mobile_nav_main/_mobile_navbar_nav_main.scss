@@ -12,6 +12,7 @@
     @include prefixflex();
     justify-content: flex-start;
     align-items: center;
+    flex: 1;
     & .navbar-mobile-nav-hamburger {
       @extend .mobile-flex-center;
       height: 6em;

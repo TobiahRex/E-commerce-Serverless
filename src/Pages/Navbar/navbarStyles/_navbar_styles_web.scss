@@ -55,7 +55,7 @@
     z-index: 20;
     @include prefixed(box-shadow, 3px 4px 3px rgba(1,1,1,.25));
   }
-  nav.navbar-mobile {
+  nav.navbar__mobile {
     display: none;
   }
   .navbar.navbar-header {
