@@ -26,14 +26,13 @@ class App extends Component {
   static defaultProps = {
     ageVerified: false,
     screenWidth: '1080',
-    activeUser: {},
   }
   static propTypes = {
     children: PropTypes.objectOf(PropTypes.any).isRequired,
     ageVerified: PropTypes.bool,
     verifyAge: PropTypes.func.isRequired,
     saveActivePage: PropTypes.func.isRequired,
-    activeUser: PropTypes.objectOf(PropTypes.any),
+    activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
     // screenWidth: PropTypes.string.isRequired,
   }
 

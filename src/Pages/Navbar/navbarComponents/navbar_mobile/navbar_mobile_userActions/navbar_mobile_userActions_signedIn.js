@@ -20,12 +20,8 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
 
   logout = () => this.props.logoutUser();
 
-  renderNavbarActions = () => {
-    const { profilePicture } = this.props.activeUser;
-
-  }
-
   render() {
+    const { profilePicture, firstName, lastName } = this.props.activeUser;
     return (
       <ul className="actions__signedIn--list">
         <li className="list--signOut sweep-right-red">
@@ -40,7 +36,7 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
         </li>
         <li className="list--myAccount">
           <Link to={`/user_${uuid()}`} className="myAccount__link">
-            <img src="../Images/mock_profile-pic.png" alt="User Name" />
+            <img src={profilePicture} alt={`${firstName} ${lastName}`} />
           </Link>
         </li>
       </ul>

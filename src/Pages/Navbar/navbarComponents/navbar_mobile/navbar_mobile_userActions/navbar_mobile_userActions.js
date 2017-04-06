@@ -33,7 +33,10 @@ class NavbarMobileActions extends PureComponent {
     return (
       <div className="navbar__mobile--actions">
         <NavbarMobileUserActionsNotSignedIn />
-        <NavbarMobileUserActionsSignedIn />
+        <NavbarMobileUserActionsSignedIn
+          activeUser={this.props.activeUser}
+          logoutUser={this.props.logoutUser}
+        />
       </div>
     );
   }

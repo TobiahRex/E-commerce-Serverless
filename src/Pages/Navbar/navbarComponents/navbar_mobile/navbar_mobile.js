@@ -6,11 +6,9 @@ import NavbarMobileActions from './navbar_mobile_userActions/navbar_mobile_userA
 import NavbarMobileNav from './navbar_mobile_nav/navbar_mobile_nav';
 
 class NavbarMobile extends PureComponent {
-  static defaultProps = {
-    activeUser: null,
-  }
+  static defaultProps = { }
   static propTypes = {
-    activeUser: PropTypes.bool,
+    activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
     logoutUser: PropTypes.func.isRequired,
   }
 
