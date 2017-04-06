@@ -28,24 +28,20 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
   render() {
     return (
       <ul className="actions__signedIn--list">
-        <li className="list--myAccount sweep-right">
-          <Link
-            to={`/user_${uuid()}`}
-            className="myAccount__link"
-          >My Account</Link>
-        </li>
-        <li className="navbar-mobile-actions-signedIn-checkout-title sweep-right">
-          <Link
-            to={'/express_checkout'}
-            className="navbar-mobile-actions-signedIn-checkout-title-link"
-          >Checkout</Link>
-        </li>
-        <li className="navbar-mobile-actions-signedIn-signOut-title sweep-right">
-          <button
-            className="navbar-mobile-actions-signedIn-signOut-title-button"
-          >
+        <li className="list--signOut sweep-right-red">
+          <button className="signOut__button">
             Logout
           </button>
+        </li>
+        <li className="list--checkout sweep-right-red">
+          <Link to={'/express_checkout'} className="checkout__link" >
+            Checkout
+          </Link>
+        </li>
+        <li className="list--myAccount">
+          <Link to={`/user_${uuid()}`} className="myAccount__link">
+            <img src="../Images/mock_profile-pic.png" alt="User Name" />
+          </Link>
         </li>
       </ul>
     );
