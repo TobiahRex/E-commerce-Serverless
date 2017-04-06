@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import MobileDetect from 'mobile-detect';
 import { connect } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 
@@ -26,12 +25,14 @@ class App extends Component {
   }
   static defaultProps = {
     ageVerified: false,
+    screenWidth: '1080',
   }
   static propTypes = {
     children: PropTypes.objectOf(PropTypes.any).isRequired,
     ageVerified: PropTypes.bool,
     verifyAge: PropTypes.func.isRequired,
     saveActivePage: PropTypes.func.isRequired,
+    screenWidth: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -60,25 +61,34 @@ class App extends Component {
     history.push('/home');
   };
 
+  chooseNavbar = () => {
+    if (this.props.screenWidth <= 930) return <NavbarMobile />;
+    return <NavbarWeb />;
+  }
+
   // catchMobileType = () => {
   //   const mobileDevice = new MobileDetect(window.navigator.userAgent);
   //   return mobileDevice.mobile();
   // }
 
-  render() {
-    const { ageVerified } = this.state;
-    const { hide, show } = App.styles;
-    const avStyle = ageVerified ? hide : show;
+  preRender = () => {
     let sectionStyle;
     if (!detectMobileDevice()) {
-    // if (!this.catchMobileType()) {
       sectionStyle = {
         paddingTop: 120,
         minHeight: 510,
       };
-    } else {
-      console.warn('This is a mobile device.');
     }
+    return ({
+      Navbar: this.chooseNavbar(),
+      sectionStyle,
+      avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
+    });
+  }
+
+  render() {
+    const { Navbar, avStyle, sectionStyle } = this.preRender();
+
     return (
       <div id="yo">
         <AgeVerification
@@ -86,8 +96,7 @@ class App extends Component {
           verifyAge={this.verifyAge}
         />
         <header className="navbar-comp-container">
-          <NavbarWeb />
-          <NavbarMobile />
+          <Navbar />
         </header>
         <section id="main-section" style={{ ...sectionStyle }}>
           {this.props.children}
@@ -104,6 +113,7 @@ const mapStateToProps = ({ user, session, mobile }) => ({
   activePage: session.currentActivePage,
   ageVerified: user.ageVerified,
   mobileActive: mobile.mobileTypes,
+  screenWidth: mobile.screenWidth,
 });
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>

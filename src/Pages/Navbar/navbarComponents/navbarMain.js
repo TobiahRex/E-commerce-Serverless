@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import NavbarWeb from './navbar_web/navbar_web';
 import NavbarMobile from './navbar_mobile/navbar_mobile';
 import sessionActions from '../../../Redux/SessionRedux';
-import { genDynamicTitle } from '../../../Services/asynchDispatchServices';
+import { genDynamicTitle } from '../../../Services/Asynch';
 
 class Navbar extends Component {
+  static defaultProps = {
+    screenWidth: 0,
 
+  }
   static propTypes = {
     saveActivePage: PropTypes.func.isRequired,
-    activePage: PropTypes.objectOf(PropTypes.string),
+    activePage: PropTypes.objectOf(PropTypes.string).isRequired,
+    screenWidth: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -28,20 +32,25 @@ class Navbar extends Component {
     this.props.saveActivePage(title, url);
   }
 
+  renderNavbar = () => {
+    if (this.props.screenWidth <= 930) return <NavbarMobile />;
+    return <NavbarWeb />;
+  }
+
   render() {
     return (
       <div>
         <header className="navbar-comp-container">
-          <NavbarWeb />
-          <NavbarMobile />
+          {this.renderNavbar()}
         </header>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({ session, mobile }) => ({
   activePage: session.currentActivePage,
+  screenWidth: Number(mobile.screenWidth),
 });
 const mapDispatchToProps = dispatch => ({
   saveActivePage: (title, currentPath) =>
