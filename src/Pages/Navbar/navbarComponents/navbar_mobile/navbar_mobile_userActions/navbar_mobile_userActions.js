@@ -15,7 +15,8 @@ class NavbarMobileActions extends PureComponent {
     activeUser: null,
   }
   static propTypes = {
-    activeUser: PropTypes.bool,
+    loggedIn: PropTypes.bool.isRequired,
+    activeUser: PropTypes.objectOf(PropTypes.any),
     logoutUser: PropTypes.func.isRequired,
   }
 
@@ -28,6 +29,11 @@ class NavbarMobileActions extends PureComponent {
   }
 
   logoutUser = () => this.props.logoutUser;
+
+  preRender = () => {
+    if (this.props.loggedIn) return <NavbarMobileUserActionsNotSignedIn />;
+    return (<NavbarMobileUserActionsSignedIn activeUser={this.props.activeUser} logoutUser={this.props.logoutUser} />);
+  }
 
   render() {
     return (
