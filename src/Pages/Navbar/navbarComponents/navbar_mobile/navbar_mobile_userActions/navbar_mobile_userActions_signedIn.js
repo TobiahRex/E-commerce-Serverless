@@ -27,14 +27,11 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
 
   render() {
     return (
-      <ul
-        // style={NavbarMobileUserActionsSignedIn.styles.hidden}
-        className="navbar-mobile-actions-signedIn"
-      >
-        <li className="navbar-mobile-actions-signedIn-myaccount-title sweep-right">
+      <ul className="actions__signedIn--list">
+        <li className="list--myAccount sweep-right">
           <Link
             to={`/user_${uuid()}`}
-            className="navbar-mobile-actions-signedIn-myaccount-title-link"
+            className="myAccount__link"
           >My Account</Link>
         </li>
         <li className="navbar-mobile-actions-signedIn-checkout-title sweep-right">

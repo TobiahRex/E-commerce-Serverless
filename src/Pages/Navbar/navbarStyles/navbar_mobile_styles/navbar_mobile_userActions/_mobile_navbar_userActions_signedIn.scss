@@ -1,11 +1,13 @@
-.navbar-mobile-actions-signedIn {
+.actions__signedIn--list {
   @extend .mobile-flex-center;
   justify-content: flex-end;
   align-items: center;;
   margin: 0em;
   list-style-type: none;
   padding: 0em 0em 0em 0em;
-  & .navbar-mobile-actions-signedIn-myaccount-title {
+  & .list--myAccount,
+  .list--checkout,
+  .list--signOut {
     @extend .mobile-flex-center;
     background-color: $p-grey;
     font-family: $p-font;
@@ -24,7 +26,7 @@
         color: $p-white;
       }
     }
-    & .navbar-mobile-actions-signedIn-myaccount-title-link {
+    & .myAccount__link {
       color: $p-blue;
       text-decoration: none;
     }
