@@ -1,20 +1,21 @@
-.navbar-mobile-actions-notSignedIn {
+.actions__notSignedIn--list {
   @extend .mobile-flex-center;
   justify-content: flex-end;
   align-items: center;;
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 1em;
-  & .navbar-mobile-actions-notSignedIn-sign-in-title {
+  & .list--login,
+  .list--register {
     @extend .mobile-flex-center;
-    background-color: $p-grey;
+    background-color: $p-blue;
     font-family: $p-font;
     font-weight: 200;
     font-size: 1.5em;
-    color: $p-blue;
-    width: 7.33em;
+    width: 5em;
     height: 2em;
     cursor: pointer;
+    margin-left: .5em;
     &:hover,
     &:active,
     &:focus {
@@ -24,35 +25,20 @@
         color: $p-white;
       }
     }
-    & .navbar-mobile-actions-notSignedIn-sign-in-title-link {
-      color: $p-blue;
+    & .login__link,
+    .register__link {
+      color: $p-white;
       text-decoration: none;
     }
   }
-  & .navbar-mobile-actions-notSignedIn-register-title {
-    @extend .mobile-flex-center;
-    background-color: $p-grey;
-    font-family: $p-font;
-    font-weight: 200;
-    font-size: 1.5em;
-    color: $p-blue;
-    width: 7.33em;
-    height: 2em;
-    margin-left: .66em;
-    line-height: 1.33em;
-    cursor: pointer;
-    &:hover,
-    &:active,
-    &:focus {
-      transition: .5s;
-      background-color: $p-blue;
-      & a {
-        color: $p-white;
-      }
-    }
-    & .navbar-mobile-actions-notSignedIn-register-title-link {
-      color: $p-blue;
-      text-decoration: none;
-    }
+  & .list--login:after {
+    content: '';
+    display: inline-block;
+    width: .1rem;
+    height: 2rem;
+    margin-bottom: -.3rem;
+    margin-left: 4rem;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 }

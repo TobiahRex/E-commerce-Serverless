@@ -16,17 +16,17 @@ class NavbarMobileUserActionsNotSignedIn extends PureComponent {
 
   render() {
     return (
-      <ul className="navbar-mobile-actions-notSignedIn">
-        <li className="navbar-mobile-actions-notSignedIn-sign-in-title sweep-right">
+      <ul className="actions__notSignedIn--list">
+        <li className="list--login sweep-right-red">
           <Link
             to={'/login'}
-            className="navbar-mobile-actions-notSignedIn-sign-in-title-link"
+            className="login__link"
           >Login</Link>
         </li>
-        <li className="navbar-mobile-actions-notSignedIn-register-title sweep-right">
+        <li className="list--register sweep-right-red">
           <Link
             to={'/register'}
-            className="navbar-mobile-actions-notSignedIn-register-title-link"
+            className="register__link"
           >Register</Link>
         </li>
       </ul>
