@@ -7,7 +7,7 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
     activeUser: null,
   }
   static propTypes = {
-    activeUser: PropTypes.bool,
+    activeUser: PropTypes.objectOf(PropTypes.any),
     logoutUser: PropTypes.func.isRequired,
   }
 

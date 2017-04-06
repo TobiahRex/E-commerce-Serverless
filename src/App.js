@@ -80,7 +80,10 @@ class App extends Component {
         />
         <header className="navbar-comp-container">
           <NavbarWeb logoutUser={this.logoutUser} activeUser={this.props.activeUser} />
-          <NavbarMobile logoutUser={this.logoutUser} activeUser={this.props.activeUser} />
+          <NavbarMobile
+            logoutUser={this.logoutUser}
+            activeUser={this.props.activeUser}
+          />
         </header>
         <section id="main-section">
           {this.props.children}

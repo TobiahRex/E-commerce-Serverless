@@ -16,10 +16,7 @@ class NavbarMobileUserActionsNotSignedIn extends PureComponent {
 
   render() {
     return (
-      <ul
-        style={NavbarMobileUserActionsNotSignedIn.styles.hidden}
-        className="navbar-mobile-actions-notSignedIn"
-      >
+      <ul className="navbar-mobile-actions-notSignedIn">
         <li className="navbar-mobile-actions-notSignedIn-sign-in-title sweep-right">
           <Link
             to={'/login'}
