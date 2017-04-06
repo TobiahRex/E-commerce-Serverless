@@ -1,8 +1,8 @@
 .homepage-header-innner-container {
   @extend .flex-center;
   flex-direction: column;
-  width: 76.5em;
-  height: 28em;
+  width: 56.5em;
+  height: 40em;
   border: 2px solid $p-red;
   background-color: rgba(1,1,1, 0.5);
   & .homepage-header-inner-container-img-src {
@@ -10,6 +10,7 @@
     width: 40em;
   }
   & .hompage-header-title-1 {
+    text-align: center;
     color: $p-white;
     line-height: 2.5em;
     text-shadow: 0 2px 2px rgba(255,255,255,.3);
@@ -18,5 +19,19 @@
     color: $p-white;
     line-height: 1.5em;
     text-shadow: 0 2px 2px rgba(255,255,255,.3);
+  }
+}
+
+@media (min-width: 1431px ) {
+  .homepage-header-innner-container {
+    width: 56.6rem
+    height: 40rem;
+  }
+}
+
+@media (max-width: 143rem) {
+  .homepage-header-innner-container {
+    width: 56.6rem
+    height: 40rem;
   }
 }
