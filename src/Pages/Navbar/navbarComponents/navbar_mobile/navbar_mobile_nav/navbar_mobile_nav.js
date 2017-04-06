@@ -7,13 +7,13 @@ import { setScreenSize } from '../../../../../Services/Asynch';
 
 class NavbarMobileNav extends Component {
   static propTypes = {
-    mobileNavbarExpanded: PropTypes.bool,
-    cartQty: PropTypes.number,
-    screenSize: PropTypes.number,
+    cartQty: PropTypes.number.isRequired,
+    screenSize: PropTypes.number.isRequired,
     refreshMobileSize: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
+    cartQty: 0,
     active: false,
     role: 'user',
     _id: null,
@@ -36,20 +36,9 @@ class NavbarMobileNav extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    // const element = document.querySelector('.navbar__mobile--nav-hamburger');
-    // const hamStyle = window.getComputedStyle(element);
-    // alert(`alignItem = ${hamStyle.alignItems} | display = ${hamStyle.display} | justifyContent = ${hamStyle.justifyContent} | `);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      mobileNavbarExpanded,
-      activePage,
-      cartQty,
-    } = nextProps;
-    if (mobileNavbarExpanded !== this.state.mobileNavbarExpanded) {
-      this.setState({ mobileNavbarExpanded });
-    }
+  componentWillReceiveProps({ activePage, cartQty }) {
     if (activePage !== this.state.activePage) {
       this.setState({ activePage });
     }
@@ -61,6 +50,7 @@ class NavbarMobileNav extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll');
   }
+
   // TODO refactor handle Scroll to only dispatch action if the current screenSize is different than the screenSize in state.
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
@@ -110,8 +100,9 @@ class NavbarMobileNav extends Component {
     );
   }
 }
-const mapStateToProps = ({ mobile }) => ({
+const mapStateToProps = ({ mobile, orders }) => ({
   screenSize: Number(mobile.screenWidth),
+  cartQty: orders.cart.qty || null, // TODO remove this NULL value once you've created the actions in redux for adding items to state.
 });
 const mapDispatchToProp = dispatch => ({
   refreshMobileSize: () => setScreenSize(dispatch),
@@ -121,4 +112,5 @@ export default connect(mapStateToProps, mapDispatchToProp)(NavbarMobileNav);
 /* TODO
 1. This component is mapped to State and received the three props defined in propTypes.
 2. Hamburger Icon reference = http://elijahmanor.com/css-animated-hamburger-icon/
+3. See TODO at mapStateToProps about cartQty.
 */
