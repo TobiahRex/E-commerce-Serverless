@@ -6,6 +6,7 @@ import NavbarNavsShopDropdnBottomthird from './navbarNavs_shop_dropdn_bottomThir
 
 class NavbarNavsShopDropdnContent extends PureComponent {
   static propTypes = {
+    popJuices: PropTypes.arrayOf(PropTypes.object).isRequired,
     dropdownDisplay: PropTypes.bool.isRequired,
     toggleNavbarDropdown: PropTypes.func.isRequired,
   }
@@ -18,8 +19,13 @@ class NavbarNavsShopDropdnContent extends PureComponent {
       <span className="shop-dropdown-content" style={{ display }}>
         <span className="shop-dropdown-content-parent">
           <NavbarNavsShopDropdnTopthird />
-          <NavbarNavsShopDropdnMidthird />
-          <NavbarNavsShopDropdnBottomthird toggleNavbarDropdown={this.toggleNavbarDropdown} />
+          <NavbarNavsShopDropdnMidthird
+            popJuices={this.props.popJuices}
+            toggleNavbarDropdown={this.toggleNavbarDropdown}
+          />
+          <NavbarNavsShopDropdnBottomthird
+            toggleNavbarDropdown={this.toggleNavbarDropdown}
+          />
         </span>
       </span>
     );
