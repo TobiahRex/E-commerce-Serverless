@@ -17,7 +17,8 @@ class NavbarWeb extends PureComponent {
           <div className="navbar navbar-header">
             <NavbarLogo />
             <NavbarActionSection
-              activeUser={this.props.activeUser} logoutUser={this.props.logoutUser}
+              logoutUser={this.props.logoutUser}
+              activeUser={this.props.activeUser}
               dropdownDisplay={this.props.dropdownDisplay}
               toggleNavbarDropdown={this.toggleNavbarDropdown}
             />
