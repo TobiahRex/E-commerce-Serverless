@@ -62,7 +62,7 @@ class App extends Component {
 
   // -------------------------- Child Props ------------------------------------
   toggleNavbarDropdown = () => {
-    this.setState({ showNavbarDropdown: !this.state.showNavbarDropdown });
+    this.setState({ showNavbarDropdown: !this.state.show });
   }
 
   verifyAge = (event) => {

@@ -10,7 +10,9 @@ class NavbarNavsShop extends PureComponent {
 
   render() {
     return (
-      <div className="navbar-actionSection-lower-shop">
+      <div
+        className="navbar-actionSection-lower-shop"
+        onEnter={() => this.props.toggleNavbarDropdown()}>
         <span className="shop-main-button ">
           <div className="shop-main-button-title">
             <span>SHOP</span>

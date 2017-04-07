@@ -9,12 +9,6 @@ class NavbarLower extends PureComponent {
     dropdownDisplay: PropTypes.bool.isRequired,
     toggleNavbarDropdown: PropTypes.func.isRequired,
   }
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {},
-  }
 
   render() {
     return (

@@ -9,7 +9,6 @@ import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
 2. Need to add the respective Navigation COmponent maps for the Links.
 */
 class NavbarUserActions extends PureComponent {
-
   render() {
     return (
       <div className="navbar-actionSection-upper-actions">
