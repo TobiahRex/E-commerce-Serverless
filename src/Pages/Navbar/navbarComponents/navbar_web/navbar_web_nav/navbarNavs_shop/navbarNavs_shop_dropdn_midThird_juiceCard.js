@@ -13,13 +13,17 @@ Therefore it's necessary to save the url suffix with the item info in order to d
 
 class NavbarNavsShopDropdnJuiceCards extends PureComponent {
   static propTypes = {
-    juiceInfo: PropTypes.objectOf(PropTypes.any),
+    juiceInfo: PropTypes.objectOf(PropTypes.any).isRequired,
+    hideNavbarDropdown: PropTypes.func.isRequired,
   }
+
+  hideNavbarDropdown = () => this.props.hideNavbarDropdown;
 
   render() {
     const { title, imageSrc, urlSuffix } = this.props.juiceInfo;
     return (
       <Link
+        onClick={() => this.hideNavbarDropdown()}
         to={`/juice/${urlSuffix}`}
         className="shop-dropdown-content-midThird-juices-card"
       >
@@ -29,7 +33,8 @@ class NavbarNavsShopDropdnJuiceCards extends PureComponent {
         <div className="shop-dropdown-content-midThird-juices-card-image">
           <img
             className="shop-dropdown-content-midThird-juices-card-image-src"
-            src={imageSrc} alt={`${title} juice`}
+            src={imageSrc}
+            alt={`${title} juice`}
           />
         </div>
       </Link>

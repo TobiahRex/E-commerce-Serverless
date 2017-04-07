@@ -13,7 +13,7 @@ class NavbarNavsShopDropdnBottomthird extends PureComponent {
 
   hideNavbarDropdown = () => this.props.hideNavbarDropdown;
 
-  cardClick = (location) => {
+  recommendClick = (location) => {
     this.hideNavbarDropdown();
     browserHistory.push(location);
   }
@@ -25,7 +25,7 @@ class NavbarNavsShopDropdnBottomthird extends PureComponent {
           <button
             id="/contact_us"
             className="shop-dropdown-content-bottomThird-leftSide-recommend sweep-right"
-            onClick={e => this.cardClick(e.target.getAttribute('id'))}
+            onClick={e => this.recommendClick(e.target.getAttribute('id'))}
           >
             <span>Recommend Another Juice Line</span>
           </button>
