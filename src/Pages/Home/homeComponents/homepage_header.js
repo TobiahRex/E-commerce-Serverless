@@ -22,11 +22,13 @@ function HomepageHeader({ height }) {
         </div>
       </div>
       <div className="header__nav-down--container hover-bob-active">
-        <FontAwesome
-          className="header__nav-down"
-          name="angle-double-down"
-          size="5x"
-        />
+        <button className="nav-down__button" onClick={() => console.warn('scroll down')}>
+          <FontAwesome
+            className="button__icon"
+            name="angle-double-down"
+            size="5x"
+          />
+        </button>
       </div>
     </header>
   );

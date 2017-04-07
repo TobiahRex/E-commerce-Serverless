@@ -1,25 +1,82 @@
-.homepage-header-innner-container {
-  @extend .homepage-flex-center;
-  flex-direction: column;
-  width: 27em;
-  height: 20.8em;
-  border: 2px solid $p-red;
-  background-color: rgba(1,1,1, 0.5);
-  & .homepage-header-inner-container-img-src {
-    content: $logo-one-line;
-    width: 20em;
+.header__upper {
+  @include prefixflex();
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  & .header__inner-container {
+    @include prefixflex();
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 27em;
+    height: 20.8em;
+    border: 2px solid $p-red;
+    background-color: rgba(1,1,1, 0.5);
+    padding: 2em;
+    & .header__img-src {
+      content: $logo-one-line;
+      width: 20em;
+    }
+    & .header__msg--container {
+      @include prefixflex();
+      flex-direction: column;
+      align-items: center;
+      & .msg__title {
+        font-size: 2rem;
+        text-align: center;
+        color: $p-white;
+        line-height: 1em;
+        text-shadow: 0 2px 2px rgba(255,255,255,.3);
+      }
+      & .msg__subtitle {
+        color: $p-white;
+        font-size: 2rem;
+        line-height: 1.25em;
+        margin-top: .5em;
+      }
+    }
+    & .header__cta {
+      &:active {
+        outline: none;
+      }
+    }
   }
-  & .hompage-header-title-1 {
-    color: $p-white;
-    font-size: 2em;
-    line-height: 1.25em;
-    text-align: center;
-    margin-top: 1em;
+}
+.header__nav-down--container {
+  @include prefixflex();
+  justify-content: center;
+  align-items: flex-end;
+  flex: 1;
+  & .nav-down__button {
+    border:none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    &:focus {
+      outline: none;
+    }
+    & .button__icon {
+      font-weight: bold;
+      color: $p-red;
+      text-shadow: 0px 3px 10px rgba(255,255,255, .3);
+      cursor: pointer;
+      &:active,
+      &:hover {
+        color: $p-blue;
+      }
+    }
   }
-  & .hompage-header-title-2 {
-    color: $p-white;
-    font-size: 2em;
-    line-height: 1.25em;
-    margin-top: 1em;
+}
+
+@media only screen and (max-width: 930px) {
+  .header__inner-container {
+    width: 56.6rem;
+    height: 35rem;
+  }
+}
+@media only screen and (min-width: 931px) {
+  .header__inner-container {
+    width: 90rem;
+    height: 45rem;
   }
 }

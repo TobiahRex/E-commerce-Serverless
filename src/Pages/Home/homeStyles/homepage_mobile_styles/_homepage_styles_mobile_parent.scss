@@ -38,10 +38,8 @@
     width: 100%;
     height: 100%;
     background-color: $p-white;
-    & .homepage-header-img-src {
+    & .homepage__header--img-src {
       @extend .homepage-flex-center;
-
-      min-height: 30.5em;
       background-image: $homepg-juices-pano;;
       background-size: cover;
       background-position: center;
