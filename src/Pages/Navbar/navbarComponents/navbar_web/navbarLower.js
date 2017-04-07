@@ -5,6 +5,9 @@ import NavbarLowerMedia from './navbar_web_nav/navbarNavs_media/navbarNavs_media
 import NavbarLowerInfo from './navbar_web_nav/navbarNavs_info/navbarNavs_info';
 
 class NavbarLower extends PureComponent {
+  static propTypes = {
+    dropdownDisplay: PropTypes.bool.isRequired,
+  }
   static styles = {
     hidden: {
       display: 'none',

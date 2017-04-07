@@ -41,6 +41,7 @@ class App extends Component {
 
     this.state = {
       ageVerified: props.ageVerified,
+      showNavbarDropdown:
     };
   }
 
@@ -55,17 +56,21 @@ class App extends Component {
     this.props.saveActivePage(title, url);
   }
 
+  preRender = () => ({
+    avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
+  })
+
+  // -------------------------- Child Props ------------------------------------
+  hideNavbarDropdown = () => {
+    this.setState({ showNavbarDropdown: false });
+  }
+
   verifyAge = (event) => {
     const history = createHistory();
     event.preventDefault();
     this.props.verifyAge();
     history.push('/home');
   };
-  preRender = () => ({
-    avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
-  })
-
-  // -------------------------- Child Props ------------------------------------
 
   logoutUser = () => console.info('USER LOGGED OUT!');
 
@@ -82,6 +87,7 @@ class App extends Component {
           <NavbarWeb
             logoutUser={this.logoutUser}
             activeUser={this.props.activeUser}
+            dropdownDisplay={this.state.showNavbarDropdown}
           />
           <NavbarMobile
             logoutUser={this.logoutUser}
