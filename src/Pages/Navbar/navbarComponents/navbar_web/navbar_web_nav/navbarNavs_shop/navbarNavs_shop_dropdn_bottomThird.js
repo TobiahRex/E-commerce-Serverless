@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
 /* TODO
@@ -7,13 +7,25 @@ import { browserHistory } from 'react-router';
 */
 
 class NavbarNavsShopDropdnBottomthird extends PureComponent {
+  static propTypes = {
+    hideNavbarDropdown: PropTypes.func.isRequired,
+  }
+
+  hideNavbarDropdown = () => this.props.hideNavbarDropdown;
+
+  cardClick = (location) => {
+    this.hideNavbarDropdown();
+    browserHistory.push(location);
+  }
+
   render() {
     return (
       <div className="shop-dropdown-content-bottomThird">
         <span className="shop-dropdown-content-bottomThird-leftSide">
           <button
+            id="/contact_us"
             className="shop-dropdown-content-bottomThird-leftSide-recommend sweep-right"
-            onClick={() => browserHistory.push('/contact_us')}
+            onClick={e => this.cardClick(e.target.getAttribute('id'))}
           >
             <span>Recommend Another Juice Line</span>
           </button>

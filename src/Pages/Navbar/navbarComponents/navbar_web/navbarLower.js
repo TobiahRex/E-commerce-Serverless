@@ -7,6 +7,7 @@ import NavbarLowerInfo from './navbar_web_nav/navbarNavs_info/navbarNavs_info';
 class NavbarLower extends PureComponent {
   static propTypes = {
     dropdownDisplay: PropTypes.bool.isRequired,
+    hideNavbarDropdown: PropTypes.func.isRequired,
   }
   static styles = {
     hidden: {

@@ -7,6 +7,7 @@ import NavbarNavsShopDropdnBottomthird from './navbarNavs_shop_dropdn_bottomThir
 class NavbarNavsShopDropdnContent extends PureComponent {
   static propTypes = {
     dropdownDisplay: PropTypes.bool.isRequired,
+    hideNavbarDropdown: PropTypes.func.isRequired,
   }
 
   render() {
@@ -18,7 +19,7 @@ class NavbarNavsShopDropdnContent extends PureComponent {
         <span className="shop-dropdown-content-parent">
           <NavbarNavsShopDropdnTopthird />
           <NavbarNavsShopDropdnMidthird />
-          <NavbarNavsShopDropdnBottomthird />
+          <NavbarNavsShopDropdnBottomthird hideNavbarDropdown={this.hideNavbarDropdown} />
         </span>
       </span>
     );
