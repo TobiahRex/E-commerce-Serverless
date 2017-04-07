@@ -3,21 +3,23 @@ import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  minHeight: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
 };
 
-function HomepageHeader({ minHeight }) {
+function HomepageHeader({ height }) {
   return (
-    <header className="homepage__header--img-src" style={{ minHeight }} >
-      <div className="homepage__header--inner-container">
-        <img src="../Images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
-        <div className="header__msg--container">
-          <h1 className="msg__title">Fastest Nicotine e-Juice Delivery In Japan</h1>
-          <h1 className="msg__subtitle">Guaranteed!</h1>
+    <header className="homepage__header--img-src" style={{ height }} >
+      <div className="header__upper">
+        <div className="header__inner-container">
+          <img src="../Images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
+          <div className="header__msg--container">
+            <h1 className="msg__title">Fastest Nicotine e-Juice Delivery In Japan</h1>
+            <h1 className="msg__subtitle">Guaranteed!</h1>
+          </div>
+          <button className="header__cta primary-button shutter-out-horizontal" onClick={() => browserHistory.push('/juices')}>
+            Buy Now
+          </button>
         </div>
-        <button className="header__cta primary-button shutter-out-horizontal" onClick={() => browserHistory.push('/juices')}>
-          Buy Now
-        </button>
       </div>
       <div className="header__nav-down--container">
         <FontAwesome

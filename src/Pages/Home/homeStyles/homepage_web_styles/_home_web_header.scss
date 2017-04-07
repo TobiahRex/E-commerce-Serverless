@@ -1,44 +1,60 @@
-.homepage__header--inner-container {
-  @extend .flex-center;
-  justify-content: space-around;
-  flex-direction: column;
-  border: 2px solid $p-red;
-  background-color: rgba(1,1,1, 0.5);
-  & .header__img-src {
-    content: $logo-one-line;
-    width: 40em;
-  }
-  & .header__msg--container {
-    @include prefixflex();
+.header__upper {
+  @include prefixflex();
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  & .header__inner-container {
+    @extend .flex-center;
+    justify-content: space-around;
     flex-direction: column;
-    align-items: center;
-    & .msg__title {
-      text-align: center;
-      color: $p-white;
-      line-height: 2.5em;
-      text-shadow: 0 2px 2px rgba(255,255,255,.3);
+    border: 2px solid $p-red;
+    background-color: rgba(1,1,1, 0.5);
+    & .header__img-src {
+      content: $logo-one-line;
+      width: 40em;
     }
-    & .msg__subtitle {
-      color: $p-white;
-      line-height: 1.5em;
-      text-shadow: 0 2px 2px rgba(255,255,255,.3);
+    & .header__msg--container {
+      @include prefixflex();
+      flex-direction: column;
+      align-items: center;
+      & .msg__title {
+        text-align: center;
+        color: $p-white;
+        line-height: 2.5em;
+        text-shadow: 0 2px 2px rgba(255,255,255,.3);
+      }
+      & .msg__subtitle {
+        color: $p-white;
+        line-height: 1.5em;
+        text-shadow: 0 2px 2px rgba(255,255,255,.3);
+      }
+    }
+    & .header__cta {
+      &:active {
+        outline: none;
+      }
     }
   }
-  & .header__cta {
-    &:active {
-      outline: none;
-    }
+}
+.header__nav-down--container {
+  @include prefixflex();
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex: 1;
+  & .header__nav-down {
+    color: $p-red;
+    text-shadow: 0px 3px 10px rgba(255,255,255, .5);
   }
 }
 
 @media only screen and (max-width: 930px) {
-  .homepage__header--inner-container {
+  .header__inner-container {
     width: 56.6rem;
     height: 35rem;
   }
 }
 @media only screen and (min-width: 931px) {
-  .homepage__header--inner-container {
+  .header__inner-container {
     width: 90rem;
     height: 45rem;
   }
