@@ -1,37 +1,38 @@
-.homepage-header-innner-container {
+.homepage__header--inner-container {
   @extend .flex-center;
   flex-direction: column;
-  width: 56.5em;
-  height: 40em;
   border: 2px solid $p-red;
   background-color: rgba(1,1,1, 0.5);
-  & .homepage-header-inner-container-img-src {
+  & .header__img-src {
     content: $logo-one-line;
     width: 40em;
   }
-  & .hompage-header-title-1 {
-    text-align: center;
-    color: $p-white;
-    line-height: 2.5em;
-    text-shadow: 0 2px 2px rgba(255,255,255,.3);
-  }
-  & .hompage-header-title-2 {
-    color: $p-white;
-    line-height: 1.5em;
-    text-shadow: 0 2px 2px rgba(255,255,255,.3);
-  }
-}
-
-@media (min-width: 1431px ) {
-  .homepage-header-innner-container {
-    width: 56.6rem
-    height: 40rem;
+  & .header__msg--container {
+    @include prefixflex();
+    justify-content: space-around;
+    & .msg__title {
+      text-align: center;
+      color: $p-white;
+      line-height: 2.5em;
+      text-shadow: 0 2px 2px rgba(255,255,255,.3);
+    }
+    & .msg__subtitle {
+      color: $p-white;
+      line-height: 1.5em;
+      text-shadow: 0 2px 2px rgba(255,255,255,.3);
+    }
   }
 }
 
-@media (max-width: 143rem) {
-  .homepage-header-innner-container {
-    width: 56.6rem
-    height: 40rem;
+@media only screen and (max-width: 930px) {
+  .homepage__header--inner-container {
+    width: 56.6rem;
+    height: 35rem;
+  }
+}
+@media only screen and (min-width: 931px) {
+  .homepage__header--inner-container {
+    width: 90rem;
+    height: 45rem;
   }
 }
