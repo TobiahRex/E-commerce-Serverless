@@ -18,10 +18,21 @@
   background-color: $p-white;
   & .homepage__header--img-src {
     @extend .flex-center;
+    flex-direction: column;
     width: 100%;
     background-image: $homepg-juices-pano;
     background-size: cover;
     background-position: center;
+    & .header__nav-down--container {
+      @include prefixflex();
+      justify-content: flex-end;
+      align-items: flex-end;
+      flex: 1;
+      & .header__nav-down {
+        color: $p-red;
+        text-shadow: 0px 3px 10px rgba(255,255,255, .5);
+      }
+    }
   }
 }
 

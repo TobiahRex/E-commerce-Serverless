@@ -24,6 +24,11 @@
       text-shadow: 0 2px 2px rgba(255,255,255,.3);
     }
   }
+  & .header__cta {
+    &:active {
+      outline: none;
+    }
+  }
 }
 
 @media only screen and (max-width: 930px) {
