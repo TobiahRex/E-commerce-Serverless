@@ -1,5 +1,6 @@
 .homepage__header--inner-container {
   @extend .flex-center;
+  justify-content: space-around;
   flex-direction: column;
   border: 2px solid $p-red;
   background-color: rgba(1,1,1, 0.5);
@@ -9,7 +10,8 @@
   }
   & .header__msg--container {
     @include prefixflex();
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
     & .msg__title {
       text-align: center;
       color: $p-white;

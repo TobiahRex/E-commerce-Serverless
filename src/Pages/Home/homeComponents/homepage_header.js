@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default function HomepageHeader() {
+const propTypes = {
+  minHeight: PropTypes.string.isRequired,
+};
+
+function HomepageHeader({ minHeight }) {
   return (
-    <header className="homepage__header-img-src">
+    <header className="homepage__header--img-src" style={{ minHeight }} >
       <div className="homepage__header--inner-container">
-        <img alt="NicJuice2Japan" className="header__img-src" />
+        <img src="../Images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
         <div className="header__msg--container">
           <h1 className="msg__title">Fastest Nicotine e-Juice Delivery In Japan</h1>
           <h1 className="msg__subtitle">Guaranteed!</h1>
@@ -16,6 +20,8 @@ export default function HomepageHeader() {
     </header>
   );
 }
+HomepageHeader.propTypes = propTypes;
+export default HomepageHeader;
 
 /*
 TODO
