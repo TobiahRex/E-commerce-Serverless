@@ -11,7 +11,7 @@ This component will receive 6 popular juice products.
 class NavbarNavsShopDropdnMidthird extends PureComponent {
   static propTypes = {
     popularJuices: PropTypes.arrayOf(PropTypes.object).isRequired,
-    hideNavbarDropdown: PropTypes.func.isRequired,
+    toggleNavbarDropdown: PropTypes.func.isRequired,
   }
 
   renderJuiceCards = (juices) => {
@@ -20,7 +20,7 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
         <NavbarNavsShopDropdnJuiceCards
           key={`shop-dropdown-content-midThird-juices-${i + 1}`}
           juiceInfo={juiceObj}
-          hideNavbarDropdown={this.props.hideNavbarDropdown}
+          toggleNavbarDropdown={this.props.toggleNavbarDropdown}
         />,
       );
     }

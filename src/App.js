@@ -41,7 +41,7 @@ class App extends Component {
 
     this.state = {
       ageVerified: props.ageVerified,
-      showNavbarDropdown:
+      showNavbarDropdown: false,
     };
   }
 
@@ -61,8 +61,8 @@ class App extends Component {
   })
 
   // -------------------------- Child Props ------------------------------------
-  hideNavbarDropdown = () => {
-    this.setState({ showNavbarDropdown: false });
+  toggleNavbarDropdown = () => {
+    this.setState({ showNavbarDropdown: !this.state.showNavbarDropdown });
   }
 
   verifyAge = (event) => {
@@ -88,7 +88,7 @@ class App extends Component {
             logoutUser={this.logoutUser}
             activeUser={this.props.activeUser}
             dropdownDisplay={this.state.showNavbarDropdown}
-            hideNavbarDropdown={this.hideNavbarDropdown}
+            toggleNavbarDropdown={this.toggleNavbarDropdown}
           />
           <NavbarMobile
             logoutUser={this.logoutUser}

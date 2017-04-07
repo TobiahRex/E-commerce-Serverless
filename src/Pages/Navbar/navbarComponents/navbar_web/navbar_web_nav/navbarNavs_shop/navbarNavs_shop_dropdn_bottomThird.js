@@ -8,13 +8,13 @@ import { browserHistory } from 'react-router';
 
 class NavbarNavsShopDropdnBottomthird extends PureComponent {
   static propTypes = {
-    hideNavbarDropdown: PropTypes.func.isRequired,
+    toggleNavbarDropdown: PropTypes.func.isRequired,
   }
 
-  hideNavbarDropdown = () => this.props.hideNavbarDropdown;
+  toggleNavbarDropdown = () => this.props.toggleNavbarDropdown;
 
   recommendClick = (location) => {
-    this.hideNavbarDropdown();
+    this.toggleNavbarDropdown();
     browserHistory.push(location);
   }
 

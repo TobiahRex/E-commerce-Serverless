@@ -7,7 +7,7 @@ import NavbarLowerInfo from './navbar_web_nav/navbarNavs_info/navbarNavs_info';
 class NavbarLower extends PureComponent {
   static propTypes = {
     dropdownDisplay: PropTypes.bool.isRequired,
-    hideNavbarDropdown: PropTypes.func.isRequired,
+    toggleNavbarDropdown: PropTypes.func.isRequired,
   }
   static styles = {
     hidden: {
@@ -21,15 +21,15 @@ class NavbarLower extends PureComponent {
       <div className="navbar-actionSection-lower">
         <NavbarLowerShop
           dropdownDisplay={this.props.dropdownDisplay}
-          hideNavbarDropdown={this.hideNavbarDropdown}
+          toggleNavbarDropdown={this.toggleNavbarDropdown}
         />
         <NavbarLowerMedia
           dropdownDisplay={this.props.dropdownDisplay}
-          hideNavbarDropdown={this.hideNavbarDropdown}
+          toggleNavbarDropdown={this.toggleNavbarDropdown}
         />
         <NavbarLowerInfo
           dropdownDisplay={this.props.dropdownDisplay}
-          hideNavbarDropdown={this.hideNavbarDropdown}
+          toggleNavbarDropdown={this.toggleNavbarDropdown}
         />
       </div>
     );
