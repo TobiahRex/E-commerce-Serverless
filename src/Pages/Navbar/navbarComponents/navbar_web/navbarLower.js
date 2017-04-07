@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 
 import NavbarLowerShop from './navbar_web_nav/navbarNavs_shop/navbarNavs_shop';
 import NavbarLowerMedia from './navbar_web_nav/navbarNavs_media/navbarNavs_media';
@@ -18,9 +18,18 @@ class NavbarLower extends PureComponent {
   render() {
     return (
       <div className="navbar-actionSection-lower">
-        <NavbarLowerShop />
-        <NavbarLowerMedia />
-        <NavbarLowerInfo />
+        <NavbarLowerShop
+          dropdownDisplay={this.props.dropdownDisplay}
+          hideNavbarDropdown={this.hideNavbarDropdown}
+        />
+        <NavbarLowerMedia
+          dropdownDisplay={this.props.dropdownDisplay}
+          hideNavbarDropdown={this.hideNavbarDropdown}
+        />
+        <NavbarLowerInfo
+          dropdownDisplay={this.props.dropdownDisplay}
+          hideNavbarDropdown={this.hideNavbarDropdown}
+        />
       </div>
     );
   }

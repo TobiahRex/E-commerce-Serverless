@@ -8,6 +8,7 @@ class NavbarWeb extends PureComponent {
     activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
     logoutUser: PropTypes.func.isRequired,
     dropdownDisplay: PropTypes.bool.isRequired,
+    hideNavbarDropdown: PropTypes.func.isRequired,
   }
   render() {
     return (
@@ -18,6 +19,7 @@ class NavbarWeb extends PureComponent {
             <NavbarActionSection
               activeUser={this.props.activeUser} logoutUser={this.props.logoutUser}
               dropdownDisplay={this.props.dropdownDisplay}
+              hideNavbarDropdown={this.hideNavbarDropdown}
             />
           </div>
         </div>

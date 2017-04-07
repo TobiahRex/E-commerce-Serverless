@@ -1,8 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
 class NavbarNavsShop extends PureComponent {
+  static propTypes = {
+    dropdownDisplay: PropTypes.bool.isRequired,
+  }
+
   render() {
     return (
       <div className="navbar-actionSection-lower-shop">
@@ -11,7 +15,7 @@ class NavbarNavsShop extends PureComponent {
             <span>SHOP</span>
           </div>
         </span>
-        <NavbarNavsShopDropdnContent />
+        <NavbarNavsShopDropdnContent dropdownDisplay={this.props.dropdownDisplay} />
       </div>
     );
   }

@@ -88,6 +88,7 @@ class App extends Component {
             logoutUser={this.logoutUser}
             activeUser={this.props.activeUser}
             dropdownDisplay={this.state.showNavbarDropdown}
+            hideNavbarDropdown={this.hideNavbarDropdown}
           />
           <NavbarMobile
             logoutUser={this.logoutUser}
