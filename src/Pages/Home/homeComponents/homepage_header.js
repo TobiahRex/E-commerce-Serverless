@@ -23,7 +23,7 @@ function HomepageHeader({ height }) {
       </div>
       <div className="header__nav-down--container">
         <FontAwesome
-          className="header__nav-down"
+          className="header__nav-down hover-bob"
           name="angle-double-down"
           size="5x"
         />
