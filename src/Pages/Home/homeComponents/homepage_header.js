@@ -21,9 +21,9 @@ function HomepageHeader({ height }) {
           </button>
         </div>
       </div>
-      <div className="header__nav-down--container">
+      <div className="header__nav-down--container hover-bob-active">
         <FontAwesome
-          className="header__nav-down hover-bob"
+          className="header__nav-down"
           name="angle-double-down"
           size="5x"
         />

@@ -153,7 +153,7 @@
 	}
 }
 
-@mixin bob {
+.hover-bob {
   display: inline-block;
   vertical-align: middle;
   @include prefixed(transform, perspective(1px) translateZ(0));
@@ -172,7 +172,7 @@
 		@include prefixed(animation-direction, "normal, alternate");
 	}
 }
-@mixin bob-active {
+.hover-bob-active {
   display: inline-block;
   vertical-align: middle;
   @include prefixed(transform, perspective(1px) translateZ(0));
@@ -185,9 +185,13 @@
   @include prefixed(animation-fill-mode, "forwards");
   @include prefixed(animation-direction, "normal, alternate");
 }
-@mixin float {
-	@include hacks();
-	@include prefixed(transition-duration, $mediumDuration);
+.hover-float {
+  display: inline-block;
+  vertical-align: middle;
+  @include prefixed(transform, perspective(1px) translateZ(0));
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+
+  @include prefixed(transition-duration, .3s);
 	@include prefixed(transition-property, transform);
 	@include prefixed(transition-timing-function, ease-out);
 
@@ -198,9 +202,9 @@
 	}
 }
 
-.#{$nameSpace}-bob {
-  @include bob();
-}
-.#{$nameSpace}-bob-active {
-  @include bob-active();
-}
+// .#{$nameSpace}-bob {
+//   @include bob();
+// }
+// .#{$nameSpace}-bob-active {
+//   @include bob-active();
+// }
