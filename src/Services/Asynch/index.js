@@ -115,4 +115,5 @@ export default function initiateActions(dispatch, history) {
     dispatch(mobileActions.orientationChanged({ screenSize }));
   }
   scrollToTop();
+  console.warn('@ Asynch/index.js', window.screen.availHeight);
 }

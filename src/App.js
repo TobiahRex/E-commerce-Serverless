@@ -62,7 +62,6 @@ class App extends Component {
     history.push('/home');
   };
   preRender = () => ({
-    minHeight: String(window.screen.availHeight - 100) || '946px',
     avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
   })
 
@@ -71,7 +70,7 @@ class App extends Component {
   logoutUser = () => console.info('USER LOGGED OUT!');
 
   render() {
-    const { avStyle, minHeight } = this.preRender();
+    const { avStyle } = this.preRender();
 
     return (
       <div id="yo">
@@ -83,12 +82,10 @@ class App extends Component {
           <NavbarWeb
             logoutUser={this.logoutUser}
             activeUser={this.props.activeUser}
-            minHeight={minHeight}
           />
           <NavbarMobile
             logoutUser={this.logoutUser}
             activeUser={this.props.activeUser}
-            minHeight={minHeight}
           />
         </header>
         <section id="main-section">

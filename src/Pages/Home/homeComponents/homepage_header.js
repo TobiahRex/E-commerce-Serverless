@@ -5,8 +5,10 @@ const propTypes = {
 };
 
 function HomepageHeader({ minHeight }) {
+  console.log('minHeight', minHeight);
+
   return (
-    <header className="homepage__header--img-src" style={{ minHeight }} >
+    <header className="homepage__header--img-src" style={{ minHeight: minHeight }} >
       <div className="homepage__header--inner-container">
         <img src="../Images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
         <div className="header__msg--container">
@@ -14,7 +16,7 @@ function HomepageHeader({ minHeight }) {
           <h1 className="msg__subtitle">Guaranteed!</h1>
         </div>
         <button className="header__cta primary-button shutter-out-horizontal">
-          Shop Now
+          Buy Now
         </button>
       </div>
     </header>
