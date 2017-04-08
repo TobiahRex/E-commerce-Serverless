@@ -8,6 +8,7 @@
     @include prefixflex();
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 90%;
     & h1.homepage-fastest-delivery-title {
       color: $p-red;

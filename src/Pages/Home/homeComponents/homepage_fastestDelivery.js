@@ -42,7 +42,7 @@ function HomepageFastestDelivery({ height }) {
           </div>
         </div>
       </div>
-      <NavBob className={'fastest-delivery__navBob'} height={height} />
+      <NavBob className={'fastest-delivery__navBob'} height={height * 2} />
     </div>
   );
 }

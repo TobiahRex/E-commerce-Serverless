@@ -1,10 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import NavBob from './navBob';
 
 import CarouselImageSlide from '../../../Components/CarouselImageSlide/carouselImageSlide';
 import CarouselNav from '../../../Components/carouselNav';
 
 class HomepageHowCarousel extends Component {
+  static defaultProps = {
+    screenSize: window.screen.availWidth,
+  }
   static propTypes = {
     screenSize: PropTypes.number,
     height: PropTypes.number.isRequired,
@@ -105,36 +109,40 @@ class HomepageHowCarousel extends Component {
         display: hasNext ? 'inline' : 'none',
       },
     };
+    const { height } = this.props;
     return (
-      <div className="homepage-how" style={{ height: this.props.height }}>
-        <h1 className="homepage-how-title">How?</h1>
-        <div className="homepage-how-carousel-container">
-          <div
-            style={stylesObj.slides}
-            className="homepage-how-carousel-container-slides"
-          >{this.renderCarouselSlides(maxWidth)}</div>
+      <div className="homepage-how" style={{ height }}>
+        <div className="how__content--container">
+          <h1 className="homepage-how-title">How?</h1>
+          <div className="homepage-how-carousel-container">
+            <div
+              style={stylesObj.slides}
+              className="homepage-how-carousel-container-slides"
+            >{this.renderCarouselSlides(maxWidth)}</div>
 
-          {/* NAVS */}
-          <CarouselNav
-            show={stylesObj.leftNav}
-            className="homepage-how-carousel"
-            name="left"
-            onNext={null}
-            onPrevious={this.handlePreviousClick}
-            hasPrevious={this.state.showIndex > 0}
-            hasNext={this.state.showIndex < this.state.numSlides - 1}
-          />
+            {/* NAVS */}
+            <CarouselNav
+              show={stylesObj.leftNav}
+              className="homepage-how-carousel"
+              name="left"
+              onNext={null}
+              onPrevious={this.handlePreviousClick}
+              hasPrevious={this.state.showIndex > 0}
+              hasNext={this.state.showIndex < this.state.numSlides - 1}
+            />
 
-          <CarouselNav
-            show={stylesObj.rightNav}
-            className="homepage-how-carousel"
-            name="right"
-            onNext={this.handleNextClick}
-            onPrevious={null}
-            hasPrevious={this.state.showIndex > 0}
-            hasNext={this.state.showIndex < this.state.numSlides - 1}
-          />
+            <CarouselNav
+              show={stylesObj.rightNav}
+              className="homepage-how-carousel"
+              name="right"
+              onNext={this.handleNextClick}
+              onPrevious={null}
+              hasPrevious={this.state.showIndex > 0}
+              hasNext={this.state.showIndex < this.state.numSlides - 1}
+            />
+          </div>
         </div>
+        <NavBob className={'fastest-delivery__navBob'} height={height * 3} />
       </div>
     );
   }

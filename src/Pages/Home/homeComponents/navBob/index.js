@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import Scroll from 'react-scroll';
 
+const scroll = Scroll.animateScroll;
 const propTypes = {
   height: PropTypes.number.isRequired,
   className: PropTypes.string.isRequired,
 };
 
 function NavBob({ height, className }) {
-  const scroll = Scroll.animateScroll;
   return (<div className={`${className} hover-bob-active`}>
     <button
       className="navBob__button"
