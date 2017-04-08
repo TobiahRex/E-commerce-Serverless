@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware } from 'react-router-redux';
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import apiActions from '../Redux/ApiRedux';
@@ -23,8 +23,12 @@ export default (rootReducer, rootSaga) => {
   sagaMiddleware.run(rootSaga);
 
   store.dispatch(apiActions.fetching());
+  const history = syncHistoryWithStore(browserHistory, store);
 
-  return store;
+  return {
+    store,
+    history,
+  };
 };
 
 /* Store Object Ref.
