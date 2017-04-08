@@ -11,7 +11,7 @@ function NavBob({ height, className }) {
   const scroll = Scroll.animateScroll;
   return (<div className={`${className} hover-bob-active`}>
     <button
-      className="nav-down__button"
+      className="navBob__button"
       onClick={() => scroll.scrollTo(height, {
         duration: 1500,
         delay: 100,

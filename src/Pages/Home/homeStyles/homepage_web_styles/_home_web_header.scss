@@ -43,25 +43,7 @@
   justify-content: center;
   align-items: flex-end;
   flex: 1;
-  & .nav-down__button {
-    border:none;
-    padding: 0;
-    margin: 0;
-    background: none;
-    &:focus {
-      outline: none;
-    }
-    & .button__icon {
-      font-weight: bold;
-      color: $p-red;
-      text-shadow: 0px 3px 10px rgba(255,255,255, .3);
-      cursor: pointer;
-      &:active,
-      &:hover {
-        color: $p-blue;
-      }
-    }
-  }
+  @extend .navBob;
 }
 
 @media only screen and (max-width: 930px) {
