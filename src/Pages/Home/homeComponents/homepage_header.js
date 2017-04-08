@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
-import NavBob from './homepage_navBob';
+import NavBob from './navBob';
 
 const propTypes = {
   height: PropTypes.number.isRequired,
