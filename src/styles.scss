@@ -119,6 +119,7 @@ a {
 @media (min-width: 931px) {
   #main-section {
     @include prefixflex();
+    justify-content: center;
     padding-top: 12rem;
     min-height: 52rem;
   }

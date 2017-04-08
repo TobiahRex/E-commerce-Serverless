@@ -47,7 +47,7 @@ class NavbarNavsShop extends Component {
 
   toggleNavbarDropdown = (urlSuffix) => {
     // document.getElementsByClassName('shop-dropdown-content')[0].style.display = 'none';
-    this.props.push(`/juices/${urlSuffix}`); //eslint-disable-line
+    this.props.push(`/juice/${urlSuffix}`); //eslint-disable-line
   }
 
   render() {
