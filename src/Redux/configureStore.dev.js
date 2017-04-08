@@ -1,19 +1,22 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { routerMiddleware } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import apiActions from '../Redux/ApiRedux';
 
 export default (rootReducer, rootSaga) => {
   const enhancers = [];
-  const middlewares = [];
-
   const sagaMiddleware = createSagaMiddleware();
-  middlewares.push(sagaMiddleware);
-  middlewares.push(createLogger());
+  const middlewares = [
+    sagaMiddleware,
+    routerMiddleware(browserHistory),
+    createLogger(),
+  ];
 
   enhancers.push(
     applyMiddleware(...middlewares),
-    window.devToolsExtension ? window.devToolsExtension() : f => f,
+    window.devToolsExtension ? window.devToolsExtension() : _ => _,
   );
 
   const store = createStore(rootReducer, compose(...enhancers));

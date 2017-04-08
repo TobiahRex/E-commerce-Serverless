@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { routerActions } from 'react-router-redux';
 import { Link } from 'react-router';
 
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
@@ -42,9 +45,9 @@ class NavbarNavsShop extends Component {
     };
   }
 
-  toggleNavbarDropdown = (e) => {
-    console.warn('ddn element = ', e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
-    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.getElementByClassName('shop-dropdown-content').style.display = 'none';
+  toggleNavbarDropdown = (urlSuffix) => {
+    // document.getElementsByClassName('shop-dropdown-content')[0].style.display = 'none';
+    this.props.push(`/juices/${urlSuffix}`); //eslint-disable-line
   }
 
   render() {
@@ -67,5 +70,7 @@ class NavbarNavsShop extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...routerActions }, dispatch);
 
-export default NavbarNavsShop;
+export default connect(null, mapDispatchToProps)(NavbarNavsShop);

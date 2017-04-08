@@ -22,16 +22,14 @@ function NavbarNavsShopDropdnJuiceCards(props) {
   return (
     <div className="shop-dropdown-content-midThird-juices-card" >
       <button
-        to={`/juice/${urlSuffix}`}
         className="shop-dropdown-content-midThird-juices-card-title"
-        onClick={event => toggleNavbarDropdown(event)}
+        onClick={() => toggleNavbarDropdown(urlSuffix)}
       >
         <h4>{title}</h4>
       </button>
       <button
-
         className="shop-dropdown-content-midThird-juices-card-image"
-        onClick={event => toggleNavbarDropdown(event)}
+        onClick={() => toggleNavbarDropdown(urlSuffix)}
       >
         <img
           className="shop-dropdown-content-midThird-juices-card-image-src"

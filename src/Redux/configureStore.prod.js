@@ -1,13 +1,16 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 import apiActions from '../Redux/ApiRedux';
 
 export default (rootReducer, rootSaga) => {
   const enhancers = [];
-  const middlewares = [];
-
   const sagaMiddleware = createSagaMiddleware();
-  middlewares.push(sagaMiddleware);
+  const middlewares = [
+    sagaMiddleware,
+    routerMiddleware(browserHistory),
+  ];
 
   enhancers.push(applyMiddleware(...middlewares));
 
@@ -15,8 +18,12 @@ export default (rootReducer, rootSaga) => {
   sagaMiddleware.run(rootSaga);
 
   store.dispatch(apiActions.fetching());
+  const history = syncHistoryWithStore(browserHistory, store);
 
-  return store;
+  return {
+    store,
+    history,
+  };
 };
 
 /* Store Object Ref.

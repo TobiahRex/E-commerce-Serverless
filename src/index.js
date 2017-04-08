@@ -4,16 +4,14 @@ import 'masonry-layout';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import './styles.scss';
+import { Router } from 'react-router';
 
 import createStore from './Redux/index';
 import initiateActions from './Services/Asynch';
 import routes from './Navigation/routes';
+import './styles.scss';
 
-const store = createStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const { store, history } = createStore();
 initiateActions(store.dispatch, history);
 
 render(
