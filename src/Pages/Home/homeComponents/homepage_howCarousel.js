@@ -7,6 +7,7 @@ import CarouselNav from '../../../Components/carouselNav';
 class HomepageHowCarousel extends Component {
   static propTypes = {
     screenSize: PropTypes.number,
+    height: PropTypes.number.isRequired,
   }
   constructor(props) {
     super(props);
@@ -105,7 +106,7 @@ class HomepageHowCarousel extends Component {
       },
     };
     return (
-      <div className="homepage-how">
+      <div className="homepage-how" style={{ height: this.props.height }}>
         <h1 className="homepage-how-title">How?</h1>
         <div className="homepage-how-carousel-container">
           <div

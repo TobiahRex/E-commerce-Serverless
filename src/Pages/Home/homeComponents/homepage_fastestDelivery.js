@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
-function HomepageFastestDelivery() {
+const propTypes = {
+  height: PropTypes.number.isRequired,
+};
+
+function HomepageFastestDelivery({ height }) {
   return (
-    <div className="homepage-fastest-delivery">
+    <div className="homepage-fastest-delivery" style={{ height }}>
       <h1 className="homepage-fastest-delivery-title">
         Fastest Delivery
       </h1>
@@ -38,5 +42,5 @@ function HomepageFastestDelivery() {
     </div>
   );
 }
-
+HomepageFastestDelivery.propTypes = propTypes;
 export default HomepageFastestDelivery;

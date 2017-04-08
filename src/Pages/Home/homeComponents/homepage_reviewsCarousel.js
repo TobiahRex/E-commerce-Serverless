@@ -7,8 +7,13 @@ import HomepageReviewsCarourselDots from '../../../Components/CarouselDots/carou
 let globalTimer;
 
 class HomepageReviewsCarousel extends Component {
+  static defaultProps = {
+    screenSize: window.screen.availWidth,
+  }
+
   static propTypes = {
     screenSize: PropTypes.string,
+    height: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -29,7 +34,6 @@ class HomepageReviewsCarousel extends Component {
 
   componentWillReceiveProps({ screenSize }) {
     const { maxWidth } = this.calcMaxWidth(screenSize, 0);
-    console.info('received new max width: ', maxWidth);
     this.setState({
       screenSize: Number(screenSize),
       maxWidth,
@@ -100,11 +104,11 @@ class HomepageReviewsCarousel extends Component {
 
   render() {
     const { showIndex, leftAdjust, maxWidth } = this.state;
-    let newMaxWidth = this.state.maxWidth;
+    let newMaxWidth = maxWidth;
     newMaxWidth = String(newMaxWidth);
 
     return (
-      <div className="homepage-reviews">
+      <div className="homepage-reviews" style={{ height: this.props.height }} >
         <h1 className="homepage-reviews-title">Reviews</h1>
         <div className="homepage-reviews-carousel-parent">
           <div className="homepage-reviews-carousel-container">

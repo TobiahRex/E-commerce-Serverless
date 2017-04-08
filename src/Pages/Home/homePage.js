@@ -19,12 +19,13 @@ function HomePage({ mobile }) {
     }
     return (window.screen.availHeight - 260);
   }
+  const height = calcHeight();
   return (
     <div className="homepage">
-      <HomepageHeader height={calcHeight()} />
-      <HomepageFastestDelivery />
-      <HomepageHowCarousel />
-      <HomepageReviewsCarousel />
+      <HomepageHeader height={height} />
+      <HomepageFastestDelivery height={height} />
+      <HomepageHowCarousel height={height} />
+      <HomepageReviewsCarousel height={height} />
       <HomepagePopJuices />
     </div>
   );
