@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
@@ -29,11 +30,10 @@ const dummyJuiceinfo = [{ // TODO - remove this dummy data.
 }];
 
 class NavbarNavsShop extends Component {
-  static propTypes = {
-    dropdownDisplay: PropTypes.bool.isRequired,
-    toggleNavbarDropdown: PropTypes.func.isRequired,
+  static styles = {
+    hide: 'hide',
+    show: '',
   }
-
   constructor(props) {
     super(props);
 
@@ -42,24 +42,25 @@ class NavbarNavsShop extends Component {
     };
   }
 
-  toggleNavbarDropdown = () => {
-    this.setState({ dropdownDisplay: !this.state.dropdownDisplay });
+  toggleNavbarDropdown = (e) => {
+    console.warn('ddn element = ', e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
+    e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.getElementByClassName('shop-dropdown-content').style.display = 'none';
   }
 
   render() {
     return (
-      <div
-        className="navbar-actionSection-lower-shop"
-        onEnter={() => this.toggleNavbarDropdown()}
-      >
-        <span className="shop-main-button ">
+      <div className="navbar-actionSection-lower-shop" >
+        <Link
+          to="/juices"
+          className="shop-main-button"
+        >
           <div className="shop-main-button-title">
             <span>SHOP</span>
           </div>
-        </span>
+        </Link>
+
         <NavbarNavsShopDropdnContent
           popJuices={dummyJuiceinfo}
-          dropdownDisplay={this.state.dropdownDisplay}
           toggleNavbarDropdown={this.toggleNavbarDropdown}
         />
       </div>

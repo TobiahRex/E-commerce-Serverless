@@ -18,7 +18,7 @@ function NavbarNavsShopDropdnMidthird(props) {
       <NavbarNavsShopDropdnJuiceCards
         key={`shop-dropdown-content-midThird-juices-${i + 1}`}
         juiceInfo={juiceObj}
-        toggleNavbarDropdown={this.props.toggleNavbarDropdown}
+        toggleNavbarDropdown={props.toggleNavbarDropdown}
       />),
     );
   }

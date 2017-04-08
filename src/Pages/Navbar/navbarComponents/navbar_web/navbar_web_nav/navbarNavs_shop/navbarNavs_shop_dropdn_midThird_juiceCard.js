@@ -16,26 +16,30 @@ const propTypes = {
 };
 
 function NavbarNavsShopDropdnJuiceCards(props) {
-  const toggleNavbarDropdown = () => props.toggleNavbarDropdown;
+  const toggleNavbarDropdown = e => props.toggleNavbarDropdown(e);
   const { title, imageSrc, urlSuffix } = props.juiceInfo;
 
   return (
-    <Link
-      onClick={() => toggleNavbarDropdown()}
-      to={`/juice/${urlSuffix}`}
-      className="shop-dropdown-content-midThird-juices-card"
-    >
-      <div className="shop-dropdown-content-midThird-juices-card-title">
+    <div className="shop-dropdown-content-midThird-juices-card" >
+      <button
+        to={`/juice/${urlSuffix}`}
+        className="shop-dropdown-content-midThird-juices-card-title"
+        onClick={event => toggleNavbarDropdown(event)}
+      >
         <h4>{title}</h4>
-      </div>
-      <div className="shop-dropdown-content-midThird-juices-card-image">
+      </button>
+      <button
+
+        className="shop-dropdown-content-midThird-juices-card-image"
+        onClick={event => toggleNavbarDropdown(event)}
+      >
         <img
           className="shop-dropdown-content-midThird-juices-card-image-src"
           src={imageSrc}
           alt={`${title} juice`}
         />
-      </div>
-    </Link>
+      </button>
+    </div>
   );
 }
 NavbarNavsShopDropdnJuiceCards.propTypes = propTypes;
