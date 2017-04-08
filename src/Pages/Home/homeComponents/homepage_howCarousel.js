@@ -142,7 +142,7 @@ class HomepageHowCarousel extends Component {
             />
           </div>
         </div>
-        <NavBob className={'fastest-delivery__navBob'} height={height * 3} />
+        <NavBob className={'how__navBob'} height={height * 3} />
       </div>
     );
   }
