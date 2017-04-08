@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
-  height: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
 };
 
 function HomepageHeader({ height }) {

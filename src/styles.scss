@@ -112,6 +112,10 @@ a {
   color: $p-white;
 }
 
+.hide {
+  display: none;
+}
+
 @media (min-width: 931px) {
   #main-section {
     @include prefixflex();

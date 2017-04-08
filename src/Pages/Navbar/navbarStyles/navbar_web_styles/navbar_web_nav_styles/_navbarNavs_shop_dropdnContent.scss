@@ -59,6 +59,9 @@
       border-bottom: 1px solid rgba(1,1,1,.2);
       & .shop-dropdown-content-midThird-title {
         @extend .flex-center;
+        padding: 0;
+        margin: 0;
+        border: none;
         width: 104em;
         height: 7.5em;
         background-color: #EEE;
@@ -101,7 +104,9 @@
             @extend .flex-center;
             height: 18em;
             width: 16em;
-            margin-top: .5em;
+            padding: 0;
+            margin: .5em 0 0 0;
+            border: none;
             & .shop-dropdown-content-midThird-juices-card-image-src {
               font-size: 10px;
               width: 12.5em;
