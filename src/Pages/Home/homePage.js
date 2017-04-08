@@ -14,7 +14,7 @@ const propTypes = {
 function HomePage({ mobile }) {
   function calcHeight() {
     if (!mobile) {
-      if (window.innerWidth > 930) return (946);
+      if (window.innerWidth > 930) return (886);
       return (797);
     }
     return (window.screen.availHeight - 260);

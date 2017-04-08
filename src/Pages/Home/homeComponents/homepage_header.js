@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import Scroll from 'react-scroll';
 
 const propTypes = {
   height: PropTypes.number.isRequired,
 };
 
 function HomepageHeader({ height }) {
+  const scroll = Scroll.animateScroll;
   return (
     <header className="homepage__header--img-src" style={{ height }} >
       <div className="header__upper">
@@ -22,7 +24,14 @@ function HomepageHeader({ height }) {
         </div>
       </div>
       <div className="header__nav-down--container hover-bob-active">
-        <button className="nav-down__button" onClick={() => console.warn('scroll down')}>
+        <button
+          className="nav-down__button"
+          onClick={() => scroll.scrollTo(886, {
+            duration: 1500,
+            delay: 100,
+            smooth: 'easeInOutQuint',
+          })}
+        >
           <FontAwesome
             className="button__icon"
             name="angle-double-down"
