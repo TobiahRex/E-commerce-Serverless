@@ -9,6 +9,7 @@
     align-items: center;
     flex-direction: column;
     height: 90%;
+    width: 100%;
     & h1.homepage-how-title {
       color: $p-red;
       line-height: 1.5em;
@@ -240,6 +241,6 @@
     justify-content: center;
     align-items: flex-end;
     flex: 1;
-    @extend .navBob
+    @extend .navBob;
   }
 }

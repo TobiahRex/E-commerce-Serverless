@@ -17,12 +17,12 @@ function HomePage({ mobile }) {
       if (window.innerWidth > 930) return (886);
       return (797);
     }
-    return (window.screen.availHeight - 260);
+    return (window.screen.availHeight - 60);
   }
   const height = calcHeight();
   return (
     <div className="homepage">
-      <HomepageHeader height={height} />
+      <HomepageHeader height={height - 207} />
       <HomepageFastestDelivery height={height} />
       <HomepageHowCarousel height={height} />
       <HomepageReviewsCarousel height={height} />

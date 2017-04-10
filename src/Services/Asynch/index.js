@@ -11,7 +11,7 @@ export function cleanS3Route({ replace }) {
   if (path) replace(path);
 }
 
-export function generateDynamicTitle(dispatch) {
+export function generateMobileTitle(dispatch) {
   const url = window.location.pathname;
   const path = url.replace(/[\/]/g, '_')
   .split('_');
@@ -62,25 +62,25 @@ export function setScreenSize(dispatch) {
   dispatch(mobileActions.setScreenWidth(screenSize));
 }
 
+function dispatchOrientation(dispatch, { orientation, height, width }) {
+  if (orientation) {
+    dispatch(mobileActions.orientationChanged({
+      angle: orientation.angle,
+      type: orientation.type,
+      height,
+      width,
+    }));
+  } else {
+    dispatch(mobileActions.orientationChanged({
+      height,
+      width,
+      angle: null,
+      type: null,
+    }));
+  }
+}
 export function orientationSpy(dispatch) {
-  window.removeEventListener('orientationchange');
-  window.addEventListener('orientationchange', () => {
-    if (screen.orientation) {
-      dispatch(mobileActions.orientationChanged({
-        angle: screen.orientation.angle,
-        type: screen.orientation.type,
-        height: screen.height,
-        width: screen.width,
-      }));
-    } else {
-      dispatch(mobileActions.orientationChanged({
-        height: screen.height,
-        width: screen.width,
-        angle: null,
-        type: null,
-      }));
-    }
-  });
+  window.addEventListener('orientationchange', dispatchOrientation(dispatch, screen));
 }
 
 export function getTaxRate(dispatch) {
@@ -91,30 +91,19 @@ function scrollToTop() {
   window.scrollTo(0, 1);
 }
 
-export default function initiateActions(dispatch, history) {
-  cleanS3Route(history);
-  generateDynamicTitle(dispatch);
-  saveGeoLocation(dispatch);
-  detectMobileDevice(dispatch);
-  setScreenSize(dispatch);
-  orientationSpy(dispatch);
-  getTaxRate(dispatch);
-  if (screen.orientation) {
-    dispatch(mobileActions.orientationChanged({
-      angle: screen.orientation.angle,
-      type: screen.orientation.type,
-      height: screen.height,
-      width: screen.width,
-    }));
+export default function initiateActions(dispatch, history, { startup }) {
+  if (startup) {
+    cleanS3Route(history);
+    generateMobileTitle(dispatch);
+    saveGeoLocation(dispatch);
+    detectMobileDevice(dispatch);
+    setScreenSize(dispatch);
+    orientationSpy(dispatch);
+    getTaxRate(dispatch);
+    scrollToTop();
   } else {
-    const screenSize = {
-      height: screen.height,
-      width: screen.width,
-      angle: null,
-      type: null,
-    };
-    dispatch(mobileActions.orientationChanged({ screenSize }));
+    cleanS3Route(history);
+    scrollToTop();
+    generateMobileTitle(dispatch);
   }
-  scrollToTop();
-  console.warn('@ Asynch/index.js', window.screen.availHeight);
 }

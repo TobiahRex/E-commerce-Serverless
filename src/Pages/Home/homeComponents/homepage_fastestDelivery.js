@@ -8,7 +8,10 @@ const propTypes = {
 
 function HomepageFastestDelivery({ height }) {
   return (
-    <div className="homepage-fastest-delivery" style={{ height }}>
+    <div
+      className="homepage-fastest-delivery"
+      style={{ height }}
+    >
       <div className="fastest-delivery__content--container">
         <h1 className="homepage-fastest-delivery-title">
           Fastest Delivery
@@ -42,7 +45,7 @@ function HomepageFastestDelivery({ height }) {
           </div>
         </div>
       </div>
-      <NavBob className={'fastest-delivery__navBob'} height={height * 2} />
+      <NavBob className={'fastest-delivery__navBob'} height={(window.screen.availHeight - 60) * 2} />
     </div>
   );
 }

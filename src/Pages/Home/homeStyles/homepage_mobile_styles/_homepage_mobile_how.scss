@@ -3,132 +3,147 @@
   flex-direction: column;
   height: 30em;
   width: 100%;
-  margin: 0 auto 5em auto;
-  & h1.homepage-how-title {
-    color: $p-red;
-    line-height: 1.5em;
-    margin: 1em;
-  }
-  & .homepage-how-carousel-container {
-    height: 24em;
-    width: 100%;
-    max-width: 34.6em;
-    background-color: $p-white;
-    overflow: hidden;
-    position: relative;
-    & .homepage-how-carousel-container-slides {
-      display: flex;
-      position: absolute;
-/*       left: -34.6em; */
-      transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-      & .homepage-how-carousel-couple,
-      .homepage-how-carousel-distro,
-      .homepage-how-carousel-warehouse,
-      .homepage-how-carousel-flight,
-      .homepage-how-carousel-truck,
-      .homepage-how-carousel-delivery {
-        & .homepage-how-carousel-couple-image,
-        & .homepage-how-carousel-distro-image,
-        & .homepage-how-carousel-warehouse-image,
-        & .homepage-how-carousel-flight-image,
-        & .homepage-how-carousel-truck-image,
-        & .homepage-how-carousel-delivery-image {
-          @extend .homepage-flex-bottom;
-          height: 24em;
-          max-width: 34.6em;
-/*           width: 100%; */
-          background-image: $img-carousel-couple;
-          background-size: cover;
-          background-repeat: no-repeat;
-          & .homepage-how-carousel-couple-description-container,
-          & .homepage-how-carousel-distro-description-container,
-          & .homepage-how-carousel-warehouse-description-container,
-          & .homepage-how-carousel-flight-description-container,
-          & .homepage-how-carousel-truck-description-container,
-          & .homepage-how-carousel-delivery-description-container {
-            @extend .homepage-flex-center;
-            height: 6.5em;
-            width: 34.6em;
-            background-color: rgba(1,1,1,.75);
-            margin-bottom: 3.5em;
-            & p {
-              max-width: 30em;
-              text-align: center;
-              color: $p-white;
-              font-size: 10px;
-              font-weight: 400;
-              line-height: 2em;
-            }
-          }
-          & .homepage-how-carousel-delivery-description-container {
-            height: 9em;
-            & a.homepage-how-carousel-delivery-buy-btn {
-              @extend .homepage-flex-center;
-              width: 10.66em;
-              height: 2.66em;
-              color: $p-white;
-              font-size: 1.5em;
-              font-family: $p-font;
-              font-weight: bold;
-              letter-spacing: .02em;
-              background-color: $p-red;
-              z-index: 1;
-              margin-top: 0;
-              cursor: pointer;
-              text-decoration: none;
-              @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
-            }
-          }
-        }
-        & .homepage-how-carousel-distro-image {
-          background-image: $img-carousel-distro;
-        }
-        & .homepage-how-carousel-warehouse-image {
-          background-image: $img-carousel-warehouse;
-        }
-        & .homepage-how-carousel-flight-image {
-          background-image: $img-carousel-flight;
-        }
-        & .homepage-how-carousel-truck-image {
-          background-image: $img-carousel-truck;
-        }
-        & .homepage-how-carousel-delivery-image {
-          background-image: $img-carousel-delivery;
-        }
-      }
+  margin: 0 auto;
+  & .how__content--container {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+    & h1.homepage-how-title {
+      color: $p-red;
+      line-height: 1.5em;
+      margin: 1em;
     }
-    & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
-      color: $p-white;
-      &:hover,
-      &:active,
-      &:focus {
-        &:after {
-          opacity: 1;
-        }
-      }
-      &:after, {
-        @extend .homepage-flex-center;
-        content: $fa-right-chevron-white;
-        // background: $fa-right-chevron-white no-repeat 0 9px;
-        background-size: content;
+    & .homepage-how-carousel-container {
+      height: 24em;
+      width: 100%;
+      max-width: 34.6em;
+      background-color: $p-white;
+      overflow: hidden;
+      position: relative;
+      & .homepage-how-carousel-container-slides {
+        display: flex;
         position: absolute;
-        top: 30%;
-        right: .7em;
-        height: 6em;
-        width: 3em;
-        background-color: rgba(1,1,1,.0);
-        opacity: 0.45;
-        transition: opacity .3s linear;
-        cursor: pointer;
+        /*       left: -34.6em; */
+        transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
+        & .homepage-how-carousel-couple,
+        .homepage-how-carousel-distro,
+        .homepage-how-carousel-warehouse,
+        .homepage-how-carousel-flight,
+        .homepage-how-carousel-truck,
+        .homepage-how-carousel-delivery {
+          & .homepage-how-carousel-couple-image,
+          & .homepage-how-carousel-distro-image,
+          & .homepage-how-carousel-warehouse-image,
+          & .homepage-how-carousel-flight-image,
+          & .homepage-how-carousel-truck-image,
+          & .homepage-how-carousel-delivery-image {
+            @extend .homepage-flex-bottom;
+            height: 24em;
+            max-width: 34.6em;
+            /*           width: 100%; */
+            background-image: $img-carousel-couple;
+            background-size: cover;
+            background-repeat: no-repeat;
+            & .homepage-how-carousel-couple-description-container,
+            & .homepage-how-carousel-distro-description-container,
+            & .homepage-how-carousel-warehouse-description-container,
+            & .homepage-how-carousel-flight-description-container,
+            & .homepage-how-carousel-truck-description-container,
+            & .homepage-how-carousel-delivery-description-container {
+              @extend .homepage-flex-center;
+              height: 6.5em;
+              width: 34.6em;
+              background-color: rgba(1,1,1,.75);
+              margin-bottom: 3.5em;
+              & p {
+                max-width: 30em;
+                text-align: center;
+                color: $p-white;
+                font-size: 10px;
+                font-weight: 400;
+                line-height: 2em;
+              }
+            }
+            & .homepage-how-carousel-delivery-description-container {
+              height: 9em;
+              & a.homepage-how-carousel-delivery-buy-btn {
+                @extend .homepage-flex-center;
+                width: 10.66em;
+                height: 2.66em;
+                color: $p-white;
+                font-size: 1.5em;
+                font-family: $p-font;
+                font-weight: bold;
+                letter-spacing: .02em;
+                background-color: $p-red;
+                z-index: 1;
+                margin-top: 0;
+                cursor: pointer;
+                text-decoration: none;
+                @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+              }
+            }
+          }
+          & .homepage-how-carousel-distro-image {
+            background-image: $img-carousel-distro;
+          }
+          & .homepage-how-carousel-warehouse-image {
+            background-image: $img-carousel-warehouse;
+          }
+          & .homepage-how-carousel-flight-image {
+            background-image: $img-carousel-flight;
+          }
+          & .homepage-how-carousel-truck-image {
+            background-image: $img-carousel-truck;
+          }
+          & .homepage-how-carousel-delivery-image {
+            background-image: $img-carousel-delivery;
+          }
+        }
+      }
+      & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
+        color: $p-white;
+        &:hover,
+        &:active,
+        &:focus {
+          &:after {
+            opacity: 1;
+          }
+        }
+        &:after, {
+          @extend .homepage-flex-center;
+          content: $fa-right-chevron-white;
+          // background: $fa-right-chevron-white no-repeat 0 9px;
+          background-size: content;
+          position: absolute;
+          top: 30%;
+          right: .7em;
+          height: 6em;
+          width: 3em;
+          background-color: rgba(1,1,1,.0);
+          opacity: 0.45;
+          transition: opacity .3s linear;
+          cursor: pointer;
+        }
+      }
+      & .homepage-how-carousel-left-arrow {
+        color: $p-white;
+        &:after {
+          @extend .homepage-flex-center;
+          content: $fa-left-chevron-white;
+          left: .7em;
+        }
       }
     }
-    & .homepage-how-carousel-left-arrow {
-      color: $p-white;
-      &:after {
-        @extend .homepage-flex-center;
-        content: $fa-left-chevron-white;
-        left: .7em;
-      }
-    }
+
+  }
+  & .how__navBob {
+    @include prefixflex();
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+    @extend .navBob_mobile;
   }
 }

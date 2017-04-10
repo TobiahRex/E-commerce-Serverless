@@ -3,7 +3,7 @@
 ### asynchDispatchServices.js
 
 ##### List of Services
-  - _generateDynamicTitle_: Generates Mobile Navbar Title.  Generates a Title based on the react-router address.
+  - _generateMobileTitle_: Generates Mobile Navbar Title.  Generates a Title based on the react-router address.
   - _saveGeolocation_: Saves User IP info.  The backend makes an API request to _ipinfo.io_ which supplies the users IP address and browser info the this service via sockets.
   - _setMobileDevice_:  Detects & saves type of mobile device.
   - _setScreenSize_: Finds the device with and saves.

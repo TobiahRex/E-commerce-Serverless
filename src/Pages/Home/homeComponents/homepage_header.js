@@ -21,7 +21,7 @@ function HomepageHeader({ height }) {
           </button>
         </div>
       </div>
-      <NavBob className={'header__nav-down--container'} height={height} />
+      <NavBob className={'header__nav-down--container'} height={window.screen.availHeight - 60} />
     </header>
   );
 }

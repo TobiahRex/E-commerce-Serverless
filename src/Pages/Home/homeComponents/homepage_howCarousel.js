@@ -27,8 +27,7 @@ class HomepageHowCarousel extends Component {
   }
 
   componentWillReceiveProps({ screenSize }) {
-    const screen = screenSize;
-    this.setState({ screenSize: screen });
+    this.setState({ screenSize });
   }
 
   handlePreviousClick = () => {
@@ -71,14 +70,14 @@ class HomepageHowCarousel extends Component {
       desc: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
       alt: 'Delivered',
     }];
-    return slideDescs.map((slideObj, i) => (
+    return slideDescs.map(({ name, desc, alt }) => (
       <CarouselImageSlide
         maxWidth={maxWidth}
-        key={`homepage-how-carousel-${i}`}
+        key={`homepage-how-carousel-${name}-${Date.now()}`}
         className="homepage-how-carousel"
-        name={slideObj.name}
-        description={slideObj.desc}
-        alt={slideObj.alt}
+        name={name}
+        description={desc}
+        alt={alt}
       />
     ));
   }
@@ -142,7 +141,7 @@ class HomepageHowCarousel extends Component {
             />
           </div>
         </div>
-        <NavBob className={'how__navBob'} height={height * 3} />
+        <NavBob className={'how__navBob'} height={(window.screen.availHeight - 60) * 3} />
       </div>
     );
   }

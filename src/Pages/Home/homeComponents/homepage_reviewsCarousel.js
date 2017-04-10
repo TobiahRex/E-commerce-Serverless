@@ -151,7 +151,7 @@ class HomepageReviewsCarousel extends Component {
             handleClick={this.handleClick}
           />
         </div>
-        <NavBob className={'reviews__navBob'} height={height * 4} />
+        <NavBob className={'reviews__navBob'} height={(window.screen.availHeight - 60) * 4} />
       </div>
     );
   }

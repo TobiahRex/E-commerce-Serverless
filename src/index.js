@@ -12,16 +12,16 @@ import routes from './Navigation/routes';
 import './styles.scss';
 
 const { store, history } = createStore();
-initiateActions(store.dispatch, history);
+initiateActions(store.dispatch, history, { startup: true });
 
 render(
   <Provider store={store} >
     <Router
       history={history}
       routes={routes}
-      onUpdate={() => initiateActions(store.dispatch, history)}
+      onUpdate={() =>
+        initiateActions(store.dispatch, history, { startup: false })}
     />
-  </Provider >
-  ,
+  </Provider >,
   document.getElementById('app'),
 );
