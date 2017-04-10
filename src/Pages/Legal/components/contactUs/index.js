@@ -22,7 +22,12 @@ export default function ContactUs() {
         <h1>Contact Us</h1>
       </div>
       <div className="main__body">
-        <form action="submit" onSubmit={e => console.warn(e)}>
+        <form
+          action="submit"
+          onSubmit={(e) => {
+            e.preventDefault(); console.info('form submit');
+          }}
+        >
           <div className="body__name--container">
             <label htmlFor="name__input" className="name__label">Name</label>
             <input
@@ -62,7 +67,11 @@ export default function ContactUs() {
             <label htmlFor="email-copy__checkbox" className="message__label">Send a copy of this email to yourself.</label>
           </div>
           <div className="body__submit-button--container">
-            <button className="submit-button">
+            <button
+              className="submit-button"
+              type="submit"
+              onClick={() => console.info('clicked submit button')}
+            >
               Send
             </button>
           </div>
