@@ -12,17 +12,22 @@ const propTypes = {
 };
 
 function HomePage({ mobile }) {
-  function calcHeight() {
-    if (!mobile) {
-      if (window.innerWidth > 930) return (886);
-      return (797);
-    }
-    return (window.screen.availHeight - 60);
-  }
-  const height = calcHeight();
+  let height,
+    calcHeight = (header) => {
+      height = window.screen.availHeight;
+      if (!mobile) {
+        if (window.innerWidth > 930) return (window.screen.availHeight - 120);
+        return (797);
+      }
+      if (header) {
+        return (height - 207);
+      }
+      return (window.screen.availHeight - 60);
+    };
+  height = calcHeight();
   return (
     <div className="homepage">
-      <HomepageHeader height={height - 207} />
+      <HomepageHeader height={calcHeight('header')} />
       <HomepageFastestDelivery height={height} />
       <HomepageHowCarousel height={height} />
       <HomepageReviewsCarousel height={height} />
