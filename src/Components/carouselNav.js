@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
 
 const defaultProps = {
   onNext: null,
@@ -35,7 +34,7 @@ function CarouselNav({
       href=""
       id={name}
       onClick={handleClick}
-      className={`${className}-${name}-arrow`}
+      className={`${className}-${name}-arrow ping-nav`}
     >{''}</a>
   );
 }

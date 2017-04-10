@@ -212,14 +212,12 @@
         &:after, {
           @extend .flex-center;
           content: $fa-right-chevron-white;
-          // content: '\f054';
-          // font-family: 'FontAwesome';
           position: absolute;
           top: 50%;
           right: 1.5em;
-          height: 9em;
-          width: 6em;
-          // background-color: rgba(1,1,1,.75);
+          height: 8em;
+          width: 5em;
+          @extend .ping-nav;
           opacity: 0.45;
           transition: opacity .3s linear;
           cursor: pointer;
