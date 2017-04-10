@@ -12,6 +12,7 @@ class HomepageHowCarousel extends Component {
   static propTypes = {
     screenSize: PropTypes.number,
     height: PropTypes.number.isRequired,
+    mobile: PropTypes.bool.isRequired,
   }
   constructor(props) {
     super(props);
@@ -141,7 +142,10 @@ class HomepageHowCarousel extends Component {
             />
           </div>
         </div>
-        <NavBob className={'how__navBob'} height={(window.screen.availHeight - 60) * 3} />
+        <NavBob
+          className={'how__navBob'}
+          height={height * 3}
+        />
       </div>
     );
   }

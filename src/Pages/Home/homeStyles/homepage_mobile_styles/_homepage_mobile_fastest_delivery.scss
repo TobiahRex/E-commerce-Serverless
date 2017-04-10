@@ -33,7 +33,7 @@
       flex-direction: column;
       width: 28em;
       height: 27.5em;
-      margin: 1em auto 3em auto;
+      margin: 1em auto 0 auto;
       padding: 1em;
       background-color: $p-white;
       @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));

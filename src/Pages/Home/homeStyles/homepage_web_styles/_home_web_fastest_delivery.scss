@@ -19,7 +19,6 @@
       @extend .flex-center;
       height: 31em;
       width: 100%;
-      margin-bottom: 5em;
       & .homepage-fastest-delivery-description-image {
         content: $img-fastest;
         width: 46em;
@@ -31,7 +30,7 @@
         flex-direction: column;
         width: 43em;
         height: 27.5em;
-        margin: 1.1em;
+        margin-top: 1em;
         padding: 1.5em;
         background-color: $p-white;
         @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));

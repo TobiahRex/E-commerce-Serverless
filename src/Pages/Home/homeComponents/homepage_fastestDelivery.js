@@ -2,11 +2,16 @@ import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
-const propTypes = {
-  height: PropTypes.number.isRequired,
+const defaultProps = {
+  mobile: false,
 };
 
-function HomepageFastestDelivery({ height }) {
+const propTypes = {
+  height: PropTypes.number.isRequired,
+  mobile: PropTypes.bool,
+};
+
+function HomepageFastestDelivery({ height, mobile }) {
   return (
     <div
       className="homepage-fastest-delivery"
@@ -45,9 +50,13 @@ function HomepageFastestDelivery({ height }) {
           </div>
         </div>
       </div>
-      <NavBob className={'fastest-delivery__navBob'} height={(window.screen.availHeight - 60) * 2} />
+      <NavBob
+        className={'fastest-delivery__navBob'}
+        height={height * 2}
+      />
     </div>
   );
 }
+HomepageFastestDelivery.defaultProps = defaultProps;
 HomepageFastestDelivery.propTypes = propTypes;
 export default HomepageFastestDelivery;
