@@ -31,6 +31,7 @@
         width: 43em;
         height: 27.5em;
         margin-top: 1em;
+        margin-bottom: 1em;
         padding: 1.5em;
         background-color: $p-white;
         @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
