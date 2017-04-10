@@ -103,7 +103,8 @@
           }
         }
       }
-      & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
+      & .homepage-how-carousel-left-arrow,
+      .homepage-how-carousel-right-arrow {
         color: $p-white;
         &:hover,
         &:active,
@@ -115,18 +116,19 @@
         &:after, {
           @extend .homepage-flex-center;
           content: $fa-right-chevron-white;
-          // background: $fa-right-chevron-white no-repeat 0 9px;
           background-size: content;
           position: absolute;
           top: 30%;
           right: .7em;
           height: 6em;
           width: 3em;
-          background-color: rgba(1,1,1,.0);
           opacity: 0.45;
           transition: opacity .3s linear;
           cursor: pointer;
         }
+      }
+      & .homepage-how-carousel-right-arrow {
+        animation: pulse 3s ease-in-out infinite;
       }
       & .homepage-how-carousel-left-arrow {
         color: $p-white;

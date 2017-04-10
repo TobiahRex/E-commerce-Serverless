@@ -217,11 +217,13 @@
           right: 1.5em;
           height: 8em;
           width: 5em;
-          @extend .ping-nav;
           opacity: 0.45;
           transition: opacity .3s linear;
           cursor: pointer;
         }
+      }
+      & .homepage-how-carousel-right-arrow {
+        @extend .ping-nav;
       }
       & .homepage-how-carousel-left-arrow {
         color: $p-red;
