@@ -22,7 +22,7 @@ function HomepageHeader({ height }) {
         </div>
       </div>
       <NavBob
-        className={'header__nav-down--container'} height={height + 207}
+        className={'header__nav-down--container'} height={height}
       />
     </header>
   );
