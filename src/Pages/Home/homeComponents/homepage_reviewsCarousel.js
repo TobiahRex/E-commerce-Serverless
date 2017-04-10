@@ -10,13 +10,11 @@ let globalTimer;
 class HomepageReviewsCarousel extends Component {
   static defaultProps = {
     screenSize: window.screen.availWidth,
-    mobile: false,
   }
 
   static propTypes = {
     screenSize: PropTypes.string,
     height: PropTypes.number.isRequired,
-    mobile: PropTypes.bool,
   }
 
   constructor(props) {

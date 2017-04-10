@@ -3,15 +3,13 @@ import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
 const defaultProps = {
-  mobile: false,
 };
 
 const propTypes = {
   height: PropTypes.number.isRequired,
-  mobile: PropTypes.bool,
 };
 
-function HomepageFastestDelivery({ height, mobile }) {
+function HomepageFastestDelivery({ height }) {
   return (
     <div
       className="homepage-fastest-delivery"

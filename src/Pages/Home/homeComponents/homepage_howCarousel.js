@@ -12,7 +12,6 @@ class HomepageHowCarousel extends Component {
   static propTypes = {
     screenSize: PropTypes.number,
     height: PropTypes.number.isRequired,
-    mobile: PropTypes.bool.isRequired,
   }
   constructor(props) {
     super(props);
