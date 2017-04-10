@@ -1,26 +1,31 @@
 @media only screen and (max-width: 930px) {
 // @media only screen and (max-width: 640px) {
   .age-verification {
+    height: 100%;
+    width: 100%;
     z-index: 10;
     justify-content: center;
     position: fixed;
     display: none;
-    padding: 7px;
-    height: 100%;
+    padding-top: 2rem;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: rgba(1,1,1,.9);
+    box-sizing: border-box;
     & .age-verification-modal {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      max-width: 38.6em;
       max-height: 40em;
-      width: 26.6em;
+      max-width: 80%;
       padding: 1.5em;
       margin: 10% auto;
       background-color: #FFFFFF;
       & .age-verification-logo-img {
         content: $logo-one-line;
+        max-width: 100%;
         width: 27em;
         height: 4em;
         margin: 3em auto 5em auto;

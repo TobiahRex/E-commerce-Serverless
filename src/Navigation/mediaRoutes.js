@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
-import About from '../Pages/Legal/about';
+import About from '../Pages/Legal/about/';
 import ContactUs from '../Pages/Legal/contactUs';
 import Phone from '../Pages/Legal/phone';
 import UserStories from '../Pages/Media/userStories';

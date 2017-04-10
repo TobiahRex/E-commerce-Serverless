@@ -176,31 +176,31 @@ export default function AllProducts() {
                       5
                     </button>
                   </li>
-                  <li className="pagination__number">
+                  {/* <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       6
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       7
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       8
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       9
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       10
                     </button>
-                  </li>
+                  </li> */}
                   <li className="pagination__next">
                     <button className="next--icon">
                       <FontAwesome name="angle-right" />
