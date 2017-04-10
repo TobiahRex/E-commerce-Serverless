@@ -22,7 +22,7 @@ export default function ContactUs() {
         <h1>Contact Us</h1>
       </div>
       <div className="main__body">
-        <form action="submit">
+        <form action="submit" onSubmit={e => console.warn(e)}>
           <div className="body__name--container">
             <label htmlFor="name__input" className="name__label">Name</label>
             <input
@@ -30,6 +30,7 @@ export default function ContactUs() {
               type="text"
               value="Your Name"
               className="name__input"
+              onChange={e => console.info(e.target.value)}
             />
           </div>
           <div className="body__email--container">
@@ -37,8 +38,9 @@ export default function ContactUs() {
             <input
               id="email__input"
               type="text"
-              value="Your Name"
+              value="your@email.com"
               className="email__input"
+              onChange={e => console.info(e.target.value)}
             />
           </div>
           <div className="body__message--container">
@@ -46,18 +48,23 @@ export default function ContactUs() {
             <input
               id="message__input"
               type="text"
-              value="Your Name"
+              value="NJ2JP is awesome!"
               className="message__input"
+              onChange={e => console.info(e.target.value)}
             />
           </div>
           <div className="body__send-copy">
             <input
               id="email-copy__checkbox"
               type="checkbox"
-              value="Your Name"
               className="email-copy__checkbox"
             />
             <label htmlFor="email-copy__checkbox" className="message__label">Send a copy of this email to yourself.</label>
+          </div>
+          <div className="body__submit-button--container">
+            <button className="submit-button">
+              Send
+            </button>
           </div>
         </form>
       </div>

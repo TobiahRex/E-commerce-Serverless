@@ -17,6 +17,11 @@ const devConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
+  stats: {
+    color: true,
+    reasons: true,
+    chunks: true,
+  },
   entry: {
     app: [
       'webpack-hot-middleware/client?reload=true',
@@ -78,6 +83,11 @@ const devConfig = {
 const prodConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
+  },
+  stats: {
+    color: true,
+    reasons: true,
+    chunks: true,
   },
   // entry: [
   //   // './src/styles.scss',
