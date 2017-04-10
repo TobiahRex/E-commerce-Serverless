@@ -34,7 +34,7 @@ function HomePage({ mobile }) {
 HomePage.propTypes = propTypes;
 
 const mapStateToProps = ({ mobile }) => ({
-  mobile: mobile.mobileType || false,
+  mobile: mobile.mobileType && true,
 });
 
 export default connect(mapStateToProps, null)(HomePage);

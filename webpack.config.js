@@ -43,7 +43,7 @@ const devConfig = {
         removeComments: true,
         collapseWhitespace: true,
       },
-      inject: true,
+      inject: false,
       filename: './index.html',
     }),
     new webpack.LoaderOptionsPlugin({
