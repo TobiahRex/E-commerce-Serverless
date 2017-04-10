@@ -1,6 +1,5 @@
 @media only screen and (max-width : 930px) {
-// @media only screen and (max-width : 640px) {
-  .about-us__main {
+  .contact-us__main {
     width: 100%;
     & .main__breadcrumb--container {
       @include prefixflex();
