@@ -197,12 +197,10 @@
           }
         }
       }
-      & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
-        // @extend .flex-center;
-        // & span {
-        //   color: $p-white;
-        // }
-        color: $p-white;
+      & .homepage-how-carousel-left-arrow,
+      .homepage-how-carousel-right-arrow {
+        color: $p-red;
+        text-shadow: 0 0px 10px rgba(0,0,0,.1);
         &:hover,
         &:active,
         &:focus {
@@ -213,22 +211,22 @@
         &:after, {
           @extend .flex-center;
           content: $fa-right-chevron-white;
+          // content: '\f054';
+          // font-family: 'FontAwesome';
           position: absolute;
           top: 50%;
           right: 1.5em;
           height: 9em;
           width: 6em;
-          background-color: rgba(1,1,1,.75);
+          // background-color: rgba(1,1,1,.75);
           opacity: 0.45;
           transition: opacity .3s linear;
           cursor: pointer;
         }
       }
       & .homepage-how-carousel-left-arrow {
-        // & span {
-        //   color: $p-white;
-        // }
-        color: $p-white;
+        color: $p-red;
+        text-shadow: 0 3px 10px rgba(0,0,0,.1);
         &:after {
           @extend .flex-center;
           content: $fa-left-chevron-white;

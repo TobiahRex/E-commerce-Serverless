@@ -1,11 +1,17 @@
 import React, { PropTypes } from 'react';
+import FontAwesome from 'react-fontawesome';
+
+const defaultProps = {
+  onNext: null,
+  onPrevious: null,
+};
 
 const propTypes = {
   className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onNext: PropTypes.func,
   onPrevious: PropTypes.func,
-  show: PropTypes.objectOf(PropTypes.string.isRequired),
+  show: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 function CarouselNav({
@@ -34,6 +40,7 @@ function CarouselNav({
   );
 }
 
+CarouselNav.defaultProps = defaultProps;
 CarouselNav.propTypes = propTypes;
 export default CarouselNav;
 

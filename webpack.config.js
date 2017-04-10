@@ -19,6 +19,7 @@ const devConfig = {
   },
   entry: {
     app: [
+      './tools/fontAwesome/fontAwesome.min.css',
       'webpack-hot-middleware/client?reload=true',
       path.resolve('./src/index'),
     ],

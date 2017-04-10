@@ -63,6 +63,7 @@ export function setScreenSize(dispatch) {
 }
 
 export function orientationSpy(dispatch) {
+  window.removeEventListener('orientationchange');
   window.addEventListener('orientationchange', () => {
     if (screen.orientation) {
       dispatch(mobileActions.orientationChanged({
