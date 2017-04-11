@@ -187,14 +187,13 @@
               height: 6em;
               width: 6em;
               background-color: $p-blue;
-              transition: all .3s ease-in-out;
+              transition: all .5s ease-in-out;
               cursor: pointer;
               margin-left: .5em;
-              box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               &:hover,
               &:active,
               &:focus {
-                background-color: $p-red;
+                box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               }
               & span {
                 color: $p-white;
