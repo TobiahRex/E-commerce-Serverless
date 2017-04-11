@@ -306,6 +306,13 @@
                 }
               }
             }
+            & .register-recaptcha {
+              @include prefixflex();
+              justify-content: center;
+              width: 100%;
+              padding-top: 2em;
+              padding-bottom: 2em;
+            }
           }
         }
       }
