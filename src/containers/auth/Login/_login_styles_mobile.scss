@@ -127,7 +127,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
-        padding-top: 2em;
+        padding-bottom: 2em;
         & .login-btn {
           height: 3.12em;
           width: 15.62em;
@@ -145,7 +145,7 @@
         @include prefixflex();
         justify-content: center;
         padding-top: 1em;
-        padding-bottom: 3em;
+        padding-bottom: 1em;
       }
       & .sign-in__social--container {
         @include prefixflex();

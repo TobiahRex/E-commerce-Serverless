@@ -95,16 +95,16 @@ class Login extends Component {
               </label>
               <input type="password" id="password-input" className="password__input--password" />
             </div>
+            <div className="form__login-recaptcha">
+              <RecaptchaWidget verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb} />
+              {/* TODO: Create an API request to verify this recptcha on form submit. */}
+            </div>
             <div className="form__login-btn">
               <button
                 type="button"
                 className="login-btn primary-button sweep-right"
                 onClick={() => console.info('Login Submit')}
               >Login</button>
-            </div>
-            <div className="form__login-recaptcha">
-              <RecaptchaWidget verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb} />
-              {/* TODO: Create an API request to verify this recptcha on form submit. */}
             </div>
           </form>
           <div className="sign-in__action-btns">
