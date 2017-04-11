@@ -9,6 +9,7 @@ export default {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     PORT: JSON.stringify(3000),
     BASE_URL: JSON.stringify(process.env.BASE_URL),
+    RECAPTCHA_KEY: JSON.stringify(process.env.RECAPTCHA_KEY),
   },
   production: {
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
@@ -16,5 +17,6 @@ export default {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     PORT: JSON.stringify(process.env.PORT),
     DEPLOY_URL: JSON.stringify(process.env.DEPLOY_URL),
+    RECAPTCHA_KEY: JSON.stringify(process.env.RECAPTCHA_KEY),
   },
 };

@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
-
-import AuthService from '../../../services/utils/authService';
+import Recaptcha from 'react-recaptcha';
 
 class Login extends Component {
   static propTypes = {
-    location: PropTypes.objectOf(PropTypes.any).isRequired,
-    auth: PropTypes.instanceOf(AuthService).isRequired,
+    // location: PropTypes.objectOf(PropTypes.any).isRequired,
+    route: PropTypes.objectOf(PropTypes.any).isRequired,
   }
   constructor(props) {
     super(props);
@@ -17,8 +16,11 @@ class Login extends Component {
       password: '',
     };
   }
+  recaptchaVerifyCb = response => console.info('Recaptch Info: ', response);
 
-  login = () => this.props.auth.login();
+  recaptchaOnLoadCb = () => console.info('Recapch DONE!');
+
+  login = () => this.props.route.auth.login();
 
   render() {
     return (
@@ -40,22 +42,22 @@ class Login extends Component {
           <div className="sign-in__social--container">
             <div className="social--title">
               <div className="social--title-msg">
-                <p>Login with your Social Network</p>
+                <h5>Login with your Social Network</h5>
               </div>
             </div>
             <div className="social--btns__list">
               <ul className="list--container">
-                <li className="list--option">
+                <li className="list--option facebook">
                   <FontAwesome name="facebook" />
                 </li>
-                <li className="list--option">
-                  <FontAwesome name="instagram" />
-                </li>
-                <li className="list--option">
+                <li className="list--option twitter">
                   <FontAwesome name="twitter" />
                 </li>
-                <li className="list--option">
-                  <FontAwesome name="google" />
+                <li className="list--option google">
+                  <FontAwesome name="google-plus" />
+                </li>
+                <li className="list--option linkedin">
+                  <FontAwesome name="linkedin" />
                 </li>
               </ul>
               <div className="list__forgot-msg">
@@ -91,12 +93,20 @@ class Login extends Component {
               </label>
               <input type="password" id="password-input" className="password__input--password" />
             </div>
-            <div className="form--login-btn">
+            <div className="form__login-btn">
               <button
                 type="button"
                 className="login-btn primary-button sweep-right"
                 onClick={() => console.info('Login Submit')}
               >Login</button>
+            </div>
+            <div className="form__login-recaptcha">
+              <Recaptcha
+                sitekey={process.env.RECAPTCHA_KEY}
+                render="explicit"
+                verifyCallback={this.recaptchaVerifyCb}
+                onloadCallback={this.recaptchaOnLoadCb}
+              />
             </div>
           </form>
           <div className="sign-in__action-btns">

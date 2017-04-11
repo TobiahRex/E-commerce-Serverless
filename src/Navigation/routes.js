@@ -20,7 +20,7 @@ export default (
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
     {Routes.LegalRoutes()}
-    {Routes.AuthRoutes()}
+    {Routes.AuthRoutes(auth)}
     {Routes.CheckoutRoutes()}
     {Routes.UserDashboardRoutes(requireAuth)}
     {Routes.AdminDashboardRoutes(requireAuth)}
