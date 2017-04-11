@@ -3,13 +3,21 @@ import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
 const defaultProps = {
+  mobile: false,
 };
 
 const propTypes = {
   height: PropTypes.number.isRequired,
+  mobile: PropTypes.bool,
 };
 
-function HomepageFastestDelivery({ height }) {
+function HomepageFastestDelivery({ height, mobile }) {
+  let display;
+  if (mobile) {
+    display = { display: 'none' };
+  } else {
+    display = { display: 'block' };
+  }
   return (
     <div
       className="homepage-fastest-delivery"
@@ -29,7 +37,7 @@ function HomepageFastestDelivery({ height }) {
                 faster than us.
               </p>
               <br />
-              <p>
+              <p style={display} >
                 Once you shop with us and see how fast we are, {('we\'re')} confident you {('won\'t')} want to buy Nicotine vape juice from anywhere else.
               </p>
               <br />
@@ -37,11 +45,12 @@ function HomepageFastestDelivery({ height }) {
                 Hard to believe? Try us now!
               </p>
               <br />
-              <p>
+              <p style={display} >
                 You’ll be happy you did.
               </p>
             </div>
             <button
+              style={display}
               className="homepage-fastest-delivery-description-message-buy-btn sweep-right"
               onClick={() => browserHistory.push('/juices')}
             >Buy Now</button>

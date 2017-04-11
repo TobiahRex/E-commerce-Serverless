@@ -222,7 +222,7 @@
           cursor: pointer;
         }
       }
-      & .homepage-how-carousel-right-arrow {
+      & .homepage-how-carousel-right-arrow:after {
         @extend .ping-nav;
       }
       & .homepage-how-carousel-left-arrow {

@@ -2,11 +2,22 @@ import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
-const propTypes = {
-  height: PropTypes.number.isRequired,
+const defaultProps = {
+  mobile: false,
 };
 
-function HomepageHeader({ height }) {
+const propTypes = {
+  height: PropTypes.number.isRequired,
+  mobile: PropTypes.bool,
+};
+
+function HomepageHeader({ height, mobile }) {
+  let navBob;
+  if (mobile) {
+    navBob = window.innerHeight - 60;
+  } else {
+    navBob = height;
+  }
   return (
     <header className="homepage__header--img-src" style={{ height }} >
       <div className="header__upper">
@@ -22,11 +33,12 @@ function HomepageHeader({ height }) {
         </div>
       </div>
       <NavBob
-        className={'header__nav-down--container'} height={height}
+        className={'header__nav-down--container'} height={navBob}
       />
     </header>
   );
 }
+HomepageHeader.defaultProps = defaultProps;
 HomepageHeader.propTypes = propTypes;
 export default HomepageHeader;
 

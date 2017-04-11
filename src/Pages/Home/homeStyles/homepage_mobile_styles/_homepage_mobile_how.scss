@@ -42,7 +42,6 @@
             @extend .homepage-flex-bottom;
             height: 24em;
             max-width: 34.6em;
-            /*           width: 100%; */
             background-image: $img-carousel-couple;
             background-size: cover;
             background-repeat: no-repeat;
@@ -56,7 +55,7 @@
               height: 6.5em;
               width: 34.6em;
               background-color: rgba(1,1,1,.75);
-              margin-bottom: 3.5em;
+              margin-bottom: 1.5em;
               & p {
                 max-width: 30em;
                 text-align: center;
@@ -127,7 +126,7 @@
           cursor: pointer;
         }
       }
-      & .homepage-how-carousel-right-arrow {
+      & .homepage-how-carousel-right-arrow:after {
         animation: pulse 3s ease-in-out infinite;
       }
       & .homepage-how-carousel-left-arrow {
