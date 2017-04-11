@@ -10,10 +10,8 @@
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
-      height: 78em;
       width: 48em;
       margin: 8em auto 5em auto;
-      padding-bottom: 2em;
       background-color: $s-white;
       & .sign-in__title {
         @include prefixflex();
@@ -120,7 +118,7 @@
           color: $p-white;
           font-family: $p-font;
           font-weight: 400em;
-          font-size: 1.6em;
+          font-size: 1.8em;
           background-color: $p-red;
           border: none;
           cursor: pointer;
@@ -139,7 +137,7 @@
           flex-wrap: wrap;
           height: 6em;
           width: 30em;
-          margin-bottom: 2em;
+          margin: 2em auto;
           & .social--title-msg {
             & p {
               color: $p-blue;
@@ -215,7 +213,7 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          margin-top: 1em;
+          margin-bottom: 2em;
           & button {
             height: 3.12em;
             width: 15.62em;
@@ -237,6 +235,9 @@
               }
             }
           }
+        }
+        & .action-btns__register {
+          margin-bottom: 1em;
         }
       }
     }

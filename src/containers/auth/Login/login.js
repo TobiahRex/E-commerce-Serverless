@@ -89,12 +89,12 @@ class Login extends Component {
                 Password{'\u00A0'}
                 <span className="required-star">*</span>
               </label>
-              <input type="text" id="password-input" className="password__input--password" />
+              <input type="password" id="password-input" className="password__input--password" />
             </div>
             <div className="form--login-btn">
               <button
                 type="button"
-                className="login-btn sweep-right"
+                className="login-btn primary-button sweep-right"
                 onClick={() => console.info('Login Submit')}
               >Login</button>
             </div>
