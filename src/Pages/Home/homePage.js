@@ -7,33 +7,55 @@ import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
 import HomepageReviewsCarousel from './homeComponents/homepage_reviewsCarousel';
 import HomepagePopJuices from './homeComponents/homepage_popJuices';
 
+const defaultProps = {
+  mobile: false,
+};
+
 const propTypes = {
-  mobile: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool,
 };
 
 function HomePage({ mobile }) {
-  function calcHeight() {
+  const height = window.innerHeight;
+  const calcHeight = (header) => {
     if (!mobile) {
-      if (window.innerWidth > 930) return (946);
-      return (797);
+      if (window.innerWidth > 930) return (height - 120);
+      return (height - 267);
     }
-    return (window.screen.availHeight - 260);
-  }
+    if (header) {
+      return (height - 267);
+    }
+    return (window.innerHeight - 60);
+  };
+  const sectionHeight = calcHeight();
   return (
     <div className="homepage">
-      <HomepageHeader height={calcHeight()} />
-      <HomepageFastestDelivery />
-      <HomepageHowCarousel />
-      <HomepageReviewsCarousel />
+      <HomepageHeader
+        height={calcHeight(true)}
+        mobile={mobile}
+      />
+      <HomepageFastestDelivery
+        height={sectionHeight}
+        mobile={mobile}
+      />
+      <HomepageHowCarousel
+        height={sectionHeight}
+        mobile={mobile}
+      />
+      <HomepageReviewsCarousel
+        height={sectionHeight}
+        mobile={mobile}
+      />
       <HomepagePopJuices />
     </div>
   );
 }
 
+HomePage.defaultProps = defaultProps;
 HomePage.propTypes = propTypes;
 
 const mapStateToProps = ({ mobile }) => ({
-  mobile: mobile.mobileType || false,
+  mobile: mobile.mobileType && true,
 });
 
 export default connect(mapStateToProps, null)(HomePage);

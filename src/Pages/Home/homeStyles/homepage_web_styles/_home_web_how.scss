@@ -3,39 +3,72 @@
   flex-direction: column;
   height: 66em;
   margin-top: 0;
-  & h1.homepage-how-title {
-    color: $p-red;
-    line-height: 1.5em;
-    margin: .8em;
-  }
-  & .homepage-how-carousel-container {
-    height: 57.2em;
-    width: 94.1em;
-    background-color: $p-white;
-    overflow: hidden;
-    position: relative;
-    & .homepage-how-carousel-container-slides {
-      display: flex;
-      position: absolute;
-      left: -94.1em;
-      transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-      & .homepage-how-carousel-couple {
-        & .homepage-how-carousel-couple-image {
-          @extend .flex-bottom;
-          @extend .flex-bottom;
-          height: 57.2em;
-          width: 94.1em;
-          background-image: url('./Images/nj2jp-homepage-carousel-couple.png');
-          background-position: cover;
-          background-repeat: no-repeat;
-          & .homepage-how-carousel-couple-description-container {
+  & .how__content--container {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+    width: 100%;
+    & h1.homepage-how-title {
+      color: $p-red;
+      line-height: 1.5em;
+      margin: .8em;
+    }
+    & .homepage-how-carousel-container {
+      height: 57.2em;
+      width: 94.1em;
+      background-color: $p-white;
+      overflow: hidden;
+      position: relative;
+      & .homepage-how-carousel-container-slides {
+        display: flex;
+        position: absolute;
+        left: -94.1em;
+        transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
+        & .homepage-how-carousel-couple {
+          & .homepage-how-carousel-couple-image {
+            @extend .flex-bottom;
+            @extend .flex-bottom;
+            height: 57.2em;
+            width: 94.1em;
+            background-image: url('./Images/nj2jp-homepage-carousel-couple.png');
+            background-position: cover;
+            background-repeat: no-repeat;
+            & .homepage-how-carousel-couple-description-container {
+              @extend .flex-center;
+              height: 15.5em;
+              width: 72.5em;
+              background-color: rgba(1,1,1,.75);
+              margin-bottom: 3em;
+              & p {
+                max-width: 680px;
+                max-width: 680px;
+                text-align: center;
+                color: $p-white;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 2em;
+              }
+            }
+          }
+        }
+        & .homepage-how-carousel-distro {
+          & .homepage-how-carousel-distro-image {
+            @extend .flex-bottom;
+            height: 57.2em;
+            width: 94.1em;
+            background-image: $img-carousel-distro;
+            background-position: cover;
+            background-repeat: no-repeat;
+          }
+          & .homepage-how-carousel-distro-description-container {
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
             background-color: rgba(1,1,1,.75);
             margin-bottom: 3em;
             & p {
-              max-width: 680px;
               max-width: 680px;
               text-align: center;
               color: $p-white;
@@ -45,189 +78,169 @@
             }
           }
         }
-      }
-      & .homepage-how-carousel-distro {
-        & .homepage-how-carousel-distro-image {
-          @extend .flex-bottom;
-          height: 57.2em;
-          width: 94.1em;
-          background-image: $img-carousel-distro;
-          background-position: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-distro-description-container {
-          @extend .flex-center;
-          height: 15.5em;
-          width: 72.5em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 680px;
-            text-align: center;
-            color: $p-white;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 2em;
+        & .homepage-how-carousel-warehouse {
+          & .homepage-how-carousel-warehouse-image {
+            @extend .flex-bottom;
+            height: 57.2em;
+            width: 94.1em;
+            background-image: $img-carousel-warehouse;
+            background-position: cover;
+            background-repeat: no-repeat;
           }
-        }
-      }
-      & .homepage-how-carousel-warehouse {
-        & .homepage-how-carousel-warehouse-image {
-          @extend .flex-bottom;
-          height: 57.2em;
-          width: 94.1em;
-          background-image: $img-carousel-warehouse;
-          background-position: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-warehouse-description-container {
-          @extend .flex-center;
-          height: 15.5em;
-          width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 680px;
-            text-align: center;
-            color: $p-white;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-flight {
-        & .homepage-how-carousel-flight-image {
-          @extend .flex-bottom;
-          height: 57.2em;
-          width: 94.1em;
-          background-image: $img-carousel-flight;
-          background-position: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-flight-description-container {
-          @extend .flex-center;
-          height: 15.5em;
-          width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 680px;
-            text-align: center;
-            color: $p-white;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-truck {
-        & .homepage-how-carousel-truck-image {
-          @extend .flex-bottom;
-          height: 57.2em;
-          width: 94.1em;
-          background-image: $img-carousel-truck;
-          background-position: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-truck-description-container {
-          @extend .flex-center;
-          height: 15.5em;
-          width: 72.5em;
-          // padding: 38em 6.4em 3em 6.4em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 680px;
-            text-align: center;
-            color: $p-white;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-        }
-      }
-      & .homepage-how-carousel-delivery {
-        & .homepage-how-carousel-delivery-image {
-          @extend .flex-bottom;
-          height: 57.2em;
-          width: 94.1em;
-          background-image: $img-carousel-delivery;
-          background-position: cover;
-          background-repeat: no-repeat;
-        }
-        & .homepage-how-carousel-delivery-description-container {
-          @extend .flex-center;
-          flex-direction: column;
-          height: 16.5em;
-          width: 72.5em;
-          background-color: rgba(1,1,1,.75);
-          margin-bottom: 3em;
-          & p {
-            max-width: 680px;
-            text-align: center;
-            color: $p-white;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 2em;
-          }
-          & a.homepage-how-carousel-delivery-buy-btn {
+          & .homepage-how-carousel-warehouse-description-container {
             @extend .flex-center;
-            width: 10.66em;
-            height: 2.66em;
-            color: $p-white;
-            font-size: 1.5em;
-            font-family: $p-font;
-            font-weight: bold;
-            letter-spacing: .02em;
-            background-color: $p-red;
-            z-index: 1;
-            margin-top: 1em;
-            text-decoration: none;
-            @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+            height: 15.5em;
+            width: 72.5em;
+            // padding: 38em 6.4em 3em 6.4em;
+            background-color: rgba(1,1,1,.75);
+            margin-bottom: 3em;
+            & p {
+              max-width: 680px;
+              text-align: center;
+              color: $p-white;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 2em;
+            }
+          }
+        }
+        & .homepage-how-carousel-flight {
+          & .homepage-how-carousel-flight-image {
+            @extend .flex-bottom;
+            height: 57.2em;
+            width: 94.1em;
+            background-image: $img-carousel-flight;
+            background-position: cover;
+            background-repeat: no-repeat;
+          }
+          & .homepage-how-carousel-flight-description-container {
+            @extend .flex-center;
+            height: 15.5em;
+            width: 72.5em;
+            // padding: 38em 6.4em 3em 6.4em;
+            background-color: rgba(1,1,1,.75);
+            margin-bottom: 3em;
+            & p {
+              max-width: 680px;
+              text-align: center;
+              color: $p-white;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 2em;
+            }
+          }
+        }
+        & .homepage-how-carousel-truck {
+          & .homepage-how-carousel-truck-image {
+            @extend .flex-bottom;
+            height: 57.2em;
+            width: 94.1em;
+            background-image: $img-carousel-truck;
+            background-position: cover;
+            background-repeat: no-repeat;
+          }
+          & .homepage-how-carousel-truck-description-container {
+            @extend .flex-center;
+            height: 15.5em;
+            width: 72.5em;
+            // padding: 38em 6.4em 3em 6.4em;
+            background-color: rgba(1,1,1,.75);
+            margin-bottom: 3em;
+            & p {
+              max-width: 680px;
+              text-align: center;
+              color: $p-white;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 2em;
+            }
+          }
+        }
+        & .homepage-how-carousel-delivery {
+          & .homepage-how-carousel-delivery-image {
+            @extend .flex-bottom;
+            height: 57.2em;
+            width: 94.1em;
+            background-image: $img-carousel-delivery;
+            background-position: cover;
+            background-repeat: no-repeat;
+          }
+          & .homepage-how-carousel-delivery-description-container {
+            @extend .flex-center;
+            flex-direction: column;
+            height: 16.5em;
+            width: 72.5em;
+            background-color: rgba(1,1,1,.75);
+            margin-bottom: 3em;
+            & p {
+              max-width: 680px;
+              text-align: center;
+              color: $p-white;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 2em;
+            }
+            & a.homepage-how-carousel-delivery-buy-btn {
+              @extend .flex-center;
+              width: 10.66em;
+              height: 2.66em;
+              color: $p-white;
+              font-size: 1.5em;
+              font-family: $p-font;
+              font-weight: bold;
+              letter-spacing: .02em;
+              background-color: $p-red;
+              z-index: 1;
+              margin-top: 1em;
+              text-decoration: none;
+              @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+            }
           }
         }
       }
-    }
-    & .homepage-how-carousel-left-arrow, .homepage-how-carousel-right-arrow {
-      // @extend .flex-center;
-      // & span {
-      //   color: $p-white;
-      // }
-      color: $p-white;
-      &:hover,
-      &:active,
-      &:focus {
-        &:after {
-          opacity: 1;
+      & .homepage-how-carousel-left-arrow,
+      .homepage-how-carousel-right-arrow {
+        color: $p-red;
+        text-shadow: 0 0px 10px rgba(0,0,0,.1);
+        &:hover,
+        &:active,
+        &:focus {
+          &:after {
+            opacity: 1;
+          }
+        }
+        &:after, {
+          @extend .flex-center;
+          content: $fa-right-chevron-white;
+          position: absolute;
+          top: 50%;
+          right: 1.5em;
+          height: 8em;
+          width: 5em;
+          opacity: 0.45;
+          transition: opacity .3s linear;
+          cursor: pointer;
         }
       }
-      &:after, {
-        @extend .flex-center;
-        content: $fa-right-chevron-white;
-        position: absolute;
-        top: 50%;
-        right: 1.5em;
-        height: 9em;
-        width: 6em;
-        background-color: rgba(1,1,1,.75);
-        opacity: 0.45;
-        transition: opacity .3s linear;
-        cursor: pointer;
+      & .homepage-how-carousel-right-arrow:after {
+        @extend .ping-nav;
+      }
+      & .homepage-how-carousel-left-arrow {
+        color: $p-red;
+        text-shadow: 0 3px 10px rgba(0,0,0,.1);
+        &:after {
+          @extend .flex-center;
+          content: $fa-left-chevron-white;
+          left: 1.5em;
+        }
       }
     }
-    & .homepage-how-carousel-left-arrow {
-      // & span {
-      //   color: $p-white;
-      // }
-      color: $p-white;
-      &:after {
-        @extend .flex-center;
-        content: $fa-left-chevron-white;
-        left: 1.5em;
-      }
-    }
+  }
+  & .how__navBob {
+    @include prefixflex();
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+    @extend .navBob;
   }
 }

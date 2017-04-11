@@ -1,11 +1,16 @@
 import React, { PropTypes } from 'react';
 
+const defaultProps = {
+  onNext: null,
+  onPrevious: null,
+};
+
 const propTypes = {
   className: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onNext: PropTypes.func,
   onPrevious: PropTypes.func,
-  show: PropTypes.objectOf(PropTypes.string.isRequired),
+  show: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 function CarouselNav({
@@ -29,11 +34,12 @@ function CarouselNav({
       href=""
       id={name}
       onClick={handleClick}
-      className={`${className}-${name}-arrow`}
+      className={`${className}-${name}-arrow ping-nav`}
     >{''}</a>
   );
 }
 
+CarouselNav.defaultProps = defaultProps;
 CarouselNav.propTypes = propTypes;
 export default CarouselNav;
 

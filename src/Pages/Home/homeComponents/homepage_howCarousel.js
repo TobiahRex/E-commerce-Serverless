@@ -1,12 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import NavBob from './navBob';
 
 import CarouselImageSlide from '../../../Components/CarouselImageSlide/carouselImageSlide';
 import CarouselNav from '../../../Components/carouselNav';
 
 class HomepageHowCarousel extends Component {
+  static defaultProps = {
+    screenSize: window.screen.availWidth,
+  }
   static propTypes = {
     screenSize: PropTypes.number,
+    height: PropTypes.number.isRequired,
   }
   constructor(props) {
     super(props);
@@ -22,8 +27,7 @@ class HomepageHowCarousel extends Component {
   }
 
   componentWillReceiveProps({ screenSize }) {
-    const screen = screenSize;
-    this.setState({ screenSize: screen });
+    this.setState({ screenSize });
   }
 
   handlePreviousClick = () => {
@@ -66,14 +70,14 @@ class HomepageHowCarousel extends Component {
       desc: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
       alt: 'Delivered',
     }];
-    return slideDescs.map((slideObj, i) => (
+    return slideDescs.map(({ name, desc, alt }) => (
       <CarouselImageSlide
         maxWidth={maxWidth}
-        key={`homepage-how-carousel-${i}`}
+        key={`homepage-how-carousel-${name}-${Date.now()}`}
         className="homepage-how-carousel"
-        name={slideObj.name}
-        description={slideObj.desc}
-        alt={slideObj.alt}
+        name={name}
+        description={desc}
+        alt={alt}
       />
     ));
   }
@@ -104,36 +108,43 @@ class HomepageHowCarousel extends Component {
         display: hasNext ? 'inline' : 'none',
       },
     };
+    const { height } = this.props;
     return (
-      <div className="homepage-how">
-        <h1 className="homepage-how-title">How?</h1>
-        <div className="homepage-how-carousel-container">
-          <div
-            style={stylesObj.slides}
-            className="homepage-how-carousel-container-slides"
-          >{this.renderCarouselSlides(maxWidth)}</div>
+      <div className="homepage-how" style={{ height }}>
+        <div className="how__content--container">
+          <h1 className="homepage-how-title">How?</h1>
+          <div className="homepage-how-carousel-container">
+            <div
+              style={stylesObj.slides}
+              className="homepage-how-carousel-container-slides"
+            >{this.renderCarouselSlides(maxWidth)}</div>
 
-          {/* NAVS */}
-          <CarouselNav
-            show={stylesObj.leftNav}
-            className="homepage-how-carousel"
-            name="left"
-            onNext={null}
-            onPrevious={this.handlePreviousClick}
-            hasPrevious={this.state.showIndex > 0}
-            hasNext={this.state.showIndex < this.state.numSlides - 1}
-          />
+            {/* NAVS */}
+            <CarouselNav
+              show={stylesObj.leftNav}
+              className="homepage-how-carousel"
+              name="left"
+              onNext={null}
+              onPrevious={this.handlePreviousClick}
+              hasPrevious={this.state.showIndex > 0}
+              hasNext={this.state.showIndex < this.state.numSlides - 1}
+            />
 
-          <CarouselNav
-            show={stylesObj.rightNav}
-            className="homepage-how-carousel"
-            name="right"
-            onNext={this.handleNextClick}
-            onPrevious={null}
-            hasPrevious={this.state.showIndex > 0}
-            hasNext={this.state.showIndex < this.state.numSlides - 1}
-          />
+            <CarouselNav
+              show={stylesObj.rightNav}
+              className="homepage-how-carousel"
+              name="right"
+              onNext={this.handleNextClick}
+              onPrevious={null}
+              hasPrevious={this.state.showIndex > 0}
+              hasNext={this.state.showIndex < this.state.numSlides - 1}
+            />
+          </div>
         </div>
+        <NavBob
+          className={'how__navBob'}
+          height={height * 3}
+        />
       </div>
     );
   }

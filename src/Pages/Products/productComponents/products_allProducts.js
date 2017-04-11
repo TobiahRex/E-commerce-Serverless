@@ -176,31 +176,31 @@ export default function AllProducts() {
                       5
                     </button>
                   </li>
-                  <li className="pagination__number">
+                  {/* <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       6
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       7
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       8
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       9
                     </button>
-                  </li>
-                  <li className="pagination__number">
+                    </li>
+                    <li className="pagination__number">
                     <button className="number--button" onClick={() => console.info('go to next page')} >
                       10
                     </button>
-                  </li>
+                  </li> */}
                   <li className="pagination__next">
                     <button className="next--icon">
                       <FontAwesome name="angle-right" />
@@ -328,7 +328,7 @@ export default function AllProducts() {
                 </div>
                 <div className="row--social">
                   <ul className="row__social-list">
-                    <li className="social-list--like hvr-bob">
+                    <li className="social-list--like hover-bob">
                       <button className="like-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
@@ -343,7 +343,7 @@ export default function AllProducts() {
                         </span>
                       </button>
                     </li>
-                    <li className="social-list--share hvr-bob">
+                    <li className="social-list--share hover-bob">
                       <button className="share-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
@@ -354,7 +354,7 @@ export default function AllProducts() {
                         </span>
                       </button>
                     </li>
-                    <li className="social-list--tweet hvr-bob">
+                    <li className="social-list--tweet hover-bob">
                       <button className="tweet-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
@@ -487,7 +487,7 @@ export default function AllProducts() {
                 </div>
                 <div className="row--social">
                   <ul className="row__social-list">
-                    <li className="social-list--like hvr-bob">
+                    <li className="social-list--like hover-bob">
                       <button className="like-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
@@ -502,7 +502,7 @@ export default function AllProducts() {
                         </span>
                       </button>
                     </li>
-                    <li className="social-list--share hvr-bob">
+                    <li className="social-list--share hover-bob">
                       <button className="share-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome
@@ -513,7 +513,7 @@ export default function AllProducts() {
                         </span>
                       </button>
                     </li>
-                    <li className="social-list--tweet hvr-bob">
+                    <li className="social-list--tweet hover-bob">
                       <button className="tweet-btn">
                         <span className="btn-flex-parent">
                           <FontAwesome

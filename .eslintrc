@@ -19,6 +19,8 @@ env:
   mocha: true
 
 rules:
+  prefer-const: 1
+  one-var: 0
   max-len:
     - 0
     - 100

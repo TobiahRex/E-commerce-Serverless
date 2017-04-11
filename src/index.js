@@ -4,26 +4,24 @@ import 'masonry-layout';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import './styles.scss';
+import { Router } from 'react-router';
 
 import createStore from './Redux/index';
 import initiateActions from './Services/Asynch';
 import routes from './Navigation/routes';
+import './styles.scss';
 
-const store = createStore();
-const history = syncHistoryWithStore(browserHistory, store);
-initiateActions(store.dispatch, history);
+const { store, history } = createStore();
+initiateActions(store.dispatch, history, { startup: true });
 
 render(
   <Provider store={store} >
     <Router
       history={history}
       routes={routes}
-      onUpdate={() => initiateActions(store.dispatch, history)}
+      onUpdate={() =>
+        initiateActions(store.dispatch, history, { startup: false })}
     />
-  </Provider >
-  ,
+  </Provider >,
   document.getElementById('app'),
 );

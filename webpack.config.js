@@ -17,12 +17,17 @@ const devConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
+  stats: {
+    color: true,
+    reasons: true,
+    chunks: true,
+  },
   entry: {
     app: [
       'webpack-hot-middleware/client?reload=true',
       path.resolve('./src/index'),
     ],
-    vendor: ['react', 'react-dom', 'moment', 'reduxsauce', 'core-js'],
+    vendor: ['react', 'react-dom', 'moment', 'reduxsauce'],
   },
   output: {
     path: path.resolve('public'),
@@ -43,7 +48,8 @@ const devConfig = {
         removeComments: true,
         collapseWhitespace: true,
       },
-      inject: true,
+      inject: false,
+      filename: './index.html',
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: false,
@@ -78,13 +84,18 @@ const prodConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
+  stats: {
+    color: true,
+    reasons: true,
+    chunks: true,
+  },
   // entry: [
   //   // './src/styles.scss',
   //   './src/index.js',
   // ],
   entry: {
     app: path.resolve('./src/index'),
-    vendor: ['react', 'react-dom', 'moment', 'reduxsauce', 'core-js'],
+    vendor: ['react', 'react-dom', 'moment', 'reduxsauce'],
   },
   output: {
     path: path.resolve('dist'),

@@ -1,16 +1,21 @@
 .homepage-fastest-delivery {
   @extend .homepage-flex-center;
   flex-direction: column;
-  height: 58em;
   width: 100%;
   margin-top: 0;
   background-color: $p-grey;
-  & h1.homepage-fastest-delivery-title {
-    color: $p-red;
-    line-height: 1.5em;
-    margin: .6em;
-  }
-  & .homepage-fastest-delivery-description-container {
+  & .fastest-delivery__content--container {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 88%;
+    & h1.homepage-fastest-delivery-title {
+      color: $p-red;
+      line-height: 1.5em;
+      margin: .6em;
+    }
+    & .homepage-fastest-delivery-description-container {
     @extend .homepage-flex-center;
     flex-direction: column;
     height: 54.5em;
@@ -28,7 +33,7 @@
       flex-direction: column;
       width: 28em;
       height: 27.5em;
-      margin: 1em auto 3em auto;
+      margin: 1em auto 0 auto;
       padding: 1em;
       background-color: $p-white;
       @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
@@ -66,5 +71,13 @@
         @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
       }
     }
+  }
+  }
+  & .fastest-delivery__navBob {
+    @include prefixflex();
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+    @extend .navBob_mobile
   }
 }

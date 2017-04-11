@@ -1,12 +1,23 @@
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
+import NavBob from './navBob';
 
-const propTypes = {
-  height: PropTypes.string.isRequired,
+const defaultProps = {
+  mobile: false,
 };
 
-function HomepageHeader({ height }) {
+const propTypes = {
+  height: PropTypes.number.isRequired,
+  mobile: PropTypes.bool,
+};
+
+function HomepageHeader({ height, mobile }) {
+  let navBob;
+  if (mobile) {
+    navBob = window.innerHeight - 60;
+  } else {
+    navBob = height;
+  }
   return (
     <header className="homepage__header--img-src" style={{ height }} >
       <div className="header__upper">
@@ -21,18 +32,13 @@ function HomepageHeader({ height }) {
           </button>
         </div>
       </div>
-      <div className="header__nav-down--container hover-bob-active">
-        <button className="nav-down__button" onClick={() => console.warn('scroll down')}>
-          <FontAwesome
-            className="button__icon"
-            name="angle-double-down"
-            size="5x"
-          />
-        </button>
-      </div>
+      <NavBob
+        className={'header__nav-down--container'} height={navBob}
+      />
     </header>
   );
 }
+HomepageHeader.defaultProps = defaultProps;
 HomepageHeader.propTypes = propTypes;
 export default HomepageHeader;
 

@@ -202,9 +202,15 @@
 	}
 }
 
-// .#{$nameSpace}-bob {
-//   @include bob();
-// }
-// .#{$nameSpace}-bob-active {
-//   @include bob-active();
-// }
+.ping-nav {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@include keyframes(pulse) {
+  0%, 70% {
+    box-shadow: 0px 0px 0px 0px rgb(252, 37, 37);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 50px rgba(252, 37, 37, 0);
+  }
+}

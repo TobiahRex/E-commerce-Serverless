@@ -6,8 +6,8 @@ import NavbarCart from './navbar_web_cart/navbarCart';
 
 class NavbarUpper extends PureComponent {
   static propTypes = {
-    activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
-    logoutUser: PropTypes.func.isRequired,
+    activeUser: PropTypes.objectOf(PropTypes.any),
+    logoutUser: PropTypes.func,
   }
 
   render() {

@@ -30,6 +30,11 @@
 // @import "Pages/AgeVerification/ageVerification_mobile";
 
 // ------------------------------------------------------------
+// NOTE: "Legal & Media" Master Stylesheets
+@import "Pages/Legal/styles/legal_web";
+@import "Pages/Legal/styles/legal_mobile";
+
+// ------------------------------------------------------------
 // --------------------------- Auth ---------------------------
 // ------------------------------------------------------------
 // NOTE: "Login" Master Stylesheets
@@ -112,9 +117,14 @@ a {
   color: $p-white;
 }
 
+.hide {
+  display: none;
+}
+
 @media (min-width: 931px) {
   #main-section {
     @include prefixflex();
+    justify-content: center;
     padding-top: 12rem;
     min-height: 52rem;
   }
