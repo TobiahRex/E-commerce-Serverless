@@ -217,6 +217,7 @@
                   margin-top: 1em;
                 }
                 & input {
+                  border: 1px solid $p-grey;
                   color: $p-blue;
                   font-size: 1.2em;
                   font-family: $p-font;
@@ -289,6 +290,13 @@
                   }
                 }
               }
+            }
+            & .register-recaptcha {
+              @include prefixflex();
+              justify-content: center;
+              width: 100%;
+              padding-top: 2em;
+              padding-bottom: 2em;
             }
           }
         }
