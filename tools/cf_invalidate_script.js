@@ -3,12 +3,18 @@
 
 import { exec } from 'child_process';
 import dotenv from 'dotenv';
+import colors from 'colors'; // eslint-disable-line
 
 dotenv.load({ silent: true });
 
-console.log(dotenv);
-
-exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIBUTIONID} --paths '/*'`, function (err, stdout) {
-  if (err) throw err;
-  console.log(stdout);
+exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIBUTIONID} --paths '/*'`, (err, stdout) => {
+  if (err) {
+    process.stdout.write('\n');
+    process.stdout.write(`❌ ${err}
+`.red);
+    throw err;
+  } else {
+    process.stdout.write('\n');
+    process.stdout.write(stdout.bold.green);
+  }
 });
