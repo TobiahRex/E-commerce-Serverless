@@ -1,18 +1,18 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import AdminDashboard from '../Pages/AdminDashboard/adminDashComponents/adminDashboard';
-import AdminHomeDash from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash';
-import AdminLegal from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
-import AdminFaqs from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
-import AdminManageLogin from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
-import AdminLoginApps from '../Pages/AdminDashboard/adminDashComponents/adminDashboard_loginApp/adminDashboard_loginApps';
-import AdminReports from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_reports/adminReports';
-import AdminSales from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_sales/adminSales';
-import AdminTraffic from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_traffic/adminTraffic';
-import AdminProducts from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_products/adminProducts';
-import AdminMembers from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_members/adminMembers';
-import AdminPromotions from './../Pages/AdminDashboard/adminDashComponents/adminDashboard_promotionsSales/adminPromotionsSales';
+import AdminDashboard from '../containers/adminDashboard/adminDashComponents/adminDashboard';
+import AdminHomeDash from '../containers/adminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash';
+import AdminLegal from '../containers/adminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
+import AdminFaqs from '../containers/adminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
+import AdminManageLogin from '../containers/adminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
+import AdminLoginApps from '../containers/adminDashboard/adminDashComponents/adminDashboard_loginApp/adminDashboard_loginApps';
+import AdminReports from './../containers/adminDashboard/adminDashComponents/adminDashboard_reports/adminReports';
+import AdminSales from './../containers/adminDashboard/adminDashComponents/adminDashboard_sales/adminSales';
+import AdminTraffic from './../containers/adminDashboard/adminDashComponents/adminDashboard_traffic/adminTraffic';
+import AdminProducts from './../containers/adminDashboard/adminDashComponents/adminDashboard_products/adminProducts';
+import AdminMembers from './../containers/adminDashboard/adminDashComponents/adminDashboard_members/adminMembers';
+import AdminPromotions from './../containers/adminDashboard/adminDashComponents/adminDashboard_promotionsSales/adminPromotionsSales';
 
 const AdminDashboardRoutes = () => (
   <Route path="/admin_:id" component={AdminDashboard}>

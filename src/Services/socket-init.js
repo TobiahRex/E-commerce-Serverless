@@ -1,5 +1,5 @@
 import io from 'socket.io-client'; //eslint-disable-line
-import orderActions from '../Redux/OrdersRedux';
+import orderActions from '../redux/orders';
 
 const socket = io();
 

@@ -6,9 +6,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 
-import createStore from './Redux/index';
-import initiateActions from './Services/Asynch';
-import routes from './Navigation/routes';
+import createStore from './redux/index';
+import initiateActions from './services/utils';
+import routes from './navigation/routes';
 import './styles.scss';
 
 const { store, history } = createStore();

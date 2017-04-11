@@ -2,13 +2,13 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 
-import AgeVerification from './Pages/AgeVerification/ageVerification';
-import NavbarWeb from './Pages/Navbar/navbarComponents/navbar_web/navbar_web';
-import NavbarMobile from './Pages/Navbar/navbarComponents/navbar_mobile/navbar_mobile';
-import Footer from './Pages/Footer/footer';
-import sessionActions from './Redux/SessionRedux';
-import userActions from './Redux/UserRedux';
-import { genDynamicTitle } from './Services/Asynch';
+import AgeVerification from './containers/ageVerification/ageVerification';
+import NavbarWeb from './containers/navbar/navbarComponents/navbar_web/navbar_web';
+import NavbarMobile from './containers/navbar/navbarComponents/navbar_mobile/navbar_mobile';
+import Footer from './containers/footer/footer';
+import sessionActions from './redux/session';
+import userActions from './redux/user';
+import { genDynamicTitle } from './services/utils';
 
 /* NOTE:
 1. Remove UUID hard code.

@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
-import thingActions from '../../Redux/ThingRedux';
-import apiActions from '../../Redux/ApiRedux';
+import thingActions from '../../redux/ThingRedux';
+import apiActions from '../../redux/api';
 
 export default function* edit(api, { editedThing }) {
   const response = yield call(() => api.editThing(editedThing));
