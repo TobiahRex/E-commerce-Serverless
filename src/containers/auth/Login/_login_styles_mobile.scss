@@ -126,34 +126,7 @@
           flex-wrap: wrap;
           height: 6em;
           width: 30em;
-          margin-bottom: 2em;
-          & .social--title-list {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            & .title-left-break,
-            .title-right-break {
-              // height: 2em;
-              width: 11.5em;
-              border-bottom: 1px solid rgba(0,0,0,.2);
-            }
-            & .title-or {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              height: 4em;
-              width: 7em;
-              & p {
-                text-transform: uppercase;
-                color: $p-blue;
-                font-weight: 200em;
-                font-size: 1.6em;
-              }
-            }
-          }
+          margin: 2em auto;
           & .social--title {
             & p {
               font-size: 1.4em;
