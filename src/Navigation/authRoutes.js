@@ -2,10 +2,10 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Auth -------------------------------
-import ResetPasswordEmail from '../Pages/Auth/ResetEmail/reset';
-import Login from '../Pages/Auth/Login/login';
-import Register from '../Pages/Auth/Register/register';
-import Forgot from '../Pages/Auth/Forgot/forgot';
+import ResetPasswordEmail from '../containers/auth/ResetEmail/reset';
+import Login from '../containers/auth/Login/login';
+import Register from '../containers/auth/Register/register';
+import Forgot from '../containers/auth/Forgot/forgot';
 
 const AuthRoutes = () => (
   <div>

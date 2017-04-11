@@ -10,7 +10,6 @@ import webpackConfig from '../webpack.config';
 import api from './api';
 
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
-
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
 const PORT = process.env.PORT || 3000;

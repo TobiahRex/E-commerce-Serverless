@@ -1,18 +1,18 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 // --------------------------- User
-import UserDashboard from '../Pages/UserDashboard/userDashComponents/userDashboard';
-import UserHomeDash from '../Pages/UserDashboard/userDashComponents/userDashboard_home/userHomeDash';
-import UserAddressBook from '../Pages/UserDashboard/userDashComponents/userDashboard_addressBook/userAddressBook';
-import UserManageLogin from '../Pages/UserDashboard/userDashComponents/userDashboard_manageLogin/userManageLogin';
-import UserNewsLetter from '../Pages/UserDashboard/userDashComponents/userDashboard_newsletter/userNewsLetter';
-import UserProductReviews from '../Pages/UserDashboard/userDashComponents/userDashboard_productReviews/userProductReviews';
-import UserLoginApp from '../Pages/UserDashboard/userDashComponents/userDashboard_loginApp/userDashboard_loginApps';
-import UserOrders from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userOrders';
-import UserOrderTracking from '../Pages/UserDashboard/userDashComponents/userDashboard_orders/userDashboard_orders_tracking';
-import UserLegal from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userLegal';
+import UserDashboard from '../containers/userDashboard/userDashComponents/userDashboard';
+import UserHomeDash from '../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash';
+import UserAddressBook from '../containers/userDashboard/userDashComponents/userDashboard_addressBook/userAddressBook';
+import UserManageLogin from '../containers/userDashboard/userDashComponents/userDashboard_manageLogin/userManageLogin';
+import UserNewsLetter from '../containers/userDashboard/userDashComponents/userDashboard_newsletter/userNewsLetter';
+import UserProductReviews from '../containers/userDashboard/userDashComponents/userDashboard_productReviews/userProductReviews';
+import UserLoginApp from '../containers/userDashboard/userDashComponents/userDashboard_loginApp/userDashboard_loginApps';
+import UserOrders from '../containers/userDashboard/userDashComponents/userDashboard_orders/userOrders';
+import UserOrderTracking from '../containers/userDashboard/userDashComponents/userDashboard_orders/userDashboard_orders_tracking';
+import UserLegal from '../containers/userDashboard/userDashComponents/userDashboard_legal/userLegal';
 
-import UserFaqs from '../Pages/UserDashboard/userDashComponents/userDashboard_legal/userFaqs';
+import UserFaqs from '../containers/userDashboard/userDashComponents/userDashboard_legal/userFaqs';
 
 export default function UserDashboardRoutes() {
   return (

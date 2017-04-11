@@ -1,19 +1,19 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import configureStore from './configureStore';
-import rootSaga from '../Sagas/';
+import { routerReducer as routing } from 'react-router-redux';
+import configureStore from './store';
+import rootSaga from '../sagas/';
 
 // ------- Reducer Imports ------- //
 
-// import { thingReducer as things } from '../Redux/ThingRedux';
-import { userReducer as user } from './UserRedux';
-import { productsReducer as products } from './ProductsRedux';
-import { orderReducer as orders } from './OrdersRedux';
-import { apiReducer as api } from './ApiRedux';
-import { geoReducer as geo } from './GeoRedux';
-import { mobileReducer as mobile } from './MobileRedux';
-import { localeReducer as locale } from './LocaleRedux';
-import { sessionReducer as session } from './SessionRedux';
+// import { thingReducer as things } from '../redux/ThingRedux';
+import { userReducer as user } from './user';
+import { productsReducer as products } from './products';
+import { orderReducer as orders } from './orders';
+import { apiReducer as api } from './api';
+import { geoReducer as geo } from './geo';
+import { mobileReducer as mobile } from './mobile';
+import { localeReducer as locale } from './locale';
+import { sessionReducer as session } from './session';
 
 export default () => {
   const rootReducer = combineReducers({
@@ -25,7 +25,7 @@ export default () => {
     mobile,
     locale,
     session,
-    routing: routerReducer,
+    routing,
   });
   return configureStore(rootReducer, rootSaga);
 };

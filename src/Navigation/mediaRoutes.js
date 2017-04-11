@@ -2,16 +2,16 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
-import About from '../Pages/Legal/components/about/';
-import ContactUs from '../Pages/Legal/components/contactUs';
-import Phone from '../Pages/Legal/components/phone';
-import UserStories from '../Pages/Media/userStories';
-import VapeNews from '../Pages/Media/vapeNews';
-import Faqs from '../Pages/Legal/faqs';
-import MissionStatement from '../Pages/Legal/missionStatement';
-import SocialMedia from '../Pages/Legal/socialMedia';
-import Wholesale from '../Pages/Legal/wholesale';
-import Affiliates from '../Pages/Legal/affiliateProgram';
+import About from '../containers/legal/components/about/';
+import ContactUs from '../containers/legal/components/contactUs';
+import Phone from '../containers/legal/components/phone';
+import UserStories from '../containers/media/userStories';
+import VapeNews from '../containers/media/vapeNews';
+import Faqs from '../containers/legal/faqs';
+import MissionStatement from '../containers/legal/missionStatement';
+import SocialMedia from '../containers/legal/socialMedia';
+import Wholesale from '../containers/legal/wholesale';
+import Affiliates from '../containers/legal/affiliateProgram';
 
 const MediaRoutes = () => (
   <div>

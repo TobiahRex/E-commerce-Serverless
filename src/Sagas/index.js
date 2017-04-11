@@ -1,12 +1,12 @@
 import { takeLatest } from 'redux-saga/effects';
-import TaxRateApi from '../Services/API/TaxRate';
+import TaxRateApi from '../services/api/taxes';
 // import distantApi from '../Services/api.distant';
 
 // ----- Sagas ----- //
-import getTaxRate from './TaxRate';
+import getTaxRate from './taxes';
 
 // ----- Types ----- //
-import { orderTypes } from '../Redux/OrdersRedux';
+import { orderTypes } from '../redux/orders';
 
 const api = TaxRateApi.createAPI();
 

@@ -2,11 +2,11 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Legal -------------------------------
-import NicotineDisclaimer from '../Pages/Legal/nicotineDisclaimer';
-import Shipping from '../Pages/Legal/shippingPolicy';
-import Returns from '../Pages/Legal/returnsPolicy';
-import PrivacyPolicy from '../Pages/Legal/privacyPolicy';
-import TermsConditions from '../Pages/Legal/termsConditions';
+import NicotineDisclaimer from '../containers/legal/nicotineDisclaimer';
+import Shipping from '../containers/legal/shippingPolicy';
+import Returns from '../containers/legal/returnsPolicy';
+import PrivacyPolicy from '../containers/legal/privacyPolicy';
+import TermsConditions from '../containers/legal/termsConditions';
 
 const LegalRoutes = () => (
   <div>

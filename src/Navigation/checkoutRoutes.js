@@ -2,10 +2,10 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Legal -------------------------------
-import Cart from '../Pages/Cart/cart';
-import EmptyCart from '../Pages/Cart/EmptyCart/emptyCart';
-import ExpressCheckout from '../Pages/ExpressCheckout/expressCheckout';
-import OrderSuccess from '../Pages/ExpressCheckout/orderSuccess';
+import Cart from '../containers/cart/cart';
+import EmptyCart from '../containers/cart/EmptyCart/emptyCart';
+import ExpressCheckout from '../containers/checkout/expressCheckout';
+import OrderSuccess from '../containers/checkout/orderSuccess';
 
 const CheckoutRoutes = () => (
   <div>
