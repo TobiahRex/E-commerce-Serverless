@@ -13,7 +13,7 @@
     "copy:error": "copyfiles -f './src/Pages/404/error/*' ./dist",
     "copy:images": "copyfiles -u 1 './src/Images/**' ./dist/",
     "copy:package": "copyfiles 'package.json' ./dist/",
-    "deploy-s3-invalidate-cf": "npm-run-all s3:clean s3:deploy cf:invalidate",
+    "deploy": "npm-run-all s3:clean s3:deploy cf:invalidate",
     "open:dev": "babel-watch ./server/server.js",
     "open:dist": "babel-node ./tools/distServer.js",
     "s3:clean": "aws s3 rm s3://nj2jp-react --recursive",
