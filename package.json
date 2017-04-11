@@ -20,7 +20,8 @@
     "build:bundle": "babel-node ./tools/build.js",
     "s3:clean": "aws s3 rm s3://nj2jp-react --recursive",
     "s3:deploy": "aws s3 sync dist/ s3://nj2jp-react",
-    "deploy-s3": "npm-run-all s3:clean s3:deploy",
+    "cf:invalidate": "babel-node ./tools/cf_invalidate_script.js",
+    "deploy-s3-invalidate-cf": "npm-run-all s3:clean s3:deploy cf:invalidate",
     "build": "NODE_ENV=production npm-run-all build:bundle copy:assets open:dist",
     "analyze-bundle": "NODE_ENV=production babel-node ./tools/analyzeBundle.js"
   },
