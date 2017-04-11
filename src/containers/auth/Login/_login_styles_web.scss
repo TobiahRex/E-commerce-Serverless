@@ -52,6 +52,33 @@
         }
       }
       & .sign-in__form {
+        & .sign-in__list {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          & .sign-in__left-break,
+          .sign-in__right-break {
+            // height: 2em;
+            width: 11.5em;
+            border-bottom: 1px solid rgba(0,0,0,.2);
+          }
+          & .title-or {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            height: 4em;
+            width: 7em;
+            & p {
+              text-transform: uppercase;
+              color: $p-blue;
+              font-weight: 200em;
+              font-size: 1.6em;
+            }
+          }
+        }
         & .form--email,
         .form--password {
           @include prefixflex();
@@ -113,33 +140,6 @@
           height: 6em;
           width: 30em;
           margin-bottom: 2em;
-          & .social--title-list {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            & .title-left-break,
-            .title-right-break {
-              // height: 2em;
-              width: 11.5em;
-              border-bottom: 1px solid rgba(0,0,0,.2);
-            }
-            & .title-or {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              height: 4em;
-              width: 7em;
-              & p {
-                text-transform: uppercase;
-                color: $p-blue;
-                font-weight: 200em;
-                font-size: 1.6em;
-              }
-            }
-          }
           & .social--title-msg {
             & p {
               color: $p-blue;

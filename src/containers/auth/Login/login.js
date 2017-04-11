@@ -18,6 +18,8 @@ class Login extends Component {
     };
   }
 
+  login = () => this.props.auth.login();
+
   render() {
     return (
       <div className="sign-in--main">
@@ -35,42 +37,8 @@ class Login extends Component {
               Example: <i>batman@wayne.enterprises.com</i>
             </h5>
           </div>
-          <form className="sign-in__form">
-            <div className="form--email">
-              <label htmlFor="email-input" className="email__input--label">
-                Email{'\u00A0'}
-                <span className="required-star">*</span>
-              </label>
-              <input
-                type="text"
-                id="email-input"
-                className="email__input--email"
-              />
-            </div>
-            <div className="form--password">
-              <label htmlFor="password-input" className="password__input--label">
-                Password{'\u00A0'}
-                <span className="required-star">*</span>
-              </label>
-              <input type="text" id="password-input" className="password__input--password" />
-            </div>
-            <div className="form--login-btn">
-              <button
-                type="button"
-                className="login-btn sweep-right"
-                onClick={() => console.info('Login Submit')}
-              >Login</button>
-            </div>
-          </form>
           <div className="sign-in__social--container">
             <div className="social--title">
-              <ul className="social--title-list">
-                <li className="title-left-break" />
-                <li className="title-or">
-                  <p>Or</p>
-                </li>
-                <li className="title-right-break" />
-              </ul>
               <div className="social--title-msg">
                 <p>Login with your Social Network</p>
               </div>
@@ -97,6 +65,40 @@ class Login extends Component {
               </div>
             </div>
           </div>
+          <form className="sign-in__form">
+            <ul className="sign-in__list">
+              <li className="sign-in__left-break" />
+              <li className="title-or">
+                <p>Or</p>
+              </li>
+              <li className="sign-in__right-break" />
+            </ul>
+            <div className="form--email">
+              <label htmlFor="email-input" className="email__input--label">
+                Email{'\u00A0'}
+                <span className="required-star">*</span>
+              </label>
+              <input
+                type="text"
+                id="email-input"
+                className="email__input--email"
+              />
+            </div>
+            <div className="form--password">
+              <label htmlFor="password-input" className="password__input--label">
+                Password{'\u00A0'}
+                <span className="required-star">*</span>
+              </label>
+              <input type="text" id="password-input" className="password__input--password" />
+            </div>
+            <div className="form--login-btn">
+              <button
+                type="button"
+                className="login-btn sweep-right"
+                onClick={() => console.info('Login Submit')}
+              >Login</button>
+            </div>
+          </form>
           <div className="sign-in__action-btns">
             <div className="action-btns__register">
               <button className="register-btn sweep-right" onClick={() => browserHistory.push('/register')}>Register</button>
