@@ -14,9 +14,9 @@ import UserLegal from '../containers/userDashboard/userDashComponents/userDashbo
 
 import UserFaqs from '../containers/userDashboard/userDashComponents/userDashboard_legal/userFaqs';
 
-export default function UserDashboardRoutes() {
+function UserDashboardRoutes(requireAuth) {
   return (
-    <Route path="/user_:id" component={UserDashboard}>
+    <Route path="/user_:id" component={UserDashboard} onEnter={requireAuth}>
       <IndexRoute component={UserHomeDash} />
       <Route
         path="address_book"
@@ -67,3 +67,5 @@ export default function UserDashboardRoutes() {
     </Route>
   );
 }
+
+export default UserDashboardRoutes;
