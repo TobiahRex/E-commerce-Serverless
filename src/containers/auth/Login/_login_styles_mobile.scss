@@ -127,7 +127,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
-        padding: 3em;
+        padding-top: 2em;
         & .login-btn {
           height: 3.12em;
           width: 15.62em;
@@ -144,6 +144,8 @@
       & .form__login-recaptcha {
         @include prefixflex();
         justify-content: center;
+        padding-top: 1em;
+        padding-bottom: 3em;
       }
       & .sign-in__social--container {
         @include prefixflex();
@@ -215,6 +217,7 @@
               background-color: #DB4437;
               & span {
                 color: $p-white;
+                font-size: 4em;
               }
             }
             & .list--option.linkedin {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
-import Recaptcha from 'react-recaptcha';
+import RecaptchaWidget from '../../../components/recaptcha';
 
 class Login extends Component {
   static propTypes = {
@@ -14,11 +14,13 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      recaptchaToken: '',
     };
   }
-  recaptchaVerifyCb = response => console.info('Recaptch Info: ', response);
-
-  recaptchaOnLoadCb = () => console.info('Recapch DONE!');
+  recaptchaVerifyCb = (response) => {
+    this.setState({ recaptchaToken: response });
+  };
+  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
   login = () => this.props.route.auth.login();
 
@@ -101,12 +103,8 @@ class Login extends Component {
               >Login</button>
             </div>
             <div className="form__login-recaptcha">
-              <Recaptcha
-                sitekey={process.env.RECAPTCHA_KEY}
-                render="explicit"
-                verifyCallback={this.recaptchaVerifyCb}
-                onloadCallback={this.recaptchaOnLoadCb}
-              />
+              <RecaptchaWidget verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb} />
+              {/* TODO: Create an API request to verify this recptcha on form submit. */}
             </div>
           </form>
           <div className="sign-in__action-btns">

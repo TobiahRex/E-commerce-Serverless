@@ -111,7 +111,7 @@
         @include prefixflex();
         justify-content: center;
         align-items: center;
-        padding: 3em;
+        padding-top: 2em;
         & .login-btn {
           height: 3.12em;
           width: 15.62em;
@@ -128,6 +128,8 @@
       & .form__login-recaptcha {
         @include prefixflex();
         justify-content: center;
+        padding-top: 1em;
+        padding-bottom: 3em;
       }
       & .sign-in__social--container {
         @include prefixflex();
