@@ -16,5 +16,7 @@ exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIB
   } else {
     process.stdout.write('\n');
     process.stdout.write(result.bold.green);
+    process.stdout.write('\n');
+    process.stdout.write('✅  Your app has been successfully deployed.\n'.green.bold);
   }
 });
