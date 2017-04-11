@@ -4,11 +4,15 @@ import config from '../webpack.config';
 
 config.plugins.push(new BundleAnalyzerPlugin());
 
-const compiler = webpack(config);
-
-compiler.run((error, stats) => {
-  if (error) {
-    throw new Error(error);
+const { run } = webpack(config);
+run((err, stats) => {
+  if (err) {
+    process.stdout.write('\n');
+    process.stdout.write(`❌ ${err}
+`.red);
+    throw err;
+  } else {
+    process.stdout.write('\n');
+    process.stdout.write(stats.bold.green);
   }
-  console.log(stats); //eslint-disable-line
 });

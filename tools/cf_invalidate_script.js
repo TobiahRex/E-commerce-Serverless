@@ -7,7 +7,7 @@ import colors from 'colors'; // eslint-disable-line
 
 dotenv.load({ silent: true });
 
-exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIBUTIONID} --paths '/*'`, (err, stdout) => {
+exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIBUTIONID} --paths '/*'`, (err, result) => {
   if (err) {
     process.stdout.write('\n');
     process.stdout.write(`❌ ${err}
@@ -15,6 +15,6 @@ exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIB
     throw err;
   } else {
     process.stdout.write('\n');
-    process.stdout.write(stdout.bold.green);
+    process.stdout.write(result.bold.green);
   }
 });
