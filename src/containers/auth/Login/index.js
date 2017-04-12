@@ -1,17 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
+import AuthService from '../../../services/utils/authService';
 
 import LoginForm from './loginForm';
 
 class Login extends Component {
-  static propTypes = {
-    // location: PropTypes.objectOf(PropTypes.any).isRequired,
-    route: PropTypes.objectOf(PropTypes.any).isRequired,
+  static contextTypes = {
+    route: PropTypes.object,
   }
-  constructor(props) {
-    super(props);
 
+  static propTypes = {
+    location: PropTypes.objectOf(PropTypes.any).isRequired,
+    auth: PropTypes.instanceOf(AuthService).isRequired,
+  }
+  constructor(props, context) {
+    super(props);
+    console.log('context: ', context);
     this.state = {
       username: '',
       password: '',
