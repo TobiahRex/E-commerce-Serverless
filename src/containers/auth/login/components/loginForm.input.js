@@ -6,13 +6,20 @@ const propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-function LoginFormInput(onInputChange, type, slug) {
+function LoginFormInput(
+  onInputChange,
+  type,
+  slug,
+  className,
+  value
+) {
   return (
     <input
       type={type}
       id={slug}
-      className={`${slug}__input--${slug}`}
+      className={className}
       onChange={e => onInputChange(e.target.getElementBy('id'))}
+      value={value}
     />
   );
 }

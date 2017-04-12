@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import AuthService from '../../../../services/utils/authService';
 import RecaptchaWidget from '../../../../components/recaptcha';
+import LoginFormInput from './loginForm.input';
 
 const propTypes = {
   auth: PropTypes.instanceOf(AuthService).isRequired,
@@ -17,22 +18,28 @@ function LoginForm(auth, onInputChange, login, signUp, loginWith) {
         <li className="sign-in__right-break" />
       </ul>
       <div className="form--email">
-        <label htmlFor="email-input" className="email__input--label">
+        <label htmlFor="email" className="email__input--label">
           Email{'\u00A0'}
           <span className="required-star">*</span>
         </label>
-        <input
-          type="text"
-          id="email-input"
+        <LoginFormInput
+          onInputChange={onInputChange}
+          slug="email"
+          type="email"
           className="email__input--email"
         />
       </div>
       <div className="form--password">
-        <label htmlFor="password-input" className="password__input--label">
+        <label htmlFor="password" className="password__input--label">
           Password{'\u00A0'}
           <span className="required-star">*</span>
         </label>
-        <input type="password" id="password-input" className="password__input--password" />
+        <LoginFormInput
+          onInputChange={onInputChange}
+          slug="password"
+          type="password"
+          className="password__input--password"
+        />
       </div>
       <div className="form__login-recaptcha">
         <RecaptchaWidget verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb} />
