@@ -1,5 +1,4 @@
 import auth0 from 'auth0-js';
-
 import { browserHistory } from 'react-router';
 
 export default class AuthService {
@@ -37,6 +36,30 @@ export default class AuthService {
   loginWithGoogle = () => this.auth0.authorize({
     connection: 'google-oauth2',
   })
+
+  parseHash = (hash) => {
+    this.auth0.parseHash({
+      hash,
+      _idTokenVerification: false,
+    }, (err, authResult) => {
+      if (err) {
+        alert(`Error: ${err.errorDescription}`);
+      }
+
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setToken(authResult.accessToken, authResult.idToken);
+        this.auth0.client.userInfo(authResult.accessToken, (err, profile) => {
+          if (err) {
+            alert(`Error: Could not load profile - ${err}`);
+          } else {
+            this.setProfile(profile);
+            browserHistory.replace('/home');
+          }
+
+        })
+      }
+    })
+  }
 
   _doAuthentication = (authResult) => {
     this.setToken(authResult.idToken);
