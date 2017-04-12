@@ -2,13 +2,7 @@ import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
 
 export default class AuthService {
-  constructor(clientId, domain) {
-    // this.auth0 = new Auth0Lock(clientId, domain, {
-    //   auth: {
-    //     redirectUrl: 'http://localhost:3000/login',
-    //     responseType: 'token',
-    //   },
-    // });
+  constructor() {
     this.auth0 = new auth0.WebAuth({
       clientID: process.env.AUTH0_CLIENT_ID,
       domain: process.env.AUTH0_DOMAIN,
@@ -76,14 +70,22 @@ export default class AuthService {
     // TODO: Find a way to dispatch this event.
   }
 
+  getProfile = () => {
+    const profile = localStorage.getItem('profile');
+    return profile && JSON.parse(localStorage(profile));
+  }
+
+  getToken = () => localStorage.getItem('id_token');
+
+  logout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
+  }
+
   _doAuthentication = (authResult) => {
     this.setToken(authResult.idToken);
     // browserHistory.replace('/home');
     // TODO: This needs to be sourced to the invocation.
   };
-
-  getToken = () => localStorage.getItem('id_token');
-
-
-  logout = () => localStorage.removeItem('id_token');
 }
