@@ -5,6 +5,10 @@ import LoginFormInput from './loginForm.input';
 
 const propTypes = {
   auth: PropTypes.instanceOf(AuthService).isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  emailValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
 };
 
 function LoginForm(auth, onInputChange, login, signUp, loginWith) {

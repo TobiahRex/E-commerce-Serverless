@@ -1,6 +1,6 @@
 import React, { PropTypes, PureComponent } from 'react';
 
-class LoginFormInput extends PurComponent {
+class LoginFormInput extends PureComponent {
   static propTypes = {
     onInputChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
@@ -14,7 +14,7 @@ class LoginFormInput extends PurComponent {
     const {
       onInputChange,
       className,
-      value
+      value,
       type,
       slug,
     } = this.props
