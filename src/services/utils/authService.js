@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+import { isTokenExpired } from './jwtHelper';
 import { browserHistory } from 'react-router';
 
 export default class AuthService {
@@ -48,18 +49,22 @@ export default class AuthService {
 
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setToken(authResult.accessToken, authResult.idToken);
-        this.auth0.client.userInfo(authResult.accessToken, (err, profile) => {
-          if (err) {
-            alert(`Error: Could not load profile - ${err}`);
+        this.auth0.client.userInfo(authResult.accessToken, (error, profile) => {
+          if (error) {
+            alert(`Error: Could not load profile - ${error}`);
           } else {
             this.setProfile(profile);
             browserHistory.replace('/home');
           }
-
-        })
+        });
       }
-    })
+    });
   }
+
+  loggedIn = () => {
+    const token = this.getToken();
+    return !!token && !isTokenExpired(token);
+  };
 
   _doAuthentication = (authResult) => {
     this.setToken(authResult.idToken);
@@ -73,5 +78,4 @@ export default class AuthService {
 
   logout = () => localStorage.removeItem('id_token');
 
-  loggedIn = () => !!this.getToken();
 }
