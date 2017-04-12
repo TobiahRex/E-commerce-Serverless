@@ -23,8 +23,20 @@ export default class AuthService {
       connection: 'Username-Password-Authentication',
       username,
       password,
-    }, err => alert(`Error! : ${err.description}`));
+    }, ({ description }) => alert(`Error: ${description}`));
   };
+
+  signUp = (email, password) => {
+    this.auth0.redirect.signupAndLogin({
+      connection: 'Username-Password-Authentication',
+      email,
+      password,
+    }, ({ description }) => alert(`Error: ${description}`));
+  }
+
+  loginWithGoogle = () => this.auth0.authorize({
+    connection: 'google-oauth2',
+  })
 
   _doAuthentication = (authResult) => {
     this.setToken(authResult.idToken);
