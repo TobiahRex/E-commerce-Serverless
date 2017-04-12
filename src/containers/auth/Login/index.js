@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 import AuthService from '../../../services/utils/authService';
 
-import LoginForm from './loginForm';
+import LoginForm from './components/loginForm';
 
 class Login extends Component {
   static contextTypes = {

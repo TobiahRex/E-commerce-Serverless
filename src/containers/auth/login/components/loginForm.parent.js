@@ -1,7 +1,12 @@
-import React from 'react';
-import RecaptchaWidget from '../../../components/recaptcha';
+import React, { PropTypes } from 'react';
+import AuthService from '../../../../services/utils/authService';
+import RecaptchaWidget from '../../../../components/recaptcha';
 
-export default function LoginForm() {
+const propTypes = {
+  auth: PropTypes.instanceOf(AuthService).isRequired,
+};
+
+function LoginForm(auth, onInputChange, login, signUp, loginWith) {
   return (
     <form className="sign-in__form">
       <ul className="sign-in__list">
@@ -43,3 +48,5 @@ export default function LoginForm() {
     </form>
   );
 }
+LoginForm.propTypes = propTypes;
+export default LoginForm;
