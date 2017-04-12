@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 import AuthService from '../../../services/utils/authService';
 
-import LoginForm from './components/loginForm';
+import LoginForm from './components/loginForm.parent';
 
 class Login extends Component {
   static contextTypes = {
@@ -16,19 +16,26 @@ class Login extends Component {
   }
   constructor(props, context) {
     super(props);
-    console.log('context: ', context);
+    console.log('<Login /> context: ', context);
+    this.auth = context.route.auth;
+
     this.state = {
-      username: '',
+      email: '',
       password: '',
       recaptchaToken: '',
     };
   }
+
+
+  onInputChange = (id, value) => this.setState({ [id]: value });
+
+  login = () => this.auth.login();
+
   recaptchaVerifyCb = (response) => {
     this.setState({ recaptchaToken: response });
   };
-  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
-  login = () => this.props.route.auth.login();
+  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
   render() {
     return (

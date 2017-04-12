@@ -1,27 +1,35 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 
-const propTypes = {
-  onInputChange: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-};
+class LoginFormInput extends PurComponent {
+  static propTypes = {
+    onInputChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+  }
 
-function LoginFormInput(
-  onInputChange,
-  type,
-  slug,
-  className,
-  value
-) {
-  return (
-    <input
-      type={type}
-      id={slug}
-      className={className}
-      onChange={e => onInputChange(e.target.getElementBy('id'))}
-      value={value}
-    />
-  );
+  onInputChange = (id, value) => this.props.onInputChange(id, value);
+
+  render () {
+    const {
+      onInputChange,
+      className,
+      value
+      type,
+      slug,
+    } = this.props
+
+    return (
+      <input
+        onChange={e =>
+          onInputChange(e.target.getElementBy('id'), e.target.value)
+        }
+        className={className}
+        value={value}
+        type={type}
+        id={slug}
+      />
+    );
+  }
 }
-LoginFormInput.propTypes = propTypes;
 export default LoginFormInput;

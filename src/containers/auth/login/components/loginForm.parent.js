@@ -27,6 +27,7 @@ function LoginForm(auth, onInputChange, login, signUp, loginWith) {
           slug="email"
           type="email"
           className="email__input--email"
+          value={emailValue}
         />
       </div>
       <div className="form--password">
@@ -39,11 +40,16 @@ function LoginForm(auth, onInputChange, login, signUp, loginWith) {
           slug="password"
           type="password"
           className="password__input--password"
+          value={passwordValue}
         />
       </div>
       <div className="form__login-recaptcha">
-        <RecaptchaWidget verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb} />
+        <RecaptchaWidget
+          verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb}
+        />
+
         {/* TODO: Create an API request to verify this recptcha on form submit. */}
+
       </div>
       <div className="form__login-btn">
         <button
