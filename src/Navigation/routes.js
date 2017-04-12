@@ -5,11 +5,7 @@ import Homepage from '../containers/home/homePage';
 import Routes from './index';
 import AuthService from '../services/utils/authService';
 
-const auth = new AuthService(
-  process.env.AUTH0_CLIENT_ID,
-  process.env.AUTH0_DOMAIN,
-);
-
+const auth = new AuthService();
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) replace({ pathname: '/login' });
 };
