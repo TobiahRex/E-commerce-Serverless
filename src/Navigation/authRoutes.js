@@ -9,14 +9,19 @@ import Forgot from '../containers/auth/Forgot/forgot';
 
 function AuthRoutes(auth) {
   const parseAuthHash = (nextState) => {
-    if (/access_token|id_token|error/.match(nextState.location.hash)) {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
       auth.parseHash(nextState.location.hash);
     }
   };
 
   return (
     <div>
-      <Route path="login" component={Login} onEnter={parseAuthHash} />
+      <Route
+        path="login"
+        component={Login}
+        onEnter={parseAuthHash}
+        auth={auth}
+      />
       <Route path="register" component={Register} auth={auth} />
       <Route path="forgot" component={Forgot} />
       <Route path="reset_email" component={ResetPasswordEmail} />
