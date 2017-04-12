@@ -202,27 +202,75 @@
             }
             & .list--option.facebook {
               background-color: $p-blue;
-              & span {
-                color: $p-white;
+              & button {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100;
+                border: none;
+                background-color: inherit;
+                padding: 0;
+                margin: 0;
+                & span {
+                  color: $p-white;
+                  cursor: pointer;
+                }
               }
             }
             & .list--option.twitter {
               background-color: #4990E2;
-              & span {
-                color: $p-white;
+              & button {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100;
+                border: none;
+                background-color: inherit;
+                padding: 0;
+                margin: 0;
+                & span {
+                  color: $p-white;
+                  cursor: pointer;
+                }
               }
             }
             & .list--option.google {
               background-color: #DB4437;
-              & span {
-                color: $p-white;
-                font-size: 4em;
+              & button {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100;
+                border: none;
+                background-color: inherit;
+                padding: 0;
+                margin: 0;
+                & span {
+                  color: $p-white;
+                  cursor: pointer;
+                  font-size: 4em;
+                }
               }
             }
             & .list--option.linkedin {
               background-color: #0077B5;
-              & span {
-                color: $p-white;
+              & button {
+                @include prefixflex();
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100;
+                border: none;
+                background-color: inherit;
+                padding: 0;
+                margin: 0;
+                & span {
+                  color: $p-white;
+                  cursor: pointer;
+                }
               }
             }
           }

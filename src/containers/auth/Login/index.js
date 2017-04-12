@@ -74,13 +74,9 @@ class Login extends Component {
               </div>
             </div>
           </div>
-          <LoginForm
-            auth={this.auth}
-            onInputChange={this.onInputChange}
-            login={this.login}
-            emailValue={this.state.email}
-            passwordValue={this.state.password}
-          />
+
+          <LoginForm auth={this.auth} />
+
           <div className="sign-in__action-btns">
             <div className="action-btns__register">
               <button className="register-btn sweep-right" onClick={() => browserHistory.push('/register')}>Register</button>

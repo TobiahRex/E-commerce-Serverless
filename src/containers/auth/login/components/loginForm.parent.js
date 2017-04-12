@@ -6,13 +6,9 @@ import LoginFormInput from './loginForm.input';
 class LoginForm extends Component {
   static propTypes = {
     auth: PropTypes.instanceOf(AuthService).isRequired,
-    login: PropTypes.func.isRequired,
-    emailValue: PropTypes.string.isRequired,
-    passwordValue: PropTypes.string.isRequired,
   };
   constructor(props) {
     super(props);
-    this.auth = props.auth;
     this.state = {
       email: '',
       password: '',
@@ -22,7 +18,7 @@ class LoginForm extends Component {
 
   login = (e) => {
     e.preventDefault();
-    this.auth.login(this.state.username, this.state.password);
+    this.props.auth.login(this.state.username, this.state.password);
   }
 
   recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
