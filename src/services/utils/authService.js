@@ -1,6 +1,5 @@
 import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
-import { browserHistory } from 'react-router';
 
 export default class AuthService {
   constructor(clientId, domain) {
@@ -54,7 +53,8 @@ export default class AuthService {
             alert(`Error: Could not load profile - ${error}`);
           } else {
             this.setProfile(profile);
-            browserHistory.replace('/home');
+            // browserHistory.replace('/home');
+            // TODO this functionality needs to be sourced wherever this function is being called.
           }
         });
       }
@@ -66,16 +66,22 @@ export default class AuthService {
     return !!token && !isTokenExpired(token);
   };
 
+  setToken = (accessToken, idToken) => {
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('id_token', idToken);
+  }
+
+  setProfile = (profile) => {
+
+  }
+
   _doAuthentication = (authResult) => {
     this.setToken(authResult.idToken);
     browserHistory.replace('/home');
   };
 
-  setToken = idToken => localStorage.setItem('id_token', idToken);
-
   getToken = () => localStorage.getItem('id_token');
 
 
   logout = () => localStorage.removeItem('id_token');
-
 }
