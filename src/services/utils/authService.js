@@ -72,12 +72,14 @@ export default class AuthService {
   }
 
   setProfile = (profile) => {
-
+    localStorage.setItem('profile', JSON.stringify(profile));
+    // TODO: Find a way to dispatch this event.
   }
 
   _doAuthentication = (authResult) => {
     this.setToken(authResult.idToken);
-    browserHistory.replace('/home');
+    // browserHistory.replace('/home');
+    // TODO: This needs to be sourced to the invocation.
   };
 
   getToken = () => localStorage.getItem('id_token');
