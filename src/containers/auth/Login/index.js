@@ -57,10 +57,14 @@ class Login extends Component {
                   </button>
                 </li>
                 <li className="list--option google">
-                  <FontAwesome name="google-plus" />
+                  <buton id="loginWithGoogle" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
+                    <FontAwesome name="google-plus" />
+                  </buton>
                 </li>
                 <li className="list--option linkedin">
-                  <FontAwesome name="linkedin" />
+                  <button id="loginWithLinkedin" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
+                    <FontAwesome name="linkedin" />
+                  </button>
                 </li>
               </ul>
               <div className="list__forgot-msg">
