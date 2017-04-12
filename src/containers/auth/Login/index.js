@@ -19,13 +19,7 @@ class Login extends Component {
     };
   }
 
-  login = () => this.auth.login();
-
-  recaptchaVerifyCb = (response) => {
-    this.setState({ recaptchaToken: response });
-  };
-
-  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
+  socialLogin = socialType => this.auth[socialType]();
 
   render() {
     return (
@@ -53,10 +47,14 @@ class Login extends Component {
             <div className="social--btns__list">
               <ul className="list--container">
                 <li className="list--option facebook">
-                  <FontAwesome name="facebook" />
+                  <button id="loginWithFacebook" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
+                    <FontAwesome name="facebook" />
+                  </button>
                 </li>
                 <li className="list--option twitter">
-                  <FontAwesome name="twitter" />
+                  <button id="loginWithTwitter" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
+                    <FontAwesome name="twitter" />
+                  </button>
                 </li>
                 <li className="list--option google">
                   <FontAwesome name="google-plus" />

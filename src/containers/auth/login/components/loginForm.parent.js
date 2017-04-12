@@ -25,6 +25,10 @@ class LoginForm extends Component {
     this.auth.login(this.state.username, this.state.password);
   }
 
+  recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
+
+  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
+
   onInputChange = (id, value) => this.setState({ [id]: value });
 
   render () {
