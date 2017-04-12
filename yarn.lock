@@ -7383,10 +7383,6 @@ react-svg-chart@^4.0.0:
   dependencies:
     svg-tween "^1.2.0"
 
-react-svg-piechart@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-svg-piechart/-/react-svg-piechart-1.2.0.tgz#8034a37ae279fda8a53789ab18212e09bfd269bd"
-
 react-transform-catch-errors@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-transform-catch-errors/-/react-transform-catch-errors-1.0.2.tgz#1b4d4a76e97271896fc16fe3086c793ec88a9eeb"

@@ -11,8 +11,6 @@ mongoose.Promise = Promise;
 dotenv.config({ silent: true });
 
 const app = express();
-let socketEmitter;
-
 
 // ---------------------- Express Middleware -----------------------------------
 app.use(bodyParser.json());
@@ -21,7 +19,6 @@ app.use(compression());
 app.use(express.static('dist'));
 app.use((req, res, next) => {
   const resRef = res;
-  resRef.socketEmitter = socketEmitter;
   resRef.handle = (err, data) =>
   res.status(err ? 400 : 200).send(err || data);
   next();
