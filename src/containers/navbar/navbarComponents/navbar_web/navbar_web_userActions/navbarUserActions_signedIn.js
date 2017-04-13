@@ -17,7 +17,10 @@ class NavbarUserActionsSignin extends PureComponent {
     show: {},
   }
 
-  logout = () => AuthService.logout();
+  logout = () => {
+    AuthService.logout();
+    this.props.push('/');
+  };
 
   render() {
     const { push } = this.props;
@@ -49,4 +52,9 @@ class NavbarUserActionsSignin extends PureComponent {
 }
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ ...routerActions }, dispatch);
-export default connect(null, mapDispatchToProps)(NavbarUserActionsSignin);
+
+const mapStateToProps = ({ user }) => ({
+  user,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarUserActionsSignin);

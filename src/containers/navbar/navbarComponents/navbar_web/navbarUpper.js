@@ -20,7 +20,7 @@ class NavbarUpper extends Component {
         Options will receive Option handlers & Active Language & Currency Qty  */}
         <NavbarOptions />
 
-        <NavbarUserActions activeUser={this.state.user.loggedIn} />
+        <NavbarUserActions activeUser={this.props.user.loggedIn} />
 
 
         {/* TODO: Cart will receive Cart Qty & Handlers:

@@ -12,10 +12,12 @@ const emit = new EventEmitter();
 // ------------------- Listeners ----------------------------------
 function loginListenerInit(dispatch) {
   emit.on('logged_in', (profile) => {
+    console.warn('I HEARD THAT LOGIN!!!');
     dispatch(userActions.loggedIn(profile));
   });
 }
 function logoutListenerInit(dispatch) {
+  console.warn('I HEARD THAT LOGOUT!!!');
   emit.on('logged_out', () => dispatch(userActions.loggedOut()));
 }
 // ------------------- App Startup Utilities ----------------------------------

@@ -4,6 +4,10 @@
   cursor: pointer;
   & .mainbtn-mycart-link {
     @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     text-decoration: none;
     & .mainbtn-mycart-link-title {
       @extend .flex-center;
@@ -13,14 +17,12 @@
       font-weight: 400;
       font-family: $p-font;
       width: 9rem;
-      height: 2rem;
       border-right: 1px solid $p-white;
       @include prefixed(font-smoothing, antialiased);
       border-right-color: rgba(255, 255, 255, .5);
     }
     & .mainbtn-mycart-link-cartqty {
       width: 4.5rem;
-      height: 2rem;
       @extend .flex-center;
       background-color: $p-red;
       color: $p-white;
