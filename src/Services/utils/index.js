@@ -7,13 +7,16 @@ import localeActions from '../../redux/locale';
 import orderActions from '../../redux/orders';
 import userActions from '../../redux/user';
 
+const emit = new EventEmitter();
 
 // ------------------- Listeners ----------------------------------
 function loginListenerInit(dispatch) {
-  const emit = new EventEmitter();
   emit.on('logged_in', (profile) => {
     dispatch(userActions.loggedIn(profile));
   });
+}
+function logoutListenerInit(dispatch) {
+  emit.on('logged_out', () => dispatch(userActions.loggedOut()));
 }
 // ------------------- App Startup Utilities ----------------------------------
 
@@ -117,6 +120,7 @@ export default function initiateActions(dispatch, history, { startup }) {
     getTaxRate(dispatch);
     scrollToTop();
     loginListenerInit(dispatch);
+    logoutListenerInit(dispatch);
   } else {
     cleanS3Route(history);
     scrollToTop();

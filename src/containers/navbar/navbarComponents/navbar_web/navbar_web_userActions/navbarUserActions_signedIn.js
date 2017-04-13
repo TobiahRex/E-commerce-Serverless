@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux';
 import { Link } from 'react-router';
-import uuid from 'uuid'; // TODO Remove this once you have user ID's from BE.
+
+import { auth as AuthService } from '../../../../../navigation/routes';
 
 class NavbarUserActionsSignin extends PureComponent {
   static propTypes = {
@@ -16,21 +17,18 @@ class NavbarUserActionsSignin extends PureComponent {
     show: {},
   }
 
-  signOut = () => console.info('user has signed out.');
+  logout = () => AuthService.logout();
 
   render() {
     const { push } = this.props;
     return (
-      <ul
-        // style={NavbarUserActionsSignin.styles.hidden}
-        className="navbar-actionSection-upper-actions-signedIn"
-      >
+      <ul className="navbar-actionSection-upper-actions-signedIn" >
         <li className="sign-out-title">
           <a
             className="navbar-userActions-signOut-title-button"
             onClick={(e) => {
               e.preventDefault();
-              console.warn('Sing out user!!!');
+              console.warn('Sign out user!!!');
             }}
           >Logout</a>
         </li>

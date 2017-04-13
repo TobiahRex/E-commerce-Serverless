@@ -2,6 +2,7 @@ import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
   userLoggedIn: ['time', 'profile'],
+  userLoggedOut: null,
   ageVerified: null,
 });
 
@@ -20,6 +21,12 @@ const loggedIn = (state, { profile }) => ({
   profile,
 });
 
+const loggedOut = state => ({
+  ageVerified: state.age_verified,
+  loggedIn: false,
+  profile: null,
+});
+
 const verified = (state) => {
   localStorage.setItem('ageVerified', true);
   return ({
@@ -31,6 +38,7 @@ const verified = (state) => {
 
 export const userReducer = createReducer(INITIAL_STATE, {
   [Types.USER_LOGGED_IN]: loggedIn,
+  [Types.USER_LOGGED_OUT]: loggedOut,
   [Types.AGE_VERIFIED]: verified,
 });
 // ------------------------------  ageVerified: null,
