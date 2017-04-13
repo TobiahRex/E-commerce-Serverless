@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import NavbarUserActionsNotSignedIn from './navbarUserActions_notSignedIn';
 import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';

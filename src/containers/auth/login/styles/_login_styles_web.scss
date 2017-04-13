@@ -191,11 +191,15 @@
                 justify-content: center;
                 align-items: center;
                 height: 100%;
-                width: 100;
+                width: 100%;
                 border: none;
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
+                &:focus,
+                &:active {
+                  outline: none;
+                }
                 & span {
                   color: $p-white;
                   cursor: pointer;
@@ -209,11 +213,15 @@
                 justify-content: center;
                 align-items: center;
                 height: 100%;
-                width: 100;
+                width: 100%;
                 border: none;
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
+                &:focus,
+                &:active {
+                  outline: none;
+                }
                 & span {
                   color: $p-white;
                   cursor: pointer;
@@ -227,11 +235,15 @@
                 justify-content: center;
                 align-items: center;
                 height: 100%;
-                width: 100;
+                width: 100%;
                 border: none;
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
+                &:focus,
+                &:active {
+                  outline: none;
+                }
                 & span {
                   color: $p-white;
                   cursor: pointer;
@@ -246,11 +258,15 @@
                 justify-content: center;
                 align-items: center;
                 height: 100%;
-                width: 100;
+                width: 100%;
                 border: none;
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
+                &:focus,
+                &:active {
+                  outline: none;
+                }
                 & span {
                   color: $p-white;
                   cursor: pointer;

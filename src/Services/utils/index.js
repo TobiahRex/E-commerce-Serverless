@@ -1,4 +1,3 @@
-import { EventEmitter } from 'events';
 import MobileDetect from 'mobile-detect';
 import sessionActions from '../../redux/session';
 import mobileActions from '../../redux/mobile';
@@ -6,20 +5,19 @@ import geoActions from '../../redux/geo';
 import localeActions from '../../redux/locale';
 import orderActions from '../../redux/orders';
 import userActions from '../../redux/user';
-
-const emit = new EventEmitter();
+import { auth as AuthService } from '../../navigation/routes';
 
 // ------------------- Listeners ----------------------------------
 function loginListenerInit(dispatch) {
-  emit.on('logged_in', (profile) => {
+  AuthService.on('logged_in', (profile) => {
     console.warn('I HEARD THAT LOGIN!!!');
     dispatch(userActions.loggedIn(profile));
   });
 }
 function logoutListenerInit(dispatch) {
-  emit.on('logged_out', () => {
+  AuthService.on('logged_out', () => {
     console.warn('I HEARD THAT LOGOUT!!!');
-    dispatch(userActions.loggedOut())
+    dispatch(userActions.loggedOut());
   });
 }
 // ------------------- App Startup Utilities ----------------------------------

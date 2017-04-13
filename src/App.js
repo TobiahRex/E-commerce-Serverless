@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import createHistory from 'history/createBrowserHistory';
+import { routerActions } from 'react-router-redux';
 
 import AgeVerification from './containers/ageVerification/ageVerification';
 import NavbarWeb from './containers/navbar/navbarComponents/navbar_web/navbar_web';
@@ -15,14 +16,6 @@ import { genDynamicTitle } from './services/utils';
 
 */
 class App extends Component {
-  static styles = {
-    hide: {
-      display: 'none',
-    },
-    show: {
-      display: 'flex',
-    },
-  }
   static defaultProps = {
     ageVerified: false,
     screenWidth: '1080',
@@ -33,7 +26,16 @@ class App extends Component {
     verifyAge: PropTypes.func.isRequired,
     saveActivePage: PropTypes.func.isRequired,
     activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
+    push: PropTypes.func.isRequired,
     // screenWidth: PropTypes.string.isRequired,
+  }
+  static styles = {
+    hide: {
+      display: 'none',
+    },
+    show: {
+      display: 'flex',
+    },
   }
 
   constructor(props) {
@@ -62,10 +64,9 @@ class App extends Component {
   // -------------------------- Child Props ------------------------------------
 
   verifyAge = (event) => {
-    const history = createHistory();
     event.preventDefault();
     this.props.verifyAge();
-    history.push('/home');
+    this.props.push('/');
   };
 
   logoutUser = () => console.info('USER LOGGED OUT!');
@@ -104,10 +105,13 @@ const mapStateToProps = ({ user, session, mobile }) => ({
   screenWidth: mobile.screenWidth,
   activeUser: user,
 });
-const mapDispatchToProps = dispatch => ({
-  saveActivePage: (title, currentPath) =>
-  dispatch(sessionActions.saveActivePage(title, currentPath)),
-  verifyAge: () => dispatch(userActions.ageVerified()),
-});
+const mapDispatchToProps = (dispatch) => {
+  bindActionCreators({ ...routerActions }, dispatch);
+  return ({
+    saveActivePage: (title, currentPath) =>
+    dispatch(sessionActions.saveActivePage(title, currentPath)),
+    verifyAge: () => dispatch(userActions.ageVerified()),
+  });
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
