@@ -16,13 +16,11 @@ class LoginFormInput extends PureComponent {
 
     return (
       <input
-        onChange={e =>
-          this.onInputChange(e.target.getElementBy('id'), e.target.value)
-        }
-        className={className}
-        value={value}
-        type={type}
         id={slug}
+        type={type}
+        value={value}
+        className={className}
+        onChange={e => this.onInputChange(e.target.getElementBy('id'), e.target.value)}
       />
     );
   }

@@ -10,6 +10,7 @@ import Forgot from '../containers/auth/Forgot/forgot';
 function AuthRoutes(auth) {
   const parseAuthHash = (nextState) => {
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      console.warn('at authRoutes.js\n', 'nextState.location.hash: ', nextState.locaiton.hash);
       auth.parseHash(nextState.location.hash);
     }
   };

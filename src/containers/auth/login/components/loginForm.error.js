@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const defaultProps = {
-  error: {},
+  error: [],
 };
 
 const propTypes = {

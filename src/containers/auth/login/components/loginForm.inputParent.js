@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 function LoginFormInputParent({ onInputChange, value, slug, type }) {
-  const titleSlug = slug[0].toUpperCase();
+  const titleSlug = slug[0].toUpperCase() + slug.slice(1);
   return (
     <div className={`form--${slug}`}>
       <label htmlFor="email" className={`${slug}__input--label`}>

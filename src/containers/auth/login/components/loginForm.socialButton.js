@@ -3,12 +3,12 @@ import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
   slug: PropTypes.string.isRequired,
-  handler: PropTypes.func.isRequired,
+  callback: PropTypes.func.isRequired,
 };
 
-function SocialButton({ handler, slug }) {
+function SocialButton({ callback, slug }) {
   return (
-    <button onClick={() => handler()}>
+    <button onClick={() => callback()}>
       <FontAwesome name={slug} />
     </button>
   );

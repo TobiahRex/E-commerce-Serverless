@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { connect } from 'redux';
-import { bindActionCreators } from 'react-redux';
 import { routerActions } from 'react-router-redux';
+import FontAwesome from 'react-fontawesome';
 
 import LoginForm from './components/loginForm.parent';
 import LoginError from './components/loginForm.error';
@@ -11,7 +11,6 @@ import SocialLoginButton from './components/loginForm.socialButton';
 
 class Login extends Component {
   static propTypes = {
-    // location: PropTypes.objectOf(PropTypes.any).isRequired,
     route: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
   }
@@ -23,6 +22,7 @@ class Login extends Component {
       email: '',
       password: '',
       recaptchaToken: '',
+      error: [],
     };
   }
 
@@ -35,7 +35,7 @@ class Login extends Component {
           <div className="sign-in__title">
             <h1>Login</h1>
           </div>
-          <LoginError />
+          <LoginError error={this.state.error} />
           <div className="sign-in__social--container">
             <div className="social--title">
               <div className="social--title-msg">
@@ -46,25 +46,25 @@ class Login extends Component {
               <ul className="list--container">
                 <li className="list--option facebook">
                   <SocialLoginButton
-                    handler={this.socialLogin('loginWithFacebook')}
+                    callback={() => this.socialLogin('loginWithFacebook')}
                     slug="facebook"
                   />
                 </li>
                 <li className="list--option twitter">
                   <SocialLoginButton
-                    handler={this.socialLogin('loginWithTwitter')}
+                    callback={() => this.socialLogin('loginWithTwitter')}
                     slug="twitter"
                   />
                 </li>
                 <li className="list--option google">
                   <SocialLoginButton
-                    handler={this.socialLogin('loginWithGoogle')}
+                    callback={() => this.socialLogin('loginWithGoogle')}
                     slug="google-plus"
                   />
                 </li>
                 <li className="list--option linkedin">
                   <SocialLoginButton
-                    handler={this.socialLogin('loginWithLinkedin')}
+                    callback={() => this.socialLogin('loginWithLinkedin')}
                     slug="linkedin"
                   />
                 </li>
@@ -95,6 +95,7 @@ class Login extends Component {
               </button>
             </div>
           </div>
+
         </div>
       </div>
     );
