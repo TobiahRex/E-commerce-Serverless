@@ -81,23 +81,18 @@ class Login extends Component {
 
           <div className="sign-in__action-btns">
             <div className="action-btns__register">
-              <button
-                className="register-btn sweep-right"
-                onClick={() => this.props.push('/register')}
-              >Register</button>
-
+              <button className="register-btn sweep-right" onClick={() => this.props.push('/register')}>
+                Register
+              </button>
             </div>
             <div className="action-btns__back-to-home">
-              <button
-                className="back-to-home-btn sweep-right"
-                onClick={() => this.props.push('/')}
-              >
+              <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
                 <span className="flex-btn-parent">
                   <FontAwesome name="angle-double-left" />
-                  {'\u00A0'}Back
+                  {'\u00A0'}
+                  Back
                 </span>
               </button>
-
             </div>
           </div>
         </div>
@@ -105,6 +100,7 @@ class Login extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => (bindActionCreators({ ...routerActions }, dispatch));
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...routerActions }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Login);

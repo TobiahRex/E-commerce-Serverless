@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import AuthService from '../../../../services/utils/authService';
 import RecaptchaWidget from '../../../../components/recaptcha';
-import LoginFormInput from './loginForm.input';
+import LoginFormInputParent from './loginForm.inputParent';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -13,27 +13,26 @@ class LoginForm extends Component {
       email: '',
       password: '',
       recaptchaToken: '',
-    }
+    };
   }
+
+  onInputChange = (id, value) => this.setState({ [id]: value });
+
+  recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
+
+  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
   login = (e) => {
     e.preventDefault();
     this.props.auth.login(this.state.username, this.state.password);
   }
 
-  recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
-
-  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
-
-  onInputChange = (id, value) => this.setState({ [id]: value });
-
-  render () {
+  render() {
     return (
       <form
         className="sign-in__form"
         onSubmit={this.login}
       >
-
         <ul className="sign-in__list">
           <li className="sign-in__left-break" />
           <li className="title-or">
@@ -41,19 +40,7 @@ class LoginForm extends Component {
           </li>
           <li className="sign-in__right-break" />
         </ul>
-        <div className="form--email">
-          <label htmlFor="email" className="email__input--label">
-            Email{'\u00A0'}
-            <span className="required-star">*</span>
-          </label>
-          <LoginFormInput
-            onInputChange={this.onInputChange}
-            slug="email"
-            type="email"
-            className="email__input--email"
-            value={this.state.email}
-          />
-        </div>
+        <LoginFormInputParent onInputChange={this.onInputChange} value={this.state.email} />
         <div className="form--password">
           <label htmlFor="password" className="password__input--label">
             Password{'\u00A0'}
