@@ -15,14 +15,11 @@ export const INITIAL_STATE = {
   ageVerified: Boolean(localStorage.getItem('ageVerified')) || false,
 };
 
-const loggedIn = (state, { profile }) => {
-  console.log('@Reducer: ', profile);
-  return ({
-    ageVerified: state.ageVerified,
-    loggedIn: true,
-    profile,
-  });
-}
+const loggedIn = (state, { profile }) => ({
+  ageVerified: state.ageVerified,
+  loggedIn: true,
+  profile,
+});
 
 const loggedOut = state => ({
   ageVerified: state.ageVerified,

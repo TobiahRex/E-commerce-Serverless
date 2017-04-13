@@ -8,9 +8,14 @@ import userActions from '../../redux/user';
 import { auth as AuthService } from '../../navigation/routes';
 
 // ------------------- Listeners ----------------------------------
-function loginListenerInit(dispatch) {
-  AuthService.on('logged_in', (profile) => dispatch(userActions.userLoggedIn(profile)));
+function loginListenerInit(dispatch, { replace }) {
+  AuthService.on('logged_in', (profile) => {
+    dispatch(userActions.userLoggedIn(profile));
+    const path = (/#(.*)$/.exec(window.location.hash) || [])[1];
+    if (path) replace(path);
+  });
 }
+
 function logoutListenerInit(dispatch) {
   AuthService.on('logged_out', () => {
     console.warn('I HEARD THAT LOGOUT!!!');
