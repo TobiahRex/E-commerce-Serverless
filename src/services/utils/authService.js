@@ -15,7 +15,6 @@ export default class AuthService extends EventEmitter {
   }
 
   login = (username, password) => {
-    this.emit('preLoginSave');
     this.auth0.redirect.loginWithCredentials({
       connection: 'Username-Password-Authentication',
       username,
@@ -31,25 +30,13 @@ export default class AuthService extends EventEmitter {
     }, ({ description }) => alert(`Error: ${description}`));
   }
 
-  loginWithGoogle = () => {
-    this.emit('preLoginSave');
-    this.auth0.authorize({ connection: 'google-oauth2' });
-  }
+  loginWithGoogle = () => this.auth0.authorize({ connection: 'google-oauth2' })
 
-  loginWithTwitter = () => {
-    this.emit('preLoginSave');
-    this.auth0.authorize({ connection: 'twitter' });
-  }
+  loginWithTwitter = () => this.auth0.authorize({ connection: 'twitter' })
 
-  loginWithFacebook = () => {
-    this.emit('preLoginSave');
-    this.auth0.authorize({ connection: 'facebook' });
-  }
+  loginWithFacebook = () => this.auth0.authorize({ connection: 'facebook' })
 
-  loginWithLinkedin = () => {
-    this.emit('preLoginSave');
-    this.auth0.authorize({ connection: 'linkedin' });
-  }
+  loginWithLinkedin = () => this.auth0.authorize({ connection: 'linkedin' })
 
   parseHash = (hash) => {
     this.auth0.parseHash({

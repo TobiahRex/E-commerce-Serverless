@@ -20,10 +20,6 @@ function logoutListenerInit(dispatch) {
   AuthService.on('logged_out', () => dispatch(userActions.userLoggedOut()));
 }
 
-function preLoginListenerInit(dispatch) {
-  AuthService.on('preLoginSave', () =>
-    dispatch(sessionActions.savePreloginPage(window.location.pathname)));
-}
 // ------------------- App Startup Utilities ----------------------------------
 
 export function cleanS3Route({ replace }) {

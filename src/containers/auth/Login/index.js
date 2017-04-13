@@ -14,6 +14,8 @@ class Login extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
+    previousUrl: PropTypes.string.isRequired,
+    saveLoginPage: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -27,7 +29,10 @@ class Login extends Component {
     };
   }
 
-  socialLogin = socialType => this.auth[socialType]();
+  socialLogin = (socialType) => {
+    this.props.saveLoginPage(this.props.previousUrl);
+    this.auth[socialType]();
+  };
 
   render() {
     return (
