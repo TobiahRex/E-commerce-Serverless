@@ -38,7 +38,7 @@ class NavbarUserActionsSignin extends PureComponent {
         </li>
         <li className="my-account-title" onClick={() => push(`/user_${123123}`)}>
           <Link to={`/user_${123123}`} className="navbar-userActions-myaccount-title-link">
-            <img src={user.picture} alt="My Account" className="signedIn--profile-pic" />
+            <img src={user.profile.picture} alt="My Account" className="signedIn--profile-pic" />
           </Link>
         </li>
       </ul>

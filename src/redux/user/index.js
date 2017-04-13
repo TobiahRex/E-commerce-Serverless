@@ -17,7 +17,7 @@ export const INITIAL_STATE = {
 
 const loggedIn = (state, { profile }) => {
   delete profile.clientID;
-  profile.picture = profile.picture.replace('/normal/', '400x400');
+  profile.picture = profile.picture.replace(/normal/, '400x400');
   return ({
     ageVerified: state.ageVerified,
     loggedIn: true,
