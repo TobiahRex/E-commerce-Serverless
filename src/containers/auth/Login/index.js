@@ -6,6 +6,8 @@ import { bindActionCreators } from 'react-redux';
 import { routerActions } from 'react-router-redux';
 
 import LoginForm from './components/loginForm.parent';
+import LoginError from './components/loginForm.error';
+import SocialLoginButton from './components/loginForm.socialButton';
 
 class Login extends Component {
   static propTypes = {
@@ -43,24 +45,28 @@ class Login extends Component {
             <div className="social--btns__list">
               <ul className="list--container">
                 <li className="list--option facebook">
-                  <button id="loginWithFacebook" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
-                    <FontAwesome name="facebook" />
-                  </button>
+                  <SocialLoginButton
+                    handler={this.socialLogin('loginWithFacebook')}
+                    slug="facebook"
+                  />
                 </li>
                 <li className="list--option twitter">
-                  <button id="loginWithTwitter" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
-                    <FontAwesome name="twitter" />
-                  </button>
+                  <SocialLoginButton
+                    handler={this.socialLogin('loginWithTwitter')}
+                    slug="twitter"
+                  />
                 </li>
                 <li className="list--option google">
-                  <buton id="loginWithGoogle" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
-                    <FontAwesome name="google-plus" />
-                  </buton>
+                  <SocialLoginButton
+                    handler={this.socialLogin('loginWithGoogle')}
+                    slug="google-plus"
+                  />
                 </li>
                 <li className="list--option linkedin">
-                  <button id="loginWithLinkedin" onClick={e => this.socialLogin(e.target.getAttribute('id'))}>
-                    <FontAwesome name="linkedin" />
-                  </button>
+                  <SocialLoginButton
+                    handler={this.socialLogin('loginWithLinkedin')}
+                    slug="linkedin"
+                  />
                 </li>
               </ul>
               <div className="list__forgot-msg">
