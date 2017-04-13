@@ -11,8 +11,8 @@ import userActions from '../../redux/user';
 // ------------------- Listeners ----------------------------------
 function loginListenerInit(dispatch) {
   const emit = new EventEmitter();
-  emit.on('logged_in', (profileObj) => {
-    dispatch(userActions.loggedIn(profileObj));
+  emit.on('logged_in', (profile) => {
+    dispatch(userActions.loggedIn(profile));
   });
 }
 // ------------------- App Startup Utilities ----------------------------------

@@ -1,14 +1,18 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { auth as AuthService } from '../../../../navigation/routes';
+
 
 import NavbarOptions from './navbar_web_options/navbarOptions';
 import NavbarUserAction from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 
-class NavbarUpper extends PureComponent {
+class NavbarUpper extends Component {
   static propTypes = {
-    activeUser: PropTypes.objectOf(PropTypes.any),
-    logoutUser: PropTypes.func,
+    user: PropTypes.objectOf(PropTypes.any).isRequired,
   }
+
+  logoutUser = () => AuthService.logout();
 
   render() {
     return (
@@ -28,5 +32,8 @@ class NavbarUpper extends PureComponent {
     );
   }
 }
+const mapStateToProps = ({ user }) => ({
+  user,
+});
 
-export default NavbarUpper;
+export default connect(mapStateToProps, null)(NavbarUpper);

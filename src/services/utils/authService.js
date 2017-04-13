@@ -63,11 +63,14 @@ export default class AuthService extends EventEmitter {
           } else {
             this.setProfile(profile);
             // browserHistory.replace('/home');
-            // TODO this functionality needs to be sourced wherever this function is being called.
           }
         });
       }
     });
+  }
+
+  parseToken = () => {
+
   }
 
   loggedIn = () => {
@@ -82,7 +85,7 @@ export default class AuthService extends EventEmitter {
 
   setProfile = (profile) => {
     localStorage.setItem('profile', JSON.stringify(profile));
-    this.emit('logged_in', { profile, time: new Date() });
+    this.emit('logged_in', profile);
   }
 
   getProfile = () => {
@@ -99,6 +102,7 @@ export default class AuthService extends EventEmitter {
   }
 
   _doAuthentication = (authResult) => {
+    console.warn('_doAuthentication called');
     this.setToken(authResult.idToken);
     // browserHistory.replace('/home');
     // TODO: This needs to be sourced to the invocation.
