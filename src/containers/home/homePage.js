@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux';
 
 import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
@@ -9,10 +11,12 @@ import HomepagePopJuices from './homeComponents/homepage_popJuices';
 
 const defaultProps = {
   mobile: false,
+  preLoginUrl: '',
 };
 
 const propTypes = {
   mobile: PropTypes.bool,
+  preLoginUrl: PropTypes.string,
 };
 
 function HomePage({ mobile }) {
@@ -27,7 +31,9 @@ function HomePage({ mobile }) {
     }
     return (window.innerHeight - 60);
   };
+
   const sectionHeight = calcHeight();
+
   return (
     <div className="homepage">
       <HomepageHeader
@@ -59,4 +65,7 @@ const mapStateToProps = ({ mobile, session }) => ({
   preLoginUrl: session.preLoginUrl,
 });
 
-export default connect(mapStateToProps, null)(HomePage);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...routerActions }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
