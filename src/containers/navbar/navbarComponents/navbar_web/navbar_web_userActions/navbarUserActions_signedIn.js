@@ -8,6 +8,7 @@ import { auth as AuthService } from '../../../../../navigation/routes';
 
 class NavbarUserActionsSignin extends PureComponent {
   static propTypes = {
+    user: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
   }
   static styles = {
@@ -17,23 +18,18 @@ class NavbarUserActionsSignin extends PureComponent {
     show: {},
   }
 
-  logout = () => {
+  logout = (e) => {
+    e.preventDefault();
     AuthService.logout();
     this.props.push('/');
   };
 
   render() {
-    const { push } = this.props;
+    const { push, user } = this.props;
     return (
       <ul className="navbar-actionSection-upper-actions-signedIn" >
         <li className="sign-out-title">
-          <a
-            className="navbar-userActions-signOut-title-button"
-            onClick={(e) => {
-              e.preventDefault();
-              console.warn('Sign out user!!!');
-            }}
-          >Logout</a>
+          <a className="navbar-userActions-signOut-title-button" onClick={e => this.logout(e)}>Logout</a>
         </li>
         <li className="checkout-title" onClick={() => push('/express_checkout')}>
           <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
@@ -42,7 +38,7 @@ class NavbarUserActionsSignin extends PureComponent {
         </li>
         <li className="my-account-title" onClick={() => push(`/user_${123123}`)}>
           <Link to={`/user_${123123}`} className="navbar-userActions-myaccount-title-link">
-            <img src="../Images/mock_profile-pic.png" alt="My Account" className="signedIn--profile-pic" />
+            <img src={user.picture} alt="My Account" className="signedIn--profile-pic" />
           </Link>
         </li>
       </ul>

@@ -11,8 +11,8 @@ import { auth as AuthService } from '../../navigation/routes';
 function loginListenerInit(dispatch, { replace }) {
   AuthService.on('logged_in', (profile) => {
     dispatch(userActions.userLoggedIn(profile));
-    const path = (/#(.*)$/.exec(window.location.hash) || [])[1];
-    if (path) replace(path);
+    const path = (/#(.*)$/.exec(window.location.hash) || [])[0];
+    if (path) replace('/welcome');
   });
 }
 
@@ -123,7 +123,7 @@ export default function initiateActions(dispatch, history, { startup }) {
     orientationSpy(dispatch);
     getTaxRate(dispatch);
     scrollToTop();
-    loginListenerInit(dispatch);
+    loginListenerInit(dispatch, history);
     logoutListenerInit(dispatch);
   } else {
     cleanS3Route(history);

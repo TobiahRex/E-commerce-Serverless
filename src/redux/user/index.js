@@ -15,11 +15,15 @@ export const INITIAL_STATE = {
   ageVerified: Boolean(localStorage.getItem('ageVerified')) || false,
 };
 
-const loggedIn = (state, { profile }) => ({
-  ageVerified: state.ageVerified,
-  loggedIn: true,
-  profile,
-});
+const loggedIn = (state, { profile }) => {
+  delete profile.clientID;
+  profile.picture = profile.picture.replace('/normal/', '400x400');
+  return ({
+    ageVerified: state.ageVerified,
+    loggedIn: true,
+    profile,
+  });
+};
 
 const loggedOut = state => ({
   ageVerified: state.ageVerified,
