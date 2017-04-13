@@ -40,20 +40,18 @@ class LoginForm extends Component {
           </li>
           <li className="sign-in__right-break" />
         </ul>
-        <LoginFormInputParent onInputChange={this.onInputChange} value={this.state.email} />
-        <div className="form--password">
-          <label htmlFor="password" className="password__input--label">
-            Password{'\u00A0'}
-            <span className="required-star">*</span>
-          </label>
-          <LoginFormInput
-            onInputChange={this.onInputChange}
-            slug="password"
-            type="password"
-            className="password__input--password"
-            value={this.state.password}
-          />
-        </div>
+        <LoginFormInputParent
+          onInputChange={this.onInputChange}
+          value={this.state.email}
+          slug="email"
+          type="email"
+        />
+        <LoginFormInputParent
+          onInputChange={this.onInputChange}
+          value={this.state.email}
+          slug="password"
+          type="password"
+        />
         <div className="form__login-recaptcha">
           <RecaptchaWidget
             verifyCb={this.recaptchaVerifyCb} onLoadCb={this.recaptchaOnLoadCb}
