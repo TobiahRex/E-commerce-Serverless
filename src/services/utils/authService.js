@@ -1,13 +1,16 @@
+import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
 
-export default class AuthService {
+export default class AuthService extends EventEmitter {
   constructor() {
+    super();
+
     this.auth0 = new auth0.WebAuth({
       clientID: process.env.AUTH0_CLIENT_ID,
       domain: process.env.AUTH0_DOMAIN,
       responseType: 'token id_token',
-      redirectUri: 'http://localhost:3000/login',
+      redirectUri: 'http://localhost:3000/welcome',
     });
   }
 
@@ -79,7 +82,7 @@ export default class AuthService {
 
   setProfile = (profile) => {
     localStorage.setItem('profile', JSON.stringify(profile));
-    // TODO: Find a way to dispatch this event.
+    this.emit('logged_in', profile);
   }
 
   getProfile = () => {

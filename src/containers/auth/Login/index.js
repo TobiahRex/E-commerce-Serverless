@@ -22,7 +22,7 @@ class Login extends Component {
       email: '',
       password: '',
       recaptchaToken: '',
-      error: [],
+      error: { message: '' },
     };
   }
 
@@ -35,7 +35,7 @@ class Login extends Component {
           <div className="sign-in__title">
             <h1>Login</h1>
           </div>
-          <LoginError error={this.state.error} />
+          {this.state.error.message && <LoginError errorMessage={this.state.error.message} />}
           <div className="sign-in__social--container">
             <div className="social--title">
               <div className="social--title-msg">

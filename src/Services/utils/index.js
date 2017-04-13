@@ -4,6 +4,7 @@ import mobileActions from '../../redux/mobile';
 import geoActions from '../../redux/geo';
 import localeActions from '../../redux/locale';
 import orderActions from '../../redux/orders';
+import userActions from '../../redux/user';
 
 export function cleanS3Route({ replace }) {
   const path = (/#!(\/.*)$/.exec(window.location.hash) || [])[1];

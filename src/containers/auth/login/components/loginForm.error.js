@@ -2,15 +2,14 @@ import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const defaultProps = {
-  error: [],
+  errorMessage: 'No Error',
 };
-
 const propTypes = {
-  error: PropTypes.objectOf(PropTypes.any),
+  errorMessage: PropTypes.string,
 };
 
-function LoginFormError({ error }) {
-  console.warn('error from Auth0: ', error);
+function LoginFormError({ errorMessage }) {
+  console.warn('error from Auth0: ', errorMessage);
   return (
     <div className="sign-in__error">
       <div className="error--icon">
@@ -21,7 +20,7 @@ function LoginFormError({ error }) {
         <br />
         Example: <i>batman@wayne.enterprises.com</i>
       </h5> */}
-      <h5>{error}</h5>
+      <h5>{errorMessage || 'No Error'}</h5>
     </div>
   );
 }
