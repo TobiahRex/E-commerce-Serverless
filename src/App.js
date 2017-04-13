@@ -106,8 +106,9 @@ const mapStateToProps = ({ user, session, mobile }) => ({
   activeUser: user,
 });
 const mapDispatchToProps = (dispatch) => {
-  bindActionCreators({ ...routerActions }, dispatch);
+  const newRouterActions = bindActionCreators({ ...routerActions }, dispatch);
   return ({
+    ...newRouterActions,
     saveActivePage: (title, currentPath) =>
     dispatch(sessionActions.saveActivePage(title, currentPath)),
     verifyAge: () => dispatch(userActions.ageVerified()),

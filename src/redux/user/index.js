@@ -1,7 +1,7 @@
 import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  userLoggedIn: ['time', 'profile'],
+  userLoggedIn: 'profile',
   userLoggedOut: null,
   ageVerified: null,
 });
@@ -16,13 +16,13 @@ export const INITIAL_STATE = {
 };
 
 const loggedIn = (state, { profile }) => ({
-  ageVerified: state.age_verified,
+  ageVerified: state.ageVerified,
   loggedIn: true,
   profile,
 });
 
 const loggedOut = state => ({
-  ageVerified: state.age_verified,
+  ageVerified: state.ageVerified,
   loggedIn: false,
   profile: null,
 });

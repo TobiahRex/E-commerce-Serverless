@@ -11,13 +11,13 @@ import { auth as AuthService } from '../../navigation/routes';
 function loginListenerInit(dispatch) {
   AuthService.on('logged_in', (profile) => {
     console.warn('I HEARD THAT LOGIN!!!');
-    dispatch(userActions.loggedIn(profile));
+    dispatch(userActions.userLoggedIn({ profile }));
   });
 }
 function logoutListenerInit(dispatch) {
   AuthService.on('logged_out', () => {
     console.warn('I HEARD THAT LOGOUT!!!');
-    dispatch(userActions.loggedOut());
+    dispatch(userActions.userLoggedOut());
   });
 }
 // ------------------- App Startup Utilities ----------------------------------
