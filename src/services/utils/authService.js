@@ -31,6 +31,18 @@ export default class AuthService {
     connection: 'google-oauth2',
   })
 
+  loginWithTwitter = () => this.auth0.authorize({
+    connection: 'twitter',
+  })
+
+  loginWithFacebook = () => this.auth0.authorize({
+    connection: 'facebook',
+  })
+
+  loginWithLinkedin = () => this.auth0.authorize({
+    connection: 'linkedin',
+  })
+
   parseHash = (hash) => {
     this.auth0.parseHash({
       hash,
