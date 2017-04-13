@@ -242,8 +242,9 @@
           }
           & .toolbar--right {
             @include prefixflex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
+            flex: 1;
             & .toolbar--pagination {
               @include prefixflex();
               justify-content: center;
