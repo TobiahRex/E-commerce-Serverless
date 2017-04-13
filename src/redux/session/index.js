@@ -12,6 +12,7 @@ export const INITIAL_STATE = {
   currentActivePage: 'Home',
   currentActiveUrl: '/',
   previousPage: '',
+  preLoginPage: '',
   previousPageUrl: '',
   error: '',
 };
@@ -20,10 +21,23 @@ const save = (state, { page, url }) => ({
   currentActivePage: page,
   currentActiveUrl: url,
   previousPage: state.currentActivePage,
+  preLoginPage: state.preLoginPage,
   previousPageUrl: state.currentActiveUrl,
   error: null,
 });
 
+const savePreLogin = (state, { page, url }) => ({
+  currentActivePage: state.currentActivePage,
+  currentActiveUrl: state.currentActiveUrl,
+  previousPage: state.currentActivePage,
+  preLoginPage: page,
+  preLoginUrl: url,
+  previousPageUrl: state.currentActiveUrl,
+  error: null,
+});
+
+
 export const sessionReducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_ACTIVE_PAGE]: save,
+  [Types.SAVE_PRELOGIN_PAGE]: savePreLogin,
 });
