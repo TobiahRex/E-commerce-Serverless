@@ -2,7 +2,7 @@ import { createActions, createReducer } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
   saveActivePage: ['page', 'url'],
-  savePreloginPage: ['page', 'url'],
+  savePreloginPage: ['url'],
   saveFail: ['err'],
 });
 
@@ -13,7 +13,6 @@ export const INITIAL_STATE = {
   currentActivePage: 'Home',
   currentActiveUrl: '/',
   previousPage: '',
-  preLoginPage: '',
   preLoginUrl: '',
   previousPageUrl: '',
   error: '',
@@ -23,17 +22,15 @@ const save = (state, { page, url }) => ({
   currentActivePage: page,
   currentActiveUrl: url,
   previousPage: state.currentActivePage,
-  preLoginPage: state.preLoginPage,
   preLoginUrl: state.preLoginUrl,
   previousPageUrl: state.currentActiveUrl,
   error: null,
 });
 
-const savePreLogin = (state, { page, url }) => ({
+const savePreLogin = (state, { url }) => ({
   currentActivePage: state.currentActivePage,
   currentActiveUrl: state.currentActiveUrl,
   previousPage: state.currentActivePage,
-  preLoginPage: page,
   preLoginUrl: url,
   previousPageUrl: state.currentActiveUrl,
   error: null,

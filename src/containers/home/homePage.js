@@ -54,8 +54,9 @@ function HomePage({ mobile }) {
 HomePage.defaultProps = defaultProps;
 HomePage.propTypes = propTypes;
 
-const mapStateToProps = ({ mobile }) => ({
+const mapStateToProps = ({ mobile, session }) => ({
   mobile: mobile.mobileType && true,
+  preLoginUrl: session.preLoginUrl,
 });
 
 export default connect(mapStateToProps, null)(HomePage);
