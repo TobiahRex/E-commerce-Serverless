@@ -9,10 +9,7 @@ import { auth as AuthService } from '../../navigation/routes';
 
 // ------------------- Listeners ----------------------------------
 function loginListenerInit(dispatch) {
-  AuthService.on('logged_in', (profile) => {
-    console.warn('I HEARD THAT LOGIN!!!');
-    dispatch(userActions.userLoggedIn({ profile }));
-  });
+  AuthService.on('logged_in', (profile) => dispatch(userActions.userLoggedIn(profile)));
 }
 function logoutListenerInit(dispatch) {
   AuthService.on('logged_out', () => {
