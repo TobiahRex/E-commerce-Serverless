@@ -19,7 +19,7 @@ const propTypes = {
   preLoginUrl: PropTypes.string,
 };
 
-function HomePage({ mobile }) {
+function HomePage({ mobile, preLoginUrl }) {
   const height = window.innerHeight;
   const calcHeight = (header) => {
     if (!mobile) {
@@ -33,6 +33,8 @@ function HomePage({ mobile }) {
   };
 
   const sectionHeight = calcHeight();
+
+  if (preLoginUrl !== '/') this.props.push(preLoginUrl);
 
   return (
     <div className="homepage">
