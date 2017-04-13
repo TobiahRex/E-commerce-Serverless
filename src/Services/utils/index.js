@@ -1,3 +1,4 @@
+import { EventEmitter } from 'events';
 import MobileDetect from 'mobile-detect';
 import sessionActions from '../../redux/session';
 import mobileActions from '../../redux/mobile';
@@ -5,6 +6,16 @@ import geoActions from '../../redux/geo';
 import localeActions from '../../redux/locale';
 import orderActions from '../../redux/orders';
 import userActions from '../../redux/user';
+
+
+// ------------------- Listeners ----------------------------------
+function loginListenerInit(dispatch) {
+  const emit = new EventEmitter();
+  emit.on('logged_in', (profileObj) => {
+    dispatch(userActions.loggedIn(profileObj));
+  });
+}
+// ------------------- App Startup Utilities ----------------------------------
 
 export function cleanS3Route({ replace }) {
   const path = (/#!(\/.*)$/.exec(window.location.hash) || [])[1];
@@ -93,6 +104,8 @@ export function getTaxRate(dispatch) {
   dispatch(orderActions.getTaxRate());
 }
 
+// -------------------------- Initializer --------------------------------------
+
 export default function initiateActions(dispatch, history, { startup }) {
   if (startup) {
     cleanS3Route(history);
@@ -103,6 +116,7 @@ export default function initiateActions(dispatch, history, { startup }) {
     orientationSpy(dispatch);
     getTaxRate(dispatch);
     scrollToTop();
+    loginListenerInit(dispatch);
   } else {
     cleanS3Route(history);
     scrollToTop();

@@ -7,7 +7,7 @@ import Login from '../containers/auth/login';
 import Register from '../containers/auth/register';
 import Forgot from '../containers/auth/Forgot/forgot';
 
-function AuthRoutes(auth, parseAuthHash) {
+function AuthRoutes(auth) {
   return (
     <div>
       <Route
