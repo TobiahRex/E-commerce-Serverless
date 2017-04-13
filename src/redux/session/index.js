@@ -27,7 +27,7 @@ const save = (state, { page, url }) => ({
   error: null,
 });
 
-const savePreLogin = (state, { url }) => ({
+const savePreLoginPage = (state, { url }) => ({
   currentActivePage: state.currentActivePage,
   currentActiveUrl: state.currentActiveUrl,
   previousPage: state.currentActivePage,
@@ -39,5 +39,5 @@ const savePreLogin = (state, { url }) => ({
 
 export const sessionReducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_ACTIVE_PAGE]: save,
-  [Types.SAVE_PRELOGIN_PAGE]: savePreLogin,
+  [Types.SAVE_PRELOGIN_PAGE]: savePreLoginPage,
 });

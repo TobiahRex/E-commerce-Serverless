@@ -14,7 +14,7 @@ class Login extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
-    previousUrl: PropTypes.string.isRequired,
+    previousPageUrl: PropTypes.string.isRequired,
     saveLoginPage: PropTypes.func.isRequired,
   }
 
@@ -30,7 +30,7 @@ class Login extends Component {
   }
 
   socialLogin = (socialType) => {
-    this.props.saveLoginPage(this.props.previousUrl);
+    this.props.saveLoginPage(this.props.previousPageUrl);
     this.auth[socialType]();
   };
 
@@ -108,7 +108,7 @@ class Login extends Component {
   }
 }
 const mapStateToProps = ({ session }) => ({
-  prevousPageUrl: session.previousPageUrl,
+  previousPageUrl: session.previousPageUrl,
 });
 const mapDispatchToProps = (dispatch) => {
   const newRouterActions = bindActionCreators({ ...routerActions }, dispatch);

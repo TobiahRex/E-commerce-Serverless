@@ -123,7 +123,6 @@ export default function initiateActions(dispatch, history, { startup }) {
     scrollToTop();
     loginListenerInit(dispatch, history);
     logoutListenerInit(dispatch);
-    preLoginListenerInit(dispatch);
   } else {
     cleanS3Route(history);
     scrollToTop();
