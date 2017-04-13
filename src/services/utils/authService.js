@@ -69,10 +69,6 @@ export default class AuthService extends EventEmitter {
     });
   }
 
-  parseToken = () => {
-
-  }
-
   loggedIn = () => {
     const token = this.getToken();
     return !!token && !isTokenExpired(token);

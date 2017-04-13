@@ -4,7 +4,7 @@ import { auth as AuthService } from '../../../../navigation/routes';
 
 
 import NavbarOptions from './navbar_web_options/navbarOptions';
-import NavbarUserAction from './navbar_web_userActions/navbarUserActions';
+import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 
 class NavbarUpper extends Component {
@@ -12,7 +12,9 @@ class NavbarUpper extends Component {
     user: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
-  logoutUser = () => AuthService.logout();
+  componentWillReceiveProps = ({ user }) => this.setState({ user })
+
+  logoutUser = () => AuthService.logout()
 
   render() {
     return (
@@ -20,9 +22,9 @@ class NavbarUpper extends Component {
         <NavbarOptions />
         {/* TODO:
         Options will receive Option handlers & Active Language & Currency Qty  */}
-        <NavbarUserAction
-          activeUser={this.props.activeUser}
-          logoutUser={this.props.logoutUser}
+        <NavbarUserActions
+          activeUser={this.state.user}
+          logoutUser={this.logoutUser}
         />
         <NavbarCart />
         {/* TODO: Cart will receive Cart Qty & Handlers:

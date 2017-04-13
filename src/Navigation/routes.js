@@ -17,9 +17,8 @@ const parseAuthHash = (nextState) => {
 
 export default (
   <Route path="/" component={App} auth={auth}>
-    <IndexRoute component={Homepage} onEnter={parseAuthHash} />
-    {/* /welcome will parse the hash provided by Auth0 */}
-    {/* <Route path="/welcome" component={Homepage} onEnter={() => parseAuthHash} /> */}
+    <IndexRoute component={Homepage} />
+    <Route path="welcome" component={Homepage} onEnter={parseAuthHash} />
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
     {Routes.LegalRoutes()}

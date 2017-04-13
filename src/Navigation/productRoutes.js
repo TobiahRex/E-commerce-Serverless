@@ -8,7 +8,6 @@ import AllProducts from '../containers/products/productComponents/products_allPr
 
 const ProductRoutes = () => (
   <div>
-    <Route path="home" component={Homepage} />
     <Route path="juice/:id" component={SingleProduct} />
     <Route path="juices" component={AllProducts} />
   </div>

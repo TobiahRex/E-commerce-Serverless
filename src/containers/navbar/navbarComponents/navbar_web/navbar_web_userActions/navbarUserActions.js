@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 
 import NavbarUserActionsNotSignedIn from './navbarUserActions_notSignedIn';
 import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
@@ -8,14 +8,16 @@ import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
 
 2. Need to add the respective Navigation COmponent maps for the Links.
 */
-class NavbarUserActions extends PureComponent {
-  render() {
-    return (
-      <div className="navbar-actionSection-upper-actions">
-        <NavbarUserActionsNotSignedIn />
-        <NavbarUserActionsSignedIn />
-      </div>
-    );
-  }
+const propTypes = {
+  activeUser: PropTypes.bool.isRequired,
+};
+
+function NavbarUserActions({ activeUser }) {
+  return (
+    <div className="navbar-actionSection-upper-actions">
+      {activeUser ? <NavbarUserActionsSignedIn /> : <NavbarUserActionsNotSignedIn />}
+    </div>
+  );
 }
+NavbarUserActions.propTypes = propTypes;
 export default NavbarUserActions;
