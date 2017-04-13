@@ -17,8 +17,10 @@ function loginListenerInit(dispatch) {
   });
 }
 function logoutListenerInit(dispatch) {
-  console.warn('I HEARD THAT LOGOUT!!!');
-  emit.on('logged_out', () => dispatch(userActions.loggedOut()));
+  emit.on('logged_out', () => {
+    console.warn('I HEARD THAT LOGOUT!!!');
+    dispatch(userActions.loggedOut())
+  });
 }
 // ------------------- App Startup Utilities ----------------------------------
 
