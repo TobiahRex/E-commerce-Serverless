@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { auth as AuthService } from '../../../../navigation/routes';
-
 
 import NavbarOptions from './navbar_web_options/navbarOptions';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
@@ -12,24 +10,23 @@ class NavbarUpper extends Component {
     user: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
-  componentWillReceiveProps = ({ user }) => this.setState({ user })
-
-  logoutUser = () => AuthService.logout()
+  componentWillReceiveProps = ({ user }) => this.setState({ user });
 
   render() {
     return (
       <div className="navbar-actionSection-upper">
-        <NavbarOptions />
+
         {/* TODO:
         Options will receive Option handlers & Active Language & Currency Qty  */}
-        <NavbarUserActions
-          activeUser={this.state.user}
-          logoutUser={this.logoutUser}
-        />
-        <NavbarCart />
+        <NavbarOptions />
+
+        <NavbarUserActions activeUser={this.state.user.loggedIn} />
+
+
         {/* TODO: Cart will receive Cart Qty & Handlers:
           1. Remove Product
         2. Data currenlty in cart to render dynamically */}
+        <NavbarCart />
       </div>
     );
   }

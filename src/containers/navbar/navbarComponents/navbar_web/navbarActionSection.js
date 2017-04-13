@@ -4,6 +4,7 @@ import NavbarUpper from './navbarUpper';
 import NavbarLower from './navbarLower';
 
 const propTypes = {
+  
 };
 
 function NavbarActionSection() {
