@@ -17,10 +17,12 @@ function loginListenerInit(dispatch, { replace }) {
 }
 
 function logoutListenerInit(dispatch) {
-  AuthService.on('logged_out', () => {
-    console.warn('I HEARD THAT LOGOUT!!!');
-    dispatch(userActions.userLoggedOut());
-  });
+  AuthService.on('logged_out', () => dispatch(userActions.userLoggedOut()));
+}
+
+function preLoginListenerInit(dispatch) {
+  AuthService.on('preLoginSave', () =>
+    dispatch(sessionActions.preLoginSave(window.location.pathname)));
 }
 // ------------------- App Startup Utilities ----------------------------------
 
@@ -125,6 +127,7 @@ export default function initiateActions(dispatch, history, { startup }) {
     scrollToTop();
     loginListenerInit(dispatch, history);
     logoutListenerInit(dispatch);
+    preLoginListenerInit(dispatch);
   } else {
     cleanS3Route(history);
     scrollToTop();
