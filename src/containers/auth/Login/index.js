@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { routerActions } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
 
+import sessionActions from '../../../redux/session';
 import LoginForm from './components/loginForm.parent';
 import LoginError from './components/loginForm.error';
 import SocialLoginButton from './components/loginForm.socialButton';
@@ -101,7 +102,14 @@ class Login extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...routerActions }, dispatch);
-
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = ({ session }) => ({
+  prevousPageUrl: session.previousPageUrl,
+});
+const mapDispatchToProps = (dispatch) => {
+  const newRouterActions = bindActionCreators({ ...routerActions }, dispatch);
+  return ({
+    ...newRouterActions,
+    saveLoginPage: previousUrl => dispatch(sessionActions.savePreloginPage(previousUrl)),
+  });
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

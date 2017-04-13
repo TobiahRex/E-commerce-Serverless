@@ -22,7 +22,7 @@ function logoutListenerInit(dispatch) {
 
 function preLoginListenerInit(dispatch) {
   AuthService.on('preLoginSave', () =>
-    dispatch(sessionActions.preLoginSave(window.location.pathname)));
+    dispatch(sessionActions.savePreloginPage(window.location.pathname)));
 }
 // ------------------- App Startup Utilities ----------------------------------
 

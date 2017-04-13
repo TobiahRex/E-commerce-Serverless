@@ -34,7 +34,7 @@ function HomePage({ mobile, preLoginUrl }) {
 
   const sectionHeight = calcHeight();
 
-  if (preLoginUrl !== '/') this.props.push(preLoginUrl);
+  if (preLoginUrl !== '') this.props.push(preLoginUrl);
 
   return (
     <div className="homepage">
