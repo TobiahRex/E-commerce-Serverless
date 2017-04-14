@@ -13,32 +13,32 @@ export const INITIAL_STATE = {
     title: 'Fruity Bamm-Bamm',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    image_url: './Images/nj2jp_juice_card_fbb.png',
+    imageUrl: './Images/nj2jp_juice_card_fbb.png',
   }, {
     title: 'Pina Colada',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    image_url: './Images/nj2jp_juice_card_pc.png',
+    imageUrl: './Images/nj2jp_juice_card_pc.png',
   }, {
     title: 'Strawberries N\' Cream',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    image_url: './Images/nj2jp_juice_card_pc.png',
+    imageUrl: './Images/nj2jp_juice_card_pc.png',
   }, {
     title: 'Keylime Pie',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    image_url: './Images/nj2jp_juice_card_klp.png',
+    imageUrl: './Images/nj2jp_juice_card_klp.png',
   }, {
     title: 'Papple Berry',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    image_url: './Images/nj2jp_juice_card_klp.png',
+    imageUrl: './Images/nj2jp_juice_card_klp.png',
   }, {
     title: 'French Vanilla Mocha',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    image_url: './Images/nj2jp_juice_card_fvm.png',
+    imageUrl: './Images/nj2jp_juice_card_fvm.png',
   }],
   error: null,
 };

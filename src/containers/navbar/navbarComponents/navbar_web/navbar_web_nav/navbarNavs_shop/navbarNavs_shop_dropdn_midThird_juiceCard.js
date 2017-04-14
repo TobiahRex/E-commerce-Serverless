@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 
 /* TODO
 This component will receive 6 popular juice products.
@@ -12,28 +12,22 @@ Therefore it's necessary to save the url suffix with the item info in order to d
 */
 const propTypes = {
   juiceInfo: PropTypes.objectOf(PropTypes.any).isRequired,
-  toggleNavbarDropdown: PropTypes.func.isRequired,
+  // toggleNavbarDropdown: PropTypes.func.isRequired,
 };
 
 function NavbarNavsShopDropdnJuiceCards(props) {
-  const toggleNavbarDropdown = e => props.toggleNavbarDropdown(e);
-  const { title, imageSrc, urlSuffix } = props.juiceInfo;
+  // const toggleNavbarDropdown = e => props.toggleNavbarDropdown(e);
+  const { title, imageUrl } = props.juiceInfo;
 
   return (
     <div className="shop-dropdown-content-midThird-juices-card" >
-      <button
-        className="shop-dropdown-content-midThird-juices-card-title"
-        onClick={() => toggleNavbarDropdown(urlSuffix)}
-      >
+      <button className="shop-dropdown-content-midThird-juices-card-title">
         <h4>{title}</h4>
       </button>
-      <button
-        className="shop-dropdown-content-midThird-juices-card-image"
-        onClick={() => toggleNavbarDropdown(urlSuffix)}
-      >
+      <button className="shop-dropdown-content-midThird-juices-card-image">
         <img
           className="shop-dropdown-content-midThird-juices-card-image-src"
-          src={imageSrc}
+          src={imageUrl}
           alt={`${title} juice`}
         />
       </button>
