@@ -140,11 +140,11 @@
     }
 
   }
-  & .how__navBob {
-    @include prefixflex();
-    justify-content: center;
-    align-items: flex-end;
-    flex: 1;
-    @extend .navBob_mobile;
-  }
+  // & .how__navBob {
+  //   @include prefixflex();
+  //   justify-content: center;
+  //   align-items: flex-end;
+  //   flex: 1;
+  //   @extend .navBob_mobile;
+  // }
 }

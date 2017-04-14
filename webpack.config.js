@@ -78,8 +78,6 @@ const devConfig = {
   },
 };
 // -----------------------------------------------------------------------------
-// NOTE : Production Webpack configuration below.
-
 const prodConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],

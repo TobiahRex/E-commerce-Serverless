@@ -13,7 +13,7 @@ export const INITIAL_STATE = {
   currentActivePage: 'Home',
   currentActiveUrl: '/',
   previousPage: '',
-  preLoginUrl: '',
+  preLoginUrl: localStorage.getItem('preLoginUrl'),
   previousPageUrl: '',
   error: '',
 };
@@ -27,14 +27,17 @@ const save = (state, { page, url }) => ({
   error: null,
 });
 
-const savePreLoginPage = (state, { url }) => ({
-  currentActivePage: state.currentActivePage,
-  currentActiveUrl: state.currentActiveUrl,
-  previousPage: state.currentActivePage,
-  preLoginUrl: url,
-  previousPageUrl: state.currentActiveUrl,
-  error: null,
-});
+const savePreLoginPage = (state, { url }) => {
+  localStorage.setItem('preLoginUrl', url);
+  return ({
+    currentActivePage: state.currentActivePage,
+    currentActiveUrl: state.currentActiveUrl,
+    previousPage: state.currentActivePage,
+    preLoginUrl: url,
+    previousPageUrl: state.currentActiveUrl,
+    error: null,
+  });
+}
 
 
 export const sessionReducer = createReducer(INITIAL_STATE, {

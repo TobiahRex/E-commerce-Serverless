@@ -313,8 +313,14 @@
       outline: none;
     }
     & .button__icon {
-      font-weight: bold;
-      color: $p-red;
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      color: $p-white;
+      background-color: $p-red;
+      border-radius: 50%;
       text-shadow: 0px 3px 10px rgba(255,255,255, .3);
       cursor: pointer;
       &:active,

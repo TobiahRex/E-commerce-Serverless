@@ -20,8 +20,8 @@ function NavBob({ height, className }) {
     >
       <FontAwesome
         className="button__icon"
-        name="angle-double-down"
-        size="5x"
+        name="angle-down"
+        size="3x"
       />
     </button>
   </div>

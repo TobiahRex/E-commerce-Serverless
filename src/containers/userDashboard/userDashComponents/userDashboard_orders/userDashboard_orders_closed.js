@@ -116,33 +116,33 @@ function ClosedOrders() {
                         <button className="medium-size-btn sweep-right">Add To Cart</button>
                       </li>
                       <li className="list--write-review">
-                        {/* NOTE:  1) the address here needs to dynamically add juice-name. 2) "Write A Review" button is only displayed for users who have purchased this item.  */}
+                        {/* TODO:  1) the address here needs to dynamically add juice-name. 2) "Write A Review" button is only displayed for users who have purchased this item.  */}
                         <button className="medium-size-btn sweep-right" onClick={() => browserHistory.push('/juice/juice-name')}>Write A Review</button>
                       </li>
                       <li className="list--order-number">
                         <p>Order #:{'\u00A0'}
                           <span className="order-number--order">
-                            {/* NOTE: Dyanmic */}
+                            {/* TODO: Dyanmic */}
                             123123123
                           </span>
                         </p>
                       </li>
                       <li className="list--order-number">
 
-                        {/* NOTE: RR address = Dynamic */}
+                        {/* TODO: RR address = Dynamic */}
                         <p>Tracking #:{'\u00A0'}</p>
 
-                        {/* NOTE: Dyanmic - Get user id for first half of href */}
+                        {/* TODO: Dyanmic - Get user id for first half of href */}
                         <Link
                           to={`/user_123123123/tracking_${123123123}`} className="order-number--link"
                         >123123123</Link>
                       </li>
                       <li className="list--order-invoice">
 
-                        {/* NOTE: RR address = Dynamic */}
+                        {/* TODO: RR address = Dynamic */}
                         <p>Invoice #:{'\u00A0'}</p>
 
-                        {/* NOTE: Dyanmic */}
+                        {/* TODO: Dyanmic */}
                         <Link
                           to={`user_123123123/invoice_${123123123}`} className="order-number--invoice"
                         >123123123</Link>

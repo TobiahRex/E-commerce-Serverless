@@ -32,9 +32,7 @@ function HomepageHeader({ height, mobile }) {
           </button>
         </div>
       </div>
-      <NavBob
-        className={'header__nav-down--container'} height={navBob}
-      />
+      { !mobile && <NavBob className={'header__nav-down--container'} height={navBob} />}
     </header>
   );
 }
