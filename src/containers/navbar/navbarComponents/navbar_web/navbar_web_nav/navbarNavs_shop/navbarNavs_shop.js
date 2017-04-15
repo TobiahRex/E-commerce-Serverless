@@ -11,7 +11,7 @@ class NavbarNavsShop extends Component {
     show: '',
   }
   static propTypes = {
-    popJuices: PropTypes.objectOf(PropTypes.any).isRequired,
+    popJuices: PropTypes.arrayOf(PropTypes.any).isRequired,
   }
   constructor(props) {
     super(props);
