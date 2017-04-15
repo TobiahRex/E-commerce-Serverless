@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { routerActions } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
 
 import sessionActions from '../../../redux/session';
@@ -110,11 +109,8 @@ class Login extends Component {
 const mapStateToProps = ({ session }) => ({
   previousPageUrl: session.previousPageUrl,
 });
-const mapDispatchToProps = (dispatch) => {
-  const newRouterActions = bindActionCreators({ ...routerActions }, dispatch);
-  return ({
-    ...newRouterActions,
-    saveLoginPage: previousUrl => dispatch(sessionActions.savePreloginPage(previousUrl)),
-  });
-};
+const mapDispatchToProps = dispatch => ({
+  push: location => dispatch(push(location)),
+  saveLoginPage: previousUrl => dispatch(sessionActions.savePreloginPage(previousUrl)),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

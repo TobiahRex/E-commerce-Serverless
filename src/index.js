@@ -1,18 +1,19 @@
 /* eslint-disable import/default */
 import 'babel-polyfill';
-import 'masonry-layout';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
-
-import createStore from './redux/index';
-import initiateActions from './services/utils';
-import routes from './navigation/routes';
+import Perf from 'react-addons-perf';
+import 'masonry-layout';
 import './styles.scss';
+import createStore from './redux/index';
+import startupActions from './services/utils';
+import routes from './navigation/routes';
 
+window.Perf = Perf;
 const { store, history } = createStore();
-initiateActions(store.dispatch, history, { startup: true });
+startupActions(store.dispatch, history, { startup: true });
 
 render(
   <Provider store={store} >
@@ -20,7 +21,7 @@ render(
       history={history}
       routes={routes}
       onUpdate={() =>
-        initiateActions(store.dispatch, history, { startup: false })}
+        startupActions(store.dispatch, history, { startup: false })}
     />
   </Provider >,
   document.getElementById('app'),
