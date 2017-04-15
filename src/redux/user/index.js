@@ -12,7 +12,7 @@ export default Creators;
 export const INITIAL_STATE = {
   loggedIn: false,
   profile: null,
-  ageVerified: Boolean(localStorage.getItem('ageVerified')) || false,
+  ageVerified: false,
 };
 
 const loggedIn = (state, { profile }) => {
@@ -31,14 +31,11 @@ const loggedOut = state => ({
   profile: null,
 });
 
-const verified = (state) => {
-  localStorage.setItem('ageVerified', true);
-  return ({
-    ageVerified: true,
-    loggedIn: state.loggedIn,
-    profile: state.profile,
-  });
-};
+const verified = state => ({
+  ageVerified: true,
+  loggedIn: state.loggedIn,
+  profile: state.profile,
+});
 
 export const userReducer = createReducer(INITIAL_STATE, {
   [Types.USER_LOGGED_IN]: loggedIn,

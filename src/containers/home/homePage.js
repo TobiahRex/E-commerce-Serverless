@@ -19,6 +19,7 @@ class HomePage extends Component {
     redirectUri: PropTypes.bool,
     preLoginUrl: PropTypes.string,
     push: PropTypes.func.isRequired,
+    resetRedirectUri: PropTypes.func.isRequired,
   };
 
   calculateHeight = (header) => {
@@ -37,7 +38,10 @@ class HomePage extends Component {
 
   render() {
     const { mobile, redirectUri, preLoginUrl } = this.props;
-    if (redirectUri) this.props.push(preLoginUrl);
+    if (redirectUri) {
+      this.props.resetRedirectUri();
+      this.props.push(preLoginUrl);
+    }
 
     return (
       <div className="homepage">
@@ -68,7 +72,7 @@ const mapStateToProps = ({ mobile, session }) => ({
   redirectUri: session.redirectUri,
 });
 const mapDispatchToProps = dispatch => ({
-  props: location => dispatch(push(location)),
+  push: location => dispatch(push(location)),
   resetRedirectUri: () => dispatch(sessionActions.resetRedirectUri),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

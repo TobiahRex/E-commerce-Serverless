@@ -30,7 +30,7 @@ class Login extends Component {
 
   socialLogin = (socialType) => {
     this.props.saveLoginPage(this.props.previousPageUrl);
-    // this.auth[socialType]();
+    this.auth[socialType]();
   };
 
   render() {
