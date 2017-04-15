@@ -74,6 +74,7 @@ const devConfig = {
       { test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
+      { test: require.resolve('react-addons-perf'), loader: 'expose-loader?Perf' },
     ],
   },
 };

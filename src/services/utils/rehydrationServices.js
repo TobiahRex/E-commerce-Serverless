@@ -11,7 +11,7 @@ const updateReducers = (store) => {
     // transforms: [],
   };
   persistStore(store, config, () => {
-    console.info('Rehydration Completed!');
+    console.info('Rehydration Completed!\n');
     store.getState();
     store.dispatch(apiActions.fetching());
     // store.dispatch(Actions.startup());
