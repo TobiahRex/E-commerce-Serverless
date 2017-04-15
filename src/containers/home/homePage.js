@@ -16,7 +16,7 @@ class HomePage extends Component {
   };
   static propTypes = {
     mobile: PropTypes.bool,
-    redirectUri: PropTypes.string,
+    redirectUri: PropTypes.bool,
     preLoginUrl: PropTypes.string,
     push: PropTypes.func.isRequired,
   };
