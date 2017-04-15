@@ -13,8 +13,9 @@ export const INITIAL_STATE = {
   currentActivePage: 'Home',
   currentActiveUrl: '/',
   previousPage: '',
-  preLoginUrl: localStorage.getItem('preLoginUrl'),
   previousPageUrl: '',
+  preLoginUrl: '',
+  redirecturi: false,
   error: '',
 };
 
@@ -22,8 +23,9 @@ const save = (state, { page, url }) => ({
   currentActivePage: page,
   currentActiveUrl: url,
   previousPage: state.currentActivePage,
-  preLoginUrl: state.preLoginUrl,
   previousPageUrl: state.currentActiveUrl,
+  preLoginUrl: state.preLoginUrl,
+  redirecturi: false,
   error: null,
 });
 
@@ -33,11 +35,12 @@ const savePreLoginPage = (state, { url }) => {
     currentActivePage: state.currentActivePage,
     currentActiveUrl: state.currentActiveUrl,
     previousPage: state.currentActivePage,
-    preLoginUrl: url,
     previousPageUrl: state.currentActiveUrl,
+    preLoginUrl: url,
+    redirecturi: true,
     error: null,
   });
-}
+};
 
 
 export const sessionReducer = createReducer(INITIAL_STATE, {
