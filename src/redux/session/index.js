@@ -4,18 +4,17 @@ const { Types, Creators } = createActions({
   saveActivePage: ['page', 'url'],
   savePreloginPage: ['url'],
   saveFail: ['err'],
+  resetRedirectUri: null,
 });
-
 export const sessionTypes = Types;
 export default Creators;
-
 export const INITIAL_STATE = {
   currentActivePage: 'Home',
   currentActiveUrl: '/',
   previousPage: '',
   previousPageUrl: '',
   preLoginUrl: '',
-  redirecturi: false,
+  redirectUri: false,
   error: '',
 };
 
@@ -25,25 +24,29 @@ const save = (state, { page, url }) => ({
   previousPage: state.currentActivePage,
   previousPageUrl: state.currentActiveUrl,
   preLoginUrl: state.preLoginUrl,
-  redirecturi: false,
+  redirectUri: false,
   error: null,
 });
-
-const savePreLoginPage = (state, { url }) => {
-  localStorage.setItem('preLoginUrl', url);
-  return ({
-    currentActivePage: state.currentActivePage,
-    currentActiveUrl: state.currentActiveUrl,
-    previousPage: state.currentActivePage,
-    previousPageUrl: state.currentActiveUrl,
-    preLoginUrl: url,
-    redirecturi: true,
-    error: null,
-  });
-};
-
-
+const savePreLoginPage = (state, { url }) => ({
+  currentActivePage: state.currentActivePage,
+  currentActiveUrl: state.currentActiveUrl,
+  previousPage: state.currentActivePage,
+  previousPageUrl: state.currentActiveUrl,
+  preLoginUrl: url,
+  redirectUri: true,
+  error: null,
+});
+const resetRedirectUri = state => ({
+  currentActivePage: state.currentActivePage,
+  currentActiveUrl: state.currentActiveUrl,
+  previousPage: state.currentActivePage,
+  previousPageUrl: state.currentActiveUrl,
+  preLoginUrl: '',
+  redirectUri: false,
+  error: null,
+});
 export const sessionReducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_ACTIVE_PAGE]: save,
   [Types.SAVE_PRELOGIN_PAGE]: savePreLoginPage,
+  [Types.RESET_REDIRECT_URI]: resetRedirectUri,
 });
