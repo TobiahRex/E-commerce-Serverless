@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { autoRehydrate } from 'redux-persist';
 import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
-import apiActions from '../../redux/api';
+import RehydrationServices from '../../services/utils/rehydrationServices';
 
 export default (rootReducer, rootSaga) => {
   const enhancers = [];
@@ -14,19 +14,15 @@ export default (rootReducer, rootSaga) => {
     routerMiddleware(browserHistory),
     createLogger(),
   ];
-
   enhancers.push(
     applyMiddleware(...middlewares),
     autoRehydrate(),
     window.devToolsExtension ? window.devToolsExtension() : _ => _,
   );
-
   const store = createStore(rootReducer, compose(...enhancers));
-  sagaMiddleware.run(rootSaga);
-  persistStore(store);
-  store.dispatch(apiActions.fetching());
   const history = syncHistoryWithStore(browserHistory, store);
-
+  RehydrationServices.updateReducers(store);
+  sagaMiddleware.run(rootSaga);
   return {
     store,
     history,
@@ -35,9 +31,9 @@ export default (rootReducer, rootSaga) => {
 
 /* Store Object Ref.
   store: {
-    dispatch: (action) =>
-    getState: () =>
-    replaceReducer: (n) =>
-    subscribe: subscribe(listener) =>
+    dispatch: (action) => // Dispatches an action
+    getState: () =>  // Get's the current total state tree.
+    replaceReducer: (n) => // Replaces a part of the state tree.
+    subscribe: subscribe(listener) => // Listens for dispatched actions.
   }
 */
