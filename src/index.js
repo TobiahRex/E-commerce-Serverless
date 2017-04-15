@@ -11,6 +11,7 @@ import createStore from './redux/index';
 import startupActions from './services/utils';
 import routes from './navigation/routes';
 
+window.Perf = Perf;
 const { store, history } = createStore();
 startupActions(store.dispatch, history, { startup: true });
 
@@ -25,4 +26,3 @@ render(
   </Provider >,
   document.getElementById('app'),
 );
-window.Perf = Perf;
