@@ -19,31 +19,19 @@ export const INITIAL_STATE = {
 };
 
 const save = (state, { page, url }) => ({
+  ...state,
   currentActivePage: page,
   currentActiveUrl: url,
-  previousPage: state.currentActivePage,
-  previousPageUrl: state.currentActiveUrl,
-  preLoginUrl: state.preLoginUrl,
-  redirectUri: false,
-  error: null,
 });
 const savePreLoginPage = (state, { url }) => ({
-  currentActivePage: state.currentActivePage,
-  currentActiveUrl: state.currentActiveUrl,
-  previousPage: state.currentActivePage,
-  previousPageUrl: state.currentActiveUrl,
+  ...state,
   preLoginUrl: url,
   redirectUri: true,
-  error: null,
 });
 const resetRedirectUri = state => ({
-  currentActivePage: state.currentActivePage,
-  currentActiveUrl: state.currentActiveUrl,
-  previousPage: state.currentActivePage,
-  previousPageUrl: state.currentActiveUrl,
+  ...state,
   preLoginUrl: '',
   redirectUri: false,
-  error: null,
 });
 export const sessionReducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_ACTIVE_PAGE]: save,
