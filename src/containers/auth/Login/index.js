@@ -33,17 +33,18 @@ class Login extends Component {
   }
 
   shouldComponentUpdate = (nextProps) => {
+    console.log('shouldComponentUpdate: ', nextProps, this.props);
     if (this.checkForRedirect(nextProps)) {
       this.props.push(nextProps.previousPageUrl);
     }
     return true;
   };
 
-  checkForRedirect = ({ previousPageUrl, currentActiveUrl, loggedIn }) => {
-    if (!loggedIn) return false;
-    if (loggedIn && !this.props.loggedIn && previousPageUrl !== currentActiveUrl) {
+  checkForRedirect = (nextProps) => {
+    if (nextProps.loggedIn && nextProps.previousPageUrl !== nextProps.currentActiveUrl) {
+      console.warn('wtf?');
       return true;
-    }
+    } else if (!nextProps.loggedIn) return false;
   }
 
   socialLogin = socialType => this.props.authSocialLogin(socialType);
