@@ -12,7 +12,7 @@ import authActions from '../../redux/auth';
 // ------------------- Event Listeners ----------------------------------
 function loginListenerInit(dispatch, { replace }) {
   AuthService.on('logged_in', (profile) => {
-    dispatch(userActions.userLoggedIn(profile));
+    dispatch(userActions.saveProfile(profile));
     dispatch(authActions.loginSuccess());
     dispatch(sessionActions.resetPreLoginUrl());
     AuthService.on('prelogin_url', url => dispatch(push(url)));
@@ -24,7 +24,10 @@ function loginFailureListenerInit(dispatch) {
   AuthService.on('login_failure', error => dispatch(authActions.loginFailure(error)));
 }
 function logoutListenerInit(dispatch) {
-  AuthService.on('logged_out', () => dispatch(userActions.userLoggedOut()));
+  AuthService.on('logged_out', () => {
+    dispatch(userActions.removeProfile());
+    dispatch(authActions.loggedOut);
+  });
 }
 
 // ------------------- App Startup Utilities ----------------------------------

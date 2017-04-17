@@ -4,6 +4,7 @@ const { Types, Creators } = createActions({
   authSocialLogin: ['socialType', 'previousUrl'],
   loginSuccess: null,
   loginFailure: ['error'],
+  loggedOut: null,
 });
 export const authTypes = Types;
 export default Creators;
@@ -23,8 +24,12 @@ const loginFailure = (state, { error }) => ({
   loginSuccess: false,
   loginError: error,
 });
-
+const loggedOut = state => ({
+  ...state,
+  loggedIn: false,
+});
 export const authReducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: loginSuccess,
   [Types.LOGIN_FAILURE]: loginFailure,
+  [Types.LOGGED_OUT]: loggedOut,
 });

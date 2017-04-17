@@ -16,7 +16,8 @@ export const INITIAL_STATE = {
 
 const saveProfile = (state, { profile }) => {
   delete profile.clientID;
-  profile.picture = profile.picture.replace(/normal/, '400x400'); // BUG add a check for which social provider they chose.  This line will only work for Twitter.
+  // BUG add a check for which social provider they chose.  This line will only work for Twitter.
+  profile.picture = profile.picture.replace(/normal/, '400x400');
   return ({
     ...state,
     profile,
@@ -25,14 +26,12 @@ const saveProfile = (state, { profile }) => {
 
 const removeProfile = state => ({
   ...state,
-  loggedIn: false,
   profile: null,
 });
 
 const verified = state => ({
+  ...state,
   ageVerified: true,
-  loggedIn: state.loggedIn,
-  profile: state.profile,
 });
 
 export const userReducer = createReducer(INITIAL_STATE, {
