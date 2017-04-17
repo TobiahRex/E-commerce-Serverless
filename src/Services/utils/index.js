@@ -1,16 +1,21 @@
 import MobileDetect from 'mobile-detect';
+import { push } from 'react-router-redux';
 import sessionActions from '../../redux/session';
 import mobileActions from '../../redux/mobile';
 import geoActions from '../../redux/geo';
 import localeActions from '../../redux/locale';
 import orderActions from '../../redux/orders';
 import userActions from '../../redux/user';
+import authActions from '../../redux/auth';
 import { auth as AuthService } from '../../navigation/routes';
 
 // ------------------- Listeners ----------------------------------
 function loginListenerInit(dispatch, { replace }) {
   AuthService.on('logged_in', (profile) => {
     dispatch(userActions.userLoggedIn(profile));
+    dispatch(authActions.loginSuccess);
+    dispatch(sessionActions.resetPreLoginUrl);
+    AuthService.on('prelogin_url', url => dispatch(push(url)));
     const path = (/#(.*)$/.exec(window.location.hash) || [])[0];
     if (path) replace('/welcome');
   });
