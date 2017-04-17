@@ -1,8 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  userLoggedIn: ['profile'],
-  userLoggedOut: null,
+  saveProfile: ['profile'],
+  removeProfile: null,
   ageVerified: null,
 });
 
@@ -10,23 +10,21 @@ export const userTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = {
-  loggedIn: false,
   profile: null,
   ageVerified: false,
 };
 
-const loggedIn = (state, { profile }) => {
+const saveProfile = (state, { profile }) => {
   delete profile.clientID;
   profile.picture = profile.picture.replace(/normal/, '400x400'); // BUG add a check for which social provider they chose.  This line will only work for Twitter.
   return ({
-    ageVerified: state.ageVerified,
-    loggedIn: true,
+    ...state,
     profile,
   });
 };
 
-const loggedOut = state => ({
-  ageVerified: state.ageVerified,
+const removeProfile = state => ({
+  ...state,
   loggedIn: false,
   profile: null,
 });
@@ -38,8 +36,8 @@ const verified = state => ({
 });
 
 export const userReducer = createReducer(INITIAL_STATE, {
-  [Types.USER_LOGGED_IN]: loggedIn,
-  [Types.USER_LOGGED_OUT]: loggedOut,
+  [Types.SAVE_PROFILE]: saveProfile,
+  [Types.REMOVE_PROFILE]: removeProfile,
   [Types.AGE_VERIFIED]: verified,
 });
 // ------------------------------  ageVerified: null,

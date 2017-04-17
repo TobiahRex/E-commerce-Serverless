@@ -8,17 +8,20 @@ const { Types, Creators } = createActions({
 export const authTypes = Types;
 export default Creators;
 export const INITIAL_STATE = {
-  success: null,
-  error: false,
+  loginSuccess: null,
+  loginError: false,
+  loggedIn: false,
 };
 
 const loginSuccess = state => ({
   ...state,
-  success: true,
+  loggedIn: true,
+  loginSuccess: true,
 });
 const loginFailure = (state, { error }) => ({
-  success: false,
-  error,
+  loggedIn: false,
+  loginSuccess: false,
+  loginError: error,
 });
 
 export const authReducer = createReducer(INITIAL_STATE, {

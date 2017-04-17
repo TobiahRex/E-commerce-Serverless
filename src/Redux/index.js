@@ -14,9 +14,11 @@ import { geoReducer as geo } from './geo';
 import { mobileReducer as mobile } from './mobile';
 import { localeReducer as locale } from './locale';
 import { sessionReducer as session } from './session';
+import { authReducer as auth } from './auth';
 
 export default () => {
   const rootReducer = combineReducers({
+    auth,
     user,
     products,
     orders,
