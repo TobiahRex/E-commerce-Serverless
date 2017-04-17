@@ -7,6 +7,7 @@ import LoginForm from './components/loginForm.parent';
 import LoginError from './components/loginForm.error';
 import SocialLoginButton from './components/loginForm.socialButton';
 import authActions from '../../../redux/auth';
+import sessionActions from '../../../redux/session';
 
 class Login extends Component {
   static propTypes = {
@@ -14,6 +15,7 @@ class Login extends Component {
     push: PropTypes.func.isRequired,
     previousPageUrl: PropTypes.string.isRequired,
     authSocialLogin: PropTypes.func.isRequired,
+    savePreloginPage: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -27,11 +29,12 @@ class Login extends Component {
     };
   }
 
-  socialLogin = (socialType) => {
-    this.props.authSocialLogin(socialType, this.props.previousPageUrl);
-  };
+  savePreloginPage = url => this.props.savePreloginPage(url);
+
+  socialLogin = socialType => this.props.authSocialLogin(socialType);
 
   render() {
+    this.savePreloginPage(this.props.previousPageUrl);
     return (
       <div className="sign-in--main">
         <div className="sign-in--container">
@@ -109,6 +112,7 @@ const mapStateToProps = ({ session }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
-  authSocialLogin: (loginType, previousUrl) => dispatch(authActions.authSocialLogin(loginType, previousUrl)),
+  savePreloginPage: url => dispatch(sessionActions.savePreloginPage(url)),
+  authSocialLogin: (socialType, previousUrl) => dispatch(authActions.authSocialLogin(socialType, previousUrl)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

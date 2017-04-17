@@ -2,7 +2,7 @@ import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
-  authSocialLogin: ['socialType', 'previousUrl'],
+  authSocialLogin: ['socialType'],
   loginSuccess: null,
   loginFailure: ['error'],
   loggedOut: null,
@@ -14,7 +14,6 @@ export const INITIAL_STATE = Immutable({
   loginError: false,
   loggedIn: false,
 });
-
 const loginSuccess = state => ({
   ...state,
   loggedIn: true,
