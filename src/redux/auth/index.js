@@ -1,7 +1,7 @@
 import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  authSocialLogin: ['socialType'],
+  authSocialLogin: ['socialType', 'previousUrl'],
   socialLoginSuccess: null,
   socialLoginFailure: ['error'],
 });

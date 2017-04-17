@@ -15,6 +15,6 @@ const api = TaxRateApi.createAPI();
 export default function* rootSaga() {
   yield [
     takeLatest(orderTypes.GET_TAX_RATE, getTaxRate, api),
-    takeLatest(authTypes.SOCIAL_LOGIN, Auth0SocialLogin),
+    takeLatest(authTypes.AUTH_SOCIAL_LOGIN, Auth0SocialLogin),
   ];
 }

@@ -37,11 +37,11 @@ class HomePage extends Component {
   }
 
   render() {
-    const { mobile, redirectUri, preLoginUrl } = this.props;
-    if (redirectUri) {
-      this.props.resetRedirectUri();
-      this.props.push(preLoginUrl);
-    }
+    const { mobile } = this.props;
+    // if (redirectUri) {
+    //   this.props.resetRedirectUri();
+    //   this.props.push(preLoginUrl);
+    // }
 
     return (
       <div className="homepage">
@@ -66,13 +66,10 @@ class HomePage extends Component {
     );
   }
 }
-const mapStateToProps = ({ mobile, session }) => ({
-  mobile: mobile.mobileType && true,
-  preLoginUrl: session.preLoginUrl,
-  redirectUri: session.redirectUri,
+const mapStateToProps = ({ mobile }) => ({
+  mobile: !!mobile.mobileType,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
-  resetRedirectUri: () => dispatch(sessionActions.resetRedirectUri),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
