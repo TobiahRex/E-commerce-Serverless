@@ -3,18 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
-
-import sessionActions from '../../../redux/session';
 import LoginForm from './components/loginForm.parent';
 import LoginError from './components/loginForm.error';
 import SocialLoginButton from './components/loginForm.socialButton';
+import authActions from '../../../redux/auth';
 
 class Login extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
     previousPageUrl: PropTypes.string.isRequired,
-    saveLoginPage: PropTypes.func.isRequired,
+    authSocialLogin: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -29,8 +28,7 @@ class Login extends Component {
   }
 
   socialLogin = (socialType) => {
-    this.props.saveLoginPage(this.props.previousPageUrl);
-    this.auth[socialType]();
+    this.props.authSocialLogin(socialType, this.props.previousPageUrl);
   };
 
   render() {
@@ -111,6 +109,6 @@ const mapStateToProps = ({ session }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
-  saveLoginPage: previousUrl => dispatch(sessionActions.savePreloginPage(previousUrl)),
+  authSocialLogin: (loginType, previousUrl) => dispatch(authActions.authSocialLogin(loginType, previousUrl)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
