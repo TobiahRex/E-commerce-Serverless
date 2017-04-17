@@ -33,7 +33,6 @@ class Login extends Component {
   }
 
   shouldComponentUpdate = (nextProps) => {
-    console.log('shouldComponentUpdate: ', nextProps, this.props);
     if (this.checkForRedirect(nextProps)) {
       this.props.push(nextProps.previousPageUrl);
     }
@@ -42,9 +41,9 @@ class Login extends Component {
 
   checkForRedirect = (nextProps) => {
     if (nextProps.loggedIn && nextProps.previousPageUrl !== nextProps.currentActiveUrl) {
-      console.warn('wtf?');
       return true;
     } else if (!nextProps.loggedIn) return false;
+    return false;
   }
 
   socialLogin = socialType => this.props.authSocialLogin(socialType);
@@ -65,6 +64,12 @@ class Login extends Component {
             </div>
             <div className="social--btns__list">
               <ul className="list--container">
+                <li className="list--option line">
+                  <SocialLoginButton
+                    callback={() => this.socialLogin('loginWithLine')}
+                    slug="line"
+                  />
+                </li>
                 <li className="list--option facebook">
                   <SocialLoginButton
                     callback={() => this.socialLogin('loginWithFacebook')}

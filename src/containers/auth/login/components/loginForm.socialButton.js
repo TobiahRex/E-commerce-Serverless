@@ -7,9 +7,16 @@ const propTypes = {
 };
 
 function SocialButton({ callback, slug }) {
+  if (slug !== 'line') {
+    return (
+      <button onClick={() => callback()}>
+        <FontAwesome name={slug} />
+      </button>
+    );
+  }
   return (
-    <button onClick={() => callback()}>
-      <FontAwesome name={slug} />
+    <button onClick={() => callback} className="social_line-button">
+      <img src="../Images/line-logo.png" alt="Line" />
     </button>
   );
 }

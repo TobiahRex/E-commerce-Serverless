@@ -1,5 +1,5 @@
 import MobileDetect from 'mobile-detect';
-import { push } from 'react-router-redux';
+// import { push } from 'react-router-redux';
 import { auth as AuthService } from '../../navigation/routes';
 import sessionActions from '../../redux/session';
 import mobileActions from '../../redux/mobile';

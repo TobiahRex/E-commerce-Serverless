@@ -10,10 +10,10 @@ const updateReducers = (store) => {
     // whitelist: persistentStoreWhitelist,
     // transforms: [],
   };
-  persistStore(store, config, () => {
-    console.info('Rehydration Completed!\n');
+  persistStore(store, config);
+  // persistStore(store, config, () => {
     // store.getState();
     // store.dispatch(Actions.startup());
-  });
+  // });
 };
 export default { updateReducers };
