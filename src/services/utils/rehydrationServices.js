@@ -6,7 +6,7 @@ import { persistStore } from 'redux-persist';
 const updateReducers = (store) => {
   const config = {
     storage: localForage,
-    // blacklist: persistentStoreBlacklist,
+    blacklist: ['user', 'auth'],
     // whitelist: persistentStoreWhitelist,
     // transforms: [],
   };

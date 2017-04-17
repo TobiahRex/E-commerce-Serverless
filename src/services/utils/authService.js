@@ -10,7 +10,7 @@ export default class AuthService extends EventEmitter {
       clientID: process.env.AUTH0_CLIENT_ID,
       domain: process.env.AUTH0_DOMAIN,
       responseType: 'token id_token',
-      redirectUri: 'http://localhost:3000/welcome',
+      redirectUri: 'http://localhost:3000/login',
     });
   }
 

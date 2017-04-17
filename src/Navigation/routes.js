@@ -21,7 +21,7 @@ export default (
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
     {Routes.LegalRoutes()}
-    {Routes.AuthRoutes(parseAuthHash)}
+    {Routes.AuthRoutes(auth, parseAuthHash)}
     {Routes.CheckoutRoutes()}
     {Routes.UserDashboardRoutes(requireAuth)}
     {Routes.AdminDashboardRoutes(requireAuth)}

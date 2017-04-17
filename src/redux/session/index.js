@@ -1,6 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
-import { auth as AuthService } from '../../navigation/routes';
 import Immutable from 'seamless-immutable';
+import { auth as AuthService } from '../../navigation/routes';
 
 const { Types, Creators } = createActions({
   saveActivePage: ['page', 'url'],

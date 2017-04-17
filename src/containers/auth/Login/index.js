@@ -16,6 +16,7 @@ class Login extends Component {
     previousPageUrl: PropTypes.string.isRequired,
     currentActiveUrl: PropTypes.string.isRequired,
     authSocialLogin: PropTypes.func.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
   }
   constructor(props) {
     super(props);
@@ -28,16 +29,16 @@ class Login extends Component {
     };
   }
   componentWillMount = () => {
-    const { previousPageUrl, currentActiveUrl } = this.props;
-    this.checkForRedirect(previousPageUrl, currentActiveUrl);
+    if (this.checkForRedirect(this.props)) return this.push(this.props.previousPageUrl);
   }
+
   shouldComponentUpdate = (nextProps) => this.checkForRedirect(nextProps);
 
-  checkForRedirect = ({ previousPageUrl, currentActiveUrl }) => {
-    console.log('previousPageUrl', previousPageUrl);
-
-    console.log('currentActiveUrl', currentActiveUrl);
-    return true;
+  checkForRedirect = ({ previousPageUrl, currentActiveUrl, loggedIn }) => {
+    if (!loggedIn) return false;
+    if (loggedIn && !this.props.loggedIn && previousPageUrl !== currentActiveUrl) {
+      return true;
+    }
   }
 
   socialLogin = socialType => this.props.authSocialLogin(socialType);
@@ -115,9 +116,10 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({ session, auth }) => ({
   previousPageUrl: session.previousPageUrl,
   currentActiveUrl: session.currentActiveUrl,
+  loggedIn: auth.loggedIn,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),

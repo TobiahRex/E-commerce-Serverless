@@ -13,10 +13,10 @@ import authActions from '../../redux/auth';
 function loginListenerInit(dispatch, { replace }) {
   AuthService.on('logged_in', (profile) => {
     const dirtyPath = (/#(.*)$/.exec(window.location.hash) || [])[0];
-    if (dirtyPath) replace('/welcome');
+    if (dirtyPath) replace('/login');
     AuthService.on('prelogin_url', url => dispatch(push(url)));
-    dispatch(authActions.loginSuccess());
     dispatch(userActions.saveProfile(profile));
+    dispatch(authActions.loginSuccess());
   });
 }
 function loginFailureListenerInit(dispatch) {
