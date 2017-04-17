@@ -1,4 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   setLanguage: ['language'],
@@ -9,27 +10,24 @@ const { Types, Creators } = createActions({
 export const localeTypes = Types;
 export default Creators;
 
-export const INITIAL_STATE = {
-  activeLanguage: localStorage.getItem('active_language') || 'english',
+export const INITIAL_STATE = Immutable({
+  activeLanguage: 'english',
   activeCurrency: 'usd',
   country: null,
-};
+});
 
 const setLanguage = (state, { language }) => ({
   activeLanguage: language,
-  activeCurrency: state.activeCurrency,
-  country: state.country,
+  ...state,
 });
 
 const setCurrency = (state, { currency }) => ({
-  activeLanguage: state.activeLanguage,
+  ...state,
   activeCurrency: currency,
-  country: state.country,
 });
 
 const setCountry = (state, { country }) => ({
-  activeLanguage: state.activeLanguage,
-  activeCurrency: state.activeCurrency,
+  ...state,
   country,
 });
 

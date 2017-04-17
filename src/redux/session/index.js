@@ -1,5 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { auth as AuthService } from '../../navigation/routes';
+import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   saveActivePage: ['page', 'url'],
@@ -10,14 +11,14 @@ const { Types, Creators } = createActions({
 });
 export const sessionTypes = Types;
 export default Creators;
-export const INITIAL_STATE = {
+export const INITIAL_STATE = Immutable({
   currentActivePage: 'Home',
   currentActiveUrl: '/',
   previousPage: '',
   previousPageUrl: '',
   preLoginUrl: '',
   error: '',
-};
+});
 
 const save = (state, { page, url }) => ({
   ...state,

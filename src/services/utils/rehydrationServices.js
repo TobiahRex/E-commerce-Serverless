@@ -1,6 +1,6 @@
 import localForage from 'localforage';
 import { persistStore } from 'redux-persist';
-import apiActions from '../../redux/api';
+// import apiActions from '../../redux/api';
 // import StartupActions from '../Redux/StartupRedux'
 
 const updateReducers = (store) => {
@@ -12,8 +12,7 @@ const updateReducers = (store) => {
   };
   persistStore(store, config, () => {
     console.info('Rehydration Completed!\n');
-    store.getState();
-    store.dispatch(apiActions.fetching());
+    // store.getState();
     // store.dispatch(Actions.startup());
   });
 };

@@ -1,4 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   receivedPopJuices: ['juiceArray'], // array of objects
@@ -8,7 +9,7 @@ const { Types, Creators } = createActions({
 export const homepageActions = Types;
 export default Creators;
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE = Immutable({
   popJuices: [{
     title: 'Fruity Bamm-Bamm',
     price: '30',
@@ -41,7 +42,7 @@ export const INITIAL_STATE = {
     imageUrl: './Images/nj2jp_juice_card_fvm.png',
   }],
   error: null,
-};
+});
 
 function receivedPopJuices(state, { juiceArray }) {
   return ({
@@ -50,9 +51,9 @@ function receivedPopJuices(state, { juiceArray }) {
   });
 }
 
-function productsError({ popJuices }, { problem }) {
+function productsError(state, { problem }) {
   return ({
-    popJuices,
+    ...state,
     error: problem,
   });
 }

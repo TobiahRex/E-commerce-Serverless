@@ -1,4 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   setMobileDevice: ['mobileType'],
@@ -10,7 +11,7 @@ const { Types, Creators } = createActions({
 export const mobileTypes = Types;
 export default Creators;
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE = Immutable({
   screenWidth: null,
   mobileType: null,
   orientation: {
@@ -19,29 +20,26 @@ export const INITIAL_STATE = {
     height: 0,
     width: 0,
   },
-};
-
-const setMobileDevice = ({ orientation }, { screenWidth, mobileType }) => ({
-  screenWidth,
-  mobileType,
-  orientation,
 });
 
-const refreshMobileType = ({ screenWidth, orientation }, { mobileType }) => ({
+const setMobileDevice = (state, { screenWidth, mobileType }) => ({
+  ...state,
   screenWidth,
   mobileType,
-  orientation,
 });
 
-const setScreenWidth = ({ mobileType, orientation }, { screenWidth }) => ({
-  screenWidth,
+const refreshMobileType = (state, { mobileType }) => ({
+  ...state,
   mobileType,
-  orientation,
 });
 
-const orientationChanged = ({ screenWidth, mobileType }, { orientation }) => ({
+const setScreenWidth = (state, { screenWidth }) => ({
+  ...state,
   screenWidth,
-  mobileType,
+});
+
+const orientationChanged = (state, { orientation }) => ({
+  ...state,
   orientation,
 });
 

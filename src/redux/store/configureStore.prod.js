@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
+import { autoRehydrate } from 'redux-persist';
 import { browserHistory } from 'react-router';
-import apiActions from '../../redux/api';
+import RehydrationServices from '../../services/utils/rehydrationServices';
 
 export default (rootReducer, rootSaga) => {
   const enhancers = [];
@@ -12,13 +13,15 @@ export default (rootReducer, rootSaga) => {
     routerMiddleware(browserHistory),
   ];
 
-  enhancers.push(applyMiddleware(...middlewares));
+  enhancers.push(
+    applyMiddleware(...middlewares),
+    autoRehydrate(),
+  );
 
   const store = createStore(rootReducer, compose(...enhancers));
-  sagaMiddleware.run(rootSaga);
-
-  store.dispatch(apiActions.fetching());
   const history = syncHistoryWithStore(browserHistory, store);
+  RehydrationServices.updateReducers(store);
+  sagaMiddleware.run(rootSaga);
 
   return {
     store,

@@ -1,4 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   saveProfile: ['profile'],
@@ -9,10 +10,10 @@ const { Types, Creators } = createActions({
 export const userTypes = Types;
 export default Creators;
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE = Immutable({
   profile: null,
   ageVerified: false,
-};
+});
 
 const saveProfile = (state, { profile }) => {
   delete profile.clientID;
