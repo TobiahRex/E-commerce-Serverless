@@ -19,7 +19,10 @@ export default class AuthService extends EventEmitter {
       connection: 'Username-Password-Authentication',
       username,
       password,
-    }, ({ description }) => alert(`Error: ${description}`));
+    }, (error) => {
+      this.emit('login_failure', error);
+      alert(`Error: ${error.description}`);
+    });
   };
 
   signUp = (email, password) => {
@@ -44,6 +47,7 @@ export default class AuthService extends EventEmitter {
       _idTokenVerification: false,
     }, (err, authResult) => {
       if (err) {
+        this.emit('login_failure', err);
         alert(`Error: ${err.errorDescription}`);
       }
 
@@ -51,6 +55,7 @@ export default class AuthService extends EventEmitter {
         this.setToken(authResult.accessToken, authResult.idToken);
         this.auth0.client.userInfo(authResult.accessToken, (error, profile) => {
           if (error) {
+            this.emit('login_failure', error);
             alert(`Error: Could not load profile - ${error}`);
           } else {
             this.setProfile(profile);

@@ -20,7 +20,9 @@ function loginListenerInit(dispatch, { replace }) {
     if (path) replace('/welcome');
   });
 }
-
+function loginFailureListenerInit(dispatch) {
+  AuthService.on('login_failure', error => dispatch(authActions.loginFailure(error)));
+}
 function logoutListenerInit(dispatch) {
   AuthService.on('logged_out', () => dispatch(userActions.userLoggedOut()));
 }

@@ -2,8 +2,8 @@ import { createReducer, createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
   authSocialLogin: ['socialType', 'previousUrl'],
-  socialLoginSuccess: null,
-  socialLoginFailure: ['error'],
+  loginSuccess: null,
+  loginFailure: ['error'],
 });
 export const authTypes = Types;
 export default Creators;
@@ -12,16 +12,16 @@ export const INITIAL_STATE = {
   error: false,
 };
 
-export const socialLoginSuccess = state => ({
+export const loginSuccess = state => ({
   ...state,
-  success: true,
+  l: true,
 });
-export const socialLoginFailure = (state, { error }) => ({
+export const loginFailure = (state, { error }) => ({
   success: false,
   error,
 });
 
 export const authReducer = createReducer(INITIAL_STATE, {
-  [Types.SOCIAL_LOGIN_SUCCESS]: socialLoginSuccess,
-  [Types.SOCIAL_LOGIN_FAILURE]: socialLoginFailure,
+  [Types.LOGIN_SUCCESS]: loginSuccess,
+  [Types.LOGIN_FAILURE]: loginFailure,
 });
