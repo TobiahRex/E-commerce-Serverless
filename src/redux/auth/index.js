@@ -12,11 +12,11 @@ export const INITIAL_STATE = {
   error: false,
 };
 
-export const loginSuccess = state => ({
+const loginSuccess = state => ({
   ...state,
-  l: true,
+  success: true,
 });
-export const loginFailure = (state, { error }) => ({
+const loginFailure = (state, { error }) => ({
   success: false,
   error,
 });
