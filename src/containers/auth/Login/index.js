@@ -7,17 +7,16 @@ import LoginForm from './components/loginForm.parent';
 import LoginError from './components/loginForm.error';
 import SocialLoginButton from './components/loginForm.socialButton';
 import authActions from '../../../redux/auth';
-import sessionActions from '../../../redux/session';
+// import sessionActions from '../../../redux/session';
 
 class Login extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
     previousPageUrl: PropTypes.string.isRequired,
+    currentActiveUrl: PropTypes.string.isRequired,
     authSocialLogin: PropTypes.func.isRequired,
-    savePreloginPage: PropTypes.func.isRequired,
   }
-
   constructor(props) {
     super(props);
     this.auth = props.route.auth;
@@ -28,13 +27,22 @@ class Login extends Component {
       error: { message: '' },
     };
   }
+  componentWillMount = () => {
+    const { previousPageUrl, currentActiveUrl } = this.props;
+    this.checkForRedirect(previousPageUrl, currentActiveUrl);
+  }
+  shouldComponentUpdate = (nextProps) => this.checkForRedirect(nextProps);
 
-  savePreloginPage = url => this.props.savePreloginPage(url);
+  checkForRedirect = ({ previousPageUrl, currentActiveUrl }) => {
+    console.log('previousPageUrl', previousPageUrl);
+
+    console.log('currentActiveUrl', currentActiveUrl);
+    return true;
+  }
 
   socialLogin = socialType => this.props.authSocialLogin(socialType);
 
   render() {
-    this.savePreloginPage(this.props.previousPageUrl);
     return (
       <div className="sign-in--main">
         <div className="sign-in--container">
@@ -109,10 +117,10 @@ class Login extends Component {
 }
 const mapStateToProps = ({ session }) => ({
   previousPageUrl: session.previousPageUrl,
+  currentActiveUrl: session.currentActiveUrl,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
-  savePreloginPage: url => dispatch(sessionActions.savePreloginPage(url)),
   authSocialLogin: (socialType, previousUrl) => dispatch(authActions.authSocialLogin(socialType, previousUrl)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

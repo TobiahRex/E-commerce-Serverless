@@ -16,53 +16,68 @@ import UserFaqs from '../containers/userDashboard/userDashComponents/userDashboa
 
 function UserDashboardRoutes(requireAuth) {
   return (
-    <Route path="/user_:id" component={UserDashboard} onEnter={requireAuth}>
+    <Route path="/user_dashboard" component={UserDashboard} onEnter={requireAuth}>
       <IndexRoute component={UserHomeDash} />
       <Route
         path="address_book"
         component={UserAddressBook}
+        onEnter={requireAuth}
       />
       <Route
         path="orders"
         component={UserOrders}
+        onEnter={requireAuth}
       />
       <Route
         path="order_:orderid/tracking_:trackingid"
         component={UserOrderTracking}
+        onEnter={requireAuth}
       />
       <Route
         path="product_reviews"
         component={UserProductReviews}
+        onEnter={requireAuth}
       />
       <Route
         path="login_apps"
         component={UserLoginApp}
+        onEnter={requireAuth}
       />
       <Route
         path="newsletter"
         component={UserNewsLetter}
+        onEnter={requireAuth}
       />
       <Route
         path="terms_and_conditions"
         component={UserLegal.TermsConditions}
+        onEnter={requireAuth}
       />
       <Route
         path="privacy_policy"
         component={UserLegal.PrivacyPolicy}
+        onEnter={requireAuth}
       />
       <Route
         path="shipping_policy"
         component={UserLegal.ShippingPolicy}
+        onEnter={requireAuth}
       />
       <Route
         path="return_policy"
         component={UserLegal.ReturnPolicy}
+        onEnter={requireAuth}
       />
       <Route
         path="nicotine_disclaimer"
         component={UserLegal.NicotineDisclaimer}
+        onEnter={requireAuth}
       />
-      <Route path="manage_login" component={UserManageLogin} />
+      <Route
+        path="manage_login"
+        component={UserManageLogin}
+        onEnter={requireAuth}
+      />
       <Route path="faqs" component={UserFaqs} />
     </Route>
   );

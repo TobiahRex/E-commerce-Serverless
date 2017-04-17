@@ -7,13 +7,14 @@ import Login from '../containers/auth/login';
 import Register from '../containers/auth/register';
 import Forgot from '../containers/auth/Forgot/forgot';
 
-function AuthRoutes(auth) {
+function AuthRoutes(auth, parseAuthHash) {
   return (
     <div>
       <Route
         path="login"
         component={Login}
         auth={auth}
+        onEnter={parseAuthHash}
       />
       <Route path="register" component={Register} auth={auth} />
       <Route path="forgot" component={Forgot} />

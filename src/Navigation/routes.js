@@ -18,11 +18,10 @@ const parseAuthHash = (nextState) => {
 export default (
   <Route path="/" component={App} auth={auth}>
     <IndexRoute component={Homepage} />
-    <Route path="welcome" component={Homepage} onEnter={parseAuthHash} />
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
     {Routes.LegalRoutes()}
-    {Routes.AuthRoutes(auth)}
+    {Routes.AuthRoutes(parseAuthHash)}
     {Routes.CheckoutRoutes()}
     {Routes.UserDashboardRoutes(requireAuth)}
     {Routes.AdminDashboardRoutes(requireAuth)}
