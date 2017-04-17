@@ -29,10 +29,15 @@ class Login extends Component {
     };
   }
   componentWillMount = () => {
-    if (this.checkForRedirect(this.props)) return this.push(this.props.previousPageUrl);
+    if (this.checkForRedirect(this.props)) this.props.push(this.props.previousPageUrl);
   }
 
-  shouldComponentUpdate = (nextProps) => this.checkForRedirect(nextProps);
+  shouldComponentUpdate = (nextProps) => {
+    if (this.checkForRedirect(nextProps)) {
+      this.props.push(nextProps.previousPageUrl);
+    }
+    return true;
+  };
 
   checkForRedirect = ({ previousPageUrl, currentActiveUrl, loggedIn }) => {
     if (!loggedIn) return false;
