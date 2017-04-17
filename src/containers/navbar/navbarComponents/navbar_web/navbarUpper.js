@@ -7,10 +7,15 @@ import NavbarCart from './navbar_web_cart/navbarCart';
 
 class NavbarUpper extends Component {
   static propTypes = {
-    user: PropTypes.objectOf(PropTypes.any).isRequired,
+    loggedIn: PropTypes.bool.isRequired,
   }
-
-  componentWillReceiveProps = ({ user }) => this.setState({ user });
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: props.loggedIn,
+    };
+  }
+  componentWillReceiveProps = ({ loggedIn }) => this.setState({ loggedIn });
 
   render() {
     return (
@@ -20,7 +25,7 @@ class NavbarUpper extends Component {
         Options will receive Option handlers & Active Language & Currency Qty  */}
         <NavbarOptions />
 
-        <NavbarUserActions activeUser={this.props.user.loggedIn} />
+        <NavbarUserActions activeUser={this.props.loggedIn} />
 
 
         {/* TODO: Cart will receive Cart Qty & Handlers:
@@ -31,8 +36,8 @@ class NavbarUpper extends Component {
     );
   }
 }
-const mapStateToProps = ({ user }) => ({
-  user,
+const mapStateToProps = ({ auth }) => ({
+  loggedIn: auth.loggedIn,
 });
 
 export default connect(mapStateToProps, null)(NavbarUpper);
