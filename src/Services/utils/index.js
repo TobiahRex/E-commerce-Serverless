@@ -12,12 +12,12 @@ import authActions from '../../redux/auth';
 // ------------------- Event Listeners ----------------------------------
 function loginListenerInit(dispatch, { replace }) {
   AuthService.on('logged_in', (profile) => {
+    const path = (/#(.*)$/.exec(window.location.hash) || [])[0];
+    if (path) replace('/welcome');
+    AuthService.on('prelogin_url', url => dispatch(push(url)));
     dispatch(userActions.saveProfile(profile));
     dispatch(authActions.loginSuccess());
     dispatch(sessionActions.resetPreLoginUrl());
-    AuthService.on('prelogin_url', url => dispatch(push(url)));
-    const path = (/#(.*)$/.exec(window.location.hash) || [])[0];
-    if (path) replace('/welcome');
   });
 }
 function loginFailureListenerInit(dispatch) {

@@ -25,8 +25,7 @@ class NavbarUpper extends Component {
         Options will receive Option handlers & Active Language & Currency Qty  */}
         <NavbarOptions />
 
-        <NavbarUserActions activeUser={this.props.loggedIn} />
-
+        <NavbarUserActions activeUser={this.state.loggedIn} />
 
         {/* TODO: Cart will receive Cart Qty & Handlers:
           1. Remove Product

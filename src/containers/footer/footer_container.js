@@ -30,7 +30,7 @@ class FooterContainer extends PureComponent {
     );
   }
 }
-const mapStateToProps = ({ user }) => ({
-  isLoggedIn: user.loggedIn,
+const mapStateToProps = ({ auth }) => ({
+  isLoggedIn: auth.loggedIn,
 });
 export default connect(mapStateToProps, null)(FooterContainer);

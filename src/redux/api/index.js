@@ -1,4 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
 // ------- Types & Creators ------- //
 const { Types, Creators } = createActions({
@@ -11,11 +12,11 @@ export const ApiTypes = Types;
 export default Creators;
 
 // ------- Initial State ------- //
-export const INITIAL_STATE = {
+export const INITIAL_STATE = Immutable({
   fetching: null,
   count: 0,
   error: false,
-};
+});
 
 // ------- Response Actions ------- //
 const success = state => ({
