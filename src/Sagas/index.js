@@ -4,17 +4,17 @@ import TaxRateApi from '../services/api/taxes';
 
 // ----- Sagas ----- //
 import getTaxRate from './taxes';
-import socialLogin from './authorization';
+import Auth0SocialLogin from './authorization';
 
 // ----- Types ----- //
 import { orderTypes } from '../redux/orders';
-import { sessionTypes } from '../redux/session';
+import { authTypes } from '../redux/auth';
 
 const api = TaxRateApi.createAPI();
 
 export default function* rootSaga() {
   yield [
     takeLatest(orderTypes.GET_TAX_RATE, getTaxRate, api),
-    takeLatest(sessionTypes.)
+    takeLatest(authTypes.SOCIAL_LOGIN, Auth0SocialLogin),
   ];
 }
