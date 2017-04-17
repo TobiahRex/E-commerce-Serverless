@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import sessionActions from '../../redux/session';
+
 import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
 import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
@@ -11,15 +11,10 @@ import HomepagePopJuices from './homeComponents/homepage_popJuices';
 class HomePage extends Component {
   static defaultProps = {
     mobile: false,
-    redirectUri: false,
-    preLoginUrl: '/',
   };
   static propTypes = {
     mobile: PropTypes.bool,
-    redirectUri: PropTypes.bool,
-    preLoginUrl: PropTypes.string,
-    push: PropTypes.func.isRequired,
-    resetRedirectUri: PropTypes.func.isRequired,
+    // push: PropTypes.func.isRequired,
   };
 
   calculateHeight = (header) => {
