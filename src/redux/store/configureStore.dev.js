@@ -10,19 +10,19 @@ export default (rootReducer, rootSaga) => {
   const enhancers = [];
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
-    sagaMiddleware,
-    routerMiddleware(browserHistory),
     createLogger(),
+    routerMiddleware(browserHistory),
+    sagaMiddleware,
   ];
   enhancers.push(
+    window.devToolsExtension ? window.devToolsExtension() : _ => _,
     applyMiddleware(...middlewares),
     autoRehydrate(),
-    window.devToolsExtension ? window.devToolsExtension() : _ => _,
   );
   const store = createStore(rootReducer, compose(...enhancers));
   const history = syncHistoryWithStore(browserHistory, store);
-  RehydrationServices.updateReducers(store);
   sagaMiddleware.run(rootSaga);
+  RehydrationServices.updateReducers(store);
   return {
     store,
     history,
