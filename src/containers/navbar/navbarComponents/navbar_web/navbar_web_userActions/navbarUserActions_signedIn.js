@@ -26,7 +26,7 @@ class NavbarUserActionsSignedin extends PureComponent {
     return (
       <ul className="upper-actions__signedIn" >
         <li className="signedIn__logout--title">
-          <button className="logout__button" onClick={this.logout} >
+          <button onClick={this.logout} className="logout__button" >
             Logout
           </button>
         </li>
@@ -35,20 +35,17 @@ class NavbarUserActionsSignedin extends PureComponent {
             Checkout
           </Link>
         </li>
-        <li className="my-account-title">
-          <Link
-            to={`/user/${123123}`} className="navbar-userActions-myaccount-title-link"
-          >
+        <li className="signedIn__myAccount--title">
+          <Link to={`/user/${123123}`} className="myAccount__link">
             <img
+              className="myAccount__link--picture"
               src={this.props.user.profile.picture}
               alt="My Account"
-              className="signedIn--profile-pic"
             />
-
+            
           </Link>
         </li>
       </ul>
-
     );
   }
 }
