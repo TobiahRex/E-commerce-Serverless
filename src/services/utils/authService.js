@@ -41,6 +41,8 @@ export default class AuthService extends EventEmitter {
 
   loginWithLinkedin = () => this.auth0.authorize({ connection: 'linkedin' })
 
+  loginWithLine = () => this.auth0.authorize({ connection: 'line' });
+
   parseHash = (hash) => {
     this.auth0.parseHash({
       hash,

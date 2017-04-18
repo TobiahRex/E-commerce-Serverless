@@ -46,7 +46,7 @@ class Login extends Component {
     return false;
   }
 
-  socialLogin = socialType => this.props.authSocialLogin(socialType);
+  socialLogin = socialType => this.props.authSocialLogin(socialType)
 
   render() {
     return (

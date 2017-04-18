@@ -177,11 +177,35 @@
               &:hover,
               &:active,
               &:focus {
-                box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+                // box-shadow: 3px 3px 3px rgba(0,0,0,.25);
               }
               & span {
                 color: $p-white;
                 font-size: 4.5em;
+              }
+            }
+            & .list--option.line {
+              & button {
+                @include prefixflex();
+                background-color: #00c300;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                border: none;
+                padding: 0;
+                margin: 0;
+                cursor: pointer;
+                &:hover {
+                  background-color: #00e000;
+                }
+                &:focus {
+                  outline: none;
+                  background-color: #00b300;
+                }
+                & image {
+                  max-width: 100%;
+                }
               }
             }
             & .list--option.facebook {
@@ -196,9 +220,13 @@
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
-                &:focus,
-                &:active {
+                cursor: pointer;
+                &:hover {
+                  background-color: #4163A6;
+                }
+                &:focus {
                   outline: none;
+                  background-color: #274A8F;
                 }
                 & span {
                   color: $p-white;
@@ -218,9 +246,13 @@
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
-                &:focus,
-                &:active {
+                cursor: pointer;
+                &:hover {
+                  background-color: #5B9FEE;
+                }
+                &:focus {
                   outline: none;
+                  background-color: #3173BF;
                 }
                 & span {
                   color: $p-white;
@@ -240,9 +272,13 @@
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
-                &:focus,
-                &:active {
+                cursor: pointer;
+                &:hover {
+                  background-color: #F5685C;
+                }
+                &:focus {
                   outline: none;
+                  background-color: #B12F24;
                 }
                 & span {
                   color: $p-white;
@@ -263,9 +299,13 @@
                 background-color: inherit;
                 padding: 0;
                 margin: 0;
-                &:focus,
-                &:active {
+                cursor: pointer;
+                &:hover {
+                  background-color: #2297D4;
+                }
+                &:focus {
                   outline: none;
+                  background-color: #056699;
                 }
                 & span {
                   color: $p-white;

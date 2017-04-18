@@ -15,8 +15,8 @@ function SocialButton({ callback, slug }) {
     );
   }
   return (
-    <button onClick={() => callback} className="social_line-button">
-      <img src="../Images/line-logo.png" alt="Line" />
+    <button onClick={() => callback()}>
+      <img src="../images/line_logo.png" alt="Line" />
     </button>
   );
 }

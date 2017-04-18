@@ -12,8 +12,8 @@ import authActions from '../../redux/auth';
 // ------------------- Event Listeners ----------------------------------
 function loginListenerInit(dispatch, { replace }) {
   AuthService.on('logged_in', (profile) => {
-    const dirtyPath = (/#(.*)$/.exec(window.location.hash) || [])[0];
-    if (dirtyPath) replace('/login');
+    // const dirtyPath = (/#(.*)$/.exec(window.location.hash) || [])[0];
+    // if (dirtyPath) replace('/login');
     dispatch(userActions.saveProfile(profile));
     dispatch(authActions.loginSuccess());
   });
