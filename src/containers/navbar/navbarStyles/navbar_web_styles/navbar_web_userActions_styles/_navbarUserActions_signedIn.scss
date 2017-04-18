@@ -1,11 +1,11 @@
-.navbar-actionSection-upper-actions-signedIn {
+.upper-actions__signedIn {
   @include prefixflex();
   justify-content: flex-end;
   align-items: center;
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 3em;
-  & .sign-out-title {
+  & .signedIn__logout--title {
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
@@ -35,12 +35,24 @@
     &:hover {
       transition: none;
     }
-    & .navbar-userActions-signOut-title-button {
+    & .logout__button {
+      height: 100%;
+      width: 100%;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 200;
       color: $p-white;
-      text-decoration: none;
+      background-color: transparent;
+      cursor: pointer;
+      &:active,
+      &:focus {
+        outline: none;
+      }
     }
   }
-  & .checkout-title {
+  & .signedIn__checkout--title {
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
@@ -71,7 +83,7 @@
     &:hover {
       transition: none;
     }
-    & .navbar-userActions-checkout-title-link {
+    & .checkout__link {
       color: $p-white;
       text-decoration: none;
     }

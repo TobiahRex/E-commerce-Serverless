@@ -1,12 +1,11 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { routerActions } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 
 import { auth as AuthService } from '../../../../../navigation/routes';
 
-class NavbarUserActionsSignin extends PureComponent {
+class NavbarUserActionsSignedin extends PureComponent {
   static propTypes = {
     user: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
@@ -18,38 +17,34 @@ class NavbarUserActionsSignin extends PureComponent {
     show: {},
   }
 
-  logout = (e) => {
-    e.preventDefault();
+  logout = () => {
     AuthService.logout();
     this.props.push('/');
   };
 
-  push = (e) => {
-    this.props.push(e.target.dataset.location);
-  }
-
   render() {
-    const { push, user } = this.props;
     return (
-      <ul className="navbar-actionSection-upper-actions-signedIn" >
-        <li className="sign-out-title">
-          <a
-            className="navbar-userActions-signOut-title-button"
-            onClick={this.logout}
-          >Logout</a>
+      <ul className="upper-actions__signedIn" >
+        <li className="signedIn__logout--title">
+          <button className="logout__button" onClick={this.logout} >
+            Logout
+          </button>
         </li>
-        <li
-          className="checkout-title"
-          data-location="/express_checkout"
-          onClick={this.push}
-        >
-          <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
+        <li className="signedIn__checkout--title" >
+          <Link to={'/express_checkout'} className="checkout__link">
             Checkout
           </Link>
         </li>
-        <li className="my-account-title" onClick={() => push(`/user/${123123}`)}>
-          <Link to={`/user/${123123}`} className="navbar-userActions-myaccount-title-link">
-            <img src={user.profile.picture} alt="My Account" className="signedIn--profile-pic" />
+        <li className="my-account-title">
+          <Link
+            to={`/user/${123123}`} className="navbar-userActions-myaccount-title-link"
+          >
+            <img
+              src={this.props.user.profile.picture}
+              alt="My Account"
+              className="signedIn--profile-pic"
+            />
+
           </Link>
         </li>
       </ul>
@@ -57,11 +52,10 @@ class NavbarUserActionsSignin extends PureComponent {
     );
   }
 }
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...routerActions }, dispatch);
-
+const mapDispatchToProps = dispatch => ({
+  push: location => dispatch(location),
+});
 const mapStateToProps = ({ user }) => ({
   user,
 });
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarUserActionsSignin);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarUserActionsSignedin);
