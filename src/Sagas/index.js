@@ -17,4 +17,6 @@ export default function* rootSaga() {
     takeLatest(orderTypes.GET_TAX_RATE, getTaxRate, api),
     takeLatest(authTypes.AUTH_SOCIAL_LOGIN, authSocialLogin),
   ];
+  // while (true) {
+  // }
 }

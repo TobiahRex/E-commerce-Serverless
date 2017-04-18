@@ -11,7 +11,7 @@ export const userTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = Immutable({
-  profile: null,
+  profile: JSON.parse(localStorage.getItem('profile')),
   ageVerified: !!localStorage.getItem('ageVerified'),
 });
 

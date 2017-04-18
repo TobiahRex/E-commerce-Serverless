@@ -51,6 +51,7 @@ export default class AuthService extends EventEmitter {
       if (err) {
         this.emit('login_failure', err);
         alert(`Error: ${err.errorDescription}`);
+
       }
 
       if (authResult && authResult.accessToken && authResult.idToken) {

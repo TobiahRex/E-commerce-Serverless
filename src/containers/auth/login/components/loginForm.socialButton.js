@@ -9,13 +9,13 @@ const propTypes = {
 function SocialButton({ callback, slug }) {
   if (slug !== 'line') {
     return (
-      <button onClick={() => callback()}>
+      <button onClick={callback}>
         <FontAwesome name={slug} />
       </button>
     );
   }
   return (
-    <button onClick={() => callback()}>
+    <button onClick={callback}>
       <img src="../images/line_logo.png" alt="Line" />
     </button>
   );
