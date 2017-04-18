@@ -7,7 +7,7 @@ class SocialButtonList extends PureComponent {
     socialLogin: PropTypes.func.isRequired,
   }
 
-  socialLogin = type => this.props.socialLogin(type)
+  socialLogin = e => this.props.socialLogin(e);
 
   render() {
     return (
@@ -15,32 +15,37 @@ class SocialButtonList extends PureComponent {
         <ul className="list--container">
           <li className="list--option line">
             <SocialLoginButton
-              callback={this.socialLogin('loginWithLine')}
-              slug="line"
+              callback={this.socialLogin}
+              slug="loginWithLine"
+              faName="line"
             />
           </li>
           <li className="list--option facebook">
             <SocialLoginButton
-              callback={this.socialLogin('loginWithFacebook')}
-              slug="facebook"
+              callback={this.socialLogin}
+              slug="loginWithFacebook"
+              faName="facebook"
             />
           </li>
           <li className="list--option twitter">
             <SocialLoginButton
-              callback={this.socialLogin('loginWithTwitter')}
-              slug="twitter"
+              callback={this.socialLogin}
+              slug="loginWithTwitter"
+              faName="twitter"
             />
           </li>
           <li className="list--option google">
             <SocialLoginButton
-              callback={this.socialLogin('loginWithGoogle')}
-              slug="google-plus"
+              callback={this.socialLogin}
+              slug="loginWithGoogle"
+              faName="google-plus"
             />
           </li>
           <li className="list--option linkedin">
             <SocialLoginButton
-              callback={this.socialLogin('loginWithLinkedin')}
-              slug="linkedin"
+              callback={this.socialLogin}
+              slug="loginWithLinkedin"
+              faName="linkedin"
             />
           </li>
         </ul>

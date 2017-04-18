@@ -50,7 +50,13 @@ class Login extends Component {
     return false;
   }
 
-  socialLogin = socialType => this.props.authSocialLogin(socialType);
+  socialLogin = (e) => {
+    let socialType = e.target.dataset.tag;
+    if (!socialType) {
+      socialType = e.target.parentNode.dataset.tag;
+    }
+    this.props.authSocialLogin(socialType);
+  }
 
   render() {
     return (
@@ -77,24 +83,24 @@ class Login extends Component {
           <div className="sign-in__action-btns">
             <div className="action-btns__register">
               <button className="register-btn sweep-right" onClick={() => this.props.push('/register')}>
-                Register
-              </button>
-            </div>
-            <div className="action-btns__back-to-home">
-              <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
-                <span className="flex-btn-parent">
-                  <FontAwesome name="angle-double-left" />
-                  {'\u00A0'}
-                  Back
-                </span>
-              </button>
-            </div>
+              Register
+            </button>
           </div>
-          
+          <div className="action-btns__back-to-home">
+            <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
+            <span className="flex-btn-parent">
+              <FontAwesome name="angle-double-left" />
+              {'\u00A0'}
+              Back
+            </span>
+          </button>
         </div>
       </div>
-    );
-  }
+
+    </div>
+  </div>
+);
+}
 }
 const mapStateToProps = ({ session, auth }) => ({
   previousPageUrl: session.previousPageUrl,

@@ -18,6 +18,4 @@ export default function* rootSaga() {
     // takeLatest(authTypes.EMAIL_AUTH_IN_PROGRESS, emailAuthInProgress),
     takeLatest(authTypes.AUTH_SOCIAL_LOGIN, authSocialLogin),
   ];
-  // while (true) {
-  // }
 }
