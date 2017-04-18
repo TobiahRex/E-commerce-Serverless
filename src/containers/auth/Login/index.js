@@ -3,22 +3,17 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
 import LoginForm from './components/loginForm.parent';
-import LoadingOrError from './components/loginForm.error';
+import LoadingOrError from './components/loginForm.loadingOrError';
 import SocialButtonList from './components/loginForm.socialButtonList';
 import authActions from '../../../redux/auth';
-// import sessionActions from '../../../redux/session';
 
 class Login extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
-
     push: PropTypes.func.isRequired,
     authSocialLogin: PropTypes.func.isRequired,
-    // authorizationInProgress: PropTypes.func.isRequired,
-
     previousPageUrl: PropTypes.string.isRequired,
     currentActiveUrl: PropTypes.string.isRequired,
-
     loggedIn: PropTypes.bool.isRequired,
     authInProgress: PropTypes.bool.isRequired,
   }
@@ -80,7 +75,8 @@ class Login extends Component {
             <h1>Login</h1>
           </div>
 
-          <ErrorOrLoading
+          {/* NOTE This component = functional */}
+          <LoadingOrError
             errorMessage={error.message}
             authInProgress={authInProgress}
           />
@@ -92,11 +88,12 @@ class Login extends Component {
               </div>
             </div>
 
-            {/* NOTE This componet = Pure Component */}
+            {/* NOTE This componet = PureComponent */}
             <SocialButtonList socialLogin={this.socialLogin} />
 
           </div>
 
+          {/* NOTE This component = React.Component */}
           <LoginForm auth={this.auth} />
 
           <div className="sign-in__action-btns">
