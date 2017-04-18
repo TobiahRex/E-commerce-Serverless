@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function LoginFormError({ errorMessage, authInProgress }) {
+function LoadingOrError({ errorMessage, authInProgress }) {
   if (errorMessage) {
     return (
       <div className="sign-in__error">
@@ -24,12 +24,12 @@ function LoginFormError({ errorMessage, authInProgress }) {
     </div>);
   }
 }
-LoginFormError.propTypes = {
+LoadingOrError.propTypes = {
   errorMessage: PropTypes.string,
   authInProgress: PropTypes.bool,
 };
-LoginFormError.defaultProps = {
+LoadingOrError.defaultProps = {
   errorMessage: 'No Error',
   authInProgress: false,
 };
-export default LoginFormError;
+export default LoadingOrError;

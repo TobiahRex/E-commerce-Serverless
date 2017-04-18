@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
 import LoginForm from './components/loginForm.parent';
-import LoginError from './components/loginForm.error';
+import LoadingOrError from './components/loginForm.error';
 import SocialButtonList from './components/loginForm.socialButtonList';
 import authActions from '../../../redux/auth';
 // import sessionActions from '../../../redux/session';
@@ -79,7 +79,12 @@ class Login extends Component {
           <div className="sign-in__title">
             <h1>Login</h1>
           </div>
-          {this.state.error.message || && <LoginError errorMessage={this.state.error.message} />}
+
+          <ErrorOrLoading
+            errorMessage={error.message}
+            authInProgress={authInProgress}
+          />
+
           <div className="sign-in__social--container">
             <div className="social--title">
               <div className="social--title-msg">
