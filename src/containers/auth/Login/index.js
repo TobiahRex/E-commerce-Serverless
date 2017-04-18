@@ -16,6 +16,7 @@ class Login extends Component {
     currentActiveUrl: PropTypes.string.isRequired,
     authSocialLogin: PropTypes.func.isRequired,
     loggedIn: PropTypes.bool.isRequired,
+    AIP: PropTypes.bool.isRequired,
   }
   constructor(props) {
     super(props);
@@ -61,7 +62,10 @@ class Login extends Component {
                 <h5>Login with your Social Network</h5>
               </div>
             </div>
+
+            {/* NOTE This componet = Pure Component */}
             <SocialButtonList socialLogin={this.socialLogin} />
+
           </div>
 
           <LoginForm auth={this.auth} />
@@ -92,6 +96,7 @@ const mapStateToProps = ({ session, auth }) => ({
   previousPageUrl: session.previousPageUrl,
   currentActiveUrl: session.currentActiveUrl,
   loggedIn: auth.loggedIn,
+  AIP: auth.authorizationInProgress,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
