@@ -20,7 +20,7 @@ class Login extends Component {
     currentActiveUrl: PropTypes.string.isRequired,
 
     loggedIn: PropTypes.bool.isRequired,
-    AIP: PropTypes.bool.isRequired,
+    authInProgress: PropTypes.bool.isRequired,
   }
   constructor(props) {
     super(props);
@@ -30,18 +30,31 @@ class Login extends Component {
       password: '',
       recaptchaToken: '',
       error: { message: '' },
+      authInProgress: '',
     };
   }
-  componentWillMount = () => {
-    if (this.checkForRedirect(this.props)) this.props.push(this.props.previousPageUrl);
+  componentWillMount() {
+    if (this.checkForRedirect(this.props)) {
+      this.props.push(this.props.previousPageUrl);
+    }
+
+    this.setState(() => ({ ...this.state,
+      authInProgress: this.props.authInProgress,
+    }));
   }
 
-  shouldComponentUpdate = (nextProps) => {
+  componentWillRecieveProps(nextProps) {
+    this.setState(() => ({ ...this.state,
+      authInProgress: nextProps.authInProgress,
+    }));
+  }
+
+  shouldComponentUpdate(nextProps) {
     if (this.checkForRedirect(nextProps)) {
       this.props.push(nextProps.previousPageUrl);
     }
     return true;
-  };
+  }
 
   checkForRedirect = (nextProps) => {
     if (nextProps.loggedIn && nextProps.previousPageUrl !== nextProps.currentActiveUrl) {
@@ -59,13 +72,14 @@ class Login extends Component {
   }
 
   render() {
+    const { error, authInProgress } = this.state;
     return (
       <div className="sign-in--main">
         <div className="sign-in--container">
           <div className="sign-in__title">
             <h1>Login</h1>
           </div>
-          {this.state.error.message && <LoginError errorMessage={this.state.error.message} />}
+          {this.state.error.message || && <LoginError errorMessage={this.state.error.message} />}
           <div className="sign-in__social--container">
             <div className="social--title">
               <div className="social--title-msg">
@@ -83,24 +97,24 @@ class Login extends Component {
           <div className="sign-in__action-btns">
             <div className="action-btns__register">
               <button className="register-btn sweep-right" onClick={() => this.props.push('/register')}>
-              Register
-            </button>
+                Register
+              </button>
+            </div>
+            <div className="action-btns__back-to-home">
+              <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
+                <span className="flex-btn-parent">
+                  <FontAwesome name="angle-double-left" />
+                  {'\u00A0'}
+                  Back
+                </span>
+              </button>
+            </div>
           </div>
-          <div className="action-btns__back-to-home">
-            <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
-            <span className="flex-btn-parent">
-              <FontAwesome name="angle-double-left" />
-              {'\u00A0'}
-              Back
-            </span>
-          </button>
+
         </div>
       </div>
-
-    </div>
-  </div>
-);
-}
+    );
+  }
 }
 const mapStateToProps = ({ session, auth }) => ({
   previousPageUrl: session.previousPageUrl,
