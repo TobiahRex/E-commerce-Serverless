@@ -11,10 +11,14 @@ import authActions from '../../../redux/auth';
 class Login extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
+
     push: PropTypes.func.isRequired,
+    authSocialLogin: PropTypes.func.isRequired,
+    // authorizationInProgress: PropTypes.func.isRequired,
+
     previousPageUrl: PropTypes.string.isRequired,
     currentActiveUrl: PropTypes.string.isRequired,
-    authSocialLogin: PropTypes.func.isRequired,
+
     loggedIn: PropTypes.bool.isRequired,
     AIP: PropTypes.bool.isRequired,
   }
@@ -46,7 +50,7 @@ class Login extends Component {
     return false;
   }
 
-  socialLogin = socialType => this.props.authSocialLogin(socialType)
+  socialLogin = socialType => this.props.authSocialLogin(socialType);
 
   render() {
     return (
@@ -100,6 +104,9 @@ const mapStateToProps = ({ session, auth }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
-  authSocialLogin: (socialType, previousUrl) => dispatch(authActions.authSocialLogin(socialType, previousUrl)),
+
+  // authorizationInProgress: () => dispatch(authActions.authorizationInProgress()),
+
+  authSocialLogin: socialType => dispatch(authActions.authSocialLogin(socialType)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
