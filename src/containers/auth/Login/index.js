@@ -25,20 +25,16 @@ class Login extends Component {
       password: '',
       recaptchaToken: '',
       error: { message: '' },
-      authInProgress: '',
+      authInProgress: props.authInProgress,
     };
   }
   componentWillMount() {
     if (this.checkForRedirect(this.props)) {
       this.props.push(this.props.previousPageUrl);
     }
-
-    this.setState(() => ({ ...this.state,
-      authInProgress: this.props.authInProgress,
-    }));
   }
 
-  componentWillRecieveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState(() => ({ ...this.state,
       authInProgress: nextProps.authInProgress,
     }));
@@ -80,19 +76,11 @@ class Login extends Component {
             errorMessage={error.message}
             authInProgress={authInProgress}
           />
-
-          <div className="sign-in__social--container">
-            <div className="social--title">
-              <div className="social--title-msg">
-                <h5>Login with your Social Network</h5>
-              </div>
-            </div>
-
-            {/* NOTE This componet = PureComponent */}
-            <SocialButtonList socialLogin={this.socialLogin} />
-
-          </div>
-
+          {/* NOTE This componet = PureComponent */}
+          <SocialButtonList
+            socialLogin={this.socialLogin}
+            visibility={authInProgress}
+          />
           {/* NOTE This component = React.Component */}
           <LoginForm auth={this.auth} />
 
@@ -122,12 +110,10 @@ const mapStateToProps = ({ session, auth }) => ({
   previousPageUrl: session.previousPageUrl,
   currentActiveUrl: session.currentActiveUrl,
   loggedIn: auth.loggedIn,
-  AIP: auth.authorizationInProgress,
+  authInProgress: !!auth.authorizationInProgress,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
-
-  // authorizationInProgress: () => dispatch(authActions.authorizationInProgress()),
 
   authSocialLogin: socialType => dispatch(authActions.authSocialLogin(socialType)),
 });

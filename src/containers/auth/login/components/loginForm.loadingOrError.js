@@ -19,10 +19,11 @@ function LoadingOrError({ errorMessage, authInProgress }) {
   } else if (authInProgress) {
     return (<div className="sign-in__loading">
       <div className="loading--icon">
-        <FontAwesome name="" />
+        <FontAwesome name="spinner" pulse />
       </div>
     </div>);
   }
+  return (<span />);
 }
 LoadingOrError.propTypes = {
   errorMessage: PropTypes.string,

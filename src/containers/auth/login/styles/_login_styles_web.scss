@@ -49,6 +49,23 @@
           max-width: 70%;
         }
       }
+      & .sign-in__loading {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        margin: 3em 0 3em 0;
+        & .loading--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 4.5em;
+          width: 4.5em;
+          span {
+            color: $p-blue;
+            font-size: 7em;
+          }
+        }
+      }
       & .sign-in__form {
         & .sign-in__list {
           @include prefixflex();
@@ -59,7 +76,6 @@
           margin: 0;
           & .sign-in__left-break,
           .sign-in__right-break {
-            // height: 2em;
             width: 11.5em;
             border-bottom: 1px solid rgba(0,0,0,.2);
           }
@@ -196,15 +212,15 @@
                 padding: 0;
                 margin: 0;
                 cursor: pointer;
+                & img {
+                  max-width: 100%;
+                }
                 &:hover {
                   background-color: #00e000;
                 }
                 &:focus {
                   outline: none;
                   background-color: #00b300;
-                }
-                & image {
-                  max-width: 100%;
                 }
               }
             }
