@@ -24,20 +24,31 @@ class NavbarUserActionsSignin extends PureComponent {
     this.props.push('/');
   };
 
+  push = (e) => {
+    this.props.push(e.target.dataset.location);
+  }
+
   render() {
     const { push, user } = this.props;
     return (
       <ul className="navbar-actionSection-upper-actions-signedIn" >
         <li className="sign-out-title">
-          <a className="navbar-userActions-signOut-title-button" onClick={e => this.logout(e)}>Logout</a>
+          <a
+            className="navbar-userActions-signOut-title-button"
+            onClick={this.logout}
+          >Logout</a>
         </li>
-        <li className="checkout-title" onClick={() => push('/express_checkout')}>
+        <li
+          className="checkout-title"
+          data-location="/express_checkout"
+          onClick={this.push}
+        >
           <Link to={'/express_checkout'} className="navbar-userActions-checkout-title-link">
             Checkout
           </Link>
         </li>
-        <li className="my-account-title" onClick={() => push(`/user_${123123}`)}>
-          <Link to={`/user_${123123}`} className="navbar-userActions-myaccount-title-link">
+        <li className="my-account-title" onClick={() => push(`/user/${123123}`)}>
+          <Link to={`/user/${123123}`} className="navbar-userActions-myaccount-title-link">
             <img src={user.profile.picture} alt="My Account" className="signedIn--profile-pic" />
           </Link>
         </li>

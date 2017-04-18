@@ -1,4 +1,4 @@
-import { put, select } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import { auth as AuthService } from '../../navigation/routes';
 import authActions from '../../redux/auth';
 

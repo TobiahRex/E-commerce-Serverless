@@ -15,19 +15,22 @@ class NavbarUpper extends Component {
       loggedIn: props.loggedIn,
     };
   }
-  componentWillReceiveProps = ({ loggedIn }) => this.setState({ loggedIn });
+
+  componentWillReceiveProps({ loggedIn }) {
+    this.setState({ loggedIn });
+  }
 
   render() {
     return (
       <div className="navbar-actionSection-upper">
 
-        {/* TODO:
-        Options will receive Option handlers & Active Language & Currency Qty  */}
+        {/* TODO: Navbar Options will receive Option handlers & Active Language & Currency Qty  */}
         <NavbarOptions />
 
+        {/* NOTE: This Component = functional */}
         <NavbarUserActions activeUser={this.state.loggedIn} />
 
-        {/* TODO: Cart will receive Cart Qty & Handlers:
+        {/* TODO: Navbar Cart will receive Cart Qty & Handlers:
           1. Remove Product
         2. Data currenlty in cart to render dynamically */}
         <NavbarCart />

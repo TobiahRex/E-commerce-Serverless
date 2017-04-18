@@ -15,7 +15,11 @@ const propTypes = {
 function NavbarUserActions({ activeUser }) {
   return (
     <div className="navbar-actionSection-upper-actions">
-      {activeUser ? <NavbarUserActionsSignedIn /> : <NavbarUserActionsNotSignedIn />}
+      {
+        activeUser ?
+          <NavbarUserActionsSignedIn /> :
+          <NavbarUserActionsNotSignedIn />
+      }
     </div>
   );
 }
