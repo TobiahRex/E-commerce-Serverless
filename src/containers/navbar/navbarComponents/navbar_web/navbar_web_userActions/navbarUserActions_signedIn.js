@@ -1,5 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 
 import { auth as AuthService } from '../../../../../navigation/routes';
@@ -48,7 +49,7 @@ class NavbarUserActionsSignedin extends PureComponent {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  push: location => dispatch(location),
+  push: location => dispatch(push(location)),
 });
 const mapStateToProps = ({ user }) => ({
   user: user.profile,
