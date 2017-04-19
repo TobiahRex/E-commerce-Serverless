@@ -3,18 +3,16 @@ import { Link } from 'react-router';
 
 function NavbarUserActionsNotSignedIn() {
   return (
-    <ul className="navbar-actionSection-upper-actions-notSignedIn" >
-      <li className="sign-in-title">
-        <Link
-          to="/login"
-          className="navbar-userActions-sign-in-title-link"
-        >Login</Link>
+    <ul className="upper-actions__notSignedIn" >
+      <li className="notSignedIn__sign-in--title">
+        <Link to="/login" className="sign-in__link">
+          Login
+        </Link>
       </li>
-      <li className="register-title">
-        <Link
-          to="/register"
-          className="navbar-userActions-register-title-link"
-        >Register</Link>
+      <li className="notSignedIn__register--title">
+        <Link to="/register" className="register__link">
+          Register
+        </Link>
       </li>
     </ul>
   );

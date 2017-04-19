@@ -1,11 +1,11 @@
-.navbar-actionSection-upper-actions-notSignedIn {
+.upper-actions__notSignedIn {
   @include prefixflex();
   justify-content: flex-end;
   align-items: center;
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 3em;
-  & .sign-in-title {
+  & .notSignedIn__sign-in--title {
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
@@ -36,12 +36,14 @@
     &:hover {
       transition: none;
     }
-    & .navbar-userActions-sign-in-title-link {
+    & .sign-in--link {
+      height: 100%;
+      width: 100%;
       color: $p-white;
       text-decoration: none;
     }
   }
-  & .register-title {
+  & .notSignedIn__register--title {
     @extend .flex-center;
     @extend .white-bg;
     @extend .ua-font-opts;
@@ -63,7 +65,7 @@
         transition: none;
       }
     }
-    & .navbar-userActions-register-title-link {
+    & .register__link {
       color: $p-white;
       text-decoration: none;
     }
