@@ -1,4 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
+import localForage from 'localforage';
 import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
@@ -21,7 +22,7 @@ const authorizationInProgress = state => ({
   authorizationInProgress: true,
 });
 
-const loginSuccess = state => {
+const loginSuccess = (state) => {
   localStorage.setItem('loggedIn', true);
   localStorage.setItem('loginSuccess', true);
   return ({
@@ -29,7 +30,7 @@ const loginSuccess = state => {
     loggedIn: true,
     loginSuccess: true,
   });
-}
+};
 const loginFailure = (state, { error }) => ({
   loggedIn: false,
   loginSuccess: false,
@@ -38,6 +39,7 @@ const loginFailure = (state, { error }) => ({
 const loggedOut = state => ({
   ...state,
   loggedIn: false,
+  loginSuccess: null,
 });
 export const authReducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: loginSuccess,

@@ -4,6 +4,11 @@ import { persistStore } from 'redux-persist';
 // import StartupActions from '../Redux/StartupRedux'
 
 const updateReducers = (store) => {
+  localForage.config({
+    name: 'NJ2JP',
+    storeName: 'redux-persist',
+    description: 'redux-persist cold storage for NJ2JP',
+  });
   const config = {
     storage: localForage,
     blacklist: ['user', 'auth'],
