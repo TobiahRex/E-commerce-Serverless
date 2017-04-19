@@ -9,3 +9,4 @@ dist
 .sass-cache
 .env
 npm-debug.log
+_syntax_tests.js
