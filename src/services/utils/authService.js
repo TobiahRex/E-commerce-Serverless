@@ -1,7 +1,6 @@
 import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
-import { authLocalForage as localForage } from './localForage';
 
 export default class AuthService extends EventEmitter {
   constructor() {
@@ -73,24 +72,24 @@ export default class AuthService extends EventEmitter {
   };
 
   setToken = (accessToken, idToken) => {
-    localForage.setItem('access_token', accessToken);
-    localForage.setItem('id_token', idToken);
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('id_token', idToken);
   }
 
   setProfile = (profile) => {
-    localForage.setItem('profile', profile);
+    localStorage.setItem('profile', profile);
     this.emit('logged_in', profile);
   }
 
   getProfile = () => {
-    const profile = localForage.getItem('profile') || {};
+    const profile = JSON.parse(localStorage.getItem('profile')) || {};
     return profile;
   }
 
-  getToken = () => localForage.getItem('id_token');
+  getToken = () => JSON.parse(localStorage.getItem('id_token'));
 
   logout = () => {
-    localForage.clear();
+    localStorage.clear();
     this.emit('logged_out');
   }
 }

@@ -13,5 +13,5 @@ export const authLocalForage = localForage.createInstance({
 export const profileLocalForage = localForage.createInstance({
   name: 'NJ2JP',
   storeName: 'nj2jp-user',
-  description: 'COntains persisted vlaues for user branch of redux store.',
+  description: 'Contains persisted vlaues for user branch of redux store.',
 });

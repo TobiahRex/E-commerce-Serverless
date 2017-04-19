@@ -11,12 +11,13 @@ const { Types, Creators } = createActions({
 });
 export const authTypes = Types;
 export default Creators;
+console.warn(localForage.getItem('loginSuccess'))
 
 const INITIAL_STATE = Immutable({
   authorizationInProgress: false,
-  loginSuccess: localForage.getItem('loginSuccess') || null,
+  loginSuccess: null,
   loginError: null,
-  loggedIn: localForage.getItem('loggedIn') || false,
+  loggedIn: false,
 });
 
 const authorizationInProgress = state => ({
