@@ -77,7 +77,7 @@ export default class AuthService extends EventEmitter {
   }
 
   setProfile = (profile) => {
-    localStorage.setItem('profile', profile);
+    localStorage.setItem('profile', JSON.stringify(profile));
     this.emit('logged_in', profile);
   }
 
