@@ -3,6 +3,7 @@ node_modules
 
 # Build files
 dist
+public
 
 # miscellaneous
 .DS_Store
