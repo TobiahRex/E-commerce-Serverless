@@ -97,11 +97,4 @@ export default class AuthService extends EventEmitter {
     localStorage.removeItem('profile');
     this.emit('logged_out');
   }
-
-  _doAuthentication = (authResult) => {
-    console.warn('_doAuthentication called');
-    this.setToken(authResult.idToken);
-    // browserHistory.replace('/home');
-    // TODO: This needs to be sourced to the invocation.
-  };
 }

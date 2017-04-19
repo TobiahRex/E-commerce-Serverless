@@ -1,6 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 
 import { auth as AuthService } from '../../../../../navigation/routes';
@@ -39,10 +38,9 @@ class NavbarUserActionsSignedin extends PureComponent {
           <Link to={`/user/${123123}`} className="myAccount__link">
             <img
               className="myAccount__link--picture"
-              src={this.props.user.profile.picture}
+              src={this.props.user.picture}
               alt="My Account"
             />
-            
           </Link>
         </li>
       </ul>
@@ -53,6 +51,6 @@ const mapDispatchToProps = dispatch => ({
   push: location => dispatch(location),
 });
 const mapStateToProps = ({ user }) => ({
-  user,
+  user: user.profile,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarUserActionsSignedin);
