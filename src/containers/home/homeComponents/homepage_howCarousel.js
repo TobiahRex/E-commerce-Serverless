@@ -55,19 +55,19 @@ class HomepageHowCarousel extends Component {
       alt: 'Distribution Center',
     }, {
       name: 'warehouse',
-      desc: 'Our distribution warehouse then quickly prepares your Nicotine Juice parcel per your order invoice.',
+      desc: 'Our distribution center then quickly prepares your package.',
       alt: 'Warehouse',
     }, {
       name: 'flight',
-      desc: 'Shortly thereafter, your parcel is put on the soonest direct flight from California to Japan.',
+      desc: 'A few hours later, your package is put on a direct flight from California to Japan.',
       alt: 'Overnight Flight',
     }, {
       name: 'truck',
-      desc: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
+      desc: 'Soon after landing, your package is on a delivery truck, on its way to your Japanese address.',
       alt: 'Delivery Truck',
     }, {
       name: 'delivery',
-      desc: 'Soon after landing, your parcel is placed on a delivery truck and on its way to your address in Japan.',
+      desc: 'A couple days later, you receive your package from Nic Juice 2 Japan. 😁 ',
       alt: 'Delivered',
     }];
     return slideDescs.map(({ name, desc, alt }) => (

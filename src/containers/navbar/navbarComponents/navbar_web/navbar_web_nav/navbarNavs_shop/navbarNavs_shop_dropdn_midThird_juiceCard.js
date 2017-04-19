@@ -20,13 +20,13 @@ function NavbarNavsShopDropdnJuiceCards(props) {
   const { title, imageUrl } = props.juiceInfo;
 
   return (
-    <div className="shop-dropdown-content-midThird-juices-card" >
-      <button className="shop-dropdown-content-midThird-juices-card-title">
+    <div className="midThird__juices-card" >
+      <button className="juices-card__title">
         <h4>{title}</h4>
       </button>
-      <button className="shop-dropdown-content-midThird-juices-card-image">
+      <button className="juices-card__image">
         <img
-          className="shop-dropdown-content-midThird-juices-card-image-src"
+          className="image__src"
           src={imageUrl}
           alt={`${title} juice`}
         />

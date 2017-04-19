@@ -24,7 +24,7 @@ function CarouselSlide({ maxWidth, className, name, description, alt }) {
           </p>
           <Link
             style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
-            to="/products"
+            to="/juices"
             className={`${className}-${name}-buy-btn sweep-right`}
           >Buy Now</Link>
         </div>

@@ -1,4 +1,4 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import FooterCopyright from './footer_copyright';
 import FooterContactUs from './footer_contactUs';
@@ -6,11 +6,15 @@ import FooterMyAccount from './footer_myAccount';
 import FooterMemberships from './footer_memberships';
 import FooterCustomerCare from './footer_customerCare';
 
+const { bool } = React.PropTypes;
+
 class FooterContainer extends PureComponent {
   static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
+    isLoggedIn: bool,
   }
-
+  static defaultProps = {
+    isLoggedIn: false,
+  }
   renderUserSxn = () => {
     if (this.props.isLoggedIn) return <FooterMyAccount />;
     return <FooterMemberships />;
@@ -21,7 +25,7 @@ class FooterContainer extends PureComponent {
       <div className="footer-main-sections-container">
         <ul className="footer-main-sections-list">
           <FooterContactUs />
-          {this.renderUserSxn()}
+          {/* {this.renderUserSxn()} */}
           <FooterCustomerCare />
         </ul>
         <div className="footer-line-break" />

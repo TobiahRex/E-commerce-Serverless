@@ -73,7 +73,11 @@
         height: 24em;
         width: 104em;
         background-color: #EEE;
-        & .shop-dropdown-content-midThird-juices-card {
+        & .midThird__juices-card {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
           height: 22.5em;
           width: 16em;
           background-color: #FFF;
@@ -84,35 +88,36 @@
           &:focus,
           &:active {
             box-shadow: 0px 3px 10px rgba(1,1,1,.25);
-            & .shop-dropdown-content-midThird-juices-card-title h4 {
+            & .juices-card__title h4 {
               color: $p-red;
             }
-            & .shop-dropdown-content-midThird-juices-card-image {
-              & .shop-dropdown-content-midThird-juices-card-image-src {
+            & .juices-card__image {
+              & .image__src {
                 width: 15.5em;
               }
             }
-
           }
-          & .shop-dropdown-content-midThird-juices-card-title {
+          & .juices-card__title {
             @extend .flex-center;
             height: 4em;
-            width: 16em;
+            width: 100%;
             transition: all .5s ease-in-out;
+            padding: .5em 0 .5em 0;
+            margin: 0;
+            border: none;
+            background-color: inherit;
+            cursor: pointer;
+          }
+          & .juices-card__image {
+            @extend .flex-center;
+            height: 18em;
+            width: 100%;
             padding: 0;
             margin: 0;
             border: none;
             background-color: inherit;
-          }
-          & .shop-dropdown-content-midThird-juices-card-image {
-            @extend .flex-center;
-            height: 18em;
-            width: 16em;
-            padding: 0;
-            margin: .5em 0 0 0;
-            border: none;
-            background-color: inherit;
-            & .shop-dropdown-content-midThird-juices-card-image-src {
+            cursor: pointer;
+            & .image__src {
               font-size: 10px;
               width: 12.5em;
               transition: all .5s ease-in-out;
