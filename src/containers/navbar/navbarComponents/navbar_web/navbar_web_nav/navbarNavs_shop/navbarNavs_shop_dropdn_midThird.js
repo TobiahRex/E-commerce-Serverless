@@ -11,15 +11,13 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
     push: func.isRequired,
   }
 
-  renderJuiceCards = () => this.props.popJuices.map(juiceObj => (
-    <NavbarNavsShopDropdnJuiceCards
-      key={juiceObj.title}
-      juiceInfo={juiceObj}
-      tag={juiceObj.tag}
-      push={this.push}
-    />))
-
-  push = e => this.props.push(e.target.dataset.tag);
+  push = (e) => {
+    let location = e.target.dataset.tag;
+    if (!location) {
+      location = e.target.parentNode.dataset.tag;
+    }
+    this.props.push(`/juice/${location}`);
+  };
 
   render() {
     return (
@@ -30,8 +28,14 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
           </h2>
         </div>
         <div className="shop-dropdown-content-midThird-juices">
-          {/* BUG - renderJuicesCards is a new function on each render. */}
-          {this.renderJuiceCards()}
+          {this.props.popJuices.map(juiceObj => (
+            <NavbarNavsShopDropdnJuiceCards
+              key={juiceObj.title}
+              juiceInfo={juiceObj}
+              tag={juiceObj.routeTag}
+              push={this.push}
+            />))
+          }
         </div>
       </div>
     );

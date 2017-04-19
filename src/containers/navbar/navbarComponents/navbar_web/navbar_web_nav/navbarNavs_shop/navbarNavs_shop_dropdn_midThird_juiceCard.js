@@ -1,32 +1,7 @@
 import React from 'react';
-// import { Link } from 'react-router';
-
-/* TODO
-This component will receive 6 popular juice products.
-
-1. Each of these Juice Cards are links to that specific product.
-Therefore it's necessary to save the url suffix with the item info in order to dynamically assign it to a react-router Link component.
-
-2. "Recommend Another Juice Line" needs to send the user to the "/contact_us" page.
-
-*/
-const { shape, arrayOf, string, func } = React.PropTypes;
-const propTypes = {
-  juiceInfo: shape({
-    title: string,
-    price: string,
-    nicotine_strengths: arrayOf(string),
-    imageUrl: string,
-  }).isRequired,
-  tag: string.isRequired,
-  push: func.isRequired,
-  // toggleNavbarDropdown: PropTypes.func.isRequired,
-};
 
 function NavbarNavsShopDropdnJuiceCards(props) {
-  // const toggleNavbarDropdown = e => props.toggleNavbarDropdown(e);
   const { juiceInfo, tag, push } = props;
-
   return (
     <div className="midThird__juices-card" >
       <button data-tag={tag} className="juices-card__title" onClick={push}>
@@ -42,5 +17,15 @@ function NavbarNavsShopDropdnJuiceCards(props) {
     </div>
   );
 }
-NavbarNavsShopDropdnJuiceCards.propTypes = propTypes;
+const { shape, arrayOf, string, func } = React.PropTypes;
+NavbarNavsShopDropdnJuiceCards.propTypes = {
+  juiceInfo: shape({
+    title: string,
+    price: string,
+    nicotine_strengths: arrayOf(string),
+    imageUrl: string,
+  }).isRequired,
+  tag: string.isRequired,
+  push: func.isRequired,
+};
 export default NavbarNavsShopDropdnJuiceCards;
