@@ -1,23 +1,15 @@
-import { put, take, call } from 'redux-saga/effects';
+import { put, call, take } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import { auth as AuthService } from '../../navigation/routes';
 import authActions from '../../redux/auth';
 import sessionActions from '../../redux/session';
 
-// function* savePreviousPage() {
-//   yield put(sessionActions.savePreloginPage());
-// }
-//
-// function* authInProgress() {
-//   yield put(authActions.authorizationInProgress());
-// }
-//
-// export default function* authSocialLogin({ socialType }) {
-//   yield* authInProgress();
-//   yield* savePreviousPage();
-//   yield put(AuthService[socialType]());
-// }
-
-// or
+function createAuthConnection(auth) {
+  return eventChannel((emit) => {
+    const loggedInHandler = profile => emit(profile);
+    auth.on('logged_in', loggedInHandler);
+  });
+}
 
 function* preLoginActions() {
   yield [
@@ -27,8 +19,6 @@ function* preLoginActions() {
 }
 
 export default function* socialLogin(socialType) {
-  while (yield take('SOCIAL_LOGIN')) {
-    yield call(preLoginActions);
-    yield put(AuthService[socialType]());
-  }
+  yield call(preLoginActions);
+  yield put(AuthService[socialType]());
 }

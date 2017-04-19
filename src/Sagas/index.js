@@ -4,7 +4,7 @@ import TaxRateApi from '../services/api/taxes';
 
 // ----- Sagas ----- //
 import getTaxRate from './taxes';
-import authSocialLogin from './authorization';
+import socialLogin from './authorization';
 
 // ----- Types ----- //
 import { orderTypes } from '../redux/orders';
@@ -15,7 +15,7 @@ const api = TaxRateApi.createAPI();
 export default function* rootSaga() {
   yield [
     takeLatest(orderTypes.GET_TAX_RATE, getTaxRate, api),
-    takeLatest(authTypes.AUTH_SOCIAL_LOGIN, authSocialLogin),
+    takeLatest(authTypes.AUTH_SOCIAL_LOGIN, socialLogin),
     /* TODO: MVP 2
     takeLatest(authTypes.EMAIL_AUTH_IN_PROGRESS, emailAuthInProgress),*/
   ];
