@@ -12,9 +12,9 @@ export const authTypes = Types;
 export default Creators;
 export const INITIAL_STATE = Immutable({
   authorizationInProgress: false,
-  loginSuccess: localStorage.getItem('loginSuccess') || null,
+  loginSuccess: JSON.parse(localStorage.getItem('loginSuccess')) || null,
   loginError: false,
-  loggedIn: localStorage.getItem('loggedIn') || false,
+  loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
 });
 const authorizationInProgress = state => ({
   ...state,
