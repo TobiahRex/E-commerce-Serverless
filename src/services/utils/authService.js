@@ -34,7 +34,6 @@ export default class AuthService extends EventEmitter {
             this.emit('login_failure', error);
           } else {
             this.setProfile(profile);
-            // browserHistory.replace('/home');
           }
         });
       }
@@ -73,8 +72,5 @@ export default class AuthService extends EventEmitter {
     return profile;
   }
   getToken = () => JSON.parse(localStorage.getItem('id_token'));
-  logout = () => {
-    localStorage.clear();
-    this.emit('logged_out');
-  }
+  logout = () => localStorage.clear();
 }

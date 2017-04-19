@@ -22,9 +22,11 @@ class NavbarUserActionsSignedin extends PureComponent {
   }
 
   logout = () => {
-    AuthService.logout();
+    console.warn('fired!');
     this.props.logout();
     this.props.push('/');
+    AuthService.logout();
+    console.warn('finished');
   };
 
   render() {

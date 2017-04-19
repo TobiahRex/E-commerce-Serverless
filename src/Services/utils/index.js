@@ -20,12 +20,6 @@ function loginListenerInit(dispatch, { replace }) {
 function loginFailureListenerInit(dispatch) {
   AuthService.on('login_failure', error => dispatch(authActions.loginFailure(error)));
 }
-function logoutListenerInit(dispatch) {
-  AuthService.on('logged_out', () => {
-    dispatch(userActions.removeProfile());
-    dispatch(authActions.loggedOut);
-  });
-}
 
 // ------------------- App Startup Utilities ----------------------------------
 
@@ -129,7 +123,6 @@ export default function initiateActions(dispatch, history, { startup }) {
     getTaxRate(dispatch);
     scrollToTop();
     loginListenerInit(dispatch, history);
-    logoutListenerInit(dispatch);
     loginFailureListenerInit(dispatch);
   } else {
     cleanS3Route(history);
