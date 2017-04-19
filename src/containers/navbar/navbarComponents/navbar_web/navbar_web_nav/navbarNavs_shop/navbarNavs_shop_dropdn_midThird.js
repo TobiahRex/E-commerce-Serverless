@@ -1,18 +1,25 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 import NavbarNavsShopDropdnJuiceCards from './navbarNavs_shop_dropdn_midThird_juiceCard';
+
+const { arrayOf, object, func } = React.PropTypes;
 
 class NavbarNavsShopDropdnMidthird extends PureComponent {
   static propTypes = {
-    popJuices: PropTypes.arrayOf(PropTypes.object).isRequired,
-    toggleNavbarDropdown: PropTypes.func.isRequired,
+    popJuices: arrayOf(object).isRequired,
+    push: func.isRequired,
   }
 
   renderJuiceCards = () => this.props.popJuices.map(juiceObj => (
     <NavbarNavsShopDropdnJuiceCards
       key={juiceObj.title}
       juiceInfo={juiceObj}
-      toggleNavbarDropdown={this.props.toggleNavbarDropdown}
+      tag={juiceObj.tag}
+      push={this.push}
     />))
+
+  push = e => this.props.push(e.target.dataset.tag);
 
   render() {
     return (
@@ -30,4 +37,7 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
     );
   }
 }
-export default NavbarNavsShopDropdnMidthird;
+const mapDispatchToProps = dispatch => ({
+  push: location => dispatch(push(location)),
+});
+export default connect(null, mapDispatchToProps)(NavbarNavsShopDropdnMidthird);
