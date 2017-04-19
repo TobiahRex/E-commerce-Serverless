@@ -1,6 +1,6 @@
-### Authorization Saga
-  - Everything starts by initiating the **watchLoginActions** in the **root-saga**.
-  - If the user is NOT logged in, this will listen for _logged_in_ events - emitted by authService on startup during an AuthService redirect.
+### Authorization Saga Control Flow
+  - Everything starts by initiating the **authorizationSaga** in the **root-saga**.
+  - If the user is NOT logged in, this will listen for _logged_in_ events - eventually emitted by authService on startup during an AuthService redirect **OR** _AUTH_SOCIAL_LOGIN_ actions dispatched from the login view.
     1. if _logged_in_ event is fired, the **watchLoggedInActions** channel will take the event.
     2. Extract the payload and the type.
     3. Dispatch the correct action(with payload) according to the type.

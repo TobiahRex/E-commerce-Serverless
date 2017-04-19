@@ -5,7 +5,7 @@ import authActions from '../../redux/auth';
 import userActions from '../../redux/user';
 import sessionActions from '../../redux/session';
 
-function createAuthConnection(auth) {
+function createAuthChannel(auth) {
   return eventChannel((emitter) => {
     const loggedInHandler = profile => emitter({
       type: 'loggedIn',
@@ -46,7 +46,7 @@ function* socialLogin(socialType) {
 }
 
 function* watchLoggedInActions() {
-  const authChannel = yield call(createAuthConnection);
+  const authChannel = yield call(createAuthChannel, AuthService);
   while (true) {
     const { payload, type } = yield take(authChannel);
 
@@ -56,16 +56,13 @@ function* watchLoggedInActions() {
       // case 'loggedOut': yield put()
       default: throw Error('Saga Login Error');
     }
-    if (type === 'profile') {
-      yield fork(postLoginActions, payload);
-    } else if (type === 'error') {
-      yield put(authActions.loginFailure(payload));
-    }
   }
 }
 
-export default function* watchLoginActions() {
+export default function* authorizationSaga() {
   watchLoggedInActions();
-  const { payload } = yield take('AUTH_SOCIAL_LOGIN');
-  yield call(socialLogin, payload);
+  while (true) {
+    const { payload } = yield take('AUTH_SOCIAL_LOGIN');
+    yield call(socialLogin, payload);
+  }
 }
