@@ -2,6 +2,12 @@ import { createReducer, createActions } from 'reduxsauce';
 import localForage from 'localforage';
 import Immutable from 'seamless-immutable';
 
+const authLocalForage = localForage.config({
+  name: 'NJ2JP-auth',
+  storeName: 'nj2jp-auth',
+  description: 'Contains persisted values for authorization branch of redux store.',
+});
+console.warn('authLocalForage: ', authLocalForage);
 const { Types, Creators } = createActions({
   authorizationInProgress: null,
   authSocialLogin: ['socialType'],
