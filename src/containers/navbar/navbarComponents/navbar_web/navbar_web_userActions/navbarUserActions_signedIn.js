@@ -14,6 +14,7 @@ class NavbarUserActionsSignedin extends PureComponent {
     push: func.isRequired,
     logout: func.isRequired,
   }
+
   static styles = {
     hidden: {
       display: 'none',
@@ -22,11 +23,9 @@ class NavbarUserActionsSignedin extends PureComponent {
   }
 
   logout = () => {
-    console.warn('fired!');
     this.props.logout();
     this.props.push('/');
     AuthService.logout();
-    console.warn('finished');
   };
 
   render() {
@@ -55,6 +54,7 @@ class NavbarUserActionsSignedin extends PureComponent {
     );
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
   logout: () => {
@@ -62,7 +62,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(userActions.removeProfile());
   },
 });
+
 const mapStateToProps = ({ user }) => ({
   user: user.profile,
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarUserActionsSignedin);

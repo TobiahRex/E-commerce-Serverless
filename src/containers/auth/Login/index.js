@@ -20,7 +20,7 @@ class Login extends Component {
     loginError: objectOf(any),
     authInProgress: bool,
   }
-  static defualtProps = {
+  static defaultProps = {
     loggedIn: false,
     loginError: { description: null },
     authInProgress: false,
@@ -89,15 +89,17 @@ class Login extends Component {
             socialLogin={this.socialLogin}
             visibility={authInProgress}
           />
-          {/* NOTE This component = React.Component */}
-          <LoginForm auth={this.auth} />
+          {/* TODO: MVP 2
+            <LoginForm auth={this.auth} />
+          */}
 
           <div className="sign-in__action-btns">
-            <div className="action-btns__register">
+            {/* TODO: MVP 2
+              <div className="action-btns__register">
               <button className="register-btn sweep-right" onClick={() => this.props.push('/register')}>
                 Register
               </button>
-            </div>
+            </div> */}
             <div className="action-btns__back-to-home">
               <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
                 <span className="flex-btn-parent">

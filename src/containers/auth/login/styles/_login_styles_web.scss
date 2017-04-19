@@ -5,6 +5,7 @@
     align-items: center;
     max-width: 1086px;
     width: 100%;
+    min-height: 70em;
     .sign-in--container {
       @include prefixflex();
       justify-content: flex-start;
@@ -149,9 +150,10 @@
       }
       & .sign-in__social--container {
         @include prefixflex();
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: column;
+        min-height: 18em;
         & .social--title {
           @include prefixflex();
           justify-content: center;
@@ -358,6 +360,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        min-height: 12em;
         & .action-btns__register,
         .action-btns__back-to-home {
           @include prefixflex();

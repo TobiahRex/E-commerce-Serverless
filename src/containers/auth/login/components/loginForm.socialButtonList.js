@@ -16,7 +16,7 @@ class SocialButtonList extends PureComponent {
       <div className="sign-in__social--container" style={{ display }} >
         <div className="social--title">
           <div className="social--title-msg">
-            <h5>Login with your Social Network</h5>
+            <h5>Login | Register Quickly with...</h5>
           </div>
         </div>
         <div className="social--btns__list" >
@@ -57,11 +57,12 @@ class SocialButtonList extends PureComponent {
               />
             </li>
           </ul>
-          <div className="list__forgot-msg">
+          {/* TODO: MVP 2
+            <div className="list__forgot-msg">
             <Link className="forgot-link" to="/forgot">
               Forgot your Email or Password?
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     );

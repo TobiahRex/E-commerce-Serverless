@@ -8,7 +8,9 @@ const { Types, Creators } = createActions({
   loginFailure: ['error'],
   loggedOut: null,
 });
+
 export const authTypes = Types;
+
 export default Creators;
 
 const INITIAL_STATE = Immutable({
@@ -32,16 +34,19 @@ const loginSuccess = (state) => {
     loginSuccess: true,
   });
 };
+
 const loginFailure = (state, { error }) => ({
   loggedIn: false,
   loginSuccess: false,
   loginError: { ...error },
 });
+
 const loggedOut = state => ({
   ...state,
   loggedIn: false,
   loginSuccess: null,
 });
+
 export const authReducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: loginSuccess,
   [Types.LOGIN_FAILURE]: loginFailure,

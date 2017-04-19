@@ -8,6 +8,7 @@ const { Types, Creators } = createActions({
 });
 
 export const userTypes = Types;
+
 export default Creators;
 
 export const INITIAL_STATE = Immutable({
@@ -43,4 +44,3 @@ export const userReducer = createReducer(INITIAL_STATE, {
   [Types.REMOVE_PROFILE]: removeProfile,
   [Types.AGE_VERIFIED]: verified,
 });
-// ------------------------------  ageVerified: null,

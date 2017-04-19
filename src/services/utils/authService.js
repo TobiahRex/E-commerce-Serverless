@@ -13,11 +13,17 @@ export default class AuthService extends EventEmitter {
       redirectUri: 'http://localhost:3000/login',
     });
   }
+
   loginWithGoogle = () => this.auth0.authorize({ connection: 'google-oauth2' })
+
   loginWithTwitter = () => this.auth0.authorize({ connection: 'twitter' })
+
   loginWithFacebook = () => this.auth0.authorize({ connection: 'facebook' })
+
   loginWithLinkedin = () => this.auth0.authorize({ connection: 'linkedin' })
+
   loginWithLine = () => this.auth0.authorize({ connection: 'line' });
+
   parseHash = (hash) => {
     this.auth0.parseHash({
       hash,
@@ -39,6 +45,7 @@ export default class AuthService extends EventEmitter {
       }
     });
   }
+
   login = (username, password) => {
     this.auth0.redirect.loginWithCredentials({
       connection: 'Username-Password-Authentication',
@@ -48,6 +55,7 @@ export default class AuthService extends EventEmitter {
       this.emit('login_failure', error);
     });
   }
+
   signUp = (email, password) => {
     this.auth0.redirect.signupAndLogin({
       connection: 'Username-Password-Authentication',
@@ -55,22 +63,28 @@ export default class AuthService extends EventEmitter {
       password,
     }, (err) => this.emit('login_failure', err));
   }
+
   loggedIn = () => {
     const token = this.getToken();
     return !!token && !isTokenExpired(token);
   };
+
   setToken = (accessToken, idToken) => {
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('id_token', idToken);
   }
+
   setProfile = (profile) => {
     localStorage.setItem('profile', JSON.stringify(profile));
     this.emit('logged_in', profile);
   }
+
   getProfile = () => {
     const profile = JSON.parse(localStorage.getItem('profile')) || {};
     return profile;
   }
+
   getToken = () => JSON.parse(localStorage.getItem('id_token'));
+
   logout = () => localStorage.clear();
 }
