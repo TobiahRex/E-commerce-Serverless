@@ -32,7 +32,6 @@ export default class AuthService extends EventEmitter {
       if (err) {
         this.emit('login_failure', err);
       }
-
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setToken(authResult.accessToken, authResult.idToken);
         this.auth0.client.userInfo(authResult.accessToken, (error, profile) => {
@@ -61,7 +60,7 @@ export default class AuthService extends EventEmitter {
       connection: 'Username-Password-Authentication',
       email,
       password,
-    }, (err) => this.emit('login_failure', err));
+    }, err => this.emit('login_failure', err));
   }
 
   loggedIn = () => {
