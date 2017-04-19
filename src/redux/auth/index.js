@@ -1,8 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-import { authLocalForage } from '../../services/utils/localForage';
-
-console.warn('authLocalForage: ', authLocalForage);
+import { authLocalForage as localForage } from '../../services/utils/localForage';
 
 const { Types, Creators } = createActions({
   authorizationInProgress: null,
@@ -13,12 +11,14 @@ const { Types, Creators } = createActions({
 });
 export const authTypes = Types;
 export default Creators;
-export const INITIAL_STATE = Immutable({
+
+const INITIAL_STATE = Immutable({
   authorizationInProgress: false,
-  loginSuccess: JSON.parse(localStorage.getItem('loginSuccess')) || null,
-  loginError: false,
-  loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
+  loginSuccess: localForage.getItem('loginSuccess') || null,
+  loginError: null,
+  loggedIn: localForage.getItem('loggedIn') || false,
 });
+
 const authorizationInProgress = state => ({
   ...state,
   authorizationInProgress: true,
@@ -26,7 +26,7 @@ const authorizationInProgress = state => ({
 
 const loginSuccess = (state) => {
   localForage.setItem('loggedIn', true);
-  localStorage.setItem('loginSuccess', true);
+  localForage.setItem('loginSuccess', true);
   return ({
     ...state,
     loggedIn: true,
@@ -36,7 +36,7 @@ const loginSuccess = (state) => {
 const loginFailure = (state, { error }) => ({
   loggedIn: false,
   loginSuccess: false,
-  loginError: error,
+  loginError: { ...error },
 });
 const loggedOut = state => ({
   ...state,

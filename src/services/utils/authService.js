@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
+import { authLocalForage as localForage } from './localForage';
 
 export default class AuthService extends EventEmitter {
   constructor() {
@@ -50,7 +51,6 @@ export default class AuthService extends EventEmitter {
     }, (err, authResult) => {
       if (err) {
         this.emit('login_failure', err);
-        alert(`Error: ${err.errorDescription}`);
       }
 
       if (authResult && authResult.accessToken && authResult.idToken) {
@@ -58,7 +58,6 @@ export default class AuthService extends EventEmitter {
         this.auth0.client.userInfo(authResult.accessToken, (error, profile) => {
           if (error) {
             this.emit('login_failure', error);
-            alert(`Error: Could not load profile - ${error}`);
           } else {
             this.setProfile(profile);
             // browserHistory.replace('/home');
@@ -74,28 +73,24 @@ export default class AuthService extends EventEmitter {
   };
 
   setToken = (accessToken, idToken) => {
-    localStorage.setItem('access_token', accessToken);
-    localStorage.setItem('id_token', idToken);
+    localForage.setItem('access_token', accessToken);
+    localForage.setItem('id_token', idToken);
   }
 
   setProfile = (profile) => {
-    localStorage.setItem('profile', JSON.stringify(profile));
+    localForage.setItem('profile', profile);
     this.emit('logged_in', profile);
   }
 
   getProfile = () => {
-    const profile = localStorage.getItem('profile');
-    return profile && JSON.parse(localStorage(profile));
+    const profile = localForage.getItem('profile') || {};
+    return profile;
   }
 
-  getToken = () => localStorage.getItem('id_token');
+  getToken = () => localForage.getItem('id_token');
 
   logout = () => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
-    localStorage.removeItem('loggedIn');
-    localStorage.removeItem('loginSuccess');
+    localForage.clear();
     this.emit('logged_out');
   }
 }

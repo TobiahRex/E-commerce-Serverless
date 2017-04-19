@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
@@ -7,15 +7,23 @@ import LoadingOrError from './components/loginForm.loadingOrError';
 import SocialButtonList from './components/loginForm.socialButtonList';
 import authActions from '../../../redux/auth';
 
+const { objectOf, func, string, bool, any } = React.PropTypes;
+
 class Login extends Component {
   static propTypes = {
-    route: PropTypes.objectOf(PropTypes.any).isRequired,
-    push: PropTypes.func.isRequired,
-    authSocialLogin: PropTypes.func.isRequired,
-    previousPageUrl: PropTypes.string.isRequired,
-    currentActiveUrl: PropTypes.string.isRequired,
-    loggedIn: PropTypes.bool.isRequired,
-    authInProgress: PropTypes.bool.isRequired,
+    route: objectOf(any).isRequired,
+    push: func.isRequired,
+    authSocialLogin: func.isRequired,
+    previousPageUrl: string.isRequired,
+    currentActiveUrl: string.isRequired,
+    loggedIn: bool,
+    loginError: objectOf(any),
+    authInProgress: bool,
+  }
+  static defualtProps = {
+    loggedIn: false,
+    loginError: { description: null },
+    authInProgress: false,
   }
   constructor(props) {
     super(props);
@@ -109,8 +117,9 @@ class Login extends Component {
 const mapStateToProps = ({ session, auth }) => ({
   previousPageUrl: session.previousPageUrl,
   currentActiveUrl: session.currentActiveUrl,
-  loggedIn: auth.loggedIn,
   authInProgress: !!auth.authorizationInProgress,
+  loggedIn: auth.loggedIn,
+  loginFailure: auth.loginFailure,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
