@@ -1,16 +1,9 @@
-import localForage from 'localforage';
 import { persistStore } from 'redux-persist';
-// import apiActions from '../../redux/api';
-// import StartupActions from '../Redux/StartupRedux'
+import { reduxLocalForage } from './localForage';
 
 const updateReducers = (store) => {
-  localForage.config({
-    name: 'NJ2JP',
-    storeName: 'redux-persist',
-    description: 'redux-persist cold storage for NJ2JP',
-  });
   const config = {
-    storage: localForage,
+    storage: reduxLocalForage,
     blacklist: ['user', 'auth'],
     // whitelist: persistentStoreWhitelist,
     // transforms: [],
