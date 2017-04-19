@@ -1,6 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-import { authLocalForage as localForage } from '../../services/utils/localForage';
 
 const { Types, Creators } = createActions({
   authorizationInProgress: null,

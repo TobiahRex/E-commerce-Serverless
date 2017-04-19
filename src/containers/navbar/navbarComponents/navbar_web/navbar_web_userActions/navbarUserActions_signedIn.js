@@ -1,14 +1,18 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
-
 import { auth as AuthService } from '../../../../../navigation/routes';
+import authActions from '../../../../../redux/auth';
+import userActions from '../../../../../redux/user';
+
+const { objectOf, any, func } = React.PropTypes;
 
 class NavbarUserActionsSignedin extends PureComponent {
   static propTypes = {
-    user: PropTypes.objectOf(PropTypes.any).isRequired,
-    push: PropTypes.func.isRequired,
+    user: objectOf(any).isRequired,
+    push: func.isRequired,
+    logout: func.isRequired,
   }
   static styles = {
     hidden: {
@@ -19,6 +23,7 @@ class NavbarUserActionsSignedin extends PureComponent {
 
   logout = () => {
     AuthService.logout();
+    this.props.logout();
     this.props.push('/');
   };
 
@@ -50,6 +55,10 @@ class NavbarUserActionsSignedin extends PureComponent {
 }
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
+  logout: () => {
+    dispatch(authActions.loggedOut());
+    dispatch(userActions.removeProfile());
+  },
 });
 const mapStateToProps = ({ user }) => ({
   user: user.profile,

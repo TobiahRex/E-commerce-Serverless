@@ -48,7 +48,7 @@ export default class AuthService extends EventEmitter {
     }, (error) => {
       this.emit('login_failure', error);
     });
-  };
+  }
   signUp = (email, password) => {
     this.auth0.redirect.signupAndLogin({
       connection: 'Username-Password-Authentication',
