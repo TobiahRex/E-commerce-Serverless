@@ -14,7 +14,7 @@
     1. An action to save the _preLoginPage_ to localStorage so once re-direct occurs, we can send the user back to that view. (Better UX).
     2. An action to set the _authorizationInProgress_ to _TRUE_ so that we show the loading icon in the Login view.
     3. Eventually, **Auth0** will send the user back to our re-direct url ('/login') registered under our application account.  When this occurs, the Login view, will check the pre-login url we saved and if a value is found, send the user back to that page.  When the route **"/login"** is active, an _onEnter_ callback is fired from the Route component.  This callback calls, the _AuthService_ **paresAuthHash** method.  This method does 4 jobs.
-      * Job 1 = Authenticate the login using the _auth_token_ && _id_token_ located in the redirect-uri as a query parameter.
+      * Job 1 = Authenticate the login using the _auth_token_ && _id_token_ located in the redirect-uri as a query parameter - to call the Auth0 API.
       * Job 2 = If successfull, save those values in local storage.
       * Job 3 = Use the _auth_token_ to fetch the users profile from Auth0 and save it in LocalStorage.
       * Job 4 = Once all Auth0 data is saved in LocalStorage - emit a _logged_in_ event.  This event will be heard by our authorization Saga.

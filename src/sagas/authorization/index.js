@@ -1,5 +1,7 @@
+/* eslint-disable no-constant-condition */
 import { put, call, take, fork } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
+import { push } from 'react-router-redux';
 import { auth as AuthService } from '../../navigation/routes';
 import authActions from '../../redux/auth';
 import userActions from '../../redux/user';
@@ -16,7 +18,7 @@ function createAuthChannel(auth) {
       payload: { ...error },
     });
     const loggedOutHandler = () => emitter({
-      type: 'logout',
+      type: 'loggedOut',
     });
     auth.on('logged_in', loggedInHandler);
     auth.on('logged_out', loggedOutHandler);
@@ -52,8 +54,15 @@ function* watchLoggedInActions() {
 
     switch (type) {
       case 'loggedIn': yield fork(postLoginActions, payload); break;
+
       case 'error': yield put(authActions.loginFailure(payload)); break;
-      // case 'loggedOut': yield put()
+
+      case 'loggedOut': yield [
+        put(push('/')),
+        put(authActions.loggedOut()),
+        put(userActions.removeProfile()),
+      ]; break;
+
       default: throw Error('Saga Login Error');
     }
   }
