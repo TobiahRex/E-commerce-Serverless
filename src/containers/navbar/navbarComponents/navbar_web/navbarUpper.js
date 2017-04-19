@@ -1,13 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import NavbarOptions from './navbar_web_options/navbarOptions';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 
+const { bool } = React.PropTypes;
+
 class NavbarUpper extends Component {
   static propTypes = {
-    loggedIn: PropTypes.bool.isRequired,
+    loggedIn: bool,
+  }
+  static defaultProps = {
+    loggedIn: false,
   }
   constructor(props) {
     super(props);
