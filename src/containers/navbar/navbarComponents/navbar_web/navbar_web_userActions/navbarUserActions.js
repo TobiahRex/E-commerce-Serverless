@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react';
-
+import React from 'react';
 import NavbarUserActionsNotSignedIn from './navbarUserActions_notSignedIn';
 import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
 
@@ -8,9 +7,6 @@ import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
 
 2. Need to add the respective Navigation COmponent maps for the Links.
 */
-const propTypes = {
-  activeUser: PropTypes.bool.isRequired,
-};
 
 function NavbarUserActions({ activeUser }) {
   return (
@@ -23,5 +19,11 @@ function NavbarUserActions({ activeUser }) {
     </div>
   );
 }
-NavbarUserActions.propTypes = propTypes;
+const { bool } = React.PropTypes;
+NavbarUserActions.propTypes = {
+  activeUser: bool,
+};
+NavbarUserActions.defaultProps = {
+  activeUser: false,
+};
 export default NavbarUserActions;
