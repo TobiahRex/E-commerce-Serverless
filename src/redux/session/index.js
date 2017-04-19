@@ -27,9 +27,9 @@ const save = (state, { page, url }) => ({
   currentActivePage: page,
   currentActiveUrl: url,
 });
-const savePreloginPage = (state, { url }) => ({
+const savePreloginPage = state => ({
   ...state,
-  preLoginUrl: url,
+  preLoginUrl: state.previousPageUrl,
 });
 const resetPreLoginUrl = (state) => {
   AuthService.emit('prelogin_url', state.preLoginUrl);

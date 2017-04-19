@@ -9,7 +9,8 @@ function NavbarUserActionsNotSignedIn() {
           Login
         </Link>
       </li>
-      {/* <li className="notSignedIn__register--title">
+      {/* TODO: MVP 2
+         <li className="notSignedIn__register--title">
         <Link to="/register" className="register__link">
           Register
         </Link>

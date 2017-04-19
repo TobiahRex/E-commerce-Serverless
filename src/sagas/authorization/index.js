@@ -9,10 +9,10 @@ function* savePreviousPage() {
 
 function* authInProgress() {
   yield put(authActions.authorizationInProgress());
-  // return yield select(state => state.auth);
 }
 
 export default function* authSocialLogin({ socialType }) {
   yield* authInProgress();
+  yield* savePreviousPage();
   yield put(AuthService[socialType]());
 }
