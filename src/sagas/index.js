@@ -4,7 +4,7 @@ import TaxRateApi from '../services/api/taxes';
 
 // ----- Sagas ----- //
 import getTaxRate from './taxes';
-import authorizationSaga, { watchLoggedInActions } from './authorization';
+import authorizationSaga, { watchAuthActions } from './authorization';
 
 // ----- Types ----- //
 import { orderTypes } from '../redux/orders';
@@ -14,7 +14,7 @@ const api = TaxRateApi.createAPI();
 
 export default function* rootSaga() {
   yield [
-    watchLoggedInActions(),
+    watchAuthActions(),
     authorizationSaga(),
     takeLatest(orderTypes.GET_TAX_RATE, getTaxRate, api),
     /* TODO: MVP 2

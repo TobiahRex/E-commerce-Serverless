@@ -45,10 +45,10 @@ function* preLoginActions(socialType) {
 
 function* socialLogin(socialType) {
   yield call(preLoginActions, socialType);
-  // yield put(AuthService[socialType]());
+  yield put(AuthService[socialType]());
 }
 
-export function* watchLoggedInActions() {
+export function* watchAuthActions() {
   const authChannel = yield call(createAuthChannel, AuthService);
   while (true) {
     const { payload, type } = yield take(authChannel);

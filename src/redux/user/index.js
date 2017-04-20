@@ -15,12 +15,14 @@ export default Creators;
 export const INITIAL_STATE = Immutable({
   profile: JSON.parse(localStorage.getItem('profile')) || null,
   ageVerified: !!localStorage.getItem('ageVerified'),
-  socialLoginType: JSON.parse(localStorage.getItem('socialType')),
+  socialLoginType: localStorage.getItem('socialType'),
 });
 
 const saveProfile = (state, { profile }) => {
-  const social = state.socialLoginType
-  .match(/line|facebook|twitter|google|linkedin|/gi)[0];
+  const { socialLoginType } = state;
+  const social = socialLoginType
+  .match(/line|facebook|twitter|google|linkedin|/gi)
+  .filter(word => !!word)[0];
   console.warn('social: ', social);
   // switch (socialLoginType) {
   //   case 'Facebook': {
