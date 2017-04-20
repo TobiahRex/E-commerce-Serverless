@@ -2,6 +2,7 @@ import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
+  saveLoginType: ['socialType'],
   saveProfile: ['profile'],
   removeProfile: null,
   ageVerified: null,
@@ -38,9 +39,16 @@ const verified = (state) => {
     ageVerified: true,
   });
 };
-
+const saveLoginType = (state, { socialType }) => {
+  localStorage.setItem('socialType', socialType);
+  return ({
+    ...state,
+    socialLoginType: socialType,
+  });
+};
 export const userReducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_PROFILE]: saveProfile,
   [Types.REMOVE_PROFILE]: removeProfile,
   [Types.AGE_VERIFIED]: verified,
+  [Types.SAVE_LOGIN_TYPE]: saveLoginType,
 });
