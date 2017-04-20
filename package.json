@@ -11,7 +11,7 @@
     "cf:invalidate": "babel-node ./tools/cf_invalidate_script.js",
     "copy:assets": "npm-run-all copy:error copy:images copy:package",
     "copy:error": "copyfiles -f './src/Pages/404/error/*' ./dist",
-    "copy:images": "copyfiles -u 1 './src/Images/**' ./dist/",
+    "copy:images": "copyfiles -u 1 './src/images/**' ./dist/",
     "copy:package": "copyfiles 'package.json' ./dist/",
     "deploy": "npm-run-all s3:clean s3:deploy cf:invalidate",
     "open:dev": "babel-watch ./server/server.js",

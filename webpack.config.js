@@ -150,6 +150,7 @@ const prodConfig = {
     }),
     new analyzer.BundleAnalyzerPlugin({
       analyzerMode: 'static',
+      filename: '../build-report.html',
     }),
   ],
   module: {
