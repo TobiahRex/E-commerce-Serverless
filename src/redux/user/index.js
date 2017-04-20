@@ -15,10 +15,10 @@ export default Creators;
 export const INITIAL_STATE = Immutable({
   profile: JSON.parse(localStorage.getItem('profile')) || null,
   ageVerified: !!localStorage.getItem('ageVerified'),
+  socialLoginType: JSON.parse(localStorage.getItem('socialType')),
 });
 
 const saveProfile = (state, { profile }) => {
-  delete profile.clientID;
   // BUG add a check for which social provider they chose.  This line will only work for Twitter.
   // profile.picture = profile.picture.replace(/normal/, '400x400');
   return ({
@@ -30,6 +30,7 @@ const saveProfile = (state, { profile }) => {
 const removeProfile = state => ({
   ...state,
   profile: null,
+  socialLoginType: null,
 });
 
 const verified = (state) => {

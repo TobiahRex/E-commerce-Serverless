@@ -20,11 +20,6 @@ function createAuthChannel(auth) {
     const loggedOutHandler = () => emitter({
       type: 'loggedOut',
     });
-    const saveLoginType = socialType => emitter({
-      type: 'saveLoginType',
-      payload: socialType,
-    });
-    auth.on('saveLoginType', saveLoginType);
     auth.on('logged_in', loggedInHandler);
     auth.on('logged_out', loggedOutHandler);
     auth.on('login_failure', loginFailureHandler);
@@ -42,24 +37,22 @@ function* postLoginActions(profile) {
 
 function* preLoginActions(socialType) {
   yield [
+    put(userActions.saveLoginType(socialType)),
     put(sessionActions.savePreloginPage()),
     put(authActions.authorizationInProgress()),
-    call(AuthService.emit('saveLoginType', socialType)),
   ];
 }
 
 function* socialLogin(socialType) {
-  yield call(preLoginActions(socialType));
-  yield put(AuthService[socialType]());
+  yield call(preLoginActions);
+  // yield put(AuthService[socialType]());
 }
 
 export function* watchLoggedInActions() {
   const authChannel = yield call(createAuthChannel, AuthService);
   while (true) {
     const { payload, type } = yield take(authChannel);
-    console.warn('payload: ', payload, 'type: ', type);
     switch (type) {
-      case 'saveLoginType': yield put(userActions.saveProfileType, payload); break;
       case 'loggedIn': yield fork(postLoginActions, payload); break;
 
       case 'error': yield put(authActions.loginFailure(payload)); break;
