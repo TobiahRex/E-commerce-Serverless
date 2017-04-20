@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { auth as AuthService } from '../../../../../navigation/routes';
 
-const { objectOf, any, func } = React.PropTypes;
+const { objectOf, any } = React.PropTypes;
 
 class NavbarUserActionsSignedin extends PureComponent {
   static propTypes = {
     user: objectOf(any).isRequired,
-    push: func.isRequired,
-    logout: func.isRequired,
   }
 
   static styles = {
