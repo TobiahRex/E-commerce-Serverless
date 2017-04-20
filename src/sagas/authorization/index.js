@@ -20,6 +20,11 @@ function createAuthChannel(auth) {
     const loggedOutHandler = () => emitter({
       type: 'loggedOut',
     });
+    const saveLoginType = socialType => emitter({
+      type: 'saveSocial',
+      payload: socialType,
+    });
+    auth.on('preLogin_saveType', saveLoginType);
     auth.on('logged_in', loggedInHandler);
     auth.on('logged_out', loggedOutHandler);
     auth.on('login_failure', loginFailureHandler);
@@ -35,15 +40,16 @@ function* postLoginActions(profile) {
   ];
 }
 
-function* preLoginActions() {
+function* preLoginActions(socialType) {
   yield [
     put(sessionActions.savePreloginPage()),
     put(authActions.authorizationInProgress()),
+    call(AuthService.emit('saveSocialType', socialType)),
   ];
 }
 
 function* socialLogin(socialType) {
-  yield call(preLoginActions);
+  yield call(preLoginActions(socialType));
   yield put(AuthService[socialType]());
 }
 
