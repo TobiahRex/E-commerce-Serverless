@@ -29,9 +29,9 @@ function createAuthChannel(auth) {
 
 function* postLoginActions(profile) {
   yield [
+    put(userActions.saveProfile(profile)),
     put(authActions.loginSuccess()),
     put(sessionActions.resetPreLoginUrl()),
-    put(userActions.saveProfile(profile)),
   ];
 }
 
@@ -47,12 +47,11 @@ function* socialLogin(socialType) {
   yield put(AuthService[socialType]());
 }
 
-function* watchLoggedInActions() {
-  console.warn('authChannel: ');
+export function* watchLoggedInActions() {
   const authChannel = yield call(createAuthChannel, AuthService);
   while (true) {
     const { payload, type } = yield take(authChannel);
-
+    console.warn('payload: ', payload, 'type: ', type);
     switch (type) {
       case 'loggedIn': yield fork(postLoginActions, payload); break;
 
@@ -70,7 +69,6 @@ function* watchLoggedInActions() {
 }
 
 export default function* authorizationSaga() {
-  yield call(watchLoggedInActions);
   while (true) {
     const { socialType } = yield take('AUTH_SOCIAL_LOGIN');
     yield call(socialLogin, socialType);

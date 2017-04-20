@@ -9,17 +9,17 @@ import userActions from '../../redux/user';
 import authActions from '../../redux/auth';
 
 // ------------------- Event Listeners ----------------------------------
-function loginListenerInit(dispatch, { replace }) {
-  AuthService.on('logged_in', (profile) => {
-    const dirtyPath = (/#(.*)$/.exec(window.location.hash) || [])[0];
-    if (dirtyPath) replace('/login');
-    dispatch(userActions.saveProfile(profile));
-    dispatch(authActions.loginSuccess());
-  });
-}
-function loginFailureListenerInit(dispatch) {
-  AuthService.on('login_failure', error => dispatch(authActions.loginFailure(error)));
-}
+// function loginListenerInit(dispatch, { replace }) {
+//   AuthService.on('logged_in', (profile) => {
+//     const dirtyPath = (/#(.*)$/.exec(window.location.hash) || [])[0];
+//     if (dirtyPath) replace('/login');
+//     dispatch(userActions.saveProfile(profile));
+//     dispatch(authActions.loginSuccess());
+//   });
+// }
+// function loginFailureListenerInit(dispatch) {
+//   AuthService.on('login_failure', error => dispatch(authActions.loginFailure(error)));
+// }
 
 // ------------------- App Startup Utilities ----------------------------------
 
@@ -122,8 +122,8 @@ export default function initiateActions(dispatch, history, { startup }) {
     orientationSpy(dispatch);
     getTaxRate(dispatch);
     scrollToTop();
-    loginListenerInit(dispatch, history);
-    loginFailureListenerInit(dispatch);
+    // loginListenerInit(dispatch, history);
+    // loginFailureListenerInit(dispatch);
   } else {
     cleanS3Route(history);
     scrollToTop();

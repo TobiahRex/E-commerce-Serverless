@@ -7,9 +7,13 @@ const { objectOf, any } = React.PropTypes;
 
 class NavbarUserActionsSignedin extends PureComponent {
   static propTypes = {
-    user: objectOf(any).isRequired,
+    profile: objectOf(any),
   }
-
+  static defaultProps = {
+    profile: {
+      picture: '../Images/default-user.png',
+    },
+  }
   static styles = {
     hidden: {
       display: 'none',
@@ -36,7 +40,7 @@ class NavbarUserActionsSignedin extends PureComponent {
           <Link to={`/user/${123123}`} className="myAccount__link">
             <img
               className="myAccount__link--picture"
-              src={this.props.user.picture}
+              src={this.props.profile.picture}
               alt="My Account"
             />
           </Link>
@@ -46,6 +50,6 @@ class NavbarUserActionsSignedin extends PureComponent {
   }
 }
 const mapStateToProps = ({ user }) => ({
-  user: user.profile,
+  profile: user.profile,
 });
 export default connect(mapStateToProps)(NavbarUserActionsSignedin);
