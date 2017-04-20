@@ -37,7 +37,7 @@ function* postLoginActions(profile) {
 
 function* preLoginActions() {
   yield [
-    put(sessionActions.savePreLoginPage()),
+    put(sessionActions.savePreloginPage()),
     put(authActions.authorizationInProgress()),
   ];
 }
@@ -48,6 +48,7 @@ function* socialLogin(socialType) {
 }
 
 function* watchLoggedInActions() {
+  console.warn('authChannel: ');
   const authChannel = yield call(createAuthChannel, AuthService);
   while (true) {
     const { payload, type } = yield take(authChannel);
@@ -69,9 +70,9 @@ function* watchLoggedInActions() {
 }
 
 export default function* authorizationSaga() {
-  watchLoggedInActions();
+  yield call(watchLoggedInActions);
   while (true) {
-    const { payload } = yield take('AUTH_SOCIAL_LOGIN');
-    yield call(socialLogin, payload);
+    const { socialType } = yield take('AUTH_SOCIAL_LOGIN');
+    yield call(socialLogin, socialType);
   }
 }
