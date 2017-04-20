@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 
 const propTypes = { };
@@ -26,7 +25,7 @@ function UserLoginAppWeb() {
               <ul className="authorized-apps--list">
                 <li className="list--app">
                   <div className="app__date">
-                    <p>Added {moment().format('LL')}</p>
+                    <p>Added {new Date()}</p>
                   </div>
                   <div className="app__icon instagram">
                     <FontAwesome name="instagram" />

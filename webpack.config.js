@@ -27,7 +27,7 @@ const devConfig = {
       'webpack-hot-middleware/client?reload=true',
       path.resolve('./src/index'),
     ],
-    vendor: ['react', 'react-dom', 'moment', 'reduxsauce'],
+    vendor: ['react', 'react-dom', 'reduxsauce'],
   },
   output: {
     path: path.resolve('public'),
@@ -94,7 +94,7 @@ const prodConfig = {
   // ],
   entry: {
     app: path.resolve('./src/index'),
-    vendor: ['react', 'react-dom', 'moment', 'reduxsauce'],
+    vendor: ['react', 'react-dom', 'reduxsauce'],
   },
   output: {
     path: path.resolve('dist'),

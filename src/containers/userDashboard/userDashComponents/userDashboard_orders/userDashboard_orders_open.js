@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import MobileOpenOrders from './userDashboard_orders_mobile/userDashboard_orders_open_mobile';
 
 const propTypes = {
@@ -75,7 +74,7 @@ function OpenOrders() {
             {/* NOTE: Obviously these rows will be dynamic. */}
             <tr className="body__row">
               <td className="row__cell-date">
-                <p>{moment().format('LL')}</p>
+                <p>{new Date()}</p>
               </td>
               <td className="row__cell-total">
                 <div className="flex-cell-parent">

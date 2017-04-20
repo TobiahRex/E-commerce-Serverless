@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import uuid from 'uuid';
 
 const propTypes = {
@@ -77,7 +76,7 @@ function OpenOrders() {
                   <p>Order Placed</p>
                 </div>
                 <div>
-                  <p>{moment().format('LL')}</p>
+                  <p>{new Date()}</p>
                 </div>
               </li>
               <li className="list--data price">
@@ -213,7 +212,7 @@ function OpenOrders() {
                   <p>Order Placed</p>
                 </div>
                 <div>
-                  <p>{moment().format('LL')}</p>
+                  <p>{new Date()}</p>
                 </div>
               </li>
               <li className="list--data price">
@@ -349,7 +348,7 @@ function OpenOrders() {
                   <p>Order Placed</p>
                 </div>
                 <div>
-                  <p>{moment().format('LL')}</p>
+                  <p>{new Date()}</p>
                 </div>
               </li>
               <li className="list--data price">

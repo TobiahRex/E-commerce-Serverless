@@ -1,6 +1,5 @@
 import React from 'react';
 import uuid from 'uuid';
-import moment from 'moment';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
@@ -13,7 +12,7 @@ export default function InvoiceOrders() {
       </div>
 
       <div className="dashboard__header">
-        <p>Date: {moment().format('LL')}</p>
+        <p>Date: {}</p>
         <p>Invoice #: {uuid()}</p>
       </div>
 

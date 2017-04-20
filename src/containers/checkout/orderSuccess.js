@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import uuid from 'uuid';
 
 
@@ -20,7 +19,7 @@ export default function OrderSuccess() {
         </div>
         <div className="ordered__header">
           <div className="header--date">
-            <p>Date: {moment().format('LLLL')}</p>
+            <p>Date: {new Date()}</p>
             <p>Invoice #: {uuid()}</p>
           </div>
           <div className="header--status">

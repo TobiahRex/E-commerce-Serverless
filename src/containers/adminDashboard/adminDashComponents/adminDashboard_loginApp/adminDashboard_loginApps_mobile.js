@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import uuid from 'uuid';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 
@@ -39,7 +38,7 @@ function UserLoginAppMobile() {
                   <div className="app__date">
                     {/* NOTE: The h4 is dynamically set.  */}
                     <h4>Instagram</h4>
-                    <p>Added {moment().format('LL')}</p>
+                    <p>Added {new Date()}</p>
                   </div>
                   <div className="app__icon instagram">
                     <FontAwesome name="instagram" />

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 
 const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -32,7 +31,7 @@ function OrderReviews() {
               <FontAwesome name="star" />
             </div>
             <div className="header--date">
-              <p>{moment().format('LL')}</p>
+              <p>{new Date()}</p>
             </div>
           </div>
           <div className="header--title">
@@ -98,7 +97,7 @@ function OrderReviews() {
               </button>
             </div>
             <div className="header--date">
-              <p>{moment().format('LL')}</p>
+              <p>{new Date()}</p>
             </div>
           </div>
           <div className="header--title">

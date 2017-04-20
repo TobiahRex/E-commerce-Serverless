@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import MobileProductReviews from './userDashboard_productReviews_mobile/userDashboard_productReviews_mobile';
 
 const propTypes = {
@@ -37,7 +36,7 @@ function OrderReviews() {
             <h3>{'"Greatest thing since sliced bread."'}</h3>
           </div>
           <div className="header--date">
-            <p>{moment().format('LL')}</p>
+            <p>{new Date()}</p>
           </div>
         </div>
         <div className="reviews__product--info">
@@ -99,7 +98,7 @@ function OrderReviews() {
             <input type="text" value={'"Greatest thing since sliced bread."'} />
           </div>
           <div className="header--date">
-            <p>{moment().format('LL')}</p>
+            <p>{new Date()}</p>
           </div>
         </div>
         <div className="reviews__product--info">

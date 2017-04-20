@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 
 const propTypes = {
   // location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -15,7 +14,7 @@ function OrderTracking() {
       </div>
 
       <div className="order-tracking__header">
-        <h4>Shipped #: {moment().format('LL')}</h4>
+        <h4>Shipped #: {new Date()}</h4>
         <h4>Tracking #: 123123123123</h4>
       </div>
 

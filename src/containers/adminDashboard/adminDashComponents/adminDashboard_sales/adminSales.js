@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import uuid from 'uuid';
-import moment from 'moment';
 
 import Breadcrumb from '../../../../components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
@@ -241,7 +240,7 @@ function AdminSales({ location }) {
                             <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
                           </td>
                           <td className="row--date">
-                            <p>{moment().format('LL')}</p>
+                            <p>{new Date()}</p>
                           </td>
                           <td className="row--total">
                             <p>$ {'98'}.00</p>
@@ -255,7 +254,7 @@ function AdminSales({ location }) {
                             <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
                           </td>
                           <td className="row--date">
-                            <p>{moment().format('LL')}</p>
+                            <p>{new Date()}</p>
                           </td>
                           <td className="row--total">
                             <p>$ {'98'}.00</p>
@@ -269,7 +268,7 @@ function AdminSales({ location }) {
                             <p>Order # <Link to={`/order_${uuid()}`} >{uuid()}</Link> </p>
                           </td>
                           <td className="row--date">
-                            <p>{moment().format('LL')}</p>
+                            <p>{new Date()}</p>
                           </td>
                           <td className="row--total">
                             <p>$ {'98'}.00</p>
