@@ -2,6 +2,8 @@ import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
 
+const redirectUri = process.env.NODE_ENV === 'production' ? process.env.AUTH0_REDIRECT : 'http://localhost:3000/login';
+
 export default class AuthService extends EventEmitter {
   constructor() {
     super();
@@ -10,7 +12,7 @@ export default class AuthService extends EventEmitter {
       clientID: process.env.AUTH0_CLIENT_ID,
       domain: process.env.AUTH0_DOMAIN,
       responseType: 'token id_token',
-      redirectUri: 'http://localhost:3000/login',
+      redirectUri,
     });
   }
 
@@ -30,14 +32,18 @@ export default class AuthService extends EventEmitter {
       _idTokenVerification: false,
     }, (err, authResult) => {
       if (err) {
+        // console.error('parseHash Error: ', err)
         this.emit('login_failure', err);
       }
+      // console.warn('4) parseHash - authResult: ', authResult)
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setToken(authResult.accessToken, authResult.idToken);
         this.auth0.client.userInfo(authResult.accessToken, (error, profile) => {
           if (error) {
+            // console.error('userInfo Error:', error)
             this.emit('login_failure', error);
           } else {
+            // console.warn('5) userInfo - profile: ', authResult)
             this.setProfile(profile);
           }
         });

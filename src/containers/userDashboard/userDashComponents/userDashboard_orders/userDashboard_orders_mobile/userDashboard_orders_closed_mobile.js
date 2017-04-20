@@ -52,7 +52,7 @@ function OpenOrders() {
       <div className="dashboard__products--container">
         <div className="products__product">
           <div className="products__image">
-            <img src="../Images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+            <img src="../images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
           </div>
 
           <div className="products__product-info">

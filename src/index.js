@@ -13,7 +13,7 @@ import routes from './navigation/routes';
 
 window.Perf = Perf;
 const { store, history } = createStore();
-startupActions(store.dispatch, history, { startup: true });
+startupActions(store, history, { startup: true });
 
 render(
   <Provider store={store} >
@@ -21,8 +21,8 @@ render(
       history={history}
       routes={routes}
       onUpdate={() =>
-        startupActions(store.dispatch, history, { startup: false })}
+        startupActions(store, history, { startup: false })}
     />
-  </Provider >,
+    </Provider >,
   document.getElementById('app'),
 );

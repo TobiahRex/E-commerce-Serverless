@@ -4,7 +4,7 @@ import { reduxLocalForage } from './localForage';
 const updateReducers = (store) => {
   const config = {
     storage: reduxLocalForage,
-    blacklist: ['user', 'auth'],
+    blacklist: ['user', 'auth', 'routing'],
     // whitelist: persistentStoreWhitelist,
     // transforms: [],
   };

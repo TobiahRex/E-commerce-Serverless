@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 export default () => (
   <span className="language-main-button-us-parent">
     <div className="language-main-button-us">
-      <img src="../Images/english-flag.png" alt="US Flag" className="language-main-button-us-flag" />
+      <img src="../images/english-flag.png" alt="US Flag" className="language-main-button-us-flag" />
     </div>
     <div className="language-main-button-us-title">
       <span>ENGLISH</span>

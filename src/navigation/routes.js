@@ -10,6 +10,7 @@ const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) replace({ pathname: '/login' });
 };
 const parseAuthHash = (nextState) => {
+  console.warn('nextState: ', nextState);
   if (/access_token|id_token|error/.test(nextState.location.hash)) {
     auth.parseHash(nextState.location.hash);
   }

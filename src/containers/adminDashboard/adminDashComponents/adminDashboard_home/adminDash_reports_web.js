@@ -168,10 +168,10 @@ function AdminDashReportsWeb() {
                 <label htmlFor="cell-input">Cell Number</label>
                 <div className="cell-input__flag--container">
                   <div className="flag--readout">
-                    <img src="../Images/nihongo-flag.png" alt="Japanese Flag" />
+                    <img src="../images/nihongo-flag.png" alt="Japanese Flag" />
                   </div>
                   <div className="flag--ddn-content">
-                    <img src="../Images/english-flag.png" alt="US Flag" />
+                    <img src="../images/english-flag.png" alt="US Flag" />
                   </div>
                 </div>
 

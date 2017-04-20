@@ -112,22 +112,22 @@ function AdminProducts() {
             <tbody className="table__body ">
               <tr className="body__row">
                 <td className="row--primary">
-                  <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb1">
-                  <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb2">
-                  <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb3">
-                  <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb4">
-                  <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb5">
-                  <img src="../Images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
               </tr>
             </tbody>

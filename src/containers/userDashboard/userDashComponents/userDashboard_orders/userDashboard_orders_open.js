@@ -98,7 +98,7 @@ function OpenOrders() {
                 <div className="info--container">
                   <div className="info--product">
                     {/* NOTE: Everything is Dynamic */}
-                    <img src="../Images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+                    <img src="../images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
                     <div className="product--description">
                       <div className="description--title">
                         <p>Strawberries {'N\''} Cream</p>
