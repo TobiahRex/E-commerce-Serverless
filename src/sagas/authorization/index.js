@@ -38,13 +38,13 @@ function* postLoginActions(profile) {
 function* preLoginActions(socialType) {
   yield [
     put(userActions.saveLoginType(socialType)),
-    put(sessionActions.savePreloginPage()),
     put(authActions.authorizationInProgress()),
+    put(sessionActions.savePreloginPage()),
   ];
 }
 
 function* socialLogin(socialType) {
-  yield call(preLoginActions);
+  yield call(preLoginActions, socialType);
   // yield put(AuthService[socialType]());
 }
 

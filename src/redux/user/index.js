@@ -19,8 +19,14 @@ export const INITIAL_STATE = Immutable({
 });
 
 const saveProfile = (state, { profile }) => {
-  // BUG add a check for which social provider they chose.  This line will only work for Twitter.
-  // profile.picture = profile.picture.replace(/normal/, '400x400');
+  const social = state.socialLoginType
+  .match(/line|facebook|twitter|google|linkedin|/gi)[0];
+  console.warn('social: ', social);
+  // switch (socialLoginType) {
+  //   case 'Facebook': {
+  //
+  //   } break;
+  // }
   return ({
     ...state,
     profile,
