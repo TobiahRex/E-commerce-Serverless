@@ -3,9 +3,6 @@ import React from 'react';
 import NavbarUpper from './navbarUpper';
 import NavbarLower from './navbarLower';
 
-const propTypes = {
-  
-};
 
 function NavbarActionSection() {
   return (
@@ -15,5 +12,4 @@ function NavbarActionSection() {
     </div>
   );
 }
-NavbarActionSection.propTypes = propTypes;
 export default NavbarActionSection;
