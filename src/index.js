@@ -7,17 +7,20 @@ import Perf from 'react-addons-perf';
 import 'babel-polyfill';
 import 'masonry-layout';
 import './styles.scss';
-import { store, history } from './redux/index';
+import createStore from './redux/index';
 import saveLocation from './services/utils/saveLocation';
 import routes from './navigation/routes';
 
 window.Perf = Perf;
+const { store, history } = createStore();
+store.dispatch({ type: 'APP_STARTUP' });
+
 render(
   <Provider store={store} >
     <Router
       history={history}
       routes={routes}
-      onUpdate={saveLocation}
+      onUpdate={() => saveLocation(store.dispatch)}
     />
   </Provider >,
   document.getElementById('app'),

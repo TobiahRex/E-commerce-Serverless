@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import configureStore from './store';
 import rootSaga from '../sagas/';
-import saveLocation from '../services/utils/saveLocation';
 
 // ------- Reducer Imports ------- //
 
@@ -17,7 +16,7 @@ import { localeReducer as locale } from './locale';
 import { sessionReducer as session } from './session';
 import { authReducer as auth } from './auth';
 
-const createStore = () => {
+export default () => {
   const rootReducer = combineReducers({
     auth,
     user,
@@ -32,7 +31,3 @@ const createStore = () => {
   });
   return configureStore(rootReducer, rootSaga);
 };
-const { store, history } = createStore();
-store.dispatch({ type: 'APP_STARTUP' });
-saveLocation(store.dispatch);
-export default { store, history };
