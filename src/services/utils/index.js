@@ -22,14 +22,18 @@ import authActions from '../../redux/auth';
 // }
 
 // ------------------- App Startup Utilities ----------------------------------
-
 export function cleanS3Route({ replace }, hash) {
-  // if (hash.includes('access_token' || 'id_token' || 'error')) {
-  //   replace(`/login/${hash}`);
-  // } else {
+  console.info('hash: ', hash);
+
   const path = (/#!(\/.*)$/.exec(hash) || [])[1];
-  if (path) replace(path);
-  // }
+  if (path) {
+    console.warn('#! = true: ', path);
+    replace(path);
+  } else if (/^#access_token.*/.test(hash)) {
+    console.warn('#access_token = true: ', hash);
+    // replace(`/login/${hash}`);
+  }
+  console.error('cleanS3Route did not clean anything');
 }
 
 export function generateMobileTitle(dispatch) {
@@ -119,6 +123,7 @@ export function getTaxRate(dispatch) {
 export default function initiateActions({ dispatch, getState }, history, { startup }) {
   const state = getState();
   const hashPath = state.routing.locationBeforeTransitions.hash;
+  console.warn('startup ? : ', startup);
   if (startup) {
     cleanS3Route(history, hashPath);
     generateMobileTitle(dispatch);
@@ -131,7 +136,7 @@ export default function initiateActions({ dispatch, getState }, history, { start
     // loginListenerInit(dispatch, history);
     // loginFailureListenerInit(dispatch);
   } else {
-    // cleanS3Route(history, hashPath);
+    cleanS3Route(history, hashPath);
     scrollToTop();
     generateMobileTitle(dispatch);
   }

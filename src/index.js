@@ -8,21 +8,20 @@ import Perf from 'react-addons-perf';
 import 'masonry-layout';
 import './styles.scss';
 import createStore from './redux/index';
-import startupActions from './services/utils';
+import saveLocation from './services/utils';
 import routes from './navigation/routes';
 
 window.Perf = Perf;
 const { store, history } = createStore();
-startupActions(store, history, { startup: true });
+store.dispatch({ type: 'STARTUP_ACTIONS' });
 
 render(
   <Provider store={store} >
     <Router
       history={history}
       routes={routes}
-      onUpdate={() =>
-        startupActions(store, history, { startup: false })}
+      onUpdate={saveLocation}
     />
-    </Provider >,
+  </Provider >,
   document.getElementById('app'),
 );
