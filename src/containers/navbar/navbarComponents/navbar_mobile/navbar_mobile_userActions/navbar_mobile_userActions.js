@@ -1,10 +1,10 @@
 /* eslint react/no-unused-prop-types: 0 */
+import React, { PureComponent } from 'react';
 
-import React, { PropTypes, PureComponent } from 'react';
 import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notSignedIn';
 import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
 
-
+const { bool } = React.PropTypes;
 /* TODO
 1. Redux Action method "logoutUser"
 2. Redux State property "active_user : true/false"
@@ -12,23 +12,14 @@ import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedI
 */
 
 class NavbarMobileActions extends PureComponent {
-  static defaultProps = {
-    activeUser: null,
-  }
   static propTypes = {
-    activeUser: PropTypes.objectOf(PropTypes.any),
-    logoutUser: PropTypes.func.isRequired,
+    loggedIn: bool.isRequired,
   }
 
-  logoutUser = () => this.props.logoutUser;
-
-  renderHelper = ({ activeUser, logoutUser }) => {
+  renderHelper = ({ activeUser }) => {
     if (!activeUser.loggedIn) return <NavbarMobileUserActionsNotSignedIn />;
     return (
-      <NavbarMobileUserActionsSignedIn
-        activeUser={activeUser}
-        logoutUser={logoutUser}
-      />);
+      <NavbarMobileUserActionsSignedIn activeUser={activeUser} />);
   }
 
   render() {
@@ -39,5 +30,7 @@ class NavbarMobileActions extends PureComponent {
     );
   }
 }
-
-export default NavbarMobileActions;
+const mapStateToProps = ({ auth }) => ({
+  loggedIn: auth.loggedIn,
+});
+export default connect(mapStateToProps)(NavbarMobileActions);
