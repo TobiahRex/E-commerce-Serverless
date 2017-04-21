@@ -1,31 +1,24 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import uuid from 'uuid'; // TODO Remove this once you have user ID's from BE.
+import { auth as AuthService } from '../../../../../navigation/routes';
 
+const { objectOf, any } = React.PropTypes;
 class NavbarMobileUserActionsSignedIn extends PureComponent {
-  static defaultProps = {
-    activeUser: null,
-  }
   static propTypes = {
-    activeUser: PropTypes.objectOf(PropTypes.any),
-    logoutUser: PropTypes.func.isRequired,
+    profile: objectOf(any),
+  }
+  static defaultProps = {
+    profile: null,
   }
 
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {},
-  }
-
-  logout = () => this.props.logoutUser();
+  logout = () => AuthService.logout();
 
   render() {
-    const { profilePicture, firstName, lastName } = this.props.activeUser;
     return (
       <ul className="actions__signedIn--list">
         <li className="list--signOut sweep-right-red">
-          <a href="" className="signOut__button" onClick={() => this.logout()}>
+          <a href="" className="signOut__button" onClick={this.logout}>
             Logout
           </a>
         </li>
@@ -35,13 +28,15 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
           </Link>
         </li>
         <li className="list--myAccount">
-          <Link to={`/user_${uuid()}`} className="myAccount__link">
-            <img src={profilePicture} alt={`${firstName} ${lastName}`} />
+          <Link className="myAccount__link">
+            <img src={this.props.profile.picture} alt="My Account" />
           </Link>
         </li>
       </ul>
     );
   }
 }
-
-export default NavbarMobileUserActionsSignedIn;
+const mapStateToProps = ({ user }) => ({
+  profile: user.profile,
+});
+export default connect(mapStateToProps, null)(NavbarMobileUserActionsSignedIn);
