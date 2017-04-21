@@ -1,6 +1,6 @@
 import sessionActions from '../../redux/session';
 
-function generateMobileTitle(dispatch) {
+function saveActiveRoute(dispatch) {
   const url = window.location.pathname;
   const path = url.replace(/[\/]/g, '_')
   .split('_');
@@ -30,11 +30,8 @@ function generateMobileTitle(dispatch) {
   }
   dispatch(sessionActions.saveActivePage(title, url));
 }
-
 const scrollToTop = () => window.scrollTo(0, 1);
-// -------------------------- Initializer --------------------------------------
-
 export default function initiateActions(dispatch) {
   scrollToTop();
-  generateMobileTitle(dispatch);
+  saveActiveRoute(dispatch);
 }
