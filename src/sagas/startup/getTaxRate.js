@@ -12,8 +12,10 @@ export default function* getTaxRate() {
       cityRate: response.data.rates[1].rate / 100,
       totalRate: response.data.totalRate / 100,
     };
-    yield [put(orderActions.setTaxRate(taxRate)),
-      put(apiActions.apiSuccess())];
+    yield [
+      put(apiActions.apiSuccess()),
+      put(orderActions.setTaxRate(taxRate)),
+    ];
   } else {
     yield [put(apiActions.apiFail(response.data))];
   }

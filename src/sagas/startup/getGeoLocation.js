@@ -7,8 +7,7 @@ import geoApi from '../../services/api/geolocation';
 export default function* getGeoLocation() {
   const response = yield call(() => geoApi.getGeoLocation());
   if (response.ok) {
-    console.warn('geo response: ', response);
-    const { ip, loc, country } = response.body;
+    const { ip, loc, country } = response.data;
     yield [
       put(apiActions.apiSuccess()),
       put(geoActions.updateGeo(ip, loc)),

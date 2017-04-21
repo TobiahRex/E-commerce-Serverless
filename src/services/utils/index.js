@@ -99,13 +99,10 @@ export function orientationSpy(dispatch) {
   window.addEventListener('orientationchange', dispatchOrientation(dispatch, screen));
 }
 
-export function getTaxRate(dispatch) {
-  dispatch(orderActions.getTaxRate());
-}
 
 // -------------------------- Initializer --------------------------------------
 
-export default function initiateActions({ dispatch, getState }, history, { startup }) {
+export default function initiateActions() {
   // const state = getState();
   // const hashPath = state.routing.locationBeforeTransitions.hash;
   // console.warn('startup ? : ', startup);
@@ -117,7 +114,7 @@ export default function initiateActions({ dispatch, getState }, history, { start
     // setScreenSize(dispatch);
     // orientationSpy(dispatch);
     // getTaxRate(dispatch);
-    // scrollToTop();
+  scrollToTop();
     // loginListenerInit(dispatch, history);
     // loginFailureListenerInit(dispatch);
   // } else {
