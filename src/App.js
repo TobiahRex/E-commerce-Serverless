@@ -2,17 +2,12 @@ import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux';
-
 import AgeVerification from './containers/ageVerification/ageVerification';
 import NavbarWeb from './containers/navbar/navbarComponents/navbar_web/navbar_web';
 import NavbarMobile from './containers/navbar/navbarComponents/navbar_mobile/navbar_mobile';
 import Footer from './containers/footer/footer';
 import userActions from './redux/user';
 
-/* NOTE:
-1. Remove UUID hard code.
-
-*/
 class App extends Component {
   static defaultProps = {
     ageVerified: false,

@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import mobileActions from '../../../../../redux/mobile';
 
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
-import { setScreenSize } from '../../../../../services/utils';
 
 class NavbarMobileNav extends Component {
   static propTypes = {
@@ -54,21 +54,25 @@ class NavbarMobileNav extends Component {
   // TODO refactor handle Scroll to only dispatch action if the current screenSize is different than the screenSize in state.
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
+    const windowSize = window.screen.width;
+
     if (position > 205) {
-      if (this.props.screenSize !== window.screen.width) {
-        this.props.refreshMobileSize();
+      if (this.props.screenSize !== windowSize) {
+        this.props.refreshMobileSize(String(windowSize));
       }
       this.setState({ navbarFixed: true });
     } else if (position < 205) {
-      if (this.props.screenSize !== window.screen.width) {
-        this.props.refreshMobileSize();
+      if (this.props.screenSize !== windowSize) {
+        this.props.refreshMobileSize(String(windowSize));
       }
       this.setState({ navbarFixed: false });
     }
   }
 
-  toggleDropdown = () =>
-    this.setState({ ddOpen: !this.state.ddOpen });
+  toggleDropdown = () => this.setState(state => ({
+    ...state,
+    ddOpen: !this.state.ddOpen,
+  }));
 
   render() {
     const {
@@ -105,7 +109,7 @@ const mapStateToProps = ({ mobile, orders }) => ({
   cartQty: orders.cart.qty || 0, // TODO remove this 0 value once you've created the actions in redux for adding items to state.
 });
 const mapDispatchToProp = dispatch => ({
-  refreshMobileSize: () => setScreenSize(dispatch),
+  refreshMobileSize: screenSize => dispatch(mobileActions.setScreenWidth(screenSize)),
 });
 export default connect(mapStateToProps, mapDispatchToProp)(NavbarMobileNav);
 
