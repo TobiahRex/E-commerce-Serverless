@@ -12,5 +12,4 @@ const createGeoAPI = () => {
     getGeoLocation,
   };
 };
-
-export default { createGeoAPI };
+export default createGeoAPI();

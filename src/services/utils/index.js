@@ -106,23 +106,23 @@ export function getTaxRate(dispatch) {
 // -------------------------- Initializer --------------------------------------
 
 export default function initiateActions({ dispatch, getState }, history, { startup }) {
-  const state = getState();
-  const hashPath = state.routing.locationBeforeTransitions.hash;
-  console.warn('startup ? : ', startup);
-  if (startup) {
-    cleanS3Route(history, hashPath);
-    generateMobileTitle(dispatch);
-    saveGeoLocation(dispatch);
-    detectMobileDevice(dispatch);
-    setScreenSize(dispatch);
-    orientationSpy(dispatch);
-    getTaxRate(dispatch);
-    scrollToTop();
+  // const state = getState();
+  // const hashPath = state.routing.locationBeforeTransitions.hash;
+  // console.warn('startup ? : ', startup);
+  // if (startup) {
+    // cleanS3Route(history, hashPath);
+    // generateMobileTitle(dispatch);
+    // saveGeoLocation(dispatch);
+    // detectMobileDevice(dispatch);
+    // setScreenSize(dispatch);
+    // orientationSpy(dispatch);
+    // getTaxRate(dispatch);
+    // scrollToTop();
     // loginListenerInit(dispatch, history);
     // loginFailureListenerInit(dispatch);
-  } else {
-    cleanS3Route(history, hashPath);
-    scrollToTop();
-    generateMobileTitle(dispatch);
-  }
+  // } else {
+    // cleanS3Route(history, hashPath);
+    // scrollToTop();
+    // generateMobileTitle(dispatch);
+  // }
 }
