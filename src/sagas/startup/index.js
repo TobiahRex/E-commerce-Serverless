@@ -1,10 +1,8 @@
 /* eslint-disable no-constant-condition */
 import { call, take, put } from 'redux-saga/effects';
-
 import generateMobileTitleSaga from './generateMobileTitle';
-import getTaxRateSaga from './getTaxRate';
+import getTaxRateAsynch from './getTaxRateAsynch';
 import cleanS3RouteSaga from './cleanS3Route';
-import { createTaxAPI } from '../../services/api/taxes';
 
 function* startupActions() {
   const results = yield [

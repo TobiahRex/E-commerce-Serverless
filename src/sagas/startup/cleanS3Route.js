@@ -9,9 +9,12 @@ export default function* cleanS3Route() {
   if (path) {
     console.warn('#! = true: ', path);
     replace(path);
+    return true;
   } else if (/^#access_token.*/.test(hash)) {
     console.warn('#access_token = true: ', hash);
     // replace(`/login/${hash}`);
+    return true;
   }
   console.error('cleanS3Route did not clean anything');
+  return false;
 }
