@@ -13,24 +13,22 @@ const { bool } = React.PropTypes;
 
 class NavbarMobileActions extends PureComponent {
   static propTypes = {
-    loggedIn: bool.isRequired,
-  }
-
-  renderHelper = ({ activeUser }) => {
-    if (!activeUser.loggedIn) return <NavbarMobileUserActionsNotSignedIn />;
-    return (
-      <NavbarMobileUserActionsSignedIn activeUser={activeUser} />);
+    activeUser: bool.isRequired,
   }
 
   render() {
     return (
       <div className="navbar__mobile--actions">
-        {this.renderHelper(this.props)}
+        {
+          this.props.activeUser ?
+            <NavbarMobileUserActionsNotSignedIn /> :
+            <NavbarMobileUserActionsSignedIn />
+        }
       </div>
     );
   }
 }
 const mapStateToProps = ({ auth }) => ({
-  loggedIn: auth.loggedIn,
+  activeUser: auth.loggedIn,
 });
 export default connect(mapStateToProps)(NavbarMobileActions);
