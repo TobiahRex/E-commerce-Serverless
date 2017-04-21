@@ -1,19 +1,18 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-/* TODO
-1. Configure react-router for "/sign_in" * "/register"
-
-*/
+const { objectOf, any } = React.PropTypes;
 
 class NavbarMobileUserActionsNotSignedIn extends PureComponent {
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {},
+  static propTypes = {
+    profile: objectOf(any),
   }
-
+  static defaultProps = {
+    profile: {
+      picture: '../images/default-user.png',
+    },
+  }
   render() {
     return (
       <ul className="actions__notSignedIn--list">
@@ -23,15 +22,11 @@ class NavbarMobileUserActionsNotSignedIn extends PureComponent {
             className="login__link"
           >Login</Link>
         </li>
-        {/* <li className="list--register sweep-right-red">
-          <Link
-            to={'/register'}
-            className="register__link"
-          >Register</Link>
-        </li> */}
       </ul>
     );
   }
 }
-
-export default NavbarMobileUserActionsNotSignedIn;
+const mapStateToProps = ({ user }) => ({
+  profile: user.profile,
+});
+export default connect(mapStateToProps, null)(NavbarMobileUserActionsNotSignedIn);
