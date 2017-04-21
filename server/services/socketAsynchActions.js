@@ -11,7 +11,7 @@ request('https://taxrates.api.avalara.com/postal?country=usa&postal=98101&apikey
 });
 
 // Retrieving Client IP information.
-// request('http://ipinfo.io', (err, res, body) => {
-//   console.log('location: ', JSON.parse(body));
-//   socket.emit('user_ip_location', JSON.parse(body, null, 2));
-// });
+request('http://ipinfo.io', (err, res, body) => {
+  console.log('location: ', JSON.parse(body));
+  socket.emit('user_ip_location', JSON.parse(body, null, 2));
+});

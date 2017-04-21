@@ -19,10 +19,16 @@ function* cleanS3Route() {
   console.error('cleanS3Route did not clean anything');
 }
 
-function* startupActions(history) {
-  yield* cleanS3Route(history);
+function* createMobileTitle() {
   const { title, url } = yield call(generateMobileTitle);
   yield put(sessionActions.saveActivePage(title, url));
+}
+
+function* startupActions() {
+  yield [
+    call(cleanS3Route),
+    call(createMobileTitle),
+  ];
 }
 
 export default function* startup() {
