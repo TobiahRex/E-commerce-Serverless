@@ -3,8 +3,7 @@ import MobileDetect from 'mobile-detect';
 import mobileActions from '../../redux/mobile';
 
 const windowPromise = () => new Promise((resolve) => {
-  window.addEventListener('orientationchange', (screenResults) => {
-    const screen = screenResults;
+  window.addEventListener('orientationchange', (screen) => {
     window.removeEventListener('orientationchange');
     resolve(screen);
   });
@@ -13,7 +12,11 @@ const windowPromise = () => new Promise((resolve) => {
 export default function* mobileDetection() {
   const mobileDevice = new MobileDetect(window.navigator.userAgent);
   const type = mobileDevice.mobile();
-  yield put(mobileActions.setMobileDevice(type));
+  const screenSize = String(window.screen.width);
+  yield [
+    put(mobileActions.setMobileDevice(type)),
+    put(mobileActions.setScreenWidth(screenSize)),
+  ];
 
   while (true) {
     const { orientation, height, width } = yield call(windowPromise);

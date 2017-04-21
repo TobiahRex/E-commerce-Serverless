@@ -7,9 +7,7 @@ import AgeVerification from './containers/ageVerification/ageVerification';
 import NavbarWeb from './containers/navbar/navbarComponents/navbar_web/navbar_web';
 import NavbarMobile from './containers/navbar/navbarComponents/navbar_mobile/navbar_mobile';
 import Footer from './containers/footer/footer';
-import sessionActions from './redux/session';
 import userActions from './redux/user';
-import { genDynamicTitle } from './services/utils';
 
 /* NOTE:
 1. Remove UUID hard code.
@@ -24,10 +22,8 @@ class App extends Component {
     children: PropTypes.objectOf(PropTypes.any).isRequired,
     ageVerified: PropTypes.bool,
     verifyAge: PropTypes.func.isRequired,
-    saveActivePage: PropTypes.func.isRequired,
     activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
     push: PropTypes.func.isRequired,
-    // screenWidth: PropTypes.string.isRequired,
   }
   static styles = {
     hide: {
@@ -52,11 +48,6 @@ class App extends Component {
     }
   }
   // ----------------------------- Utils ------------------------------------
-  saveActivePage = () => {
-    const { title, url } = genDynamicTitle();
-    this.props.saveActivePage(title, url);
-  }
-
   preRender = () => ({
     avStyle: this.state.ageVerified ? App.styles.hide : App.styles.show,
   })
@@ -109,8 +100,6 @@ const mapDispatchToProps = (dispatch) => {
   const newRouterActions = bindActionCreators({ ...routerActions }, dispatch);
   return ({
     ...newRouterActions,
-    saveActivePage: (title, currentPath) =>
-    dispatch(sessionActions.saveActivePage(title, currentPath)),
     verifyAge: () => dispatch(userActions.ageVerified()),
   });
 };
