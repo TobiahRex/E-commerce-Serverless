@@ -1,5 +1,5 @@
 /* eslint-disable no-constant-condition */
-import { call, take, put } from 'redux-saga/effects';
+import { call, take, put, fork } from 'redux-saga/effects';
 import cleanS3RouteSaga from './cleanS3Route';
 import getTaxRate from './getTaxRate';
 import getGeoLocation from './getGeoLocation';
@@ -12,12 +12,11 @@ function* startupActions() {
     call(getGeoLocation),
     call(mobileDetection),
   ];
-  yield put({ type: 'APP_STARTUP_COMPLETE', payload: results });
+  console.warn('finished: ', results);
 }
 
 export default function* startup() {
-  while (true) {
-    yield take('APP_STARTUP');
-    yield call(startupActions);
-  }
+  yield take('APP_STARTUP');
+  yield call(startupActions);
+  yield put({ type: 'APP_STARTUP_COMPLETE' });
 }
