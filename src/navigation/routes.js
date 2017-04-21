@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+import { replace } from 'react-router-redux';
 import App from '../app';
 import Homepage from '../containers/home/homePage';
 import Routes from './index';
 import AuthService from '../services/utils/authService';
 
 export const auth = new AuthService();
-const requireAuth = (nextState, replace) => {
+const requireAuth = () => {
   if (!auth.loggedIn()) replace({ pathname: '/login' });
 };
 const parseAuthHash = (nextState) => {

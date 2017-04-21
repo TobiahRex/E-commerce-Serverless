@@ -1,24 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import NavbarMobileNavDropdnShop from './navbar_mobile_nav_dropdn_shop/navbar_mobile_nav_dropdn_shop';
 import NavbarMobileNavDropdnMedia from './navbar_mobile_nav_dropdn_media/navbar_mobile_nav_dropdn_media';
 import NavbarMobileNavDropdnInfo from './navbar_mobile_nav_dropdn_info/navbar_mobile_nav_dropdn_info';
 
-const defaultProps = {
-  navbarSize: '320px',
-};
+const { bool, func } = React.PropTypes;
 
-const propTypes = {
-  navbarSize: PropTypes.string,
-  ddOpen: PropTypes.bool.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
-};
-
-function NavbarMobileNavDropdnContent({ navbarSize, ddOpen, toggleDropdown }) {
+function NavbarMobileNavDropdnContent({ ddOpen, toggleDropdown }) {
   const showDropdown = ddOpen ? {
     opacity: 1,
     maxHeight: '81.5em',
-    width: navbarSize,
   } : {
     opacity: 0,
     maxHeight: 0,
@@ -35,6 +26,12 @@ function NavbarMobileNavDropdnContent({ navbarSize, ddOpen, toggleDropdown }) {
     </ul>
   );
 }
-NavbarMobileNavDropdnContent.defaultProps = defaultProps;
-NavbarMobileNavDropdnContent.propTypes = propTypes;
+NavbarMobileNavDropdnContent.defaultProps = {
+  navbarSize: '320px',
+};
+NavbarMobileNavDropdnContent.propTypes = {
+  scrolling: bool.isRequired,
+  ddOpen: bool.isRequired,
+  toggleDropdown: func.isRequired,
+};
 export default NavbarMobileNavDropdnContent;

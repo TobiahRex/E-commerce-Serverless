@@ -5,8 +5,7 @@
   margin: 0em;
   list-style-type: none;
   padding: 0em 1em 0em 1em;
-  & .list--login,
-  .list--register {
+  & .list--login {
     @extend .mobile-flex-center;
     background-color: $p-blue;
     font-family: $p-font;
@@ -25,20 +24,19 @@
         color: $p-white;
       }
     }
-    & .login__link,
-    .register__link {
+    & .login__link {
       color: $p-white;
       text-decoration: none;
     }
   }
-  & .list--login:after {
-    content: '';
-    display: inline-block;
-    width: .1rem;
-    height: 2rem;
-    margin-bottom: -.3rem;
-    margin-left: 4rem;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+  // & .list--login:after {
+  //   content: '';
+  //   display: inline-block;
+  //   width: .1rem;
+  //   height: 2rem;
+  //   margin-bottom: -.3rem;
+  //   margin-left: 4rem;
+  //   position: absolute;
+  //   background-color: rgba(255, 255, 255, 0.5);
+  // }
 }

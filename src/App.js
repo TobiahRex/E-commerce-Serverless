@@ -17,8 +17,6 @@ class App extends Component {
     children: PropTypes.objectOf(PropTypes.any).isRequired,
     ageVerified: PropTypes.bool,
     verifyAge: PropTypes.func.isRequired,
-    activeUser: PropTypes.objectOf(PropTypes.any).isRequired,
-    push: PropTypes.func.isRequired,
   }
   static styles = {
     hide: {
@@ -52,11 +50,7 @@ class App extends Component {
   verifyAge = (event) => {
     event.preventDefault();
     this.props.verifyAge();
-    this.props.push('/');
   };
-
-  logoutUser = () => console.info('USER LOGGED OUT!');
-
   render() {
     const { avStyle } = this.preRender();
 
@@ -68,10 +62,7 @@ class App extends Component {
         />
         <header className="navbar-comp-container">
           <NavbarWeb />
-          <NavbarMobile
-            logoutUser={this.logoutUser}
-            activeUser={this.props.activeUser}
-          />
+          <NavbarMobile />
         </header>
         <section id="main-section">
           {this.props.children}
@@ -89,14 +80,9 @@ const mapStateToProps = ({ user, session, mobile }) => ({
   ageVerified: user.ageVerified,
   mobileActive: mobile.mobileTypes,
   screenWidth: mobile.screenWidth,
-  activeUser: user,
 });
-const mapDispatchToProps = (dispatch) => {
-  const newRouterActions = bindActionCreators({ ...routerActions }, dispatch);
-  return ({
-    ...newRouterActions,
-    verifyAge: () => dispatch(userActions.ageVerified()),
-  });
-};
+const mapDispatchToProps = dispatch => ({
+  verifyAge: () => dispatch(userActions.ageVerified()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

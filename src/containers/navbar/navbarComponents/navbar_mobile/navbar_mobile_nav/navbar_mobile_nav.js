@@ -35,7 +35,9 @@ class NavbarMobileNav extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', (e) => {
+      this.handleScroll(e);
+    });
   }
 
   componentWillReceiveProps({ activePage, cartQty }) {
@@ -55,7 +57,6 @@ class NavbarMobileNav extends Component {
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
     const windowSize = window.screen.width;
-
     if (position > 205) {
       if (this.props.screenSize !== windowSize) {
         this.props.refreshMobileSize(String(windowSize));
@@ -96,6 +97,7 @@ class NavbarMobileNav extends Component {
           ddOpen={this.state.ddOpen}
         />
         <NavbarMobileNavDropdnContent
+          scrolling={this.state.navbarFixed}
           screenSize={navbarSize}
           ddOpen={this.state.ddOpen}
           toggleDropdown={this.toggleDropdown}

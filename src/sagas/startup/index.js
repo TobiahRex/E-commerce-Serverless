@@ -4,6 +4,7 @@ import cleanS3RouteSaga from './cleanS3Route';
 import getTaxRate from './getTaxRate';
 import getGeoLocation from './getGeoLocation';
 import mobileDetection from './mobileDetection';
+import generateMobileTitle from './generateMobileTitle';
 
 function* startupActions() {
   yield [
@@ -11,6 +12,7 @@ function* startupActions() {
     call(getTaxRate),
     call(getGeoLocation),
     call(mobileDetection),
+    call(generateMobileTitle),
   ];
 }
 

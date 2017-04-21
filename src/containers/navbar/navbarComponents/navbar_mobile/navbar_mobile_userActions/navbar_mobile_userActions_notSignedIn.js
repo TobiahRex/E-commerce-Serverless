@@ -23,12 +23,12 @@ class NavbarMobileUserActionsNotSignedIn extends PureComponent {
             className="login__link"
           >Login</Link>
         </li>
-        <li className="list--register sweep-right-red">
+        {/* <li className="list--register sweep-right-red">
           <Link
             to={'/register'}
             className="register__link"
           >Register</Link>
-        </li>
+        </li> */}
       </ul>
     );
   }

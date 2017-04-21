@@ -1,5 +1,4 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { Link } from 'react-router';
 import SocialLoginButton from './loginForm.socialButton';
 
 class SocialButtonList extends PureComponent {
@@ -16,7 +15,7 @@ class SocialButtonList extends PureComponent {
       <div className="sign-in__social--container" style={{ display }} >
         <div className="social--title">
           <div className="social--title-msg">
-            <h5>Login | Register Quickly with...</h5>
+            <h5>Login or Register with...</h5>
           </div>
         </div>
         <div className="social--btns__list" >

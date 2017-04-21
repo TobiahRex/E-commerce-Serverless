@@ -33,6 +33,7 @@ class HomePage extends Component {
 
   render() {
     const { mobile } = this.props;
+    console.warn('mobile height: ', mobile);
     // if (redirectUri) {
     //   this.props.resetRedirectUri();
     //   this.props.push(preLoginUrl);

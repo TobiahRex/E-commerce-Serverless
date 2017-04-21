@@ -4,7 +4,7 @@ import { Route } from 'react-router';
 // ----------------------------- Auth -------------------------------
 import ResetPasswordEmail from '../containers/auth/ResetEmail/reset';
 import Login from '../containers/auth/login';
-import Register from '../containers/auth/register';
+// import Register from '../containers/auth/register';
 import Forgot from '../containers/auth/Forgot/forgot';
 
 function AuthRoutes(auth, parseAuthHash) {
@@ -16,7 +16,7 @@ function AuthRoutes(auth, parseAuthHash) {
         auth={auth}
         onEnter={parseAuthHash}
       />
-      <Route path="register" component={Register} auth={auth} />
+      {/* <Route path="register" component={Register} auth={auth} /> */}
       <Route path="forgot" component={Forgot} />
       <Route path="reset_email" component={ResetPasswordEmail} />
     </div>
