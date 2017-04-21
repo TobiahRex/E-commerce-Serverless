@@ -35,7 +35,6 @@ export function cleanS3Route({ replace }, hash) {
   }
   console.error('cleanS3Route did not clean anything');
 }
-
 export function generateMobileTitle(dispatch) {
   const url = window.location.pathname;
   const path = url.replace(/[\/]/g, '_')
@@ -66,7 +65,6 @@ export function generateMobileTitle(dispatch) {
   }
   dispatch(sessionActions.saveActivePage(title, url));
 }
-
 export function saveGeoLocation(dispatch) {
   const activeLocation = JSON.parse(localStorage.getItem('active_location'));
   if (activeLocation) {

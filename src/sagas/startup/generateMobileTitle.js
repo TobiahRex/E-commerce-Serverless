@@ -1,8 +1,8 @@
 export default function generateMobileTitle() {
   const url = window.location.pathname;
-  const path = url.replace(/[\/]/g, '_')
-  .split('_');
+  const path = url.replace(/[\/]/g, '_').split('_');
   let title = '';
+
   for (let i = 1; i < path.length; i += 1) {
     if (path[i] === 'and') {
       title += '& ';

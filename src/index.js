@@ -13,7 +13,7 @@ import routes from './navigation/routes';
 
 window.Perf = Perf;
 const { store, history } = createStore();
-store.dispatch({ type: 'APPLICATION_STARTUP' });
+store.dispatch({ type: 'APP_STARTUP' });
 
 render(
   <Provider store={store} >
