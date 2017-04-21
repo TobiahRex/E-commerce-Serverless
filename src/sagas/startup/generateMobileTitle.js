@@ -1,4 +1,7 @@
-export default function generateMobileTitle() {
+import { put } from 'redux-saga/effects';
+import sessionActions from '../../redux/session';
+
+export default function* generateMobileTitle() {
   const url = window.location.pathname;
   const path = url.replace(/[\/]/g, '_').split('_');
   let title = '';
@@ -26,5 +29,5 @@ export default function generateMobileTitle() {
       title += `${path[i].slice(1)} `;
     }
   }
-  return ({ title, url });
+  yield put(sessionActions.saveActivePage(title, url));
 }
