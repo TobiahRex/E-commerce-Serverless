@@ -2,24 +2,11 @@ import MobileDetect from 'mobile-detect';
 import { auth as AuthService } from '../../navigation/routes';
 import sessionActions from '../../redux/session';
 import mobileActions from '../../redux/mobile';
-import geoActions from '../../redux/geo';
-import localeActions from '../../redux/locale';
+
 import orderActions from '../../redux/orders';
 import userActions from '../../redux/user';
 import authActions from '../../redux/auth';
 
-// ------------------- Event Listeners ----------------------------------
-// function loginListenerInit(dispatch, { replace }) {
-//   AuthService.on('logged_in', (profile) => {
-//     const dirtyPath = (/#(.*)$/.exec(window.location.hash) || [])[0];
-//     if (dirtyPath) replace('/login');
-//     dispatch(userActions.saveProfile(profile));
-//     dispatch(authActions.loginSuccess());
-//   });
-// }
-// function loginFailureListenerInit(dispatch) {
-//   AuthService.on('login_failure', error => dispatch(authActions.loginFailure(error)));
-// }
 
 // ------------------- App Startup Utilities ----------------------------------
 export function cleanS3Route({ replace }, hash) {
