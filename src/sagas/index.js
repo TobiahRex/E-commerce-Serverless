@@ -1,4 +1,3 @@
-import { takeLatest } from 'redux-saga/effects';
 
 // ----- Sagas ----- //
 import applicationStartup from './startup';

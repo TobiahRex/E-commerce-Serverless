@@ -12,5 +12,4 @@ const createTaxAPI = () => {
     getTaxRate,
   };
 };
-
-export default { createTaxAPI };
+export default createTaxAPI();

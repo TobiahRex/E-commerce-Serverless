@@ -10,7 +10,8 @@ function* startupActions() {
     call(generateMobileTitleSaga),
     call(getTaxRateAsynch),
   ];
-  yield put({ type: 'APP_STARTUP_COMPLETE', payload: results });
+  console.warn('results: ', results);
+  // yield put({ type: 'APP_STARTUP_COMPLETE', payload: results });
 }
 
 export default function* startup() {

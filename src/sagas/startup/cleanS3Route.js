@@ -2,7 +2,7 @@ import { select } from 'redux-saga/effects';
 import { replace } from 'react-router-redux';
 
 export default function* cleanS3Route() {
-  const { locationBeforeTransitions } = yield select('routing');
+  const { locationBeforeTransitions } = yield select(state => state.routing);
   const hash = locationBeforeTransitions.hash;
   const path = (/#!(\/.*)$/.exec(hash) || [])[1];
 

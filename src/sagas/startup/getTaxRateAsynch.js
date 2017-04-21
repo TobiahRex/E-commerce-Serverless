@@ -1,10 +1,9 @@
 import { call, put } from 'redux-saga/effects';
 import orderActions from '../../redux/orders';
 import apiActions from '../../redux/api';
-import { createTaxAPI } from '../../services/api/taxes';
+import taxApi from '../../services/api/taxes';
 
 export default function* getTaxRate() {
-  const taxApi = createTaxAPI();
   const response = yield call(() => taxApi.getTaxRate());
 
   if (response.ok) {
