@@ -14,7 +14,7 @@ const propTypes = {
 function HomepageHeader({ height, mobile }) {
   let navBob;
   if (mobile) {
-    navBob = window.innerHeight - 60;
+    height = '';
   } else {
     navBob = height;
   }

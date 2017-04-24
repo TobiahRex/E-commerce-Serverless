@@ -1,8 +1,8 @@
 .homepage__how {
   @extend .homepage-flex-center;
   flex-direction: column;
-  height: 30em;
   width: 100%;
+  height: 40em;
   margin: 0 auto;
   & .how__content--container {
     @include prefixflex();
@@ -15,7 +15,6 @@
       margin: 1em;
     }
     & .content__carousel--container {
-      height: 28em;
       width: 100%;
       max-width: 34.6em;
       background-color: $p-white;

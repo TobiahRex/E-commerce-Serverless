@@ -28,14 +28,14 @@ class HomepageReviewsCarousel extends Component {
     },
     {
       className: 'slides--slide',
-      review: '“NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to them carrying more juices flavors.”',
+      review: 'NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to more juices flavors.',
       author: 'Robert McNair, Sasebo',
     },
     {
       className: 'slides--slide',
       review: 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
       author: 'Justin Arians, Yokosuka',
-    }
+    },
   ]
   constructor(props) {
     super(props);
@@ -133,7 +133,7 @@ class HomepageReviewsCarousel extends Component {
           <div className="content__carousel--parent">
             <div className="carousel--container">
               <div style={leftAdjust} className="carousel__slides">
-                { this.reviews.map(({ className, review, author }) =>
+                { HomepageReviewsCarousel.reviews.map(({ className, review, author }) =>
                   <HomepageReviewsSlide
                     key={new Buffer(author, 'utf8').toString('base64')}
                     maxWidth={newMaxWidth}

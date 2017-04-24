@@ -8,6 +8,7 @@ function HomepageFastestDelivery({ height, mobile }) {
     display = {
       display: 'block',
     };
+    height = '';
   } else {
     display = {
       display: 'none',

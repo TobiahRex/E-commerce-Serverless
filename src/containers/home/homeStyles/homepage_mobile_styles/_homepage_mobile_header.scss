@@ -3,13 +3,15 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  min-height: 30em;
+  padding: 1em 0 1em 0;
   & .header__inner-container {
     @include prefixflex();
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     width: 80%;
-    height: 70%;
+    height: 100%;
     border: 2px solid $p-red;
     background-color: rgba(1,1,1, 0.5);
     padding: 2em;

@@ -19,7 +19,6 @@
     & .content__description-container {
       @extend .homepage-flex-center;
       flex-direction: column;
-      height: 54.5em;
       width: 100%;
       margin: 0;
       & .content__description-image {
@@ -33,7 +32,8 @@
         @extend .homepage-flex-center;
         flex-direction: column;
         width: 29em;
-        padding: .5em;
+        padding: 1em 0 1em 0;
+        margin-top: 1em;
         background-color: $p-white;
         @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
         & .message_container__title {
