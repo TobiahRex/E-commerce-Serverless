@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   margin-top: 0;
+  padding-bottom: .5em;
   background-color: $p-grey;
   & .fastest-delivery__content--container {
     @include prefixflex();
@@ -31,8 +32,7 @@
       & .content__message-container {
         @extend .homepage-flex-center;
         flex-direction: column;
-        width: 28em;
-        height: 27.5em;
+        width: 29em;
         padding: .5em;
         background-color: $p-white;
         @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
