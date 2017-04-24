@@ -1,4 +1,4 @@
-.homepage-reviews {
+.homepage__reviews {
   @extend .flex-center;
   flex-direction: column;
   height: 48em;
@@ -11,54 +11,54 @@
     flex-direction: column;
     height: 90%;
     width: 100%;
-    & h1.homepage-reviews-title {
+    & .content__title {
       color: $p-red;
       line-height: 1.5em;
       margin: .8em;
     }
-    & .homepage-reviews-carousel-parent {
+    & .content__carousel--parent {
       @extend .flex-center;
       flex-direction: column;
       height: 30em;
       width: 100%;
       background-color: $p-blue;
-      & .homepage-reviews-carousel-container {
+      & .carousel--container {
         height: 30em;
         width: 100em;
         overflow: hidden;
         position: relative;
-        & .homepage-reviews-carousel-slides {
+        & .carousel__slides {
           display: flex;
           position: absolute;
           background-color: $p-blue;
           transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-          & .homepage-reviews-carousel {
+          & .slides--slide {
             @extend .flex-center;
             flex-direction: column;
             height: 30em;
             width: 100em;
-            & .homepage-reviews-carousel-review {
+            & .slides--slide__review {
               @extend .flex-center;
               flex-direction: column;
-              & .homepage-reviews-carousel-review-body {
+              & .review__body {
                 display: flex;
-                & .homepage-reviews-carousel-review-body-quotes {
+                & .body__quotes {
                   color: $p-red;
                   font-family: "Arial Black", sans-serif;
                   font-size: 4.5em;
                   font-weight: 800;
                   line-height: 1em;
                 }
-                & .homepage-reviews-carousel-review-body-main {
+                & .body__main {
                   color: $p-white;
                   font-family: $p-font;
                   font-size: 2.5em;
                   text-align: center;
                 }
               }
-              & .homepage-reviews-carousel-author-body {
+              & .review__author {
                 display: flex;
-                & .homepage-reviews-carousel-author-body-dash {
+                & .author__dash {
                   color: $p-red;
                   font-family: "Arial Black", sans-serif;
                   font-size: 4.5em;
@@ -67,7 +67,7 @@
                   margin-top: .88em;
                   padding-right: .5em;
                 }
-                & .homepage-reviews-carousel-author-body-main {
+                & .author__main {
                   font-family: $p-font;
                   font-size: 2.5em;
                   color: $p-white;

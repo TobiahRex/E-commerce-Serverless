@@ -3,23 +3,23 @@ import React from 'react';
 function ReviewSlide({ maxWidth, className, review, author }) {
   return (
     <div className={`${className}`} style={{ maxWidth }}>
-      <div className={`${className}-review`}>
-        <div className={`${className}-review-body`}>
-          <p className={`${className}-review-body-quotes`}>
+      <div className={`${className}__review`}>
+        <div className="review__body">
+          <p className="body__quotes">
             {'\u2018\u2018'}
           </p>
-          <p className={`${className}-review-body-main`}>
+          <p className="body__main">
             {review}
           </p>
-          <p className={`${className}-review-body-quotes`}>
+          <p className="body__quotes" >
             {'\u2019\u2019'}
           </p>
         </div>
-        <div className={`${className}-author-body`}>
-          <p className={`${className}-author-body-dash`}>
+        <div className="review__author">
+          <p className="author__dash">
             {'-'}
           </p>
-          <p className={`${className}-author-body-main`}>
+          <p className="author__main">
             {author}
           </p>
         </div>
