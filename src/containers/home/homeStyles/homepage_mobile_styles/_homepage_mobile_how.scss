@@ -43,7 +43,7 @@
             height: 24em;
             max-width: 34.6em;
             background-image: $img-carousel-couple;
-            background-size: cover;
+            background-size: contain;
             background-repeat: no-repeat;
             & .homepage-how-carousel-couple-description-container,
             & .homepage-how-carousel-distro-description-container,
@@ -140,11 +140,7 @@
     }
 
   }
-  // & .how__navBob {
-  //   @include prefixflex();
-  //   justify-content: center;
-  //   align-items: flex-end;
-  //   flex: 1;
-  //   @extend .navBob_mobile;
-  // }
+  & .how__navBob {
+    display: none;
+  }
 }
