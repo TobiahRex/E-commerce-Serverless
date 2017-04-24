@@ -33,40 +33,25 @@
           position: absolute;
           background-color: $p-blue;
           transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-          & .homepage-reviews-carousel-alpha,
-          .homepage-reviews-carousel-beta,
-          .homepage-reviews-carousel-gamma,
-          .homepage-reviews-carousel-delta {
+          & .homepage-reviews-carousel {
             @extend .homepage-flex-center;
             flex-direction: column;
             height: 21em;
-            & .homepage-reviews-carousel-alpha-review,
-            .homepage-reviews-carousel-beta-review,
-            .homepage-reviews-carousel-gamma-review,
-            .homepage-reviews-carousel-delta-review {
+            & .homepage-reviews-carousel-review {
               @extend .homepage-flex-center;
               flex-direction: column;
               padding: 1em;
-              & .homepage-reviews-carousel-alpha-review-body,
-              .homepage-reviews-carousel-beta-review-body,
-              .homepage-reviews-carousel-gamma-review-body,
-              .homepage-reviews-carousel-delta-review-body {
+              & .homepage-reviews-carousel-review-body {
                 width: 100%;
                 display: flex;
-                & .homepage-reviews-carousel-alpha-review-body-quotes,
-                .homepage-reviews-carousel-beta-review-body-quotes,
-                .homepage-reviews-carousel-gamma-review-body-quotes,
-                .homepage-reviews-carousel-delta-review-body-quotes, {
+                & .homepage-reviews-carousel-review-body-quotes {
                   color: $p-red;
                   font-family: "Arial Black", sans-serif;
                   font-size: 2.5em;
                   font-weight: 800;
                   line-height: 1em;
                 }
-                & .homepage-reviews-carousel-alpha-review-body-main,
-                .homepage-reviews-carousel-beta-review-body-main,
-                .homepage-reviews-carousel-gamma-review-body-main,
-                .homepage-reviews-carousel-delta-review-body-main {
+                & .homepage-reviews-carousel-review-body-main {
                   color: $p-white;
                   font-family: $p-font;
                   height: 6em;
@@ -75,16 +60,10 @@
                   text-align: center;
                 }
               }
-              & .homepage-reviews-carousel-alpha-author-body,
-              .homepage-reviews-carousel-beta-author-body,
-              .homepage-reviews-carousel-gamma-author-body,
-              .homepage-reviews-carousel-delta-author-body, {
+              & .homepage-reviews-carousel-author-body {
                 display: flex;
                 margin-top: 2em;
-                & .homepage-reviews-carousel-alpha-author-body-dash,
-                .homepage-reviews-carousel-beta-author-body-dash,
-                .homepage-reviews-carousel-gamma-author-body-dash,
-                .homepage-reviews-carousel-delta-author-body-dash, {
+                & .homepage-reviews-carousel-author-body-dash {
                   color: $p-red;
                   font-family: "Arial Black", sans-serif;
                   font-size: 2em;
@@ -93,10 +72,7 @@
                   margin: 0;
                   padding-right: .5em;
                 }
-                & .homepage-reviews-carousel-alpha-author-body-main,
-                .homepage-reviews-carousel-beta-author-body-main,
-                .homepage-reviews-carousel-gamma-author-body-main,
-                .homepage-reviews-carousel-delta-author-body-main, {
+                & .homepage-reviews-carousel-author-body-main {
                   font-family: $p-font;
                   font-size: 1.5em;
                   color: $p-white;
@@ -110,43 +86,43 @@
       }
     }
     & .homepage-reviews-carousel-dots {
-    height: 2.5em;
-    width: 100%;
-    margin-top: 1.5em;
-    @extend .homepage-flex-center;
-    & .homepage-reviews-carousel-dots-list {
+      height: 2.5em;
+      width: 100%;
+      margin-top: 1.5em;
       @extend .homepage-flex-center;
-      padding-left: 0;
-      margin-left: 0;
-      max-width: 10em;
-      list-style-type: none;
-      & li {
+      & .homepage-reviews-carousel-dots-list {
         @extend .homepage-flex-center;
-        height: 2.5em;
-        width: 100%;
-        & .homepage-reviews-carousel-dots-list-each {
-          height: 1.5em;
-          width: 1.5em;
-          border-radius: 50%;
-          border: 1px solid $s-grey;
-          background-color: $s-grey;
-          margin-left: .7em;
-          padding: 0;
-          cursor: pointer;
-          transition: background-color .3s ease-in-out;
-          &:hover,
-          &:active,
-          &:focus {
-            background-color: $p-red;
-            outline: none;
+        padding-left: 0;
+        margin-left: 0;
+        max-width: 10em;
+        list-style-type: none;
+        & li {
+          @extend .homepage-flex-center;
+          height: 2.5em;
+          width: 100%;
+          & .homepage-reviews-carousel-dots-list-each {
+            height: 1.5em;
+            width: 1.5em;
+            border-radius: 50%;
+            border: 1px solid $s-grey;
+            background-color: $s-grey;
+            margin-left: .7em;
+            padding: 0;
+            cursor: pointer;
+            transition: background-color .3s ease-in-out;
+            &:hover,
+            &:active,
+            &:focus {
+              background-color: $p-red;
+              outline: none;
+            }
           }
         }
-      }
-      &:first-child {
-        margin-left: 0;
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
-  }
   }
   & .reviews__navBob {
     display: none;

@@ -32,33 +32,33 @@
           position: absolute;
           background-color: $p-blue;
           transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-          & .homepage-reviews-carousel-alpha {
+          & .homepage-reviews-carousel {
             @extend .flex-center;
             flex-direction: column;
             height: 30em;
             width: 100em;
-            & .homepage-reviews-carousel-alpha-review {
+            & .homepage-reviews-carousel-review {
               @extend .flex-center;
               flex-direction: column;
-              & .homepage-reviews-carousel-alpha-review-body {
+              & .homepage-reviews-carousel-review-body {
                 display: flex;
-                & .homepage-reviews-carousel-alpha-review-body-quotes {
+                & .homepage-reviews-carousel-review-body-quotes {
                   color: $p-red;
                   font-family: "Arial Black", sans-serif;
                   font-size: 4.5em;
                   font-weight: 800;
                   line-height: 1em;
                 }
-                & .homepage-reviews-carousel-alpha-review-body-main {
+                & .homepage-reviews-carousel-review-body-main {
                   color: $p-white;
                   font-family: $p-font;
                   font-size: 2.5em;
                   text-align: center;
                 }
               }
-              & .homepage-reviews-carousel-alpha-author-body {
+              & .homepage-reviews-carousel-author-body {
                 display: flex;
-                & .homepage-reviews-carousel-alpha-author-body-dash {
+                & .homepage-reviews-carousel-author-body-dash {
                   color: $p-red;
                   font-family: "Arial Black", sans-serif;
                   font-size: 4.5em;
@@ -67,142 +67,7 @@
                   margin-top: .88em;
                   padding-right: .5em;
                 }
-                & .homepage-reviews-carousel-alpha-author-body-main {
-                  font-family: $p-font;
-                  font-size: 2.5em;
-                  color: $p-white;
-                  line-height: 2em;
-                  margin-top: 1.6em;
-                }
-              }
-            }
-          }
-          & .homepage-reviews-carousel-beta {
-            @extend .flex-center;
-            flex-direction: column;
-            height: 30em;
-            width: 100em;
-            & .homepage-reviews-carousel-beta-review {
-              @extend .flex-center;
-              flex-direction: column;
-              & .homepage-reviews-carousel-beta-review-body {
-                display: flex;
-                & .homepage-reviews-carousel-beta-review-body-quotes {
-                  color: $p-red;
-                  font-family: "Arial Black", sans-serif;
-                  font-size: 4.5em;
-                  font-weight: 800;
-                  line-height: 1em;
-                }
-                & .homepage-reviews-carousel-beta-review-body-main {
-                  color: $p-white;
-                  font-family: $p-font;
-                  font-size: 2.5em;
-                  text-align: center;
-                }
-              }
-              & .homepage-reviews-carousel-beta-author-body {
-                display: flex;
-                & .homepage-reviews-carousel-beta-author-body-dash {
-                  color: $p-red;
-                  font-family: "Arial Black", sans-serif;
-                  font-size: 4.5em;
-                  font-weight: 800;
-                  line-height: 1.11em;
-                  margin-top: .88em;
-                  padding-right: .5em;
-                }
-                & .homepage-reviews-carousel-beta-author-body-main {
-                  font-family: $p-font;
-                  font-size: 2.5em;
-                  color: $p-white;
-                  line-height: 2em;
-                  margin-top: 1.6em;
-                }
-              }
-            }
-          }
-          & .homepage-reviews-carousel-gamma {
-            @extend .flex-center;
-            flex-direction: column;
-            height: 30em;
-            width: 100em;
-            & .homepage-reviews-carousel-gamma-review {
-              @extend .flex-center;
-              flex-direction: column;
-              & .homepage-reviews-carousel-gamma-review-body {
-                display: flex;
-                & .homepage-reviews-carousel-gamma-review-body-quotes {
-                  color: $p-red;
-                  font-family: "Arial Black", sans-serif;
-                  font-size: 4.5em;
-                  font-weight: 800;
-                  line-height: 1em;
-                }
-                & .homepage-reviews-carousel-gamma-review-body-main {
-                  color: $p-white;
-                  font-family: $p-font;
-                  font-size: 2.5em;
-                  text-align: center;
-                }
-              }
-              & .homepage-reviews-carousel-gamma-author-body {
-                display: flex;
-                & .homepage-reviews-carousel-gamma-author-body-dash {
-                  color: $p-red;
-                  font-family: "Arial Black", sans-serif;
-                  font-size: 4.5em;
-                  font-weight: 800;
-                  line-height: 1.11em;
-                  margin-top: .88em;
-                  padding-right: .5em;
-                }
-                & .homepage-reviews-carousel-gamma-author-body-main {
-                  font-family: $p-font;
-                  font-size: 2.5em;
-                  color: $p-white;
-                  line-height: 2em;
-                  margin-top: 1.6em;
-                }
-              }
-            }
-          }
-          & .homepage-reviews-carousel-delta {
-            @extend .flex-center;
-            flex-direction: column;
-            height: 30em;
-            width: 100em;
-            & .homepage-reviews-carousel-delta-review {
-              @extend .flex-center;
-              flex-direction: column;
-              & .homepage-reviews-carousel-delta-review-body {
-                display: flex;
-                & .homepage-reviews-carousel-delta-review-body-quotes {
-                  color: $p-red;
-                  font-family: "Arial Black", sans-serif;
-                  font-size: 4.5em;
-                  font-weight: 800;
-                  line-height: 1em;
-                }
-                & .homepage-reviews-carousel-delta-review-body-main {
-                  color: $p-white;
-                  font-family: $p-font;
-                  font-size: 2.5em;
-                  text-align: center;
-                }
-              }
-              & .homepage-reviews-carousel-delta-author-body {
-                display: flex;
-                & .homepage-reviews-carousel-delta-author-body-dash {
-                  color: $p-red;
-                  font-family: "Arial Black", sans-serif;
-                  font-size: 4.5em;
-                  font-weight: 800;
-                  line-height: 1.11em;
-                  margin-top: .88em;
-                  padding-right: .5em;
-                }
-                & .homepage-reviews-carousel-delta-author-body-main {
+                & .homepage-reviews-carousel-author-body-main {
                   font-family: $p-font;
                   font-size: 2.5em;
                   color: $p-white;

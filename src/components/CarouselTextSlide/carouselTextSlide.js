@@ -1,32 +1,25 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-const propTypes = {
-  maxWidth: PropTypes.string,
-  className: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  review: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-};
-function ReviewSlide({ maxWidth, className, name, review, author }) {
+function ReviewSlide({ maxWidth, className, review, author }) {
   return (
-    <div className={`${className}-${name}`} style={{ maxWidth }}>
-      <div className={`${className}-${name}-review`}>
-        <div className={`${className}-${name}-review-body`}>
-          <p className={`${className}-${name}-review-body-quotes`}>
+    <div className={`${className}`} style={{ maxWidth }}>
+      <div className={`${className}-review`}>
+        <div className={`${className}-review-body`}>
+          <p className={`${className}-review-body-quotes`}>
             {'\u2018\u2018'}
           </p>
-          <p className={`${className}-${name}-review-body-main`}>
+          <p className={`${className}-review-body-main`}>
             {review}
           </p>
-          <p className={`${className}-${name}-review-body-quotes`}>
+          <p className={`${className}-review-body-quotes`}>
             {'\u2019\u2019'}
           </p>
         </div>
-        <div className={`${className}-${name}-author-body`}>
-          <p className={`${className}-${name}-author-body-dash`}>
+        <div className={`${className}-author-body`}>
+          <p className={`${className}-author-body-dash`}>
             {'-'}
           </p>
-          <p className={`${className}-${name}-author-body-main`}>
+          <p className={`${className}-author-body-main`}>
             {author}
           </p>
         </div>
@@ -34,12 +27,14 @@ function ReviewSlide({ maxWidth, className, name, review, author }) {
     </div>
   );
 }
-
-ReviewSlide.propTypes = propTypes;
+const { string } = React.PropTypes;
+ReviewSlide.propTypes = {
+  maxWidth: string,
+  className: string.isRequired,
+  review: string.isRequired,
+  author: string.isRequired,
+};
+ReviewSlide.defaultProps = {
+  maxWidth: '100%',
+};
 export default ReviewSlide;
-
-/* NOTE
-1. className example = "homepage-how-carousel"
-2. name exmaple = "couple"
- - Result = homepage-how-carousel-couple
-*/
