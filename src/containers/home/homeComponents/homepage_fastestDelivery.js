@@ -1,22 +1,17 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
-
-const defaultProps = {
-  mobile: false,
-};
-
-const propTypes = {
-  height: PropTypes.number.isRequired,
-  mobile: PropTypes.bool,
-};
 
 function HomepageFastestDelivery({ height, mobile }) {
   let display;
   if (mobile) {
-    display = { display: 'none' };
+    display = {
+      display: 'block',
+    };
   } else {
-    display = { display: 'block' };
+    display = {
+      display: 'none',
+    };
   }
   return (
     <div
@@ -32,25 +27,20 @@ function HomepageFastestDelivery({ height, mobile }) {
           <div className="homepage-fastest-delivery-description-message-container">
             <h3>Nobody Is Faster In Japan</h3>
             <div className="homepage-fastest-delivery-description-message-body">
-              <p>
+              <p style={{ display }} >
                 No one can deliver Nicotine E-Juice to Japan
                 faster than us.
               </p>
               <br />
-              <p style={display} >
+              <p>
                 Once you shop with us and see how fast we are, {('we\'re')} confident you {('won\'t')} want to buy Nicotine vape juice from anywhere else.
               </p>
               <br />
               <p>
-                Hard to believe? Try us now!
-              </p>
-              <br />
-              <p style={display} >
-                You’ll be happy you did.
+                Hard to believe? Try us now! You’ll be happy you did.
               </p>
             </div>
             <button
-              style={display}
               className="homepage-fastest-delivery-description-message-buy-btn sweep-right"
               onClick={() => browserHistory.push('/juices')}
             >Buy Now</button>
@@ -64,6 +54,9 @@ function HomepageFastestDelivery({ height, mobile }) {
     </div>
   );
 }
-HomepageFastestDelivery.defaultProps = defaultProps;
-HomepageFastestDelivery.propTypes = propTypes;
+const { number, bool } = React.PropTypes;
+HomepageFastestDelivery.propTypes = {
+  height: number.isRequired,
+  mobile: bool.isRequired,
+};
 export default HomepageFastestDelivery;

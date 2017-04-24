@@ -8,9 +8,11 @@ const { bool } = React.PropTypes;
 
 class NavbarMobileActions extends PureComponent {
   static propTypes = {
-    activeUser: bool.isRequired,
+    activeUser: bool,
   }
-
+  static defaultProps = {
+    activeUser: false,
+  }
   render() {
     return (
       <div className="navbar__mobile--actions">

@@ -32,30 +32,23 @@ class HomePage extends Component {
   }
 
   render() {
-    const { mobile } = this.props;
-    console.warn('mobile height: ', mobile);
-    // if (redirectUri) {
-    //   this.props.resetRedirectUri();
-    //   this.props.push(preLoginUrl);
-    // }
-
     return (
       <div className="homepage">
         <HomepageHeader
           height={this.calculateHeight(true)}
-          mobile={mobile}
+          mobile={this.props.mobile}
         />
         <HomepageFastestDelivery
           height={this.calculateHeight()}
-          mobile={mobile}
+          mobile={this.props.mobile}
         />
         <HomepageHowCarousel
           height={this.calculateHeight()}
-          mobile={mobile}
+          mobile={this.props.mobile}
         />
         <HomepageReviewsCarousel
           height={this.calculateHeight()}
-          mobile={mobile}
+          mobile={this.props.mobile}
         />
         <HomepagePopJuices />
       </div>
