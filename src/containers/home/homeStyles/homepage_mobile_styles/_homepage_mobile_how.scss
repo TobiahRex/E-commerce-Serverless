@@ -1,4 +1,4 @@
-.homepage-how {
+.homepage__how {
   @extend .homepage-flex-center;
   flex-direction: column;
   height: 30em;
@@ -10,46 +10,45 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
-    & h1.homepage-how-title {
+    & .content__title {
       color: $p-red;
       line-height: 1.5em;
       margin: 1em;
     }
-    & .homepage-how-carousel-container {
+    & .content__carousel--container {
       width: 100%;
       max-width: 34.6em;
       background-color: $p-white;
       overflow: hidden;
       position: relative;
-      & .homepage-how-carousel-container-slides {
+      & .carousel__slides {
         display: flex;
         position: absolute;
-        /*       left: -34.6em; */
         transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-        & .homepage-how-carousel-couple,
-        .homepage-how-carousel-distro,
-        .homepage-how-carousel-warehouse,
-        .homepage-how-carousel-flight,
-        .homepage-how-carousel-truck,
-        .homepage-how-carousel-delivery {
-          & .homepage-how-carousel-couple-image,
-          & .homepage-how-carousel-distro-image,
-          & .homepage-how-carousel-warehouse-image,
-          & .homepage-how-carousel-flight-image,
-          & .homepage-how-carousel-truck-image,
-          & .homepage-how-carousel-delivery-image {
+        & .carousel__slides--slide__couple,
+        .carousel__slides--slide__distro,
+        .carousel__slides--slide__warehouse,
+        .carousel__slides--slide__flight,
+        .carousel__slides--slide__truck,
+        .carousel__slides--slide__delivery {
+          & .couple__image,
+          & .distro__image,
+          & .warehouse__image,
+          & .flight__image,
+          & .truck__image,
+          & .delivery__image {
             @extend .homepage-flex-bottom;
             height: 25em;
             max-width: 34.6em;
             background-image: $img-carousel-couple;
             background-size: contain;
             background-repeat: no-repeat;
-            & .homepage-how-carousel-couple-description-container,
-            & .homepage-how-carousel-distro-description-container,
-            & .homepage-how-carousel-warehouse-description-container,
-            & .homepage-how-carousel-flight-description-container,
-            & .homepage-how-carousel-truck-description-container,
-            & .homepage-how-carousel-delivery-description-container {
+            & .couple__description--container,
+            & .distro__description--container,
+            & .warehouse__description--container,
+            & .flight__description--container,
+            & .truck__description--container,
+            & .delivery__description--container {
               @extend .homepage-flex-center;
               height: 6.5em;
               width: 34.6em;
@@ -65,10 +64,10 @@
                 line-height: 2em;
               }
             }
-            & .homepage-how-carousel-delivery-description-container {
+            & .delivery__description--container {
               height: 9em;
               padding-bottom: 1em;
-              & a.homepage-how-carousel-delivery-buy-btn {
+              & .delivery__btn--buy {
                 @extend .homepage-flex-center;
                 width: 10.66em;
                 height: 2.66em;

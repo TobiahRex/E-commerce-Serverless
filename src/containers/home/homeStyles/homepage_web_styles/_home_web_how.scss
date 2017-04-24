@@ -1,4 +1,4 @@
-.homepage-how {
+.homepage__how {
   @extend .flex-center;
   flex-direction: column;
   height: 66em;
@@ -10,24 +10,24 @@
     flex-direction: column;
     height: 90%;
     width: 100%;
-    & h1.homepage-how-title {
+    & .content__title {
       color: $p-red;
       line-height: 1.5em;
       margin: .8em;
     }
-    & .homepage-how-carousel-container {
+    & .content__carousel--container {
       height: 57.2em;
       width: 94.1em;
       background-color: $p-white;
       overflow: hidden;
       position: relative;
-      & .homepage-how-carousel-container-slides {
+      & .carousel__slides {
         display: flex;
         position: absolute;
         left: -94.1em;
         transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
-        & .homepage-how-carousel-couple {
-          & .homepage-how-carousel-couple-image {
+        & .carousel__slides--slide__couple {
+          & .couple__image {
             @extend .flex-bottom;
             @extend .flex-bottom;
             height: 57.2em;
@@ -35,7 +35,7 @@
             background-image: url('./images/nj2jp-homepage-carousel-couple.png');
             background-position: cover;
             background-repeat: no-repeat;
-            & .homepage-how-carousel-couple-description-container {
+            & .couple__description--container {
               @extend .flex-center;
               height: 15.5em;
               width: 72.5em;
@@ -53,8 +53,8 @@
             }
           }
         }
-        & .homepage-how-carousel-distro {
-          & .homepage-how-carousel-distro-image {
+        & .carousel__slides--slide__distro {
+          & .distro__image {
             @extend .flex-bottom;
             height: 57.2em;
             width: 94.1em;
@@ -62,7 +62,7 @@
             background-position: cover;
             background-repeat: no-repeat;
           }
-          & .homepage-how-carousel-distro-description-container {
+          & .distro__description--container {
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
@@ -78,8 +78,8 @@
             }
           }
         }
-        & .homepage-how-carousel-warehouse {
-          & .homepage-how-carousel-warehouse-image {
+        & .carousel__slides--slide__warehouse {
+          & .warehouse__image {
             @extend .flex-bottom;
             height: 57.2em;
             width: 94.1em;
@@ -87,7 +87,7 @@
             background-position: cover;
             background-repeat: no-repeat;
           }
-          & .homepage-how-carousel-warehouse-description-container {
+          & .warehouse__description--container {
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
@@ -104,8 +104,8 @@
             }
           }
         }
-        & .homepage-how-carousel-flight {
-          & .homepage-how-carousel-flight-image {
+        & .carousel__slides--slide__flight {
+          & .flight__image {
             @extend .flex-bottom;
             height: 57.2em;
             width: 94.1em;
@@ -113,7 +113,7 @@
             background-position: cover;
             background-repeat: no-repeat;
           }
-          & .homepage-how-carousel-flight-description-container {
+          & .flight__description--container {
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
@@ -130,8 +130,8 @@
             }
           }
         }
-        & .homepage-how-carousel-truck {
-          & .homepage-how-carousel-truck-image {
+        & .carousel__slides--slide__truck {
+          & .truck__image {
             @extend .flex-bottom;
             height: 57.2em;
             width: 94.1em;
@@ -139,7 +139,7 @@
             background-position: cover;
             background-repeat: no-repeat;
           }
-          & .homepage-how-carousel-truck-description-container {
+          & .truck__description--container {
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
@@ -156,8 +156,8 @@
             }
           }
         }
-        & .homepage-how-carousel-delivery {
-          & .homepage-how-carousel-delivery-image {
+        & .carousel__slides--slide__delivery {
+          & .delivery__image {
             @extend .flex-bottom;
             height: 57.2em;
             width: 94.1em;
@@ -165,7 +165,7 @@
             background-position: cover;
             background-repeat: no-repeat;
           }
-          & .homepage-how-carousel-delivery-description-container {
+          & .delivery__description--container {
             @extend .flex-center;
             flex-direction: column;
             height: 16.5em;
@@ -180,7 +180,7 @@
               font-weight: 400;
               line-height: 2em;
             }
-            & a.homepage-how-carousel-delivery-buy-btn {
+            & .delivery__btn--buy {
               @extend .flex-center;
               width: 10.66em;
               height: 2.66em;
@@ -198,6 +198,7 @@
           }
         }
       }
+
       & .homepage-how-carousel-left-arrow,
       .homepage-how-carousel-right-arrow {
         text-shadow: 0 0px 10px rgba(0,0,0,.1);
@@ -223,9 +224,6 @@
           cursor: pointer;
         }
       }
-      // & .homepage-how-carousel-right-arrow:after {
-      //   @extend .ping-nav;
-      // }
       & .homepage-how-carousel-left-arrow {
         color: $p-red;
         text-shadow: 0 3px 10px rgba(0,0,0,.1);

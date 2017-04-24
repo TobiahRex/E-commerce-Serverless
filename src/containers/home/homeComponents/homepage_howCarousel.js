@@ -73,8 +73,8 @@ class HomepageHowCarousel extends Component {
     return slideDescs.map(({ name, desc, alt }) => (
       <CarouselImageSlide
         maxWidth={maxWidth}
-        key={`homepage-how-carousel-${name}-${Date.now()}`}
-        className="homepage-how-carousel"
+        key={`homepage-how-carousel-${name}`}
+        className="carousel__slides--slide"
         name={name}
         description={desc}
         alt={alt}
@@ -110,13 +110,13 @@ class HomepageHowCarousel extends Component {
     };
     const { height } = this.props;
     return (
-      <div className="homepage-how" style={{ height }}>
+      <div className="homepage__how" style={{ height }}>
         <div className="how__content--container">
-          <h1 className="homepage-how-title">How?</h1>
-          <div className="homepage-how-carousel-container">
+          <h1 className="content__title">How?</h1>
+          <div className="content__carousel--container">
             <div
               style={stylesObj.slides}
-              className="homepage-how-carousel-container-slides"
+              className="carousel__slides"
             >{this.renderCarouselSlides(maxWidth)}</div>
             <CarouselNav
               show={stylesObj.leftNav}
