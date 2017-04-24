@@ -39,7 +39,7 @@
           & .homepage-how-carousel-truck-image,
           & .homepage-how-carousel-delivery-image {
             @extend .homepage-flex-bottom;
-            height: 24em;
+            height: 25em;
             max-width: 34.6em;
             background-image: $img-carousel-couple;
             background-size: contain;
@@ -53,9 +53,10 @@
               @extend .homepage-flex-center;
               height: 6.5em;
               width: 34.6em;
-              background-color: rgba(1,1,1,.75);
+              background-color: $p-blue;
               margin-bottom: 0;
               & p {
+                padding: .5em;
                 max-width: 30em;
                 text-align: center;
                 color: $p-white;
@@ -66,6 +67,7 @@
             }
             & .homepage-how-carousel-delivery-description-container {
               height: 9em;
+              padding-bottom: 1em;
               & a.homepage-how-carousel-delivery-buy-btn {
                 @extend .homepage-flex-center;
                 width: 10.66em;
