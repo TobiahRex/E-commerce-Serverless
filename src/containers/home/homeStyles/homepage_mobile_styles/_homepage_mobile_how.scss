@@ -9,13 +9,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
     & .content__title {
       color: $p-red;
       line-height: 1.5em;
       margin: 1em;
     }
     & .content__carousel--container {
+      height: 28em;
       width: 100%;
       max-width: 34.6em;
       background-color: $p-white;
@@ -85,19 +85,19 @@
               }
             }
           }
-          & .homepage-how-carousel-distro-image {
+          & .distro__image {
             background-image: $img-carousel-distro;
           }
-          & .homepage-how-carousel-warehouse-image {
+          & .warehouse__image {
             background-image: $img-carousel-warehouse;
           }
-          & .homepage-how-carousel-flight-image {
+          & .flight__image {
             background-image: $img-carousel-flight;
           }
-          & .homepage-how-carousel-truck-image {
+          & .truck__image {
             background-image: $img-carousel-truck;
           }
-          & .homepage-how-carousel-delivery-image {
+          & .delivery__image {
             background-image: $img-carousel-delivery;
           }
         }
