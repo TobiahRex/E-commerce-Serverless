@@ -15,18 +15,18 @@ function HomepageFastestDelivery({ height, mobile }) {
   }
   return (
     <div
-      className="homepage-fastest-delivery"
+      className="homepage__fastest-delivery"
       style={{ height }}
     >
       <div className="fastest-delivery__content--container">
-        <h1 className="homepage-fastest-delivery-title">
+        <h1 className="content__title">
           Fastest Delivery
         </h1>
-        <div className="homepage-fastest-delivery-description-container">
-          <img alt="Fastest Delivery" className="homepage-fastest-delivery-description-image" />
-          <div className="homepage-fastest-delivery-description-message-container">
-            <h3>Nobody Is Faster In Japan</h3>
-            <div className="homepage-fastest-delivery-description-message-body">
+        <div className="content__description-container">
+          <img alt="Fastest Delivery" className="content__description-image" />
+          <div className="content__message-container">
+            <h3 className="message_container__title">Nobody Is Faster In Japan</h3>
+            <div className="message-contianer__body">
               <p style={{ display }} >
                 No one can deliver Nicotine E-Juice to Japan
                 faster than us.
@@ -41,7 +41,7 @@ function HomepageFastestDelivery({ height, mobile }) {
               </p>
             </div>
             <button
-              className="homepage-fastest-delivery-description-message-buy-btn sweep-right"
+              className="message-container__btn--buy sweep-right"
               onClick={() => browserHistory.push('/juices')}
             >Buy Now</button>
           </div>
