@@ -15,7 +15,28 @@ class HomepageReviewsCarousel extends Component {
     screenSize: PropTypes.string,
     height: PropTypes.number.isRequired,
   }
-
+  static reviews = [
+    {
+      className: 'slides--slide',
+      review: 'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.',
+      author: 'Matt Shipmen',
+    },
+    {
+      className: 'slides--slide',
+      review: 'Wow! Fruity Bamm-Bamm = Delicious.  4 Day Delivery = Fast. My New Juice Source = NJ2JP.',
+      author: 'Gene Smith, Okinawa',
+    },
+    {
+      className: 'slides--slide',
+      review: '“NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to them carrying more juices flavors.”',
+      author: 'Robert McNair, Sasebo',
+    },
+    {
+      className: 'slides--slide',
+      review: 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
+      author: 'Justin Arians, Yokosuka',
+    }
+  ]
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +62,7 @@ class HomepageReviewsCarousel extends Component {
   }
 
   componentWillUnmount() {
-    this.unMountTimer();
+    clearTimeout(globalTimer);
   }
 
   calcMaxWidth = (screen, index = 0) => {
@@ -89,8 +110,6 @@ class HomepageReviewsCarousel extends Component {
     this.startTimer(newIndex);
   }
 
-  unMountTimer = () => clearTimeout(globalTimer);
-
   handleClick = (e) => {
     e.preventDefault();
     switch (e.target.getAttribute('id')) {
@@ -114,34 +133,15 @@ class HomepageReviewsCarousel extends Component {
           <div className="content__carousel--parent">
             <div className="carousel--container">
               <div style={leftAdjust} className="carousel__slides">
-                <HomepageReviewsSlide
-                  maxWidth={newMaxWidth}
-                  className={'slides--slide'}
-                  name={'alpha'}
-                  review={'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.'}
-                  author={'Matt Shipmen'}
-                />
-                <HomepageReviewsSlide
-                  maxWidth={newMaxWidth}
-                  className={'slides--slide'}
-                  name={'beta'}
-                  review={'Wow! Fruity Bamm-Bamm = Delicious.  4 Day Delivery = Fast. My New Juice Source = NJ2JP.'}
-                  author={'Gene Smith, Okinawa'}
-                />
-                <HomepageReviewsSlide
-                  maxWidth={newMaxWidth}
-                  className={'slides--slide'}
-                  name={'gamma'}
-                  review={'“NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to them carrying more juices flavors.”'}
-                  author={'Robert McNair, Sasebo'}
-                />
-                <HomepageReviewsSlide
-                  maxWidth={newMaxWidth}
-                  className={'slides--slide'}
-                  name={'delta'}
-                  review={'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!'}
-                  author={'Justin Arians, Yokosuka'}
-                />
+                { this.reviews.map(({ className, review, author }) =>
+                  <HomepageReviewsSlide
+                    key={new Buffer(author, 'utf8').toString('base64')}
+                    maxWidth={newMaxWidth}
+                    className={className}
+                    review={review}
+                    author={author}
+                  />)
+                }
               </div>
             </div>
           </div>
