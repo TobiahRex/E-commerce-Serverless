@@ -9,14 +9,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 90%;
+    height: 100%;
     & h1.homepage-how-title {
       color: $p-red;
       line-height: 1.5em;
       margin: 1em;
     }
     & .homepage-how-carousel-container {
-      height: 24em;
       width: 100%;
       max-width: 34.6em;
       background-color: $p-white;
@@ -55,7 +54,7 @@
               height: 6.5em;
               width: 34.6em;
               background-color: rgba(1,1,1,.75);
-              margin-bottom: 1.5em;
+              margin-bottom: 0;
               & p {
                 max-width: 30em;
                 text-align: center;
@@ -117,7 +116,7 @@
           content: $fa-right-chevron-white;
           background-size: content;
           position: absolute;
-          top: 30%;
+          top: 20%;
           right: .7em;
           height: 6em;
           width: 3em;

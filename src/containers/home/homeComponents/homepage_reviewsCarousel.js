@@ -109,12 +109,12 @@ class HomepageReviewsCarousel extends Component {
     newMaxWidth = String(newMaxWidth);
     const { height } = this.props;
     return (
-      <div className="homepage__reviews" style={{ height }} >
+      <div className="homepage-reviews" style={{ height }} >
         <div className="reviews__content--container">
-          <h1 className="content__title">Reviews</h1>
-          <div className="content__carousel--parent">
-            <div className="carousel__container">
-              <div style={leftAdjust} className="carousel__slides">
+          <h1 className="homepage-reviews-title">Reviews</h1>
+          <div className="homepage-reviews-carousel-parent">
+            <div className="homepage-reviews-carousel-container">
+              <div style={leftAdjust} className="homepage-reviews-carousel-slides">
                 <HomepageReviewsSlide
                   maxWidth={newMaxWidth}
                   className={'homepage-reviews-carousel'}

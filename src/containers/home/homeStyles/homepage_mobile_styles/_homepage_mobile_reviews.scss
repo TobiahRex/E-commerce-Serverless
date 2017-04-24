@@ -1,4 +1,4 @@
-.homepage__reviews {
+.homepage-reviews {
   @extend .homepage-flex-center;
   flex-direction: column;
   height: 33em;
@@ -10,26 +10,25 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 90%;
+    height: 100%;
     width: 100%;
-    & .content__title {
+    & h1.homepage-reviews-title {
       color: $p-red;
       line-height: 1em;
       margin: .6em;
     }
-    & .content__carousel--parent {
+    & .homepage-reviews-carousel-parent {
       @extend .homepage-flex-center;
       flex-direction: column;
       height: 22em;
       width: 100%;
       background-color: $p-blue;
-      & .carousel__container {
-        height: 21em;
+      & .homepage-reviews-carousel-container {
         width: 100%;
         max-width: 34.6em;
         overflow: hidden;
         position: relative;
-        & .carousell__slides {
+        & .homepage-reviews-carousel-slides {
           display: flex;
           position: absolute;
           background-color: $p-blue;

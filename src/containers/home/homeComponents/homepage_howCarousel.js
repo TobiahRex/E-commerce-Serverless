@@ -118,8 +118,6 @@ class HomepageHowCarousel extends Component {
               style={stylesObj.slides}
               className="homepage-how-carousel-container-slides"
             >{this.renderCarouselSlides(maxWidth)}</div>
-
-            {/* NAVS */}
             <CarouselNav
               show={stylesObj.leftNav}
               className="homepage-how-carousel"
