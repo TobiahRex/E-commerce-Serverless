@@ -1,4 +1,4 @@
-.homepage-reviews {
+.homepage__reviews {
   @extend .homepage-flex-center;
   flex-direction: column;
   height: 33em;
@@ -12,24 +12,24 @@
     flex-direction: column;
     height: 90%;
     width: 100%;
-    & h1.homepage-reviews-title {
+    & .content__title {
       color: $p-red;
       line-height: 1em;
       margin: .6em;
     }
-    & .homepage-reviews-carousel-parent {
+    & .content__carousel--parent {
       @extend .homepage-flex-center;
       flex-direction: column;
       height: 22em;
       width: 100%;
       background-color: $p-blue;
-      & .homepage-reviews-carousel-container {
+      & .carousel__container {
         height: 21em;
         width: 100%;
         max-width: 34.6em;
         overflow: hidden;
         position: relative;
-        & .homepage-reviews-carousel-slides {
+        & .carousell__slides {
           display: flex;
           position: absolute;
           background-color: $p-blue;
@@ -150,10 +150,6 @@
   }
   }
   & .reviews__navBob {
-    @include prefixflex();
-    justify-content: center;
-    align-items: flex-end;
-    flex: 1;
-    @extend .navBob_mobile;
+    display: none;
   }
 }
