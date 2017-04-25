@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-function SingleProductModal({ showModal }) {
+function SingleProductModal({ showModal, toggleModal }) {
   return (
     <div
       style={{ display: showModal ? 'block' : 'none' }}
@@ -21,32 +21,30 @@ function SingleProductModal({ showModal }) {
         </div>
         <div className="dialogue__action-btns">
           <button
+            data-tag="view-cart"
             className="action-btn__cart sweep-right"
-            onClick={() => browserHistory.push('/cart')}
-          >
-            View Cart
-          </button>
+            onClick={toggleModal}
+          >View Cart</button>
 
           <button
+            data-tag="view-juices"
             className="action-btn__continue sweep-right"
-            onClick={() => browserHistory.push('/juices')}
-          >
-            Continue Shopping
-          </button>
+            onClick={toggleModal}
+          >Continue Shopping</button>
 
           <button
+            data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
-            onClick={() => browserHistory.push('/express_checkout')}
-          >
-            Express Checkout
-          </button>
+            onClick={toggleModal}
+          >Express Checkout</button>
         </div>
       </div>
     </div>
   );
 }
-const { bool } = React.PropTypes;
+const { bool, func } = React.PropTypes;
 SingleProductModal.propTypes = {
   showModal: bool.isRequired,
+  toggleModal: func.isRequired,
 };
 export default SingleProductModal;

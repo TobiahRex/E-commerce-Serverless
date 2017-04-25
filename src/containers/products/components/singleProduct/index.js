@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import BreadCrumb from '../../../../components/breadcrumbs';
 import Title from './title';
@@ -7,7 +8,13 @@ import Container from './container/';
 import ActionBtns from './actionBtns';
 import Modal from './modal';
 
+const { func } = React.PropTypes;
+
 class SingleProduct extends Component {
+  static propTypes = {
+    saveProductToCart: func.isRequired,
+    push: func.isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -16,10 +23,32 @@ class SingleProduct extends Component {
     };
   }
 
-  toggleModal = () => {
-    this.setState(prevState => ({
-      showModal: !prevState.showModal,
-    }));
+  toggleModal = (e) => {
+    switch (e.target.dataset.tag) {
+      case 'view-cart':
+        this.setState(prevState => ({
+          showModal: !prevState.showModal,
+        }));
+        this.props.push('/cart');
+        break;
+      case 'view-juices':
+        this.setState(prevState => ({
+          showModal: !prevState.showModal,
+        }));
+        this.props.push('/cart');
+        break;
+      case 'view-checkout':
+        this.setState(prevState => ({
+          showModal: !prevState.showModal,
+        }));
+        this.props.push('/express_checkout');
+        break;
+      default: {
+        this.setState(prevState => ({
+          showModal: !prevState.showModal,
+        }));
+      }
+    }
   }
 
   render() {
@@ -34,12 +63,15 @@ class SingleProduct extends Component {
         <Title />
         <Container toggleModal={this.toggleModal} />
         <ActionBtns />
-        <Modal showModal={this.state.showModal} />
+        <Modal
+          showModal={this.state.showModal} toggleModal={this.toggleModal}
+        />
       </div>
     );
   }
 }
 const mapDispatchToProps = dispatch => ({
   saveProductToCart: () => console.log('savingProductToCart', dispatch),
+  push: location => dispatch(push(location)),
 });
 export default connect(null, mapDispatchToProps)(SingleProduct);
