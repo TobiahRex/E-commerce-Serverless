@@ -1,18 +1,12 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
+import PromotionalBanner from './singleProduct.modal.promotionBanner';
 
 export default function SingleProductParent() {
   return (
     <div className="main__parent">
-      <div className="main__info--image">
-        <img className="image__src" alt="Switch Juice" />
-        <button className="image__promotion sweep-right-red">
-          <p>Buy 4 Bottles</p>
-          <br />
-          <p>Get 25% Off Your Order</p>
-        </button>
-      </div>
+      <PromotionalBanner />
       <div className="main__info--desc">
         <div className="desc__title">
           <h1>Fruity Bamm-Bamm</h1>
