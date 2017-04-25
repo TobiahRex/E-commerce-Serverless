@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function PriceDescription() {
+export default function Price() {
   return (
     <div className="desc__price-row">
       <ul className="price-row__list">
@@ -30,5 +30,6 @@ export default function PriceDescription() {
         </li>
       </ul>
     </div>
+
   );
 }

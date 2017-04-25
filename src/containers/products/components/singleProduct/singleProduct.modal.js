@@ -23,7 +23,7 @@ export default function SingleProductModal() {
           >
             View Cart
           </button>
-          
+
           <button
             className="action-btn__continue sweep-right"
             onClick={() => browserHistory.push('/juices')}
