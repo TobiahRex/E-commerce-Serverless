@@ -3,37 +3,22 @@ import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 import BreadCrumb from '../../../components/breadcrumbs';
 
-export default function SingleProduct({ location }) {
-  console.warn('location: ', location);
+export default function SingleProduct() {
   return (
-    <div className="single-product-main">
-      {/* <div className="single-product-breadcrumb-container">
-        <ul className="single-product-breadcrumb-list">
-          <li className="single-product-breadcrumb-path">
-            Home
-            <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
-          </li>
-          <li className="single-product-breadcrumb-path">
-            Fruity Bamm-Bamm
-          </li>
-        </ul>
-      </div> */}
+    <div className="juice-page__main">
       <BreadCrumb
         paths={['Home']}
         classes={['home']}
         destination={['']}
         lastCrumb="Juice Page"
       />
-      <div className="single-product-main-title">
+      <div className="main__title">
         <h1>Switch Juice</h1>
       </div>
-      <div className="single-product-info-parent">
-        <div className="single-product-info-image">
-          <img
-            alt="Switch Juice"
-            className="single-product-info-image-src"
-          />
-          <div className="single-product-info-image-promotion">
+      <div className="main--parent">
+        <div className="main__info--image">
+          <img className="image__src" alt="Switch Juice" />
+          <div className="image__promotion">
             <p>Buy 4 Bottles</p>
             <br />
             <p>Get 25% Off Your Order</p>

@@ -1,38 +1,8 @@
 @media only screen and (max-width : 930px) {
-// @media only screen and (max-width : 640px) {
-  .single-product-main {
+  .juice-page__main {
     width: 100%;
     height: 150em;
-    & .single-product-breadcrumb-container {
-      @include prefixflex();
-      justify-content: flex-start;
-      align-items: center;
-      width: 100%;
-      height: 6em;
-      background-color: $p-white;
-      & .single-product-breadcrumb-list {
-        @include prefixflex();
-        justify-content: flex-start;
-        align-items: center;
-        list-style-type: none;
-        margin: 0;
-        padding: 0 1em;
-        & .single-product-breadcrumb-path {
-          font-size: 1.6em;
-          font-family: $p-font;
-          font-weight: normal;
-          color: $p-blue;
-          & .breadcrumb-chevron-right {
-            font-size: 18px;
-            color: $p-blue;
-            margin: 0 .5em -1em .5em;
-            bottom: -1px;
-            position: relative;
-          }
-        }
-      }
-    }
-    & .single-product-main-title {
+    & .main__title {
       @include prefixflex();
       align-items: flex-start;
       height: 6em;
@@ -44,14 +14,14 @@
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
-    & .single-product-info-parent {
+    & .main--parent {
       @include prefixflex();
       justify-content: center;
       align-items: center;
       flex-direction: column;
       align-content: center;
       max-height: 120em;
-      & .single-product-info-image {
+      & .main__info--image {
         display: inline-block;
         position: relative;
         overflow: hidden;
@@ -59,7 +29,15 @@
         width: 100%;
         text-align: center;
         background-color: $p-white;
-        & .single-product-info-image-promotion {
+        & .image__src {
+          position: relative;
+          content: $pina-colada;
+          margin: 0 auto;
+          max-width: 44em;
+          max-height: 37em;
+          top: 5.5em;
+        }
+        & .image__promotion {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -84,16 +62,8 @@
             color: $p-white;
           }
         }
-        & .single-product-info-image-src {
-          position: relative;
-          content: $pina-colada;
-          margin: 0 auto;
-          max-width: 44em;
-          max-height: 37em;
-          top: 5.5em;
-        }
       }
-      & .single-product-info-desc-parent {
+      & .main__info--desc {
         @include prefixflex();
         justify-content: center;
         align-items: center;
