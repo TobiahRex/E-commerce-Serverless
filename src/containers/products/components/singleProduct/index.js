@@ -6,7 +6,10 @@ import BreadCrumb from '../../../../components/breadcrumbs';
 import Title from './title';
 import Container from './container/';
 import ActionBtns from './actionBtns';
-import Modal from './modal';
+import SuccessModal from './successModal';
+import BulkSaleModal from './promotionModal.bulk';
+import RegisterModal from './promotionModal.register';
+
 
 const { func } = React.PropTypes;
 
@@ -53,7 +56,15 @@ class SingleProduct extends Component {
         <Title />
         <Container toggleModal={this.toggleModal} />
         <ActionBtns />
-        <Modal
+        <SuccessModal
+          showModal={this.state.showModal}
+          toggleModal={this.toggleModal}
+        />
+        <BulkSaleModal
+          showModal={this.state.showModal}
+          toggleModal={this.toggleModal}
+        />
+        <RegisterModal
           showModal={this.state.showModal}
           toggleModal={this.toggleModal}
         />

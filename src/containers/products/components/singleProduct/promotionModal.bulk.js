@@ -19,7 +19,7 @@ function SingleProductModal({ showModal, toggleModal }) {
     };
   }
   return (
-    <div style={style} className="add-success-modal" >
+    <div style={style} className="add-success-modal">
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
           <button className="exit-btn" onClick={toggleModal}>
