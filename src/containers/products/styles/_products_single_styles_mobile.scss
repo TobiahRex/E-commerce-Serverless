@@ -70,7 +70,7 @@
         flex-direction: column;
         max-width: 48.6em;
         width: 100%;
-        & .single-product-info-desc-title {
+        & .desc__title {
           @include prefixflex();
           align-items: center;
           height: 7em;
@@ -83,23 +83,23 @@
             @include prefixed(text-shadow, 0px 1px 1px rgba(1,1,1,.25));
           }
         }
-        & .single-product-info-desc-price-row {
+        & .desc__price-row {
           @include prefixflex();
           justify-content: center;
           align-items: center;
           height: 7em;
           max-width: 48.6em;
           width: 100%;
-          & .single-product-info-desc-price-row-list {
+          & .price-row__list {
             @include prefixflex();
             justify-content: center;
             align-items: center;
             padding: 0;
             margin: 0;
             list-style-type: none;
-            & .single-product-info-desc-price-item,
-            .single-product-info-desc-tax-item,
-            .single-product-info-desc-instock-item {
+            & .list--price,
+            .list--tax,
+            .list--stock {
               @include prefixflex();
               justify-content: center;
               align-items: center;
@@ -113,14 +113,14 @@
                 line-height: 1.42em;
                 color: $p-blue;
                 @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
-                & .single-product-price-sign {
+                & .price__fa {
                   position: relative;
                   padding-right: .2em;
                   bottom: -.2em;
                 }
               }
             }
-            & .single-product-info-desc-taxbox-item,
+            & .tax__desc,
             .single-product-info-desc-stockbox-item {
               @include prefixflex();
               justify-content: center;

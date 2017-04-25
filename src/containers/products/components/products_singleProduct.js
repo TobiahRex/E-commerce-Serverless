@@ -24,19 +24,19 @@ export default function SingleProduct() {
             <p>Get 25% Off Your Order</p>
           </div>
         </div>
-        <div className="single-product-info-desc-parent">
-          <div className="single-product-info-desc-title">
+        <div className="main__info--desc">
+          <div className="desc__title">
             <h1>Fruity Bamm-Bamm</h1>
           </div>
-          <div className="single-product-info-desc-price-row">
-            <ul className="single-product-info-desc-price-row-list">
-              <li className="single-product-info-desc-price-item">
+          <div className="desc__price-row">
+            <ul className="price-row__list">
+              <li className="list--price">
                 <h1>
-                  <FontAwesome name="usd" className="single-product-price-sign" /> 30.00
+                  <FontAwesome name="usd" className="price__fa" /> 30.00
                 </h1>
               </li>
-              <li className="single-product-info-desc-taxbox-item">
-                <div className="single-product-info-desc-taxbox-item-msg-tax">
+              <li className="list--tax">
+                <div className="tax__desc">
                   <p>+ Tax</p>
                 </div>
                 <div className="single-product-info-desc-taxbox-item-msg-shipping">
@@ -45,7 +45,7 @@ export default function SingleProduct() {
                   </p>
                 </div>
               </li>
-              <li className="single-product-info-desc-stockbox-item">
+              <li className="list--stock">
                 <div className="single-product-info-desc-stockbox-item-msg-sku">
                   <p>SKU: 123123123</p>
                 </div>
