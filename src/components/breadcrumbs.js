@@ -13,7 +13,7 @@ const propTypes = {
 function BreadCrumb({ paths, classes, destination, lastCrumb }) {
   const breadcrumbs = paths.map((path, i) => (
     <li
-      key={`breadcrumb-${classes[i]}-${i}`}
+      key={new Buffer(path, 'utf8').toString('base64')}
       className={`list--${classes[i]}`}
     >
       <Link className="breadcrumb-link" to={`/${destination[i]}`}>
@@ -22,7 +22,6 @@ function BreadCrumb({ paths, classes, destination, lastCrumb }) {
       <FontAwesome name="angle-right" />
     </li>
   ));
-  console.warn('breacrumbs: ', breadcrumbs);
 
   return (
     <div className="userdash__breadcrumb breadcrumbs">
