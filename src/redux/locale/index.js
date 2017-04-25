@@ -11,7 +11,6 @@ export default Creators;
 
 export const INITIAL_STATE = Immutable({
   activeLanguage: 'english',
-  activeCurrency: 'usd',
   country: null,
 });
 
