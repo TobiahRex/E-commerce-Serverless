@@ -265,7 +265,7 @@
             height: 19em;
             max-width: 30.6em;
             width: 30.6em;
-            & .btn-conatiner__qty--container {
+            & .btn-container__qty--container {
               height: 8em;
               max-width: 21em;
               width: 21em;
@@ -280,17 +280,17 @@
                 background-color: $p-grey;
                 & .list--qty-title,
                 .list--qty-readout,
-                .single-product-info-desc-actions-btn-qty-btns {
+                .list--qty-adjust {
                   p {
                     font-size: 1.8em;
                     font-family: $p-font;
                     color: $p-blue;
                   }
                 }
-                & .single-product-info-desc-actions-btn-qty-title {
+                & .list--qty-title {
                   padding: 0 .5em;
                 }
-                & .single-product-info-desc-actions-btn-qty-readout {
+                & .list--qty-readout {
                   p {
                     @include prefixflex();
                     justify-content: center;
@@ -303,7 +303,7 @@
                     margin-right: .2em;
                   }
                 }
-                & .single-product-info-desc-actions-btn-qty-btns {
+                & .list--qty-adjust {
                   button {
                     font-size: 1.8em;
                     border: none;
@@ -320,13 +320,14 @@
                     &:active,
                     &:hover,
                     &:focus {
+                      outline: none;
                       background-color: $p-blue;
                     }
                   }
                 }
               }
             }
-            & .single-product-info-desc-actions-btn-add {
+            & .btn-container__add-to-cart {
               height: 3.33em;
               max-width: 40em;
               width: 100%;
@@ -341,6 +342,7 @@
               &:hover,
               &:active,
               &:focus {
+                outline: none;
                 background-color: $p-blue;
               }
               & .btn-flex-parent {
@@ -354,7 +356,7 @@
               }
             }
           }
-          & .single-product-info-desc-actions-warning-msg {
+          & .actions__warning-msg {
                 margin: 3em auto 2em auto;
                 text-align: center;
                 width: 20em;

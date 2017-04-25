@@ -263,7 +263,7 @@
             height: 9em;
             max-width: 46.6em;
             width: 46.6em;
-            & .btn-conatiner__qty--container {
+            & .btn-container__qty--container {
               height: 6em;
               max-width: 19em;
               width: 19em;
@@ -278,17 +278,17 @@
                 background-color: $p-grey;
                 & .list--qty-title,
                 .list--qty-readout,
-                .single-product-info-desc-actions-btn-qty-btns {
+                .list--qty-adjust {
                   p {
                     font-size: 1.8em;
                     font-family: $p-font;
                     color: $p-blue;
                   }
                 }
-                & .single-product-info-desc-actions-btn-qty-title {
+                & .list--qty-title {
                   padding: 0 .5em;
                 }
-                & .single-product-info-desc-actions-btn-qty-readout {
+                & .list--qty-readout {
                   p {
                     @include prefixflex();
                     justify-content: center;
@@ -301,7 +301,7 @@
                     margin-right: .2em;
                   }
                 }
-                & .single-product-info-desc-actions-btn-qty-btns {
+                & .list--qty-adjust {
                   button {
                     font-size: 10px;
                     border: none;
@@ -318,13 +318,14 @@
                     &:active,
                     &:hover,
                     &:focus {
+                      outline: none;
                       background-color: $p-blue;
                     }
                   }
                 }
               }
             }
-            & .single-product-info-desc-actions-btn-add {
+            & .btn-container__add-to-cart {
               & .sp-cart-icon {
                 font-size: 25px;
                 position: relative;
@@ -343,6 +344,7 @@
               &:hover,
               &:active,
               &:focus {
+                outline: none;
                 background-color: $p-blue;
               }
               & .btn-flex-parent {
@@ -355,7 +357,7 @@
               }
             }
           }
-          & .single-product-info-desc-actions-warning-msg {
+          & .actions__warning-msg {
             text-align: center;
             p {
               color: $p-blue;

@@ -83,27 +83,29 @@ export default function SingleProduct() {
                   <li className="list--qty-title">
                     <p>Quantity</p>
                   </li>
-                  <li className="single-product-info-desc-actions-btn-qty-readout">
+                  <li className="list--qty-readout">
                     <p>4</p>
                   </li>
-                  <li className="single-product-info-desc-actions-btn-qty-btns">
-                    <button className="single-product-info-desc-actions-btn-qty-plus sweep-right">
+                  <li className="list--qty-adjust">
+                    <button className="qty-adjust__plus sweep-right">
                       <FontAwesome name="plus" />
                     </button>
-                    <button className="single-product-info-desc-actions-btn-qty-minus sweep-right">
+                    <button className="qty-adjust__minus sweep-right">
                       <FontAwesome name="minus" />
                     </button>
                   </li>
                 </ul>
               </div>
-              <button className="single-product-info-desc-actions-btn-add sweep-right">
+              <button className="btn-container__add-to-cart sweep-right">
                 <span className="btn-flex-parent">
-                  <FontAwesome className="sp-cart-icon" name="shopping-cart" />
+                  <FontAwesome
+                    className="sp-cart-icon" name="shopping-cart"
+                  />
                   Add To Cart
                 </span>
               </button>
             </div>
-            <div className="single-product-info-desc-actions-warning-msg">
+            <div className="actions__warning-msg">
               <p>
                 Maximum of 4 bottles per customer per address. More info {'\u00A0'}
                 <Link
