@@ -5,20 +5,21 @@ function SingleProductModal({ showModal, toggleModal }) {
   let style;
   if (showModal) {
     style = {
-      display: 'block',
+      display: 'flex',
       opacity: 1,
+      height: '100%',
+      width: '100%',
     };
   } else {
     style = {
       display: 'none',
       opacity: 0,
+      height: 0,
+      width: 0,
     };
   }
   return (
-    <div
-      style={style}
-      className="add-success-modal"
-    >
+    <div style={style} className="add-success-modal" >
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
           <button className="exit-btn">
