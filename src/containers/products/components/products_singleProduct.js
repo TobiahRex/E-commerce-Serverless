@@ -36,20 +36,20 @@ export default function SingleProduct() {
                 </h1>
               </li>
               <li className="list--tax">
-                <div className="tax__desc">
+                <div className="tax__tax--title">
                   <p>+ Tax</p>
                 </div>
-                <div className="single-product-info-desc-taxbox-item-msg-shipping">
+                <div className="tax__shipping--title">
                   <p>
                     Free Shipping
                   </p>
                 </div>
               </li>
               <li className="list--stock">
-                <div className="single-product-info-desc-stockbox-item-msg-sku">
+                <div className="stock__sku--title">
                   <p>SKU: 123123123</p>
                 </div>
-                <div className="single-product-info-desc-stockbox-item-msg-instock">
+                <div className="stock__stock--title">
                   <h3>IN STOCK</h3>
                 </div>
               </li>

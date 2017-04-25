@@ -120,8 +120,8 @@
                 }
               }
             }
-            & .tax__desc,
-            .single-product-info-desc-stockbox-item {
+            & .list--tax,
+            .list--stock {
               @include prefixflex();
               justify-content: center;
               align-items: center;
@@ -129,32 +129,25 @@
               width: 8em;
               height: 7em;
               flex-direction: column;
-              & .single-product-info-desc-taxbox-item-msg-tax,
-              .single-product-info-desc-stockbox-item-msg-sku {
+              & .tax__tax--title,
+              .stock__sku--title {
                 & p {
                   color: $s-grey;
                   font-size: 1em;
                   text-transform: uppercase;
                 }
               }
-              & .single-product-info-desc-taxbox-item-msg-shipping,
-              .single-product-info-desc-stockbox-item-msg-instock {
+              & .tax__shipping--title,
+              .stock__stock--title {
                 & p {
                   color: $p-blue;
                   font-size: 1em;
                 }
-              }
-              & .single-product-info-desc-stockbox-item-msg-instock {
-                h3 {
+                & h3 {
                   font-size: 1.6em;
                   font-weight: 800;
                 }
               }
-            }
-            & .single-product-info-desc-stockbox-item {
-              max-width: 8em;
-              width: 8em;
-              height: 7em;
             }
           }
         }
