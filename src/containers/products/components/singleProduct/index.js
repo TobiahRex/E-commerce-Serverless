@@ -24,25 +24,18 @@ class SingleProduct extends Component {
   }
 
   toggleModal = (e) => {
+    function closeModalPush(location) {
+      this.setState(prevState => ({
+        showModal: !prevState.showModal,
+      }), () => {
+        console.log('hello?');
+        this.props.push(location);
+      });
+    }
     switch (e.target.dataset.tag) {
-      case 'view-cart':
-        this.setState(prevState => ({
-          showModal: !prevState.showModal,
-        }));
-        this.props.push('/cart');
-        break;
-      case 'view-juices':
-        this.setState(prevState => ({
-          showModal: !prevState.showModal,
-        }));
-        this.props.push('/cart');
-        break;
-      case 'view-checkout':
-        this.setState(prevState => ({
-          showModal: !prevState.showModal,
-        }));
-        this.props.push('/express_checkout');
-        break;
+      case 'view-cart': closeModalPush('/cart'); break;
+      case 'view-juices': closeModalPush('/juices'); break;
+      case 'view-checkout': closeModalPush('/express_checkout'); break;
       default: {
         this.setState(prevState => ({
           showModal: !prevState.showModal,
@@ -64,7 +57,8 @@ class SingleProduct extends Component {
         <Container toggleModal={this.toggleModal} />
         <ActionBtns />
         <Modal
-          showModal={this.state.showModal} toggleModal={this.toggleModal}
+          showModal={this.state.showModal}
+          toggleModal={this.toggleModal}
         />
       </div>
     );

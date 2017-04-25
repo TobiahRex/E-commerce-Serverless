@@ -1,11 +1,22 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router';
 
 function SingleProductModal({ showModal, toggleModal }) {
+  let style;
+  if (showModal) {
+    style = {
+      display: 'block',
+      opacity: 1,
+    };
+  } else {
+    style = {
+      display: 'none',
+      opacity: 0,
+    };
+  }
   return (
     <div
-      style={{ display: showModal ? 'block' : 'none' }}
+      style={style}
       className="add-success-modal"
     >
       <div className="add-success-modal__dialogue">
