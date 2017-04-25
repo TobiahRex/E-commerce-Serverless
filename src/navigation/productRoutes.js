@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-import SingleProduct from '../containers/products/components/singleProduct';
+import SingleProduct from '../containers/products/components/singleProduct/';
 import AllProducts from '../containers/products/components/allProducts';
 
 const ProductRoutes = () => (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function PromotionBanner() {
+export default function ImageGroup() {
   return (
     <div className="main__info--image">
       <img className="image__src" alt="Switch Juice" />

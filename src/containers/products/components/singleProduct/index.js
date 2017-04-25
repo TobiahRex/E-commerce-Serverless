@@ -1,5 +1,5 @@
 import React from 'react';
-import BreadCrumb from '../../../components/breadcrumbs';
+import BreadCrumb from '../../../../components/breadcrumbs';
 import SingleProductTitle from './singleProduct.title';
 import SingleProductParent from './singleProduct.parent';
 import SingleProductActionBtns from './singleProduct.actionBtns';
