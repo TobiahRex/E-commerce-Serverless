@@ -3,7 +3,6 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   setLanguage: ['language'],
-  setCurrency: ['currency'],
   setCountry: ['country'],
 });
 
@@ -17,13 +16,8 @@ export const INITIAL_STATE = Immutable({
 });
 
 const setLanguage = (state, { language }) => ({
+  ...state,
   activeLanguage: language,
-  ...state,
-});
-
-const setCurrency = (state, { currency }) => ({
-  ...state,
-  activeCurrency: currency,
 });
 
 const setCountry = (state, { country }) => ({
@@ -33,6 +27,5 @@ const setCountry = (state, { country }) => ({
 
 export const localeReducer = createReducer(INITIAL_STATE, {
   [Types.SET_LANGUAGE]: setLanguage,
-  [Types.SET_CURRENCY]: setCurrency,
   [Types.SET_COUNTRY]: setCountry,
 });

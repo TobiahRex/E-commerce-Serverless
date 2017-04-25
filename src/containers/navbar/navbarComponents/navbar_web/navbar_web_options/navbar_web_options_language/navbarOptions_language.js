@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import localeActions from '../../../../../../redux/locale';
 
@@ -18,34 +18,23 @@ import NavbarOptionsLanguageDropdnNihongo from './navbarOptions_language_dropdn_
 2. Finish mapping Redux action "onLanguageChange" to this components props.
 */
 
-class NavbarOptionsLanguage extends Component {
+class NavbarOptionsLanguage extends React.Component {
   static propTypes = {
-    activeLanguage: PropTypes.string,
-    onLanguageChange: PropTypes.func,
+    activeLanguage: PropTypes.string.isRequired,
+    saveLanguage: PropTypes.func.isRequired,
   }
-
   constructor(props) {
     super(props);
 
     this.state = {
-      activeLanguage: props.activeLanguage, // <---- this is FAKE
+      activeLanguage: props.activeLanguage,
     };
   }
 
-  componentWillReceiveProps({ activeLanguage }) {
-    if (this.props.activeLanguage !== activeLanguage) return this.setState({ activeLanguage });
-    return 1;
+  onLanguageChange = (language) => {
+    this.props.saveLanguage(language);
+    this.setState({ activeLanguage: language });
   }
-
-  shouldComponentUpdate(nextProps, { activeLanguage }) {
-    if (this.state.activeLanguage !== activeLanguage) {
-      return true;
-    }
-    return false;
-  }
-
-  onLanguageChange = language =>
-  this.props.onLanguageChange(language);
 
   renderLanguageTitle = () => {
     const Language = this.state.activeLanguage;
@@ -80,7 +69,7 @@ const mapStateToProps = ({ locale }) => ({
   activeLanguage: locale.activeLanguage,
 });
 const mapDispatchToProps = dispatch => ({
-  onLanguageChange: language => dispatch(localeActions.setLanguage(language)),
+  saveLanguage: language => dispatch(localeActions.setLanguage(language)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarOptionsLanguage);
