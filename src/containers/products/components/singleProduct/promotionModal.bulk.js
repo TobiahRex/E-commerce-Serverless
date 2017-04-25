@@ -22,7 +22,11 @@ function SingleProductModal({ showModal, toggleModal }) {
     <div style={style} className="add-success-modal">
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
-          <button className="exit-btn" onClick={toggleModal}>
+          <button
+            data-parent="promotion-bulk"
+            className="exit-btn"
+            onClick={toggleModal}
+          >
             <FontAwesome name="plus" />
           </button>
         </div>
@@ -33,18 +37,21 @@ function SingleProductModal({ showModal, toggleModal }) {
         </div>
         <div className="dialogue__action-btns">
           <button
+            data-parent="promotion-bulk"
             data-tag="view-cart"
             className="action-btn__cart sweep-right"
             onClick={toggleModal}
           >View Cart</button>
 
           <button
+            data-parent="promotion-bulk"
             data-tag="view-juice"
             className="action-btn__continue sweep-right"
             onClick={toggleModal}
           >Continue Shopping</button>
 
           <button
+            data-parent="promotion-bulk"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
             onClick={toggleModal}

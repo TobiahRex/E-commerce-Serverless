@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function SingleProductModal({ showModal, toggleModal }) {
+function RegisterModal({ showModal, toggleModal }) {
   let style;
   if (showModal) {
     style = {
@@ -22,7 +22,11 @@ function SingleProductModal({ showModal, toggleModal }) {
     <div style={style} className="add-success-modal">
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
-          <button className="exit-btn" onClick={toggleModal}>
+          <button
+            data-parent="promotion-register"
+            className="exit-btn"
+            onClick={toggleModal}
+          >
             <FontAwesome name="plus" />
           </button>
         </div>
@@ -33,18 +37,21 @@ function SingleProductModal({ showModal, toggleModal }) {
         </div>
         <div className="dialogue__action-btns">
           <button
+            data-parent="promotion-register"
             data-tag="view-cart"
             className="action-btn__cart sweep-right"
             onClick={toggleModal}
           >View Cart</button>
 
           <button
+            data-parent="promotion-register"
             data-tag="view-juice"
             className="action-btn__continue sweep-right"
             onClick={toggleModal}
           >Continue Shopping</button>
 
           <button
+            data-parent="promotion-register"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
             onClick={toggleModal}
@@ -55,8 +62,8 @@ function SingleProductModal({ showModal, toggleModal }) {
   );
 }
 const { bool, func } = React.PropTypes;
-SingleProductModal.propTypes = {
+RegisterModal.propTypes = {
   showModal: bool.isRequired,
   toggleModal: func.isRequired,
 };
-export default SingleProductModal;
+export default RegisterModal;

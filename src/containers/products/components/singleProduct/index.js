@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -27,13 +28,20 @@ class SingleProduct extends Component {
   }
 
   toggleModal = (e) => {
-    switch (e.target.dataset.tag) {
-      case 'view-cart': this.modalHandler('/cart'); break;
-      case 'view-checkout': this.modalHandler('/express_checkout'); break;
+    switch (e.target.dataset.parent) {
+      case 'success': {
+        switch (e.target.dataset.tag) {
+          case 'view-cart': this.modalHandler('/cart'); break;
+          case 'view-checkout': this.modalHandler('/express_checkout'); break;
+          default: {
+            this.setState(prevState => ({
+              showModal: !prevState.showModal,
+            }));
+          }
+        }
+      } break;
       default: {
-        this.setState(prevState => ({
-          showModal: !prevState.showModal,
-        }));
+        this.setState(prevState => ({ showModal: !prevState.showModal }));
       }
     }
   }
