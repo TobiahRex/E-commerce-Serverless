@@ -19,8 +19,8 @@ function RegisterModal({ showModal, toggleModal }) {
     };
   }
   return (
-    <div style={style} className="add-success-modal">
-      <div className="add-success-modal__dialogue">
+    <div style={style} className="register-modal">
+      <div className="register-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
             data-parent="promotion-register"
@@ -30,10 +30,15 @@ function RegisterModal({ showModal, toggleModal }) {
             <FontAwesome name="plus" />
           </button>
         </div>
-        <div className="dialogue__product-msg">
-          <p>{'<Product Title>'}</p>
+        <div className="dialogue__product-title">
+          <p>Yup!</p>
           <br />
-          <p>has been successfully added to your cart.</p>
+          <p>
+            <span className="required">BUY 4 BOTTLES</span>
+            and we’ll slice
+            <span className="required">25% OFF</span>
+            the price.
+          </p>
         </div>
         <div className="dialogue__action-btns">
           <button
