@@ -26,7 +26,6 @@ class SingleProduct extends Component {
   toggleModal = (e) => {
     switch (e.target.dataset.tag) {
       case 'view-cart': this.modalHandler('/cart'); break;
-      case 'view-juices': this.modalHandler('/juices'); break;
       case 'view-checkout': this.modalHandler('/express_checkout'); break;
       default: {
         this.setState(prevState => ({

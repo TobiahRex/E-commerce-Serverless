@@ -22,7 +22,7 @@ function SingleProductModal({ showModal, toggleModal }) {
     <div style={style} className="add-success-modal" >
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
-          <button className="exit-btn">
+          <button className="exit-btn" onClick={toggleModal}>
             <FontAwesome name="plus" />
           </button>
         </div>
@@ -39,7 +39,7 @@ function SingleProductModal({ showModal, toggleModal }) {
           >View Cart</button>
 
           <button
-            data-tag="view-juices"
+            data-tag="view-juice"
             className="action-btn__continue sweep-right"
             onClick={toggleModal}
           >Continue Shopping</button>
