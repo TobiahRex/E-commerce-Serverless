@@ -14,7 +14,7 @@
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
-    & .main--parent {
+    & .main__parent {
       @include prefixflex();
       justify-content: center;
       align-items: center;
@@ -42,6 +42,12 @@
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          cursor: pointer;
+          &:active,
+          &:focus,
+          &:hover {
+            outline: none;
+          }
           @include prefixed(transform, rotate(-45deg));
           height: 5.2em;
           width: 47em;
@@ -194,6 +200,7 @@
             &:active,
             &:focus,
             &:hover {
+              outline: none;
               color: $p-white;
             }
           }
@@ -398,10 +405,9 @@
                 padding: .27em;
               }
             }
-            & .single-product-info-desc-smedia-btn-like,
-            .single-product-info-desc-smedia-btn-share,
-            .single-product-info-desc-smedia-btn-tweet {
-
+            & .list__like-btn,
+            .list__share-btn,
+            .list__tweet-btn {
               background-color: $p-blue;
               font-size: 1.2em;
               line-height: 1.42em;
@@ -412,19 +418,19 @@
                 color: $p-white;
                 padding: 0 .5em;
               }
-              & .single-product-info-desc-smedia-btn-like-readout {
+              & .like-btn__qty {
                 font-size: 1em;
                 padding-left: 0;
               }
             }
-            & .single-product-info-desc-smedia-btn-tweet {
+            & .list__tweet-btn {
               background-color: #1B95E0;
             }
           }
         }
       }
     }
-    & .single-product-back-btn-container {
+    & .main__back-btn {
       @include prefixflex();
       justify-content: center;
       align-items: center;
@@ -433,8 +439,8 @@
       max-width: 30.6em;
       width: 100%;
       margin: 0 auto;
-      & .single-product-back-btn,
-      .single-product-juices-btn {
+      & .back-btn,
+      .juices-btn {
         height: 3.33em;
         width: 100%;
         border: none;
@@ -458,7 +464,7 @@
         }
       }
     }
-    & .single-product-add-success-modal {
+    & .add-success-modal {
       z-index: 30;
       @include prefixflex();
       justify-content: center;
@@ -470,10 +476,8 @@
       height: 0;
       width: 0;
       display: none;
-      // height: 100%;
-      // width: 100%;
       background-color: rgba(0,0,0,.75);
-      & .single-product-add-success-modal-dialogue {
+      & .add-success-modal__dialogue {
         @include prefixflex();
         justify-content: center;
         align-items: center;
@@ -481,13 +485,13 @@
         height: 48em;
         width: 26.6em;
         background-color: $p-white;
-        & .single-product-add-success-modal-dialogue-exit-container {
+        & .dialogue__exit--container {
           max-width: 26.6em;
           width: 100%;
           height: 8em;
           @include prefixflex();
           justify-content: flex-end;
-          & .single-product-add-success-modal-dialogue-exit-btn {
+          & .exit-btn {
             height: 2.8em;
             width: 2.8em;
             font-size: 1.5em;
@@ -500,6 +504,7 @@
             &:hover,
             &:active,
             &:focus {
+              outline: none;
               background-color: $p-blue;
             }
             span {
@@ -510,7 +515,7 @@
             }
           }
         }
-        & .single-product-add-success-modal-dialogue-msg-product {
+        & .dialogue__product-msg {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -525,7 +530,7 @@
             text-align: center;
           }
         }
-        & .single-product-add-success-modal-action-btns {
+        & .dialogue__action-btns {
           @include prefixflex();
           justify-content: space-around;;
           align-items: center;
@@ -533,9 +538,9 @@
           height: 20em;
           width: 100%;
           padding: 0.7em;
-          & .single-product-add-success-modal-cart,
-          .single-product-add-success-modal-continue,
-          .single-product-add-success-modal-checkout {
+          & .action-btn__cart,
+          .action-btn__continue,
+          .action-btn__checkout {
             height: 2.6em;
             width: 80%;
             border: none;
@@ -545,11 +550,11 @@
             font-size: 1.5em;
             padding: 0 1em;
           }
-          & .single-product-add-success-modal-continue {
+          & .action-btn__continue {
             height: 2.6em;
             padding: 0 1em;
           }
-          & .single-product-add-success-modal-checkout {
+          & .action-btn__checkout {
             height: 2.6em;
             padding: 0 1em;
           }

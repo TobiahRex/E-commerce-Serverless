@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 import BreadCrumb from '../../../components/breadcrumbs';
+import SingleProductTitle from './products_singleProduct.title';
 
 export default function SingleProduct() {
   return (
@@ -12,17 +13,15 @@ export default function SingleProduct() {
         destination={['']}
         lastCrumb="Juice Page"
       />
-      <div className="main__title">
-        <h1>Switch Juice</h1>
-      </div>
-      <div className="main--parent">
+      <SingleProductTitle />
+      <div className="main__parent">
         <div className="main__info--image">
           <img className="image__src" alt="Switch Juice" />
-          <div className="image__promotion">
+          <button className="image__promotion sweep-right-red">
             <p>Buy 4 Bottles</p>
             <br />
             <p>Get 25% Off Your Order</p>
-          </div>
+          </button>
         </div>
         <div className="main__info--desc">
           <div className="desc__title">
@@ -108,27 +107,23 @@ export default function SingleProduct() {
             <div className="actions__warning-msg">
               <p>
                 Maximum of 4 bottles per customer per address. More info {'\u00A0'}
-                <Link
-                  to={'/shipping_policy'}
-                  className="single-product-info-desc-actions-warning-msg-infolnk"
-                >here.
-                </Link>
+                <Link to={'/shipping_policy'}>here.</Link>
               </p>
               <p>Japanese Statute # 123123123.</p>
             </div>
           </div>
           <div className="desc__smedia">
             <ul className="smedia__btn--list">
-              <li className="single-product-info-desc-smedia-btn-like hover-bob">
+              <li className="list__like-btn hover-bob">
                 <FontAwesome name="thumbs-o-up" />
                 <p>Like</p>
-                <p className="single-product-info-desc-smedia-btn-like-readout">99</p>
+                <p className="like-btn__qty">99</p>
               </li>
-              <li className="single-product-info-desc-smedia-btn-share hover-bob">
+              <li className="list__share-btn hover-bob">
                 <FontAwesome name="facebook" />
                 <p>Share</p>
               </li>
-              <li className="single-product-info-desc-smedia-btn-tweet hover-bob">
+              <li className="list__tweet-btn hover-bob">
                 <FontAwesome name="twitter" />
                 <p>tweet</p>
               </li>
@@ -136,9 +131,9 @@ export default function SingleProduct() {
           </div>
         </div>
       </div>
-      <div className="single-product-back-btn-container">
+      <div className="main__back-btn">
         <button
-          className="single-product-back-btn sweep-right"
+          className="back-btn sweep-right"
           onClick={() => browserHistory.goBack()}
         >
           <span className="flex-btn-parent">
@@ -147,31 +142,42 @@ export default function SingleProduct() {
           </span>
         </button>
         <button
-          className="single-product-juices-btn sweep-right"
+          className="juices-btn sweep-right"
           onClick={() => browserHistory.push('/juices')}
         >Shop All Juices
         </button>
       </div>
-      <div
-        style={{ display: 'none' }} className="single-product-add-success-modal"
-      >
-        <div className="single-product-add-success-modal-dialogue">
-          <div className="single-product-add-success-modal-dialogue-exit-container">
-            <button className="single-product-add-success-modal-dialogue-exit-btn">
+      <div style={{ display: 'none' }} className="add-success-modal">
+        <div className="add-success-modal__dialogue">
+          <div className="dialogue__exit--container">
+            <button className="exit-btn">
               <FontAwesome name="plus" />
             </button>
           </div>
-          <div className="single-product-add-success-modal-dialogue-msg-product">
+          <div className="dialogue__product-msg">
             <p>{'<Product Title>'}</p>
             <br />
             <p>has been successfully added to your cart.</p>
           </div>
-          <div className="single-product-add-success-modal-action-btns">
-            <button className="single-product-add-success-modal-cart sweep-right" onClick={() => browserHistory.push('/cart')}>View Cart</button>
-            <button className="single-product-add-success-modal-continue sweep-right" onClick={() => browserHistory.push('/juices')}>
+          <div className="dialogue__action-btns">
+            <button
+              className="action-btn__cart sweep-right"
+              onClick={() => browserHistory.push('/cart')}
+            >
+              View Cart
+            </button>
+
+            <button
+              className="action-btn__continue sweep-right"
+              onClick={() => browserHistory.push('/juices')}
+            >
               Continue Shopping
             </button>
-            <button className="single-product-add-success-modal-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
+
+            <button
+              className="action-btn__checkout sweep-right"
+              onClick={() => browserHistory.push('/express_checkout')}
+            >
               Express Checkout
             </button>
           </div>
