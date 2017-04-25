@@ -1,10 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-// ----------------------------- Media -------------------------------
-import Homepage from '../containers/home/homePage';
-import SingleProduct from '../containers/products/productComponents/products_singleProduct';
-import AllProducts from '../containers/products/productComponents/products_allProducts';
+import SingleProduct from '../containers/products/components/products_singleProduct';
+import AllProducts from '../containers/products/components/products_allProducts';
 
 const ProductRoutes = () => (
   <div>

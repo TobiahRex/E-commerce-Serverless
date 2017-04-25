@@ -16,7 +16,11 @@ import UserFaqs from '../containers/userDashboard/userDashComponents/userDashboa
 
 function UserDashboardRoutes(requireAuth) {
   return (
-    <Route path="/user_dashboard" component={UserDashboard} onEnter={requireAuth}>
+    <Route
+      path="/user_dashboard"
+      component={UserDashboard}
+      onEnter={requireAuth}
+    >
       <IndexRoute component={UserHomeDash} />
       <Route
         path="address_book"

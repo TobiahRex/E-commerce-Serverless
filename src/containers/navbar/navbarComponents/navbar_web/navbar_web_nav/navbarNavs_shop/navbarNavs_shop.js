@@ -1,8 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
+
+const { arrayOf, any, func } = React.PropTypes;
 
 class NavbarNavsShop extends Component {
   static styles = {
@@ -10,7 +12,8 @@ class NavbarNavsShop extends Component {
     show: '',
   }
   static propTypes = {
-    popJuices: PropTypes.arrayOf(PropTypes.any).isRequired,
+    popJuices: arrayOf(any).isRequired,
+    push: func.isRequired,
   }
   constructor(props) {
     super(props);

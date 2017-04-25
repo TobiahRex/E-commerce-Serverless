@@ -89,7 +89,7 @@ export default class AuthService extends EventEmitter {
     return profile;
   }
 
-  getToken = () => JSON.parse(localStorage.getItem('id_token'));
+  getToken = () => localStorage.getItem('id_token');
 
   logout = () => {
     localStorage.clear();
