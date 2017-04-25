@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageGroup from './parent/imageGroup';
-import ProductDescription from './parent/productDescription/';
+import ImageGroup from './imageGroup';
+import ProductDescription from './productDescription/';
 
 export default function ProductContainer() {
   return (

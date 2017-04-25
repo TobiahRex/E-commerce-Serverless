@@ -1,7 +1,7 @@
 import React from 'react';
 import BreadCrumb from '../../../../components/breadcrumbs';
 import Title from './title';
-import Container from './container';
+import Container from './container/';
 import ActionBtns from './actionBtns';
 import Modal from './modal';
 
