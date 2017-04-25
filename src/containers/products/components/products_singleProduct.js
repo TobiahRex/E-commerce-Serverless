@@ -3,7 +3,8 @@ import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 import BreadCrumb from '../../../components/breadcrumbs';
 
-export default function SingleProduct() {
+export default function SingleProduct({ location }) {
+  console.warn('location: ', location);
   return (
     <div className="single-product-main">
       {/* <div className="single-product-breadcrumb-container">
@@ -18,9 +19,9 @@ export default function SingleProduct() {
         </ul>
       </div> */}
       <BreadCrumb
-        paths={['Home', 'Juice Page']}
-        classes={['home', 'juice-page']}
-        destination={['', 'location.pathname']}
+        paths={['Home']}
+        classes={['home']}
+        destination={['']}
         lastCrumb="Juice Page"
       />
       <div className="single-product-main-title">
