@@ -55,32 +55,32 @@ export default function SingleProduct() {
               </li>
             </ul>
           </div>
-          <div className="single-product-info-desc-blurb">
+          <div className="desc__blurb">
             <p>
               A delicious Fruity Pebbles Cereal flavor.
               One of our most popular flavors.
             </p>
           </div>
-          <div className="single-product-info-desc-promotion">
+          <div className="desc__promotion">
             <button
               className="sweep-right"
               onClick={() => browserHistory.push('/register')}
             >New members get 10% off their first order</button>
           </div>
-          <div className="single-product-info-desc-nicotine">
+          <div className="desc__nicotine">
             <h3>Nicotine Strength</h3>
-            <ul className="single-product-info-desc-nicotine-list">
-              <li className="single-product-info-desc-nicotine-strength">2mg</li>
-              <li className="single-product-info-desc-nicotine-strength">4mg</li>
-              <li className="single-product-info-desc-nicotine-strength">6mg</li>
-              <li className="single-product-info-desc-nicotine-strength">8mg</li>
+            <ul className="nicotine__list">
+              <li className="list--strength">2mg</li>
+              <li className="list--strength">4mg</li>
+              <li className="list--strength">6mg</li>
+              <li className="list--strength">8mg</li>
             </ul>
           </div>
-          <div className="single-product-info-desc-actions">
-            <div className="single-product-info-desc-actions-btn-container">
-              <div className="single-product-info-desc-actions-btn-qty">
-                <ul className="single-product-info-desc-actions-btn-qty-items">
-                  <li className="single-product-info-desc-actions-btn-qty-title">
+          <div className="desc__actions">
+            <div className="actions__btn-container">
+              <div className="btn-container__qty--container">
+                <ul className="qty__list">
+                  <li className="list--qty-title">
                     <p>Quantity</p>
                   </li>
                   <li className="single-product-info-desc-actions-btn-qty-readout">
@@ -115,8 +115,8 @@ export default function SingleProduct() {
               <p>Japanese Statute # 123123123.</p>
             </div>
           </div>
-          <div className="single-product-info-desc-smedia-btns-container">
-            <ul className="single-product-info-desc-smedia-btns-list">
+          <div className="desc__smedia">
+            <ul className="smedia__btn--list">
               <li className="single-product-info-desc-smedia-btn-like hover-bob">
                 <FontAwesome name="thumbs-o-up" />
                 <p>Like</p>

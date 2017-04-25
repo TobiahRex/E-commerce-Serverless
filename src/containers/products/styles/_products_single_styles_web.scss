@@ -152,7 +152,7 @@
             }
           }
         }
-        & .single-product-info-desc-blurb {
+        & .desc__blurb {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -167,7 +167,7 @@
             line-height: 1.35em;
           }
         }
-        & .single-product-info-desc-promotion {
+        & .desc__promotion {
           @include prefixflex();
           justify-content: center;
           align-items: flex-start;
@@ -196,19 +196,9 @@
             &:focus {
               color: $p-white;
             }
-            // &:before {
-            //   height: 19px;
-            //   width: 440px;
-            //   // position: absolute;
-            //   // top: 590px;
-            //   position: relative;
-            //   top: 10px;
-            //   content: '';
-            //   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, transparent 80%);
-            // }
           }
         }
-        & .single-product-info-desc-nicotine {
+        & .desc__nicotine {
           @include prefixflex();
           justify-content: flex-start;
           align-items: center;
@@ -222,7 +212,7 @@
             font-weight: 800;
             margin: .5em;
           }
-          & .single-product-info-desc-nicotine-list {
+          & .nicotine__list {
             height: 6em;
             max-width: 35.5em;
             width: 100%;
@@ -232,7 +222,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
-            & .single-product-info-desc-nicotine-strength {
+            & .list--strength {
               @include prefixflex();
               justify-content: center;
               align-items: center;
@@ -256,7 +246,7 @@
             }
           }
         }
-        & .single-product-info-desc-actions {
+        & .desc__actions {
           @include prefixflex();
           justify-content: center;
           align-content: space-between;
@@ -266,18 +256,18 @@
           width: 48.6em;
           height: 14em;
           border-bottom: 1px solid rgba(0,0,0,.25);
-          & .single-product-info-desc-actions-btn-container {
+          & .actions__btn-container {
             @include prefixflex();
             justify-content: space-around;;
             align-content: space-between;;
             height: 9em;
             max-width: 46.6em;
             width: 46.6em;
-            & .single-product-info-desc-actions-btn-qty {
+            & .btn-conatiner__qty--container {
               height: 6em;
               max-width: 19em;
               width: 19em;
-              & .single-product-info-desc-actions-btn-qty-items {
+              & .qty__list {
                 @include prefixflex();
                 justify-content: center;
                 align-items: center;
@@ -286,8 +276,8 @@
                 padding: 0;
                 margin: 0;
                 background-color: $p-grey;
-                & .single-product-info-desc-actions-btn-qty-title,
-                .single-product-info-desc-actions-btn-qty-readout,
+                & .list--qty-title,
+                .list--qty-readout,
                 .single-product-info-desc-actions-btn-qty-btns {
                   p {
                     font-size: 1.8em;
@@ -376,14 +366,14 @@
             }
           }
         }
-        & .single-product-info-desc-smedia-btns-container {
+        & .desc__smedia {
           @include prefixflex();
           justify-content: center;
           align-items: center;
           height: 6.5em;
           max-width: 48.6em;
           width: 48.6em;
-          & .single-product-info-desc-smedia-btns-list {
+          & .smedia__btn--list {
             @include prefixflex();
             justify-content: space-around;
             align-items: center;
