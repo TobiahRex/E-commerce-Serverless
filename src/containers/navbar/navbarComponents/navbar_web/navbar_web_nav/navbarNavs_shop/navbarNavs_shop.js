@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { routerActions } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
@@ -22,8 +21,7 @@ class NavbarNavsShop extends Component {
   }
 
   toggleNavbarDropdown = (urlSuffix) => {
-    // document.getElementsByClassName('shop-dropdown-content')[0].style.display = 'none';
-    this.props.push(`/juice/${urlSuffix}`); //eslint-disable-line
+    this.props.push(`/juice/${urlSuffix}`);
   }
 
   render() {
@@ -49,7 +47,8 @@ class NavbarNavsShop extends Component {
 const mapStateToProps = ({ products }) => ({
   popJuices: products.popJuices,
 });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...routerActions }, dispatch);
+const mapDispatchToProps = dispatch => ({
+  push: location => dispatch(push(location)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarNavsShop);
