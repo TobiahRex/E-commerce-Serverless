@@ -43,6 +43,26 @@ function RegisterModal({ showModal, toggleModal }) {
             <i>Example:</i>
           </p>
         </div>
+        <table className="dialogue__table">
+          <thead className="table__header">
+            <tr className="header__row">
+              <td className="header--qty">QTY</td>
+              <td className="header--description">Juice Description</td>
+              <td className="header--price">Price</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="body__row">
+              <td className="body--qty">4</td>
+              <td className="body--description">
+                <p className="description__title">Fruity Bamm-Bamm</p>
+                <p className="description__nicotine-strength">
+                  Nicotine Strenght: <i>6mg</i>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div className="dialogue__action-btns">
           <button
             data-parent="promotion-register"
