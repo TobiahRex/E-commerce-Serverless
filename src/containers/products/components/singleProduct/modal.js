@@ -2,9 +2,12 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-export default function SingleProductModal() {
+function SingleProductModal({ showModal }) {
   return (
-    <div style={{ display: 'none' }} className="add-success-modal">
+    <div
+      style={{ display: showModal ? 'block' : 'none' }}
+      className="add-success-modal"
+    >
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
           <button className="exit-btn">
@@ -42,3 +45,8 @@ export default function SingleProductModal() {
     </div>
   );
 }
+const { bool } = React.PropTypes;
+SingleProductModal.propTypes = {
+  showModal: bool.isRequired,
+};
+export default SingleProductModal;
