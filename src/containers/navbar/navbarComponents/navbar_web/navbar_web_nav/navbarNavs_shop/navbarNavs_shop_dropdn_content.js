@@ -13,8 +13,8 @@ function NavbarNavsShopDropdnContent(props) {
   const { popJuices, toggleNavbarDropdown } = props;
 
   return (
-    <span className="shop-dropdown-content" >
-      <span className="shop-dropdown-content-parent">
+    <span className="shop__ddn-content" >
+      <span className="ddn-content__parent">
         <NavbarNavsShopDropdnTopthird />
         <NavbarNavsShopDropdnMidthird
           popJuices={popJuices}

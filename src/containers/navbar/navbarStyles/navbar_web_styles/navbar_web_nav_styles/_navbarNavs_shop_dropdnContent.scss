@@ -1,4 +1,4 @@
-.shop-dropdown-content {
+.shop__ddn-content {
   display: none;
   width: 108em;
   height: 63em;
@@ -9,7 +9,7 @@
   margin-left: -24.5em;
   box-shadow: 3px 3px 3px rgba(1,1,1,.5);
   transition: all .6s ease-in-out;
-  & .shop-dropdown-content-parent {
+  & .ddn-content__parent {
     @extend .flex-center;
     flex-direction: column;
     & .shop-dropdown-content-topThird {
@@ -107,6 +107,10 @@
             border: none;
             background-color: inherit;
             cursor: pointer;
+            &:active,
+            &:focus {
+              outline: none;
+            }
           }
           & .juices-card__image {
             @extend .flex-center;
@@ -121,6 +125,10 @@
               font-size: 10px;
               width: 12.5em;
               transition: all .5s ease-in-out;
+            }
+            &:active,
+            &:focus {
+              outline: none;
             }
           }
         }
