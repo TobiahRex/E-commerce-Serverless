@@ -23,7 +23,9 @@ class SingleProduct extends Component {
     super(props);
 
     this.state = {
-      showModal: false,
+      showSuccessModal: false,
+      showBulkModal: false,
+      showRegisterModal: false,
     };
   }
 
@@ -35,20 +37,26 @@ class SingleProduct extends Component {
           case 'view-checkout': this.modalHandler('/express_checkout'); break;
           default: {
             this.setState(prevState => ({
-              showModal: !prevState.showModal,
+              showSuccessModal: !prevState.showSuccessModal,
             }));
           }
         }
       } break;
+      case 'parent-bulk': {
+
+      } break;
+      case 'parent-register': {
+
+      } break;
       default: {
-        this.setState(prevState => ({ showModal: !prevState.showModal }));
+        this.setState(prevState => ({ showSuccessModal: !prevState.showSuccessModal }));
       }
     }
   }
 
   modalHandler = (location) => {
     this.setState(prevState => ({
-      showModal: !prevState.showModal,
+      showSuccessModal: !prevState.showSuccessModal,
     }), () => this.props.push(location));
   }
 
@@ -65,15 +73,15 @@ class SingleProduct extends Component {
         <Container toggleModal={this.toggleModal} />
         <ActionBtns />
         <SuccessModal
-          showModal={this.state.showModal}
+          showModal={this.state.showSuccessModal}
           toggleModal={this.toggleModal}
         />
         <BulkSaleModal
-          showModal={this.state.showModal}
+          showModal={this.state.showBulkModal}
           toggleModal={this.toggleModal}
         />
         <RegisterModal
-          showModal={this.state.showModal}
+          showModal={this.state.showRegisterModal}
           toggleModal={this.toggleModal}
         />
       </div>

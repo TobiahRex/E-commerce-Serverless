@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function SingleProductModal({ showModal, toggleModal }) {
+function RegisterModal({ showModal, toggleModal }) {
   let style;
   if (showModal) {
     style = {
@@ -19,51 +19,52 @@ function SingleProductModal({ showModal, toggleModal }) {
     };
   }
   return (
-    <div style={style} className="add-success-modal">
-      <div className="add-success-modal__dialogue">
+    <div style={style} className="bulk-modal">
+      <div className="bulk-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             className="exit-btn"
             onClick={toggleModal}
           >
             <FontAwesome name="plus" />
           </button>
         </div>
-        <div className="dialogue__product-msg">
-          <p>{'<Product Title>'}</p>
+        <div className="dialogue__product-title">
+          <p>Yup!</p>
           <br />
-          <p>has been successfully added to your cart.</p>
+          <p>
+            <span className="required">BUY 4 BOTTLES</span>
+            and we’ll slice
+            <span className="required">25% OFF</span>
+            the price.
+          </p>
+          <p>
+            <i>Example:</i>
+          </p>
         </div>
         <div className="dialogue__action-btns">
           <button
-            data-parent="promotion-bulk"
-            data-tag="view-cart"
-            className="action-btn__cart sweep-right"
-            onClick={toggleModal}
-          >View Cart</button>
-
-          <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag="view-juice"
             className="action-btn__continue sweep-right"
             onClick={toggleModal}
-          >Continue Shopping</button>
+          >Close</button>
 
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
             onClick={toggleModal}
-          >Express Checkout</button>
+          >{'Let\'s Do It!'}</button>
         </div>
       </div>
     </div>
   );
 }
 const { bool, func } = React.PropTypes;
-SingleProductModal.propTypes = {
+RegisterModal.propTypes = {
   showModal: bool.isRequired,
   toggleModal: func.isRequired,
 };
-export default SingleProductModal;
+export default RegisterModal;
