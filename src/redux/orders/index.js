@@ -11,7 +11,7 @@ export const orderTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = Immutable({
-  cart: [],
+  cart: JSON.parse(localStorage.getItem('guestCart')),
   taxRate: {
     stateRate: 0.060,
     cityRate: 0.030,
@@ -25,7 +25,7 @@ const addedToCart = (state, { productObj }) => ({
 });
 
 const setTaxRate = (state, { taxRate }) => ({
-  cart: [...state.cart],
+  ...state,
   taxRate,
 });
 

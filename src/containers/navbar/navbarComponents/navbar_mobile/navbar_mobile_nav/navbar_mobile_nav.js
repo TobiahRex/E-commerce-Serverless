@@ -108,7 +108,7 @@ class NavbarMobileNav extends Component {
 }
 const mapStateToProps = ({ mobile, orders }) => ({
   screenSize: Number(mobile.screenWidth),
-  cartQty: orders.cart.qty || 0, // TODO remove this 0 value once you've created the actions in redux for adding items to state.
+  cartQty: orders.cart ? orders.cart.qty : 0, // TODO remove this 0 value once you've created the actions in redux for adding items to state.
 });
 const mapDispatchToProp = dispatch => ({
   refreshMobileSize: screenSize => dispatch(mobileActions.setScreenWidth(screenSize)),

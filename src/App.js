@@ -1,7 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { routerActions } from 'react-router-redux';
 import AgeVerification from './containers/ageVerification/ageVerification';
 import NavbarWeb from './containers/navbar/navbarComponents/navbar_web/navbar_web';
 import NavbarMobile from './containers/navbar/navbarComponents/navbar_mobile/navbar_mobile';
