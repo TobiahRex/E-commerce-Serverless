@@ -36,13 +36,32 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
         </div>
         <div className="dialogue__product-title">
           <h1 className="product-title__title">
-            {'Let\'s Make a Deal'}!
+            Not A Member Yet?
           </h1>
           <p className="product-title__sub-title">
-            <span className="required sub-title__bold"> BUY 4 BOTTLES </span>
-            and we’ll slice
-            <span className="required sub-title__bold"> 25% OFF </span>
-            the price.
+            Become a member and get
+            <span className="required sub-title__bold">
+              {'\u00A0'}10% OFF{'\u00A0'}
+            </span>
+            your first order!
+          </p>
+          <br />
+          <p className="product-title__sub-title">
+            Also,
+            <span className="required sub-title__bold">
+              {'\u00A0'}Buy 4 Bottles{'\u00A0'}
+            </span>
+            and get an additional
+            <span className="required sub-title__bold">
+              {'\u00A0'}25% OFF!{'\u00A0'}
+            </span>
+          </p>
+          <br />
+          <p className="product-title__sub-title">
+            Whoah! {'That\'s'}
+            <span className="required sub-title__bold">
+              {'\u00A0'}35% OFF!{'\u00A0'}
+            </span>
           </p>
           <br />
           <p className="product-title__example">
