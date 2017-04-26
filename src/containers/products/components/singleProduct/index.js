@@ -30,49 +30,55 @@ class SingleProduct extends Component {
     };
   }
 
-  toggleModal = (e) => {
+  modalHandler = (e) => {
     let parentEl = e.target.dataset.parent;
+    let tagEl = e.target.datset.tag;
     if (!parentEl) {
-      parentEl = e.target.parentNode;
+      parentEl = e.target.parentNode.dataset.parent;
     }
-    switch (parentEl.dataset.parent) {
+    if (!tagEl) {
+      tagEl = e.target.parentNode.dataset.tag;
+    }
+
+    switch (parentEl) {
       case 'success': {
-        switch (parentEl.dataset.tag) {
+        switch (tagEl) {
           case 'view-cart':
-            this.modalHandler('showSuccessModal', '/cart'); break;
+            this.toggleModal('showSuccessModal', '/cart'); break;
           case 'view-checkout':
-            this.modalHandler('showSuccessModal', '/express_checkout'); break;
-          default: this.displayModal('showSuccessModal');
+            this.toggleModal('showSuccessModal', '/express_checkout'); break;
+          default: this.toggleModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
-        switch (parentEl.dataset.tag) {
+        switch (tagEl) {
           case 'view-juices':
-            this.modalHandler('showBulkModal', '/juices'); break;
-          default: this.displayModal('showBulkModal');
+            this.toggleModal('showBulkModal', '/juices'); break;
+          default: this.toggleModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
-        switch (parentEl.dataset.tag) {
+        switch (tagEl) {
           case 'view-checkout':
-            this.modalHandler('showRegisterModal', '/express_checkout'); break;
+            this.toggleModal('showRegisterModal', '/express_checkout'); break;
           case 'view-cart':
-            this.modalHandler('showRegisterModal', '/cart'); break;
-          default: this.displayModal('showRegisterModal');
+            this.toggleModal('showRegisterModal', '/cart'); break;
+          default: this.toggleModal('showRegisterModal');
         }
       } break;
-      default: this.displayModal();
+      default: this.toggleModal();
     }
   }
 
-  modalHandler = (modal, location) => {
+  toggleModal = (modal, location) => {
     this.setState(prevState => ({
       [modal]: !prevState[modal],
     }), () => this.props.push(location));
   }
 
-  displayModal = modal =>
-    this.setState(prevState => ({ [modal]: !prevState[modal] }))
+  toggleModal = (modal) => {
+    this.setState(prevState => ({ [modal]: !prevState[modal] }));
+  }
 
   render() {
     return (
@@ -84,20 +90,20 @@ class SingleProduct extends Component {
           lastCrumb="Juice Page"
         />
         <Title />
-        <Container toggleModal={this.toggleModal} />
+        <Container modalHandler={this.modalHandler} />
         <ActionBtns />
         <SuccessModal
           showModal={this.state.showSuccessModal}
-          toggleModal={this.toggleModal}
+          modalHandler={this.modalHandler}
         />
         <BulkSaleModal
           taxRate={this.props.taxRate}
           showModal={this.state.showBulkModal}
-          toggleModal={this.toggleModal}
+          modalHandler={this.modalHandler}
         />
         <RegisterModal
           showModal={this.state.showRegisterModal}
-          toggleModal={this.toggleModal}
+          modalHandler={this.modalHandler}
         />
       </div>
     );

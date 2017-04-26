@@ -4,15 +4,15 @@ import ProductDescription from './productDescription/';
 
 const { func } = React.PropTypes;
 
-function Container({ toggleModal }) {
+function Container({ modalHandler }) {
   return (
     <div className="main__parent">
-      <ImageGroup toggleModal={toggleModal} />
+      <ImageGroup modalHandler={modalHandler} />
       <ProductDescription />
     </div>
   );
 }
 Container.propTypes = {
-  toggleModal: func.isRequired,
+  modalHandler: func.isRequired,
 };
 export default Container;

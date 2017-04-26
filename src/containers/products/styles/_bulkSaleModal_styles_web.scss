@@ -1,5 +1,5 @@
 @media only screen and (min-width: 931px) {
-  & .add-success-modal {
+  & .bulk-modal {
     z-index: 30;
     @include prefixflex();
     justify-content: center;
@@ -8,14 +8,14 @@
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,.75);
-    & .add-success-modal__dialogue {
+    & .bulk-modal__dialogue {
       display: none;
       @include prefixflex();
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      height: 23em;
-      width: 56em;
+      // height: 23em;
+      // width: 56em;
       background-color: $p-white;
       & .dialogue__exit--container {
         max-width: 56em;

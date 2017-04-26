@@ -1,7 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function RegisterModal({ showModal, toggleModal, taxRate }) {
+function BulkSaleModal({ showModal, toggleModal, taxRate }) {
+  console.log('showBulkModal: ', showModal);
   let style;
   if (showModal) {
     style = {
@@ -23,7 +24,8 @@ function RegisterModal({ showModal, toggleModal, taxRate }) {
       <div className="bulk-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
-            data-parent="promotion-register"
+            data-parent="promotion-bulk"
+            data-tag=""
             className="exit-btn"
             onClick={toggleModal}
           >
@@ -31,7 +33,7 @@ function RegisterModal({ showModal, toggleModal, taxRate }) {
           </button>
         </div>
         <div className="dialogue__product-title">
-          <p>Yup!</p>
+          <p>{'Let\'s Make a Deal'}!</p>
           <br />
           <p>
             <span className="required">BUY 4 BOTTLES</span>
@@ -96,6 +98,8 @@ function RegisterModal({ showModal, toggleModal, taxRate }) {
         </table>
         <div className="dialogue__action-btns">
           <button
+            data-parent="promotion-bulk"
+            data-tag=""
             className="action-btn__continue sweep-right"
             onClick={toggleModal}
           >Close</button>
@@ -123,9 +127,9 @@ function RegisterModal({ showModal, toggleModal, taxRate }) {
   );
 }
 const { bool, func, number } = React.PropTypes;
-RegisterModal.propTypes = {
+BulkSaleModal.propTypes = {
   showModal: bool.isRequired,
   toggleModal: func.isRequired,
   taxRate: number.isRequired,
 };
-export default RegisterModal;
+export default BulkSaleModal;

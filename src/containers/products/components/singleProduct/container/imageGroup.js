@@ -2,14 +2,14 @@ import React from 'react';
 
 const { func } = React.PropTypes;
 
-function ImageGroup({ toggleModal }) {
+function ImageGroup({ modalHandler }) {
   return (
     <div className="main__info--image">
       <img className="image__src" alt="Switch Juice" />
       <button
         data-parent="promotion-bulk"
         className="image__promotion sweep-right-red"
-        onClick={toggleModal}
+        onClick={modalHandler}
       >
         <p>Buy 4 Bottles</p>
         <br />
@@ -19,6 +19,6 @@ function ImageGroup({ toggleModal }) {
   );
 }
 ImageGroup.propTypes = {
-  toggleModal: func.isRequired,
+  modalHandler: func.isRequired,
 };
 export default ImageGroup;
