@@ -77,6 +77,24 @@
           & tr.body__row--main {
             border-bottom: 1px solid rgba(0,0,0,.1);
             text-align: center;
+            & td.body--qty {
+              & p {
+                font-size: 1.6em;
+              }
+            }
+            & td.body--description {
+              & p.description__title {
+                font-size: 1.8em;
+              }
+              & p.description__sku {
+                font-size: 1.4em;
+              }
+            }
+            & td.body--price {
+              & p.price__readout {
+                font-size: 1.6em;
+              }
+            }
           }
           & tr.body__row--totals {
             border-bottom: 1px solid rgba(0,0,0,.2);

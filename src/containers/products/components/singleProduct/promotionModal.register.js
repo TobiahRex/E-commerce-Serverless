@@ -123,7 +123,7 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
                 <p className="price__tax">$ {newTaxRate}</p>
                 <br />
                 <p className="price__discount required">
-                  35% OFF: $ {discount}
+                  35% OFF = $ {discount}
                 </p>
                 <br />
                 <p className="price__shipping">$ 0.00</p>

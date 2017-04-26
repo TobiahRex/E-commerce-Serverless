@@ -68,7 +68,7 @@
           left: -16.5em;
           top: 4em;
           @include prefixed(text-shadow, 0 2px 3px rgba(1,1,1,.5));
-          box-shadow: 0px 2px 4px rgba(1,1,1,.5);
+          box-shadow: 0px 4px 10px rgba(1,1,1,.5);
           p {
             color: $p-white;
           }
@@ -199,7 +199,7 @@
             border: none;
             cursor: pointer;
             @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
-            box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+            box-shadow: 5px 5px 10px rgba(0,0,0,.25);
             &:hover,
             &:active,
             &:focus {
@@ -246,7 +246,7 @@
               border: 1px solid $p-red;
               cursor: pointer;
               transition: all .3s ease-in-out;
-              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.5));
+              @include prefixed(box-shadow, 0px 3px 10px rgba(0,0,0,.5));
               &:hover,
               &:active,
               &:focus {
@@ -350,7 +350,7 @@
               border: none;
               cursor: pointer;
               transition: all .3s ease-in-out;
-              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .5));
+              @include prefixed(box-shadow, 0px 3px 20px rgba(0,0,0, .5));
               &:hover,
               &:active,
               &:focus {
@@ -412,7 +412,7 @@
               line-height: 1.42em;
               margin: 0 1.5em;
               cursor: pointer;
-              @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
+              @include prefixed(box-shadow, 0px 3px 10px rgba(0,0,0,.25));
               p {
                 color: $p-white;
                 padding: 0 .5em;
@@ -447,7 +447,7 @@
         font-weight: 200;
         color: $p-white;
         cursor: pointer;
-        @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0, .25));
+        @include prefixed(box-shadow, 0px 3px 20px rgba(0,0,0, .5));
         &:hover,
         &:active,
         &:focus {

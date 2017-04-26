@@ -103,7 +103,7 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
                 <p className="price__tax">$ {newTaxRate}</p>
                 <br />
                 <p className="price__discount required">
-                  25% OFF: $ {discount}
+                  25% OFF = $ {discount}
                 </p>
                 <br />
                 <p className="price__shipping">$ 0.00</p>
