@@ -22,11 +22,11 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
   const discount = ((120 + Number(newTaxRate)) * -0.25).toFixed(2);
   const orderTotal = ((120 + Number(newTaxRate)) * 0.75).toFixed(2);
   return (
-    <div style={style} className="bulk-modal">
-      <div className="bulk-modal__dialogue">
+    <div style={style} className="register-modal">
+      <div className="register-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag=""
             className="exit-btn"
             onClick={modalHandler}
@@ -115,29 +115,18 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
         </table>
         <div className="dialogue__action-btns">
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag=""
             className="action-btn__close sweep-right"
             onClick={modalHandler}
           >Close</button>
-          <div className="action-btn__msg">
-            <div className="msg__title">
-              <p>Oh!</p>
-            </div>
-            <p className="msg__sub-title">
-              Did we mention you get
-              <span className="sub-title__free required">
-                {'\u00A0'}FREE{'\u00A0'}
-              </span>
-              International Shipping.
-            </p>
-          </div>
+
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag="view-juices"
             className="action-btn__juices sweep-right"
             onClick={modalHandler}
-          >{'Let\'s Do It!'}</button>
+          >Sign Me Up</button>
         </div>
       </div>
     </div>
