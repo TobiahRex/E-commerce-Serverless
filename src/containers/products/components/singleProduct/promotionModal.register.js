@@ -1,9 +1,9 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function SingleProductModal({ showModal, modalHandler }) {
+function SingleProductModal({ showModal, loggedIn, modalHandler }) {
   let style;
-  if (showModal) {
+  if (!loggedIn && showModal) {
     style = {
       display: 'flex',
       opacity: 1,
@@ -60,6 +60,7 @@ function SingleProductModal({ showModal, modalHandler }) {
 }
 const { bool, func } = React.PropTypes;
 SingleProductModal.propTypes = {
+  loggedIn: bool.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
 };

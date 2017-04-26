@@ -102,6 +102,7 @@ class SingleProduct extends Component {
           modalHandler={this.modalHandler}
         />
         <RegisterModal
+          loggedIn={this.props.loggedIn}
           showModal={this.state.showRegisterModal}
           modalHandler={this.modalHandler}
         />
@@ -109,7 +110,8 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders }) => ({
+const mapStateToProps = ({ orders, auth }) => ({
+  loggedIn: auth.loggedIn,
   taxRate: orders.taxRate.totalRate,
 });
 const mapDispatchToProps = dispatch => ({
