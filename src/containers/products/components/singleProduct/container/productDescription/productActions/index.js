@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
+import Error from './error';
+import AddToCartBtn from './addToCartBtn';
 
 function ProductActions({ error }) {
   return (
@@ -24,16 +25,9 @@ function ProductActions({ error }) {
             </li>
           </ul>
         </div>
-        <button className="btn-container__add-to-cart sweep-right">
-          <span className="btn-flex-parent">
-            <FontAwesome
-              className="sp-cart-icon" name="shopping-cart"
-            />
-            Add To Cart
-          </span>
-        </button>
+        <AddToCartBtn />
       </div>
-      <Error />
+      <Error error={error} />
     </div>
   );
 }

@@ -7,15 +7,11 @@ function ProductActions({ error }) {
     style = {
       display: 'flex',
       opacity: 1,
-      height: '100%',
-      width: '100%',
     };
   } else {
     style = {
       display: 'none',
       opacity: 0,
-      height: 0,
-      width: 0,
     };
   }
   return (
