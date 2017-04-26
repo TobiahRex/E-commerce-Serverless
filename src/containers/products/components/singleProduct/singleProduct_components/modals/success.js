@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function BulkSaleModal({ showModal, modalHandler }) {
+function SuccessModal({ showModal, modalHandler }) {
   let style;
   if (showModal) {
     style = {
@@ -61,8 +61,8 @@ function BulkSaleModal({ showModal, modalHandler }) {
   );
 }
 const { bool, func } = React.PropTypes;
-BulkSaleModal.propTypes = {
+SuccessModal.propTypes = {
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
 };
-export default BulkSaleModal;
+export default SuccessModal;

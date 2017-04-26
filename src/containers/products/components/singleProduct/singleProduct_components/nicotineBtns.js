@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Nicotine() {
+export default function NicotineBtns() {
   return (
     <div className="desc__nicotine">
       <h3>Nicotine Strength</h3>

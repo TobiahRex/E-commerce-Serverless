@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function Price() {
+export default function PriceInfo() {
   return (
     <div className="desc__price-row">
       <ul className="price-row__list">

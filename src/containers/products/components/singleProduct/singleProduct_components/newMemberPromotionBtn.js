@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Promotion({ loggedIn, modalHandler }) {
+export default function NewMemberPromotionBtn({ loggedIn, modalHandler }) {
   let style;
   if (!loggedIn) {
     style = { display: 'flex' };
@@ -19,7 +19,7 @@ export default function Promotion({ loggedIn, modalHandler }) {
   );
 }
 const { bool, func } = React.PropTypes;
-Promotion.propTypes = {
+NewMemberPromotionBtn.propTypes = {
   loggedIn: bool.isRequired,
   modalHandler: func.isRequired,
 };

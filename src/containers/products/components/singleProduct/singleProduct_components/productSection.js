@@ -1,18 +1,21 @@
 /* eslint-disable no-return-assign */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import JuiceTitle from './juiceTitle';
-import Price from './price';
-import Blurb from './blurb';
-import Promotion from './promotion';
-import Nicotine from './nicotine';
-import ProductActions from './productActions/';
-import SocialMediaBtns from './socialMediaBtns';
-import orderActions from '../../../../../../redux/orders/';
+import orderActions from '../../../../../redux/orders/';
+import {
+  JuiceTitle,
+  PriceInfo,
+  ProductBlurb,
+  ProductActions,
+  NewMemberPromotionBtn,
+  NicotineBtns,
+  SocialMediaBtns,
+} from './';
 
-const { func, bool } = React.PropTypes;
+const { func, bool } = PropTypes;
 
-class ProductDescription extends Component {
+class ProductSection extends Component {
   static propTypes = {
     modalHandler: func.isRequired,
     loggedIn: bool.isRequired,
@@ -98,21 +101,21 @@ class ProductDescription extends Component {
     return (
       <div className="main__info--desc">
         <JuiceTitle />
-        <Price />
-        <Blurb />
-        <Promotion
+        <PriceInfo />
+        <ProductBlurb />
+        <NewMemberPromotionBtn
           modalHandler={this.props.modalHandler}
           loggedIn={this.props.loggedIn}
         />
-        <Nicotine
+        <NicotineBtns
           nicStrength={this.state.nicStrength}
           nicStrengthHandler={this.nicStrengthHandler}
         />
         <ProductActions
-          quantity={this.state.quantity}
+          quantity={this.state.qty}
           nicStrength={this.state.nicStrength}
           error={this.state.error}
-          addToCartHanlder={this.addToCartHandler}
+          addToCartHandler={this.addToCartHandler}
           qtyHandler={this.qtyHandler}
         />
         <SocialMediaBtns />
@@ -127,4 +130,4 @@ const mapDispatchToProps = dispatch => ({
   addToGuestCart: productObj => dispatch(orderActions.addToGuestCart(productObj)),
   addToMemberCart: productObj => dispatch(orderActions.addToMemberCart(productObj)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductSection);

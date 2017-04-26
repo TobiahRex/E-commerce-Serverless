@@ -1,12 +1,14 @@
 import React from 'react';
-import ImageGroup from './imageGroup';
-import ProductDescription from './productDescription/';
+import {
+  ImageGroup,
+  ProductSection,
+} from './';
 
-function Container({ modalHandler, loggedIn }) {
+function SingleProductContainer({ modalHandler, loggedIn }) {
   return (
     <div className="main__parent">
       <ImageGroup modalHandler={modalHandler} />
-      <ProductDescription
+      <ProductSection
         modalHandler={modalHandler}
         loggedIn={loggedIn}
       />
@@ -14,8 +16,8 @@ function Container({ modalHandler, loggedIn }) {
   );
 }
 const { func, bool } = React.PropTypes;
-Container.propTypes = {
+SingleProductContainer.propTypes = {
   loggedIn: bool.isRequired,
   modalHandler: func.isRequired,
 };
-export default Container;
+export default SingleProductContainer;

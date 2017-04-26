@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Blurb() {
+export default function ProductBlurb() {
   return (
     <div className="desc__blurb">
       <p>

@@ -1,7 +1,9 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import Error from './error';
-import AddToCartBtn from './addToCartBtn';
+import {
+  ErrorMsg,
+  AddToCartButton,
+} from './';
 
 function ProductActions(props) {
   return (
@@ -29,9 +31,9 @@ function ProductActions(props) {
             </li>
           </ul>
         </div>
-        <AddToCartBtn addToCart={props.addToCartHandler} />
+        <AddToCartButton addToCart={props.addToCartHandler} />
       </div>
-      <Error error={props.error} />
+      <ErrorMsg error={props.error} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-export default function SingleProductActionBtns() {
+export default function ActionBtns() {
   return (
     <div className="main__back-btn">
       <button

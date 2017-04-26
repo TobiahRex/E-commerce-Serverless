@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-function ProductActions({ error }) {
+function ErrorMsg({ error }) {
   let style;
   if (error) {
     style = {
@@ -25,7 +25,7 @@ function ProductActions({ error }) {
   );
 }
 const { bool } = React.PropTypes;
-ProductActions.propTypes = {
+ErrorMsg.propTypes = {
   error: bool.isRequired,
 };
-export default ProductActions;
+export default ErrorMsg;

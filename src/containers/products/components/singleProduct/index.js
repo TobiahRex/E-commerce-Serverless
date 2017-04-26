@@ -2,14 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-
 import BreadCrumb from '../../../../components/breadcrumbs';
-import Title from './title';
-import Parent from './parent/';
-import ActionBtns from './actionBtns';
-import SuccessModal from './modals/success';
-import BulkSaleModal from './modals/promotion.bulk';
-import RegisterModal from './modals/promotion.register';
+import {
+  BulkSaleModal,
+  MainTitle,
+  SingleProductContainer,
+  ActionBtns,
+  SuccessModal,
+  RegisterModal,
+} from './singleProduct_components/';
 
 const { func, number, bool } = React.PropTypes;
 
@@ -87,8 +88,8 @@ class SingleProduct extends Component {
           destination={['']}
           lastCrumb="Juice Page"
         />
-        <Title />
-        <Parent
+        <MainTitle />
+        <SingleProductContainer
           loggedIn={this.props.loggedIn}
           modalHandler={this.modalHandler}
         />
