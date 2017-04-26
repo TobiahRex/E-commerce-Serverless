@@ -67,16 +67,27 @@ function RegisterModal({ showModal, toggleModal }) {
               </td>
             </tr>
             <tr className="body__row--totals">
-              <td className="body--totals">
-                <p className="totals__subtotal">Subtotal</p>
+              <td className="body--total--categories" colSpan="2">
+                <p className="category__subtotal">Subtotal</p>
                 <br />
-                <p className="totals__tax">Tax</p>
+                <p className="category__tax">Tax</p>
                 <br />
-                <p className="totals__discount">Discount</p>
+                <p className="category__discount">Discount</p>
                 <br />
-                <p className="totals__shipping">Free International Shipping</p>
+                <p className="category__shipping">Free International Shipping</p>
                 <br />
-                <p className="totals__order-total">Order Total</p>
+                <p className="category__order-total">Order Total</p>
+              </td>
+              <td className="body--total--prices">
+                <p className="price__subtotal">$ 120.00</p>
+                <br />
+                <p className="price__tax">Tax</p>
+                <br />
+                <p className="price__discount">Discount</p>
+                <br />
+                <p className="price__shipping">Free International Shipping</p>
+                <br />
+                <p className="price__order-total">Order Total</p>
               </td>
             </tr>
           </tbody>

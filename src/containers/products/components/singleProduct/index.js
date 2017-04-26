@@ -12,12 +12,13 @@ import BulkSaleModal from './promotionModal.bulk';
 import RegisterModal from './promotionModal.register';
 
 
-const { func } = React.PropTypes;
+const { func, number } = React.PropTypes;
 
 class SingleProduct extends Component {
   static propTypes = {
     saveProductToCart: func.isRequired,
     push: func.isRequired,
+    taxRate: number.isRequired,
   }
   constructor(props) {
     super(props);
@@ -88,8 +89,11 @@ class SingleProduct extends Component {
     );
   }
 }
+const mapStateToProps = ({ orders }) => ({
+  taxRate: orders.taxRate.totalRate,
+});
 const mapDispatchToProps = dispatch => ({
   saveProductToCart: () => console.log('savingProductToCart', dispatch),
   push: location => dispatch(push(location)),
 });
-export default connect(null, mapDispatchToProps)(SingleProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
