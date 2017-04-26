@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 
 import BreadCrumb from '../../../../components/breadcrumbs';
 import Title from './title';
-import Container from './container/';
+import Parent from './parent/';
 import ActionBtns from './actionBtns';
 import SuccessModal from './modals/success';
 import BulkSaleModal from './modals/promotion.bulk';
@@ -88,7 +88,7 @@ class SingleProduct extends Component {
           lastCrumb="Juice Page"
         />
         <Title />
-        <Container
+        <Parent
           loggedIn={this.props.loggedIn}
           modalHandler={this.modalHandler}
         />

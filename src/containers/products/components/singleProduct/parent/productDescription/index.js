@@ -1,12 +1,15 @@
 /* eslint-disable no-return-assign */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import JuiceTitle from './juiceTitle';
 import Price from './price';
 import Blurb from './blurb';
 import Promotion from './promotion';
 import Nicotine from './nicotine';
-import ProductActions from './productActionBtns';
+import ProductActions from './productActions/';
 import SocialMediaBtns from './socialMediaBtns';
+import orderActions from '../../../../../../redux/orders/';
+
 
 const { func, bool } = React.PropTypes;
 
@@ -14,6 +17,8 @@ class ProductDescription extends Component {
   static propTypes = {
     modalHandler: func.isRequired,
     loggedIn: bool.isRequired,
+    addToMemberCart: func.isRequired,
+    addToGuestCart: func.isRequired,
   }
   constructor(props) {
     super(props);
@@ -42,7 +47,7 @@ class ProductDescription extends Component {
 
   addToCart = () => {
     const {
-      qty
+      qty,
       productId: id,
       nicotineStrength: strength,
     } = this.state;
@@ -85,5 +90,9 @@ class ProductDescription extends Component {
 }
 const mapStateToProps = ({ auth }) => ({
   loggedIn: auth.loggedIn,
-})
-export default connect(mapStateToProps, null)(ProductDescription);
+});
+const mapDispatchToProps = dispatch => ({
+  addToGuestCart: productObj => dispatch(orderActions.addToGuestCart(productObj)),
+  addToMemberCart: productObj => dispatch(orderActions.addToMemberCart(productObj)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription);
