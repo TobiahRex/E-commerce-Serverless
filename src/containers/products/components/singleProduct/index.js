@@ -42,14 +42,14 @@ class SingleProduct extends Component {
             this.modalHandler('showSuccessModal', '/cart'); break;
           case 'view-checkout':
             this.modalHandler('showSuccessModal', '/express_checkout'); break;
-          default: this.closeModal();
+          default: this.displayModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
         switch (parentEl.dataset.tag) {
           case 'view-juices':
             this.modalHandler('showBulkModal', '/juices'); break;
-          default: this.closeModal();
+          default: this.displayModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
@@ -58,10 +58,10 @@ class SingleProduct extends Component {
             this.modalHandler('showRegisterModal', '/express_checkout'); break;
           case 'view-cart':
             this.modalHandler('showRegisterModal', '/cart'); break;
-          default: this.closeModal();
+          default: this.displayModal('showRegisterModal');
         }
       } break;
-      default: this.closeModal();
+      default: this.displayModal();
     }
   }
 
@@ -71,7 +71,8 @@ class SingleProduct extends Component {
     }), () => this.props.push(location));
   }
 
-  closeModal = () => this.setState(prevState => ({ showSuccessModal: !prevState.showSuccessModal }))
+  displayModal = modal =>
+    this.setState(prevState => ({ [modal]: !prevState[modal] }))
 
   render() {
     return (
