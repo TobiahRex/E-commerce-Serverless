@@ -19,6 +19,9 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
       width: 0,
     };
   }
+  const newTaxRate = (taxRate * 100).toFixed(2);
+  const discount = ((120 + Number(newTaxRate)) * -0.25).toFixed(2);
+  const orderTotal = ((120 + Number(newTaxRate)) * 0.75).toFixed(2);
   return (
     <div style={style} className="bulk-modal">
       <div className="bulk-modal__dialogue">
@@ -98,15 +101,15 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
               <td className="body__totals--prices">
                 <p className="price__subtotal">$ 120.00</p>
                 <br />
-                <p className="price__tax">$ {taxRate * 100}</p>
+                <p className="price__tax">$ {newTaxRate}</p>
                 <br />
                 <p className="price__discount required">
-                  25% OFF: $ -32.78
+                  25% OFF: $ {discount}
                 </p>
                 <br />
                 <p className="price__shipping">$ 0.00</p>
                 <br />
-                <p className="price__order-total">$ 98.02</p>
+                <p className="price__order-total">$ {orderTotal}</p>
               </td>
             </tr>
           </tbody>
@@ -115,25 +118,25 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
           <button
             data-parent="promotion-bulk"
             data-tag=""
-            className="action-btn__continue sweep-right"
+            className="action-btn__close sweep-right"
             onClick={modalHandler}
           >Close</button>
           <div className="action-btn__msg">
             <div className="msg__title">
               <p>Oh!</p>
             </div>
-            <div className="msg__sub-title">
-              <p>
-                Did we mention you get
-                <span className="sub-title__free required"> FREE </span>
-                International Shipping.
-              </p>
-            </div>
+            <p className="msg__sub-title">
+              Did we mention you get
+              <span className="sub-title__free required">
+                {'\u00A0'}FREE{'\u00A0'}
+              </span>
+              International Shipping.
+            </p>
           </div>
           <button
             data-parent="promotion-bulk"
             data-tag="view-juices"
-            className="action-btn__checkout sweep-right"
+            className="action-btn__juices sweep-right"
             onClick={modalHandler}
           >{'Let\'s Do It!'}</button>
         </div>

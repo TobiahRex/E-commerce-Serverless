@@ -75,7 +75,7 @@
             text-align: center;
           }
           & tr.body__row--totals {
-            border-bottom: 1px solid rgba(0,0,0,.1);
+            border-bottom: 1px solid rgba(0,0,0,.2);
             & td.body__totals--categories {
               text-align: right;
             }
@@ -90,10 +90,22 @@
         justify-content: space-around;;
         align-items: flex-end;
         height: 13em;
-        width: 56em;
-        & .action-btn__cart,
-        .action-btn__continue,
-        .action-btn__checkout {
+        width: 100%;
+        & .action-btn__msg {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          padding: 2em;
+          margin-bottom: 2em;
+          flex-direction: column;
+          & .msg__sub-title {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        & .action-btn__close,
+        .action-btn__juices {
           height: 2.6em;
           width: 7.66em;
           border: none;
@@ -110,7 +122,7 @@
           height: 2.6em;
           width: 11.66em;
         }
-        & .action-btn__checkout {
+        & .action-btn__juices {
           height: 2.6em;
           width: 10.33em;
         }
