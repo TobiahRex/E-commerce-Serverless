@@ -31,9 +31,14 @@ class SingleProduct extends Component {
   }
 
   toggleModal = (e) => {
-    switch (e.target.dataset.parent) {
+    let parentEl = e.target.dataset.parent;
+    if (!parentEl) {
+      parentEl = e.target.parentNode;
+    }
+
+    switch (parentEl.dataset.parent) {
       case 'success': {
-        switch (e.target.dataset.tag) {
+        switch (parentEl.dataset.tag) {
           case 'view-cart': this.modalHandler('/cart'); break;
           case 'view-checkout': this.modalHandler('/express_checkout'); break;
           default: {
@@ -44,7 +49,9 @@ class SingleProduct extends Component {
         }
       } break;
       case 'parent-bulk': {
-
+        switch (parentEl.dataset.tag) {
+          case ''
+        }
       } break;
       case 'parent-register': {
 
@@ -78,6 +85,7 @@ class SingleProduct extends Component {
           toggleModal={this.toggleModal}
         />
         <BulkSaleModal
+          taxRate={this.props.taxRate}
           showModal={this.state.showBulkModal}
           toggleModal={this.toggleModal}
         />

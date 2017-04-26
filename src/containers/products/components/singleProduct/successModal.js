@@ -22,7 +22,10 @@ function BulkSaleModal({ showModal, toggleModal }) {
     <div style={style} className="add-success-modal">
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
-          <button className="exit-btn" onClick={toggleModal}>
+          <button
+            className="exit-btn"
+            onClick={toggleModal}
+          >
             <FontAwesome name="plus" />
           </button>
         </div>
