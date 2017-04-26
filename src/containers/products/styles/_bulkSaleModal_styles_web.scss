@@ -91,6 +91,8 @@
         align-items: flex-end;
         height: 13em;
         width: 100%;
+        box-sizing: border-box;
+        padding: 0 2em 0 2em;
         & .action-btn__msg {
           @include prefixflex();
           justify-content: center;
@@ -98,10 +100,23 @@
           padding: 2em;
           margin-bottom: 2em;
           flex-direction: column;
+          p {
+            font-family: $p-font;
+            color: $p-blue;
+            font-size: 1.8em;
+            line-height: 1.38em;
+            text-align: center;
+          }
           & .msg__sub-title {
-            @include prefixflex();
-            justify-content: center;
-            align-items: center;
+            font-family: $p-font;
+            color: $p-blue;
+            font-size: 1.8em;
+            line-height: 1.38em;
+            margin-top: .5em;
+            text-align: center;
+            & span {
+              font-weight: bold;
+            }
           }
         }
         & .action-btn__close,
