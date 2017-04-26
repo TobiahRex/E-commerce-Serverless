@@ -35,28 +35,29 @@ class SingleProduct extends Component {
     if (!parentEl) {
       parentEl = e.target.parentNode;
     }
-
     switch (parentEl.dataset.parent) {
       case 'success': {
         switch (parentEl.dataset.tag) {
-          case 'view-cart': this.modalHandler('/cart'); break;
-          case 'view-checkout': this.modalHandler('/express_checkout'); break;
+          case 'view-cart':
+            this.modalHandler('showSuccessModal', '/cart'); break;
+          case 'view-checkout':
+            this.modalHandler('showSuccessModal', '/express_checkout'); break;
           default: this.closeModal();
         }
       } break;
       case 'promotion-bulk': {
         switch (parentEl.dataset.tag) {
-          case 'view-juices': this.modalHandler('/juices');
-            break;
+          case 'view-juices':
+            this.modalHandler('showBulkModal', '/juices'); break;
           default: this.closeModal();
         }
       } break;
       case 'promotion-register': {
         switch (parentEl.dataset.tag) {
-          case 'view-checkout': this.modalHandler('/express_checkout');
-            break;
-          case 'view-cart': this.modalHandler('/cart');
-            break;
+          case 'view-checkout':
+            this.modalHandler('showRegisterModal', '/express_checkout'); break;
+          case 'view-cart':
+            this.modalHandler('showRegisterModal', '/cart'); break;
           default: this.closeModal();
         }
       } break;
@@ -64,9 +65,9 @@ class SingleProduct extends Component {
     }
   }
 
-  modalHandler = (location) => {
+  modalHandler = (modal, location) => {
     this.setState(prevState => ({
-      showSuccessModal: !prevState.showSuccessModal,
+      [modal]: !prevState[modal],
     }), () => this.props.push(location));
   }
 

@@ -7,7 +7,7 @@ function ImageGroup({ toggleModal }) {
     <div className="main__info--image">
       <img className="image__src" alt="Switch Juice" />
       <button
-        data-set="parent-bulk"
+        data-parent="promotion-bulk"
         className="image__promotion sweep-right-red"
         onClick={toggleModal}
       >
