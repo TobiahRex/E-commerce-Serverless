@@ -12,8 +12,10 @@ export const orderTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = Immutable({
-  guestCart: JSON.parse(localStorage.getItem('guestCart')) || [{}],
-  memberCart: JSON.parse(localStorage.getItem('memberCart')) || [{}],
+  cart: {
+    guest: JSON.parse(localStorage.getItem('guestCart')) || [{}],
+    member: [{}],
+  },
   taxRate: {
     stateRate: 0.060,
     cityRate: 0.030,
@@ -38,6 +40,6 @@ const setTaxRate = (state, { taxRate }) => ({
 
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
-  [Types.ADD_TO_MEMBER_CART]: addT`oMemberCart,
+  [Types.ADD_TO_MEMBER_CART]: addToMemberCart,
   [Types.SET_TAX_RATE]: setTaxRate,
 });
