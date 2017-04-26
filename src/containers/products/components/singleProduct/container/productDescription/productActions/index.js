@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
-export default function ProductActions() {
+function ProductActions({ error }) {
   return (
     <div className="desc__actions">
       <div className="actions__btn-container">
@@ -33,13 +33,12 @@ export default function ProductActions() {
           </span>
         </button>
       </div>
-      <div className="actions__warning-msg">
-        <p>
-          Maximum of 4 bottles per customer per address. More info {'\u00A0'}
-          <Link to={'/shipping_policy'}>here.</Link>
-        </p>
-        <p>Japanese Statute # 123123123.</p>
-      </div>
+      <Error />
     </div>
   );
 }
+const { bool } = React.PropTypes;
+ProductActions.propTypes = {
+  error: bool.isRequired,
+};
+export default ProductActions;

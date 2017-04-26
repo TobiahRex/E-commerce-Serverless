@@ -1,4 +1,4 @@
-/* estlint-disable no-return-assign */
+/* eslint-disable no-return-assign */
 import React, { Component } from 'react';
 import JuiceTitle from './juiceTitle';
 import Price from './price';
@@ -33,7 +33,7 @@ class ProductDescription extends Component {
         qty: prevState.qty += 1,
       }));
     } else {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         ...prevState,
         error: true,
       }));
@@ -52,7 +52,9 @@ class ProductDescription extends Component {
           loggedIn={loggedIn}
         />
         <Nicotine />
-        <ProductActions />
+        <ProductActions
+          error={this.state.error}
+        />
         <SocialMediaBtns />
       </div>
     );
