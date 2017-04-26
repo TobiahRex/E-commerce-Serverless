@@ -23,7 +23,6 @@ function SingleProductModal({ showModal, toggleModal }) {
       <div className="add-success-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
-            data-parent="promotion-bulk"
             className="exit-btn"
             onClick={toggleModal}
           >
@@ -37,21 +36,19 @@ function SingleProductModal({ showModal, toggleModal }) {
         </div>
         <div className="dialogue__action-btns">
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag="view-cart"
             className="action-btn__cart sweep-right"
             onClick={toggleModal}
           >View Cart</button>
 
           <button
-            data-parent="promotion-bulk"
-            data-tag="view-juice"
             className="action-btn__continue sweep-right"
             onClick={toggleModal}
           >Continue Shopping</button>
 
           <button
-            data-parent="promotion-bulk"
+            data-parent="promotion-register"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
             onClick={toggleModal}

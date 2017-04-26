@@ -41,24 +41,26 @@ class SingleProduct extends Component {
         switch (parentEl.dataset.tag) {
           case 'view-cart': this.modalHandler('/cart'); break;
           case 'view-checkout': this.modalHandler('/express_checkout'); break;
-          default: {
-            this.setState(prevState => ({
-              showSuccessModal: !prevState.showSuccessModal,
-            }));
-          }
+          default: this.closeModal();
         }
       } break;
-      case 'parent-bulk': {
+      case 'promotion-bulk': {
         switch (parentEl.dataset.tag) {
-          case ''
+          case 'view-juices': this.modalHandler('/juices');
+            break;
+          default: this.closeModal();
         }
       } break;
-      case 'parent-register': {
-
+      case 'promotion-register': {
+        switch (parentEl.dataset.tag) {
+          case 'view-checkout': this.modalHandler('/express_checkout');
+            break;
+          case 'view-cart': this.modalHandler('/cart');
+            break;
+          default: this.closeModal();
+        }
       } break;
-      default: {
-        this.setState(prevState => ({ showSuccessModal: !prevState.showSuccessModal }));
-      }
+      default: this.closeModal();
     }
   }
 
@@ -67,6 +69,8 @@ class SingleProduct extends Component {
       showSuccessModal: !prevState.showSuccessModal,
     }), () => this.props.push(location));
   }
+
+  closeModal = () => this.setState(prevState => ({ showSuccessModal: !prevState.showSuccessModal }))
 
   render() {
     return (
