@@ -5,7 +5,7 @@ import Price from './price';
 import Blurb from './blurb';
 import Promotion from './promotion';
 import Nicotine from './nicotine';
-import ProductActions from './productActions';
+import ProductActions from './productActionBtns';
 import SocialMediaBtns from './socialMediaBtns';
 
 const { func, bool } = React.PropTypes;
@@ -40,19 +40,42 @@ class ProductDescription extends Component {
     }
   }
 
+  addToCart = () => {
+    const {
+      qty
+      productId: id,
+      nicotineStrength: strength,
+    } = this.state;
+
+    if (this.props.loggedIn) {
+      this.props.addToMemberCart({
+        id,
+        qty,
+        strength,
+      });
+    } else {
+      this.props.addToGuestCart({
+        id,
+        qty,
+        strength,
+      })
+    }
+  }
+
   render() {
-    const { modalHandler, loggedIn } = this.props;
     return (
       <div className="main__info--desc">
         <JuiceTitle />
         <Price />
         <Blurb />
         <Promotion
-          modalHandler={modalHandler}
-          loggedIn={loggedIn}
+          modalHandler={this.props.modalHandler}
+          loggedIn={this.props.loggedIn}
         />
         <Nicotine />
         <ProductActions
+          addToCart={this.addToCart}
+          incrementQty={this.incrementQty}
           error={this.state.error}
         />
         <SocialMediaBtns />
@@ -60,4 +83,7 @@ class ProductDescription extends Component {
     );
   }
 }
-export default ProductDescription;
+const mapStateToProps = ({ auth }) => ({
+  loggedIn: auth.loggedIn,
+})
+export default connect(mapStateToProps, null)(ProductDescription);
