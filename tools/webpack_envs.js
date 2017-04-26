@@ -14,6 +14,7 @@ export default {
     LINE_CHANNEL_ID: JSON.stringify(process.env.LINE_CHANNEL_ID),
     LINE_REDIRECT_URI: JSON.stringify(process.env.LINE_REDIRECT_URI),
     LINE_STATE: JSON.stringify(process.env.LIEN_STATE),
+    FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
   },
   production: {
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
@@ -26,5 +27,6 @@ export default {
     LINE_CHANNEL_ID: JSON.stringify(process.env.LINE_CHANNEL_ID),
     LINE_REDIRECT_URI: JSON.stringify(process.env.LINE_REDIRECT_URI),
     LINE_STATE: JSON.stringify(process.env.LIEN_STATE),
+    FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
   },
 };

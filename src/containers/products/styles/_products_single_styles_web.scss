@@ -236,22 +236,30 @@
               @include prefixflex();
               justify-content: center;
               align-items: center;
-              height: 3.33em;
-              width: 3.33em;
-              color: $p-white;
-              font-family: $p-font;
-              font-size: 1.5em;
-              background-color: $p-red;
+              height: 5em;
+              width: 5em;
               margin: 0 1em;
-              border: 1px solid $p-red;
-              cursor: pointer;
-              transition: all .3s ease-in-out;
               @include prefixed(box-shadow, 0px 3px 10px rgba(0,0,0,.5));
-              &:hover,
-              &:active,
-              &:focus {
-                background-color: $s-blue;
-                border: 1px solid $p-blue;
+              & .strength__btn {
+                height: 100%;
+                width: 100%;
+                border: none;
+                background-color: transparent;
+                padding: 0;
+                margin: 0;
+                color: $p-white;
+                font-family: $p-font;
+                font-size: 1.5em;
+                cursor: pointer;
+                transition: all .3s ease-in-out;
+                border: 1px solid $p-red;
+                &:hover,
+                &:active,
+                &:focus {
+                  outline: none;
+                  background-color: $s-blue;
+                  border: 1px solid $p-blue;
+                }
               }
             }
           }
@@ -369,6 +377,7 @@
           }
           & .actions__warning-msg {
             text-align: center;
+            margin-bottom: 1em;
             p {
               color: $p-red;
               a {

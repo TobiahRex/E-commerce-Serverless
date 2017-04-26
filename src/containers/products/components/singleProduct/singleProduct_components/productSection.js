@@ -91,10 +91,10 @@ class ProductSection extends Component {
 
   nicotineHandler = (e) => {
     let nicEl = e.target.dataset.tag;
-    if (nicEl) {
+    if (!nicEl) {
       nicEl = e.target.parentNode.dataset.tag;
     }
-    this.setState({ nicStrength: nicEl });
+    this.setState({ nicStrength: Number(nicEl) });
   }
 
   render() {
@@ -109,7 +109,7 @@ class ProductSection extends Component {
         />
         <NicotineBtns
           nicStrength={this.state.nicStrength}
-          nicStrengthHandler={this.nicStrengthHandler}
+          nicotineHandler={this.nicotineHandler}
         />
         <ProductActions
           quantity={this.state.qty}
@@ -118,7 +118,7 @@ class ProductSection extends Component {
           addToCartHandler={this.addToCartHandler}
           qtyHandler={this.qtyHandler}
         />
-        <SocialMediaBtns />
+        <SocialMediaBtns location="" />
       </div>
     );
   }
