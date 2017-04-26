@@ -12,10 +12,11 @@ import BulkSaleModal from './promotionModal.bulk';
 import RegisterModal from './promotionModal.register';
 
 
-const { func, number } = React.PropTypes;
+const { func, number, bool } = React.PropTypes;
 
 class SingleProduct extends Component {
   static propTypes = {
+    loggedIn: bool.isRequired,
     saveProductToCart: func.isRequired,
     push: func.isRequired,
     taxRate: number.isRequired,
@@ -90,7 +91,10 @@ class SingleProduct extends Component {
           lastCrumb="Juice Page"
         />
         <Title />
-        <Container modalHandler={this.modalHandler} />
+        <Container
+          loggedIn={this.props.loggedIn}
+          modalHandler={this.modalHandler}
+        />
         <ActionBtns />
         <SuccessModal
           showModal={this.state.showSuccessModal}
@@ -102,6 +106,7 @@ class SingleProduct extends Component {
           modalHandler={this.modalHandler}
         />
         <RegisterModal
+          taxRate={this.props.taxRate}
           loggedIn={this.props.loggedIn}
           showModal={this.state.showRegisterModal}
           modalHandler={this.modalHandler}
@@ -111,7 +116,7 @@ class SingleProduct extends Component {
   }
 }
 const mapStateToProps = ({ orders, auth }) => ({
-  loggedIn: auth.loggedIn,
+  loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
 });
 const mapDispatchToProps = dispatch => ({

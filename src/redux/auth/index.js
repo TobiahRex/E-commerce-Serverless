@@ -17,7 +17,7 @@ const INITIAL_STATE = Immutable({
   authorizationInProgress: false,
   loginSuccess: JSON.parse(localStorage.getItem('loginSuccess')),
   loginError: null,
-  loggedIn: JSON.parse(localStorage.getItem('loggedIn')),
+  loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
 });
 
 const authorizationInProgress = state => ({

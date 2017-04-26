@@ -2,7 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 function BulkSaleModal({ showModal, modalHandler, taxRate }) {
-  console.log('showBulkModal: ', showModal);
   let style;
   if (showModal) {
     style = {

@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-function Promotion({ loggedIn, modalHandler }) {
+export default function Promotion({ loggedIn, modalHandler }) {
   let style;
   if (!loggedIn) {
     style = { display: 'flex' };
@@ -24,7 +23,3 @@ Promotion.propTypes = {
   loggedIn: bool.isRequired,
   modalHandler: func.isRequired,
 };
-const mapStateToProps = ({ auth }) => ({
-  loggedIn: auth.loggedIn,
-});
-export default connect(mapStateToProps, null)(Promotion);
