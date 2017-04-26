@@ -5,7 +5,7 @@ function ErrorMsg({ error }) {
   let style;
   if (error) {
     style = {
-      display: 'flex',
+      display: 'block',
       opacity: 1,
     };
   } else {
