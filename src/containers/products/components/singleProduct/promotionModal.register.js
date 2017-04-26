@@ -19,8 +19,8 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
     };
   }
   const newTaxRate = (taxRate * 100).toFixed(2);
-  const discount = ((120 + Number(newTaxRate)) * -0.25).toFixed(2);
-  const orderTotal = ((120 + Number(newTaxRate)) * 0.75).toFixed(2);
+  const discount = ((120 + Number(newTaxRate)) * -0.35).toFixed(2);
+  const orderTotal = ((120 + Number(newTaxRate)) * 0.65).toFixed(2);
   return (
     <div style={style} className="register-modal">
       <div className="register-modal__dialogue">
@@ -38,6 +38,7 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
           <h1 className="product-title__title">
             Not A Member Yet?
           </h1>
+          <br />
           <p className="product-title__sub-title">
             Become a member and get
             <span className="required sub-title__bold">
@@ -122,7 +123,7 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
                 <p className="price__tax">$ {newTaxRate}</p>
                 <br />
                 <p className="price__discount required">
-                  25% OFF: $ {discount}
+                  35% OFF: $ {discount}
                 </p>
                 <br />
                 <p className="price__shipping">$ 0.00</p>
@@ -136,14 +137,14 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
           <button
             data-parent="promotion-register"
             data-tag=""
-            className="action-btn__close sweep-right"
+            className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
           >Close</button>
 
           <button
             data-parent="promotion-register"
             data-tag="view-juices"
-            className="action-btn__juices sweep-right"
+            className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
           >Sign Me Up</button>
         </div>

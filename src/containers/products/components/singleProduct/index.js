@@ -60,10 +60,8 @@ class SingleProduct extends Component {
       } break;
       case 'promotion-register': {
         switch (tagEl) {
-          case 'view-checkout':
-            this.toggleModalAndGo('showRegisterModal', '/express_checkout'); break;
-          case 'view-cart':
-            this.toggleModalAndGo('showRegisterModal', '/cart'); break;
+          case 'view-juices':
+            this.toggleModalAndGo('showRegisterModal', '/juices'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;
