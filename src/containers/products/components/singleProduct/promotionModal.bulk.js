@@ -117,7 +117,7 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
           <button
             data-parent="promotion-bulk"
             data-tag=""
-            className="action-btn__close sweep-right"
+            className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
           >Close</button>
           <div className="action-btn__msg">
@@ -129,13 +129,13 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
               <span className="sub-title__free required">
                 {'\u00A0'}FREE{'\u00A0'}
               </span>
-              International Shipping.
+              International Shipping?!
             </p>
           </div>
           <button
             data-parent="promotion-bulk"
             data-tag="view-juices"
-            className="action-btn__juices sweep-right"
+            className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
           >{'Let\'s Do It!'}</button>
         </div>

@@ -92,13 +92,12 @@
         height: 13em;
         width: 100%;
         box-sizing: border-box;
-        padding: 0 2em 0 2em;
+        padding: 0 2em 2em 2em;
         & .action-btn__msg {
           @include prefixflex();
           justify-content: center;
           align-items: center;
           padding: 2em;
-          margin-bottom: 2em;
           flex-direction: column;
           p {
             font-family: $p-font;
@@ -118,28 +117,6 @@
               font-weight: bold;
             }
           }
-        }
-        & .action-btn__close,
-        .action-btn__juices {
-          height: 2.6em;
-          width: 7.66em;
-          border: none;
-          background-color: $p-red;
-          font-family: $p-font;
-          color: $p-white;
-          font-size: 1.5em;
-          padding: 0;
-          margin: 0 auto 2em auto;
-          cursor: pointer;
-          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-        }
-        & .action-btn__continue {
-          height: 2.6em;
-          width: 11.66em;
-        }
-        & .action-btn__juices {
-          height: 2.6em;
-          width: 10.33em;
         }
       }
     }
