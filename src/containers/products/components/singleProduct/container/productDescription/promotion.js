@@ -1,7 +1,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 
-export default function Promotion() {
+function Promotion() {
   return (
     <div className="desc__promotion">
       <button
@@ -11,3 +12,7 @@ export default function Promotion() {
     </div>
   );
 }
+const mapStateToProps = ({ auth }) => ({
+  loggedIn: auth.loggedIn,
+});
+export default connect(mapStateToProps, null)(Promotion);

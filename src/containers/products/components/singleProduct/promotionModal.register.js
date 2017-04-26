@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function SingleProductModal({ showModal, loggedIn, modalHandler }) {
+function RegisterModal({ showModal, loggedIn, modalHandler }) {
   let style;
   if (!loggedIn && showModal) {
     style = {
@@ -59,9 +59,9 @@ function SingleProductModal({ showModal, loggedIn, modalHandler }) {
   );
 }
 const { bool, func } = React.PropTypes;
-SingleProductModal.propTypes = {
+RegisterModal.propTypes = {
   loggedIn: bool.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
 };
-export default SingleProductModal;
+export default RegisterModal;
