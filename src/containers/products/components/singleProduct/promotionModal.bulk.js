@@ -52,13 +52,31 @@ function RegisterModal({ showModal, toggleModal }) {
             </tr>
           </thead>
           <tbody>
-            <tr className="body__row">
+            <tr className="body__row--main">
               <td className="body--qty">4</td>
               <td className="body--description">
                 <p className="description__title">Fruity Bamm-Bamm</p>
+                <br />
                 <p className="description__nicotine-strength">
                   Nicotine Strenght: <i>6mg</i>
                 </p>
+                <br />
+                <p className="description__sku">
+                  SKU: VSJ0001
+                </p>
+              </td>
+            </tr>
+            <tr className="body__row--totals">
+              <td className="body--totals">
+                <p className="totals__subtotal">Subtotal</p>
+                <br />
+                <p className="totals__tax">Tax</p>
+                <br />
+                <p className="totals__discount">Discount</p>
+                <br />
+                <p className="totals__shipping">Free International Shipping</p>
+                <br />
+                <p className="totals__order-total">Order Total</p>
               </td>
             </tr>
           </tbody>
