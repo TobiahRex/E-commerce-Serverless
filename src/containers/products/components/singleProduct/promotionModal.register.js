@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function SingleProductModal({ showModal, toggleModal }) {
+function SingleProductModal({ showModal, modalHandler }) {
   let style;
   if (showModal) {
     style = {
@@ -24,7 +24,7 @@ function SingleProductModal({ showModal, toggleModal }) {
         <div className="dialogue__exit--container">
           <button
             className="exit-btn"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >
             <FontAwesome name="plus" />
           </button>
@@ -39,19 +39,19 @@ function SingleProductModal({ showModal, toggleModal }) {
             data-parent="promotion-register"
             data-tag="view-cart"
             className="action-btn__cart sweep-right"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >View Cart</button>
 
           <button
             className="action-btn__continue sweep-right"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >Continue Shopping</button>
 
           <button
             data-parent="promotion-register"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >Express Checkout</button>
         </div>
       </div>
@@ -61,6 +61,6 @@ function SingleProductModal({ showModal, toggleModal }) {
 const { bool, func } = React.PropTypes;
 SingleProductModal.propTypes = {
   showModal: bool.isRequired,
-  toggleModal: func.isRequired,
+  modalHandler: func.isRequired,
 };
 export default SingleProductModal;

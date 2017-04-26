@@ -44,25 +44,25 @@ class SingleProduct extends Component {
       case 'success': {
         switch (tagEl) {
           case 'view-cart':
-            this.toggleModal('showSuccessModal', '/cart'); break;
+            this.toggleModalAndGo('showSuccessModal', '/cart'); break;
           case 'view-checkout':
-            this.toggleModal('showSuccessModal', '/express_checkout'); break;
+            this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
           default: this.toggleModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-            this.toggleModal('showBulkModal', '/juices'); break;
+            this.toggleModalAndGo('showBulkModal', '/juices'); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
         switch (tagEl) {
           case 'view-checkout':
-            this.toggleModal('showRegisterModal', '/express_checkout'); break;
+            this.toggleModalAndGo('showRegisterModal', '/express_checkout'); break;
           case 'view-cart':
-            this.toggleModal('showRegisterModal', '/cart'); break;
+            this.toggleModalAndGo('showRegisterModal', '/cart'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;
@@ -70,7 +70,7 @@ class SingleProduct extends Component {
     }
   }
 
-  toggleModal = (modal, location) => {
+  toggleModalAndGo = (modal, location) => {
     this.setState(prevState => ({
       [modal]: !prevState[modal],
     }), () => this.props.push(location));

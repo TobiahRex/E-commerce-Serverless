@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-function BulkSaleModal({ showModal, toggleModal }) {
+function BulkSaleModal({ showModal, modalHandler }) {
   let style;
   if (showModal) {
     style = {
@@ -24,7 +24,7 @@ function BulkSaleModal({ showModal, toggleModal }) {
         <div className="dialogue__exit--container">
           <button
             className="exit-btn"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >
             <FontAwesome name="plus" />
           </button>
@@ -39,21 +39,21 @@ function BulkSaleModal({ showModal, toggleModal }) {
             data-parent="success"
             data-tag="view-cart"
             className="action-btn__cart sweep-right"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >View Cart</button>
 
           <button
             data-parent="success"
             data-tag="view-juice"
             className="action-btn__continue sweep-right"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >Continue Shopping</button>
 
           <button
             data-parent="success"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
-            onClick={toggleModal}
+            onClick={modalHandler}
           >Express Checkout</button>
         </div>
       </div>
@@ -63,6 +63,6 @@ function BulkSaleModal({ showModal, toggleModal }) {
 const { bool, func } = React.PropTypes;
 BulkSaleModal.propTypes = {
   showModal: bool.isRequired,
-  toggleModal: func.isRequired,
+  modalHandler: func.isRequired,
 };
 export default BulkSaleModal;
