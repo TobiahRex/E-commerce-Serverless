@@ -8,6 +8,7 @@ function ImageGroup({ modalHandler }) {
       <img className="image__src" alt="Switch Juice" />
       <button
         data-parent="promotion-bulk"
+        data-tag=""
         className="image__promotion sweep-right-red"
         onClick={modalHandler}
       >

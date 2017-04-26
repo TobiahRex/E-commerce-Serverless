@@ -33,15 +33,17 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
           </button>
         </div>
         <div className="dialogue__product-title">
-          <p>{'Let\'s Make a Deal'}!</p>
+          <p className="product-title__title">
+            {'Let\'s Make a Deal'}!
+          </p>
           <br />
-          <p>
-            <span className="required">BUY 4 BOTTLES</span>
+          <p className="product-title__sub-title">
+            <span className="required"> BUY 4 BOTTLES </span>
             and we’ll slice
-            <span className="required">25% OFF</span>
+            <span className="required"> 25% OFF </span>
             the price.
           </p>
-          <p>
+          <p className="product-title__example">
             <i>Example:</i>
           </p>
         </div>

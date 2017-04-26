@@ -14,8 +14,6 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      // height: 23em;
-      // width: 56em;
       background-color: $p-white;
       & .dialogue__exit--container {
         max-width: 56em;
@@ -43,13 +41,12 @@
           }
         }
       }
-      & .dialogue__product-msg {
+      & .dialogue__product-title {
         @include prefixflex();
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         flex-direction: column;
-        height: 9em;
-        width: 56em;
+        height: 17.5em;
         p {
           font-family: $p-font;
           color: $p-blue;

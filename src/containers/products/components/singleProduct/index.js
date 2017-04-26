@@ -32,7 +32,7 @@ class SingleProduct extends Component {
 
   modalHandler = (e) => {
     let parentEl = e.target.dataset.parent;
-    let tagEl = e.target.datset.tag;
+    let tagEl = e.target.dataset.tag;
     if (!parentEl) {
       parentEl = e.target.parentNode.dataset.parent;
     }
