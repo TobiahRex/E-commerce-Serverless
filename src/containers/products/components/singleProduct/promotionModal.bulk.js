@@ -33,16 +33,16 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
           </button>
         </div>
         <div className="dialogue__product-title">
-          <p className="product-title__title">
+          <h1 className="product-title__title">
             {'Let\'s Make a Deal'}!
-          </p>
-          <br />
+          </h1>
           <p className="product-title__sub-title">
-            <span className="required"> BUY 4 BOTTLES </span>
+            <span className="required sub-title__bold"> BUY 4 BOTTLES </span>
             and we’ll slice
-            <span className="required"> 25% OFF </span>
+            <span className="required sub-title__bold"> 25% OFF </span>
             the price.
           </p>
+          <br />
           <p className="product-title__example">
             <i>Example:</i>
           </p>
@@ -50,14 +50,22 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
         <table className="dialogue__table">
           <thead className="table__header">
             <tr className="header__row">
-              <td className="header--qty">QTY</td>
-              <td className="header--description">Juice Description</td>
-              <td className="header--price">Price</td>
+              <th className="header--qty">
+                <h4>QTY</h4>
+              </th>
+              <th className="header--description">
+                <h4>Juice Description</h4>
+              </th>
+              <th className="header--price">
+                <h4>Price</h4>
+              </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table__body">
             <tr className="body__row--main">
-              <td className="body--qty">4</td>
+              <td className="body--qty">
+                <p>4</p>
+              </td>
               <td className="body--description">
                 <p className="description__title">Fruity Bamm-Bamm</p>
                 <br />
@@ -69,23 +77,28 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
                   SKU: VSJ0001
                 </p>
               </td>
+              <td className="body--price">
+                <p className="price__readout">
+                  $ 120.00
+                </p>
+              </td>
             </tr>
             <tr className="body__row--totals">
-              <td className="body--total--categories" colSpan="2">
+              <td className="body__totals--categories" colSpan="2">
                 <p className="category__subtotal">Subtotal</p>
                 <br />
                 <p className="category__tax">Tax</p>
                 <br />
-                <p className="category__discount">Discount</p>
+                <p className="category__discount required">Discount</p>
                 <br />
                 <p className="category__shipping">Free International Shipping</p>
                 <br />
                 <p className="category__order-total">Order Total</p>
               </td>
-              <td className="body--total--prices">
+              <td className="body__totals--prices">
                 <p className="price__subtotal">$ 120.00</p>
                 <br />
-                <p className="price__tax">$ {taxRate}</p>
+                <p className="price__tax">$ {taxRate * 100}</p>
                 <br />
                 <p className="price__discount required">
                   25% OFF: $ -32.78

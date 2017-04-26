@@ -9,14 +9,13 @@
     left: 0;
     background-color: rgba(0,0,0,.75);
     & .bulk-modal__dialogue {
-      display: none;
       @include prefixflex();
+      width: 50%;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       background-color: $p-white;
       & .dialogue__exit--container {
-        max-width: 56em;
         width: 100%;
         height: 4em;
         @include prefixflex();
@@ -46,13 +45,44 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: column;
-        height: 17.5em;
+        height: 15em;
         p {
           font-family: $p-font;
           color: $p-blue;
           font-size: 1.8em;
           line-height: 1.38em;
           text-align: center;
+          & .sub-title__bold {
+            font-weight: bold;
+          }
+        }
+      }
+      & .dialogue__table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 2em;
+        & thead.table__header {
+          & tr.header__row {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & th {
+              padding: 1em;
+            }
+          }
+        }
+        & tbody.table__body {
+          & tr.body__row--main {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            text-align: center;
+          }
+          & tr.body__row--totals {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            & td.body__totals--categories {
+              text-align: right;
+            }
+            & td.body__totals--prices {
+              text-align: right;
+            }
+          }
         }
       }
       & .dialogue__action-btns {
