@@ -8,7 +8,7 @@ function Container({ modalHandler }) {
   return (
     <div className="main__parent">
       <ImageGroup modalHandler={modalHandler} />
-      <ProductDescription />
+      <ProductDescription modalHandler={modalHandler} />
     </div>
   );
 }
