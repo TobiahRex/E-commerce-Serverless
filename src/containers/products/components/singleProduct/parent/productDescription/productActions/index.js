@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import Error from './error';
 import AddToCartBtn from './addToCartBtn';
 
-function ProductActions({ error }) {
+function ProductActions(props) {
   return (
     <div className="desc__actions">
       <div className="actions__btn-container">
@@ -13,26 +13,33 @@ function ProductActions({ error }) {
               <p>Quantity</p>
             </li>
             <li className="list--qty-readout">
-              <p>4</p>
+              <p>{props.quantity}</p>
             </li>
             <li className="list--qty-adjust">
-              <button className="qty-adjust__plus sweep-right">
-                <FontAwesome name="plus" />
-              </button>
-              <button className="qty-adjust__minus sweep-right">
-                <FontAwesome name="minus" />
-              </button>
+              <button
+                data-tag="qty-plus"
+                className="qty-adjust__plus sweep-right"
+                onClick={props.qtyHandler}
+              ><FontAwesome name="plus" /></button>
+              <button
+                data-tag="qty-minus"
+                className="qty-adjust__minus sweep-right"
+                onClick={props.qtyHandler}
+              ><FontAwesome name="minus" /></button>
             </li>
           </ul>
         </div>
-        <AddToCartBtn />
+        <AddToCartBtn addToCart={props.addToCartHandler} />
       </div>
-      <Error error={error} />
+      <Error error={props.error} />
     </div>
   );
 }
-const { bool } = React.PropTypes;
+const { number, bool, func } = React.PropTypes;
 ProductActions.propTypes = {
+  quantity: number.isRequired,
   error: bool.isRequired,
+  addToCartHandler: func.isRequired,
+  qtyHandler: func.isRequired,
 };
 export default ProductActions;

@@ -10,7 +10,6 @@ import ProductActions from './productActions/';
 import SocialMediaBtns from './socialMediaBtns';
 import orderActions from '../../../../../../redux/orders/';
 
-
 const { func, bool } = React.PropTypes;
 
 class ProductDescription extends Component {
@@ -24,32 +23,52 @@ class ProductDescription extends Component {
     super(props);
 
     this.state = {
-      qty: 0,
       productId: '',
-      nicotineStrength: 0,
+      qty: 0,
+      nicStrength: 0,
       error: false,
     };
   }
 
-  incrementQty = () => {
-    if (this.state.qty <= 3) {
-      this.setState(prevState => ({
-        ...prevState,
-        qty: prevState.qty += 1,
-      }));
-    } else {
-      this.setState(prevState => ({
-        ...prevState,
-        error: true,
-      }));
+  qtyHandler = (e) => {
+    let buttonEl = e.target.dataset.tag;
+    if (!buttonEl) {
+      buttonEl = e.target.parentNode.dataset.tag;
+    }
+
+    if (buttonEl === 'qty-plus') {
+      if (this.state.qty <= 3) {
+        this.setState(prevState => ({
+          ...prevState,
+          qty: prevState.qty += 1,
+        }));
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          error: true,
+        }));
+      }
+    } else if (buttonEl === 'qty-minus') {
+      const { qty } = this.state;
+      if (qty >= 1 && qty <= 4) {
+        this.setState(prevState => ({
+          ...prevState,
+          qty: prevState.qty -= 1,
+        }));
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          error: true,
+        }));
+      }
     }
   }
 
-  addToCart = () => {
+  addToCartHandler = () => {
     const {
       qty,
       productId: id,
-      nicotineStrength: strength,
+      nicStrength: strength,
     } = this.state;
 
     if (this.props.loggedIn) {
@@ -63,8 +82,16 @@ class ProductDescription extends Component {
         id,
         qty,
         strength,
-      })
+      });
     }
+  }
+
+  nicotineHandler = (e) => {
+    let nicEl = e.target.dataset.tag;
+    if (nicEl) {
+      nicEl = e.target.parentNode.dataset.tag;
+    }
+    this.setState({ nicStrength: nicEl });
   }
 
   render() {
@@ -77,11 +104,16 @@ class ProductDescription extends Component {
           modalHandler={this.props.modalHandler}
           loggedIn={this.props.loggedIn}
         />
-        <Nicotine />
+        <Nicotine
+          nicStrength={this.state.nicStrength}
+          nicStrengthHandler={this.nicStrengthHandler}
+        />
         <ProductActions
-          addToCart={this.addToCart}
-          incrementQty={this.incrementQty}
+          quantity={this.state.quantity}
+          nicStrength={this.state.nicStrength}
           error={this.state.error}
+          addToCartHanlder={this.addToCartHandler}
+          qtyHandler={this.qtyHandler}
         />
         <SocialMediaBtns />
       </div>
