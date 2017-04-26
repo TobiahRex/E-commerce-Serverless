@@ -2,7 +2,8 @@ import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
-  addedToCart: ['ip_address', 'lat_long'],
+  addToGuestCart: ['productObj'],
+  addToMemberCart: ['productObj'],
   getTaxRate: null,
   setTaxRate: ['taxRate'],
 });
@@ -11,7 +12,8 @@ export const orderTypes = Types;
 export default Creators;
 
 export const INITIAL_STATE = Immutable({
-  cart: JSON.parse(localStorage.getItem('guestCart')),
+  guestCart: JSON.parse(localStorage.getItem('guestCart')) || [{}],
+  memberCart: JSON.parse(localStorage.getItem('memberCart')) || [{}],
   taxRate: {
     stateRate: 0.060,
     cityRate: 0.030,
@@ -19,9 +21,14 @@ export const INITIAL_STATE = Immutable({
   },
 });
 
-const addedToCart = (state, { productObj }) => ({
+const addToGuestCart = (state, { productObj }) => ({
   ...state,
-  cart: [...state.cart, productObj],
+  guestCart: [...state.cart, productObj],
+});
+
+const addToMemberCart = (state, { productObj }) => ({
+  ...state,
+  memberCart: [...state.cart, productObj],
 });
 
 const setTaxRate = (state, { taxRate }) => ({
@@ -30,6 +37,7 @@ const setTaxRate = (state, { taxRate }) => ({
 });
 
 export const orderReducer = createReducer(INITIAL_STATE, {
-  [Types.ADDED_TO_CART]: addedToCart,
+  [Types.ADD_TO_GUEST_CART]: addToGuestCart,
+  [Types.ADD_TO_MEMBER_CART]: addT`oMemberCart,
   [Types.SET_TAX_RATE]: setTaxRate,
 });

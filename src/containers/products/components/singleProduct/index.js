@@ -7,10 +7,9 @@ import BreadCrumb from '../../../../components/breadcrumbs';
 import Title from './title';
 import Container from './container/';
 import ActionBtns from './actionBtns';
-import SuccessModal from './successModal';
-import BulkSaleModal from './promotionModal.bulk';
-import RegisterModal from './promotionModal.register';
-
+import SuccessModal from './modals/success';
+import BulkSaleModal from './modals/promotion.bulk';
+import RegisterModal from './modals/promotion.register';
 
 const { func, number, bool } = React.PropTypes;
 
