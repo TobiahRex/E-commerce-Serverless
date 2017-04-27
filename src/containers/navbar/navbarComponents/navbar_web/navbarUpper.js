@@ -27,16 +27,8 @@ class NavbarUpper extends Component {
   render() {
     return (
       <div className="navbar-actionSection-upper">
-
-        {/* TODO: Navbar Options will receive Option handlers & Active Language & Currency Qty  */}
         <NavbarOptions />
-
-        {/* NOTE: This Component = functional */}
         <NavbarUserActions activeUser={this.state.loggedIn} />
-
-        {/* TODO: Navbar Cart will receive Cart Qty & Handlers:
-          1. Remove Product
-        2. Data currenlty in cart to render dynamically */}
         <NavbarCart />
       </div>
     );
@@ -47,3 +39,9 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 export default connect(mapStateToProps, null)(NavbarUpper);
+
+/* Nested Component Map:
+  1. NavbarOptions = func
+  2. NavbarUserActions == func
+  3. NavbarCart = func
+*/

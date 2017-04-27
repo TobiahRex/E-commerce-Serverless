@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 class NavbarCartMainButton extends PureComponent {
   static propTypes = {
-    qty: PropTypes.string,
-  }
-  static defaultProps = {
-    qty: 0,
+    qty: PropTypes.number.isRequired,
   }
   render() {
     return (
@@ -28,4 +26,16 @@ class NavbarCartMainButton extends PureComponent {
     );
   }
 }
-export default NavbarCartMainButton;
+const calculateQty = (loggedIn, cartObj) => (
+  cartObj[loggedIn ? 'member' : 'guest']
+  .reduce((accum, next) => {
+    if (next.id) {
+      accum += 1;
+      return accum;
+    }
+    return accum;
+  }, 0)
+);
+export default connect(({ auth, orders }) => ({
+  qty: calculateQty(auth.loggedIn, orders.cart),
+}), null)(NavbarCartMainButton);
