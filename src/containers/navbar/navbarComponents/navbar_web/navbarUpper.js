@@ -27,13 +27,20 @@ class NavbarUpper extends Component {
   }
   constructor(props) {
     super(props);
-
     this.state = {
       activeLanguage: props.activeLanguage,
       qty: props.qty,
       cartProducts: props.cartProducts,
     };
   }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     activeLanguage: this.props.activeLanguage,
+  //     qty: this.props.qty,
+  //     cartProducts: this.props.cartProducts,
+  //   });
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
@@ -55,7 +62,7 @@ class NavbarUpper extends Component {
     /* TODO: Edit Product @ Single Product Page
       Idea 1) dynamically render the contents from the cart into the Single Product page on load, if there is a matching item.
 
-      Idea 2) 
+      Idea 2) set a flag on orders for "edit = true"; If the user is on the Single product page, then do the work of filtering the cart per the location they navigated to, and pre-populate the contents for "qty" & "nic strength" with the users choices.
 
     */
   }

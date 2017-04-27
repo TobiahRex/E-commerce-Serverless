@@ -4,9 +4,9 @@ import NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_act
 
 const { arrayOf, object, func } = PropTypes;
 
-class MyCartProductList extends PureComponent {
+class NavbarCartProducts extends PureComponent {
   static propTypes = {
-    products: arrayOf(object).isRequired,
+    cartProducts: arrayOf(object).isRequired,
     deleteFromCart: func.isRequired,
   }
 
@@ -37,19 +37,18 @@ class MyCartProductList extends PureComponent {
     })
   )
 
-    render() {
-      return (
-        <div className="products">
-          <ul className="products-list">
-            {
-              this.props.products.length ?
-              this.renderProducts(this.props.products) :
-              this.emptyCart()
-            }
-          </ul>
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div className="products">
+        <ul className="products-list">
+          {
+            this.props.cartProducts.length ?
+            this.renderProducts(this.props.cartProducts) :
+            this.emptyCart()
+          }
+        </ul>
+      </div>
+    );
   }
-
-  export default MyCartProductList;
+}
+export default NavbarCartProducts;

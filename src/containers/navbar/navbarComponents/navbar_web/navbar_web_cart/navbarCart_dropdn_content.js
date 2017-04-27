@@ -1,42 +1,40 @@
-import React, { PureComponent } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import NavbarCartPromotion from './navbarCart_dropdn_promotion';
 import NavbarCartRecentadd from './navbarCart_dropdn_recentadd';
 import NavbarCartTotalPrice from './navbarCart_dropdn_totalPrice';
 import NavbarCartActionLinks from './navbarCart_dropdn_actionLinks';
 import NavbarCartProducts from './navbarCart_dropdn_products';
 
-class NavbarCartDropdnContent extends PureComponent {
-  render() {
-    const dummyProducts = [{
-      image: 'https://s3-ap-southeast-2.amazonaws.com/nj2jp/keyLimPie_zero_tightCrop_smallSize_zero.jpg',
-      title: 'Keylime Pie',
-      quantity: 3,
-      price: 30,
-      nicotine: 6,
-    }];
-    const dummyCartTotal = 30;
-
-    return (
-      <span className="dropdown-content">
-        <div className="dropdown-content__container">
-          <NavbarCartPromotion />
-          <NavbarCartRecentadd />
-          <NavbarCartProducts
-            products={dummyProducts}
-          />
-          <NavbarCartTotalPrice
-            cartTotal={dummyCartTotal}
-          />
-          <NavbarCartActionLinks />
-        </div>
-      </span>
-    );
-  }
+function NavbarCartDropdnContent({
+  cartProducts,
+  cartTotal,
+  editCartItem,
+  deleteFromCart,
+}) {
+  return (
+    <span className="dropdown-content">
+      <div className="dropdown-content__container">
+        <NavbarCartPromotion />
+        <NavbarCartRecentadd />
+        <NavbarCartProducts
+          cartProducts={cartProducts}
+          editCartItem={editCartItem}
+          deleteFromCart={deleteFromCart}
+        />
+        <NavbarCartTotalPrice
+          cartTotal={cartTotal}
+        />
+        <NavbarCartActionLinks />
+      </div>
+    </span>
+  );
 }
-
+const { arrayOf, object, number, func } = PropTypes;
+NavbarCartDropdnContent.propTypes = {
+  cartProducts: arrayOf(object).isRequired,
+  cartTotal: number.isRequired,
+  editCartItem: func.isRequired,
+  deleteFromCart: func.isRequired,
+};
 export default NavbarCartDropdnContent;
-
-/* TODO
-1. Remove dummy data.
-*/
