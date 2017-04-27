@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 import localeActions from '../../../../redux/locale';
-import NavbarOptionsLanguage from './navbar_web_options/';
+import NavbarLanguage from './navbar_web_language/';
 
 class NavbarUpper extends Component {
   static propTypes = {
@@ -34,7 +34,7 @@ class NavbarUpper extends Component {
     return (
       <div className="navbar-actionSection-upper">
         <div className="navbar-actionSection-upper-options">
-          <NavbarOptionsLanguage
+          <NavbarLanguage
             onLanguageChange={this.onLanguageChange}
             activeLanguage={this.props.activeLanguage}
           />
