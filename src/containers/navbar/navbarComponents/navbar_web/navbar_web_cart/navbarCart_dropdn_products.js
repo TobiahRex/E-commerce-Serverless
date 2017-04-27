@@ -7,6 +7,7 @@ const { arrayOf, object, func } = PropTypes;
 class NavbarCartProducts extends PureComponent {
   static propTypes = {
     cartProducts: arrayOf(object).isRequired,
+    editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   }
 
@@ -24,12 +25,17 @@ class NavbarCartProducts extends PureComponent {
           className="products-list-card"
         >
           <div className="products-list-card-image">
-            <img className="products-list-card-image-src" src={imageUrl} alt={`${title} juice`} />
+            <img
+              className="products-list-card-image-src"
+              src={imageUrl}
+              alt={`${title} juice`}
+            />
           </div>
           <NavbarCartProductsCardInfo juiceObj={juiceObj} />
           <NavbarCartProductsCardActions
             juiceId={id}
             routeTag={routeTag}
+            editCartItem={this.props.editCartItem}
             deleteFromCart={this.props.deleteFromCart}
           />
         </li>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import localeActions from '../../../../redux/locale';
 import NavbarLanguage from './navbar_web_language/';
 import NavbarUserActions from './navbar_web_userActions/';
@@ -34,17 +35,14 @@ class NavbarUpper extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     activeLanguage: this.props.activeLanguage,
-  //     qty: this.props.qty,
-  //     cartProducts: this.props.cartProducts,
-  //   });
-  // }
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      this.setState({ activeLanguage: nextProps.activeLanguage });
+    const { activeLanguage, qty, cartProducts } = nextProps;
+    if (!_.isEqual(nextProps, this.props)) {
+      this.setState({
+        activeLanguage,
+        qty,
+        cartProducts,
+      });
     }
   }
 
