@@ -32,7 +32,6 @@ class ProductSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      juiceId: props.juiceObj.id,
       qty: 0,
       nicStrength: 0,
       error: false,
@@ -76,21 +75,20 @@ class ProductSection extends Component {
   addToCartHandler = () => {
     const {
       qty,
-      juiceId: id,
       nicStrength: strength,
     } = this.state;
 
     if (this.props.loggedIn) {
       this.props.addToMemberCart({
-        id,
         qty,
         strength,
+        ...this.props.juiceObj,
       });
     } else {
       this.props.addToGuestCart({
-        id,
         qty,
         strength,
+        ...this.props.juiceObj,
       });
     }
   }
@@ -153,22 +151,23 @@ class ProductSection extends Component {
     );
   }
 }
-const filterJuices = (location, popJuices) => {
-  let juiceName = location.split('/')[2];
-  const juice = popJuices
-  .filter(({ routeTag }) => routeTag === juiceName)[0];
-  console.warn('juiceObj @ filterJuices\n: ', juice);
-  return juice;
+const filterJuices = (routingObj, productsObj) => {
+  const location = routingObj.locationBeforeTransitions.pathname;
+  const { popJuices } = productsObj;
+  const juiceName = location.split('/')[2];
+  return popJuices.filter(({ routeTag }) => routeTag === juiceName)[0];
 };
 
-const mapStateToProps = ({ auth, routing, products }) => ({
+export default connect(
+({ auth, routing, products }) => ({
   loggedIn: auth.loggedIn,
-  juiceObj: filterJuices(
-    routing.locationBeforeTransitions.pathname, products.popJuices,
+  juiceObj: filterJuices(routing, products),
+}),
+dispatch => ({
+  addToGuestCart: productObj => dispatch(
+    orderActions.addToGuestCart(productObj),
   ),
-});
-const mapDispatchToProps = dispatch => ({
-  addToGuestCart: productObj => dispatch(orderActions.addToGuestCart(productObj)),
-  addToMemberCart: productObj => dispatch(orderActions.addToMemberCart(productObj)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(ProductSection);
+  addToMemberCart: productObj => dispatch(
+    orderActions.addToMemberCart(productObj),
+  ),
+}))(ProductSection);
