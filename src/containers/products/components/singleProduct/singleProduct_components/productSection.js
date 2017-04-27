@@ -13,12 +13,19 @@ import {
   SocialMediaBtns,
 } from './';
 
-const { func, bool } = PropTypes;
+const { func, bool, string, ObjectOf, ArrayOf } = PropTypes;
 
 class ProductSection extends Component {
   static propTypes = {
     modalHandler: func.isRequired,
     loggedIn: bool.isRequired,
+    juiceObj: ObjectOf({
+      id: string,
+      title: string,
+      nicotine_strengths: ArrayOf(string),
+      imageUrl: string,
+      routeTag: string,
+    }).isRequired,
     addToMemberCart: func.isRequired,
     addToGuestCart: func.isRequired,
   }
@@ -26,7 +33,7 @@ class ProductSection extends Component {
     super(props);
 
     this.state = {
-      productId: '',
+      juiceId: props.juiceObj.id,
       qty: 0,
       nicStrength: 0,
       error: false,
@@ -147,8 +154,16 @@ class ProductSection extends Component {
     );
   }
 }
-const mapStateToProps = ({ auth }) => ({
+const filterJuices = (location, popJuices) => {
+  const juice = location.split('/')[2];
+  return (popJuices
+    .filter(({ routeTag }) => routeTag === juice)[0]
+  );
+};
+
+const mapStateToProps = ({ auth, session, products }) => ({
   loggedIn: auth.loggedIn,
+  juiceObj: filterJuices(session.currentActiveUrl, products.popJuices),
 });
 const mapDispatchToProps = dispatch => ({
   addToGuestCart: productObj => dispatch(orderActions.addToGuestCart(productObj)),

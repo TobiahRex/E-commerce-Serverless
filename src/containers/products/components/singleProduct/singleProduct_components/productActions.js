@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import {
   ErrorMsg,
@@ -37,7 +38,7 @@ function ProductActions(props) {
     </div>
   );
 }
-const { number, bool, func } = React.PropTypes;
+const { number, bool, func } = PropTypes;
 ProductActions.propTypes = {
   quantity: number.isRequired,
   error: bool.isRequired,
