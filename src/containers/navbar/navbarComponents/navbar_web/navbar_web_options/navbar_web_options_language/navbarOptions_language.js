@@ -1,72 +1,25 @@
-import React, { PropTypes } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import NavbarOptionsLanguageButton from './navbarOptions_language_mainButton';
 import NavbarOptionsLanguageDropdnContent from './navbarOptions_language_dropdnContent';
 
-import NavbarOptionsLanguageButtonEnglish from './navbarOptions_language_button_english';
-import NavbarOptionsLanguageButtonNihongo from './navbarOptions_language_button_nihongo';
-
-import NavbarOptionsLanguageDropdnEnglish from './navbarOptions_language_dropdn_english';
-import NavbarOptionsLanguageDropdnNihongo from './navbarOptions_language_dropdn_nihongo';
-
-/* TODO:
-1. Pass down via props the respective class methods shown below.
-- Language change: Will set a flag in state that all SMART components will be receiving to determine how to render the Language info.
-
-2. Finish mapping Redux action "onLanguageChange" to this components props.
-*/
-
-class NavbarOptionsLanguage extends React.Component {
-  static propTypes = {
-    activeLanguage: PropTypes.string.isRequired,
-    saveLanguage: PropTypes.func.isRequired,
-  }
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeLanguage: props.activeLanguage,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      this.setState({ activeLanguage: nextProps.activeLanguage });
-    }
-  }
-
-  onLanguageChange = (language) => {
-    this.props.saveLanguage(language);
-    this.setState({ activeLanguage: language });
-  }
-
-  renderLanguageTitle = () => {
-    const Language = this.state.activeLanguage;
-    if (Language === 'english') return <NavbarOptionsLanguageButtonEnglish />;
-    if (Language === 'nihongo') return <NavbarOptionsLanguageButtonNihongo />;
-    throw new Error('Cannot render the Active Language - Check NavbarOptionsLanguageButton component.');
-  }
-
-  renderLanguageDropdown = () => {
-    const Language = this.state.activeLanguage;
-    if (Language === 'english') return <NavbarOptionsLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
-    if (Language === 'nihongo') return <NavbarOptionsLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
-    throw new Error('Cannot render the Active Language - Check NavbarOptionsLanguageButton component.');
-  }
-
-  render() {
-    return (
-      <div className="navbar-options-language">
-        <NavbarOptionsLanguageButton
-          activeLanguage={this.state.activeLanguage}
-          renderLanguageTitle={this.renderLanguageTitle}
-        />
-        <NavbarOptionsLanguageDropdnContent
-          activeLanguage={this.state.activeLanguage}
-          renderLanguageDropdown={this.renderLanguageDropdown}
-        />
-      </div>
-    );
-  }
+function NavbarOptionsLanguage({ activeLanguage, onLanguageChange }) {
+  return (
+    <div className="navbar-options-language">
+      <NavbarOptionsLanguageButton activeLanguage={activeLanguage} />
+      <NavbarOptionsLanguageDropdnContent
+        onLanguageChange={onLanguageChange}
+        activeLanguage={activeLanguage}
+      />
+    </div>
+  );
 }
+NavbarOptionsLanguage.propTypes = {
+  activeLanguage: PropTypes.string.isRequired,
+  onLanguageChange: PropTypes.func.isRequired,
+};
 export default NavbarOptionsLanguage;
+/*
+1. NavbarOptionsLanguageButton = func
+2. NavbarOptionsLanguageDropdnContent = func
+*/

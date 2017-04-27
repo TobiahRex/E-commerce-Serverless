@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import NavbarOptions from './navbar_web_options/navbarOptions';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 import localeActions from '../../../../redux/locale';
+import NavbarOptionsLanguage from './navbar_web_options/navbar_web_options_language/navbarOptions_language';
 
 class NavbarUpper extends Component {
   static propTypes = {
@@ -32,7 +34,12 @@ class NavbarUpper extends Component {
   render() {
     return (
       <div className="navbar-actionSection-upper">
-        <NavbarOptions />
+        <NavbarOptions>
+          <NavbarOptionsLanguage
+            onLanguageChange={this.onLanguageChange}
+            activeLanguage={this.props.activeLanguage}
+          />
+        </NavbarOptions>
         <NavbarUserActions />
         <NavbarCart />
       </div>
@@ -46,7 +53,7 @@ export default connect(
 }),
 dispatch => ({
   saveLanguage: language => dispatch(localeActions.setLanguage(language)),
-})
+}),
 )(NavbarUpper);
 /* Nested Component Map:
   1. NavbarOptions = func
