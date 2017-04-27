@@ -47,7 +47,17 @@ class NavbarUpper extends Component {
   }
 
   editCartItem = (e) => {
+    let route = e.target.dataset.route;
+    if (!route) {
+      route = e.target.parentNode.dataset.route;
+    }
+    this.push(`/juice/${route}`);
+    /* TODO: Edit Product @ Single Product Page
+      Idea 1) dynamically render the contents from the cart into the Single Product page on load, if there is a matching item.
 
+      Idea 2) 
+
+    */
   }
 
   deleteFromCart = (e) => {

@@ -7,7 +7,7 @@ function NavbarCartProductsCardActions({ routeTag, id, editCartItem, deleteFromC
     <div className="products-list-card-actions">
       <div href="" className="products-list-card-actions-edit sweep-right">
         <button
-          data-tag={routeTag}
+          data-route={routeTag}
           onClick={editCartItem}
           className="products-list-card-actions-delete sweep-right"
         >
