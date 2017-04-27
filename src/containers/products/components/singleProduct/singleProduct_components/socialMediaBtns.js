@@ -40,6 +40,6 @@ function SocialMediaBtns(props) {
 const { string, func } = PropTypes;
 SocialMediaBtns.propTypes = {
   location: string.isRequired,
-  fbLike: func.isRequired,
+  // fbLike: func.isRequired,
 };
 export default SocialMediaBtns;
