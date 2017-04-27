@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavbarOptionsLanguageDropdnEnglish from './navbarOptions_language_dropdn_english';
-import NavbarOptionsLanguageDropdnNihongo from './navbarOptions_language_dropdn_nihongo';
 
-function NavbarOptionsLanguageDropdnContent({ activeLanguage, onLanguageChange }) {
+function NavbarOptionsLanguageDropdnContent({
+children }) {
   return (
     <span className="language-dropdown-content">
-      {
-        activeLanguage === 'english' ? <NavbarOptionsLanguageDropdnNihongo onLanguageChange={onLanguageChange} /> : <NavbarOptionsLanguageDropdnEnglish onLanguageChange={onLanguageChange} />
-      }
+      {children}
     </span>
   );
 }
+const { objectOf, any } = PropTypes;
 NavbarOptionsLanguageDropdnContent.propTypes = {
-  activeLanguage: PropTypes.string.isRequired,
-  onLanguageChange: PropTypes.func.isRequired,
+  children: objectOf(any).isRequired,
 };
 export default NavbarOptionsLanguageDropdnContent;
