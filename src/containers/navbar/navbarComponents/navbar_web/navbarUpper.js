@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
-import NavbarCart from './navbar_web_cart/navbarCart';
 import localeActions from '../../../../redux/locale';
 import NavbarLanguage from './navbar_web_language/';
+import NavbarUserActions from './navbar_web_userActions/';
+import NavbarCart from './navbar_web_cart/';
+
+
+const { string, number, func } = PropTypes;
 
 class NavbarUpper extends Component {
   static propTypes = {
-    activeLanguage: PropTypes.string.isRequired,
-    saveLanguage: PropTypes.func.isRequired,
+    activeLanguage: string.isRequired,
+    qty: number.isRequired,
+    saveLanguage: func.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
       activeLanguage: props.activeLanguage,
+      qty: props.qty,
     };
   }
 
@@ -40,15 +45,29 @@ class NavbarUpper extends Component {
           />
         </div>
         <NavbarUserActions />
-        <NavbarCart />
+        <div className="navbar actionSection upper mycart-container">
+          <NavbarCart
+            qty={this.state.qty}
+          />
+        </div>
       </div>
     );
   }
 }
-
+const calculateQty = (loggedIn, cartObj) => (
+  cartObj[loggedIn ? 'member' : 'guest']
+  .reduce((accum, next) => {
+    if (next.id) {
+      accum += 1;
+      return accum;
+    }
+    return accum;
+  }, 0)
+);
 export default connect(
-({ locale }) => ({
+({ locale, auth, orders }) => ({
   activeLanguage: locale.activeLanguage,
+  qty: calculateQty(auth.loggedIn, orders.cart),
 }),
 dispatch => ({
   saveLanguage: language => dispatch(localeActions.setLanguage(language)),

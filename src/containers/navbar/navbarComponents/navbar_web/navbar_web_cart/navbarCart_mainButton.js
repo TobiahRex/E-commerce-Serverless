@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
@@ -26,16 +25,4 @@ class NavbarCartMainButton extends PureComponent {
     );
   }
 }
-const calculateQty = (loggedIn, cartObj) => (
-  cartObj[loggedIn ? 'member' : 'guest']
-  .reduce((accum, next) => {
-    if (next.id) {
-      accum += 1;
-      return accum;
-    }
-    return accum;
-  }, 0)
-);
-export default connect(({ auth, orders }) => ({
-  qty: calculateQty(auth.loggedIn, orders.cart),
-}), null)(NavbarCartMainButton);
+export default NavbarCartMainButton;

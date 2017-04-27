@@ -4,11 +4,9 @@ import NavbarCartMainButton from './navbarCart_mainButton';
 
 export default function NavbarCart() {
   return (
-    <div className="navbar actionSection upper mycart-container">
-      <div className="mycart-main">
-        <NavbarCartMainButton />
-        <NavbarCartDropdnContent />
-      </div>
+    <div className="mycart-main">
+      <NavbarCartMainButton qty={this.state.qty} />
+      <NavbarCartDropdnContent />
     </div>
   );
 }
