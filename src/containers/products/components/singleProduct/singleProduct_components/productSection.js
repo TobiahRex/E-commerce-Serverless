@@ -13,16 +13,16 @@ import {
   SocialMediaBtns,
 } from './';
 
-const { func, bool, string, ObjectOf, ArrayOf } = PropTypes;
+const { func, bool, string, shape, arrayOf } = PropTypes;
 
 class ProductSection extends Component {
   static propTypes = {
     modalHandler: func.isRequired,
     loggedIn: bool.isRequired,
-    juiceObj: ObjectOf({
+    juiceObj: shape({
       id: string,
       title: string,
-      nicotine_strengths: ArrayOf(string),
+      nicotine_strengths: arrayOf(string),
       imageUrl: string,
       routeTag: string,
     }).isRequired,
