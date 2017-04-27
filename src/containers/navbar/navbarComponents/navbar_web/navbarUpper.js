@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 import localeActions from '../../../../redux/locale';
-import NavbarOptionsLanguage from './navbar_web_options/navbar_web_options_language/navbarOptions_language';
+import NavbarOptionsLanguage from './navbar_web_options/';
 
 class NavbarUpper extends Component {
   static propTypes = {

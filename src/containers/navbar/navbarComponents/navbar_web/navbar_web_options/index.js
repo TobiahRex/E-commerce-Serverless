@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import NavbarOptionsLanguageButton from './navbarOptions_language_mainButton';
-import NavbarOptionsLanguageButtonEnglish from './navbarOptions_language_button_english';
-import NavbarOptionsLanguageButtonNihongo from './navbarOptions_language_button_nihongo';
-
-import NavbarOptionsLanguageDropdnContent from './navbarOptions_language_dropdnContent';
-import NavbarOptionsLanguageDropdnEnglish from './navbarOptions_language_dropdn_english';
-import NavbarOptionsLanguageDropdnNihongo from './navbarOptions_language_dropdn_nihongo';
+import {
+  NavbarOptionsLanguageButton,
+  NavbarOptionsLanguageButtonEnglish,
+  NavbarOptionsLanguageButtonNihongo,
+  NavbarOptionsLanguageDropdnContent,
+  NavbarOptionsLanguageDropdnEnglish,
+  NavbarOptionsLanguageDropdnNihongo,
+} from './navbar_web_options_language/imports';
 
 const { string, func } = PropTypes;
 
-class NavbarOptionsLanguage extends React.PureComponent {
+class NavbarOptionsLanguage extends PureComponent {
   static propTypes = {
     activeLanguage: string.isRequired,
     onLanguageChange: func.isRequired,
