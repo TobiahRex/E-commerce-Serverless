@@ -12,11 +12,11 @@ import NavbarCartMainButton from './navbarCart_mainButton';
 - View Cart: goes to cart.
 - Checkout: goes to checkout.
 */
-function NavbarCart() {
+function NavbarCart(props) {
   return (
     <div className="navbar actionSection upper mycart-container">
       <div className="mycart-main">
-        <NavbarCartMainButton />
+        <NavbarCartMainButton qty={props.qty} />
         <NavbarCartDropdnContent />
       </div>
     </div>
