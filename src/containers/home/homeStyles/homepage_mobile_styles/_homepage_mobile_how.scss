@@ -64,6 +64,12 @@
               }
             }
             & .delivery__description--container {
+              -moz-transform: scaleX(-1);
+              -o-transform: scaleX(-1);
+              -webkit-transform: scaleX(-1);
+              transform: scaleX(-1);
+              filter: FlipH;
+              -ms-filter: "FlipH";
               height: 9em;
               padding-bottom: 1em;
               & .delivery__btn--buy {
@@ -84,6 +90,22 @@
               }
             }
           }
+          & .couple__image {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+            & .couple__description--container {
+              -moz-transform: scaleX(-1);
+              -o-transform: scaleX(-1);
+              -webkit-transform: scaleX(-1);
+              transform: scaleX(-1);
+              filter: FlipH;
+              -ms-filter: "FlipH";
+            }
+          }
           & .distro__image {
             background-image: $img-carousel-distro;
           }
@@ -98,6 +120,12 @@
           }
           & .delivery__image {
             background-image: $img-carousel-delivery;
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
           }
         }
       }

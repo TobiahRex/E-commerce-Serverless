@@ -97,6 +97,26 @@ class ProductSection extends Component {
     this.setState({ nicStrength: Number(nicEl) });
   }
 
+  fbLike = () => {
+    /* eslint-disable no-undef */
+    window.fbAsyncInit = () => {
+      FB.init({
+        appId: '1514020845336446',
+        xfbml: true,
+        version: 'v2.9',
+      });
+      FB.AppEvents.logPageView();
+      FB.ui({
+        method: 'share_open_graph',
+        action_type: 'og.likes',
+        action_properties: JSON.stringify({
+          object: 'http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/juice/fruity_bamm_bamm',
+        }),
+      }, console.log);
+    };
+    /* eslint-enable no-undef */
+  }
+
   render() {
     return (
       <div className="main__info--desc">
@@ -118,7 +138,10 @@ class ProductSection extends Component {
           addToCartHandler={this.addToCartHandler}
           qtyHandler={this.qtyHandler}
         />
-        <SocialMediaBtns location="" />
+        <SocialMediaBtns
+          fbLike={this.fbLike}
+          location={`${process.env.BASE_URL}/juice/fruity_bamm_bamm`}
+        />
       </div>
     );
   }

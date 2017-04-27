@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import ReactFBLike from 'react-fb-like';
+import ReactFBLike from './socialMediaBtns.fbLike';
 
 function SocialMediaBtns(props) {
   return (
     <div className="desc__smedia">
       <ul className="smedia__btn--list">
         <ReactFBLike
+          appId={process.env.FACEBOOK_APP_ID}
+          language="en_US"
+          version="v2.9"
           href={props.location}
           layout="button_count"
           action="like"
           size="large"
-          share="false"
-          showFaces="true"
-          appId={process.env.FACEBOOK_APP_ID}
-          version="2.9"
+          share={false}
+          showFaces
+          onClick={props.fbLike}
         />
         <li className="list__like-btn hover-bob">
           <FontAwesome name="thumbs-o-up" />
@@ -34,11 +36,9 @@ function SocialMediaBtns(props) {
     </div>
   );
 }
-const { string } = PropTypes;
+const { string, func } = PropTypes;
 SocialMediaBtns.propTypes = {
-  location: string,
-};
-SocialMediaBtns.defaultProps = {
-  location: `${process.env.BASE_URL}/juice/fruity_bamm_bamm`,
+  location: string.isRequired,
+  fbLike: func.isRequired,
 };
 export default SocialMediaBtns;

@@ -27,6 +27,12 @@
         transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
         & .carousel__slides--slide__couple {
           & .couple__image {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
             @extend .flex-bottom;
             @extend .flex-bottom;
             height: 57.2em;
@@ -35,6 +41,12 @@
             background-position: cover;
             background-repeat: no-repeat;
             & .couple__description--container {
+              -moz-transform: scaleX(-1);
+              -o-transform: scaleX(-1);
+              -webkit-transform: scaleX(-1);
+              transform: scaleX(-1);
+              filter: FlipH;
+              -ms-filter: "FlipH";
               @extend .flex-center;
               height: 15.5em;
               width: 72.5em;
@@ -90,7 +102,6 @@
             @extend .flex-center;
             height: 15.5em;
             width: 72.5em;
-            // padding: 38em 6.4em 3em 6.4em;
             background-color: rgba(1,1,1,.75);
             margin-bottom: 3em;
             & p {
@@ -157,6 +168,12 @@
         }
         & .carousel__slides--slide__delivery {
           & .delivery__image {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
             @extend .flex-bottom;
             height: 57.2em;
             width: 94.1em;
@@ -165,6 +182,12 @@
             background-repeat: no-repeat;
           }
           & .delivery__description--container {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
             @extend .flex-center;
             flex-direction: column;
             height: 16.5em;

@@ -22,11 +22,17 @@
       width: 100%;
       margin: 0;
       & .content__description-image {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
         content: $img-fastest;
         max-width: 30em;
         height: 20.8em;
         margin: 0;
-        @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
+        box-shadow: 3px 3px 3px rgba(1,1,1,.25);
       }
       & .content__message-container {
         @extend .homepage-flex-center;
@@ -35,7 +41,7 @@
         padding: 1em 0 1em 0;
         margin-top: 1em;
         background-color: $p-white;
-        @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
+        box-shadow: 3px 3px 3px rgba(1,1,1,.25);
         & .message_container__title {
           color: $p-red;
           font-size: 18px;
@@ -67,7 +73,7 @@
           border: none;
           cursor: pointer;
           margin: 0;
-          @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+          box-shadow: 3px 3px 2px rgba(1,1,1,.25);
         }
       }
     }

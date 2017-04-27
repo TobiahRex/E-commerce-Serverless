@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ImageGroup,
   ProductSection,
@@ -15,7 +16,7 @@ function SingleProductContainer({ modalHandler, loggedIn }) {
     </div>
   );
 }
-const { func, bool } = React.PropTypes;
+const { func, bool } = PropTypes;
 SingleProductContainer.propTypes = {
   loggedIn: bool.isRequired,
   modalHandler: func.isRequired,

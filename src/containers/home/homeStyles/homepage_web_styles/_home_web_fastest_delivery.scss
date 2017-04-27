@@ -1,4 +1,4 @@
-.homepage-fastest-delivery {
+.homepage__fastest-delivery {
   @extend .flex-center;
   flex-direction: column;
   width: 100%;
@@ -10,22 +10,27 @@
     align-items: center;
     flex-direction: column;
     height: 90%;
-    & h1.homepage-fastest-delivery-title {
+    & .content__title {
       color: $p-red;
       line-height: 1.5em;
       margin: .8em;
     }
-    & .homepage-fastest-delivery-description-container {
+    & .content__description-container {
       @extend .flex-center;
       height: 31em;
       width: 100%;
-      & .homepage-fastest-delivery-description-image {
+      & .content__description-image {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
         content: $img-fastest;
-        width: 46em;
-        height: 30.5em;
         margin: 1.1em;
+        box-shadow: 3px 3px 3px rgba(1,1,1,.25);
       }
-      & .homepage-fastest-delivery-description-message-container {
+      & .content__message-container {
         @extend .flex-center;
         flex-direction: column;
         width: 43em;
@@ -34,14 +39,14 @@
         margin-bottom: 1em;
         padding: 1.5em;
         background-color: $p-white;
-        @include prefixed(box-shadow, 3px 3px 3px rgba(1,1,1,.25));
-        & h3 {
+        box-shadow: 3px 3px 3px rgba(1,1,1,.25);
+        & .message_container__title {
           color: $p-red;
           font-size: 22px;
           line-height: 2.045em;
           font-weight: bold;
         }
-        & .homepage-fastest-delivery-description-message-body {
+        & .message-contianer__body {
           display: flex;
           justify-content: flex-start;
           align-items: flex-start;
@@ -53,8 +58,10 @@
             line-height: 1.27em;
           }
         }
-        & .homepage-fastest-delivery-description-message-buy-btn {
-          display: block;
+        & .message-container__btn--buy {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
           width: 7.33em;
           height: 2.66em;
           color: $p-white;
@@ -68,7 +75,7 @@
           margin-right: -320px;
           border: none;
           cursor: pointer;
-          @include prefixed(box-shadow, 3px 3px 2px rgba(1,1,1,.25));
+          box-shadow: 3px 3px 2px rgba(1,1,1,.25);
         }
       }
     }
