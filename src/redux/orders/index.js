@@ -13,8 +13,8 @@ export default Creators;
 
 export const INITIAL_STATE = Immutable({
   cart: {
-    guest: JSON.parse(localStorage.getItem('guestCart')) || [{}],
-    member: [{}],
+    guest: JSON.parse(localStorage.getItem('guestCart')) || [],
+    member: [],
   },
   taxRate: {
     stateRate: 0.060,
