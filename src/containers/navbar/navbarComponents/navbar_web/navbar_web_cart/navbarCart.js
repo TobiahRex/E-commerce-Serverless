@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavbarCartDropdnContent from './navbar_web_cart_dropdn/navbarCart_dropdn_content';
 import NavbarCartMainButton from './navbarCart_mainButton';
@@ -11,28 +12,35 @@ import NavbarCartMainButton from './navbarCart_mainButton';
 - View Cart: goes to cart.
 - Checkout: goes to checkout.
 */
-const { number } = PropTypes;
-
-class NavbarCart extends Component {
-  static propTypes = {
-    qty: number.isRequired,
-  }
-  constructor(props) {
-    super(props);
-  }
-
-  removeItem = () => console.info('Removed item from cart');
-
-  render() {
-    return (
-      <div className="navbar actionSection upper mycart-container">
-        <div className="mycart-main">
-          <NavbarCartMainButton />
-          <NavbarCartDropdnContent />
-        </div>
+function NavbarCart() {
+  return (
+    <div className="navbar actionSection upper mycart-container">
+      <div className="mycart-main">
+        <NavbarCartMainButton />
+        <NavbarCartDropdnContent />
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default NavbarCart;
+const { number } = PropTypes;
+NavbarCart.propTypes = {
+  qty: number.isRequired,
+};
+const calculateQty = (loggedIn, cartObj) => {
+  let cartType;
+  if (loggedIn) {
+    cartType = 'member';
+  } else {
+    cartType = 'guest';
+  }
+  return (cartObj[cartType].reduce((accum, next) => {
+    if (next.id) {
+      accum += 1;
+      return accum;
+    }
+    return accum;
+  }, 0));
+};
+export default connect(({ auth, orders }) => ({
+  qty: calculateQty(auth.loggedIn, orders.cart),
+}), null)(NavbarCart);

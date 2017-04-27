@@ -7,7 +7,7 @@ import FontAwesome from 'react-fontawesome';
 
 */
 
-class NavbarCartTotalPrice extends PureComponent {
+class MyCartTotalPrice extends PureComponent {
   static propTypes = {
     cart_total: PropTypes.number,
   }
@@ -25,4 +25,4 @@ class NavbarCartTotalPrice extends PureComponent {
   }
 }
 
-export default NavbarCartTotalPrice;
+export default MyCartTotalPrice;

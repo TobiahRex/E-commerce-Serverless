@@ -9,7 +9,7 @@ NOTE: The renderProducts function uses a className convention to name the key va
 It passes the whole product object as "product-info".
 */
 
-class NavbarCartTotalPrice extends PureComponent {
+class MyCartProductList extends PureComponent {
   static propTypes = {
     products: PropTypes.arrayOf(PropTypes.object),
   }
@@ -45,4 +45,4 @@ class NavbarCartTotalPrice extends PureComponent {
   }
 }
 
-export default NavbarCartTotalPrice;
+export default MyCartProductList;
