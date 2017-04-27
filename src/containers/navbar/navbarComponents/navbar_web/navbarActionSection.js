@@ -1,5 +1,4 @@
 import React from 'react';
-
 import NavbarUpper from './navbarUpper';
 import NavbarLower from './navbarLower';
 

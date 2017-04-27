@@ -1,44 +1,31 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavbarOptions from './navbar_web_options/navbarOptions';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
 
-const { bool } = React.PropTypes;
-
 class NavbarUpper extends Component {
   static propTypes = {
-    loggedIn: bool,
-  }
-  static defaultProps = {
-    loggedIn: false,
+    activeLanguage: PropTypes.string.isRequired,
+    saveLanguage: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);
+
     this.state = {
-      loggedIn: props.loggedIn,
-    };
+      activeLanguage: props.activeLanguage,
+    }
   }
-
-  componentWillReceiveProps({ loggedIn }) {
-    this.setState({ loggedIn });
-  }
-
   render() {
     return (
       <div className="navbar-actionSection-upper">
         <NavbarOptions />
-        <NavbarUserActions activeUser={this.state.loggedIn} />
+        <NavbarUserActions />
         <NavbarCart />
       </div>
     );
   }
 }
-const mapStateToProps = ({ auth }) => ({
-  loggedIn: auth.loggedIn,
-});
-
-export default connect(mapStateToProps, null)(NavbarUpper);
 
 /* Nested Component Map:
   1. NavbarOptions = func

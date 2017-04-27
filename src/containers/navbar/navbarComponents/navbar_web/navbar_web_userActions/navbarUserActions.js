@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import NavbarUserActionsNotSignedIn from './navbarUserActions_notSignedIn';
 import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
 
@@ -23,4 +24,6 @@ NavbarUserActions.propTypes = {
 NavbarUserActions.defaultProps = {
   activeUser: false,
 };
-export default NavbarUserActions;
+export default connect(({ auth }) => ({
+  loggedIn: auth.loggedIn,
+}), null)(NavbarUserActions);
