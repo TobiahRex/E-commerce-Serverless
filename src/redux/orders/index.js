@@ -25,12 +25,18 @@ export const INITIAL_STATE = Immutable({
 
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
-  guestCart: [...state.cart, productObj],
+  cart: {
+    guest: [...state.cart.guest, productObj],
+    member: [...state.cart.member],
+  },
 });
 
 const addToMemberCart = (state, { productObj }) => ({
   ...state,
-  memberCart: [...state.cart, productObj],
+  cart: {
+    guest: [...state.cart.guest],
+    member: [...state.cart.member, productObj],
+  },
 });
 
 const setTaxRate = (state, { taxRate }) => ({

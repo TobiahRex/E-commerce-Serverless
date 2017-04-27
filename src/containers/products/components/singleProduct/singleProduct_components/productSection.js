@@ -31,7 +31,6 @@ class ProductSection extends Component {
   }
   constructor(props) {
     super(props);
-
     this.state = {
       juiceId: props.juiceObj.id,
       qty: 0,
@@ -77,7 +76,7 @@ class ProductSection extends Component {
   addToCartHandler = () => {
     const {
       qty,
-      productId: id,
+      juiceId: id,
       nicStrength: strength,
     } = this.state;
 
@@ -155,15 +154,18 @@ class ProductSection extends Component {
   }
 }
 const filterJuices = (location, popJuices) => {
-  const juice = location.split('/')[2];
-  return (popJuices
-    .filter(({ routeTag }) => routeTag === juice)[0]
-  );
+  let juiceName = location.split('/')[2];
+  const juice = popJuices
+  .filter(({ routeTag }) => routeTag === juiceName)[0];
+  console.warn('juiceObj @ filterJuices\n: ', juice);
+  return juice;
 };
 
-const mapStateToProps = ({ auth, session, products }) => ({
+const mapStateToProps = ({ auth, routing, products }) => ({
   loggedIn: auth.loggedIn,
-  juiceObj: filterJuices(session.currentActiveUrl, products.popJuices),
+  juiceObj: filterJuices(
+    routing.locationBeforeTransitions.pathname, products.popJuices,
+  ),
 });
 const mapDispatchToProps = dispatch => ({
   addToGuestCart: productObj => dispatch(orderActions.addToGuestCart(productObj)),
