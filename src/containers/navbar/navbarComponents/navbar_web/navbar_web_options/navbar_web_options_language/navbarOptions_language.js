@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import localeActions from '../../../../../../redux/locale';
 
 import NavbarOptionsLanguageButton from './navbarOptions_language_mainButton';
 import NavbarOptionsLanguageDropdnContent from './navbarOptions_language_dropdnContent';
@@ -71,11 +69,4 @@ class NavbarOptionsLanguage extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ locale }) => ({
-  activeLanguage: locale.activeLanguage,
-});
-const mapDispatchToProps = dispatch => ({
-  saveLanguage: language => dispatch(localeActions.setLanguage(language)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarOptionsLanguage);
+export default NavbarOptionsLanguage;

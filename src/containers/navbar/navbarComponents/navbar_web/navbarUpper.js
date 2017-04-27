@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NavbarOptions from './navbar_web_options/navbarOptions';
 import NavbarUserActions from './navbar_web_userActions/navbarUserActions';
 import NavbarCart from './navbar_web_cart/navbarCart';
+import localeActions from '../../../../redux/locale';
 
 class NavbarUpper extends Component {
   static propTypes = {
@@ -14,8 +15,20 @@ class NavbarUpper extends Component {
 
     this.state = {
       activeLanguage: props.activeLanguage,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.props) {
+      this.setState({ activeLanguage: nextProps.activeLanguage });
     }
   }
+
+  onLanguageChange = (language) => {
+    this.props.saveLanguage(language);
+    this.setState({ activeLanguage: language });
+  }
+
   render() {
     return (
       <div className="navbar-actionSection-upper">
@@ -27,6 +40,14 @@ class NavbarUpper extends Component {
   }
 }
 
+export default connect(
+({ locale }) => ({
+  activeLanguage: locale.activeLanguage,
+}),
+dispatch => ({
+  saveLanguage: language => dispatch(localeActions.setLanguage(language)),
+})
+)(NavbarUpper);
 /* Nested Component Map:
   1. NavbarOptions = func
   2. NavbarUserActions == func
