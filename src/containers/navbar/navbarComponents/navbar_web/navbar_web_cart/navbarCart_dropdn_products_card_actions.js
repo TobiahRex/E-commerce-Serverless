@@ -1,30 +1,40 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-class NavbarCartProductsCardActions extends PureComponent {
-  render() {
-    return (
-      <div className="products-list-card-actions">
-        <div href="" className="products-list-card-actions-edit sweep-right">
-          <button className="products-list-card-actions-delete sweep-right">
-            <FontAwesome
-              className="products-list-card-actions-edit-icon"
-              name="pencil"
-            />
-          </button>
-        </div>
+function NavbarCartProductsCardActions({ routeTag, id, editCartItem, deleteFromCart }) {
+  return (
+    <div className="products-list-card-actions">
+      <div href="" className="products-list-card-actions-edit sweep-right">
         <button
-          onClick={() => console.warn('DELETE this products')}
+          data-tag={routeTag}
+          onClick={editCartItem}
           className="products-list-card-actions-delete sweep-right"
         >
           <FontAwesome
-            className="products-list-card-actions-delete-icon"
-            name="trash-o"
+            className="products-list-card-actions-edit-icon"
+            name="pencil"
           />
         </button>
       </div>
-    );
-  }
+      <button
+        data-id={id}
+        onClick={deleteFromCart}
+        className="products-list-card-actions-delete sweep-right"
+      >
+        <FontAwesome
+          className="products-list-card-actions-delete-icon"
+          name="trash-o"
+        />
+      </button>
+    </div>
+  );
 }
-
+const { string, func } = PropTypes;
+NavbarCartProductsCardActions.propTypes = {
+  routeTag: string.isRequired,
+  id: string.isRequired,
+  editCartItem: func.isRequired,
+  deleteFromCart: func.isRequired,
+};
 export default NavbarCartProductsCardActions;

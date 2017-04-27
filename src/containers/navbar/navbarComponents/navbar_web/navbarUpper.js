@@ -14,10 +14,14 @@ class NavbarUpper extends Component {
     activeLanguage: string.isRequired,
     qty: number.isRequired,
     cartProducts: arrayOf(shape({
-      id: string,
       qty: number,
-      price: string,
       strength: number,
+      id: string,
+      title: string,
+      price: string,
+      nicotine_strengths: arrayOf(string),
+      imageUrl: string,
+      routeTag: string,
     })).isRequired,
     saveLanguage: func.isRequired,
   }
@@ -42,11 +46,11 @@ class NavbarUpper extends Component {
     this.setState({ activeLanguage: language });
   }
 
-  editProduct = (e) => {
+  editCartItem = (e) => {
 
   }
 
-  deleteProduct = (e) => {
+  deleteFromCart = (e) => {
     let productId = e.target.dataset.id;
     if (!productId) {
       productId = e.target.parentNode.dataset.id;
@@ -73,6 +77,8 @@ class NavbarUpper extends Component {
           <NavbarCart
             qty={this.state.qty}
             cartProducts={this.state.cartProducts}
+            editCartItem={this.editCartItem}
+            deleteFromCart={this.deleteFromCart}
           />
         </div>
       </div>

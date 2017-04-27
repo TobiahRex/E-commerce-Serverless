@@ -1,22 +1,19 @@
 import React, { PropTypes, PureComponent } from 'react';
 import NavbarCartProductsCardInfo from './navbarCart_dropdn_products_card_info';
+import NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_actions';
 
-/* TODO
-1. Complete Link to product page for edit-product.
-
-NOTE: The renderProducts function uses a className convention to name the key value + the index (+1).
-It passes the whole product object as "product-info".
-*/
+const { arrayOf, object, func } = PropTypes;
 
 class MyCartProductList extends PureComponent {
   static propTypes = {
-    products: PropTypes.arrayOf(PropTypes.object),
+    products: arrayOf(object).isRequired,
+    deleteFromCart: func.isRequired,
   }
 
-  emptyCart = () =>
-  <div className="products-list-empty">
-    Your Cart Is Currently Empty
-  </div>
+  emptyCart = () => (
+    <div className="products-list-empty">
+      Your Cart Is Currently Empty
+    </div>)
 
   renderProducts = juiceProducts => (
     juiceProducts.map((juiceObj) => {
@@ -30,7 +27,11 @@ class MyCartProductList extends PureComponent {
             <img className="products-list-card-image-src" src={imageUrl} alt={`${title} juice`} />
           </div>
           <NavbarCartProductsCardInfo juiceObj={juiceObj} />
-          <NavbarCartProductsCardActions juiceId={id} tag={routeTag} />
+          <NavbarCartProductsCardActions
+            juiceId={id}
+            routeTag={routeTag}
+            deleteFromCart={this.props.deleteFromCart}
+          />
         </li>
       );
     })
