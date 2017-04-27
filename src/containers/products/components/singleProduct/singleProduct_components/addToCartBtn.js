@@ -1,9 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-export default function AddToCartButton() {
+function AddToCartButton({ addToCart }) {
   return (
-    <button className="btn-container__add-to-cart sweep-right">
+    <button
+      className="btn-container__add-to-cart sweep-right"
+      onClick={addToCart}
+    >
       <span className="btn-flex-parent">
         <FontAwesome
           className="sp-cart-icon" name="shopping-cart"
@@ -13,3 +17,8 @@ export default function AddToCartButton() {
     </button>
   );
 }
+const { func } = PropTypes;
+AddToCartButton.propTypes = {
+  addToCart: func.isRequired,
+};
+export default AddToCartButton;

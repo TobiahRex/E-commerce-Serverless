@@ -60,8 +60,8 @@ class SingleProduct extends Component {
       } break;
       case 'promotion-register': {
         switch (tagEl) {
-          case 'view-juices':
-            this.toggleModalAndGo('showRegisterModal', '/juices'); break;
+          case 'view-signup':
+            this.toggleModalAndGo('showRegisterModal', '/login'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;

@@ -143,7 +143,7 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
 
           <button
             data-parent="promotion-register"
-            data-tag="view-juices"
+            data-tag="view-signup"
             className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
           >Sign Me Up</button>

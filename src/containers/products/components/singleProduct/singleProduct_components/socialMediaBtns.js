@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import ReactFBLike from './socialMediaBtns.fbLike';
+// import ReactFBLike from './socialMediaBtns.fbLike';
 
 function SocialMediaBtns(props) {
   return (
     <div className="desc__smedia">
       <ul className="smedia__btn--list">
-        <ReactFBLike
+        {/* TODO: Finish Social Media Buttons @ singleProduct.js
+           <ReactFBLike
           appId={process.env.FACEBOOK_APP_ID}
           language="en_US"
           version="v2.9"
@@ -18,7 +19,7 @@ function SocialMediaBtns(props) {
           share={false}
           showFaces
           onClick={props.fbLike}
-        />
+        /> */}
         <li className="list__like-btn hover-bob">
           <FontAwesome name="thumbs-o-up" />
           <p>Like</p>
