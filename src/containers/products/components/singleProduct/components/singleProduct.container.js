@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import {
   ImageGroup,
   JuiceTitle,
@@ -22,7 +23,7 @@ const {
   objectOf,
 } = PropTypes;
 
-class SingleProductContainer extends PureComponent {
+class SingleProductContainer extends Component {
   static propTypes = {
     qty: number.isRequired,
     qtyHandler: func.isRequired,
@@ -47,17 +48,24 @@ class SingleProductContainer extends PureComponent {
   static defaultProps = {
     error: false,
   }
+
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return false;
+    return true;
+  }
+
+  qtyHandler = e => this.props.qtyHandler(e)
+  addToCartHandler = e => this.props.addToCartHandler(e)
+  modalHandler = e => this.props.modalHandler(e)
+  nicotineHandler = e => this.props.nicotineHandler(e)
+
   render() {
     const {
       qty,
       fbLike,
       loggedIn,
       productObj,
-      qtyHandler,
       nicStrength,
-      modalHandler,
-      nicotineHandler,
-      addToCartHandler,
       error,
     } = this.props;
     const {
@@ -71,7 +79,7 @@ class SingleProductContainer extends PureComponent {
     return (
       <div className="main__parent">
         <ImageGroup
-          modalHandler={modalHandler}
+          modalHandler={this.modalHandler}
           imageUrl={images
             .reduce((accumObj, nextObj) => (
               Object.prototype.hasOwnProperty.call(accumObj, 'large') ? accumObj.large : nextObj.large))
@@ -92,21 +100,21 @@ class SingleProductContainer extends PureComponent {
           />
 
           <NewMemberPromotionBtn
-            modalHandler={modalHandler}
+            modalHandler={this.modalHandler}
             loggedIn={loggedIn}
           />
 
           <NicotineBtns
             nicStrength={nicStrength}
-            nicotineHandler={nicotineHandler}
+            nicotineHandler={this.nicotineHandler}
           />
 
           <ProductActions
             quantity={qty}
             nicStrength={nicStrength}
             error={error}
-            addToCartHandler={addToCartHandler}
-            qtyHandler={qtyHandler}
+            addToCartHandler={this.addToCartHandler}
+            qtyHandler={this.qtyHandler}
           />
 
           <SocialMediaBtns
