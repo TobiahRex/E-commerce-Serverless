@@ -32,11 +32,22 @@ class SingleProduct extends Component {
       qty: number,
       routeTag: string,
       strength: number,
+      mainTitle: string,
       title: string,
     }),
   }
   static defaultProps = {
-    activeViewProduct: {},
+    activeViewProduct: {
+      id: '',
+      imageUrl: '',
+      nicotine_strengths: [''],
+      price: '',
+      qty: 0,
+      routeTag: '',
+      strength: 0,
+      mainTitle: '',
+      title: '',
+    },
   }
   constructor(props) {
     super(props);
@@ -46,15 +57,18 @@ class SingleProduct extends Component {
       showBulkModal: false,
       showRegisterModal: false,
       product: null,
+      activeViewProduct: props.activeViewProduct,
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log('Single Product will mount');
     const { fetchProductById, productId } = this.props;
     fetchProductById(productId);
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('nextProps: ', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({ ...nextProps });
     }
@@ -114,6 +128,7 @@ class SingleProduct extends Component {
   }
 
   render() {
+    const { activeViewProduct: productObj } = this.state;
     return (
       <div className="juice-page__main">
         <BreadCrumb
@@ -122,8 +137,9 @@ class SingleProduct extends Component {
           destination={['']}
           lastCrumb="Juice Page"
         />
-        <MainTitle mainTitle={this.state.activeViewProduct.mainTitle} />
+        <MainTitle mainTitle={productObj.mainTitle} />
         <SingleProductContainer
+          productObj={productObj}
           loggedIn={this.props.loggedIn}
           modalHandler={this.modalHandler}
         />
