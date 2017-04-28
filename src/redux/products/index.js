@@ -8,7 +8,7 @@ const { Types, Creators } = createActions({
   receivedProductById: ['product'],
 });
 
-export const homepageActions = Types;
+export const productTypes = Types;
 export default Creators;
 export const INITIAL_STATE = Immutable({
   activeViewProduct: null,

@@ -8,7 +8,7 @@ const { Types, Creators } = createActions({
   apiSuccess: null,
 });
 
-export const ApiTypes = Types;
+export const apiTypes = Types;
 export default Creators;
 
 // ------- Initial State ------- //

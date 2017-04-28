@@ -1,12 +1,12 @@
-
 // ----- Sagas ----- //
 import applicationStartup from './startup';
 import authorizationSaga, { watchAuthActions } from './authorization';
-
-// ----- Types ----- //
+import fetchProductById from './products/';
+// ----- api's ----- //
 
 export default function* rootSaga() {
   yield [
+    fetchProductById(),
     applicationStartup(),
     authorizationSaga(),
     watchAuthActions(),

@@ -9,9 +9,7 @@ const { Types, Creators } = createActions({
 });
 
 export const userTypes = Types;
-
 export default Creators;
-
 export const INITIAL_STATE = Immutable({
   profile: JSON.parse(localStorage.getItem('profile')) || null,
   ageVerified: !!localStorage.getItem('ageVerified'),

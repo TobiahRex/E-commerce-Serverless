@@ -13,7 +13,7 @@ import {
   RegisterModal,
 } from './imports';
 
-const { func, number, bool, string } = React.PropTypes;
+const { func, number, bool, string, shape, arrayOf } = React.PropTypes;
 
 class SingleProduct extends Component {
   static propTypes = {
@@ -23,6 +23,19 @@ class SingleProduct extends Component {
     taxRate: number.isRequired,
     fetchProductById: func.isRequired,
     productId: string.isRequired,
+    activeViewProduct: shape({
+      id: string,
+      imageUrl: string,
+      nicotine_strengths: arrayOf(string),
+      price: string,
+      qty: number,
+      routeTag: string,
+      strength: number,
+      title: string,
+    }),
+  }
+  static defaultProps = {
+    activeViewProduct: {},
   }
   constructor(props) {
     super(props);
@@ -122,10 +135,11 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, auth, routing }) => ({
+const mapStateToProps = ({ orders, auth, routing, products }) => ({
   loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
   productId: routing.locationBeforeTransitions.query.id,
+  activeViewProduct: products.activeViewProduct,
 });
 const mapDispatchToProps = dispatch => ({
   saveProductToCart: () => console.log('savingProductToCart', dispatch),
