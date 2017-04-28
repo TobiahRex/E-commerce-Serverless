@@ -17,7 +17,7 @@ function SingleProductContainer({
         imageUrl={
           productObj.images
           .reduce((accumObj, nextObj) => (
-            Object.prototype.hasOwnProperty.call(accumObj, 'large') ? accumObj.large : nextObj.large), {},
+            Object.prototype.hasOwnProperty.call(accumObj, 'large') ? accumObj.large : nextObj.large)
           )
         }
       />

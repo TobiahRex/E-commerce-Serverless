@@ -17,6 +17,7 @@ export default function* fetchProductById() {
             mainTitle: 'Vape Juice',
             title: 'Fruity Bamm-Bamm',
             price: '30',
+            images: [{ card: '../images/nj2jp_juice_card_fbb.png' }, { large: '../images/nj2jp-fvm.jpg' }],
             nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
             imageUrl: '../images/nj2jp_juice_card_fbb.png',
             routeTag: 'fruity_bamm_bamm',
