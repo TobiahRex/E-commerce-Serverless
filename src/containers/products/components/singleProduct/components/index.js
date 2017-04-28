@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 import _ from 'lodash';
 import BreadCrumb from '../../../../../components/breadcrumbs';
 import productActions from '../../../../../redux/products/';
+import orderActions from '../../../../../redux/orders/';
 import {
   BulkSaleModal,
   MainTitle,
@@ -64,6 +65,9 @@ class SingleProduct extends Component {
       showRegisterModal: false,
       product: null,
       activeViewProduct: props.activeViewProduct,
+      qty: 0,
+      nicStrength: 0,
+      error: false,
     };
   }
 
@@ -133,6 +137,73 @@ class SingleProduct extends Component {
     this.setState(prevState => ({ [modal]: !prevState[modal] }));
   }
 
+  qtyHandler = (e) => {
+    let buttonEl = e.target.dataset.tag;
+    if (!buttonEl) {
+      buttonEl = e.target.parentNode.dataset.tag;
+    }
+
+    if (buttonEl === 'qty-plus') {
+      if (this.state.qty <= 3) {
+        this.setState(prevState => ({
+          ...prevState,
+          qty: prevState.qty += 1,
+        }));
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          error: true,
+        }));
+      }
+    } else if (buttonEl === 'qty-minus') {
+      const { qty } = this.state;
+      if (qty >= 1 && qty <= 4) {
+        this.setState(prevState => ({
+          ...prevState,
+          qty: prevState.qty -= 1,
+        }));
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          error: true,
+        }));
+      }
+    }
+  }
+
+  addToCartHandler = () => {
+    // 1. If the total items in the cart (redux store) are >= 4, then throw error.
+    // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
+    // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
+    const {
+      qty,
+      nicStrength: strength,
+    } = this.state;
+
+    if (this.props.loggedIn) {
+      this.props.addToMemberCart({
+        qty,
+        strength,
+        ...this.props.juiceObj,
+      });
+    } else {
+      this.props.addToGuestCart({
+        qty,
+        strength,
+        ...this.props.juiceObj,
+      });
+    }
+  }
+
+  nicotineHandler = (e) => {
+    let nicEl = e.target.dataset.tag;
+    if (!nicEl) {
+      nicEl = e.target.parentNode.dataset.tag;
+    }
+    this.setState({ nicStrength: Number(nicEl) });
+  }
+
+
   render() {
     const { activeViewProduct: productObj } = this.state;
     return (
@@ -176,8 +247,16 @@ const mapStateToProps = ({ orders, auth, routing, products }) => ({
   activeViewProduct: products.activeViewProduct,
 });
 const mapDispatchToProps = dispatch => ({
-  saveProductToCart: () => console.log('savingProductToCart', dispatch),
-  fetchProductById: id => dispatch(productActions.fetchProductById(id)),
-  push: location => dispatch(push(location)),
+  push: location =>
+    dispatch(push(location)),
+
+  fetchProductById: id =>
+    dispatch(productActions.fetchProductById(id)),
+
+  addToGuestCart: productObj =>
+    dispatch(orderActions.addToGuestCart(productObj)),
+
+  addToMemberCart: productObj =>
+    dispatch(orderActions.addToMemberCart(productObj)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
