@@ -205,7 +205,19 @@ class SingleProduct extends Component {
 
 
   render() {
-    const { activeViewProduct: productObj } = this.state;
+    const {
+      qty,
+      nicStrength,
+      error,
+      activeViewProduct: productObj,
+      showSuccessModal,
+      showBulkModal,
+      showRegisterModal,
+    } = this.state;
+    const {
+      taxRate,
+      loggedIn,
+    } = this.props;
     return (
       <div className="juice-page__main">
         <BreadCrumb
@@ -216,24 +228,29 @@ class SingleProduct extends Component {
         />
         <MainTitle mainTitle={productObj.mainTitle} />
         <SingleProductContainer
+          qty={qty}
+          qtyHandler={this.qtyHandler}
+          nicStrength={nicStrength}
+          error={error}
           productObj={productObj}
-          loggedIn={this.props.loggedIn}
+          loggedIn={loggedIn}
           modalHandler={this.modalHandler}
+
         />
         <ActionBtns />
         <SuccessModal
-          showModal={this.state.showSuccessModal}
+          showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
         <BulkSaleModal
-          taxRate={this.props.taxRate}
-          showModal={this.state.showBulkModal}
+          taxRate={taxRate}
+          showModal={showBulkModal}
           modalHandler={this.modalHandler}
         />
         <RegisterModal
-          taxRate={this.props.taxRate}
-          loggedIn={this.props.loggedIn}
-          showModal={this.state.showRegisterModal}
+          taxRate={taxRate}
+          loggedIn={loggedIn}
+          showModal={showRegisterModal}
           modalHandler={this.modalHandler}
         />
       </div>

@@ -50,8 +50,8 @@ class SingleProductContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (!_.isEqual(nextProps, this.props)) return false;
-    return true;
+    if (!_.isEqual(nextProps, this.props)) return true;
+    return false;
   }
 
   qtyHandler = e => this.props.qtyHandler(e)
