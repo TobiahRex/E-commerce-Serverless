@@ -1,28 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NavbarCartProductsCardInfo(props) {
-  const { title, quantity, price, nicotine } = this.props;
+function NavbarCartProductsCardInfo({ juiceObj }) {
+  const { title, qty, price, strength } = juiceObj;
   return (
     <div className="products-list-card-info">
       <div className="product-title">
-        {title ? `${title}` : '<TITLE HERE>'}
+        {title && `${title}`}
       </div>
       <div className="product-qty">
-        {quantity ? `${quantity} x $ ${price}.00` : '<QTY HERE>'}
+        {qty && `${qty} x $ ${Number(price)}.00`}
       </div>
       <div className="nic-strength">
         <i>
-          {nicotine ? `${nicotine}mg` : '<NIC STRENGTH HERE>'}
+          {strength && `${strength}mg`}
         </i>
       </div>
     </div>
   );
 }
-const { shape, string, number } = PropTypes;
+const { shape, string, number, arrayOf } = PropTypes;
 NavbarCartProductsCardInfo.propTypes = {
   juiceObj: shape({
-    
-  })
+    id: string,
+    imageUrl: string,
+    nicotine_strengths: arrayOf(string),
+    price: string,
+    qty: number,
+    routeTag: string,
+    strength: number,
+    title: string,
+  }).isRequired,
 };
 export default NavbarCartProductsCardInfo;

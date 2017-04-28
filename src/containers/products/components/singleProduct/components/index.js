@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import BreadCrumb from '../../../../components/breadcrumbs';
+import BreadCrumb from '../../../../../components/breadcrumbs';
+import productActions from '../../../../../redux/products/';
 import {
   BulkSaleModal,
   MainTitle,
@@ -10,9 +11,9 @@ import {
   ActionBtns,
   SuccessModal,
   RegisterModal,
-} from './singleProduct_components/';
+} from './imports';
 
-const { func, number, bool } = React.PropTypes;
+const { func, number, bool, string } = React.PropTypes;
 
 class SingleProduct extends Component {
   static propTypes = {
@@ -20,6 +21,8 @@ class SingleProduct extends Component {
     saveProductToCart: func.isRequired,
     push: func.isRequired,
     taxRate: number.isRequired,
+    fetchProductById: func.isRequired,
+    productId: string.isRequired,
   }
   constructor(props) {
     super(props);
@@ -28,7 +31,13 @@ class SingleProduct extends Component {
       showSuccessModal: false,
       showBulkModal: false,
       showRegisterModal: false,
+      product: null,
     };
+  }
+
+  componentDidMount() {
+    const { fetchProductById, productId } = this.props;
+    fetchProductById(productId);
   }
 
   modalHandler = (e) => {
@@ -113,12 +122,14 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, auth }) => ({
+const mapStateToProps = ({ orders, auth, routing }) => ({
   loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
+  productId: routing.locationBeforeTransitions.query.id,
 });
 const mapDispatchToProps = dispatch => ({
   saveProductToCart: () => console.log('savingProductToCart', dispatch),
+  fetchProductById: id => dispatch(productActions.fetchProductById(id)),
   push: location => dispatch(push(location)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

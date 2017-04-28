@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 2. to={'/checkout'}
 */
 
-export default function MyCartActionBtns() {
+export default function NavbarCartActionBtns() {
   return (
     <div className="action-links">
       <Link to="/cart" className="action-links-cart sweep-right">

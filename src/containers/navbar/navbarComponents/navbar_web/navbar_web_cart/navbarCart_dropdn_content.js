@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NavbarCartPromotion from './navbarCart_dropdn_promotion';
-import NavbarCartRecentadd from './navbarCart_dropdn_recentadd';
-import NavbarCartTotalPrice from './navbarCart_dropdn_totalPrice';
-import NavbarCartActionLinks from './navbarCart_dropdn_actionLinks';
-import NavbarCartProducts from './navbarCart_dropdn_products';
+import {
+  NavbarCartPromotion,
+  NavbarCartRecentlyAdded,
+  NavbarCartTotalPrice,
+  NavbarCartActionLinks,
+  NavbarCartProducts,
+} from './imports';
 
 function NavbarCartDropdnContent({
-  cartProducts,
   cartTotal,
+  cartProducts,
   editCartItem,
   deleteFromCart,
 }) {
@@ -16,7 +18,7 @@ function NavbarCartDropdnContent({
     <span className="dropdown-content">
       <div className="dropdown-content__container">
         <NavbarCartPromotion />
-        <NavbarCartRecentadd />
+        <NavbarCartRecentlyAdded />
         <NavbarCartProducts
           cartProducts={cartProducts}
           editCartItem={editCartItem}

@@ -11,7 +11,7 @@ import {
   NewMemberPromotionBtn,
   NicotineBtns,
   SocialMediaBtns,
-} from './';
+} from './imports';
 
 const { func, bool, string, shape, arrayOf } = PropTypes;
 
@@ -73,6 +73,9 @@ class ProductSection extends Component {
   }
 
   addToCartHandler = () => {
+    // 1. If the total items in the cart (redux store) are >= 4, then throw error.
+    // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
+    // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
     const {
       qty,
       nicStrength: strength,

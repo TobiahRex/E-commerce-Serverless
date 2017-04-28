@@ -1,10 +1,12 @@
 import React, { PropTypes, PureComponent } from 'react';
 
-import NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_actions';
-import NavbarCartProductsCardInfo from './navbarCart_dropdn_products_card_info';
+import {
+  NavbarCartProductsCardActions,
+  NavbarCartProductsCardInfo,
+} from './imports';
+
 /* TODO
 1. Link to product page for edit-product.
-
 2. finish deleteProduct().
 */
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   ImageGroup,
   ProductSection,
-} from './';
+} from './imports';
 
 function SingleProductContainer({ modalHandler, loggedIn }) {
   return (

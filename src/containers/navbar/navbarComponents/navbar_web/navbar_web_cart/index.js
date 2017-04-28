@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import NavbarCartDropdnContent from './navbarCart_dropdn_content';
-import NavbarCartMainButton from './navbarCart_mainButton';
+import {
+  NavbarCartMainButton,
+  NavbarCartDropdnContent,
+} from './imports';
 
 const { number, arrayOf, object, func } = PropTypes;
 
@@ -12,13 +14,11 @@ class NavbarCart extends PureComponent {
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   }
-
   cartTotal = () => {
     const cartTotal = this.props.cartProducts
       .reduce((acc, { price }) => (acc + Number(price)), 0);
     return cartTotal;
   }
-
   render() {
     const {
       qty,
