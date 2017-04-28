@@ -17,6 +17,6 @@ export default function* getTaxRate() {
       put(orderActions.setTaxRate(taxRate)),
     ];
   } else {
-    yield [put(apiActions.apiFail(response.data))];
+    yield [put(apiActions.apiFail(response.problem))];
   }
 }

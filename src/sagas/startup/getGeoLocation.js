@@ -14,6 +14,6 @@ export default function* getGeoLocation() {
       put(localeActions.setCountry(country)),
     ];
   } else {
-    yield put(apiActions.apiFail(response.data));
+    yield put(apiActions.apiFail(response.problem));
   }
 }
