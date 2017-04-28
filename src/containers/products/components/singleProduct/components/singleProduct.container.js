@@ -5,12 +5,21 @@ import {
   ProductSection,
 } from './imports';
 
-function SingleProductContainer({ productObj, loggedIn, modalHandler }) {
+function SingleProductContainer({
+  productObj,
+  loggedIn,
+  modalHandler,
+}) {
   return (
     <div className="main__parent">
       <ImageGroup
-        imageUrl={productObj.imageUrl}
         modalHandler={modalHandler}
+        imageUrl={
+          productObj.images
+          .reduce((accumObj, nextObj) => (
+            Object.prototype.hasOwnProperty.call(accumObj, 'large') ? accumObj.large : nextObj.large), {},
+          )
+        }
       />
 
       <ProductSection

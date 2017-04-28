@@ -42,7 +42,10 @@ class SingleProduct extends Component {
   static defaultProps = {
     activeViewProduct: {
       id: '',
-      images: '',
+      images: [{
+        card: '',
+        large: '',
+      }],
       nicotine_strengths: [''],
       price: '',
       qty: 0,
