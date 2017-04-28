@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const { func } = React.PropTypes;
-
-function ImageGroup({ modalHandler }) {
+function ImageGroup({ modalHandler, imageUrl }) {
   return (
     <div className="main__info--image">
-      <img className="image__src" alt="Switch Juice" />
+      <img
+        src={imageUrl}
+        className="image__src"
+        alt="Switch Juice"
+      />
       <button
         data-parent="promotion-bulk"
         data-tag=""
@@ -19,7 +22,9 @@ function ImageGroup({ modalHandler }) {
     </div>
   );
 }
+const { string, func } = PropTypes;
 ImageGroup.propTypes = {
   modalHandler: func.isRequired,
+  imageUrl: string.isRequired,
 };
 export default ImageGroup;

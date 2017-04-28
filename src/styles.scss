@@ -63,8 +63,8 @@
 
 // ------------------------------------------------------------
 // "Single Product" Master Stylesheets
-@import "containers/products/styles/products_single_styles_web";
-@import "containers/products/styles/products_single_styles_mobile";
+@import "containers/products/components/singleProduct/styles/styles_web";
+@import "containers/products/components/singleProduct/styles/styles_mobile";
 
 // ------------------------------------------------------------
 // "All Products" Master Stylesheets
