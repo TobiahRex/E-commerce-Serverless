@@ -14,4 +14,4 @@ export ProductSection from './productSection';
 export NewMemberPromotionBtn from './newMemberPromotionBtn';
 export SingleProductContainer from './singleProduct.container';
 export SocialMediaBtns from './socialMediaBtns';
-export MainTitle from './singleProduct.mainTitle';
+export MainTitle from './mainTitle';

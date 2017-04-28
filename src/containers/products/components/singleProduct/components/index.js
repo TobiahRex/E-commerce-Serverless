@@ -122,7 +122,7 @@ class SingleProduct extends Component {
           destination={['']}
           lastCrumb="Juice Page"
         />
-        <MainTitle />
+        <MainTitle title={activeViewProduct.title} />
         <SingleProductContainer
           loggedIn={this.props.loggedIn}
           modalHandler={this.modalHandler}

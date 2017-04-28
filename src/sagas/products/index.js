@@ -14,6 +14,7 @@ export default function* fetchProductById() {
           error: false,
           body: {
             id: new Buffer('fruity_bamm_bamm', 'utf8').toString('base64'),
+            mainTitle: 'Vape Juice',
             title: 'Fruity Bamm-Bamm',
             price: '30',
             nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
