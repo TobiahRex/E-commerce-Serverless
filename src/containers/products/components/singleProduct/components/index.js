@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import _ from 'lodash';
 import BreadCrumb from '../../../../../components/breadcrumbs';
 import productActions from '../../../../../redux/products/';
 import {
@@ -51,6 +52,17 @@ class SingleProduct extends Component {
   componentDidMount() {
     const { fetchProductById, productId } = this.props;
     fetchProductById(productId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) {
+      this.setState({ ...nextProps });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!_.isEqual(nextState, this.state)) return true;
+    return false;
   }
 
   modalHandler = (e) => {
