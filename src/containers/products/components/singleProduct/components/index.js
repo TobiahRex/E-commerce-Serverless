@@ -26,7 +26,10 @@ class SingleProduct extends Component {
     productId: string.isRequired,
     activeViewProduct: shape({
       id: string,
-      imageUrl: string,
+      images: arrayOf(shape({
+        card: string,
+        large: string,
+      })),
       nicotine_strengths: arrayOf(string),
       price: string,
       qty: number,
@@ -39,7 +42,7 @@ class SingleProduct extends Component {
   static defaultProps = {
     activeViewProduct: {
       id: '',
-      imageUrl: '',
+      images: '',
       nicotine_strengths: [''],
       price: '',
       qty: 0,

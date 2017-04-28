@@ -18,7 +18,7 @@ export const INITIAL_STATE = Immutable({
     title: 'Fruity Bamm-Bamm',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    imageUrl: '../images/nj2jp_juice_card_fbb.png',
+    images: [{ card: '../images/nj2jp_juice_card_fbb.png' }, { large: '../images/nj2jp_fvm.png' }],
     routeTag: 'fruity_bamm_bamm',
   }, {
     id: new Buffer('pina_colada', 'utf8').toString('base64'),
@@ -26,7 +26,7 @@ export const INITIAL_STATE = Immutable({
     title: 'Pina Colada',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    imageUrl: '../images/nj2jp_juice_card_pc.png',
+    images: [{ card: '../images/nj2jp_juice_card_pc.png' }, { large: '../images/nj2jp_fvm.png' }],
     routeTag: 'pina_colada',
   }, {
     id: new Buffer('strawberries_n_cream', 'utf8').toString('base64'),
@@ -34,7 +34,7 @@ export const INITIAL_STATE = Immutable({
     title: 'Strawberries N\' Cream',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    imageUrl: '../images/nj2jp_juice_card_pc.png',
+    images: [{ card: '../images/nj2jp_juice_card_pc.png' }, { large: '../images/nj2jp_fvm.png' }],
     routeTag: 'strawberries_n_cream',
   }, {
     id: new Buffer('keylime_pie', 'utf8').toString('base64'),
@@ -42,7 +42,7 @@ export const INITIAL_STATE = Immutable({
     title: 'Keylime Pie',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    imageUrl: '../images/nj2jp_juice_card_klp.png',
+    images: [{ card: '../images/nj2jp_juice_card_klp.png' }, { large: '../images/nj2jp_fvm.png' }],
     routeTag: 'keylime_pie',
   }, {
     id: new Buffer('papple_berry', 'utf8').toString('base64'),
@@ -50,7 +50,7 @@ export const INITIAL_STATE = Immutable({
     title: 'Papple Berry',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    imageUrl: '../images/nj2jp_juice_card_klp.png',
+    images: [{ card: '../images/nj2jp_juice_card_klp.png' }, { large: '../images/nj2jp_fvm.png' }],
     routeTag: 'papple_berry',
   }, {
     id: new Buffer('french_vanilla_mocha', 'utf8').toString('base64'),
@@ -58,7 +58,7 @@ export const INITIAL_STATE = Immutable({
     title: 'French Vanilla Mocha',
     price: '30',
     nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-    imageUrl: '../images/nj2jp_juice_card_fvm.png',
+    images: [{ card: '../images/nj2jp_juice_card_fvm.png' }, { large: '../images/nj2jp_fvm.png' }],
     routeTag: 'french_vanilla_mocha',
   }],
   error: null,

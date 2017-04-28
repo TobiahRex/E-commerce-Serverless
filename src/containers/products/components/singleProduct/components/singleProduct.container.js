@@ -5,10 +5,14 @@ import {
   ProductSection,
 } from './imports';
 
-function SingleProductContainer({ modalHandler, loggedIn }) {
+function SingleProductContainer({ productObj, loggedIn, modalHandler }) {
   return (
     <div className="main__parent">
-      <ImageGroup modalHandler={modalHandler} />
+      <ImageGroup
+        imageUrl={productObj.imageUrl}
+        modalHandler={modalHandler}
+      />
+
       <ProductSection
         modalHandler={modalHandler}
         loggedIn={loggedIn}
@@ -16,9 +20,10 @@ function SingleProductContainer({ modalHandler, loggedIn }) {
     </div>
   );
 }
-const { func, bool } = PropTypes;
+const { func, bool, objectOf, any } = PropTypes;
 SingleProductContainer.propTypes = {
   loggedIn: bool.isRequired,
   modalHandler: func.isRequired,
+  productObj: objectOf(any).isRequired,
 };
 export default SingleProductContainer;
