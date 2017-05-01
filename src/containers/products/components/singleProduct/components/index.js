@@ -80,6 +80,7 @@ class SingleProduct extends Component {
       qty: 0,
       nicStrength: 0,
       error: false,
+      errorQty: '',
     };
   }
 
@@ -184,15 +185,15 @@ class SingleProduct extends Component {
 
   composeCartQty = () => {
     const { loggedIn, cart } = this.props;
-    const cartQty = Object.keys(cart)
+    return Object.keys(cart)
     .map((key) => {
       if (!cart[key].length) return ([{ qty: 0 }]);
       if (loggedIn && (key === 'member')) return cart.member;
       return cart.guest;
     })
+    .map(array => array.reduce(a => a.qty))
     .map(({ qty }) => qty)
     .reduce((a, b) => a + b);
-    console.warn('cartQty: ', cartQty);
   }
 
   addToCartHandler = () => {
@@ -202,6 +203,10 @@ class SingleProduct extends Component {
     // const cartQty = this.props.cart
     // .map(({ qty }) => qty)
     // .reduce((a, b) => a + b);
+    if (this.composeCartQty() >= 4) {
+      this.setState({ errorQty: `You already have the maximum number of items in your cart.` });
+    }
+
     const {
       qty,
       nicStrength: strength,
@@ -232,7 +237,6 @@ class SingleProduct extends Component {
 
 
   render() {
-    this.composeCartQty();
     const {
       qty,
       nicStrength,
