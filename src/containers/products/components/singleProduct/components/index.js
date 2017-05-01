@@ -115,23 +115,23 @@ class SingleProduct extends Component {
       case 'success': {
         switch (tagEl) {
           case 'view-cart':
-            this.toggleModalAndGo('showSuccessModal', '/cart'); break;
+          this.toggleModalAndGo('showSuccessModal', '/cart'); break;
           case 'view-checkout':
-            this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
+          this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
           default: this.toggleModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-            this.toggleModalAndGo('showBulkModal', '/juices'); break;
+          this.toggleModalAndGo('showBulkModal', '/juices'); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
         switch (tagEl) {
           case 'view-signup':
-            this.toggleModalAndGo('showRegisterModal', '/login'); break;
+          this.toggleModalAndGo('showRegisterModal', '/login'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;
@@ -197,7 +197,7 @@ class SingleProduct extends Component {
       cartCustomerType = 'guest';
       return cart.guest;
     })
-    .map(array => array.reduce(a => a.qty))
+    .map(array => array.reduce(a => ({ qty: a.qty, id: a.id })))
     .map(({ qty, id }) => {
       prevCartIds.push(id);
       return qty;
@@ -236,25 +236,36 @@ class SingleProduct extends Component {
       this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
     } else if (!deltaQty) {
       const { productId, cart } = this.props;
-      const newProductArray = prevCartIds
-        .filter(id => id === productId)
-        .map(id => cart[cartCustomerType]
-          .forEach((productObj) => {
-            if (productObj.id === id) {
-              productObj.qty += requestQty;
-            }
-          }),
-        )
-        .reduce(updatedProductArray => updatedProductArray);
-        console.log('newProductArray: ', newProductArray);
+      const updatedProduct = prevCartIds
+      .filter(id => id === productId)
+      .map((id) => {
+        let newProductObj;
+        cart[cartCustomerType]
+        .forEach((productObj) => {
+          if (productObj.id === id) {
+            productObj.qty += requestQty;
+            newProductObj = Object.assign({}, productObj);
+          }
+        });
+        return newProductObj;
+      })
+      .reduce(a => a);
+
 
       if (cartCustomerType === 'member') {
-        this.props.addToMemberCart({
-          qty,
-          strength,
-          ...this.props.activeViewProduct,
-        });
+        if (updatedProduct) {
+          this.props.updateMemberCart({ ...updatedProduct, });
+        } else {
+          this.props.addToMemberCart({
+            qty,
+            strength,
+            ...this.props.activeViewProduct,
+          });
+        }
       } else {
+        if (updatedProduct) {
+          this.props.updateMemberCart({ ...updatedProduct, });
+        }
         this.props.addToGuestCart({
           qty,
           strength,
@@ -287,6 +298,8 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
+
+    this.state.errorQty ? console.error(this.state.errorQty) : null;
 
     return (
       <div className="juice-page__main">
@@ -341,15 +354,21 @@ const mapStateToProps = ({ orders, auth, routing, products }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   push: location =>
-    dispatch(push(location)),
+  dispatch(push(location)),
 
   fetchProductById: id =>
-    dispatch(productActions.fetchProductById(id)),
+  dispatch(productActions.fetchProductById(id)),
 
   addToGuestCart: productObj =>
-    dispatch(orderActions.addToGuestCart(productObj)),
+  dispatch(orderActions.addToGuestCart(productObj)),
 
   addToMemberCart: productObj =>
-    dispatch(orderActions.addToMemberCart(productObj)),
+  dispatch(orderActions.addToMemberCart(productObj)),
+
+  updateMemberCart: updatedProductObj =>
+  dispatch(orderActions.updateMemberCart(updatedProductObj)),
+
+  updateGuestCart: updatedProductObj =>
+  dispatch(orderActions.updateGuestCart(updatedProductObj)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
