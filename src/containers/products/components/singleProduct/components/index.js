@@ -20,7 +20,8 @@ const { func, number, bool, string, shape, arrayOf } = React.PropTypes;
 class SingleProduct extends Component {
   static propTypes = {
     loggedIn: bool.isRequired,
-    saveProductToCart: func.isRequired,
+    addToMemberCart: func.isRequired,
+    addToGuestCart: func.isRequired,
     push: func.isRequired,
     taxRate: number.isRequired,
     fetchProductById: func.isRequired,
@@ -72,13 +73,11 @@ class SingleProduct extends Component {
   }
 
   componentWillMount() {
-    console.log('Single Product will mount');
     const { fetchProductById, productId } = this.props;
     fetchProductById(productId);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps: ', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({ ...nextProps });
     }
@@ -147,7 +146,7 @@ class SingleProduct extends Component {
       if (this.state.qty <= 3) {
         this.setState(prevState => ({
           ...prevState,
-          qty: prevState.qty += 1,
+          qty: (prevState.qty += 1),
         }));
       } else {
         this.setState(prevState => ({
@@ -160,7 +159,7 @@ class SingleProduct extends Component {
       if (qty >= 1 && qty <= 4) {
         this.setState(prevState => ({
           ...prevState,
-          qty: prevState.qty -= 1,
+          qty: (prevState.qty -= 1),
         }));
       } else {
         this.setState(prevState => ({
@@ -184,13 +183,13 @@ class SingleProduct extends Component {
       this.props.addToMemberCart({
         qty,
         strength,
-        ...this.props.juiceObj,
+        ...this.props.activeViewProduct,
       });
     } else {
       this.props.addToGuestCart({
         qty,
         strength,
-        ...this.props.juiceObj,
+        ...this.props.activeViewProduct,
       });
     }
   }
@@ -226,27 +225,32 @@ class SingleProduct extends Component {
           destination={['']}
           lastCrumb="Juice Page"
         />
+
         <MainTitle mainTitle={productObj.mainTitle} />
         <SingleProductContainer
           qty={qty}
           qtyHandler={this.qtyHandler}
           nicStrength={nicStrength}
-          error={error}
-          productObj={productObj}
+          nicotineHandler={this.nicotineHandler}
+          addToCartHandler={this.addToCartHandler}
           loggedIn={loggedIn}
           modalHandler={this.modalHandler}
-
+          productObj={productObj}
+          error={error}
         />
+
         <ActionBtns />
         <SuccessModal
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
+
         <BulkSaleModal
           taxRate={taxRate}
           showModal={showBulkModal}
           modalHandler={this.modalHandler}
         />
+
         <RegisterModal
           taxRate={taxRate}
           loggedIn={loggedIn}

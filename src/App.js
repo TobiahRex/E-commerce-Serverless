@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import AgeVerification from './containers/ageVerification/ageVerification';
-import NavbarWeb from './containers/navbar/navbarComponents/navbar_web/navbar_web';
-import NavbarMobile from './containers/navbar/navbarComponents/navbar_mobile/navbar_mobile';
+import NavbarWeb from './containers/navbar/components/navbar_web/navbar_web';
+import NavbarMobile from './containers/navbar/components/navbar_mobile/navbar_mobile';
 import Footer from './containers/footer/footer';
 import userActions from './redux/user';
 

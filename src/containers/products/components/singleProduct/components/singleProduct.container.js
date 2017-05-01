@@ -16,10 +16,7 @@ const {
   any,
   bool,
   func,
-  shape,
-  string,
   number,
-  arrayOf,
   objectOf,
 } = PropTypes;
 
@@ -30,19 +27,10 @@ class SingleProductContainer extends Component {
     nicStrength: number.isRequired,
     nicotineHandler: func.isRequired,
     addToCartHandler: func.isRequired,
-    fbLike: func.isRequired,
+    // fbLike: func.isRequired,
     loggedIn: bool.isRequired,
     modalHandler: func.isRequired,
     productObj: objectOf(any).isRequired,
-    juiceObj: shape({
-      id: string,
-      title: string,
-      nicotine_strengths: arrayOf(string),
-      imageUrl: string,
-      routeTag: string,
-    }).isRequired,
-    addToMemberCart: func.isRequired,
-    addToGuestCart: func.isRequired,
     error: bool,
   }
   static defaultProps = {
@@ -62,7 +50,7 @@ class SingleProductContainer extends Component {
   render() {
     const {
       qty,
-      fbLike,
+      // fbLike,
       loggedIn,
       productObj,
       nicStrength,
@@ -118,7 +106,7 @@ class SingleProductContainer extends Component {
           />
 
           <SocialMediaBtns
-            fbLike={fbLike}
+            // fbLike={fbLike}
             location={`${process.env.BASE_URL}/juice/${title}?id=${id}`}
           />
         </div>

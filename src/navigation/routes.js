@@ -14,7 +14,6 @@ const requireAuth = () => {
   }
 };
 const parseAuthHash = (nextState) => {
-  console.info('nextState: ', nextState);
   const hash = nextState.location.hash;
   if (/access_token|id_token|error/.test(hash)) {
     auth.parseHash(hash);
