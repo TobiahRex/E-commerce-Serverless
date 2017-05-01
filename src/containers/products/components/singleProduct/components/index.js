@@ -30,6 +30,8 @@ class SingleProduct extends Component {
     loggedIn: bool.isRequired,
     addToMemberCart: func.isRequired,
     addToGuestCart: func.isRequired,
+    updateToMemberCart: func.isRequired,
+    updateToGuestCart: func.isRequired,
     push: func.isRequired,
     taxRate: number.isRequired,
     fetchProductById: func.isRequired,
@@ -115,23 +117,23 @@ class SingleProduct extends Component {
       case 'success': {
         switch (tagEl) {
           case 'view-cart':
-          this.toggleModalAndGo('showSuccessModal', '/cart'); break;
+            this.toggleModalAndGo('showSuccessModal', '/cart'); break;
           case 'view-checkout':
-          this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
+            this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
           default: this.toggleModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-          this.toggleModalAndGo('showBulkModal', '/juices'); break;
+            this.toggleModalAndGo('showBulkModal', '/juices'); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
         switch (tagEl) {
           case 'view-signup':
-          this.toggleModalAndGo('showRegisterModal', '/login'); break;
+            this.toggleModalAndGo('showRegisterModal', '/login'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;
@@ -197,7 +199,8 @@ class SingleProduct extends Component {
       cartCustomerType = 'guest';
       return cart.guest;
     })
-    .map(array => array.reduce(a => ({ qty: a.qty, id: a.id })))
+    .map(array =>
+      array.reduce(a => ({ qty: a.qty, id: a.id })))
     .map(({ qty, id }) => {
       prevCartIds.push(id);
       return qty;
@@ -214,9 +217,6 @@ class SingleProduct extends Component {
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
-    // const cartQty = this.props.cart
-    // .map(({ qty }) => qty)
-    // .reduce((a, b) => a + b);
     const {
       prevCartIds,
       cartCustomerType,
@@ -236,41 +236,34 @@ class SingleProduct extends Component {
       this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
     } else if (!deltaQty) {
       const { productId, cart } = this.props;
-      const updatedProduct = prevCartIds
+      console.log('%cprevCartIds', 'background:red;', prevCartIds);
+      const updatedCartProducts = prevCartIds
       .filter(id => id === productId)
       .map((id) => {
+        console.log('%cid', 'background:red;', id);
         let newProductObj;
         cart[cartCustomerType]
         .forEach((productObj) => {
           if (productObj.id === id) {
             productObj.qty += requestQty;
             newProductObj = Object.assign({}, productObj);
+            console.log('%cnewProductObj', 'background:red;', newProductObj);
           }
         });
         return newProductObj;
-      })
-      .reduce(a => a);
-
-
+      });
+      console.warn('updatedCartProducts: ', updatedCartProducts);
       if (cartCustomerType === 'member') {
-        if (updatedProduct) {
-          this.props.updateMemberCart({ ...updatedProduct, });
+        if (updatedCartProducts.length) {
+          this.props.updateToMemberCart({ ...updatedCartProducts });
         } else {
-          this.props.addToMemberCart({
-            qty,
-            strength,
-            ...this.props.activeViewProduct,
-          });
+          this.props.addToMemberCart({ qty, strength, ...this.props.activeViewProduct });
         }
       } else {
-        if (updatedProduct) {
-          this.props.updateMemberCart({ ...updatedProduct, });
+        if (updatedCartProducts.length) {
+          this.props.updateToMemberCart({ ...updatedCartProducts });
         }
-        this.props.addToGuestCart({
-          qty,
-          strength,
-          ...this.props.activeViewProduct,
-        });
+        this.props.addToGuestCart({ qty, strength, ...this.props.activeViewProduct });
       }
     }
   }
@@ -365,10 +358,10 @@ const mapDispatchToProps = dispatch => ({
   addToMemberCart: productObj =>
   dispatch(orderActions.addToMemberCart(productObj)),
 
-  updateMemberCart: updatedProductObj =>
-  dispatch(orderActions.updateMemberCart(updatedProductObj)),
+  updateToMemberCart: updatedCartProducts =>
+  dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
 
-  updateGuestCart: updatedProductObj =>
-  dispatch(orderActions.updateGuestCart(updatedProductObj)),
+  updateToGuestCart: updatedCartProducts =>
+  dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
