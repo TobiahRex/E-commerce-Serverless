@@ -183,17 +183,31 @@ class SingleProduct extends Component {
     }
   }
 
-  composeCartQty = () => {
+  composeGlobalCartInfo = () => {
     const { loggedIn, cart } = this.props;
-    return Object.keys(cart)
+    const prevCartIds = [];
+    let cartCustomerType = '';
+    const globalQty = Object.keys(cart)
     .map((key) => {
       if (!cart[key].length) return ([{ qty: 0 }]);
-      if (loggedIn && (key === 'member')) return cart.member;
+      if (loggedIn && (key === 'member')) {
+        cartCustomerType = 'member';
+        return cart.member;
+      }
+      cartCustomerType = 'guest';
       return cart.guest;
     })
     .map(array => array.reduce(a => a.qty))
-    .map(({ qty }) => qty)
+    .map(({ qty, id }) => {
+      prevCartIds.push(id);
+      return qty;
+    })
     .reduce((a, b) => a + b);
+    return ({
+      prevCartIds,
+      cartCustomerType,
+      globalQty,
+    });
   }
 
   addToCartHandler = () => {
@@ -203,34 +217,50 @@ class SingleProduct extends Component {
     // const cartQty = this.props.cart
     // .map(({ qty }) => qty)
     // .reduce((a, b) => a + b);
-    const totalQty = this.composeCartQty();
-    const requestQty = 0;
-    const totalRequestQty = requestQty + totalQty;
-    let deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
-
-    if (totalQty === 4) {
-      this.setState({ errorQty: 'You already have the maximum number of items in your cart.' });
-    } else if (deltaQty > 0) {
-      this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
-    }
-
+    const {
+      prevCartIds,
+      cartCustomerType,
+      globalQty,
+    } = this.composeGlobalCartInfo();
     const {
       qty,
       nicStrength: strength,
     } = this.state;
+    const requestQty = qty;
+    const totalRequestQty = requestQty + globalQty;
+    const deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
 
-    if (this.props.loggedIn) {
-      this.props.addToMemberCart({
-        qty,
-        strength,
-        ...this.props.activeViewProduct,
-      });
-    } else {
-      this.props.addToGuestCart({
-        qty,
-        strength,
-        ...this.props.activeViewProduct,
-      });
+    if (globalQty === 4) {
+      this.setState({ errorQty: 'You already have the maximum number of items in your cart.' });
+    } else if (deltaQty > 0) {
+      this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
+    } else if (!deltaQty) {
+      const { productId, cart } = this.props;
+      const newProductArray = prevCartIds
+        .filter(id => id === productId)
+        .map(id => cart[cartCustomerType]
+          .forEach((productObj) => {
+            if (productObj.id === id) {
+              productObj.qty += requestQty;
+            }
+          }),
+        )
+        .reduce(updatedProductArray => updatedProductArray);
+        console.log('newProductArray: ', newProductArray);
+
+      if (cartCustomerType === 'member') {
+        this.props.addToMemberCart({
+          qty,
+          strength,
+          ...this.props.activeViewProduct,
+        });
+      } else {
+        this.props.addToGuestCart({
+          qty,
+          strength,
+          ...this.props.activeViewProduct,
+        });
+      }
     }
   }
 
