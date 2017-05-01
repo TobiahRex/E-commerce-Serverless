@@ -31,16 +31,29 @@ class NavbarCartProducts extends Component {
     if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   }
-  renderProducts = products =>
-    products.map((juiceObj) => {
-      const { id, title, imageUrl, routeTag } = juiceObj;
+  renderProducts = (products) => {
+    const productEL = products.map((juiceObj) => {
+      const {
+        id,
+        title,
+        qty,
+        price,
+        strength,
+        imageUrl,
+        routeTag,
+      } = juiceObj;
       return (
         <li
           className="products-list-card"
           key={new Buffer(`${routeTag}${title}`, 'utf8').toString('base64')}
         >
           <NavbarCartProductsCardImage imageUrl={imageUrl} title={title} />
-          <NavbarCartProductsCardInfo juiceObj={juiceObj} />
+          <NavbarCartProductsCardInfo
+            title={title}
+            qty={qty}
+            price={price}
+            strength={strength}
+          />
           <NavbarCartProductsCardActions
             juiceId={id}
             routeTag={routeTag}
@@ -50,6 +63,7 @@ class NavbarCartProducts extends Component {
         </li>
       );
     });
+  }
   render() {
     return (
       <div>

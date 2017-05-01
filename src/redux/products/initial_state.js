@@ -3,8 +3,8 @@ export default {
     id: '',
     images: [
       {
-        card: '',
-        large: '',
+        purpose: '',
+        url: '',
       },
     ],
     nicotine_strengths: [''],
@@ -24,10 +24,12 @@ export default {
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
       images: [
         {
-          card: '../images/nj2jp_juice_card_fbb.png',
+          purpose: 'card',
+          url: '../images/nj2jp_juice_card_fbb.png',
         },
         {
-          large: '../images/nj2jp-fvm.jpg',
+          purpose: 'large',
+          url: '../images/nj2jp-fvm.jpg',
         },
       ],
       routeTag: 'fruity_bamm_bamm',
@@ -38,7 +40,14 @@ export default {
       title: 'Pina Colada',
       price: '30',
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-      images: [{ card: '../images/nj2jp_juice_card_pc.png' }, { large: '../images/nj2jp-fvm.jpg' }],
+      images: [{
+        purpose: 'card',
+        url: '../images/nj2jp_juice_card_pc.png',
+      },
+      {
+        purpose: 'large',
+        url: '../images/nj2jp-fvm.jpg',
+      }],
       routeTag: 'pina_colada',
     },
     {
@@ -47,7 +56,13 @@ export default {
       title: "Strawberries N' Cream",
       price: '30',
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-      images: [{ card: '../images/nj2jp_juice_card_pc.png' }, { large: '../images/nj2jp-fvm.jpg' }],
+      images: [{
+        purpose: 'card',
+        url: '../images/nj2jp_juice_card_pc.png',
+      }, {
+        purpose: 'large',
+        url: '../images/nj2jp-fvm.jpg',
+      }],
       routeTag: 'strawberries_n_cream',
     },
     {
@@ -56,10 +71,13 @@ export default {
       title: 'Keylime Pie',
       price: '30',
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-      images: [
-        { card: '../images/nj2jp_juice_card_klp.png' },
-        { large: '../images/nj2jp-fvm.jpg' },
-      ],
+      images: [{
+        purpose: 'card',
+        url: '../images/nj2jp_juice_card_klp.png',
+      }, {
+        purpose: 'large',
+        url: '../images/nj2jp-fvm.jpg',
+      }],
       routeTag: 'keylime_pie',
     },
     {
@@ -68,10 +86,13 @@ export default {
       title: 'Papple Berry',
       price: '30',
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-      images: [
-        { card: '../images/nj2jp_juice_card_klp.png' },
-        { large: '../images/nj2jp-fvm.jpg' },
-      ],
+      images: [{
+        purpose: 'card',
+        url: '../images/nj2jp_juice_card_klp.png',
+      }, {
+        purpose: 'large',
+        url: '../images/nj2jp-fvm.jpg',
+      }],
       routeTag: 'papple_berry',
     },
     {
@@ -80,10 +101,13 @@ export default {
       title: 'French Vanilla Mocha',
       price: '30',
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
-      images: [
-        { card: '../images/nj2jp_juice_card_fvm.png' },
-        { large: '../images/nj2jp-fvm.jpg' },
-      ],
+      images: [{
+        purpose: 'card',
+        url: '../images/nj2jp_juice_card_fvm.png',
+      }, {
+        purpose: 'large',
+        url: '../images/nj2jp-fvm.jpg',
+      }],
       routeTag: 'french_vanilla_mocha',
     },
   ],

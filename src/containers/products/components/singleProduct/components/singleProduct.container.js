@@ -56,12 +56,17 @@ class SingleProductContainer extends Component {
         <ImageGroup
           modalHandler={this.modalHandler}
           imageUrl={
-            images.reduce((accumObj, nextObj) => {
-              if (Object.prototype.hasOwnProperty.call(accumObj, 'large')) {
-                return accumObj.large;
+            images.reduce((accum, nextobj) => {
+              const { purpose } = accum;
+              if (purpose) {
+                if (purpose === 'large') return accum.url;
+                return nextobj.url;
+              } else if (typeof accum === 'string') {
+                return accum;
               }
-              return nextObj.large;
-            })
+              if (typeof accum === 'string') return accum;
+              return '';
+            }, images[0])
           }
         />
 

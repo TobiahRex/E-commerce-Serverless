@@ -2,16 +2,17 @@ import React from 'react';
 
 function NavbarNavsShopDropdnJuiceCards(props) {
   const { juiceInfo, tag, push } = props;
-  const imageUrl = juiceInfo.images.reduce((accum, next) => {
-    if (Object.prototype.hasOwnProperty.call(accum, 'card')) {
-      return accum.card;
+  const imageUrl = juiceInfo.images.reduce((accumObj, nextObj) => {
+    switch (accumObj.purpose) {
+      case '': return '';
+      case 'card': return accumObj.url;
+      default: return nextObj.url;
     }
-    return next.card;
   });
 
   return (
     <div className="midThird__juices-card">
-      
+
       <button data-tag={`${tag}?id=${juiceInfo.id}`} className="juices-card__title" onClick={push}>
         <h4>{juiceInfo.title}</h4>
       </button>

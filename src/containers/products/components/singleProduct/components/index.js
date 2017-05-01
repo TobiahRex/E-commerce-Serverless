@@ -29,8 +29,8 @@ class SingleProduct extends Component {
     activeViewProduct: shape({
       id: string,
       images: arrayOf(shape({
-        card: string,
-        large: string,
+        purpose: string,
+        url: string,
       })),
       nicotine_strengths: arrayOf(string),
       price: string,
@@ -45,8 +45,8 @@ class SingleProduct extends Component {
     activeViewProduct: {
       id: '',
       images: [{
-        card: '',
-        large: '',
+        purpose: '',
+        url: '',
       }],
       nicotine_strengths: [''],
       price: '',
