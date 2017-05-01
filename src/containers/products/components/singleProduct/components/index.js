@@ -203,8 +203,15 @@ class SingleProduct extends Component {
     // const cartQty = this.props.cart
     // .map(({ qty }) => qty)
     // .reduce((a, b) => a + b);
-    if (this.composeCartQty() >= 4) {
-      this.setState({ errorQty: `You already have the maximum number of items in your cart.` });
+    const totalQty = this.composeCartQty();
+    const requestQty = 0;
+    const totalRequestQty = requestQty + totalQty;
+    let deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
+
+    if (totalQty === 4) {
+      this.setState({ errorQty: 'You already have the maximum number of items in your cart.' });
+    } else if (deltaQty > 0) {
+      this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
     }
 
     const {
