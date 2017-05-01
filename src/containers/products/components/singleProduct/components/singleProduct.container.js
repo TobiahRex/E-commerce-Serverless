@@ -40,6 +40,11 @@ class SingleProductContainer extends Component {
   addToCartHandler = e => this.props.addToCartHandler(e);
   modalHandler = e => this.props.modalHandler(e);
   nicotineHandler = e => this.props.nicotineHandler(e);
+  filterImages = (images) => {
+    const helper = ({ purpose }) => purpose === 'large';
+    const image = images.filter(helper).length;
+    return !image ? '' : images.filter(helper).reduce(a => a).url;
+  }
 
   render() {
     const {
@@ -55,26 +60,13 @@ class SingleProductContainer extends Component {
       <div className="main__parent">
         <ImageGroup
           modalHandler={this.modalHandler}
-          imageUrl={
-            images.reduce((accum, nextobj) => {
-              const { purpose } = accum;
-              if (purpose) {
-                if (purpose === 'large') return accum.url;
-                return nextobj.url;
-              } else if (typeof accum === 'string') {
-                return accum;
-              }
-              if (typeof accum === 'string') return accum;
-              return '';
-            }, images[0])
-          }
+          imageUrl={this.filterImages(images)}
         />
-
         <div className="main__info--desc">
           <JuiceTitle title={title} />
           <PriceInfo price={price} id={id} sku={sku} />
           <ProductBlurb description={description} />
-
+          
           <NewMemberPromotionBtn modalHandler={this.modalHandler} loggedIn={loggedIn} />
 
           <NicotineBtns nicStrength={nicStrength} nicotineHandler={this.nicotineHandler} />
