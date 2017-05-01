@@ -7,5 +7,4 @@ export NavbarCartProductsCard from './navbarCart_dropdn_products_card';
 export NavbarCartProducts from './navbarCart_dropdn_products';
 export NavbarCartPromotion from './navbarCart_dropdn_promotion';
 export NavbarCartRecentlyAdded from './navbarCart_dropdn_recentadd';
-export NavbarCartTotalPrice from './navbarCart_dropdn_totalPrice';
 export NavbarCartMainButton from './navbarCart_mainButton';

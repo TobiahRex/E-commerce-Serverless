@@ -29,9 +29,9 @@ class NavbarUpper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeLanguage: props.activeLanguage,
-      qty: props.qty,
-      cartProducts: props.cartProducts,
+      activeLanguage: '',
+      qty: 0,
+      cartProducts: [],
     };
   }
 

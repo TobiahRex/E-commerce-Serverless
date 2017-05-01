@@ -64,7 +64,7 @@ class SingleProductContainer extends Component {
             })
           }
         />
-        
+
         <div className="main__info--desc">
           <JuiceTitle title={title} />
           <PriceInfo price={price} id={id} sku={sku} />

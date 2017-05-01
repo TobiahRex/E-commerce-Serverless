@@ -1,4 +1,6 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import {
   NavbarCartProductsCardImage,
@@ -6,31 +8,30 @@ import {
   NavbarCartProductsCardActions,
 } from './imports';
 
-const { arrayOf, object, func } = PropTypes;
+const {
+  arrayOf,
+  object,
+  func,
+  number,
+} = PropTypes;
 
-class NavbarCartProducts extends PureComponent {
+class NavbarCartProducts extends Component {
   static propTypes = {
+    cartTotal: number.isRequired,
     cartProducts: arrayOf(object).isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
-  }
+  };
   emptyCart = () => (
     <div className="products-list-empty">
       Your Cart Is Currently Empty
     </div>
-  )
-  componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(nextProps, this.props)) {
-      this.setState({ ...nextProps });
-    }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (!_.isEqual(nextState, this.state)) return true;
+  );
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   }
-
-  renderProducts = products => (
+  renderProducts = products =>
     products.map((juiceObj) => {
       const { id, title, imageUrl, routeTag } = juiceObj;
       return (
@@ -38,10 +39,7 @@ class NavbarCartProducts extends PureComponent {
           className="products-list-card"
           key={new Buffer(`${routeTag}${title}`, 'utf8').toString('base64')}
         >
-          <NavbarCartProductsCardImage
-            imageUrl={imageUrl}
-            title={title}
-          />
+          <NavbarCartProductsCardImage imageUrl={imageUrl} title={title} />
           <NavbarCartProductsCardInfo juiceObj={juiceObj} />
           <NavbarCartProductsCardActions
             juiceId={id}
@@ -51,16 +49,24 @@ class NavbarCartProducts extends PureComponent {
           />
         </li>
       );
-    })
-  )
+    });
   render() {
     return (
-      <div className="products">
-        <ul className="products-list">
-          {
-            this.props.cartProducts.length ? this.renderProducts(this.props.cartProducts) : this.emptyCart()
-          }
-        </ul>
+      <div>
+        <div className="products">
+          <ul className="products-list">
+            {this.props.cartProducts.length
+              ? this.renderProducts(this.props.cartProducts)
+              : this.emptyCart()}
+          </ul>
+        </div>
+        <div className="total-price">
+          <span className="total-price-title">Total Price</span>
+          <span className="total-price-amount">
+            <FontAwesome name="usd" />&nbsp;
+            {this.props.cartTotal || '00'}.00
+          </span>
+        </div>
       </div>
     );
   }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   NavbarCartPromotion,
   NavbarCartRecentlyAdded,
-  NavbarCartTotalPrice,
   NavbarCartActionLinks,
   NavbarCartProducts,
 } from './imports';
@@ -20,12 +19,10 @@ function NavbarCartDropdnContent({
         <NavbarCartPromotion />
         <NavbarCartRecentlyAdded />
         <NavbarCartProducts
+          cartTotal={cartTotal}
           cartProducts={cartProducts}
           editCartItem={editCartItem}
           deleteFromCart={deleteFromCart}
-        />
-        <NavbarCartTotalPrice
-          cartTotal={cartTotal}
         />
         <NavbarCartActionLinks />
       </div>
