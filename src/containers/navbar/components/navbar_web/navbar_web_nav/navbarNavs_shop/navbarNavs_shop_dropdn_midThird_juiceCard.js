@@ -11,11 +11,11 @@ function NavbarNavsShopDropdnJuiceCards(props) {
 
   return (
     <div className="midThird__juices-card">
-
+      
       <button data-tag={`${tag}?id=${juiceInfo.id}`} className="juices-card__title" onClick={push}>
         <h4>{juiceInfo.title}</h4>
       </button>
-      
+
       <button data-tag={`${tag}?id=${juiceInfo.id}`} className="juices-card__image" onClick={push}>
 
         <img className="image__src" src={imageUrl} alt={`${juiceInfo.title} juice`} />

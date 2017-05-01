@@ -12,13 +12,7 @@ import {
   SocialMediaBtns,
 } from './imports';
 
-const {
-  any,
-  bool,
-  func,
-  number,
-  objectOf,
-} = PropTypes;
+const { any, bool, func, number, objectOf } = PropTypes;
 
 class SingleProductContainer extends Component {
   static propTypes = {
@@ -32,20 +26,20 @@ class SingleProductContainer extends Component {
     modalHandler: func.isRequired,
     productObj: objectOf(any).isRequired,
     error: bool,
-  }
+  };
   static defaultProps = {
     error: false,
-  }
+  };
 
   shouldComponentUpdate(nextProps) {
     if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   }
 
-  qtyHandler = e => this.props.qtyHandler(e)
-  addToCartHandler = e => this.props.addToCartHandler(e)
-  modalHandler = e => this.props.modalHandler(e)
-  nicotineHandler = e => this.props.nicotineHandler(e)
+  qtyHandler = e => this.props.qtyHandler(e);
+  addToCartHandler = e => this.props.addToCartHandler(e);
+  modalHandler = e => this.props.modalHandler(e);
+  nicotineHandler = e => this.props.nicotineHandler(e);
 
   render() {
     const {
@@ -56,46 +50,29 @@ class SingleProductContainer extends Component {
       nicStrength,
       error,
     } = this.props;
-    const {
-      description,
-      price,
-      sku,
-      id,
-      title,
-      images,
-    } = productObj;
+    const { description, price, sku, id, title, images } = productObj;
     return (
       <div className="main__parent">
         <ImageGroup
           modalHandler={this.modalHandler}
-          imageUrl={images
-            .reduce((accumObj, nextObj) => (
-              Object.prototype.hasOwnProperty.call(accumObj, 'large') ? accumObj.large : nextObj.large))
+          imageUrl={
+            images.reduce((accumObj, nextObj) => {
+              if (Object.prototype.hasOwnProperty.call(accumObj, 'large')) {
+                return accumObj.large;
+              }
+              return nextObj.large;
+            })
           }
         />
-
+        
         <div className="main__info--desc">
-          <JuiceTitle
-            title={title}
-          />
-          <PriceInfo
-            price={price}
-            id={id}
-            sku={sku}
-          />
-          <ProductBlurb
-            description={description}
-          />
+          <JuiceTitle title={title} />
+          <PriceInfo price={price} id={id} sku={sku} />
+          <ProductBlurb description={description} />
 
-          <NewMemberPromotionBtn
-            modalHandler={this.modalHandler}
-            loggedIn={loggedIn}
-          />
+          <NewMemberPromotionBtn modalHandler={this.modalHandler} loggedIn={loggedIn} />
 
-          <NicotineBtns
-            nicStrength={nicStrength}
-            nicotineHandler={this.nicotineHandler}
-          />
+          <NicotineBtns nicStrength={nicStrength} nicotineHandler={this.nicotineHandler} />
 
           <ProductActions
             quantity={qty}
