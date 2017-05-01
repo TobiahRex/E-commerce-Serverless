@@ -69,7 +69,6 @@ class NavbarCartProducts extends Component {
     );
   });
   render() {
-    console.log('this.props.cartProducts: ', this.props.cartProducts);
     return (
       <div>
         <div className="products">

@@ -182,13 +182,26 @@ class SingleProduct extends Component {
     }
   }
 
+  composeCartQty = () => {
+    const { loggedIn, cart } = this.props;
+    const cartQty = Object.keys(cart)
+    .map((key) => {
+      if (!cart[key].length) return ([{ qty: 0 }]);
+      if (loggedIn && (key === 'member')) return cart.member;
+      return cart.guest;
+    })
+    .map(({ qty }) => qty)
+    .reduce((a, b) => a + b);
+    console.warn('cartQty: ', cartQty);
+  }
+
   addToCartHandler = () => {
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
-    const cartQty = this.props.cart
-    .map(({ qty }) => qty)
-    .reduce((a, b) => a + b);
+    // const cartQty = this.props.cart
+    // .map(({ qty }) => qty)
+    // .reduce((a, b) => a + b);
     const {
       qty,
       nicStrength: strength,
@@ -219,12 +232,7 @@ class SingleProduct extends Component {
 
 
   render() {
-    const { loggedIn } = this.props;
-    const cartQty = this.props.cart
-    .map(({ guest, member }) => (loggedIn ? member : guest))
-    .map(({ qty }) => qty)
-    .reduce((a, b) => a + b);
-    console.warn('cartQty: ', cartQty);
+    this.composeCartQty();
     const {
       qty,
       nicStrength,
@@ -238,6 +246,7 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
+
     return (
       <div className="juice-page__main">
         <BreadCrumb
