@@ -18,7 +18,7 @@ function NavbarCartProductsCardInfo({
       <div className="nic-strength">
         <i>
           {`${strength}mg`}
-        </i>π
+        </i>
       </div>
     </div>
   );

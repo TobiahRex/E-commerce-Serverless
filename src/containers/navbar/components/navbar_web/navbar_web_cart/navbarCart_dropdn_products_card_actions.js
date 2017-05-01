@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function NavbarCartProductsCardActions({ routeTag, id, editCartItem, deleteFromCart }) {
+function NavbarCartProductsCardActions({
+  routeTag,
+  id,
+  editCartItem,
+  deleteFromCart,
+}) {
   return (
     <div className="products-list-card-actions">
       <div href="" className="products-list-card-actions-edit sweep-right">
@@ -32,9 +37,13 @@ function NavbarCartProductsCardActions({ routeTag, id, editCartItem, deleteFromC
 }
 const { string, func } = PropTypes;
 NavbarCartProductsCardActions.propTypes = {
-  routeTag: string.isRequired,
-  id: string.isRequired,
+  routeTag: string,
+  id: string,
   editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
+};
+NavbarCartProductsCardActions.defaultProps = {
+  routeTag: '',
+  id: '',
 };
 export default NavbarCartProductsCardActions;

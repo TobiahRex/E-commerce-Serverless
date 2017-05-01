@@ -15,7 +15,15 @@ import {
   RegisterModal,
 } from './imports';
 
-const { func, number, bool, string, shape, arrayOf } = React.PropTypes;
+const {
+  func,
+  number,
+  bool,
+  string,
+  shape,
+  arrayOf,
+  any,
+} = React.PropTypes;
 
 class SingleProduct extends Component {
   static propTypes = {
@@ -26,6 +34,10 @@ class SingleProduct extends Component {
     taxRate: number.isRequired,
     fetchProductById: func.isRequired,
     productId: string.isRequired,
+    cart: shape({
+      guest: arrayOf(any),
+      member: arrayOf(any),
+    }).isRequired,
     activeViewProduct: shape({
       id: string,
       images: arrayOf(shape({
@@ -59,12 +71,11 @@ class SingleProduct extends Component {
   }
   constructor(props) {
     super(props);
-
     this.state = {
       showSuccessModal: false,
       showBulkModal: false,
       showRegisterModal: false,
-      product: null,
+      productId: null,
       activeViewProduct: props.activeViewProduct,
       qty: 0,
       nicStrength: 0,
@@ -80,6 +91,7 @@ class SingleProduct extends Component {
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({ ...nextProps });
+      this.props.fetchProductById(nextProps.productId);
     }
   }
 
@@ -174,6 +186,9 @@ class SingleProduct extends Component {
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
+    const cartQty = this.props.cart
+    .map(({ qty }) => qty)
+    .reduce((a, b) => a + b);
     const {
       qty,
       nicStrength: strength,
@@ -204,6 +219,12 @@ class SingleProduct extends Component {
 
 
   render() {
+    const { loggedIn } = this.props;
+    const cartQty = this.props.cart
+    .map(({ guest, member }) => (loggedIn ? member : guest))
+    .map(({ qty }) => qty)
+    .reduce((a, b) => a + b);
+    console.warn('cartQty: ', cartQty);
     const {
       qty,
       nicStrength,
@@ -266,6 +287,7 @@ const mapStateToProps = ({ orders, auth, routing, products }) => ({
   taxRate: orders.taxRate.totalRate,
   productId: routing.locationBeforeTransitions.query.id,
   activeViewProduct: products.activeViewProduct,
+  cart: orders.cart,
 });
 const mapDispatchToProps = dispatch => ({
   push: location =>

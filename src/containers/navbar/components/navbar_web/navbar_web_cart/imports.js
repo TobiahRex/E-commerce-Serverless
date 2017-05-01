@@ -1,6 +1,6 @@
 export NavbarCartActionLinks from './navbarCart_dropdn_actionLinks';
 export NavbarCartDropdnContent from './navbarCart_dropdn_content';
-export NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_info';
+export NavbarCartProductsCardActions from './navbarCart_dropdn_products_card_actions';
 export NavbarCartProductsCardInfo from './navbarCart_dropdn_products_card_info';
 export NavbarCartProductsCardImage from './navbarCart_dropdn_products_card_image';
 export NavbarCartProducts from './navbarCart_dropdn_products';

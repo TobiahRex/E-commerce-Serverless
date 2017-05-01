@@ -36,43 +36,40 @@ class NavbarCartProducts extends Component {
     const image = images.filter(helper).length;
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
-  renderProducts = (products) => {
-    const productEL = products.map((juiceObj) => {
-      const {
-        id,
-        title,
-        qty,
-        price,
-        strength,
-        images,
-        routeTag,
-      } = juiceObj;
-      console.warn('juiceObj: ', juiceObj);
-      return (
-        <li
-          className="products-list-card"
-          key={new Buffer(`${routeTag}${title}`, 'utf8').toString('base64')}
-        >
-          <NavbarCartProductsCardImage imageUrl={this.filterImages(images)} title={title} />
-          <NavbarCartProductsCardInfo
-            title={title}
-            qty={qty}
-            price={price}
-            strength={strength}
-          />
-          <NavbarCartProductsCardActions
-            juiceId={id}
-            routeTag={routeTag}
-            editCartItem={this.props.editCartItem}
-            deleteFromCart={this.props.deleteFromCart}
-          />
-        </li>
-      );
-    });
-    console.log('productEl: ', productEL);
-    return productEL;
-  }
+  renderProducts = products =>
+  products.map((juiceObj) => {
+    const {
+      id,
+      title,
+      qty,
+      price,
+      strength,
+      images,
+      routeTag,
+    } = juiceObj;
+    return (
+      <li
+        className="products-list-card"
+        key={new Buffer(`${routeTag}${title}`, 'utf8').toString('base64')}
+      >
+        <NavbarCartProductsCardImage imageUrl={this.filterImages(images)} title={title} />
+        <NavbarCartProductsCardInfo
+          title={title}
+          qty={qty}
+          price={price}
+          strength={strength}
+        />
+        <NavbarCartProductsCardActions
+          juiceId={id}
+          routeTag={routeTag}
+          editCartItem={this.props.editCartItem}
+          deleteFromCart={this.props.deleteFromCart}
+        />
+      </li>
+    );
+  });
   render() {
+    console.log('this.props.cartProducts: ', this.props.cartProducts);
     return (
       <div>
         <div className="products">
