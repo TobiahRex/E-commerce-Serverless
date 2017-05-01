@@ -24,10 +24,17 @@ function NavbarCartProductsCardInfo({
   );
 }
 const { string, number } = PropTypes;
-NavbarCartProductsCardInfo.propTypes = {
-  price: string.isRequired,
-  qty: number.isRequired,
-  strength: number.isRequired,
-  title: string.isRequired,
+NavbarCartProductsCardInfo.defaultProps = {
+  price: '',
+  qty: 0,
+  strength: 0,
+  title: '',
 };
+NavbarCartProductsCardInfo.propTypes = {
+  price: string,
+  qty: number,
+  strength: number,
+  title: string,
+};
+
 export default NavbarCartProductsCardInfo;

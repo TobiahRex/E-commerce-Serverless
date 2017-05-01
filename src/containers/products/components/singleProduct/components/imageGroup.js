@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ImageGroup({ modalHandler, imageUrl }) {
-  console.info('imageUrl:', imageUrl);
   return (
     <div className="main__info--image">
       <img

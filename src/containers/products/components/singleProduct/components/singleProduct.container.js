@@ -66,7 +66,7 @@ class SingleProductContainer extends Component {
           <JuiceTitle title={title} />
           <PriceInfo price={price} id={id} sku={sku} />
           <ProductBlurb description={description} />
-          
+
           <NewMemberPromotionBtn modalHandler={this.modalHandler} loggedIn={loggedIn} />
 
           <NicotineBtns nicStrength={nicStrength} nicotineHandler={this.nicotineHandler} />
