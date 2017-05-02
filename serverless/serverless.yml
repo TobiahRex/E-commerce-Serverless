@@ -1,0 +1,11 @@
+service: nj2jp
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  cfLogs: true
+  stage: development
+  region: ap-northeast-1
+
+plugins:
+  - serverless-webpack
