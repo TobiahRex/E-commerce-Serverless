@@ -9,3 +9,19 @@ provider:
 
 plugins:
   - serverless-webpack
+
+custom: ${file(./config.json)}
+
+function:
+  graphql:
+    handler: handler.graphql
+    events:
+      - http:
+          path: graphql
+          method: post
+          integration: lambda
+          memorySize: 256
+          timeout: 10
+          cors: true
+          response: headers:
+            Access-Control-Allow-Origin: "'*'"
