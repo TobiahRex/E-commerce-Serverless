@@ -2,7 +2,15 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
   juice: {
+    mainTitle: {
+      type: String,
+      required: true,
+    },
     title: {
+      type: String,
+      required: true,
+    },
+    flavor: {
       type: String,
       required: true,
     },
@@ -20,6 +28,22 @@ const productSchema = new mongoose.Schema({
       enum: [2, 4, 6, 8, 12, 14, 16, 18],
       required: true,
     },
+    images: [
+      {
+        purpose: {
+          type: String,
+          required: true,
+        },
+        url: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+    routeTag: {
+      type: String,
+      required: true,
+    },
     vendor: { type: String },
     dates: {
       store_added: {
@@ -35,6 +59,22 @@ const productSchema = new mongoose.Schema({
     },
     quantities: {
       available: { type: Number },
+      in_cart: { type: Number },
+    },
+  },
+  distribution: {
+    restock_threshold: {
+      type: Number,
+      default: 500,
+    },
+    restock_amount: {
+      type: Number,
+      default: 500,
+    },
+  },
+  statistics: {
+    addsToCart: {
+      type: Number,
     },
   },
 });
