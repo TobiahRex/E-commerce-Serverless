@@ -45,7 +45,13 @@ const userSchema = new mongoose.Schema({
   permissions: {
     role: {
       type: String,
-      enum: ['user', 'admin', 'devAdmin', 'wholeseller', 'distributor'],
+      enum: [
+        'user',
+        'admin',
+        'devAdmin',
+        'wholeseller',
+        'distributor'
+      ],
       required: true,
     },
   },

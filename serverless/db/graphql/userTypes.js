@@ -29,7 +29,26 @@ export const createUserInput = {
     phone: { type: StringType },
     location: new InputObject({
       name: 'Geolocation information for user.',
-      
+      fields: () => ({
+        ipAddress: { type: StringType },
+        lat: { type: StringType },
+        long: { type: StringType },
+        country: { type: StringType },
+      }),
+    }),
+  }),
+  permissions: new InputObject({
+    name: 'Permissions granted for user.',
+    fields: () => ({
+      role: { type: StringType },
+    }),
+  }),
+  userStory: new InputObject({
+    name: 'Bio information for user.',
+    fields: () => ({
+      age: { type: NumberType },
+      birthday: { type: DateType },
+      bio: { type: StringType },
     }),
   }),
 };
