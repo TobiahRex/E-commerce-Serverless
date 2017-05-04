@@ -1,4 +1,6 @@
+/* eslint-disable no-use-before-define */
 import mongoose from 'mongoose';
+
 const ObjectId = mongoose.schema.Types.ObjectId;
 const userSchema = new mongoose.Schema({
   name: {
@@ -35,10 +37,10 @@ const userSchema = new mongoose.Schema({
       country: { type: String },
     },
   },
-  purchases: {
+  transactions: {
     orders: [{
-      type: { type: ObjectId, ref: 'Transactions' },
-    }]
+      type: { type: ObjectId, ref: 'Transaction' },
+    }],
   },
   permissions: {
     role: {
@@ -52,36 +54,8 @@ const userSchema = new mongoose.Schema({
     birthday: { type: Date },
     bio: { type: String },
   },
-  socialBlob: {},
+  social_profile_blob: {},
 });
-
-userSchema.statics.findByFirebaseId = (firebaseId, cb) => {
-  if (!firebaseId) return cb({ error: 'Missing required firebase id' });
-
-  return User.find({ uid_firebase: firebaseId })
-  .then((dbUsers) => {
-    if (dbUsers.length) return cb(null, dbUsers[0]);
-    return cb({ error: 'There are no db Users registered with that uid.' });
-  })
-  .catch(error => cb({ error }));
-};
-
-userSchema.statics.addNewUser = (userObj, cb) => {
-  if (!userObj) return cb({ error: 'Missing user object' });
-
-  return User.create(userObj)
-  .then((dbUser) => {
-    const dbUserRef = dbUser;
-    delete dbUserRef.password;
-    delete dbUserRef.email;
-    return cb(null, dbUser);
-  })
-  .catch(error => cb({ error }));
-};
 
 const User = mongoose.model('User', userSchema);
 export default User;
-
-
-const Users = mongoose.model('Products', usersSchema);
-export default Users;

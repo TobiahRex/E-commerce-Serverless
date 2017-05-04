@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const productSchema = new mongoose.Schema({
   juice: {
     mainTitle: {
@@ -51,12 +52,12 @@ const productSchema = new mongoose.Schema({
     },
     vendor: { type: String },
     dates: {
-      store_added: {
+      added_to_store: {
         type: Date,
         default: Date.now,
         required: true,
       },
-      store_removed: {
+      removed_from_store: {
         type: Date,
         default: Date.now,
         required: true,
@@ -67,6 +68,10 @@ const productSchema = new mongoose.Schema({
       in_cart: { type: Number },
     },
   },
+  reviews: [{
+    reviews_id: { type: ObjectId, ref: 'Reviews' },
+    user_id: { type: ObjectId, ref: 'User' },
+  }],
   distribution: {
     restock_threshold: {
       type: Number,
@@ -90,6 +95,10 @@ const productSchema = new mongoose.Schema({
   statistics: {
     adds_to_cart: { type: Number },
     completed_checkouts: { type: Number },
+    transactions: [{
+      transaction_id: { type: ObjectId, ref: 'Transaction' },
+      user_id: { type: ObjectId, ref: 'User' },
+    }],
   },
 });
 
