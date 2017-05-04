@@ -2,60 +2,60 @@
 import mongoose from 'mongoose';
 
 const ObjectId = mongoose.schema.Types.ObjectId;
-const userSchema = new mongoose.Schema({
-  name: {
-    first: { type: String },
-    last: { type: String },
-    display: { type: String },
-  },
-  authentication: {
-    lastLogin: {
-      type: Date,
-      default: Date.now,
+const User = mongoose.model('User',
+  new mongoose.Schema({
+    name: {
+      first: { type: String },
+      last: { type: String },
+      display: { type: String },
     },
-    signedUp: {
-      type: Date,
-      default: Date.now,
+    authentication: {
+      lastLogin: {
+        type: Date,
+        default: Date.now,
+      },
+      signedUp: {
+        type: Date,
+        default: Date.now,
+      },
+      registered: {
+        type: Date,
+        default: Date.now,
+      },
+      password: { type: String },
+      avatar: {
+        type: String,
+        default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
+      },
     },
-    registered: {
-      type: Date,
-      default: Date.now,
+    contact: {
+      email: { type: String },
+      phone: { type: Number },
+      location: {
+        ipAddress: { type: String },
+        lat: { type: String },
+        long: { type: String },
+        country: { type: String },
+      },
     },
-    password: { type: String },
-    avatar: {
-      type: String,
-      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
+    transactions: {
+      orders: [{
+        type: { type: ObjectId, ref: 'Transaction' },
+      }],
     },
-  },
-  contact: {
-    email: { type: String },
-    phone: { type: Number },
-    location: {
-      ipAddress: { type: String },
-      lat: { type: String },
-      long: { type: String },
-      country: { type: String },
+    permissions: {
+      role: {
+        type: String,
+        enum: ['user', 'admin', 'devAdmin', 'wholeseller', 'distributor'],
+        required: true,
+      },
     },
-  },
-  transactions: {
-    orders: [{
-      type: { type: ObjectId, ref: 'Transaction' },
-    }],
-  },
-  permissions: {
-    role: {
-      type: String,
-      enum: ['user', 'admin', 'devAdmin', 'wholeseller', 'distributor'],
-      required: true,
+    userStory: {
+      age: { type: Number },
+      birthday: { type: Date },
+      bio: { type: String },
     },
-  },
-  userStory: {
-    age: { type: Number },
-    birthday: { type: Date },
-    bio: { type: String },
-  },
-  social_profile_blob: {},
-});
-
-const User = mongoose.model('User', userSchema);
+    social_profile_blob: {},
+  }),
+);
 export default User;

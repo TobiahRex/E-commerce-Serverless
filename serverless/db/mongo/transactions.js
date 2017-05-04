@@ -1,7 +1,9 @@
+/* eslint-disable no-use-before-define */
 import mongoose from 'mongoose';
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
-export default mongoose.model(
+
+const Transaction = mongoose.model('Transaction',
   new mongoose.Schema({
     date: {
       type: Date,
@@ -38,4 +40,6 @@ export default mongoose.model(
       },
     },
   }),
-'Transaction');
+);
+
+export default Transaction;
