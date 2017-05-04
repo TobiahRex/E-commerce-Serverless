@@ -1,1 +1,1 @@
-export runGraphQL from './graphql';
+export runGraphQL from './graphql/';
