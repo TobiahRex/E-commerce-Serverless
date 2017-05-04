@@ -1,32 +1,27 @@
 import {
-  GraphQLList,
+  // GraphQLList,
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLInputObjectType,
 } from 'graphql';
 // import { GraphQLError } from 'graphql/error';
 import {
-  User,
-  Product,
-  Transaction,
-} from './mongo';
+  UserModel,
+  UserTypes,
+  // ProductsTypes,
+} from './imports';
 
-const popularJuicesType = new GraphQLObjectType({
-  name: 'PopularJuicesType',
-  description: 'The 6 most popular juices',
-});
 
 const Query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The root query.',
   fields: {
-    popularJuices: {
-      type: new GraphQLList(popularJuicesType),
-      description: 'The 6 most popular juices.',
-      resolve: Product.getPopularJuices,
-    },
+    // popularJuices: {
+    //   type: new GraphQLList(popularJuicesType),
+    //   description: 'The 6 most popular juices.',
+    //   resolve: Product.getPopularJuices,
+    // },
   },
 });
 
@@ -35,27 +30,19 @@ const Mutation = new GraphQLObjectType({
   desciption: 'The root mutation type.',
   fields: {
     createUser: {
-      type: User,
+      type: UserTypes.userType,
       description: 'Create new user.',
       args: {
-        name: new GraphQLInputObjectType({
-          name: 'User name object.',
-          fields: {
-            first: {
-              description: 'The first name of the user',
-              type: GraphQLNonNull(GraphQLString),
-            },
-            last: {
-              description: 'The last name of the user.',
-              type: GraphQLNonNull(GraphQLString),
-            },
-          },
-        }),
+        name: UserTypes.createUserInput.name,
+        authentication: UserTypes.createUserInput.authentication,
+        contactInfo: UserTypes.createUserInput.contactInfo,
+        permissions: UserTypes.createUserInput.permissions,
+        userStory: UserTypes.createUserInput.userStory,
         socialBlob: {
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: (_, args) => User.createUser(args),
+      resolve: (_, args) => UserModel.createUser(args),
     },
   },
 });

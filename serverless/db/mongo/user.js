@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
         'admin',
         'devAdmin',
         'wholeseller',
-        'distributor'
+        'distributor',
       ],
       required: true,
     },
@@ -61,10 +61,10 @@ const userSchema = new mongoose.Schema({
     bio: { type: String },
   },
   socialProfileBlob: {},
-}),
+});
 
-userSchema.statics.createUser = (args) => {
-
+userSchema.statics.createUser = (args, cb) => {
+  
 }
 
 export default mongoose.model('User', userSchema);
