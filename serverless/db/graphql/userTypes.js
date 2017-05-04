@@ -21,7 +21,15 @@ export const createUserInput = {
       signedUp: { type: NonNull(StringType) },
       registered: { type: NonNull(StringType) },
       password: { type: StringType },
-      avatar: 
+      avatar: { type: StringType },
+    }),
+  }),
+  contactInfo: new InputObject({
+    email: { type: StringType },
+    phone: { type: StringType },
+    location: new InputObject({
+      name: 'Geolocation information for user.',
+      
     }),
   }),
 };

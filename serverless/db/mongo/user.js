@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
       default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
     },
   },
-  contact: {
+  contactInfo: {
     email: { type: String },
     phone: { type: Number },
     location: {
@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
     birthday: { type: Date },
     bio: { type: String },
   },
-  social_profile_blob: {},
+  socialProfileBlob: {},
 }),
 
 userSchema.statics.createUser = (args) => {
