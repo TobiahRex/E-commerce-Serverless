@@ -1,13 +1,14 @@
 import {
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
+  GraphQLInt as IntType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
-
-export const createUserInput = {
+const createUserInput = {
   name: new InputObject({
-    name: 'Users name object.',
+    name: 'UserInputNameObject',
+    description: 'Users name object.',
     fields: () => ({
       first: { type: NonNull(StringType) },
       last: { type: NonNull(StringType) },
@@ -15,7 +16,8 @@ export const createUserInput = {
     }),
   }),
   authentication: new InputObject({
-    name: 'Authentication information for user.',
+    name: 'UserInputAuthenticationObject',
+    description: 'Authentication information for user.',
     fields: () => ({
       lastLogin: { type: NonNull(StringType) },
       signedUp: { type: NonNull(StringType) },
@@ -28,7 +30,8 @@ export const createUserInput = {
     email: { type: StringType },
     phone: { type: StringType },
     location: new InputObject({
-      name: 'Geolocation information for user.',
+      name: 'UserInputGeolocationObject',
+      description: 'Geolocation information for user.',
       fields: () => ({
         ipAddress: { type: StringType },
         lat: { type: StringType },
@@ -38,17 +41,20 @@ export const createUserInput = {
     }),
   }),
   permissions: new InputObject({
-    name: 'Permissions granted for user.',
+    name: 'UserInputPermissionsObject',
+    description: 'Permissions granted for user.',
     fields: () => ({
       role: { type: StringType },
     }),
   }),
   userStory: new InputObject({
-    name: 'Bio information for user.',
+    name: 'UserInputStoryObject',
+    description: 'Bio information for user.',
     fields: () => ({
-      age: { type: NumberType },
-      birthday: { type: DateType },
+      age: { type: IntType },
+      birthday: { type: StringType },
       bio: { type: StringType },
     }),
   }),
 };
+export default createUserInput;
