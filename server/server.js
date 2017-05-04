@@ -12,8 +12,11 @@ import api from './api';
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
+const __DEV__ = process.env.NODE_ENV === 'development';
+const awsMongoDevelopment = process.env.AWS_MONGO_URI_DEV;
+const awsMongoProduction = process.env.AWS_MONGO_URI_PROD;
+const MONGO = __DEV__ ? awsMongoDevelopment : awsMongoProduction;
 const PORT = process.env.PORT || 3000;
-const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nj2jp';
 const app = express();
 
 // ---------------------- Webpack Middleware -----------------------------------
@@ -23,13 +26,13 @@ app.use(devMiddleware(compiler, {
   noInfo: false,
   quiet: false,
   stats: {
-    assets: false,
+    assets: true,
     colors: true,
-    version: false,
-    hash: false,
+    version: true,
+    hash: true,
     timings: true,
-    chunks: false,
-    chunkModules: false,
+    chunks: true,
+    chunkModules: true,
   },
 }));
 app.use(hotMiddleware(compiler));
@@ -62,6 +65,8 @@ process.stdout.write('\n');
 app.listen(PORT, err =>
   process.stdout.write(JSON.stringify(err, null, 2) || `==> 📡  Server @ ${PORT}
 `));
-mongoose.connect(MONGO, err =>
-  process.stdout.write(JSON.stringify(err, null, 2) || `==> 📜  MONGO @ ${MONGO}
-`));
+
+mongoose.connect(MONGO)
+.then(() => process.stdout.write(`==> 📜  MONGO @ ${MONGO}
+`))
+.catch(err => process.stdout.write(JSON.stringify(err, null, 2)));

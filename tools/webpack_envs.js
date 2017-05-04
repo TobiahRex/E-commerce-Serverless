@@ -4,6 +4,7 @@ dotenv.load({ silent: true });
 
 export default {
   development: {
+    AWS_MONGO_URI_DEV: JSON.stringify(process.env.AWS_MONGO_URI_DEV),
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
     AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
     AUTH0_REDIRECT: JSON.stringify(process.env.AUTH0_REDIRECT),
@@ -17,6 +18,7 @@ export default {
     FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
   },
   production: {
+    AWS_MONGO_URI_PROD: JSON.stringify(process.env.AWS_MONGO_URI_PROD),
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
     AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
     AUTH0_REDIRECT: JSON.stringify(process.env.AUTH0_REDIRECT),

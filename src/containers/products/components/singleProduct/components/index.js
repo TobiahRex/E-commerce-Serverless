@@ -236,23 +236,19 @@ class SingleProduct extends Component {
       this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
     } else if (!deltaQty) {
       const { productId, cart } = this.props;
-      console.log('%cprevCartIds', 'background:red;', prevCartIds);
       const updatedCartProducts = prevCartIds
       .filter(id => id === productId)
       .map((id) => {
-        console.log('%cid', 'background:red;', id);
         let newProductObj;
         cart[cartCustomerType]
         .forEach((productObj) => {
           if (productObj.id === id) {
             productObj.qty += requestQty;
             newProductObj = Object.assign({}, productObj);
-            console.log('%cnewProductObj', 'background:red;', newProductObj);
           }
         });
         return newProductObj;
       });
-      console.warn('updatedCartProducts: ', updatedCartProducts);
       if (cartCustomerType === 'member') {
         if (updatedCartProducts.length) {
           this.props.updateToMemberCart({ ...updatedCartProducts });

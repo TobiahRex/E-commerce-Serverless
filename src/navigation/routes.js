@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { replace, push } from 'react-router-redux';
 import App from '../app';
-import Homepage from '../containers/home/homePage';
+// import Homepage from '../containers/home/homePage';
 import Routes from './index';
 import AuthService from '../services/utils/authService';
 
@@ -19,10 +19,20 @@ const parseAuthHash = (nextState) => {
     auth.parseHash(hash);
   }
 };
+const errorLoading = (error) => {
+  throw new Error(`Dyanmic pag loading failed   ${error}`);
+};
+const loadRoute = cb => module => cb(null, module.default);
 
 export default (
   <Route path="/" component={App} auth={auth}>
-    <IndexRoute component={Homepage} />
+    <IndexRoute
+      getComponent={(location, cb) => {
+        System.import('../containers/home/homePage')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
     {Routes.LegalRoutes()}

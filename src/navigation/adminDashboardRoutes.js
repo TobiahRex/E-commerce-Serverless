@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import AdminDashboard from '../containers/adminDashboard/adminDashComponents/adminDashboard';
-import AdminHomeDash from '../containers/adminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash';
+// import AdminDashboard from '../containers/adminDashboard/adminDashComponents/adminDashboard';
+// import AdminHomeDash from '../containers/adminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash';
 import AdminLegal from '../containers/adminDashboard/adminDashComponents/adminDashboard_legal/adminLegal';
 import AdminFaqs from '../containers/adminDashboard/adminDashComponents/adminDashboard_legal/adminFaqs';
 import AdminManageLogin from '../containers/adminDashboard/adminDashComponents/adminDashboard_manageLogin/adminManageLogin';
@@ -14,10 +14,30 @@ import AdminProducts from './../containers/adminDashboard/adminDashComponents/ad
 import AdminMembers from './../containers/adminDashboard/adminDashComponents/adminDashboard_members/adminMembers';
 import AdminPromotions from './../containers/adminDashboard/adminDashComponents/adminDashboard_promotionsSales/adminPromotionsSales';
 
+const errorLoading = (error) => {
+  throw new Error(`Dyanmic pag loading failed   ${error}`);
+};
+const loadRoute = cb => module => cb(null, module.default);
+
+
 function AdminDashboardRoutes(requireAuth) {
   return (
-    <Route path="/admin_:id" component={AdminDashboard} onEnter={requireAuth}>
-      <IndexRoute component={AdminHomeDash} />
+    <Route
+      path="/admin_:id"
+      onEnter={requireAuth}
+      getComponent={(location, cb) => {
+        System.import('../containers/adminDashboard/adminDashComponents/adminDashboard')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    >
+      <IndexRoute
+        getComponent={(location, cb) => {
+          System.import('../containers/adminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+        }}
+      />
       <Route
         path="reports"
         component={AdminReports}

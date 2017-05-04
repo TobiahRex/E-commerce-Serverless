@@ -14,14 +14,29 @@ import UserLegal from '../containers/userDashboard/userDashComponents/userDashbo
 
 import UserFaqs from '../containers/userDashboard/userDashComponents/userDashboard_legal/userFaqs';
 
+const errorLoading = (error) => {
+  throw new Error(`Dyanmic pag loading failed   ${error}`);
+};
+const loadRoute = cb => module => cb(null, module.default);
+
 function UserDashboardRoutes(requireAuth) {
   return (
     <Route
       path="/user_dashboard"
-      component={UserDashboard}
       onEnter={requireAuth}
+      getComponet={(location, cb) => {
+        System.import('../containers/userDashboard/userDashComponents/userDashboard')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
     >
-      <IndexRoute component={UserHomeDash} />
+      <IndexRoute
+        getComponet={(location, cb) => {
+          System.import('../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+        }}
+      />
       <Route
         path="address_book"
         component={UserAddressBook}

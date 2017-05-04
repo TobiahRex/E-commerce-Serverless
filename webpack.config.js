@@ -27,7 +27,7 @@ const devConfig = {
       'webpack-hot-middleware/client?reload=true',
       path.resolve('./src/index'),
     ],
-    vendor: ['react', 'react-dom', 'reduxsauce'],
+    // vendor: ['react', 'react-dom', 'reduxsauce'],
   },
   output: {
     path: path.resolve('public'),
@@ -38,6 +38,11 @@ const devConfig = {
   target: 'web',
   plugins: [
     new ProgressBarPlugin(),
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'bundle.[name].js',
+      minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -48,7 +53,7 @@ const devConfig = {
         removeComments: true,
         collapseWhitespace: true,
       },
-      inject: false,
+      inject: true,
       filename: './index.html',
     }),
     new webpack.LoaderOptionsPlugin({
@@ -94,17 +99,25 @@ const prodConfig = {
   // ],
   entry: {
     app: path.resolve('./src/index'),
-    vendor: ['react', 'react-dom', 'reduxsauce'],
   },
   output: {
     path: path.resolve('dist'),
     publicPath: '/',
-    filename: '[name].[chunkhash].js',
+    filename: 'bundle.[name].js',
   },
   devtool: false,
   target: 'web',
   plugins: [
     new ProgressBarPlugin(),
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'bundle.[name].js',
+      minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
+    }),
+    new CommonsChunkPlugin({
+      name: 'common',
+      filename: 'bundle.[name].js',
+    }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
     new HtmlWebpackPlugin({
@@ -125,12 +138,7 @@ const prodConfig = {
       title: 'Nic Juice 2 Japan',
       filename: './index.html',
     }),
-    new CommonsChunkPlugin({
-      name: 'commons',
-      filename: 'commons.js',
-      minChunks: Infinity,
-    }),
-    new ExtractTextPlugin('[name].[contenthash].css'),
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       comments: false,

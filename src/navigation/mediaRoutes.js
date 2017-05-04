@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
-import About from '../containers/legal/components/about/';
+// import About from '../containers/legal/components/about/';
 import ContactUs from '../containers/legal/components/contactUs';
 import Phone from '../containers/legal/components/phone';
 import UserStories from '../containers/media/userStories';
@@ -13,9 +13,22 @@ import SocialMedia from '../containers/legal/socialMedia';
 import Wholesale from '../containers/legal/wholesale';
 import Affiliates from '../containers/legal/affiliateProgram';
 
+const errorLoading = (error) => {
+  throw new Error(`Dyanmic pag loading failed   ${error}`);
+};
+const loadRoute = cb => module => cb(null, module.default);
+
 const MediaRoutes = () => (
   <div>
-    <Route path="/about" component={About} />
+    <Route
+      path="/about"
+      getComponent={(location, cb) => {
+        System.import('../containers/legal/components/about/')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
+    {/* <Route path="/about" component={About} /> */}
     <Route path="/contact_us" component={ContactUs} />
     <Route path="/phone" component={Phone} />
     <Route path="/vape_news" component={VapeNews} />
