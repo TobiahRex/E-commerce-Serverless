@@ -14,6 +14,11 @@ const productSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    price: {
+      type: String,
+      required: true,
+      default: '30',
+    },
     sku: {
       type: String,
       required: true,
@@ -71,11 +76,20 @@ const productSchema = new mongoose.Schema({
       type: Number,
       default: 500,
     },
+    last_replenishment: [{
+      date: {
+        type: Date,
+      },
+      amount: {
+        type: Number,
+        default: 500,
+      },
+    }],
+    wholesale_price: { type: Number },
   },
   statistics: {
-    addsToCart: {
-      type: Number,
-    },
+    adds_to_cart: { type: Number },
+    completed_checkouts: { type: Number },
   },
 });
 
