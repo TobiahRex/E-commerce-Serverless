@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+import moment from 'moment';
 import mongoose from 'mongoose';
 
 const ObjectId = mongoose.schema.Types.ObjectId;
@@ -9,18 +10,9 @@ const userSchema = new mongoose.Schema({
     display: { type: String },
   },
   authentication: {
-    lastLogin: {
-      type: Date,
-      default: Date.now,
-    },
-    signedUp: {
-      type: Date,
-      default: Date.now,
-    },
-    registered: {
-      type: Date,
-      default: Date.now,
-    },
+    lastLogin: { type: Date },
+    signedUp: { type: Date },
+    registered: { type: Date },
     password: { type: String },
     avatar: {
       type: String,
@@ -64,7 +56,15 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.createUser = (args, cb) => {
-  
-}
+  const {
+    name,
+    authentication,
+    contactInfo,
+    permissions,
+    userStory,
+    socialBlob,
+  } = args;
+  User.create({ ...args })
+};
 
 export default mongoose.model('User', userSchema);
