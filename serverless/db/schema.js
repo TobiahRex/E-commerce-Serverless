@@ -5,7 +5,7 @@ import {
 } from 'graphql';
 // import { GraphQLError } from 'graphql/error';
 import {
-  Juices
+  Products,
 } from './mongo';
 
 const popularJuicesType = new GraphQLObjectType({
@@ -20,14 +20,14 @@ const Query = new GraphQLObjectType({
     popularJuices: {
       type: new GraphQLList(popularJuicesType),
       description: 'The 6 most popular juices.',
-      resolve: getPopularJuices,
-    }
-  }
-})
+      resolve: Products.getPopularJuices,
+    },
+  },
+});
 
-const Shchema = new GraphQLSchema({
+const Schema = new GraphQLSchema({
   query: Query,
-  mutation: Mutation,
+  // mutation: Mutation,
 });
 
 export default Schema;

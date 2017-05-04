@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+const ObjectId = mongoose.schema.Types.ObjectId;
 const userSchema = new mongoose.Schema({
   name: {
     first: { type: String },
@@ -37,9 +37,9 @@ const userSchema = new mongoose.Schema({
   },
   purchases: {
     orders: [{
-      type: 
+      type: { type: ObjectId, ref: 'Transactions' },
     }]
-  }
+  },
   permissions: {
     role: {
       type: String,

@@ -30,9 +30,9 @@ app.use(devMiddleware(compiler, {
     colors: true,
     version: true,
     hash: true,
-    timings: true,
-    chunks: true,
-    chunkModules: true,
+    timings: false,
+    chunks: false,
+    chunkModules: false,
   },
 }));
 app.use(hotMiddleware(compiler));

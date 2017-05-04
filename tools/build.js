@@ -25,7 +25,7 @@ webpack(webpackConfig).run((err, stats) => {
 `.yellow));
   }
   process.stdout.write(`Webpack stats: ${stats}
-`.cyan);
+`);
   process.stdout.write(`✅  Your app has been compiled in production mode and
   written to "/dist".\n`.green.bold);
   return 0;
