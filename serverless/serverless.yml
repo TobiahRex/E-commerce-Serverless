@@ -11,7 +11,12 @@ plugins:
   - serverless-webpack
   - serverless-plugin-graphiql
 
-function:
+custom:
+  graphiql:
+    babelOptions:
+      presets: [es2015, es2016, stage-0]
+
+functions:
   graphql:
     handler: handler.graphql
     events:

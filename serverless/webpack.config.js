@@ -12,4 +12,7 @@ module.exports = {
       loader: 'json-loader',
     }],
   },
+  externals: [
+    /^(?!\.|\/).+/i,
+  ],
 };

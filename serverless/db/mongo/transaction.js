@@ -1,8 +1,9 @@
 /* eslint-disable no-use-before-define */
 import mongoose from 'mongoose';
+import Promise from 'bluebird';
 
+mongoose.Promise = Promise;
 const ObjectId = mongoose.Schema.Types.ObjectId;
-
 const Transaction = mongoose.model('Transaction',
   new mongoose.Schema({
     date: {

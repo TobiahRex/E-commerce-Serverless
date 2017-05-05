@@ -1,6 +1,8 @@
 /* eslint-disable no-use-before-define */
 import mongoose from 'mongoose';
+import Promise from 'bluebird';
 
+mongoose.Promise = Promise;
 const ObjectId = mongoose.schema.Types.ObjectId;
 const userSchema = new mongoose.Schema({
   name: {
