@@ -10,56 +10,58 @@ const UserTypes = {
   rootType: new ObjectType({
     name: 'RootUserType',
     fields: () => ({
-      name: new InputObject({
+      name: new ObjectType({
         name: 'UserNameObject',
         description: 'Users name object.',
-        fields: () => ({
+        fields: {
           first: { type: StringType },
           last: { type: StringType },
           display: { type: StringType },
-        }),
+        },
       }),
-      authentication: new InputObject({
+      authentication: new ObjectType({
         name: 'UserAuthenticationObject',
         description: 'Authentication information for user.',
-        fields: () => ({
+        fields: {
           lastLogin: { type: StringType },
           signedUp: { type: StringType },
           registered: { type: StringType },
           password: { type: StringType },
           avatar: { type: StringType },
-        }),
+        },
       }),
-      contactInfo: new InputObject({
+      contactInfo: new ObjectType({
         name: 'UserContanctInfoObject',
-        email: { type: StringType },
-        phone: { type: StringType },
-        location: new InputObject({
-          name: 'UserInputGeolocationObject',
-          description: 'Geolocation information for user.',
-          fields: () => ({
-            ipAddress: { type: StringType },
-            lat: { type: StringType },
-            long: { type: StringType },
-            country: { type: StringType },
+        description: 'Geolocation information for user.',
+        fields: {
+          email: { type: StringType },
+          phone: { type: StringType },
+          location: new ObjectType({
+            name: 'UserGeolocationObject',
+            fields: {
+              ipAddress: { type: StringType },
+              lat: { type: StringType },
+              long: { type: StringType },
+              country: { type: StringType },
+            },
           }),
-        }),
+        },
       }),
-      permissions: new InputObject({
+      permissions: new ObjectType({
         name: 'UserPermissionsObject',
         description: 'Permissions granted for user.',
-        fields: () => ({
+        fields: {
           role: { type: StringType },
-        }),
+        },
       }),
-      userStory: new InputObject({
+      userStory: new ObjectType({
         name: 'UserStoryObject',
         description: 'Bio information for user.',
-        fields: () => ({
+        fields: {
           age: { type: IntType },
           birthday: { type: StringType },
           bio: { type: StringType },
-        }),
+        },
       }),
     }),
   }),
@@ -78,7 +80,7 @@ const UserTypes = {
               }),
             }),
           ),
-        }
+        },
         authentication: {
           description: 'Object: Auth info for user.',
           type: new NonNull(
@@ -93,7 +95,7 @@ const UserTypes = {
               }),
             }),
           ),
-        }
+        },
         contactInfo: {
           description: 'Object: Contanct info for user.',
           type: new NonNull(
@@ -115,7 +117,7 @@ const UserTypes = {
               ),
             }),
           ),
-        }
+        },
         permissions: {
           description: 'Object: Permissions granted for user.',
           type: new NonNull(
@@ -126,7 +128,7 @@ const UserTypes = {
               }),
             }),
           ),
-        }
+        },
         userStory: {
           description: 'Object: Bio information for user.',
           type: new NonNull(
@@ -139,7 +141,7 @@ const UserTypes = {
               }),
             }),
           ),
-        }
+        },
       },
     },
   },
