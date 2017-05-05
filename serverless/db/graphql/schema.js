@@ -1,17 +1,17 @@
-import Promise from 'bluebird';
 import {
-  GraphQLInt,
-  GraphQLSchema,
-  GraphQLObjectType,
-} from 'graphql';
-import {
-  UserModel,
-  ProductModel,
+  Promise,
+
+  Schema,
+  ObjectType,
+  IntType,
+
   UserTypes,
   ProductTypes,
-} from './exports';
+  UserModel,
+  ProductModel,
+} from '../exports';
 
-const Query = new GraphQLObjectType({
+const Query = new ObjectType({
   name: 'RootQueryType',
   description: 'The root query.',
   fields: {
@@ -20,7 +20,7 @@ const Query = new GraphQLObjectType({
       description: 'Returns the most popular products.',
       args: {
         qty: {
-          type: GraphQLInt,
+          type: IntType,
           description: 'The quantity of popular products to return.',
         },
       },
@@ -29,7 +29,7 @@ const Query = new GraphQLObjectType({
   },
 });
 
-const Mutation = new GraphQLObjectType({
+const Mutation = new ObjectType({
   name: 'RootMutationType',
   desciption: 'The root mutation type.',
   fields: {
@@ -41,10 +41,7 @@ const Mutation = new GraphQLObjectType({
     },
   },
 });
-
-const Schema = new GraphQLSchema({
+export default new Schema({
   query: Query,
   mutation: Mutation,
 });
-
-export default Schema;
