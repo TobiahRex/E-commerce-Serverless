@@ -2,27 +2,28 @@ import {
   GraphQLInt as IntType,
   GraphQLString as StringType,
   GraphQLNonNull as NonNull,
+  GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
 const UserTypes = {
-  rootType: {
+  rootType: new ObjectType({
     name: new InputObject({
       name: 'UserNameObject',
       description: 'Users name object.',
       fields: () => ({
-        first: { type: NonNull(StringType) },
-        last: { type: NonNull(StringType) },
-        display: { type: NonNull(StringType) },
+        first: { type: StringType },
+        last: { type: StringType },
+        display: { type: StringType },
       }),
     }),
     authentication: new InputObject({
       name: 'UserAuthenticationObject',
       description: 'Authentication information for user.',
       fields: () => ({
-        lastLogin: { type: NonNull(StringType) },
-        signedUp: { type: NonNull(StringType) },
-        registered: { type: NonNull(StringType) },
+        lastLogin: { type: StringType },
+        signedUp: { type: StringType },
+        registered: { type: StringType },
         password: { type: StringType },
         avatar: { type: StringType },
       }),
@@ -58,7 +59,7 @@ const UserTypes = {
         bio: { type: StringType },
       }),
     }),
-  },
+  }),
   createUser: {
     name: new NonNull(
       new InputObject({
