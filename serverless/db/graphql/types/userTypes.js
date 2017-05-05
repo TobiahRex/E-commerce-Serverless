@@ -10,59 +10,71 @@ const UserTypes = {
   rootType: new ObjectType({
     name: 'RootUserType',
     fields: () => ({
-      name: new ObjectType({
-        name: 'UserNameObject',
-        description: 'Users name object.',
-        fields: {
-          first: { type: StringType },
-          last: { type: StringType },
-          display: { type: StringType },
-        },
-      }),
-      authentication: new ObjectType({
-        name: 'UserAuthenticationObject',
-        description: 'Authentication information for user.',
-        fields: {
-          lastLogin: { type: StringType },
-          signedUp: { type: StringType },
-          registered: { type: StringType },
-          password: { type: StringType },
-          avatar: { type: StringType },
-        },
-      }),
-      contactInfo: new ObjectType({
-        name: 'UserContanctInfoObject',
-        description: 'Geolocation information for user.',
-        fields: {
-          email: { type: StringType },
-          phone: { type: StringType },
-          location: new ObjectType({
-            name: 'UserGeolocationObject',
-            fields: {
-              ipAddress: { type: StringType },
-              lat: { type: StringType },
-              long: { type: StringType },
-              country: { type: StringType },
+      name: {
+        type: new ObjectType({
+          name: 'UserNameObject',
+          description: 'Users name object.',
+          fields: {
+            first: { type: StringType },
+            last: { type: StringType },
+            display: { type: StringType },
+          },
+        }),
+      },
+      authentication: {
+        type: new ObjectType({
+          name: 'UserAuthenticationObject',
+          description: 'Authentication information for user.',
+          fields: () => ({
+            lastLogin: { type: StringType },
+            signedUp: { type: StringType },
+            registered: { type: StringType },
+            password: { type: StringType },
+            avatar: { type: StringType },
+          }),
+        }),
+      },
+      contactInfo: {
+        type: new ObjectType({
+          name: 'UserContanctInfoObject',
+          description: 'Geolocation information for user.',
+          fields: () => ({
+            email: { type: StringType },
+            phone: { type: StringType },
+            location: {
+              type: new ObjectType({
+                name: 'UserGeolocationObject',
+                fields: {
+                  ipAddress: { type: StringType },
+                  lat: { type: StringType },
+                  long: { type: StringType },
+                  country: { type: StringType },
+                },
+              }),
             },
           }),
-        },
-      }),
-      permissions: new ObjectType({
-        name: 'UserPermissionsObject',
-        description: 'Permissions granted for user.',
-        fields: {
-          role: { type: StringType },
-        },
-      }),
-      userStory: new ObjectType({
-        name: 'UserStoryObject',
-        description: 'Bio information for user.',
-        fields: {
-          age: { type: IntType },
-          birthday: { type: StringType },
-          bio: { type: StringType },
-        },
-      }),
+        }),
+      },
+      permissions: {
+        type: new ObjectType({
+          name: 'UserPermissionsObject',
+          description: 'Permissions granted for user.',
+          fields: () => ({
+            role: { type: StringType },
+          }),
+        }),
+      },
+      userStory: {
+        type: new ObjectType({
+          name: 'UserStoryObject',
+          description: 'Bio information for user.',
+          fields: () => ({
+            age: { type: IntType },
+            birthday: { type: StringType },
+            bio: { type: StringType },
+          }),
+        }),
+      },
     }),
   }),
   mutation: {
@@ -101,20 +113,24 @@ const UserTypes = {
           type: new NonNull(
             new InputObject({
               name: 'UserInputContactInfoObject',
-              email: { type: StringType },
-              phone: { type: StringType },
-              location: new NonNull(
-                new InputObject({
-                  name: 'UserInputGeolocationObject',
-                  description: 'Object: Geolocation information for user.',
-                  fields: () => ({
-                    ipAddress: { type: StringType },
-                    lat: { type: StringType },
-                    long: { type: StringType },
-                    country: { type: StringType },
-                  }),
-                }),
-              ),
+              fields: () => ({
+                email: { type: StringType },
+                phone: { type: StringType },
+                location: {
+                  type: new NonNull(
+                    new InputObject({
+                      name: 'UserInputGeolocationObject',
+                      description: 'Object: Geolocation information for user.',
+                      fields: () => ({
+                        ipAddress: { type: StringType },
+                        lat: { type: StringType },
+                        long: { type: StringType },
+                        country: { type: StringType },
+                      }),
+                    }),
+                  ),
+                },
+              }),
             }),
           ),
         },

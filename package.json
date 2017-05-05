@@ -14,6 +14,7 @@
     "copy:images": "copyfiles -u 1 './src/images/**' ./dist/",
     "copy:package": "copyfiles 'package.json' ./dist/",
     "deploy": "npm-run-all s3:clean s3:deploy cf:invalidate",
+    "graphiql": "babel-watch ./server/graphql/server",
     "open:dev": "babel-watch ./server/server.js",
     "open:dist": "babel-node ./tools/distServer.js",
     "s3:clean": "aws s3 rm s3://nj2jp-react --recursive",

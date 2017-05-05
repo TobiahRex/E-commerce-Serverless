@@ -1,8 +1,8 @@
 export Promise from 'bluebird';
 export {
+  GraphQLSchema as Schema,
   GraphQLInt as IntType,
   GraphQLList as ListType,
-  GraphQLSchema as Schema,
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,

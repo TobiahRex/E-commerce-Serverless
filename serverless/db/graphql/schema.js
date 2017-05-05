@@ -1,23 +1,21 @@
+import Promise from 'bluebird';
 import {
-  Promise,
+  GraphQLInt as IntType,
+  GraphQLSchema as Schema,
+  GraphQLObjectType as ObjectType,
+} from 'graphql';
+import ProductTypes from './types/productTypes';
+import UserTypes from './types/userTypes';
 
-  Schema,
-  ObjectType,
-  IntType,
+import { Product as ProductModel } from '../mongo/product';
+import { User as UserModel } from '../mongo/user';
 
-  UserTypes,
-  ProductTypes,
-  UserModel,
-  ProductModel,
-} from '../exports';
-
-const Query = new ObjectType({
+const query = new ObjectType({
   name: 'RootQueryType',
-  description: 'The root query.',
+  description: 'The primary query object type.',
   fields: {
     popularProducts: {
       type: ProductTypes.rootType,
-      description: 'Returns the most popular products.',
       args: {
         qty: {
           type: IntType,
@@ -29,9 +27,8 @@ const Query = new ObjectType({
   },
 });
 
-const Mutation = new ObjectType({
+const mutation = new ObjectType({
   name: 'RootMutationType',
-  desciption: 'The root mutation type.',
   fields: {
     createUser: {
       type: UserTypes.rootType,
@@ -41,7 +38,8 @@ const Mutation = new ObjectType({
     },
   },
 });
+
 export default new Schema({
-  query: Query,
-  mutation: Mutation,
+  query,
+  mutation,
 });
