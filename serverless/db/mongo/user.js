@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-import moment from 'moment';
 import mongoose from 'mongoose';
 
 const ObjectId = mongoose.schema.Types.ObjectId;
@@ -56,15 +55,10 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.createUser = (args, cb) => {
-  const {
-    name,
-    authentication,
-    contactInfo,
-    permissions,
-    userStory,
-    socialBlob,
-  } = args;
   User.create({ ...args })
+  .then(dbUser => cb(null, dbUser))
+  .catch(cb);
 };
 
-export default mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+export default User;

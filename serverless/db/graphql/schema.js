@@ -1,3 +1,4 @@
+import Promise from 'bluebird';
 import {
   // GraphQLList,
   GraphQLString,
@@ -11,7 +12,6 @@ import {
   UserTypes,
   // ProductsTypes,
 } from './imports';
-
 
 const Query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -30,7 +30,7 @@ const Mutation = new GraphQLObjectType({
   desciption: 'The root mutation type.',
   fields: {
     createUser: {
-      type: UserTypes.userType,
+      type: UserTypes.rootType,
       description: 'Create new user.',
       args: {
         name: UserTypes.createUserInput.name,
@@ -42,7 +42,7 @@ const Mutation = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: (_, args) => UserModel.createUser(args),
+      resolve: (_, args) => Promise.fromCallback(cb => UserModel.createUser(args, cb)),
     },
   },
 });
