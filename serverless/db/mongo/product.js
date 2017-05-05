@@ -105,17 +105,14 @@ const productSchema = new mongoose.Schema({
   },
 });
 productSchema.statics.getPopularProducts = ({ qty }, cb) => {
-  Product.find({})
-  .then((dbProducts) => {
-    dbProducts.reduce((accumProduct, nextProduct) => {
-      const accumPurchases = accumProduct.statistics.completed_checkouts;
-      const nextPurchases = nextProduct.statistics.completed_checkouts;
-      if (accumPurchases > nextPurchases) return accumPurchases;
-      return nextPurchases;
-    });
-  })
-  .catch(err => cb({ problem: `Could not fetch the ${qty} products you requested:
-  ERROR: ${err}` }, null));
+  Product
+  .find({})
+  .sort({ 'statistics.completed_checkouts': -1 })
+  .then(dbProducts => cb(null, dbProducts.slice(0, qty)))
+  .catch(err => cb({
+    problem: `Could not fetch the ${qty} products you requested`,
+    error: err,
+  }, null));
 };
 const Product = mongoose.model('Product', productSchema);
 export default Product;
