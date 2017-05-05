@@ -1,16 +1,18 @@
 export Promise from 'bluebird';
 export {
   GraphQLInt as IntType,
+  GraphQLList as ListType,
   GraphQLSchema as Schema,
-  GraphQLObjectType as ObjectType,
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
-  GraphQLList as ListType,
+  GraphQLObjectType as ObjectType,
+  GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
-export runGraphQL from './graphql/runGraphQL';
+export { User as UserModel } from './mongo/user';
 export UserTypes from './graphql/types/userTypes';
 export ProductTypes from './graphql/types/productTypes';
+
+export runGraphQL from './graphql/runGraphQL';
 export { Product as ProductModel } from './mongo/product';
 export { Transaction as TransactionModel } from './mongo/transaction';
-export { User as UserModel } from './mongo/user';
