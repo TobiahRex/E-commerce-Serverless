@@ -8,7 +8,7 @@ import {
 const UserTypes = {
   rootType: {
     name: new InputObject({
-      name: 'UserInputNameObject',
+      name: 'UserNameObject',
       description: 'Users name object.',
       fields: () => ({
         first: { type: NonNull(StringType) },
@@ -17,7 +17,7 @@ const UserTypes = {
       }),
     }),
     authentication: new InputObject({
-      name: 'UserInputAuthenticationObject',
+      name: 'UserAuthenticationObject',
       description: 'Authentication information for user.',
       fields: () => ({
         lastLogin: { type: NonNull(StringType) },
@@ -28,6 +28,7 @@ const UserTypes = {
       }),
     }),
     contactInfo: new InputObject({
+      name: 'UserContanctInfoObject',
       email: { type: StringType },
       phone: { type: StringType },
       location: new InputObject({
@@ -42,14 +43,14 @@ const UserTypes = {
       }),
     }),
     permissions: new InputObject({
-      name: 'UserInputPermissionsObject',
+      name: 'UserPermissionsObject',
       description: 'Permissions granted for user.',
       fields: () => ({
         role: { type: StringType },
       }),
     }),
     userStory: new InputObject({
-      name: 'UserInputStoryObject',
+      name: 'UserStoryObject',
       description: 'Bio information for user.',
       fields: () => ({
         age: { type: IntType },
@@ -80,6 +81,7 @@ const UserTypes = {
       }),
     }),
     contactInfo: new InputObject({
+      name: 'UserInputContactInfoObject',
       email: { type: StringType },
       phone: { type: StringType },
       location: new InputObject({

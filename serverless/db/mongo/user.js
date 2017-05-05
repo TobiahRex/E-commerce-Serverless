@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import Promise from 'bluebird';
 
 mongoose.Promise = Promise;
-const ObjectId = mongoose.schema.Types.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const userSchema = new mongoose.Schema({
   name: {
     first: { type: String },
