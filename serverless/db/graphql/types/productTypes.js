@@ -1,8 +1,8 @@
 import {
-  GraphQLList as ListType,
-  GraphQLString as StringType,
-  GraphQLObjectType as ObjectType,
-} from 'graphql';
+  ListType,
+  StringType,
+  ObjectType,
+} from '../../exports';
 
 const ProductTypes = {
   rootType: new ObjectType({
