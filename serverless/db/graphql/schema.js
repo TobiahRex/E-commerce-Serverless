@@ -1,11 +1,11 @@
 import Promise from 'bluebird';
 import {
+  GraphQLInt,
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull,
   GraphQLObjectType,
 } from 'graphql';
-// import { GraphQLError } from 'graphql/error';
 import {
   UserModel,
   ProductModel,
@@ -17,10 +17,16 @@ const Query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The root query.',
   fields: {
-    popularJuices: {
-      type: ProductTypes.popularJuices,
-      description: 'The 6 most popular juices.',
-      resolve: (_, args) => Promise.fromCallback(cb => ProductModel.getPopularJuices(args, cb)),
+    popularProducts: {
+      type: ProductTypes.popularProducts,
+      description: 'Returns the most popular products.',
+      args: {
+        number: {
+          type: GraphQLInt,
+          description: 'The amount of popular products to return',
+        },
+      },
+      resolve: (_, args) => Promise.fromCallback(cb => ProductModel.getPopularProducts(args, cb)),
     },
   },
 });

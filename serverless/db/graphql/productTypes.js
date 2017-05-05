@@ -7,28 +7,31 @@ import {
 
 const ProductTypes = {
   // rootType:
-  popularJuices: {
-    mainTitle: {
-      type: NonNull(StringType),
-      description: 'Main title for Single Juice page.',
-    },
+  popularProducts: {
     title: {
-      type: NonNull(StringType),
+      type: new NonNull(StringType),
       description: 'Name of the product.',
     },
+    flavor: {
+      type: new NonNull(StringType),
+      description: 'The flavor for the product (if applicable).',
+    },
     price: {
-      type: NonNull(StringType),
-      description: 'The price of the product.'
+      type: new NonNull(StringType),
+      description: 'The price of the product.',
     },
-    nicotine_strengths: {
-      type: NonNull(ListType),
-      description: 'An array of strings'
+    routeTag: {
+      type: new NonNull(StringType),
+      description: 'The name of the unique route for the product',
     },
-    routeTag: NonNull(StringType),
-    images: NonNull(new ListType(
+    images: new NonNull(new ListType(
       new InputObject({
-        name: 'PopularJuiceImageObject',
-        description:
+        name: 'PopularProductImageObject',
+        description: 'Images for the product.',
+        fields: () => ({
+          purpose: { type: StringType },
+          url: { type: StringType },
+        }),
       }),
     )),
   },
