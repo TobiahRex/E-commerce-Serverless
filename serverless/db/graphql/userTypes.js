@@ -1,7 +1,7 @@
 import {
-  GraphQLNonNull as NonNull,
-  GraphQLString as StringType,
   GraphQLInt as IntType,
+  GraphQLString as StringType,
+  GraphQLNonNull as NonNull,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 

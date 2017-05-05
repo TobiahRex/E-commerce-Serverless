@@ -1,6 +1,5 @@
 import Promise from 'bluebird';
 import {
-  // GraphQLList,
   GraphQLString,
   GraphQLSchema,
   GraphQLNonNull,
@@ -9,19 +8,20 @@ import {
 // import { GraphQLError } from 'graphql/error';
 import {
   UserModel,
+  ProductModel,
   UserTypes,
-  // ProductsTypes,
+  ProductTypes,
 } from './imports';
 
 const Query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The root query.',
   fields: {
-    // popularJuices: {
-    //   type: new GraphQLList(popularJuicesType),
-    //   description: 'The 6 most popular juices.',
-    //   resolve: Product.getPopularJuices,
-    // },
+    popularJuices: {
+      type: ProductTypes.popularJuices,
+      description: 'The 6 most popular juices.',
+      resolve: (_, args) => Promise.fromCallback(cb => ProductModel.getPopularJuices(args, cb)),
+    },
   },
 });
 
@@ -33,11 +33,21 @@ const Mutation = new GraphQLObjectType({
       type: UserTypes.rootType,
       description: 'Create new user.',
       args: {
-        name: UserTypes.createUserInput.name,
-        authentication: UserTypes.createUserInput.authentication,
-        contactInfo: UserTypes.createUserInput.contactInfo,
-        permissions: UserTypes.createUserInput.permissions,
-        userStory: UserTypes.createUserInput.userStory,
+        name: {
+          type: UserTypes.createUserInput.name,
+        },
+        authentication: {
+          type: UserTypes.createUserInput.authentication,
+        },
+        contactInfo: {
+          type: UserTypes.createUserInput.contactInfo,
+        },
+        permissions: {
+          type: UserTypes.createUserInput.permissions,
+        },
+        userStory: {
+          type: UserTypes.createUserInput.userStory,
+        },
         socialBlob: {
           type: new GraphQLNonNull(GraphQLString),
         },
