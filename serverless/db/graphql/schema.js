@@ -40,19 +40,19 @@ const Mutation = new GraphQLObjectType({
       description: 'Create new user.',
       args: {
         name: {
-          type: UserTypes.createUserInput.name,
+          type: UserTypes.createUser.name,
         },
         authentication: {
-          type: UserTypes.createUserInput.authentication,
+          type: UserTypes.createUser.authentication,
         },
         contactInfo: {
-          type: UserTypes.createUserInput.contactInfo,
+          type: UserTypes.createUser.contactInfo,
         },
         permissions: {
-          type: UserTypes.createUserInput.permissions,
+          type: UserTypes.createUser.permissions,
         },
         userStory: {
-          type: UserTypes.createUserInput.userStory,
+          type: UserTypes.createUser.userStory,
         },
         socialBlob: {
           type: new GraphQLNonNull(GraphQLString),

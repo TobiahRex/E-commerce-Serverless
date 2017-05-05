@@ -59,10 +59,10 @@ const UserTypes = {
       }),
     }),
   },
-  createUserInput: {
+  createUser: {
     name: new InputObject({
       name: 'UserInputNameObject',
-      description: 'Users name object.',
+      description: 'Object: Users name.',
       fields: () => ({
         first: { type: NonNull(StringType) },
         last: { type: NonNull(StringType) },
@@ -71,7 +71,7 @@ const UserTypes = {
     }),
     authentication: new InputObject({
       name: 'UserInputAuthenticationObject',
-      description: 'Authentication information for user.',
+      description: 'Object: Auth info for user.',
       fields: () => ({
         lastLogin: { type: NonNull(StringType) },
         signedUp: { type: NonNull(StringType) },
@@ -82,11 +82,12 @@ const UserTypes = {
     }),
     contactInfo: new InputObject({
       name: 'UserInputContactInfoObject',
+      description: 'Object: Contanct info for user.',
       email: { type: StringType },
       phone: { type: StringType },
       location: new InputObject({
         name: 'UserInputGeolocationObject',
-        description: 'Geolocation information for user.',
+        description: 'Object: Geolocation information for user.',
         fields: () => ({
           ipAddress: { type: StringType },
           lat: { type: StringType },
