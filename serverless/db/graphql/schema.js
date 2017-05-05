@@ -9,7 +9,7 @@ import {
 import {
   UserModel,
   ProductModel,
-  UserTypes,
+  Types,
   ProductTypes,
 } from './imports';
 
@@ -40,19 +40,19 @@ const Mutation = new GraphQLObjectType({
       description: 'Create new user.',
       args: {
         name: {
-          type: UserTypes.createUser.name,
+          type: UserTypes.mutation.createUser.name,
         },
         authentication: {
-          type: UserTypes.createUser.authentication,
+          type: UserTypes.mutation.createUser.authentication,
         },
         contactInfo: {
-          type: UserTypes.createUser.contactInfo,
+          type: UserTypes.mutation.createUser.contactInfo,
         },
         permissions: {
-          type: UserTypes.createUser.permissions,
+          type: UserTypes.mutation.createUser.permissions,
         },
         userStory: {
-          type: UserTypes.createUser.userStory,
+          type: UserTypes.mutation.createUser.userStory,
         },
         socialBlob: {
           type: new GraphQLNonNull(GraphQLString),
