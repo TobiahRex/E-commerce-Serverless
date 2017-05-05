@@ -9,6 +9,7 @@ provider:
 
 plugins:
   - serverless-webpack
+  - serverless-plugin-graphiql
 
 function:
   graphql:
