@@ -23,7 +23,7 @@ const Query = new GraphQLObjectType({
       args: {
         number: {
           type: GraphQLInt,
-          description: 'The amount of popular products to return',
+          description: 'The amount of popular products to return.',
         },
       },
       resolve: (_, args) => Promise.fromCallback(cb => ProductModel.getPopularProducts(args, cb)),
