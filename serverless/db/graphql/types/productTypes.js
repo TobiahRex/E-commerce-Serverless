@@ -2,13 +2,11 @@ import {
   GraphQLList as ListType,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
-  GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
 const ProductTypes = {
-  // rootType:
-  popularProducts: new ObjectType({
-    name: 'PopularProductsType',
+  rootType: new ObjectType({
+    name: 'ProductRootType',
     description: 'The (qty) most popular products.',
     fields: () => ({
       title: {
@@ -27,16 +25,18 @@ const ProductTypes = {
         type: StringType,
         description: 'The name of the unique route for the product',
       },
-      images: new ListType(
-        new InputObject({
-          name: 'PopularProductImageObject',
-          description: 'Images for the product.',
-          fields: () => ({
-            purpose: { type: StringType },
-            url: { type: StringType },
+      images: {
+        type: new ListType(
+          new ObjectType({
+            name: 'ProductImageType',
+            fields: () => ({
+              purpose: { type: StringType },
+              url: { type: StringType },
+            }),
           }),
-        }),
-      ),
+        ),
+        description: 'Product images.',
+      },
     }),
   }),
 };
