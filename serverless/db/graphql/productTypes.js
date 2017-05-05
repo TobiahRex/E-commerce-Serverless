@@ -12,9 +12,18 @@ const ProductTypes = {
       type: NonNull(StringType),
       description: 'Main title for Single Juice page.',
     },
-    title: NonNull(StringType),
-    price: NonNull(StringType),
-    nicotine_strengths: NonNull(ListType),
+    title: {
+      type: NonNull(StringType),
+      description: 'Name of the product.',
+    },
+    price: {
+      type: NonNull(StringType),
+      description: 'The price of the product.'
+    },
+    nicotine_strengths: {
+      type: NonNull(ListType),
+      description: 'An array of strings'
+    },
     routeTag: NonNull(StringType),
     images: NonNull(new ListType(
       new InputObject({
