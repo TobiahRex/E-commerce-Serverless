@@ -21,5 +21,6 @@ function:
           memorySize: 256
           timeout: 10
           cors: true
-          response: headers:
-            Access-Control-Allow-Origin: "'*'"
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"

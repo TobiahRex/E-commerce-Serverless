@@ -1,4 +1,4 @@
-import { runGraphQL } from './db';
+import runGraphQL from './db';
 
 module.exports.graphql = (event, context, cb) => {
   runGraphQL(event, (err, res) => {
