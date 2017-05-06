@@ -1,14 +1,14 @@
 import {
-  ListType,
-  StringType,
-  ObjectType,
-} from '../../exports';
+  GraphQLList as ListType,
+  GraphQLString as StringType,
+  GraphQLObjectType as ObjectType,
+} from 'graphql';
 
 const ProductTypes = {
   rootType: new ObjectType({
-    name: 'ProductRootType',
-    description: 'The (qty) most popular products.',
-    fields: () => ({
+    name: 'Product',
+    description: 'A product we sell.',
+    fields: {
       title: {
         type: StringType,
         description: 'Name of the product.',
@@ -37,7 +37,7 @@ const ProductTypes = {
         ),
         description: 'Product images.',
       },
-    }),
+    },
   }),
 };
 export default ProductTypes;

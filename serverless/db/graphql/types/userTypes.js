@@ -1,10 +1,10 @@
 import {
-  NonNull,
-  IntType,
-  StringType,
-  ObjectType,
-  InputObject,
-} from '../../exports';
+  GraphQLNonNull as NonNull,
+  GraphQLInt as IntType,
+  GraphQLString as StringType,
+  GraphQLObjectType as ObjectType,
+  GraphQLInputObjectType as InputObject,
+} from 'graphql';
 
 const UserTypes = {
   rootType: new ObjectType({
