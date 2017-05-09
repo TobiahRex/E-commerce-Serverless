@@ -1,22 +1,6 @@
-/* eslint-disable no-use-before-define */
-import mongoose from 'mongoose';
-import Promise from 'bluebird';
-
-require('dotenv').load({ silent: true });
-
-const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
-const connectToMongo = () => new Promise((res, rej) => {
-  mongoose.connect(MONGO_DB, (err) => {
-    if (!err) {
-      res(`Connected to MONGO_DB: ${MONGO_DB}`);
-    } else {
-      rej(err);
-    }
-  });
-});
-mongoose.Promise = Promise;
-const ObjectId = mongoose.Schema.Types.ObjectId;
-const productSchema = new mongoose.Schema({
+import { mongooseDB, Schema } from './connection';
+const ObjectId = Schema.Types.ObjectId;
+const productSchema = new Schema({
   juice: {
     mainTitle: {
       type: String,
@@ -116,16 +100,3 @@ const productSchema = new mongoose.Schema({
     }],
   },
 });
-productSchema.statics.getPopularProducts = ({ qty }, cb) => {
-  Product.find({})
-  .then(dbProducts => {
-    console.log('4) dbProducts', dbProducts);
-    cb(null, dbProducts.slice(0, qty));
-  })
-  .catch(err => cb({
-    problem: `Could not fetch the ${qty} products you requested`,
-    error: err,
-  }, null));
-};
-const Product = mongoose.model('Product', productSchema);
-export default Product;
