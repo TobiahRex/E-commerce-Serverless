@@ -2,6 +2,18 @@
 import mongoose from 'mongoose';
 import Promise from 'bluebird';
 
+require('dotenv').load({ silent: true });
+
+const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
+const connectToMongo = () => new Promise((res, rej) => {
+  mongoose.connect(MONGO_DB, (err) => {
+    if (!err) {
+      res(`Connected to MONGO_DB: ${MONGO_DB}`);
+    } else {
+      rej(err);
+    }
+  });
+});
 mongoose.Promise = Promise;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const productSchema = new mongoose.Schema({
@@ -105,14 +117,9 @@ const productSchema = new mongoose.Schema({
   },
 });
 productSchema.statics.getPopularProducts = ({ qty }, cb) => {
-  console.log('3) statics.getPopularProducts: ', qty);
-  Product.find({}, (err, results) => console.log('3.5) find({})', err || results));
-
-  Product
-  .find({})
-  .sort({ 'statistics.completed_checkouts': -1 })
+  Product.find({})
   .then(dbProducts => {
-    console.log('4) %cdbProducts', 'background:red;', dbProducts);
+    console.log('4) dbProducts', dbProducts);
     cb(null, dbProducts.slice(0, qty));
   })
   .catch(err => cb({
