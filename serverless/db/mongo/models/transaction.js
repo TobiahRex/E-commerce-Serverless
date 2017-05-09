@@ -5,7 +5,7 @@ import { transactionSchema } from '../schemas/transactionSchema';
 transactionSchema.statics.createTransaction = (txn, cb) => {
   Transaction.create(txn)
   .then(dbTxn => cb(null, dbTxn))
-  .catch(err => cb({ problem: 'Could not create Transaction.', error: err }, null));
+  .catch(error => cb({ problem: 'Could not create Transaction.', error }, null));
 };
 const Transaction = db.model('Transaction', transactionSchema);
 export default Transaction;
