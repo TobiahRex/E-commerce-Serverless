@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 const Schema = require('mongoose').Schema;
 
 const ObjectId = Schema.Types.ObjectId;

@@ -8,7 +8,7 @@ productSchema.statics.getPopularProducts = ({ qty }, cb) => {
   .catch(err => cb({
     problem: `Could not fetch the ${qty} products you requested`,
     error: err,
-  }, null));
+  }));
 };
 const Product = db.model('Product', productSchema);
 export default Product;
