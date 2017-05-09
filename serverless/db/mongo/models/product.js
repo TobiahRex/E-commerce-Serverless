@@ -1,8 +1,8 @@
-import { db, closeDB } from '../connection';
+/* eslint-disable no-use-before-define */
+import { db } from '../connection';
 import { productSchema } from '../schemas/productSchema';
 
-const Product = db.model('Product', productSchema);
-productSchema.statics.getPopularProducts = ({ qty }, context, cb) => {
+productSchema.statics.getPopularProducts = ({ qty }, cb) => {
   Product.find({})
   .then(dbProducts => cb(null, dbProducts.slice(0, qty)))
   .catch(err => cb({
@@ -10,5 +10,5 @@ productSchema.statics.getPopularProducts = ({ qty }, context, cb) => {
     error: err,
   }, null));
 };
-
+const Product = db.model('Product', productSchema);
 export default Product;

@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
+import Promise from 'bluebird';
 
 require('dotenv').load({ silent: true });
 
+mongoose.Promise = Promise;
 const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
 const options = {
   server: {
