@@ -92,7 +92,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nj2jp/development/1493965124602-2017-05-05T06:18:44.602Z/nj2jp.zip"
+          "S3Key": "serverless/nj2jp/development/1494326665634-2017-05-09T10:44:25.634Z/nj2jp.zip"
         },
         "FunctionName": "nj2jp-development-graphql",
         "Handler": "handler.graphql",
@@ -111,14 +111,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GraphqlLambdaVersionhpOnxBxkMEQzanwSCy3vW58yTO4kL1rkmvp5nyfYW9c": {
+    "GraphqlLambdaVersions6RyqkLW8I29CF3K3ZGadc3lewWbe1N3RsfU5Pat0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphqlLambdaFunction"
         },
-        "CodeSha256": "hpOnxBxkMEQzanwSCy3vW58yTO4kL1rkmvp5nyfYW9c="
+        "CodeSha256": "s6RyqkLW8I29CF3K3/ZGadc3lewWbe1/N3RsfU5Pat0="
       }
     },
     "ApiGatewayRestApi": {
@@ -369,7 +369,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1493965124620": {
+    "ApiGatewayDeployment1494326665660": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -424,7 +424,7 @@
     "GraphqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphqlLambdaVersionhpOnxBxkMEQzanwSCy3vW58yTO4kL1rkmvp5nyfYW9c"
+        "Ref": "GraphqlLambdaVersions6RyqkLW8I29CF3K3ZGadc3lewWbe1N3RsfU5Pat0"
       }
     },
     "ServiceEndpoint": {

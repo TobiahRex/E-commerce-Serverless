@@ -9,6 +9,7 @@ import {
 const UserTypes = {
   rootType: new ObjectType({
     name: 'RootUserType',
+    description: 'A User.',
     fields: () => ({
       name: {
         type: new ObjectType({

@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-  entry: './handler.js',
+  entry: path.resolve('./handler.js'),
   target: 'node',
   module: {
     loaders: [{

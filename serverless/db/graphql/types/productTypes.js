@@ -7,7 +7,7 @@ import {
 const ProductTypes = {
   rootType: new ObjectType({
     name: 'Product',
-    description: 'A product we sell.',
+    description: 'A store product.',
     fields: {
       title: {
         type: StringType,

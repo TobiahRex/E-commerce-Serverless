@@ -105,10 +105,16 @@ const productSchema = new mongoose.Schema({
   },
 });
 productSchema.statics.getPopularProducts = ({ qty }, cb) => {
+  console.log('3) statics.getPopularProducts: ', qty);
+  Product.find({}, (err, results) => console.log('3.5) find({})', err || results));
+
   Product
   .find({})
   .sort({ 'statistics.completed_checkouts': -1 })
-  .then(dbProducts => cb(null, dbProducts.slice(0, qty)))
+  .then(dbProducts => {
+    console.log('4) %cdbProducts', 'background:red;', dbProducts);
+    cb(null, dbProducts.slice(0, qty));
+  })
   .catch(err => cb({
     problem: `Could not fetch the ${qty} products you requested`,
     error: err,

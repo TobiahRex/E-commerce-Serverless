@@ -27,6 +27,7 @@
   "homepage": "https://github.com/tobiahrex/nj2jp#readme",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "dotenv": "^4.0.0",
     "graphql": "^0.9.6",
     "mongoose": "^4.9.7",
     "serverless-plugin-graphiql": "^0.3.0"
