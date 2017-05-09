@@ -1,4 +1,4 @@
-import { mongooseDB, Schema } from './connection';
+const Schema = require('mongoose').Schema;
 const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
   juice: {
@@ -100,3 +100,4 @@ const productSchema = new Schema({
     }],
   },
 });
+export default productSchema;

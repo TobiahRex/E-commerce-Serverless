@@ -1,8 +1,10 @@
 /* eslint-disable no-use-before-define */
-import { db } from '../connection';
-import { productSchema } from '../schemas/productSchema';
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
 
-const Product = db.model('Product', productSchema);
+mongoose.Promise = Promise;
+
+
 productSchema.statics.getPopularProducts = ({ qty }, cb) => {
   Product.find({})
   .then(dbProducts => {
@@ -14,5 +16,5 @@ productSchema.statics.getPopularProducts = ({ qty }, cb) => {
     error: err,
   }, null));
 };
-
+const Product = mongoose.model('Product', productSchema);
 export default Product;
