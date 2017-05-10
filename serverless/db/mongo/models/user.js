@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
-import { db } from '../connection';
-import { userSchema } from '../schemas/userSchema';
+import db from '../connection';
+import userSchema from '../schemas/userSchema';
 
 userSchema.statics.createUser = (userInfo, cb) => {
   User.create(userInfo)

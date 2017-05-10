@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
-import { db } from '../connection';
-import { productSchema } from '../schemas/productSchema';
+import db from '../connection';
+import productSchema from '../schemas/productSchema';
 
 productSchema.statics.getPopularProducts = ({ qty }, cb) => {
   Product.find({})

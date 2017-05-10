@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
-import { db } from '../connection';
-import { transactionSchema } from '../schemas/transactionSchema';
+import db from '../connection';
+import transactionSchema from '../schemas/transactionSchema';
 
 transactionSchema.statics.createTransaction = (txn, cb) => {
   Transaction.create(txn)
