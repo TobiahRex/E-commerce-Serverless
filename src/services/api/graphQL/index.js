@@ -11,34 +11,45 @@ const createAPI = () => {
   const api = create({
     graphqlURL,
     headers: {
-      'Access-Control-Allow-Origin': '"*"',
       'Cache-Control': 'no-cache',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
+    credentials: 'omit',
   });
 
   // --------------------------------------------------------
   const fetchProductById = id => api.post('', {
-    query: `query {
-      fetchProductById(id: ${id}) {
-        _id,
-        mainTitle,
-        title,
-        price,
-        images,
-        nicotine_strengths,
+    query: JSON.stringify(`query {
+      fetchProductById($id: Int!) {
+        _id
+        mainTitle
+        title
+        price
+        images {
+          purpose
+          url
+        }
+        nicotine_strengths
         routeTag
       }
-    }`,
+    }`),
+    variables: {
+      id,
+    },
   });
 
   const fetchPopularProducts = qty => api.post('', {
-    query: `query {
-      popularProducts(qty: ${qty}){
+    query: JSON.stringify(`query {
+      popularProducts($qty: Int!){
         _id,
         title,
         images,
       }
-    }`,
+    }`),
+    variables: {
+      qty,
+    },
   });
 
   // const createThing = thing =>

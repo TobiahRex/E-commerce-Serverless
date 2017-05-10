@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 import Promise from 'bluebird';
 
-require('dotenv').load({ silent: true });
-
 mongoose.Promise = Promise;
+const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
+console.log('\nMONGO_DB: ', MONGO_DB);
+
 const options = {
   server: {
     socketOptions: {
@@ -13,8 +14,8 @@ const options = {
     },
   },
 };
-const db = mongoose.createConnection(MONGO_DB, options, (err) => {
-  console.log(err || `Mongo connected @ ${MONGO_DB}`);
-});
+const db = mongoose.createConnection(MONGO_DB, options, err =>
+console.log(err || `Mongo Connected @ ${MONGO_DB}`));
+// console.log('\ndb: ', db, '\n');
 export const closeDB = cb => db.close(() => cb());
 export default db;

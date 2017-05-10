@@ -12,10 +12,10 @@ import api from './api';
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 // ---------------------------- CONFIG -----------------------------------------
 mongoose.Promise = Promise;
-const __DEV__ = process.env.NODE_ENV === 'development';
-const awsMongoDevelopment = process.env.AWS_MONGO_URI_DEV;
-const awsMongoProduction = process.env.AWS_MONGO_URI_PROD;
-const MONGO = __DEV__ ? awsMongoDevelopment : awsMongoProduction;
+// const __DEV__ = process.env.NODE_ENV === 'development';
+// const awsMongoDevelopment = process.env.AWS_MONGO_URI_DEV;
+// const awsMongoProduction = process.env.AWS_MONGO_URI_PROD;
+// const MONGO = __DEV__ ? awsMongoDevelopment : awsMongoProduction;
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -66,7 +66,7 @@ app.listen(PORT, err =>
   process.stdout.write(JSON.stringify(err, null, 2) || `==> 📡  Server @ ${PORT}
 `));
 
-mongoose.connect(MONGO)
-.then(() => process.stdout.write(`==> 📜  MONGO @ ${MONGO}
-`))
-.catch(err => process.stdout.write(JSON.stringify(err, null, 2)));
+// mongoose.connect(MONGO)
+// .then(() => process.stdout.write(`==> 📜  MONGO @ ${MONGO}
+// `))
+// .catch(err => process.stdout.write(JSON.stringify(err, null, 2)));

@@ -12,8 +12,8 @@ import {
   GraphQLInputObjectType,
 } from 'graphql';
 // import UserTypes from '../../serverless/db/graphql/types/userTypes';
-import ProductModel from '../../serverless/db/mongo/product';
-import UserModel from '../../serverless/db/mongo/user';
+import ProductModel from '../../serverless/db/mongo/models/product';
+import UserModel from '../../serverless/db/mongo/models/user';
 
 const dotenv = require('dotenv').load({ silent: true }); //eslint-disable-line
 const query = new GraphQLObjectType({

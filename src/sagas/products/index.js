@@ -13,7 +13,7 @@ export default function* fetchProductById() {
       call(() => api.fetchProductById(id)),
     ];
     const response = responses[1];
-    console.log('GrpahQL response: ', response);
+    console.log('GraphQL response: ', response);
     if (response.ok) {
       yield [
         put(apiActions.apiSuccess()),
