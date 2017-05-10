@@ -7,8 +7,8 @@ import {
 
 import ProductTypes from './types/productTypes';
 import UserTypes from './types/userTypes';
-import ProductModel from '../mongo/product';
-import UserModel from '../mongo/user';
+import ProductModel from '../mongo/models/product';
+import UserModel from '../mongo/models/user';
 
 const query = new ObjectType({
   name: 'RootQueryType',
@@ -22,10 +22,7 @@ const query = new ObjectType({
           description: 'The quantity of popular products to return.',
         },
       },
-      resolve: (_, args) => {
-        console.log('2) popularProducts');
-        Promise.fromCallback(cb => ProductModel.getPopularProducts(args, cb));
-      },
+      resolve: (_, args) => Promise.fromCallback(cb => ProductModel.getPopularProducts(args, cb)),
     },
   },
 });
