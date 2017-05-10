@@ -1,42 +1,59 @@
 import { create } from 'apisauce';
-
 // --------------------------------------------------------
-let baseURL;
+let graphqlURL;
 if (process.env.NODE_ENV === 'production') {
-  baseURL = `${process.env.DEPLOY_URL}`;
+  graphqlURL = `${process.env.AWS_GRAPHQL_PROD}`;
 } else {
-  baseURL = process.env.BASE_URL;
+  graphqlURL = `${process.env.AWS_GRAPHQL_DEV}`;
 }
-console.info('baseURL: ', baseURL);
-
 // --------------------------------------------------------
 const createAPI = () => {
   const api = create({
-    baseURL,
+    graphqlURL,
     headers: {
+      'Access-Control-Allow-Origin': '"*"',
       'Cache-Control': 'no-cache',
     },
   });
 
   // --------------------------------------------------------
-  const getAllThings = () =>
-  api.get('api/things/');
+  const fetchProductById = id => api.post('', {
+    query: `query {
+      fetchProductById(id: ${id}) {
+        _id,
+        mainTitle,
+        title,
+        price,
+        images,
+        nicotine_strengths,
+        routeTag
+      }
+    }`,
+  });
 
-  const createThing = thing =>
-  api.post('api/things', { name: thing.name });
+  const fetchPopularProducts = qty => api.post('', {
+    query: `query {
+      popularProducts(qty: ${qty}){
+        _id,
+        title,
+        images,
+      }
+    }`,
+  });
 
-  const removeThing = id =>
-  api.delete(`api/things/${id}`);
-
-  const editThing = thing =>
-  api.put(`api/things/${thing._id}`, { name: thing.name });
+  // const createThing = thing =>
+  // api.post('api/things', { name: thing.name });
+  //
+  // const removeThing = id =>
+  // api.delete(`api/things/${id}`);
+  //
+  // const editThing = thing =>
+  // api.put(`api/things/${thing._id}`, { name: thing.name });
 
   // --------------------------------------------------------
   return {
-    getAllThings,
-    createThing,
-    removeThing,
-    editThing,
+    fetchProductById,
+    fetchPopularProducts,
   };
 };
 

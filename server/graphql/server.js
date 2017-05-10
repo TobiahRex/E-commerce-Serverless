@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import express from 'express';
+import mongoose from 'mongoose';
 import graphqlHTTP from 'express-graphql';
 import {
   GraphQLInt,
@@ -11,9 +12,10 @@ import {
   GraphQLInputObjectType,
 } from 'graphql';
 // import UserTypes from '../../serverless/db/graphql/types/userTypes';
-import { Product as ProductModel } from '../../serverless/db/mongo/product';
-import { User as UserModel } from '../../serverless/db/mongo/user';
+import ProductModel from '../../serverless/db/mongo/product';
+import UserModel from '../../serverless/db/mongo/user';
 
+const dotenv = require('dotenv').load({ silent: true }); //eslint-disable-line
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The primary query object type.',
@@ -63,7 +65,6 @@ const query = new GraphQLObjectType({
     },
   },
 });
-
 const mutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
@@ -223,13 +224,13 @@ const mutation = new GraphQLObjectType({
     },
   },
 });
-
 const schema = new GraphQLSchema({
   query,
   mutation,
 });
 
 const PORT = process.env.GRAPHIQL_PORT || 3002;
+const MONGO_URI = process.env.AWS_MONGO_URI_DEV;
 
 const server = express();
 server.use('/graphql', graphqlHTTP({
@@ -238,3 +239,4 @@ server.use('/graphql', graphqlHTTP({
 }));
 
 server.listen(PORT, () => console.log(`Server listening @ ${PORT}`));
+mongoose.connect(MONGO_URI, () => console.log(`Mongo listening @ ${MONGO_URI}`));
