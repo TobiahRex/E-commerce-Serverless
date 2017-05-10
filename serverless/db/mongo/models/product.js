@@ -3,10 +3,10 @@ import db from '../connection';
 import productSchema from '../schemas/productSchema';
 
 productSchema.statics.getPopularProducts = ({ qty }) =>
-new Promise((res, rej) => {
+new Promise((resolve, reject) => {
   Product.find({})
-  .then(dbProducts => res(dbProducts.slice(0, qty)))
-  .catch(error => rej({
+  .then(dbProducts => resolve(dbProducts.slice(0, qty)))
+  .catch(error => reject({
     error,
     problem: `Could not fetch the ${qty} products you requested`,
   }));

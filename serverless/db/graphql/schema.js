@@ -1,8 +1,8 @@
 import Promise from 'bluebird';
 import {
-  GraphQLInt as IntType,
-  GraphQLSchema as Schema,
-  GraphQLObjectType as ObjectType,
+  GraphQLInt,
+  GraphQLSchema,
+  GraphQLObjectType,
 } from 'graphql';
 
 import ProductTypes from './types/productTypes';
@@ -10,7 +10,7 @@ import UserTypes from './types/userTypes';
 import ProductModel from '../mongo/models/product';
 import UserModel from '../mongo/models/user';
 
-const query = new ObjectType({
+const query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The primary query object type.',
   fields: {
@@ -18,7 +18,7 @@ const query = new ObjectType({
       type: ProductTypes.rootType,
       args: {
         qty: {
-          type: IntType,
+          type: GraphQLInt,
           description: 'The quantity of popular products to return.',
         },
       },
@@ -27,7 +27,7 @@ const query = new ObjectType({
   },
 });
 
-const mutation = new ObjectType({
+const mutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
     createUser: {
@@ -39,7 +39,7 @@ const mutation = new ObjectType({
   },
 });
 
-export default new Schema({
+export default new GraphQLSchema({
   query,
   mutation,
 });

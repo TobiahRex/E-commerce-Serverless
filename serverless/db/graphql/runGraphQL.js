@@ -1,20 +1,10 @@
 import { graphql } from 'graphql';
-import Schema from './schema';
+import schema from './schema';
 
 const runGraphQL = (event, cb) => {
   const { query, variables } = event.body;
-  graphql(Schema, query, null, {}, variables)
-  .then(res => cb(null, res))
-  .catch(cb);
+  graphql(schema, query, null, {}, variables)
+  .then(result => cb(null, result))
+  .catch(error => cb(error));
 };
 export default runGraphQL;
-/*
-graphql(
-  schema: GraphQLSchema,
-  requestString: string,
-  rootValue?: ?any,
-  contextValue?: ?any,
-  variableValues?: ?{[key: string]: any},
-  operationName?: ?string
-): Promise<GraphQLResult>
-*/
