@@ -9,10 +9,10 @@ module.exports.graphql = (event, context, cb) => {
   runGraphQL(event, (err, res) =>
     closeDB(() => {
       if (err) {
-        context && context.error(err);
+        if (context.error) context.error(err);
         return cb({ err });
       }
-      context && context.succeed(res);
+      if (context.succeed) context.succeed(res);
       return cb(null, res);
     }),
   );
