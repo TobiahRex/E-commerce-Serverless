@@ -16,6 +16,5 @@ const options = {
 };
 const db = mongoose.createConnection(MONGO_DB, options, err =>
 console.log(err || `Mongo Connected @ ${MONGO_DB}`));
-// console.log('\ndb: ', db, '\n');
 export const closeDB = cb => db.close(() => cb());
 export default db;

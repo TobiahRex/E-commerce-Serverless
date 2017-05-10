@@ -10,9 +10,11 @@ module.exports.graphql = (event, context, cb) => {
     closeDB(() => {
       if (err) {
         if (context.error) context.error(err);
+        console.log('ERROR: ', err);
         return cb({ err });
       }
       if (context.succeed) context.succeed(res);
+      console.log('RESULT: ', res);
       return cb(null, res);
     }),
   );
