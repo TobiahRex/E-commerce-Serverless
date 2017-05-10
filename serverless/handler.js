@@ -6,14 +6,16 @@ import runGraphQL from './db/graphql/runGraphQL';
 import { closeDB } from './db/mongo/connection';
 
 module.exports.graphql = (event, context, cb) => {
-  runGraphQL(event, (err, res) =>
+  runGraphQL(event, (error, res) =>
     closeDB(() => {
-      if (err) {
-        if (context.error) context.error(err);
-        return cb({ err });
+      if (error) {
+        if (context.error) context.error(error);
+        console.log('ERROR:\n ', error);
+        return cb(null, { error });
       }
       if (context.succeed) context.succeed(res);
-      return cb(res);
+      console.log('RESULT\n: ', res);
+      return cb(null, res);
     }),
   );
 };

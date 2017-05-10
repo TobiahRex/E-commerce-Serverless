@@ -22,7 +22,7 @@ const query = new ObjectType({
           description: 'The quantity of popular products to return.',
         },
       },
-      resolve: (_, args) => Promise.fromCallback(cb => ProductModel.getPopularProducts(args, cb)),
+      resolve: (_, args) => ProductModel.getPopularProducts(args),
     },
   },
 });
