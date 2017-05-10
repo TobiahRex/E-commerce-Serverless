@@ -13,7 +13,6 @@ module.exports.graphql = (event, context, cb) => {
         context.error(err);
         return cb({ err });
       }
-      console.log('context:', context, '\n'); // {}
       context.succeed(res);
       return cb(null, res);
     }),
