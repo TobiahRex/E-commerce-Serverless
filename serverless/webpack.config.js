@@ -1,11 +1,11 @@
-const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: path.resolve('./handler.js'),
+  entry: './handler.js',
   target: 'node',
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel-loader',
       include: __dirname,
       exclude: /node_modules/,
@@ -14,7 +14,5 @@ module.exports = {
       loader: 'json-loader',
     }],
   },
-  externals: [
-    /^(?!\.|\/).+/i,
-  ],
+  externals: [nodeExternals()],
 };

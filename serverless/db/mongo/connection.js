@@ -13,6 +13,8 @@ const options = {
     },
   },
 };
-const db = mongoose.createConnection(MONGO_DB, options);
+const db = mongoose.createConnection(MONGO_DB, options, (err) => {
+  console.log(err || `Mongo connected @ ${MONGO_DB}`);
+});
 export const closeDB = cb => db.close(() => cb());
 export default db;

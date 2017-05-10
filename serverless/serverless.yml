@@ -8,13 +8,15 @@ provider:
   region: ap-northeast-1
 
 plugins:
-  - serverless-webpack
   - serverless-plugin-graphiql
+  - serverless-webpack
 
 custom:
+  webpackIncludeModules: true # enable auto including node_modules
   graphiql:
     babelOptions:
       presets: [es2015, es2016, stage-0]
+      plugins: [transform-runtime]
 
 functions:
   graphql:
