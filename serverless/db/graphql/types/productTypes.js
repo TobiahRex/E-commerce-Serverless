@@ -79,9 +79,11 @@ const ProductTypes = {
                   }),
                 ) },
                 nicotine_strengths: {
+                  name: 'NewProductNicotineStrengths',
+                  description: 'The nicotine strength for the Product.',
                   type: new NonNull(
                     new EnumType({
-                      name: 'NewProductNicotineStrenghts',
+                      name: 'NewProductNicotineStrengthsEnum',
                       values: {
                         2: {
                           value: 2,
@@ -120,6 +122,16 @@ const ProductTypes = {
                           description: '8mg of Nicotine.',
                         },
                       },
+                    }),
+                  ),
+                },
+                images: {
+                  name: 'NewProductImages',
+                  description: 'Images array for the new Product.',
+                  type: new NonNull(
+                    new ListType({
+                      name: 'NewProductImagesArray',
+                      
                     }),
                   ),
                 },
