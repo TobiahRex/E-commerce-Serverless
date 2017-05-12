@@ -48,12 +48,13 @@ function cleanGQLresponse(response) {
   console.log('GraphQL response: ', response);
   if (response.data) {
     if (response.data.errors) {
-      response.problem = response.data.errors[0];
+      response.problem = response.data.errors[0].message;
       response.ok = false;
     }
     return response;
   }
-  response.problem = 'GraphQL returned nothing. Are you sure the resource you\'re looking for exists?';
+  response.problem = `GraphQL returned an empty result.
+  Are you sure the resource you\'re looking for exists?`;
   response.ok = false;
   return response;
 }

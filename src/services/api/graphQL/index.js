@@ -50,15 +50,6 @@ const createAPI = () => {
     },
   });
 
-  // const createThing = thing =>
-  // api.post('api/things', { name: thing.name });
-  //
-  // const removeThing = id =>
-  // api.delete(`api/things/${id}`);
-  //
-  // const editThing = thing =>
-  // api.put(`api/things/${thing._id}`, { name: thing.name });
-
   // --------------------------------------------------------
   return {
     fetchProductById,
