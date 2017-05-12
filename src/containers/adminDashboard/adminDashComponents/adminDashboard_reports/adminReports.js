@@ -29,7 +29,7 @@ function AdminReports({ location }) {
           </div>
           <div className="body__dashboard">
             <div className="dashboard--container">
-              
+
               <div className="reports__title">
                 <h1>Reports</h1>
               </div>
@@ -191,10 +191,10 @@ function AdminReports({ location }) {
                         <label htmlFor="cell-input">Cell Number</label>
                         <div className="cell-input__flag--container">
                           <div className="flag--readout">
-                            <img src="../images/nihongo-flag.png" alt="Japanese Flag" />
+                            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nihongo-flag-border.png" alt="Japanese Flag" />
                           </div>
                           <div className="flag--ddn-content">
-                            <img src="../images/english-flag.png" alt="US Flag" />
+                            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/english-flag.png" alt="US Flag" />
                           </div>
                         </div>
 

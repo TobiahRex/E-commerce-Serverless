@@ -11,7 +11,7 @@ class NavbarUserActionsSignedin extends PureComponent {
   }
   static defaultProps = {
     profile: {
-      picture: '../images/default-user.png',
+      picture: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/default-user.png',
     },
   }
   static styles = {

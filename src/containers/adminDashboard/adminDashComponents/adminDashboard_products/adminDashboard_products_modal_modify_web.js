@@ -114,22 +114,22 @@ function ProductsModal() {
             <tbody className="table__body ">
               <tr className="body__row">
                 <td className="row--primary">
-                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb1">
-                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb2">
-                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb3">
-                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb4">
-                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
                 <td className="row--thumb5">
-                  <img src="../images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice Card" />
                 </td>
               </tr>
             </tbody>

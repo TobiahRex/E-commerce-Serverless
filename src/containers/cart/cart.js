@@ -15,7 +15,7 @@ class ShoppingCart extends Component {
     taxRate: PropTypes.number,
   }
   static juices = [{
-    imgSrc: './images/nj2jp_juice_card_fbb.png',
+    imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png',
     name: 'Fruity Bamm-Bamm',
     sku: '123123123',
     nicotine: '6mg',
@@ -23,7 +23,7 @@ class ShoppingCart extends Component {
     qty: 2,
     subTotal: 0,
   }, {
-    imgSrc: './images/nj2jp_juice_card_fvm.png',
+    imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png',
     name: 'French Vanilla Mocha',
     sku: '123123123',
     nicotine: '6mg',

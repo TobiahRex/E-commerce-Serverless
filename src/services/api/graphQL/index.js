@@ -6,10 +6,11 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   graphqlURL = `${process.env.AWS_GRAPHQL_DEV}`;
 }
+
 // --------------------------------------------------------
 const createAPI = () => {
   const api = create({
-    graphqlURL,
+    baseURL: graphqlURL,
     headers: {
       'Cache-Control': 'no-cache',
       Accept: 'application/json',
@@ -20,8 +21,8 @@ const createAPI = () => {
 
   // --------------------------------------------------------
   const fetchProductById = id => api.post('', {
-    query: JSON.stringify(`query {
-      fetchProductById($id: Int!) {
+    query: JSON.stringify(`query($id: String!) {
+      fetchProductById(id: $id) {
         _id
         mainTitle
         title
@@ -34,22 +35,20 @@ const createAPI = () => {
         routeTag
       }
     }`),
-    variables: {
+    variables: JSON.stringify({
       id,
-    },
+    }),
   });
 
   const fetchPopularProducts = qty => api.post('', {
-    query: JSON.stringify(`query {
-      popularProducts($qty: Int!){
-        _id,
+    query: JSON.stringify(`query($qty: Int!) {
+      popularProducts(qty: $qty){
         title,
-        images,
       }
     }`),
-    variables: {
+    variables: JSON.stringify({
       qty,
-    },
+    }),
   });
 
   // const createThing = thing =>

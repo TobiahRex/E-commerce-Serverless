@@ -22,7 +22,7 @@ function HomepageHeader({ height, mobile }) {
     <header className="homepage__header--img-src" style={{ height }} >
       <div className="header__upper">
         <div className="header__inner-container">
-          <img src="../images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
+          <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
           <div className="header__msg--container">
             <h1 className="msg__title">Fastest Nicotine e-Juice Delivery In Japan</h1>
             <h1 className="msg__subtitle">Guaranteed!</h1>

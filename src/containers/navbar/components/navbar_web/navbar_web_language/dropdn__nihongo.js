@@ -15,7 +15,7 @@ function NavbarOptionsLanguageDropdnNihongo({ onLanguageChange }) {
       onClick={preventDefault}
       className="language-dropdown-content-japanese"
     >
-      <img src="../images/nihongo-flag-border.png" alt="Japanese Flag" className="language-dropdown-content-japanese-image" />
+      <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nihongo-flag-border.png" alt="Japanese Flag" className="language-dropdown-content-japanese-image" />
       <div className="language-dropdown-content-japanese-nihongo">
         <span>日本語</span>
       </div>

@@ -25,11 +25,11 @@ export default {
       images: [
         {
           purpose: 'card',
-          url: '../images/nj2jp_juice_card_fbb.png',
+          url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png',
         },
         {
           purpose: 'large',
-          url: '../images/nj2jp-fvm.jpg',
+          url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg',
         },
       ],
       routeTag: 'fruity_bamm_bamm',
@@ -42,11 +42,11 @@ export default {
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
       images: [{
         purpose: 'card',
-        url: '../images/nj2jp_juice_card_pc.png',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.png',
       },
       {
         purpose: 'large',
-        url: '../images/nj2jp-fvm.jpg',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg',
       }],
       routeTag: 'pina_colada',
     },
@@ -58,10 +58,10 @@ export default {
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
       images: [{
         purpose: 'card',
-        url: '../images/nj2jp_juice_card_pc.png',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.png',
       }, {
         purpose: 'large',
-        url: '../images/nj2jp-fvm.jpg',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg',
       }],
       routeTag: 'strawberries_n_cream',
     },
@@ -73,10 +73,10 @@ export default {
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
       images: [{
         purpose: 'card',
-        url: '../images/nj2jp_juice_card_klp.png',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png',
       }, {
         purpose: 'large',
-        url: '../images/nj2jp-fvm.jpg',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg',
       }],
       routeTag: 'keylime_pie',
     },
@@ -88,10 +88,10 @@ export default {
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
       images: [{
         purpose: 'card',
-        url: '../images/nj2jp_juice_card_klp.png',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png',
       }, {
         purpose: 'large',
-        url: '../images/nj2jp-fvm.jpg',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg',
       }],
       routeTag: 'papple_berry',
     },
@@ -103,10 +103,10 @@ export default {
       nicotine_strengths: ['2mg', '4mg', '6mg', '8mg'],
       images: [{
         purpose: 'card',
-        url: '../images/nj2jp_juice_card_fvm.png',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png',
       }, {
         purpose: 'large',
-        url: '../images/nj2jp-fvm.jpg',
+        url: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg',
       }],
       routeTag: 'french_vanilla_mocha',
     },

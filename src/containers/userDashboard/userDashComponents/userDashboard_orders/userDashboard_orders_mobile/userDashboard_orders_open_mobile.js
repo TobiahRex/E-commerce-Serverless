@@ -52,7 +52,7 @@ function OpenOrders() {
       <div className="dashboard__products--container">
         <div className="products__product">
           <div className="products__image">
-            <img src="../images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png" alt="Key Lime Pie" className="product--img" />
           </div>
 
           <div className="products__product-info">
@@ -188,7 +188,7 @@ function OpenOrders() {
         </div>
         <div className="products__product">
           <div className="products__image">
-            <img src="../images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png" alt="Key Lime Pie" className="product--img" />
           </div>
 
           <div className="products__product-info">
@@ -324,7 +324,7 @@ function OpenOrders() {
         </div>
         <div className="products__product">
           <div className="products__image">
-            <img src="../images/nj2jp_juice_card_klp.png" alt="" className="product--img" />
+            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png" alt="Key Lime Pie" className="product--img" />
           </div>
 
           <div className="products__product-info">

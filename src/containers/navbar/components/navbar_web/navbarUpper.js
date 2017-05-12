@@ -100,8 +100,7 @@ class NavbarUpper extends Component {
   }
 }
 const calculateQty = (loggedIn, cartObj) => (
-  cartObj[loggedIn ? 'member' : 'guest']
-  .reduce((accum, next) => {
+  cartObj[loggedIn ? 'member' : 'guest'].reduce((accum, next) => {
     if (next.id) {
       accum += 1;
       return accum;

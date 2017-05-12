@@ -67,7 +67,7 @@ class HomepageHowCarousel extends Component {
       alt: 'Delivery Truck',
     }, {
       name: 'delivery',
-      desc: 'A couple days later, you receive your package from Nic Juice 2 Japan. 😁 ',
+      desc: 'A few days later, you receive your package from Nic Juice 2 Japan. 😁 ',
       alt: 'Delivered',
     }];
     return slideDescs.map(({ name, desc, alt }) => (
