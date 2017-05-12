@@ -1,6 +1,7 @@
 import {
   GraphQLInt as IntType,
   GraphQLList as ListType,
+  GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
@@ -51,9 +52,45 @@ const ProductTypes = {
             new InputObject({
               name: 'NewProductObject',
               fields: () => ({
-                mainTitle: { type: StringType },
-                title: { type: StringType },
-                flavor: { type: StringType }
+                mainTitle: { type: new NonNull(StringType) },
+                title: { type: new NonNull(StringType) },
+                flavor: { type: new NonNull(StringType) },
+                price: { type: new NonNull(StringType), description: 'Non-float String denoting the price of the product before tax.' },
+                sku: { type: new NonNull(StringType) },
+                sizes: { type: new NonNull(
+                  new EnumType({
+                    name: 'NewProductSize',
+                    /* eslint-disable quote-props */
+                    values: {
+                      '30': {
+                        value: '30',
+                        description: '30 milliter bottle.',
+                      },
+                      '60': {
+                        value: '60',
+                        description: '60 milliliter bottle.',
+                      },
+                      '120': {
+                        value: '120',
+                        description: '120 milliliter bottle',
+                      },
+                    },
+                    /* eslint-enable quote-props */
+                  }),
+                ) },
+                nicotine_strengths: {
+                  type: new NonNull(
+                    new EnumType({
+                      name: 'NewProductNicotineStrenghts',
+                      values: {
+                        2: {
+                          value: 2,
+                          description: '2mg of Nicotine.',
+                        },
+                      },
+                    }),
+                  ),
+                },
               }),
             }),
           ),
