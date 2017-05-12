@@ -12,7 +12,6 @@ const createAPI = () => {
   const api = create({
     baseURL: graphqlURL,
     headers: {
-      'Cache-Control': 'no-cache',
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
@@ -21,7 +20,7 @@ const createAPI = () => {
 
   // --------------------------------------------------------
   const fetchProductById = id => api.post('', {
-    query: JSON.stringify(`query($id: String!) {
+    query: `query($id: String!) {
       fetchProductById(id: $id) {
         _id
         mainTitle
@@ -34,21 +33,21 @@ const createAPI = () => {
         nicotine_strengths
         routeTag
       }
-    }`),
-    variables: JSON.stringify({
+    }`,
+    variables: {
       id,
-    }),
+    },
   });
 
   const fetchPopularProducts = qty => api.post('', {
-    query: JSON.stringify(`query($qty: Int!) {
+    query: `query($qty: Int!) {
       popularProducts(qty: $qty){
         title,
       }
-    }`),
-    variables: JSON.stringify({
+    }`,
+    variables: {
       qty,
-    }),
+    },
   });
 
   // const createThing = thing =>

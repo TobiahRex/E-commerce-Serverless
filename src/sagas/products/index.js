@@ -27,7 +27,7 @@ export function* fetchProductById() {
 
 export function* fetchPopularProducts() {
   while (true) { //eslint-disable-line
-    const { qty } = yield take(productTypes.FETCH_PRODUCT_BY_ID);
+    const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);
     const responses = yield [
       put(apiActions.fetching()),
       call(() => api.fetchPopularProducts(qty)),
