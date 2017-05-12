@@ -2,23 +2,14 @@ import express from 'express';
 import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
 import webpack from 'webpack';
 import hotMiddleware from 'webpack-hot-middleware';
 import devMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
-import api from './api';
 
-const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
-// ---------------------------- CONFIG -----------------------------------------
-mongoose.Promise = Promise;
-// const __DEV__ = process.env.NODE_ENV === 'development';
-// const awsMongoDevelopment = process.env.AWS_MONGO_URI_DEV;
-// const awsMongoProduction = process.env.AWS_MONGO_URI_PROD;
-// const MONGO = __DEV__ ? awsMongoDevelopment : awsMongoProduction;
+require('dotenv').config({ silent: true }); //eslint-disable-line
 const PORT = process.env.PORT || 3000;
 const app = express();
-
 // ---------------------- Webpack Middleware -----------------------------------
 const compiler = webpack(webpackConfig);
 app.use(devMiddleware(compiler, {
@@ -57,7 +48,6 @@ ${data}
   };
   next();
 });
-app.use('/api', api);
 app.get('*', (req, res) => res.sendFile(path.resolve('./src/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
@@ -65,8 +55,3 @@ process.stdout.write('\n');
 app.listen(PORT, err =>
   process.stdout.write(JSON.stringify(err, null, 2) || `==> 📡  Server @ ${PORT}
 `));
-
-// mongoose.connect(MONGO)
-// .then(() => process.stdout.write(`==> 📜  MONGO @ ${MONGO}
-// `))
-// .catch(err => process.stdout.write(JSON.stringify(err, null, 2)));
