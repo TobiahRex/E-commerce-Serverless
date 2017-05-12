@@ -12,8 +12,7 @@ export function* fetchProductById() {
       put(apiActions.fetching()),
       call(() => api.fetchProductById(id)),
     ];
-    const response = responses[1];
-    console.log('GraphQL response: ', response);
+    const response = cleanGQLresponse(responses[1]);
     if (response.ok) {
       yield [
         put(apiActions.apiSuccess()),
@@ -26,21 +25,35 @@ export function* fetchProductById() {
 }
 
 export function* fetchPopularProducts() {
-  while (true) { //eslint-disable-line
-    const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);
-    const responses = yield [
-      put(apiActions.fetching()),
-      call(() => api.fetchPopularProducts(qty)),
-    ];
-    const response = responses[1];
-    console.log('GraphQL response: ', response);
-    if (response.ok) {
-      yield [
-        put(apiActions.apiSuccess()),
-        put(productActions.receivedPopularProducts(response.body)),
-      ];
-    } else {
-      yield put(apiActions.apiFail(response.problem));
+  // while (true) { //eslint-disable-line
+  //   const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);
+  //   const responses = yield [
+  //     put(apiActions.fetching()),
+  //     call(() => api.fetchPopularProducts(qty)),
+  //   ];
+  //   const response = responses[1];
+  //   console.log('GraphQL response: ', response);
+  //   if (response.ok) {
+  //     yield [
+  //       put(apiActions.apiSuccess()),
+  //       put(productActions.receivedPopularProducts(response.body)),
+  //     ];
+  //   } else {
+  //     yield put(apiActions.apiFail(response.problem));
+  //   }
+  // }
+}
+
+function cleanGQLresponse(response) {
+  console.log('GraphQL response: ', response);
+  if (response.data) {
+    if (response.data.errors) {
+      response.problem = response.data.errors[0];
+      response.ok = false;
     }
+    return response;
   }
+  response.problem = 'GraphQL returned nothing. Are you sure the resource you\'re looking for exists?';
+  response.ok = false;
+  return response;
 }

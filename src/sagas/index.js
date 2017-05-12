@@ -3,7 +3,6 @@ import applicationStartup from './startup';
 import authorizationSaga, { watchAuthActions } from './authorization';
 import { fetchProductById, fetchPopularProducts } from './products/';
 // ----- api's ----- //
-
 export default function* rootSaga() {
   yield [
     fetchProductById(),
