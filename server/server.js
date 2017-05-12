@@ -32,22 +32,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('src'));
-app.use((req, res, next) => {
-  const resRef = res;
-  resRef.handle = (err, data) => {
-    if (err) {
-      process.stdout.write(`Response Error: 😕
-${err}
-`);
-    } else {
-      process.stdout.write(`Response Data: 😎
-${data}
-`);
-    }
-    res.status(err ? 400 : 200).send(err || data);
-  };
-  next();
-});
 app.get('*', (req, res) => res.sendFile(path.resolve('./src/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
