@@ -7,7 +7,7 @@ const api = productApi.createAPI();
 
 export function* fetchProductById() {
   while (true) {  //eslint-disable-line
-    // const { id } = yield take(productTypes.FETCH_PRODUCT_BY_ID);
+    const { id } = yield take(productTypes.FETCH_PRODUCT_BY_ID);
     const responses = yield [
       put(apiActions.fetching()),
       call(() => api.fetchProductById(id)),
@@ -26,11 +26,10 @@ export function* fetchProductById() {
 
 export function* fetchPopularProducts() {
   while (true) { //eslint-disable-line
-    // const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);
-    const { id } = yield take(productTypes.FETCH_PRODUCT_BY_ID);
+    const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);
     const responses = yield [
       put(apiActions.fetching()),
-      call(() => api.fetchPopularProducts(6)),
+      call(() => api.fetchPopularProducts(qty)),
     ];
     const response = cleanGQLresponse(responses[1]);
     if (response.ok) {
