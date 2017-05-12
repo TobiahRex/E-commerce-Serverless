@@ -129,9 +129,44 @@ const ProductTypes = {
                   name: 'NewProductImages',
                   description: 'Images array for the new Product.',
                   type: new NonNull(
-                    new ListType({
-                      name: 'NewProductImagesArray',
-                      
+                    new ListType(
+                      new InputObject({
+                        name: 'NewProductImageObject',
+                        description: 'Product image information',
+                        fields: {
+                          purpose: { type: new NonNull(StringType) },
+                          url: { type: new NonNull(StringType) },
+                        },
+                      }),
+                    ),
+                  ),
+                },
+                routeTag: {
+                  name: 'NewProductRouteTag',
+                  description: 'The name of the route for the product.',
+                  type: new NonNull(StringType),
+                },
+                vendor: {
+                  name: 'NewProductVendorInfo',
+                  description: 'The name of the vendor that supplies or manufacturers the product.',
+                  type: StringType,
+                },
+                dates: {
+                  name: 'NewProductImportantDateInformation',
+                  description: 'Important dates regarding the product.',
+                  type: new NonNull(
+                    new InputObject({
+                      name: 'NewProductDateObject',
+                      fields: {
+                        added_to_store: {
+                          description: 'The Date the product was first added to the store.',
+                          type: new NonNull(StringType),
+                        },
+                        removed_from_store: {
+                          description: 'The Date the product was removed from the store.',
+                          type: StringType,
+                        },
+                      },
                     }),
                   ),
                 },

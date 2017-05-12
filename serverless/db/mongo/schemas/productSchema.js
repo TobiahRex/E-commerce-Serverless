@@ -60,7 +60,6 @@ const productSchema = new Schema({
       removed_from_store: {
         type: Date,
         default: Date.now,
-        required: true,
       },
     },
     quantities: {
