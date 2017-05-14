@@ -5,31 +5,12 @@ import userApi from '../../services/api/graphQL/users';
 
 const api = userApi.createAPI();
 
-export function* findUserById() {
+export default function* findOrCreateUser() {
   while (true) { //eslint-disable-line
-    const { id } = yield take(authTypes.LOGIN_SUCCESS);
+    const { userObj } = yield take(authTypes.LOGIN_SUCCESS);
     const responses = yield [
       put(apiActions.fetching()),
-      call(() => api.fetchUserById(id)),
-    ];
-    const response = cleanGQLresponse(responses[1]);
-    if (response.ok) {
-      yield [
-        put(apiActions.apiSuccess()),
-        put(authActions.receivedProductById(response.body)),
-      ];
-    } else {
-      yield put(apiActions.apiFail(response.problem));
-    }
-  }
-}
-
-export function* createUser() {
-  while (true) { //eslint-disable-line
-    const { userObj } = yield take(authTypes.CREATE_USER);
-    const responses = yield [
-      put(apiActions.fetching()),
-      call(() => api.createUser(userObj)),
+      call(() => api.findOrCreateUser(userObj)),
     ];
     const response = cleanGQLresponse(responses[1]);
     if (response.ok) {

@@ -17,7 +17,8 @@ const createAPI = () => {
     credentials: 'omit',
   });
 
-  const createUser = ({
+  const findOrCreateUser = ({
+    id,
     name,
     authentication,
     contactInfo,
@@ -25,6 +26,7 @@ const createAPI = () => {
     userStory,
   }) => api.post('', {
     mutation: `createUser(
+      id: ${id}
       name: {
         first: ${name.first}
         last: ${name.last}
@@ -82,39 +84,9 @@ const createAPI = () => {
       }
     }`,
   });
-  const findUserById = id => api.post('', {
-    query: `findUserById(id: ${id}){
-      _id
-      name {
-        first
-        last
-        display
-      }
-      authentication {
-        lastLogin
-        signedUp
-        registered
-        password
-        avatar
-      }
-      contactInfo {
-        email
-        phone
-      }
-      permissions {
-        role
-      }
-      userStory {
-        age
-        birthday
-        bio
-      }
-    }`,
-  });
 
   return {
-    createUser,
-    findUserById,
+    findOrCreateUser,
   };
 };
 export default { createAPI };
