@@ -149,15 +149,15 @@ const UserTypes = {
               fields: () => ({
                 first: {
                   description: 'The first name of the new user.',
-                  type: StringType,
+                  type: new NonNull(StringType),
                 },
                 last: {
                   description: 'The last name of the new user.',
-                  type: StringType,
+                  type: new NonNull(StringType),
                 },
                 display: {
                   description: 'The display name of the new user.',
-                  type: StringType,
+                  type: new NonNull(StringType),
                 },
               }),
             }),
@@ -245,7 +245,7 @@ const UserTypes = {
               fields: () => ({
                 role: {
                   description: 'Authorization role for this new user.',
-                  type: StringType,
+                  type: new NonNull(StringType),
                 },
               }),
             }),

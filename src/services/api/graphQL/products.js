@@ -1,5 +1,5 @@
 import { create } from 'apisauce';
-// --------------------------------------------------------
+
 let graphqlURL;
 if (process.env.NODE_ENV === 'production') {
   graphqlURL = `${process.env.AWS_GRAPHQL_PROD}`;
@@ -7,7 +7,6 @@ if (process.env.NODE_ENV === 'production') {
   graphqlURL = `${process.env.AWS_GRAPHQL_DEV}`;
 }
 
-// --------------------------------------------------------
 const createAPI = () => {
   const api = create({
     baseURL: graphqlURL,
@@ -18,7 +17,6 @@ const createAPI = () => {
     credentials: 'omit',
   });
 
-  // --------------------------------------------------------
   const fetchProductById = id => api.post('', {
     query: `query($id: String!) {
       fetchProductById(id: $id) {
@@ -42,7 +40,9 @@ const createAPI = () => {
   const fetchPopularProducts = qty => api.post('', {
     query: `query($qty: Int!) {
       popularProducts(qty: $qty){
-        title,
+        _id
+        title
+        images
       }
     }`,
     variables: {
@@ -50,12 +50,9 @@ const createAPI = () => {
     },
   });
 
-  // --------------------------------------------------------
   return {
     fetchProductById,
     fetchPopularProducts,
   };
 };
-
-// --------------------------------------------------------
 export default { createAPI };
