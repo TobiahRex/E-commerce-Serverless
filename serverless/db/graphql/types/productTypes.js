@@ -10,7 +10,7 @@ import {
 } from 'graphql';
 import ProductModel from '../../mongo/models/product';
 
-const ProductTypes = {
+const rootType = {
   rootType: new ObjectType({
     name: 'Product',
     description: 'A store product.',
@@ -166,185 +166,190 @@ const ProductTypes = {
       },
     },
   }),
-  queries: {
-    popularProducts: {
-      type: this.rootType,
-      args: {
-        qty: {
-          type: IntType,
-          description: 'The quantity of popular products to return.',
-        },
+};
+const queries = {
+  popularProducts: {
+    type: rootType,
+    args: {
+      qty: {
+        type: IntType,
+        description: 'The quantity of popular products to return.',
       },
-      resolve: (_, args) => ProductModel.getPopularProducts(args),
     },
+    resolve: (_, args) => ProductModel.getPopularProducts(args),
   },
-  mutations: {
-    createProduct: {
-      args: {
-        product: {
-          description: 'Object: All the important details for the product.',
-          type: new NonNull(
-            new InputObject({
-              name: 'NewProductObject',
-              fields: () => ({
-                mainTitle: {
-                  description: 'The main title for the Single Product page for the new product - e.g. The "Cateogry" of the new product.',
-                  type: new NonNull(StringType),
-                },
-                title: {
-                  description: 'The title of the new product.',
-                  type: new NonNull(StringType),
-                },
-                flavor: {
-                  description: 'The flavor of the new product.',
-                  type: new NonNull(StringType),
-                },
-                price: {
-                  description: 'The price of the new product. - WARNING: Do not add $ signs, Do not add (.) decimals.',
-                  type: new NonNull(StringType),
-                },
-                sku: {
-                  description: 'The unique code for the new product.',
-                  type: new NonNull(StringType),
-                },
-                sizes: {
-                  description: 'The available sizes for the new product.',
-                  type: new NonNull(
-                    new EnumType({
-                      name: 'NewProductSize',
-                      /* eslint-disable quote-props */
-                      values: {
-                        '30': {
-                          value: '30',
-                          description: '30 milliliter bottle.',
-                        },
-                        '60': {
-                          value: '60',
-                          description: '60 milliliter bottle.',
-                        },
-                        '120': {
-                          value: '120',
-                          description: '120 milliliter bottle',
-                        },
+};
+const mutations = {
+  createProduct: {
+    args: {
+      product: {
+        description: 'Object: All the important details for the product.',
+        type: new NonNull(
+          new InputObject({
+            name: 'NewProductObject',
+            fields: () => ({
+              mainTitle: {
+                description: 'The main title for the Single Product page for the new product - e.g. The "Cateogry" of the new product.',
+                type: new NonNull(StringType),
+              },
+              title: {
+                description: 'The title of the new product.',
+                type: new NonNull(StringType),
+              },
+              flavor: {
+                description: 'The flavor of the new product.',
+                type: new NonNull(StringType),
+              },
+              price: {
+                description: 'The price of the new product. - WARNING: Do not add $ signs, Do not add (.) decimals.',
+                type: new NonNull(StringType),
+              },
+              sku: {
+                description: 'The unique code for the new product.',
+                type: new NonNull(StringType),
+              },
+              sizes: {
+                description: 'The available sizes for the new product.',
+                type: new NonNull(
+                  new EnumType({
+                    name: 'NewProductSize',
+                    /* eslint-disable quote-props */
+                    values: {
+                      '30': {
+                        value: '30',
+                        description: '30 milliliter bottle.',
                       },
-                      /* eslint-enable quote-props */
-                    }),
-                  ),
-                },
-                nicotine_strengths: {
-                  description: 'The nicotine strength for the new product.',
-                  type: new NonNull(
-                    new EnumType({
-                      name: 'NewProductNicotineStrengthsEnum',
-                      values: {
-                        2: {
-                          value: 2,
-                          description: '2mg of Nicotine.',
-                        },
-                        4: {
-                          value: 4,
-                          description: '4mg of Nicotine.',
-                        },
-                        6: {
-                          value: 6,
-                          description: '6mg of Nicotine',
-                        },
-                        8: {
-                          value: 8,
-                          description: '8mg of Nicotine.',
-                        },
-                        10: {
-                          value: 10,
-                          description: '8mg of Nicotine.',
-                        },
-                        12: {
-                          value: 12,
-                          description: '8mg of Nicotine.',
-                        },
-                        14: {
-                          value: 14,
-                          description: '8mg of Nicotine.',
-                        },
-                        16: {
-                          value: 16,
-                          description: '8mg of Nicotine.',
-                        },
-                        18: {
-                          value: 18,
-                          description: '8mg of Nicotine.',
-                        },
+                      '60': {
+                        value: '60',
+                        description: '60 milliliter bottle.',
                       },
-                    }),
-                  ),
-                },
-                images: {
-                  description: 'Images array for the new Product.',
-                  type: new NonNull(
-                    new ListType(
-                      new InputObject({
-                        name: 'NewProductImageObject',
-                        fields: () => ({
-                          purpose: {
-                            description: 'What this specific image will be used for - e.g. "Juice Card"',
-                            type: new NonNull(StringType),
-                          },
-                          url: {
-                            description: 'The S3 url for this image.',
-                            type: new NonNull(StringType),
-                          },
-                        }),
-                      }),
-                    ),
-                  ),
-                },
-                routeTag: {
-                  description: 'The name of the route for the new product.',
-                  type: new NonNull(StringType),
-                },
-                vendor: {
-                  description: 'The name of manufacturer of the new product.',
-                  type: StringType,
-                },
-                dates: {
-                  description: 'Important clerical dates regarding the new product.',
-                  type: new NonNull(
-                    new InputObject({
-                      name: 'NewProductDateObject',
-                      fields: {
-                        added_to_store: {
-                          description: 'The Date the product was first added to the store.',
-                          type: new NonNull(StringType),
-                        },
-                        removed_from_store: {
-                          description: 'The Date the product was removed from the store.',
-                          type: StringType,
-                        },
+                      '120': {
+                        value: '120',
+                        description: '120 milliliter bottle',
                       },
-                    }),
-                  ),
-                },
-                quantities: {
-                  description: 'Availability stats for this new product.',
-                  type: new InputObject({
-                    name: 'NewProductQuantityInfo',
-                    fields: {
-                      available: {
-                        description: 'The available quanitty for this product.',
-                        type: IntType,
+                    },
+                    /* eslint-enable quote-props */
+                  }),
+                ),
+              },
+              nicotine_strengths: {
+                description: 'The nicotine strength for the new product.',
+                type: new NonNull(
+                  new EnumType({
+                    name: 'NewProductNicotineStrengthsEnum',
+                    values: {
+                      2: {
+                        value: 2,
+                        description: '2mg of Nicotine.',
                       },
-                      in_cart: {
-                        description: 'The quantity for products currently in customers\' carts.',
-                        type: IntType,
+                      4: {
+                        value: 4,
+                        description: '4mg of Nicotine.',
+                      },
+                      6: {
+                        value: 6,
+                        description: '6mg of Nicotine',
+                      },
+                      8: {
+                        value: 8,
+                        description: '8mg of Nicotine.',
+                      },
+                      10: {
+                        value: 10,
+                        description: '8mg of Nicotine.',
+                      },
+                      12: {
+                        value: 12,
+                        description: '8mg of Nicotine.',
+                      },
+                      14: {
+                        value: 14,
+                        description: '8mg of Nicotine.',
+                      },
+                      16: {
+                        value: 16,
+                        description: '8mg of Nicotine.',
+                      },
+                      18: {
+                        value: 18,
+                        description: '8mg of Nicotine.',
                       },
                     },
                   }),
-                },
-              }),
+                ),
+              },
+              images: {
+                description: 'Images array for the new Product.',
+                type: new NonNull(
+                  new ListType(
+                    new InputObject({
+                      name: 'NewProductImageObject',
+                      fields: () => ({
+                        purpose: {
+                          description: 'What this specific image will be used for - e.g. "Juice Card"',
+                          type: new NonNull(StringType),
+                        },
+                        url: {
+                          description: 'The S3 url for this image.',
+                          type: new NonNull(StringType),
+                        },
+                      }),
+                    }),
+                  ),
+                ),
+              },
+              routeTag: {
+                description: 'The name of the route for the new product.',
+                type: new NonNull(StringType),
+              },
+              vendor: {
+                description: 'The name of manufacturer of the new product.',
+                type: StringType,
+              },
+              dates: {
+                description: 'Important clerical dates regarding the new product.',
+                type: new NonNull(
+                  new InputObject({
+                    name: 'NewProductDateObject',
+                    fields: {
+                      added_to_store: {
+                        description: 'The Date the product was first added to the store.',
+                        type: new NonNull(StringType),
+                      },
+                      removed_from_store: {
+                        description: 'The Date the product was removed from the store.',
+                        type: StringType,
+                      },
+                    },
+                  }),
+                ),
+              },
+              quantities: {
+                description: 'Availability stats for this new product.',
+                type: new InputObject({
+                  name: 'NewProductQuantityInfo',
+                  fields: {
+                    available: {
+                      description: 'The available quanitty for this product.',
+                      type: IntType,
+                    },
+                    in_cart: {
+                      description: 'The quantity for products currently in customers\' carts.',
+                      type: IntType,
+                    },
+                  },
+                }),
+              },
             }),
-          ),
-        },
+          }),
+        ),
       },
     },
   },
 };
-export default ProductTypes;
+
+export default {
+  rootType,
+  queries,
+  mutations,
+};
