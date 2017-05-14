@@ -40,28 +40,30 @@ const ProductTypes = {
               type: StringType,
             },
             sku: {
-              description: '',
+              description: 'The unique code for the product.',
               type: StringType,
             },
-            sizes: { type: new EnumType({
-              name: 'ProductSize',
+            sizes: {
+              description: 'The available sizes for the product.',
+              type: new EnumType({
                 /* eslint-disable quote-props */
-              values: {
-                '30': {
-                  value: '30',
-                  description: '30 milliter bottle.',
+                values: {
+                  '30': {
+                    value: '30',
+                    description: '30 milliter bottle.',
+                  },
+                  '60': {
+                    value: '60',
+                    description: '60 milliliter bottle.',
+                  },
+                  '120': {
+                    value: '120',
+                    description: '120 milliliter bottle',
+                  },
                 },
-                '60': {
-                  value: '60',
-                  description: '60 milliliter bottle.',
-                },
-                '120': {
-                  value: '120',
-                  description: '120 milliliter bottle',
-                },
-              },
               /* eslint-enable quote-props */
-            }) },
+              }),
+            },
             nicotine_strengths: {
               description: 'The nicotine strength for the Product.',
               type: new EnumType({
@@ -111,30 +113,26 @@ const ProductTypes = {
               type: new ListType(
                 new ObjectType({
                   name: 'ProductImageObject',
-                  description: 'Product image information',
-                  fields: {
+                  fields: () => ({
                     purpose: { type: StringType },
                     url: { type: StringType },
-                  },
+                  }),
                 }),
               ),
             },
             routeTag: {
-              name: 'ProductRouteTag',
               description: 'The name of the route for the product.',
               type: StringType,
             },
             vendor: {
-              name: 'ProductVendorInfo',
               description: 'The name of the vendor that supplies or manufacturers the product.',
               type: StringType,
             },
             dates: {
-              name: 'ProductImportantDateInformation',
               description: 'Important dates regarding the product.',
               type: new ObjectType({
                 name: 'ProductDateObject',
-                fields: {
+                fields: () => ({
                   added_to_store: {
                     description: 'The Date the product was first added to the store.',
                     type: StringType,
@@ -143,15 +141,14 @@ const ProductTypes = {
                     description: 'The Date the product was removed from the store.',
                     type: StringType,
                   },
-                },
+                }),
               }),
             },
             quantities: {
-              name: 'ProductStockQuantities',
               description: 'Availability stats for this product.',
               type: new ObjectType({
                 name: 'ProductQuantityInfo',
-                fields: {
+                fields: () => ({
                   available: {
                     description: 'The available quanitty for this product.',
                     type: IntType,
@@ -160,7 +157,7 @@ const ProductTypes = {
                     description: 'The quantity for products currently in customers\' carts.',
                     type: IntType,
                   },
-                },
+                }),
               }),
             },
           }),
@@ -177,11 +174,26 @@ const ProductTypes = {
             new InputObject({
               name: 'NewProductObject',
               fields: () => ({
-                mainTitle: { type: new NonNull(StringType) },
-                title: { type: new NonNull(StringType) },
-                flavor: { type: new NonNull(StringType) },
-                price: { type: new NonNull(StringType), description: 'Non-float String denoting the price of the product before tax.' },
-                sku: { type: new NonNull(StringType) },
+                mainTitle: {
+                  description: 'The main title for the Single Product page for the new product - e.g. The "Cateogry" of the new product.',
+                  type: new NonNull(StringType),
+                },
+                title: {
+                  description: 'The title of the new product.',
+                  type: new NonNull(StringType),
+                },
+                flavor: {
+                  description: 'The flavor of the new product.',
+                  type: new NonNull(StringType),
+                },
+                price: {
+                  description: 'The price of the new product. - WARNING: Do not add $ signs, Do not add (.) decimals.',
+                  type: new NonNull(StringType),
+                },
+                sku: {
+                  description: 'The unique code for the new product.',
+                  type: new NonNull(StringType),
+                },
                 sizes: { type: new NonNull(
                   new EnumType({
                     name: 'NewProductSize',
