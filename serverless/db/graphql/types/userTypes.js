@@ -72,45 +72,48 @@ const UserTypes = {
             email: { type: StringType },
             phone: { type: StringType },
             location: {
-              description: 'IP address, lat, long, & country info. for this user from their last login.',
+              description: 'IP address, lat, long, & country code. for this user from their last login.',
               type: new ObjectType({
                 name: 'UserGeolocationObject',
-                fields: {
+                fields: () => ({
                   ipAddress: {
-                    description: 'IP address for this user\'s last login.',
+                    description: 'IP address this user last used.',
                     type: StringType,
                   },
                   lat: {
-                    description: '',
+                    description: 'Latitude coord. this user last logged in from.',
                     type: StringType,
                   },
                   long: {
-                    description: '',
+                    description: 'Longitude coord. this user last logged in from.',
                     type: StringType,
                   },
                   country: {
-                    description: '',
+                    description: 'Country code this user last logged in from.',
                     type: StringType,
                   },
-                },
+                }),
               }),
             },
           }),
         }),
       },
       permissions: {
+        description: 'Authorization permissions granted for user.',
         type: new ObjectType({
           name: 'UserPermissionsObject',
-          description: 'Permissions granted for user.',
           fields: () => ({
-            role: { type: StringType },
+            role: {
+              description: 'The authorization role for this user.',
+              type: StringType,
+            },
           }),
         }),
       },
       userStory: {
+        description: 'Biography info. for user.',
         type: new ObjectType({
           name: 'UserStoryObject',
-          description: 'Bio information for user.',
           fields: () => ({
             age: { type: IntType },
             birthday: { type: StringType },
@@ -194,9 +197,18 @@ const UserTypes = {
             new InputObject({
               name: 'UserInputStoryObject',
               fields: () => ({
-                age: { type: IntType },
-                birthday: { type: StringType },
-                bio: { type: StringType },
+                age: {
+                  description: '',
+                  type: IntType,
+                },
+                birthday: {
+                  description: '',
+                  type: StringType,
+                },
+                bio: {
+                  description: '',
+                  type: StringType,
+                },
               }),
             }),
           ),
