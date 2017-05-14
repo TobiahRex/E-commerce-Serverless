@@ -69,8 +69,14 @@ const UserTypes = {
         type: new ObjectType({
           name: 'UserContanctInfoObject',
           fields: () => ({
-            email: { type: StringType },
-            phone: { type: StringType },
+            email: {
+              description: 'The email for this user.',
+              type: StringType,
+            },
+            phone: {
+              description: 'The phone number for this user.',
+              type: StringType,
+            },
             location: {
               description: 'IP address, lat, long, & country code. for this user from their last login.',
               type: new ObjectType({
@@ -111,13 +117,22 @@ const UserTypes = {
         }),
       },
       userStory: {
-        description: 'Biography info. for user.',
+        description: 'Object: Bio information for new user.',
         type: new ObjectType({
-          name: 'UserStoryObject',
+          name: 'UserInputStoryObject',
           fields: () => ({
-            age: { type: IntType },
-            birthday: { type: StringType },
-            bio: { type: StringType },
+            age: {
+              description: 'The age of this new user.',
+              type: IntType,
+            },
+            birthday: {
+              description: 'The birthday of this new user.',
+              type: StringType,
+            },
+            bio: {
+              description: 'The biography of this new user.',
+              type: StringType,
+            },
           }),
         }),
       },
@@ -127,51 +142,93 @@ const UserTypes = {
     createUser: {
       args: {
         name: {
-          description: 'Object: Users name.',
+          description: 'Object: The First & Last name for the new user.',
           type: new NonNull(
             new InputObject({
-              name: 'UserInputNameObject',
+              name: 'NewUserNameObject',
               fields: () => ({
-                first: { type: StringType },
-                last: { type: StringType },
-                display: { type: StringType },
+                first: {
+                  description: 'The first name of the new user.',
+                  type: StringType,
+                },
+                last: {
+                  description: 'The last name of the new user.',
+                  type: StringType,
+                },
+                display: {
+                  description: 'The display name of the new user.',
+                  type: StringType,
+                },
               }),
             }),
           ),
         },
         authentication: {
-          description: 'Object: Auth info for user.',
+          description: 'Authentication information for new user.',
           type: new NonNull(
             new InputObject({
-              name: 'UserInputAuthenticationObject',
+              name: 'NewUserAuthenticationObject',
               fields: () => ({
-                lastLogin: { type: StringType },
-                signedUp: { type: StringType },
-                registered: { type: StringType },
-                password: { type: StringType },
-                avatar: { type: StringType },
+                lastLogin: {
+                  description: 'The last time this new user logged in.',
+                  type: StringType,
+                },
+                signedUp: {
+                  description: 'The date this new user first signed up for newsletters - Typically coincides with users first purchase.',
+                  type: StringType,
+                },
+                registered: {
+                  description: 'The date this new user first became a member.',
+                  type: new NonNull(StringType),
+                },
+                password: {
+                  description: 'This new user\'s password if using email signup.',
+                  type: StringType,
+                },
+                avatar: {
+                  description: 'This new user\'s profile avatar.',
+                  type: StringType,
+                },
               }),
             }),
           ),
         },
         contactInfo: {
-          description: 'Object: Contanct info for user.',
+          description: 'Contact info & GeoLocation info for new user.',
           type: new NonNull(
             new InputObject({
-              name: 'UserInputContactInfoObject',
+              name: 'NewUserContanctInfoObject',
               fields: () => ({
-                email: { type: StringType },
-                phone: { type: StringType },
+                email: {
+                  description: 'The email for this new user.',
+                  type: StringType,
+                },
+                phone: {
+                  description: 'The phone number for this new user.',
+                  type: StringType,
+                },
                 location: {
+                  description: 'IP address, lat, long, & country code. for this new user from their current login.',
                   type: new NonNull(
-                    new InputObject({
-                      name: 'UserInputGeolocationObject',
-                      description: 'Object: Geolocation information for user.',
+                    new ObjectType({
+                      name: 'NewUserGeolocationObject',
                       fields: () => ({
-                        ipAddress: { type: StringType },
-                        lat: { type: StringType },
-                        long: { type: StringType },
-                        country: { type: StringType },
+                        ipAddress: {
+                          description: 'IP address for this new user.',
+                          type: StringType,
+                        },
+                        lat: {
+                          description: 'Latitude coord. for this new user.',
+                          type: StringType,
+                        },
+                        long: {
+                          description: 'Longitude coord. for this new user.',
+                          type: StringType,
+                        },
+                        country: {
+                          description: 'Country code for this new user.',
+                          type: StringType,
+                        },
                       }),
                     }),
                   ),
@@ -181,32 +238,35 @@ const UserTypes = {
           ),
         },
         permissions: {
-          description: 'Object: Permissions granted for user.',
+          description: 'Authorization permissions for this new user.',
           type: new NonNull(
             new InputObject({
-              name: 'UserInputPermissionsObject',
+              name: 'NewUserInputPermissionsObject',
               fields: () => ({
-                role: { type: StringType },
+                role: {
+                  description: 'Authorization role for this new user.',
+                  type: StringType,
+                },
               }),
             }),
           ),
         },
         userStory: {
-          description: 'Object: Bio information for user.',
+          description: 'Object: Bio information for new user.',
           type: new NonNull(
             new InputObject({
-              name: 'UserInputStoryObject',
+              name: 'NewUserInputStoryObject',
               fields: () => ({
                 age: {
-                  description: '',
+                  description: 'The age of this new user.',
                   type: IntType,
                 },
                 birthday: {
-                  description: '',
+                  description: 'The birthday of this new user.',
                   type: StringType,
                 },
                 bio: {
-                  description: '',
+                  description: 'The biography of this new user.',
                   type: StringType,
                 },
               }),
