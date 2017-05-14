@@ -46,7 +46,7 @@ const ProductTypes = {
               name: 'ProductNicotineStrengths',
               description: 'The nicotine strength for the Product.',
               type: new EnumType({
-                name: 'NewProductNicotineStrengthsEnum',
+                name: 'ProductNicotineStrengthsEnum',
                 values: {
                   2: {
                     value: 2,
@@ -88,11 +88,11 @@ const ProductTypes = {
               }),
             },
             images: {
-              name: 'NewProductImages',
+              name: 'ProductImages',
               description: 'Images array for the new Product.',
               type: new ListType(
-                new InputObject({
-                  name: 'NewProductImageObject',
+                new ObjectType({
+                  name: 'ProductImageObject',
                   description: 'Product image information',
                   fields: {
                     purpose: { type: StringType },
@@ -102,20 +102,20 @@ const ProductTypes = {
               ),
             },
             routeTag: {
-              name: 'NewProductRouteTag',
+              name: 'ProductRouteTag',
               description: 'The name of the route for the product.',
               type: StringType,
             },
             vendor: {
-              name: 'NewProductVendorInfo',
+              name: 'ProductVendorInfo',
               description: 'The name of the vendor that supplies or manufacturers the product.',
               type: StringType,
             },
             dates: {
-              name: 'NewProductImportantDateInformation',
+              name: 'ProductImportantDateInformation',
               description: 'Important dates regarding the product.',
               type: new ObjectType({
-                name: 'NewProductDateObject',
+                name: 'ProductDateObject',
                 fields: {
                   added_to_store: {
                     description: 'The Date the product was first added to the store.',
@@ -129,10 +129,10 @@ const ProductTypes = {
               }),
             },
             quantities: {
-              name: 'NewProductStockQuantities',
+              name: 'ProductStockQuantities',
               description: 'Availability stats for this product.',
               type: new ObjectType({
-                name: 'NewProductQuantityInfo',
+                name: 'ProductQuantityInfo',
                 fields: {
                   available: {
                     description: 'The available quanitty for this product.',
