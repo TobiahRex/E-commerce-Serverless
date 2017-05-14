@@ -1,6 +1,5 @@
 import Promise from 'bluebird';
 import {
-  GraphQLInt,
   GraphQLSchema,
   GraphQLObjectType,
 } from 'graphql';
@@ -14,28 +13,19 @@ const query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The primary query object type.',
   fields: {
-    popularProducts: {
-      type: ProductTypes.rootType,
-      args: {
-        qty: {
-          type: GraphQLInt,
-          description: 'The quantity of popular products to return.',
-        },
-      },
-      resolve: (_, args) => ProductModel.getPopularProducts(args),
-    },
+    popularProducts: ProductTypes.queries.popularProducts,
   },
 });
 
 const mutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
-    createUser: {
-      type: UserTypes.rootType,
-      description: 'Create new user.',
-      args: UserTypes.mutations.createUser.args,
-      resolve: (_, args) => Promise.fromCallback(cb => UserModel.createUser(args, cb)),
-    },
+    // createUser: {
+    //   type: UserTypes.rootType,
+    //   description: 'Create new user.',
+    //   args: UserTypes.mutations.createUser.args,
+    //   resolve: (_, args) => Promise.fromCallback(cb => UserModel.createUser(args, cb)),
+    // },
     createProduct: {
       type: ProductTypes.rootType,
       description: 'Create new Product',

@@ -8,6 +8,7 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
+import ProductModel from '../../mongo/models/product';
 
 const ProductTypes = {
   rootType: new ObjectType({
@@ -165,6 +166,18 @@ const ProductTypes = {
       },
     },
   }),
+  queries: {
+    popularProducts: {
+      type: this.rootType,
+      args: {
+        qty: {
+          type: IntType,
+          description: 'The quantity of popular products to return.',
+        },
+      },
+      resolve: (_, args) => ProductModel.getPopularProducts(args),
+    },
+  },
   mutations: {
     createProduct: {
       args: {
