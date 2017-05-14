@@ -65,20 +65,33 @@ const UserTypes = {
         }),
       },
       contactInfo: {
+        description: 'Contact info & GeoLocation info for user.',
         type: new ObjectType({
           name: 'UserContanctInfoObject',
-          description: 'Geolocation information for user.',
           fields: () => ({
             email: { type: StringType },
             phone: { type: StringType },
             location: {
+              description: 'IP address, lat, long, & country info. for this user from their last login.',
               type: new ObjectType({
                 name: 'UserGeolocationObject',
                 fields: {
-                  ipAddress: { type: StringType },
-                  lat: { type: StringType },
-                  long: { type: StringType },
-                  country: { type: StringType },
+                  ipAddress: {
+                    description: 'IP address for this user\'s last login.',
+                    type: StringType,
+                  },
+                  lat: {
+                    description: '',
+                    type: StringType,
+                  },
+                  long: {
+                    description: '',
+                    type: StringType,
+                  },
+                  country: {
+                    description: '',
+                    type: StringType,
+                  },
                 },
               }),
             },
