@@ -90,23 +90,21 @@ const ProductTypes = {
             images: {
               name: 'NewProductImages',
               description: 'Images array for the new Product.',
-              type: new NonNull(
-                new ListType(
-                  new InputObject({
-                    name: 'NewProductImageObject',
-                    description: 'Product image information',
-                    fields: {
-                      purpose: { type: new NonNull(StringType) },
-                      url: { type: new NonNull(StringType) },
-                    },
-                  }),
-                ),
+              type: new ListType(
+                new InputObject({
+                  name: 'NewProductImageObject',
+                  description: 'Product image information',
+                  fields: {
+                    purpose: { type: StringType },
+                    url: { type: StringType },
+                  },
+                }),
               ),
             },
             routeTag: {
               name: 'NewProductRouteTag',
               description: 'The name of the route for the product.',
-              type: new NonNull(StringType),
+              type: StringType,
             },
             vendor: {
               name: 'NewProductVendorInfo',
@@ -116,26 +114,24 @@ const ProductTypes = {
             dates: {
               name: 'NewProductImportantDateInformation',
               description: 'Important dates regarding the product.',
-              type: new NonNull(
-                new InputObject({
-                  name: 'NewProductDateObject',
-                  fields: {
-                    added_to_store: {
-                      description: 'The Date the product was first added to the store.',
-                      type: new NonNull(StringType),
-                    },
-                    removed_from_store: {
-                      description: 'The Date the product was removed from the store.',
-                      type: StringType,
-                    },
+              type: new ObjectType({
+                name: 'NewProductDateObject',
+                fields: {
+                  added_to_store: {
+                    description: 'The Date the product was first added to the store.',
+                    type: StringType,
                   },
-                }),
-              ),
+                  removed_from_store: {
+                    description: 'The Date the product was removed from the store.',
+                    type: StringType,
+                  },
+                },
+              }),
             },
             quantities: {
               name: 'NewProductStockQuantities',
               description: 'Availability stats for this product.',
-              type: new InputObject({
+              type: new ObjectType({
                 name: 'NewProductQuantityInfo',
                 fields: {
                   available: {
