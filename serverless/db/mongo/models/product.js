@@ -5,9 +5,7 @@ import productSchema from '../schemas/productSchema';
 
 productSchema.statics.createProduct = productObj =>
 new Promise((resolve, reject) => {
-  bbPromise.fromCallback(cb =>
-    Product.create(productObj, cb),
-  )
+  bbPromise.fromCallback(cb => Product.create(productObj, cb))
   .then(resolve)
   .catch(error => reject({
     problem: `Could not create a new product with this product object: ${JSON.stringify(productObj, null, 2)}
