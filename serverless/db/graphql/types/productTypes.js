@@ -125,11 +125,11 @@ const ProductTypes = {
               type: StringType,
             },
             vendor: {
-              description: 'The name of the vendor that supplies or manufacturers the product.',
+              description: 'The name of manufacturer of the new product.',
               type: StringType,
             },
             dates: {
-              description: 'Important dates regarding the product.',
+              description: 'Important clerical dates regarding the product.',
               type: new ObjectType({
                 name: 'ProductDateObject',
                 fields: () => ({
@@ -194,30 +194,32 @@ const ProductTypes = {
                   description: 'The unique code for the new product.',
                   type: new NonNull(StringType),
                 },
-                sizes: { type: new NonNull(
-                  new EnumType({
-                    name: 'NewProductSize',
-                    /* eslint-disable quote-props */
-                    values: {
-                      '30': {
-                        value: '30',
-                        description: '30 milliter bottle.',
+                sizes: {
+                  description: 'The available sizes for the new product.',
+                  type: new NonNull(
+                    new EnumType({
+                      name: 'NewProductSize',
+                      /* eslint-disable quote-props */
+                      values: {
+                        '30': {
+                          value: '30',
+                          description: '30 milliliter bottle.',
+                        },
+                        '60': {
+                          value: '60',
+                          description: '60 milliliter bottle.',
+                        },
+                        '120': {
+                          value: '120',
+                          description: '120 milliliter bottle',
+                        },
                       },
-                      '60': {
-                        value: '60',
-                        description: '60 milliliter bottle.',
-                      },
-                      '120': {
-                        value: '120',
-                        description: '120 milliliter bottle',
-                      },
-                    },
-                    /* eslint-enable quote-props */
-                  }),
-                ) },
+                      /* eslint-enable quote-props */
+                    }),
+                  ),
+                },
                 nicotine_strengths: {
-                  name: 'NewProductNicotineStrengths',
-                  description: 'The nicotine strength for the Product.',
+                  description: 'The nicotine strength for the new product.',
                   type: new NonNull(
                     new EnumType({
                       name: 'NewProductNicotineStrengthsEnum',
@@ -263,34 +265,29 @@ const ProductTypes = {
                   ),
                 },
                 images: {
-                  name: 'NewProductImages',
                   description: 'Images array for the new Product.',
                   type: new NonNull(
                     new ListType(
                       new InputObject({
                         name: 'NewProductImageObject',
-                        description: 'Product image information',
-                        fields: {
+                        fields: () => ({
                           purpose: { type: new NonNull(StringType) },
                           url: { type: new NonNull(StringType) },
-                        },
+                        }),
                       }),
                     ),
                   ),
                 },
                 routeTag: {
-                  name: 'NewProductRouteTag',
-                  description: 'The name of the route for the product.',
+                  description: 'The name of the route for the new product.',
                   type: new NonNull(StringType),
                 },
                 vendor: {
-                  name: 'NewProductVendorInfo',
-                  description: 'The name of the vendor that supplies or manufacturers the product.',
+                  description: 'The name of manufacturer of the new product.',
                   type: StringType,
                 },
                 dates: {
-                  name: 'NewProductImportantDateInformation',
-                  description: 'Important dates regarding the product.',
+                  description: 'Important clerical dates regarding the new product.',
                   type: new NonNull(
                     new InputObject({
                       name: 'NewProductDateObject',
@@ -308,8 +305,7 @@ const ProductTypes = {
                   ),
                 },
                 quantities: {
-                  name: 'NewProductStockQuantities',
-                  description: 'Availability stats for this product.',
+                  description: 'Availability stats for this new product.',
                   type: new InputObject({
                     name: 'NewProductQuantityInfo',
                     fields: {
