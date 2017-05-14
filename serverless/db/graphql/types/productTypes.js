@@ -1,4 +1,5 @@
 import {
+  GraphQLID as MongoID,
   GraphQLInt as IntType,
   GraphQLList as ListType,
   GraphQLEnumType as EnumType,
@@ -18,11 +19,30 @@ const ProductTypes = {
         type: new ObjectType({
           name: 'ProductObject',
           fields: () => ({
-            mainTitle: { type: StringType },
-            title: { type: StringType },
-            flavor: { type: StringType },
-            price: { type: StringType },
-            sku: { type: StringType },
+            _id: {
+              description: 'The ID of the Product.',
+              type: new NonNull(MongoID),
+            },
+            mainTitle: {
+              description: 'The title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
+              type: StringType,
+            },
+            title: {
+              description: 'The title of the product.',
+              type: StringType,
+            },
+            flavor: {
+              description: 'The flavor of the product.',
+              type: StringType,
+            },
+            price: {
+              description: 'The price of the product. - WARNING: Do not add $ signs, Do not add (.) decimals.',
+              type: StringType,
+            },
+            sku: {
+              description: '',
+              type: StringType,
+            },
             sizes: { type: new EnumType({
               name: 'ProductSize',
                 /* eslint-disable quote-props */
@@ -43,7 +63,6 @@ const ProductTypes = {
               /* eslint-enable quote-props */
             }) },
             nicotine_strengths: {
-              name: 'ProductNicotineStrengths',
               description: 'The nicotine strength for the Product.',
               type: new EnumType({
                 name: 'ProductNicotineStrengthsEnum',
@@ -88,7 +107,6 @@ const ProductTypes = {
               }),
             },
             images: {
-              name: 'ProductImages',
               description: 'Images array for the new Product.',
               type: new ListType(
                 new ObjectType({
@@ -150,7 +168,7 @@ const ProductTypes = {
       },
     },
   }),
-  mutation: {
+  mutations: {
     createProduct: {
       args: {
         product: {

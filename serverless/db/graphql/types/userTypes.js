@@ -1,4 +1,5 @@
 import {
+  GraphQLID as MongoID,
   GraphQLNonNull as NonNull,
   GraphQLInt as IntType,
   GraphQLString as StringType,
@@ -11,6 +12,10 @@ const UserTypes = {
     name: 'RootUserType',
     description: 'A User.',
     fields: () => ({
+      _id: {
+        description: 'The ID of the User.',
+        type: new NonNull(MongoID),
+      },
       name: {
         type: new ObjectType({
           name: 'UserNameObject',
@@ -78,7 +83,7 @@ const UserTypes = {
       },
     }),
   }),
-  mutation: {
+  mutations: {
     createUser: {
       args: {
         name: {
