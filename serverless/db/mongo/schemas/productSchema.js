@@ -24,28 +24,26 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
-    sizes: {
-      type: String,
+    sizes: [{
+      type: Number,
       enum: [30, 60, 120],
       required: true,
-    },
-    nicotine_strengths: {
+    }],
+    nicotine_strengths: [{
       type: Number,
       enum: [2, 4, 6, 8, 12, 14, 16, 18],
       required: true,
-    },
-    images: [
-      {
-        purpose: {
-          type: String,
-          required: true,
-        },
-        url: {
-          type: String,
-          required: true,
-        },
+    }],
+    images: [{
+      purpose: {
+        type: String,
+        required: true,
       },
-    ],
+      url: {
+        type: String,
+        required: true,
+      },
+    }],
     routeTag: {
       type: String,
       required: true,

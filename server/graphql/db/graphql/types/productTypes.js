@@ -8,21 +8,22 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
+
 import ProductModel from '../../mongo/models/product';
 
 const rootType = new ObjectType({
   name: 'Product',
   description: 'A store product.',
   fields: {
+    _id: {
+      description: 'The ID of the Product.',
+      type: new NonNull(GraphQLID),
+    },
     product: {
       description: 'Object: All the important details for the product.',
       type: new ObjectType({
         name: 'ProductObject',
         fields: () => ({
-          _id: {
-            description: 'The ID of the Product.',
-            type: GraphQLID,
-          },
           mainTitle: {
             description: 'The title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
             type: StringType,
@@ -172,7 +173,7 @@ const rootType = new ObjectType({
 });
 const queries = {
   popularProducts: {
-    type: rootType,
+    type: new ListType(rootType),
     args: {
       qty: {
         type: IntType,

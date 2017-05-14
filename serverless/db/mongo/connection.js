@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import Promise from 'bluebird';
 
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line

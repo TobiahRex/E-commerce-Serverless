@@ -1,5 +1,5 @@
 import {
-  GraphQLID as MongoID,
+  GraphQLID,
   GraphQLInt as IntType,
   GraphQLList as ListType,
   GraphQLEnumType as EnumType,
@@ -8,21 +8,22 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
+
 import ProductModel from '../../mongo/models/product';
 
 const rootType = new ObjectType({
   name: 'Product',
   description: 'A store product.',
   fields: {
+    _id: {
+      description: 'The ID of the Product.',
+      type: new NonNull(GraphQLID),
+    },
     product: {
       description: 'Object: All the important details for the product.',
       type: new ObjectType({
         name: 'ProductObject',
         fields: () => ({
-          _id: {
-            description: 'The ID of the Product.',
-            type: new NonNull(MongoID),
-          },
           mainTitle: {
             description: 'The title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
             type: StringType,
@@ -45,69 +46,73 @@ const rootType = new ObjectType({
           },
           sizes: {
             description: 'The available sizes for the product.',
-            type: new EnumType({
-              name: 'ProductAvailableSizes',
-              /* eslint-disable quote-props */
-              values: {
-                small: {
-                  value: 30,
-                  description: '30 milliter bottle.',
+            type: new ListType(
+              new EnumType({
+                name: 'ProductAvailableSizes',
+                /* eslint-disable quote-props */
+                values: {
+                  small: {
+                    value: 30,
+                    description: '30 milliter bottle.',
+                  },
+                  medium: {
+                    value: 60,
+                    description: '60 milliliter bottle.',
+                  },
+                  large: {
+                    value: 120,
+                    description: '120 milliliter bottle',
+                  },
                 },
-                medium: {
-                  value: 60,
-                  description: '60 milliliter bottle.',
-                },
-                large: {
-                  value: 120,
-                  description: '120 milliliter bottle',
-                },
-              },
-            /* eslint-enable quote-props */
-            }),
+              /* eslint-enable quote-props */
+              }),
+            ),
           },
           nicotine_strengths: {
             description: 'The nicotine strength for the Product.',
-            type: new EnumType({
-              name: 'ProductNicotineStrengthsEnum',
-              values: {
-                two: {
-                  value: 2,
-                  description: '2mg of Nicotine.',
+            type: new ListType(
+              new EnumType({
+                name: 'ProductNicotineStrengthsEnum',
+                values: {
+                  two: {
+                    value: 2,
+                    description: '2mg of Nicotine.',
+                  },
+                  four: {
+                    value: 4,
+                    description: '4mg of Nicotine.',
+                  },
+                  six: {
+                    value: 6,
+                    description: '6mg of Nicotine',
+                  },
+                  eight: {
+                    value: 8,
+                    description: '8mg of Nicotine.',
+                  },
+                  ten: {
+                    value: 10,
+                    description: '8mg of Nicotine.',
+                  },
+                  twelve: {
+                    value: 12,
+                    description: '8mg of Nicotine.',
+                  },
+                  fourteen: {
+                    value: 14,
+                    description: '8mg of Nicotine.',
+                  },
+                  sixteen: {
+                    value: 16,
+                    description: '8mg of Nicotine.',
+                  },
+                  eighteen: {
+                    value: 18,
+                    description: '8mg of Nicotine.',
+                  },
                 },
-                four: {
-                  value: 4,
-                  description: '4mg of Nicotine.',
-                },
-                six: {
-                  value: 6,
-                  description: '6mg of Nicotine',
-                },
-                eight: {
-                  value: 8,
-                  description: '8mg of Nicotine.',
-                },
-                ten: {
-                  value: 10,
-                  description: '8mg of Nicotine.',
-                },
-                twelve: {
-                  value: 12,
-                  description: '8mg of Nicotine.',
-                },
-                fourteen: {
-                  value: 14,
-                  description: '8mg of Nicotine.',
-                },
-                sixteen: {
-                  value: 16,
-                  description: '8mg of Nicotine.',
-                },
-                eighteen: {
-                  value: 18,
-                  description: '8mg of Nicotine.',
-                },
-              },
-            }),
+              }),
+            ),
           },
           images: {
             description: 'Images array for the new Product.',
@@ -168,7 +173,7 @@ const rootType = new ObjectType({
 });
 const queries = {
   popularProducts: {
-    type: rootType,
+    type: new ListType(rootType),
     args: {
       qty: {
         type: IntType,

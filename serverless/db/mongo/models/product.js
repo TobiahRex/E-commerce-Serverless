@@ -1,14 +1,17 @@
 /* eslint-disable no-use-before-define */
+import { Promise as bbPromise } from 'bluebird';
 import db from '../connection';
 import productSchema from '../schemas/productSchema';
 
 productSchema.statics.createProduct = productObj =>
 new Promise((resolve, reject) => {
-  Product.create(productObj)
+  bbPromise.fromCallback(cb =>
+    Product.create(productObj, cb),
+  )
   .then(resolve)
   .catch(error => reject({
     problem: `Could not create a new product with this product object: ${JSON.stringify(productObj, null, 2)}
-    Mongo Error = ${error}`,
+    Mongoose Error = ${error}`,
   }));
 });
 
