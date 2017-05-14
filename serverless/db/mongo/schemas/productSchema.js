@@ -2,7 +2,7 @@ const Schema = require('mongoose').Schema;
 
 const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
-  juice: {
+  product: {
     mainTitle: {
       type: String,
       required: true,
