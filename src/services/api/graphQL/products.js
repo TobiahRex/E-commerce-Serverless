@@ -18,8 +18,8 @@ const createAPI = () => {
   });
 
   const fetchProductById = id => api.post('', {
-    query: `query($id: String!) {
-      fetchProductById(id: $id) {
+    query: `query {
+      fetchProductById(id: ${id}) {
         _id
         mainTitle
         title
@@ -32,22 +32,20 @@ const createAPI = () => {
         routeTag
       }
     }`,
-    variables: {
-      id,
-    },
   });
-
   const fetchPopularProducts = qty => api.post('', {
-    query: `query($qty: Int!) {
-      popularProducts(qty: $qty){
+    query: `query {
+      popularProducts(qty: ${qty}){
         _id
-        title
-        images
+        product {
+          title
+          images {
+            purpose
+            url
+          }
+        }
       }
     }`,
-    variables: {
-      qty,
-    },
   });
 
   return {
