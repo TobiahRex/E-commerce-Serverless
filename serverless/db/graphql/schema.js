@@ -39,7 +39,7 @@ const mutation = new GraphQLObjectType({
     createProduct: {
       type: ProductTypes.rootType,
       description: 'Create new Product',
-      args: UserTypes.mutations.createProduct.args,
+      args: ProductTypes.mutations.createProduct.args,
       resolve: (_, args) => Promise.fromCallback(cb => ProductModel.createProduct(args, cb)),
     },
   },

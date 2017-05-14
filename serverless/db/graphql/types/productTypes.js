@@ -271,8 +271,14 @@ const ProductTypes = {
                       new InputObject({
                         name: 'NewProductImageObject',
                         fields: () => ({
-                          purpose: { type: new NonNull(StringType) },
-                          url: { type: new NonNull(StringType) },
+                          purpose: {
+                            description: 'What this specific image will be used for - e.g. "Juice Card"',
+                            type: new NonNull(StringType),
+                          },
+                          url: {
+                            description: 'The S3 url for this image.',
+                            type: new NonNull(StringType),
+                          },
                         }),
                       }),
                     ),
