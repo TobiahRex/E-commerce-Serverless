@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import {
+  GraphQLInt,
   GraphQLSchema,
   GraphQLObjectType,
 } from 'graphql';
@@ -12,9 +13,9 @@ import UserModel from '../mongo/models/user';
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The primary query object type.',
-  fields: {
+  fields: () => ({
     popularProducts: ProductTypes.queries.popularProducts,
-  },
+  }),
 });
 
 const mutation = new GraphQLObjectType({

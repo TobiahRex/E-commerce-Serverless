@@ -210,7 +210,7 @@ const UserTypes = {
                 location: {
                   description: 'IP address, lat, long, & country code. for this new user from their current login.',
                   type: new NonNull(
-                    new ObjectType({
+                    new InputObject({
                       name: 'NewUserGeolocationObject',
                       fields: () => ({
                         ipAddress: {

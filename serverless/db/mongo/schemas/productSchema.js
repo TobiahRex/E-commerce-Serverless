@@ -18,7 +18,7 @@ const productSchema = new Schema({
     price: {
       type: String,
       required: true,
-      default: '30',
+      default: 30,
     },
     sku: {
       type: String,
@@ -26,7 +26,7 @@ const productSchema = new Schema({
     },
     sizes: {
       type: String,
-      enum: ['30', '60', '120'],
+      enum: [30, 60, 120],
       required: true,
     },
     nicotine_strengths: {
