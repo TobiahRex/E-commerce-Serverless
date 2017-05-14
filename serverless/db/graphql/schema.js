@@ -36,6 +36,12 @@ const mutation = new GraphQLObjectType({
       args: UserTypes.mutation.createUser.args,
       resolve: (_, args) => Promise.fromCallback(cb => UserModel.createUser(args, cb)),
     },
+    createProduct: {
+      type: ProductTypes.rootType,
+      description: 'Create new Product',
+      args: UserTypes.mutation.createProduct.args,
+      resolve: (_, args) => Promise.fromCallback(cb => ProductModel.createProduct(args, cb)),
+    },
   },
 });
 
