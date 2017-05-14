@@ -85,11 +85,30 @@ const createAPI = () => {
   const findUserById = id => api.post('', {
     query: `findUserById(id: ${id}){
       _id
-      name
-      authentcation
-      contactInfo
-      permissions
-      userStory
+      name {
+        first
+        last
+        display
+      }
+      authentication {
+        lastLogin
+        signedUp
+        registered
+        password
+        avatar
+      }
+      contactInfo {
+        email
+        phone
+      }
+      permissions {
+        role
+      }
+      userStory {
+        age
+        birthday
+        bio
+      }
     }`,
   });
 
