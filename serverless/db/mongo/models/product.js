@@ -14,8 +14,6 @@ new Promise((resolve, reject) => {
 
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
-  if (!qty) reject({ problem: 'You did not provide "qty" argument.' });
-
   Product.find({})
   .then(dbProducts => resolve(dbProducts.slice(0, qty)))
   .catch(error => reject({
