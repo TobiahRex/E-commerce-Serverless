@@ -199,6 +199,8 @@ const queries = {
 };
 const mutations = {
   createProduct: {
+    type: rootType,
+    description: 'Create new Product.',
     args: {
       product: {
         description: 'Object: All the important details for the product.',
@@ -353,6 +355,7 @@ const mutations = {
         ),
       },
     },
+    resolve: (_, args) => Product.Model.createProduct(args),
   },
 };
 
