@@ -19,7 +19,7 @@ const query = new GraphQLObjectType({
 
 const mutation = new GraphQLObjectType({
   name: 'RootMutationType',
-  fields: {
+  fields: () => ({
     createUser: {
       type: UserTypes.rootType,
       description: 'Create new user.',
@@ -32,7 +32,7 @@ const mutation = new GraphQLObjectType({
       args: ProductTypes.mutations.createProduct.args,
       resolve: (_, args) => ProductModel.createProduct(args),
     },
-  },
+  }),
 });
 
 export default new GraphQLSchema({

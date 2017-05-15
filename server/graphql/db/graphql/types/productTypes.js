@@ -52,15 +52,15 @@ const rootType = new ObjectType({
                 /* eslint-disable quote-props */
                 values: {
                   small: {
-                    value: 30,
+                    value: '30 mil',
                     description: '30 milliter bottle.',
                   },
                   medium: {
-                    value: 60,
+                    value: '60 mil',
                     description: '60 milliliter bottle.',
                   },
                   large: {
-                    value: 120,
+                    value: '120 mil',
                     description: '120 milliliter bottle',
                   },
                 },
@@ -75,39 +75,39 @@ const rootType = new ObjectType({
                 name: 'ProductNicotineStrengthsEnum',
                 values: {
                   two: {
-                    value: 2,
+                    value: '2mg',
                     description: '2mg of Nicotine.',
                   },
                   four: {
-                    value: 4,
+                    value: '4mg',
                     description: '4mg of Nicotine.',
                   },
                   six: {
-                    value: 6,
+                    value: '6mg',
                     description: '6mg of Nicotine',
                   },
                   eight: {
-                    value: 8,
+                    value: '8mg',
                     description: '8mg of Nicotine.',
                   },
                   ten: {
-                    value: 10,
+                    value: '10mg',
                     description: '8mg of Nicotine.',
                   },
                   twelve: {
-                    value: 12,
+                    value: '12mg',
                     description: '8mg of Nicotine.',
                   },
                   fourteen: {
-                    value: 14,
+                    value: '14mg',
                     description: '8mg of Nicotine.',
                   },
                   sixteen: {
-                    value: 16,
+                    value: '16mg',
                     description: '8mg of Nicotine.',
                   },
                   eighteen: {
-                    value: 18,
+                    value: '18mg',
                     description: '8mg of Nicotine.',
                   },
                 },
@@ -132,6 +132,10 @@ const rootType = new ObjectType({
           },
           vendor: {
             description: 'The name of manufacturer of the new product.',
+            type: StringType,
+          },
+          blurb: {
+            description: 'A description of the product.',
             type: StringType,
           },
           dates: {
@@ -231,15 +235,15 @@ const mutations = {
                       /* eslint-disable quote-props */
                       values: {
                         small: {
-                          value: 30,
+                          value: '30 mil',
                           description: '30 milliliter bottle.',
                         },
                         medium: {
-                          value: 60,
+                          value: '60 mil',
                           description: '60 milliliter bottle.',
                         },
                         large: {
-                          value: 120,
+                          value: '120 mil',
                           description: '120 milliliter bottle',
                         },
                       },
@@ -256,39 +260,39 @@ const mutations = {
                       name: 'NewProductNicotineStrengthsEnum',
                       values: {
                         two: {
-                          value: 2,
+                          value: '2mg',
                           description: '2mg of Nicotine.',
                         },
                         four: {
-                          value: 4,
+                          value: '4mg',
                           description: '4mg of Nicotine.',
                         },
                         six: {
-                          value: 6,
+                          value: '6mg',
                           description: '6mg of Nicotine',
                         },
                         eight: {
-                          value: 8,
+                          value: '8mg',
                           description: '8mg of Nicotine.',
                         },
                         ten: {
-                          value: 10,
+                          value: '10mg',
                           description: '8mg of Nicotine.',
                         },
                         twelve: {
-                          value: 12,
+                          value: '12mg',
                           description: '8mg of Nicotine.',
                         },
                         fourteen: {
-                          value: 14,
+                          value: '14mg',
                           description: '8mg of Nicotine.',
                         },
                         sixteen: {
-                          value: 16,
+                          value: '16mg',
                           description: '8mg of Nicotine.',
                         },
                         eighteen: {
-                          value: 18,
+                          value: '18mg',
                           description: '8mg of Nicotine.',
                         },
                       },
@@ -324,23 +328,9 @@ const mutations = {
                 description: 'The name of manufacturer of the new product.',
                 type: StringType,
               },
-              dates: {
-                description: 'Important clerical dates regarding the new product.',
-                type: new NonNull(
-                  new InputObject({
-                    name: 'NewProductDateObject',
-                    fields: () => ({
-                      added_to_store: {
-                        description: 'The Date the product was first added to the store.',
-                        type: new NonNull(StringType),
-                      },
-                      removed_from_store: {
-                        description: 'The Date the product was removed from the store.',
-                        type: StringType,
-                      },
-                    }),
-                  }),
-                ),
+              blurb: {
+                description: 'A description of the new product.',
+                type: new NonNull(StringType),
               },
               quantities: {
                 description: 'Availability stats for this new product.',

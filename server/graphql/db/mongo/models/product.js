@@ -15,7 +15,10 @@ new Promise((resolve, reject) => {
 productSchema.statics.findProductById = ({ id }) =>
 new Promise((resolve, reject) => {
   Product.findById(id).exec()
-  .then(resolve)
+  .then((dbProduct) => {
+    console.log(JSON.stringify(dbProduct, null, 2));
+    resolve(dbProduct);
+  })
   .catch(error => reject({
     problem: `Could not find the product with id ${id}.  Are you sure that product exists?
     Mongo Error = ${error}`,
