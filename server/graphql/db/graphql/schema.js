@@ -20,7 +20,7 @@ const mutation = new GraphQLObjectType({
   fields: () => ({
     createUser: UserTypes.mutations.createUser,
     createProduct: ProductTypes.mutations.createProduct,
-    findProductAndUpdate: ProductType.mutations.findProductAndUpdate,
+    findProductAndUpdate: ProductTypes.mutations.findProductAndUpdate,
   }),
 });
 
