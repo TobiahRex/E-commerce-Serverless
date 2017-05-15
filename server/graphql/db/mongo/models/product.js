@@ -24,6 +24,10 @@ new Promise((resolve, reject) => {
     Mongo Error = ${error}`,
   }));
 });
+productSchema.statics.findProductAndUpdate = ({ id, productObj }) =>
+new Promise((resolve, reject) => {
+  Product.findByIdAndUpdate(id, productObj)
+});
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
   Product.find({})
