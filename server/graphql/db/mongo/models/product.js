@@ -12,7 +12,15 @@ new Promise((resolve, reject) => {
     Mongoose Error = ${error}`,
   }));
 });
-
+productSchema.statics.findProductById = ({ id }) =>
+new Promise((resolve, reject) => {
+  Product.findById(id).exec()
+  .then(resolve)
+  .catch(error => reject({
+    problem: `Could not find the product with id ${id}.  Are you sure that product exists?
+    Mongo Error = ${error}`,
+  }));
+});
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
   Product.find({})
@@ -23,14 +31,5 @@ new Promise((resolve, reject) => {
   }));
 });
 
-productSchema.statics.findProductById = ({ id }) =>
-new Promise((resolve, reject) => {
-  Product.findById(id).exec()
-  .then(resolve)
-  .catch(error => reject({
-    problem: `Could not find the product with id ${id}.  Are you sure that product exists?
-    Mongo Error = ${error}`,
-  }));
-});
 const Product = db.model('Product', productSchema);
 export default Product;
