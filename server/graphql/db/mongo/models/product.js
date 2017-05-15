@@ -15,10 +15,7 @@ new Promise((resolve, reject) => {
 productSchema.statics.findProductById = ({ id }) =>
 new Promise((resolve, reject) => {
   Product.findById(id).exec()
-  .then((dbProduct) => {
-    console.log(JSON.stringify(dbProduct, null, 2));
-    resolve(dbProduct);
-  })
+  .then(resolve)
   .catch(error => reject({
     problem: `Could not find the product with id ${id}.  Are you sure that product exists?
     Mongo Error = ${error}`,
@@ -26,7 +23,18 @@ new Promise((resolve, reject) => {
 });
 productSchema.statics.findProductAndUpdate = ({ id, productObj }) =>
 new Promise((resolve, reject) => {
-  Product.findByIdAndUpdate(id, productObj)
+  const $setOptions = {
+    $set: {
+      product: productObj,
+    },
+  };
+  Product.findByIdAndUpdate(id, $setOptions, { new: true })
+  .exec()
+  .then(resolve)
+  .catch(error => reject({
+    problem: `Could not find the product with id ${id}. Are you sure that product exists?
+    Mongo Error = ${error}`,
+  }));
 });
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
