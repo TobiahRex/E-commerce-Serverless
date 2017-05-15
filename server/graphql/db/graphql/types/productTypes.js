@@ -357,6 +357,15 @@ const mutations = {
     },
     resolve: (_, args) => Product.Model.createProduct(args),
   },
+  findProductAndUpdate: {
+    type: rootType,
+    description: 'Find product by ID and update.',
+    args: {
+      newProduct: {
+        description: 'Object: The new '
+      }
+    }
+  }
 };
 
 export default {

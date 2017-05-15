@@ -21,11 +21,11 @@ new Promise((resolve, reject) => {
     Mongo Error = ${error}`,
   }));
 });
-productSchema.statics.findProductAndUpdate = ({ id, productObj }) =>
+productSchema.statics.findProductAndUpdate = ({ id, newProduct }) =>
 new Promise((resolve, reject) => {
   const $setOptions = {
     $set: {
-      product: productObj,
+      product: newProduct,
     },
   };
   Product.findByIdAndUpdate(id, $setOptions, { new: true })
