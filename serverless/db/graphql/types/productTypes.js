@@ -186,7 +186,7 @@ const queries = {
     type: new ListType(rootType),
     args: {
       qty: {
-        type: IntType,
+        type: new NonNull(IntType),
         description: 'The quantity of popular products to return.',
       },
     },
