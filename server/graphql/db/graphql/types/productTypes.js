@@ -508,6 +508,7 @@ const mutations = {
         ),
       },
     },
+    resolve: (_, args) => ProductModel.findProductAndUpdate(args),
   },
 };
 
