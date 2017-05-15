@@ -172,6 +172,16 @@ const rootType = new ObjectType({
   },
 });
 const queries = {
+  findProductById: {
+    type: rootType,
+    args: {
+      id: {
+        description: 'The MONGO ID for the product.',
+        type: new NonNull(GraphQLID),
+      },
+    },
+    resolve: (_, args) => ProductModel.findProductById(args),
+  },
   popularProducts: {
     type: new ListType(rootType),
     args: {
