@@ -21,6 +21,21 @@ new Promise((resolve, reject) => {
     Mongo Error = ${error}`,
   }));
 });
+productSchema.statics.findProductAndUpdate = ({ id, newProduct }) =>
+new Promise((resolve, reject) => {
+  const $setOptions = {
+    $set: {
+      product: newProduct,
+    },
+  };
+  Product.findByIdAndUpdate(id, $setOptions, { new: true })
+  .exec()
+  .then(resolve)
+  .catch(error => reject({
+    problem: `Could not find the product with id ${id}. Are you sure that product exists?
+    Mongo Error = ${error}`,
+  }));
+});
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
   Product.find({})

@@ -355,7 +355,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args) => Product.Model.createProduct(args),
+    resolve: (_, args) => ProductModel.createProduct(args),
   },
   findProductAndUpdate: {
     type: rootType,
@@ -391,7 +391,7 @@ const mutations = {
                 description: 'The available sizes for the new product.',
                 type: new ListType(
                   new EnumType({
-                    name: 'NewProductSize',
+                    name: 'UpdateProductSize',
                     /* eslint-disable quote-props */
                     values: {
                       small: {
@@ -415,7 +415,7 @@ const mutations = {
                 description: 'The nicotine strength for the new product.',
                 type: new ListType(
                   new EnumType({
-                    name: 'NewProductNicotineStrengthsEnum',
+                    name: 'UpdateProductNicotineStrengthsEnum',
                     values: {
                       two: {
                         value: '2mg',
@@ -461,7 +461,7 @@ const mutations = {
                 description: 'Images array for the new Product.',
                 type: new ListType(
                   new InputObject({
-                    name: 'NewProductImageObject',
+                    name: 'UpdateProductImageObject',
                     fields: () => ({
                       purpose: {
                         description: 'What this specific image will be used for - e.g. "Juice Card"',
@@ -490,7 +490,7 @@ const mutations = {
               quantities: {
                 description: 'Availability stats for this new product.',
                 type: new InputObject({
-                  name: 'NewProductQuantityInfo',
+                  name: 'UpdateProductQuantityInfo',
                   fields: () => ({
                     available: {
                       description: 'The available quanitty for this product.',

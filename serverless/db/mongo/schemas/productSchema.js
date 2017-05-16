@@ -25,13 +25,13 @@ const productSchema = new Schema({
       required: true,
     },
     sizes: [{
-      type: Number,
-      enum: [30, 60, 120],
+      type: String,
+      enum: ['30 mil', '60 mil', '120 mil'],
       required: true,
     }],
     nicotine_strengths: [{
-      type: Number,
-      enum: [2, 4, 6, 8, 12, 14, 16, 18],
+      type: String,
+      enum: ['2mg', '4mg', '6mg', '8mg', '12mg', '14mg', '16mg', '18mg'],
       required: true,
     }],
     images: [{
@@ -49,15 +49,17 @@ const productSchema = new Schema({
       required: true,
     },
     vendor: { type: String },
+    blurb: {
+      type: String,
+      required: true,
+    },
     dates: {
       added_to_store: {
         type: Date,
         default: Date.now,
-        required: true,
       },
       removed_from_store: {
         type: Date,
-        default: Date.now,
       },
     },
     quantities: {

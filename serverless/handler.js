@@ -1,5 +1,5 @@
 /* eslint-disable global-require, import/first, no-unused-expressions */
-!global._babelPolyfill && require('babel-polyfill');
+if (!global._babelPolyfill) require('babel-polyfill');
 
 import runGraphQL from './db/graphql/runGraphQL';
 import { closeDB } from './db/mongo/connection';

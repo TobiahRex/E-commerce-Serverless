@@ -1,12 +1,14 @@
-/* eslint-disable import/default */
+/* eslint-disable import/default, global-require, no-unused-expressions, import/first */
+
 import React from 'react';
+import './styles.scss';
+
+import 'babel-polyfill';
+import 'masonry-layout';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import Perf from 'react-addons-perf';
-import 'babel-polyfill';
-import 'masonry-layout';
-import './styles.scss';
 import createStore from './redux/index';
 import saveLocation from './services/utils/saveLocation';
 import routes from './navigation/routes';
