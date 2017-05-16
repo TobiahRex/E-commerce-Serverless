@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import mongoose from 'mongoose';
 
 mongoose.Promise = Promise;
@@ -13,7 +14,18 @@ const options = {
     },
   },
 };
-const db = mongoose.createConnection(MONGO_DB, options, err =>
-console.log(err || `Mongo Connected @ ${MONGO_DB}`));
-export const closeDB = cb => db.close(() => cb());
+let db;
+export const startDB = () => {
+  db = mongoose.createConnection(MONGO_DB, options, err =>
+    console.log(err || `Mongo Connected @ ${MONGO_DB}`));
+  return db;
+}
+
+export const closeDB = (cb) => {
+  console.log('\nmongo/connection.js @ CLOSE DB');
+  db.close(() => {
+    console.log('\nmongo/connection.js @ db.close()\ndb: ', db);
+    cb();
+  });
+};
 export default db;

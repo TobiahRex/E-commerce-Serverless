@@ -6,7 +6,7 @@ const { Types, Creators } = createActions({
   fetchProductById: ['id'],
   receivedProductById: ['product'],
   fetchPopularProducts: ['qty'],
-  receivedPopularProducts: ['products'],
+  receivedPopularProducts: ['popularProducts'],
   productRequestError: ['problem'],
 });
 
@@ -19,9 +19,9 @@ const receivedProductById = (state, { product }) => ({
   activeViewProduct: product,
 });
 
-const receivedPopularProducts = (state, { products }) => ({
+const receivedPopularProducts = (state, { popularProducts }) => ({
   ...state,
-  popularProducts: products,
+  popularProducts,
 });
 
 const receivedError = (state, { problem }) => ({
