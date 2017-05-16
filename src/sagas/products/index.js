@@ -12,14 +12,19 @@ export function* fetchProductById() {
       put(apiActions.fetching()),
       call(() => api.fetchProductById(id)),
     ];
-    const response = cleanGQLresponse(responses[1]);
-    if (response.ok) {
+    const {
+      ok,
+      problem,
+      data: findProductById,
+    } = cleanGQLresponse(responses[1]);
+
+    if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedProductById(response.data)),
+        put(productActions.receivedProductById(findProductById)),
       ];
     } else {
-      yield put(apiActions.apiFail(response.problem));
+      yield put(apiActions.apiFail(problem));
     }
   }
 }
@@ -31,14 +36,20 @@ export function* fetchPopularProducts() {
       put(apiActions.fetching()),
       call(() => api.fetchPopularProducts(qty)),
     ];
-    const response = cleanGQLresponse(responses[1]);
-    if (response.ok) {
+
+    const {
+      ok,
+      problem,
+      data: popularProducts,
+    } = cleanGQLresponse(responses[1]);
+
+    if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedPopularProducts(response.data)),
+        put(productActions.receivedPopularProducts(popularProducts)),
       ];
     } else {
-      yield put(apiActions.apiFail(response.problem));
+      yield put(apiActions.apiFail(problem));
     }
   }
 }

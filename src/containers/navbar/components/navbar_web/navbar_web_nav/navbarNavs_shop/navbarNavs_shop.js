@@ -71,7 +71,7 @@ class NavbarNavsShop extends Component {
             <span>SHOP</span>
           </div>
         </Link>
-        
+
         <NavbarNavsShopDropdnContent
           popularProducts={this.props.popularProducts}
           toggleNavbarDropdown={this.toggleNavbarDropdown}
