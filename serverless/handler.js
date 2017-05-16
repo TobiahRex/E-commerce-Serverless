@@ -7,8 +7,13 @@ import { startDB, closeDB } from './db/mongo/connection';
 module.exports.graphql = (event, context, cb) => {
   console.log('\nEVENT: ', event);
 
+  startDB()
+  .then(console.log)
+  .catch(console.log);
+
   runGraphQL(event, (error, response) =>
-    closeDB(() => {
+    closeDB()
+    .then(() => {
       if (error) {
         console.log('\n//handler.js @ if(error):\nERROR: ', error);
         context.error && context.error(error);
