@@ -12,7 +12,7 @@ class NavbarNavsShop extends Component {
     show: '',
   }
   static propTypes = {
-    popJuices: arrayOf(any).isRequired,
+    popularProducts: arrayOf(any).isRequired,
     push: func.isRequired,
   }
   constructor(props) {
@@ -40,7 +40,7 @@ class NavbarNavsShop extends Component {
         </Link>
 
         <NavbarNavsShopDropdnContent
-          popJuices={this.props.popJuices}
+          popularProducts={this.props.popularProducts}
           toggleNavbarDropdown={this.toggleNavbarDropdown}
         />
       </div>
@@ -48,7 +48,7 @@ class NavbarNavsShop extends Component {
   }
 }
 const mapStateToProps = ({ products }) => ({
-  popJuices: products.popJuices,
+  popularProducts: products.popularProducts,
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),

@@ -16,7 +16,7 @@ export function* fetchProductById() {
     if (response.ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedProductById(response.body)),
+        put(productActions.receivedProductById(response.data)),
       ];
     } else {
       yield put(apiActions.apiFail(response.problem));
@@ -35,7 +35,7 @@ export function* fetchPopularProducts() {
     if (response.ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedPopularProducts(response.body)),
+        put(productActions.receivedPopularProducts(response.data)),
       ];
     } else {
       yield put(apiActions.apiFail(response.problem));

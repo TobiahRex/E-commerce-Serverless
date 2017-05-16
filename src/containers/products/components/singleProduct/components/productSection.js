@@ -154,17 +154,19 @@ class ProductSection extends Component {
     );
   }
 }
-const filterJuices = (routingObj, productsObj) => {
+const filterJuices = (routingObj, popularProducts) => {
   const location = routingObj.locationBeforeTransitions.pathname;
-  const { popJuices } = productsObj;
   const juiceName = location.split('/')[2];
-  return popJuices.filter(({ routeTag }) => routeTag === juiceName)[0];
+  return popularProducts.filter(({ routeTag }) => routeTag === juiceName)[0];
 };
 
-export default connect(
-({ auth, routing, products }) => ({
+export default connect(({
+  auth,
+  routing,
+  products: { popularProducts },
+}) => ({
   loggedIn: auth.loggedIn,
-  juiceObj: filterJuices(routing, products),
+  juiceObj: filterJuices(routing, popularProducts),
 }),
 dispatch => ({
   addToGuestCart: productObj => dispatch(

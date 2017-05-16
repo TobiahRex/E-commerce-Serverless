@@ -5,9 +5,11 @@ import getTaxRate from './getTaxRate';
 import getGeoLocation from './getGeoLocation';
 import mobileDetection from './mobileDetection';
 import generateMobileTitle from './generateMobileTitle';
+import startupFetchPopularProducts from './fetchPopularProducts';
 
 function* startupActions() {
   yield [
+    call(startupFetchPopularProducts),
     call(cleanS3RouteSaga),
     call(getTaxRate),
     call(getGeoLocation),

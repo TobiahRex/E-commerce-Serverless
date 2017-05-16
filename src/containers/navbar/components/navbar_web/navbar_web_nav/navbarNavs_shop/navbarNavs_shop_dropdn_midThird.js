@@ -7,7 +7,7 @@ const { arrayOf, object, func } = React.PropTypes;
 
 class NavbarNavsShopDropdnMidthird extends PureComponent {
   static propTypes = {
-    popJuices: arrayOf(object).isRequired,
+    popularProducts: arrayOf(object).isRequired,
     push: func.isRequired,
   }
 
@@ -28,7 +28,7 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
           </h2>
         </div>
         <div className="shop-dropdown-content-midThird-juices">
-          {this.props.popJuices.map(juiceObj => (
+          {this.props.popularProducts.map(juiceObj => (
             <NavbarNavsShopDropdnJuiceCards
               key={juiceObj.title}
               juiceInfo={juiceObj}

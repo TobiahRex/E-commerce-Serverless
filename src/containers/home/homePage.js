@@ -6,7 +6,7 @@ import HomepageHeader from './homeComponents/homepage_header';
 import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
 import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
 import HomepageReviewsCarousel from './homeComponents/homepage_reviewsCarousel';
-import HomepagePopJuices from './homeComponents/homepage_popJuices';
+import HomepagePopJuices from './homeComponents/homepage_popularProducts';
 
 class HomePage extends Component {
   static defaultProps = {

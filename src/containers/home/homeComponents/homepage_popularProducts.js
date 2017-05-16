@@ -5,17 +5,17 @@ import JuiceCard from '../../../components/ProductCards/productCard';
 
 class HomepagePopJuices extends PureComponent {
   static propTypes = {
-    popJuices: PropTypes.arrayOf(PropTypes.object.isRequired),
+    popularProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
   renderJuiceCards = () =>
-    this.props.popJuices.map((juiceObj, i) => (
+    this.props.popularProducts.map(juiceObj => (
       <JuiceCard
-        key={`homepage-juices-grid-card-parent-${i}`}
+        key={juiceObj._id}
         juiceObj={juiceObj}
         className={'homepage-juices-grid-card'}
       />
-    )
+    ),
   )
 
   render() {
@@ -30,6 +30,6 @@ class HomepagePopJuices extends PureComponent {
   }
 }
 const mapStateToProps = ({ products }) => ({
-  popJuices: products.popJuices,
+  popularProducts: products.popularProducts,
 });
 export default connect(mapStateToProps, null)(HomepagePopJuices);

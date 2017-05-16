@@ -5,19 +5,19 @@ import NavbarNavsShopDropdnMidthird from './navbarNavs_shop_dropdn_midThird';
 import NavbarNavsShopDropdnBottomthird from './navbarNavs_shop_dropdn_bottomThird';
 
 const propTypes = {
-  popJuices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  popularProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleNavbarDropdown: PropTypes.func.isRequired,
 };
 
 function NavbarNavsShopDropdnContent(props) {
-  const { popJuices, toggleNavbarDropdown } = props;
+  const { popularProducts, toggleNavbarDropdown } = props;
 
   return (
     <span className="shop__ddn-content" >
       <span className="ddn-content__parent">
         <NavbarNavsShopDropdnTopthird />
         <NavbarNavsShopDropdnMidthird
-          popJuices={popJuices}
+          popularProducts={popularProducts}
           toggleNavbarDropdown={toggleNavbarDropdown}
         />
         <NavbarNavsShopDropdnBottomthird
