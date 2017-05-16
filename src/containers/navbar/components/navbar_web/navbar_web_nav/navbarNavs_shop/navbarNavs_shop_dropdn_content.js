@@ -1,12 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import NavbarNavsShopDropdnTopthird from './navbarNavs_shop_dropdn_topThird';
 import NavbarNavsShopDropdnMidthird from './navbarNavs_shop_dropdn_midThird';
 import NavbarNavsShopDropdnBottomthird from './navbarNavs_shop_dropdn_bottomThird';
 
+const { arrayOf, object, func } = PropTypes;
+
 const propTypes = {
-  popularProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  toggleNavbarDropdown: PropTypes.func.isRequired,
+  popularProducts: arrayOf(object).isRequired,
+  toggleNavbarDropdown: func.isRequired,
 };
 
 function NavbarNavsShopDropdnContent(props) {

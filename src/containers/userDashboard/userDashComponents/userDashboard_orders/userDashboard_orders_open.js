@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import MobileOpenOrders from './userDashboard_orders_mobile/userDashboard_orders_open_mobile';

@@ -1,12 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
+const { string } = PropTypes;
+
 const propTypes = {
-  maxWidth: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  maxWidth: string.isRequired,
+  className: string.isRequired,
+  name: string.isRequired,
+  description: string.isRequired,
+  alt: string.isRequired,
 };
 
 function CarouselSlide({ maxWidth, className, name, description, alt }) {

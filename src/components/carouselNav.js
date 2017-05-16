@@ -1,4 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const { string, objectOf, func } = PropTypes;
 
 const defaultProps = {
   onNext: null,
@@ -6,11 +9,11 @@ const defaultProps = {
 };
 
 const propTypes = {
-  className: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  onNext: PropTypes.func,
-  onPrevious: PropTypes.func,
-  show: PropTypes.objectOf(PropTypes.string).isRequired,
+  className: string.isRequired,
+  name: string.isRequired,
+  onNext: func,
+  onPrevious: func,
+  show: objectOf(string).isRequired,
 };
 
 function CarouselNav({

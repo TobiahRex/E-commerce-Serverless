@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 // import UserHomeDash from './userDashboard_home/userHomeDash';
 
 const propTypes = {

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 function ProductCard({ juiceObj, className }) {
-  const { title, price, nicotine_strengths, image_url } = juiceObj;
+  const { title, price, nicotine_strengths, image_url } = juiceObj.product;
   const renderNicOptions = () =>
   nicotine_strengths.map(strength => (
     <li

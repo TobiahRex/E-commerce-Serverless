@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import BreadCrumb from '../../../../components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';

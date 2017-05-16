@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import NavbarMobileNavDropdnInfoTitle from './navbar_mobile_nav_dropdn_info_title';
 import NavbarMobileNavDropdnInfoDropdnContent from './navbar_mobile_nav_dropdn_info_dropdownContent';

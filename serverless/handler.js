@@ -5,6 +5,7 @@ import runGraphQL from './db/graphql/runGraphQL';
 import { closeDB } from './db/mongo/connection';
 
 module.exports.graphql = (event, context, cb) => {
+  console.log('EVENT: ', event);
   runGraphQL(event, (error, response) =>
     closeDB(() => {
       if (error) {

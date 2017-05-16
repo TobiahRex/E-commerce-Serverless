@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 // import PieChart from 'react-svg-piechart';
 import Breadcrumb from '../../../../components/breadcrumbs';

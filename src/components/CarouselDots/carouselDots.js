@@ -1,8 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
+const { number, func } = PropTypes;
 const propTypes = {
-  show: PropTypes.number.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  show: number.isRequired,
+  handleClick: func.isRequired,
 };
 
 function CarouselDots({ show, handleClick }) {

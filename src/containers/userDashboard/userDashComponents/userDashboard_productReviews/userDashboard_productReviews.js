@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import MobileProductReviews from './userDashboard_productReviews_mobile/userDashboard_productReviews_mobile';
 

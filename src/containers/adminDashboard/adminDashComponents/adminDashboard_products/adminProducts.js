@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
 // import { LineChart } from 'react-svg-chart';
 import uuid from 'uuid';

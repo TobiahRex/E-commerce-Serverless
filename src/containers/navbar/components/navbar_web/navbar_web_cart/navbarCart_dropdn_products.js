@@ -32,7 +32,7 @@ class NavbarCartProducts extends Component {
     return false;
   }
   filterImages = (images) => {
-    if (!images.length) return [{ purpose: '', url: '' }];
+    if (!images.length) return '';
 
     const helper = ({ purpose }) => purpose === 'card';
     const image = images.filter(helper).length;

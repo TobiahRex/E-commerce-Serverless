@@ -19,6 +19,7 @@
     "s3:clean": "aws s3 rm s3://nj2jp-react --recursive",
     "s3:deploy": "aws s3 sync dist/ s3://nj2jp-react",
     "sls": "npm-run-all sls:remove-db sls:copy-db sls:deploy",
+    "sls-logs": "cd ./serverless && sls logs -f graphql",
     "sls:remove-db": "rimraf ./serverless/db",
     "sls:copy-db": "copyfiles -u 2 './server/graphql/db/**' ./serverless/",
     "sls:deploy": "cd ./serverless && serverless deploy",

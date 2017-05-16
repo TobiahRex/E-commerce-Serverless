@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AgeVerification from './containers/ageVerification/ageVerification';
 import NavbarWeb from './containers/navbar/components/navbar_web/navbar_web';
@@ -6,15 +7,17 @@ import NavbarMobile from './containers/navbar/components/navbar_mobile/navbar_mo
 import Footer from './containers/footer/footer';
 import userActions from './redux/user';
 
+const { any, bool, func, objectOf } = PropTypes;
+
 class App extends Component {
   static defaultProps = {
     ageVerified: false,
     screenWidth: '1080',
   }
   static propTypes = {
-    children: PropTypes.objectOf(PropTypes.any).isRequired,
-    ageVerified: PropTypes.bool,
-    verifyAge: PropTypes.func.isRequired,
+    children: objectOf(any).isRequired,
+    ageVerified: bool,
+    verifyAge: func.isRequired,
   }
   static styles = {
     hide: {

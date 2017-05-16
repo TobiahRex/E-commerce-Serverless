@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import TermsConditions from './userTermsConditions';
 import PrivacyPolicy from './userPrivacyPolicy';

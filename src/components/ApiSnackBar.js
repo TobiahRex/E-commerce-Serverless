@@ -1,9 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Snackbar from 'material-ui/Snackbar';
-/*
-This Component relies on a piece of state passed down in props.
-Should contain, an error & fetching boolean.
-*/
+
 export default class apiSnackBar extends Component {
   static propTypes = {
     apiStatus: PropTypes.objectOf(PropTypes.any),

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Recaptcha from 'react-recaptcha';
 
 const propTypes = {

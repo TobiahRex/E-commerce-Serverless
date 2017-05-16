@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React from 'react';
+import PropTypes from 'prop-types';
 
+const { objectOf, any } = PropTypes;
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
+  location: objectOf(any).isRequired,
 };
 
 function Web() {

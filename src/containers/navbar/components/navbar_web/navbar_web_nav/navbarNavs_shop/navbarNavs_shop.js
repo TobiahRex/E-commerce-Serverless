@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
-const { arrayOf, any, func } = React.PropTypes;
+const { arrayOf, object, func } = React.PropTypes;
 
 class NavbarNavsShop extends Component {
   static styles = {
@@ -12,9 +12,14 @@ class NavbarNavsShop extends Component {
     show: '',
   }
   static propTypes = {
-    popularProducts: arrayOf(any).isRequired,
+    popularProducts: arrayOf(object),
     push: func.isRequired,
   }
+
+  static defaultProps = {
+    popularProducts: [],
+  }
+
   constructor(props) {
     super(props);
 

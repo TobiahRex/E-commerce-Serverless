@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import SalesSidebar from './adminSideBar_sales';
 import OnlineMembersSidebar from './adminSideBar_onlineMembers';
