@@ -18,6 +18,7 @@ new Promise((resolve, reject) => {
     });
   });
 });
+
 productSchema.statics.findProductById = ({ id }) =>
 new Promise((resolve, reject) => {
   Product.findById(id)
@@ -34,6 +35,7 @@ new Promise((resolve, reject) => {
     });
   });
 });
+
 productSchema.statics.findProductAndUpdate = ({ id, newProduct }) =>
 new Promise((resolve, reject) => {
   const $setOptions = {
@@ -55,6 +57,7 @@ new Promise((resolve, reject) => {
     });
   });
 });
+
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
   Product.find({})

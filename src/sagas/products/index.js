@@ -15,13 +15,13 @@ export function* fetchProductById() {
     const {
       ok,
       problem,
-      data: findProductById,
+      data,
     } = cleanGQLresponse(responses[1]);
 
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedProductById(findProductById)),
+        put(productActions.receivedProductById(data.data.findProductById)),
       ];
     } else {
       yield put(apiActions.apiFail(problem));
@@ -40,13 +40,13 @@ export function* fetchPopularProducts() {
     const {
       ok,
       problem,
-      data: popularProducts,
+      data,
     } = cleanGQLresponse(responses[1]);
 
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedPopularProducts(popularProducts)),
+        put(productActions.receivedPopularProducts(data.data.popularProducts)),
       ];
     } else {
       yield put(apiActions.apiFail(problem));
