@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
-const { arrayOf, shape, func, object, number, string } = PropTypes;
+const { arrayOf, shape, func, number, string } = PropTypes;
 
 class NavbarNavsShop extends Component {
   static styles = {
@@ -15,8 +15,8 @@ class NavbarNavsShop extends Component {
   static propTypes = {
     popularProducts: arrayOf(
       shape({
-        _id: object,
-        product: {
+        _id: string,  // MongoID (casted from ObjectID).
+        product: shape({
           mainTitle: string,
           title: string,
           price: string,
@@ -31,11 +31,11 @@ class NavbarNavsShop extends Component {
           routeTag: string,
           vendor: string,
           blurb: string,
-          quantities: {
+          quantities: shape({
             available: number,
             in_cart: number,
-          },
-        },
+          }),
+        }),
         reviews: arrayOf(
           shape({
             reviews_id: string,
@@ -71,7 +71,7 @@ class NavbarNavsShop extends Component {
             <span>SHOP</span>
           </div>
         </Link>
-
+        
         <NavbarNavsShopDropdnContent
           popularProducts={this.props.popularProducts}
           toggleNavbarDropdown={this.toggleNavbarDropdown}
@@ -80,10 +80,8 @@ class NavbarNavsShop extends Component {
     );
   }
 }
-export default connect(({ products }) =>
-({
+export default connect(({ products }) => ({
   popularProducts: products.popularProducts,
 }), dispatch => ({
   push: location => dispatch(push(location)),
-}),
-)(NavbarNavsShop);
+}))(NavbarNavsShop);
