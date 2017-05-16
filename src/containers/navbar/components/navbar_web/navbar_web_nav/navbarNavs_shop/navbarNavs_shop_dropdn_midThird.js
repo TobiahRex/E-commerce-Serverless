@@ -20,6 +20,7 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
   };
 
   render() {
+    const { popularProducts } = this.props;
     return (
       <div className="shop-dropdown-content-midThird">
         <div className="shop-dropdown-content-midThird-title">
@@ -28,9 +29,9 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
           </h2>
         </div>
         <div className="shop-dropdown-content-midThird-juices">
-          {this.props.popularProducts.map(juiceObj => (
+          { popularProducts.map(juiceObj => (
             <NavbarNavsShopDropdnJuiceCards
-              key={juiceObj.title}
+              key={juiceObj.title || Math.round(Math.random() * -1000)}
               juiceInfo={juiceObj}
               tag={juiceObj.routeTag}
               push={this.push}

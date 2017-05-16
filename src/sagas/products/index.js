@@ -43,17 +43,19 @@ export function* fetchPopularProducts() {
   }
 }
 
-function cleanGQLresponse(response) {
+export function cleanGQLresponse(response) {
   console.log('GraphQL response: ', response);
   if (response.data) {
-    if (response.data.errors) {
-      response.problem = response.data.errors[0].message;
+    const { errors, errorMessage, errorType } = response.data;
+    if (errors || errorMessage) {
+      response.problem = `${errorType}: ${
+        errors ? errors[0].message : errorMessage
+      }`;
       response.ok = false;
     }
     return response;
   }
-  response.problem = `GraphQL returned an empty result.
-  Are you sure the resource you\'re looking for exists?`;
+  response.problem = 'GraphQL returned an empty result. Verify your settings.';
   response.ok = false;
   return response;
 }

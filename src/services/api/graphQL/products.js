@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   graphqlURL = `${process.env.AWS_GRAPHQL_DEV}`;
 }
-
+console.info('graphqlURL: ', graphqlURL);
 const createAPI = () => {
   const api = create({
     baseURL: graphqlURL,
@@ -39,6 +39,7 @@ const createAPI = () => {
         _id
         product {
           title
+          routeTag
           images {
             purpose
             url

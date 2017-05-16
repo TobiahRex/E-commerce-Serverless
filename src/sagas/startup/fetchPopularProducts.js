@@ -1,6 +1,22 @@
-import { put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
+import apiActions from '../../redux/api';
 import productActions from '../../redux/products/';
+import productApi from '../../services/api/graphQL/products';
+import { cleanGQLresponse } from '../products/';
 
-export default function* startupFetchPopularProduct() {
-  yield put(productActions.fetchPopularProducts());
+const api = productApi.createAPI();
+
+export default function* fetchPopularProducts() {
+
+  const response = yield call(() => api.fetchPopularProducts(6));
+
+  const { ok, problem, data } = cleanGQLresponse(response);
+  if (ok) {
+    yield put(productActions.receivedPopularProducts(data));
+  } else {
+    yield [
+      put(productActions.productRequestError(problem)),
+      put(apiActions.apiFail(problem)),
+    ];
+  }
 }

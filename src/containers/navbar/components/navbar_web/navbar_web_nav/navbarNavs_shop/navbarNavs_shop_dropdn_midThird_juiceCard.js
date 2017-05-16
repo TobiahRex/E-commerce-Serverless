@@ -31,8 +31,17 @@ NavbarNavsShopDropdnJuiceCards.propTypes = {
     price: string,
     nicotine_strengths: arrayOf(string),
     imageUrl: string,
-  }).isRequired,
-  tag: string.isRequired,
+  }),
+  tag: string,
   push: func.isRequired,
+};
+NavbarNavsShopDropdnJuiceCards.defaultProps = {
+  juiceInfo: {
+    title: '',
+    price: '',
+    nicotine_strengths: [''],
+    imageUrl: '',
+  },
+  tag: '',
 };
 export default NavbarNavsShopDropdnJuiceCards;

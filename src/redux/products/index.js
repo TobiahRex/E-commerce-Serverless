@@ -7,6 +7,7 @@ const { Types, Creators } = createActions({
   receivedProductById: ['product'],
   fetchPopularProducts: ['qty'],
   receivedPopularProducts: ['products'],
+  productRequestError: ['problem'],
 });
 
 export const productTypes = Types;
@@ -23,7 +24,13 @@ const receivedPopularProducts = (state, { products }) => ({
   popularProducts: products,
 });
 
+const receivedError = (state, { problem }) => ({
+  ...state,
+  error: problem,
+});
+
 export const productsReducer = createReducer(INITIAL_STATE, {
   [Types.RECEIVED_PRODUCT_BY_ID]: receivedProductById,
   [Types.RECEIVED_POPULAR_PRODUCTS]: receivedPopularProducts,
+  [Types.PRODUCT_REQUEST_ERROR]: receivedError,
 });
