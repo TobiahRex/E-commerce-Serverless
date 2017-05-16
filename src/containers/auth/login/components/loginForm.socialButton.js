@@ -1,11 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
-const propTypes = {
-  faName: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  callback: PropTypes.func.isRequired,
-};
 
 function SocialButton({ callback, slug, faName }) {
   if (slug !== 'loginWithLine') {
@@ -21,5 +16,12 @@ function SocialButton({ callback, slug, faName }) {
     </button>
   );
 }
+const { string, func } = PropTypes;
+const propTypes = {
+  faName: string.isRequired,
+  slug: string.isRequired,
+  callback: func.isRequired,
+};
+
 SocialButton.propTypes = propTypes;
 export default SocialButton;

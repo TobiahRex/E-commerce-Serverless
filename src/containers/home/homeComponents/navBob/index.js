@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import Scroll from 'react-scroll';
 
 const scroll = Scroll.animateScroll;
+const { number, string } = PropTypes;
 const propTypes = {
-  height: PropTypes.number.isRequired,
-  className: PropTypes.string.isRequired,
+  height: number.isRequired,
+  className: string.isRequired,
 };
 
 function NavBob({ height, className }) {

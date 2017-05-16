@@ -1,17 +1,19 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavBob from './navBob';
 
 import CarouselImageSlide from '../../../components/CarouselImageSlide/carouselImageSlide';
 import CarouselNav from '../../../components/carouselNav';
 
+const { number } = PropTypes;
 class HomepageHowCarousel extends Component {
   static defaultProps = {
     screenSize: window.screen.availWidth,
   }
   static propTypes = {
-    screenSize: PropTypes.number,
-    height: PropTypes.number.isRequired,
+    screenSize: number,
+    height: number.isRequired,
   }
   constructor(props) {
     super(props);

@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link, browserHistory } from 'react-router';
 import RecaptchaWidget from '../../../components/recaptcha';
 
+const { objectOf, any } = PropTypes;
 class Register extends Component {
   static propTypes = {
-    // location: PropTypes.objectOf(PropTypes.any).isRequired,
-    route: PropTypes.objectOf(PropTypes.any).isRequired,
+    route: objectOf(any).isRequired,
   }
   constructor(props) {
     super(props);

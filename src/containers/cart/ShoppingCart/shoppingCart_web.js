@@ -1,11 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
+const { func, number } = PropTypes;
 const propTypes = {
-  renderWebJuices: PropTypes.func.isRequired,
-  grandTotal: PropTypes.number,
-  taxes: PropTypes.number,
+  renderWebJuices: func.isRequired,
+  grandTotal: number,
+  taxes: number,
+};
+const defaultProps = {
+  grandTotal: 0,
+  taxes: 0,
 };
 
 function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
@@ -73,6 +79,6 @@ function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
     </div>
   );
 }
-
 ShoppingCartWeb.propTypes = propTypes;
+ShoppingCartWeb.defaultProps = defaultProps;
 export default ShoppingCartWeb;

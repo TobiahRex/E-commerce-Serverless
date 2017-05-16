@@ -1,11 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import NavbarMobileNavDropdnMediaTitle from './navbar_mobile_nav_dropdn_media_title';
 import NavbarMobileNavDropdnMediaDropdnContent from './navbar_mobile_nav_dropdn_media_dropdownContent';
 
-const propTypes = {
-  toggleDropdown: PropTypes.func,
-};
+const { func } = PropTypes;
+const propTypes = { toggleDropdown: func };
 
 function NavbarMobileNavDropdnMedia({ toggleDropdown }) {
   return (

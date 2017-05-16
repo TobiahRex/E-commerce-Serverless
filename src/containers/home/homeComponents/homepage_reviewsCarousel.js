@@ -1,10 +1,12 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavBob from './navBob';
 import HomepageReviewsSlide from '../../../components/CarouselTextSlide/carouselTextSlide';
 import HomepageReviewsCarourselDots from '../../../components/CarouselDots/carouselDots';
 
 let globalTimer;
+const { string, number } = PropTypes;
 
 class HomepageReviewsCarousel extends Component {
   static defaultProps = {
@@ -12,8 +14,8 @@ class HomepageReviewsCarousel extends Component {
   }
 
   static propTypes = {
-    screenSize: PropTypes.string,
-    height: PropTypes.number.isRequired,
+    screenSize: string,
+    height: number.isRequired,
   }
   static reviews = [
     {

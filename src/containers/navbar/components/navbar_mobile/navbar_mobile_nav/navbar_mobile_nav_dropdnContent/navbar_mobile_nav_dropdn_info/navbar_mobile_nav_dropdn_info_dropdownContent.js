@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
+const { func } = PropTypes;
 const propTypes = {
-  toggleDropdown: PropTypes.func.isRequired,
+  toggleDropdown: func.isRequired,
 };
 
 function NavbarMobileNavInfoDropdnContent({ toggleDropdown }) {

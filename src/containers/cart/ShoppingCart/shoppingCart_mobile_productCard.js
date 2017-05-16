@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
+const { objectOf, any, number } = PropTypes;
 const propTypes = {
-  juiceObj: PropTypes.objectOf(PropTypes.any.isRequired),
-  keyNum: PropTypes.number.isRequired,
-  taxes: PropTypes.number.isRequired,
-  grandTotal: PropTypes.number.isRequired,
+  juiceObj: objectOf(any).isRequired,
+  keyNum: number.isRequired,
+  taxes: number.isRequired,
+  grandTotal: number.isRequired,
 };
 
 function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) {
