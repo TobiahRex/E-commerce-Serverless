@@ -7,7 +7,6 @@ import { cleanGQLresponse } from '../products/';
 const api = productApi.createAPI();
 
 export default function* fetchPopularProducts() {
-
   const response = yield call(() => api.fetchPopularProducts(6));
 
   const { ok, problem, data } = cleanGQLresponse(response);

@@ -32,6 +32,8 @@ class NavbarCartProducts extends Component {
     return false;
   }
   filterImages = (images) => {
+    if (!images.length) return [{ purpose: '', url: '' }];
+
     const helper = ({ purpose }) => purpose === 'card';
     const image = images.filter(helper).length;
     return !image ? '' : images.filter(helper).reduce(a => a).url;
@@ -39,28 +41,35 @@ class NavbarCartProducts extends Component {
   renderProducts = products =>
   products.map((juiceObj) => {
     const {
-      id,
-      title,
-      qty,
-      price,
-      strength,
-      images,
-      routeTag,
+      _id,
+      product: {
+        title,
+        qty,
+        price,
+        strength,
+        images,
+        routeTag,
+      },
     } = juiceObj;
     return (
       <li
         className="products-list-card"
-        key={new Buffer(`${routeTag}${title}`, 'utf8').toString('base64')}
+        key={`${routeTag}-${_id}`}
       >
-        <NavbarCartProductsCardImage imageUrl={this.filterImages(images)} title={title} />
+        <NavbarCartProductsCardImage
+          imageUrl={this.filterImages(images)}
+          title={title}
+        />
+
         <NavbarCartProductsCardInfo
           title={title}
           qty={qty}
           price={price}
           strength={strength}
         />
+
         <NavbarCartProductsCardActions
-          juiceId={id}
+          juiceId={_id}
           routeTag={routeTag}
           editCartItem={this.props.editCartItem}
           deleteFromCart={this.props.deleteFromCart}

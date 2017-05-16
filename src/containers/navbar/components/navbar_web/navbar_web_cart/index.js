@@ -18,6 +18,7 @@ class NavbarCart extends Component {
   }
   render() {
     const { qty, cartProducts, editCartItem, deleteFromCart } = this.props;
+
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
@@ -25,7 +26,10 @@ class NavbarCart extends Component {
           cartProducts={cartProducts}
           editCartItem={editCartItem}
           deleteFromCart={deleteFromCart}
-          cartTotal={this.props.cartProducts.reduce((acc, { price }) => acc + Number(price), 0)}
+          cartTotal={
+            cartProducts.length ?
+            cartProducts.reduce((acc, { price }) => acc + Number(price), 0) : 0
+          }
         />
       </div>
     );

@@ -14,7 +14,8 @@ new Promise((resolve, reject) => {
 });
 productSchema.statics.findProductById = ({ id }) =>
 new Promise((resolve, reject) => {
-  Product.findById(id).exec()
+  Product.findById(id)
+  .exec()
   .then(resolve)
   .catch(error => reject({
     problem: `Could not find the product with id ${id}.  Are you sure that product exists?
@@ -39,6 +40,7 @@ new Promise((resolve, reject) => {
 productSchema.statics.getPopularProducts = ({ qty }) =>
 new Promise((resolve, reject) => {
   Product.find({})
+  .exec()
   .then(dbProducts => resolve(dbProducts.slice(0, qty)))
   .catch(error => reject({
     problem: `Could not fetch the ${qty} products you requested.

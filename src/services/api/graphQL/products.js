@@ -35,11 +35,10 @@ const createAPI = () => {
   });
   const fetchPopularProducts = qty => api.post('', {
     query: `query {
-      popularProducts(qty: ${qty}){
+      popularProducts(qty: ${qty}) {
         _id
         product {
           title
-          routeTag
           images {
             purpose
             url
