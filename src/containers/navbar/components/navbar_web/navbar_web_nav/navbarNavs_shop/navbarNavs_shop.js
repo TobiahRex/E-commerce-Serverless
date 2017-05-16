@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
-const { arrayOf, object, func } = PropTypes;
+const { arrayOf, shape, func, object, number, string } = PropTypes;
 
 class NavbarNavsShop extends Component {
   static styles = {
@@ -13,14 +13,41 @@ class NavbarNavsShop extends Component {
     show: '',
   }
   static propTypes = {
-    popularProducts: arrayOf(object),
+    popularProducts: arrayOf(
+      shape({
+        _id: object,
+        product: {
+          mainTitle: string,
+          title: string,
+          price: string,
+          sku: string,
+          sizes: arrayOf(string),
+          nicotine_strengths: arrayOf(string),
+          images: arrayOf(
+            shape({
+              purpose: string,
+              url: string,
+            })),
+          routeTag: string,
+          vendor: string,
+          blurb: string,
+          quantities: {
+            available: number,
+            in_cart: number,
+          },
+        },
+        reviews: arrayOf(
+          shape({
+            reviews_id: string,
+            user_id: string,
+          }),
+        ),
+      })),
     push: func.isRequired,
   }
-
   static defaultProps = {
     popularProducts: [],
   }
-
   constructor(props) {
     super(props);
 
@@ -53,11 +80,10 @@ class NavbarNavsShop extends Component {
     );
   }
 }
-const mapStateToProps = ({ products }) => ({
+export default connect(({ products }) =>
+({
   popularProducts: products.popularProducts,
-});
-const mapDispatchToProps = dispatch => ({
+}), dispatch => ({
   push: location => dispatch(push(location)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarNavsShop);
+}),
+)(NavbarNavsShop);

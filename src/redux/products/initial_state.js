@@ -1,4 +1,4 @@
-const emptyProduct = {
+export const productType = {
   _id: '',
   product: {
     mainTitle: '',
@@ -28,7 +28,7 @@ const emptyProduct = {
 };
 
 export default {
-  activeViewProduct: Object.assign({}, emptyProduct),
-  popularProducts: [{ ...emptyProduct }],
+  activeViewProduct: Object.assign({}, productType),
+  popularProducts: [{ ...productType }],
   error: null,
 };
