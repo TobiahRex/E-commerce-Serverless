@@ -1,12 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LoginFormInput from './loginForm.input';
-
-const propTypes = {
-  onInputChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-};
 
 function LoginFormInputParent({ onInputChange, value, slug, type }) {
   const titleSlug = slug[0].toUpperCase() + slug.slice(1);
@@ -26,5 +20,12 @@ function LoginFormInputParent({ onInputChange, value, slug, type }) {
     </div>
   );
 }
+const { string, func } = PropTypes;
+const propTypes = {
+  onInputChange: func.isRequired,
+  value: string.isRequired,
+  slug: string.isRequired,
+  type: string.isRequired,
+};
 LoginFormInputParent.propTypes = propTypes;
 export default LoginFormInputParent;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 // import { LineChart } from 'react-svg-chart';
 import uuid from 'uuid';
@@ -8,8 +9,9 @@ import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 import ProductsModal from './adminDashboard_products_modal_modify_web';
 
+const { objectOf, any } = PropTypes;
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
+  location: objectOf(any).isRequired,
 };
 
 function AdminProducts({ location }) {

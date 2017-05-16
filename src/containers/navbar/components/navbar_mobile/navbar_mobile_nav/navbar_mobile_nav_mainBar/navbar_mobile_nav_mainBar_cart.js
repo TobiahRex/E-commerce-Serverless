@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  cartQty: PropTypes.number,
-};
-NavbarMobileNavCart.propTypes = propTypes;
+const { number } = PropTypes;
+const propTypes = { cartQty: number };
+const defaultProps = { cartQty: 0 };
 
-export default function NavbarMobileNavCart({ cartQty }) {
+function NavbarMobileNavCart({ cartQty }) {
   return (
     <div className="navbar-mobile-nav-cart">
       <Link to="/cart">
@@ -25,3 +25,6 @@ export default function NavbarMobileNavCart({ cartQty }) {
     </div>
   );
 }
+NavbarMobileNavCart.propTypes = propTypes;
+NavbarMobileNavCart.defaultProps = defaultProps;
+export default NavbarMobileNavCart;

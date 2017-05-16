@@ -2,10 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import MobileProductReviews from './userDashboard_productReviews_mobile/userDashboard_productReviews_mobile';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function OrderReviews() {
   return (
     <div className="dashboard__reviews-container">
@@ -157,6 +153,5 @@ function OrderReviews() {
     </div>
   );
 }
-OrderReviews.propTypes = propTypes;
 OrderReviews.Mobile = MobileProductReviews;
 export default OrderReviews;

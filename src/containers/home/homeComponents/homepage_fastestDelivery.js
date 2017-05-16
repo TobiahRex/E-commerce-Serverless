@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
@@ -55,7 +56,7 @@ function HomepageFastestDelivery({ height, mobile }) {
     </div>
   );
 }
-const { number, bool } = React.PropTypes;
+const { number, bool } = PropTypes;
 HomepageFastestDelivery.propTypes = {
   height: number.isRequired,
   mobile: bool.isRequired,

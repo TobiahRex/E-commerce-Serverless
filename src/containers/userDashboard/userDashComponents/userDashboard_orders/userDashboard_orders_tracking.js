@@ -1,10 +1,4 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
-
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function OrderTracking() {
   return (
@@ -96,5 +90,4 @@ function OrderTracking() {
     </div>
   );
 }
-OrderTracking.propTypes = propTypes;
 export default OrderTracking;

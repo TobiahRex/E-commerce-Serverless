@@ -1,15 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
-
-const defaultProps = {
-  mobile: false,
-};
-
-const propTypes = {
-  height: PropTypes.number.isRequired,
-  mobile: PropTypes.bool,
-};
 
 function HomepageHeader({ height, mobile }) {
   let navBob;
@@ -36,6 +28,14 @@ function HomepageHeader({ height, mobile }) {
     </header>
   );
 }
+const { number, bool } = PropTypes;
+const propTypes = {
+  height: number.isRequired,
+  mobile: bool,
+};
+const defaultProps = {
+  mobile: false,
+};
 HomepageHeader.defaultProps = defaultProps;
 HomepageHeader.propTypes = propTypes;
 export default HomepageHeader;

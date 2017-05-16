@@ -1,11 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import AuthService from '../../../../services/utils/authService';
 import RecaptchaWidget from '../../../../components/recaptcha';
 import LoginFormInputParent from './loginForm.inputParent';
 
+const { instanceOf } = PropTypes;
 class LoginForm extends Component {
   static propTypes = {
-    auth: PropTypes.instanceOf(AuthService).isRequired,
+    auth: instanceOf(AuthService).isRequired,
   };
   constructor(props) {
     super(props);

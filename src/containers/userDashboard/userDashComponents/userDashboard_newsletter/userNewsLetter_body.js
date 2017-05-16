@@ -1,10 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function UserNewsletter() {
   return (
     <div className="newsletter--container">
@@ -27,7 +23,7 @@ function UserNewsletter() {
           </button>
         </div>
 
-        
+
         <div className="action-section__save-btn">
           <button className="save-btn primary-flex-button sweep-right">
             Save
@@ -51,5 +47,4 @@ function UserNewsletter() {
     </div>
   );
 }
-UserNewsletter.propTypes = propTypes;
 export default UserNewsletter;

@@ -1,10 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
-
-const propTypes = {
-  renderMobileJuices: PropTypes.func.isRequired,
-};
 
 function ShoppingCartMobile({ renderMobileJuices }) {
   return (
@@ -23,6 +20,7 @@ function ShoppingCartMobile({ renderMobileJuices }) {
     </div>
   );
 }
-
+const { func } = PropTypes;
+const propTypes = { renderMobileJuices: func.isRequired };
 ShoppingCartMobile.propTypes = propTypes;
 export default ShoppingCartMobile;

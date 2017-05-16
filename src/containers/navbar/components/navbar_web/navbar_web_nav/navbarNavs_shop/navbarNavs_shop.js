@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
-const { arrayOf, object, func } = React.PropTypes;
+const { arrayOf, object, func } = PropTypes;
 
 class NavbarNavsShop extends Component {
   static styles = {

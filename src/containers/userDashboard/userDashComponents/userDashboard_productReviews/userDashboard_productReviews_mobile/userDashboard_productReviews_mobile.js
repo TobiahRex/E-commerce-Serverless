@@ -1,10 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function OrderReviews() {
   return (
     <div className="dashboard__reviews-container">
@@ -209,5 +205,4 @@ function OrderReviews() {
     </div>
   );
 }
-OrderReviews.propTypes = propTypes;
 export default OrderReviews;

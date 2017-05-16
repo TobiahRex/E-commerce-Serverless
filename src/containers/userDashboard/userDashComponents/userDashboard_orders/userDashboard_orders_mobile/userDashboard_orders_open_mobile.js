@@ -3,10 +3,6 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import uuid from 'uuid';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function OpenOrders() {
   return (
     <div className="dashboard__open-orders">
@@ -462,5 +458,4 @@ function OpenOrders() {
     </div>
   );
 }
-OpenOrders.propTypes = propTypes;
 export default OpenOrders;

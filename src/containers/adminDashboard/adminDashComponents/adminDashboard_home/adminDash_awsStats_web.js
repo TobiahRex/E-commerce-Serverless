@@ -1,9 +1,5 @@
 import React from 'react';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function AdminDashReportsWeb() {
   return (
     <div className="dashboard__aws-stats">
@@ -16,5 +12,4 @@ function AdminDashReportsWeb() {
     </div>
   );
 }
-AdminDashReportsWeb.propTypes = propTypes;
 export default AdminDashReportsWeb;

@@ -1,10 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function AdminDashWebTrafficWeb() {
   return (
     <div className="dashboard__web-traffic">
@@ -211,5 +207,4 @@ function AdminDashWebTrafficWeb() {
     </div>
   );
 }
-AdminDashWebTrafficWeb.propTypes = propTypes;
 export default AdminDashWebTrafficWeb;

@@ -1,9 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
-};
 
 function UserSideBar({ location }) {
   const homeDashboard = location.pathname.split('/')[1];
@@ -99,5 +96,7 @@ function UserSideBar({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 UserSideBar.propTypes = propTypes;
 export default UserSideBar;

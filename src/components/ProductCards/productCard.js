@@ -1,10 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
-const propTypes = {
-  juiceObj: PropTypes.objectOf(PropTypes.any),
-  className: PropTypes.string.isRequired,
-};
 
 function ProductCard({ juiceObj, className }) {
   const { title, price, nicotine_strengths, image_url } = juiceObj.product;
@@ -50,6 +46,14 @@ function ProductCard({ juiceObj, className }) {
     </div>
   );
 }
-
+const { objectOf, string, any } = PropTypes;
+const propTypes = {
+  juiceObj: objectOf(any),
+  className: string.isRequired,
+};
+const defaultProps = {
+  juiceObj: {},
+};
 ProductCard.propTypes = propTypes;
+ProductCard.defaultProps = defaultProps;
 export default ProductCard;

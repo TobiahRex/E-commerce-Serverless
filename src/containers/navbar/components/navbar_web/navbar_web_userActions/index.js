@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavbarUserActionsNotSignedIn from './navbarUserActions_notSignedIn';
 import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
@@ -17,7 +18,7 @@ function NavbarUserActions({ activeUser }) {
     </div>
   );
 }
-const { bool } = React.PropTypes;
+const { bool } = PropTypes;
 NavbarUserActions.propTypes = {
   activeUser: bool,
 };

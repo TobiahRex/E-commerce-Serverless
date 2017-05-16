@@ -1,10 +1,8 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import NavbarMobileNavDropdnShop from './navbar_mobile_nav_dropdn_shop/navbar_mobile_nav_dropdn_shop';
 import NavbarMobileNavDropdnMedia from './navbar_mobile_nav_dropdn_media/navbar_mobile_nav_dropdn_media';
 import NavbarMobileNavDropdnInfo from './navbar_mobile_nav_dropdn_info/navbar_mobile_nav_dropdn_info';
-
-const { bool, func } = React.PropTypes;
 
 function NavbarMobileNavDropdnContent({ ddOpen, toggleDropdown }) {
   const showDropdown = ddOpen ? {
@@ -26,6 +24,7 @@ function NavbarMobileNavDropdnContent({ ddOpen, toggleDropdown }) {
     </ul>
   );
 }
+const { bool, func } = PropTypes;
 NavbarMobileNavDropdnContent.defaultProps = {
   navbarSize: '320px',
 };

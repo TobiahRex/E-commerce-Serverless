@@ -1,14 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import uuid from 'uuid';
-
-const defaultProps = {
-  location: {},
-};
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function AdminSideBar({ location }) {
   const adminDashboard = location.pathname.split('/')[1];
@@ -62,6 +55,13 @@ function AdminSideBar({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = {
+  location: objectOf(any).isRequired,
+};
+const defaultProps = {
+  location: {},
+};
 AdminSideBar.defaultProps = defaultProps;
 AdminSideBar.propTypes = propTypes;
 export default AdminSideBar;

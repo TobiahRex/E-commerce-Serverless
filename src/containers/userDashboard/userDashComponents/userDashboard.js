@@ -1,9 +1,5 @@
 import React from 'react';
-// import UserHomeDash from './userDashboard_home/userHomeDash';
-
-const propTypes = {
-  children: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+import PropTypes from 'prop-types';
 
 function UserDashboard({ children }) {
   return (
@@ -14,5 +10,9 @@ function UserDashboard({ children }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = {
+  children: objectOf(any).isRequired,
+};
 UserDashboard.propTypes = propTypes;
 export default UserDashboard;

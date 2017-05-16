@@ -1,14 +1,15 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 
 /* TODO
 1. Recommend Another juice buton sends user to "/contact us";
 
 */
-
+const { func } = PropTypes;
 class NavbarNavsShopDropdnBottomthird extends PureComponent {
   static propTypes = {
-    toggleNavbarDropdown: PropTypes.func.isRequired,
+    toggleNavbarDropdown: func.isRequired,
   }
 
   toggleNavbarDropdown = () => this.props.toggleNavbarDropdown;

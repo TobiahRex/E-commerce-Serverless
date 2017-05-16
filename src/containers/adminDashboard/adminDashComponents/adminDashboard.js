@@ -1,8 +1,5 @@
 import React from 'react';
-
-const propTypes = {
-  children: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+import PropTypes from 'prop-types';
 
 function AdminDashboard({ children }) {
   return (
@@ -13,5 +10,7 @@ function AdminDashboard({ children }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = { children: objectOf(any).isRequired };
 AdminDashboard.propTypes = propTypes;
 export default AdminDashboard;

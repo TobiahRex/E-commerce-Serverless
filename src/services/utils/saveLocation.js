@@ -1,6 +1,6 @@
 import sessionActions from '../../redux/session';
 
-function saveActiveRoute(dispatch) {
+export function saveActiveRoute(dispatch) {
   const url = window.location.pathname;
   const path = url.replace(/[\/]/g, '_')
   .split('_');

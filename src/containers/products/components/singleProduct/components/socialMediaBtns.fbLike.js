@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const { string, bool, oneOfType, oneOf, number } = PropTypes;
+
 class ReactFBLike extends Component {
   static propTypes = {
-    appId: PropTypes.string.isRequired,
-    version: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-    layout: PropTypes.oneOf(['standard', 'box_count', 'button_count', 'button']),
-    action: PropTypes.string,
-    size: PropTypes.string,
-    share: PropTypes.bool,
-    showFaces: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    reference: PropTypes.string,
-    colorscheme: PropTypes.string,
-    kidDirectedSite: PropTypes.bool,
+    appId: string.isRequired,
+    version: string.isRequired,
+    language: string.isRequired,
+    href: string.isRequired,
+    layout: oneOf(['standard', 'box_count', 'button_count', 'button']),
+    action: string,
+    size: string,
+    share: bool,
+    showFaces: bool,
+    width: oneOfType([string, number]),
+    reference: string,
+    colorscheme: string,
+    kidDirectedSite: bool,
   };
 
   static defaultProps = {
@@ -28,6 +30,8 @@ class ReactFBLike extends Component {
     showFaces: true,
     colorscheme: 'light',
     kidDirectedSite: false,
+    width: '',
+    reference: '',
   };
 
   componentDidMount() {

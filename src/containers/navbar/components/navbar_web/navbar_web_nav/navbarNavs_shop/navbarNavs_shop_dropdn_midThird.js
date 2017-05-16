@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import NavbarNavsShopDropdnJuiceCards from './navbarNavs_shop_dropdn_midThird_juiceCard';
 
-const { arrayOf, object, func } = React.PropTypes;
+const { arrayOf, object, func } = PropTypes;
 
 class NavbarNavsShopDropdnMidthird extends PureComponent {
   static propTypes = {

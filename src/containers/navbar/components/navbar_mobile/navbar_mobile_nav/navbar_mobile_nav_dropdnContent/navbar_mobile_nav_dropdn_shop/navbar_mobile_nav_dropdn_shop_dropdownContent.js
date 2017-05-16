@@ -1,9 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-
-const propTypes = {
-  toggleDropdown: PropTypes.func.isRequired,
-};
 
 function NavbarMobileNavShopDropdnContent({ toggleDropdown }) {
   return (
@@ -43,6 +40,7 @@ function NavbarMobileNavShopDropdnContent({ toggleDropdown }) {
     </div>
   );
 }
-
+const { func } = PropTypes;
+const propTypes = { toggleDropdown: func.isRequired };
 NavbarMobileNavShopDropdnContent.propTypes = propTypes;
 export default NavbarMobileNavShopDropdnContent;

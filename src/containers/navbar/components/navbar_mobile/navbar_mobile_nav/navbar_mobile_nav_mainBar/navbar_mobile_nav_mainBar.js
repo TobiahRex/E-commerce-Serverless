@@ -1,17 +1,21 @@
-import React, { PropTypes, PureComponent } from 'react';
-
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import NavbarMobileNavHamburger from './navbar_mobile_nav_mainBar_hamburger';
 import NavbarMobileNavTitle from './navbar_mobile_nav_mainBar_title';
 import NavbarMobileNavCart from './navbar_mobile_nav_mainBar_cart';
 
+const { number, func, bool } = PropTypes;
 
 class NavbarMobileNavMain extends PureComponent {
   static propTypes = {
-    cartQty: PropTypes.number,
-    toggleDropdown: PropTypes.func,
-    ddOpen: PropTypes.bool,
+    cartQty: number,
+    toggleDropdown: func.isRequired,
+    ddOpen: bool,
   }
-
+  static defaultProps = {
+    cartQty: 0,
+    ddOpen: false,
+  }
   constructor(props) {
     super(props);
     this.state = {

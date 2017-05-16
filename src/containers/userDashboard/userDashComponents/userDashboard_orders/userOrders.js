@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
@@ -7,10 +8,6 @@ import ClosedOrders from './userDashboard_orders_closed';
 import OrderTracking from './userDashboard_orders_tracking';
 import InvoiceOrders from './userDashboard_orders_invoice';
 import LoadingIcon from './userDashboard_orders_loadingIcon';
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function UserOrders({ location }) {
   const homeDashboard = location.pathname.split('/')[1];
@@ -60,5 +57,7 @@ function UserOrders({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 UserOrders.propTypes = propTypes;
 export default UserOrders;

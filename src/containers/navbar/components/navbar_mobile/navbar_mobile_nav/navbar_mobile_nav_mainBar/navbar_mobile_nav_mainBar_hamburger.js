@@ -1,11 +1,16 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
+const { bool, func } = PropTypes;
 
 class NavbarMobileNavHamburger extends PureComponent {
   static propTypes = {
-    ddOpen: PropTypes.bool,
-    toggleDropdown: PropTypes.func,
+    ddOpen: bool,
+    toggleDropdown: func.isRequired,
   };
-
+  static defaultProps = {
+    ddOpen: false,
+  }
   toggleHamburger = (e) => {
     e.preventDefault();
     this.props.toggleDropdown(e.target.parentElement.getAttribute('id'), e);

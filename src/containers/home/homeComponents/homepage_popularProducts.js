@@ -1,11 +1,13 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import JuiceCard from '../../../components/ProductCards/productCard';
+
+const { arrayOf, object } = PropTypes;
 
 class HomepagePopJuices extends PureComponent {
   static propTypes = {
-    popularProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+    popularProducts: arrayOf(object).isRequired,
   }
 
   renderJuiceCards = () =>

@@ -3,10 +3,6 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import MobileOpenOrders from './userDashboard_orders_mobile/userDashboard_orders_open_mobile';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function OpenOrders() {
   return (
     <div className="dashboard__open-orders">
@@ -159,6 +155,5 @@ function OpenOrders() {
     </div>
   );
 }
-OpenOrders.propTypes = propTypes;
 OpenOrders.Mobile = MobileOpenOrders;
 export default OpenOrders;

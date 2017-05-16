@@ -1,13 +1,9 @@
 import React from 'react';
-import 'react-router';
+import PropTypes from 'prop-types';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 import ProductReviews from './userDashboard_productReviews';
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function UserProductReviews({ location }) {
   const homeDashboard = location.pathname.split('/')[1];
@@ -37,5 +33,9 @@ function UserProductReviews({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = {
+  location: objectOf(any).isRequired,
+};
 UserProductReviews.propTypes = propTypes;
 export default UserProductReviews;

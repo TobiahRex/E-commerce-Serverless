@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function NavbarNavsShopDropdnJuiceCards(props) {
   const {
@@ -40,7 +41,7 @@ function NavbarNavsShopDropdnJuiceCards(props) {
     </div>
   );
 }
-const { shape, arrayOf, string, func } = React.PropTypes;
+const { shape, arrayOf, string, func } = PropTypes;
 NavbarNavsShopDropdnJuiceCards.propTypes = {
   juiceInfo: shape({
     title: string,

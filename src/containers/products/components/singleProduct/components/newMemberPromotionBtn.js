@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function NewMemberPromotionBtn({ loggedIn, modalHandler }) {
   let style;
@@ -18,7 +19,7 @@ export default function NewMemberPromotionBtn({ loggedIn, modalHandler }) {
     </div>
   );
 }
-const { bool, func } = React.PropTypes;
+const { bool, func } = PropTypes;
 NewMemberPromotionBtn.propTypes = {
   loggedIn: bool.isRequired,
   modalHandler: func.isRequired,

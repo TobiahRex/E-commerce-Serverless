@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+const { func } = PropTypes;
 const propTypes = {
-  onLanguageChange: PropTypes.func.isRequired,
+  onLanguageChange: func.isRequired,
 };
-
 function NavbarOptionsLanguageDropdnEnglish({ onLanguageChange }) {
   function preventDefault(e) {
     e.preventDefault();

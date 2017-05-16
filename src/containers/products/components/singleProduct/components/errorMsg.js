@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 function ErrorMsg({ error }) {
@@ -24,7 +25,7 @@ function ErrorMsg({ error }) {
     </div>
   );
 }
-const { bool } = React.PropTypes;
+const { bool } = PropTypes;
 ErrorMsg.propTypes = {
   error: bool.isRequired,
 };

@@ -1,14 +1,13 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import TermsConditions from './adminTermsConditions';
 import PrivacyPolicy from './adminPrivacyPolicy';
 import ShippingPolicy from './adminShippingPolicy';
 import ReturnPolicy from './adminReturnPolicy';
 import NicotineDisclaimer from './adminNicotineDisclaimer';
 
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
-};
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 
 const AdminLegal = {
   TermsConditions: ({ location }) =>

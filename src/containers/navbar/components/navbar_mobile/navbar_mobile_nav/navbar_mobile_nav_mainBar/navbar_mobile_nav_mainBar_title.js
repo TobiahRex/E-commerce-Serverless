@@ -1,9 +1,11 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+const { string } = PropTypes;
 class NavbarMobileNavTitle extends PureComponent {
   static propTypes = {
-    activePage: PropTypes.string,
+    activePage: string.isRequired,
   };
 
   render() {

@@ -1,10 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function AdminDashLatestOrdersWeb() {
   return (
     <div className="dashboard__latest-orders">
@@ -208,5 +204,4 @@ function AdminDashLatestOrdersWeb() {
     </div>
   );
 }
-AdminDashLatestOrdersWeb.propTypes = propTypes;
 export default AdminDashLatestOrdersWeb;

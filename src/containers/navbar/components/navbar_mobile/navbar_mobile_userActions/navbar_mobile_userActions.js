@@ -1,12 +1,14 @@
 /* eslint react/no-unused-prop-types: 0 */
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notSignedIn';
 import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
 
-const { bool } = React.PropTypes;
+const { bool } = PropTypes;
 
-class NavbarMobileActions extends PureComponent {
+class NavbarMobileUserActions extends PureComponent {
   static propTypes = {
     activeUser: bool,
   }
@@ -28,4 +30,4 @@ class NavbarMobileActions extends PureComponent {
 const mapStateToProps = ({ auth }) => ({
   activeUser: auth.loggedIn,
 });
-export default connect(mapStateToProps)(NavbarMobileActions);
+export default connect(mapStateToProps)(NavbarMobileUserActions);

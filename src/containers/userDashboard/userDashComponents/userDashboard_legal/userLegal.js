@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TermsConditions from './userTermsConditions';
 import PrivacyPolicy from './userPrivacyPolicy';
@@ -6,9 +7,8 @@ import ShippingPolicy from './userShippingPolicy';
 import ReturnPolicy from './userReturnPolicy';
 import NicotineDisclaimer from './userNicotineDisclaimer';
 
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
-};
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 
 const UserLegal = {
   TermsConditions: ({ location }) =>

@@ -1,13 +1,9 @@
 import React from 'react';
-import 'react-router';
+import PropTypes from 'prop-types';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 import NewsletterBody from './userNewsLetter_body';
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
-};
 
 function UserNewsletter({ location }) {
   const homeDashboard = location.pathname.split('/')[1];
@@ -33,5 +29,7 @@ function UserNewsletter({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 UserNewsletter.propTypes = propTypes;
 export default UserNewsletter;

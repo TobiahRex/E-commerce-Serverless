@@ -1,5 +1,6 @@
 /* eslint-disable no-lone-blocks */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
@@ -23,7 +24,7 @@ const {
   shape,
   arrayOf,
   any,
-} = React.PropTypes;
+} = PropTypes;
 
 class SingleProduct extends Component {
   static propTypes = {

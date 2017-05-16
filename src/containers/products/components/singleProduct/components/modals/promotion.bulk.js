@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function BulkSaleModal({ showModal, modalHandler, taxRate }) {
@@ -143,7 +144,7 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
     </div>
   );
 }
-const { bool, func, number } = React.PropTypes;
+const { bool, func, number } = PropTypes;
 BulkSaleModal.propTypes = {
   showModal: bool.isRequired,
   modalHandler: func.isRequired,

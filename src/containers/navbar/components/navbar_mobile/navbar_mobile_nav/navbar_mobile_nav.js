@@ -1,15 +1,17 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import mobileActions from '../../../../../redux/mobile';
 
 import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
 import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
 
+const { number, func } = PropTypes;
 class NavbarMobileNav extends Component {
   static propTypes = {
-    cartQty: PropTypes.number.isRequired,
-    screenSize: PropTypes.number.isRequired,
-    refreshMobileSize: PropTypes.func.isRequired,
+    cartQty: number.isRequired,
+    screenSize: number.isRequired,
+    refreshMobileSize: func.isRequired,
   }
 
   static defaultProps = {

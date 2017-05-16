@@ -4,10 +4,6 @@ import FontAwesome from 'react-fontawesome';
 
 import MobileClosedOrders from './userDashboard_orders_mobile/userDashboard_orders_closed_mobile';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function ClosedOrders() {
   return (
     <div className="dashboard__closed-orders">
@@ -157,6 +153,5 @@ function ClosedOrders() {
     </div>
   );
 }
-ClosedOrders.propTypes = propTypes;
 ClosedOrders.Mobile = MobileClosedOrders;
 export default ClosedOrders;

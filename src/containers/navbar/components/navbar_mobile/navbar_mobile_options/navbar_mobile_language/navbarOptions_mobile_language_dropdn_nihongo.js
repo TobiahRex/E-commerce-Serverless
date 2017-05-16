@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+const { func } = PropTypes;
 const propTypes = {
-  onLanguageChange: PropTypes.func.isRequired,
+  onLanguageChange: func.isRequired,
 };
 
 function NavbarMobileOptionsLanguageDropdnNihongo({ onLanguageChange }) {

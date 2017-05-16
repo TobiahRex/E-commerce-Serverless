@@ -1,19 +1,21 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavbarWeb from './navbar_web/navbar_web';
 import NavbarMobile from './navbar_mobile/navbar_mobile';
 import sessionActions from '../../../redux/session';
-import { genDynamicTitle } from '../../../Services/utils';
+import { saveActiveRoute } from '../../../services/utils/saveLocation';
+
+const { func, objectOf, string, number } = PropTypes;
 
 class Navbar extends Component {
+  static propTypes = {
+    saveActivePage: func.isRequired,
+    activePage: objectOf(string).isRequired,
+    screenWidth: number.isRequired,
+  }
   static defaultProps = {
     screenWidth: 0,
-
-  }
-  static propTypes = {
-    saveActivePage: PropTypes.func.isRequired,
-    activePage: PropTypes.objectOf(PropTypes.string).isRequired,
-    screenWidth: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -28,7 +30,7 @@ class Navbar extends Component {
   }
 
   saveActivePage = () => {
-    const { title, url } = genDynamicTitle();
+    const { title, url } = saveActiveRoute();
     this.props.saveActivePage(title, url);
   }
 

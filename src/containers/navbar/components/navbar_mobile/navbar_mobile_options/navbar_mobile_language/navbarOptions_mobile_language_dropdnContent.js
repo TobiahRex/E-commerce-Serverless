@@ -1,14 +1,16 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 /* TODO
 1. Add dynamic show & hide for drop down options based on current active language.
 
 2. Add swipe-right animation for hovering over options.
 */
+const { func } = PropTypes;
+
 class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
   static propTypes = {
-    // activeLanguage: PropTypes.string.isRequired,
-    renderLanguageDropdown: PropTypes.func.isRequired,
+    renderLanguageDropdown: func.isRequired,
   }
 
   renderLanguageDropdown = () => this.props.renderLanguageDropdown();

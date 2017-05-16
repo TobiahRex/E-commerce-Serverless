@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function SuccessModal({ showModal, modalHandler }) {
@@ -60,7 +61,7 @@ function SuccessModal({ showModal, modalHandler }) {
     </div>
   );
 }
-const { bool, func } = React.PropTypes;
+const { bool, func } = PropTypes;
 SuccessModal.propTypes = {
   showModal: bool.isRequired,
   modalHandler: func.isRequired,

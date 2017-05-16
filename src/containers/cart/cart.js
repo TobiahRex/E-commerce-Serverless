@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
@@ -8,11 +9,12 @@ import ShoppingCartMobile from './ShoppingCart/shoppingCart_mobile';
 import ShoppingCartWebProductRow from './ShoppingCart/shoppingCart_web_productRow';
 import ShoppingCartMobileProductCard from './ShoppingCart/shoppingCart_mobile_productCard';
 
+const { string, number } = PropTypes;
 
 class ShoppingCart extends Component {
   static propTypes = {
-    mobileActive: PropTypes.string.isRequired,
-    taxRate: PropTypes.number,
+    mobileActive: string.isRequired,
+    taxRate: number.isRequired,
   }
   static juices = [{
     imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png',

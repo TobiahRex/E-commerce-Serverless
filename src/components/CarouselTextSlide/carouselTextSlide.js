@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ReviewSlide({ maxWidth, className, review, author }) {
   return (
@@ -27,7 +28,7 @@ function ReviewSlide({ maxWidth, className, review, author }) {
     </div>
   );
 }
-const { string } = React.PropTypes;
+const { string } = PropTypes;
 ReviewSlide.propTypes = {
   maxWidth: string,
   className: string.isRequired,

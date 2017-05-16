@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
@@ -8,13 +9,14 @@ import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
 import HomepageReviewsCarousel from './homeComponents/homepage_reviewsCarousel';
 import HomepagePopJuices from './homeComponents/homepage_popularProducts';
 
+const { bool } = PropTypes;
+
 class HomePage extends Component {
+  static propTypes = {
+    mobile: bool,
+  };
   static defaultProps = {
     mobile: false,
-  };
-  static propTypes = {
-    mobile: PropTypes.bool,
-    // push: PropTypes.func.isRequired,
   };
 
   calculateHeight = (header) => {

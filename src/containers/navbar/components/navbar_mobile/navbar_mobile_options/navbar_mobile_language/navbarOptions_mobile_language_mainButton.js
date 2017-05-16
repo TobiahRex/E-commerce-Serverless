@@ -1,15 +1,12 @@
-import React, { PropTypes, PureComponent } from 'react';
-
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 /* TODO
 1. This component receives a State property of the "active_language"  that will change display of the language button details.
-
 */
+const { func } = PropTypes;
 
 class NavbarMobileOptionsLanguageButton extends PureComponent {
-  static propTypes = {
-    // activeLanguage: PropTypes.string.isRequired,
-    renderLanguageTitle: PropTypes.func.isRequired,
-  }
+  static propTypes = { renderLanguageTitle: func.isRequired }
 
   renderLanguageTitle = () => this.props.renderLanguageTitle();
 

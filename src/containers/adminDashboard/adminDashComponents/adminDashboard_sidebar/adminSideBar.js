@@ -1,15 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import SalesSidebar from './adminSideBar_sales';
 import OnlineMembersSidebar from './adminSideBar_onlineMembers';
-
-const defaultProps = {
-  location: {},
-};
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
-};
 
 function AdminSideBar({ location }) {
   const adminDashboard = location.pathname.split('/')[1];
@@ -113,6 +106,10 @@ function AdminSideBar({ location }) {
     </div>
   );
 }
+
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any) };
+const defaultProps = { location: {} };
 AdminSideBar.propTypes = propTypes;
 AdminSideBar.defaultProps = defaultProps;
 AdminSideBar.Sales = SalesSidebar;

@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarLogo from './navbarLogo';
-import NavbarActionSection from './navbarActionSection';
+import NavbarUpper from './navbarUpper';
+import NavbarLower from './navbarLower';
 
 function NavbarWeb() {
   return (
@@ -8,7 +9,10 @@ function NavbarWeb() {
       <div className="container">
         <div className="navbar navbar-header">
           <NavbarLogo />
-          <NavbarActionSection />
+          <div className="navbar-actionSection">
+            <NavbarUpper />
+            <NavbarLower />
+          </div>
         </div>
       </div>
     </nav>

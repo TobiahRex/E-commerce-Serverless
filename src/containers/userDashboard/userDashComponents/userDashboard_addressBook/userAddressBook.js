@@ -1,13 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import 'react-router';
 import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function UserAddressBook({ location }) {
   const homeDashboard = location.pathname.split('/')[1];
@@ -276,5 +273,7 @@ function UserAddressBook({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 UserAddressBook.propTypes = propTypes;
 export default UserAddressBook;

@@ -1,11 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import NavbarMobileNavDropdnShopTitle from './navbar_mobile_nav_dropdn_shop_title';
 import NavbarMobileNavDropdnShopDropdnContent from './navbar_mobile_nav_dropdn_shop_dropdownContent';
 
-const propTypes = {
-  toggleDropdown: PropTypes.func,
-};
+const { func } = PropTypes;
+const propTypes = { toggleDropdown: func.isRequired };
 
 function NavbarMobileNavDropdnShop({ toggleDropdown }) {
   return (

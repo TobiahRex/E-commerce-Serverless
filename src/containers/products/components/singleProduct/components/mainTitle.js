@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 function MainTitle({ mainTitle }) {
   return (
     <div className="main__title">
@@ -8,7 +9,8 @@ function MainTitle({ mainTitle }) {
     </div>
   );
 }
+const { string } = PropTypes;
 MainTitle.propTypes = {
-  mainTitle: PropTypes.string.isRequired,
+  mainTitle: string.isRequired,
 };
 export default MainTitle;

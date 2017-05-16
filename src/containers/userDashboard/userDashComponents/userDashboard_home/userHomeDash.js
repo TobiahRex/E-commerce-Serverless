@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 import BreadCrumb from '../../../../components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
 
+const { objectOf, any } = PropTypes;
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
+  location: objectOf(any).isRequired,
 };
 
 function UserHomeDash({ location }) {

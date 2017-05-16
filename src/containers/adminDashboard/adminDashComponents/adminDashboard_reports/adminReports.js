@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import 'react-router';
 import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
+const { objectOf, any } = PropTypes;
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
+  location: objectOf(any).isRequired,
 };
 
 function AdminReports({ location }) {

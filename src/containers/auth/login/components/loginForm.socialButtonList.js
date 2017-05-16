@@ -1,10 +1,12 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import SocialLoginButton from './loginForm.socialButton';
 
+const { func, bool } = PropTypes;
 class SocialButtonList extends PureComponent {
   static propTypes = {
-    socialLogin: PropTypes.func.isRequired,
-    visibility: PropTypes.bool.isRequired,
+    socialLogin: func.isRequired,
+    visibility: bool.isRequired,
   }
 
   socialLogin = e => this.props.socialLogin(e);

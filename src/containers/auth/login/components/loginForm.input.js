@@ -1,12 +1,15 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
+const { func, string } = PropTypes;
 
 class LoginFormInput extends PureComponent {
   static propTypes = {
-    onInputChange: PropTypes.func.isRequired,
-    className: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
+    onInputChange: func.isRequired,
+    className: string.isRequired,
+    value: string.isRequired,
+    type: string.isRequired,
+    slug: string.isRequired,
   }
 
   onInputChange = (id, value) => this.props.onInputChange(id, value);

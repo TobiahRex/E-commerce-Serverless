@@ -1,13 +1,9 @@
 import React from 'react';
-import 'react-router';
+import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import UserSideBar from '../userDashboard_sidebar/userSideBar';
 import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
-import FontAwesome from 'react-fontawesome';
-
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function UserManageLogin({ location }) {
   const homeDashboard = location.pathname.split('/')[1];
@@ -163,5 +159,7 @@ function UserManageLogin({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 UserManageLogin.propTypes = propTypes;
 export default UserManageLogin;

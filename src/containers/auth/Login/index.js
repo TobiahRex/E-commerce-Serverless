@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
@@ -6,7 +7,7 @@ import LoadingOrError from './components/loginForm.loadingOrError';
 import SocialButtonList from './components/loginForm.socialButtonList';
 import authActions from '../../../redux/auth';
 
-const { objectOf, func, string, bool, any } = React.PropTypes;
+const { objectOf, func, string, bool, any } = PropTypes;
 
 class Login extends Component {
   static propTypes = {

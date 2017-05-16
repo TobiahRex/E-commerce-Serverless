@@ -4,7 +4,7 @@ import NavbarMobileNavDropdnMediaTitle from './navbar_mobile_nav_dropdn_media_ti
 import NavbarMobileNavDropdnMediaDropdnContent from './navbar_mobile_nav_dropdn_media_dropdownContent';
 
 const { func } = PropTypes;
-const propTypes = { toggleDropdown: func };
+const propTypes = { toggleDropdown: func.isRequired };
 
 function NavbarMobileNavDropdnMedia({ toggleDropdown }) {
   return (

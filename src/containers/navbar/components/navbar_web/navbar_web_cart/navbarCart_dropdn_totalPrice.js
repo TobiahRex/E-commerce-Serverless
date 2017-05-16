@@ -1,18 +1,26 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-/* TODO
-1. Received "cart_total" from state.  This total represents the PRE-TAX total.  NOT the GRAND TOTAL.
-*/
+const { number } = PropTypes;
 
 class NavbarCartTotalPrice extends PureComponent {
   static propTypes = {
-    cart_total: PropTypes.number,
+    cart_total: number,
   }
 
+  static defaultProps = {
+    cart_total: 0,
+  }
   render() {
     return (
-      
+      <div className="total-price">
+        <span className="total-price-title">Total Price</span>
+        <span className="total-price-amount">
+          <FontAwesome name="usd" />{'\u00A0'}
+          {this.props.cart_total || '00'}.00
+        </span>
+      </div>
     );
   }
 }

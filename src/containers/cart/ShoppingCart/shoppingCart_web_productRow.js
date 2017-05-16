@@ -1,10 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
-const propTypes = {
-  juiceObj: PropTypes.objectOf(PropTypes.any).isRequired,
-  keyNum: PropTypes.number.isRequired,
-};
 
 function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
   return (
@@ -74,6 +70,10 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
     </tr>
   );
 }
-
+const { objectOf, any, number } = PropTypes;
+const propTypes = {
+  juiceObj: objectOf(any).isRequired,
+  keyNum: number.isRequired,
+};
 ShoppingCartWebProductRow.propTypes = propTypes;
 export default ShoppingCartWebProductRow;

@@ -1,8 +1,5 @@
 import React from 'react';
-
-const propTypes = {
-  onLanguageChange: PropTypes.func.isRequired,
-};
+import PropTypes from 'prop-types';
 
 function NavbarMobileOptionsLanguageDropdnEnglish({ onLanguageChange }) {
   function preventDefault(e) {
@@ -23,6 +20,7 @@ function NavbarMobileOptionsLanguageDropdnEnglish({ onLanguageChange }) {
 
   );
 }
-
+const { func } = PropTypes;
+const propTypes = { onLanguageChange: func.isRequired };
 NavbarMobileOptionsLanguageDropdnEnglish.propTypes = propTypes;
 export default NavbarMobileOptionsLanguageDropdnEnglish;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
@@ -152,7 +153,7 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
     </div>
   );
 }
-const { bool, number, func } = React.PropTypes;
+const { bool, number, func } = PropTypes;
 RegisterModal.propTypes = {
   loggedIn: bool.isRequired,
   taxRate: number.isRequired,
