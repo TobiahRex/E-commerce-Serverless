@@ -1,10 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-
 function AdminDashReportsWeb() {
   return (
     <div className="dashboard__reports">

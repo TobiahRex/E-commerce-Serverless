@@ -1,10 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-const propTypes = {
-  // location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
 
 function AdminDashHeaderWeb() {
   return (

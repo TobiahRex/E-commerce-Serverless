@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+const { objectOf, string, func } = PropTypes;
 const propTypes = {
-  avStyle: PropTypes.objectOf(PropTypes.string),
-  verifyAge: PropTypes.func.isRequired,
+  avStyle: objectOf(string).isRequired,
+  verifyAge: func.isRequired,
 };
 
 function AgeVerification({ verifyAge, avStyle }) {

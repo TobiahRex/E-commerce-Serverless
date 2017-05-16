@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function LoadingOrError({ errorMessage, authInProgress }) {
@@ -25,9 +26,10 @@ function LoadingOrError({ errorMessage, authInProgress }) {
   }
   return (<span />);
 }
+const { string, bool } = PropTypes;
 LoadingOrError.propTypes = {
-  errorMessage: PropTypes.string,
-  authInProgress: PropTypes.bool,
+  errorMessage: string,
+  authInProgress: bool,
 };
 LoadingOrError.defaultProps = {
   errorMessage: 'No Error',

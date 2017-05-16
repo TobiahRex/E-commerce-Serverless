@@ -1,13 +1,12 @@
 import React from 'react';
-import 'react-router';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import Breadcrumb from '../../../../components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
 
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
 
 function AdminPromotionsSales({ location }) {
   const homeDashboard = location.pathname.split('/')[1];

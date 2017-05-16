@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 
 const { objectOf, any } = PropTypes;
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any),
+  location: objectOf(any).isRequired,
 };
 
 function Web() {

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import BreadCrumb from '../../../../components/breadcrumbs';
 import AdminSideBar from '../adminDashboard_sidebar/adminSideBar';
 import AdminWelcomeMsg from '../adminDashboard_welcomeMsg/adminWelcomeMsg';
@@ -11,8 +11,9 @@ import WebTraffic from './adminDash_webTraffic_web';
 import LatestOrders from './adminDash_latestOrders_web';
 import AwsStats from './adminDash_awsStats_web';
 
+const { objectOf, any } = PropTypes;
 const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
+  location: objectOf(any).isRequired,
 };
 
 function AdminHomeDash({ location }) {

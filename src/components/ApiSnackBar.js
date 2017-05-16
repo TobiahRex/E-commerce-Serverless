@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Snackbar from 'material-ui/Snackbar';
+// import Snackbar from 'material-ui/Snackbar';
 
+const { objectOf, any } = PropTypes;
 export default class apiSnackBar extends Component {
   static propTypes = {
-    apiStatus: PropTypes.objectOf(PropTypes.any),
+    apiStatus: objectOf(any).isRequired,
   };
   constructor(props) {
     super(props);

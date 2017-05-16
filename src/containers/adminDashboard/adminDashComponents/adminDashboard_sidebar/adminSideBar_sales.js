@@ -1,12 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-const defaultProps = {
-  location: {},
-};
-const propTypes = {
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+const { objectOf, any } = PropTypes;
+const propTypes = { location: objectOf(any).isRequired };
+const defaultProps = { location: {} };
 
 function AdminSalesSideBar({ location }) {
   const adminDashboard = location.pathname.split('/')[1];

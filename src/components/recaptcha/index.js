@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Recaptcha from 'react-recaptcha';
 
+const { func } = PropTypes;
 const propTypes = {
-  verifyCb: PropTypes.func.isRequired,
-  onLoadCb: PropTypes.func.isRequired,
+  verifyCb: func.isRequired,
+  onLoadCb: func.isRequired,
 };
 
 function RecaptchaWidget({ verifyCb, onLoadCb }) {
