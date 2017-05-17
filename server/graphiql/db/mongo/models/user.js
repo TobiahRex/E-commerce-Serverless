@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
-import { db } from '../connection';
+import db from '../connection';
 
 userSchema.statics.createUser = userObj =>
 new Promise((resolve, reject) => {

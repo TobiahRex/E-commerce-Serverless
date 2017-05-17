@@ -2,26 +2,17 @@
 if (!global._babelPolyfill) require('babel-polyfill');
 
 import runGraphQL from './db/graphql/runGraphQL';
-import { startDB, closeDB } from './db/mongo/connection';
+import { startDB } from './db/mongo/connection';
 
 module.exports.graphql = (event, context, cb) => {
   console.log('\nEVENT: ', event);
-  let dbConnection;
+
   startDB()
-  .then(({ db, dbModels }) => {
-    console.log('\n//handler.js @ startDB\n db: ', db, '\ndbModels: ', dbModels);
-    dbConnection = db;
-    console.log('\ndbConnection @ startDB: ', dbConnection);
-    return runGraphQL({ event, dbModels });
-  })
+  .then(dbResults => runGraphQL({ event, ...dbResults }))
   .then((GraphQLResponse) => {
-    console.log('\n//handler.js @ \ndb.connections BEFORE closeDB(): ', dbConnection.base.connections);
-    return closeDB(dbConnection, GraphQLResponse);
-  })
-  .then((response) => {
-    console.log('\n//handler.js @ \nRESOLVE: ', response);
-    context.succeed && context.succeed(response);
-    cb(null, response);
+    console.log('\n//handler.js @ \nRESOLVE: ', GraphQLResponse);
+    context.succeed && context.succeed(GraphQLResponse);
+    cb(null, GraphQLResponse);
   })
   .catch((error) => {
     console.log('\n//handler.js @ CATCH\nERROR: ', error);

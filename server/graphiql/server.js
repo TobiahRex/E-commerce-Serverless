@@ -8,9 +8,9 @@ require('dotenv').load({ silent: true }); //eslint-disable-line
 const PORT = process.env.GRAPHIQL_PORT || 3002;
 const server = express();
 
-server.use('/graphql', graphqlHTTP({
+server.use('/graphiql', graphqlHTTP({
   schema,
   graphiql: true,
 }));
 server.listen(PORT, () => console.log(`Server listening @ ${PORT}
-Graphiql Server @ http://localhost:${PORT}/graphql`));
+Graphiql Server @ http://localhost:${PORT}/graphiql`));

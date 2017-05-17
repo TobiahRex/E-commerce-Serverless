@@ -31,7 +31,7 @@ export default (db) => {
     .catch((error) => {
       console.log('\n//mongo/model/product.js\n @ findProductById REJECT\n', error);
       reject({
-        problem: `Could not find the product with id ${id}.  Are you sure that product exists?
+        problem: `Could not find the product with id ${_id}.  Are you sure that product exists?
         Mongo Error = ${error}`,
       });
     });
@@ -63,19 +63,19 @@ export default (db) => {
 
   productSchema.statics.getPopularProducts = qty =>
   new Promise((resolve, reject) => {
+    console.log('\n//mongo/models/product.js @ getPopularProducts');
     Product.find({})
     .exec()
     .then((dbProducts) => {
-      console.log('\n//mongo/model/product.js\n @ getPopularProducts RESOLVE\n', dbProducts);
+      console.log('\n//mongo/model/products.js\n @ getPopularProducts: ', dbProducts.slice(0, qty));
       resolve(dbProducts.slice(0, qty));
     })
-    .catch((error) => {
-      console.log('\n//mongo/model/product.js\n @ getPopularProducts REJECT\n', error);
+    .catch(error =>
       reject({
         problem: `Could not fetch the ${qty} products you requested.
         Mongo Error = ${error}`,
-      });
-    });
+      }),
+    );
   });
 
   const Product = db.model('Product', productSchema);

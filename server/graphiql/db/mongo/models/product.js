@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import productSchema, { ObjectId } from '../schemas/productSchema';
-import { db } from '../connection';
+import db from '../connection';
 
 productSchema.statics.createProduct = product =>
 new Promise((resolve, reject) => {
@@ -65,17 +65,14 @@ productSchema.statics.getPopularProducts = qty =>
 new Promise((resolve, reject) => {
   Product.find({})
   .exec()
-  .then((dbProducts) => {
-    console.log('\n//mongo/model/product.js\n @ getPopularProducts RESOLVE\n', dbProducts);
-    resolve(dbProducts.slice(0, qty));
-  })
-  .catch((error) => {
-    console.log('\n//mongo/model/product.js\n @ getPopularProducts REJECT\n', error);
+  .then(dbProducts => resolve(dbProducts.slice(0, qty)))
+  .catch(error =>
     reject({
       problem: `Could not fetch the ${qty} products you requested.
       Mongo Error = ${error}`,
-    });
-  });
+    }),
+  );
 });
+
 const Product = db.model('Product', productSchema);
 export default Product;

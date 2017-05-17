@@ -9,7 +9,7 @@ new Promise((resolve, reject) => {
 
   graphql(schema, query, dbModels, variables)
   .then((result) => {
-    console.log('\n//runGraphQL.js @ RESOLVE');
+    console.log('\n//runGraphQL.js @ RESOLVE: \n', result);
     resolve(result);
   })
   .catch((error) => {

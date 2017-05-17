@@ -6,17 +6,9 @@ import createUserModel from './models/user';
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
-const options = {
-  server: {
-    socketOptions: {
-      keepAlive: 30000,
-      connectTimeoutMS: 30000,
-    },
-  },
-};
 const mongooseConnection = () =>
 new Promise((resolve) => {
-  resolve(mongoose.createConnection(MONGO_DB, options));
+  resolve(mongoose.createConnection(MONGO_DB));
 });
 
 export const closeDB = (db, GraphQLResponse) =>

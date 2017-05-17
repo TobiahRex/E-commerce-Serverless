@@ -33,12 +33,11 @@ startDB()
   return runGraphQL({ event, dbModels });
 })
 .then((GraphQLResponse) => {
-  // console.log('\n//handler.js @ \ndb.connections BEFORE closeDB(): ', dbConnection);
-  return closeDB(dbConnection, GraphQLResponse);
+  console.log('\n//handler.js @ \nRESOLVE: ', GraphQLResponse);
+  cb(null, GraphQLResponse);
 })
 .catch((error) => {
-  // console.log('\n//handler.js @ CATCH\nERROR: ', error);
-  // context.error && context.error(error);
+  console.log('\n//handler.js @ CATCH\nERROR: ', error);
 });
 
 server.use('/graphql', graphqlHTTP({
