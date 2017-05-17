@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-constant-condition */
 import mongoose from 'mongoose';
-import ProductModelGenerator from './models/product';
-import UserModelGenerator from './models/user';
+import createProductModel from './models/product';
+import createUserModel from './models/user';
 
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
@@ -16,40 +16,28 @@ const options = {
     },
   },
 };
-
-export const ProductModel = newDB =>
-new Promise((resolve) => {
-  const productModelGen = ProductModelGenerator(newDB);
-  resolve(productModelGen.next().value);
-  productModelGen.next();
-});
-
-export const UserModel = newDB =>
-new Promise((resolve) => {
-  const userModelGen = UserModelGenerator(newDB);
-  resolve(userModelGen.next().value);
-  userModelGen.next();
-});
-
 export const closeDB = db => new Promise((resolve) => {
-  console.log('\nmongo/connection.js @ CLOSE DB');
-  db.close(() => {
-    console.log('\n', JSON.stringify(db.connections, null, 2));
-    resolve();
-  });
+  resolve(
+    db.close(() => {
+      console.log('\nmongo/connection.js @ CLOSE DB');
+      console.log('\nconnections: ', JSON.stringify(db.connections, null, 2));
+    }),
+  );
 });
 
-export const startDB = () => new Promise((resolve, reject) => {
+export const startDB = () => {
   const newDB = mongoose.createConnection(MONGO_DB, options, (error) => {
     if (error) {
-      reject(
-        `Could not connect to Mongo DB.
-        ERROR: ${error}`,
-      );
+      console.log(`\nCould not connect to Mongo DB.\n
+      ERROR: ${error}`);
+    } else {
+      console.log(`\nMongo Connected @ ${MONGO_DB}`);
     }
   });
-  ProductModel(newDB);
-  UserModel(newDB);
-  closeDB(newDB);
-  resolve(`Mongo Connected @ ${MONGO_DB}`);
-});
+  console.log('newDB: ', newDB);
+  return ({
+    Product: createProductModel(newDB),
+    User: createUserModel(newDB),
+    db: newDB,
+  });
+};

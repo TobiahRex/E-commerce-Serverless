@@ -7,12 +7,19 @@ import { startDB, closeDB } from './db/mongo/connection';
 module.exports.graphql = (event, context, cb) => {
   console.log('\nEVENT: ', event);
 
-  startDB()
-  .then(console.log)
-  .catch(console.log);
 
-  runGraphQL(event, (error, response) =>
-    closeDB()
+  const {
+    Product,
+    User,
+    db,
+  } = startDB();
+
+  runGraphQL({
+    event,
+    Product,
+    User,
+  }, (error, response) => {
+    closeDB(db)
     .then(() => {
       if (error) {
         console.log('\n//handler.js @ if(error):\nERROR: ', error);
@@ -22,6 +29,6 @@ module.exports.graphql = (event, context, cb) => {
       console.log('\n//handler.js @ if(error) else:\nRESULT: ', response);
       context.succeed && context.succeed(response);
       cb(null, response);
-    }),
-  );
+    });
+  });
 };

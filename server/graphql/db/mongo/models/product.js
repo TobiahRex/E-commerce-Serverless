@@ -2,8 +2,7 @@
 import { Promise as bbPromise } from 'bluebird';
 import productSchema from '../schemas/productSchema';
 
-export default function* ProductModelGenerator(db) {
-  console.log('\ndb: ', db, '\n');
+export default (db) => {
   productSchema.statics.createProduct = productObj =>
   new Promise((resolve, reject) => {
     bbPromise.fromCallback(cb => Product.create(productObj, cb))
@@ -76,6 +75,6 @@ export default function* ProductModelGenerator(db) {
     });
   });
 
-  const Product = yield db.model('Product', productSchema);
-  return;
-}
+  const Product = db.model('Product', productSchema);
+  return Product;
+};

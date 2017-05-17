@@ -185,7 +185,7 @@ const queries = {
       },
     },
     resolve: (_, args) =>
-      ProductModel.then(Product => Product.findProductById(args))
+      ProductModel.then(Product => Product.findProductById(args)),
   },
   popularProducts: {
     type: new ListType(rootType),
@@ -195,7 +195,8 @@ const queries = {
         description: 'The quantity of popular products to return.',
       },
     },
-    resolve: (_, args) => ProductModel.then(Product => getPopularProducts(args))
+    resolve: (_, args) =>
+      ProductModel.then(Product => Product.getPopularProducts(args)),
   },
 };
 const mutations = {
@@ -357,9 +358,7 @@ const mutations = {
       },
     },
     resolve: (_, args) =>
-      ProductModel.then(() => {
-      })
-      createProduct(args),
+      ProductModel.then(Product => Product.createProduct(args)),
   },
   findProductAndUpdate: {
     type: rootType,
@@ -513,9 +512,7 @@ const mutations = {
       },
     },
     resolve: (_, args) =>
-      ProductModel.then(() => {
-      })
-      findProductAndUpdate(args),
+      ProductModel.then(Product => Product.findProductAndUpdate(args)),
   },
 };
 

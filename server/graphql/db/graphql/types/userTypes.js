@@ -7,7 +7,7 @@ import {
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
-import UserModelGenerator from '../../mongo/models/user';
+import UserModel from '../../mongo/models/user';
 
 const rootType = new ObjectType({
   name: 'RootUserType',
@@ -277,7 +277,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args) => UserModelGenerator().createUser(args),
+    resolve: (_, args) => UserModel.then(User => User.createUser(args)),
   },
 };
 const UserTypes = {
