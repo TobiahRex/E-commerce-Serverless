@@ -9,6 +9,8 @@ import {
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
+import Product from '../../mongo/models/product';
+
 const rootType = new ObjectType({
   name: 'Product',
   description: 'A store product.',
@@ -182,10 +184,7 @@ const queries = {
         type: new NonNull(GraphQLID),
       },
     },
-    resolve: (_, { _id }, { Product }) => {
-      console.log('\n productTypes.js @ findProductById: ', Product);
-      return Product.findProductById(_id);
-    },
+    resolve: (_, { _id }) => Product.findProductById(_id),
   },
   popularProducts: {
     type: new ListType(rootType),
@@ -195,10 +194,7 @@ const queries = {
         description: 'The quantity of popular products to return.',
       },
     },
-    resolve: (_, { qty }, { Product }) => {
-      console.log('\n productTypes.js @ popularProducts: ', Product);
-      Product.getPopularProducts(qty);
-    },
+    resolve: (_, { qty }) => Product.getPopularProducts(qty),
   },
 };
 const mutations = {
@@ -359,7 +355,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, { product }, { Product }) => Product.createProduct(product),
+    resolve: (_, { product }) => Product.createProduct(product),
   },
   findProductAndUpdate: {
     type: rootType,
@@ -516,7 +512,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, { _id, newProduct }, { Product }) => Product.findProductAndUpdate(_id, newProduct),
+    resolve: (_, { _id, newProduct }) => Product.findProductAndUpdate(_id, newProduct),
   },
 };
 
