@@ -56,13 +56,22 @@ new Promise((resolve, reject) => {
   const propertyString = Object.keys(newProduct)
   .map((key) => {
     if (key === 'images') {
-      const newImages = newProduct[images];
-      newImages.map((image, i) => {
-        key = `property.images[${i}]`
+      const imageKeys = [];
+      const imageObjs = [];
+      newProduct.images.forEach((imageObj, i) => {
+        imageKeys.push(`property.images[${i}]`);
+        imageObjs.push(imageObj);
+      });
+      return ({
+        [newKey]: imageObj,
       });
     }
-    key = `property.${key}`;
-  })
+    const newKey = `property.${key}`;
+    const value = newProduct[key];
+    return ({
+      [newKey]: value,
+    });
+  });
   const $setOptions = {
     $set: { [propertyString]: newProduct },
   };
