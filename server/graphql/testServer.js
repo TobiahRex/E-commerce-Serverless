@@ -2,13 +2,45 @@ import 'babel-polyfill';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import schema from './db/graphql/schema';
-import { startDB } from './db/mongo/connection';
+import { startDB, closeDB } from './db/mongo/connection';
+import runGraphQL from './db/graphql/runGraphQL';
 
 require('dotenv').load({ silent: true }); //eslint-disable-line
 
 const PORT = process.env.GRAPHIQL_PORT || 3002;
-const server = express();
-startDB();
+const server = express();``
+let dbConnection;
+startDB()
+.then(({ db, dbModels }) => {
+  // console.log('\n//handler.js @ startDB\n db: ', db, '\ndbModels: ', dbModels);
+  dbConnection = db;
+  // console.log('dbConnection @ startDB: ', dbConnection);
+  const event = {
+    body: {
+      query: `query popularProducts($qty: Int!) {
+        popularProducts(qty: $qty) {
+          _id
+          product {
+            title
+            images
+          }
+        }
+      }`,
+      variables: { qty: 1 },
+    },
+  };
+
+  return runGraphQL({ event, dbModels });
+})
+.then((GraphQLResponse) => {
+  // console.log('\n//handler.js @ \ndb.connections BEFORE closeDB(): ', dbConnection);
+  return closeDB(dbConnection, GraphQLResponse);
+})
+.catch((error) => {
+  // console.log('\n//handler.js @ CATCH\nERROR: ', error);
+  // context.error && context.error(error);
+});
+
 server.use('/graphql',
   graphqlHTTP({
     schema,

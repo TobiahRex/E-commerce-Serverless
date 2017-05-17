@@ -11,10 +11,11 @@ module.exports.graphql = (event, context, cb) => {
   .then(({ db, dbModels }) => {
     console.log('\n//handler.js @ startDB\n db: ', db, '\ndbModels: ', dbModels);
     dbConnection = db;
+    console.log('\ndbConnection @ startDB: ', dbConnection);
     return runGraphQL({ event, dbModels });
   })
   .then((GraphQLResponse) => {
-    console.log('\n//handler.js @ \ndb.connections BEFORE closeDB(): ', dbConnection.connections);
+    console.log('\n//handler.js @ \ndb.connections BEFORE closeDB(): ', dbConnection.base.connections);
     return closeDB(dbConnection, GraphQLResponse);
   })
   .then((response) => {

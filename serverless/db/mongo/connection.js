@@ -14,27 +14,35 @@ const options = {
     },
   },
 };
-export const closeDB = db => new Promise((resolve) => {
-  resolve(
-    db.close(() => {
-      console.log('\nmongo/connection.js @ CLOSE DB');
-      console.log('\nconnections: ', JSON.stringify(db.connections, null, 2));
-    }),
-  );
+const mongooseConnection = () =>
+new Promise((resolve) => {
+  resolve(mongoose.createConnection(MONGO_DB, options));
 });
 
-export const startDB = () => {
-  const newDB = mongoose.createConnection(MONGO_DB, options, (error) => {
-    if (error) {
-      console.log(`\nCould not connect to Mongo DB.\n
-      ERROR: ${error}`);
-    } else {
-      console.log(`\nMongo Connected @ ${MONGO_DB}`);
-    }
+export const closeDB = (db, GraphQLResponse) =>
+new Promise((resolve) => {
+  db.close(() => {
+    console.log('\n//mongo/connection.js @ CLOSE DB');
+    console.log('\n//mongo/connection.js \ndb.connections AFTER close: ', db.base.connections);
+    resolve(GraphQLResponse);
   });
-  return ({
-    Product: createProductModel(newDB),
-    User: createUserModel(newDB),
-    db: newDB,
-  });
-};
+});
+
+export const startDB = () =>
+new Promise((resolve) => {
+  mongooseConnection()
+  .then((newDB) => {
+    console.log(`\nMongo Connected @ ${MONGO_DB}`);
+    console.log('\n//connection.js @ mongooseConnection.newDB: ', newDB.base.connections);
+    resolve({
+      db: newDB,
+      dbModels: {
+        Product: createProductModel(newDB),
+        User: createUserModel(newDB),
+      },
+    });
+  })
+  .catch(error =>
+    console.log(`\nCould not connect to Mongo DB.\nERROR: ${error}`),
+  );
+});
