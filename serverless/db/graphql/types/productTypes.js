@@ -198,7 +198,7 @@ const queries = {
     resolve: (_, { qty }, { Product }) => {
       console.log('\n productTypes.js @ popularProducts: qty = ', qty);
       console.log('\n productTypes.js @ popularProducts: ', Product);
-      Product.getPopularProducts(qty);
+      return Product.getPopularProducts(qty);
     },
   },
 };

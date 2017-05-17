@@ -195,11 +195,7 @@ const queries = {
         description: 'The quantity of popular products to return.',
       },
     },
-    resolve: (_, { qty }, { Product }) => {
-      console.log('\n productTypes.js @ popularProducts: qty = ', qty);
-      console.log('\n productTypes.js @ popularProducts: ', Product);
-      Product.getPopularProducts(qty);
-    },
+    resolve: (_, { qty }, { Product }) => Product.getPopularProducts(qty),
   },
 };
 const mutations = {
