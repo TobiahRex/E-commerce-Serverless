@@ -180,7 +180,7 @@ const queries = {
     type: rootType,
     args: {
       _id: {
-        description: 'The MONGO ID for the product.',
+        description: 'The Mongo _id of the product.',
         type: new NonNull(GraphQLID),
       },
     },

@@ -5,8 +5,6 @@ import db from '../connection';
 
 productSchema.statics.findProductByIdAndDelete = _id =>
 new Promise((resolve, reject) => {
-  if (typeof _id === 'string') _id = ObjectId(_id);
-
   Product.findByIdAndRemove(_id)
   .exec()
   .then(resolve)
@@ -35,7 +33,6 @@ new Promise((resolve, reject) => {
 
 productSchema.statics.findProductById = _id =>
 new Promise((resolve, reject) => {
-  if (typeof _id === 'string') _id = ObjectId(_id);
   Product.findById(_id)
   .exec()
   .then((dbProduct) => {
