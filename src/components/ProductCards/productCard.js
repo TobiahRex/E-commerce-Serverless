@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function ProductCard({ juiceObj, className }) {
-  const { title, price, nicotine_strengths, image_url } = juiceObj.product;
+  console.log('%cjuiceObj', 'background:red;', juiceObj);
+
+  const { title, price, nicotine_strengths, images } = juiceObj.product;
+
+  const imageUrl = images
+  .filter(({ purpose }) => purpose === 'card')
+  .reduce(({ url }) => url);
+
   const renderNicOptions = () =>
   nicotine_strengths.map(strength => (
     <li
@@ -16,7 +23,7 @@ function ProductCard({ juiceObj, className }) {
   return (
     <div className={`${className}-parent`}>
       <img
-        style={{ content: `url(${image_url})` }}
+        style={{ content: `url(${imageUrl})` }}
         alt="Juice Card"
         className={`${className}-image`}
       />
