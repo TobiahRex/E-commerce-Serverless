@@ -8,7 +8,7 @@ import runGraphQL from './db/graphql/runGraphQL';
 require('dotenv').load({ silent: true }); //eslint-disable-line
 
 const PORT = process.env.GRAPHIQL_PORT || 3002;
-const server = express();``
+const server = express();
 let dbConnection;
 startDB()
 .then(({ db, dbModels }) => {
@@ -41,11 +41,9 @@ startDB()
   // context.error && context.error(error);
 });
 
-server.use('/graphql',
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  }),
-);
+server.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}));
 server.listen(PORT, () => console.log(`Server listening @ ${PORT}
 Graphiql Server @ http://localhost:${PORT}/graphql`));
