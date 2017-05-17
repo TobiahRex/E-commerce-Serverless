@@ -60,14 +60,14 @@ new Promise((resolve, reject) => {
       const imageKeys = [];
       const imageObjs = [];
       productObj.images.forEach((imageObj, i) => {
-        imageKeys.push(`property.images[${i}]`);
+        imageKeys.push(`product.images[${i}]`);
         imageObjs.push(imageObj);
       });
       return imageKeys.map((newKey, i) => ({
         [newKey]: imageObjs[i],
       }));
     }
-    const newKey = `property.${key}`;
+    const newKey = `product.${key}`;
     const value = productObj[key];
     return ({
       [newKey]: value,
@@ -78,11 +78,9 @@ new Promise((resolve, reject) => {
     newProductObj[key] = object[key];
   });
 
-  const $setOptions = { $set: newProductObj };
-  console.log('$setOptions: ', $setOptions);
-  if (typeof _id === 'string') _id = ObjectId(_id);
+  console.log('\nnewProductObj: ', newProductObj);
 
-  Product.findByIdAndUpdate(_id, $setOptions, { new: true })
+  Product.findByIdAndUpdate(_id, { $set: newProductObj }, { new: true })
   .exec()
   .then((updatedProduct) => {
     console.log('\n//mongo/model/product.js\n @ findByIdAndUpdate RESOLVE\n', updatedProduct);
