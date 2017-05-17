@@ -24,7 +24,6 @@ export const closeDB = db => new Promise((resolve) => {
 });
 
 export const startDB = () => {
-  console.log('\nMONGO_DB: ', MONGO_DB);
   const newDB = mongoose.createConnection(MONGO_DB, options, (error) => {
     if (error) {
       console.log(`\nCould not connect to Mongo DB.\n

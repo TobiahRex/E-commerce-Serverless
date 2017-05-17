@@ -23,19 +23,20 @@ export const closeDB = db => new Promise((resolve) => {
   );
 });
 
-export const startDB = () => {
-  console.log('\nMONGO_DB: ', MONGO_DB);
+export const startDB = () => new Promise((resolve, reject) => {
   const newDB = mongoose.createConnection(MONGO_DB, options, (error) => {
     if (error) {
-      console.log(`\nCould not connect to Mongo DB.\n
-      ERROR: ${error}`);
+      reject(`\nCould not connect to Mongo DB.\n
+        ERROR: ${error}`);
     } else {
       console.log(`\nMongo Connected @ ${MONGO_DB}`);
     }
   });
-  return ({
-    Product: createProductModel(newDB),
-    User: createUserModel(newDB),
+  resolve({
     db: newDB,
+    dbModels: {
+      Product: createProductModel(newDB),
+      User: createUserModel(newDB),
+    },
   });
-};
+});

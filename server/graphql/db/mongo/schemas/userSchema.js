@@ -1,6 +1,6 @@
 const Schema = require('mongoose').Schema;
 
-const ObjectId = Schema.Types.ObjectId;
+export const ObjectId = Schema.Types.ObjectId;
 const userSchema = new Schema({
   name: {
     first: { type: String },

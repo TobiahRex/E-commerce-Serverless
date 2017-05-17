@@ -83,7 +83,7 @@ const createAPI = () => {
         bio
       }
     }`,
-    dbType: 'User',
+    variables: {},
   });
 
   return {

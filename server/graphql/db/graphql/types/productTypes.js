@@ -9,8 +9,6 @@ import {
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
-import ProductModel from '../../mongo/connection';
-
 const rootType = new ObjectType({
   name: 'Product',
   description: 'A store product.',
@@ -179,12 +177,15 @@ const queries = {
   findProductById: {
     type: rootType,
     args: {
-      id: {
+      _id: {
         description: 'The MONGO ID for the product.',
         type: new NonNull(GraphQLID),
       },
     },
-    resolve: (_, { Product, id }) => Product.findProductById(id),
+    resolve: (_, { _id }, { Product }) => {
+      console.log('\n productTypes.js @ findProductById: ', Product);
+      return Product.findProductById(_id);
+    },
   },
   popularProducts: {
     type: new ListType(rootType),
@@ -194,11 +195,14 @@ const queries = {
         description: 'The quantity of popular products to return.',
       },
     },
-    resolve: (_, { Product, qty }) => Product.getPopularProducts(qty),
+    resolve: (_, { qty }, { Product }) => {
+      console.log('\n productTypes.js @ popularProducts: ', Product);
+      Product.getPopularProducts(qty);
+    },
   },
 };
 const mutations = {
-  createProduct: {
+  createProduct: { // This is only used from GraphiQL to seed database.
     type: rootType,
     description: 'Create new Product.',
     args: {
@@ -355,12 +359,16 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, { Product, productObj }) => Product.createProduct(productObj),
+    resolve: (_, { product }, { Product }) => Product.createProduct(product),
   },
   findProductAndUpdate: {
     type: rootType,
     description: 'Find product by ID and update.',
     args: {
+      _id: {
+        description: 'The ID of the product to update.',
+        type: new NonNull(GraphQLID),
+      },
       newProduct: {
         description: 'Object: The updated product info.',
         type: new NonNull(
@@ -508,8 +516,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args) =>
-      ProductModel.then(Product => Product.findProductAndUpdate(args)),
+    resolve: (_, { _id, newProduct }, { Product }) => Product.findProductAndUpdate(_id, newProduct),
   },
 };
 

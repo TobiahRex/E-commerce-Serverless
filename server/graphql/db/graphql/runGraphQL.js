@@ -2,20 +2,27 @@
 import { graphql } from 'graphql';
 import schema from './schema';
 
-const runGraphQL = ({
-  event,
-  Product,
-  User,
-}, cb) => {
-  const { query, variables, dbType } = event.body;
+const runGraphQL = ({ event, dbModels }) =>
+new Promise((resolve, reject) => {
+  const { variables, query } = event.body;
+  console.log('\nvariables: ', variables, '\ndbModels: ', JSON.stringify(dbModels, null, 2));
 
-  switch (dbType) {
-    case 'Product': variables.model = Product; break;
-    case 'User': variables.model = User; break;
-    default: break;
-  }
+  graphql(schema, query, dbModels, variables)
+  .then((result) => {
+    console.log('\n//runGraphQL.js @ RESOLVE');
+    resolve(result);
+  })
+  .catch((error) => {
+    console.log('\n//runGraphQL.js @ REJECT');
+    reject(error);
+  });
+});
 
-  graphql(schema, query, null, {}, variables)
+const runGraphQL = ({ event, dbModels }, cb) => {
+  const { variables, query } = event.body;
+  console.log('\nvariables: ', variables, '\ndbModels: ', JSON.stringify(dbModels, null, 2));
+
+  graphql(schema, query, dbModels, variables)
   .then((result) => {
     console.log('\n//runGraphQL.js @ RESOLVE');
     cb(null, result);
