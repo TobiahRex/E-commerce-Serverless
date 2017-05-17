@@ -9,7 +9,7 @@ function ProductCard({ juiceObj, className }) {
 
   const imageUrl = images
   .filter(({ purpose }) => purpose === 'card')
-  .reduce(({ url }) => url);
+  .reduce(image => image).url;
 
   const renderNicOptions = () =>
   nicotine_strengths.map(strength => (

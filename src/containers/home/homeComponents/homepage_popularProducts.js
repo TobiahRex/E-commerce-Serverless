@@ -25,7 +25,8 @@ class HomepagePopJuices extends PureComponent {
       <div className="homepage-juices">
         <h1 className="homepage-juices-title">Popular Juices</h1>
         <div className="homepage-juices-grid-parent">
-          {this.renderJuiceCards()}
+          {/* {this.renderJuiceCards()} */}
+          <h1>Different Design Here</h1>
         </div>
       </div>
     );

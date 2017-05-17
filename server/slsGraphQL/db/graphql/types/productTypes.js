@@ -515,6 +515,14 @@ const mutations = {
     },
     resolve: (_, { _id, newProduct }, { Product }) => Product.findProductAndUpdate(_id, newProduct),
   },
+  findProductByIdAndDelete: {
+    type: rootType,
+    description: 'Find product by ID and delete the product.',
+    args: {
+      _id: new NonNull(GraphQLID),
+      resolve: (_, { _id }, { Product }) => Product.findProductByIdAndDelete(_id),
+    },
+  },
 };
 
 export default {
