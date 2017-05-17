@@ -14,16 +14,17 @@ const options = {
     },
   },
 };
-export const closeDB = db => new Promise((resolve) => {
-  resolve(
-    db.close(() => {
-      console.log('\nmongo/connection.js @ CLOSE DB');
-      console.log('\nconnections: ', JSON.stringify(db.connections, null, 2));
-    }),
-  );
+export const closeDB = (db, graphQLResponse) =>
+new Promise((resolve) => {
+  db.close(() => {
+    console.log('\nmongo/connection.js @ CLOSE DB');
+    console.log('\nconnections: ', JSON.stringify(db.connections, null, 2));
+    resolve(graphQLResponse);
+  });
 });
 
-export const startDB = () => new Promise((resolve, reject) => {
+export const startDB = () =>
+new Promise((resolve, reject) => {
   const newDB = mongoose.createConnection(MONGO_DB, options, (error) => {
     if (error) {
       reject(`\nCould not connect to Mongo DB.\n
