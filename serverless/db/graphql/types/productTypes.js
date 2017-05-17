@@ -9,7 +9,7 @@ import {
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
-import ProductModelGenerator from '../../mongo/models/product';
+import ProductModel from '../../mongo/connection';
 
 const rootType = new ObjectType({
   name: 'Product',
@@ -185,7 +185,7 @@ const queries = {
       },
     },
     resolve: (_, args) =>
-      ProductModelGenerator().next().value.findProductById(args),
+      ProductModel.then(Product => Product.findProductById(args)),
   },
   popularProducts: {
     type: new ListType(rootType),
@@ -196,7 +196,7 @@ const queries = {
       },
     },
     resolve: (_, args) =>
-      ProductModelGenerator().next().value.getPopularProducts(args),
+      ProductModel.then(Product => Product.getPopularProducts(args)),
   },
 };
 const mutations = {
@@ -358,7 +358,7 @@ const mutations = {
       },
     },
     resolve: (_, args) =>
-      ProductModelGenerator().next().value.createProduct(args),
+      ProductModel.then(Product => Product.createProduct(args)),
   },
   findProductAndUpdate: {
     type: rootType,
@@ -512,7 +512,7 @@ const mutations = {
       },
     },
     resolve: (_, args) =>
-      ProductModelGenerator().next().value.findProductAndUpdate(args),
+      ProductModel.then(Product => Product.findProductAndUpdate(args)),
   },
 };
 

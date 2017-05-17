@@ -19,7 +19,7 @@ export default (db) => {
     });
   });
 
-  productSchema.statics.findProductById = ({ id }) =>
+  productSchema.statics.findProductById = id =>
   new Promise((resolve, reject) => {
     Product.findById(id)
     .exec()
@@ -58,7 +58,7 @@ export default (db) => {
     });
   });
 
-  productSchema.statics.getPopularProducts = ({ qty }) =>
+  productSchema.statics.getPopularProducts = qty =>
   new Promise((resolve, reject) => {
     Product.find({})
     .exec()

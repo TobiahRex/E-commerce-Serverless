@@ -7,12 +7,14 @@ const runGraphQL = ({
   Product,
   User,
 }, cb) => {
-  const { query, variables, type } = event.body;
-  switch (type) {
+  const { query, variables, dbType } = event.body;
+
+  switch (dbType) {
     case 'Product': variables.model = Product; break;
     case 'User': variables.model = User; break;
     default: break;
   }
+
   graphql(schema, query, null, {}, variables)
   .then((result) => {
     console.log('\n//runGraphQL.js @ RESOLVE');

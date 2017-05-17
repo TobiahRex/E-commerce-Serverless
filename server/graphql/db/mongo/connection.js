@@ -6,8 +6,6 @@ import createUserModel from './models/user';
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
-console.log('\nMONGO_DB: ', MONGO_DB);
-
 const options = {
   server: {
     socketOptions: {
@@ -26,6 +24,7 @@ export const closeDB = db => new Promise((resolve) => {
 });
 
 export const startDB = () => {
+  console.log('\nMONGO_DB: ', MONGO_DB);
   const newDB = mongoose.createConnection(MONGO_DB, options, (error) => {
     if (error) {
       console.log(`\nCould not connect to Mongo DB.\n
@@ -34,7 +33,6 @@ export const startDB = () => {
       console.log(`\nMongo Connected @ ${MONGO_DB}`);
     }
   });
-  console.log('newDB: ', newDB);
   return ({
     Product: createProductModel(newDB),
     User: createUserModel(newDB),

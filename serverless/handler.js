@@ -7,7 +7,6 @@ import { startDB, closeDB } from './db/mongo/connection';
 module.exports.graphql = (event, context, cb) => {
   console.log('\nEVENT: ', event);
 
-
   const {
     Product,
     User,

@@ -32,6 +32,7 @@ const createAPI = () => {
         routeTag
       }
     }`,
+    dbType: 'Product',
   });
   const fetchPopularProducts = qty => api.post('', {
     query: `query {
@@ -46,6 +47,7 @@ const createAPI = () => {
         }
       }
     }`,
+    dbType: 'Product',
   });
 
   return {
