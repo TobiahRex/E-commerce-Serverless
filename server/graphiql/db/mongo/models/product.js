@@ -51,30 +51,34 @@ new Promise((resolve, reject) => {
   });
 });
 
-productSchema.statics.findProductAndUpdate = (_id, newProduct) =>
+productSchema.statics.findProductAndUpdate = (_id, productObj) =>
 new Promise((resolve, reject) => {
-  const propertyString = Object.keys(newProduct)
+  const newProductObj = {};
+  Object.keys(productObj)
   .map((key) => {
     if (key === 'images') {
       const imageKeys = [];
       const imageObjs = [];
-      newProduct.images.forEach((imageObj, i) => {
+      productObj.images.forEach((imageObj, i) => {
         imageKeys.push(`property.images[${i}]`);
         imageObjs.push(imageObj);
       });
-      return ({
-        [newKey]: imageObj,
-      });
+      return imageKeys.map((newKey, i) => ({
+        [newKey]: imageObjs[i],
+      }));
     }
     const newKey = `property.${key}`;
-    const value = newProduct[key];
+    const value = productObj[key];
     return ({
       [newKey]: value,
     });
+  })
+  .forEach((object) => {
+    const key = Object.keys(object)[0];
+    newProductObj[key] = object[key];
   });
-  const $setOptions = {
-    $set: { [propertyString]: newProduct },
-  };
+
+  const $setOptions = { $set: newProductObj };
   console.log('$setOptions: ', $setOptions);
   if (typeof _id === 'string') _id = ObjectId(_id);
 
