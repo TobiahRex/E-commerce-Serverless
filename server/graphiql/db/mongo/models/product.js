@@ -3,6 +3,20 @@ import { Promise as bbPromise } from 'bluebird';
 import productSchema, { ObjectId } from '../schemas/productSchema';
 import db from '../connection';
 
+productSchema.statics.findProductByIdAndDelete = _id =>
+new Promise((resolve, reject) => {
+  if (typeof _id === 'string') _id = ObjectId(_id);
+
+  Product.findByIdAndRemove(_id)
+  .exec()
+  .then(resolve)
+  .catch(error => reject({
+    problem: `Could not create a delete product with _id:${_id}.  Verify the id is valid.
+    Mongoose Error = ${error}`,
+  }));
+});
+
+
 productSchema.statics.createProduct = product =>
 new Promise((resolve, reject) => {
   bbPromise.fromCallback(cb => Product.create({ product }, cb))
