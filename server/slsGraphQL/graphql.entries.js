@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs, no-unused-vars */
-const juices = {
+const mutations = {
   frenchVanillaMocha: `
   mutation createProduct {
     createProduct(product: {
@@ -270,4 +270,30 @@ const juices = {
     }
   }
   `,
+  findProductAndUpdate: {
+    Mutation: `
+    mutation findProductAndUpdate(
+      $id: ID!
+      $newProduct: UpdateProductObject!
+    ){
+      findProductAndUpdate(
+        _id: $id
+        newProduct: $newProduct
+      ) {
+        _id
+        product {
+          title
+        }
+      }
+    }
+    `,
+    Variables: `
+    {
+      "id": "591c16dd149cbc3694469e50",
+      "newProduct": {
+        "title": "Blah Blah Blah"
+      }
+    }
+    `,
+  },
 };

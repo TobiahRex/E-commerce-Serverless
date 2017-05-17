@@ -519,9 +519,12 @@ const mutations = {
     type: rootType,
     description: 'Find product by ID and delete the product.',
     args: {
-      _id: new NonNull(GraphQLID),
-      resolve: (_, { _id }, { Product }) => Product.findProductByIdAndDelete(_id),
+      _id: {
+        type: new NonNull(GraphQLID),
+        description: 'The Mongo _id of the product.',
+      },
     },
+    resolve: (_, { _id }, { Product }) => Product.findProductByIdAndDelete(_id),
   },
 };
 

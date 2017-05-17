@@ -362,7 +362,7 @@ const mutations = {
     description: 'Find product by ID and update.',
     args: {
       _id: {
-        description: 'The ID of the product to update.',
+        description: 'The mongo _id of the product to update.',
         type: new NonNull(GraphQLID),
       },
       newProduct: {
@@ -518,9 +518,12 @@ const mutations = {
     type: rootType,
     description: 'Find product by ID and delete the product.',
     args: {
-      _id: new NonNull(GraphQLID),
-      resolve: (_, { _id }) => Product.findProductByIdAndDelete(_id),
+      _id: {
+        description: 'The Mongo _id of the product.',
+        type: new NonNull(GraphQLID),
+      },
     },
+    resolve: (_, { _id }) => Product.findProductByIdAndDelete(_id),
   },
 };
 

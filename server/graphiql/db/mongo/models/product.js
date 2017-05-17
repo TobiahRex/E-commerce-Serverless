@@ -53,11 +53,20 @@ new Promise((resolve, reject) => {
 
 productSchema.statics.findProductAndUpdate = (_id, newProduct) =>
 new Promise((resolve, reject) => {
+  const propertyString = Object.keys(newProduct)
+  .map((key) => {
+    if (key === 'images') {
+      const newImages = newProduct[images];
+      newImages.map((image, i) => {
+        key = `property.images[${i}]`
+      });
+    }
+    key = `property.${key}`;
+  })
   const $setOptions = {
-    $set: {
-      product: newProduct,
-    },
+    $set: { [propertyString]: newProduct },
   };
+  console.log('$setOptions: ', $setOptions);
   if (typeof _id === 'string') _id = ObjectId(_id);
 
   Product.findByIdAndUpdate(_id, $setOptions, { new: true })
