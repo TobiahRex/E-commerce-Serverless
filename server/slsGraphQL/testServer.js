@@ -2,19 +2,17 @@ import 'babel-polyfill';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import schema from './db/graphql/schema';
-import { startDB, closeDB } from './db/mongo/connection';
+import { startDB } from './db/mongo/connection';
 import runGraphQL from './db/graphql/runGraphQL';
 
 require('dotenv').load({ silent: true }); //eslint-disable-line
 
 const PORT = process.env.GRAPHIQL_PORT || 3002;
 const server = express();
-let dbConnection;
+
 startDB()
 .then(({ db, dbModels }) => {
-  // console.log('\n//handler.js @ startDB\n db: ', db, '\ndbModels: ', dbModels);
-  dbConnection = db;
-  // console.log('dbConnection @ startDB: ', dbConnection);
+  console.log('\n//handler.js @ startDB\n db: ', db.base.connections[0], '\ndbModels: ', dbModels);
   const event = {
     body: {
       query: `query popularProducts($qty: Int!) {
@@ -22,7 +20,10 @@ startDB()
           _id
           product {
             title
-            images
+            images {
+              purpose
+              url
+            }
           }
         }
       }`,
@@ -30,11 +31,11 @@ startDB()
     },
   };
 
-  return runGraphQL({ event, dbModels });
+  return runGraphQL({ event, dbModels, db });
 })
 .then((GraphQLResponse) => {
   console.log('\n//handler.js @ \nRESOLVE: ', GraphQLResponse);
-  cb(null, GraphQLResponse);
+  console.log('GraphQLResponse: ', GraphQLResponse);
 })
 .catch((error) => {
   console.log('\n//handler.js @ CATCH\nERROR: ', error);

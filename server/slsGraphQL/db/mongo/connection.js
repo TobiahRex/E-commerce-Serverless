@@ -8,7 +8,8 @@ const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 const MONGO_DB = process.env.AWS_MONGO_URI_DEV;
 const mongooseConnection = () =>
 new Promise((resolve) => {
-  resolve(mongoose.createConnection(MONGO_DB));
+  const newDB = mongoose.createConnection(MONGO_DB, console.log);
+  resolve(newDB);
 });
 
 export const closeDB = (db, GraphQLResponse) =>
@@ -25,7 +26,7 @@ new Promise((resolve) => {
   mongooseConnection()
   .then((newDB) => {
     console.log(`\nMongo Connected @ ${MONGO_DB}`);
-    console.log('\n//connection.js @ mongooseConnection.newDB: ', newDB.base.connections);
+    console.log('\nNew DB = ', newDB);
     resolve({
       db: newDB,
       dbModels: {
