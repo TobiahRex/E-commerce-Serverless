@@ -16,7 +16,7 @@ import { localeReducer as locale } from './locale';
 import { sessionReducer as session } from './session';
 import { authReducer as auth } from './auth';
 
-const client = new ApolloClient();
+export const client = new ApolloClient();
 export default () => {
   const rootReducer = combineReducers({
     apollo: client.reducer(),
