@@ -38,11 +38,6 @@ class SingleProductContainer extends Component {
     if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   }
-
-  qtyHandler = e => this.props.qtyHandler(e);
-  addToCartHandler = e => this.props.addToCartHandler(e);
-  modalHandler = e => this.props.modalHandler(e);
-  nicotineHandler = e => this.props.nicotineHandler(e);
   filterImages = (images) => {
     const helper = ({ purpose }) => purpose === 'large';
     const image = images.filter(helper).length;
@@ -91,18 +86,31 @@ class SingleProductContainer extends Component {
     );
   }
 }
-
-const SingleProductWithData = graphql(SINGLE_PRODUCT_BY_ID, {
-  options: ({ _id }) => ({
-    variables: {
-      _id,
-    },
-  }),
-})(SingleProductContainer);
-
-
 const mapStateToProps = ({ routing }) => ({
   _id: routing.locationBeforeTransitions.query,
 });
-const SingleProductContainerGQL = connect(mapStateToProps, null)(SingleProductContainer);
-export default SingleProductContainerGQL;
+
+const SingleProductWithState = connect(mapStateToProps, null)(SingleProductContainer);
+
+
+export default graphql(SINGLE_PRODUCT_BY_ID, {
+  options: (props) => {
+    console.log('%cprops', 'background:red;', props);
+    return ({
+      variables: {
+        _id: props._id,
+      },
+    }),
+  },
+  props: ({ ownProps, data }) => {
+    console.log('%cdata', 'background:red;', data);
+    console.log('%cownProps', 'background:red;', ownProps);
+
+    return ({
+      qtyHandler: e => ownProps.qtyHandler(e),
+      addToCartHandler: e => ownProps.addToCartHandler(e),
+      modalHandler: e => ownProps.modalHandler(e),
+      nicotineHandler: e => ownProps.nicotineHandler(e),
+    });
+  },
+})(SingleProductWithState);

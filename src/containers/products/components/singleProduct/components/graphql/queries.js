@@ -3,7 +3,7 @@ import {
 } from 'react-apollo';
 
 const SINGLE_PRODUCT_BY_ID = gql`
-  query findProductById(_id: ID!) {
+  query findProductById($_id: ID!) {
     findProductById(_id: $_id){
       _id
       product {

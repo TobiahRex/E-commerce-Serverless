@@ -9,7 +9,8 @@ import { render } from 'react-dom';
 import { Router } from 'react-router';
 import Perf from 'react-addons-perf';
 import { ApolloProvider } from 'react-apollo';
-import createStore, { client } from './redux/index';
+import createStore from './redux/index';
+import client from './apollo/';
 import saveLocation from './services/utils/saveLocation';
 import routes from './navigation/routes';
 
