@@ -21,6 +21,7 @@ const mutation = new GraphQLObjectType({
     createUser: UserTypes.mutations.createUser,
     createProduct: ProductTypes.mutations.createProduct,
     findProductAndUpdate: ProductTypes.mutations.findProductAndUpdate,
+    findProductByIdAndDelete: ProductTypes.mutations.findProductByIdAndDelete,
   }),
 });
 

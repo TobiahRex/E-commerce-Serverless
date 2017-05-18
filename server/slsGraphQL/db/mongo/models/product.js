@@ -5,8 +5,6 @@ import productSchema, { ObjectId } from '../schemas/productSchema';
 export default (db) => {
   productSchema.statics.findProductByIdAndDelete = _id =>
   new Promise((resolve, reject) => {
-    if (typeof _id === 'string') _id = ObjectId(_id);
-
     Product.findByIdAndRemove(_id)
     .exec()
     .then(resolve)
@@ -34,7 +32,6 @@ export default (db) => {
 
   productSchema.statics.findProductById = _id =>
   new Promise((resolve, reject) => {
-    if (typeof _id === 'string') _id = ObjectId(_id);
     Product.findById(_id)
     .exec()
     .then((dbProduct) => {
@@ -50,16 +47,36 @@ export default (db) => {
     });
   });
 
-  productSchema.statics.findProductAndUpdate = (_id, newProduct) =>
+  productSchema.statics.findProductAndUpdate = (_id, productObj) =>
   new Promise((resolve, reject) => {
-    const $setOptions = {
-      $set: {
-        product: newProduct,
-      },
-    };
-    if (typeof _id === 'string') _id = ObjectId(_id);
+    const newProductObj = {};
+    Object.keys(productObj)
+    .map((key) => {
+      if (key === 'images') {
+        const imageKeys = [];
+        const imageObjs = [];
+        productObj.images.forEach((imageObj, i) => {
+          imageKeys.push(`product.images[${i}]`);
+          imageObjs.push(imageObj);
+        });
+        return imageKeys.map((newKey, i) => ({
+          [newKey]: imageObjs[i],
+        }));
+      }
+      const newKey = `product.${key}`;
+      const value = productObj[key];
+      return ({
+        [newKey]: value,
+      });
+    })
+    .forEach((object) => {
+      const key = Object.keys(object)[0];
+      newProductObj[key] = object[key];
+    });
 
-    Product.findByIdAndUpdate(_id, $setOptions, { new: true })
+    console.log('\nnewProductObj: ', newProductObj);
+
+    Product.findByIdAndUpdate(_id, { $set: newProductObj }, { new: true })
     .exec()
     .then((updatedProduct) => {
       console.log('\n//mongo/model/product.js\n @ findByIdAndUpdate RESOLVE\n', updatedProduct);

@@ -178,14 +178,11 @@ const queries = {
     type: rootType,
     args: {
       _id: {
-        description: 'The MONGO ID for the product.',
+        description: 'The Mongo _id of the product.',
         type: new NonNull(GraphQLID),
       },
     },
-    resolve: (_, { _id }, { Product }) => {
-      console.log('\n productTypes.js @ findProductById: ', Product);
-      return Product.findProductById(_id);
-    },
+    resolve: (_, { _id }, { Product }) => Product.findProductById(_id),
   },
   popularProducts: {
     type: new ListType(rootType),
@@ -195,11 +192,7 @@ const queries = {
         description: 'The quantity of popular products to return.',
       },
     },
-    resolve: (_, { qty }, { Product }) => {
-      console.log('\n productTypes.js @ popularProducts: qty = ', qty);
-      console.log('\n productTypes.js @ popularProducts: ', Product);
-      return Product.getPopularProducts(qty);
-    },
+    resolve: (_, { qty }, { Product }) => Product.getPopularProducts(qty),
   },
 };
 const mutations = {
@@ -367,7 +360,7 @@ const mutations = {
     description: 'Find product by ID and update.',
     args: {
       _id: {
-        description: 'The ID of the product to update.',
+        description: 'The mongo _id of the product to update.',
         type: new NonNull(GraphQLID),
       },
       newProduct: {
@@ -518,6 +511,17 @@ const mutations = {
       },
     },
     resolve: (_, { _id, newProduct }, { Product }) => Product.findProductAndUpdate(_id, newProduct),
+  },
+  findProductByIdAndDelete: {
+    type: rootType,
+    description: 'Find product by ID and delete the product.',
+    args: {
+      _id: {
+        type: new NonNull(GraphQLID),
+        description: 'The Mongo _id of the product.',
+      },
+    },
+    resolve: (_, { _id }, { Product }) => Product.findProductByIdAndDelete(_id),
   },
 };
 
