@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { gql } from 'react-apollo';
 import {
   ImageGroup,
   JuiceTitle,
@@ -11,6 +12,9 @@ import {
   NicotineBtns,
   SocialMediaBtns,
 } from './imports';
+
+const SingleProductWithData
+
 
 const { any, bool, func, number, objectOf } = PropTypes;
 
