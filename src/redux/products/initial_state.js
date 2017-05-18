@@ -28,7 +28,9 @@ export const productType = {
 };
 
 export default {
-  activeViewProduct: Object.assign({}, productType),
-  popularProducts: [{ ...productType }],
+  activeViewProduct: null,
+  // activeViewProduct: Object.assign({}, productType),
+  popularProducts: [],
+  // popularProducts: [{ ...productType }],
   error: null,
 };

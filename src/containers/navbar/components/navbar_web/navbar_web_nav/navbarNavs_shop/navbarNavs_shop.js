@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
+import _ from 'lodash';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
 const { arrayOf, shape, func, number, string } = PropTypes;
@@ -15,36 +16,21 @@ class NavbarNavsShop extends Component {
   static propTypes = {
     popularProducts: arrayOf(
       shape({
-        _id: string,  // MongoID (casted from ObjectID).
+        _id: string,
         product: shape({
-          mainTitle: string,
           title: string,
-          price: string,
-          sku: string,
-          sizes: arrayOf(string),
-          nicotine_strengths: arrayOf(string),
           images: arrayOf(
             shape({
               purpose: string,
               url: string,
             })),
           routeTag: string,
-          vendor: string,
-          blurb: string,
-          quantities: shape({
-            available: number,
-            in_cart: number,
-          }),
         }),
-        reviews: arrayOf(
-          shape({
-            reviews_id: string,
-            user_id: string,
-          }),
-        ),
-      })),
+      }),
+    ),
     push: func.isRequired,
   }
+
   static defaultProps = {
     popularProducts: [],
   }
@@ -54,6 +40,11 @@ class NavbarNavsShop extends Component {
     this.state = {
       dropdownDisplay: false,
     };
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return true;
+    return false;
   }
 
   toggleNavbarDropdown = (urlSuffix) => {
@@ -71,11 +62,13 @@ class NavbarNavsShop extends Component {
             <span>SHOP</span>
           </div>
         </Link>
-
-        <NavbarNavsShopDropdnContent
-          popularProducts={this.props.popularProducts}
-          toggleNavbarDropdown={this.toggleNavbarDropdown}
-        />
+        {
+          this.props.popularProducts.length &&
+            <NavbarNavsShopDropdnContent
+              popularProducts={this.props.popularProducts}
+              toggleNavbarDropdown={this.toggleNavbarDropdown}
+            />
+        }
       </div>
     );
   }

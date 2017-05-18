@@ -42,6 +42,7 @@ const createAPI = () => {
         _id
         product {
           title
+          routeTag
           images {
             purpose
             url

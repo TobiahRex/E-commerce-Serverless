@@ -30,12 +30,12 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
           </h2>
         </div>
         <div className="shop-dropdown-content-midThird-juices">
-          { popularProducts.map(juiceObj => (
+          { popularProducts.map(productObj => (
             <NavbarNavsShopDropdnJuiceCards
-              key={juiceObj.title || Math.round(Math.random() * -1000)}
-              juiceInfo={juiceObj}
-              tag={juiceObj.routeTag}
+              key={productObj._id || Math.round(Math.random() * -1000)}
+              tag={productObj.routeTag}
               push={this.push}
+              product={productObj}
             />))
           }
         </div>

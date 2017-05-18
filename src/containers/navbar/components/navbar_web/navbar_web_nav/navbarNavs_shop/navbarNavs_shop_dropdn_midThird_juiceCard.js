@@ -5,7 +5,7 @@ function NavbarNavsShopDropdnJuiceCards(props) {
   const {
     tag,
     push,
-    juiceInfo: { _id, product },
+    productInfo: { _id, product },
   } = props;
 
   const imageUrl = product.images.reduce((accumObj, nextObj) => {
@@ -43,7 +43,7 @@ function NavbarNavsShopDropdnJuiceCards(props) {
 }
 const { shape, arrayOf, string, func } = PropTypes;
 NavbarNavsShopDropdnJuiceCards.propTypes = {
-  juiceInfo: shape({
+  productInfo: shape({
     title: string,
     price: string,
     nicotine_strengths: arrayOf(string),
@@ -53,7 +53,7 @@ NavbarNavsShopDropdnJuiceCards.propTypes = {
   push: func.isRequired,
 };
 NavbarNavsShopDropdnJuiceCards.defaultProps = {
-  juiceInfo: {
+  productInfo: {
     title: '',
     price: '',
     nicotine_strengths: [''],

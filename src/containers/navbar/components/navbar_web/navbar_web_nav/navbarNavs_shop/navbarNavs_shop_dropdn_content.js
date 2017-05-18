@@ -8,7 +8,7 @@ import NavbarNavsShopDropdnBottomthird from './navbarNavs_shop_dropdn_bottomThir
 const { arrayOf, object, func } = PropTypes;
 
 const propTypes = {
-  popularProducts: arrayOf(object).isRequired,
+  popularProducts: arrayOf(object),
   toggleNavbarDropdown: func.isRequired,
 };
 
