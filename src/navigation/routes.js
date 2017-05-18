@@ -29,11 +29,11 @@ export default (
   <Route path="/" component={App} auth={auth}>
     <IndexRoute
       component={Homepage}
-      // getComponent={(location, cb) => {
-      //   System.import('../containers/home/homePage')
-      //   .then(loadRoute(cb))
-      //   .catch(errorLoading);
-      // }}
+      getComponent={(location, cb) => {
+        System.import('../containers/home/homePage')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
     />
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
