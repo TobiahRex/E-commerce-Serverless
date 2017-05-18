@@ -1,8 +1,8 @@
+import { ApolloClient } from 'react-apollo';
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import configureStore from './store';
 import rootSaga from '../sagas/';
-
 // ------- Reducer Imports ------- //
 
 // import { thingReducer as things } from '../redux/ThingRedux';
@@ -16,8 +16,10 @@ import { localeReducer as locale } from './locale';
 import { sessionReducer as session } from './session';
 import { authReducer as auth } from './auth';
 
+const client = new ApolloClient();
 export default () => {
   const rootReducer = combineReducers({
+    apollo: client.reducer(),
     auth,
     user,
     products,
