@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
 
-const { arrayOf, shape, func, number, string } = PropTypes;
+const { arrayOf, shape, func, string } = PropTypes;
 
 class NavbarNavsShop extends Component {
   static styles = {

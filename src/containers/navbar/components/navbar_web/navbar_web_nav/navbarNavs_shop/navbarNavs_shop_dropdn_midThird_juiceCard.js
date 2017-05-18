@@ -7,7 +7,6 @@ function NavbarNavsShopDropdnJuiceCards(props) {
     push,
     productInfo: { _id, product },
   } = props;
-
   const imageUrl = product.images.reduce((accumObj, nextObj) => {
     switch (accumObj.purpose) {
       case '': return '';

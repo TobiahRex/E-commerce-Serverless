@@ -1,15 +1,21 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import NavbarNavsShopDropdnJuiceCards from './navbarNavs_shop_dropdn_midThird_juiceCard';
 
 const { arrayOf, object, func } = PropTypes;
 
-class NavbarNavsShopDropdnMidthird extends PureComponent {
+class NavbarNavsShopDropdnMidthird extends Component {
   static propTypes = {
     popularProducts: arrayOf(object).isRequired,
     push: func.isRequired,
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return true;
+    return false;
   }
 
   push = (e) => {
@@ -33,9 +39,9 @@ class NavbarNavsShopDropdnMidthird extends PureComponent {
           { popularProducts.map(productObj => (
             <NavbarNavsShopDropdnJuiceCards
               key={productObj._id || Math.round(Math.random() * -1000)}
-              tag={productObj.routeTag}
+              tag={productObj.product.routeTag}
               push={this.push}
-              product={productObj}
+              productInfo={productObj}
             />))
           }
         </div>
