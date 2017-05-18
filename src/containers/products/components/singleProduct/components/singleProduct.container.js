@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { gql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
+import { SINGLE_PRODUCT_BY_ID } from './graphql/queries';
 import {
   ImageGroup,
   JuiceTitle,
@@ -12,9 +14,6 @@ import {
   NicotineBtns,
   SocialMediaBtns,
 } from './imports';
-
-const SingleProductWithData
-
 
 const { any, bool, func, number, objectOf } = PropTypes;
 
@@ -92,4 +91,18 @@ class SingleProductContainer extends Component {
     );
   }
 }
-export default SingleProductContainer;
+
+const SingleProductWithData = graphql(SINGLE_PRODUCT_BY_ID, {
+  options: ({ _id }) => ({
+    variables: {
+      _id,
+    },
+  }),
+})(SingleProductContainer);
+
+
+const mapStateToProps = ({ routing }) => ({
+  _id: routing.locationBeforeTransitions.query,
+});
+const SingleProductContainerGQL = connect(mapStateToProps, null)(SingleProductContainer);
+export default SingleProductContainerGQL;

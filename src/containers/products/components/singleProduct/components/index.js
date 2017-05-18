@@ -8,12 +8,12 @@ import BreadCrumb from '../../../../../components/breadcrumbs';
 import productActions from '../../../../../redux/products/';
 import orderActions from '../../../../../redux/orders/';
 import {
-  BulkSaleModal,
   MainTitle,
-  SingleProductContainer,
   ActionBtns,
   SuccessModal,
   RegisterModal,
+  BulkSaleModal,
+  SingleProductContainerGQL,
 } from './imports';
 
 const {
@@ -301,7 +301,7 @@ class SingleProduct extends Component {
         />
 
         <MainTitle mainTitle={productObj.mainTitle} />
-        <SingleProductContainer
+        <SingleProductContainerGQL
           qty={qty}
           qtyHandler={this.qtyHandler}
           nicStrength={nicStrength}
