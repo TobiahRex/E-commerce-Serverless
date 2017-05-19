@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo';
 import _ from 'lodash';
 import queryProductById from './graphql/queries';
 import BreadCrumb from '../../../../../components/breadcrumbs';
-import productActions from '../../../../../redux/products/';
+// import productActions from '../../../../../redux/products/';
 import orderActions from '../../../../../redux/orders/';
 import {
   MainTitle,
@@ -270,13 +270,11 @@ class SingleProduct extends Component {
       qty,
       error,
       product,
-      productId,
       nicStrength,
       showBulkModal,
       showSuccessModal,
       showRegisterModal,
     } = this.state;
-    console.log('%cthis.state', 'background:red;', this.state);
 
     const {
       data,

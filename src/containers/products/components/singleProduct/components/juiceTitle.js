@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function JuiceTitle() {
+function JuiceTitle({ title }) {
   return (
     <div className="desc__title">
-      <h1>Fruity Bamm-Bamm</h1>
+      <h1>{title}</h1>
     </div>
   );
 }
+JuiceTitle.propTypes = {
+  title: string.isRequired,
+};
+export default JuiceTitle;

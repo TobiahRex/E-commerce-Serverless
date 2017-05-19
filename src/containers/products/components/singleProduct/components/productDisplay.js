@@ -71,7 +71,7 @@ class ProductDisplay extends Component {
             modalHandler={modalHandler}
             loggedIn={loggedIn}
           />
-          
+
           <NicotineBtns
             nicStrength={nicStrength}
             nicotineHandler={nicotineHandler}
