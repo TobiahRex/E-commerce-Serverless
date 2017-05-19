@@ -62,6 +62,8 @@ class SingleProduct extends Component {
   }
   constructor(props) {
     super(props);
+    console.log('%cprops', 'background:red;', props);
+
     this.state = {
       showSuccessModal: false,
       showBulkModal: false,
@@ -265,11 +267,11 @@ class SingleProduct extends Component {
   render() {
     const {
       qty,
-      nicStrength,
       error,
       product,
-      showSuccessModal,
+      nicStrength,
       showBulkModal,
+      showSuccessModal,
       showRegisterModal,
     } = this.state;
     const {
@@ -277,7 +279,7 @@ class SingleProduct extends Component {
       loggedIn,
     } = this.props;
 
-    this.state.errorQty ? console.error(this.state.errorQty) : null;
+    if (this.state.errorQty) throw new Error(this.state.errorQty);
 
     return (
       <div className="juice-page__main">
@@ -354,9 +356,9 @@ const SingleProductWithState = connect(
 )(SingleProduct);
 
 const SingleProductWithStateAndData = graphql(queryProductById, {
-  options: ({ location: query }) => ({
+  options: ({ location }) => ({
     variables: {
-      _id: query._id,
+      _id: location.query._id,
     },
   }),
 })(SingleProductWithState);

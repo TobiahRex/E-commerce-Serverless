@@ -5,30 +5,6 @@ import productApi from '../../services/api/graphQL/products';
 
 const api = productApi.createAPI();
 
-export function* fetchProductById() {
-  while (true) {  //eslint-disable-line
-    const { id } = yield take(productTypes.FETCH_PRODUCT_BY_ID);
-    const responses = yield [
-      put(apiActions.fetching()),
-      call(() => api.fetchProductById(id)),
-    ];
-    const {
-      ok,
-      problem,
-      data,
-    } = cleanGQLresponse(responses[1]);
-
-    if (ok) {
-      yield [
-        put(apiActions.apiSuccess()),
-        put(productActions.receivedProductById(data.data.findProductById)),
-      ];
-    } else {
-      yield put(apiActions.apiFail(problem));
-    }
-  }
-}
-
 export function* fetchPopularProducts() {
   while (true) { //eslint-disable-line
     const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);

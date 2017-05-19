@@ -3,8 +3,6 @@ import Immutable from 'seamless-immutable';
 import productsInitialState from './initial_state';
 
 const { Types, Creators } = createActions({
-  // fetchProductById: ['id'],
-  // receivedProductById: ['product'],
   fetchPopularProducts: ['qty'],
   receivedPopularProducts: ['popularProducts'],
   productRequestError: ['problem'],
@@ -13,11 +11,6 @@ const { Types, Creators } = createActions({
 export const productTypes = Types;
 export default Creators;
 export const INITIAL_STATE = Immutable(productsInitialState);
-
-// const receivedProductById = (state, { product }) => ({
-//   ...state,
-//   // activeViewProduct: product,
-// });
 
 const receivedPopularProducts = (state, { popularProducts }) => ({
   ...state,
