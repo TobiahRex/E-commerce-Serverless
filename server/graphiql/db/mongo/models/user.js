@@ -26,15 +26,14 @@ new Promise((resolve, reject) => {
       strength,
       product,
     });
-    return bbPromise.fromCallback(cb =>
-      dbUser.save({ validateBeforeSave: true }, cb));
+    return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {
-    console.log('Updated the User\'s Shopping Cart.');
+    console.log('Updated the User\'s Shopping Cart!');
     resolve(savedUser);
   })
   .catch(error => reject({
-    problem: `Could not save to the Users profile.
+    problem: `Could not save to the Users shopping cart.
     args: {
       userId: ${userId},
       qty: ${qty},
@@ -43,6 +42,29 @@ new Promise((resolve, reject) => {
     }
     Mongo Error: ${error}`,
   }));
+});
+
+userSchema.statics.updateToMemberCart = ({ userId, qty, strength, product }) =>
+new Promise((resolve, reject) => {
+  User.findById(userId)
+  .exec()
+  .then(({ shopping: cart }) => {
+    const itemsToKeep = cart
+    .filter(cartItem => cartItem.product !== product);
+    itemsToKeep.push({ qty, strength, product });
+  })
+  .catch((error) => {
+    reject({
+      problem: `Could not post updated to the Users shopping cart.
+      args: {
+        userId: ${userId},
+        qty: ${qty},
+        strength: ${strength},
+        product: ${product},
+      }
+      Mongo Error: ${error}`,
+    });
+  });
 });
 const User = db.model('User', userSchema);
 export default User;
