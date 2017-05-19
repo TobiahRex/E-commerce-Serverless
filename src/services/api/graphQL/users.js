@@ -1,11 +1,11 @@
 import { create } from 'apisauce';
 
-let graphqlURL;
-if (process.env.NODE_ENV === 'production') {
-  graphqlURL = `${process.env.AWS_GRAPHQL_PROD}`;
-} else {
-  graphqlURL = `${process.env.AWS_GRAPHQL_DEV}`;
-}
+const {
+  NODE_ENV,
+  GRAPHQL_PORT,
+  AWS_GRAPHQL_PROD,
+} = process.env;
+const graphqlURL = NODE_ENV === 'production' ? AWS_GRAPHQL_PROD : `http://localhost:${GRAPHQL_PORT}`;
 
 const createAPI = () => {
   const api = create({
