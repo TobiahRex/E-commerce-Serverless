@@ -14,20 +14,21 @@ import {
 
 const { any, bool, func, number, objectOf } = PropTypes;
 
-class SingleProductDisplay extends Component {
+class ProductDisplay extends Component {
   static propTypes = {
     qty: number.isRequired,
+    // fbLike: func.isRequired,
     qtyHandler: func.isRequired,
     nicStrength: number.isRequired,
     nicotineHandler: func.isRequired,
     addToCartHandler: func.isRequired,
-    // fbLike: func.isRequired,
     loggedIn: bool.isRequired,
     modalHandler: func.isRequired,
-    productObj: objectOf(any).isRequired,
+    productObj: objectOf(any),
     error: bool,
   };
   static defaultProps = {
+    productObj: null,
     error: false,
   };
 
@@ -83,4 +84,4 @@ class SingleProductDisplay extends Component {
     );
   }
 }
-export default SingleProductDisplay;
+export default ProductDisplay;

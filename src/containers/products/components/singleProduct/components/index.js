@@ -13,9 +13,9 @@ import {
   MainTitle,
   ActionBtns,
   SuccessModal,
-  RegisterModal,
   BulkSaleModal,
-  SingleProductContainerGQL,
+  RegisterModal,
+  ProductDisplay,
 } from './imports';
 
 const {
@@ -62,14 +62,12 @@ class SingleProduct extends Component {
   }
   constructor(props) {
     super(props);
-    console.log('%cprops', 'background:red;', props);
-
     this.state = {
       showSuccessModal: false,
       showBulkModal: false,
       showRegisterModal: false,
       productId: null,
-      product: props.data.findProductById,
+      product: null,
       qty: 0,
       nicStrength: 0,
       error: false,
@@ -83,6 +81,7 @@ class SingleProduct extends Component {
   // }
 
   componentWillReceiveProps(nextProps) {
+    console.log('%cnextProps', 'background:red;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({ ...nextProps });
       this.props.fetchProductById(nextProps.productId);
@@ -274,10 +273,14 @@ class SingleProduct extends Component {
       showSuccessModal,
       showRegisterModal,
     } = this.state;
+    console.log('%cthis.state', 'background:red;', this.state);
+
     const {
+      data,
       taxRate,
       loggedIn,
     } = this.props;
+    console.log('%cthis.props', 'background:red;', this.props);
 
     if (this.state.errorQty) throw new Error(this.state.errorQty);
 
@@ -290,20 +293,23 @@ class SingleProduct extends Component {
           lastCrumb="Juice Page"
         />
 
-        <MainTitle mainTitle={product.mainTitle} />
-        <SingleProductContainerGQL
-          qty={qty}
-          qtyHandler={this.qtyHandler}
-          nicStrength={nicStrength}
-          nicotineHandler={this.nicotineHandler}
-          addToCartHandler={this.addToCartHandler}
-          loggedIn={loggedIn}
-          modalHandler={this.modalHandler}
-          productObj={product}
-          error={error}
-        />
-
+        <MainTitle mainTitle={product ? product.mainTitle : ''} />
+        {
+          data.loading ? <h1>Loading ...</h1> :
+          <ProductDisplay
+            qty={qty}
+            qtyHandler={this.qtyHandler}
+            nicStrength={nicStrength}
+            nicotineHandler={this.nicotineHandler}
+            addToCartHandler={this.addToCartHandler}
+            loggedIn={loggedIn}
+            modalHandler={this.modalHandler}
+            productObj={product}
+            error={error}
+          />
+        }
         <ActionBtns />
+
         <SuccessModal
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
@@ -358,7 +364,7 @@ const SingleProductWithState = connect(
 const SingleProductWithStateAndData = graphql(queryProductById, {
   options: ({ location }) => ({
     variables: {
-      _id: location.query._id,
+      id: location.query.id,
     },
   }),
 })(SingleProductWithState);

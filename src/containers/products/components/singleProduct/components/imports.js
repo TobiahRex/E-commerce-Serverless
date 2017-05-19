@@ -12,6 +12,6 @@ export PriceInfo from './priceInfo';
 export ProductActions from './productActions';
 export ProductSection from './productSection';
 export NewMemberPromotionBtn from './newMemberPromotionBtn';
-export SingleProductContainerGQL from './singleProduct.container';
+export ProductDisplay from './productDisplay';
 export SocialMediaBtns from './socialMediaBtns';
 export MainTitle from './mainTitle';
