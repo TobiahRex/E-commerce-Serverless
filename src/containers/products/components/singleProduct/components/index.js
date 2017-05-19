@@ -50,6 +50,10 @@ class SingleProduct extends Component {
             purpose: string,
             url: string,
           })),
+          quantities: shape({
+            available: number,
+            in_cart: number,
+          }),
           nicotine_strengths: arrayOf(string),
           price: string,
           qty: number,
