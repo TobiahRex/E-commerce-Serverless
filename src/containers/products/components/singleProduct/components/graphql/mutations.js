@@ -1,8 +1,18 @@
 import { gql } from 'react-apollo';
 
 export const addToMemberCart = gql`
-  mutation addToMemberCart($id: ID!) {
-    addToMemberCart(_id: $id) {
+  mutation AddToMemberCart(
+    $userId: ID!
+    $qty: Int!
+    $strength: String!
+    $product: ID!
+  ) {
+    AddToMemberCart(
+      userId: $userId
+      qty: $qty
+      strength: $strength
+      product: $product
+    ) {
       shopping {
         cart
       }
@@ -10,11 +20,21 @@ export const addToMemberCart = gql`
   }
 `;
 export const updateToMemberCart = gql`
-  mutation updateToMemberCart($memberId: ID!, $productId: ID!) {
-    updateToMemberCart(memberId: $memberId, productId: $productId) {
-      shopping {
-        cart
-      }
+mutation UpdateToMemberCart(
+  $userId: ID!
+  $qty: Int!
+  $strength: String!
+  $product: ID!
+) {
+  UpdateToMemberCart(
+    userId: $userId
+    qty: $qty
+    strength: $strength
+    product: $product
+  ) {
+    shopping {
+      cart
     }
   }
+}
 `;
