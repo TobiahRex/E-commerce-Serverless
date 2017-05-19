@@ -316,7 +316,7 @@ class SingleProduct extends Component {
 
         <SuccessModal
           qty={qty}
-          productObj={product}
+          productTitle={product.title}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />

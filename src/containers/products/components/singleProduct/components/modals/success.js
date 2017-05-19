@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function SuccessModal({ qty, showModal, modalHandler, productObj }) {
+function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
   let style;
   if (showModal) {
     style = {
@@ -31,7 +31,7 @@ function SuccessModal({ qty, showModal, modalHandler, productObj }) {
           </button>
         </div>
         <div className="dialogue__product-msg">
-          <p>{`${qty} ${productObj.title} `}</p>
+          <p>{`${qty} ${productTitle} `}</p>
           <br />
           <p>
             {
@@ -71,6 +71,6 @@ SuccessModal.propTypes = {
   qty: number.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
-  productObj: objectOf(any).isRequired,
+  productTitle: objectOf(any).isRequired,
 };
 export default SuccessModal;

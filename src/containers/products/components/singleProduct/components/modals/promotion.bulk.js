@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function BulkSaleModal({ showModal, modalHandler, taxRate }) {
+function BulkSaleModal({ taxRate, productObj, showModal, modalHandler }) {
   let style;
   if (showModal) {
     style = {
@@ -144,10 +144,11 @@ function BulkSaleModal({ showModal, modalHandler, taxRate }) {
     </div>
   );
 }
-const { bool, func, number } = PropTypes;
+const { bool, func, number, objectOf, any } = PropTypes;j
 BulkSaleModal.propTypes = {
+  taxRate: number.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
-  taxRate: number.isRequired,
+  productObj: objectOf(any).isRequired,
 };
 export default BulkSaleModal;
