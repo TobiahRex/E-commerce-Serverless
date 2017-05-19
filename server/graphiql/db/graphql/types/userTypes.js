@@ -309,6 +309,14 @@ const mutations = {
     },
     resolve: (_, args, { User }) => User.createUser(args),
   },
+  addToMemberCart: {
+    type: rootType,
+    description: 'Add products to the members cart.',
+    args: {
+      qty: 
+    },
+    resolve: (_, args, { User }) => User.addToMemberCart(args),
+  },
 };
 const UserTypes = {
   rootType,

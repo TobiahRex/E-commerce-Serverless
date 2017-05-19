@@ -1,8 +1,8 @@
 import { gql } from 'react-apollo';
 
 export const addToMemberCart = gql`
-  mutation AddToMemberCart($id: ID!) {
-    AddToMemberCart(_id: $id) {
+  mutation addToMemberCart($id: ID!) {
+    addToMemberCart(_id: $id) {
       shopping {
         cart
       }
