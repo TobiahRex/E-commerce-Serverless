@@ -302,14 +302,14 @@ class SingleProduct extends Component {
           data.loading ? <h1>Loading ...</h1> :
           <ProductDisplay
             qty={qty}
+            error={error}
+            loggedIn={loggedIn}
+            productObj={product}
             qtyHandler={this.qtyHandler}
             chosenStrength={chosenStrength}
+            modalHandler={this.modalHandler}
             nicotineHandler={this.nicotineHandler}
             addToCartHandler={this.addToCartHandler}
-            loggedIn={loggedIn}
-            modalHandler={this.modalHandler}
-            productObj={product}
-            error={error}
           />
         }
         <ActionBtns />

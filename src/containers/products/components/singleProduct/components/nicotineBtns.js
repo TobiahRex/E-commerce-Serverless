@@ -21,7 +21,7 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
       case 'fourteen': return 14;
       case 'sixteen': return 16;
       case 'eighteen': return 18;
-      default: return 2;
+      default: return 0;
     }
   });
 
@@ -34,7 +34,10 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
             <li
               key={new Buffer(strength).toString('base64')}
               className="list--strength"
-              style={strength === nicStrength ? style.active : style.inactive}
+              style={
+                strength === chosenStrength ?
+                style.active : style.inactive
+              }
             >
               <button
                 data-tag={strength}
@@ -47,9 +50,10 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
     </div>
   );
 }
-const { func, number } = PropTypes;
+const { func, number, arrayOf, string } = PropTypes;
 NicotineBtns.propTypes = {
+  chosenStrength: number.isRequired,
   nicotineHandler: func.isRequired,
-  nicStrength: number.isRequired,
+  nicotineStrengths: arrayOf(string).isRequired,
 };
 export default NicotineBtns;
