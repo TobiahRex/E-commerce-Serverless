@@ -82,10 +82,6 @@ class SingleProduct extends Component {
     };
   }
 
-  componentWillMount() {
-    console.warn('hello?');
-  }
-
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(nextProps, this.props)) {
       const {
@@ -94,8 +90,8 @@ class SingleProduct extends Component {
       } = nextProps;
       this.setState(() => ({
         loggedIn,
-        product: data.findProductById.product,
-        productId: data.findProductById._id,
+        product: data ? data.findProductById.product : null,
+        productId: data ? data.findProductById._id : null,
       }));
     }
   }
