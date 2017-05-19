@@ -103,6 +103,36 @@ const rootType = new ObjectType({
         }),
       }),
     },
+    shopping: {
+      description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
+      type: new ObjectType({
+        name: 'UserShoppingObject',
+        fields: () => ({
+          cart: {
+            description: 'The Users shopping cart.',
+            type: new ObjectType({
+              name: 'UsersCartObject',
+              fields: () => ({
+                qty: {
+                  description: 'The quantity of items of this product.',
+                  type: Number,
+                },
+                strength: {
+                  description: 'The nicotine strength of this product.',
+                },
+                product: {
+                  description: 'The Mongo ObjectID for this product.'
+                }
+              }),
+            }),
+          },
+          transactions: {
+            description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
+            type: StringType,
+          },
+        }),
+      }),
+    },
     permissions: {
       description: 'Authorization permissions granted for user.',
       type: new ObjectType({

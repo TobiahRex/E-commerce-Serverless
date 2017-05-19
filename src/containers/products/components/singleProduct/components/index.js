@@ -5,11 +5,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
-import queryProductById from './graphql/queries';
+import findProductById from './graphql/queries';
 import BreadCrumb from '../../../../../components/breadcrumbs';
-// import productActions from '../../../../../redux/products/';
 import orderActions from '../../../../../redux/orders/';
 import {
   MainTitle,
@@ -351,25 +350,29 @@ const mapDispatchToProps = dispatch => ({
   addToGuestCart: productObj =>
   dispatch(orderActions.addToGuestCart(productObj)),
 
+  updateToGuestCart: updatedCartProducts =>
+  dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+
   addToMemberCart: productObj => // convert to GraphQL mutation
   dispatch(orderActions.addToMemberCart(productObj)),
 
   updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
   dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
-
-  updateToGuestCart: updatedCartProducts =>
-  dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 });
 const SingleProductWithState = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(SingleProduct);
 
-const SingleProductWithStateAndData = graphql(queryProductById, {
-  options: ({ location }) => ({
-    variables: {
-      id: location.query.id,
-    },
+const SingleProductWithStateAndData = compose(
+  graphql(findProductById, {
+    options: ({ location }) => ({
+      variables: {
+        id: location.query.id,
+      },
+    }),
   }),
-})(SingleProductWithState);
+  // graphql(addToMemberCart)
+  // graphql(updateMemberCart)
+)(SingleProductWithState);
 export default SingleProductWithStateAndData;
