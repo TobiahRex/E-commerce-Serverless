@@ -37,7 +37,6 @@ class SingleProduct extends Component {
     updateToGuestCart: func.isRequired,
     push: func.isRequired,
     taxRate: number.isRequired,
-    fetchProductById: func.isRequired,
     productId: string.isRequired,
     cart: shape({
       guest: arrayOf(any),
@@ -45,18 +44,20 @@ class SingleProduct extends Component {
     }).isRequired,
     data: shape({
       findProductById: shape({
-        id: string,
-        images: arrayOf(shape({
-          purpose: string,
-          url: string,
-        })),
-        nicotine_strengths: arrayOf(string),
-        price: string,
-        qty: number,
-        routeTag: string,
-        strength: number,
-        mainTitle: string,
-        title: string,
+        _id: string,
+        product: shape({
+          images: arrayOf(shape({
+            purpose: string,
+            url: string,
+          })),
+          nicotine_strengths: arrayOf(string),
+          price: string,
+          qty: number,
+          routeTag: string,
+          strength: number,
+          mainTitle: string,
+          title: string,
+        }),
       }),
     }).isRequired,
   }
@@ -75,16 +76,14 @@ class SingleProduct extends Component {
     };
   }
 
-  // componentWillMount() {
-  //   const { fetchProductById, productId } = this.props;
-  //   fetchProductById(productId);
-  // }
-
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps', 'background:red;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
-      this.setState({ ...nextProps });
-      this.props.fetchProductById(nextProps.productId);
+      const {
+        data,
+        taxRate,
+        loggedIn,
+      } = nextProps;
+      this.setState(() => ({ data, taxRate, loggedIn }));
     }
   }
 
@@ -338,11 +337,7 @@ const mapStateToProps = ({ orders, auth, routing }) => ({
   productId: routing.locationBeforeTransitions.query.id,
 });
 const mapDispatchToProps = dispatch => ({
-  push: location =>
-  dispatch(push(location)),
-
-  fetchProductById: id => // convert to GraphQL Query.
-  dispatch(productActions.fetchProductById(id)),
+  push: location => dispatch(push(location)),
 
   addToGuestCart: productObj =>
   dispatch(orderActions.addToGuestCart(productObj)),
