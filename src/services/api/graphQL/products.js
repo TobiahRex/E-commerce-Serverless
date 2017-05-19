@@ -3,9 +3,9 @@ import { create } from 'apisauce';
 const {
   NODE_ENV,
   GRAPHQL_PORT,
-  AWS_GRAPHQL_PROD,
+  LAMBDA_GRAPHQL,
 } = process.env;
-const graphqlURL = NODE_ENV === 'production' ? AWS_GRAPHQL_PROD : `http://localhost:${GRAPHQL_PORT}`;
+const graphqlURL = NODE_ENV === 'production' ? LAMBDA_GRAPHQL : `http://localhost:${GRAPHQL_PORT}`;
 
 if (!graphqlURL) throw new Error(`Cannot create API: "graphqlURL" = ${typeof graphqlURL}.`);
 console.info('graphqlURL: ', graphqlURL); // eslint-disable-line

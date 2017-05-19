@@ -5,10 +5,10 @@ mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 const {
   NODE_ENV,
-  AWS_MONGO_URI_PROD,
+  LAMBDA_MONGO_URI,
 } = process.env;
 
-const MONGO_DB = NODE_ENV === 'production' ? AWS_MONGO_URI_PROD : 'mongodb://localhost/nj2jp-development';
+const MONGO_DB = NODE_ENV === 'production' ? LAMBDA_MONGO_URI : 'mongodb://localhost/nj2jp-development';
 
 if (!MONGO_DB) throw new Error('MONGO_DB_URI is undefined.');
 

@@ -5,8 +5,8 @@ dotenv.load({ silent: true });
 export default {
   development: {
     GRAPHQL_PORT: JSON.stringify(process.env.GRAPHQL_PORT),
-    AWS_MONGO_URI_DEV: JSON.stringify(process.env.AWS_MONGO_URI_DEV),
-    AWS_GRAPHQL_DEV: JSON.stringify(process.env.AWS_GRAPHQL_DEV),
+    LAMBDA_MONGO_URI_DEV: JSON.stringify(process.env.LAMBDA_MONGO_URI_DEV),
+    LOCAL_GRAPHQL: JSON.stringify(process.env.LOCAL_GRAPHQL),
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
     AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
     AUTH0_REDIRECT: JSON.stringify(process.env.AUTH0_REDIRECT),
@@ -20,8 +20,8 @@ export default {
     FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
   },
   production: {
-    AWS_MONGO_URI_PROD: JSON.stringify(process.env.AWS_MONGO_URI_PROD),
-    AWS_GRAPHQL_PROD: JSON.stringify(process.env.AWS_GRAPHQL_PROD),
+    LAMBDA_MONGO_URI: JSON.stringify(process.env.LAMBDA_MONGO_URI),
+    LAMBDA_GRAPHQL: JSON.stringify(process.env.LAMBDA_GRAPHQL),
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
     AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
     AUTH0_REDIRECT: JSON.stringify(process.env.AUTH0_REDIRECT),
