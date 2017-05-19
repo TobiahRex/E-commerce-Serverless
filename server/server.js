@@ -32,7 +32,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('src'));
-app.get('*', (req, res) => res.sendFile(path.resolve('./src/index.html')));
+app.get('*', (req, res) => res.sendFile(path.resolve('src/index.html')));
 // --------------------------- Listeners ---------------------------------------
 process.stdout.write('\n');
 app.listen(PORT, err =>

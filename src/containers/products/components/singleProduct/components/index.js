@@ -1,4 +1,6 @@
-/* eslint-disable no-lone-blocks */
+/* eslint-disable no-lone-blocks, import/first*/
+if (!global._babelPolyfill) require('babel-polyfill'); // eslint-disable-line
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -78,6 +80,10 @@ class SingleProduct extends Component {
       showSuccessModal: false,
       showRegisterModal: false,
     };
+  }
+
+  componentWillMount() {
+    console.warn('hello?');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -316,14 +322,13 @@ class SingleProduct extends Component {
 
         <SuccessModal
           qty={qty}
-          productTitle={product.title}
+          productTitle={product ? product.title : ''}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
 
         <BulkSaleModal
           taxRate={taxRate}
-          productObj={product}
           showModal={showBulkModal}
           modalHandler={this.modalHandler}
         />
@@ -331,7 +336,6 @@ class SingleProduct extends Component {
         <RegisterModal
           taxRate={taxRate}
           loggedIn={loggedIn}
-          productObj={product}
           showModal={showRegisterModal}
           modalHandler={this.modalHandler}
         />

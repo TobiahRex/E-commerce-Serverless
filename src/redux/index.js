@@ -18,7 +18,6 @@ import { authReducer as auth } from './auth';
 
 export default () => {
   const rootReducer = combineReducers({
-    apollo: apolloClient.reducer(),
     auth,
     user,
     products,
@@ -29,6 +28,7 @@ export default () => {
     locale,
     session,
     routing,
+    apollo: apolloClient.reducer(),
   });
   return configureStore(rootReducer, rootSaga);
 };

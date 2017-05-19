@@ -30,7 +30,7 @@ const devConfig = {
     // vendor: ['react', 'react-dom', 'reduxsauce'],
   },
   output: {
-    path: path.resolve('public'),
+    path: path.resolve('src'),
     publicPath: '/',
     filename: 'bundle.[name].js',
   },
@@ -42,6 +42,10 @@ const devConfig = {
       name: 'vendor',
       filename: 'bundle.[name].js',
       minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
+    }),
+    new CommonsChunkPlugin({
+      name: 'common',
+      filename: 'bundle.[name].js',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),

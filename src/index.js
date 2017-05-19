@@ -19,7 +19,7 @@ const { store, history } = createStore();
 store.dispatch({ type: 'APP_STARTUP' });
 
 render(
-  <ApolloProvider store={store} client={client}>
+  <ApolloProvider client={client} store={store}>
     <Router
       history={history}
       routes={routes}

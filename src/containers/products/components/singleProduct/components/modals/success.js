@@ -54,7 +54,7 @@ function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
             className="action-btn__continue sweep-right"
             onClick={modalHandler}
           >Continue Shopping</button>
-
+          
           <button
             data-parent="success"
             data-tag="view-checkout"
@@ -66,11 +66,11 @@ function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
     </div>
   );
 }
-const { number, bool, func, objectOf, any } = PropTypes;
+const { number, bool, func, string } = PropTypes;
 SuccessModal.propTypes = {
   qty: number.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
-  productTitle: objectOf(any).isRequired,
+  productTitle: string.isRequired,
 };
 export default SuccessModal;
