@@ -115,14 +115,16 @@ const rootType = new ObjectType({
               fields: () => ({
                 qty: {
                   description: 'The quantity of items of this product.',
-                  type: Number,
+                  type: IntType,
                 },
                 strength: {
                   description: 'The nicotine strength of this product.',
+                  type: StringType,
                 },
                 product: {
-                  description: 'The Mongo ObjectID for this product.'
-                }
+                  description: 'The Mongo ObjectID for this product.',
+                  type: MongoID,
+                },
               }),
             }),
           },
