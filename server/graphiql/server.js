@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { graphqlExpress } from 'graphql-server-express';
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import cors from 'cors';
 import schema from './db/graphql/schema';
 
@@ -12,6 +12,9 @@ const server = express();
 server.use('*', cors({ origin: 'http://localhost:3000' }));
 server.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
+}));
+server.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
 }));
 server.listen(PORT, () =>
 console.log(`Server listening @ ${PORT}
