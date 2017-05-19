@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-export default function PriceInfo() {
+function PriceInfo({ id, price, sku }) {
   return (
     <div className="desc__price-row">
       <ul className="price-row__list">
@@ -33,3 +34,10 @@ export default function PriceInfo() {
 
   );
 }
+const { string } = PropTypes;
+PriceInfo.propTypes = {
+  id: string.isRequired,
+  sku: string.isRequired,
+  price: string.isRequired,
+};
+export default PriceInfo;

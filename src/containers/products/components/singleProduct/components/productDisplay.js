@@ -12,24 +12,26 @@ import {
   SocialMediaBtns,
 } from './imports';
 
-const { any, bool, func, number, objectOf } = PropTypes;
+const { any, bool, func, string, number, objectOf } = PropTypes;
 
 class ProductDisplay extends Component {
   static propTypes = {
     qty: number.isRequired,
     // fbLike: func.isRequired,
+    error: bool,
+    loggedIn: bool.isRequired,
+    productId: string,
+    productObj: objectOf(any),
     qtyHandler: func.isRequired,
     nicStrength: number.isRequired,
+    modalHandler: func.isRequired,
     nicotineHandler: func.isRequired,
     addToCartHandler: func.isRequired,
-    loggedIn: bool.isRequired,
-    modalHandler: func.isRequired,
-    productObj: objectOf(any),
-    error: bool,
   };
   static defaultProps = {
-    productObj: null,
     error: false,
+    productId: '',
+    productObj: null,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -48,6 +50,7 @@ class ProductDisplay extends Component {
       qty,
       error,
       loggedIn,
+      productId,
       productObj,
       nicStrength,
       qtyHandler,
@@ -55,7 +58,7 @@ class ProductDisplay extends Component {
       nicotineHandler,
       addToCartHandler,
     } = this.props;
-    const { blurb, price, sku, id, title, images } = productObj;
+    const { blurb, price, sku, title, images } = productObj;
     return (
       <div className="main__parent">
         <ImageGroup
@@ -64,7 +67,11 @@ class ProductDisplay extends Component {
         />
         <div className="main__info--desc">
           <JuiceTitle title={title} />
-          <PriceInfo price={price} id={id} sku={sku} />
+          <PriceInfo
+            price={price}
+            id={productId}
+            sku={sku}
+          />
           <ProductBlurb description={blurb} />
 
           <NewMemberPromotionBtn
@@ -87,7 +94,7 @@ class ProductDisplay extends Component {
 
           <SocialMediaBtns
             // fbLike={fbLike}
-            location={`${process.env.BASE_URL}/juice/${title}?id=${id}`}
+            location={`${process.env.BASE_URL}/juice/${title}?id=${productId}`}
           />
         </div>
       </div>

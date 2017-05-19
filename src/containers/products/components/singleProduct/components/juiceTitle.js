@@ -8,6 +8,7 @@ function JuiceTitle({ title }) {
     </div>
   );
 }
+const { string } = PropTypes;
 JuiceTitle.propTypes = {
   title: string.isRequired,
 };
