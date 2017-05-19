@@ -30,6 +30,8 @@ function NavbarNavsShopDropdnContent(props) {
     </span>
   );
 }
-
 NavbarNavsShopDropdnContent.propTypes = propTypes;
+NavbarNavsShopDropdnContent.defaultProps = {
+  popularProducts: [],
+};
 export default NavbarNavsShopDropdnContent;

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { graphql } from 'react-apollo';
-import { connect } from 'react-redux';
-import { SINGLE_PRODUCT_BY_ID } from './graphql/queries';
 import {
   ImageGroup,
   JuiceTitle,
@@ -17,7 +14,7 @@ import {
 
 const { any, bool, func, number, objectOf } = PropTypes;
 
-class SingleProductContainer extends Component {
+class SingleProductDisplay extends Component {
   static propTypes = {
     qty: number.isRequired,
     qtyHandler: func.isRequired,
@@ -46,8 +43,8 @@ class SingleProductContainer extends Component {
 
   render() {
     const {
-      qty,
       // fbLike,
+      qty,
       loggedIn,
       productObj,
       nicStrength,
@@ -86,31 +83,4 @@ class SingleProductContainer extends Component {
     );
   }
 }
-const mapStateToProps = ({ routing }) => ({
-  _id: routing.locationBeforeTransitions.query,
-});
-
-const SingleProductWithState = connect(mapStateToProps, null)(SingleProductContainer);
-
-
-export default graphql(SINGLE_PRODUCT_BY_ID, {
-  options: (props) => {
-    console.log('%cprops', 'background:red;', props);
-    return ({
-      variables: {
-        _id: props._id,
-      },
-    }),
-  },
-  props: ({ ownProps, data }) => {
-    console.log('%cdata', 'background:red;', data);
-    console.log('%cownProps', 'background:red;', ownProps);
-
-    return ({
-      qtyHandler: e => ownProps.qtyHandler(e),
-      addToCartHandler: e => ownProps.addToCartHandler(e),
-      modalHandler: e => ownProps.modalHandler(e),
-      nicotineHandler: e => ownProps.nicotineHandler(e),
-    });
-  },
-})(SingleProductWithState);
+export default SingleProductDisplay;

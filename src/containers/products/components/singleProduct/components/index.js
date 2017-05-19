@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { graphql, gql } from 'react-apollo';
 import _ from 'lodash';
 import BreadCrumb from '../../../../../components/breadcrumbs';
 import productActions from '../../../../../redux/products/';
@@ -87,10 +88,10 @@ class SingleProduct extends Component {
     };
   }
 
-  componentWillMount() {
-    const { fetchProductById, productId } = this.props;
-    fetchProductById(productId);
-  }
+  // componentWillMount() {
+  //   const { fetchProductById, productId } = this.props;
+  //   fetchProductById(productId);
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(nextProps, this.props)) {
@@ -335,30 +336,66 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, auth, routing, products }) => ({
+const mapStateToProps = ({ orders, auth, products, routing }) => ({
+  cart: orders.cart,
   loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
-  productId: routing.locationBeforeTransitions.query.id,
   activeViewProduct: products.activeViewProduct,
-  cart: orders.cart,
+  productId: routing.locationBeforeTransitions.query.id,
 });
 const mapDispatchToProps = dispatch => ({
   push: location =>
   dispatch(push(location)),
 
-  fetchProductById: id =>
+  fetchProductById: id => // convert to GraphQL Query.
   dispatch(productActions.fetchProductById(id)),
 
   addToGuestCart: productObj =>
   dispatch(orderActions.addToGuestCart(productObj)),
 
-  addToMemberCart: productObj =>
+  addToMemberCart: productObj => // convert to GraphQL mutation
   dispatch(orderActions.addToMemberCart(productObj)),
 
-  updateToMemberCart: updatedCartProducts =>
+  updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
   dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
 
   updateToGuestCart: updatedCartProducts =>
   dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
+const SingleProductWithState = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SingleProduct);
+
+const queryProductyById = gql`
+  query findProductById($_id: ID!) {
+    findProductById(_id: $_id){
+      _id
+      product {
+        mainTitle
+        title
+        flavor
+        price
+        sku
+        sizes
+        nicotine_strengths
+        routeTag
+        vendor
+        blurb
+        images {
+          purpose
+          url
+        }
+      }
+    }
+  }
+`;
+
+const SingleProductWithStateAndData = graphql(queryProductyById, {
+  options: ({ location: query }) => ({
+    variables: {
+      _id: query._id,
+    },
+  }),
+})(SingleProductWithState);
+export default SingleProductWithStateAndData;

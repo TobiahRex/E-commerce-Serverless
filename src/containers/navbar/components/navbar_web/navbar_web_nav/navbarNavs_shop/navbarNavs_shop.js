@@ -63,11 +63,11 @@ class NavbarNavsShop extends Component {
           </div>
         </Link>
         {
-          this.props.popularProducts.length &&
+          this.props.popularProducts.length ?
             <NavbarNavsShopDropdnContent
               popularProducts={this.props.popularProducts}
               toggleNavbarDropdown={this.toggleNavbarDropdown}
-            />
+            /> : ''
         }
       </div>
     );
