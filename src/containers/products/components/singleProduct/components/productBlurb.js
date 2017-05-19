@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function ProductBlurb() {
+function ProductBlurb() {
   return (
     <div className="desc__blurb">
       <p>
@@ -10,3 +11,8 @@ export default function ProductBlurb() {
     </div>
   );
 }
+const { string } = PropTypes;
+ProductBlurb.propTypes = {
+  blurb: string.isRequired,
+};
+export default ProductBlurb;

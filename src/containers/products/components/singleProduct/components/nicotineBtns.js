@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NicotineBtns({ nicStrength, nicotineHandler }) {
+function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
   const style = {
     active: {
       backgroundColor: '#063A7A',
@@ -10,7 +10,21 @@ function NicotineBtns({ nicStrength, nicotineHandler }) {
       backgroundColor: '#FC2525',
     },
   };
-  const nicotineStrengths = [2, 4, 6, 8];
+  nicotineStrengths = nicotineStrengths.map((strength) => {
+    switch (strength) {
+      case 'two': return 2;
+      case 'four': return 4;
+      case 'six': return 6;
+      case 'eight': return 8;
+      case 'ten': return 10;
+      case 'twelve': return 12;
+      case 'fourteen': return 14;
+      case 'sixteen': return 16;
+      case 'eighteen': return 18;
+      default: return 2;
+    }
+  });
+
   return (
     <div className="desc__nicotine">
       <h3>Nicotine Strength</h3>

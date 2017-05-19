@@ -68,15 +68,15 @@ class SingleProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSuccessModal: false,
-      showBulkModal: false,
-      showRegisterModal: false,
-      productId: null,
-      product: null,
       qty: 0,
-      nicStrength: 0,
       error: false,
+      product: null,
       errorQty: '',
+      productId: null,
+      showBulkModal: false,
+      chosenStrength: 0,
+      showSuccessModal: false,
+      showRegisterModal: false,
     };
   }
 
@@ -220,7 +220,7 @@ class SingleProduct extends Component {
     } = this.composeGlobalCartInfo();
     const {
       qty,
-      nicStrength: strength,
+      chosenStrength: strength,
     } = this.state;
     const requestQty = qty;
     const totalRequestQty = requestQty + globalQty;
@@ -265,7 +265,7 @@ class SingleProduct extends Component {
     if (!nicEl) {
       nicEl = e.target.parentNode.dataset.tag;
     }
-    this.setState({ nicStrength: Number(nicEl) });
+    this.setState({ chosenStrength: Number(nicEl) });
   }
 
 
@@ -274,8 +274,8 @@ class SingleProduct extends Component {
       qty,
       error,
       product,
-      nicStrength,
       showBulkModal,
+      chosenStrength,
       showSuccessModal,
       showRegisterModal,
     } = this.state;
@@ -303,7 +303,7 @@ class SingleProduct extends Component {
           <ProductDisplay
             qty={qty}
             qtyHandler={this.qtyHandler}
-            nicStrength={nicStrength}
+            chosenStrength={chosenStrength}
             nicotineHandler={this.nicotineHandler}
             addToCartHandler={this.addToCartHandler}
             loggedIn={loggedIn}

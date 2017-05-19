@@ -52,8 +52,8 @@ class ProductDisplay extends Component {
       loggedIn,
       productId,
       productObj,
-      nicStrength,
       qtyHandler,
+      nicStrength,
       modalHandler,
       nicotineHandler,
       addToCartHandler,
@@ -65,6 +65,7 @@ class ProductDisplay extends Component {
       title,
       images,
       quantities: available,
+      nicotine_strengths: nicotineStrengths,
     } = productObj;
     return (
       <div className="main__parent">
@@ -89,6 +90,7 @@ class ProductDisplay extends Component {
 
           <NicotineBtns
             nicStrength={nicStrength}
+            nicotineStrengths={nicotineStrengths}
             nicotineHandler={nicotineHandler}
           />
 
