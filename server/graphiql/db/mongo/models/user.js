@@ -29,7 +29,7 @@ new Promise((resolve, reject) => {
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {
-    console.log('Updated the User\'s Shopping Cart!');
+    console.log('Saved product to the User\'s Shopping Cart!');
     resolve(savedUser);
   })
   .catch(error => reject({
@@ -48,14 +48,19 @@ userSchema.statics.updateToMemberCart = ({ userId, qty, strength, product }) =>
 new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
-  .then(({ shopping: cart }) => {
-    const itemsToKeep = cart
-    .filter(cartItem => cartItem.product !== product);
-    itemsToKeep.push({ qty, strength, product });
+  .then((dbUser) => {
+    dbUser.shopping.cart
+    .filter(cartItem => cartItem.product !== product)
+    .push({ qty, strength, product });
+    return dbUser.save({ validateBeforeSave: true });
+  })
+  .then(({ shopping }) => {
+    console.log('Updated the User\'s Shopping Cart!');
+    resolve(shopping);
   })
   .catch((error) => {
     reject({
-      problem: `Could not post updated to the Users shopping cart.
+      problem: `Could not post udpate to the Users shopping cart.
       args: {
         userId: ${userId},
         qty: ${qty},
