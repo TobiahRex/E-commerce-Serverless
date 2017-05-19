@@ -23,7 +23,7 @@ class ProductDisplay extends Component {
     productId: string,
     productObj: objectOf(any),
     qtyHandler: func.isRequired,
-    nicStrength: number.isRequired,
+    chosenStrength: number.isRequired,
     modalHandler: func.isRequired,
     nicotineHandler: func.isRequired,
     addToCartHandler: func.isRequired,
@@ -53,7 +53,7 @@ class ProductDisplay extends Component {
       productId,
       productObj,
       qtyHandler,
-      nicStrength,
+      chosenStrength,
       modalHandler,
       nicotineHandler,
       addToCartHandler,
@@ -76,27 +76,27 @@ class ProductDisplay extends Component {
         <div className="main__info--desc">
           <JuiceTitle title={title} />
           <PriceInfo
+            sku={sku}
             price={price}
             id={productId}
-            sku={sku}
             inStock={available ? 1 : 0}
           />
           <ProductBlurb description={blurb} />
 
           <NewMemberPromotionBtn
-            modalHandler={modalHandler}
             loggedIn={loggedIn}
+            modalHandler={modalHandler}
           />
 
           <NicotineBtns
-            nicStrength={nicStrength}
+            chosenStrength={chosenStrength}
             nicotineStrengths={nicotineStrengths}
             nicotineHandler={nicotineHandler}
           />
 
           <ProductActions
             quantity={qty}
-            nicStrength={nicStrength}
+            chosenStrength={chosenStrength}
             error={error}
             addToCartHandler={addToCartHandler}
             qtyHandler={qtyHandler}

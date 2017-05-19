@@ -32,7 +32,7 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
         {
           nicotineStrengths.map(strength => (
             <li
-              key={new Buffer(strength).toString('base64')}
+              key={new Buffer(`${strength}mg`).toString('base64')}
               className="list--strength"
               style={
                 strength === chosenStrength ?

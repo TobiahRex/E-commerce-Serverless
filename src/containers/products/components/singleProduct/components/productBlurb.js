@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ProductBlurb() {
+function ProductBlurb({ description }) {
   return (
     <div className="desc__blurb">
-      <p>
-        A delicious Fruity Pebbles Cereal flavor.
-        One of our most popular flavors.
-      </p>
+      <p>{description}</p>
     </div>
   );
 }
 const { string } = PropTypes;
 ProductBlurb.propTypes = {
-  blurb: string.isRequired,
+  description: string.isRequired,
 };
 export default ProductBlurb;

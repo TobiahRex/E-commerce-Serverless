@@ -165,14 +165,12 @@
           justify-content: center;
           align-items: center;
           max-width: 47.6em;
-          width: 47.6em;
-          height: 12em;
-          padding: 1em;
+          padding: 2em 1.5em 4em 1.5em;
           p {
             font-family: $p-font;
-            font-size: 2em;
+            font-size: 1.8em;
             color: $p-blue;
-            line-height: 1.35em;
+            line-height: 1.5em;
           }
         }
         & .desc__promotion {

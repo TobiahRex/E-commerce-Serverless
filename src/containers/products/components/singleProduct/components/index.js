@@ -315,12 +315,15 @@ class SingleProduct extends Component {
         <ActionBtns />
 
         <SuccessModal
+          qty={qty}
+          productObj={product}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
 
         <BulkSaleModal
           taxRate={taxRate}
+          productObj={product}
           showModal={showBulkModal}
           modalHandler={this.modalHandler}
         />
@@ -328,6 +331,7 @@ class SingleProduct extends Component {
         <RegisterModal
           taxRate={taxRate}
           loggedIn={loggedIn}
+          productObj={product}
           showModal={showRegisterModal}
           modalHandler={this.modalHandler}
         />

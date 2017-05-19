@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function SuccessModal({ showModal, modalHandler }) {
+function SuccessModal({ qty, showModal, modalHandler, productObj }) {
   let style;
   if (showModal) {
     style = {
@@ -31,9 +31,14 @@ function SuccessModal({ showModal, modalHandler }) {
           </button>
         </div>
         <div className="dialogue__product-msg">
-          <p>{'<Product Title>'}</p>
+          <p>{`${qty} ${productObj.title} `}</p>
           <br />
-          <p>has been successfully added to your cart.</p>
+          <p>
+            {
+              qty > 1 ? 'juices have ' : 'juice has '
+            }
+            been successfully added to your cart.
+          </p>
         </div>
         <div className="dialogue__action-btns">
           <button
@@ -61,9 +66,11 @@ function SuccessModal({ showModal, modalHandler }) {
     </div>
   );
 }
-const { bool, func } = PropTypes;
+const { number, bool, func, objectOf, any } = PropTypes;
 SuccessModal.propTypes = {
+  qty: number.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
+  productObj: objectOf(any).isRequired,
 };
 export default SuccessModal;
