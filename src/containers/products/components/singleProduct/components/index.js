@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { graphql, gql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import _ from 'lodash';
+import queryProductById from './graphql/queries';
 import BreadCrumb from '../../../../../components/breadcrumbs';
 import productActions from '../../../../../redux/products/';
 import orderActions from '../../../../../redux/orders/';
@@ -42,36 +43,22 @@ class SingleProduct extends Component {
       guest: arrayOf(any),
       member: arrayOf(any),
     }).isRequired,
-    activeViewProduct: shape({
-      id: string,
-      images: arrayOf(shape({
-        purpose: string,
-        url: string,
-      })),
-      nicotine_strengths: arrayOf(string),
-      price: string,
-      qty: number,
-      routeTag: string,
-      strength: number,
-      mainTitle: string,
-      title: string,
-    }),
-  }
-  static defaultProps = {
-    activeViewProduct: {
-      id: '',
-      images: [{
-        purpose: '',
-        url: '',
-      }],
-      nicotine_strengths: [''],
-      price: '',
-      qty: 0,
-      routeTag: '',
-      strength: 0,
-      mainTitle: '',
-      title: '',
-    },
+    data: shape({
+      findProductById: shape({
+        id: string,
+        images: arrayOf(shape({
+          purpose: string,
+          url: string,
+        })),
+        nicotine_strengths: arrayOf(string),
+        price: string,
+        qty: number,
+        routeTag: string,
+        strength: number,
+        mainTitle: string,
+        title: string,
+      }),
+    }).isRequired,
   }
   constructor(props) {
     super(props);
@@ -80,7 +67,7 @@ class SingleProduct extends Component {
       showBulkModal: false,
       showRegisterModal: false,
       productId: null,
-      activeViewProduct: props.activeViewProduct,
+      product: props.data.findProductById,
       qty: 0,
       nicStrength: 0,
       error: false,
@@ -255,13 +242,13 @@ class SingleProduct extends Component {
         if (updatedCartProducts.length) {
           this.props.updateToMemberCart({ ...updatedCartProducts });
         } else {
-          this.props.addToMemberCart({ qty, strength, ...this.props.activeViewProduct });
+          this.props.addToMemberCart({ qty, strength, ...this.props.data.findProductById });
         }
       } else {
         if (updatedCartProducts.length) {
           this.props.updateToMemberCart({ ...updatedCartProducts });
         }
-        this.props.addToGuestCart({ qty, strength, ...this.props.activeViewProduct });
+        this.props.addToGuestCart({ qty, strength, ...this.props.data.findProductById });
       }
     }
   }
@@ -280,7 +267,7 @@ class SingleProduct extends Component {
       qty,
       nicStrength,
       error,
-      activeViewProduct: productObj,
+      product,
       showSuccessModal,
       showBulkModal,
       showRegisterModal,
@@ -301,7 +288,7 @@ class SingleProduct extends Component {
           lastCrumb="Juice Page"
         />
 
-        <MainTitle mainTitle={productObj.mainTitle} />
+        <MainTitle mainTitle={product.mainTitle} />
         <SingleProductContainerGQL
           qty={qty}
           qtyHandler={this.qtyHandler}
@@ -310,7 +297,7 @@ class SingleProduct extends Component {
           addToCartHandler={this.addToCartHandler}
           loggedIn={loggedIn}
           modalHandler={this.modalHandler}
-          productObj={productObj}
+          productObj={product}
           error={error}
         />
 
@@ -336,11 +323,10 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, auth, products, routing }) => ({
+const mapStateToProps = ({ orders, auth, routing }) => ({
   cart: orders.cart,
   loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
-  activeViewProduct: products.activeViewProduct,
   productId: routing.locationBeforeTransitions.query.id,
 });
 const mapDispatchToProps = dispatch => ({
@@ -367,31 +353,7 @@ const SingleProductWithState = connect(
   mapDispatchToProps,
 )(SingleProduct);
 
-const queryProductyById = gql`
-  query findProductById($_id: ID!) {
-    findProductById(_id: $_id){
-      _id
-      product {
-        mainTitle
-        title
-        flavor
-        price
-        sku
-        sizes
-        nicotine_strengths
-        routeTag
-        vendor
-        blurb
-        images {
-          purpose
-          url
-        }
-      }
-    }
-  }
-`;
-
-const SingleProductWithStateAndData = graphql(queryProductyById, {
+const SingleProductWithStateAndData = graphql(queryProductById, {
   options: ({ location: query }) => ({
     variables: {
       _id: query._id,

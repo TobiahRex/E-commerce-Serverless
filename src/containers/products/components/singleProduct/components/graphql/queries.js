@@ -24,5 +24,5 @@ const queryProductById = gql`
       }
     }
   }
-`
+`;
 export default queryProductById;
