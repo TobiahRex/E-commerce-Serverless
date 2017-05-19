@@ -170,7 +170,7 @@ const rootType = new ObjectType({
   }),
 });
 const mutations = {
-  createUser: {
+  LoginOrCreateUser: {
     type: rootType,
     description: 'Create new User.',
     args: {
@@ -309,7 +309,7 @@ const mutations = {
     },
     resolve: (_, args, { User }) => User.createUser(args),
   },
-  addToMemberCart: {
+  AddToMemberCart: {
     type: rootType,
     description: 'Add products to the members cart.',
     args: {
@@ -331,6 +331,29 @@ const mutations = {
       },
     },
     resolve: (_, args, { User }) => User.addToMemberCart(args),
+  },
+  UpdateToMemberCart: {
+    type: rootType,
+    description: 'Update products in the members cart.',
+    args: {
+      userId: {
+        description: 'The User\'s Mongo ObjectId.',
+        type: new NonNull(MongoID),
+      },
+      qty: {
+        description: 'The quantity of products to update.',
+        type: new NonNull(IntType),
+      },
+      strength: {
+        description: 'The nicotine strength of the product to update.',
+        type: new NonNull(StringType),
+      },
+      product: {
+        description: 'The Mongo ObjectId of the product to update.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args, { User }) => User.updateToMemberCart(args),
   },
 };
 const UserTypes = {
