@@ -313,6 +313,10 @@ const mutations = {
     type: rootType,
     description: 'Add products to the members cart.',
     args: {
+      userId: {
+        description: 'The User\'s Mongo ObjectId.',
+        type: new NonNull(MongoID),
+      },
       qty: {
         description: 'The quantity of products to add.',
         type: new NonNull(IntType),
