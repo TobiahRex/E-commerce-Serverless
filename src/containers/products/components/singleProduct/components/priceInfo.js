@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function PriceInfo({ id, price, sku }) {
+function PriceInfo({ price, sku, inStock }) {
   return (
     <div className="desc__price-row">
       <ul className="price-row__list">
         <li className="list--price">
           <h1>
-            <FontAwesome name="usd" className="price__fa" /> 30.00
+            <FontAwesome name="usd" className="price__fa" />{'\u00A0'}{price}
           </h1>
         </li>
         <li className="list--tax">
@@ -23,10 +23,10 @@ function PriceInfo({ id, price, sku }) {
         </li>
         <li className="list--stock">
           <div className="stock__sku--title">
-            <p>SKU: 123123123</p>
+            <p>SKU: {sku}</p>
           </div>
           <div className="stock__stock--title">
-            <h3>IN STOCK</h3>
+            <h3>{inStock ? 'IN STOCK' : 'OUT OF STOCK'}</h3>
           </div>
         </li>
       </ul>
@@ -34,10 +34,11 @@ function PriceInfo({ id, price, sku }) {
 
   );
 }
-const { string } = PropTypes;
+const { string, number } = PropTypes;
 PriceInfo.propTypes = {
   id: string.isRequired,
   sku: string.isRequired,
   price: string.isRequired,
+  inStock: number.isRequired,
 };
 export default PriceInfo;

@@ -58,7 +58,14 @@ class ProductDisplay extends Component {
       nicotineHandler,
       addToCartHandler,
     } = this.props;
-    const { blurb, price, sku, title, images } = productObj;
+    const {
+      blurb,
+      price,
+      sku,
+      title,
+      images,
+      quantities: available,
+    } = productObj;
     return (
       <div className="main__parent">
         <ImageGroup
@@ -71,6 +78,7 @@ class ProductDisplay extends Component {
             price={price}
             id={productId}
             sku={sku}
+            inStock={available ? 1 : 0}
           />
           <ProductBlurb description={blurb} />
 

@@ -21,6 +21,10 @@ const queryProductById = gql`
           purpose
           url
         }
+        quantities {
+          available
+          in_cart
+        }
       }
     }
   }
