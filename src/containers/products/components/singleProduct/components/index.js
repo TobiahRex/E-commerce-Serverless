@@ -80,10 +80,13 @@ class SingleProduct extends Component {
     if (!_.isEqual(nextProps, this.props)) {
       const {
         data,
-        taxRate,
         loggedIn,
       } = nextProps;
-      this.setState(() => ({ data, taxRate, loggedIn }));
+      this.setState(() => ({
+        loggedIn,
+        product: data.findProductById.product,
+        productId: data.findProductById._id,
+      }));
     }
   }
 
@@ -267,6 +270,7 @@ class SingleProduct extends Component {
       qty,
       error,
       product,
+      productId,
       nicStrength,
       showBulkModal,
       showSuccessModal,
@@ -279,7 +283,6 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.log('%cthis.props', 'background:red;', this.props);
 
     if (this.state.errorQty) throw new Error(this.state.errorQty);
 

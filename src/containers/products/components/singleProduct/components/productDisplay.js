@@ -46,33 +46,43 @@ class ProductDisplay extends Component {
     const {
       // fbLike,
       qty,
+      error,
       loggedIn,
       productObj,
       nicStrength,
-      error,
+      qtyHandler,
+      modalHandler,
+      nicotineHandler,
+      addToCartHandler,
     } = this.props;
-    const { description, price, sku, id, title, images } = productObj;
+    const { blurb, price, sku, id, title, images } = productObj;
     return (
       <div className="main__parent">
         <ImageGroup
-          modalHandler={this.modalHandler}
+          modalHandler={modalHandler}
           imageUrl={this.filterImages(images)}
         />
         <div className="main__info--desc">
           <JuiceTitle title={title} />
           <PriceInfo price={price} id={id} sku={sku} />
-          <ProductBlurb description={description} />
+          <ProductBlurb description={blurb} />
 
-          <NewMemberPromotionBtn modalHandler={this.modalHandler} loggedIn={loggedIn} />
-
-          <NicotineBtns nicStrength={nicStrength} nicotineHandler={this.nicotineHandler} />
+          <NewMemberPromotionBtn
+            modalHandler={modalHandler}
+            loggedIn={loggedIn}
+          />
+          
+          <NicotineBtns
+            nicStrength={nicStrength}
+            nicotineHandler={nicotineHandler}
+          />
 
           <ProductActions
             quantity={qty}
             nicStrength={nicStrength}
             error={error}
-            addToCartHandler={this.addToCartHandler}
-            qtyHandler={this.qtyHandler}
+            addToCartHandler={addToCartHandler}
+            qtyHandler={qtyHandler}
           />
 
           <SocialMediaBtns
