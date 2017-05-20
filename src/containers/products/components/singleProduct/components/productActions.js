@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import {
   ErrorMsg,
   AddToCartButton,
-} from './imports';
+} from '../container/imports';
 
 function ProductActions(props) {
   return (

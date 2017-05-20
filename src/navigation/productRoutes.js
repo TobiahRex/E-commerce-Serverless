@@ -1,17 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-import SingleProduct from '../containers/products/components/singleProduct/components/';
+import SingleProduct from '../containers/products/components/singleProduct/container/';
 import AllProducts from '../containers/products/components/allProducts/';
 
-const errorLoading = (error) => {
-  throw new Error(`Dynamic page loading failed.
- ERROR: ${error}`);
-};
-const loadRoute = cb => module => {
-  console.warn('hello @ Single Product react router');
-  return cb(null, module.default)
-};
+// const errorLoading = (error) => {
+//   throw new Error(`Dynamic page loading failed.
+//  ERROR: ${error}`);
+// };
+// const loadRoute = cb => module => {
+//   console.warn('hello @ Single Product react router');
+//   return cb(null, module.default)
+// };
 
 
 const ProductRoutes = () => (

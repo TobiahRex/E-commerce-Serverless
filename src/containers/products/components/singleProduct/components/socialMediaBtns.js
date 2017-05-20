@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 // import ReactFBLike from './socialMediaBtns.fbLike';
 
-function SocialMediaBtns(props) {
+function SocialMediaBtns({ location }) {
   return (
     <div className="desc__smedia">
       <ul className="smedia__btn--list">

@@ -1,9 +1,9 @@
 /* eslint-disable import/default, global-require, no-unused-expressions, import/first */
-
-import React from 'react';
-import './styles.scss';
+// if (!global._babelPolyfill) require('babel-polyfill'); // eslint-disable-line
 
 import 'babel-polyfill';
+import React from 'react';
+import './styles.scss';
 import 'masonry-layout';
 import { render } from 'react-dom';
 import { Router } from 'react-router';

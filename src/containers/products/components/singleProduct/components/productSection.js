@@ -11,7 +11,7 @@ import {
   NewMemberPromotionBtn,
   NicotineBtns,
   SocialMediaBtns,
-} from './imports';
+} from '../container/imports';
 
 const { func, bool, string, shape, arrayOf } = PropTypes;
 

@@ -1,6 +1,6 @@
 import { gql } from 'react-apollo';
 
-export const addToMemberCart = gql`
+export const AddToMemberCart = gql`
   mutation AddToMemberCart(
     $userId: ID!
     $qty: Int!
@@ -19,7 +19,7 @@ export const addToMemberCart = gql`
     }
   }
 `;
-export const updateToMemberCart = gql`
+export const UpdateToMemberCart = gql`
 mutation UpdateToMemberCart(
   $userId: ID!
   $qty: Int!

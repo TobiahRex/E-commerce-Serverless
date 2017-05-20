@@ -7,11 +7,12 @@ import { cleanGQLresponse } from '../products/';
 const api = productApi.createAPI();
 
 export default function* fetchPopularProducts() {
-  const response = yield call(() => api.fetchPopularProducts(6));
+  const response = yield call(() => api.FetchPopularProducts(6));
 
   const { ok, problem, data } = cleanGQLresponse(response);
+
   if (ok) {
-    yield put(productActions.receivedPopularProducts(data.data.popularProducts));
+    yield put(productActions.receivedPopularProducts(data.data.PopularProducts));
   } else {
     yield [
       put(productActions.productRequestError(problem)),

@@ -10,19 +10,15 @@ export function* fetchPopularProducts() {
     const { qty } = yield take(productTypes.FETCH_POPULAR_PRODUCTS);
     const responses = yield [
       put(apiActions.fetching()),
-      call(() => api.fetchPopularProducts(qty)),
+      call(() => api.FetchPopularProducts(qty)),
     ];
 
-    const {
-      ok,
-      problem,
-      data,
-    } = cleanGQLresponse(responses[1]);
+    const { ok, problem, data } = cleanGQLresponse(responses[1]);
 
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(productActions.receivedPopularProducts(data.data.popularProducts)),
+        put(productActions.receivedPopularProducts(data.data.PopularProducts)),
       ];
     } else {
       yield put(apiActions.apiFail(problem));

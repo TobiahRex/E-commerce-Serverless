@@ -1,5 +1,4 @@
 /* eslint-disable no-lone-blocks, import/first*/
-if (!global._babelPolyfill) require('babel-polyfill'); // eslint-disable-line
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -7,11 +6,13 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
-import findProductById from './graphql/queries';
-import BreadCrumb from '../../../../../components/breadcrumbs';
 import orderActions from '../../../../../redux/orders/';
+import FindProductById from '../graphql/queries';
+import { AddToMemberCart, UpdateToMemberCart } from '../graphql/mutations';
+
 import {
   MainTitle,
+  BreadCrumb,
   ActionBtns,
   SuccessModal,
   BulkSaleModal,
@@ -31,20 +32,19 @@ const {
 
 class SingleProduct extends Component {
   static propTypes = {
-    loggedIn: bool.isRequired,
-    addToMemberCart: func.isRequired,
-    addToGuestCart: func.isRequired,
-    updateToMemberCart: func.isRequired,
-    updateToGuestCart: func.isRequired,
     push: func.isRequired,
+    userId: string,
     taxRate: number.isRequired,
     productId: string.isRequired,
+    loggedIn: bool.isRequired,
+    addToGuestCart: func.isRequired,
+    updateToGuestCart: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
       member: arrayOf(any),
     }).isRequired,
     data: shape({
-      findProductById: shape({
+      FindProductById: shape({
         _id: string,
         product: shape({
           images: arrayOf(shape({
@@ -65,6 +65,10 @@ class SingleProduct extends Component {
         }),
       }),
     }).isRequired,
+    mutate: func.isRequired,
+  }
+  static defaultProps = {
+    userId: '',
   }
   constructor(props) {
     super(props);
@@ -87,10 +91,12 @@ class SingleProduct extends Component {
         data,
         loggedIn,
       } = nextProps;
+
+      console.log('%cdata', 'background:red;', data);
       this.setState(() => ({
         loggedIn,
-        product: data ? data.findProductById.product : null,
-        productId: data ? data.findProductById._id : null,
+        product: data ? data.FindProductById.product : null,
+        productId: data ? data.FindProductById._id : null,
       }));
     }
   }
@@ -248,15 +254,25 @@ class SingleProduct extends Component {
       });
       if (cartCustomerType === 'member') {
         if (updatedCartProducts.length) {
-          this.props.updateToMemberCart({ ...updatedCartProducts });
+          this.props.updateToMemberCart({
+            qty,
+            strength,
+            userId: this.props.userId,
+            ...updatedCartProducts,
+          });
         } else {
-          this.props.addToMemberCart({ qty, strength, ...this.props.data.findProductById });
+          this.props.addToMemberCart({
+            userId: this.props.userId,
+            qty,
+            strength,
+            ...this.state.product,
+          });
         }
       } else {
         if (updatedCartProducts.length) {
           this.props.updateToMemberCart({ ...updatedCartProducts });
         }
-        this.props.addToGuestCart({ qty, strength, ...this.props.data.findProductById });
+        this.props.addToGuestCart({ qty, strength, ...this.state.product });
       }
     }
   }
@@ -338,11 +354,12 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, auth, routing }) => ({
+const mapStateToProps = ({ orders, auth, routing, user: profile }) => ({
   cart: orders.cart,
   loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
   productId: routing.locationBeforeTransitions.query.id,
+  userId: profile ? profile.id : '',
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
@@ -353,11 +370,11 @@ const mapDispatchToProps = dispatch => ({
   updateToGuestCart: updatedCartProducts =>
   dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
-  addToMemberCart: productObj => // convert to GraphQL mutation
-  dispatch(orderActions.addToMemberCart(productObj)),
+  // addToMemberCart: productObj => // convert to GraphQL mutation
+  // dispatch(orderActions.addToMemberCart(productObj)),
 
-  updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
-  dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
+  // updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
+  // dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
 });
 const SingleProductWithState = connect(
   mapStateToProps,
@@ -365,14 +382,14 @@ const SingleProductWithState = connect(
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
-  graphql(findProductById, {
+  graphql(FindProductById, {
     options: ({ location }) => ({
       variables: {
         id: location.query.id,
       },
     }),
   }),
-  // graphql(addToMemberCart)
-  // graphql(updateMemberCart)
+  graphql(AddToMemberCart),
+  graphql(UpdateToMemberCart),
 )(SingleProductWithState);
 export default SingleProductWithStateAndData;
