@@ -1,10 +1,10 @@
-# Nic Juice 2 Japan - NJ2JP:
+# Nic Juice 2 Japan _NJ2JP_:
 E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
   - Deployed using _Serverless_ | AWS Lambda.  
-  - Backend API = GraphQL.
-  - Database utilizes a Mongo Cluster with 3 nodes. 2 Full + 1 Arbiter.
-  - Client requests are generated from Apollo Client wrapped components.
-  - The rest of the app sits on React.js & React Router (with Code splitting), and Redux.
+  - Backend API = **GraphQL**.
+  - Database utilizes a **Mongo Cluster** with 3 nodes. 2 Full + 1 Arbiter.
+  - Client requests are generated from **Apollo Client** wrapped components.
+  - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), and **Redux**.
 
 ### Deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
 
