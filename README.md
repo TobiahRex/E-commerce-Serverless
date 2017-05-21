@@ -1,5 +1,11 @@
 # Nic Juice 2 Japan - NJ2JP:
-MERN Stack App: E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
+E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
+  - Deployed using _Serverless_ | AWS Lambda.  
+  - Database utilizes a Mongo Cluster with 3 nodes. 2 Full + 1 Arbiter.
+  - Backend API uses GraphQL technology.
+  - Client requests are generated from Apollo Client wrapped components.
+  - The rest of the app sits on React.js & React Router (with Code splitting), and Redux.
+
 ### Deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
 
 <img src="http://i.imgur.com/40al5Mw.png" />
