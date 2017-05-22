@@ -27,10 +27,9 @@ const userSchema = new Schema({
       country: { type: String },
     },
   },
-  transactions: {
-    orders: [{
-      type: { type: ObjectId, ref: 'Transaction' },
-    }],
+  shopping: {
+    cart: [{ type: ObjectId, ref: 'Product' }],
+    transactions: [{ type: ObjectId, ref: 'Transaction' }],
   },
   permissions: {
     role: {
