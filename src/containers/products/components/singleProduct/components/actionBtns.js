@@ -7,7 +7,7 @@ export default function ActionBtns() {
     <div className="main__back-btn">
       <button
         className="back-btn sweep-right"
-        onClick={() => browserHistory.goBack()}
+        onClick={browserHistory.goBack}
       >
         <span className="flex-btn-parent">
           <FontAwesome name="angle-double-left" />

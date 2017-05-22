@@ -16,6 +16,12 @@
         color: $p-blue;
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
+      & .main__title--vendor {
+        bottom: .5em;
+        font-size: 2em;
+        position: relative;
+        align-self: flex-end;
+      }
     }
     & .main__parent {
       @include prefixflex();

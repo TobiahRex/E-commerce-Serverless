@@ -5,7 +5,7 @@ import _ from 'lodash';
 import localeActions from '../../../../redux/locale';
 import NavbarLanguage from './navbar_web_language/';
 import NavbarUserActions from './navbar_web_userActions/';
-import NavbarCart from './navbar_web_cart/';
+import NavbarCart from './navbar_web_cart/container/';
 
 
 const { string, number, func, arrayOf, shape } = PropTypes;
@@ -14,7 +14,7 @@ class NavbarUpper extends Component {
   static propTypes = {
     activeLanguage: string.isRequired,
     qty: number.isRequired,
-    cartProducts: arrayOf(shape({
+    products: arrayOf(shape({
       qty: number,
       strength: number,
       id: string,
@@ -31,17 +31,17 @@ class NavbarUpper extends Component {
     this.state = {
       activeLanguage: props.activeLanguage,
       qty: 0,
-      cartProducts: [],
+      products: [],
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { activeLanguage, qty, cartProducts } = nextProps;
+    const { activeLanguage, qty, products } = nextProps;
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({
         activeLanguage,
         qty,
-        cartProducts,
+        products,
       });
     }
   }
@@ -72,7 +72,7 @@ class NavbarUpper extends Component {
 
     this.setState(prevState => ({
       ...prevState,
-      cartProducts: prevState.cartProducts
+      products: prevState.products
         .filter(({ id }) => id !== productId),
     }));
   }
@@ -90,7 +90,7 @@ class NavbarUpper extends Component {
         <div className="navbar actionSection upper mycart-container">
           <NavbarCart
             qty={this.state.qty}
-            cartProducts={this.state.cartProducts}
+            products={this.state.products}
             editCartItem={this.editCartItem}
             deleteFromCart={this.deleteFromCart}
           />
@@ -113,7 +113,7 @@ export default connect(
   ({ locale, auth, orders }) => ({
     activeLanguage: locale.activeLanguage,
     qty: calculateQty(auth.loggedIn, orders.cart),
-    cartProducts: orders.cart[auth.loggedIn ? 'member' : 'guest'],
+    products: orders.cart[auth.loggedIn ? 'member' : 'guest'],
   }),
   dispatch => ({
     saveLanguage: language => dispatch(localeActions.setLanguage(language)),

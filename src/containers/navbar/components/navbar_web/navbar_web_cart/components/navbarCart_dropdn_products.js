@@ -6,7 +6,7 @@ import {
   NavbarCartProductsCardImage,
   NavbarCartProductsCardInfo,
   NavbarCartProductsCardActions,
-} from './imports';
+} from '../container/imports';
 
 const {
   arrayOf,
@@ -18,7 +18,7 @@ const {
 class NavbarCartProducts extends Component {
   static propTypes = {
     cartTotal: number.isRequired,
-    cartProducts: arrayOf(object).isRequired,
+    products: arrayOf(object).isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   };
@@ -39,37 +39,37 @@ class NavbarCartProducts extends Component {
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
   renderProducts = products =>
-  products.map((juiceObj) => {
+  products.map((product) => {
+    console.log('%cproduct', 'background:orange;', product);
+
     const {
-      _id,
-      product: {
-        title,
-        qty,
-        price,
-        strength,
-        images,
-        routeTag,
-      },
-    } = juiceObj;
+      id,
+      qty,
+      title,
+      price,
+      strength,
+      images,
+      routeTag,
+    } = product;
     return (
       <li
         className="products-list-card"
-        key={`${routeTag}-${_id}`}
+        key={routeTag}
       >
         <NavbarCartProductsCardImage
           imageUrl={this.filterImages(images)}
           title={title}
         />
-
+        
         <NavbarCartProductsCardInfo
-          title={title}
           qty={qty}
+          title={title}
           price={price}
           strength={strength}
         />
 
         <NavbarCartProductsCardActions
-          juiceId={_id}
+          productId={id}
           routeTag={routeTag}
           editCartItem={this.props.editCartItem}
           deleteFromCart={this.props.deleteFromCart}
@@ -82,8 +82,8 @@ class NavbarCartProducts extends Component {
       <div>
         <div className="products">
           <ul className="products-list">
-            {this.props.cartProducts.length
-              ? this.renderProducts(this.props.cartProducts)
+            {this.props.products.length
+              ? this.renderProducts(this.props.products)
               : this.emptyCart()}
           </ul>
         </div>

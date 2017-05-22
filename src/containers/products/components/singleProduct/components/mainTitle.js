@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 function MainTitle({ vendor, mainTitle }) {
   return (
     <div className="main__title">
-      <h1>{mainTitle} by {vendor}</h1>
+      <h1>{mainTitle}</h1>
+      <p className="main__title--vendor">by {vendor}</p>
     </div>
   );
 }

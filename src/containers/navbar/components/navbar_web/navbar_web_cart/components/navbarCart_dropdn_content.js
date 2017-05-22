@@ -5,11 +5,11 @@ import {
   NavbarCartRecentlyAdded,
   NavbarCartActionLinks,
   NavbarCartProducts,
-} from './imports';
+} from '../container/imports';
 
 function NavbarCartDropdnContent({
+  products,
   cartTotal,
-  cartProducts,
   editCartItem,
   deleteFromCart,
 }) {
@@ -19,8 +19,8 @@ function NavbarCartDropdnContent({
         <NavbarCartPromotion />
         <NavbarCartRecentlyAdded />
         <NavbarCartProducts
+          products={products}
           cartTotal={cartTotal}
-          cartProducts={cartProducts}
           editCartItem={editCartItem}
           deleteFromCart={deleteFromCart}
         />
@@ -31,7 +31,7 @@ function NavbarCartDropdnContent({
 }
 const { arrayOf, object, number, func } = PropTypes;
 NavbarCartDropdnContent.propTypes = {
-  cartProducts: arrayOf(object).isRequired,
+  products: arrayOf(object).isRequired,
   cartTotal: number.isRequired,
   editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,

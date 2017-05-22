@@ -67,7 +67,6 @@ class SingleProduct extends Component {
         }),
       }),
     }).isRequired,
-    mutate: func.isRequired,
   }
   static defaultProps = {
     userId: '',
@@ -79,7 +78,6 @@ class SingleProduct extends Component {
       error: false,
       product: null,
       errorQty: '',
-      productId: null,
       showBulkModal: false,
       chosenStrength: 0,
       showSuccessModal: false,
@@ -88,23 +86,15 @@ class SingleProduct extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('%cnextProps', 'background:pink;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
-      const {
-        data,
-        loggedIn,
-      } = nextProps;
-
-      console.log('%cdata', 'background:lime;', data);
-      this.setState(() => ({
-        loggedIn,
-        product: data ? data.FindProductById.product : null,
-        productId: data ? data.FindProductById._id : null,
-      }));
+      const { loggedIn } = nextProps;
+      this.setState(() => ({ loggedIn }));
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!_.isEqual(nextState, this.state)) return true;
+    if (!_.isEqual(nextState, this.state) || !_.isEqual(nextProps, this.props)) return true;
     return false;
   }
 
@@ -260,21 +250,28 @@ class SingleProduct extends Component {
             qty,
             strength,
             userId: this.props.userId,
+            id: this.props.productId,
             ...updatedCartProducts,
           });
         } else {
           this.props.addToMemberCart({
-            userId: this.props.userId,
             qty,
             strength,
-            ...this.state.product,
+            userId: this.props.userId,
+            id: this.props.productId,
+            ...this.props.data.FindProductById.product,
           });
         }
       } else {
         if (updatedCartProducts.length) {
-          this.props.updateToMemberCart({ ...updatedCartProducts });
+          this.props.updateToGuestCart({ ...updatedCartProducts });
         }
-        this.props.addToGuestCart({ qty, strength, ...this.state.product });
+        this.props.addToGuestCart({
+          qty,
+          strength,
+          id: this.props.productId,
+          ...this.props.data.FindProductById.product,
+        });
       }
     }
   }
@@ -304,6 +301,7 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
+    console.log('%cSingle Product: data', 'background:red;', data);
 
     if (this.state.errorQty) throw new Error(this.state.errorQty);
 
@@ -328,7 +326,7 @@ class SingleProduct extends Component {
             qty={qty}
             error={error}
             loggedIn={loggedIn}
-            productObj={data.FindProductById.product}
+            productObj={data.FindProductById ? data.FindProductById.product : null}
             qtyHandler={this.qtyHandler}
             chosenStrength={chosenStrength}
             modalHandler={this.modalHandler}
@@ -363,10 +361,10 @@ class SingleProduct extends Component {
 }
 const mapStateToProps = ({ orders, auth, routing, user: profile }) => ({
   cart: orders.cart,
+  userId: profile ? profile.id : '',
   loggedIn: auth.loggedIn || false,
   taxRate: orders.taxRate.totalRate,
   productId: routing.locationBeforeTransitions.query.id,
-  userId: profile ? profile.id : '',
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),

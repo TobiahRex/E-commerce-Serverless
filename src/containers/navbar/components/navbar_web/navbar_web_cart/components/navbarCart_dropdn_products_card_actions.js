@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 
 function NavbarCartProductsCardActions({
   routeTag,
-  id,
+  productId,
   editCartItem,
   deleteFromCart,
 }) {
@@ -12,6 +12,7 @@ function NavbarCartProductsCardActions({
     <div className="products-list-card-actions">
       <div href="" className="products-list-card-actions-edit sweep-right">
         <button
+          data-id={productId}
           data-route={routeTag}
           onClick={editCartItem}
           className="products-list-card-actions-delete sweep-right"
@@ -23,7 +24,7 @@ function NavbarCartProductsCardActions({
         </button>
       </div>
       <button
-        data-id={id}
+        data-id={productId}
         onClick={deleteFromCart}
         className="products-list-card-actions-delete sweep-right"
       >
@@ -38,12 +39,12 @@ function NavbarCartProductsCardActions({
 const { string, func } = PropTypes;
 NavbarCartProductsCardActions.propTypes = {
   routeTag: string,
-  id: string,
+  productId: string,
   editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
 };
 NavbarCartProductsCardActions.defaultProps = {
   routeTag: '',
-  id: '',
+  productId: '',
 };
 export default NavbarCartProductsCardActions;

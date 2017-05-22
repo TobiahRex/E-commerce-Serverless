@@ -19,16 +19,19 @@ function ProductActions(props) {
               <p>{props.quantity}</p>
             </li>
             <li className="list--qty-adjust">
+
               <button
                 data-tag="qty-plus"
                 className="qty-adjust__plus sweep-right"
                 onClick={props.qtyHandler}
               ><FontAwesome name="plus" /></button>
+
               <button
                 data-tag="qty-minus"
                 className="qty-adjust__minus sweep-right"
                 onClick={props.qtyHandler}
               ><FontAwesome name="minus" /></button>
+
             </li>
           </ul>
         </div>
@@ -40,9 +43,9 @@ function ProductActions(props) {
 }
 const { number, bool, func } = PropTypes;
 ProductActions.propTypes = {
-  quantity: number.isRequired,
   error: bool.isRequired,
-  addToCartHandler: func.isRequired,
+  quantity: number.isRequired,
   qtyHandler: func.isRequired,
+  addToCartHandler: func.isRequired,
 };
 export default ProductActions;

@@ -58,6 +58,7 @@ class ProductDisplay extends Component {
       nicotineHandler,
       addToCartHandler,
     } = this.props;
+    console.log('%cProduct DISPLAY: productObj', 'background:red;', productObj);
     const {
       blurb,
       price,
@@ -75,12 +76,14 @@ class ProductDisplay extends Component {
         />
         <div className="main__info--desc">
           <JuiceTitle title={title} />
+
           <PriceInfo
             sku={sku}
             price={price}
             id={productId}
             inStock={available ? 1 : 0}
           />
+
           <ProductBlurb description={blurb} />
 
           <NewMemberPromotionBtn
@@ -90,16 +93,16 @@ class ProductDisplay extends Component {
 
           <NicotineBtns
             chosenStrength={chosenStrength}
-            nicotineStrengths={nicotineStrengths}
             nicotineHandler={nicotineHandler}
+            nicotineStrengths={nicotineStrengths}
           />
 
           <ProductActions
-            quantity={qty}
-            chosenStrength={chosenStrength}
             error={error}
-            addToCartHandler={addToCartHandler}
+            quantity={qty}
             qtyHandler={qtyHandler}
+            chosenStrength={chosenStrength}
+            addToCartHandler={addToCartHandler}
           />
 
           <SocialMediaBtns
