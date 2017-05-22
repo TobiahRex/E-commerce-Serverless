@@ -38,7 +38,9 @@ class SingleProduct extends Component {
     productId: string.isRequired,
     loggedIn: bool.isRequired,
     addToGuestCart: func.isRequired,
+    addToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
+    updateToMemberCart: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
       member: arrayOf(any),
@@ -92,7 +94,7 @@ class SingleProduct extends Component {
         loggedIn,
       } = nextProps;
 
-      console.log('%cdata', 'background:red;', data);
+      console.log('%cdata', 'background:lime;', data);
       this.setState(() => ({
         loggedIn,
         product: data ? data.FindProductById.product : null,
@@ -290,7 +292,7 @@ class SingleProduct extends Component {
     const {
       qty,
       error,
-      product,
+      // product,
       showBulkModal,
       chosenStrength,
       showSuccessModal,
@@ -314,14 +316,14 @@ class SingleProduct extends Component {
           lastCrumb="Juice Page"
         />
 
-        <MainTitle mainTitle={product ? product.mainTitle : ''} />
+        <MainTitle mainTitle={data.FindProductById ? data.FindProductById.product.mainTitle : ''} />
         {
           data.loading ? <h1>Loading ...</h1> :
           <ProductDisplay
             qty={qty}
             error={error}
             loggedIn={loggedIn}
-            productObj={product}
+            productObj={data.FindProductById.product}
             qtyHandler={this.qtyHandler}
             chosenStrength={chosenStrength}
             modalHandler={this.modalHandler}
@@ -333,7 +335,7 @@ class SingleProduct extends Component {
 
         <SuccessModal
           qty={qty}
-          productTitle={product ? product.title : ''}
+          productTitle={data.FindProductById ? data.FindProductById.product.title : ''}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
@@ -389,7 +391,7 @@ const SingleProductWithStateAndData = compose(
       },
     }),
   }),
-  graphql(AddToMemberCart),
-  graphql(UpdateToMemberCart),
+  graphql(AddToMemberCart, { name: 'addToMemberCart' }),
+  graphql(UpdateToMemberCart, { name: 'updateToMemberCart' }),
 )(SingleProductWithState);
 export default SingleProductWithStateAndData;
