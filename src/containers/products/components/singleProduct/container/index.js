@@ -315,8 +315,13 @@ class SingleProduct extends Component {
           destination={['']}
           lastCrumb="Juice Page"
         />
-
-        <MainTitle mainTitle={data.FindProductById ? data.FindProductById.product.mainTitle : ''} />
+        {
+          data.FindProductById ?
+            <MainTitle
+              vendor={data.FindProductById.product.vendor}
+              mainTitle={data.FindProductById.product.mainTitle}
+            /> : ''
+        }
         {
           data.loading ? <h1>Loading ...</h1> :
           <ProductDisplay
