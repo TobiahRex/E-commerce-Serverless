@@ -32,6 +32,7 @@ class NavbarUpper extends Component {
     super(props);
     this.state = {
       products: [],
+      qty: props.qty,
       activeLanguage: props.activeLanguage,
     };
   }
@@ -72,14 +73,20 @@ class NavbarUpper extends Component {
 
   deleteFromCart = (e) => {
     let productId = e.target.dataset.id;
-    if (!productId) {
-      productId = e.target.parentNode.dataset.id;
-    }
+    if (!productId) productId = e.target.parentNode.dataset.id;
+    let deleteCount = 0;
+
+    const products = this.state.products.filter(({ id }) => {
+      if (id !== productId) {
+        deleteCount += 1;
+        return false;
+      }
+      return true;
+    });
 
     this.setState(prevState => ({
+      products,
       ...prevState,
-      products: prevState.products
-      .filter(({ id }) => id !== productId),
     }));
   }
 
