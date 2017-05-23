@@ -152,13 +152,65 @@
 		@include prefixed(transform, translateY(-8px));
 	}
 }
+@include keyframes(pulse) {
+  0%, 70% {
+    box-shadow: 0px 0px 0px 0px rgb(252, 37, 37);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 50px rgba(252, 37, 37, 0);
+  }
+}
+@include keyframes(#{$nameSpace}-dropin) {
+	0% {
+		opacity: 0;
 
+	}
+
+	50% {
+		opacity: 0;
+		@include prefixed(transform, translateY(-100%));
+	}
+
+	51%,
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Icon Drop */
+.hover-dropin {
+	@include hacks();
+	position: relative;
+	padding-right: 2.2em;
+
+	&:before {
+		// content: "\f041";
+		position: absolute;
+		right: 1em;
+		opacity: 1;
+		padding: 0 1px;
+		// font-family: FontAwesome;
+		@include prefixed(transform, translateZ(0));
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+
+		&:before {
+			opacity: 0;
+			@include prefixed(transition-duration, #{$mediumDuration});
+			@include prefixed(animation-name, #{$nameSpace}-dropin);
+			@include prefixed(animation-duration, #{$slowDuration});
+			@include prefixed(animation-delay, #{$mediumDuration});
+			@include prefixed(animation-fill-mode, forwards);
+			@include prefixed(animation-timing-function, ease-in-out);
+			@include prefixed(animation-timing-function, cubic-bezier(.52,1.64,.37,.66));
+		}
+	}
+}
 .hover-bob {
-  display: inline-block;
-  vertical-align: middle;
-  @include prefixed(transform, perspective(1px) translateZ(0));
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-
+  @include hacks();
 
 	&:hover,
 	&:focus,
@@ -173,10 +225,7 @@
 	}
 }
 .hover-bob-active {
-  display: inline-block;
-  vertical-align: middle;
-  @include prefixed(transform, perspective(1px) translateZ(0));
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  @include hacks();
   @include prefixed(animation-name, "#{$nameSpace}-bob-float, #{$nameSpace}-bob");
   @include prefixed(animation-duration, ".3s, 1.5s");
   @include prefixed(animation-delay, "0s, .3s");
@@ -186,11 +235,7 @@
   @include prefixed(animation-direction, "normal, alternate");
 }
 .hover-float {
-  display: inline-block;
-  vertical-align: middle;
-  @include prefixed(transform, perspective(1px) translateZ(0));
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-
+  @include hacks();
   @include prefixed(transition-duration, .3s);
 	@include prefixed(transition-property, transform);
 	@include prefixed(transition-timing-function, ease-out);
@@ -201,16 +246,6 @@
 		@include prefixed(transform, translateY(-8px));
 	}
 }
-
 .ping-nav {
   animation: pulse 3s ease-in-out infinite;
-}
-
-@include keyframes(pulse) {
-  0%, 70% {
-    box-shadow: 0px 0px 0px 0px rgb(252, 37, 37);
-  }
-  100% {
-    box-shadow: 0px 0px 0px 50px rgba(252, 37, 37, 0);
-  }
 }

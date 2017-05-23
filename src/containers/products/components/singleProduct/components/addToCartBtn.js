@@ -5,29 +5,29 @@ import FontAwesome from 'react-fontawesome';
 function AddToCartButton({ added, addToCart }) {
   return (
     <button
-      className="btn-container__add-to-cart sweep-right"
+      disabled={added}
       onClick={addToCart}
+      className={`btn-container__add-to-cart sweep-right ${added ? 'add-to-cart__btn--success' : ''}`}
     >
-      <span
-        className={`btn-flex-parent
-          ${added ? 'add-to-cart__btn--success' : ''}`}
-      >
+      <span className="btn-flex-parent">
         {
           added ?
           [
-            <span>Success </span>,
+            <span key="add-to-cart-success" >Success </span>,
             <FontAwesome
-              className="success-cart-icon"
+              key="add-to-cart-success-icon"
+              className="success-cart-icon hover-dropin"
               name="check"
             />,
           ]
           :
           [
             <FontAwesome
-              className="sp-cart-icon hover-dropin"
+              key="add-to-cart-idle"
+              className="sp-cart-icon"
               name="shopping-cart"
             />,
-            <span>{'\u00A0'} Add To Cart</span>,
+            'Add To Cart',
           ]
         }
       </span>
