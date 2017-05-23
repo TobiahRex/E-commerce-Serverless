@@ -310,11 +310,17 @@ class SingleProduct extends Component {
   }
 
   nicotineHandler = (e) => {
+    if (!this.state.strength) {
+      return this.setState(() => ({
+        error: true,
+        errorMsg: 'No strength',
+      }));
+    }
     let nicEl = e.target.dataset.tag;
     if (!nicEl) {
       nicEl = e.target.parentNode.dataset.tag;
     }
-    this.setState({ chosenStrength: Number(nicEl) });
+    return this.setState({ chosenStrength: Number(nicEl) });
   }
 
 
