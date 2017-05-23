@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NavbarNavsShopDropdnJuiceCards(props) {
+function NavbarNavsJuicesDropdnJuiceCards(props) {
   const {
     tag,
     push,
@@ -41,7 +41,7 @@ function NavbarNavsShopDropdnJuiceCards(props) {
   );
 }
 const { shape, arrayOf, string, func } = PropTypes;
-NavbarNavsShopDropdnJuiceCards.propTypes = {
+NavbarNavsJuicesDropdnJuiceCards.propTypes = {
   productInfo: shape({
     title: string,
     price: string,
@@ -51,7 +51,7 @@ NavbarNavsShopDropdnJuiceCards.propTypes = {
   tag: string,
   push: func.isRequired,
 };
-NavbarNavsShopDropdnJuiceCards.defaultProps = {
+NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
   productInfo: {
     title: '',
     price: '',
@@ -60,4 +60,4 @@ NavbarNavsShopDropdnJuiceCards.defaultProps = {
   },
   tag: '',
 };
-export default NavbarNavsShopDropdnJuiceCards;
+export default NavbarNavsJuicesDropdnJuiceCards;

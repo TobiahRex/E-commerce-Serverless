@@ -80,6 +80,7 @@ class SingleProduct extends Component {
     this.state = {
       qty: 0,
       error: false,
+      added: false,
       product: null,
       errorMsg: '',
       showBulkModal: false,
@@ -288,6 +289,7 @@ class SingleProduct extends Component {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               qty: 0,
+              added: true,
               error: false,
               errorMsg: '',
               chosenStrength: 0,
@@ -297,6 +299,7 @@ class SingleProduct extends Component {
           } else {
             this.setState(() => ({
               qty: 0,
+              added: true,
               error: false,
               errorMsg: '',
               chosenStrength: 0,
@@ -308,6 +311,7 @@ class SingleProduct extends Component {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               qty: 0,
+              added: true,
               error: false,
               errorMsg: '',
               chosenStrength: 0,
@@ -317,6 +321,7 @@ class SingleProduct extends Component {
           } else {
             this.setState(() => ({
               qty: 0,
+              added: true,
               error: false,
               errorMsg: '',
               chosenStrength: 0,
@@ -346,7 +351,6 @@ class SingleProduct extends Component {
       qty,
       error,
       errorMsg,
-      // product,
       showBulkModal,
       chosenStrength,
       showSuccessModal,
@@ -358,9 +362,6 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-
-    // if (this.state.errorQty) new Error(this.state.errorQty);
-
     return (
       <div className="juice-page__main">
         <BreadCrumb
@@ -383,12 +384,12 @@ class SingleProduct extends Component {
             error={error}
             errorMsg={errorMsg}
             loggedIn={loggedIn}
-            productObj={data.FindProductById ? data.FindProductById.product : null}
             qtyHandler={this.qtyHandler}
             chosenStrength={chosenStrength}
             modalHandler={this.modalHandler}
             nicotineHandler={this.nicotineHandler}
             addToCartHandler={this.addToCartHandler}
+            productObj={data.FindProductById ? data.FindProductById.product : null}
           />
         }
         <ActionBtns />

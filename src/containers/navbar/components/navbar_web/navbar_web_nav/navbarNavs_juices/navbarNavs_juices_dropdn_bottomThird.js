@@ -7,7 +7,7 @@ import { browserHistory } from 'react-router';
 
 */
 const { func } = PropTypes;
-class NavbarNavsShopDropdnBottomthird extends PureComponent {
+class NavbarNavsJuicesDropdnBottomthird extends PureComponent {
   static propTypes = {
     toggleNavbarDropdown: func.isRequired,
   }
@@ -44,4 +44,4 @@ class NavbarNavsShopDropdnBottomthird extends PureComponent {
   }
 }
 
-export default NavbarNavsShopDropdnBottomthird;
+export default NavbarNavsJuicesDropdnBottomthird;

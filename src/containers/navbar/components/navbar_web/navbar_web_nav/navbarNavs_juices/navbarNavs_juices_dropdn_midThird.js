@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import NavbarNavsShopDropdnJuiceCards from './navbarNavs_shop_dropdn_midThird_juiceCard';
+import NavbarNavsJuicesDropdnJuiceCards from './navbarNavs_juices_dropdn_midThird_juiceCard';
 
 const { arrayOf, object, func } = PropTypes;
 
-class NavbarNavsShopDropdnMidthird extends Component {
+class NavbarNavsJuicesDropdnMidthird extends Component {
   static propTypes = {
     popularProducts: arrayOf(object).isRequired,
     push: func.isRequired,
@@ -37,7 +37,7 @@ class NavbarNavsShopDropdnMidthird extends Component {
         </div>
         <div className="shop-dropdown-content-midThird-juices">
           { popularProducts.map(productObj => (
-            <NavbarNavsShopDropdnJuiceCards
+            <NavbarNavsJuicesDropdnJuiceCards
               key={productObj._id || Math.round(Math.random() * -1000)}
               tag={productObj.product.routeTag}
               push={this.push}
@@ -52,4 +52,4 @@ class NavbarNavsShopDropdnMidthird extends Component {
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
 });
-export default connect(null, mapDispatchToProps)(NavbarNavsShopDropdnMidthird);
+export default connect(null, mapDispatchToProps)(NavbarNavsJuicesDropdnMidthird);

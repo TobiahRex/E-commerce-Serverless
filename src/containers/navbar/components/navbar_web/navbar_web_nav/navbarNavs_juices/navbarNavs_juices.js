@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
-import NavbarNavsShopDropdnContent from './navbarNavs_shop_dropdn_content';
+import NavbarNavsJuicesDropdnContent from './navbarNavs_juices_dropdn_content';
 
 const { arrayOf, shape, func, string } = PropTypes;
 
@@ -59,12 +59,12 @@ class NavbarNavsShop extends Component {
           className="shop-main-button"
         >
           <div className="shop-main-button-title">
-            <span>SHOP</span>
+            <span>JUICES</span>
           </div>
         </Link>
         {
           this.props.popularProducts.length ?
-            <NavbarNavsShopDropdnContent
+            <NavbarNavsJuicesDropdnContent
               popularProducts={this.props.popularProducts}
               toggleNavbarDropdown={this.toggleNavbarDropdown}
             /> : ''

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NavbarNavsShopDropdnTopthird from './navbarNavs_shop_dropdn_topThird';
-import NavbarNavsShopDropdnMidthird from './navbarNavs_shop_dropdn_midThird';
-import NavbarNavsShopDropdnBottomthird from './navbarNavs_shop_dropdn_bottomThird';
+import NavbarNavsJuicesDropdnTopthird from './navbarNavs_juices_dropdn_topThird';
+import NavbarNavsJuicesDropdnMidthird from './navbarNavs_juices_dropdn_midThird';
+import NavbarNavsJuicesDropdnBottomthird from './navbarNavs_juices_dropdn_bottomThird';
 
 const { arrayOf, object, func } = PropTypes;
 
@@ -12,26 +12,26 @@ const propTypes = {
   toggleNavbarDropdown: func.isRequired,
 };
 
-function NavbarNavsShopDropdnContent(props) {
+function NavbarNavsJuicesDropdnContent(props) {
   const { popularProducts, toggleNavbarDropdown } = props;
 
   return (
     <span className="shop__ddn-content" >
       <span className="ddn-content__parent">
-        <NavbarNavsShopDropdnTopthird />
-        <NavbarNavsShopDropdnMidthird
+        <NavbarNavsJuicesDropdnTopthird />
+        <NavbarNavsJuicesDropdnMidthird
           popularProducts={popularProducts}
           toggleNavbarDropdown={toggleNavbarDropdown}
         />
-        <NavbarNavsShopDropdnBottomthird
+        <NavbarNavsJuicesDropdnBottomthird
           toggleNavbarDropdown={toggleNavbarDropdown}
         />
       </span>
     </span>
   );
 }
-NavbarNavsShopDropdnContent.propTypes = propTypes;
-NavbarNavsShopDropdnContent.defaultProps = {
+NavbarNavsJuicesDropdnContent.propTypes = propTypes;
+NavbarNavsJuicesDropdnContent.defaultProps = {
   popularProducts: [],
 };
-export default NavbarNavsShopDropdnContent;
+export default NavbarNavsJuicesDropdnContent;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  NavbarNavsShop,
+  NavbarNavsJuices,
   NavbarNavsMedia,
   NavbarNavsInfo,
 } from './imports';
@@ -8,7 +8,7 @@ import {
 function NavbarLower() {
   return (
     <div className="navbar-actionSection-lower">
-      <NavbarNavsShop />
+      <NavbarNavsJuices />
       <NavbarNavsMedia />
       <NavbarNavsInfo />
     </div>
