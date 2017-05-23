@@ -14,7 +14,6 @@ class NavbarCart extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    console.log('%cnextProps', 'background:cyan;', nextProps);
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
     const productsDiff = isArrayEqual(nextProps.products, this.props.products);
 
@@ -23,6 +22,7 @@ class NavbarCart extends Component {
   }
   render() {
     const { qty, products, editCartItem, deleteFromCart } = this.props;
+    console.log('%cNavbar Cart: qty', 'background:red;', qty);
 
     return (
       <div className="mycart-main">

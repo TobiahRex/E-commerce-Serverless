@@ -7,6 +7,7 @@ import localeActions from '../../../../redux/locale';
 import NavbarLanguage from './navbar_web_language/';
 import NavbarUserActions from './navbar_web_userActions/';
 import NavbarCart from './navbar_web_cart/container/';
+import orderActions from '../../../../redux/orders/';
 
 
 const { string, number, func, arrayOf, shape } = PropTypes;
@@ -18,21 +19,20 @@ class NavbarUpper extends Component {
     saveLanguage: func.isRequired,
     activeLanguage: string.isRequired,
     products: arrayOf(shape({
-      qty: number,
-      strength: number,
       id: string,
+      qty: number,
       title: string,
       price: string,
-      nicotine_strengths: arrayOf(string),
       imageUrl: string,
       routeTag: string,
+      strength: number,
+      nicotine_strengths: arrayOf(string),
     })).isRequired,
+    updateToGuestCart: func.isRequired,
   }
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
-      qty: props.qty,
       activeLanguage: props.activeLanguage,
     };
   }
@@ -47,11 +47,15 @@ class NavbarUpper extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
     const productsDiff = isArrayEqual(nextProps, this.props);
 
-    if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
+    if (
+      !_.isEqual(nextProps, this.props) ||
+      !_.isEqual(nextState, this.state) ||
+      productsDiff
+    ) return true;
     return false;
   }
 
@@ -65,29 +69,16 @@ class NavbarUpper extends Component {
     let id = e.target.dataset.id;
     if (!route) route = e.target.parentNode.dataset.route;
     if (!id) id = e.target.parentNode.dataset.id;
-    this.props.push(`/juice/${route}?id=${id}`);
-    /* TODO: Edit Product @ Single Product Page
-      Idea 2) set a flag on orders for "edit = true"; If the user is on the Single product page, then do the work of filtering the cart per the location they navigated to, and pre-populate the contents for "qty" & "nic strength" with the users choices.
-    */
+    this.props.push('/cart');
   }
 
   deleteFromCart = (e) => {
     let productId = e.target.dataset.id;
     if (!productId) productId = e.target.parentNode.dataset.id;
-    let deleteCount = 0;
 
-    const products = this.state.products.filter(({ id }) => {
-      if (id !== productId) {
-        deleteCount += 1;
-        return false;
-      }
-      return true;
-    });
-
-    this.setState(prevState => ({
-      products,
-      ...prevState,
-    }));
+    const updatedCartProducts = this.props.products
+    .filter(({ id }) => id !== productId);
+    this.props.updateToGuestCart(updatedCartProducts);
   }
 
   render() {
@@ -103,7 +94,7 @@ class NavbarUpper extends Component {
         <div className="navbar actionSection upper mycart-container">
           <NavbarCart
             qty={this.props.qty}
-            products={this.state.products}
+            products={this.props.products}
             editCartItem={this.editCartItem}
             deleteFromCart={this.deleteFromCart}
           />
@@ -127,6 +118,9 @@ export default connect(
   dispatch => ({
     push: location => dispatch(push(location)),
     saveLanguage: language => dispatch(localeActions.setLanguage(language)),
+
+    updateToGuestCart: updatedCartProducts =>
+    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
   }),
 )(NavbarUpper);
 /* Nested Component Map:
