@@ -4,8 +4,8 @@ import Immutable from 'seamless-immutable';
 const { Types, Creators } = createActions({
   addToGuestCart: ['productObj'],
   addToMemberCart: ['productObj'],
-  updateToGuestCart: ['updatedProductObj'],
-  updateToMemberCart: ['updatedProductObj'],
+  updateToGuestCart: ['updatedProducts'],
+  updateToMemberCart: ['updatedProducts'],
   getTaxRate: null,
   setTaxRate: ['taxRate'],
 });
@@ -28,7 +28,7 @@ export const INITIAL_STATE = Immutable({
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
   cart: {
-    guest: [...state.cart.guest, productObj],
+    guest: [...state.cart.guest, { ...productObj }],
     member: [...state.cart.member],
   },
 });
@@ -37,23 +37,23 @@ const addToMemberCart = (state, { productObj }) => ({
   ...state,
   cart: {
     guest: [...state.cart.guest],
-    member: [...state.cart.member, productObj],
+    member: [...state.cart.member, { ...productObj }],
   },
 });
 
-const updateToGuestCart = (state, { updatedProductObj }) => ({
+const updateToGuestCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
-    guest: [...updatedProductObj],
+    guest: updatedProducts,
     member: [...state.cart.member],
   },
 });
 
-const updateToMemberCart = (state, { updatedProductObj }) => ({
+const updateToMemberCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
     guest: [...state.cart.guest],
-    member: [...updatedProductObj],
+    member: updatedProducts,
   },
 });
 

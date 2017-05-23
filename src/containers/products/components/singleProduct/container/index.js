@@ -247,7 +247,6 @@ class SingleProduct extends Component {
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
-      console.log('%ccartCustomerType', 'background:red;', cartCustomerType);
       const {
         qty,
         chosenStrength: strength,
@@ -284,13 +283,7 @@ class SingleProduct extends Component {
               error: false,
               errorMsg: '',
             }), () => {
-              this.props.updateToMemberCart({
-                qty,
-                strength,
-                userId: this.props.userId,
-                id: this.props.productId,
-                ...updatedCartProducts,
-              });
+              this.props.updateToMemberCart(updatedCartProducts);
             });
           } else {
             this.setState(() => ({
@@ -312,7 +305,7 @@ class SingleProduct extends Component {
               error: false,
               errorMsg: '',
             }), () => {
-              this.props.updateToGuestCart({ ...updatedCartProducts });
+              this.props.updateToGuestCart(updatedCartProducts);
             });
           } else {
             this.setState(() => ({

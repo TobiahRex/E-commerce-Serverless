@@ -12,8 +12,12 @@ class NavbarCart extends Component {
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   };
+
   shouldComponentUpdate(nextProps) {
-    if (!_.isEqual(nextProps, this.props)) return true;
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
+    const productsDiff = isArrayEqual(nextProps.products, this.props.products);
+
+    if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
     return false;
   }
   render() {
