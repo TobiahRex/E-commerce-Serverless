@@ -265,7 +265,6 @@ class SingleProduct extends Component {
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
-      console.log('%cglobalQty', 'background:red;', globalQty);
       const {
         qty,
         chosenStrength: strength,
@@ -276,7 +275,7 @@ class SingleProduct extends Component {
       if (globalQty === 4) {
         this.setState({
           error: true,
-          errorMsg: 'You already have the maximum number of items in your cart.' });
+          errorMsg: 'Max items' });
       } else if (deltaQty > 0) {
         this.setState(() => ({
           error: true,

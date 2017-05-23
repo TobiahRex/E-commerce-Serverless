@@ -38,6 +38,18 @@ function ErrorMsg({ error, errorMsg }) {
           <p>You must choose a Nicotine Strength.</p>
         );
       } break;
+      case 'Max items': {
+        showErrorMsg = () => ([
+          <p
+            key={new Buffer('max-allowed', 'utf8').toString('base64')}
+          >
+            You already have the max allowed quantity.
+          </p>,
+          <p key={new Buffer('max-allowed-link', 'utf8').toString('base64')}>
+            Click{'\u00A0'}<Link to={'/cart'}>here</Link> to remove some items.
+          </p>,
+        ]);
+      } break;
       default: { showErrorMsg = () => (<p>{errorMsg}</p>); }
     }
   } else {

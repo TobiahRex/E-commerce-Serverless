@@ -9,16 +9,16 @@ import {
 } from '../container/imports';
 
 const {
-  arrayOf,
-  object,
   func,
+  object,
   number,
+  arrayOf,
 } = PropTypes;
 
 class NavbarCartProducts extends Component {
   static propTypes = {
-    cartTotal: number.isRequired,
     products: arrayOf(object).isRequired,
+    cartTotal: number.isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   };
@@ -60,7 +60,7 @@ class NavbarCartProducts extends Component {
           imageUrl={this.filterImages(images)}
           title={title}
         />
-        
+
         <NavbarCartProductsCardInfo
           qty={qty}
           title={title}
