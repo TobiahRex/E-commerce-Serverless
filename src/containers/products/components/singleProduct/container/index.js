@@ -350,7 +350,7 @@ class SingleProduct extends Component {
     if (this.state.added) {
       setTimeout(() => {
         this.setState({ added: false });
-      }, 20000);
+      }, 5000);
     }
   }
 

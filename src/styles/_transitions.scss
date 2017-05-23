@@ -187,7 +187,7 @@
   @include prefixed(transform, translateZ(0));
   @include prefixed(transition-duration, #{$slowDuration});
   @include prefixed(animation-name, #{$nameSpace}-dropin);
-  @include prefixed(animation-duration, 1s);
+  @include prefixed(animation-duration, .6s);
   @include prefixed(animation-delay, #{$mediumDuration});
   @include prefixed(animation-fill-mode, forwards);
   @include prefixed(animation-timing-function, ease-in-out);
