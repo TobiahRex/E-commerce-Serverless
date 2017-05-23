@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
+import { graphql, compose } from 'react-apollo';
 import localeActions from '../../../../redux/locale';
 import NavbarLanguage from './navbar_web_language/';
 import NavbarUserActions from './navbar_web_userActions/';
 import NavbarCart from './navbar_web_cart/container/';
 import orderActions from '../../../../redux/orders/';
+import { UpdateToMemberCart } from '../../../../apollo/mutations';
 
 
 const { string, number, func, arrayOf, shape } = PropTypes;
@@ -109,7 +111,7 @@ const calculateQty = (loggedIn, cartObj) => {
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
 
-export default connect(
+const NavbarUpperWithState = connect(
   ({ locale, auth, orders }) => ({
     activeLanguage: locale.activeLanguage,
     qty: calculateQty(auth.loggedIn, orders.cart),
@@ -123,8 +125,7 @@ export default connect(
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
   }),
 )(NavbarUpper);
-/* Nested Component Map:
-1. NavbarOptions = func
-2. NavbarUserActions == func
-3. NavbarCart = func
-*/
+const NavbarUpper = compose(
+  graphql(UpdateToMemberCart, { name: 'updateToMemberCart' }),
+)(NavbarUpperWithState);
+export default NavbarUpper;

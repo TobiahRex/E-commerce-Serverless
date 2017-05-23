@@ -427,31 +427,29 @@ class SingleProduct extends Component {
     );
   }
 }
-const mapStateToProps = ({ orders, auth, routing, user: profile }) => ({
-  cart: orders.cart,
-  userId: profile ? profile.id : '',
-  loggedIn: auth.loggedIn || false,
-  taxRate: orders.taxRate.totalRate,
-  productId: routing.locationBeforeTransitions.query.id,
-});
-const mapDispatchToProps = dispatch => ({
-  push: location => dispatch(push(location)),
-
-  addToGuestCart: productObj =>
-  dispatch(orderActions.addToGuestCart(productObj)),
-
-  updateToGuestCart: updatedCartProducts =>
-  dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
-
-  // addToMemberCart: productObj => // convert to GraphQL mutation
-  // dispatch(orderActions.addToMemberCart(productObj)),
-
-  // updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
-  // dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
-});
 const SingleProductWithState = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  ({ orders, auth, routing, user: profile }) => ({
+    cart: orders.cart,
+    userId: profile ? profile.id : '',
+    loggedIn: auth.loggedIn || false,
+    taxRate: orders.taxRate.totalRate,
+    productId: routing.locationBeforeTransitions.query.id,
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
+
+    addToGuestCart: productObj =>
+    dispatch(orderActions.addToGuestCart(productObj)),
+
+    updateToGuestCart: updatedCartProducts =>
+    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+
+    // addToMemberCart: productObj => // convert to GraphQL mutation
+    // dispatch(orderActions.addToMemberCart(productObj)),
+
+    // updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
+    // dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
+  }),
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
