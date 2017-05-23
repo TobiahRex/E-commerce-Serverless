@@ -376,6 +376,19 @@
                 font-weight: 200;
                 font-family: $p-font;
               }
+              &.added {
+                background-color: $p-blue;
+                &:hover,
+                &:active,
+                &:focus {
+                  background-color: $p-blue;
+                }
+                & .btn-flex-parent {
+                  & .success-cart-icon {
+                    opacity: 0;
+                  }
+                }
+              }
             }
           }
           & .actions__warning-msg {
