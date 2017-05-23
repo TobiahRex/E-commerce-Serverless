@@ -29,13 +29,13 @@ class NavbarUpper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeLanguage: props.activeLanguage,
       products: [],
+      activeLanguage: props.activeLanguage,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { activeLanguage, qty, products } = nextProps;
+    const { activeLanguage, products } = nextProps;
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({
         products,
@@ -59,13 +59,11 @@ class NavbarUpper extends Component {
 
   editCartItem = (e) => {
     let route = e.target.dataset.route;
-    if (!route) {
-      route = e.target.parentNode.dataset.route;
-    }
-    this.push(`/juice/${route}`);
+    let id = e.target.dataset.id;
+    if (!route) route = e.target.parentNode.dataset.route;
+    if (!id) id = e.target.parentNode.dataset.id;
+    this.push(`/juice/${route}?id=${id}`);
     /* TODO: Edit Product @ Single Product Page
-      Idea 1) dynamically render the contents from the cart into the Single Product page on load, if there is a matching item.
-
       Idea 2) set a flag on orders for "edit = true"; If the user is on the Single product page, then do the work of filtering the cart per the location they navigated to, and pre-populate the contents for "qty" & "nic strength" with the users choices.
     */
   }
@@ -79,7 +77,7 @@ class NavbarUpper extends Component {
     this.setState(prevState => ({
       ...prevState,
       products: prevState.products
-        .filter(({ id }) => id !== productId),
+      .filter(({ id }) => id !== productId),
     }));
   }
 
@@ -95,7 +93,7 @@ class NavbarUpper extends Component {
         <NavbarUserActions />
         <div className="navbar actionSection upper mycart-container">
           <NavbarCart
-            qty={this.state.qty}
+            qty={this.props.qty}
             products={this.state.products}
             editCartItem={this.editCartItem}
             deleteFromCart={this.deleteFromCart}
@@ -105,15 +103,11 @@ class NavbarUpper extends Component {
     );
   }
 }
-const calculateQty = (loggedIn, cartObj) => (
-  cartObj[loggedIn ? 'member' : 'guest'].reduce((accum, next) => {
-    if (next.id) {
-      accum += 1;
-      return accum;
-    }
-    return accum;
-  }, 0)
-);
+const calculateQty = (loggedIn, cartObj) => {
+  const cart = cartObj[loggedIn ? 'member' : 'guest'];
+  if (!cart.length) return 0;
+  return cart.reduce((accum, { qty }) => accum + qty, 0);
+};
 
 export default connect(
   ({ locale, auth, orders }) => ({
