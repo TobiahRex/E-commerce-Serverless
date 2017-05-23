@@ -86,7 +86,7 @@ class SingleProduct extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps', 'background:pink;', nextProps);
+    console.log('%cSingleProduct @ componentWillReceiveProps: \nnextProps', 'background:pink;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       const { loggedIn } = nextProps;
       this.setState(() => ({ loggedIn }));
@@ -212,66 +212,97 @@ class SingleProduct extends Component {
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
-    const {
-      prevCartIds,
-      cartCustomerType,
-      globalQty,
-    } = this.composeGlobalCartInfo();
-    const {
-      qty,
-      chosenStrength: strength,
-    } = this.state;
-    const requestQty = qty;
-    const totalRequestQty = requestQty + globalQty;
-    const deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
-
-    if (globalQty === 4) {
-      this.setState({ errorQty: 'You already have the maximum number of items in your cart.' });
-    } else if (deltaQty > 0) {
-      this.setState({ errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.` });
-    } else if (!deltaQty) {
-      const { productId, cart } = this.props;
-      const updatedCartProducts = prevCartIds
-      .filter(id => id === productId)
-      .map((id) => {
-        let newProductObj;
-        cart[cartCustomerType]
-        .forEach((productObj) => {
-          if (productObj.id === id) {
-            productObj.qty += requestQty;
-            newProductObj = Object.assign({}, productObj);
+    if (this.state.qty === 0) {
+      this.setState(() => ({
+        error: true,
+        errorQty: 'You must choose a quantity of at least 1.',
+      }));
+    } else {
+      const {
+        prevCartIds,
+        cartCustomerType,
+        globalQty,
+      } = this.composeGlobalCartInfo();
+      const {
+        qty,
+        chosenStrength: strength,
+      } = this.state;
+      const requestQty = qty;
+      const totalRequestQty = requestQty + globalQty;
+      const deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
+      if (globalQty === 4) {
+        this.setState({
+          error: true,
+          errorQty: 'You already have the maximum number of items in your cart.' });
+      } else if (deltaQty > 0) {
+        this.setState(() => ({
+          error: true,
+          errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.`,
+        }));
+      } else if (!deltaQty) {
+        const { productId, cart } = this.props;
+        const updatedCartProducts = prevCartIds
+        .filter(id => id === productId)
+        .map((id) => {
+          let newProductObj;
+          cart[cartCustomerType]
+          .forEach((productObj) => {
+            if (productObj.id === id) {
+              productObj.qty += requestQty;
+              newProductObj = Object.assign({}, productObj);
+            }
+          });
+          return newProductObj;
+        });
+        if (cartCustomerType === 'member') {
+          if (updatedCartProducts.length) {
+            this.setState(() => ({
+              error: false,
+              errorQty: '',
+            }), () => {
+              this.props.updateToMemberCart({
+                qty,
+                strength,
+                userId: this.props.userId,
+                id: this.props.productId,
+                ...updatedCartProducts,
+              });
+            });
+          } else {
+            this.setState(() => ({
+              error: false,
+              errorQty: '',
+            }), () => {
+              this.props.addToMemberCart({
+                qty,
+                strength,
+                userId: this.props.userId,
+                id: this.props.productId,
+                ...this.props.data.FindProductById.product,
+              });
+            });
           }
-        });
-        return newProductObj;
-      });
-      if (cartCustomerType === 'member') {
-        if (updatedCartProducts.length) {
-          this.props.updateToMemberCart({
-            qty,
-            strength,
-            userId: this.props.userId,
-            id: this.props.productId,
-            ...updatedCartProducts,
-          });
         } else {
-          this.props.addToMemberCart({
-            qty,
-            strength,
-            userId: this.props.userId,
-            id: this.props.productId,
-            ...this.props.data.FindProductById.product,
+          if (updatedCartProducts.length) {
+            this.setState(() => ({
+              error: false,
+              errorQty: '',
+            }), () => {
+              this.props.updateToGuestCart({ ...updatedCartProducts });
+            });
+          }
+          this.setState(() => ({
+            error: false,
+            errorQty: '',
+          }), () => {
+            this.props.addToGuestCart({
+              qty,
+              strength,
+              id: this.props.productId,
+              ...this.props.data.FindProductById.product,
+            });
           });
         }
-      } else {
-        if (updatedCartProducts.length) {
-          this.props.updateToGuestCart({ ...updatedCartProducts });
-        }
-        this.props.addToGuestCart({
-          qty,
-          strength,
-          id: this.props.productId,
-          ...this.props.data.FindProductById.product,
-        });
       }
     }
   }
@@ -301,7 +332,7 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.log('%cSingle Product: data', 'background:red;', data);
+    console.log('%cSingle Product @ render: \ndata', 'background:red;', data);
 
     if (this.state.errorQty) throw new Error(this.state.errorQty);
 

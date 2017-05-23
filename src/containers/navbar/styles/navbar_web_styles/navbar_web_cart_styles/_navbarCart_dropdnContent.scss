@@ -3,7 +3,6 @@
   align-items: center;
   position: absolute;
   right: 0;
-  height: 28em;
   width: 25em;
   background-color: $p-white;
   box-shadow: 1px 2px 4px rgba(0,0,0,.5);
@@ -40,13 +39,13 @@
       @extend .flex-center;
       @extend .ddn-cart-p-font;
       min-height: 5.83em;
-      height: 5.83em;
       max-width: 18.33em;
       margin: 0em 1.25em .41em 1.25em;
       background-color: $p-white;
       & .products-list {
-        font-size: 10px;
         @extend .flex-center;
+        flex-direction: column;
+        font-size: 10px;
         min-height: 7em;
         max-width: 22em;
         list-style: none;
