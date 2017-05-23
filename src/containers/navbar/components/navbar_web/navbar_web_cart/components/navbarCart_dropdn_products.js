@@ -57,7 +57,7 @@ class NavbarCartProducts extends Component {
     return (
       <li
         className="products-list-card"
-        key={routeTag}
+        key={`${id}-${strength}`}
       >
         <NavbarCartProductsCardImage
           imageUrl={this.filterImages(images)}

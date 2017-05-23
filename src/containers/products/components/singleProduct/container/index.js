@@ -205,13 +205,16 @@ class SingleProduct extends Component {
       if (loggedIn && (key === 'member')) return cart.member;
       return cart.guest;
     })
-    .map(array =>
-      array.reduce(a => ({ qty: a.qty, id: a.id })))
-    .map(({ qty, id }) => {
-      prevCartIds.push(id);
-      return qty;
+    .map((cartArray) => {
+      const totalCartQty = cartArray.reduce((acc, { qty, id }) => {
+        prevCartIds.push(id);
+        return (acc + qty);
+      }, 0);
+      return totalCartQty;
     })
     .reduce((a, b) => a + b);
+    console.log('%cglobalQty', 'background:grey;', globalQty);
+    console.log('%cprevCartIds', 'background:red;', prevCartIds);
     return ({
       prevCartIds,
       cartCustomerType,
@@ -220,16 +223,9 @@ class SingleProduct extends Component {
   }
 
   addToCartHandler = () => {
-    // console.log('%cthis.props.cart', 'background:cyan;', this.props.cart);
-
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
-
-    // if (this.props.cart.length) {
-    //   console.info('Condition passed.')
-    //   console.log('background:green;', this.props.cart.reduce((a, b) => a.qty + b.qty), 0);
-    // }
 
     if (this.state.qty === 0) {
       this.setState(() => ({
@@ -247,6 +243,7 @@ class SingleProduct extends Component {
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
+      console.log('%cglobalQty', 'background:cyan;', globalQty);
       const {
         qty,
         chosenStrength: strength,
@@ -259,7 +256,7 @@ class SingleProduct extends Component {
           qty: 0,
           error: true,
           errorMsg: 'Max items',
-          chosenStrength: '',
+          chosenStrength: 0,
         });
       } else if (deltaQty > 0) {
         this.setState(() => ({
@@ -269,6 +266,7 @@ class SingleProduct extends Component {
         }));
       } else if (!deltaQty) {
         const { productId, cart, data, userId } = this.props;
+        console.log('%ccart', 'background:pink;', cart);
         const updatedCartProducts = cart[cartCustomerType] && cart[cartCustomerType]
         .map((productObj) => {
           if (productObj.id === productId) {
@@ -277,7 +275,7 @@ class SingleProduct extends Component {
           }
           return productObj;
         });
-        const thisProduct = {
+        const currentProduct = {
           qty,
           userId,
           strength,
@@ -286,9 +284,8 @@ class SingleProduct extends Component {
         };
 
         if (!prevCartIds.includes(productId) && updatedCartProducts.length) {
-          updatedCartProducts.push(thisProduct);
+          updatedCartProducts.push(currentProduct);
         }
-        console.log('%cupdatedCartProducts', 'background:red;', updatedCartProducts);
 
         if (cartCustomerType === 'member') {
           if (updatedCartProducts.length) {
@@ -307,7 +304,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToMemberCart(thisProduct);
+              this.props.addToMemberCart(currentProduct);
             });
           }
         } else if (cartCustomerType === 'guest') {
@@ -327,7 +324,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToGuestCart(thisProduct);
+              this.props.addToGuestCart(currentProduct);
             });
           }
         }

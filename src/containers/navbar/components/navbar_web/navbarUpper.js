@@ -30,7 +30,6 @@ class NavbarUpper extends Component {
     super(props);
     this.state = {
       activeLanguage: props.activeLanguage,
-      qty: 0,
       products: [],
     };
   }
@@ -39,11 +38,18 @@ class NavbarUpper extends Component {
     const { activeLanguage, qty, products } = nextProps;
     if (!_.isEqual(nextProps, this.props)) {
       this.setState({
-        activeLanguage,
-        qty,
         products,
+        activeLanguage,
       });
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
+    const productsDiff = isArrayEqual(nextProps, this.props);
+
+    if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
+    return false;
   }
 
   onLanguageChange = (language) => {
