@@ -156,6 +156,8 @@ class SingleProduct extends Component {
       if (this.state.qty <= 3) {
         this.setState(prevState => ({
           ...prevState,
+          error: false,
+          errorMsg: '',
           qty: (prevState.qty += 1),
         }));
       } else {
@@ -170,6 +172,8 @@ class SingleProduct extends Component {
       if (qty >= 1 && qty <= 4) {
         this.setState(prevState => ({
           ...prevState,
+          error: false,
+          errorMsg: '',
           qty: (prevState.qty -= 1),
         }));
       } else {
@@ -310,7 +314,7 @@ class SingleProduct extends Component {
   }
 
   nicotineHandler = (e) => {
-    if (!this.state.strength) {
+    if (!this.state.chosenStrength) {
       return this.setState(() => ({
         error: true,
         errorMsg: 'No strength',
@@ -320,9 +324,12 @@ class SingleProduct extends Component {
     if (!nicEl) {
       nicEl = e.target.parentNode.dataset.tag;
     }
-    return this.setState({ chosenStrength: Number(nicEl) });
+    return this.setState(() => ({
+      error: false,
+      errorMsg: '',
+      chosenStrength: Number(nicEl),
+    }));
   }
-
 
   render() {
     const {
