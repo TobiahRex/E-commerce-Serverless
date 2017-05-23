@@ -37,13 +37,17 @@ function ProductActions(props) {
         </div>
         <AddToCartButton addToCart={props.addToCartHandler} />
       </div>
-      <ErrorMsg error={props.error} />
+      <ErrorMsg
+        error={props.error}
+        errorMsg={props.errorMsg}
+      />
     </div>
   );
 }
-const { number, bool, func } = PropTypes;
+const { number, bool, string, func } = PropTypes;
 ProductActions.propTypes = {
   error: bool.isRequired,
+  errorMsg: string.isRequired,
   quantity: number.isRequired,
   qtyHandler: func.isRequired,
   addToCartHandler: func.isRequired,

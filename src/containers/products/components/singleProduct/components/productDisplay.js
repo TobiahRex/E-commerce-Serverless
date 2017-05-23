@@ -19,6 +19,7 @@ class ProductDisplay extends Component {
     qty: number.isRequired,
     // fbLike: func.isRequired,
     error: bool,
+    errorMsg: string,
     loggedIn: bool.isRequired,
     productId: string,
     productObj: objectOf(any),
@@ -30,6 +31,7 @@ class ProductDisplay extends Component {
   };
   static defaultProps = {
     error: false,
+    errorMsg: '',
     productId: '',
     productObj: null,
   };
@@ -49,6 +51,7 @@ class ProductDisplay extends Component {
       // fbLike,
       qty,
       error,
+      errorMsg,
       loggedIn,
       productId,
       productObj,
@@ -99,6 +102,7 @@ class ProductDisplay extends Component {
 
           <ProductActions
             error={error}
+            errorMsg={errorMsg}
             quantity={qty}
             qtyHandler={qtyHandler}
             chosenStrength={chosenStrength}

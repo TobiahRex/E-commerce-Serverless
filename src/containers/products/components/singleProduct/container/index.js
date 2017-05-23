@@ -77,7 +77,7 @@ class SingleProduct extends Component {
       qty: 0,
       error: false,
       product: null,
-      errorQty: '',
+      errorMsg: '',
       showBulkModal: false,
       chosenStrength: 0,
       showSuccessModal: false,
@@ -162,6 +162,7 @@ class SingleProduct extends Component {
         this.setState(prevState => ({
           ...prevState,
           error: true,
+          errorMsg: 'Too much',
         }));
       }
     } else if (buttonEl === 'qty-minus') {
@@ -175,6 +176,7 @@ class SingleProduct extends Component {
         this.setState(prevState => ({
           ...prevState,
           error: true,
+          errorMsg: 'Not enough',
         }));
       }
     }
@@ -215,7 +217,7 @@ class SingleProduct extends Component {
     if (this.state.qty === 0) {
       this.setState(() => ({
         error: true,
-        errorQty: 'You must choose a quantity of at least 1.',
+        errorMsg: 'You must choose a quantity of at least 1.',
       }));
     } else {
       const {
@@ -233,11 +235,11 @@ class SingleProduct extends Component {
       if (globalQty === 4) {
         this.setState({
           error: true,
-          errorQty: 'You already have the maximum number of items in your cart.' });
+          errorMsg: 'You already have the maximum number of items in your cart.' });
       } else if (deltaQty > 0) {
         this.setState(() => ({
           error: true,
-          errorQty: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.`,
+          errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.`,
         }));
       } else if (!deltaQty) {
         const { productId, cart } = this.props;
@@ -258,7 +260,7 @@ class SingleProduct extends Component {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               error: false,
-              errorQty: '',
+              errorMsg: '',
             }), () => {
               this.props.updateToMemberCart({
                 qty,
@@ -271,7 +273,7 @@ class SingleProduct extends Component {
           } else {
             this.setState(() => ({
               error: false,
-              errorQty: '',
+              errorMsg: '',
             }), () => {
               this.props.addToMemberCart({
                 qty,
@@ -286,14 +288,14 @@ class SingleProduct extends Component {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               error: false,
-              errorQty: '',
+              errorMsg: '',
             }), () => {
               this.props.updateToGuestCart({ ...updatedCartProducts });
             });
           }
           this.setState(() => ({
             error: false,
-            errorQty: '',
+            errorMsg: '',
           }), () => {
             this.props.addToGuestCart({
               qty,
@@ -320,6 +322,7 @@ class SingleProduct extends Component {
     const {
       qty,
       error,
+      errorMsg,
       // product,
       showBulkModal,
       chosenStrength,
@@ -332,9 +335,9 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.log('%cSingle Product @ render: \ndata', 'background:red;', data);
+    console.log('%cSingle Product @ render: \nerrorMsg', 'background:red;', errorMsg);
 
-    if (this.state.errorQty) throw new Error(this.state.errorQty);
+    // if (this.state.errorQty) new Error(this.state.errorQty);
 
     return (
       <div className="juice-page__main">
@@ -356,6 +359,7 @@ class SingleProduct extends Component {
           <ProductDisplay
             qty={qty}
             error={error}
+            errorMsg={errorMsg}
             loggedIn={loggedIn}
             productObj={data.FindProductById ? data.FindProductById.product : null}
             qtyHandler={this.qtyHandler}
