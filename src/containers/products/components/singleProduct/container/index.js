@@ -195,12 +195,9 @@ class SingleProduct extends Component {
     let cartCustomerType = '';
     const globalQty = Object.keys(cart)
     .map((key) => {
+      cartCustomerType = key;
       if (!cart[key].length) return ([{ qty: 0 }]);
-      if (loggedIn && (key === 'member')) {
-        cartCustomerType = 'member';
-        return cart.member;
-      }
-      cartCustomerType = 'guest';
+      if (loggedIn && (key === 'member')) return cart.member;
       return cart.guest;
     })
     .map(array =>
@@ -241,10 +238,11 @@ class SingleProduct extends Component {
       }));
     } else {
       const {
-        prevCartIds,
+        // prevCartIds,
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
+      console.log('%ccartCustomerType', 'background:red;', cartCustomerType);
       const {
         qty,
         chosenStrength: strength,
@@ -263,8 +261,9 @@ class SingleProduct extends Component {
         }));
       } else if (!deltaQty) {
         const { productId, cart } = this.props;
+        console.log('%ccart', 'background:red;', cart);
 
-        const updatedCartProducts = cart[cartCustomerType]
+        const updatedCartProducts = cart[cartCustomerType] && cart[cartCustomerType]
         .map((productObj) => {
           if (productObj.id === productId) {
             productObj.qty += requestQty;
