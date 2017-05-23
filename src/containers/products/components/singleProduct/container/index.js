@@ -7,8 +7,8 @@ import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import orderActions from '../../../../../redux/orders/';
-import FindProductById from '../graphql/queries';
-import { AddToMemberCart, UpdateToMemberCart } from '../graphql/mutations';
+import FindProductById from '../../../../../graphQL/queries';
+import { AddToMemberCart, UpdateToMemberCart } from '../../../../../graphQL/mutations';
 
 import {
   MainTitle,

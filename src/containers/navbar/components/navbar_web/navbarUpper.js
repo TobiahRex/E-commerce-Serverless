@@ -9,8 +9,7 @@ import NavbarLanguage from './navbar_web_language/';
 import NavbarUserActions from './navbar_web_userActions/';
 import NavbarCart from './navbar_web_cart/container/';
 import orderActions from '../../../../redux/orders/';
-import { UpdateToMemberCart } from '../../../../apollo/mutations';
-
+import { UpdateToMemberCart } from '../../../../graphQL/mutations';
 
 const { string, number, func, arrayOf, shape } = PropTypes;
 
@@ -125,7 +124,9 @@ const NavbarUpperWithState = connect(
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
   }),
 )(NavbarUpper);
-const NavbarUpper = compose(
+
+const NavbarUpperWithStateAndGraphQL = compose(
   graphql(UpdateToMemberCart, { name: 'updateToMemberCart' }),
 )(NavbarUpperWithState);
-export default NavbarUpper;
+
+export default NavbarUpperWithStateAndGraphQL;

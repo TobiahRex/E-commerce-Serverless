@@ -2,7 +2,7 @@ import {
   gql,
 } from 'react-apollo';
 
-export const FindProductById = gql`
+const FindProductById = gql`
   query FindProductById($id: ID!) {
     FindProductById(_id: $id){
       _id
@@ -29,4 +29,4 @@ export const FindProductById = gql`
     }
   }
 `;
-export const nothing = '';
+export default FindProductById;

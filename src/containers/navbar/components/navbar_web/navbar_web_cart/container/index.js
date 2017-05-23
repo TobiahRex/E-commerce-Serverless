@@ -22,8 +22,6 @@ class NavbarCart extends Component {
   }
   render() {
     const { qty, products, editCartItem, deleteFromCart } = this.props;
-    console.log('%cNavbar Cart: qty', 'background:red;', qty);
-
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
