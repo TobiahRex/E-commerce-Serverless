@@ -28,7 +28,9 @@ class NavbarCart extends Component {
           deleteFromCart={deleteFromCart}
           cartTotal={
             products.length ?
-            products.reduce((acc, { price }) => acc + Number(price), 0) : 0
+            products.reduce((acc, next) =>
+              acc + (Number(next.price) * next.qty)
+            , 0) : 0
           }
         />
       </div>

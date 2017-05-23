@@ -61,7 +61,6 @@ class ProductDisplay extends Component {
       nicotineHandler,
       addToCartHandler,
     } = this.props;
-    console.log('%cProductDisplay @ render: \nproductObj', 'background:cyan;', productObj);
     const {
       blurb,
       price,

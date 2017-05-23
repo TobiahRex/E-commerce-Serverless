@@ -41,14 +41,44 @@ class SingleProduct extends Component {
     addToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
     updateToMemberCart: func.isRequired,
-    cart: shape({
-      guest: arrayOf(any),
-      member: arrayOf(any),
-    }).isRequired,
+    cart: arrayOf(
+      shape({
+        id: string,
+        qty: number,
+        sku: string,
+        title: string,
+        price: string,
+        flavor: string,
+        strength: number,
+        mainTitle: string,
+        sizes: arrayOf(string),
+        nicotine_strengths: arrayOf(string),
+        routeTag: string,
+        vendor: string,
+        blurb: string,
+        images: arrayOf(
+          shape({
+            purpose: string,
+            url: string,
+          }),
+        ),
+        quantities: shape({
+          available: string,
+          in_cart: string,
+        }),
+      }),
+    ),
     data: shape({
       FindProductById: shape({
         _id: string,
         product: shape({
+          qty: number,
+          price: string,
+          title: string,
+          routeTag: string,
+          strength: number,
+          mainTitle: string,
+          nicotine_strengths: arrayOf(string),
           images: arrayOf(shape({
             purpose: string,
             url: string,
@@ -57,19 +87,13 @@ class SingleProduct extends Component {
             available: number,
             in_cart: number,
           }),
-          nicotine_strengths: arrayOf(string),
-          price: string,
-          qty: number,
-          routeTag: string,
-          strength: number,
-          mainTitle: string,
-          title: string,
         }),
       }),
     }).isRequired,
   }
   static defaultProps = {
     userId: '',
+    cart: null,
   }
   constructor(props) {
     super(props);
@@ -86,7 +110,6 @@ class SingleProduct extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cSingleProduct @ componentWillReceiveProps: \nnextProps', 'background:pink;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       const { loggedIn } = nextProps;
       this.setState(() => ({ loggedIn }));
@@ -215,9 +238,17 @@ class SingleProduct extends Component {
   }
 
   addToCartHandler = () => {
+    // console.log('%cthis.props.cart', 'background:cyan;', this.props.cart);
+
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
+
+    // if (this.props.cart.length) {
+    //   console.info('Condition passed.')
+    //   console.log('background:green;', this.props.cart.reduce((a, b) => a.qty + b.qty), 0);
+    // }
+
     if (this.state.qty === 0) {
       this.setState(() => ({
         error: true,
@@ -234,6 +265,7 @@ class SingleProduct extends Component {
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
+      console.log('%cglobalQty', 'background:red;', globalQty);
       const {
         qty,
         chosenStrength: strength,
@@ -347,7 +379,6 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.log('%cSingle Product @ render: \nerrorMsg', 'background:red;', errorMsg);
 
     // if (this.state.errorQty) new Error(this.state.errorQty);
 
