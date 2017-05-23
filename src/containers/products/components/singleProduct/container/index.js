@@ -195,7 +195,12 @@ class SingleProduct extends Component {
     let cartCustomerType = '';
     const globalQty = Object.keys(cart)
     .map((key) => {
-      cartCustomerType = key;
+      if (loggedIn) {
+        cartCustomerType = 'member';
+      } else {
+        cartCustomerType = 'guest';
+      }
+
       if (!cart[key].length) return ([{ qty: 0 }]);
       if (loggedIn && (key === 'member')) return cart.member;
       return cart.guest;
