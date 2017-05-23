@@ -18,6 +18,7 @@ class ProductDisplay extends Component {
   static propTypes = {
     qty: number.isRequired,
     // fbLike: func.isRequired,
+    added: bool,
     error: bool,
     errorMsg: string,
     loggedIn: bool.isRequired,
@@ -30,6 +31,7 @@ class ProductDisplay extends Component {
     addToCartHandler: func.isRequired,
   };
   static defaultProps = {
+    added: false,
     error: false,
     errorMsg: '',
     productId: '',
@@ -50,6 +52,7 @@ class ProductDisplay extends Component {
     const {
       // fbLike,
       qty,
+      added,
       error,
       errorMsg,
       loggedIn,
@@ -100,9 +103,10 @@ class ProductDisplay extends Component {
           />
 
           <ProductActions
+            added={added}
             error={error}
-            errorMsg={errorMsg}
             quantity={qty}
+            errorMsg={errorMsg}
             qtyHandler={qtyHandler}
             chosenStrength={chosenStrength}
             addToCartHandler={addToCartHandler}

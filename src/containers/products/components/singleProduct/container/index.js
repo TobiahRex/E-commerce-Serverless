@@ -346,10 +346,19 @@ class SingleProduct extends Component {
     }));
   }
 
+  componentDidUpdate() {
+    if (this.state.added) {
+      setTimeout(() => {
+        this.setState({ added: false });
+      }, 2000);
+    }
+  }
+
   render() {
     const {
       qty,
       error,
+      added,
       errorMsg,
       showBulkModal,
       chosenStrength,
@@ -381,6 +390,7 @@ class SingleProduct extends Component {
           data.loading ? <h1>Loading ...</h1> :
           <ProductDisplay
             qty={qty}
+            added={added}
             error={error}
             errorMsg={errorMsg}
             loggedIn={loggedIn}

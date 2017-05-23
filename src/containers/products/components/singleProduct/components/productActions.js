@@ -35,7 +35,10 @@ function ProductActions(props) {
             </li>
           </ul>
         </div>
-        <AddToCartButton addToCart={props.addToCartHandler} />
+        <AddToCartButton
+          added={props.added}
+          addToCart={props.addToCartHandler}
+        />
       </div>
       <ErrorMsg
         error={props.error}
@@ -46,6 +49,7 @@ function ProductActions(props) {
 }
 const { number, bool, string, func } = PropTypes;
 ProductActions.propTypes = {
+  added: bool.isRequired,
   error: bool.isRequired,
   errorMsg: string.isRequired,
   quantity: number.isRequired,
