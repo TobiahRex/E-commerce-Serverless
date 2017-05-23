@@ -268,9 +268,7 @@ class SingleProduct extends Component {
           errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requested quantity.`,
         }));
       } else if (!deltaQty) {
-        const { productId, cart } = this.props;
-        console.log('%ccart', 'background:pink;', cart);
-
+        const { productId, cart, data, userId } = this.props;
         const updatedCartProducts = cart[cartCustomerType] && cart[cartCustomerType]
         .map((productObj) => {
           if (productObj.id === productId) {
@@ -279,15 +277,18 @@ class SingleProduct extends Component {
           }
           return productObj;
         });
+        const thisProduct = {
+          qty,
+          userId,
+          strength,
+          id: productId,
+          ...data.FindProductById.product,
+        };
+
         if (!prevCartIds.includes(productId) && updatedCartProducts.length) {
-          updatedCartProducts.push({
-            id: this.props.productId,
-            qty,
-            strength,
-            userId: this.props.userId,
-            ...this.props.data.FindProductById.product,
-          });
+          updatedCartProducts.push(thisProduct);
         }
+        console.log('%cupdatedCartProducts', 'background:red;', updatedCartProducts);
 
         if (cartCustomerType === 'member') {
           if (updatedCartProducts.length) {
@@ -306,13 +307,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToMemberCart({
-                qty,
-                strength,
-                userId: this.props.userId,
-                id: this.props.productId,
-                ...this.props.data.FindProductById.product,
-              });
+              this.props.addToMemberCart(thisProduct);
             });
           }
         } else if (cartCustomerType === 'guest') {
@@ -332,12 +327,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToGuestCart({
-                qty,
-                strength,
-                id: this.props.productId,
-                ...this.props.data.FindProductById.product,
-              });
+              this.props.addToGuestCart(thisProduct);
             });
           }
         }
