@@ -213,8 +213,6 @@ class SingleProduct extends Component {
       return totalCartQty;
     })
     .reduce((a, b) => a + b);
-    console.log('%cglobalQty', 'background:grey;', globalQty);
-    console.log('%cprevCartIds', 'background:red;', prevCartIds);
     return ({
       prevCartIds,
       cartCustomerType,
@@ -243,7 +241,6 @@ class SingleProduct extends Component {
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
-      console.log('%cglobalQty', 'background:cyan;', globalQty);
       const {
         qty,
         chosenStrength: strength,
@@ -266,7 +263,7 @@ class SingleProduct extends Component {
         }));
       } else if (!deltaQty) {
         const { productId, cart, data, userId } = this.props;
-        console.log('%ccart', 'background:pink;', cart);
+
         const updatedCartProducts = cart[cartCustomerType] && cart[cartCustomerType]
         .map((productObj) => {
           if (productObj.id === productId) {
@@ -367,10 +364,10 @@ class SingleProduct extends Component {
     return (
       <div className="juice-page__main">
         <BreadCrumb
-          paths={['Home']}
-          classes={['home']}
-          destination={['']}
-          lastCrumb="Juice Page"
+          paths={['Home', 'Juices']}
+          classes={['home', 'home']}
+          destination={['', 'juices']}
+          lastCrumb={data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
         />
         {
           data.FindProductById ?

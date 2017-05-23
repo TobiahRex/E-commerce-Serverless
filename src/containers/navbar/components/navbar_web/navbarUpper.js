@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import _ from 'lodash';
 import localeActions from '../../../../redux/locale';
 import NavbarLanguage from './navbar_web_language/';
@@ -12,8 +13,10 @@ const { string, number, func, arrayOf, shape } = PropTypes;
 
 class NavbarUpper extends Component {
   static propTypes = {
-    activeLanguage: string.isRequired,
+    push: func.isRequired,
     qty: number.isRequired,
+    saveLanguage: func.isRequired,
+    activeLanguage: string.isRequired,
     products: arrayOf(shape({
       qty: number,
       strength: number,
@@ -24,7 +27,6 @@ class NavbarUpper extends Component {
       imageUrl: string,
       routeTag: string,
     })).isRequired,
-    saveLanguage: func.isRequired,
   }
   constructor(props) {
     super(props);
@@ -62,7 +64,7 @@ class NavbarUpper extends Component {
     let id = e.target.dataset.id;
     if (!route) route = e.target.parentNode.dataset.route;
     if (!id) id = e.target.parentNode.dataset.id;
-    this.push(`/juice/${route}?id=${id}`);
+    this.props.push(`/juice/${route}?id=${id}`);
     /* TODO: Edit Product @ Single Product Page
       Idea 2) set a flag on orders for "edit = true"; If the user is on the Single product page, then do the work of filtering the cart per the location they navigated to, and pre-populate the contents for "qty" & "nic strength" with the users choices.
     */
@@ -116,6 +118,7 @@ export default connect(
     products: orders.cart[auth.loggedIn ? 'member' : 'guest'],
   }),
   dispatch => ({
+    push: location => dispatch(push(location)),
     saveLanguage: language => dispatch(localeActions.setLanguage(language)),
   }),
 )(NavbarUpper);
