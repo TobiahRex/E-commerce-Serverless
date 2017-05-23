@@ -201,7 +201,7 @@ class SingleProduct extends Component {
         cartCustomerType = 'guest';
       }
 
-      if (!cart[key].length) return ([{ qty: 0 }]);
+      if (!cart[key].length) return ([{ qty: 0, id: '' }]);
       if (loggedIn && (key === 'member')) return cart.member;
       return cart.guest;
     })
@@ -243,7 +243,7 @@ class SingleProduct extends Component {
       }));
     } else {
       const {
-        // prevCartIds,
+        prevCartIds,
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
@@ -256,16 +256,20 @@ class SingleProduct extends Component {
       const deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
       if (globalQty === 4) {
         this.setState({
+          qty: 0,
           error: true,
-          errorMsg: 'Max items' });
+          errorMsg: 'Max items',
+          chosenStrength: '',
+        });
       } else if (deltaQty > 0) {
         this.setState(() => ({
+          qty: 0,
           error: true,
           errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requested quantity.`,
         }));
       } else if (!deltaQty) {
         const { productId, cart } = this.props;
-        console.log('%ccart', 'background:red;', cart);
+        console.log('%ccart', 'background:pink;', cart);
 
         const updatedCartProducts = cart[cartCustomerType] && cart[cartCustomerType]
         .map((productObj) => {
@@ -275,20 +279,32 @@ class SingleProduct extends Component {
           }
           return productObj;
         });
-        console.log('%cupdatedCartProducts', 'background:red;', updatedCartProducts);
+        if (!prevCartIds.includes(productId) && updatedCartProducts.length) {
+          updatedCartProducts.push({
+            id: this.props.productId,
+            qty,
+            strength,
+            userId: this.props.userId,
+            ...this.props.data.FindProductById.product,
+          });
+        }
 
         if (cartCustomerType === 'member') {
           if (updatedCartProducts.length) {
             this.setState(() => ({
+              qty: 0,
               error: false,
               errorMsg: '',
+              chosenStrength: 0,
             }), () => {
               this.props.updateToMemberCart(updatedCartProducts);
             });
           } else {
             this.setState(() => ({
+              qty: 0,
               error: false,
               errorMsg: '',
+              chosenStrength: 0,
             }), () => {
               this.props.addToMemberCart({
                 qty,
@@ -302,15 +318,19 @@ class SingleProduct extends Component {
         } else if (cartCustomerType === 'guest') {
           if (updatedCartProducts.length) {
             this.setState(() => ({
+              qty: 0,
               error: false,
               errorMsg: '',
+              chosenStrength: 0,
             }), () => {
               this.props.updateToGuestCart(updatedCartProducts);
             });
           } else {
             this.setState(() => ({
+              qty: 0,
               error: false,
               errorMsg: '',
+              chosenStrength: 0,
             }), () => {
               this.props.addToGuestCart({
                 qty,
