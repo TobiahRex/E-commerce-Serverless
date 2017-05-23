@@ -223,6 +223,11 @@ class SingleProduct extends Component {
         error: true,
         errorMsg: 'You must choose a quantity of at least 1.',
       }));
+    } else if (!this.state.chosenStrength) {
+      this.setState(() => ({
+        error: true,
+        errorMsg: 'No strength',
+      }));
     } else {
       const {
         prevCartIds,
@@ -314,12 +319,6 @@ class SingleProduct extends Component {
   }
 
   nicotineHandler = (e) => {
-    if (!this.state.chosenStrength) {
-      return this.setState(() => ({
-        error: true,
-        errorMsg: 'No strength',
-      }));
-    }
     let nicEl = e.target.dataset.tag;
     if (!nicEl) {
       nicEl = e.target.parentNode.dataset.tag;
