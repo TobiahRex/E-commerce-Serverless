@@ -41,33 +41,10 @@ class SingleProduct extends Component {
     addToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
     updateToMemberCart: func.isRequired,
-    cart: arrayOf(
-      shape({
-        id: string,
-        qty: number,
-        sku: string,
-        title: string,
-        price: string,
-        flavor: string,
-        strength: number,
-        mainTitle: string,
-        sizes: arrayOf(string),
-        nicotine_strengths: arrayOf(string),
-        routeTag: string,
-        vendor: string,
-        blurb: string,
-        images: arrayOf(
-          shape({
-            purpose: string,
-            url: string,
-          }),
-        ),
-        quantities: shape({
-          available: string,
-          in_cart: string,
-        }),
-      }),
-    ),
+    cart: shape({
+      guest: arrayOf(any),
+      member: arrayOf(any),
+    }),
     data: shape({
       FindProductById: shape({
         _id: string,
@@ -93,7 +70,10 @@ class SingleProduct extends Component {
   }
   static defaultProps = {
     userId: '',
-    cart: null,
+    cart: {
+      guest: null,
+      member: null,
+    },
   }
   constructor(props) {
     super(props);
@@ -279,23 +259,21 @@ class SingleProduct extends Component {
       } else if (deltaQty > 0) {
         this.setState(() => ({
           error: true,
-          errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requsted number of items.`,
+          errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requested quantity.`,
         }));
       } else if (!deltaQty) {
         const { productId, cart } = this.props;
-        const updatedCartProducts = prevCartIds
-        .filter(id => id === productId)
-        .map((id) => {
-          let newProductObj;
-          cart[cartCustomerType]
-          .forEach((productObj) => {
-            if (productObj.id === id) {
-              productObj.qty += requestQty;
-              newProductObj = Object.assign({}, productObj);
-            }
-          });
-          return newProductObj;
+
+        const updatedCartProducts = cart[cartCustomerType]
+        .map((productObj) => {
+          if (productObj.id === productId) {
+            productObj.qty += requestQty;
+            return productObj;
+          }
+          return productObj;
         });
+        console.log('%cupdatedCartProducts', 'background:red;', updatedCartProducts);
+
         if (cartCustomerType === 'member') {
           if (updatedCartProducts.length) {
             this.setState(() => ({
@@ -324,7 +302,7 @@ class SingleProduct extends Component {
               });
             });
           }
-        } else {
+        } else if (cartCustomerType === 'guest') {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               error: false,
@@ -332,18 +310,19 @@ class SingleProduct extends Component {
             }), () => {
               this.props.updateToGuestCart({ ...updatedCartProducts });
             });
-          }
-          this.setState(() => ({
-            error: false,
-            errorMsg: '',
-          }), () => {
-            this.props.addToGuestCart({
-              qty,
-              strength,
-              id: this.props.productId,
-              ...this.props.data.FindProductById.product,
+          } else {
+            this.setState(() => ({
+              error: false,
+              errorMsg: '',
+            }), () => {
+              this.props.addToGuestCart({
+                qty,
+                strength,
+                id: this.props.productId,
+                ...this.props.data.FindProductById.product,
+              });
             });
-          });
+          }
         }
       }
     }
