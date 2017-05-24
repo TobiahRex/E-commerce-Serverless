@@ -39,30 +39,45 @@ const sagawaUploadAPI = createUploadToSagawaAPI();
 
 const createCheckZipSagawaAPI = () => {
   const api = create({
-    baseURL: 'http://asp4.cj-soft.co.jp/WebServiceTest/services/MathService',
+    baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
     credentials: 'omit',
     headers: {
-      'Content-Type': 'text/html',
-      SOAPAction: 'http://ws.com',
+      'Content-Type': 'application/xml;charset=UTF-8',
     },
   });
 
-  const checkZip = zip => api.post('getAddr',
-  `<?xml version='1.0' encoding='utf-8'?>
-  <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-    <soap:Body>
-      <uploadFile xmlns='http://ws.com'>
-        <handler>
-          ${xmlOut(zip)}
-        </handler>
-      </uploadFile>
-    </soap:body>
-  </soap:Envelope>`);
+  const checkZip = zip => api.get(`getAddr?zipcode=${zip}`);
 
   return {
     checkZip,
   };
 };
+// const createCheckZipSagawaAPI = () => {
+//   const api = create({
+//     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
+//     credentials: 'omit',
+//     headers: {
+//       'Content-Type': 'text/xml',
+//       SOAPAction: 'http://ws.com',
+//     },
+//   });
+//
+//   const checkZip = zip => api.post('getAddr',
+//   `<?xml version='1.0' encoding='utf-8'?>
+//   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+//     <soap:Body>
+//       <getAddr xmlns='http://ws.com'>
+//         <zipcode>
+//           ${xmlOut(zip)}
+//         </zipcode>
+//       </getAddr>
+//     </soap:body>
+//   </soap:Envelope>`);
+//
+//   return {
+//     checkZip,
+//   };
+// };
 const sagawaZipAPI = createCheckZipSagawaAPI();
 // uploadAPI.uploadOrder(`
 // <DATA>
@@ -113,7 +128,7 @@ const sagawaZipAPI = createCheckZipSagawaAPI();
 //     });
 //   }
 // });
-sagawaZipAPI.checkZip('1400012')
+sagawaZipAPI.checkZip('2220033')
 .then((response) => {
   const { problem, ok, data } = response;
   console.log('RESPONSE:\n', response, '\n\n');
