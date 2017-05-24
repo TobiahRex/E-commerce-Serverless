@@ -1,12 +1,13 @@
+/* eslint-disable */
 import { create } from 'apisauce';
 import xml2js from 'xml2js';
 import fs from 'fs';
 
 const xmlOut = str => str
-  .replace(/&/g, '&amp;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/"/g, '');
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '');
 
 const createUploadToSagawaAPI = () => {
   const api = create({
@@ -22,62 +23,60 @@ const createUploadToSagawaAPI = () => {
   const uploadOrder = orderData => api.post('',
   `<?xml version='1.0' encoding='utf-8'?>
   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-    <soap:Body>
-      <uploadFile xmlns='http://ws.com'>
-        <handler>
-          ${xmlOut(orderData)}
-        </handler>
-      </uploadFile>
-    </soap:body>
-  </soap:Envelope>`);
+  <soap:Body>
+    <uploadFile xmlns='http://ws.com'>
+    <handler>
+      ${xmlOut(orderData)}
+    </handler>
+  </uploadFile>
+</soap:body>
+</soap:Envelope>`);
 
-  return {
-    uploadOrder,
-  };
+return {
+  uploadOrder,
+};
 };
 const sagawaUploadAPI = createUploadToSagawaAPI();
 
-const createCheckZipSagawaAPI = () => {
-  const api = create({
-    baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
-    credentials: 'omit',
-    headers: {
-      'Content-Type': 'application/xml;charset=UTF-8',
-    },
-  });
-
-  const checkZip = zip => api.get(`getAddr?zipcode=${zip}`);
-
-  return {
-    checkZip,
-  };
-};
 // const createCheckZipSagawaAPI = () => {
 //   const api = create({
 //     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
 //     credentials: 'omit',
 //     headers: {
-//       'Content-Type': 'text/xml',
-//       SOAPAction: 'http://ws.com',
+//       'Content-Type': 'application/xml;charset=UTF-8',
 //     },
 //   });
 //
-//   const checkZip = zip => api.post('getAddr',
-//   `<?xml version='1.0' encoding='utf-8'?>
-//   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-//     <soap:Body>
-//       <getAddr xmlns='http://ws.com'>
-//         <zipcode>
-//           ${xmlOut(zip)}
-//         </zipcode>
-//       </getAddr>
-//     </soap:body>
-//   </soap:Envelope>`);
+//   const checkZip = zipcode => api.get('getAddr?', { zipcode });
 //
 //   return {
 //     checkZip,
 //   };
 // };
+const createCheckZipSagawaAPI = () => {
+  const api = create({
+    baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
+    credentials: 'omit',
+    headers: {
+      'Content-Type': 'text/xml; charset=utf-8',
+      SOAPAction: 'http://ws.com',
+    },
+  });
+
+  const checkZip = zip => api.post('getAddr',
+  `<?xml version='1.0' encoding='utf-8'?>
+  <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+  <soap:Body>
+    <getAddr xmlns='http://ws.com'>
+    <zipcode>${xmlOut(zip)}</zipcode>
+  </getAddr>
+</soap:body>
+</soap:Envelope>`);
+
+return {
+  checkZip,
+};
+};
 const sagawaZipAPI = createCheckZipSagawaAPI();
 // uploadAPI.uploadOrder(`
 // <DATA>
@@ -146,3 +145,20 @@ sagawaZipAPI.checkZip('2220033')
     });
   }
 });
+
+const createSagawaTrackingAPI = () => {
+  const api = create({
+    baseURL: 'https://tracking.sagawa-sgx.com/sgx',
+    credentials: 'omit',
+    headers: {
+      'Content-Type': 'text/html,application/xhtml+xml',
+      // SOAPAction: 'http://ws.com',
+    },
+  });
+
+  const getTracking = trackingNumber => api.get('xmltrack.asp?AWB=', { AWB: trackingNumber});
+
+  return {
+  checkZip,
+  };
+};
