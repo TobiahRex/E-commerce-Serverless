@@ -11,13 +11,14 @@ import NavbarCart from './navbar_web_cart/container/';
 import orderActions from '../../../../redux/orders/';
 import { UpdateToMemberCart } from '../../../../graphQL/mutations';
 
-const { string, number, func, arrayOf, shape } = PropTypes;
+const { string, number, func, arrayOf, objectOf, any, shape } = PropTypes;
 
 class NavbarUpper extends Component {
   static propTypes = {
     push: func.isRequired,
     qty: number.isRequired,
     saveLanguage: func.isRequired,
+    activeUser: objectOf(any),
     activeLanguage: string.isRequired,
     products: arrayOf(shape({
       id: string,
@@ -30,6 +31,9 @@ class NavbarUpper extends Component {
       nicotine_strengths: arrayOf(string),
     })).isRequired,
     updateToGuestCart: func.isRequired,
+  }
+  static defaultProps = {
+    activeUser: null,
   }
   constructor(props) {
     super(props);
@@ -83,19 +87,27 @@ class NavbarUpper extends Component {
   }
 
   render() {
+    const {
+      qty,
+      products,
+      activeUser,
+      activeLanguage,
+    } = this.props;
     return (
       <div className="navbar-actionSection-upper">
         <div className="navbar-actionSection-upper-options">
           <NavbarLanguage
             onLanguageChange={this.onLanguageChange}
-            activeLanguage={this.props.activeLanguage}
+            activeLanguage={activeLanguage}
           />
         </div>
-        <NavbarUserActions />
+
+        <NavbarUserActions activeUser={activeUser} />
+
         <div className="navbar actionSection upper mycart-container">
           <NavbarCart
-            qty={this.props.qty}
-            products={this.props.products}
+            qty={qty}
+            products={products}
             editCartItem={this.editCartItem}
             deleteFromCart={this.deleteFromCart}
           />
@@ -111,10 +123,11 @@ const calculateQty = (loggedIn, cartObj) => {
 };
 
 const NavbarUpperWithState = connect(
-  ({ locale, auth, orders }) => ({
-    activeLanguage: locale.activeLanguage,
+  ({ locale, auth, orders, user }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart),
     products: orders.cart[auth.loggedIn ? 'member' : 'guest'],
+    activeUser: user.profile,
+    activeLanguage: locale.activeLanguage,
   }),
   dispatch => ({
     push: location => dispatch(push(location)),

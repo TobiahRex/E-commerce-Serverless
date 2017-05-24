@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { auth as AuthService } from '../../../../../navigation/routes';
 
@@ -50,7 +49,4 @@ class NavbarUserActionsSignedin extends PureComponent {
     );
   }
 }
-const mapStateToProps = ({ user }) => ({
-  profile: user.profile,
-});
-export default connect(mapStateToProps)(NavbarUserActionsSignedin);
+export default NavbarUserActionsSignedin;

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">
+  <soapenv:Body>
+    <ns:uploadDataResponse xmlns:ns=\"http://ws.com\">
+    <ns:return>
+      org.jdom.input.JDOMParseException: Error on line 3: Premature end of file.
+    </ns:return>
+  </ns:uploadDataResponse>
+</soapenv:Body>
+</soapenv:Envelope>
