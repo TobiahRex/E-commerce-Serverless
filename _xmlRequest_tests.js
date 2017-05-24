@@ -1,16 +1,17 @@
 import { create } from 'apisauce';
 import xml2js from 'xml2js';
+import fs from 'fs';
 
-// const xmlOut = str => str
-//   .replace(/&/g, '&amp;')
-//   .replace(/</g, '&lt;')
-//   .replace(/>/g, '&gt;')
-//   .replace(/"/g, '');
+const xmlOut = str => str
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '');
 
 const orderData = `
 <DATA>
   <ADDRESS>
-    <PRINTERNAME />
+    <PRINTERNAME>nandemonai</PRINTERNAME>
     <BOXID>PCH 2016 10 11 0001</BOXID>
     <SHIPDATE>2012/08/07</SHIPDATE>
     <KANA>ヤマモト　アツシ</KANA>
@@ -21,8 +22,8 @@ const orderData = `
     <KBN>TEST1465</KBN>
     <WGT>1.5</WGT>
     <SHINADAI>0</SHINADAI>
-    <SHITEIBI />
-    <SHITEIJIKAN />
+    <SHITEIBI>nandemonai</SHITEIBI>
+    <SHITEIJIKAN>nandemonai</SHITEIJIKAN>
     <SOURYO>0</SOURYO>
     <TESURYO>0</TESURYO>
     <TTLAMOUNT>0</TTLAMOUNT>
@@ -39,25 +40,26 @@ const orderData = `
 </DATA>
 `;
 
-const sr = `<?xml version="1.0" encoding="utf-8"?>
-  <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:api="http://127.0.0.1/Integrics/Enswitch/API" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-    <soapenv:Body>
-        <uploadFile xmlns="http://ws.com">
-            <handler>
-              ${orderData}
-            </handler>
-        </uploadFile>
-    </soapenv:Body>
-</soapenv:Envelope>`;
+const sr = `<?xml version='1.0' encoding='utf-8'?>
+<soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+  <soap:Body>
+    <uploadFile xmlns='http://ws.com'>
+      <handler>
+        ${xmlOut(orderData)}
+      </handler>
+    </uploadFile>
+  </soap:body>
+</soap:Envelope>`;
 
 const createSagawaAPI = () => {
   const api = create({
     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
     credentials: 'omit',
     headers: {
-      'Content-Type': 'text/xml',
+      'Content-Type': 'text/xml; charset=utf-8',
       SOAPAction: 'http://ws.com',
     },
+    responseType: 'stream',
   });
 
   const uploadOrder = () => api.post('', sr);
@@ -69,14 +71,20 @@ const createSagawaAPI = () => {
 const api = createSagawaAPI();
 api.uploadOrder()
 .then((response) => {
-  // console.log(response);
-  const { problem, ok, data } = response;
-  console.log('RESPONSE:\n', response, '\n\n');
-  if (problem) console.log('\nERROR: ', problem);
-  if (ok) {
-    xml2js.parseString(data, (err, results) => {
-      if (err) console.log('PARSE ERROR: \n', err);
-      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-    });
-  }
+  response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
+  // const { problem, ok, data } = response;
+  // console.log('RESPONSE:\n', response, '\n\n');
+  // if (problem) {
+  //   console.log('\nERROR: ', problem);
+  //   xml2js.parseString(data, (err, results) => {
+  //     if (err) console.log('PARSE ERROR: \n', err);
+  //     console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+  //   });
+  // }
+  // if (ok) {
+  //   xml2js.parseString(data, (err, results) => {
+  //     if (err) console.log('PARSE ERROR: \n', err);
+  //     console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+  //   });
+  // }
 });

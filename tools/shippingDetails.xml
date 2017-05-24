@@ -7,44 +7,14 @@ Dim posturl
 Dim shippingxml
 posturl = "http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData"
 
-shippingxml = "
-<DATA>
-  <ADDRESS>
-    <PRINTERNAME></PRINTERNAME>
-    <BOXID>PCH 2016 10 11 0001 </BOXID>
-    <SHIPDATE>2012/08/07</SHIPDATE>
-    "<KANA>ヤマモト　アツシ</KANA>
-    <POSTAL>1400012</POSTAL>
-    <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
-    "<JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-    <CONTEL>0337688503</CONTEL>
-    <KBN>11111111111</KBN>
-    "<WGT>1.5</WGT>
-    <SHINADAI>0</SHINADAI>
-    <SHITEIBI></SHITEIBI>
-    <SHITEIJIKAN></SHITEIJIKAN>
-    <SOURYO>0</SOURYO>
-    "<TESURYO>0</TESURYO>
-    <TTLAMOUNT>0</TTLAMOUNT>
-    <CODFLG>0</CODFLG>
-  </ADDRESS>
-  "<ITEM>
-    <ITEMCD>1234</ITEMCD>
-    <ITEMNAME>Tablet PC with Windows7</ITEMNAME>
-    <USAGE>0</USAGE>
-    "<ORIGIN>CN</ORIGIN>
-    <PIECE>1</PIECE>
-    <UNITPRICE>7000</UNITPRICE>
-  </ITEM>
-  <ITEM>
-    <ITEMCD>2345</ITEMCD>
-    "<ITEMNAME>Samsong Galaxy Tablet</ITEMNAME>
-    <USAGE>0</USAGE>
-    <ORIGIN>CN</ORIGIN>
-    <PIECE>1</PIECE>
-    <UNITPRICE>5000</UNITPRICE>
-  </ITEM>
-</DATA>"
+shippingxml = "<DATA><ADDRESS><PRINTERNAME></PRINTERNAME><BOXID>PCH1234567890</BOXID><SHIPDATE>2012/08/07</SHIPDATE>" & _
+"<KANA>ヤマモト　アツシ</KANA><POSTAL>1400012</POSTAL><JPADDRESS1>東京都品川区勝島</JPADDRESS1>" & _
+"<JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2><CONTEL>0337688503</CONTEL><KBN>11111111111</KBN>" & _
+"<WGT>1.5</WGT><SHINADAI>0</SHINADAI><SHITEIBI></SHITEIBI><SHITEIJIKAN></SHITEIJIKAN><SOURYO>0</SOURYO>" & _
+"<TESURYO>0</TESURYO><TTLAMOUNT>0</TTLAMOUNT><CODFLG>0</CODFLG></ADDRESS>" & _
+"<ITEM><ITEMCD>1234</ITEMCD><ITEMNAME>Tablet PC with Windows7</ITEMNAME><USAGE>0</USAGE>" & _
+"<ORIGIN>CN</ORIGIN><PIECE>1</PIECE><UNITPRICE>7000</UNITPRICE></ITEM><ITEM><ITEMCD>2345</ITEMCD>" & _
+"<ITEMNAME>Samsong Galaxy Tablet</ITEMNAME><USAGE>0</USAGE><ORIGIN>CN</ORIGIN><PIECE>1</PIECE><UNITPRICE>5000</UNITPRICE></ITEM></DATA>"
 
 
 Set h = CreateObject("Microsoft.XMLHTTP")
@@ -59,6 +29,11 @@ aSTr = h.responseText
 
 End Sub
 
+
+
+
+
+
 Function ShippingAPIXML(src)
 Dim strxml
 
@@ -72,8 +47,36 @@ strxml = strxml & "</handler>"
 strxml = strxml & "</uploadFile>"
 strxml = strxml & "</soap:Body>"
 strxml = strxml & "</soap:Envelope>"
-soapXML = strxml
+ soapXML = strxml
 End Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 2.Below is a sample source to check whether address is correct.
 
@@ -109,7 +112,7 @@ strxml = strxml & "</zipcode>"
 strxml = strxml & "</uploadFile>"
 strxml = strxml & "</soap:Body>"
 strxml = strxml & "</soap:Envelope>"
-soapXML = strxml
+ soapXML = strxml
 End Function
 
 Function xmlout(dt)

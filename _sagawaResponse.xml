@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ns:uploadDataResponse xmlns:ns="http://ws.com"><ns:return>
+リファレンス#は英数字50文字以内で入力してください。
+出荷予定日は3ヶ月以前の日付で登録できません。
+配達指定日は日付の形式は間違っています。（例 2011/01/01、2011/1/1）
+配達指定時間の範囲は正しくありません。
+</ns:return></ns:uploadDataResponse></soapenv:Body></soapenv:Envelope>
