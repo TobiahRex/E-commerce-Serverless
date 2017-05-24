@@ -11,8 +11,8 @@ const xmlOut = str => str
 const orderData = `
 <DATA>
   <ADDRESS>
-    <PRINTERNAME>nandemonai</PRINTERNAME>
-    <BOXID>PCH 2016 10 11 0001</BOXID>
+    <PRINTERNAME />
+    <BOXID>PCH 2017 6 11 0001</BOXID>
     <SHIPDATE>2012/08/07</SHIPDATE>
     <KANA>ヤマモト　アツシ</KANA>
     <POSTAL>1400012</POSTAL>
@@ -22,8 +22,8 @@ const orderData = `
     <KBN>TEST1465</KBN>
     <WGT>1.5</WGT>
     <SHINADAI>0</SHINADAI>
-    <SHITEIBI>nandemonai</SHITEIBI>
-    <SHITEIJIKAN>nandemonai</SHITEIJIKAN>
+    <SHITEIBI />
+    <SHITEIJIKAN />
     <SOURYO>0</SOURYO>
     <TESURYO>0</TESURYO>
     <TTLAMOUNT>0</TTLAMOUNT>
@@ -39,7 +39,7 @@ const orderData = `
   </ITEM>
 </DATA>
 `;
-
+console.log(xmlOut(orderData));
 const sr = `<?xml version='1.0' encoding='utf-8'?>
 <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
   <soap:Body>
@@ -56,35 +56,57 @@ const createSagawaAPI = () => {
     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
     credentials: 'omit',
     headers: {
-      'Content-Type': 'text/xml; charset=utf-8',
+      'Content-Type': 'text/xml',
       SOAPAction: 'http://ws.com',
     },
-    responseType: 'stream',
+    // responseType: 'stream',
   });
 
-  const uploadOrder = () => api.post('', sr);
+  const uploadOrder = (orderInfo) => api.post('', orderInfo);
+
+  const checkPostal =
 
   return {
     uploadOrder,
+    checkPostal,
   };
 };
 const api = createSagawaAPI();
-api.uploadOrder()
+// api.uploadOrder(sr)
+// .then((response) => {
+//   // response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
+//   const { problem, ok, data } = response;
+//   console.log('RESPONSE:\n', response, '\n\n');
+//   if (problem) {
+//     console.log('\nERROR: ', problem);
+//     xml2js.parseString(data, (err, results) => {
+//       if (err) console.log('PARSE ERROR: \n', err);
+//       console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+//     });
+//   }
+//   if (ok) {
+//     xml2js.parseString(data, (err, results) => {
+//       if (err) console.log('PARSE ERROR: \n', err);
+//       console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+//     });
+//   }
+// });
+api.checkPostal()
 .then((response) => {
-  response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
-  // const { problem, ok, data } = response;
-  // console.log('RESPONSE:\n', response, '\n\n');
-  // if (problem) {
-  //   console.log('\nERROR: ', problem);
-  //   xml2js.parseString(data, (err, results) => {
-  //     if (err) console.log('PARSE ERROR: \n', err);
-  //     console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-  //   });
-  // }
-  // if (ok) {
-  //   xml2js.parseString(data, (err, results) => {
-  //     if (err) console.log('PARSE ERROR: \n', err);
-  //     console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-  //   });
-  // }
+  // response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
+  const { problem, ok, data } = response;
+  console.log('RESPONSE:\n', response, '\n\n');
+  if (problem) {
+    console.log('\nERROR: ', problem);
+    xml2js.parseString(data, (err, results) => {
+      if (err) console.log('PARSE ERROR: \n', err);
+      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+    });
+  }
+  if (ok) {
+    xml2js.parseString(data, (err, results) => {
+      if (err) console.log('PARSE ERROR: \n', err);
+      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+    });
+  }
 });
