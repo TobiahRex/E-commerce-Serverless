@@ -312,7 +312,52 @@ const rootType = new ObjectType({
       type: new ObjectType({
         name: 'UserMarketHero',
         fields: () => ({
-
+          tags: {
+            description: 'Array of objects, containing all the "Tags" that have been added to this User\'s Market Hero profile, and the respective date.',
+            type: new ListType(
+              new ObjectType({
+                name: 'UserMarketHeroTags',
+                fields: () => ({
+                  name: {
+                    description: 'The name of the "Tag".',
+                    type: StringType,
+                  },
+                  date: {
+                    description: 'The Date this "Tag" was added the User\'s Market Hero profile.',
+                    type: StringType,
+                  },
+                }),
+              }),
+            ),
+          },
+        }),
+      }),
+    },
+    socialProfileBlob: {
+      description: 'The social network profile information for this user.  Captured at Registration.',
+      type: new ObjectType({
+        name: 'UserSocialProfileBlob',
+        fields: () => ({
+          line: {
+            description: 'User info from LINE.',
+            type: StringType,
+          },
+          facebook: {
+            description: 'User info from Facebook.',
+            type: StringType,
+          },
+          google: {
+            description: 'User info from Google.',
+            type: StringType,
+          },
+          twitter: {
+            description: 'User info from Twitter.',
+            type: StringType,
+          },
+          linkedin: {
+            description: 'User info from Linkedin.',
+            type: StringType,
+          },
         }),
       }),
     },
