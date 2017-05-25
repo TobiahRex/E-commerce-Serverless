@@ -169,6 +169,24 @@ const rootType = new ObjectType({
               }),
             }),
           },
+          devices: {
+            description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
+            type: new ListType(
+              new ObjectType({
+                name: 'UserDevicesObject',
+                fields: () => ({
+                  hardware: {
+                    description: 'The mobile Phone type.',
+                    type: StringType,
+                  },
+                  os: {
+                    description: 'The operating system for the mobile device.',
+                    type: StringType,
+                  },
+                }),
+              }),
+            ),
+          },
         }),
       }),
     },
