@@ -34,27 +34,28 @@ function createAuthChannel(auth) {
 }
 
 function* postLoginActions({ profile }) {
-  const reduxState = yield take(state => state);
-  const { cleanProfile, auth0Id } = cleanAuth0Profile(reduxState, profile);
-  const response = yield call(() => api.LoginOrRegister({
-    auth0Id,
-    profile: cleanProfile,
-  }));
-  const { ok, problem, data } = cleanGQLresponse(response);
-  console.log('%cpostLoginActions @ saga/authorization\ndata', 'background:cyan;', data);
-
-  if (ok) {
+  // const reduxState = yield take(state => state);
+  // const { cleanProfile, auth0Id } = cleanAuth0Profile(reduxState, profile);
+  // const response = yield call(() => api.LoginOrRegister({
+  //   auth0Id,
+  //   profile: cleanProfile,
+  // }));
+  // const { ok, problem, data } = cleanGQLresponse(response);
+  // console.log('%cpostLoginActions @ saga/authorization\ndata', 'background:cyan;', data);
+  //
+  // if (ok) {
     yield [
-      put(userActions.saveProfile(data.profile)),
+      put(userActions.saveProfile(profile)),
+      // put(userActions.saveProfile(data.profile)),
       put(authActions.loginSuccess()),
       put(sessionActions.resetPreLoginUrl()),
     ];
-  } else {
-    yield [
-      put(authActions.loginFailure('Could not Login.  Please try again.')),
-      put(apiActions.apiFail(problem)),
-    ];
-  }
+  // } else {
+  //   yield [
+  //     put(authActions.loginFailure('Could not Login.  Please try again.')),
+  //     put(apiActions.apiFail(problem)),
+  //   ];
+  // }
 }
 
 function* preLoginActions(socialType) {

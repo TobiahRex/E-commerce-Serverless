@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
+import axios from 'axios';
 import userSchema from '../schemas/userSchema';
 import db from '../connection';
 
@@ -22,7 +23,8 @@ userSchema.statics.loginUser = (dbUser, userObj) =>
 new Promise((resolve) => {
   console.log('Found Existing User.\n');
   dbUser.authentication.lastLogin.push(userObj.authentication.lastLogin.pop());
-
+  dbUser.contactInfo.location = { ...userObj.contactInfo.location };
+  
   dbUser.save({ validateBeforeSave: true })
   .then(resolve);
 });
@@ -96,10 +98,5 @@ new Promise((resolve, reject) => {
   });
 });
 const User = db.model('User', userSchema);
-
-userSchema.statics.updateMarketHero = (dbUser) =>
-new Promise((resolve, reject) => {
-  
-});
 
 export default User;

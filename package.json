@@ -40,6 +40,7 @@
     "apisauce": "^0.10.0",
     "auth0-js": "^8.5.0",
     "autoprefixer": "^6.7.7",
+    "axios": "^0.16.1",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.1.1",
