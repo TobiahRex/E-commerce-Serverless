@@ -49,7 +49,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
   };
 
   cleanProfile.contactInfo.socialNetworks.push({
-    type: 'Facebook',
+    name: 'Facebook',
     link: auth0Profile.link,
   });
   cleanProfile.authentication.lastLogin.push({

@@ -48,7 +48,7 @@ const userSchema = new Schema({
       os: { type: String },
     }],
     socialNetworks: [{
-      type: { type: String },
+      name: { type: String },
       link: { type: String },
     }],
   },

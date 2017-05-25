@@ -187,6 +187,22 @@ const rootType = new ObjectType({
               }),
             ),
           },
+          socialNetworks: {
+            description: 'An array of Social Networks used by the user + their respective account links.',
+            type: new ObjectType({
+              name: 'UserSocialNetworkObject',
+              fields: () => ({
+                name: {
+                  description: 'The name of the Social Network.',
+                  type: StringType,
+                },
+                link: {
+                  description: 'The Social Network Link for this users account.',
+                  type: StringType,
+                },
+              }),
+            }),
+          },
         }),
       }),
     },
