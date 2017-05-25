@@ -5,14 +5,13 @@ import cleanTwitter from './cleanTwitter';
 import cleanLinkedin from './cleanLinkedin';
 
 export default (reduxState, auth0Profile) => {
-  let cleanProfile;
   switch (reduxState.user.socialLoginType) {
-    case 'loginWithLine': cleanProfile = cleanLine(reduxState, auth0Profile); break;
-    case 'loginWithFacebook': cleanProfile = cleanFacebook(reduxState, auth0Profile); break;
-    case 'loginWithGoogle': cleanProfile = cleanGoogle(reduxState, auth0Profile); break;
-    case 'loginWithTwitter': cleanProfile = cleanTwitter(reduxState, auth0Profile); break;
-    case 'loginWithLinkedin': cleanProfile = cleanLinkedin(reduxState, auth0Profile); break;
+    case 'loginWithLine': return cleanLine(reduxState, auth0Profile);
+    case 'loginWithFacebook': return cleanFacebook(reduxState, auth0Profile);
+    case 'loginWithGoogle': return cleanGoogle(reduxState, auth0Profile);
+    case 'loginWithTwitter': return cleanTwitter(reduxState, auth0Profile);
+    case 'loginWithLinkedin': return cleanLinkedin(reduxState, auth0Profile);
     default: break;
   }
-  return { cleanProfile };
+  return 0;
 };
