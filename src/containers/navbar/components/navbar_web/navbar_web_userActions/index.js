@@ -17,9 +17,9 @@ function NavbarUserActions({ activeUser }) {
     </div>
   );
 }
-const { bool } = PropTypes;
+const { objectOf, any } = PropTypes;
 NavbarUserActions.propTypes = {
-  activeUser: bool,
+  activeUser: objectOf(any),
 };
 NavbarUserActions.defaultProps = {
   activeUser: false,

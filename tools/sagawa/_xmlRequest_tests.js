@@ -17,7 +17,7 @@ const createUploadToSagawaAPI = () => {
       'Content-Type': 'text/xml',
       SOAPAction: 'http://ws.com',
     },
-    responseType: 'stream',
+    // responseType: 'stream',
   });
 
   const uploadOrder = orderData => api.post('',
@@ -37,23 +37,57 @@ return {
 };
 };
 const sagawaUploadAPI = createUploadToSagawaAPI();
+sagawaUploadAPI.uploadOrder(`
+<DATA>
+  <ADDRESS>
+    <PRINTERNAME />
+    <BOXID>VPS20176110001</BOXID>
+    <SHIPDATE>2017/06/07</SHIPDATE>
+    <KANA>ヤマモト　アツシ</KANA>
+    <POSTAL>1400012</POSTAL>
+    <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
+    <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
+    <CONTEL>0337688503</CONTEL>
+    <KBN>TEST1465</KBN>
+    <WGT>1.5</WGT>
+    <SHINADAI>0</SHINADAI>
+    <SHITEIBI />
+    <SHITEIJIKAN />
+    <SOURYO>0</SOURYO>
+    <TESURYO>0</TESURYO>
+    <TTLAMOUNT>0</TTLAMOUNT>
+    <CODFLG>0</CODFLG>
+  </ADDRESS>
+  <ITEM>
+    <ITEMCD>1234</ITEMCD>
+    <ITEMNAME>Tablet PC with Windows7</ITEMNAME>
+    <USAGE>0</USAGE>
+    <ORIGIN>CN</ORIGIN>
+    <PIECE>1</PIECE>
+    <UNITPRICE>7000</UNITPRICE>
+  </ITEM>
+</DATA>
+`)
+.then((response) => {
+  // response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
+  const { problem, ok, data } = response;
+  console.log('RESPONSE:\n', response, '\n\n');
+  if (problem) {
+    console.log('\nERROR: ', problem);
+    xml2js.parseString(data, (err, results) => {
+      if (err) console.log('PARSE ERROR: \n', err);
+      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+    });
+  }
+  if (ok) {
+    xml2js.parseString(data, (err, results) => {
+      if (err) console.log('PARSE ERROR: \n', err);
+      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+    });
+  }
+});
 
-// const createCheckZipSagawaAPI = () => {
-//   const api = create({
-//     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
-//     credentials: 'omit',
-//     headers: {
-//       'Content-Type': 'application/xml;charset=UTF-8',
-//     },
-//   });
-//
-//   const checkZip = zipcode => api.get('getAddr?', { zipcode });
-//
-//   return {
-//     checkZip,
-//   };
-// };
-const createCheckZipSagawaAPI = () => {
+const createSagawaCheckZipAPI = () => {
   const api = create({
     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
     credentials: 'omit',
@@ -73,60 +107,11 @@ const createCheckZipSagawaAPI = () => {
 </soap:body>
 </soap:Envelope>`);
 
-return {
-  checkZip,
+  return {
+    checkZip,
+  };
 };
-};
-const sagawaZipAPI = createCheckZipSagawaAPI();
-// uploadAPI.uploadOrder(`
-// <DATA>
-//   <ADDRESS>
-//     <PRINTERNAME />
-//     <BOXID>PCH 2017 6 11 0001</BOXID>
-//     <SHIPDATE>2012/08/07</SHIPDATE>
-//     <KANA>ヤマモト　アツシ</KANA>
-//     <POSTAL>1400012</POSTAL>
-//     <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
-//     <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-//     <CONTEL>0337688503</CONTEL>
-//     <KBN>TEST1465</KBN>
-//     <WGT>1.5</WGT>
-//     <SHINADAI>0</SHINADAI>
-//     <SHITEIBI />
-//     <SHITEIJIKAN />
-//     <SOURYO>0</SOURYO>
-//     <TESURYO>0</TESURYO>
-//     <TTLAMOUNT>0</TTLAMOUNT>
-//     <CODFLG>0</CODFLG>
-//   </ADDRESS>
-//   <ITEM>
-//     <ITEMCD>1234</ITEMCD>
-//     <ITEMNAME>Tablet PC with Windows7</ITEMNAME>
-//     <USAGE>0</USAGE>
-//     <ORIGIN>CN</ORIGIN>
-//     <PIECE>1</PIECE>
-//     <UNITPRICE>7000</UNITPRICE>
-//   </ITEM>
-// </DATA>
-// `)
-// .then((response) => {
-//   // response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
-//   const { problem, ok, data } = response;
-//   console.log('RESPONSE:\n', response, '\n\n');
-//   if (problem) {
-//     console.log('\nERROR: ', problem);
-//     xml2js.parseString(data, (err, results) => {
-//       if (err) console.log('PARSE ERROR: \n', err);
-//       console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-//     });
-//   }
-//   if (ok) {
-//     xml2js.parseString(data, (err, results) => {
-//       if (err) console.log('PARSE ERROR: \n', err);
-//       console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-//     });
-//   }
-// });
+const sagawaZipAPI = createSagawaCheckZipAPI();
 // sagawaZipAPI.checkZip('2220033')
 // .then((response) => {
 //   const { problem, ok, data } = response;
@@ -166,7 +151,7 @@ const sagawaTrackingAPI = createSagawaTrackingAPI();
 
 sagawaTrackingAPI.getStatus({
   AWB: 'TEST20170223001',
-  // REF: 564634761902,
+  REF: 564634761902,
 })
 .then((response) => {
   const { problem, ok, data } = response;

@@ -20,7 +20,7 @@ const createAPI = () => {
     credentials: 'omit',
   });
 
-  const findOrCreateUser = ({
+  const LoginOrRegister = ({
     id,
     name,
     authentication,
@@ -58,6 +58,7 @@ const createAPI = () => {
         age: ${userStory.age}
         birthday: ${userStory.birthday}
         bio: ${userStory.bio}
+        gender: ${userStory.gender}
       }
     ) {
       _id
@@ -84,13 +85,16 @@ const createAPI = () => {
         age
         birthday
         bio
+        gender
       }
     }`,
-    variables: {},
+    variables: {
+
+    },
   });
 
   return {
-    findOrCreateUser,
+    LoginOrRegister,
   };
 };
 export default { createAPI };

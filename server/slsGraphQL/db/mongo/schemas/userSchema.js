@@ -48,6 +48,7 @@ const userSchema = new Schema({
     age: { type: Number },
     birthday: { type: Date },
     bio: { type: String },
+    gender: { type: String },
   },
   socialProfileBlob: {},
 });

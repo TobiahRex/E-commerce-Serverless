@@ -4,6 +4,7 @@ import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { autoRehydrate } from 'redux-persist';
 import { browserHistory } from 'react-router';
 import RehydrationServices from '../../services/utils/rehydrationServices';
+import apolloClient from '../../graphQL/';
 
 // BUG delete me before final launch
 import createLogger from 'redux-logger';
@@ -12,6 +13,7 @@ export default (rootReducer, rootSaga) => {
   const enhancers = [];
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
+    apolloClient.middleware(),
     routerMiddleware(browserHistory),
     // BUG delete me before final launch
     createLogger(),

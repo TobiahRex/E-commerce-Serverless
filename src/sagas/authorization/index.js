@@ -33,7 +33,8 @@ function createAuthChannel(auth) {
 }
 
 function* postLoginActions({ profile, idToken }) {
-  const response = yield call(() => api.LoginOrRegister({ profile, idToken }));
+
+  const response = yield call(() => api.LoginOrRegister({ profile, idToken, loginType }));
 
   const { ok, problem, data } = cleanGQLresponse(response);
   console.log('%cpostLoginActions @ saga/authorization\ndata', 'background:cyan;', data);

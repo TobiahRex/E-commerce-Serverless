@@ -5,7 +5,7 @@ import { autoRehydrate } from 'redux-persist';
 import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import RehydrationServices from '../../services/utils/rehydrationServices';
-import apolloClient from '../../apollo/';
+import apolloClient from '../../graphQL/';
 
 export default (rootReducer, rootSaga) => {
   const enhancers = [];
