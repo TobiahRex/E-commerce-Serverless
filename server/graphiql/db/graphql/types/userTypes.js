@@ -525,7 +525,7 @@ const mutations = {
         ),
       },
       userStory: {
-        description: 'Object: Bio information for new user.',
+        description: 'Bio information for new user.',
         type: new NonNull(
           new InputObject({
             name: 'NewUserInputStoryObject',
@@ -546,8 +546,36 @@ const mutations = {
           }),
         ),
       },
+      socialProfile: {
+        description: 'The users collection of social profiles from their Social Login accounts.',
+        type: new InputObject({
+          name: 'NewUserSocialProfiles',
+          fields: () => ({
+            line: {
+              description: 'The Social Profile for the User\'s LINE account.',
+              type: StringType,
+            },
+            facebook: {
+              description: 'The Social Profile for the User\'s Facebook account.',
+              type: StringType,
+            },
+            google: {
+              description: 'The Social Profile for the User\'s Google account.',
+              type: StringType,
+            },
+            twitter: {
+              description: 'The Social Profile for the User\'s Twitter account.',
+              type: StringType,
+            },
+            linkedin: {
+              description: 'The Social Profile for the User\'s Linkedin account.',
+              type: StringType,
+            },
+          }),
+        }),
+      }
     },
-    resolve: (_, args, { User }) => User.createUser(args),
+    resolve: (_, args) => User.createUser(args),
   },
   AddToMemberCart: {
     type: rootType,
@@ -570,7 +598,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.addToMemberCart(args),
+    resolve: (_, args) => User.addToMemberCart(args),
   },
   UpdateToMemberCart: {
     type: rootType,
@@ -593,7 +621,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.updateToMemberCart(args),
+    resolve: (_, args) => User.updateToMemberCart(args),
   },
 };
 const UserTypes = {
