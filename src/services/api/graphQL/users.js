@@ -35,41 +35,14 @@ const createAPI = () => {
   }) => api.post('', {
     mutation: `LoginOrRegister(
       auth0Id: ${auth0Id}
-      name: {
-        first: ${name.first}
-        last: ${name.last}
-        display: ${name.display}
-      },
-      pictures: {
-        small: ${pictures.small},
-        large: ${pictures.large},
-      },
-      authentication: {
-        signedUp: ${authentication.signedUp}
-        password: ${authentication.password}
-        lastLogin: ${[...authentication.lastlogin]}
-        registered: ${authentication.registered}
-        avatar: ${authentication.avatar}
-      },
-      contactInfo: {
-        email: ${contactInfo.email}
-        phone: ${contactInfo.phone}
-        location: {
-          ipAddress: ${contactInfo.location.ipAddress}
-          lat: ${contactInfo.location.lat}
-          long: ${contactInfo.location.long}
-          country: ${contactInfo.location.country}
-        }
-      },
-      permissions: {
-        role: ${permissions.role}
-      },
-      userStory: {
-        age: ${userStory.age}
-        birthday: ${userStory.birthday}
-        bio: ${userStory.bio}
-        gender: ${userStory.gender}
-      }
+      name: ${{ ...name }}}
+      pictures: ${{ ...pictures }}
+      authentication: ${{ ...authentication }}
+      contactInfo: ${{ ...contactInfo }}
+      shopping: ${{ ...shopping }}
+      permissions: ${{ ...permissions }}
+      userStory: ${{ ...userStory }}
+      socialProfileBlob$: ${{ ...socialProfileBlob }}
     ) {
       _id
       name {
