@@ -1,8 +1,10 @@
 import {
   GraphQLID as MongoID,
-  GraphQLNonNull as NonNull,
   GraphQLInt as IntType,
+  GraphQLNonNull as NonNull,
+  GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLListType as ListType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
@@ -74,11 +76,29 @@ const rootType = new ObjectType({
           },
           lastLogin: {
             description: 'The last time this user logged in.',
-            type: StringType,
+            type: new ListType(
+              new ObjectType({
+                name: 'UserLastLoginObject',
+                fields: () => ({
+                  date: {
+                    description: 'The Date the user last logged in.',
+                    type: StringType,
+                  },
+                  device: {
+                    description: 'The type of device the user logged in with.',
+                    type: StringType,
+                  },
+                }),
+              }),
+            ),
+          },
+          ageVerified: {
+            description: 'Verification if the user is at least 20 years of age.',
+            type: BoolType,
           },
           loginDevice: {
-            description: 
-          }
+            description: 'The type of device the user logged in from.',
+          },
           registered: {
             description: 'The date this user first became a member.',
             type: StringType,

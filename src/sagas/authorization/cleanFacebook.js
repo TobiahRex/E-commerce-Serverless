@@ -14,8 +14,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       password: '',
       createdAt: auth0Profile.created_at,
       totalLogins: 1,
-      lastLogin: new Date(),
-      loginDevice: mobile.mobileType || 'computer',
+      lastLogin: [],
       ageVerified: user.ageVerified,
       auth0Identities: [...auth0Profile.identities],
     },
@@ -52,6 +51,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
   cleanProfile.contactInfo.socialNetworks.push({
     type: 'Facebook',
     link: auth0Profile.link,
+  });
+  cleanProfile.authentication.lastLogin.push({
+    date: new Date(),
+    loginDevice: mobile.mobileType || 'computer',
   });
   if (orders.guest.length) {
     orders.guest.forEach(({ id: product, qty, strength }) => {
