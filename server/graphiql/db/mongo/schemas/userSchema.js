@@ -34,9 +34,9 @@ const userSchema = new Schema({
   },
   contactInfo: {
     email: { type: String },
-    phone: { type: Number },
+    phone: { type: String },
     locale: { type: String },
-    timezone: { type: String },
+    timezone: { type: Number },
     location: {
       ipAddress: { type: String },
       lat: { type: String },

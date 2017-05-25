@@ -2,6 +2,7 @@ import {
   GraphQLID as MongoID,
   GraphQLInt as IntType,
   GraphQLList as ListType,
+  GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
@@ -145,8 +146,8 @@ const rootType = new ObjectType({
             type: StringType,
           },
           timezone: {
-            description: 'The users local Time Zone - Retrieved from Social Login Providers.',
-            type: StringType,
+            description: 'The users local Time Zone - Retrieved from Social Login Provider.',
+            type: IntType,
           },
           location: {
             description: 'IP address, lat, long, & country code. for this user from their last login.',
@@ -218,27 +219,29 @@ const rootType = new ObjectType({
         fields: () => ({
           cart: {
             description: 'The Users shopping cart.',
-            type: new ObjectType({
-              name: 'UsersCartObject',
-              fields: () => ({
-                qty: {
-                  description: 'The quantity of items of this product.',
-                  type: IntType,
-                },
-                strength: {
-                  description: 'The nicotine strength of this product.',
-                  type: StringType,
-                },
-                product: {
-                  description: 'The Mongo ObjectID for this product.',
-                  type: MongoID,
-                },
+            type: new ListType(
+              new ObjectType({
+                name: 'UsersCartObject',
+                fields: () => ({
+                  qty: {
+                    description: 'The quantity of items of this product.',
+                    type: IntType,
+                  },
+                  strength: {
+                    description: 'The nicotine strength of this product.',
+                    type: StringType,
+                  },
+                  product: {
+                    description: 'The Mongo ObjectID for this product.',
+                    type: MongoID,
+                  },
+                }),
               }),
-            }),
+            ),
           },
           transactions: {
             description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-            type: StringType,
+            type: new ListType(StringType),
           },
         }),
       }),
@@ -250,7 +253,32 @@ const rootType = new ObjectType({
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
-            type: StringType,
+            type: new ListType(
+              new EnumType({
+                name: 'UserPermissions',
+                values: {
+                  user: {
+                    description: 'User has basic "User" permissions.',
+                    value: 'user',
+                  },
+                  admin: {
+                    description: 'User has "Administrator" permissions.',
+                    value: 'admin',
+                  },
+                  devAdmin: {
+                    description: 'User has "Developer Administrator" permissions.',
+                    value: 'devAdmin',
+                  },
+                  wholeseller: {
+                    description: 'The User has "Whole-Seller" permissions.',
+                    value: 'wholeseller',
+                  },
+                  distributor: {
+                    description: 'The User has "Distributor" permissions.',
+                  },
+                },
+              }),
+            ),
           },
         }),
       }),
@@ -272,6 +300,19 @@ const rootType = new ObjectType({
             description: 'The biography of this new user.',
             type: StringType,
           },
+          gender: {
+            description: 'The User\'s gender.',
+            type: StringType,
+          },
+        }),
+      }),
+    },
+    marketHero: {
+      description: 'The User\'s Market Hero Meta-Data.',
+      type: new ObjectType({
+        name: 'UserMarketHero',
+        fields: () => ({
+
         }),
       }),
     },

@@ -1,10 +1,9 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
-import axios from 'axios';
 import userSchema from '../schemas/userSchema';
 import db from '../connection';
 
-userSchema.statics.loginOrRegister = (args) =>
+userSchema.statics.loginOrRegister = args =>
 new Promise((resolve, reject) => {
   const auth0Id = args.auth0Id;
   const loginType = args.loginType;
@@ -24,15 +23,16 @@ new Promise((resolve, reject) => {
 userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
 new Promise((resolve) => {
   console.log('Found Existing User.\n');
+  dbUser.authentication.totalLogins += 1;
   dbUser.authentication.lastLogin.push(userObj.authentication.lastLogin.pop());
   dbUser.contactInfo.location = { ...userObj.contactInfo.location };
   dbUser.shopping.cart = [...userObj.shopping.cart];
-  dbUser.socialProfileBlob[loginType] = []
+  dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
   dbUser.save({ validateBeforeSave: true })
   .then(resolve);
 });
 
-userSchema.statics.registerUser = userObj =>
+userSchema.statics.registerUser = (loginType, userObj) =>
 new Promise((resolve, reject) => {
   bbPromise.fromCallback(cb => User.create(userObj, cb))
   .then((newUser) => {
