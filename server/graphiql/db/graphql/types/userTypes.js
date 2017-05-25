@@ -189,19 +189,21 @@ const rootType = new ObjectType({
           },
           socialNetworks: {
             description: 'An array of Social Networks used by the user + their respective account links.',
-            type: new ObjectType({
-              name: 'UserSocialNetworkObject',
-              fields: () => ({
-                name: {
-                  description: 'The name of the Social Network.',
-                  type: StringType,
-                },
-                link: {
-                  description: 'The Social Network Link for this users account.',
-                  type: StringType,
-                },
+            type: new ListType(
+              new ObjectType({
+                name: 'UserSocialNetworkObject',
+                fields: () => ({
+                  name: {
+                    description: 'The name of the Social Network.',
+                    type: StringType,
+                  },
+                  link: {
+                    description: 'The Social Network Link for this users account.',
+                    type: StringType,
+                  },
+                }),
               }),
-            }),
+            ),
           },
         }),
       }),
@@ -388,48 +390,117 @@ const mutations = {
         }),
       },
       contactInfo: {
-        description: 'Contact info & GeoLocation info for new user.',
-        type: new NonNull(
-          new InputObject({
-            name: 'NewUserContanctInfoObject',
-            fields: () => ({
-              email: {
-                description: 'The email for this new user.',
-                type: StringType,
-              },
-              phone: {
-                description: 'The phone number for this new user.',
-                type: StringType,
-              },
-              location: {
-                description: 'IP address, lat, long, & country code. for this new user from their current login.',
-                type: new NonNull(
-                  new InputObject({
-                    name: 'NewUserGeolocationObject',
-                    fields: () => ({
-                      ipAddress: {
-                        description: 'IP address for this new user.',
-                        type: StringType,
-                      },
-                      lat: {
-                        description: 'Latitude coord. for this new user.',
-                        type: StringType,
-                      },
-                      long: {
-                        description: 'Longitude coord. for this new user.',
-                        type: StringType,
-                      },
-                      country: {
-                        description: 'Country code for this new user.',
-                        type: StringType,
-                      },
-                    }),
+        description: 'Contact info & GeoLocation info for user.',
+        type: new InputObject({
+          name: 'UserContanctInfoObject',
+          fields: () => ({
+            email: {
+              description: 'The email for this user.',
+              type: StringType,
+            },
+            phone: {
+              description: 'The phone number for this user.',
+              type: StringType,
+            },
+            locale: {
+              description: 'The users language of choice as determined by the Social Login provider or their preference.',
+              type: StringType,
+            },
+            timezone: {
+              description: 'The users local Time Zone - Retrieved from Social Login Providers.',
+            },
+            location: {
+              description: 'IP address, lat, long, & country code. for this user from their last login.',
+              type: new InputObject({
+                name: 'UserGeolocationObject',
+                fields: () => ({
+                  ipAddress: {
+                    description: 'IP address this user last used.',
+                    type: StringType,
+                  },
+                  lat: {
+                    description: 'Latitude coord. this user last logged in from.',
+                    type: StringType,
+                  },
+                  long: {
+                    description: 'Longitude coord. this user last logged in from.',
+                    type: StringType,
+                  },
+                  country: {
+                    description: 'Country code this user last logged in from.',
+                    type: StringType,
+                  },
+                }),
+              }),
+            },
+            devices: {
+              description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
+              type: new ListType(
+                new InputObject({
+                  name: 'UserDevicesObject',
+                  fields: () => ({
+                    hardware: {
+                      description: 'The mobile Phone type.',
+                      type: StringType,
+                    },
+                    os: {
+                      description: 'The operating system for the mobile device.',
+                      type: StringType,
+                    },
                   }),
-                ),
-              },
-            }),
+                }),
+              ),
+            },
+            socialNetworks: {
+              description: 'An array of Social Networks used by the user + their respective account links.',
+              type: new InputObject({
+                name: 'UserSocialNetworkObject',
+                fields: () => ({
+                  name: {
+                    description: 'The name of the Social Network.',
+                    type: StringType,
+                  },
+                  link: {
+                    description: 'The Social Network Link for this users account.',
+                    type: StringType,
+                  },
+                }),
+              }),
+            },
           }),
-        ),
+        }),
+      },
+      shopping: {
+        description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
+        type: new InputObject({
+          name: 'UserShoppingObject',
+          fields: () => ({
+            cart: {
+              description: 'The Users shopping cart.',
+              type: new InputObject({
+                name: 'UsersCartObject',
+                fields: () => ({
+                  qty: {
+                    description: 'The quantity of items of this product.',
+                    type: IntType,
+                  },
+                  strength: {
+                    description: 'The nicotine strength of this product.',
+                    type: StringType,
+                  },
+                  product: {
+                    description: 'The Mongo ObjectID for this product.',
+                    type: MongoID,
+                  },
+                }),
+              }),
+            },
+            transactions: {
+              description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
+              type: StringType,
+            },
+          }),
+        }),
       },
       permissions: {
         description: 'Authorization permissions for this new user.',
