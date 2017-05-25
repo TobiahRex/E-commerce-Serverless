@@ -18,8 +18,13 @@ export default (auth0Profile, auth0LoginType) => {
           case 'link': profile.contactInfo.socialNetworks = [{
             type: 'Facebook',
             link: auth0Profile[key],
+            user_id: auth0Profile.user_id,
+            updated_at: auth0Profile.updated_at,
           }]; break;
-          case 'locale': 
+          case 'locale': profile.contactInfo.locale = auth0Profile[key]; break;
+          case 'timezone': profile.contactInfo.timezone = auth0Profile[key]; break;
+          case 'updated_at': profile.contact
+          // case 'user_id': profile.contactInfo.
         }
       })
     } break;

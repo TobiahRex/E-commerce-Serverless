@@ -20,9 +20,16 @@ const userSchema = new Schema({
       type: String,
       default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
     },
+    auth0Identities: [{
+      provider: { type: String },
+      user_id: { type: String },
+      connection: { type: String },
+      isSocial: { type: Boolean },
+    }],
   },
   contactInfo: {
     locale: { type: String },
+    timezone: { type: String },
     email: { type: String },
     phone: { type: Number },
     location: {

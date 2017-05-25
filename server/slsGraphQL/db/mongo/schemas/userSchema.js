@@ -23,6 +23,7 @@ const userSchema = new Schema({
   },
   contactInfo: {
     locale: { type: String },
+    timezone: { type: String },
     email: { type: String },
     phone: { type: Number },
     location: {
