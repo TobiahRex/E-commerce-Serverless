@@ -1,5 +1,5 @@
 export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
-  const profile = {
+  const cleanProfile = {
     name: {
       first: auth0Profile.given_name,
       last: auth0Profile.family_name,
@@ -49,14 +49,14 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     },
   };
 
-  profile.contactInfo.socialNetworks.push({
+  cleanProfile.contactInfo.socialNetworks.push({
     type: 'Facebook',
     link: auth0Profile.link,
   });
   if (orders.guest.length) {
     orders.guest.forEach(({ id: product, qty, strength }) => {
-      profile.shopping.cart.push({ qty, strength, product });
+      cleanProfile.shopping.cart.push({ qty, strength, product });
     });
   }
-  return profile;
+  return { cleanProfile, auth0Id: auth0Profile.identities[0].user_id };
 };

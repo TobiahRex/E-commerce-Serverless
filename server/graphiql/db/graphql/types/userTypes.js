@@ -16,7 +16,7 @@ const rootType = new ObjectType({
       type: new NonNull(MongoID),
     },
     name: {
-      description: 'Object: The First & Last name for the User.',
+      description: 'The Given, Family, & Display name for the user.',
       type: new ObjectType({
         name: 'UserNameObject',
         fields: () => ({
@@ -35,25 +35,52 @@ const rootType = new ObjectType({
         }),
       }),
     },
+    pictures: {
+      description: 'Pictures of the user in different sizes.',
+      type: new ObjectType({
+        name: 'UserPictureObject',
+        fields: () => ({
+          small: {
+            description: 'Small user image used for the Navbar avatar.',
+            type: StringType,
+          },
+          large: {
+            description: 'Large user image used for the user dashboard.',
+            type: StringType,
+          },
+        }),
+      }),
+    },
     authentication: {
       description: 'Authentication information for user.',
       type: new ObjectType({
         name: 'UserAuthenticationObject',
         fields: () => ({
-          lastLogin: {
-            description: 'The last time this user logged in.',
-            type: StringType,
-          },
           signedUp: {
             description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
             type: StringType,
           },
-          registered: {
-            description: 'The date this user first became a member.',
-            type: StringType,
-          },
           password: {
             description: 'This user\'s password if using email signup.',
+            type: StringType,
+          },
+          createdAt: {
+            description: 'The date this user was created.',
+            type: StringType,
+          },
+          totalLogins: {
+            description: 'The number of times this user has logged in.',
+            type: IntType,
+          },
+          lastLogin: {
+            description: 'The last time this user logged in.',
+            type: StringType,
+          },
+          loginDevice: {
+            description: 
+          }
+          registered: {
+            description: 'The date this user first became a member.',
             type: StringType,
           },
           avatar: {
@@ -175,7 +202,7 @@ const mutations = {
     description: 'Create new User.',
     args: {
       name: {
-        description: 'Object: The First & Last name for the new user.',
+        description: 'The Given, Family, & Display name for the new user.',
         type: new NonNull(
           new InputObject({
             name: 'NewUserNameObject',
@@ -195,6 +222,22 @@ const mutations = {
             }),
           }),
         ),
+      },
+      pictures: {
+        description: 'Pictures of the user in different sizes.',
+        type: new InputObject({
+          name: 'NewUserPictureObject',
+          fields: () => ({
+            small: {
+              description: 'Small user image used for the Navbar avatar.',
+              type: StringType,
+            },
+            large: {
+              description: 'Large user image used for the user dashboard.',
+              type: StringType,
+            },
+          }),
+        }),
       },
       authentication: {
         description: 'Authentication information for new user.',

@@ -21,12 +21,8 @@ const createAPI = () => {
   });
 
   const LoginOrRegister = ({
-    id,
-    name,
-    authentication,
-    contactInfo,
-    permissions,
-    userStory,
+    auth0Id,
+    profile,
   }) => api.post('', {
     mutation: `createUser(
       id: ${id}

@@ -7,27 +7,34 @@ const userSchema = new Schema({
     last: { type: String },
     display: { type: String },
   },
-  picture: {
+  pictures: {
     small: { type: String },
     large: { type: String },
+    default: {
+      type: String,
+      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
+    },
   },
   authentication: {
     signedUp: { type: Date },
     password: { type: String },
     createdAt: { type: Date },
     totalLogins: { type: Number },
-    lastLogin: { type: Date, default: Date.now },
+    lastLogin: { type: Date, default: new Date() },
+    loginDevice: { type: String },
     ageVerified: { type: Boolean, default: false },
-    avatar: {
-      type: String,
-      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
-    },
+    auth0Identities: [{
+      provider: { type: String },
+      user_id: { type: String },
+      connection: { type: String },
+      isSocial: { type: Boolean },
+    }],
   },
   contactInfo: {
-    locale: { type: String },
-    timezone: { type: String },
     email: { type: String },
     phone: { type: Number },
+    locale: { type: String },
+    timezone: { type: String },
     location: {
       ipAddress: { type: String },
       lat: { type: String },
@@ -70,6 +77,12 @@ const userSchema = new Schema({
     bio: { type: String },
     gender: { type: String },
   },
-  socialProfileBlob: {},
+  socialProfileBlob: {
+    line: { type: String },
+    facebook: { type: String },
+    google: { type: String },
+    twitter: { type: String },
+    linkedin: { type: String },
+  },
 });
 export default userSchema;

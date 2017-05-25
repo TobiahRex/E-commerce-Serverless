@@ -33,11 +33,11 @@ function createAuthChannel(auth) {
   });
 }
 
-function* postLoginActions({ profile, idToken }) {
+function* postLoginActions({ profile }) {
   const reduxState = yield take(state => state);
-  const { cleanProfile } = cleanAuth0Profile(reduxState, profile);
+  const { cleanProfile, auth0Id } = cleanAuth0Profile(reduxState, profile);
   const response = yield call(() => api.LoginOrRegister({
-    idToken,
+    auth0Id,
     profile: cleanProfile,
   }));
   const { ok, problem, data } = cleanGQLresponse(response);
