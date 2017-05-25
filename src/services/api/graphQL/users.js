@@ -22,6 +22,7 @@ const createAPI = () => {
 
   const LoginOrRegister = ({
     auth0Id,
+    loginType,
     profile: {
       name,
       pictures,
@@ -34,6 +35,7 @@ const createAPI = () => {
     },
   }) => api.post('', {
     mutation: `LoginOrRegister(
+      loginType: ${loginType}
       auth0Id: ${auth0Id}
       name: ${{ ...name }}}
       pictures: ${{ ...pictures }}

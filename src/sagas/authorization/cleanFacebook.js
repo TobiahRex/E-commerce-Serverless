@@ -61,5 +61,9 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       cleanProfile.shopping.cart.push({ qty, strength, product });
     });
   }
-  return { cleanProfile, auth0Id: auth0Profile.identities[0].user_id };
+  return {
+    cleanProfile,
+    loginType: 'facebook',
+    auth0Id: auth0Profile.identities[0].user_id,
+  };
 };

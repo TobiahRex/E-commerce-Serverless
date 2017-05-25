@@ -80,7 +80,10 @@ const userSchema = new Schema({
     gender: { type: String },
   },
   marketHero: {
-    
+    tags: [{
+      name: { type: String },
+      date: { type: Date },
+    }],
   },
   socialProfileBlob: {
     line: { type: String },

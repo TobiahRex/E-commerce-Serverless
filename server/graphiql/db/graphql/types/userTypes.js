@@ -286,6 +286,10 @@ const mutations = {
         description: 'The Auth0 User ID to cross check with all Mongo User ID\'s to Login and if no match is found, create a new User.',
         type: new NonNull(StringType),
       },
+      loginType: {
+        description: 'The Social Network used to login or register.',
+        type: StringType,
+      },
       name: {
         description: 'The Given, Family, & Display name for the new user.',
         type: new NonNull(

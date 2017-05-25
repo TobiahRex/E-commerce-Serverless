@@ -7,24 +7,27 @@ import db from '../connection';
 userSchema.statics.loginOrRegister = (args) =>
 new Promise((resolve, reject) => {
   const auth0Id = args.auth0Id;
+  const loginType = args.loginType;
   delete args.auth0Id;
+  delete args.loginType;
 
   User.findOne({ 'authentication.auth0Identities.user_id': auth0Id })
   .exec()
   .the((dbUser) => {
     if (!dbUser) return this.registerUser(args);
-    return this.loginUser(dbUser, args);
+    return this.loginUser(loginType, dbUser, args);
   })
   .then(resolve)
   .catch(error => reject({ problem: error }));
 });
 
-userSchema.statics.loginUser = (dbUser, userObj) =>
+userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
 new Promise((resolve) => {
   console.log('Found Existing User.\n');
   dbUser.authentication.lastLogin.push(userObj.authentication.lastLogin.pop());
   dbUser.contactInfo.location = { ...userObj.contactInfo.location };
-  
+  dbUser.shopping.cart = [...userObj.shopping.cart];
+  dbUser.socialProfileBlob[loginType] = []
   dbUser.save({ validateBeforeSave: true })
   .then(resolve);
 });
