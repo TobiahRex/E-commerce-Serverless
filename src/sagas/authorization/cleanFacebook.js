@@ -22,7 +22,10 @@ export default ({ orders, user, geo, locale }, auth0Profile) => {
       }]; break;
       case 'locale': profile.contactInfo.locale = auth0Profile[key]; break;
       case 'timezone': profile.contactInfo.timezone = auth0Profile[key]; break;
-      case 'identities': profile.authentication.auth0Identities = auth0Profile[key]; break;
+      case 'identities': profile.authentication = {
+        auth0Identities: auth0Profile[key],
+        
+      }; break;
       default: break;
     }
     // Geo-Location

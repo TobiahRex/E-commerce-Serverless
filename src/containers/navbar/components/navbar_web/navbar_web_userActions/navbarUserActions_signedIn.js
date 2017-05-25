@@ -11,7 +11,10 @@ class NavbarUserActionsSignedin extends PureComponent {
   }
   static defaultProps = {
     profile: {
-      picture: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/default-user.png',
+      pictures: {
+        small: '',
+        default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/default-user.png',
+      },
     },
   }
   static styles = {
@@ -40,7 +43,9 @@ class NavbarUserActionsSignedin extends PureComponent {
           <Link to={`/user/${123123}`} className="myAccount__link">
             <img
               className="myAccount__link--picture"
-              src={this.props.profile.picture}
+              src={
+                this.props.profile.pictures.small || this.props.profile.pictures.default
+              }
               alt="My Account"
             />
           </Link>

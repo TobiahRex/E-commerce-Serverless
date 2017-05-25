@@ -7,9 +7,13 @@ const userSchema = new Schema({
     last: { type: String },
     display: { type: String },
   },
-  picture: {
+  pictures: {
     small: { type: String },
     large: { type: String },
+    default: {
+      type: String,
+      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
+    },
   },
   authentication: {
     signedUp: { type: Date },
@@ -17,11 +21,8 @@ const userSchema = new Schema({
     createdAt: { type: Date },
     totalLogins: { type: Number },
     lastLogin: { type: Date, default: Date.now },
+    loginDevice: { type: String },
     ageVerified: { type: Boolean, default: false },
-    avatar: {
-      type: String,
-      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
-    },
     auth0Identities: [{
       provider: { type: String },
       user_id: { type: String },
