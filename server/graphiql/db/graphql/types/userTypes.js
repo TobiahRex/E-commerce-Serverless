@@ -9,6 +9,8 @@ import {
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
+import User from '../../mongo/models/user';
+
 const rootType = new ObjectType({
   name: 'RootUserType',
   description: 'A User.',
