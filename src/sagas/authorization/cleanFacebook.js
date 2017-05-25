@@ -49,42 +49,14 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     },
   };
 
-  Object.keys((key) => {
-    switch (key) {
-      case 'contactInfo': profile[key].socialNetworks.push({
-        type: 'Facebook',
-        link: auth0Profile.link,
-      }); break;
-      case 'shopping':
-        if (orders.guest.length) {
-          orders.guest.forEach(({ id, qty, strength }) => {
-            profile[key].cart.push({ qty, strength, product: id });
-          });
-        } break;
-      default: break;
-    }
+  profile.contactInfo.socialNetworks.push({
+    type: 'Facebook',
+    link: auth0Profile.link,
   });
-    // case 'link': profile.contactInfo.socialNetworks = [{
-    //   type: 'Facebook',
-    //   link: auth0Profile[key],
-    //   user_id: auth0Profile.user_id,
-    //   updated_at: auth0Profile.updated_at,
-    // }]; break;
-
-    // case 'identities': profile.authentication = {
-    //   signedUp: new Date(),
-    //   auth0Identities: auth0Profile[key],
-    //   createdAt: auth0Profile.created_at,
-    // }; break;
-    // default: break;
-
-    orders.guest.forEach(({ id, qty, strength }) => {
-      profile.shopping.cart.push({
-        qty,
-        strength,
-        product: id,
-      });
+  if (orders.guest.length) {
+    orders.guest.forEach(({ id: product, qty, strength }) => {
+      profile.shopping.cart.push({ qty, strength, product });
     });
-    //
+  }
   return profile;
 };
