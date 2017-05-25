@@ -1,10 +1,10 @@
 import {
   GraphQLID as MongoID,
   GraphQLInt as IntType,
+  GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
-  GraphQLListType as ListType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
@@ -144,6 +144,7 @@ const rootType = new ObjectType({
           },
           timezone: {
             description: 'The users local Time Zone - Retrieved from Social Login Providers.',
+            type: StringType,
           },
           location: {
             description: 'IP address, lat, long, & country code. for this user from their last login.',
@@ -275,10 +276,14 @@ const rootType = new ObjectType({
   }),
 });
 const mutations = {
-  LoginOrCreateUser: {
+  LoginOrRegister: {
     type: rootType,
     description: 'Create new User.',
     args: {
+      auth0Id: {
+        description: 'The Auth0 User ID to cross check with all Mongo User ID\'s to Login and if no match is found, create a new User.',
+        type: new NonNull(StringType),
+      },
       name: {
         description: 'The Given, Family, & Display name for the new user.',
         type: new NonNull(
@@ -342,7 +347,7 @@ const mutations = {
               description: 'The last time this new user logged in.',
               type: new ListType(
                 new InputObject({
-                  name: 'UserLastLoginObject',
+                  name: 'NewUserLastLoginObject',
                   fields: () => ({
                     date: {
                       description: 'The Date the user last logged in.',
@@ -364,7 +369,7 @@ const mutations = {
               description: 'An array of identity object from Auth0 for each different type of login used by the user.',
               type: new ListType(
                 new InputObject({
-                  name: 'UserAuth0IdentitiesObject',
+                  name: 'NewUserAuth0IdentitiesObject',
                   fields: () => ({
                     provider: {
                       description: 'The Social-Login Provider.',
@@ -392,7 +397,7 @@ const mutations = {
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
         type: new InputObject({
-          name: 'UserContanctInfoObject',
+          name: 'NewUserContanctInfoObject',
           fields: () => ({
             email: {
               description: 'The email for this user.',
@@ -408,11 +413,12 @@ const mutations = {
             },
             timezone: {
               description: 'The users local Time Zone - Retrieved from Social Login Providers.',
+              type: IntType,
             },
             location: {
               description: 'IP address, lat, long, & country code. for this user from their last login.',
               type: new InputObject({
-                name: 'UserGeolocationObject',
+                name: 'NewUserGeolocationObject',
                 fields: () => ({
                   ipAddress: {
                     description: 'IP address this user last used.',
@@ -437,7 +443,7 @@ const mutations = {
               description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
               type: new ListType(
                 new InputObject({
-                  name: 'UserDevicesObject',
+                  name: 'NewUserDevicesObject',
                   fields: () => ({
                     hardware: {
                       description: 'The mobile Phone type.',
@@ -454,7 +460,7 @@ const mutations = {
             socialNetworks: {
               description: 'An array of Social Networks used by the user + their respective account links.',
               type: new InputObject({
-                name: 'UserSocialNetworkObject',
+                name: 'NewUserSocialNetworkObject',
                 fields: () => ({
                   name: {
                     description: 'The name of the Social Network.',
@@ -473,12 +479,12 @@ const mutations = {
       shopping: {
         description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
         type: new InputObject({
-          name: 'UserShoppingObject',
+          name: 'NewUserShoppingObject',
           fields: () => ({
             cart: {
               description: 'The Users shopping cart.',
               type: new InputObject({
-                name: 'UsersCartObject',
+                name: 'NewUsersCartObject',
                 fields: () => ({
                   qty: {
                     description: 'The quantity of items of this product.',

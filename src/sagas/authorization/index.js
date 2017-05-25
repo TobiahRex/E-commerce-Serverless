@@ -15,9 +15,9 @@ const api = userApi.createAPI();
 
 function createAuthChannel(auth) {
   return eventChannel((emitter) => {
-    const loggedInHandler = ({ profile, idToken }) => emitter({
+    const loggedInHandler = ({ profile }) => emitter({
       type: 'loggedIn',
-      payload: { profile, idToken },
+      payload: { profile },
     });
     const loginFailureHandler = error => emitter({
       type: 'error',

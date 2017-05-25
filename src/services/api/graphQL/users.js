@@ -22,18 +22,32 @@ const createAPI = () => {
 
   const LoginOrRegister = ({
     auth0Id,
-    profile,
+    profile: {
+      name,
+      pictures,
+      authentication,
+      contactInfo,
+      shopping,
+      permissions,
+      userStory,
+      socialProfileBlob,
+    },
   }) => api.post('', {
-    mutation: `createUser(
-      id: ${id}
+    mutation: `LoginOrRegister(
+      auth0Id: ${auth0Id}
       name: {
         first: ${name.first}
         last: ${name.last}
         display: ${name.display}
       },
+      pictures: {
+        small: ${pictures.small},
+        large: ${pictures.large},
+      },
       authentication: {
-        lastLogin: ${authentication.lastLogin}
         signedUp: ${authentication.signedUp}
+        password: ${authentication.password}
+        lastLogin: ${[...authentication.lastlogin]}
         registered: ${authentication.registered}
         avatar: ${authentication.avatar}
       },
