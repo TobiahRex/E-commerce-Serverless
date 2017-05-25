@@ -7,6 +7,10 @@ const userSchema = new Schema({
     last: { type: String },
     display: { type: String },
   },
+  picture: {
+    small: { type: String },
+    large: { type: String },
+  },
   authentication: {
     lastLogin: { type: Date },
     signedUp: { type: Date },
@@ -26,6 +30,10 @@ const userSchema = new Schema({
       long: { type: String },
       country: { type: String },
     },
+    devices: [{
+      hardware: { type: String },
+      os: { type: String },
+    }],
   },
   shopping: {
     cart: [{

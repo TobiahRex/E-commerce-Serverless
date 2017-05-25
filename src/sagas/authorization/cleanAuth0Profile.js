@@ -11,6 +11,10 @@ export default (auth0Profile, auth0LoginType) => {
           case 'name': profile.name.display = auth0Profile[key]; break;
           case 'given_name': profile.name.first = auth0Profile[key]; break;
           case 'family_name': profile.name.last = auth0Profile[key]; break;
+          case 'picture': profile.picture.small = auth0Profile[key]; break;
+          case 'picture_large': profile.picture.large = auth0Profile[key]; break;
+          case 'age_range': profile.userStory.age = auth0Profile[key].min; break;
+          case ''
         }
       })
     } break;
