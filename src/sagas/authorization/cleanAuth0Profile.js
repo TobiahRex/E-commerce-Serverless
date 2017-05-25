@@ -1,12 +1,15 @@
-export default (reduxState, auth0Profile) => {
-  let profile = {};
+export default ({ user, geo, orders }, auth0Profile) => {
+  let profile = {
+    shopping: {
+      cart: [],
+    }
+  };
   switch (reduxState.user.socialLoginType) {
     case 'loginWithLine': {
 
     } break;
     case 'loginWithFacebook': {
-      Object.keys(auth0Profile)
-      .map((key) => {
+      Object.keys(auth0Profile).forEach((key) => {
         switch (key) {
           case 'name': profile.name.display = auth0Profile[key]; break;
           case 'given_name': profile.name.first = auth0Profile[key]; break;
@@ -26,7 +29,20 @@ export default (reduxState, auth0Profile) => {
           case 'identities': profile.authentication.auth0Identities = auth0Profile[key]; break;
           default: break;
         }
+        // add Age Verification
+        profile.authentication.ageVerified = user.ageVerified;
+
+        // add guest orders (if any) to the request object so as to transfer items to the new/dbUser's active cart.
+        orders.guest.forEach(({ id, qty, strength }) => {
+          profile.shopping.cart.push({
+            qty,
+            strength,
+            product: id,
+          });
+        });
+        //
       });
+      return profile;
     } break;
     case 'loginWithGoogle': {
 

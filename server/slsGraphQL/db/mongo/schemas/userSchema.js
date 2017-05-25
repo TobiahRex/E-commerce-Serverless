@@ -2,7 +2,6 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const userSchema = new Schema({
-  createdAt: { type: Date },
   name: {
     first: { type: String },
     last: { type: String },
@@ -13,11 +12,12 @@ const userSchema = new Schema({
     large: { type: String },
   },
   authentication: {
-    lastLogin: { type: Date, default: Date.now },
-    totalLogins: { type: Number },
     signedUp: { type: Date },
-    registered: { type: Date },
     password: { type: String },
+    createdAt: { type: Date },
+    totalLogins: { type: Number },
+    lastLogin: { type: Date, default: Date.now },
+    ageVerified: { type: Boolean, default: false },
     avatar: {
       type: String,
       default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
