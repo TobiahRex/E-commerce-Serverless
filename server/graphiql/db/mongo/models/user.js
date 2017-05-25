@@ -12,16 +12,19 @@ new Promise((resolve, reject) => {
   .exec()
   .the((dbUser) => {
     if (!dbUser) return this.registerUser(args);
-    return this.loginUser(dbUser);
+    return this.loginUser(dbUser, args);
   })
   .then(resolve)
   .catch(error => reject({ problem: error }));
 });
 
-userSchema.statics.loginUser = (userObj) =>
-new Promise((resolve, reject) => {
+userSchema.statics.loginUser = (dbUser, userObj) =>
+new Promise((resolve) => {
   console.log('Found Existing User.\n');
+  dbUser.authentication.lastLogin.push(userObj.authentication.lastLogin.pop());
 
+  dbUser.save({ validateBeforeSave: true })
+  .then(resolve);
 });
 
 userSchema.statics.registerUser = userObj =>
@@ -93,4 +96,10 @@ new Promise((resolve, reject) => {
   });
 });
 const User = db.model('User', userSchema);
+
+userSchema.statics.updateMarketHero = (dbUser) =>
+new Promise((resolve, reject) => {
+  
+});
+
 export default User;
