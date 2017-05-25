@@ -1,6 +1,6 @@
-export default (auth0Profile, auth0LoginType) => {
+export default (reduxState, auth0Profile) => {
   let profile = {};
-  switch (auth0LoginType) {
+  switch (reduxState.user.socialLoginType) {
     case 'loginWithLine': {
 
     } break;
@@ -23,10 +23,10 @@ export default (auth0Profile, auth0LoginType) => {
           }]; break;
           case 'locale': profile.contactInfo.locale = auth0Profile[key]; break;
           case 'timezone': profile.contactInfo.timezone = auth0Profile[key]; break;
-          case 'updated_at': profile.contact
-          // case 'user_id': profile.contactInfo.
+          case 'identities': profile.authentication.auth0Identities = auth0Profile[key]; break;
+          default: break;
         }
-      })
+      });
     } break;
     case 'loginWithGoogle': {
 

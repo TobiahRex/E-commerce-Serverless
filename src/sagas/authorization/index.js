@@ -9,6 +9,7 @@ import userActions from '../../redux/user';
 import sessionActions from '../../redux/session';
 import userApi from '../../services/api/graphQL/users';
 import cleanGQLresponse from '../tools/cleanGQLresponse';
+import cleanAuth0Profile from './cleanAuth0Profile';
 
 const api = userApi.createAPI();
 
@@ -33,9 +34,12 @@ function createAuthChannel(auth) {
 }
 
 function* postLoginActions({ profile, idToken }) {
-
-  const response = yield call(() => api.LoginOrRegister({ profile, idToken, loginType }));
-
+  const reduxState = yield take(state => state);
+  const { cleanProfile } = cleanAuth0Profile(reduxState, profile);
+  const response = yield call(() => api.LoginOrRegister({
+    idToken,
+    profile: cleanProfile,
+  }));
   const { ok, problem, data } = cleanGQLresponse(response);
   console.log('%cpostLoginActions @ saga/authorization\ndata', 'background:cyan;', data);
 
