@@ -50,16 +50,40 @@ const createAPI = () => {
         last
         display
       }
+      pictures {
+        small
+        large
+        default
+      }
       authentication {
-        lastLogin
         signedUp
-        registered
         password
-        avatar
+        createdAt
+        totalLogins
+        lastLogin
+        ageVerified
+        auth0Identities
       }
       contactInfo {
         email
         phone
+        locale
+        timezone
+        location: {
+          ipAddress
+          lat
+          long
+          country
+        },
+        devices
+        socialNetworks
+      }
+      permissions {
+        role
+      }
+      shopping {
+        cart
+        transactions
       }
       permissions {
         role
@@ -70,10 +94,14 @@ const createAPI = () => {
         bio
         gender
       }
+      socialProfile {
+        line
+        facebook
+        google
+        twitter
+        linkedin
+      }
     }`,
-    variables: {
-
-    },
   });
 
   return {
