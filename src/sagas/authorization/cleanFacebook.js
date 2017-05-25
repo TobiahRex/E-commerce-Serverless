@@ -23,8 +23,9 @@ export default ({ orders, user, geo, locale }, auth0Profile) => {
       case 'locale': profile.contactInfo.locale = auth0Profile[key]; break;
       case 'timezone': profile.contactInfo.timezone = auth0Profile[key]; break;
       case 'identities': profile.authentication = {
+        signedUp: new Date(),
         auth0Identities: auth0Profile[key],
-        
+        createdAt: auth0Profile.created_at,
       }; break;
       default: break;
     }
