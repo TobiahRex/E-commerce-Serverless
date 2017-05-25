@@ -22,6 +22,7 @@ const userSchema = new Schema({
     },
   },
   contactInfo: {
+    locale: { type: String },
     email: { type: String },
     phone: { type: Number },
     location: {
@@ -33,6 +34,10 @@ const userSchema = new Schema({
     devices: [{
       hardware: { type: String },
       os: { type: String },
+    }],
+    socialNetworks: [{
+      type: { type: String },
+      link: { type: String },
     }],
   },
   shopping: {

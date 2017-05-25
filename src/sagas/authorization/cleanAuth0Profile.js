@@ -14,7 +14,12 @@ export default (auth0Profile, auth0LoginType) => {
           case 'picture': profile.picture.small = auth0Profile[key]; break;
           case 'picture_large': profile.picture.large = auth0Profile[key]; break;
           case 'age_range': profile.userStory.age = auth0Profile[key].min; break;
-          case ''
+          case 'devices': profile.contactInfo.devices = auth0Profile[key]; break;
+          case 'link': profile.contactInfo.socialNetworks = [{
+            type: 'Facebook',
+            link: auth0Profile[key],
+          }]; break;
+          case 'locale': 
         }
       })
     } break;
