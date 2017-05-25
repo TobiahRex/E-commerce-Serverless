@@ -44,25 +44,26 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       bio: '',
       gender: auth0Profile.gender,
     },
-    socialProfileBlob: auth0Profile,
+    socialProfileBlob: {
+      facebook: JSON.stringify(auth0Profile, null, 2),
+    },
   };
 
-    Object.keys((key) => {
-      switch (key) {
-        case 'contactInfo': profile[key].socialNetworks.push({
-          type: 'Facebook',
-          link: auth0Profile.link,
-        }); break;
-        case 'shopping': {
-          if (orders.guest.length) orders.guest
-          .forEach(({ id, qty, strength }) => {
-            profile[key].cart.push({ id, qty, strength });
-          })
-        }
-      }
-    })
-    case 'devices': profile.contactInfo.devices = auth0Profile[key]; break;
-
+  Object.keys((key) => {
+    switch (key) {
+      case 'contactInfo': profile[key].socialNetworks.push({
+        type: 'Facebook',
+        link: auth0Profile.link,
+      }); break;
+      case 'shopping':
+        if (orders.guest.length) {
+          orders.guest.forEach(({ id, qty, strength }) => {
+            profile[key].cart.push({ qty, strength, product: id });
+          });
+        } break;
+      default: break;
+    }
+  });
     // case 'link': profile.contactInfo.socialNetworks = [{
     //   type: 'Facebook',
     //   link: auth0Profile[key],

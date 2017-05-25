@@ -77,6 +77,12 @@ const userSchema = new Schema({
     bio: { type: String },
     gender: { type: String },
   },
-  socialProfileBlob: {},
+  socialProfileBlob: {
+    line: { type: String },
+    facebook: { type: String },
+    google: { type: String },
+    twitter: { type: String },
+    linkedin: { type: String },
+  },
 });
 export default userSchema;
