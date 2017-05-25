@@ -96,6 +96,17 @@ const rootType = new ObjectType({
             description: 'Verification if the user is at least 20 years of age.',
             type: BoolType,
           },
+          auth0Identities: {
+            description: 'An array of identity object from Auth0 for each different type of login used by the user.',
+            type: new ListType(
+              new ObjectType({
+                name: 'UserAuth0IdentitiesObject',
+                fields: () => ({
+                  ``
+                }),
+              }),
+            ),
+          },
           loginDevice: {
             description: 'The type of device the user logged in from.',
           },
