@@ -3,8 +3,12 @@ import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 import db from '../connection';
 
-userSchema.statics.createUser = userObj =>
+userSchema.statics.loginOrRegister = (args) =>
 new Promise((resolve, reject) => {
+  const auth0Id = Object.assign(args.auth0Id);
+  delete args.auth0Id;
+  
+
   bbPromise.fromCallback(cb => User.create(userObj, cb))
   .then((newUser) => {
     console.log('New User created!');

@@ -42,7 +42,7 @@ const createAPI = () => {
       shopping: ${{ ...shopping }}
       permissions: ${{ ...permissions }}
       userStory: ${{ ...userStory }}
-      socialProfileBlob$: ${{ ...socialProfileBlob }}
+      socialProfileBlob: ${{ ...socialProfileBlob }}
     ) {
       _id
       name {

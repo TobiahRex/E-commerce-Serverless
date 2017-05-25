@@ -573,9 +573,9 @@ const mutations = {
             },
           }),
         }),
-      }
+      },
     },
-    resolve: (_, args) => User.createUser(args),
+    resolve: (_, args) => User.loginOrRegister(args),
   },
   AddToMemberCart: {
     type: rootType,
