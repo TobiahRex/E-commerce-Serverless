@@ -5,19 +5,36 @@ import db from '../connection';
 
 userSchema.statics.loginOrRegister = (args) =>
 new Promise((resolve, reject) => {
-  const auth0Id = Object.assign(args.auth0Id);
+  const auth0Id = args.auth0Id;
   delete args.auth0Id;
-  
 
+  User.findOne({ 'authentication.auth0Identities.user_id': auth0Id })
+  .exec()
+  .the((dbUser) => {
+    if (!dbUser) return this.registerUser(args);
+    return this.loginUser(dbUser);
+  })
+  .then(resolve)
+  .catch(error => reject({ problem: error }));
+});
+
+userSchema.statics.loginUser = (userObj) =>
+new Promise((resolve, reject) => {
+  console.log('Found Existing User.\n');
+
+});
+
+userSchema.statics.registerUser = userObj =>
+new Promise((resolve, reject) => {
   bbPromise.fromCallback(cb => User.create(userObj, cb))
   .then((newUser) => {
-    console.log('New User created!');
-    resolve(newUser);
+    console.log('New User created!: ', newUser._id, '\nName: ', newUser.name.display);
+    resolve(userObj);
   })
-  .catch(error => reject({
-    problem: `Could not create new User with this user object: ${userObj}
-    Mongo Error: ${error}`,
-  }));
+  .catch(error => reject(`
+    Could not create new User with this user object:\n${userObj}\n
+    Mongo Error: ${error}
+  `));
 });
 
 userSchema.statics.addToMemberCart = ({ userId, qty, strength, product }) =>

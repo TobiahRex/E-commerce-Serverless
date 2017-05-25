@@ -79,6 +79,9 @@ const userSchema = new Schema({
     bio: { type: String },
     gender: { type: String },
   },
+  marketHero: {
+    
+  },
   socialProfileBlob: {
     line: { type: String },
     facebook: { type: String },
