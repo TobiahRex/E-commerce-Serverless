@@ -1,5 +1,5 @@
 export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
-  const cleanProfile = {
+  const profile = {
     name: {
       first: auth0Profile.given_name,
       last: auth0Profile.family_name,
@@ -14,30 +14,30 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       password: '',
       createdAt: auth0Profile.created_at,
       totalLogins: 1,
-      logins: [],
       ageVerified: user.ageVerified,
-      auth0Identities: [...auth0Profile.identities],
     },
+    authenticationLogins: [],
+    authenticationAuth0Identities: [...auth0Profile.identities],
     contactInfo: {
       email: '',
       phone: '',
       locale: auth0Profile.locale,
       timezone: auth0Profile.timezone,
-      location: {
-        ipAddress: geo.ipAddress,
-        lat: geo.latLong.split(',')[0],
-        long: geo.latLong.split(',')[1],
-        country: locale.country,
-      },
-      devices: [...auth0Profile.devices],
-      socialNetworks: [],
     },
+    contactInfolocation: {
+      ipAddress: geo.ipAddress,
+      lat: geo.latLong.split(',')[0],
+      long: geo.latLong.split(',')[1],
+      country: locale.country,
+    },
+    contactInfoDevices: [...auth0Profile.devices],
+    contactInfoSocialNetworks: [],
     shopping: {
-      cart: [],
       transactions: [],
     },
+    shoppingCart: [],
     permissions: {
-      role: ['user'],
+      role: 'user',
     },
     userStory: {
       age: auth0Profile.age_range,
@@ -50,21 +50,21 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     },
   };
 
-  cleanProfile.contactInfo.socialNetworks.push({
+  profile.contactInfo.socialNetworks.push({
     name: 'Facebook',
     link: auth0Profile.link,
   });
-  cleanProfile.authentication.logins.push({
+  profile.authentication.logins.push({
     date: new Date(),
     loginDevice: mobile.mobileType || 'computer',
   });
   if (orders.guest && orders.guest.length) {
     orders.guest.forEach(({ id: product, qty, strength }) => {
-      cleanProfile.shopping.cart.push({ qty, strength, product });
+      profile.shopping.cart.push({ qty, strength, product });
     });
   }
   return {
-    cleanProfile,
+    profile,
     loginType: 'facebook',
     auth0Id: auth0Profile.identities[0].user_id,
   };
