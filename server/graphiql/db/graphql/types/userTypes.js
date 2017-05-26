@@ -23,7 +23,7 @@ const rootType = new ObjectType({
     name: {
       description: 'The Given, Family, & Display name for the user.',
       type: new ObjectType({
-        name: 'UserNameObject',
+        name: 'UserName',
         fields: () => ({
           first: {
             description: 'The first name of the user.',
@@ -43,7 +43,7 @@ const rootType = new ObjectType({
     pictures: {
       description: 'Pictures of the user in different sizes.',
       type: new ObjectType({
-        name: 'UserPictureObject',
+        name: 'UserPicture',
         fields: () => ({
           small: {
             description: 'Small user image used for the Navbar avatar.',
@@ -63,7 +63,7 @@ const rootType = new ObjectType({
     authentication: {
       description: 'Authentication information for user.',
       type: new ObjectType({
-        name: 'UserAuthenticationObject',
+        name: 'UserAuthentication',
         fields: () => ({
           signedUp: {
             description: 'The Date this user first signed up for newsletters.',
@@ -85,7 +85,7 @@ const rootType = new ObjectType({
             description: 'The last time this user logged in.',
             type: new ListType(
               new ObjectType({
-                name: 'UserLastLoginObject',
+                name: 'UserLastLogin',
                 fields: () => ({
                   date: {
                     description: 'The Date the user last logged in.',
@@ -107,7 +107,7 @@ const rootType = new ObjectType({
             description: 'An array of identity object from Auth0 for each different type of login used by the user.',
             type: new ListType(
               new ObjectType({
-                name: 'UserAuth0IdentitiesObject',
+                name: 'UserAuth0Identities',
                 fields: () => ({
                   provider: {
                     description: 'The Social-Login Provider.',
@@ -135,7 +135,7 @@ const rootType = new ObjectType({
     contactInfo: {
       description: 'Contact info & GeoLocation info for user.',
       type: new ObjectType({
-        name: 'UserContanctInfoObject',
+        name: 'UserContanctInfo',
         fields: () => ({
           email: {
             description: 'The email for this user.',
@@ -156,7 +156,7 @@ const rootType = new ObjectType({
           location: {
             description: 'IP address, lat, long, & country code. for this user from their last login.',
             type: new ObjectType({
-              name: 'UserGeolocationObject',
+              name: 'UserGeolocation',
               fields: () => ({
                 ipAddress: {
                   description: 'IP address this user last used.',
@@ -181,7 +181,7 @@ const rootType = new ObjectType({
             description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
             type: new ListType(
               new ObjectType({
-                name: 'UserDevicesObject',
+                name: 'UserDevices',
                 fields: () => ({
                   hardware: {
                     description: 'The mobile Phone type.',
@@ -199,7 +199,7 @@ const rootType = new ObjectType({
             description: 'An array of Social Networks used by the user + their respective account links.',
             type: new ListType(
               new ObjectType({
-                name: 'UserSocialNetworkObject',
+                name: 'UserSocialNetwork',
                 fields: () => ({
                   name: {
                     description: 'The name of the Social Network.',
@@ -219,13 +219,13 @@ const rootType = new ObjectType({
     shopping: {
       description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
       type: new ObjectType({
-        name: 'UserShoppingObject',
+        name: 'UserShopping',
         fields: () => ({
           cart: {
             description: 'The Users shopping cart.',
             type: new ListType(
               new ObjectType({
-                name: 'UsersCartObject',
+                name: 'UserCart',
                 fields: () => ({
                   qty: {
                     description: 'The quantity of items of this product.',
@@ -253,7 +253,7 @@ const rootType = new ObjectType({
     permissions: {
       description: 'Authorization permissions granted for user.',
       type: new ObjectType({
-        name: 'UserPermissionsObject',
+        name: 'UserPermissions',
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
@@ -263,9 +263,9 @@ const rootType = new ObjectType({
       }),
     },
     userStory: {
-      description: 'Object: Bio information for new user.',
+      description: 'Bio information for new user.',
       type: new ObjectType({
-        name: 'UserInputStoryObject',
+        name: 'UserInputStory',
         fields: () => ({
           age: {
             description: 'The age of this new user.',
