@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 
@@ -13,8 +13,8 @@ export default (db) => {
     User.findOne({ 'authentication.auth0Identities.user_id': auth0Id })
     .exec()
     .then((dbUser) => {
-      if (!dbUser) return this.registerUser(args);
-      return this.loginUser(loginType, dbUser, args);
+      if (!dbUser) return User.registerUser(args);
+      return User.loginUser(loginType, dbUser, args);
     })
     .then(resolve)
     .catch(error => reject({ problem: error }));
@@ -24,9 +24,9 @@ export default (db) => {
   new Promise((resolve) => {
     console.log('Found Existing User.\n');
     dbUser.authentication.totalLogins += 1;
-    dbUser.authentication.lastLogin.push(userObj.authentication.lastLogin.pop());
-    dbUser.contactInfo.location = { ...userObj.contactInfo.location };
-    dbUser.shopping.cart = [...userObj.shopping.cart];
+    dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
+    dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
+    dbUser.shopping.cart = [...userObj.shoppingCart];
     dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
 
     dbUser.save({ validateBeforeSave: true })
@@ -35,15 +35,50 @@ export default (db) => {
 
   userSchema.statics.registerUser = userObj =>
   new Promise((resolve, reject) => {
-    bbPromise.fromCallback(cb => User.create(userObj, cb))
+    const {
+      name,
+      pictures,
+      authentication,
+      authenticationLogins,
+      authenticationAuth0Identities,
+      contactInfo,
+      contactInfoLocation,
+      contactInfoDevices,
+      contactInfoSocialNetworks,
+      shopping,
+      shoppingCart,
+      permissions,
+      userStory,
+      socialProfileBlob,
+    } = userObj;
+
+    bbPromise.fromCallback(cb => User.create({
+      name,
+      pictures,
+      authentication: {
+        ...authentication,
+        logins: [...authenticationLogins],
+        auth0Identities: [...authenticationAuth0Identities],
+      },
+      contactInfo: {
+        ...contactInfo,
+        location: { ...contactInfoLocation },
+        devices: [...contactInfoDevices],
+        socialNetworks: [...contactInfoSocialNetworks],
+      },
+      shopping: {
+        ...shopping,
+        cart: [...shoppingCart],
+      },
+      permissions,
+      userStory,
+      socialProfileBlob,
+    }, cb))
     .then((newUser) => {
-      console.log('New User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
-      resolve(userObj);
+      console.log('\nNew User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
+      resolve(newUser);
     })
-    .catch(error => reject(`
-      Could not create new User with this user object:\n${userObj}\n
-      Mongo Error: ${error}
-    `));
+    .catch(reject);
   });
 
   userSchema.statics.addToMemberCart = ({ userId, qty, strength, product }) =>

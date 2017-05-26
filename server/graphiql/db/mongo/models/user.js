@@ -24,9 +24,9 @@ userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
 new Promise((resolve) => {
   console.log('Found Existing User.\n');
   dbUser.authentication.totalLogins += 1;
-  dbUser.authentication.logins.push(userObj.authentication.logins.pop());
-  dbUser.contactInfo.location = { ...userObj.contactInfo.location };
-  dbUser.shopping.cart = [...userObj.shopping.cart];
+  dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
+  dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
+  dbUser.shopping.cart = [...userObj.shoppingCart];
   dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
 
   dbUser.save({ validateBeforeSave: true })
@@ -57,18 +57,18 @@ new Promise((resolve, reject) => {
     pictures,
     authentication: {
       ...authentication,
-      logins: { ...authenticationLogins },
-      auth0Identities: { ...authenticationAuth0Identities },
+      logins: [...authenticationLogins],
+      auth0Identities: [...authenticationAuth0Identities],
     },
     contactInfo: {
       ...contactInfo,
       location: { ...contactInfoLocation },
-      devices: { ...contactInfoDevices },
-      socialNetworks: { ...contactInfoSocialNetworks },
+      devices: [...contactInfoDevices],
+      socialNetworks: [...contactInfoSocialNetworks],
     },
     shopping: {
       ...shopping,
-      cart: { ...shoppingCart },
+      cart: [...shoppingCart],
     },
     permissions,
     userStory,

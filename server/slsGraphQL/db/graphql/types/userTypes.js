@@ -21,7 +21,7 @@ const rootType = new ObjectType({
     name: {
       description: 'The Given, Family, & Display name for the user.',
       type: new ObjectType({
-        name: 'UserNameObject',
+        name: 'UserName',
         fields: () => ({
           first: {
             description: 'The first name of the user.',
@@ -41,7 +41,7 @@ const rootType = new ObjectType({
     pictures: {
       description: 'Pictures of the user in different sizes.',
       type: new ObjectType({
-        name: 'UserPictureObject',
+        name: 'UserPicture',
         fields: () => ({
           small: {
             description: 'Small user image used for the Navbar avatar.',
@@ -51,13 +51,17 @@ const rootType = new ObjectType({
             description: 'Large user image used for the user dashboard.',
             type: StringType,
           },
+          default: {
+            description: 'The default user avatar if none is supplied.',
+            type: StringType,
+          },
         }),
       }),
     },
     authentication: {
       description: 'Authentication information for user.',
       type: new ObjectType({
-        name: 'UserAuthenticationObject',
+        name: 'UserAuthentication',
         fields: () => ({
           signedUp: {
             description: 'The Date this user first signed up for newsletters.',
@@ -75,11 +79,11 @@ const rootType = new ObjectType({
             description: 'The number of times this user has logged in.',
             type: IntType,
           },
-          lastLogin: {
+          logins: {
             description: 'The last time this user logged in.',
             type: new ListType(
               new ObjectType({
-                name: 'UserLastLoginObject',
+                name: 'UserLastLogin',
                 fields: () => ({
                   date: {
                     description: 'The Date the user last logged in.',
@@ -101,7 +105,7 @@ const rootType = new ObjectType({
             description: 'An array of identity object from Auth0 for each different type of login used by the user.',
             type: new ListType(
               new ObjectType({
-                name: 'UserAuth0IdentitiesObject',
+                name: 'UserAuth0Identities',
                 fields: () => ({
                   provider: {
                     description: 'The Social-Login Provider.',
@@ -129,7 +133,7 @@ const rootType = new ObjectType({
     contactInfo: {
       description: 'Contact info & GeoLocation info for user.',
       type: new ObjectType({
-        name: 'UserContanctInfoObject',
+        name: 'UserContanctInfo',
         fields: () => ({
           email: {
             description: 'The email for this user.',
@@ -150,7 +154,7 @@ const rootType = new ObjectType({
           location: {
             description: 'IP address, lat, long, & country code. for this user from their last login.',
             type: new ObjectType({
-              name: 'UserGeolocationObject',
+              name: 'UserGeolocation',
               fields: () => ({
                 ipAddress: {
                   description: 'IP address this user last used.',
@@ -175,7 +179,7 @@ const rootType = new ObjectType({
             description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
             type: new ListType(
               new ObjectType({
-                name: 'UserDevicesObject',
+                name: 'UserDevices',
                 fields: () => ({
                   hardware: {
                     description: 'The mobile Phone type.',
@@ -193,7 +197,7 @@ const rootType = new ObjectType({
             description: 'An array of Social Networks used by the user + their respective account links.',
             type: new ListType(
               new ObjectType({
-                name: 'UserSocialNetworkObject',
+                name: 'UserSocialNetwork',
                 fields: () => ({
                   name: {
                     description: 'The name of the Social Network.',
@@ -213,13 +217,13 @@ const rootType = new ObjectType({
     shopping: {
       description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
       type: new ObjectType({
-        name: 'UserShoppingObject',
+        name: 'UserShopping',
         fields: () => ({
           cart: {
             description: 'The Users shopping cart.',
             type: new ListType(
               new ObjectType({
-                name: 'UsersCartObject',
+                name: 'UserCart',
                 fields: () => ({
                   qty: {
                     description: 'The quantity of items of this product.',
@@ -247,44 +251,19 @@ const rootType = new ObjectType({
     permissions: {
       description: 'Authorization permissions granted for user.',
       type: new ObjectType({
-        name: 'UserPermissionsObject',
+        name: 'UserPermissions',
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
-            type: new ListType(
-              new EnumType({
-                name: 'UserPermissions',
-                values: {
-                  user: {
-                    description: 'User has basic "User" permissions.',
-                    value: 'user',
-                  },
-                  admin: {
-                    description: 'User has "Administrator" permissions.',
-                    value: 'admin',
-                  },
-                  devAdmin: {
-                    description: 'User has "Developer Administrator" permissions.',
-                    value: 'devAdmin',
-                  },
-                  wholeseller: {
-                    description: 'The User has "Whole-Seller" permissions.',
-                    value: 'wholeseller',
-                  },
-                  distributor: {
-                    description: 'The User has "Distributor" permissions.',
-                  },
-                },
-              }),
-            ),
+            type: StringType,
           },
         }),
       }),
     },
     userStory: {
-      description: 'Object: Bio information for new user.',
+      description: 'Bio information for new user.',
       type: new ObjectType({
-        name: 'UserInputStoryObject',
+        name: 'UserInputStory',
         fields: () => ({
           age: {
             description: 'The age of this new user.',
@@ -372,13 +351,13 @@ const mutations = {
       },
       loginType: {
         description: 'The Social Network used to login or register.',
-        type: StringType,
+        type: new NonNull(StringType),
       },
       name: {
         description: 'The Given, Family, & Display name for the new user.',
         type: new NonNull(
           new InputObject({
-            name: 'NewUserNameObject',
+            name: 'UserNameInput',
             fields: () => ({
               first: {
                 description: 'The first name of the new user.',
@@ -398,25 +377,27 @@ const mutations = {
       },
       pictures: {
         description: 'Pictures of the user in different sizes.',
-        type: new InputObject({
-          name: 'NewUserPictureObject',
-          fields: () => ({
-            small: {
-              description: 'Small user image used for the Navbar avatar.',
-              type: StringType,
-            },
-            large: {
-              description: 'Large user image used for the user dashboard.',
-              type: StringType,
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserPictureInput',
+            fields: () => ({
+              small: {
+                description: 'Small user image used for the Navbar avatar.',
+                type: StringType,
+              },
+              large: {
+                description: 'Large user image used for the user dashboard.',
+                type: StringType,
+              },
+            }),
           }),
-        }),
+        ),
       },
       authentication: {
         description: 'Authentication information for user.',
         type: new NonNull(
           new InputObject({
-            name: 'NewUserAuthenticationObject',
+            name: 'UserAuthenticationInput',
             fields: () => ({
               signedUp: {
                 description: 'The Date this new user first signed up for newsletters.',
@@ -434,226 +415,209 @@ const mutations = {
                 description: 'The number of times this new user has logged in.',
                 type: IntType,
               },
-              lastLogin: {
-                description: 'The last time this new user logged in.',
-                type: new NonNull(
-                  new ListType(
-                    new InputObject({
-                      name: 'NewUserLastLoginObject',
-                      fields: () => ({
-                        date: {
-                          description: 'The Date the user last logged in.',
-                          type: StringType,
-                        },
-                        device: {
-                          description: 'The type of device the user logged in with.',
-                          type: StringType,
-                        },
-                      }),
-                    }),
-                  ),
-                ),
-              },
               ageVerified: {
                 description: 'Verification if the user is at least 20 years of age.',
                 type: new NonNull(BoolType),
-              },
-              auth0Identities: {
-                description: 'An array of identity object from Auth0 for each different type of login used by the user.',
-                type: new NonNull(
-                  new ListType(
-                    new InputObject({
-                      name: 'NewUserAuth0IdentitiesObject',
-                      fields: () => ({
-                        provider: {
-                          description: 'The Social-Login Provider.',
-                          type: StringType,
-                        },
-                        user_id: {
-                          description: 'The Auth0 User ID for this login type.',
-                          type: StringType,
-                        },
-                        connection: {
-                          description: 'The type of Auth0 connection that was used.',
-                          type: StringType,
-                        },
-                        isSocial: {
-                          description: 'Verifies that a Social Login type was used.',
-                          type: BoolType,
-                        },
-                      }),
-                    }),
-                  ),
-                ),
               },
             }),
           }),
         ),
       },
+      authenticationLogins: {
+        description: 'The last time this new user logged in.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserLastLoginInput',
+              fields: () => ({
+                date: {
+                  description: 'The Date the user last logged in.',
+                  type: StringType,
+                },
+                device: {
+                  description: 'The type of device the user logged in with.',
+                  type: StringType,
+                },
+              }),
+            }),
+          ),
+        ),
+      },
+      authenticationAuth0Identities: {
+        description: 'An array of identity object from Auth0 for each different type of login used by the user.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserAuth0IdentitiesInput',
+              fields: () => ({
+                provider: {
+                  description: 'The Social-Login Provider.',
+                  type: StringType,
+                },
+                user_id: {
+                  description: 'The Auth0 User ID for this login type.',
+                  type: StringType,
+                },
+                connection: {
+                  description: 'The type of Auth0 connection that was used.',
+                  type: StringType,
+                },
+                isSocial: {
+                  description: 'Verifies that a Social Login type was used.',
+                  type: BoolType,
+                },
+              }),
+            }),
+          ),
+        ),
+      },
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
-        type: new InputObject({
-          name: 'NewUserContanctInfoObject',
-          fields: () => ({
-            email: {
-              description: 'The email for this user.',
-              type: StringType,
-            },
-            phone: {
-              description: 'The phone number for this user.',
-              type: StringType,
-            },
-            locale: {
-              description: 'The users language of choice as determined by the Social Login provider or their preference.',
-              type: StringType,
-            },
-            timezone: {
-              description: 'The users local Time Zone - Retrieved from Social Login Providers.',
-              type: IntType,
-            },
-            location: {
-              description: 'IP address, lat, long, & country code. for this user from their last login.',
-              type: new NonNull(
-                new InputObject({
-                  name: 'NewUserGeolocationObject',
-                  fields: () => ({
-                    ipAddress: {
-                      description: 'IP address this user last used.',
-                      type: new NonNull(StringType),
-                    },
-                    lat: {
-                      description: 'Latitude coord. this user last logged in from.',
-                      type: new NonNull(StringType),
-                    },
-                    long: {
-                      description: 'Longitude coord. this user last logged in from.',
-                      type: new NonNull(StringType),
-                    },
-                    country: {
-                      description: 'Country code this user last logged in from.',
-                      type: new NonNull(StringType),
-                    },
-                  }),
-                }),
-              ),
-            },
-            devices: {
-              description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
-              type: new ListType(
-                new InputObject({
-                  name: 'NewUserDevicesObject',
-                  fields: () => ({
-                    hardware: {
-                      description: 'The mobile Phone type.',
-                      type: StringType,
-                    },
-                    os: {
-                      description: 'The operating system for the mobile device.',
-                      type: StringType,
-                    },
-                  }),
-                }),
-              ),
-            },
-            socialNetworks: {
-              description: 'An array of Social Networks used by the user + their respective account links.',
-              type: new ListType(
-                new InputObject({
-                  name: 'NewUserSocialNetworkObject',
-                  fields: () => ({
-                    name: {
-                      description: 'The name of the Social Network.',
-                      type: StringType,
-                    },
-                    link: {
-                      description: 'The Social Network Link for this users account.',
-                      type: StringType,
-                    },
-                  }),
-                }),
-              ),
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserContactInfoInput',
+            fields: () => ({
+              email: {
+                description: 'The email for this user.',
+                type: StringType,
+              },
+              phone: {
+                description: 'The phone number for this user.',
+                type: StringType,
+              },
+              locale: {
+                description: 'The users language of choice as determined by the Social Login provider or their preference.',
+                type: StringType,
+              },
+              timezone: {
+                description: 'The users local Time Zone - Retrieved from Social Login Providers.',
+                type: IntType,
+              },
+            }),
           }),
-        }),
+        ),
+      },
+      contactInfoLocation: {
+        description: 'IP address, lat, long, & country code. for this user from their last login.',
+        type: new NonNull(
+          new InputObject({
+            name: 'UserLocationInput',
+            fields: () => ({
+              ipAddress: {
+                description: 'IP address this user last used.',
+                type: new NonNull(StringType),
+              },
+              lat: {
+                description: 'Latitude coord. this user last logged in from.',
+                type: new NonNull(StringType),
+              },
+              long: {
+                description: 'Longitude coord. this user last logged in from.',
+                type: new NonNull(StringType),
+              },
+              country: {
+                description: 'Country code this user last logged in from.',
+                type: new NonNull(StringType),
+              },
+            }),
+          }),
+        ),
+      },
+      contactInfoDevices: {
+        description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
+        type: new ListType(
+          new InputObject({
+            name: 'UserDevicesInput',
+            fields: () => ({
+              hardware: {
+                description: 'The mobile Phone type.',
+                type: StringType,
+              },
+              os: {
+                description: 'The operating system for the mobile device.',
+                type: StringType,
+              },
+            }),
+          }),
+        ),
+      },
+      contactInfoSocialNetworks: {
+        description: 'An array of Social Networks used by the user + their respective account links.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserSocialNetworkInput',
+              fields: () => ({
+                name: {
+                  description: 'The name of the Social Network.',
+                  type: StringType,
+                },
+                link: {
+                  description: 'The Social Network Link for this users account.',
+                  type: StringType,
+                },
+              }),
+            }),
+          ),
+        ),
       },
       shopping: {
         description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
-        type: new InputObject({
-          name: 'NewUserShoppingObject',
-          fields: () => ({
-            cart: {
-              description: 'The Users shopping cart.',
-              type: new NonNull(
-                new ListType(
-                  new InputObject({
-                    name: 'NewUsersCartObject',
-                    fields: () => ({
-                      qty: {
-                        description: 'The quantity of items of this product.',
-                        type: IntType,
-                      },
-                      strength: {
-                        description: 'The nicotine strength of this product.',
-                        type: StringType,
-                      },
-                      product: {
-                        description: 'The Mongo ObjectID for this product.',
-                        type: MongoID,
-                      },
-                    }),
-                  }),
-                ),
-              ),
-            },
-            transactions: {
-              description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-              type: new ListType(StringType),
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserShoppingInput',
+            fields: () => ({
+              transactions: {
+                description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
+                type: new ListType(StringType),
+              },
+            }),
           }),
-        }),
+        ),
+      },
+      shoppingCart: {
+        description: 'The Users shopping cart.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserCartInput',
+              fields: () => ({
+                qty: {
+                  description: 'The quantity of items of this product.',
+                  type: IntType,
+                },
+                strength: {
+                  description: 'The nicotine strength of this product.',
+                  type: StringType,
+                },
+                product: {
+                  description: 'The Mongo ObjectID for this product.',
+                  type: MongoID,
+                },
+              }),
+            }),
+          ),
+        ),
       },
       permissions: {
         description: 'Authorization permissions granted for user.',
-        type: new InputObject({
-          name: 'NewUserPermissionsObject',
-          fields: () => ({
-            role: {
-              description: 'The authorization role for this user.',
-              type: new ListType(
-                new EnumType({
-                  name: 'NewUserPermissions',
-                  values: {
-                    user: {
-                      description: 'User has basic "User" permissions.',
-                      value: 'user',
-                    },
-                    admin: {
-                      description: 'User has "Administrator" permissions.',
-                      value: 'admin',
-                    },
-                    devAdmin: {
-                      description: 'User has "Developer Administrator" permissions.',
-                      value: 'devAdmin',
-                    },
-                    wholeseller: {
-                      description: 'The User has "Whole-Seller" permissions.',
-                      value: 'wholeseller',
-                    },
-                    distributor: {
-                      description: 'The User has "Distributor" permissions.',
-                    },
-                  },
-                }),
-              ),
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserPermissionsInput',
+            fields: () => ({
+              role: {
+                description: 'The authorization role for this user.',
+                type: new NonNull(StringType),
+              },
+            }),
           }),
-        }),
+        ),
       },
       userStory: {
         description: 'Bio information for new user.',
         type: new NonNull(
           new InputObject({
-            name: 'NewUserInputStoryObject',
+            name: 'UserStoryInput',
             fields: () => ({
               age: {
                 description: 'The age of this new user.',
@@ -675,33 +639,35 @@ const mutations = {
           }),
         ),
       },
-      socialProfile: {
+      socialProfileBlob: {
         description: 'The users collection of social profiles from their Social Login accounts.',
-        type: new InputObject({
-          name: 'NewUserSocialProfiles',
-          fields: () => ({
-            line: {
-              description: 'The Social Profile for the User\'s LINE account.',
-              type: StringType,
-            },
-            facebook: {
-              description: 'The Social Profile for the User\'s Facebook account.',
-              type: StringType,
-            },
-            google: {
-              description: 'The Social Profile for the User\'s Google account.',
-              type: StringType,
-            },
-            twitter: {
-              description: 'The Social Profile for the User\'s Twitter account.',
-              type: StringType,
-            },
-            linkedin: {
-              description: 'The Social Profile for the User\'s Linkedin account.',
-              type: StringType,
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserSocialProfileBlobInput',
+            fields: () => ({
+              line: {
+                description: 'The Social Profile for the User\'s LINE account.',
+                type: StringType,
+              },
+              facebook: {
+                description: 'The Social Profile for the User\'s Facebook account.',
+                type: StringType,
+              },
+              google: {
+                description: 'The Social Profile for the User\'s Google account.',
+                type: StringType,
+              },
+              twitter: {
+                description: 'The Social Profile for the User\'s Twitter account.',
+                type: StringType,
+              },
+              linkedin: {
+                description: 'The Social Profile for the User\'s Linkedin account.',
+                type: StringType,
+              },
+            }),
           }),
-        }),
+        ),
       },
     },
     resolve: (_, args, { User }) => User.loginOrRegister(args),
