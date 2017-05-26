@@ -16,7 +16,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       totalLogins: 1,
       ageVerified: user.ageVerified,
     },
-    authenticationLogins: [],
+    authenticationLogins: [{
+      date: new Date(),
+      loginDevice: mobile.mobileType || 'computer',
+    }],
     authenticationAuth0Identities: [...auth0Profile.identities],
     contactInfo: {
       email: '',
@@ -31,7 +34,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       country: locale.country,
     },
     contactInfoDevices: [...auth0Profile.devices],
-    contactInfoSocialNetworks: [],
+    contactInfoSocialNetworks: [{
+      name: 'Facebook',
+      link: auth0Profile.link,
+    }],
     shopping: {
       transactions: [],
     },
@@ -50,14 +56,6 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     },
   };
 
-  profile.contactInfo.socialNetworks.push({
-    name: 'Facebook',
-    link: auth0Profile.link,
-  });
-  profile.authentication.logins.push({
-    date: new Date(),
-    loginDevice: mobile.mobileType || 'computer',
-  });
   if (orders.guest && orders.guest.length) {
     orders.guest.forEach(({ id: product, qty, strength }) => {
       profile.shopping.cart.push({ qty, strength, product });
