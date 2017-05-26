@@ -44,19 +44,19 @@ const createAPI = () => {
         $auth0Id: String!
         $loginType: String!
         $name: UserNameObjectInput!
-        $pictures: UserPictureInput
-        $authentication: UserAuthenticationInput
-        $authenticationLogins: UserLastLoginInput
-        $authenticationAuth0Identities: UserAuth0IdentitiesInput
-        $contactInfo: UserContactInfoInput
-        $contactInfoLocation: UserLocationInput
-        $contactInfoDevices: UserDevicesInput
-        $contactInfoSocialNetworks: UserSocialNetworkInput
-        $shopping: UserShoppingInput
-        $shoppingCart: UserCartInput
-        $permissions: UserPermissionsInput
-        $userStory: UserStoryInput
-        $socialProfileBlob: UserSocialProfileBlobInput
+        $pictures: UserPictureInput!
+        $authentication: UserAuthenticationInput!
+        $authenticationLogins: UserLastLoginInput!
+        $authenticationAuth0Identities: UserAuth0IdentitiesInput!
+        $contactInfo: UserContactInfoInput!
+        $contactInfoLocation: UserLocationInput!
+        $contactInfoDevices: UserDevicesInput!
+        $contactInfoSocialNetworks: UserSocialNetworkInput!
+        $shopping: UserShoppingInput!
+        $shoppingCart: UserCartInput!
+        $permissions: UserPermissionsInput!
+        $userStory: UserStoryInput!
+        $socialProfileBlob: UserSocialProfileBlobInput!
       ) {
         LoginOrRegister(
           auth0Id: $auth0Id

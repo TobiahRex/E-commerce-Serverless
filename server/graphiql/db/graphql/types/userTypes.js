@@ -379,19 +379,21 @@ const mutations = {
       },
       pictures: {
         description: 'Pictures of the user in different sizes.',
-        type: new InputObject({
-          name: 'UserPictureInput',
-          fields: () => ({
-            small: {
-              description: 'Small user image used for the Navbar avatar.',
-              type: StringType,
-            },
-            large: {
-              description: 'Large user image used for the user dashboard.',
-              type: StringType,
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserPictureInput',
+            fields: () => ({
+              small: {
+                description: 'Small user image used for the Navbar avatar.',
+                type: StringType,
+              },
+              large: {
+                description: 'Large user image used for the user dashboard.',
+                type: StringType,
+              },
+            }),
           }),
-        }),
+        ),
       },
       authentication: {
         description: 'Authentication information for user.',
@@ -473,27 +475,29 @@ const mutations = {
       },
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
-        type: new InputObject({
-          name: 'UserContactInfoInput',
-          fields: () => ({
-            email: {
-              description: 'The email for this user.',
-              type: StringType,
-            },
-            phone: {
-              description: 'The phone number for this user.',
-              type: StringType,
-            },
-            locale: {
-              description: 'The users language of choice as determined by the Social Login provider or their preference.',
-              type: StringType,
-            },
-            timezone: {
-              description: 'The users local Time Zone - Retrieved from Social Login Providers.',
-              type: IntType,
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserContactInfoInput',
+            fields: () => ({
+              email: {
+                description: 'The email for this user.',
+                type: StringType,
+              },
+              phone: {
+                description: 'The phone number for this user.',
+                type: StringType,
+              },
+              locale: {
+                description: 'The users language of choice as determined by the Social Login provider or their preference.',
+                type: StringType,
+              },
+              timezone: {
+                description: 'The users local Time Zone - Retrieved from Social Login Providers.',
+                type: IntType,
+              },
+            }),
           }),
-        }),
+        ),
       },
       contactInfoLocation: {
         description: 'IP address, lat, long, & country code. for this user from their last login.',
@@ -541,33 +545,37 @@ const mutations = {
       },
       contactInfoSocialNetworks: {
         description: 'An array of Social Networks used by the user + their respective account links.',
-        type: new ListType(
-          new InputObject({
-            name: 'UserSocialNetworkInput',
-            fields: () => ({
-              name: {
-                description: 'The name of the Social Network.',
-                type: StringType,
-              },
-              link: {
-                description: 'The Social Network Link for this users account.',
-                type: StringType,
-              },
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserSocialNetworkInput',
+              fields: () => ({
+                name: {
+                  description: 'The name of the Social Network.',
+                  type: StringType,
+                },
+                link: {
+                  description: 'The Social Network Link for this users account.',
+                  type: StringType,
+                },
+              }),
             }),
-          }),
+          ),
         ),
       },
       shopping: {
         description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
-        type: new InputObject({
-          name: 'UserShoppingInput',
-          fields: () => ({
-            transactions: {
-              description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-              type: new ListType(StringType),
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserShoppingInput',
+            fields: () => ({
+              transactions: {
+                description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
+                type: new ListType(StringType),
+              },
+            }),
           }),
-        }),
+        ),
       },
       shoppingCart: {
         description: 'The Users shopping cart.',
@@ -595,15 +603,17 @@ const mutations = {
       },
       permissions: {
         description: 'Authorization permissions granted for user.',
-        type: new InputObject({
-          name: 'UserPermissionsInput',
-          fields: () => ({
-            role: {
-              description: 'The authorization role for this user.',
-              type: new NonNull(StringType),
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserPermissionsInput',
+            fields: () => ({
+              role: {
+                description: 'The authorization role for this user.',
+                type: new NonNull(StringType),
+              },
+            }),
           }),
-        }),
+        ),
       },
       userStory: {
         description: 'Bio information for new user.',
@@ -633,31 +643,33 @@ const mutations = {
       },
       socialProfileBlob: {
         description: 'The users collection of social profiles from their Social Login accounts.',
-        type: new InputObject({
-          name: 'UserSocialProfileBlobInput',
-          fields: () => ({
-            line: {
-              description: 'The Social Profile for the User\'s LINE account.',
-              type: StringType,
-            },
-            facebook: {
-              description: 'The Social Profile for the User\'s Facebook account.',
-              type: StringType,
-            },
-            google: {
-              description: 'The Social Profile for the User\'s Google account.',
-              type: StringType,
-            },
-            twitter: {
-              description: 'The Social Profile for the User\'s Twitter account.',
-              type: StringType,
-            },
-            linkedin: {
-              description: 'The Social Profile for the User\'s Linkedin account.',
-              type: StringType,
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'UserSocialProfileBlobInput',
+            fields: () => ({
+              line: {
+                description: 'The Social Profile for the User\'s LINE account.',
+                type: StringType,
+              },
+              facebook: {
+                description: 'The Social Profile for the User\'s Facebook account.',
+                type: StringType,
+              },
+              google: {
+                description: 'The Social Profile for the User\'s Google account.',
+                type: StringType,
+              },
+              twitter: {
+                description: 'The Social Profile for the User\'s Twitter account.',
+                type: StringType,
+              },
+              linkedin: {
+                description: 'The Social Profile for the User\'s Linkedin account.',
+                type: StringType,
+              },
+            }),
           }),
-        }),
+        ),
       },
     },
     resolve: (_, args) => User.loginOrRegister(args),
