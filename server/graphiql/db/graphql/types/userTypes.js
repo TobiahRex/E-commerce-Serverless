@@ -257,30 +257,7 @@ const rootType = new ObjectType({
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
-            type: new EnumType({
-              name: 'UserPermissions',
-              values: {
-                user: {
-                  description: 'User has basic "User" permissions.',
-                  value: 'user',
-                },
-                admin: {
-                  description: 'User has "Administrator" permissions.',
-                  value: 'admin',
-                },
-                devAdmin: {
-                  description: 'User has "Developer Administrator" permissions.',
-                  value: 'devAdmin',
-                },
-                wholeseller: {
-                  description: 'The User has "Whole-Seller" permissions.',
-                  value: 'wholeseller',
-                },
-                distributor: {
-                  description: 'The User has "Distributor" permissions.',
-                },
-              },
-            }),
+            type: StringType,
           },
         }),
       }),
@@ -623,30 +600,7 @@ const mutations = {
           fields: () => ({
             role: {
               description: 'The authorization role for this user.',
-              type: new EnumType({
-                name: 'UserPermissionsEnumInput',
-                values: {
-                  user: {
-                    description: 'User has basic "User" permissions.',
-                    value: 'user',
-                  },
-                  admin: {
-                    description: 'User has "Administrator" permissions.',
-                    value: 'admin',
-                  },
-                  devAdmin: {
-                    description: 'User has "Developer Administrator" permissions.',
-                    value: 'devAdmin',
-                  },
-                  wholeseller: {
-                    description: 'The User has "Whole-Seller" permissions.',
-                    value: 'wholeseller',
-                  },
-                  distributor: {
-                    description: 'The User has "Distributor" permissions.',
-                  },
-                },
-              }),
+              type: new NonNull(StringType),
             },
           }),
         }),
