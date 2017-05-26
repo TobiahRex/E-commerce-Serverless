@@ -33,32 +33,76 @@ const createAPI = () => {
       userStory,
       socialProfileBlob,
     },
-  }) => {
-    console.log(`mutation LoginOrRegister {
-      LoginOrRegister(
-        loginType: ${loginType}
-        auth0Id: ${auth0Id}
-        name: ${JSON.stringify({ ...name }, null, 2)}
-        pictures: ${JSON.stringify({ ...pictures }, null, 2)}
-        authentication: ${JSON.stringify({ ...authentication }, null, 2)}
-        contactInfo: ${JSON.stringify({ ...contactInfo }, null, 2)}
-        shopping: ${JSON.stringify({ ...shopping }, null, 2)}
-        permissions: ${JSON.stringify({ ...permissions }, null, 2)}
-        userStory: ${JSON.stringify({ ...userStory }, null, 2)}
-        socialProfileBlob: ${JSON.stringify({ ...socialProfileBlob }, null, 2)}`);
-    return api.post('', {
+  }) => api.post('', {
     mutation: `mutation LoginOrRegister {
       LoginOrRegister(
         loginType: ${loginType}
         auth0Id: ${auth0Id}
-        name: ${JSON.stringify({ ...name }, null, 2)}
-        pictures: ${JSON.stringify({ ...pictures }, null, 2)}
-        authentication: ${JSON.stringify({ ...authentication }, null, 2)}
-        contactInfo: ${JSON.stringify({ ...contactInfo }, null, 2)}
-        shopping: ${JSON.stringify({ ...shopping }, null, 2)}
-        permissions: ${JSON.stringify({ ...permissions }, null, 2)}
-        userStory: ${JSON.stringify({ ...userStory }, null, 2)}
-        socialProfileBlob: ${JSON.stringify({ ...socialProfileBlob }, null, 2)}
+        name: {
+          first: ${name.first}
+          last: ${name.last}
+          display: ${name.display}
+        }
+        pictures: {
+          small: ${pictures.small}
+          large: ${pictures.large}
+        }
+        authentication: {
+          signedUp: ${authentication.signedup}
+          password: ${authentication.password}
+          createdAt: ${authentication.createdAt}
+          totalLogins: ${authentication.totalLogins}
+          lastLogin: [{
+            date: ${authentication.lastLogin[0].date}
+            device: ${authentication.lastLogin[0].device}
+          }]
+          ageVerified: true
+          auth0Identities: [{
+            provider: ${authentication.auth0Identities}
+            user_id: "123123123"
+            connection: "facebook"
+            isSocial: true
+          }]
+        }
+        contactInfo: {
+          email: "bickleyusn@gmail.com"
+          phone: "141532100002"
+          locale: "en-US"
+          location: {
+            ipAddress: "123.123.123.123"
+            lat: "18"
+            long: "32"
+            country: "JP"
+          }
+          devices: [{
+            hardware: "Galaxy S7"
+            os: "Android"
+          }]
+          socialNetworks: [{
+            name: "Facebook",
+            link: "http://whatever.com"
+          }]
+        }
+        shopping: {
+          cart: []
+          transactions: []
+        }
+        permissions: {
+          role: [user]
+        }
+        userStory: {
+          age: 26
+          birthday: "19, Jan 1989"
+          bio: ""
+          gender: "male"
+        }
+        socialProfileBlob: {
+          line: ""
+          facebook: ""
+          google: ""
+          twitter: ""
+          linkedin: ""
+        }
       ) {
         _id
         name {
@@ -137,9 +181,8 @@ const createAPI = () => {
         }
       }
     }
-  `,
+    `,
   });
-}
 
   return {
     LoginOrRegister,
