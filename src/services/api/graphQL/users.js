@@ -36,68 +36,12 @@ const createAPI = () => {
   }) => api.post('', {
     mutation: `mutation LoginOrRegister {
       LoginOrRegister(
-        loginType: ${loginType}
-        auth0Id: ${auth0Id}
-        name: {
-          first: ${name.first}
-          last: ${name.last}
-          display: ${name.display}
-        }
-        pictures: {
-          small: ${pictures.small}
-          large: ${pictures.large}
-        }
-        authentication: {
-          signedUp: ${authentication.signedup}
-          password: ${authentication.password}
-          createdAt: ${authentication.createdAt}
-          totalLogins: ${authentication.totalLogins}
-          logins: [{
-            date: ${authentication.logins[0].date}
-            device: ${authentication.logins[0].device}
-          }]
-          ageVerified: true
-          auth0Identities: ${authentication.auth0Identities.map(identity => identity)}
-        }
-        contactInfo: {
-          email: ${contactInfo.email}
-          phone: ${contactInfo.phone}
-          locale: ${contactInfo.locale}
-          location: {
-            ipAddress: ${contactInfo.location.ipAddress}
-            lat: ${contactInfo.location.lat}
-            long: ${contactInfo.location.long}
-            country: ${contactInfo}
-          }
-          devices: [{
-            hardware: "Galaxy S7"
-            os: "Android"
-          }]
-          socialNetworks: [{
-            name: "Facebook",
-            link: "http://whatever.com"
-          }]
-        }
-        shopping: {
-          cart: []
-          transactions: []
-        }
-        permissions: {
-          role: [user]
-        }
-        userStory: {
-          age: 26
-          birthday: "19, Jan 1989"
-          bio: ""
-          gender: "male"
-        }
-        socialProfileBlob: {
-          line: ""
-          facebook: ""
-          google: ""
-          twitter: ""
-          linkedin: ""
-        }
+        $aut0Id: String!
+        $loginType: String!
+        $name: UserNameObjectInput!
+        $pictures: UserPictureInput
+        $authentication: UserAuthenticationInput
+        $authenticationLogins: UserLastLoginInput
       ) {
         _id
         name {

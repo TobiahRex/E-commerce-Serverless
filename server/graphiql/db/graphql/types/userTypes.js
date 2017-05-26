@@ -382,7 +382,7 @@ const mutations = {
         description: 'The Given, Family, & Display name for the new user.',
         type: new NonNull(
           new InputObject({
-            name: 'UserNameObjectInput',
+            name: 'UserNameInput',
             fields: () => ({
               first: {
                 description: 'The first name of the new user.',
@@ -403,7 +403,7 @@ const mutations = {
       pictures: {
         description: 'Pictures of the user in different sizes.',
         type: new InputObject({
-          name: 'UserPictureObjectInput',
+          name: 'UserPictureInput',
           fields: () => ({
             small: {
               description: 'Small user image used for the Navbar avatar.',
@@ -420,7 +420,7 @@ const mutations = {
         description: 'Authentication information for user.',
         type: new NonNull(
           new InputObject({
-            name: 'UserAuthenticationObjectInput',
+            name: 'UserAuthenticationInput',
             fields: () => ({
               signedUp: {
                 description: 'The Date this new user first signed up for newsletters.',
@@ -437,26 +437,6 @@ const mutations = {
               totalLogins: {
                 description: 'The number of times this new user has logged in.',
                 type: IntType,
-              },
-              logins: {
-                description: 'The last time this new user logged in.',
-                type: new NonNull(
-                  new ListType(
-                    new InputObject({
-                      name: 'UserLastLoginObjectInput',
-                      fields: () => ({
-                        date: {
-                          description: 'The Date the user last logged in.',
-                          type: StringType,
-                        },
-                        device: {
-                          description: 'The type of device the user logged in with.',
-                          type: StringType,
-                        },
-                      }),
-                    }),
-                  ),
-                ),
               },
               ageVerified: {
                 description: 'Verification if the user is at least 20 years of age.',
@@ -494,10 +474,30 @@ const mutations = {
           }),
         ),
       },
+      authenticationLogins: {
+        description: 'The last time this new user logged in.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserLastLoginInput',
+              fields: () => ({
+                date: {
+                  description: 'The Date the user last logged in.',
+                  type: StringType,
+                },
+                device: {
+                  description: 'The type of device the user logged in with.',
+                  type: StringType,
+                },
+              }),
+            }),
+          ),
+        ),
+      },
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
         type: new InputObject({
-          name: 'UserContanctInfoObjectInput',
+          name: 'UserContanctInfoInput',
           fields: () => ({
             email: {
               description: 'The email for this user.',
