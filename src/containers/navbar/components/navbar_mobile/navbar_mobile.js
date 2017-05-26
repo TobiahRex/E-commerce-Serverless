@@ -5,6 +5,12 @@ import NavbarMobileUserActions from './navbar_mobile_userActions/navbar_mobile_u
 import NavbarMobileNav from './navbar_mobile_nav/navbar_mobile_nav';
 
 export default function NavbarMobile() {
+  static propTypes = {
+    activeUser: objectOf(any),
+  }
+  static defaultProps = {
+    activeUser: false,
+  }
   return (
     <nav className="navbar navbar__mobile">
       <div className="navbar__mobile--container">
@@ -16,3 +22,7 @@ export default function NavbarMobile() {
     </nav>
   );
 }
+const mapStateToProps = ({ user }) => ({
+  activeUser: user.profile,
+});
+export default connect(mapStateToProps)(NavbarMobileUserActions);
