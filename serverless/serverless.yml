@@ -8,7 +8,6 @@ provider:
   region: ap-northeast-1
 
 plugins:
-  - serverless-plugin-graphiql
   - serverless-webpack
 
 custom:
@@ -21,6 +20,22 @@ custom:
 functions:
   graphql:
     handler: handler.graphql
+    iamRoleStatements:
+      - Effect: Allow
+        Resource: "*"
+        Action:
+          - ec2:CreateNetworkInterface
+          - ec2:DescribeNetworkInterfaces
+          - ec2:DetachNetworkInterface
+          - ec2:DeleteNetworkInterface
+          - logs:CreateLogGroup
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+    vps:
+      securityGroupId:
+        - sg-0d5db76b
+      subnetIds:
+        - subnet-f76b18af
     events:
       - http:
           path: graphql
