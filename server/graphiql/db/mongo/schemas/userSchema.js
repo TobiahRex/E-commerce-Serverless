@@ -20,7 +20,7 @@ const userSchema = new Schema({
     password: { type: String },
     createdAt: { type: Date },
     totalLogins: { type: Number },
-    lastLogin: [{
+    logins: [{
       date: { type: Date, default: new Date() },
       device: { type: String, default: 'computer' },
     }],

@@ -81,7 +81,7 @@ const rootType = new ObjectType({
             description: 'The number of times this user has logged in.',
             type: IntType,
           },
-          lastLogin: {
+          logins: {
             description: 'The last time this user logged in.',
             type: new ListType(
               new ObjectType({
@@ -257,32 +257,30 @@ const rootType = new ObjectType({
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
-            type: new ListType(
-              new EnumType({
-                name: 'UserPermissions',
-                values: {
-                  user: {
-                    description: 'User has basic "User" permissions.',
-                    value: 'user',
-                  },
-                  admin: {
-                    description: 'User has "Administrator" permissions.',
-                    value: 'admin',
-                  },
-                  devAdmin: {
-                    description: 'User has "Developer Administrator" permissions.',
-                    value: 'devAdmin',
-                  },
-                  wholeseller: {
-                    description: 'The User has "Whole-Seller" permissions.',
-                    value: 'wholeseller',
-                  },
-                  distributor: {
-                    description: 'The User has "Distributor" permissions.',
-                  },
+            type: new EnumType({
+              name: 'UserPermissions',
+              values: {
+                user: {
+                  description: 'User has basic "User" permissions.',
+                  value: 'user',
                 },
-              }),
-            ),
+                admin: {
+                  description: 'User has "Administrator" permissions.',
+                  value: 'admin',
+                },
+                devAdmin: {
+                  description: 'User has "Developer Administrator" permissions.',
+                  value: 'devAdmin',
+                },
+                wholeseller: {
+                  description: 'The User has "Whole-Seller" permissions.',
+                  value: 'wholeseller',
+                },
+                distributor: {
+                  description: 'The User has "Distributor" permissions.',
+                },
+              },
+            }),
           },
         }),
       }),
@@ -440,7 +438,7 @@ const mutations = {
                 description: 'The number of times this new user has logged in.',
                 type: IntType,
               },
-              lastLogin: {
+              logins: {
                 description: 'The last time this new user logged in.',
                 type: new NonNull(
                   new ListType(
@@ -625,32 +623,30 @@ const mutations = {
           fields: () => ({
             role: {
               description: 'The authorization role for this user.',
-              type: new ListType(
-                new EnumType({
-                  name: 'UserPermissionsEnumInput',
-                  values: {
-                    user: {
-                      description: 'User has basic "User" permissions.',
-                      value: 'user',
-                    },
-                    admin: {
-                      description: 'User has "Administrator" permissions.',
-                      value: 'admin',
-                    },
-                    devAdmin: {
-                      description: 'User has "Developer Administrator" permissions.',
-                      value: 'devAdmin',
-                    },
-                    wholeseller: {
-                      description: 'The User has "Whole-Seller" permissions.',
-                      value: 'wholeseller',
-                    },
-                    distributor: {
-                      description: 'The User has "Distributor" permissions.',
-                    },
+              type: new EnumType({
+                name: 'UserPermissionsEnumInput',
+                values: {
+                  user: {
+                    description: 'User has basic "User" permissions.',
+                    value: 'user',
                   },
-                }),
-              ),
+                  admin: {
+                    description: 'User has "Administrator" permissions.',
+                    value: 'admin',
+                  },
+                  devAdmin: {
+                    description: 'User has "Developer Administrator" permissions.',
+                    value: 'devAdmin',
+                  },
+                  wholeseller: {
+                    description: 'The User has "Whole-Seller" permissions.',
+                    value: 'wholeseller',
+                  },
+                  distributor: {
+                    description: 'The User has "Distributor" permissions.',
+                  },
+                },
+              }),
             },
           }),
         }),

@@ -52,17 +52,12 @@ const createAPI = () => {
           password: ${authentication.password}
           createdAt: ${authentication.createdAt}
           totalLogins: ${authentication.totalLogins}
-          lastLogin: [{
-            date: ${authentication.lastLogin[0].date}
-            device: ${authentication.lastLogin[0].device}
+          logins: [{
+            date: ${authentication.logins[0].date}
+            device: ${authentication.logins[0].device}
           }]
           ageVerified: true
-          auth0Identities: [{
-            provider: ${authentication.auth0Identities[0].provider}
-            user_id: ${authentication.auth0Identities[0].user_id}
-            connection: ${authentication.auth0Identities[0].connection}
-            isSocial: ${authentication.auth0Identities[0].isSocial}
-          }]
+          auth0Identities: ${authentication.auth0Identities.map(identity => identity)}
         }
         contactInfo: {
           email: ${contactInfo.email}
@@ -72,7 +67,7 @@ const createAPI = () => {
             ipAddress: ${contactInfo.location.ipAddress}
             lat: ${contactInfo.location.lat}
             long: ${contactInfo.location.long}
-            country: ${contactInfo.location.country}
+            country: ${contactInfo}
           }
           devices: [{
             hardware: "Galaxy S7"
@@ -120,7 +115,7 @@ const createAPI = () => {
           password
           createdAt
           totalLogins
-          lastLogin {
+          logins {
             date
             device
           }

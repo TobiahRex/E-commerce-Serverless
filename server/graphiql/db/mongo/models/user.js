@@ -13,8 +13,8 @@ new Promise((resolve, reject) => {
   User.findOne({ 'authentication.auth0Identities.user_id': auth0Id })
   .exec()
   .then((dbUser) => {
-    if (!dbUser) return this.registerUser(args);
-    return this.loginUser(loginType, dbUser, args);
+    if (!dbUser) return User.registerUser(args);
+    return User.loginUser(loginType, dbUser, args);
   })
   .then(resolve)
   .catch(error => reject({ problem: error }));
@@ -24,7 +24,7 @@ userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
 new Promise((resolve) => {
   console.log('Found Existing User.\n');
   dbUser.authentication.totalLogins += 1;
-  dbUser.authentication.lastLogin.push(userObj.authentication.lastLogin.pop());
+  dbUser.authentication.logins.push(userObj.authentication.logins.pop());
   dbUser.contactInfo.location = { ...userObj.contactInfo.location };
   dbUser.shopping.cart = [...userObj.shopping.cart];
   dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
@@ -37,8 +37,8 @@ userSchema.statics.registerUser = userObj =>
 new Promise((resolve, reject) => {
   bbPromise.fromCallback(cb => User.create(userObj, cb))
   .then((newUser) => {
-    console.log('New User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
-    resolve(userObj);
+    console.log('\nNew User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
+    resolve(newUser);
   })
   .catch(error => reject(`
     Could not create new User with this user object:\n${userObj}\n

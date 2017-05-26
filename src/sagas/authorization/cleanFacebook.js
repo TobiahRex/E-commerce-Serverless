@@ -14,7 +14,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       password: '',
       createdAt: auth0Profile.created_at,
       totalLogins: 1,
-      lastLogin: [],
+      logins: [],
       ageVerified: user.ageVerified,
       auth0Identities: [...auth0Profile.identities],
     },
@@ -54,7 +54,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     name: 'Facebook',
     link: auth0Profile.link,
   });
-  cleanProfile.authentication.lastLogin.push({
+  cleanProfile.authentication.logins.push({
     date: new Date(),
     loginDevice: mobile.mobileType || 'computer',
   });
