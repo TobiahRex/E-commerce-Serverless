@@ -1,5 +1,5 @@
 /* eslint-disable no-constant-condition */
-import { put, call, take, fork } from 'redux-saga/effects';
+import { put, call, take, fork, select } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { push } from 'react-router-redux';
 import { auth as AuthService } from '../../navigation/routes';
@@ -34,7 +34,8 @@ function createAuthChannel(auth) {
 }
 
 function* postLoginActions({ profile }) {
-  const reduxState = yield take(state => state);
+  const reduxState = yield select(state => state);
+  console.log('%creduxState', 'background:red;', reduxState);
   const { cleanProfile, auth0Id, loginType } = cleanAuth0Profile(reduxState, profile);
   const response = yield call(() => api.LoginOrRegister({
     auth0Id,
@@ -53,7 +54,7 @@ function* postLoginActions({ profile }) {
     ];
   } else {
     yield [
-      put(authActions.loginFailure('Could not Login.  Please try again.')),
+      put(authActions.loginFailure('Auth0 logged in Successfully.\nCould not save/register user data to database.')),
       put(apiActions.apiFail(problem)),
     ];
   }

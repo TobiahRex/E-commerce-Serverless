@@ -38,7 +38,7 @@ const loginSuccess = (state) => {
 const loginFailure = (state, { error }) => ({
   loggedIn: false,
   loginSuccess: false,
-  loginError: { ...error },
+  loginError: error,
 });
 
 const loggedOut = state => ({

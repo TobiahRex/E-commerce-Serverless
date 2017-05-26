@@ -34,17 +34,17 @@ const createAPI = () => {
       socialProfileBlob,
     },
   }) => api.post('', {
-    mutation: `LoginOrRegister(
-      loginType: ${loginType}
-      auth0Id: ${auth0Id}
-      name: ${{ ...name }}}
-      pictures: ${{ ...pictures }}
-      authentication: ${{ ...authentication }}
-      contactInfo: ${{ ...contactInfo }}
-      shopping: ${{ ...shopping }}
-      permissions: ${{ ...permissions }}
-      userStory: ${{ ...userStory }}
-      socialProfileBlob: ${{ ...socialProfileBlob }}
+    mutation: `mutation LoginOrRegister(
+      $loginType: ${loginType}
+      $auth0Id: ${auth0Id}
+      $name: ${{ ...name }}
+      $pictures: ${{ ...pictures }}
+      $authentication: ${{ ...authentication }}
+      $contactInfo: ${{ ...contactInfo }}
+      $shopping: ${{ ...shopping }}
+      $permissions: ${{ ...permissions }}
+      $userStory: ${{ ...userStory }}
+      $socialProfileBlob: ${{ ...socialProfileBlob }}
     ) {
       _id
       name {
@@ -71,7 +71,7 @@ const createAPI = () => {
         phone
         locale
         timezone
-        location: {
+        location {
           ipAddress
           lat
           long
@@ -104,6 +104,18 @@ const createAPI = () => {
         linkedin
       }
     }`,
+    variables: {
+      loginType,
+      auth0Id,
+      name: { ...name },
+      pictures: { ...pictures },
+      authentication: { ...authentication },
+      contactInfo: { ...contactInfo },
+      shopping: { ...shopping },
+      permissions: { ...permissions },
+      userStory: { ...userStory },
+      socialProfileBlob: { ...socialProfileBlob },
+    },
   });
 
   return {
