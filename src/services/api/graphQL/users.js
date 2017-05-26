@@ -41,42 +41,41 @@ const createAPI = () => {
     },
   }) => api.post('', {
     mutation: `mutation LoginOrRegister(
-        $auth0Id: String!
-        $loginType: String!
-        $name: UserNameObjectInput!
-        $pictures: UserPictureInput!
-        $authentication: UserAuthenticationInput!
-        $authenticationLogins: UserLastLoginInput!
-        $authenticationAuth0Identities: UserAuth0IdentitiesInput!
-        $contactInfo: UserContactInfoInput!
-        $contactInfoLocation: UserLocationInput!
-        $contactInfoDevices: UserDevicesInput!
-        $contactInfoSocialNetworks: UserSocialNetworkInput!
-        $shopping: UserShoppingInput!
-        $shoppingCart: UserCartInput!
-        $permissions: UserPermissionsInput!
-        $userStory: UserStoryInput!
-        $socialProfileBlob: UserSocialProfileBlobInput!
+      $auth0Id: String!
+      $loginType: String!
+      $name: UserNameInput!
+      $pictures: UserPictureInput!
+      $authentication: UserAuthenticationInput!
+      $authenticationLogins: [UserLastLoginInput]!
+      $authenticationAuth0Identities: [UserAuth0IdentitiesInput]!
+      $contactInfo: UserContactInfoInput!
+      $contactInfoLocation: UserLocationInput!
+      $contactInfoDevices: [UserDevicesInput]!
+      $contactInfoSocialNetworks: [UserSocialNetworkInput]!
+      $shopping: UserShoppingInput!
+      $shoppingCart: [UserCartInput]!
+      $permissions: UserPermissionsInput!
+      $userStory: UserStoryInput!
+      $socialProfileBlob: UserSocialProfileBlobInput!
+    ) {
+      LoginOrRegister(
+        auth0Id: $auth0Id
+        loginType: $loginType
+        name: $name
+        pictures: $pictures
+        authentication: $authentication
+        authenticationLogins: $authenticationLogins
+        authenticationAuth0Identities: $authenticationAuth0Identities
+        contactInfo: $contactInfo
+        contactInfoLocation: $contactInfoLocation
+        contactInfoDevices: $contactInfoDevices
+        contactInfoSocialNetworks: $contactInfoSocialNetworks
+        shopping: $shopping
+        shoppingCart: $shoppingCart
+        permissions: $permissions
+        userStory: $userStory
+        socialProfileBlob: $socialProfileBlob
       ) {
-        LoginOrRegister(
-          auth0Id: $auth0Id
-          loginType: $loginType
-          name: $name
-          pictures: $pictures
-          authentication: $authentication
-          authenticationLogins: $authenticationLogins
-          authenticationAuth0Identities: $authenticationAuth0Identities
-          contactInfo: $contactInfo
-          contactInfoLocation: $contactInfoLocation
-          contactInfoDevices: $contactInfoDevices
-          contactInfoSocialNetworks: $contactInfoSocialNetworks
-          shopping: $shopping
-          shoppingCart: $shoppingCart
-          permissions: $permissions
-          userStory: $userStory
-          socialProfileBlob: $socialProfileBlob
-        )
-      } {
         _id
         name {
           first

@@ -35,15 +35,42 @@ new Promise((resolve) => {
 
 userSchema.statics.registerUser = userObj =>
 new Promise((resolve, reject) => {
-  bbPromise.fromCallback(cb => User.create(userObj, cb))
+  const {
+    name,
+    pictures,
+    authentication,
+    authenticationLogins,
+    authenticationAuth0Identities,
+    contactInfo,
+    contactInfoLocation,
+    contactInfoDevices,
+    contactInfoSocialNetworks,
+    shopping,
+    shoppingCart,
+    permissions,
+    userStory,
+    socialProfileBlob,
+  } = userObj;
+
+  bbPromise.fromCallback(cb => User.create({
+    name,
+    pictures,
+    authentication: {
+      ...authentication,
+      logins: { ...authenticationLogins },
+      auth0Identities: { ...authenticationAuth0Identities },
+    },
+    contactInfo: {
+      ...contactInfo,
+      location: { ...contactInfoLocation },
+      devices: { ...contactInfoDevices },
+    },
+  }, cb))
   .then((newUser) => {
     console.log('\nNew User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
     resolve(newUser);
   })
-  .catch(error => reject(`
-    Could not create new User with this user object:\n${userObj}\n
-    Mongo Error: ${error}
-  `));
+  .catch(reject);
 });
 
 userSchema.statics.addToMemberCart = ({ userId, qty, strength, product }) =>
