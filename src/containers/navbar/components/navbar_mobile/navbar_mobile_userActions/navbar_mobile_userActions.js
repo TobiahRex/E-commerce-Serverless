@@ -27,7 +27,7 @@ class NavbarMobileUserActions extends PureComponent {
     );
   }
 }
-const mapStateToProps = ({ auth }) => ({
-  activeUser: auth.loggedIn,
+const mapStateToProps = ({ user }) => ({
+  activeUser: user.profile,
 });
 export default connect(mapStateToProps)(NavbarMobileUserActions);

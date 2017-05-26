@@ -20,7 +20,7 @@
     "start": "babel-watch ./server/server.js",
     "start-prod": "babel-node ./tools/distServer.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "rimraf ./dist && mkdir dist",
+    "prebuild": "rimraf ./dist && mkdir dist"
   },
   "author": "Tobiah Rex",
   "license": "ISC",
