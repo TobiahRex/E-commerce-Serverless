@@ -62,7 +62,7 @@ const rootType = new ObjectType({
         name: 'UserAuthenticationObject',
         fields: () => ({
           signedUp: {
-            description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
+            description: 'The Date this user first signed up for newsletters.',
             type: StringType,
           },
           password: {
@@ -416,75 +416,81 @@ const mutations = {
       },
       authentication: {
         description: 'Authentication information for user.',
-        type: new InputObject({
-          name: 'NewUserAuthenticationObject',
-          fields: () => ({
-            signedUp: {
-              description: 'The Date this new user first signed up for newsletters.',
-              type: StringType,
-            },
-            password: {
-              description: 'This new user\'s password if using email signup.',
-              type: StringType,
-            },
-            createdAt: {
-              description: 'The date this new user was created.',
-              type: StringType,
-            },
-            totalLogins: {
-              description: 'The number of times this new user has logged in.',
-              type: IntType,
-            },
-            lastLogin: {
-              description: 'The last time this new user logged in.',
-              type: new ListType(
-                new InputObject({
-                  name: 'NewUserLastLoginObject',
-                  fields: () => ({
-                    date: {
-                      description: 'The Date the user last logged in.',
-                      type: StringType,
-                    },
-                    device: {
-                      description: 'The type of device the user logged in with.',
-                      type: StringType,
-                    },
-                  }),
-                }),
-              ),
-            },
-            ageVerified: {
-              description: 'Verification if the user is at least 20 years of age.',
-              type: BoolType,
-            },
-            auth0Identities: {
-              description: 'An array of identity object from Auth0 for each different type of login used by the user.',
-              type: new ListType(
-                new InputObject({
-                  name: 'NewUserAuth0IdentitiesObject',
-                  fields: () => ({
-                    provider: {
-                      description: 'The Social-Login Provider.',
-                      type: StringType,
-                    },
-                    user_id: {
-                      description: 'The Auth0 User ID for this login type.',
-                      type: StringType,
-                    },
-                    connection: {
-                      description: 'The type of Auth0 connection that was used.',
-                      type: StringType,
-                    },
-                    isSocial: {
-                      description: 'Verifies that a Social Login type was used.',
-                      type: BoolType,
-                    },
-                  }),
-                }),
-              ),
-            },
+        type: new NonNull(
+          new InputObject({
+            name: 'NewUserAuthenticationObject',
+            fields: () => ({
+              signedUp: {
+                description: 'The Date this new user first signed up for newsletters.',
+                type: StringType,
+              },
+              password: {
+                description: 'This new user\'s password if using email signup.',
+                type: StringType,
+              },
+              createdAt: {
+                description: 'The date this new user was created.',
+                type: StringType,
+              },
+              totalLogins: {
+                description: 'The number of times this new user has logged in.',
+                type: IntType,
+              },
+              lastLogin: {
+                description: 'The last time this new user logged in.',
+                type: new NonNull(
+                  new ListType(
+                    new InputObject({
+                      name: 'NewUserLastLoginObject',
+                      fields: () => ({
+                        date: {
+                          description: 'The Date the user last logged in.',
+                          type: StringType,
+                        },
+                        device: {
+                          description: 'The type of device the user logged in with.',
+                          type: StringType,
+                        },
+                      }),
+                    }),
+                  ),
+                ),
+              },
+              ageVerified: {
+                description: 'Verification if the user is at least 20 years of age.',
+                type: new NonNull(BoolType),
+              },
+              auth0Identities: {
+                description: 'An array of identity object from Auth0 for each different type of login used by the user.',
+                type: new NonNull(
+                  new ListType(
+                    new InputObject({
+                      name: 'NewUserAuth0IdentitiesObject',
+                      fields: () => ({
+                        provider: {
+                          description: 'The Social-Login Provider.',
+                          type: StringType,
+                        },
+                        user_id: {
+                          description: 'The Auth0 User ID for this login type.',
+                          type: StringType,
+                        },
+                        connection: {
+                          description: 'The type of Auth0 connection that was used.',
+                          type: StringType,
+                        },
+                        isSocial: {
+                          description: 'Verifies that a Social Login type was used.',
+                          type: BoolType,
+                        },
+                      }),
+                    }),
+                  ),
+                ),
+              },
+            }),
           }),
-        }),
+        )
       },
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',

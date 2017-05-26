@@ -12,7 +12,7 @@ new Promise((resolve, reject) => {
 
   User.findOne({ 'authentication.auth0Identities.user_id': auth0Id })
   .exec()
-  .the((dbUser) => {
+  .then((dbUser) => {
     if (!dbUser) return this.registerUser(args);
     return this.loginUser(loginType, dbUser, args);
   })
@@ -28,15 +28,16 @@ new Promise((resolve) => {
   dbUser.contactInfo.location = { ...userObj.contactInfo.location };
   dbUser.shopping.cart = [...userObj.shopping.cart];
   dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
+
   dbUser.save({ validateBeforeSave: true })
   .then(resolve);
 });
 
-userSchema.statics.registerUser = (loginType, userObj) =>
+userSchema.statics.registerUser = userObj =>
 new Promise((resolve, reject) => {
   bbPromise.fromCallback(cb => User.create(userObj, cb))
   .then((newUser) => {
-    console.log('New User created!: ', newUser._id, '\nName: ', newUser.name.display);
+    console.log('New User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
     resolve(userObj);
   })
   .catch(error => reject(`
