@@ -20,8 +20,10 @@ const userSchema = new Schema({
     password: { type: String },
     createdAt: { type: Date },
     totalLogins: { type: Number },
-    lastLogin: { type: Date, default: new Date() },
-    loginDevice: { type: String },
+    lastLogin: [{
+      date: { type: Date, default: new Date() },
+      device: { type: String, default: 'computer' },
+    }],
     ageVerified: { type: Boolean, default: false },
     auth0Identities: [{
       provider: { type: String },
@@ -32,9 +34,9 @@ const userSchema = new Schema({
   },
   contactInfo: {
     email: { type: String },
-    phone: { type: Number },
+    phone: { type: String },
     locale: { type: String },
-    timezone: { type: String },
+    timezone: { type: Number },
     location: {
       ipAddress: { type: String },
       lat: { type: String },
@@ -46,7 +48,7 @@ const userSchema = new Schema({
       os: { type: String },
     }],
     socialNetworks: [{
-      type: { type: String },
+      name: { type: String },
       link: { type: String },
     }],
   },
@@ -76,6 +78,12 @@ const userSchema = new Schema({
     birthday: { type: Date },
     bio: { type: String },
     gender: { type: String },
+  },
+  marketHero: {
+    tags: [{
+      name: { type: String },
+      date: { type: Date },
+    }],
   },
   socialProfileBlob: {
     line: { type: String },
