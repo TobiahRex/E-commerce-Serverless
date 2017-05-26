@@ -64,7 +64,15 @@ new Promise((resolve, reject) => {
       ...contactInfo,
       location: { ...contactInfoLocation },
       devices: { ...contactInfoDevices },
+      socialNetworks: { ...contactInfoSocialNetworks },
     },
+    shopping: {
+      ...shopping,
+      cart: { ...shoppingCart },
+    },
+    permissions,
+    userStory,
+    socialProfileBlob,
   }, cb))
   .then((newUser) => {
     console.log('\nNew User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
