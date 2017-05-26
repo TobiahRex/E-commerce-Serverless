@@ -33,19 +33,32 @@ const createAPI = () => {
       userStory,
       socialProfileBlob,
     },
-  }) => api.post('', {
-    mutation: `mutation {
+  }) => {
+    console.log(`mutation LoginOrRegister {
       LoginOrRegister(
         loginType: ${loginType}
         auth0Id: ${auth0Id}
-        name: ${{ ...name }}
-        pictures: ${{ ...pictures }}
-        authentication: ${{ ...authentication }}
-        contactInfo: ${{ ...contactInfo }}
-        shopping: ${{ ...shopping }}
-        permissions: ${{ ...permissions }}
-        userStory: ${{ ...userStory }}
-        socialProfileBlob: ${{ ...socialProfileBlob }}
+        name: ${JSON.stringify({ ...name }, null, 2)}
+        pictures: ${JSON.stringify({ ...pictures }, null, 2)}
+        authentication: ${JSON.stringify({ ...authentication }, null, 2)}
+        contactInfo: ${JSON.stringify({ ...contactInfo }, null, 2)}
+        shopping: ${JSON.stringify({ ...shopping }, null, 2)}
+        permissions: ${JSON.stringify({ ...permissions }, null, 2)}
+        userStory: ${JSON.stringify({ ...userStory }, null, 2)}
+        socialProfileBlob: ${JSON.stringify({ ...socialProfileBlob }, null, 2)}`);
+    return api.post('', {
+    mutation: `mutation LoginOrRegister {
+      LoginOrRegister(
+        loginType: ${loginType}
+        auth0Id: ${auth0Id}
+        name: ${JSON.stringify({ ...name }, null, 2)}
+        pictures: ${JSON.stringify({ ...pictures }, null, 2)}
+        authentication: ${JSON.stringify({ ...authentication }, null, 2)}
+        contactInfo: ${JSON.stringify({ ...contactInfo }, null, 2)}
+        shopping: ${JSON.stringify({ ...shopping }, null, 2)}
+        permissions: ${JSON.stringify({ ...permissions }, null, 2)}
+        userStory: ${JSON.stringify({ ...userStory }, null, 2)}
+        socialProfileBlob: ${JSON.stringify({ ...socialProfileBlob }, null, 2)}
       ) {
         _id
         name {
@@ -63,9 +76,17 @@ const createAPI = () => {
           password
           createdAt
           totalLogins
-          lastLogin
+          lastLogin {
+            date
+            device
+          }
           ageVerified
-          auth0Identities
+          auth0Identities {
+            provider
+            user_id
+            connection
+            isSocial
+          }
         }
         contactInfo {
           email
@@ -78,14 +99,24 @@ const createAPI = () => {
             long
             country
           },
-          devices
-          socialNetworks
+          devices {
+            hardware
+            os
+          }
+          socialNetworks {
+            name
+            link
+          }
         }
         permissions {
           role
         }
         shopping {
-          cart
+          cart {
+            qty
+            strength
+            product
+          }
           transactions
         }
         permissions {
@@ -97,7 +128,7 @@ const createAPI = () => {
           bio
           gender
         }
-        socialProfile {
+        socialProfileBlob {
           line
           facebook
           google
@@ -108,6 +139,7 @@ const createAPI = () => {
     }
   `,
   });
+}
 
   return {
     LoginOrRegister,

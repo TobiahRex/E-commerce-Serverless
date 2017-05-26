@@ -34,12 +34,14 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     },
     shopping: {
       cart: [],
+      transactions: [],
     },
     permissions: {
-      role: 'user',
+      role: ['user'],
     },
     userStory: {
       age: auth0Profile.age_range,
+      birthday: '',
       bio: '',
       gender: auth0Profile.gender,
     },
