@@ -27,6 +27,12 @@ const createAPI = () => {
       name,
       pictures,
       authentication,
+      authenticationLogins,
+      authenticationAuth0Identities,
+      contactInfoLocation,
+      contactInfoDevices,
+      contactInfoSocialNetworks,
+      shoppingCart,
       contactInfo,
       shopping,
       permissions,
@@ -34,9 +40,8 @@ const createAPI = () => {
       socialProfileBlob,
     },
   }) => api.post('', {
-    mutation: `mutation LoginOrRegister {
-      LoginOrRegister(
-        $aut0Id: String!
+    mutation: `mutation LoginOrRegister(
+        $auth0Id: String!
         $loginType: String!
         $name: UserNameObjectInput!
         $pictures: UserPictureInput
@@ -47,8 +52,31 @@ const createAPI = () => {
         $contactInfoLocation: UserLocationInput
         $contactInfoDevices: UserDevicesInput
         $contactInfoSocialNetworks: UserSocialNetworkInput
-        
+        $shopping: UserShoppingInput
+        $shoppingCart: UserCartInput
+        $permissions: UserPermissionsInput
+        $userStory: UserStoryInput
+        $socialProfileBlob: UserSocialProfileBlobInput
       ) {
+        LoginOrRegister(
+          auth0Id: $auth0Id
+          loginType: $loginType
+          name: $name
+          pictures: $pictures
+          authentication: $authentication
+          authenticationLogins: $authenticationLogins
+          authenticationAuth0Identities: $authenticationAuth0Identities
+          contactInfo: $contactInfo
+          contactInfoLocation: $contactInfoLocation
+          contactInfoDevices: $contactInfoDevices
+          contactInfoSocialNetworks: $contactInfoSocialNetworks
+          shopping: $shopping
+          shoppingCart: $shoppingCart
+          permissions: $permissions
+          userStory: $userStory
+          socialProfileBlob: $socialProfileBlob
+        )
+      } {
         _id
         name {
           first
@@ -127,6 +155,24 @@ const createAPI = () => {
       }
     }
     `,
+    variables: {
+      auth0Id,
+      loginType,
+      name,
+      pictures,
+      authentication,
+      authenticationLogins,
+      authenticationAuth0Identities,
+      contactInfo,
+      contactInfoLocation,
+      contactInfoDevices,
+      contactInfoSocialNetworks,
+      shopping,
+      shoppingCart,
+      permissions,
+      userStory,
+      socialProfileBlob,
+    },
   });
 
   return {

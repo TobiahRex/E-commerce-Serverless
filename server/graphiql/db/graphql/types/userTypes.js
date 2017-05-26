@@ -583,32 +583,8 @@ const mutations = {
       shopping: {
         description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
         type: new InputObject({
-          name: 'UserShoppingObjectInput',
+          name: 'UserShoppingInput',
           fields: () => ({
-            cart: {
-              description: 'The Users shopping cart.',
-              type: new NonNull(
-                new ListType(
-                  new InputObject({
-                    name: 'UserCartObjectInput',
-                    fields: () => ({
-                      qty: {
-                        description: 'The quantity of items of this product.',
-                        type: IntType,
-                      },
-                      strength: {
-                        description: 'The nicotine strength of this product.',
-                        type: StringType,
-                      },
-                      product: {
-                        description: 'The Mongo ObjectID for this product.',
-                        type: MongoID,
-                      },
-                    }),
-                  }),
-                ),
-              ),
-            },
             transactions: {
               description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
               type: new ListType(StringType),
@@ -616,10 +592,34 @@ const mutations = {
           }),
         }),
       },
+      shoppingCart: {
+        description: 'The Users shopping cart.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserCartInput',
+              fields: () => ({
+                qty: {
+                  description: 'The quantity of items of this product.',
+                  type: IntType,
+                },
+                strength: {
+                  description: 'The nicotine strength of this product.',
+                  type: StringType,
+                },
+                product: {
+                  description: 'The Mongo ObjectID for this product.',
+                  type: MongoID,
+                },
+              }),
+            }),
+          ),
+        ),
+      },
       permissions: {
         description: 'Authorization permissions granted for user.',
         type: new InputObject({
-          name: 'UserPermissionsObjectInput',
+          name: 'UserPermissionsInput',
           fields: () => ({
             role: {
               description: 'The authorization role for this user.',
@@ -655,7 +655,7 @@ const mutations = {
         description: 'Bio information for new user.',
         type: new NonNull(
           new InputObject({
-            name: 'UserInputStoryObjectInput',
+            name: 'UserStoryInput',
             fields: () => ({
               age: {
                 description: 'The age of this new user.',
@@ -680,7 +680,7 @@ const mutations = {
       socialProfileBlob: {
         description: 'The users collection of social profiles from their Social Login accounts.',
         type: new InputObject({
-          name: 'UserSocialProfilesInput',
+          name: 'UserSocialProfileBlobInput',
           fields: () => ({
             line: {
               description: 'The Social Profile for the User\'s LINE account.',

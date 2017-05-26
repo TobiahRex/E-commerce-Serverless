@@ -33,14 +33,17 @@ function createAuthChannel(auth) {
   });
 }
 
-function* postLoginActions({ profile }) {
+function* postLoginActions(payload) {
   const reduxState = yield select(state => state);
-  const { cleanProfile, auth0Id, loginType } = cleanAuth0Profile(reduxState, profile);
-  const response = yield call(() => api.LoginOrRegister({
+  const {
+    profile,
     auth0Id,
     loginType,
-    profile: cleanProfile,
-  }));
+  } = cleanAuth0Profile(reduxState, payload.profile);
+
+  const response = yield call(() =>
+    api.LoginOrRegister({ auth0Id, loginType, profile }),
+  );
   const { ok, problem, data } = cleanGQLresponse(response);
   console.log('%cpostLoginActions @ saga/authorization\ndata', 'background:cyan;', data);
 
