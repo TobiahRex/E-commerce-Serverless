@@ -58,21 +58,21 @@ const createAPI = () => {
           }]
           ageVerified: true
           auth0Identities: [{
-            provider: ${authentication.auth0Identities}
-            user_id: "123123123"
-            connection: "facebook"
-            isSocial: true
+            provider: ${authentication.auth0Identities[0].provider}
+            user_id: ${authentication.auth0Identities[0].user_id}
+            connection: ${authentication.auth0Identities[0].connection}
+            isSocial: ${authentication.auth0Identities[0].isSocial}
           }]
         }
         contactInfo: {
-          email: "bickleyusn@gmail.com"
-          phone: "141532100002"
-          locale: "en-US"
+          email: ${contactInfo.email}
+          phone: ${contactInfo.phone}
+          locale: ${contactInfo.locale}
           location: {
-            ipAddress: "123.123.123.123"
-            lat: "18"
-            long: "32"
-            country: "JP"
+            ipAddress: ${contactInfo.location.ipAddress}
+            lat: ${contactInfo.location.lat}
+            long: ${contactInfo.location.long}
+            country: ${contactInfo.location.country}
           }
           devices: [{
             hardware: "Galaxy S7"
