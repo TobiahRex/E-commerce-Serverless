@@ -586,7 +586,7 @@ const mutations = {
             cart: {
               description: 'The Users shopping cart.',
               type: new NonNull(
-                new ListType (
+                new ListType(
                   new InputObject({
                     name: 'NewUsersCartObject',
                     fields: () => ({

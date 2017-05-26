@@ -174,7 +174,7 @@ const rootType = new ObjectType({
   },
 });
 const queries = {
-  findProductById: {
+  FindProductById: {
     type: rootType,
     args: {
       _id: {
@@ -184,7 +184,7 @@ const queries = {
     },
     resolve: (_, { _id }, { Product }) => Product.findProductById(_id),
   },
-  popularProducts: {
+  PopularProducts: {
     type: new ListType(rootType),
     args: {
       qty: {
@@ -196,7 +196,7 @@ const queries = {
   },
 };
 const mutations = {
-  createProduct: { // This is only used from GraphiQL to seed database.
+  CreateProduct: { // This is only used from GraphiQL to seed database.
     type: rootType,
     description: 'Create new Product.',
     args: {
@@ -355,7 +355,7 @@ const mutations = {
     },
     resolve: (_, { product }, { Product }) => Product.createProduct(product),
   },
-  findProductAndUpdate: {
+  FindProductAndUpdate: {
     type: rootType,
     description: 'Find product by ID and update.',
     args: {
@@ -512,13 +512,13 @@ const mutations = {
     },
     resolve: (_, { _id, newProduct }, { Product }) => Product.findProductAndUpdate(_id, newProduct),
   },
-  findProductByIdAndDelete: {
+  FindProductByIdAndDelete: {
     type: rootType,
     description: 'Find product by ID and delete the product.',
     args: {
       _id: {
-        type: new NonNull(GraphQLID),
         description: 'The Mongo _id of the product.',
+        type: new NonNull(GraphQLID),
       },
     },
     resolve: (_, { _id }, { Product }) => Product.findProductByIdAndDelete(_id),
