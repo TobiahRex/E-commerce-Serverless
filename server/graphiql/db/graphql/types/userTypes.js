@@ -339,23 +339,23 @@ const rootType = new ObjectType({
         name: 'UserSocialProfileBlob',
         fields: () => ({
           line: {
-            description: 'User info from LINE.',
+            description: 'The Social Profile for the User\'s LINE account.',
             type: StringType,
           },
           facebook: {
-            description: 'User info from Facebook.',
+            description: 'The Social Profile for the User\'s Facebook account.',
             type: StringType,
           },
           google: {
-            description: 'User info from Google.',
+            description: 'The Social Profile for the User\'s Google account.',
             type: StringType,
           },
           twitter: {
-            description: 'User info from Twitter.',
+            description: 'The Social Profile for the User\'s Twitter account.',
             type: StringType,
           },
           linkedin: {
-            description: 'User info from Linkedin.',
+            description: 'The Social Profile for the User\'s Linkedin account.',
             type: StringType,
           },
         }),
@@ -490,7 +490,7 @@ const mutations = {
               },
             }),
           }),
-        )
+        ),
       },
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
@@ -515,27 +515,29 @@ const mutations = {
             },
             location: {
               description: 'IP address, lat, long, & country code. for this user from their last login.',
-              type: new InputObject({
-                name: 'NewUserGeolocationObject',
-                fields: () => ({
-                  ipAddress: {
-                    description: 'IP address this user last used.',
-                    type: StringType,
-                  },
-                  lat: {
-                    description: 'Latitude coord. this user last logged in from.',
-                    type: StringType,
-                  },
-                  long: {
-                    description: 'Longitude coord. this user last logged in from.',
-                    type: StringType,
-                  },
-                  country: {
-                    description: 'Country code this user last logged in from.',
-                    type: StringType,
-                  },
+              type: new NonNull(
+                new InputObject({
+                  name: 'NewUserGeolocationObject',
+                  fields: () => ({
+                    ipAddress: {
+                      description: 'IP address this user last used.',
+                      type: new NonNull(StringType),
+                    },
+                    lat: {
+                      description: 'Latitude coord. this user last logged in from.',
+                      type: new NonNull(StringType),
+                    },
+                    long: {
+                      description: 'Longitude coord. this user last logged in from.',
+                      type: new NonNull(StringType),
+                    },
+                    country: {
+                      description: 'Country code this user last logged in from.',
+                      type: new NonNull(StringType),
+                    },
+                  }),
                 }),
-              }),
+              ),
             },
             devices: {
               description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
@@ -557,19 +559,21 @@ const mutations = {
             },
             socialNetworks: {
               description: 'An array of Social Networks used by the user + their respective account links.',
-              type: new InputObject({
-                name: 'NewUserSocialNetworkObject',
-                fields: () => ({
-                  name: {
-                    description: 'The name of the Social Network.',
-                    type: StringType,
-                  },
-                  link: {
-                    description: 'The Social Network Link for this users account.',
-                    type: StringType,
-                  },
+              type: new ListType(
+                new InputObject({
+                  name: 'NewUserSocialNetworkObject',
+                  fields: () => ({
+                    name: {
+                      description: 'The name of the Social Network.',
+                      type: StringType,
+                    },
+                    link: {
+                      description: 'The Social Network Link for this users account.',
+                      type: StringType,
+                    },
+                  }),
                 }),
-              }),
+              ),
             },
           }),
         }),
@@ -581,44 +585,71 @@ const mutations = {
           fields: () => ({
             cart: {
               description: 'The Users shopping cart.',
-              type: new InputObject({
-                name: 'NewUsersCartObject',
-                fields: () => ({
-                  qty: {
-                    description: 'The quantity of items of this product.',
-                    type: IntType,
-                  },
-                  strength: {
-                    description: 'The nicotine strength of this product.',
-                    type: StringType,
-                  },
-                  product: {
-                    description: 'The Mongo ObjectID for this product.',
-                    type: MongoID,
-                  },
-                }),
-              }),
+              type: new NonNull(
+                new ListType (
+                  new InputObject({
+                    name: 'NewUsersCartObject',
+                    fields: () => ({
+                      qty: {
+                        description: 'The quantity of items of this product.',
+                        type: IntType,
+                      },
+                      strength: {
+                        description: 'The nicotine strength of this product.',
+                        type: StringType,
+                      },
+                      product: {
+                        description: 'The Mongo ObjectID for this product.',
+                        type: MongoID,
+                      },
+                    }),
+                  }),
+                ),
+              ),
             },
             transactions: {
               description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-              type: StringType,
+              type: new ListType(StringType),
             },
           }),
         }),
       },
       permissions: {
-        description: 'Authorization permissions for this new user.',
-        type: new NonNull(
-          new InputObject({
-            name: 'NewUserInputPermissionsObject',
-            fields: () => ({
-              role: {
-                description: 'Authorization role for this new user.',
-                type: new NonNull(StringType),
-              },
-            }),
+        description: 'Authorization permissions granted for user.',
+        type: new InputObject({
+          name: 'NewUserPermissionsObject',
+          fields: () => ({
+            role: {
+              description: 'The authorization role for this user.',
+              type: new ListType(
+                new EnumType({
+                  name: 'NewUserPermissions',
+                  values: {
+                    user: {
+                      description: 'User has basic "User" permissions.',
+                      value: 'user',
+                    },
+                    admin: {
+                      description: 'User has "Administrator" permissions.',
+                      value: 'admin',
+                    },
+                    devAdmin: {
+                      description: 'User has "Developer Administrator" permissions.',
+                      value: 'devAdmin',
+                    },
+                    wholeseller: {
+                      description: 'The User has "Whole-Seller" permissions.',
+                      value: 'wholeseller',
+                    },
+                    distributor: {
+                      description: 'The User has "Distributor" permissions.',
+                    },
+                  },
+                }),
+              ),
+            },
           }),
-        ),
+        }),
       },
       userStory: {
         description: 'Bio information for new user.',
@@ -636,6 +667,10 @@ const mutations = {
               },
               bio: {
                 description: 'The biography of this new user.',
+                type: StringType,
+              },
+              gender: {
+                description: 'The User\'s gender.',
                 type: StringType,
               },
             }),
