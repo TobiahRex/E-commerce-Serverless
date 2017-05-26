@@ -17,12 +17,6 @@ class NavbarUserActionsSignedin extends PureComponent {
       },
     },
   }
-  static styles = {
-    hidden: {
-      display: 'none',
-    },
-    show: {},
-  }
 
   logout = () => AuthService.logout();
 

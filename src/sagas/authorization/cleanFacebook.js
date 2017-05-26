@@ -18,7 +18,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     },
     authenticationLogins: [{
       date: new Date(),
-      loginDevice: mobile.mobileType || 'computer',
+      device: mobile.mobileType || 'computer',
     }],
     authenticationAuth0Identities: [...auth0Profile.identities],
     contactInfo: {
@@ -27,7 +27,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       locale: auth0Profile.locale,
       timezone: auth0Profile.timezone,
     },
-    contactInfolocation: {
+    contactInfoLocation: {
       ipAddress: geo.ipAddress,
       lat: geo.latLong.split(',')[0],
       long: geo.latLong.split(',')[1],
@@ -46,7 +46,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       role: 'user',
     },
     userStory: {
-      age: auth0Profile.age_range,
+      age: auth0Profile.age_range.min,
       birthday: '',
       bio: '',
       gender: auth0Profile.gender,

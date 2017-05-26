@@ -40,7 +40,7 @@ const createAPI = () => {
       socialProfileBlob,
     },
   }) => api.post('', {
-    mutation: `mutation LoginOrRegister(
+    query: `mutation LoginOrRegister(
       $auth0Id: String!
       $loginType: String!
       $name: UserNameInput!

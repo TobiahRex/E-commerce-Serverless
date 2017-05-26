@@ -11,12 +11,18 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
     profile: objectOf(any),
   }
   static defaultProps = {
-    profile: null,
+    profile: {
+      pictures: {
+        small: '',
+        default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/default-user.png',
+      },
+    },
   }
 
   logout = () => AuthService.logout();
 
   render() {
+    console.log('this.props: ', this.props);
     return (
       <ul className="actions__signedIn--list">
         <li className="list--signOut sweep-right-red">
@@ -31,7 +37,12 @@ class NavbarMobileUserActionsSignedIn extends PureComponent {
         </li>
         <li className="list--myAccount">
           <Link className="myAccount__link">
-            <img src={this.props.profile.picture} alt="My Account" />
+            <img
+              src={
+                this.props.profile.pictures.small || this.props.profile.pictures.default
+              }
+              alt="My Account"
+            />
           </Link>
         </li>
       </ul>
