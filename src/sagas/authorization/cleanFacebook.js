@@ -56,7 +56,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
     date: new Date(),
     loginDevice: mobile.mobileType || 'computer',
   });
-  if (orders.guest && order.guest.length) {
+  if (orders.guest && orders.guest.length) {
     orders.guest.forEach(({ id: product, qty, strength }) => {
       cleanProfile.shopping.cart.push({ qty, strength, product });
     });

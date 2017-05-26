@@ -53,6 +53,10 @@ const rootType = new ObjectType({
             description: 'Large user image used for the user dashboard.',
             type: StringType,
           },
+          default: {
+            description: 'The default user avatar if none is supplied.',
+            type: StringType,
+          },
         }),
       }),
     },
@@ -374,13 +378,13 @@ const mutations = {
       },
       loginType: {
         description: 'The Social Network used to login or register.',
-        type: StringType,
+        type: new NonNull(StringType),
       },
       name: {
         description: 'The Given, Family, & Display name for the new user.',
         type: new NonNull(
           new InputObject({
-            name: 'NewUserNameObject',
+            name: 'UserNameObjectInput',
             fields: () => ({
               first: {
                 description: 'The first name of the new user.',
@@ -401,7 +405,7 @@ const mutations = {
       pictures: {
         description: 'Pictures of the user in different sizes.',
         type: new InputObject({
-          name: 'NewUserPictureObject',
+          name: 'UserPictureObjectInput',
           fields: () => ({
             small: {
               description: 'Small user image used for the Navbar avatar.',
@@ -418,7 +422,7 @@ const mutations = {
         description: 'Authentication information for user.',
         type: new NonNull(
           new InputObject({
-            name: 'NewUserAuthenticationObject',
+            name: 'UserAuthenticationObjectInput',
             fields: () => ({
               signedUp: {
                 description: 'The Date this new user first signed up for newsletters.',
@@ -441,7 +445,7 @@ const mutations = {
                 type: new NonNull(
                   new ListType(
                     new InputObject({
-                      name: 'NewUserLastLoginObject',
+                      name: 'UserLastLoginObjectInput',
                       fields: () => ({
                         date: {
                           description: 'The Date the user last logged in.',
@@ -465,7 +469,7 @@ const mutations = {
                 type: new NonNull(
                   new ListType(
                     new InputObject({
-                      name: 'NewUserAuth0IdentitiesObject',
+                      name: 'UserAuth0IdentitiesObjectInput',
                       fields: () => ({
                         provider: {
                           description: 'The Social-Login Provider.',
@@ -495,7 +499,7 @@ const mutations = {
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
         type: new InputObject({
-          name: 'NewUserContanctInfoObject',
+          name: 'UserContanctInfoObjectInput',
           fields: () => ({
             email: {
               description: 'The email for this user.',
@@ -517,7 +521,7 @@ const mutations = {
               description: 'IP address, lat, long, & country code. for this user from their last login.',
               type: new NonNull(
                 new InputObject({
-                  name: 'NewUserGeolocationObject',
+                  name: 'UserGeolocationObjectInput',
                   fields: () => ({
                     ipAddress: {
                       description: 'IP address this user last used.',
@@ -543,7 +547,7 @@ const mutations = {
               description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
               type: new ListType(
                 new InputObject({
-                  name: 'NewUserDevicesObject',
+                  name: 'UserDevicesObjectInput',
                   fields: () => ({
                     hardware: {
                       description: 'The mobile Phone type.',
@@ -561,7 +565,7 @@ const mutations = {
               description: 'An array of Social Networks used by the user + their respective account links.',
               type: new ListType(
                 new InputObject({
-                  name: 'NewUserSocialNetworkObject',
+                  name: 'UserSocialNetworkObjectInput',
                   fields: () => ({
                     name: {
                       description: 'The name of the Social Network.',
@@ -581,14 +585,14 @@ const mutations = {
       shopping: {
         description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
         type: new InputObject({
-          name: 'NewUserShoppingObject',
+          name: 'UserShoppingObjectInput',
           fields: () => ({
             cart: {
               description: 'The Users shopping cart.',
               type: new NonNull(
                 new ListType(
                   new InputObject({
-                    name: 'NewUsersCartObject',
+                    name: 'UserCartObjectInput',
                     fields: () => ({
                       qty: {
                         description: 'The quantity of items of this product.',
@@ -617,13 +621,13 @@ const mutations = {
       permissions: {
         description: 'Authorization permissions granted for user.',
         type: new InputObject({
-          name: 'NewUserPermissionsObject',
+          name: 'UserPermissionsObjectInput',
           fields: () => ({
             role: {
               description: 'The authorization role for this user.',
               type: new ListType(
                 new EnumType({
-                  name: 'NewUserPermissions',
+                  name: 'UserPermissionsEnumInput',
                   values: {
                     user: {
                       description: 'User has basic "User" permissions.',
@@ -655,7 +659,7 @@ const mutations = {
         description: 'Bio information for new user.',
         type: new NonNull(
           new InputObject({
-            name: 'NewUserInputStoryObject',
+            name: 'UserInputStoryObjectInput',
             fields: () => ({
               age: {
                 description: 'The age of this new user.',
@@ -677,10 +681,10 @@ const mutations = {
           }),
         ),
       },
-      socialProfile: {
+      socialProfileBlob: {
         description: 'The users collection of social profiles from their Social Login accounts.',
         type: new InputObject({
-          name: 'NewUserSocialProfiles',
+          name: 'UserSocialProfilesInput',
           fields: () => ({
             line: {
               description: 'The Social Profile for the User\'s LINE account.',

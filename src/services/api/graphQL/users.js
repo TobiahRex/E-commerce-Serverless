@@ -34,88 +34,79 @@ const createAPI = () => {
       socialProfileBlob,
     },
   }) => api.post('', {
-    mutation: `mutation LoginOrRegister(
-      $loginType: ${loginType}
-      $auth0Id: ${auth0Id}
-      $name: ${{ ...name }}
-      $pictures: ${{ ...pictures }}
-      $authentication: ${{ ...authentication }}
-      $contactInfo: ${{ ...contactInfo }}
-      $shopping: ${{ ...shopping }}
-      $permissions: ${{ ...permissions }}
-      $userStory: ${{ ...userStory }}
-      $socialProfileBlob: ${{ ...socialProfileBlob }}
-    ) {
-      _id
-      name {
-        first
-        last
-        display
+    mutation: `mutation {
+      LoginOrRegister(
+        loginType: ${loginType}
+        auth0Id: ${auth0Id}
+        name: ${{ ...name }}
+        pictures: ${{ ...pictures }}
+        authentication: ${{ ...authentication }}
+        contactInfo: ${{ ...contactInfo }}
+        shopping: ${{ ...shopping }}
+        permissions: ${{ ...permissions }}
+        userStory: ${{ ...userStory }}
+        socialProfileBlob: ${{ ...socialProfileBlob }}
+      ) {
+        _id
+        name {
+          first
+          last
+          display
+        }
+        pictures {
+          small
+          large
+          default
+        }
+        authentication {
+          signedUp
+          password
+          createdAt
+          totalLogins
+          lastLogin
+          ageVerified
+          auth0Identities
+        }
+        contactInfo {
+          email
+          phone
+          locale
+          timezone
+          location {
+            ipAddress
+            lat
+            long
+            country
+          },
+          devices
+          socialNetworks
+        }
+        permissions {
+          role
+        }
+        shopping {
+          cart
+          transactions
+        }
+        permissions {
+          role
+        }
+        userStory {
+          age
+          birthday
+          bio
+          gender
+        }
+        socialProfile {
+          line
+          facebook
+          google
+          twitter
+          linkedin
+        }
       }
-      pictures {
-        small
-        large
-        default
-      }
-      authentication {
-        signedUp
-        password
-        createdAt
-        totalLogins
-        lastLogin
-        ageVerified
-        auth0Identities
-      }
-      contactInfo {
-        email
-        phone
-        locale
-        timezone
-        location {
-          ipAddress
-          lat
-          long
-          country
-        },
-        devices
-        socialNetworks
-      }
-      permissions {
-        role
-      }
-      shopping {
-        cart
-        transactions
-      }
-      permissions {
-        role
-      }
-      userStory {
-        age
-        birthday
-        bio
-        gender
-      }
-      socialProfile {
-        line
-        facebook
-        google
-        twitter
-        linkedin
-      }
-    }`,
-    variables: {
-      loginType,
-      auth0Id,
-      name: { ...name },
-      pictures: { ...pictures },
-      authentication: { ...authentication },
-      contactInfo: { ...contactInfo },
-      shopping: { ...shopping },
-      permissions: { ...permissions },
-      userStory: { ...userStory },
-      socialProfileBlob: { ...socialProfileBlob },
-    },
+    }
+  `,
   });
 
   return {

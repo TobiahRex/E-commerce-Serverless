@@ -35,7 +35,6 @@ function createAuthChannel(auth) {
 
 function* postLoginActions({ profile }) {
   const reduxState = yield select(state => state);
-  console.log('%creduxState', 'background:red;', reduxState);
   const { cleanProfile, auth0Id, loginType } = cleanAuth0Profile(reduxState, profile);
   const response = yield call(() => api.LoginOrRegister({
     auth0Id,
