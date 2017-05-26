@@ -42,6 +42,12 @@ const createAPI = () => {
         $pictures: UserPictureInput
         $authentication: UserAuthenticationInput
         $authenticationLogins: UserLastLoginInput
+        $authenticationAuth0Identities: UserAuth0IdentitiesInput
+        $contactInfo: UserContactInfoInput
+        $contactInfoLocation: UserLocationInput
+        $contactInfoDevices: UserDevicesInput
+        $contactInfoSocialNetworks: UserSocialNetworkInput
+        
       ) {
         _id
         name {

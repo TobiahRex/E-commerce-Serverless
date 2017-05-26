@@ -442,34 +442,6 @@ const mutations = {
                 description: 'Verification if the user is at least 20 years of age.',
                 type: new NonNull(BoolType),
               },
-              auth0Identities: {
-                description: 'An array of identity object from Auth0 for each different type of login used by the user.',
-                type: new NonNull(
-                  new ListType(
-                    new InputObject({
-                      name: 'UserAuth0IdentitiesObjectInput',
-                      fields: () => ({
-                        provider: {
-                          description: 'The Social-Login Provider.',
-                          type: StringType,
-                        },
-                        user_id: {
-                          description: 'The Auth0 User ID for this login type.',
-                          type: StringType,
-                        },
-                        connection: {
-                          description: 'The type of Auth0 connection that was used.',
-                          type: StringType,
-                        },
-                        isSocial: {
-                          description: 'Verifies that a Social Login type was used.',
-                          type: BoolType,
-                        },
-                      }),
-                    }),
-                  ),
-                ),
-              },
             }),
           }),
         ),
@@ -494,10 +466,38 @@ const mutations = {
           ),
         ),
       },
+      authenticationAuth0Identities: {
+        description: 'An array of identity object from Auth0 for each different type of login used by the user.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'UserAuth0IdentitiesInput',
+              fields: () => ({
+                provider: {
+                  description: 'The Social-Login Provider.',
+                  type: StringType,
+                },
+                user_id: {
+                  description: 'The Auth0 User ID for this login type.',
+                  type: StringType,
+                },
+                connection: {
+                  description: 'The type of Auth0 connection that was used.',
+                  type: StringType,
+                },
+                isSocial: {
+                  description: 'Verifies that a Social Login type was used.',
+                  type: BoolType,
+                },
+              }),
+            }),
+          ),
+        ),
+      },
       contactInfo: {
         description: 'Contact info & GeoLocation info for user.',
         type: new InputObject({
-          name: 'UserContanctInfoInput',
+          name: 'UserContactInfoInput',
           fields: () => ({
             email: {
               description: 'The email for this user.',
@@ -515,70 +515,70 @@ const mutations = {
               description: 'The users local Time Zone - Retrieved from Social Login Providers.',
               type: IntType,
             },
-            location: {
-              description: 'IP address, lat, long, & country code. for this user from their last login.',
-              type: new NonNull(
-                new InputObject({
-                  name: 'UserGeolocationObjectInput',
-                  fields: () => ({
-                    ipAddress: {
-                      description: 'IP address this user last used.',
-                      type: new NonNull(StringType),
-                    },
-                    lat: {
-                      description: 'Latitude coord. this user last logged in from.',
-                      type: new NonNull(StringType),
-                    },
-                    long: {
-                      description: 'Longitude coord. this user last logged in from.',
-                      type: new NonNull(StringType),
-                    },
-                    country: {
-                      description: 'Country code this user last logged in from.',
-                      type: new NonNull(StringType),
-                    },
-                  }),
-                }),
-              ),
-            },
-            devices: {
-              description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
-              type: new ListType(
-                new InputObject({
-                  name: 'UserDevicesObjectInput',
-                  fields: () => ({
-                    hardware: {
-                      description: 'The mobile Phone type.',
-                      type: StringType,
-                    },
-                    os: {
-                      description: 'The operating system for the mobile device.',
-                      type: StringType,
-                    },
-                  }),
-                }),
-              ),
-            },
-            socialNetworks: {
-              description: 'An array of Social Networks used by the user + their respective account links.',
-              type: new ListType(
-                new InputObject({
-                  name: 'UserSocialNetworkObjectInput',
-                  fields: () => ({
-                    name: {
-                      description: 'The name of the Social Network.',
-                      type: StringType,
-                    },
-                    link: {
-                      description: 'The Social Network Link for this users account.',
-                      type: StringType,
-                    },
-                  }),
-                }),
-              ),
-            },
           }),
         }),
+      },
+      contactInfoLocation: {
+        description: 'IP address, lat, long, & country code. for this user from their last login.',
+        type: new NonNull(
+          new InputObject({
+            name: 'UserLocationInput',
+            fields: () => ({
+              ipAddress: {
+                description: 'IP address this user last used.',
+                type: new NonNull(StringType),
+              },
+              lat: {
+                description: 'Latitude coord. this user last logged in from.',
+                type: new NonNull(StringType),
+              },
+              long: {
+                description: 'Longitude coord. this user last logged in from.',
+                type: new NonNull(StringType),
+              },
+              country: {
+                description: 'Country code this user last logged in from.',
+                type: new NonNull(StringType),
+              },
+            }),
+          }),
+        ),
+      },
+      contactInfoDevices: {
+        description: 'The mobile devices used by a user to connect to Social Apps - From Social Login Providers Meta Data.',
+        type: new ListType(
+          new InputObject({
+            name: 'UserDevicesInput',
+            fields: () => ({
+              hardware: {
+                description: 'The mobile Phone type.',
+                type: StringType,
+              },
+              os: {
+                description: 'The operating system for the mobile device.',
+                type: StringType,
+              },
+            }),
+          }),
+        ),
+      },
+      contactInfoSocialNetworks: {
+        description: 'An array of Social Networks used by the user + their respective account links.',
+        type: new ListType(
+          new InputObject({
+            name: 'UserSocialNetworkInput',
+            fields: () => ({
+              name: {
+                description: 'The name of the Social Network.',
+                type: StringType,
+              },
+              link: {
+                description: 'The Social Network Link for this users account.',
+                type: StringType,
+              },
+            }),
+          }),
+        ),
       },
       shopping: {
         description: 'The Users Shopping Details: What\'s currently in the Users cart. What transactions have they made.',
