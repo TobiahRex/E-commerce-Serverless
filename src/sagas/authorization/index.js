@@ -40,25 +40,25 @@ function* postLoginActions(payload) {
     auth0Id,
     loginType,
   } = cleanAuth0Profile(reduxState, payload.profile);
-  //
-  // const response = yield call(() =>
-  //   api.LoginOrRegister({ auth0Id, loginType, profile }),
-  // );
-  // const { ok, problem, data } = cleanGQLresponse(response);
 
-  // if (ok) {
+  const response = yield call(() =>
+    api.LoginOrRegister({ auth0Id, loginType, profile }),
+  );
+  const { ok, problem, data } = cleanGQLresponse(response);
+
+  if (ok) {
     yield [
-      put(userActions.saveProfile(profile)),
-      // put(userActions.saveProfile(data.data.LoginOrRegister)),
+      // put(userActions.saveProfile(profile)),
+      put(userActions.saveProfile(data.data.LoginOrRegister)),
       put(authActions.loginSuccess()),
       put(sessionActions.resetPreLoginUrl()),
     ];
-  // } else {
-  //   yield [
-  //     put(authActions.loginFailure('Auth0 logged in Successfully.\nCould not save/register user data to database.')),
-  //     put(apiActions.apiFail(problem)),
-  //   ];
-  // }
+  } else {
+    yield [
+      put(authActions.loginFailure('Auth0 logged in Successfully.\nCould not save/register user data to database.')),
+      put(apiActions.apiFail(problem)),
+    ];
+  }
 }
 
 function* preLoginActions(socialType) {

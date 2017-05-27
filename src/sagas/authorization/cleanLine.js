@@ -1,5 +1,4 @@
 export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
-  console.log('%cauth0Line', 'background:red;', auth0Line);
   const profile = {
     name: {
       first: auth0Line.name,
@@ -28,7 +27,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
       locale: `${locale.activeLanguage.slice(0, 2)}-${locale.country}`,
       timezone: (() => {
         const date = new Date();
-        return (date.getTimezoneOffset() * -1);
+        return ((date.getTimezoneOffset() / 60) * -1);
       })(),
     },
     contactInfoLocation: {
