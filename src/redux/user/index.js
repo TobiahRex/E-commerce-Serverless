@@ -33,7 +33,7 @@ export const INITIAL_STATE = Immutable({
 });
 
 const saveProfile = (state, { profile }) => {
-  localStorage.setItem('profile', profile);
+  localStorage.setItem('profile', JSON.stringify(profile));
   return ({
     ...state,
     profile,
