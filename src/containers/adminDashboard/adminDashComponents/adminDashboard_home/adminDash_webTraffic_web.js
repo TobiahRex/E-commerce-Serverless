@@ -200,7 +200,7 @@ function AdminDashWebTrafficWeb() {
 
         <div className="body__map">
           <div className="map__google-heat-map">
-            <img className="google-heat-map__img" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/world_heatmap.png" alt="World Heatmap" />
+            <img className="google-heat-map__img" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/world_heatmap.png" alt="World Heatmap" />
           </div>
         </div>
       </div>

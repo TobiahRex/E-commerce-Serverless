@@ -13,7 +13,7 @@ class NavbarUserActionsSignedin extends PureComponent {
     profile: {
       pictures: {
         small: '',
-        default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/default-user.png',
+        default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
       },
     },
   }

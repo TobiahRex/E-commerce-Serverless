@@ -189,9 +189,9 @@ function AdminProducts({ location }) {
                           <tbody className="table__body">
                             <tr className="body__row">
                               <td className="row__image">
-                                <img className="image--primary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
-                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
-                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--primary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
                               </td>
                               <td className="row--desc">
                                 <ul className="desc--list">
@@ -280,9 +280,9 @@ function AdminProducts({ location }) {
                           <tbody className="table__body">
                             <tr className="body__row">
                               <td className="row__image">
-                                <img className="image--primary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
-                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
-                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--primary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
                               </td>
                               <td className="row--desc">
                                 <ul className="desc--list">
@@ -415,9 +415,9 @@ function AdminProducts({ location }) {
                           <tbody className="table__body">
                             <tr className="body__row">
                               <td className="row__image">
-                                <img className="image--primary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
-                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
-                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--primary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
+                                <img className="image--secondary" src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png" alt="Juice" />
                               </td>
                               <td className="row--desc">
                                 <ul className="desc--list">

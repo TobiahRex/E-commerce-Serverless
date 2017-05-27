@@ -37,7 +37,7 @@ function OrderReviews() {
         </div>
         <div className="reviews__product--info">
           <div className="info--image">
-            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.pngg" alt="Nicotine Juice" />
+            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_pc.pngg" alt="Nicotine Juice" />
           </div>
           <div className="info--desc">
             <div className="desc--main-title">
@@ -99,7 +99,7 @@ function OrderReviews() {
         </div>
         <div className="reviews__product--info">
           <div className="info--image">
-            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.png" alt="Nicotine Juice" />
+            <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_pc.png" alt="Nicotine Juice" />
           </div>
           <div className="info--desc">
             <div className="desc--main-title">
