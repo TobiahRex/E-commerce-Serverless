@@ -6,6 +6,7 @@ import geoApi from '../../services/api/geolocation';
 
 export default function* getGeoLocation() {
   const response = yield call(() => geoApi.getGeoLocation());
+  console.log('%cresponse', 'background:red;', response.data);
   if (response.ok) {
     const { ip, loc, country } = response.data;
     yield [

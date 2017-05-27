@@ -7,8 +7,8 @@ export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
       display: auth0Line.displayName,
     },
     pictures: {
-      small: auth0Line.picture,
-      large: auth0Line.picture_large,
+      small: auth0Line.pictureUrl,
+      large: auth0Line.pictureUrl,
     },
     authentication: {
       signedUp: new Date(),
@@ -25,8 +25,11 @@ export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
     contactInfo: {
       email: '',
       phone: '',
-      locale: auth0Line.locale,
-      timezone: auth0Line.timezone,
+      locale: `${locale.activeLanguage.slice(0, 2)}-${locale.country}`,
+      timezone: (() => {
+        const date = new Date();
+        return (date.getTimezoneOffset() * -1);
+      })(),
     },
     contactInfoLocation: {
       ipAddress: geo.ipAddress,
@@ -34,10 +37,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
       long: geo.latLong.split(',')[1],
       country: locale.country,
     },
-    contactInfoDevices: [...auth0Line.devices],
+    contactInfoDevices: [],
     contactInfoSocialNetworks: [{
-      name: 'Facebook',
-      link: auth0Line.link,
+      name: 'Line',
+      link: null,
     }],
     shopping: {
       transactions: [],
@@ -47,13 +50,13 @@ export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
       role: 'user',
     },
     userStory: {
-      age: auth0Line.age_range.min,
+      age: null,
       birthday: '',
       bio: '',
-      gender: auth0Line.gender,
+      gender: '',
     },
     socialProfileBlob: {
-      facebook: JSON.stringify(auth0Line, null, 2),
+      line: JSON.stringify(auth0Line, null, 2),
     },
   };
 
@@ -64,7 +67,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Line) => {
   }
   return {
     profile,
-    loginType: 'facebook',
+    loginType: 'line',
     auth0Id: auth0Line.identities[0].user_id,
   };
 };
