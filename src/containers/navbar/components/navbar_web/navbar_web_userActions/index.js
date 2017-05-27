@@ -11,7 +11,7 @@ function NavbarUserActions({ activeUser }) {
     <div className="navbar-actionSection-upper-actions">
       {
         activeUser ?
-          <NavbarUserActionsSignedIn activeUser={activeUser} /> :
+          <NavbarUserActionsSignedIn profile={activeUser} /> :
           <NavbarUserActionsNotSignedIn />
       }
     </div>

@@ -1,19 +1,20 @@
+/* eslint-disable no-console */
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-import decode from 'jwt-decode';
+import { isTokenExpired } from '../../services/utils/jwtHelper';
 
 const getProfileOrNull = () => {
-  let validToken;
   const token = localStorage.getItem('id_token');
-  const decoded = decode(token);
-  const date = !decoded.exp ? null : new Date(0);
-  date.setUTCSeconds(decoded.exp);
-  if (date === null) validToken = false;
-  validToken = !(date.valueOf() > new Date().valueOf());
-  const x = !!token && validToken ? localStorage.getItem('profile') : null;
-
-  console.log('%cx', 'background:red;', x);
-  return x;
+  let profile = null;
+  if (!!token && !isTokenExpired(token)) {
+    try {
+      profile = JSON.parse(localStorage.getItem('profile'));
+    } catch (e) {
+      console.error('ERROR: Could not parse cached Profile.: \n', e);
+      profile = null;
+    }
+  }
+  return profile;
 };
 
 const { Types, Creators } = createActions({

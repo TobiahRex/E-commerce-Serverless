@@ -45,11 +45,10 @@ function* postLoginActions(payload) {
     api.LoginOrRegister({ auth0Id, loginType, profile }),
   );
   const { ok, problem, data } = cleanGQLresponse(response);
-  console.log('%cpostLoginActions @ saga/authorization\ndata', 'background:cyan;', data);
 
   if (ok) {
     yield [
-      put(userActions.saveProfile(data.LoginOrRegister)),
+      put(userActions.saveProfile(data.data.LoginOrRegister)),
       put(authActions.loginSuccess()),
       put(sessionActions.resetPreLoginUrl()),
     ];
