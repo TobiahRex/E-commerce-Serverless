@@ -44,7 +44,7 @@ export default class AuthService extends EventEmitter {
             this.emit('login_failure', error);
           } else {
             // console.warn('5) userInfo - profile: ', authResult)
-            this.setProfile(authResult.idToken, profile);
+            this.emit('logged_in', { profile, idToken: authResult.idToken });
           }
         });
       }
@@ -77,11 +77,6 @@ export default class AuthService extends EventEmitter {
   setToken = (accessToken, idToken) => {
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('id_token', idToken);
-  }
-
-  setProfile = (idToken, profile) => {
-    localStorage.setItem('profile', JSON.stringify(profile));
-    this.emit('logged_in', { profile, idToken });
   }
 
   getProfile = () => {
