@@ -1,18 +1,18 @@
-export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
+export default ({ orders, user, geo, locale, mobile }, auth0Facebook) => {
   const profile = {
     name: {
-      first: auth0Profile.given_name,
-      last: auth0Profile.family_name,
-      display: auth0Profile.name,
+      first: auth0Facebook.given_name,
+      last: auth0Facebook.family_name,
+      display: auth0Facebook.name,
     },
     pictures: {
-      small: auth0Profile.picture,
-      large: auth0Profile.picture_large,
+      small: auth0Facebook.picture,
+      large: auth0Facebook.picture_large,
     },
     authentication: {
       signedUp: new Date(),
       password: '',
-      createdAt: auth0Profile.created_at,
+      createdAt: auth0Facebook.created_at,
       totalLogins: 1,
       ageVerified: user.ageVerified,
     },
@@ -20,12 +20,12 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       date: new Date(),
       device: mobile.mobileType || 'computer',
     }],
-    authenticationAuth0Identities: [...auth0Profile.identities],
+    authenticationAuth0Identities: [...auth0Facebook.identities],
     contactInfo: {
       email: '',
       phone: '',
-      locale: auth0Profile.locale,
-      timezone: auth0Profile.timezone,
+      locale: auth0Facebook.locale,
+      timezone: auth0Facebook.timezone,
     },
     contactInfoLocation: {
       ipAddress: geo.ipAddress,
@@ -33,10 +33,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       long: geo.latLong.split(',')[1],
       country: locale.country,
     },
-    contactInfoDevices: [...auth0Profile.devices],
+    contactInfoDevices: [...auth0Facebook.devices],
     contactInfoSocialNetworks: [{
       name: 'Facebook',
-      link: auth0Profile.link,
+      link: auth0Facebook.link,
     }],
     shopping: {
       transactions: [],
@@ -46,13 +46,13 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
       role: 'user',
     },
     userStory: {
-      age: auth0Profile.age_range.min,
+      age: auth0Facebook.age_range.min,
       birthday: '',
       bio: '',
-      gender: auth0Profile.gender,
+      gender: auth0Facebook.gender,
     },
     socialProfileBlob: {
-      facebook: JSON.stringify(auth0Profile, null, 2),
+      facebook: JSON.stringify(auth0Facebook, null, 2),
     },
   };
 
@@ -64,6 +64,6 @@ export default ({ orders, user, geo, locale, mobile }, auth0Profile) => {
   return {
     profile,
     loginType: 'facebook',
-    auth0Id: auth0Profile.identities[0].user_id,
+    auth0Id: auth0Facebook.identities[0].user_id,
   };
 };
