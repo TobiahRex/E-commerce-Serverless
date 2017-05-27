@@ -1,12 +1,19 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-import { isTokenExpired } from '../../services/utils/jwtHelper';
+import decode from 'jwt-decode';
 
 const getProfileOrNull = () => {
+  let validToken;
   const token = localStorage.getItem('id_token');
-  return (
-    !!token && !isTokenExpired(token) ? localStorage.getItem('profile') : null
-  );
+  const decoded = decode(token);
+  const date = !decoded.exp ? null : new Date(0);
+  date.setUTCSeconds(decoded.exp);
+  if (date === null) validToken = false;
+  validToken = !(date.valueOf() > new Date().valueOf());
+  const x = !!token && validToken ? localStorage.getItem('profile') : null;
+
+  console.log('%cx', 'background:red;', x);
+  return x;
 };
 
 const { Types, Creators } = createActions({

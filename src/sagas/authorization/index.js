@@ -49,8 +49,7 @@ function* postLoginActions(payload) {
 
   if (ok) {
     yield [
-      // put(userActions.saveProfile(profile)),
-      put(userActions.saveProfile(data.profile)),
+      put(userActions.saveProfile(data.LoginOrRegister)),
       put(authActions.loginSuccess()),
       put(sessionActions.resetPreLoginUrl()),
     ];
