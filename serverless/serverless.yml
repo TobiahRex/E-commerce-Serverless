@@ -47,3 +47,8 @@ functions:
           response:
             headers:
               Access-Control-Allow-Origin: "'*'"
+
+  wakeup:
+    handler: handler.wakeup
+    events:
+      - schedule: rate(20 minutes)
