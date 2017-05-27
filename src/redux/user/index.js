@@ -1,5 +1,11 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
+import { isTokenExpired } from '../../services/utils/jwtHelper';
+
+const loggedIn = () => {
+  const token = localStorage.getItem('id_token');
+  return !!token && !isTokenExpired(token);
+};
 
 const { Types, Creators } = createActions({
   saveLoginType: ['socialType'],
@@ -11,22 +17,13 @@ const { Types, Creators } = createActions({
 export const userTypes = Types;
 export default Creators;
 export const INITIAL_STATE = Immutable({
-  profile: JSON.parse(localStorage.getItem('profile')) || null,
+  profile: loggedIn() ? localStorage.getItem('profile') : null,
   ageVerified: !!localStorage.getItem('ageVerified'),
   socialLoginType: localStorage.getItem('socialType'),
 });
 
 const saveProfile = (state, { profile }) => {
-  const { socialLoginType } = state;
-  const social = socialLoginType
-  .match(/line|facebook|twitter|google|linkedin|/gi)
-  .filter(word => !!word)[0];
-  console.warn('social: ', social);
-  // switch (socialLoginType) {
-  //   case 'Facebook': {
-  //
-  //   } break;
-  // }
+  localStorage.setItem('profile', profile);
   return ({
     ...state,
     profile,
