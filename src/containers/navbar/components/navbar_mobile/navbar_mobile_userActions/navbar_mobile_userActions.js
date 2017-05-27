@@ -10,7 +10,7 @@ function NavbarMobileUserActions({ activeUser }) {
   return (
     <div className="navbar__mobile--actions">
       {
-        Object.key(activeUser).length ?
+        Object.keys(activeUser).length ?
           <NavbarMobileUserActionsSignedIn activeUser={activeUser} /> :
           <NavbarMobileUserActionsNotSignedIn />
       }

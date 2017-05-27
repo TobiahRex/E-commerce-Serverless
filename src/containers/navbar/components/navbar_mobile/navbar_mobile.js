@@ -21,7 +21,7 @@ class NavbarMobile extends React.PureComponent {
         <div className="navbar__mobile--container">
           <NavbarLogo />
           <NavbarMobileOptionsLanguage />
-          <NavbarMobileUserActions />
+          <NavbarMobileUserActions activeUser={this.props.activeUser} />
           <NavbarMobileNav />
         </div>
       </nav>

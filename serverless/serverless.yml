@@ -31,7 +31,7 @@ functions:
           - logs:CreateLogGroup
           - logs:CreateLogStream
           - logs:PutLogEvents
-    vps:
+    vpc:
       securityGroupId:
         - sg-0d5db76b
       subnetIds:
