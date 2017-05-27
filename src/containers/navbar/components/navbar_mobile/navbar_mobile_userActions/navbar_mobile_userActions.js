@@ -6,12 +6,12 @@ import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notS
 import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
 
 
-function NavbarMobileUserActions({ activeUser, profile }) {
+function NavbarMobileUserActions({ activeUser }) {
   return (
     <div className="navbar__mobile--actions">
       {
-        Object.keys(activeUser).length ?
-          <NavbarMobileUserActionsSignedIn profile={profile} /> :
+        activeUser && !!activeUser._id ?
+          <NavbarMobileUserActionsSignedIn profile={activeUser} /> :
           <NavbarMobileUserActionsNotSignedIn />
       }
     </div>
