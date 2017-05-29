@@ -1,5 +1,4 @@
 /* eslint-disable no-lone-blocks, import/first*/
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -91,6 +90,7 @@ class SingleProduct extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('%cnextProps', 'background:red;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       const { loggedIn } = nextProps;
       this.setState(() => ({ loggedIn }));
@@ -428,28 +428,22 @@ class SingleProduct extends Component {
   }
 }
 const SingleProductWithState = connect(
-  ({ orders, auth, routing, user: profile }) => ({
-    cart: orders.cart,
-    userId: profile ? profile.id : '',
-    loggedIn: auth.loggedIn || false,
-    taxRate: orders.taxRate.totalRate,
-    productId: routing.locationBeforeTransitions.query.id,
-  }),
-  dispatch => ({
-    push: location => dispatch(push(location)),
+({ orders, auth, routing, user }) => ({
+  cart: orders.cart,
+  userId: user.profile ? user.profile._id : '',
+  loggedIn: auth.loggedIn || false,
+  taxRate: orders.taxRate.totalRate,
+  productId: routing.locationBeforeTransitions.query.id,
+}),
+dispatch => ({
+  push: location => dispatch(push(location)),
 
-    addToGuestCart: productObj =>
-    dispatch(orderActions.addToGuestCart(productObj)),
+  addToGuestCart: productObj =>
+  dispatch(orderActions.addToGuestCart(productObj)),
 
-    updateToGuestCart: updatedCartProducts =>
-    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
-
-    // addToMemberCart: productObj => // convert to GraphQL mutation
-    // dispatch(orderActions.addToMemberCart(productObj)),
-
-    // updateToMemberCart: updatedCartProducts =>  // convert to GraphQL mutation
-    // dispatch(orderActions.updateToMemberCart(updatedCartProducts)),
-  }),
+  updateToGuestCart: updatedCartProducts =>
+  dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+}),
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
