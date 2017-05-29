@@ -34,7 +34,7 @@ class NavbarUserActionsSignedin extends PureComponent {
           </Link>
         </li>
         <li className="signedIn__myAccount--title">
-          <Link to={`/user/${123123}`} className="myAccount__link">
+          <div className="myAccount__link">
             <img
               className="myAccount__link--picture"
               src={
@@ -42,7 +42,17 @@ class NavbarUserActionsSignedin extends PureComponent {
               }
               alt="My Account"
             />
-          </Link>
+          </div>
+          {/* TODO: Replace this in MVP 2.
+            <Link to={`/user/${123123}`} className="myAccount__link">
+            <img
+              className="myAccount__link--picture"
+              src={
+                this.props.profile.pictures.small || this.props.profile.pictures.default
+              }
+              alt="My Account"
+            />
+          </Link> */}
         </li>
       </ul>
     );

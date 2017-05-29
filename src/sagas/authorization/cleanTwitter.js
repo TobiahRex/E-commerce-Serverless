@@ -2,8 +2,8 @@ export default ({ orders, user, geo, locale, mobile }, auth0Twitter) => {
   console.log('%cauth0Twitter', 'background:red;', auth0Twitter);
   const profile = {
     name: {
-      first: '',
-      last: auth0Twitter.name,
+      first: auth0Twitter.name.split(' ')[0],
+      last: auth0Twitter.name.split(' ')[1],
       display: auth0Twitter.screen_name,
     },
     pictures: {
@@ -23,7 +23,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Twitter) => {
     }],
     authenticationAuth0Identities: [...auth0Twitter.identities],
     contactInfo: {
-      email: auth0Twitter.email,
+      email: '',
       phone: '',
       locale: auth0Twitter.lang,
       timezone: (() => {
@@ -52,8 +52,8 @@ export default ({ orders, user, geo, locale, mobile }, auth0Twitter) => {
     userStory: {
       age: null,
       birthday: '',
-      bio: '',
-      gender: auth0Twitter.gender,
+      bio: auth0Twitter.description,
+      gender: '',
     },
     socialProfileBlob: {
       twitter: JSON.stringify(auth0Twitter, null, 2),
