@@ -343,6 +343,7 @@ const rootType = new ObjectType({
 });
 const queries = {
   FetchUserProfile: {
+    description: 'Fetches User by ID.',
     type: rootType,
     args: {
       id: {
@@ -350,7 +351,7 @@ const queries = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, { id }) => User.FetchUserProfile(id),
+    resolve: (_, { id }) => User.fetchUserProfile(id),
   },
 };
 const mutations = {

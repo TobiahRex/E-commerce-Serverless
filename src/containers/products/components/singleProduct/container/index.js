@@ -41,7 +41,7 @@ class SingleProduct extends Component {
     addToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
     updateToMemberCart: func.isRequired,
-    reduxUpdateToMemberCart: func.isRequired,
+    updateToMemberCartRedux: func.isRequired,
     fetchUserProfile: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
@@ -314,7 +314,7 @@ class SingleProduct extends Component {
               .then((res) => {
                 const { data: { AddToMemberCart: { shopping } } } = res;
                 this.props.fetchUserProfile(userId);
-                this.props.reduxUpdateToMemberCart(shopping.cart);
+                this.props.updateToMemberCartRedux(shopping.cart);
               });
             });
           }
@@ -457,7 +457,7 @@ dispatch => ({
 
   fetchUserProfile: userId => dispatch(userActions.fetchUserProfile(userId)),
 
-  reduxUpdateToMemberCart: products => dispatch(orderActions.reduxUpdateToMemberCart(products)),
+  updateToMemberCartRedux: products => dispatch(orderActions.updateToMemberCartRedux(products)),
 }),
 )(SingleProduct);
 

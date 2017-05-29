@@ -2,7 +2,7 @@
 import applicationStartup from './startup';
 import authorizationSaga, { watchAuthActions } from './authorization';
 import { fetchPopularProducts } from './products/';
-import { fetchUserProfile } from './users/';
+import fetchUserProfile from './users/';
 // ----- api's ----- //
 export default function* rootSaga() {
   yield [

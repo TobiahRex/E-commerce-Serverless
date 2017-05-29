@@ -23,6 +23,7 @@ const { Types, Creators } = createActions({
   removeProfile: null,
   saveLoginType: ['socialType'],
   fetchUserProfile: ['id'],
+  updateProfileCart: ['cart'],
 });
 
 export const userTypes = Types;
@@ -61,9 +62,21 @@ const saveLoginType = (state, { socialType }) => {
     socialLoginType: socialType,
   });
 };
+
+const updateProfileCart = (state, { cart }) => ({
+  ...state,
+  profile: {
+    ...state.profile,
+    shopping: {
+      car: [...cart],
+    },
+  },
+});
+
 export const userReducer = createReducer(INITIAL_STATE, {
   [Types.AGE_VERIFIED]: verified,
   [Types.SAVE_PROFILE]: saveProfile,
   [Types.REMOVE_PROFILE]: removeProfile,
   [Types.SAVE_LOGIN_TYPE]: saveLoginType,
+  [Types.UPDATE_PROFILE_CART]: updateProfileCart,
 });
