@@ -2,7 +2,6 @@ import {
   GraphQLID as MongoID,
   GraphQLInt as IntType,
   GraphQLList as ListType,
-  GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
@@ -344,9 +343,16 @@ const rootType = new ObjectType({
 });
 const queries = {
   FetchUserProfile: {
-
-  }
-}
+    type: rootType,
+    args: {
+      id: {
+        description: 'The Users Mongo ID. ',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, { id }) => User.FetchUserProfile(id),
+  },
+};
 const mutations = {
   LoginOrRegister: {
     type: rootType,
@@ -728,6 +734,7 @@ const mutations = {
 };
 const UserTypes = {
   rootType,
+  queries,
   mutations,
 };
 export default UserTypes;
