@@ -43,6 +43,7 @@ class SingleProduct extends Component {
     UpdateToMemberCart: func.isRequired,
     addToReduxMemberCart: func.isRequired,
     addToReduxProfileCart: func.isRequired,
+    updateToReduxMemberCart: func.isRequired,
     // fetchUserProfile: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
@@ -305,7 +306,8 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.UpdateToMemberCart(updatedCartProducts);
+              this.props.updateToReduxMemberCart(updatedCartProducts);
+              // this.props.UpdateToMemberCart(updatedCartProducts);
             });
           } else {
             this.setState(() => ({
@@ -323,8 +325,8 @@ class SingleProduct extends Component {
                   product: productId,
                 },
               })
-              .then(({ data: mutationData }) => {
-                this.props.addToReduxProfileCart(mutationData.shopping.cart);
+              .then(({ data: { AddToMemberCart: { shopping } } }) => {
+                this.props.addToReduxProfileCart(shopping.cart);
                 this.props.addToReduxMemberCart(currentProduct);
               });
             });
@@ -457,6 +459,8 @@ dispatch => ({
   addToReduxProfileCart: cart => dispatch(userActions.addToReduxProfileCart(cart)),
 
   addToReduxMemberCart: products => dispatch(orderActions.addToReduxMemberCart(products)),
+
+  updateToReduxMemberCart: products => dispatch(orderActions.updateToReduxMemberCart(products)),
 }),
 )(SingleProduct);
 

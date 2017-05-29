@@ -23,7 +23,7 @@ const { Types, Creators } = createActions({
   removeProfile: null,
   saveLoginType: ['socialType'],
   fetchUserProfile: ['id'],
-  updateProfileCart: ['cart'],
+  addToReduxProfileCart: ['cart'],
 });
 
 export const userTypes = Types;
@@ -63,7 +63,7 @@ const saveLoginType = (state, { socialType }) => {
   });
 };
 
-const updateProfileCart = (state, { cart }) => ({
+const addToReduxProfileCart = (state, { cart }) => ({
   ...state,
   profile: {
     ...state.profile,
@@ -79,5 +79,5 @@ export const userReducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_PROFILE]: saveProfile,
   [Types.REMOVE_PROFILE]: removeProfile,
   [Types.SAVE_LOGIN_TYPE]: saveLoginType,
-  [Types.UPDATE_PROFILE_CART]: updateProfileCart,
+  [Types.ADD_TO_REDUX_PROFILE_CART]: addToReduxProfileCart,
 });
