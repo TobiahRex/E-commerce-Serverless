@@ -41,8 +41,8 @@ class SingleProduct extends Component {
     AddToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
     UpdateToMemberCart: func.isRequired,
-    updateToMemberCartRedux: func.isRequired,
-    updateProfileCart: func.isRequired,
+    addToReduxMemberCart: func.isRequired,
+    addToReduxProfileCart: func.isRequired,
     // fetchUserProfile: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
@@ -311,15 +311,10 @@ class SingleProduct extends Component {
                   strength,
                   product: productId,
                 },
-                update: (proxy, { data: mutationData }) => {
-                  const { AddToMemberCart: { shopping } } = mutationData;
-                  const { FindProductById: queryData } = proxy.readQuery({
-                    query: FindProductById,
-                    variables: { id: shopping.cart[0].product },
-                  });
-                  this.props.updateToMemberCartRedux(queryData.product);
-                  this.props.updateProfileCart(shopping.cart);
-                },
+              })
+              .then(({ data: mutationData }) => {
+                this.props.addToReduxProfileCart(mutationData.shopping.cart);
+                this.props.addToReduxMemberCart(this.props.data.FindProductById.product);
               });
             });
           }
@@ -460,9 +455,9 @@ dispatch => ({
   updateToGuestCart: updatedCartProducts =>
   dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
-  updateProfileCart: cart => dispatch(userActions.updateProfileCart(cart)),
+  addToReduxProfileCart: cart => dispatch(userActions.addToReduxProfileCart(cart)),
 
-  updateToMemberCartRedux: products => dispatch(orderActions.updateToMemberCartRedux(products)),
+  addToReduxMemberCart: products => dispatch(orderActions.addToReduxMemberCart(products)),
 }),
 )(SingleProduct);
 
