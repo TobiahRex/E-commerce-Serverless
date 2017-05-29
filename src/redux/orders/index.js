@@ -7,6 +7,7 @@ const { Types, Creators } = createActions({
   addToGuestCart: ['productObj'],
   updateToGuestCart: ['updatedProducts'],
   addToReduxMemberCart: ['updatedProducts'],
+  updateToReduxMemberCart: ['updatedProducts'],
 });
 
 export const orderTypes = Types;
@@ -53,9 +54,18 @@ const addToReduxMemberCart = (state, { updatedProducts }) => ({
   },
 });
 
+const updateToReduxMemberCart = (state, { updatedProducts }) => ({
+  ...state,
+  cart: {
+    member: [...updatedProducts],
+    guest: [...state.cart.guest],
+  },
+});
+
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.UPDATE_TO_GUEST_CART]: updateToGuestCart,
   [Types.ADD_TO_REDUX_MEMBER_CART]: addToReduxMemberCart,
+  [Types.UPDATE_TO_REDUX_MEMBER_CART]: updateToReduxMemberCart,
 });

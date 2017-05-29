@@ -143,14 +143,14 @@ class SingleProduct extends Component {
     }
   }
 
+  toggleModal = (modal) => {
+    this.setState(prevState => ({ [modal]: !prevState[modal] }));
+  }
+
   toggleModalAndGo = (modal, location) => {
     this.setState(prevState => ({
       [modal]: !prevState[modal],
     }), () => this.props.push(location));
-  }
-
-  toggleModal = (modal) => {
-    this.setState(prevState => ({ [modal]: !prevState[modal] }));
   }
 
   qtyHandler = (e) => {
@@ -193,6 +193,18 @@ class SingleProduct extends Component {
     }
   }
 
+  nicotineHandler = (e) => {
+    let nicEl = e.target.dataset.tag;
+    if (!nicEl) {
+      nicEl = e.target.parentNode.dataset.tag;
+    }
+    return this.setState(() => ({
+      error: false,
+      errorMsg: '',
+      chosenStrength: Number(nicEl),
+    }));
+  }
+
   composeGlobalCartInfo = () => {
     const { loggedIn, cart } = this.props;
     const prevCartIds = [];
@@ -228,7 +240,6 @@ class SingleProduct extends Component {
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
     // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
-
     if (this.state.qty === 0) {
       this.setState(() => ({
         error: true,
@@ -314,7 +325,7 @@ class SingleProduct extends Component {
               })
               .then(({ data: mutationData }) => {
                 this.props.addToReduxProfileCart(mutationData.shopping.cart);
-                this.props.addToReduxMemberCart(this.props.data.FindProductById.product);
+                this.props.addToReduxMemberCart(currentProduct);
               });
             });
           }
@@ -343,18 +354,6 @@ class SingleProduct extends Component {
         }
       }
     }
-  }
-
-  nicotineHandler = (e) => {
-    let nicEl = e.target.dataset.tag;
-    if (!nicEl) {
-      nicEl = e.target.parentNode.dataset.tag;
-    }
-    return this.setState(() => ({
-      error: false,
-      errorMsg: '',
-      chosenStrength: Number(nicEl),
-    }));
   }
 
   componentDidUpdate() {
