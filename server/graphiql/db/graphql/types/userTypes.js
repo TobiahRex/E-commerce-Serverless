@@ -342,6 +342,11 @@ const rootType = new ObjectType({
     },
   }),
 });
+const queries = {
+  FetchUserProfile: {
+
+  }
+}
 const mutations = {
   LoginOrRegister: {
     type: rootType,

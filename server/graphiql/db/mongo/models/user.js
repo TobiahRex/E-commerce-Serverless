@@ -9,6 +9,7 @@ new Promise((resolve, reject) => {
   .then((dbUser) => {
     console.log(`
       User Found: ${dbUser._id}
+      Sending updated profile to Client.
     `);
     resolve(dbUser);
   })
