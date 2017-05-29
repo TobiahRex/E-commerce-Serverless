@@ -3,9 +3,8 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   addToGuestCart: ['productObj'],
-  addToMemberCart: ['productObj'],
   updateToGuestCart: ['updatedProducts'],
-  updateToMemberCart: ['updatedProducts'],
+  reduxUpdateToMemberCart: ['updatedProducts'],
   getTaxRate: null,
   setTaxRate: ['taxRate'],
 });
@@ -33,14 +32,6 @@ const addToGuestCart = (state, { productObj }) => ({
   },
 });
 
-const addToMemberCart = (state, { productObj }) => ({
-  ...state,
-  cart: {
-    guest: [...state.cart.guest],
-    member: [...state.cart.member, { ...productObj }],
-  },
-});
-
 const updateToGuestCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
@@ -49,7 +40,7 @@ const updateToGuestCart = (state, { updatedProducts }) => ({
   },
 });
 
-const updateToMemberCart = (state, { updatedProducts }) => ({
+const reduxUpdateToMemberCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
     guest: [...state.cart.guest],
@@ -64,8 +55,7 @@ const setTaxRate = (state, { taxRate }) => ({
 
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
-  [Types.ADD_TO_MEMBER_CART]: addToMemberCart,
   [Types.UPDATE_TO_GUEST_CART]: updateToGuestCart,
-  [Types.UPDATE_TO_MEMBER_CART]: updateToMemberCart,
+  [Types.REDUX_UPDATE_TO_MEMBER_CART]: reduxUpdateToMemberCart,
   [Types.SET_TAX_RATE]: setTaxRate,
 });

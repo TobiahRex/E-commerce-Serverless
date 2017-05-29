@@ -6,6 +6,7 @@ import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import orderActions from '../../../../../redux/orders/';
+import userActions from '../../../../../redux/user/';
 import FindProductById from '../../../../../graphQL/queries';
 import { AddToMemberCart, UpdateToMemberCart } from '../../../../../graphQL/mutations';
 
@@ -40,6 +41,8 @@ class SingleProduct extends Component {
     addToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
     updateToMemberCart: func.isRequired,
+    reduxUpdateToMemberCart: func.isRequired,
+    fetchUserProfile: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
       member: arrayOf(any),
@@ -303,16 +306,16 @@ class SingleProduct extends Component {
               this.props.addToMemberCart({
                 variables: {
                   qty,
-                  userId: this.props.userId,
+                  userId,
                   strength,
                   product: productId,
                 },
-                update: (proxy, { data: { AddToMemberCart } }) => {
-                  console.log('%cAddToMemberCart', 'background:cyan;', AddToMemberCart);
-
-                },
               })
-              .then(res => console.log('res: ', res));
+              .then((res) => {
+                const { data: { AddToMemberCart: { shopping } } } = res;
+                this.props.reduxUpdateToMemberCart(shopping.cart);
+                this.props.fetchUserProfile(userId);
+              });
             });
           }
         } else if (cartCustomerType === 'guest') {
@@ -451,6 +454,10 @@ dispatch => ({
 
   updateToGuestCart: updatedCartProducts =>
   dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+
+  fetchUserProfile: userId => dispatch(userActions.fetchUserProfile(userId)),
+
+  reduxUpdateToMemberCart: products => dispatch(orderActions.reduxUpdateToMemberCart(products)),
 }),
 )(SingleProduct);
 
