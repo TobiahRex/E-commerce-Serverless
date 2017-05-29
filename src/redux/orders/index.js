@@ -2,11 +2,11 @@ import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
+  getTaxRate: null,
+  setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   updateToGuestCart: ['updatedProducts'],
   reduxUpdateToMemberCart: ['updatedProducts'],
-  getTaxRate: null,
-  setTaxRate: ['taxRate'],
 });
 
 export const orderTypes = Types;
@@ -14,8 +14,8 @@ export default Creators;
 
 export const INITIAL_STATE = Immutable({
   cart: {
-    guest: JSON.parse(localStorage.getItem('guestCart')) || [],
     member: [],
+    guest: JSON.parse(localStorage.getItem('guestCart')) || [],
   },
   taxRate: {
     stateRate: 0.060,
@@ -24,38 +24,38 @@ export const INITIAL_STATE = Immutable({
   },
 });
 
+const setTaxRate = (state, { taxRate }) => ({
+  ...state,
+  taxRate,
+});
+
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
   cart: {
-    guest: [...state.cart.guest, { ...productObj }],
     member: [...state.cart.member],
+    guest: [...state.cart.guest, { ...productObj }],
   },
 });
 
 const updateToGuestCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
-    guest: updatedProducts,
     member: [...state.cart.member],
+    guest: updatedProducts,
   },
 });
 
 const reduxUpdateToMemberCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
-    guest: [...state.cart.guest],
     member: updatedProducts,
+    guest: [...state.cart.guest],
   },
 });
 
-const setTaxRate = (state, { taxRate }) => ({
-  ...state,
-  taxRate,
-});
-
 export const orderReducer = createReducer(INITIAL_STATE, {
+  [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.UPDATE_TO_GUEST_CART]: updateToGuestCart,
   [Types.REDUX_UPDATE_TO_MEMBER_CART]: reduxUpdateToMemberCart,
-  [Types.SET_TAX_RATE]: setTaxRate,
 });

@@ -313,8 +313,8 @@ class SingleProduct extends Component {
               })
               .then((res) => {
                 const { data: { AddToMemberCart: { shopping } } } = res;
-                this.props.reduxUpdateToMemberCart(shopping.cart);
                 this.props.fetchUserProfile(userId);
+                this.props.reduxUpdateToMemberCart(shopping.cart);
               });
             });
           }

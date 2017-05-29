@@ -9,6 +9,7 @@ const query = new GraphQLObjectType({
   name: 'RootQueryType',
   description: 'The primary query object.',
   fields: () => ({
+    FetchUserProfile: UserTypes.queries.FetchUserProfile,
     FindProductById: ProductTypes.queries.FindProductById,
     PopularProducts: ProductTypes.queries.PopularProducts,
   }),

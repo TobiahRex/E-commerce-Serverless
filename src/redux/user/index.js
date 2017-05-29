@@ -18,11 +18,11 @@ const getProfileOrNull = () => {
 };
 
 const { Types, Creators } = createActions({
-  saveLoginType: ['socialType'],
-  saveProfile: ['profile'],
-  refreshProfile: ['userId'],
-  removeProfile: null,
   ageVerified: null,
+  saveProfile: ['profile'],
+  removeProfile: null,
+  saveLoginType: ['socialType'],
+  fetchUserProfile: ['id'],
 });
 
 export const userTypes = Types;
@@ -62,8 +62,8 @@ const saveLoginType = (state, { socialType }) => {
   });
 };
 export const userReducer = createReducer(INITIAL_STATE, {
+  [Types.AGE_VERIFIED]: verified,
   [Types.SAVE_PROFILE]: saveProfile,
   [Types.REMOVE_PROFILE]: removeProfile,
-  [Types.AGE_VERIFIED]: verified,
   [Types.SAVE_LOGIN_TYPE]: saveLoginType,
 });

@@ -271,3 +271,196 @@ const juices = {
   }
   `,
 };
+const users = {
+  LoginOrRegister: {
+    query: `
+    mutation LoginOrRegister(
+      $auth0Id: String!
+      $loginType: String!
+      $name: UserNameInput!
+      $pictures: UserPictureInput!
+      $authentication: UserAuthenticationInput!
+      $authenticationLogins: [UserLastLoginInput]!
+      $authenticationAuth0Identities: [UserAuth0IdentitiesInput]!
+      $contactInfo: UserContactInfoInput!
+      $contactInfoLocation: UserLocationInput!
+      $contactInfoDevices: [UserDevicesInput]!
+      $contactInfoSocialNetworks: [UserSocialNetworkInput]!
+      $shopping: UserShoppingInput!
+      $shoppingCart: [UserCartInput]!
+      $permissions: UserPermissionsInput!
+      $userStory: UserStoryInput!
+      $socialProfileBlob: UserSocialProfileBlobInput!
+    ) {
+      LoginOrRegister(
+        auth0Id: $auth0Id
+        loginType: $loginType
+        name: $name
+        pictures: $pictures
+        authentication: $authentication
+        authenticationLogins: $authenticationLogins
+        authenticationAuth0Identities: $authenticationAuth0Identities
+        contactInfo: $contactInfo
+        contactInfoLocation: $contactInfoLocation
+        contactInfoDevices: $contactInfoDevices
+        contactInfoSocialNetworks: $contactInfoSocialNetworks
+        shopping: $shopping
+        shoppingCart: $shoppingCart
+        permissions: $permissions
+        userStory: $userStory
+        socialProfileBlob: $socialProfileBlob
+      ) {
+        _id
+        name {
+          first
+          last
+          display
+        }
+        pictures {
+          small
+          large
+          default
+        }
+        authentication {
+          signedUp
+          password
+          createdAt
+          totalLogins
+          logins {
+            date
+            device
+          }
+          ageVerified
+          auth0Identities {
+            provider
+            user_id
+            connection
+            isSocial
+          }
+        }
+        contactInfo {
+          email
+          phone
+          locale
+          timezone
+          location {
+            ipAddress
+            lat
+            long
+            country
+          },
+          devices {
+            hardware
+            os
+          }
+          socialNetworks {
+            name
+            link
+          }
+        }
+        permissions {
+          role
+        }
+        shopping {
+          cart {
+            qty
+            strength
+            product
+          }
+          transactions
+        }
+        permissions {
+          role
+        }
+        userStory {
+          age
+          birthday
+          bio
+          gender
+        }
+        socialProfileBlob {
+          line
+          facebook
+          google
+          twitter
+          linkedin
+        }
+      }
+    }
+    `,
+    variables: {
+      auth0Id: '1903246816589953',
+      loginType: 'facebook',
+      name: {
+        first: 'Tobiah',
+        last: 'Rex',
+        display: 'Tobiah Rex',
+      },
+      pictures: {
+        small: 'http://asdfasdf',
+        large: 'http://asdfasdf',
+      },
+      authentication: {
+        signedUp: 'Fri May 26 2017 20:28:46 GMT+0900 (JST)',
+        password: '',
+        createdAt: 'Fri May 26 2017 20:28:46 GMT+0900 (JST)',
+        totalLogins: 1,
+        ageVerified: true,
+      },
+      authenticationLogins: [
+        {
+          date: 'Fri May 26 2017 20:28:46 GMT+0900 (JST)',
+          device: 'computer',
+        },
+      ],
+      authenticationAuth0Identities: [
+        {
+          provider: 'facebook',
+          user_id: '123123123',
+          connection: 'facebook',
+          isSocial: true,
+        },
+      ],
+      contactInfo: {
+        locale: 'en-US',
+        email: '',
+        phone: '4153210002',
+        timezone: 9,
+      },
+      contactInfoLocation: {
+        ipAddress: '123123123',
+        lat: '12312313',
+        long: '1231123',
+        country: 'JP',
+      },
+      contactInfoDevices: [
+        {
+          hardware: 'Galaxy S7',
+          os: 'Android',
+        },
+      ],
+      contactInfoSocialNetworks: [
+        {
+          name: 'facebook',
+          link: 'http://123123123123',
+        },
+      ],
+      shopping: {
+        transactions: [],
+      },
+      shoppingCart: [],
+      permissions: {
+        role: 'user',
+      },
+      userStory: {
+        age: 29,
+        birthday: '123123123',
+        bio: '',
+        gender: 'male',
+      },
+      socialProfileBlob: {
+        facebook: 'aasdfasdfasdf',
+      },
+    },
+  },
+};
