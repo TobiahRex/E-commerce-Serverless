@@ -20,6 +20,7 @@ const getProfileOrNull = () => {
 const { Types, Creators } = createActions({
   saveLoginType: ['socialType'],
   saveProfile: ['profile'],
+  refreshProfile: ['userId'],
   removeProfile: null,
   ageVerified: null,
 });
