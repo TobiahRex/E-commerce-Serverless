@@ -14,7 +14,11 @@ export const AddToMemberCart = gql`
       product: $product
     ) {
       shopping {
-        cart
+        cart {
+          qty
+          strength
+          product
+        }
       }
     }
   }
@@ -33,7 +37,11 @@ mutation UpdateToMemberCart(
     product: $product
   ) {
     shopping {
-      cart
+      cart {
+        qty
+        strength
+        product
+      }
     }
   }
 }

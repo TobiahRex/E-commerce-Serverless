@@ -90,7 +90,6 @@ class SingleProduct extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps', 'background:red;', nextProps);
     if (!_.isEqual(nextProps, this.props)) {
       const { loggedIn } = nextProps;
       this.setState(() => ({ loggedIn }));
@@ -242,10 +241,7 @@ class SingleProduct extends Component {
         cartCustomerType,
         globalQty,
       } = this.composeGlobalCartInfo();
-      const {
-        qty,
-        chosenStrength: strength,
-      } = this.state;
+      const { qty, chosenStrength: strength } = this.state;
       const requestQty = qty;
       const totalRequestQty = requestQty + globalQty;
       const deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
@@ -304,7 +300,19 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToMemberCart(currentProduct);
+              this.props.addToMemberCart({
+                variables: {
+                  qty,
+                  userId: this.props.userId,
+                  strength,
+                  product: productId,
+                },
+                update: (proxy, { data: { AddToMemberCart } }) => {
+                  console.log('%cAddToMemberCart', 'background:cyan;', AddToMemberCart);
+
+                },
+              })
+              .then(res => console.log('res: ', res));
             });
           }
         } else if (cartCustomerType === 'guest') {
