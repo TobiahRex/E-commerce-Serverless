@@ -68,7 +68,8 @@ const updateProfileCart = (state, { cart }) => ({
   profile: {
     ...state.profile,
     shopping: {
-      car: [...cart],
+      ...state.profile.shopping,
+      cart: [...cart],
     },
   },
 });

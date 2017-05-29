@@ -38,11 +38,12 @@ class SingleProduct extends Component {
     productId: string.isRequired,
     loggedIn: bool.isRequired,
     addToGuestCart: func.isRequired,
-    addToMemberCart: func.isRequired,
+    AddToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
-    updateToMemberCart: func.isRequired,
+    UpdateToMemberCart: func.isRequired,
     updateToMemberCartRedux: func.isRequired,
-    fetchUserProfile: func.isRequired,
+    updateProfileCart: func.isRequired,
+    // fetchUserProfile: func.isRequired,
     cart: shape({
       guest: arrayOf(any),
       member: arrayOf(any),
@@ -293,7 +294,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.updateToMemberCart(updatedCartProducts);
+              this.props.UpdateToMemberCart(updatedCartProducts);
             });
           } else {
             this.setState(() => ({
@@ -303,7 +304,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToMemberCart({
+              this.props.AddToMemberCart({
                 variables: {
                   qty,
                   userId,
@@ -313,7 +314,7 @@ class SingleProduct extends Component {
               })
               .then((res) => {
                 const { data: { AddToMemberCart: { shopping } } } = res;
-                this.props.fetchUserProfile(userId);
+                this.props.updateProfileCart(shopping.cart);
                 this.props.updateToMemberCartRedux(shopping.cart);
               });
             });
@@ -455,7 +456,7 @@ dispatch => ({
   updateToGuestCart: updatedCartProducts =>
   dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
-  fetchUserProfile: userId => dispatch(userActions.fetchUserProfile(userId)),
+  updateProfileCart: cart => dispatch(userActions.updateProfileCart(cart)),
 
   updateToMemberCartRedux: products => dispatch(orderActions.updateToMemberCartRedux(products)),
 }),
@@ -469,7 +470,7 @@ const SingleProductWithStateAndData = compose(
       },
     }),
   }),
-  graphql(AddToMemberCart, { name: 'addToMemberCart' }),
-  graphql(UpdateToMemberCart, { name: 'updateToMemberCart' }),
+  graphql(AddToMemberCart, { name: 'AddToMemberCart' }),
+  graphql(UpdateToMemberCart, { name: 'UpdateToMemberCart' }),
 )(SingleProductWithState);
 export default SingleProductWithStateAndData;

@@ -41,14 +41,14 @@ const updateToGuestCart = (state, { updatedProducts }) => ({
   ...state,
   cart: {
     member: [...state.cart.member],
-    guest: updatedProducts,
+    guest: [...updatedProducts],
   },
 });
 
 const updateToMemberCartRedux = (state, { updatedProducts }) => ({
   ...state,
   cart: {
-    member: updatedProducts,
+    member: [...updatedProducts],
     guest: [...state.cart.guest],
   },
 });
