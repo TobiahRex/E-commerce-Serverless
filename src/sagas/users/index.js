@@ -1,40 +1,26 @@
 import { call, put, take } from 'redux-saga/effects';
-import authActions, { authTypes } from '../../redux/orders';
+import userActions, { userTypes } from '../../redux/user';
 import apiActions from '../../redux/api';
 import userApi from '../../services/api/graphQL/users';
+import cleanGQLresponse from '../tools/cleanGQLresponse';
 
 const api = userApi.createAPI();
 
-export default function* findOrCreateUser() {
+export default function* fetchUserProfile() {
   while (true) { //eslint-disable-line
-    const { userObj } = yield take(authTypes.LOGIN_SUCCESS);
+    const { userId } = yield take(userTypes.FETCH_USER_PROFILE);
     const responses = yield [
       put(apiActions.fetching()),
-      call(() => api.findOrCreateUser(userObj)),
+      call(() => api.FetchUserProfile(userId)),
     ];
-    const response = cleanGQLresponse(responses[1]);
-    if (response.ok) {
+    const { ok, problem, data } = cleanGQLresponse(responses[1]);
+    if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(authActions.receivedProductById(response.body)),
+        put(userActions.saveProfile(data.data.FetchUserProfile)),
       ];
     } else {
-      yield put(apiActions.apiFail(response.problem));
+      yield put(apiActions.apiFail(problem));
     }
   }
-}
-
-function cleanGQLresponse(response) {
-  console.log('GraphQL response: ', response);
-  if (response.data) {
-    if (response.data.errors) {
-      response.problem = response.data.errors[0].message;
-      response.ok = false;
-    }
-    return response;
-  }
-  response.problem = `GraphQL returned an empty result.
-  Are you sure the resource you\'re looking for exists?`;
-  response.ok = false;
-  return response;
 }
