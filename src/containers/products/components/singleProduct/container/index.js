@@ -311,11 +311,15 @@ class SingleProduct extends Component {
                   strength,
                   product: productId,
                 },
-              })
-              .then((res) => {
-                const { data: { AddToMemberCart: { shopping } } } = res;
-                this.props.updateProfileCart(shopping.cart);
-                this.props.updateToMemberCartRedux(shopping.cart);
+                update: (proxy, { data: mutationData }) => {
+                  const { AddToMemberCart: { shopping } } = mutationData;
+                  const { FindProductById: queryData } = proxy.readQuery({
+                    query: FindProductById,
+                    variables: { id: shopping.cart[0].product },
+                  });
+                  this.props.updateToMemberCartRedux(queryData.product);
+                  this.props.updateProfileCart(shopping.cart);
+                },
               });
             });
           }

@@ -57,5 +57,5 @@ export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.UPDATE_TO_GUEST_CART]: updateToGuestCart,
-  [Types.REDUX_UPDATE_TO_MEMBER_CART]: updateToMemberCartRedux,
+  [Types.UPDATE_TO_MEMBER_CART_REDUX]: updateToMemberCartRedux,
 });
