@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { graphql, compose } from 'react-apollo';
-
 import _ from 'lodash';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
+import { graphql, compose } from 'react-apollo';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
-import orderActions from '../../../../redux/orders/';
+import orderActions from '../../../../../../redux/orders/';
+import { UpdateToMemberCart } from '../../../../../../graphQL/mutations';
 
-import { UpdateToMemberCart } from '../../../../graphQL/mutations';
-
-const { number, arrayOf, object } = PropTypes;
+const { number, string, shape } = PropTypes;
 
 class NavbarCart extends Component {
   static propTypes = {
     qty: number.isRequired,
-    products: arrayOf(object).isRequired,
+    cartItems: shape({
+      qty: number,
+      strength: string,
+      product: shape({
+        title: string,
+        sku: string,
+        price: string,
+        vendor: string,
+        flavor: string,
+        images: shape({
+          purpose: string,
+          url: string,
+        }),
+      }),
+    }).isRequired,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -48,12 +60,12 @@ class NavbarCart extends Component {
   }
 
   render() {
-    const { qty, products, editCartItem, deleteFromCart } = this.props;
+    const { qty, cartItems, editCartItem, deleteFromCart } = this.props;
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
         <NavbarCartDropdnContent
-          products={products}
+          cartItems={cartItems}
           editCartItem={editCartItem}
           deleteFromCart={deleteFromCart}
           cartTotal={
@@ -81,7 +93,6 @@ const NavbarCartWithState = connect(
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
-    saveLanguage: language => dispatch(localeActions.setLanguage(language)),
 
     updateToGuestCart: updatedCartProducts =>
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
