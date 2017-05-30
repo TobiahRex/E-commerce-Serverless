@@ -8,25 +8,16 @@ import {
   NavbarCartProductsCardActions,
 } from '../container/imports';
 
-const {
-  func,
-  object,
-  number,
-  arrayOf,
-} = PropTypes;
+const { bool, func, object, number, arrayOf } = PropTypes;
 
 class NavbarCartProducts extends Component {
   static propTypes = {
+    loading: bool.isRequired,
     cartItems: arrayOf(object).isRequired,
     cartTotal: number.isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   };
-  emptyCart = () => (
-    <div className="products-list-empty">
-      Your Cart Is Currently Empty
-    </div>
-  );
   shouldComponentUpdate(nextProps) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
     const productsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
@@ -41,10 +32,25 @@ class NavbarCartProducts extends Component {
     const image = images.filter(helper).length;
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
+  renderListContent = ({ cartItems, loading }) => {
+    if (loading) {
+      return (
+        <div className="products-list-empty">
+          Your Cart Is Loading...
+          <FontAwesome name="spinner" size="2x" pulse />
+        </div>
+      );
+    } else if (!cartItems && !loading) {
+      return (
+        <div className="products-list-empty">
+          Your Cart Is Currently Empty
+        </div>
+      );
+    }
+    return this.renderCartItems(cartItems);
+  }
   renderCartItems = productItems =>
   productItems.map((item) => {
-    console.log('%citem', 'background:orange;', item);
-
     const {
       id,
       qty,
@@ -85,9 +91,7 @@ class NavbarCartProducts extends Component {
       <div>
         <div className="products">
           <ul className="products-list">
-            {this.props.cartItems.length
-              ? this.renderCartItems(this.props.cartItems)
-              : this.emptyCart()}
+            {this.renderListContent(this.props)}
           </ul>
         </div>
         <div className="total-price">

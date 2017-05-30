@@ -8,6 +8,7 @@ import {
 } from '../container/imports';
 
 function NavbarCartDropdnContent({
+  loading,
   cartItems,
   cartTotal,
   editCartItem,
@@ -19,6 +20,7 @@ function NavbarCartDropdnContent({
         <NavbarCartPromotion />
         <NavbarCartRecentlyAdded />
         <NavbarCartProducts
+          loading={loading}
           cartItems={cartItems}
           cartTotal={cartTotal}
           editCartItem={editCartItem}
@@ -29,8 +31,9 @@ function NavbarCartDropdnContent({
     </span>
   );
 }
-const { arrayOf, object, number, func } = PropTypes;
+const { bool, arrayOf, object, number, func } = PropTypes;
 NavbarCartDropdnContent.propTypes = {
+  loading: bool.isRequired,
   cartItems: arrayOf(object).isRequired,
   cartTotal: number.isRequired,
   editCartItem: func.isRequired,
