@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
-import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
+// import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
 import { FetchMultipleProducts } from '../../../../../../graphQL/queries';
 
 const { number, string, shape, func, arrayOf, objectOf, any } = PropTypes;
@@ -14,23 +14,26 @@ const { number, string, shape, func, arrayOf, objectOf, any } = PropTypes;
 class NavbarCart extends Component {
   static propTypes = {
     qty: number.isRequired,
+    guestCart: objectOf(any),
     updateToGuestCart: func.isRequired,
     DeleteFromMemberCart: func.isRequired,
-    cartItems: shape({
-      qty: number,
-      strength: string,
-      product: shape({
-        title: string,
-        sku: string,
-        price: string,
-        vendor: string,
-        flavor: string,
-        images: shape({
-          purpose: string,
-          url: string,
+    data: shape({
+      FetchUserProfile: shape({
+        qty: number,
+        strength: string,
+        product: shape({
+          title: string,
+          sku: string,
+          price: string,
+          vendor: string,
+          flavor: string,
+          images: shape({
+            purpose: string,
+            url: string,
+          }),
         }),
       }),
-    }).isRequired,
+    }),
     activeUser: shape({
       _id: string,
       shopping: shape({
@@ -49,13 +52,20 @@ class NavbarCart extends Component {
       marketHero: objectOf(any),
       socialProfileBlob: objectOf(any),
     }).isRequired,
-  };
+  }
+  static defaultProps = {
+    guestCart: null,
+    data: null,
+  }
 
   shouldComponentUpdate(nextProps) {
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-    const cartItemsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
-    if (!_.isEqual(nextProps, this.props) || cartItemsDiff) return true;
+      dbCart = isArrayEqual(nextProps.data.FetchMultipleProducts, this.props.data.FetchMultipleProducts),
+
+      reduxCart = isArrayEqual(nextProps.guestCart, this.props.guestCart);
+
+    if (!_.isEqual(nextProps, this.props) || dbCart || reduxCart) return true;
     return false;
   }
 
@@ -81,7 +91,14 @@ class NavbarCart extends Component {
   }
 
   render() {
-    const { qty, cartItems } = this.props;
+    const {
+      qty,
+      guestCart,
+      data: { FetchMultipleProducts: products },
+    } = this.props;
+
+    const cartItems = guestCart || products;
+
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
@@ -100,8 +117,8 @@ class NavbarCart extends Component {
     );
   }
 }
-const calculateQty = (loggedIn, guestCart, userProfile) => {
-  const cart = loggedIn ? guestCart : userProfile.shopping.cart;
+const calculateQty = (loggedIn, reduxCart, userProfile) => {
+  const cart = loggedIn ? reduxCart.guest : userProfile.shopping.cart;
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
@@ -109,6 +126,7 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
 const NavbarCartWithState = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
+    guestCart: orders.cart.guest,
     activeUser: user.profile,
   }),
   dispatch => ({
@@ -123,8 +141,9 @@ const NavbarCartWithStateAndGraphQL = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: ({ activeUser: { shopping: { cart } } }) => {
-      const ids = cart.reduce((accum, { product }) => {
-        return accum.push(product);
+      const ids = cart.reduce((accum, { product: id }) => {
+        accum.push(id);
+        return accum;
       }, []);
       return ({
         variables: {
@@ -137,7 +156,7 @@ const NavbarCartWithStateAndGraphQL = compose(
       return true;
     },
   }),
-  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
+  // graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCartWithState);
 
 export default NavbarCartWithStateAndGraphQL;

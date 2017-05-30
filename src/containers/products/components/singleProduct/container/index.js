@@ -7,7 +7,7 @@ import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
-import FindProductById from '../../../../../graphQL/queries';
+import { FindProductById } from '../../../../../graphQL/queries';
 import { AddToMemberCart, UpdateToMemberCart } from '../../../../../graphQL/mutations';
 
 import {
