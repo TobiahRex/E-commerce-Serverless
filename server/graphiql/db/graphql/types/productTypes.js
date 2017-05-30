@@ -177,7 +177,7 @@ const rootType = new ObjectType({
 });
 const queries = {
   FetchMultipleProducts: {
-    type: rootType,
+    type: new ListType(rootType),
     args: {
       ids: {
         description: 'An array of Product Mongo Ids.',

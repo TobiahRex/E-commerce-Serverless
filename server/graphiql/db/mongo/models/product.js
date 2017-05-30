@@ -8,7 +8,7 @@ new Promise((resolve, reject) => {
   Product.find({ _id: { $in: [...ids] } })
   .exec()
   .then((dbProducts) => {
-    console.log('Found multiple Products.: ', ids);
+    console.log('Found multiple Products.: ', dbProducts);
     resolve(dbProducts);
   })
   .catch(error => reject(`
