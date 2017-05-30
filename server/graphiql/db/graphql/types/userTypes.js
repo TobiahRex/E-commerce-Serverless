@@ -355,6 +355,21 @@ const queries = {
   },
 };
 const mutations = {
+  DeleteFromMemberCart: {
+    type: rootType,
+    description: 'Delete a Product from the Users cart.',
+    args: {
+      productId: {
+        description: 'The Product Mongo Id to delete.',
+        type: new NonNull(MongoID),
+      },
+      userId: {
+        description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args) => User.deleteFromCart(args),
+  },
   LoginOrRegister: {
     type: rootType,
     description: 'Create new User.',
