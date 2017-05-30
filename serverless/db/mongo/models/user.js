@@ -3,6 +3,24 @@ import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 
 export default (db) => {
+  userSchema.statics.fetchUserProfile = userId =>
+  new Promise((resolve, reject) => {
+    User.findById(userId).exec()
+    .then((dbUser) => {
+      console.log(`
+        User Found: ${dbUser._id}
+        Sending updated profile to Client.
+      `);
+      resolve(dbUser);
+    })
+    .catch(error => reject(`
+      Could Not find a user with this is: ${userId}
+
+      Mongo ERROR: ${error}
+      `),
+    );
+  });
+
   userSchema.statics.loginOrRegister = args =>
   new Promise((resolve, reject) => {
     const auth0Id = args.auth0Id;
