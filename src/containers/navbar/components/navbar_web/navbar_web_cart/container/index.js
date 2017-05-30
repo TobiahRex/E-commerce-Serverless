@@ -120,7 +120,23 @@ const NavbarCartWithState = connect(
 )(NavbarCart);
 
 const NavbarCartWithStateAndGraphQL = compose(
-  graphql(FetchMultipleProducts, { name: 'FetchMultipleProducts' }),
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: ({ activeUser: { shopping: { cart } } }) => {
+      const ids = cart.reduce((accum, { product }) => {
+        return accum.push(product);
+      }, []);
+      return ({
+        variables: {
+          ids,
+        },
+      });
+    },
+    skip: ({ activeUser }) => {
+      if (activeUser && activeUser.shopping.cart.length) return false;
+      return true;
+    },
+  }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCartWithState);
 
