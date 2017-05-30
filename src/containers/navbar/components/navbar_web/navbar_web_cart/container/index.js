@@ -65,10 +65,15 @@ class NavbarCart extends Component {
 
       reduxCart = isArrayEqual(nextProps.guestCart, this.props.guestCart);
 
+    // data.FetchMultipleProducts will only exist if ApolloClient received non-null data.
+    // 1. If data was returned before, and now, compare and evaluate.
+    // 2. If data was not returned before, but now it has, automatically re-render.
     let dbCart;
-    if (nextProps.data.FetchMultipleProducts) {
-      dbCart = isArrayEqual(nextProps.data, this.props.data);
-    }
+    if (this.props.data.FetchMultipleProducts) {      // 1.
+      dbCart = isArrayEqual(nextProps.data.FetchMultipleProducts, this.props.data.FetchMultipleProducts);
+    } else if (                                       // 2.
+      !this.props.data.FetchMultipleProducts && nextProps.data.FetchMultipleProducts
+    ) { return true; }
 
     if (!_.isEqual(nextProps, this.props) || reduxCart || dbCart) return true;
     return false;
