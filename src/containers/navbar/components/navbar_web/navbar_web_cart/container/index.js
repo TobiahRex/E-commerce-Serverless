@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
+import userActions from '../../../../../../redux/user/';
 import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
 import { FetchMultipleProducts } from '../../../../../../graphQL/queries';
 
@@ -16,6 +17,7 @@ class NavbarCart extends Component {
     qty: number.isRequired,
     push: func.isRequired,
     guestCart: arrayOf(object),
+    saveUserProfile: func.isRequired,
     updateToGuestCart: func.isRequired,
     DeleteFromMemberCart: func.isRequired,
     data: shape({
@@ -69,9 +71,9 @@ class NavbarCart extends Component {
     // 1. If data was returned before, and now, compare and evaluate.
     // 2. If data was not returned before, but now it has, automatically re-render.
     let dbCart;
-    if (this.props.data.FetchMultipleProducts) {                          // 1.
+    if (this.props.data) {                                                 // 1.
       dbCart = isArrayEqual(nextProps.data.FetchMultipleProducts, this.props.data.FetchMultipleProducts);
-    } else if (!this.props.data && nextProps.data.FetchMultipleProducts) { // 2.
+    } else if (!this.props.data && nextProps.data) { // 2.
       return true;
     }
 
@@ -89,15 +91,28 @@ class NavbarCart extends Component {
 
   deleteFromCart = (e) => {
     const {
+      guestCart,
+      activeUser,
+      saveUserProfile,
       updateToGuestCart,
-      activeUser: { shopping: { cart } },
     } = this.props;
 
     let productId = e.target.dataset.id;
     if (!productId) productId = e.target.parentNode.dataset.id;
 
-    const updatedCartProducts = cart.filter(({ id }) => id !== productId);
-    updateToGuestCart(updatedCartProducts);
+    if (activeUser) {
+      this.props.DeleteFromMemberCart({ variables: {
+        productId,
+        userId: activeUser._id,
+      } })
+      .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
+        saveUserProfile(updatedUser);
+      });
+    } else {
+      updateToGuestCart(
+        guestCart.filter(({ id }) => id !== productId),
+      );
+    }
   }
 
   render() {
@@ -151,6 +166,8 @@ const NavbarCartWithState = connect(
 
     updateToGuestCart: updatedCartProducts =>
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+
+    saveUserProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
   }),
 )(NavbarCart);
 
