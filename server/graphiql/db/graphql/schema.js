@@ -20,10 +20,11 @@ const mutation = new GraphQLObjectType({
   name: 'RootMutationType',
   description: 'The primary mutation object.',
   fields: () => ({
+    CreateProduct: ProductTypes.mutations.CreateProduct,
     LoginOrRegister: UserTypes.mutations.LoginOrRegister,
     AddToMemberCart: UserTypes.mutations.AddToMemberCart,
     UpdateToMemberCart: UserTypes.mutations.UpdateToMemberCart,
-    CreateProduct: ProductTypes.mutations.CreateProduct,
+    DeleteFromMemberCart: UserTypes.mutations.DeleteFromMemberCart,
     FindProductAndUpdate: ProductTypes.mutations.FindProductAndUpdate,
     FindProductByIdAndDelete: ProductTypes.mutations.FindProductByIdAndDelete,
   }),
