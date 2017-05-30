@@ -6,7 +6,7 @@ const { Types, Creators } = createActions({
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   updateToGuestCart: ['updatedProducts'],
-  addToReduxMemberCart: ['updatedProducts'],
+  addToReduxMemberCart: ['productObj'],
   updateToReduxMemberCart: ['updatedProducts'],
 });
 
@@ -46,10 +46,10 @@ const updateToGuestCart = (state, { updatedProducts }) => ({
   },
 });
 
-const addToReduxMemberCart = (state, { updatedProducts }) => ({
+const addToReduxMemberCart = (state, { productObj }) => ({
   ...state,
   cart: {
-    member: [...updatedProducts],
+    member: [...state.cart.member, { ...productObj }],
     guest: [...state.cart.guest],
   },
 });

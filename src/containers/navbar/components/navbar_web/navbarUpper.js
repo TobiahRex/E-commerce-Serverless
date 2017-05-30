@@ -139,7 +139,7 @@ const NavbarUpperWithState = connect(
 )(NavbarUpper);
 
 const NavbarUpperWithStateAndGraphQL = compose(
-  graphql(UpdateToMemberCart, { name: 'updateToMemberCart' }),
+  graphql(UpdateToMemberCart, { name: 'UpdateToMemberCart' }),
 )(NavbarUpperWithState);
 
 export default NavbarUpperWithStateAndGraphQL;

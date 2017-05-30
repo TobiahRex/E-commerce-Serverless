@@ -1,7 +1,20 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
-import productSchema, { ObjectId } from '../schemas/productSchema';
+import productSchema from '../schemas/productSchema';
 import db from '../connection';
+
+productSchema.statics.fetchMultiple = ids =>
+new Promise((resolve, reject) => {
+  Products.find({ _id: { $in: [...ids] } })
+  .exec()
+  .then((dbProducs) => {
+    console.log('Found multiple Products.: ', ids);
+    resolve(dbProducts);
+  })
+  .catch(error => reject(`
+    
+    `))
+});
 
 productSchema.statics.findProductByIdAndDelete = _id =>
 new Promise((resolve, reject) => {
