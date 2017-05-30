@@ -20,16 +20,6 @@ class NavbarUpper extends Component {
     saveLanguage: func.isRequired,
     activeUser: objectOf(any),
     activeLanguage: string.isRequired,
-    products: arrayOf(shape({
-      id: string,
-      qty: number,
-      title: string,
-      price: string,
-      imageUrl: string,
-      routeTag: string,
-      strength: number,
-      nicotine_strengths: arrayOf(string),
-    })).isRequired,
     updateToGuestCart: func.isRequired,
   }
   static defaultProps = {
@@ -43,12 +33,9 @@ class NavbarUpper extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { activeLanguage, products } = nextProps;
+    const { activeLanguage } = nextProps;
     if (!_.isEqual(nextProps, this.props)) {
-      this.setState({
-        products,
-        activeLanguage,
-      });
+      this.setState({ activeLanguage });
     }
   }
 
@@ -78,21 +65,20 @@ class NavbarUpper extends Component {
   }
 
   deleteFromCart = (e) => {
+    const {
+      updateToGuestCart,
+      activeUser: { shopping: { cart } },
+    } = this.props;
+
     let productId = e.target.dataset.id;
     if (!productId) productId = e.target.parentNode.dataset.id;
 
-    const updatedCartProducts = this.props.products
-    .filter(({ id }) => id !== productId);
-    this.props.updateToGuestCart(updatedCartProducts);
+    const updatedCartProducts = cart.filter(({ id }) => id !== productId);
+    updateToGuestCart(updatedCartProducts);
   }
 
   render() {
-    const {
-      qty,
-      products,
-      activeUser,
-      activeLanguage,
-    } = this.props;
+    const { qty, activeUser, activeLanguage } = this.props;
     return (
       <div className="navbar-actionSection-upper">
         <div className="navbar-actionSection-upper-options">
@@ -116,15 +102,15 @@ class NavbarUpper extends Component {
     );
   }
 }
-const calculateQty = (loggedIn, cartObj) => {
-  const cart = cartObj[loggedIn ? 'member' : 'guest'];
+const calculateQty = (loggedIn, guestCart, { shopping: { cart } }) => {
+  const cart = loggedIn ? guestCart : cart;
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
 
 const NavbarUpperWithState = connect(
   ({ locale, auth, orders, user }) => ({
-    qty: calculateQty(auth.loggedIn, orders.cart),
+    qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
     products: orders.cart[auth.loggedIn ? 'member' : 'guest'],
     activeUser: user.profile,
     activeLanguage: locale.activeLanguage,
