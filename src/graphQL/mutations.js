@@ -24,27 +24,43 @@ export const AddToMemberCart = gql`
   }
 `;
 export const UpdateToMemberCart = gql`
-mutation UpdateToMemberCart(
-  $userId: ID!
-  $qty: Int!
-  $strength: String!
-  $product: ID!
-) {
-  UpdateToMemberCart(
-    userId: $userId
-    qty: $qty
-    strength: $strength
-    product: $product
+  mutation UpdateToMemberCart(
+    $userId: ID!
+    $qty: Int!
+    $strength: String!
+    $product: ID!
   ) {
-    shopping {
-      cart {
-        qty
-        strength
-        product
+    UpdateToMemberCart(
+      userId: $userId
+      qty: $qty
+      strength: $strength
+      product: $product
+    ) {
+      shopping {
+        cart {
+          qty
+          strength
+          product
+        }
       }
     }
   }
-}
 `;
 
-export const DeleteFromMemberCart = '';
+export const DeleteFromMemberCart = gql`
+  mutation DeleteFromMemberCart(
+    $productId: ID!,
+    $userId: ID!
+  ){
+    DeleteFromMemberCart(productId: $productId, userId: $userId){
+      _id
+      shopping{
+        cart{
+          qty
+          strength
+          product
+        }
+      }
+    }
+  }
+`;

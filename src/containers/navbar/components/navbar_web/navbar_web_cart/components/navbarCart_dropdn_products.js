@@ -17,7 +17,7 @@ const {
 
 class NavbarCartProducts extends Component {
   static propTypes = {
-    products: arrayOf(object).isRequired,
+    cartItems: arrayOf(object).isRequired,
     cartTotal: number.isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
@@ -29,7 +29,7 @@ class NavbarCartProducts extends Component {
   );
   shouldComponentUpdate(nextProps) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-    const productsDiff = isArrayEqual(nextProps.products, this.props.products);
+    const productsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
 
     if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
     return false;
@@ -41,9 +41,9 @@ class NavbarCartProducts extends Component {
     const image = images.filter(helper).length;
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
-  renderProducts = products =>
-  products.map((product) => {
-    console.log('%cproduct', 'background:orange;', product);
+  renderCartItems = productItems =>
+  productItems.map((item) => {
+    console.log('%citem', 'background:orange;', item);
 
     const {
       id,
@@ -53,7 +53,7 @@ class NavbarCartProducts extends Component {
       strength,
       images,
       routeTag,
-    } = product;
+    } = item;
     return (
       <li
         className="products-list-card"
@@ -85,8 +85,8 @@ class NavbarCartProducts extends Component {
       <div>
         <div className="products">
           <ul className="products-list">
-            {this.props.products.length
-              ? this.renderProducts(this.props.products)
+            {this.props.cartItems.length
+              ? this.renderCartItems(this.props.cartItems)
               : this.emptyCart()}
           </ul>
         </div>

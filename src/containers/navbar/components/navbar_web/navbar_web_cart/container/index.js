@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
-// import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
+import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
 import { FetchMultipleProducts } from '../../../../../../graphQL/queries';
 
 const { number, string, shape, func, arrayOf, objectOf, object, any } = PropTypes;
@@ -14,6 +14,7 @@ const { number, string, shape, func, arrayOf, objectOf, object, any } = PropType
 class NavbarCart extends Component {
   static propTypes = {
     qty: number.isRequired,
+    push: func.isRequired,
     guestCart: arrayOf(object),
     updateToGuestCart: func.isRequired,
     DeleteFromMemberCart: func.isRequired,
@@ -51,21 +52,25 @@ class NavbarCart extends Component {
       userStory: objectOf(any),
       marketHero: objectOf(any),
       socialProfileBlob: objectOf(any),
-    }).isRequired,
+    }),
   }
   static defaultProps = {
-    guestCart: null,
     data: null,
+    guestCart: null,
+    activeUser: null,
   }
 
   shouldComponentUpdate(nextProps) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
-      dbCart = isArrayEqual(nextProps.data.FetchMultipleProducts, this.props.data.FetchMultipleProducts),
-
       reduxCart = isArrayEqual(nextProps.guestCart, this.props.guestCart);
 
-    if (!_.isEqual(nextProps, this.props) || dbCart || reduxCart) return true;
+    let dbCart;
+    if (nextProps.data.FetchMultipleProducts) {
+      dbCart = isArrayEqual(nextProps.data, this.props.data);
+    }
+
+    if (!_.isEqual(nextProps, this.props) || reduxCart || dbCart) return true;
     return false;
   }
 
@@ -94,10 +99,10 @@ class NavbarCart extends Component {
     const {
       qty,
       guestCart,
-      data: { FetchMultipleProducts: products },
+      data,
     } = this.props;
 
-    const cartItems = guestCart || products;
+    const cartItems = guestCart || data.FetchMultipleProducts;
 
     return (
       <div className="mycart-main">
@@ -139,7 +144,6 @@ const NavbarCartWithState = connect(
 
 const NavbarCartWithStateAndGraphQL = compose(
   graphql(FetchMultipleProducts, {
-    name: 'FetchMultipleProducts',
     options: ({ activeUser: { shopping: { cart } } }) => {
       const ids = cart.reduce((accum, { product: id }) => {
         accum.push(id);
@@ -156,7 +160,7 @@ const NavbarCartWithStateAndGraphQL = compose(
       return true;
     },
   }),
-  // graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
+  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCartWithState);
 
 export default NavbarCartWithStateAndGraphQL;
