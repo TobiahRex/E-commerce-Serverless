@@ -17,7 +17,7 @@ class NavbarCart extends Component {
     qty: number.isRequired,
     push: func.isRequired,
     guestCart: arrayOf(object),
-    saveUserProfile: func.isRequired,
+    saveProfile: func.isRequired,
     updateToGuestCart: func.isRequired,
     DeleteFromMemberCart: func.isRequired,
     data: shape({
@@ -93,7 +93,7 @@ class NavbarCart extends Component {
     const {
       guestCart,
       activeUser,
-      saveUserProfile,
+      saveProfile,
       updateToGuestCart,
     } = this.props;
 
@@ -106,7 +106,7 @@ class NavbarCart extends Component {
         userId: activeUser._id,
       } })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
-        saveUserProfile(updatedUser);
+        saveProfile(updatedUser);
       });
     } else {
       updateToGuestCart(
@@ -122,12 +122,12 @@ class NavbarCart extends Component {
       data,
     } = this.props;
 
-    let cartItems;
+    let cartItems = [];
     if (!data && guestCart) {
       cartItems = guestCart;
     } else if (!data && !guestCart) {
       cartItems = guestCart;
-    } else if (data.FetchMultipleProducts && guestCart) {
+    } else if (data && guestCart) {
       cartItems = data.FetchMultipleProducts;
     }
 
@@ -135,6 +135,7 @@ class NavbarCart extends Component {
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
         <NavbarCartDropdnContent
+          loading={data.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}
@@ -167,7 +168,7 @@ const NavbarCartWithState = connect(
     updateToGuestCart: updatedCartProducts =>
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
-    saveUserProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
+    saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
   }),
 )(NavbarCart);
 

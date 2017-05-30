@@ -13,12 +13,80 @@ export const AddToMemberCart = gql`
       strength: $strength
       product: $product
     ) {
+      _id
+      name {
+        first
+        last
+        display
+      }
+      pictures {
+        small
+        large
+        default
+      }
+      authentication {
+        signedUp
+        password
+        createdAt
+        totalLogins
+        logins {
+          date
+          device
+        }
+        ageVerified
+        auth0Identities {
+          provider
+          user_id
+          connection
+          isSocial
+        }
+      }
+      contactInfo {
+        email
+        phone
+        locale
+        timezone
+        location {
+          ipAddress
+          lat
+          long
+          country
+        },
+        devices {
+          hardware
+          os
+        }
+        socialNetworks {
+          name
+          link
+        }
+      }
+      permissions {
+        role
+      }
       shopping {
         cart {
           qty
           strength
           product
         }
+        transactions
+      }
+      permissions {
+        role
+      }
+      userStory {
+        age
+        birthday
+        bio
+        gender
+      }
+      socialProfileBlob {
+        line
+        facebook
+        google
+        twitter
+        linkedin
       }
     }
   }
