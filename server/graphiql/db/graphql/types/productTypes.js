@@ -1,5 +1,5 @@
 import {
-  GraphQLID,
+  GraphQLID as MongoId,
   GraphQLInt as IntType,
   GraphQLList as ListType,
   GraphQLEnumType as EnumType,
@@ -17,7 +17,7 @@ const rootType = new ObjectType({
   fields: {
     _id: {
       description: 'The ID of the Product.',
-      type: new NonNull(GraphQLID),
+      type: new NonNull(MongoId),
     },
     product: {
       description: 'Object: All the important details for the product.',
@@ -176,12 +176,24 @@ const rootType = new ObjectType({
   },
 });
 const queries = {
+  FetchMultipleProducts: {
+    type: rootType,
+    args: {
+      ids: {
+        description: 'An array of Product Mongo Ids.',
+        type: new NonNull(
+          new ListType(MongoId),
+        ),
+      },
+    },
+    resolve: (_, { ids }) => Product.fetchMultiple(ids),
+  },
   FindProductById: {
     type: rootType,
     args: {
       _id: {
         description: 'The Mongo _id of the product.',
-        type: new NonNull(GraphQLID),
+        type: new NonNull(MongoId),
       },
     },
     resolve: (_, { _id }) => Product.findProductById(_id),
@@ -190,8 +202,8 @@ const queries = {
     type: new ListType(rootType),
     args: {
       qty: {
-        type: new NonNull(IntType),
         description: 'The quantity of popular products to return.',
+        type: new NonNull(IntType),
       },
     },
     resolve: (_, { qty }) => Product.getPopularProducts(qty),
@@ -363,7 +375,7 @@ const mutations = {
     args: {
       _id: {
         description: 'The mongo _id of the product to update.',
-        type: new NonNull(GraphQLID),
+        type: new NonNull(MongoId),
       },
       newProduct: {
         description: 'Object: The updated product info.',
@@ -520,7 +532,7 @@ const mutations = {
     args: {
       _id: {
         description: 'The Mongo _id of the product.',
-        type: new NonNull(GraphQLID),
+        type: new NonNull(MongoId),
       },
     },
     resolve: (_, { _id }) => Product.findProductByIdAndDelete(_id),

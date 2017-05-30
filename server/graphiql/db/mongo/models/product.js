@@ -5,15 +5,16 @@ import db from '../connection';
 
 productSchema.statics.fetchMultiple = ids =>
 new Promise((resolve, reject) => {
-  Products.find({ _id: { $in: [...ids] } })
+  Product.find({ _id: { $in: [...ids] } })
   .exec()
-  .then((dbProducs) => {
+  .then((dbProducts) => {
     console.log('Found multiple Products.: ', ids);
     resolve(dbProducts);
   })
   .catch(error => reject(`
-    
-    `))
+    problem: Could not fetch multiple products.
+    Mongo Error = ${error}.
+  `));
 });
 
 productSchema.statics.findProductByIdAndDelete = _id =>
@@ -36,7 +37,6 @@ new Promise((resolve, reject) => {
     resolve(newProduct);
   })
   .catch((error) => {
-    console.log('\n//mongo/model/product.js\n @ createProduct REJECT\n', error);
     reject({
       problem: `Could not create a new product with this product object: ${JSON.stringify({ product }, null, 2)}
       Mongoose Error = ${error}`,
@@ -53,7 +53,6 @@ new Promise((resolve, reject) => {
     resolve(dbProduct);
   })
   .catch((error) => {
-    console.log('\n//mongo/model/product.js\n @ findProductById REJECT\n', error);
     reject({
       problem: `Could not find the product with id ${_id}.  Are you sure that product exists?
       Mongo Error = ${error}`,
@@ -93,16 +92,15 @@ new Promise((resolve, reject) => {
   Product.findByIdAndUpdate(_id, { $set: newProductObj }, { new: true })
   .exec()
   .then((updatedProduct) => {
-    console.log('\n//mongo/model/product.js\n @ findByIdAndUpdate RESOLVE\n', updatedProduct);
+    console.log(`
+      Updated Product!: ${_id};
+      `);
     resolve(updatedProduct);
   })
-  .catch((error) => {
-    console.log('\n//mongo/model/product.js\n @ findByIdAndUpdate REJECT\n', error);
-    reject({
-      problem: `Could not find the product with id ${_id}. Are you sure that product exists?
-      Mongo Error = ${error}`,
-    });
-  });
+  .catch(error => reject({
+    problem: `Could not find the product with id ${_id}. Are you sure that product exists?
+    Mongo Error = ${error}`,
+  }));
 });
 
 productSchema.statics.getPopularProducts = qty =>
@@ -110,12 +108,10 @@ new Promise((resolve, reject) => {
   Product.find({})
   .exec()
   .then(dbProducts => resolve(dbProducts.slice(0, qty)))
-  .catch(error =>
-    reject({
-      problem: `Could not fetch the ${qty} products you requested.
-      Mongo Error = ${error}`,
-    }),
-  );
+  .catch(error => reject({
+    problem: `Could not fetch the ${qty} products you requested.
+    Mongo Error = ${error}`,
+  }));
 });
 
 const Product = db.model('Product', productSchema);
