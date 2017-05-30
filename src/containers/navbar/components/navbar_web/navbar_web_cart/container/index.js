@@ -121,14 +121,14 @@ class NavbarCart extends Component {
       guestCart,
       data,
     } = this.props;
-
-    let cartItems;
+    console.log('%cthis.props', 'background:cyan;', this.props);
+    let cartItems = [];
     if (!data && guestCart.length) {
       cartItems = guestCart;
     } else if (!data && !guestCart.length) {
       cartItems = [];
-    } else if (data && guestCart) {
-      cartItems = [...data.FetchMultipleProducts];
+    } else if (data.FetchMultipleProducts) {
+      cartItems = data.FetchMultipleProducts;
     }
     console.log('%ccartItems', 'background:red;', cartItems);
 
