@@ -58,9 +58,35 @@ const createAPI = () => {
     },
   });
 
+  const FetchMultipleProducts = ids => api.post('', {
+    query: `
+    query FetchMultipleProducts($ids: [ID]!){
+      FetchMultipleProducts(ids: $ids){
+        _id
+        product {
+          title
+          flavor
+          price
+          sku
+          routeTag
+          vendor
+          images{
+            purpose
+            url
+          }
+        }
+      }
+    }
+    `,
+    variables: {
+      ids: [...ids],
+    },
+  });
+
   return {
     FetchProductById,
     FetchPopularProducts,
+    FetchMultipleProducts,
   };
 };
 export default { createAPI };
