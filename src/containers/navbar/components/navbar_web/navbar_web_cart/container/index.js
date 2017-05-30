@@ -9,12 +9,12 @@ import orderActions from '../../../../../../redux/orders/';
 // import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
 import { FetchMultipleProducts } from '../../../../../../graphQL/queries';
 
-const { number, string, shape, func, arrayOf, objectOf, any } = PropTypes;
+const { number, string, shape, func, arrayOf, objectOf, object, any } = PropTypes;
 
 class NavbarCart extends Component {
   static propTypes = {
     qty: number.isRequired,
-    guestCart: objectOf(any),
+    guestCart: arrayOf(object),
     updateToGuestCart: func.isRequired,
     DeleteFromMemberCart: func.isRequired,
     data: shape({
@@ -118,7 +118,7 @@ class NavbarCart extends Component {
   }
 }
 const calculateQty = (loggedIn, reduxCart, userProfile) => {
-  const cart = loggedIn ? reduxCart.guest : userProfile.shopping.cart;
+  const cart = loggedIn ? userProfile.shopping.cart : reduxCart.guest;
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
