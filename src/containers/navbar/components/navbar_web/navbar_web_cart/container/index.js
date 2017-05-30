@@ -6,13 +6,15 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
-import { UpdateToMemberCart } from '../../../../../../graphQL/mutations';
+import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
 
-const { number, string, shape } = PropTypes;
+const { number, string, shape, func } = PropTypes;
 
 class NavbarCart extends Component {
   static propTypes = {
     qty: number.isRequired,
+    updateToGuestCart: func.isRequired,
+    DeleteFromMemberCart: func.isRequired,
     cartItems: shape({
       qty: number,
       strength: string,
@@ -32,9 +34,9 @@ class NavbarCart extends Component {
 
   shouldComponentUpdate(nextProps) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-    const productsDiff = isArrayEqual(nextProps.products, this.props.products);
+    const cartItemsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
 
-    if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
+    if (!_.isEqual(nextProps, this.props) || cartItemsDiff) return true;
     return false;
   }
 
@@ -60,17 +62,17 @@ class NavbarCart extends Component {
   }
 
   render() {
-    const { qty, cartItems, editCartItem, deleteFromCart } = this.props;
+    const { qty, cartItems } = this.props;
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
         <NavbarCartDropdnContent
           cartItems={cartItems}
-          editCartItem={editCartItem}
-          deleteFromCart={deleteFromCart}
+          editCartItem={this.editCartItem}
+          deleteFromCart={this.deleteFromCart}
           cartTotal={
-            products.length ?
-            products.reduce((acc, next) =>
+            cartItems.length ?
+            cartItems.reduce((acc, next) =>
               acc + (Number(next.price) * next.qty)
             , 0) : 0
           }
@@ -100,7 +102,7 @@ const NavbarCartWithState = connect(
 )(NavbarCart);
 
 const NavbarUpperWithStateAndGraphQL = compose(
-  graphql(UpdateToMemberCart, { name: 'UpdateToMemberCart' }),
+  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCartWithState);
 
 export default NavbarUpperWithStateAndGraphQL;

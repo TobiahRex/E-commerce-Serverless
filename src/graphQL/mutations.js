@@ -46,3 +46,5 @@ mutation UpdateToMemberCart(
   }
 }
 `;
+
+export const DeleteFromMemberCart = '';
