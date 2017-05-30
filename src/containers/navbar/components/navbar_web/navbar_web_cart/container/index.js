@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { graphql, compose } from 'react-apollo';
+
 import _ from 'lodash';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
+import orderActions from '../../../../redux/orders/';
 
-const { number, arrayOf, object, func } = PropTypes;
+import { UpdateToMemberCart } from '../../../../graphQL/mutations';
+
+const { number, arrayOf, object } = PropTypes;
 
 class NavbarCart extends Component {
   static propTypes = {
     qty: number.isRequired,
     products: arrayOf(object).isRequired,
-    editCartItem: func.isRequired,
-    deleteFromCart: func.isRequired,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -21,6 +25,28 @@ class NavbarCart extends Component {
     if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
     return false;
   }
+
+  editCartItem = (e) => {
+    let route = e.target.dataset.route;
+    let id = e.target.dataset.id;
+    if (!route) route = e.target.parentNode.dataset.route;
+    if (!id) id = e.target.parentNode.dataset.id;
+    this.props.push('/cart');
+  }
+
+  deleteFromCart = (e) => {
+    const {
+      updateToGuestCart,
+      activeUser: { shopping: { cart } },
+    } = this.props;
+
+    let productId = e.target.dataset.id;
+    if (!productId) productId = e.target.parentNode.dataset.id;
+
+    const updatedCartProducts = cart.filter(({ id }) => id !== productId);
+    updateToGuestCart(updatedCartProducts);
+  }
+
   render() {
     const { qty, products, editCartItem, deleteFromCart } = this.props;
     return (
@@ -60,7 +86,7 @@ const NavbarCartWithState = connect(
     updateToGuestCart: updatedCartProducts =>
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
   }),
-)(NavbarUpper);
+)(NavbarCart);
 
 const NavbarUpperWithStateAndGraphQL = compose(
   graphql(UpdateToMemberCart, { name: 'UpdateToMemberCart' }),
