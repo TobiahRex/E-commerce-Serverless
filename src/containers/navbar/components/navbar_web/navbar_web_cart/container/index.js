@@ -69,11 +69,11 @@ class NavbarCart extends Component {
     // 1. If data was returned before, and now, compare and evaluate.
     // 2. If data was not returned before, but now it has, automatically re-render.
     let dbCart;
-    if (this.props.data.FetchMultipleProducts) {      // 1.
+    if (this.props.data.FetchMultipleProducts) {                          // 1.
       dbCart = isArrayEqual(nextProps.data.FetchMultipleProducts, this.props.data.FetchMultipleProducts);
-    } else if (                                       // 2.
-      !this.props.data.FetchMultipleProducts && nextProps.data.FetchMultipleProducts
-    ) { return true; }
+    } else if (!this.props.data && nextProps.data.FetchMultipleProducts) { // 2.
+      return true;
+    }
 
     if (!_.isEqual(nextProps, this.props) || reduxCart || dbCart) return true;
     return false;
@@ -107,7 +107,14 @@ class NavbarCart extends Component {
       data,
     } = this.props;
 
-    const cartItems = guestCart || data.FetchMultipleProducts;
+    let cartItems;
+    if (!data && guestCart) {
+      cartItems = guestCart;
+    } else if (!data && !guestCart) {
+      cartItems = guestCart;
+    } else if (data.FetchMultipleProducts && guestCart) {
+      cartItems = data.FetchMultipleProducts;
+    }
 
     return (
       <div className="mycart-main">
