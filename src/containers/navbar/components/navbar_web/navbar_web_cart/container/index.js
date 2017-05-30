@@ -7,8 +7,9 @@ import { graphql, compose } from 'react-apollo';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
 import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
+import { FetchMultipleProducts } from '../../../../../../graphQL/queries';
 
-const { number, string, shape, func } = PropTypes;
+const { number, string, shape, func, arrayOf, objectOf, any } = PropTypes;
 
 class NavbarCart extends Component {
   static propTypes = {
@@ -29,6 +30,24 @@ class NavbarCart extends Component {
           url: string,
         }),
       }),
+    }).isRequired,
+    activeUser: shape({
+      _id: string,
+      shopping: shape({
+        cart: arrayOf(shape({
+          qty: number,
+          strength: string,
+          product: string,
+        })),
+      }),
+      name: objectOf(any),
+      pictures: objectOf(any),
+      authentication: objectOf(any),
+      contactInfo: objectOf(any),
+      permissions: objectOf(any),
+      userStory: objectOf(any),
+      marketHero: objectOf(any),
+      socialProfileBlob: objectOf(any),
     }).isRequired,
   };
 
@@ -88,10 +107,9 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
 };
 
 const NavbarCartWithState = connect(
-  ({ locale, user, auth, orders }) => ({
+  ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
     activeUser: user.profile,
-    activeLanguage: locale.activeLanguage,
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
@@ -101,8 +119,9 @@ const NavbarCartWithState = connect(
   }),
 )(NavbarCart);
 
-const NavbarUpperWithStateAndGraphQL = compose(
+const NavbarCartWithStateAndGraphQL = compose(
+  graphql(FetchMultipleProducts, { name: 'FetchMultipleProducts' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCartWithState);
 
-export default NavbarUpperWithStateAndGraphQL;
+export default NavbarCartWithStateAndGraphQL;

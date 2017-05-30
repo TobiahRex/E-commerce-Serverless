@@ -2,7 +2,7 @@ import {
   gql,
 } from 'react-apollo';
 
-const FindProductById = gql`
+export const FindProductById = gql`
   query FindProductById($id: ID!) {
     FindProductById(_id: $id){
       _id
@@ -29,4 +29,23 @@ const FindProductById = gql`
     }
   }
 `;
-export default FindProductById;
+
+export const FetchMultipleProducts = gql`
+  query FetchMultipleProducts($ids: [ID]!) {
+    FetchMultipleProducts(ids: $ids){
+      _id
+      product {
+        title
+        flavor
+        price
+        sku
+        routeTag
+        vendor
+        images {
+          purpose
+          url
+        }
+      }
+    }
+  }
+`;
