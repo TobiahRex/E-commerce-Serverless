@@ -11,6 +11,12 @@
         "LogGroupName": "/aws/lambda/nj2jp-development-graphql"
       }
     },
+    "WakeupLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/nj2jp-development-wakeup"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -53,6 +59,9 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/nj2jp-development-graphql:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/nj2jp-development-wakeup:*"
                     }
                   ]
                 },
@@ -64,7 +73,23 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/nj2jp-development-graphql:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/nj2jp-development-wakeup:*:*"
                     }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Resource": "*",
+                  "Action": [
+                    "ec2:CreateNetworkInterface",
+                    "ec2:DescribeNetworkInterfaces",
+                    "ec2:DetachNetworkInterface",
+                    "ec2:DeleteNetworkInterface",
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
                   ]
                 }
               ]
@@ -82,7 +107,10 @@
               "lambdaRole"
             ]
           ]
-        }
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+        ]
       }
     },
     "GraphqlLambdaFunction": {
@@ -92,7 +120,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nj2jp/development/1495799051264-2017-05-26T11:44:11.264Z/nj2jp.zip"
+          "S3Key": "serverless/nj2jp/development/1496141590135-2017-05-30T10:53:10.135Z/nj2jp.zip"
         },
         "FunctionName": "nj2jp-development-graphql",
         "Handler": "handler.graphql",
@@ -104,21 +132,114 @@
           ]
         },
         "Runtime": "nodejs6.10",
-        "Timeout": 6
+        "Timeout": 20,
+        "Environment": {
+          "Variables": {
+            "MONGO_URI": "mongodb://10.0.1.241:27017/nj2jp",
+            "WAKE_UP_URL": "https://noa45x1sdb.execute-api.ap-northeast-1.amazonaws.com/development/graphql"
+          }
+        },
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            "sg-0d5db76b"
+          ],
+          "SubnetIds": [
+            "subnet-f76b18af"
+          ]
+        }
       },
       "DependsOn": [
         "GraphqlLogGroup",
         "IamRoleLambdaExecution"
       ]
     },
-    "GraphqlLambdaVersionNkefmpZtr9tBQQFYhoxHl1o4vy6hg3KMHiH3xGaNA": {
+    "GraphqlLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphqlLambdaFunction"
         },
-        "CodeSha256": "NkefmpZtr9tBQQFYhoxHl1o4/vy/6hg3KMHiH3xGaNA="
+        "CodeSha256": "yWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI="
+      }
+    },
+    "WakeupLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/nj2jp/development/1496141590135-2017-05-30T10:53:10.135Z/nj2jp.zip"
+        },
+        "FunctionName": "nj2jp-development-wakeup",
+        "Handler": "handler.wakeup",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs6.10",
+        "Timeout": 20,
+        "Environment": {
+          "Variables": {
+            "MONGO_URI": "mongodb://10.0.1.241:27017/nj2jp",
+            "WAKE_UP_URL": "https://noa45x1sdb.execute-api.ap-northeast-1.amazonaws.com/development/graphql"
+          }
+        }
+      },
+      "DependsOn": [
+        "WakeupLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "WakeupLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "WakeupLambdaFunction"
+        },
+        "CodeSha256": "yWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI="
+      }
+    },
+    "WakeupEventsRuleSchedule1": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "ScheduleExpression": "rate(20 minutes)",
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "WakeupLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Id": "wakeupSchedule"
+          }
+        ]
+      }
+    },
+    "WakeupLambdaPermissionEventsRuleSchedule1": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "WakeupLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "WakeupEventsRuleSchedule1",
+            "Arn"
+          ]
+        }
       }
     },
     "ApiGatewayRestApi": {
@@ -369,7 +490,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1495799051301": {
+    "ApiGatewayDeployment1496141590196": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -424,7 +545,13 @@
     "GraphqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphqlLambdaVersionNkefmpZtr9tBQQFYhoxHl1o4vy6hg3KMHiH3xGaNA"
+        "Ref": "GraphqlLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI"
+      }
+    },
+    "WakeupLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "WakeupLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI"
       }
     },
     "ServiceEndpoint": {
