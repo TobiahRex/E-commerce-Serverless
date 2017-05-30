@@ -1,0 +1,7 @@
+---
+# config file for serverless.
+# Subnet ID
+subnetId:
+securityGroupId:
+mongoURI:
+wakeUpURL:
