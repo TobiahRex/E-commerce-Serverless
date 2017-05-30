@@ -5,7 +5,7 @@ node_modules
 dist
 public
 
-# serverless stuff
+# serverless
 config.yml
 
 # miscellaneous
