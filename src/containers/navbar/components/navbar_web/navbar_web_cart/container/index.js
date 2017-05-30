@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 
@@ -40,4 +41,29 @@ class NavbarCart extends Component {
     );
   }
 }
-export default NavbarCart;
+const calculateQty = (loggedIn, guestCart, userProfile) => {
+  const cart = loggedIn ? guestCart : userProfile.shopping.cart;
+  if (!cart.length) return 0;
+  return cart.reduce((accum, { qty }) => accum + qty, 0);
+};
+
+const NavbarCartWithState = connect(
+  ({ locale, user, auth, orders }) => ({
+    qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
+    activeUser: user.profile,
+    activeLanguage: locale.activeLanguage,
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
+    saveLanguage: language => dispatch(localeActions.setLanguage(language)),
+
+    updateToGuestCart: updatedCartProducts =>
+    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+  }),
+)(NavbarUpper);
+
+const NavbarUpperWithStateAndGraphQL = compose(
+  graphql(UpdateToMemberCart, { name: 'UpdateToMemberCart' }),
+)(NavbarCartWithState);
+
+export default NavbarUpperWithStateAndGraphQL;

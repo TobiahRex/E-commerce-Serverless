@@ -11,14 +11,13 @@ import NavbarCart from './navbar_web_cart/container/';
 import orderActions from '../../../../redux/orders/';
 import { UpdateToMemberCart } from '../../../../graphQL/mutations';
 
-const { string, number, func, arrayOf, objectOf, any, shape } = PropTypes;
+const { string, func, objectOf, any } = PropTypes;
 
 class NavbarUpper extends Component {
   static propTypes = {
     push: func.isRequired,
-    qty: number.isRequired,
-    saveLanguage: func.isRequired,
     activeUser: objectOf(any),
+    saveLanguage: func.isRequired,
     activeLanguage: string.isRequired,
     updateToGuestCart: func.isRequired,
   }
@@ -78,7 +77,7 @@ class NavbarUpper extends Component {
   }
 
   render() {
-    const { qty, activeUser, activeLanguage } = this.props;
+    const { activeUser, activeLanguage } = this.props;
     return (
       <div className="navbar-actionSection-upper">
         <div className="navbar-actionSection-upper-options">
@@ -92,8 +91,7 @@ class NavbarUpper extends Component {
 
         <div className="navbar actionSection upper mycart-container">
           <NavbarCart
-            qty={qty}
-            products={products}
+            activeUser={activeUser}
             editCartItem={this.editCartItem}
             deleteFromCart={this.deleteFromCart}
           />
@@ -102,16 +100,9 @@ class NavbarUpper extends Component {
     );
   }
 }
-const calculateQty = (loggedIn, guestCart, { shopping: { cart } }) => {
-  const cart = loggedIn ? guestCart : cart;
-  if (!cart.length) return 0;
-  return cart.reduce((accum, { qty }) => accum + qty, 0);
-};
 
 const NavbarUpperWithState = connect(
-  ({ locale, auth, orders, user }) => ({
-    qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
-    products: orders.cart[auth.loggedIn ? 'member' : 'guest'],
+  ({ locale, user }) => ({
     activeUser: user.profile,
     activeLanguage: locale.activeLanguage,
   }),
