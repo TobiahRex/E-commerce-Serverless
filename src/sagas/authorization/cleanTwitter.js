@@ -33,8 +33,8 @@ export default ({ orders, user, geo, locale, mobile }, auth0Twitter) => {
     },
     contactInfoLocation: {
       ipAddress: geo.ipAddress,
-      lat: geo.latLong.split(',')[0],
-      long: geo.latLong.split(',')[1],
+      lat: geo.latLong ? geo.latLong.split(',')[0] : '',
+      long: geo.latLong ? geo.latLong.split(',')[1] : '',
       country: locale.country,
     },
     contactInfoDevices: [null],

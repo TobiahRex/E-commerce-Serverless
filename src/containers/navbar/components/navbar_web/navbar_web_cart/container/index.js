@@ -122,20 +122,21 @@ class NavbarCart extends Component {
       data,
     } = this.props;
 
-    let cartItems = [];
-    if (!data && guestCart) {
+    let cartItems;
+    if (!data && guestCart.length) {
       cartItems = guestCart;
-    } else if (!data && !guestCart) {
-      cartItems = guestCart;
+    } else if (!data && !guestCart.length) {
+      cartItems = [];
     } else if (data && guestCart) {
-      cartItems = data.FetchMultipleProducts;
+      cartItems = [...data.FetchMultipleProducts];
     }
+    console.log('%ccartItems', 'background:red;', cartItems);
 
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
         <NavbarCartDropdnContent
-          loading={data.loading}
+          loading={!!data && data.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}
