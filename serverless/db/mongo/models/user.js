@@ -3,6 +3,26 @@ import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 
 export default (db) => {
+  userSchema.statics.deleteFromCart = ({ userId, productId }) =>
+  new Promise((resolve, reject) => {
+    User.findById(userId)
+    .exec()
+    .then((dbUser) => {
+      dbUser.shopping.cart.filter(({ product }) => product !== productId);
+      return dbUser.save({ validateBeforeSave: true });
+    })
+    .then((savedUser) => {
+      console.log(`
+        Deleted Product: ${productId} from User: ${savedUser._id}.
+      `);
+      resolve(savedUser);
+    })
+    .catch(error => reject(`
+      Could not Delete Product: ${productId} from User: ${userId}.
+      Mongo Error = ${error}
+    `));
+  });
+
   userSchema.statics.fetchUserProfile = userId =>
   new Promise((resolve, reject) => {
     User.findById(userId).exec()
