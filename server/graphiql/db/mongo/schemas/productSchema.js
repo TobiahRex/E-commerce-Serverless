@@ -31,7 +31,7 @@ const productSchema = new Schema({
     }],
     nicotine_strengths: [{
       type: String,
-      enum: ['2mg', '4mg', '6mg', '8mg', '12mg', '14mg', '16mg', '18mg'],
+      enum: [2, 4, 6, 8, 10, 12, 14, 16, 18],
       required: true,
     }],
     images: [{

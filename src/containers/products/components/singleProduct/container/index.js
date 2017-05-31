@@ -471,10 +471,11 @@ class SingleProduct extends Component {
 }
 const SingleProductWithState = connect(
   ({ orders, auth, routing, user }) => ({
-    guestCart: orders.cart,
     userId: user.profile ? user.profile._id : '',
-    loggedIn: auth.loggedIn || false,
     taxRate: orders.taxRate.totalRate,
+    loggedIn: auth.loggedIn || false,
+    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+    guestCart: orders.cart,
     productId: routing.locationBeforeTransitions.query.id,
   }),
   dispatch => ({

@@ -23,7 +23,7 @@ class NavbarCart extends Component {
     data: shape({
       FetchUserProfile: shape({
         qty: number,
-        strength: string,
+        strength: number,
         product: shape({
           title: string,
           sku: string,
@@ -42,7 +42,7 @@ class NavbarCart extends Component {
       shopping: shape({
         cart: arrayOf(shape({
           qty: number,
-          strength: string,
+          strength: number,
           product: string,
         })),
       }),

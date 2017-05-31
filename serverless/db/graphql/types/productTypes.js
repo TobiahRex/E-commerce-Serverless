@@ -67,45 +67,45 @@ const rootType = new ObjectType({
             ),
           },
           nicotine_strengths: {
-            description: 'The nicotine strength for the Product.',
+            description: 'The nicotine strength for the new product.',
             type: new ListType(
               new EnumType({
-                name: 'ProductNicotineStrengthsEnum',
+                name: 'NewProductNicotineStrengthsEnum',
                 values: {
                   two: {
-                    value: '2mg',
+                    value: 2,
                     description: '2mg of Nicotine.',
                   },
                   four: {
-                    value: '4mg',
+                    value: 4,
                     description: '4mg of Nicotine.',
                   },
                   six: {
-                    value: '6mg',
+                    value: 6,
                     description: '6mg of Nicotine',
                   },
                   eight: {
-                    value: '8mg',
+                    value: 8,
                     description: '8mg of Nicotine.',
                   },
                   ten: {
-                    value: '10mg',
+                    value: 10,
                     description: '8mg of Nicotine.',
                   },
                   twelve: {
-                    value: '12mg',
+                    value: 12,
                     description: '8mg of Nicotine.',
                   },
                   fourteen: {
-                    value: '14mg',
+                    value: 14,
                     description: '8mg of Nicotine.',
                   },
                   sixteen: {
-                    value: '16mg',
+                    value: 16,
                     description: '8mg of Nicotine.',
                   },
                   eighteen: {
-                    value: '18mg',
+                    value: 18,
                     description: '8mg of Nicotine.',
                   },
                 },
@@ -272,39 +272,39 @@ const mutations = {
                       name: 'NewProductNicotineStrengthsEnum',
                       values: {
                         two: {
-                          value: '2mg',
+                          value: 2,
                           description: '2mg of Nicotine.',
                         },
                         four: {
-                          value: '4mg',
+                          value: 4,
                           description: '4mg of Nicotine.',
                         },
                         six: {
-                          value: '6mg',
+                          value: 6,
                           description: '6mg of Nicotine',
                         },
                         eight: {
-                          value: '8mg',
+                          value: 8,
                           description: '8mg of Nicotine.',
                         },
                         ten: {
-                          value: '10mg',
+                          value: 10,
                           description: '8mg of Nicotine.',
                         },
                         twelve: {
-                          value: '12mg',
+                          value: 12,
                           description: '8mg of Nicotine.',
                         },
                         fourteen: {
-                          value: '14mg',
+                          value: 14,
                           description: '8mg of Nicotine.',
                         },
                         sixteen: {
-                          value: '16mg',
+                          value: 16,
                           description: '8mg of Nicotine.',
                         },
                         eighteen: {
-                          value: '18mg',
+                          value: 18,
                           description: '8mg of Nicotine.',
                         },
                       },
