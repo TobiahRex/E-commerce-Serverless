@@ -101,10 +101,12 @@ class NavbarCart extends Component {
     if (!productId) productId = e.target.parentNode.dataset.id;
 
     if (activeUser) {
-      this.props.DeleteFromMemberCart({ variables: {
-        productId,
-        userId: activeUser._id,
-      } })
+      this.props.DeleteFromMemberCart({
+        variables: {
+          productId,
+          userId: activeUser._id,
+        },
+      })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
         saveProfile(updatedUser);
       });

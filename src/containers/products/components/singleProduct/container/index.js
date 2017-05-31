@@ -37,6 +37,7 @@ class SingleProduct extends Component {
     taxRate: number.isRequired,
     productId: string.isRequired,
     loggedIn: bool.isRequired,
+    saveProfile: func.isRequired,
     addToGuestCart: func.isRequired,
     AddToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
@@ -44,10 +45,14 @@ class SingleProduct extends Component {
     addToReduxMemberCart: func.isRequired,
     addToReduxProfileCart: func.isRequired,
     updateToReduxMemberCart: func.isRequired,
-    // fetchUserProfile: func.isRequired,
-    cart: shape({
-      guest: arrayOf(any),
-      member: arrayOf(any),
+    userCart: shape({
+      qty: number,
+      strength: number,
+      product: string,
+    }),
+    guestCart: shape({
+      _id: string,
+
     }),
     data: shape({
       FindProductById: shape({
@@ -74,9 +79,8 @@ class SingleProduct extends Component {
   }
   static defaultProps = {
     userId: '',
-    cart: {
+    guestCart: {
       guest: null,
-      member: null,
     },
   }
   constructor(props) {
@@ -207,7 +211,7 @@ class SingleProduct extends Component {
   }
 
   composeGlobalCartInfo = () => {
-    const { loggedIn, cart } = this.props;
+    const { loggedIn, guestCart, userCart } = this.props;
     const prevCartIds = [];
     let cartCustomerType = '';
     const globalQty = Object.keys(cart)
@@ -235,6 +239,22 @@ class SingleProduct extends Component {
       cartCustomerType,
       globalQty,
     });
+  }
+
+  getUpdatedCart = (loggedIn, guestCart, userCart) => {
+    const { productId } = this.props;
+    const { qty: requestQty } = this.state;
+
+    if (loggedIn) {
+      return guestCart
+      .map((productObj) => {
+        if (productObj.id === productId) {
+          productObj.qty += requestQty;
+          return productObj;
+        }
+        return productObj;
+      });
+    }
   }
 
   addToCartHandler = () => {
@@ -275,29 +295,32 @@ class SingleProduct extends Component {
           errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requested quantity.`,
         }));
       } else if (!deltaQty) {
-        const { productId, cart, data, userId } = this.props;
+        const {
+          productId,
+          guestCart,
+          userCart,
+          data,
+          userId,
+          loggedIn,
+        } = this.props;
 
-        const updatedCartProducts = cart[cartCustomerType] && cart[cartCustomerType]
-        .map((productObj) => {
-          if (productObj.id === productId) {
-            productObj.qty += requestQty;
-            return productObj;
-          }
-          return productObj;
-        });
+        const updatedCartProducts = getUpdatedCart(loggedIn, guestCart, userCart);
+
         const currentProduct = {
+          _id: productId,
           qty,
           userId,
           strength,
-          id: productId,
           ...data.FindProductById.product,
         };
 
         if (!prevCartIds.includes(productId) && updatedCartProducts.length) {
           updatedCartProducts.push(currentProduct);
         }
+        console.log('%ccurrentProduct', 'background:pink;', currentProduct);
+        console.log('%cupdatedCartProducts', 'background:cyan;', updatedCartProducts);
 
-        if (cartCustomerType === 'member') {
+        if (loggedIn) {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               qty: 0,
@@ -306,10 +329,15 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.EditToMemberCart(updatedCartProducts)
+              this.props.EditToMemberCart({
+                variables: {
+                  userId,
+                  products: updatedCartProducts,
+                },
+              })
               .then(({ data: { EditToMemberCart: updatedUser } }) => {
                 this.props.saveProfile(updatedUser);
-              })
+              });
             });
           } else {
             this.setState(() => ({
@@ -327,13 +355,12 @@ class SingleProduct extends Component {
                   product: productId,
                 },
               })
-              .then(({ data: { AddToMemberCart: { shopping } } }) => {
-                this.props.addToReduxProfileCart(shopping.cart);
-                this.props.addToReduxMemberCart(currentProduct);
+              .then(({ data: { AddToMemberCart: updatedUser } }) => {
+                this.props.saveProfile(updatedUser);
               });
             });
           }
-        } else if (cartCustomerType === 'guest') {
+        } else if (!loggedIn) {
           if (updatedCartProducts.length) {
             this.setState(() => ({
               qty: 0,
