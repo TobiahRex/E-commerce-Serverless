@@ -5,6 +5,9 @@ node_modules
 dist
 public
 
+# serverless
+config.yml
+
 # miscellaneous
 .DS_Store
 .sass-cache

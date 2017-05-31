@@ -24,10 +24,10 @@ module.exports.graphql = (event, context, cb) => {
 module.exports.wakeup = (event, context, callback) => {
   console.log('Calling Wakeup Lambda.');
   const options = {
-    query: 'Wakeup query.',
-  };
+    "query":"query{FindProductById(_id: \"Test\") {_id, product { mainTitle title flavor price sku sizes nicotine_strengths routeTag vendor blurb images{ purpose url } dates {added_to_store  removed_from_store }}}}"
+  }
 
-  request.post('https://url-to-wakeup', { body: JSON.stringify(options) },
+  request.post(process.env.WAKE_UP_URL, { body: JSON.stringify(options) },
   (err, res) => {
     if (err) return console.error('waking up failed:', err);
     console.log('woke up the sleeping lambda\nJSON response: \n', res);

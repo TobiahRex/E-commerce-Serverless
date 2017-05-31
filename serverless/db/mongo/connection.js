@@ -10,7 +10,7 @@ const {
   LAMBDA_MONGO_DEV_URI,
   LAMBDA_MONGO_PROD_URI,
 } = process.env;
-const MONGO_DB = SLS_ENV === 'production' ? LAMBDA_MONGO_PROD_URI : LAMBDA_MONGO_DEV_URI;
+const MONGO_DB = process.env.MONGO_URI;
 
 const mongooseConnection = () =>
 new Promise((resolve) => {
