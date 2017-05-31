@@ -79,9 +79,8 @@ class SingleProduct extends Component {
   }
   static defaultProps = {
     userId: '',
-    guestCart: {
-      guest: null,
-    },
+    userCart: null,
+    guestCart: null,
   }
   constructor(props) {
     super(props);
@@ -213,59 +212,47 @@ class SingleProduct extends Component {
   composeGlobalCartInfo = () => {
     const { loggedIn, guestCart, userCart, productId } = this.props,
       { qty: requestQty } = this.state,
-      prevCartIds = [],
-      updatedCart = [];
+      prevCartIds = [];
 
+    let updatedCart = [];
     if (loggedIn && userCart.length) {
       const updatedUserCart = userCart
       .map((productObj) => {
-        if (productObj.id === productId) {
+        if (Object.prototype.hasOwnProperty.call(productObj, 'product')
+        && (productObj.product === productId)) {
           productObj.qty += requestQty;
           return productObj;
         }
         return productObj;
       });
-      updatedCart.concat(updatedUserCart);
+      updatedCart = [...updatedUserCart];
     } else if (!loggedIn && guestCart.length) {
       const updatedGuestCart = guestCart
       .map((productObj) => {
-        if (productObj.id === productId) {
+        if (Object.prototype.productObj.hasOwnProperty.call(productObj, '_id')
+        && productObj._id === productId) {
           productObj.qty += requestQty;
           return productObj;
         }
         return productObj;
       });
-      updatedCart.concat(updatedGuestCart);
+      updatedCart = [...updatedGuestCart];
     }
 
-    // Find the globaly quantity of products.
-    // Find all the unique ids for products already inside the cart.
-    const globalQty = Object.keys(cart)
-    // figure out if the cart
-    .map((key) => {
-      if (loggedIn) {
-        cartCustomerType = 'member';
-      } else {
-        cartCustomerType = 'guest';
-      }
+    const globalQty = updatedCart
+    .reduce((accum, nextObj) => {
+      if (Object.prototype.hasOwnProperty.call(nextObj, '_id')) prevCartIds.push(nextObj._id);
 
-      if (!cart[key].length) return ([{ qty: 0, id: '' }]);
-      if (loggedIn && (key === 'member')) return cart.member;
-      return cart.guest;
-    })
-    .map((cartArray) => {
-      const totalCartQty = cartArray.reduce((acc, { qty, id }) => {
-        prevCartIds.push(id);
-        return (acc + qty);
-      }, 0);
-      return totalCartQty;
-    })
-    .reduce((a, b) => a + b);
-    return ({
+      if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
+
+      accum += nextObj.qty;
+      return accum;
+    }, 0);
+    return {
       globalQty,
-      updatedCart,
       prevCartIds,
-    });
+      updatedCart,
+    };
   }
 
   addToCartHandler = () => {
@@ -307,15 +294,11 @@ class SingleProduct extends Component {
         }));
       } else if (!deltaQty) {
         const {
-          productId,
-          guestCart,
-          userCart,
           data,
           userId,
           loggedIn,
+          productId,
         } = this.props;
-
-        const updatedCartProducts = getUpdatedCart(loggedIn, guestCart, userCart);
 
         const currentProduct = {
           _id: productId,
@@ -325,14 +308,12 @@ class SingleProduct extends Component {
           ...data.FindProductById.product,
         };
 
-        if (!prevCartIds.includes(productId) && updatedCartProducts.length) {
-          updatedCartProducts.push(currentProduct);
+        if (!prevCartIds.includes(productId) && updatedCart.length) {
+          updatedCart.push(currentProduct);
         }
-        console.log('%ccurrentProduct', 'background:pink;', currentProduct);
-        console.log('%cupdatedCartProducts', 'background:cyan;', updatedCartProducts);
 
         if (loggedIn) {
-          if (updatedCartProducts.length) {
+          if (updatedCart.length) {
             this.setState(() => ({
               qty: 0,
               added: true,
@@ -343,7 +324,7 @@ class SingleProduct extends Component {
               this.props.EditToMemberCart({
                 variables: {
                   userId,
-                  products: updatedCartProducts,
+                  products: updatedCart,
                 },
               })
               .then(({ data: { EditToMemberCart: updatedUser } }) => {
@@ -372,7 +353,7 @@ class SingleProduct extends Component {
             });
           }
         } else if (!loggedIn) {
-          if (updatedCartProducts.length) {
+          if (updatedCart.length) {
             this.setState(() => ({
               qty: 0,
               added: true,
@@ -380,7 +361,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.updateToGuestCart(updatedCartProducts);
+              this.props.updateToGuestCart(updatedCart);
             });
           } else {
             this.setState(() => ({
@@ -480,30 +461,30 @@ class SingleProduct extends Component {
   }
 }
 const SingleProductWithState = connect(
-({ orders, auth, routing, user }) => ({
-  cart: orders.cart,
-  userId: user.profile ? user.profile._id : '',
-  loggedIn: auth.loggedIn || false,
-  taxRate: orders.taxRate.totalRate,
-  productId: routing.locationBeforeTransitions.query.id,
-}),
-dispatch => ({
-  push: location => dispatch(push(location)),
+  ({ orders, auth, routing, user }) => ({
+    cart: orders.cart,
+    userId: user.profile ? user.profile._id : '',
+    loggedIn: auth.loggedIn || false,
+    taxRate: orders.taxRate.totalRate,
+    productId: routing.locationBeforeTransitions.query.id,
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
 
-  saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
+    saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
 
-  addToGuestCart: productObj =>
-  dispatch(orderActions.addToGuestCart(productObj)),
+    addToGuestCart: productObj =>
+    dispatch(orderActions.addToGuestCart(productObj)),
 
-  updateToGuestCart: updatedCartProducts =>
-  dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+    updateToGuestCart: updatedCartProducts =>
+    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
-  addToReduxProfileCart: cart => dispatch(userActions.addToReduxProfileCart(cart)),
+    addToReduxProfileCart: cart => dispatch(userActions.addToReduxProfileCart(cart)),
 
-  addToReduxMemberCart: products => dispatch(orderActions.addToReduxMemberCart(products)),
+    addToReduxMemberCart: products => dispatch(orderActions.addToReduxMemberCart(products)),
 
-  updateToReduxMemberCart: products => dispatch(orderActions.updateToReduxMemberCart(products)),
-}),
+    updateToReduxMemberCart: products => dispatch(orderActions.updateToReduxMemberCart(products)),
+  }),
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
