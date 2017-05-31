@@ -247,7 +247,7 @@ class SingleProduct extends Component {
       updatedCart = [...updatedGuestCart];
     }
 
-    const globalQty = updatedCart
+    const globalRequestQty = updatedCart
     .reduce((accum, nextObj) => {
       if (Object.prototype.hasOwnProperty.call(nextObj, '_id')) prevCartIds.push(nextObj._id);
 
@@ -257,9 +257,9 @@ class SingleProduct extends Component {
       return accum;
     }, 0);
     return {
-      globalQty,
-      prevCartIds,
       updatedCart,
+      prevCartIds,
+      globalRequestQty,
     };
   }
 
@@ -279,16 +279,16 @@ class SingleProduct extends Component {
       }));
     } else {
       const {
-        globalQty,
-        prevCartIds,
         updatedCart,
-      } = this.composeGlobalCartInfo();
+        prevCartIds,
+        globalRequestQty,
+      } = this.composeGlobalCartInfo(),
 
-      const { qty, chosenStrength: strength } = this.state;
-      const requestQty = qty;
-      const totalRequestQty = requestQty + globalQty;
-      const deltaQty = (totalRequestQty > 4) && (totalRequestQty - 4);
-      if (globalQty === 4) {
+        { qty, chosenStrength: strength } = this.state,
+
+        deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
+
+      if (globalRequestQty > 4) {
         this.setState({
           qty: 0,
           error: true,
@@ -307,15 +307,15 @@ class SingleProduct extends Component {
           userId,
           loggedIn,
           productId,
-        } = this.props;
+        } = this.props,
 
-        const currentProduct = {
-          _id: productId,
-          qty,
-          userId,
-          strength,
-          ...data.FindProductById.product,
-        };
+          currentProduct = {
+            _id: productId,
+            qty,
+            userId,
+            strength,
+            ...data.FindProductById.product,
+          };
 
         if (!prevCartIds.includes(productId) && updatedCart.length) {
           updatedCart.push(currentProduct);
