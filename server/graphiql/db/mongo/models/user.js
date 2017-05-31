@@ -147,6 +147,26 @@ new Promise((resolve, reject) => {
   `));
 });
 
-const User = db.model('User', userSchema);
+userSchema.statics.editToMemberCart = ({ userId, products }) =>
+new Promise((resolve, reject) => {
+  User.findById(userId)
+  .exec()
+  .then((dbUser) => {
+    dbUser.shopping.cart = products;
+    dbUser.save({ validateBeforeSave: true });
+  })
+  .then((updatedUser) => {
+    console.log(`
+      Updated user shopping cart!
+    `);
+    resolve(updatedUser);
+  })
+  .catch(error => reject(`
+    Could not Update User: ${userId}.
 
+    Mongo Error = ${error}
+  `));
+});
+
+const User = db.model('User', userSchema);
 export default User;
