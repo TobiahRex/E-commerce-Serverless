@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import NavbarUserActionsNotSignedIn from './navbarUserActions_notSignedIn';
 import NavbarUserActionsSignedIn from './navbarUserActions_signedIn';
 
@@ -11,7 +12,7 @@ function NavbarUserActions({ activeUser }) {
     <div className="navbar-actionSection-upper-actions">
       {
         activeUser ?
-          <NavbarUserActionsSignedIn profile={activeUser} /> :
+          <NavbarUserActionsSignedIn activeUser={activeUser} /> :
           <NavbarUserActionsNotSignedIn />
       }
     </div>
@@ -24,4 +25,7 @@ NavbarUserActions.propTypes = {
 NavbarUserActions.defaultProps = {
   activeUser: false,
 };
-export default NavbarUserActions;
+export default connect(
+  ({ user }) => ({ activeUser: user.profile }),
+  null,
+)(NavbarUserActions);

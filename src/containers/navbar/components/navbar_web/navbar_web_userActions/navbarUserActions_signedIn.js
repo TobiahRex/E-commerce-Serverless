@@ -7,10 +7,10 @@ const { objectOf, any } = PropTypes;
 
 class NavbarUserActionsSignedin extends PureComponent {
   static propTypes = {
-    profile: objectOf(any),
+    activeUser: objectOf(any),
   }
   static defaultProps = {
-    profile: {
+    activeUser: {
       pictures: {
         small: '',
         default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
@@ -38,17 +38,17 @@ class NavbarUserActionsSignedin extends PureComponent {
             <img
               className="myAccount__link--picture"
               src={
-                this.props.profile.pictures.small || this.props.profile.pictures.default
+                this.props.activeUser.pictures.small || this.props.activeUser.pictures.default
               }
               alt="My Account"
             />
           </div>
-          {/* TODO: Replace this in MVP 2.
+          {/* TODO: Add this in MVP 2.
             <Link to={`/user/${123123}`} className="myAccount__link">
             <img
               className="myAccount__link--picture"
               src={
-                this.props.profile.pictures.small || this.props.profile.pictures.default
+                this.props.activeUser.pictures.small || this.props.activeUser.pictures.default
               }
               alt="My Account"
             />
