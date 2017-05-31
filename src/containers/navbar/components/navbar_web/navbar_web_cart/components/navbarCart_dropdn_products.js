@@ -26,7 +26,6 @@ class NavbarCartProducts extends Component {
     return false;
   }
   filterImages = (images) => {
-
     if (!images.length) return '';
 
     const helper = ({ purpose }) => purpose === 'card';
@@ -52,8 +51,9 @@ class NavbarCartProducts extends Component {
     return this.renderCartItems(cartItems);
   }
   renderCartItems = productItems =>
-  productItems.map(({ product, _id }) => {
+  productItems.map((product) => {
     const {
+      _id,
       qty,
       title,
       price,

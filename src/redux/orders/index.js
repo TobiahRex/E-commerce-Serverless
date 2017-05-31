@@ -27,7 +27,7 @@ const setTaxRate = (state, { taxRate }) => ({
 
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
-  cart: [...state.cart.guest, { ...productObj }],
+  cart: [...state.cart, { ...productObj }],
 });
 
 const updateToGuestCart = (state, { updatedProducts }) => ({

@@ -21,13 +21,14 @@ import {
 } from './imports';
 
 const {
+  any,
   func,
   number,
   bool,
   string,
   shape,
   arrayOf,
-  any,
+  objectOf,
 } = PropTypes;
 
 class SingleProduct extends Component {
@@ -45,15 +46,22 @@ class SingleProduct extends Component {
     addToReduxMemberCart: func.isRequired,
     addToReduxProfileCart: func.isRequired,
     updateToReduxMemberCart: func.isRequired,
-    userCart: shape({
-      qty: number,
-      strength: number,
-      product: string,
-    }),
-    guestCart: shape({
-      _id: string,
-
-    }),
+    userCart: arrayOf(
+      shape({
+        qty: number,
+        strength: number,
+        product: string,
+      }),
+    ),
+    guestCart: arrayOf(
+      shape({
+        _id: string,
+        qty: number,
+        strength: number,
+        userId: string,
+        product: objectOf(any),
+      }),
+    ),
     data: shape({
       FindProductById: shape({
         _id: string,
@@ -275,6 +283,7 @@ class SingleProduct extends Component {
         prevCartIds,
         updatedCart,
       } = this.composeGlobalCartInfo();
+
       const { qty, chosenStrength: strength } = this.state;
       const requestQty = qty;
       const totalRequestQty = requestQty + globalQty;
