@@ -16,8 +16,8 @@ const { string, func } = PropTypes;
 
 class NavbarMobileOptionsLanguage extends Component {
   static propTypes = {
-    activeLanguage: string.isRequired,
     saveLanguage: func.isRequired,
+    activeLanguage: string.isRequired,
   }
 
   constructor(props) {
@@ -38,10 +38,6 @@ class NavbarMobileOptionsLanguage extends Component {
   shouldComponentUpdate(nextProps, { activeLanguage }) {
     if (this.state.activeLanguage !== activeLanguage) return true;
     return false;
-  }
-
-  componentWillUpdate(nextProps, { activeLanguage }) {
-    console.info('Language Changed: ', activeLanguage);
   }
 
   onLanguageChange = (language) => {
@@ -80,21 +76,10 @@ class NavbarMobileOptionsLanguage extends Component {
     );
   }
 }
-const calculateQty = (loggedIn, cartObj) => (
-  cartObj[loggedIn ? 'member' : 'guest'].reduce((accum, next) => {
-    if (next.id) {
-      accum += 1;
-      return accum;
-    }
-    return accum;
-  }, 0)
-);
 
 export default connect(
-({ locale, auth, orders }) => ({
+({ locale }) => ({
   activeLanguage: locale.activeLanguage,
-  qty: calculateQty(auth.loggedIn, orders.cart),
-  cartProducts: orders.cart[auth.loggedIn ? 'member' : 'guest'],
 }),
 dispatch => ({
   saveLanguage: language => dispatch(localeActions.setLanguage(language)),

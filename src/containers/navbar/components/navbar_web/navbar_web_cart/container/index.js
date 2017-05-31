@@ -152,8 +152,8 @@ class NavbarCart extends Component {
     );
   }
 }
-const calculateQty = (loggedIn, reduxCart, userProfile) => {
-  const cart = loggedIn ? userProfile.shopping.cart : reduxCart.guest;
+const calculateQty = (loggedIn, guestCart, userProfile) => {
+  const cart = loggedIn ? userProfile.shopping.cart : guestCart;
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
@@ -161,7 +161,7 @@ const calculateQty = (loggedIn, reduxCart, userProfile) => {
 const NavbarCartWithState = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
-    guestCart: orders.cart.guest,
+    guestCart: orders.cart,
     activeUser: user.profile,
   }),
   dispatch => ({
