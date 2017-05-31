@@ -112,7 +112,7 @@ class NavbarCart extends Component {
       });
     } else {
       updateToGuestCart(
-        guestCart.filter(({ id }) => id !== productId),
+        guestCart.filter(({ _id }) => _id !== productId),
       );
     }
   }

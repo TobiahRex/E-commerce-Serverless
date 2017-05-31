@@ -237,7 +237,7 @@ class SingleProduct extends Component {
     } else if (!loggedIn && guestCart.length) {
       const updatedGuestCart = guestCart
       .map((productObj) => {
-        if (Object.prototype.productObj.hasOwnProperty.call(productObj, '_id')
+        if (Object.prototype.hasOwnProperty.call(productObj, '_id')
         && productObj._id === productId) {
           productObj.qty += requestQty;
           return productObj;

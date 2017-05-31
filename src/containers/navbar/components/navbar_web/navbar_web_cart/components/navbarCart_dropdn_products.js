@@ -41,7 +41,7 @@ class NavbarCartProducts extends Component {
           <FontAwesome name="spinner" size="2x" pulse />
         </div>
       );
-    } else if (!cartItems && !loading) {
+    } else if (!cartItems.length && !loading) {
       return (
         <div className="products-list-empty">
           Your Cart Is Currently Empty
