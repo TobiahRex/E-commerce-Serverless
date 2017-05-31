@@ -3,26 +3,6 @@ import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 import db from '../connection';
 
-userSchema.statics.deleteFromCart = ({ userId, productId }) =>
-new Promise((resolve, reject) => {
-  User.findById(userId)
-  .exec()
-  .then((dbUser) => {
-    dbUser.shopping.cart.filter(({ product }) => product !== productId);
-    return dbUser.save({ validateBeforeSave: true });
-  })
-  .then((savedUser) => {
-    console.log(`
-      Deleted Product: ${productId} from User: ${savedUser._id}.
-    `);
-    resolve(savedUser);
-  })
-  .catch(error => reject(`
-    Could not Delete Product: ${productId} from User: ${userId}.
-    Mongo Error = ${error}
-  `));
-});
-
 userSchema.statics.fetchUserProfile = userId =>
 new Promise((resolve, reject) => {
   User.findById(userId).exec()
@@ -147,33 +127,26 @@ new Promise((resolve, reject) => {
   }));
 });
 
-userSchema.statics.updateToMemberCart = ({ userId, qty, strength, product }) =>
+userSchema.statics.deleteFromCart = ({ userId, productId }) =>
 new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
   .then((dbUser) => {
-    dbUser.shopping.cart
-    .filter(cartItem => cartItem.product !== product)
-    .push({ qty, strength, product });
+    dbUser.shopping.cart.filter(({ product }) => product !== productId);
     return dbUser.save({ validateBeforeSave: true });
   })
-  .then(({ shopping }) => {
-    console.log('Updated the User\'s Shopping Cart!');
-    resolve(shopping);
+  .then((savedUser) => {
+    console.log(`
+      Deleted Product: ${productId} from User: ${savedUser._id}.
+    `);
+    resolve(savedUser);
   })
-  .catch((error) => {
-    reject({
-      problem: `Could not post udpate to the Users shopping cart.
-      args: {
-        userId: ${userId},
-        qty: ${qty},
-        strength: ${strength},
-        product: ${product},
-      }
-      Mongo Error: ${error}`,
-    });
-  });
+  .catch(error => reject(`
+    Could not Delete Product: ${productId} from User: ${userId}.
+    Mongo Error = ${error}
+  `));
 });
+
 const User = db.model('User', userSchema);
 
 export default User;

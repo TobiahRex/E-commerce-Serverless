@@ -8,7 +8,7 @@ import _ from 'lodash';
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import { FindProductById } from '../../../../../graphQL/queries';
-import { AddToMemberCart, UpdateToMemberCart } from '../../../../../graphQL/mutations';
+import { AddToMemberCart, EditToMemberCart } from '../../../../../graphQL/mutations';
 
 import {
   MainTitle,
@@ -40,7 +40,7 @@ class SingleProduct extends Component {
     addToGuestCart: func.isRequired,
     AddToMemberCart: func.isRequired,
     updateToGuestCart: func.isRequired,
-    UpdateToMemberCart: func.isRequired,
+    EditToMemberCart: func.isRequired,
     addToReduxMemberCart: func.isRequired,
     addToReduxProfileCart: func.isRequired,
     updateToReduxMemberCart: func.isRequired,
@@ -306,8 +306,8 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.updateToReduxMemberCart(updatedCartProducts);
-              // this.props.UpdateToMemberCart(updatedCartProducts);
+              this.props.EditToMemberCart(updatedCartProducts)
+              .then(())
             });
           } else {
             this.setState(() => ({
@@ -473,6 +473,6 @@ const SingleProductWithStateAndData = compose(
     }),
   }),
   graphql(AddToMemberCart, { name: 'AddToMemberCart' }),
-  graphql(UpdateToMemberCart, { name: 'UpdateToMemberCart' }),
+  graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
 )(SingleProductWithState);
 export default SingleProductWithStateAndData;

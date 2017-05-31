@@ -355,21 +355,6 @@ const queries = {
   },
 };
 const mutations = {
-  DeleteFromMemberCart: {
-    type: rootType,
-    description: 'Delete a Product from the Users cart.',
-    args: {
-      productId: {
-        description: 'The Product Mongo Id to delete.',
-        type: new NonNull(MongoID),
-      },
-      userId: {
-        description: 'The User Mongo Id to perform the operation on.',
-        type: new NonNull(MongoID),
-      },
-    },
-    resolve: (_, args) => User.deleteFromCart(args),
-  },
   LoginOrRegister: {
     type: rootType,
     description: 'Create new User.',
@@ -724,7 +709,22 @@ const mutations = {
     },
     resolve: (_, args) => User.addToMemberCart(args),
   },
-  UpdateToMemberCart: {
+  DeleteFromMemberCart: {
+    type: rootType,
+    description: 'Delete a Product from the Users cart.',
+    args: {
+      productId: {
+        description: 'The Product Mongo Id to delete.',
+        type: new NonNull(MongoID),
+      },
+      userId: {
+        description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args) => User.deleteFromCart(args),
+  },
+  EditToMemberCart: {
     type: rootType,
     description: 'Update products in the members cart.',
     args: {
@@ -732,17 +732,27 @@ const mutations = {
         description: 'The User\'s Mongo ObjectId.',
         type: new NonNull(MongoID),
       },
-      qty: {
-        description: 'The quantity of products to update.',
-        type: new NonNull(IntType),
-      },
-      strength: {
-        description: 'The nicotine strength of the product to update.',
-        type: new NonNull(StringType),
-      },
-      product: {
-        description: 'The Mongo ObjectId of the product to update.',
-        type: new NonNull(MongoID),
+      products: {
+        description: 'A list of Products to be inserted into the users DB cart.',
+        type: new ListType(
+          new InputObject({
+            name: 'ProductsInput',
+            fields: () => ({
+              qty: {
+                description: 'The quantity of products to update.',
+                type: new NonNull(IntType),
+              },
+              strength: {
+                description: 'The nicotine strength of the product to update.',
+                type: new NonNull(StringType),
+              },
+              product: {
+                description: 'The Mongo ObjectId of the product to update.',
+                type: new NonNull(MongoID),
+              },
+            }),
+          }),
+        ),
       },
     },
     resolve: (_, args) => User.updateToMemberCart(args),

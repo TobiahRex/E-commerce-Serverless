@@ -91,14 +91,14 @@ export const AddToMemberCart = gql`
     }
   }
 `;
-export const UpdateToMemberCart = gql`
-  mutation UpdateToMemberCart(
+export const EditToMemberCart = gql`
+  mutation EditToMemberCart(
     $userId: ID!
     $qty: Int!
     $strength: String!
     $product: ID!
   ) {
-    UpdateToMemberCart(
+    EditToMemberCart(
       userId: $userId
       qty: $qty
       strength: $strength
