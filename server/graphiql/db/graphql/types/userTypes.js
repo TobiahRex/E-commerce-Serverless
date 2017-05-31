@@ -755,7 +755,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args) => User.updateToMemberCart(args),
+    resolve: (_, args) => User.editToMemberCart(args),
   },
 };
 const UserTypes = {
