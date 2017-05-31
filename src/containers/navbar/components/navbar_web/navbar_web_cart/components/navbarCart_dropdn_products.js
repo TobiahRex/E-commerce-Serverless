@@ -26,7 +26,7 @@ class NavbarCartProducts extends Component {
     return false;
   }
   filterImages = (images) => {
-    console.log('%cimages', 'background:red;', images);
+
     if (!images.length) return '';
 
     const helper = ({ purpose }) => purpose === 'card';
@@ -38,6 +38,7 @@ class NavbarCartProducts extends Component {
       return (
         <div className="products-list-empty">
           Your Cart Is Loading...
+          <br />
           <FontAwesome name="spinner" size="2x" pulse />
         </div>
       );
@@ -51,20 +52,19 @@ class NavbarCartProducts extends Component {
     return this.renderCartItems(cartItems);
   }
   renderCartItems = productItems =>
-  productItems.map((item) => {
+  productItems.map(({ product, _id }) => {
     const {
-      id,
       qty,
       title,
       price,
       strength,
       images,
       routeTag,
-    } = item;
+    } = product;
     return (
       <li
         className="products-list-card"
-        key={`${id}-${strength}`}
+        key={`${_id}-${strength}`}
       >
         <NavbarCartProductsCardImage
           imageUrl={this.filterImages(images)}
@@ -79,7 +79,7 @@ class NavbarCartProducts extends Component {
         />
 
         <NavbarCartProductsCardActions
-          productId={id}
+          productId={_id}
           routeTag={routeTag}
           editCartItem={this.props.editCartItem}
           deleteFromCart={this.props.deleteFromCart}
