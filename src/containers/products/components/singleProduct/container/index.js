@@ -211,15 +211,13 @@ class SingleProduct extends Component {
   }
 
   composeGlobalCartInfo = () => {
-    const { loggedIn, guestCart, userCart, productId } = this.props;
-    const { qty: requestQty } = this.state;
-    const prevCartIds = [];
-    const updatedCart = [];
+    const { loggedIn, guestCart, userCart, productId } = this.props,
+      { qty: requestQty } = this.state,
+      prevCartIds = [],
+      updatedCart = [];
 
-    if (loggedIn) {
-      // userCart
-    } else {
-      guestCart
+    if (loggedIn && userCart.length) {
+      const updatedUserCart = userCart
       .map((productObj) => {
         if (productObj.id === productId) {
           productObj.qty += requestQty;
@@ -227,10 +225,23 @@ class SingleProduct extends Component {
         }
         return productObj;
       });
+      updatedCart.concat(updatedUserCart);
+    } else if (!loggedIn && guestCart.length) {
+      const updatedGuestCart = guestCart
+      .map((productObj) => {
+        if (productObj.id === productId) {
+          productObj.qty += requestQty;
+          return productObj;
+        }
+        return productObj;
+      });
+      updatedCart.concat(updatedGuestCart);
     }
 
-
+    // Find the globaly quantity of products.
+    // Find all the unique ids for products already inside the cart.
     const globalQty = Object.keys(cart)
+    // figure out if the cart
     .map((key) => {
       if (loggedIn) {
         cartCustomerType = 'member';
