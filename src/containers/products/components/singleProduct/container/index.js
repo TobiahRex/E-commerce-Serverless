@@ -211,9 +211,25 @@ class SingleProduct extends Component {
   }
 
   composeGlobalCartInfo = () => {
-    const { loggedIn, guestCart, userCart } = this.props;
+    const { loggedIn, guestCart, userCart, productId } = this.props;
+    const { qty: requestQty } = this.state;
     const prevCartIds = [];
-    let cartCustomerType = '';
+    const updatedCart = [];
+
+    if (loggedIn) {
+      // userCart
+    } else {
+      guestCart
+      .map((productObj) => {
+        if (productObj.id === productId) {
+          productObj.qty += requestQty;
+          return productObj;
+        }
+        return productObj;
+      });
+    }
+
+
     const globalQty = Object.keys(cart)
     .map((key) => {
       if (loggedIn) {
@@ -235,26 +251,10 @@ class SingleProduct extends Component {
     })
     .reduce((a, b) => a + b);
     return ({
-      prevCartIds,
-      cartCustomerType,
       globalQty,
+      updatedCart,
+      prevCartIds,
     });
-  }
-
-  getUpdatedCart = (loggedIn, guestCart, userCart) => {
-    const { productId } = this.props;
-    const { qty: requestQty } = this.state;
-
-    if (loggedIn) {
-      return guestCart
-      .map((productObj) => {
-        if (productObj.id === productId) {
-          productObj.qty += requestQty;
-          return productObj;
-        }
-        return productObj;
-      });
-    }
   }
 
   addToCartHandler = () => {
@@ -273,9 +273,9 @@ class SingleProduct extends Component {
       }));
     } else {
       const {
-        prevCartIds,
-        cartCustomerType,
         globalQty,
+        prevCartIds,
+        updatedCart,
       } = this.composeGlobalCartInfo();
       const { qty, chosenStrength: strength } = this.state;
       const requestQty = qty;
