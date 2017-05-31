@@ -1,15 +1,15 @@
 /* eslint-disable no-tabs, no-unused-vars */
 const juices = {
   frenchVanillaMocha: `
-  mutation createProduct {
-    createProduct(product: {
+  mutation CreateProduct {
+    CreateProduct(product: {
       mainTitle: "Switch Juice",
       title: "French Vanilla Mocha",
       flavor: "french_vanilla_mocha",
       price: "30",
       sku: "NJ2JP0001",
       sizes: [small],
-      nicotine_strengths: [two, four, six, eight],
+      nicotine_strengths: [two],
       images: [{
         purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png"
