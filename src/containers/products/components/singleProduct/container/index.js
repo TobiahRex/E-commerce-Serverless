@@ -307,7 +307,9 @@ class SingleProduct extends Component {
               chosenStrength: 0,
             }), () => {
               this.props.EditToMemberCart(updatedCartProducts)
-              .then(())
+              .then(({ data: { EditToMemberCart: updatedUser } }) => {
+                this.props.saveProfile(updatedUser);
+              })
             });
           } else {
             this.setState(() => ({
@@ -449,6 +451,8 @@ const SingleProductWithState = connect(
 }),
 dispatch => ({
   push: location => dispatch(push(location)),
+
+  saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
 
   addToGuestCart: productObj =>
   dispatch(orderActions.addToGuestCart(productObj)),
