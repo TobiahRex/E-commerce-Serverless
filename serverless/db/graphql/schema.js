@@ -23,7 +23,7 @@ const mutation = new GraphQLObjectType({
     CreateProduct: ProductTypes.mutations.CreateProduct,
     LoginOrRegister: UserTypes.mutations.LoginOrRegister,
     AddToMemberCart: UserTypes.mutations.AddToMemberCart,
-    UpdateToMemberCart: UserTypes.mutations.UpdateToMemberCart,
+    EditToMemberCart: UserTypes.mutations.EditToMemberCart,
     DeleteFromMemberCart: UserTypes.mutations.DeleteFromMemberCart,
     FindProductAndUpdate: ProductTypes.mutations.FindProductAndUpdate,
     FindProductByIdAndDelete: ProductTypes.mutations.FindProductByIdAndDelete,

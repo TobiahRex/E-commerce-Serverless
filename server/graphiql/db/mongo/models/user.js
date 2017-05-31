@@ -153,7 +153,7 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart = products;
-    dbUser.save({ validateBeforeSave: true });
+    return dbUser.save({ validateBeforeSave: true });
   })
   .then((updatedUser) => {
     console.log(`
