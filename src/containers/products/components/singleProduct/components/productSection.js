@@ -22,7 +22,7 @@ class ProductSection extends Component {
     juiceObj: shape({
       id: string,
       title: string,
-      nicotine_strengths: arrayOf(string),
+      nicotineStrength: string,
       imageUrl: string,
       routeTag: string,
     }).isRequired,

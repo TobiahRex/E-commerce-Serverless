@@ -72,7 +72,7 @@ class SingleProduct extends Component {
           routeTag: string,
           strength: number,
           mainTitle: string,
-          nicotine_strengths: arrayOf(string),
+          nicotineStrength: string,
           images: arrayOf(shape({
             purpose: string,
             url: string,

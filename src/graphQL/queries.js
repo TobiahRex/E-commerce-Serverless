@@ -13,7 +13,7 @@ export const FindProductById = gql`
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb

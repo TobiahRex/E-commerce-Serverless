@@ -5,14 +5,14 @@ import FontAwesome from 'react-fontawesome';
 function ProductCard({ juiceObj, className }) {
   console.log('%cjuiceObj', 'background:red;', juiceObj);
 
-  const { title, price, nicotine_strengths, images } = juiceObj.product;
+  const { title, price, nicotineStrength, images } = juiceObj.product;
 
   const imageUrl = images
   .filter(({ purpose }) => purpose === 'card')
   .reduce(image => image).url;
 
   const renderNicOptions = () =>
-  nicotine_strengths.map(strength => (
+  nicotineStrength.map(strength => (
     <li
       key={`card-${strength}`}
       className={`homepage-juices-grid-card-desc-nicotine-options-${strength}`}

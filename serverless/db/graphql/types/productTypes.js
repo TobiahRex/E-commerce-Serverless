@@ -66,51 +66,49 @@ const rootType = new ObjectType({
               }),
             ),
           },
-          nicotine_strengths: {
+          nicotineStrength: {
             description: 'The nicotine strength for the new product.',
-            type: new ListType(
-              new EnumType({
-                name: 'NewProductNicotineStrengthsEnum',
-                values: {
-                  two: {
-                    value: 2,
-                    description: '2mg of Nicotine.',
-                  },
-                  four: {
-                    value: 4,
-                    description: '4mg of Nicotine.',
-                  },
-                  six: {
-                    value: 6,
-                    description: '6mg of Nicotine',
-                  },
-                  eight: {
-                    value: 8,
-                    description: '8mg of Nicotine.',
-                  },
-                  ten: {
-                    value: 10,
-                    description: '8mg of Nicotine.',
-                  },
-                  twelve: {
-                    value: 12,
-                    description: '8mg of Nicotine.',
-                  },
-                  fourteen: {
-                    value: 14,
-                    description: '8mg of Nicotine.',
-                  },
-                  sixteen: {
-                    value: 16,
-                    description: '8mg of Nicotine.',
-                  },
-                  eighteen: {
-                    value: 18,
-                    description: '8mg of Nicotine.',
-                  },
+            type: new EnumType({
+              name: 'NewProductNicotineStrengthsEnum',
+              values: {
+                two: {
+                  value: 2,
+                  description: '2mg of Nicotine.',
                 },
-              }),
-            ),
+                four: {
+                  value: 4,
+                  description: '4mg of Nicotine.',
+                },
+                six: {
+                  value: 6,
+                  description: '6mg of Nicotine',
+                },
+                eight: {
+                  value: 8,
+                  description: '8mg of Nicotine.',
+                },
+                ten: {
+                  value: 10,
+                  description: '8mg of Nicotine.',
+                },
+                twelve: {
+                  value: 12,
+                  description: '8mg of Nicotine.',
+                },
+                fourteen: {
+                  value: 14,
+                  description: '8mg of Nicotine.',
+                },
+                sixteen: {
+                  value: 16,
+                  description: '8mg of Nicotine.',
+                },
+                eighteen: {
+                  value: 18,
+                  description: '8mg of Nicotine.',
+                },
+              },
+            }),
           },
           images: {
             description: 'Images array for the new Product.',
@@ -264,52 +262,50 @@ const mutations = {
                   ),
                 ),
               },
-              nicotine_strengths: {
+              nicotineStrength: {
                 description: 'The nicotine strength for the new product.',
                 type: new NonNull(
-                  new ListType(
-                    new EnumType({
-                      name: 'NewProductNicotineStrengthsEnum',
-                      values: {
-                        two: {
-                          value: 2,
-                          description: '2mg of Nicotine.',
-                        },
-                        four: {
-                          value: 4,
-                          description: '4mg of Nicotine.',
-                        },
-                        six: {
-                          value: 6,
-                          description: '6mg of Nicotine',
-                        },
-                        eight: {
-                          value: 8,
-                          description: '8mg of Nicotine.',
-                        },
-                        ten: {
-                          value: 10,
-                          description: '8mg of Nicotine.',
-                        },
-                        twelve: {
-                          value: 12,
-                          description: '8mg of Nicotine.',
-                        },
-                        fourteen: {
-                          value: 14,
-                          description: '8mg of Nicotine.',
-                        },
-                        sixteen: {
-                          value: 16,
-                          description: '8mg of Nicotine.',
-                        },
-                        eighteen: {
-                          value: 18,
-                          description: '8mg of Nicotine.',
-                        },
+                  new EnumType({
+                    name: 'NewProductNicotineStrengthsEnum',
+                    values: {
+                      two: {
+                        value: 2,
+                        description: '2mg of Nicotine.',
                       },
-                    }),
-                  ),
+                      four: {
+                        value: 4,
+                        description: '4mg of Nicotine.',
+                      },
+                      six: {
+                        value: 6,
+                        description: '6mg of Nicotine',
+                      },
+                      eight: {
+                        value: 8,
+                        description: '8mg of Nicotine.',
+                      },
+                      ten: {
+                        value: 10,
+                        description: '8mg of Nicotine.',
+                      },
+                      twelve: {
+                        value: 12,
+                        description: '8mg of Nicotine.',
+                      },
+                      fourteen: {
+                        value: 14,
+                        description: '8mg of Nicotine.',
+                      },
+                      sixteen: {
+                        value: 16,
+                        description: '8mg of Nicotine.',
+                      },
+                      eighteen: {
+                        value: 18,
+                        description: '8mg of Nicotine.',
+                      },
+                    },
+                  }),
                 ),
               },
               images: {
@@ -425,51 +421,49 @@ const mutations = {
                   }),
                 ),
               },
-              nicotine_strengths: {
+              nicotineStrength: {
                 description: 'The nicotine strength for the new product.',
-                type: new ListType(
-                  new EnumType({
-                    name: 'UpdateProductNicotineStrengthsEnum',
-                    values: {
-                      two: {
-                        value: '2mg',
-                        description: '2mg of Nicotine.',
-                      },
-                      four: {
-                        value: '4mg',
-                        description: '4mg of Nicotine.',
-                      },
-                      six: {
-                        value: '6mg',
-                        description: '6mg of Nicotine',
-                      },
-                      eight: {
-                        value: '8mg',
-                        description: '8mg of Nicotine.',
-                      },
-                      ten: {
-                        value: '10mg',
-                        description: '8mg of Nicotine.',
-                      },
-                      twelve: {
-                        value: '12mg',
-                        description: '8mg of Nicotine.',
-                      },
-                      fourteen: {
-                        value: '14mg',
-                        description: '8mg of Nicotine.',
-                      },
-                      sixteen: {
-                        value: '16mg',
-                        description: '8mg of Nicotine.',
-                      },
-                      eighteen: {
-                        value: '18mg',
-                        description: '8mg of Nicotine.',
-                      },
+                type: new EnumType({
+                  name: 'UpdateProductNicotineStrengthsEnum',
+                  values: {
+                    two: {
+                      value: '2mg',
+                      description: '2mg of Nicotine.',
                     },
-                  }),
-                ),
+                    four: {
+                      value: '4mg',
+                      description: '4mg of Nicotine.',
+                    },
+                    six: {
+                      value: '6mg',
+                      description: '6mg of Nicotine',
+                    },
+                    eight: {
+                      value: '8mg',
+                      description: '8mg of Nicotine.',
+                    },
+                    ten: {
+                      value: '10mg',
+                      description: '8mg of Nicotine.',
+                    },
+                    twelve: {
+                      value: '12mg',
+                      description: '8mg of Nicotine.',
+                    },
+                    fourteen: {
+                      value: '14mg',
+                      description: '8mg of Nicotine.',
+                    },
+                    sixteen: {
+                      value: '16mg',
+                      description: '8mg of Nicotine.',
+                    },
+                    eighteen: {
+                      value: '18mg',
+                      description: '8mg of Nicotine.',
+                    },
+                  },
+                }),
               },
               images: {
                 description: 'Images array for the new Product.',

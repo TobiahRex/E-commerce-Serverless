@@ -11,7 +11,7 @@ const propTypes = {
         price: string,
         sku: string,
         sizes: arrayOf(string),
-        nicotine_strengths: arrayOf(string),
+        nicotineStrength: string,
         images: arrayOf(
           shape({
             purpose: string,

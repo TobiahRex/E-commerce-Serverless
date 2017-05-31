@@ -31,7 +31,7 @@ const createAPI = () => {
           purpose
           url
         }
-        nicotine_strengths
+        nicotineStrength
         routeTag
       }
     }`,

@@ -71,7 +71,7 @@ class ProductDisplay extends Component {
       title,
       images,
       quantities: available,
-      nicotine_strengths: nicotineStrengths,
+      nicotineStrength,
     } = productObj;
     return (
       <div className="main__parent">
@@ -99,7 +99,7 @@ class ProductDisplay extends Component {
           <NicotineBtns
             chosenStrength={chosenStrength}
             nicotineHandler={nicotineHandler}
-            nicotineStrengths={nicotineStrengths}
+            nicotineStrength={nicotineStrength}
           />
 
           <ProductActions

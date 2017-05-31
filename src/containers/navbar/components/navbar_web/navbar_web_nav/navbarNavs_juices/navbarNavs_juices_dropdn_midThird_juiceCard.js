@@ -40,12 +40,12 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
     </div>
   );
 }
-const { shape, arrayOf, string, func } = PropTypes;
+const { shape, string, func } = PropTypes;
 NavbarNavsJuicesDropdnJuiceCards.propTypes = {
   productInfo: shape({
     title: string,
     price: string,
-    nicotine_strengths: arrayOf(string),
+    nicotineStrength: string,
     imageUrl: string,
   }),
   tag: string,
@@ -55,7 +55,7 @@ NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
   productInfo: {
     title: '',
     price: '',
-    nicotine_strengths: [''],
+    nicotineStrength: '',
     imageUrl: '',
   },
   tag: '',

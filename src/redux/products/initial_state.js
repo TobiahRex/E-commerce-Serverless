@@ -6,7 +6,7 @@ export const productType = {
     price: '',
     sku: '',
     sizes: [''],
-    nicotine_strengths: [''],
+    nicotineStrength: '',
     images: [
       {
         purpose: '',

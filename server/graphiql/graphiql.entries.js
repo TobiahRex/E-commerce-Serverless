@@ -9,7 +9,7 @@ const juices = {
       price: "30",
       sku: "NJ2JP0001",
       sizes: [small],
-      nicotine_strengths: [two],
+      nicotineStrength: [two],
       images: [{
         purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png"
@@ -29,7 +29,7 @@ const juices = {
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb
@@ -54,7 +54,7 @@ const juices = {
       price: "30",
       sku: "NJ2JP0006",
       sizes: [small],
-      nicotine_strengths: [two, four, six, eight],
+      nicotineStrength: [two],
       images: [{
         purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png"
@@ -74,7 +74,7 @@ const juices = {
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb
@@ -99,7 +99,7 @@ const juices = {
       price: "30",
       sku: "NJ2JP0005",
       sizes: [small],
-      nicotine_strengths: [two, four, six, eight],
+      nicotineStrength: [two],
       images: [{
         purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.png"
@@ -119,7 +119,7 @@ const juices = {
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb
@@ -144,7 +144,7 @@ const juices = {
       price: "30",
       sku: "NJ2JP0004",
       sizes: [small],
-      nicotine_strengths: [two, four, six, eight],
+      nicotineStrength: [two],
       images: [{
   			purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png"
@@ -164,7 +164,7 @@ const juices = {
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb
@@ -189,7 +189,7 @@ const juices = {
       price: "30",
       sku: "NJ2JP0003",
       sizes: [small],
-      nicotine_strengths: [two, four, six, eight],
+      nicotineStrength: [two],
       images: [{
   			purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_snc.png"
@@ -209,7 +209,7 @@ const juices = {
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb
@@ -234,7 +234,7 @@ const juices = {
       price: "30",
       sku: "NJ2JP0003",
       sizes: [small],
-      nicotine_strengths: [two, four, six, eight],
+      nicotineStrength: [two],
       images: [{
   			purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pb.png"
@@ -254,7 +254,7 @@ const juices = {
         price
         sku
         sizes
-        nicotine_strengths
+        nicotineStrength
         routeTag
         vendor
         blurb
