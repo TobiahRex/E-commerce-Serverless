@@ -7,6 +7,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
   - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), and **Redux**.
 
 ### Deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
+  - Under Heavy Development and may at times not be working.  Will update here once availability is 100%.
 
 <img src="http://i.imgur.com/40al5Mw.png" />
 
