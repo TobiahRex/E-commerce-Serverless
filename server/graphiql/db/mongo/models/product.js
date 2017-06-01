@@ -3,6 +3,25 @@ import { Promise as bbPromise } from 'bluebird';
 import productSchema from '../schemas/productSchema';
 import db from '../connection';
 
+productSchema.statics.findProductByFlavor = flavor =>
+new Promise((resolve, reject) => {
+  Product.find({ flavor })
+  .exec()
+  .then((dbProducts) => {
+    console.log(`
+      Found ${dbProducts.length} with Flavor: ${flavor}!
+    `);
+    resolve(dbProducts);
+  })
+  .catch((error) => {
+    reject({
+      problem: `Could not find any products with flavor ${flavor}.
+      
+      Mongo Error = ${error}`,
+    });
+  });
+});
+
 productSchema.statics.fetchMultiple = ids =>
 new Promise((resolve, reject) => {
   Product.find({ _id: { $in: [...ids] } })
