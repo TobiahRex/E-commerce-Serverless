@@ -18,7 +18,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
   return (
     <div className="midThird__juices-card">
       <button
-        data-slug={`${slug}?flavor=${product.flavor}`}
+        data-slug={slug}
         className="juices-card__title"
         onClick={push}
       >
@@ -26,14 +26,14 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
       </button>
 
       <button
-        data-slug={`${slug}?flavor=${product.flavor}`}
+        data-slug={slug}
         className="juices-card__image"
         onClick={push}
       >
         <img
           className="image__src"
           src={imageUrl}
-          alt={`${product.title} juice`}
+          alt={`${product.title} Juice`}
         />
 
       </button>
