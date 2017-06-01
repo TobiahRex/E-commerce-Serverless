@@ -3,6 +3,13 @@
     max-width: 1080px;
     width: 100%;
     height: 111em;
+    & .main__loading {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 2em auto auto 0;
+    }
     & .main__title {
       @include prefixflex();
       justify-content: flex-start;

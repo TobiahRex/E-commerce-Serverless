@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
+import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import { propTypes, defaultProps } from './propTypes';
 
@@ -35,7 +36,6 @@ class SingleProduct extends Component {
       error: false,
       added: false,
       product: null,
-      productId: '',
       errorMsg: '',
       showBulkModal: false,
       chosenStrength: 0,
@@ -75,23 +75,23 @@ class SingleProduct extends Component {
       case 'success': {
         switch (tagEl) {
           case 'view-cart':
-          this.toggleModalAndGo('showSuccessModal', '/cart'); break;
+            this.toggleModalAndGo('showSuccessModal', '/cart'); break;
           case 'view-checkout':
-          this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
+            this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
           default: this.toggleModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-          this.toggleModalAndGo('showBulkModal', '/juices'); break;
+            this.toggleModalAndGo('showBulkModal', '/juices'); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
         switch (tagEl) {
           case 'view-signup':
-          this.toggleModalAndGo('showRegisterModal', '/login'); break;
+            this.toggleModalAndGo('showRegisterModal', '/login'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;
@@ -163,7 +163,7 @@ class SingleProduct extends Component {
 
   composeGlobalCartInfo = () => {
     const { loggedIn, guestCart, userCart } = this.props,
-      { qty: requestQty, productId } = this.state,
+      { qty: requestQty, product: { _id: productId } } = this.state,
       prevCartIds = [];
 
     let updatedCart = [];
@@ -228,9 +228,13 @@ class SingleProduct extends Component {
         globalRequestQty,
       } = this.composeGlobalCartInfo(),
 
-      { qty, chosenStrength: strength, productId } = this.state,
+        {
+          qty,
+          chosenStrength: strength,
+          product: { _id: productId },
+        } = this.state,
 
-      deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
+        deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
 
       if (globalRequestQty > 4) {
         this.setState({
@@ -366,13 +370,18 @@ class SingleProduct extends Component {
         />
         {
           data.FindProductById ?
-          <MainTitle
-            vendor={data.FindProductById.product.vendor}
-            mainTitle={data.FindProductById.product.mainTitle}
-          /> : ''
+            <MainTitle
+              vendor={data.FindProductById.product.vendor}
+              mainTitle={data.FindProductById.product.mainTitle}
+            /> : ''
         }
         {
-          data.loading ? <h1>Loading ...</h1> :
+          data.loading ?
+          (<h1 className="main__loading">
+            <FontAwesome name="spinner" pulse size="3x" />
+            <br />
+            Loading...
+          </h1>) :
           <ProductDisplay
             qty={qty}
             added={added}

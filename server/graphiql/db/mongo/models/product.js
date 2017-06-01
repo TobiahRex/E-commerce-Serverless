@@ -9,7 +9,7 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbProducts) => {
     console.log(`
-      Found ${dbProducts.length} product(s) with Flavor: ${flavor}!
+      Found ${dbProducts.length} product(s) with Flavor: "${flavor}"!
     `);
     resolve(dbProducts);
   })

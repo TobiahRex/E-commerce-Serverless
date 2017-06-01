@@ -5,11 +5,11 @@ import productSchema from '../schemas/productSchema';
 export default (db) => {
   productSchema.statics.findProductsByFlavor = flavor =>
   new Promise((resolve, reject) => {
-    Product.find({ flavor })
+    Product.find({ 'product.flavor': flavor })
     .exec()
     .then((dbProducts) => {
       console.log(`
-        Found ${dbProducts.length} product(s) with Flavor: ${flavor}!
+        Found ${dbProducts.length} product(s) with Flavor: "${flavor}"!
       `);
       resolve(dbProducts);
     })
