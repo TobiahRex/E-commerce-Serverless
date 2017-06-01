@@ -2,6 +2,35 @@ import {
   gql,
 } from 'react-apollo';
 
+
+export const FindProductByFlavor = gql`
+  query FindProductByFlavor($flavor: String!) {
+    FindProductByFlavor(flavor: $flavor){
+      _id
+      product {
+        mainTitle
+        title
+        flavor
+        price
+        sku
+        sizes
+        nicotineStrength
+        routeTag
+        vendor
+        blurb
+        images {
+          purpose
+          url
+        }
+        quantities {
+          available
+          in_cart
+        }
+      }
+    }
+  }
+`;
+
 export const FindProductById = gql`
   query FindProductById($id: ID!) {
     FindProductById(_id: $id){
