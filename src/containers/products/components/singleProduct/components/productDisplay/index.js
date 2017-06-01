@@ -26,9 +26,27 @@ class ProductDisplay extends Component {
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
 
-  composeCommonProduct = (arrayOfProducts) => {
-    // TODO create a common product from an array of products.
-  }
+  composeSingleProduct = arrayOfProducts => arrayOfProducts
+    .reduce((accum, { _id, product }, i) => {
+      if (i === 0) {
+        accum = {
+          nicotineStrengths: [product.nicotineStrength],
+          product: {
+            sku: product.sku,
+            price: product.price,
+            blurb: product.blurb,
+            title: product.title,
+            images: product.images,
+            productId: _id,
+            quantities: product.quantities,
+            nicotineStrength: product.nicotineStrength,
+          },
+        };
+        return accum;
+      }
+      accum.nicotineStrengths.push(product.nicotineStrength);
+      return accum;
+    }, {});
 
   render() {
     const {
@@ -46,28 +64,31 @@ class ProductDisplay extends Component {
       addToCartHandler,
     } = this.props;
     const {
-      blurb,
-      price,
-      sku,
-      title,
-      images,
-      quantities: available,
-      nicotineStrength,
-    } = this.composeCommonProduct(productsArray);
+      nicotineStrengths,
+      product: {
+        blurb,
+        price,
+        sku,
+        title,
+        images,
+        productId,
+        quantities: { available },
+      },
+    } = this.composeSingleProduct(productsArray);
     return (
       <div className="main__parent">
         <ImageGroup
-          modalHandler={modalHandler}
           imageUrl={this.filterImages(images)}
+          modalHandler={modalHandler}
         />
         <div className="main__info--desc">
           <JuiceTitle title={title} />
 
           <PriceInfo
+            id={productId}
             sku={sku}
             price={price}
-            id={productId}
-            inStock={available ? 1 : 0}
+            inStock={!!available}
           />
 
           <ProductBlurb description={blurb} />
@@ -80,7 +101,7 @@ class ProductDisplay extends Component {
           <NicotineBtns
             chosenStrength={chosenStrength}
             nicotineHandler={nicotineHandler}
-            nicotineStrength={nicotineStrength}
+            nicotineStrengths={nicotineStrengths}
           />
 
           <ProductActions
