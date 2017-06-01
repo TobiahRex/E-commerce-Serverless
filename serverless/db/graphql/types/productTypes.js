@@ -48,15 +48,15 @@ const rootType = new ObjectType({
               name: 'ProductAvailableSizes',
               /* eslint-disable quote-props */
               values: {
-                '30 mil': {
+                'small': {
                   value: 30,
                   description: '30 milliter bottle.',
                 },
-                '60 mil': {
+                'medium': {
                   value: 60,
                   description: '60 milliliter bottle.',
                 },
-                '120 mil': {
+                'large': {
                   value: 120,
                   description: '120 milliliter bottle',
                 },
@@ -249,18 +249,18 @@ const mutations = {
                 description: 'The available sizes for the product.',
                 type: new NonNull(
                   new EnumType({
-                    name: 'ProductAvailableSizes',
+                    name: 'ProductAvailableSizesInput',
                     /* eslint-disable quote-props */
                     values: {
-                      '30 mil': {
+                      'small': {
                         value: 30,
                         description: '30 milliter bottle.',
                       },
-                      '60 mil': {
+                      'medium': {
                         value: 60,
                         description: '60 milliliter bottle.',
                       },
-                      '120 mil': {
+                      'large': {
                         value: 120,
                         description: '120 milliliter bottle',
                       },
@@ -407,18 +407,18 @@ const mutations = {
               size: {
                 description: 'The available sizes for the product.',
                 type: new EnumType({
-                  name: 'ProductAvailableSizes',
+                  name: 'ProductAvailableSizesInput',
                   /* eslint-disable quote-props */
                   values: {
-                    '30 mil': {
+                    'small': {
                       value: 30,
                       description: '30 milliter bottle.',
                     },
-                    '60 mil': {
+                    'medium': {
                       value: 60,
                       description: '60 milliliter bottle.',
                     },
-                    '120 mil': {
+                    'large': {
                       value: 120,
                       description: '120 milliliter bottle',
                     },

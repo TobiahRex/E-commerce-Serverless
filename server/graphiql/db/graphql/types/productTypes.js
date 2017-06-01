@@ -50,15 +50,15 @@ const rootType = new ObjectType({
               name: 'ProductAvailableSizes',
               /* eslint-disable quote-props */
               values: {
-                '30 mil': {
+                'small': {
                   value: 30,
                   description: '30 milliter bottle.',
                 },
-                '60 mil': {
+                'medium': {
                   value: 60,
                   description: '60 milliliter bottle.',
                 },
-                '120 mil': {
+                'large': {
                   value: 120,
                   description: '120 milliliter bottle',
                 },
@@ -249,18 +249,18 @@ const mutations = {
                 description: 'The available sizes for the product.',
                 type: new NonNull(
                   new EnumType({
-                    name: 'ProductAvailableSizes',
+                    name: 'NewProductAvailableSizesInput',
                     /* eslint-disable quote-props */
                     values: {
-                      '30 mil': {
+                      'small': {
                         value: 30,
                         description: '30 milliter bottle.',
                       },
-                      '60 mil': {
+                      'medium': {
                         value: 60,
                         description: '60 milliliter bottle.',
                       },
-                      '120 mil': {
+                      'large': {
                         value: 120,
                         description: '120 milliliter bottle',
                       },
@@ -362,6 +362,40 @@ const mutations = {
                   }),
                 }),
               },
+              statistics: {
+                description: 'Statistics on purchases for this item.',
+                type: new InputObject({
+                  name: 'NewProductStatistics',
+                  fields: () => ({
+                    adds_to_cart: {
+                      description: 'The amount of times someone has added this product to their cart.',
+                      type: IntType,
+                    },
+                    completed_checkouts: {
+                      description: 'The amount of times this item has been successfully purchased.',
+                      type: IntType,
+                    },
+                    transactions: {
+                      description: 'A list of transactions for this product.',
+                      type: new ListType(
+                        new InputObject({
+                          name: 'The Mongo ID\'s for transactions & users.',
+                          fields: () => ({
+                            transaction_id: {
+                              description: 'The Mongo ID for transactions.',
+                              type: MongoId,
+                            },
+                            user_id: {
+                              description: 'The mongo ID for users.',
+                              type: MongoId,
+                            },
+                          }),
+                        }),
+                      ),
+                    },
+                  }),
+                }),
+              },
             }),
           }),
         ),
@@ -407,18 +441,18 @@ const mutations = {
                 description: 'The available sizes for the product.',
                 type: new NonNull(
                   new EnumType({
-                    name: 'ProductAvailableSizes',
+                    name: 'ProductAvailableSizesInput',
                     /* eslint-disable quote-props */
                     values: {
-                      '30 mil': {
+                      'small': {
                         value: 30,
                         description: '30 milliter bottle.',
                       },
-                      '60 mil': {
+                      'medium': {
                         value: 60,
                         description: '60 milliliter bottle.',
                       },
-                      '120 mil': {
+                      'large': {
                         value: 120,
                         description: '120 milliliter bottle',
                       },

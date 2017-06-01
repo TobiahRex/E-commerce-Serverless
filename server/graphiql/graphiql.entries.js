@@ -3,22 +3,22 @@ const juices = {
   frenchVanillaMocha: `
   mutation CreateProduct {
     CreateProduct(product: {
-      mainTitle: "Switch Juice",
-      title: "French Vanilla Mocha",
-      flavor: "french_vanilla_mocha",
-      price: "30",
-      sku: "NJ2JP0001",
-      sizes: [small],
-      nicotineStrength: [two],
+      mainTitle: "Switch Juice"
+      title: "French Vanilla Mocha"
+      flavor: "french_vanilla_mocha"
+      price: "30"
+      sku: "NJ2JP0004"
+      size: small
+      nicotineStrength: eight
       images: [{
-        purpose: "card",
+        purpose: "card"
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png"
       }, {
-        purpose: "large",
+        purpose: "large"
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg"
       }],
-      routeTag: "french_vanilla_mocha",
-      vendor: "Vape Switch",
+      routeTag: "french_vanilla_mocha"
+      vendor: "Vape Switch"
       blurb: "The French Vanilla Mocha is a delicious blend of French Vanilla, Mocha Milk Chocolate and dash of Dark Chocolate and brings a smooth, enjoyable flavor.  A nice morning Vape to replace that cigarette with your coffee, but it can easily be considered and all-day Vape."
     }) {
       _id,
@@ -28,7 +28,7 @@ const juices = {
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
@@ -46,15 +46,15 @@ const juices = {
   }
   `,
   keylimePie: `
-  mutation createProduct {
-    createProduct(product: {
+  mutation CreateProduct {
+    CreateProduct(product: {
       mainTitle: "Switch Juice",
       title: "Keylime Pie",
       flavor: "keylime_pie",
       price: "30",
-      sku: "NJ2JP0006",
-      sizes: [small],
-      nicotineStrength: [two],
+      sku: "NJ2JP0005",
+      size: small,
+      nicotineStrength: two,
       images: [{
         purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png"
@@ -73,7 +73,7 @@ const juices = {
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
@@ -91,15 +91,15 @@ const juices = {
   }
   `,
   pinaColada: `
-  mutation createProduct {
-    createProduct(product: {
+  mutation CreateProduct {
+    CreateProduct(product: {
       mainTitle: "Switch Juice",
       title: "Piña Colada",
       flavor: "pina_colada",
       price: "30",
       sku: "NJ2JP0005",
-      sizes: [small],
-      nicotineStrength: [two],
+      size: small,
+      nicotineStrength: two,
       images: [{
         purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.png"
@@ -118,7 +118,7 @@ const juices = {
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
@@ -143,8 +143,8 @@ const juices = {
       flavor: "fruity_bamm_bamm",
       price: "30",
       sku: "NJ2JP0004",
-      sizes: [small],
-      nicotineStrength: [two],
+      size: small,
+      nicotineStrength: two,
       images: [{
   			purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png"
@@ -163,7 +163,7 @@ const juices = {
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
@@ -181,60 +181,60 @@ const juices = {
   }
   `,
   strawberriesNCream: `
-  mutation createProduct {
-    createProduct(product: {
-      mainTitle: "Switch Juice",
-      title: "Strawberries N' Cream",
-      flavor: "strawberries_n_cream",
-      price: "30",
-      sku: "NJ2JP0003",
-      sizes: [small],
-      nicotineStrength: [two],
-      images: [{
-  			purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_snc.png"
-      }, {
-        purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-strawberries-cream.png"
-      }],
-      routeTag: "strawberries_n_cream",
-      vendor: "Vape Switch",
-      blurb: "Fresh Strawberries with wonderful Cream.  So creamy and so very good!"
-    }) {
-      _id,
-      product {
-        mainTitle
-        title
-        flavor
-        price
-        sku
-        sizes
-        nicotineStrength
-        routeTag
-        vendor
-        blurb
-        images {
-          purpose
-          url
-        }
-        dates {
-          added_to_store
-          removed_from_store
+  mutation CreateProduct {
+      CreateProduct(product: {
+        mainTitle: "Switch Juice",
+        title: "Strawberries N' Cream",
+        flavor: "strawberries_n_cream",
+        price: "30",
+        sku: "NJ2JP00017",
+        size: small,
+        nicotineStrength: two,
+        images: [{
+    			purpose: "card",
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_snc.png"
+        }, {
+          purpose: "large",
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-strawberries-cream.png"
+        }],
+        routeTag: "strawberries_n_cream",
+        vendor: "Vape Switch",
+        blurb: "Fresh Strawberries with wonderful Cream.  So creamy and so very good!"
+      }) {
+        _id,
+        product {
+          mainTitle
+          title
+          flavor
+          price
+          sku
+          size
+          nicotineStrength
+          routeTag
+          vendor
+          blurb
+          images {
+            purpose
+            url
+          }
+          dates {
+            added_to_store
+            removed_from_store
+          }
         }
       }
     }
-  }
   `,
   pappleBerry: `
-  mutation createProduct {
-    createProduct(product: {
+  mutation CreateProduct {
+    CreateProduct(product: {
       mainTitle: "Switch Juice",
       title: "Papple Berry",
       flavor: "papple_berry",
       price: "30",
-      sku: "NJ2JP0003",
-      sizes: [small],
-      nicotineStrength: [two],
+      sku: "NJ2JP0021",
+      size: small,
+      nicotineStrength: two,
       images: [{
   			purpose: "card",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pb.png"
@@ -253,7 +253,7 @@ const juices = {
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
