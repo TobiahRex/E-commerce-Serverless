@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function NavbarNavsJuicesDropdnJuiceCards(props) {
   const {
-    tag,
+    slug,
     push,
-    productInfo: { _id, product },
+    productInfo: { product },
   } = props;
   const imageUrl = product.images.reduce((accumObj, nextObj) => {
     switch (accumObj.purpose) {
@@ -18,7 +18,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
   return (
     <div className="midThird__juices-card">
       <button
-        data-tag={`${tag}?id=${_id}`}
+        data-slug={`${slug}?flavor=${product.flavor}`}
         className="juices-card__title"
         onClick={push}
       >
@@ -26,7 +26,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
       </button>
 
       <button
-        data-tag={`${tag}?id=${_id}`}
+        data-slug={`${slug}?flavor=${product.flavor}`}
         className="juices-card__image"
         onClick={push}
       >
@@ -40,15 +40,20 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
     </div>
   );
 }
-const { shape, string, func } = PropTypes;
+const { arrayOf, shape, string, func } = PropTypes;
 NavbarNavsJuicesDropdnJuiceCards.propTypes = {
   productInfo: shape({
     title: string,
     price: string,
     nicotineStrength: string,
-    imageUrl: string,
+    images: arrayOf(
+      shape({
+        purpose: string,
+        url: string,
+      }),
+    ),
   }),
-  tag: string,
+  slug: string,
   push: func.isRequired,
 };
 NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
@@ -56,8 +61,11 @@ NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
     title: '',
     price: '',
     nicotineStrength: '',
-    imageUrl: '',
+    images: [{
+      purpose: '',
+      url: '',
+    }],
   },
-  tag: '',
+  slug: '',
 };
 export default NavbarNavsJuicesDropdnJuiceCards;

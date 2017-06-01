@@ -46,6 +46,7 @@ const createAPI = () => {
         product {
           title
           routeTag
+          flavor
           images {
             purpose
             url

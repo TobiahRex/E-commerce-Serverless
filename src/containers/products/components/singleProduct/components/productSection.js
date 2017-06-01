@@ -11,9 +11,9 @@ import {
   NewMemberPromotionBtn,
   NicotineBtns,
   SocialMediaBtns,
-} from '../container/imports';
+} from '../container/component.imports';
 
-const { func, bool, string, shape, arrayOf } = PropTypes;
+const { func, bool, string, shape } = PropTypes;
 
 class ProductSection extends Component {
   static propTypes = {

@@ -10,7 +10,7 @@ import {
   NewMemberPromotionBtn,
   NicotineBtns,
   SocialMediaBtns,
-} from '../container/imports';
+} from '../container/component.imports';
 
 const { any, bool, func, string, number, objectOf } = PropTypes;
 

@@ -1,10 +1,11 @@
 /* eslint-disable no-lone-blocks, import/first*/
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
+import { propTypes, defaultProps } from './propTypes';
+
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import {
@@ -22,60 +23,11 @@ import {
   BulkSaleModal,
   RegisterModal,
   ProductDisplay,
-} from './imports';
-
-const {
-  any,
-  func,
-  number,
-  bool,
-  string,
-  shape,
-  arrayOf,
-  objectOf,
-} = PropTypes;
+} from './component.imports';
 
 class SingleProduct extends Component {
-  static propTypes = {
-    push: func.isRequired,
-    userId: string,
-    taxRate: number.isRequired,
-    productId: string.isRequired,
-    loggedIn: bool.isRequired,
-    saveProfile: func.isRequired,
-    addToGuestCart: func.isRequired,
-    AddToMemberCart: func.isRequired,
-    updateToGuestCart: func.isRequired,
-    EditToMemberCart: func.isRequired,
-    addToReduxMemberCart: func.isRequired,
-    addToReduxProfileCart: func.isRequired,
-    updateToReduxMemberCart: func.isRequired,
-    userCart: arrayOf(
-      shape({
-        qty: number,
-        strength: number,
-        product: string,
-      }),
-    ),
-    guestCart: arrayOf(
-      shape({
-        _id: string,
-        qty: number,
-        strength: number,
-        userId: string,
-        product: objectOf(any),
-      }),
-    ),
-    data: shape({
-      FindProductById: ProductShape,
-      FindProductsByFlavor: arrayOf(ProductShape),
-    }).isRequired,
-  }
-  static defaultProps = {
-    userId: '',
-    userCart: null,
-    guestCart: null,
-  }
+  static propTypes = propTypes
+  static defaultProps = defaultProps
   constructor(props) {
     super(props);
     this.state = {

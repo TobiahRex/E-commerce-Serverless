@@ -5,13 +5,6 @@ import NavbarNavsJuicesDropdnTopthird from './navbarNavs_juices_dropdn_topThird'
 import NavbarNavsJuicesDropdnMidthird from './navbarNavs_juices_dropdn_midThird';
 import NavbarNavsJuicesDropdnBottomthird from './navbarNavs_juices_dropdn_bottomThird';
 
-const { arrayOf, object, func } = PropTypes;
-
-const propTypes = {
-  popularProducts: arrayOf(object),
-  toggleNavbarDropdown: func.isRequired,
-};
-
 function NavbarNavsJuicesDropdnContent(props) {
   const { popularProducts, toggleNavbarDropdown } = props;
 
@@ -30,8 +23,10 @@ function NavbarNavsJuicesDropdnContent(props) {
     </span>
   );
 }
-NavbarNavsJuicesDropdnContent.propTypes = propTypes;
-NavbarNavsJuicesDropdnContent.defaultProps = {
-  popularProducts: [],
+const { arrayOf, object, func } = PropTypes;
+NavbarNavsJuicesDropdnContent.propTypes = {
+  popularProducts: arrayOf(object),
+  toggleNavbarDropdown: func.isRequired,
 };
+NavbarNavsJuicesDropdnContent.defaultProps = { popularProducts: [] };
 export default NavbarNavsJuicesDropdnContent;
