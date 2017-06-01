@@ -113,10 +113,21 @@ class SingleProduct extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!_.isEqual(nextState, this.state) || !_.isEqual(nextProps, this.props)) return true;
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
+
+    const userCartDiff = isArrayEqual(nextProps.userCart, this.props.userCart);
+    const guestCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart);
+
+    if (!_.isEqual(nextState, this.state) || !_.isEqual(nextProps, this.props) || userCartDiff || guestCartDiff) return true;
     return false;
   }
+  shouldComponentUpdate(nextProps) {
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
+    const productsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
 
+    if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
+    return false;
+  }
   modalHandler = (e) => {
     let parentEl = e.target.dataset.parent;
     let tagEl = e.target.dataset.tag;
