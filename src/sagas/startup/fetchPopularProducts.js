@@ -9,16 +9,19 @@ const api = productApi.createAPI();
 export default function* fetchPopularProducts() {
   const response = yield call(() => api.FetchPopularProducts(6));
 
-  const { ok, problem, data: { data } } = cleanGQLresponse(response);
+  const { ok, problem, data: { data: { PopularProducts } } } = cleanGQLresponse(response);
+
+  const popularProducts = PopularProducts.map(productObj => ({
+    _id: productObj.docId,
+    flavor: productObj._id,
+    title: productObj.title,
+    images: [...productObj.images],
+    routeTag: productObj.routeTag,
+    completedCheckouts: productObj.completedCheckouts,
+  }));
+
   if (ok) {
-    yield put(productActions.receivedPopularProducts({
-      _id: data.docId,
-      flavor: data._id,
-      title: data.title,
-      images: [...data.images],
-      routeTag: data.routeTag,
-      completedCheckouts: data.completedCheckouts,
-    }));
+    yield put(productActions.receivedPopularProducts(popularProducts));
   } else {
     yield [
       put(productActions.productRequestError(problem)),
