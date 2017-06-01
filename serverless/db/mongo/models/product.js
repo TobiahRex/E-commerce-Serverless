@@ -1,8 +1,27 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
-import productSchema, { ObjectId } from '../schemas/productSchema';
+import productSchema from '../schemas/productSchema';
 
 export default (db) => {
+  productSchema.statics.findProductsByFlavor = flavor =>
+  new Promise((resolve, reject) => {
+    Product.find({ flavor })
+    .exec()
+    .then((dbProducts) => {
+      console.log(`
+        Found ${dbProducts.length} product(s) with Flavor: ${flavor}!
+      `);
+      resolve(dbProducts);
+    })
+    .catch((error) => {
+      reject({
+        problem: `Could not find any products with flavor ${flavor}.
+
+        Mongo Error = ${error}`,
+      });
+    });
+  });
+
   productSchema.statics.findProductByIdAndDelete = _id =>
   new Promise((resolve, reject) => {
     Product.findByIdAndRemove(_id)

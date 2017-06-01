@@ -186,6 +186,16 @@ const queries = {
     },
     resolve: (_, { ids }) => Product.fetchMultiple(ids),
   },
+  FindProductsByFlavor: {
+    type: new ListType(rootType),
+    args: {
+      flavor: {
+        description: 'The Mongo flavor of the products.',
+        type: new NonNull(StringType),
+      },
+    },
+    resolve: (_, { flavor }) => Product.findProductsByFlavor(flavor),
+  },
   FindProductById: {
     type: rootType,
     args: {

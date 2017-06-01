@@ -9,7 +9,7 @@ import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import {
   FindProductById,
-  FindProductByFlavor,
+  FindProductsByFlavor,
   AddToMemberCart,
   EditToMemberCart,
 } from './graphql.imports';
@@ -507,14 +507,8 @@ const SingleProductWithState = connect(
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
-  graphql(FindProductById, {
-    options: ({ location }) => ({
-      variables: {
-        id: location.query.id,
-      },
-    }),
-  }),
-  graphql(FindProductByFlavor, {
+  graphql(FindProductById, { skip: true }),
+  graphql(FindProductsByFlavor, {
     options: ({ location }) => ({
       variables: {
         flavor: location.query.flavor,

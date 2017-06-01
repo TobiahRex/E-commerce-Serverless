@@ -3,9 +3,9 @@ import {
 } from 'react-apollo';
 
 
-export const FindProductByFlavor = gql`
-  query FindProductByFlavor($flavor: String!) {
-    FindProductByFlavor(flavor: $flavor){
+export const FindProductsByFlavor = gql`
+  query FindProductsByFlavor($flavor: String!) {
+    FindProductsByFlavor(flavor: $flavor){
       _id
       product {
         mainTitle

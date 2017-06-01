@@ -3,20 +3,20 @@ import { Promise as bbPromise } from 'bluebird';
 import productSchema from '../schemas/productSchema';
 import db from '../connection';
 
-productSchema.statics.findProductByFlavor = flavor =>
+productSchema.statics.findProductsByFlavor = flavor =>
 new Promise((resolve, reject) => {
   Product.find({ flavor })
   .exec()
   .then((dbProducts) => {
     console.log(`
-      Found ${dbProducts.length} with Flavor: ${flavor}!
+      Found ${dbProducts.length} product(s) with Flavor: ${flavor}!
     `);
     resolve(dbProducts);
   })
   .catch((error) => {
     reject({
       problem: `Could not find any products with flavor ${flavor}.
-      
+
       Mongo Error = ${error}`,
     });
   });
