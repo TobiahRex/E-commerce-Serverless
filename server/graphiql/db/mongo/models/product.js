@@ -124,9 +124,26 @@ new Promise((resolve, reject) => {
 
 productSchema.statics.getPopularProducts = qty =>
 new Promise((resolve, reject) => {
-  Product.find({})
+  Product.aggregate([{
+    '$group': {
+      _id: '$product.flavor',
+      docId: { '$first': '$_id' },
+      slug: { '$first': '$product.routeTag' },
+      images: { '$first': '$product.images' },
+      completedCheckouts: { '$first': '$statistics.completed_checkouts' },
+    }, {
+      '$sort': { 'completedCheckouts': -1 },
+    }, {
+      '$limit': qty,
+    },
+  }])
   .exec()
-  .then(dbProducts => resolve(dbProducts.slice(0, qty)))
+  .then(dbProducts => {
+    console.log(`
+      Found the following products: ${JSON.stringify(dbProducts, null, 2)}
+    `);
+    resolve(dbProducts);
+  })
   .catch(error => reject({
     problem: `Could not fetch the ${qty} products you requested.
     Mongo Error = ${error}`,

@@ -9,10 +9,10 @@ const api = productApi.createAPI();
 export default function* fetchPopularProducts() {
   const response = yield call(() => api.FetchPopularProducts(6));
 
-  const { ok, problem, data } = cleanGQLresponse(response);
+  const { ok, problem, data: { data } } = cleanGQLresponse(response);
 
   if (ok) {
-    yield put(productActions.receivedPopularProducts(data.data.PopularProducts));
+    yield put(productActions.receivedPopularProducts(data.PopularProducts));
   } else {
     yield [
       put(productActions.productRequestError(problem)),
