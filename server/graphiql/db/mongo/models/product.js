@@ -5,7 +5,7 @@ import db from '../connection';
 
 productSchema.statics.findProductsByFlavor = flavor =>
 new Promise((resolve, reject) => {
-  Product.find({ flavor })
+  Product.find({ 'product.flavor': flavor })
   .exec()
   .then((dbProducts) => {
     console.log(`

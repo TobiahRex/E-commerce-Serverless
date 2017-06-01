@@ -35,8 +35,8 @@ const ProductShape = shape({
 export const propTypes = {
   push: func.isRequired,
   userId: string,
+  flavor: string,
   taxRate: number.isRequired,
-  productId: string.isRequired,
   loggedIn: bool.isRequired,
   saveProfile: func.isRequired,
   addToGuestCart: func.isRequired,

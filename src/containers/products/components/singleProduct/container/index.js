@@ -35,6 +35,7 @@ class SingleProduct extends Component {
       error: false,
       added: false,
       product: null,
+      productId: '',
       errorMsg: '',
       showBulkModal: false,
       chosenStrength: 0,
@@ -74,23 +75,23 @@ class SingleProduct extends Component {
       case 'success': {
         switch (tagEl) {
           case 'view-cart':
-            this.toggleModalAndGo('showSuccessModal', '/cart'); break;
+          this.toggleModalAndGo('showSuccessModal', '/cart'); break;
           case 'view-checkout':
-            this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
+          this.toggleModalAndGo('showSuccessModal', '/express_checkout'); break;
           default: this.toggleModal('showSuccessModal');
         }
       } break;
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-            this.toggleModalAndGo('showBulkModal', '/juices'); break;
+          this.toggleModalAndGo('showBulkModal', '/juices'); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;
       case 'promotion-register': {
         switch (tagEl) {
           case 'view-signup':
-            this.toggleModalAndGo('showRegisterModal', '/login'); break;
+          this.toggleModalAndGo('showRegisterModal', '/login'); break;
           default: this.toggleModal('showRegisterModal');
         }
       } break;
@@ -161,8 +162,8 @@ class SingleProduct extends Component {
   }
 
   composeGlobalCartInfo = () => {
-    const { loggedIn, guestCart, userCart, productId } = this.props,
-      { qty: requestQty } = this.state,
+    const { loggedIn, guestCart, userCart } = this.props,
+      { qty: requestQty, productId } = this.state,
       prevCartIds = [];
 
     let updatedCart = [];
@@ -227,9 +228,9 @@ class SingleProduct extends Component {
         globalRequestQty,
       } = this.composeGlobalCartInfo(),
 
-        { qty, chosenStrength: strength } = this.state,
+      { qty, chosenStrength: strength, productId } = this.state,
 
-        deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
+      deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
 
       if (globalRequestQty > 4) {
         this.setState({
@@ -249,7 +250,6 @@ class SingleProduct extends Component {
           data,
           userId,
           loggedIn,
-          productId,
         } = this.props,
 
           currentProduct = {
@@ -366,10 +366,10 @@ class SingleProduct extends Component {
         />
         {
           data.FindProductById ?
-            <MainTitle
-              vendor={data.FindProductById.product.vendor}
-              mainTitle={data.FindProductById.product.mainTitle}
-            /> : ''
+          <MainTitle
+            vendor={data.FindProductById.product.vendor}
+            mainTitle={data.FindProductById.product.mainTitle}
+          /> : ''
         }
         {
           data.loading ? <h1>Loading ...</h1> :
@@ -415,11 +415,11 @@ class SingleProduct extends Component {
 const SingleProductWithState = connect(
   ({ orders, auth, routing, user }) => ({
     userId: user.profile ? user.profile._id : '',
+    flavor: routing.locationBeforeTransitions.pathname.split('/')[1],
     taxRate: orders.taxRate.totalRate,
     loggedIn: auth.loggedIn || false,
     userCart: auth.loggedIn ? user.profile.shopping.cart : [],
     guestCart: orders.cart,
-    productId: routing.locationBeforeTransitions.query.id,
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
@@ -445,7 +445,7 @@ const SingleProductWithStateAndData = compose(
   graphql(FindProductsByFlavor, {
     options: ({ location }) => ({
       variables: {
-        flavor: location.query.flavor,
+        flavor: location.pathname.split('/')[2],
       },
     }),
   }),

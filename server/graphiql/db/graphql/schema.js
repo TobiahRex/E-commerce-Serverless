@@ -11,6 +11,7 @@ const query = new GraphQLObjectType({
   fields: () => ({
     FetchUserProfile: UserTypes.queries.FetchUserProfile,
     FindProductById: ProductTypes.queries.FindProductById,
+    FindProductsByFlavor: ProductTypes.queries.FindProductsByFlavor,
     PopularProducts: ProductTypes.queries.PopularProducts,
     FetchMultipleProducts: ProductTypes.queries.FetchMultipleProducts,
   }),
