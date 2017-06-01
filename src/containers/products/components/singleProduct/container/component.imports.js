@@ -12,7 +12,7 @@ export BulkSaleModal from '../components/modals/promotion.bulk';
 export RegisterModal from '../components/modals/promotion.register';
 export ProductActions from '../components/productActions';
 export ProductSection from '../components/productSection';
-export ProductDisplay from '../components/productDisplay';
+export ProductDisplay from '../components/productDisplay/';
 export SocialMediaBtns from '../components/socialMediaBtns';
 export AddToCartButton from '../components/addToCartBtn';
 export NewMemberPromotionBtn from '../components/newMemberPromotionBtn';

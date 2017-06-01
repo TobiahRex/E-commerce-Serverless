@@ -19,9 +19,9 @@ class NavbarNavsJuicesDropdnMidthird extends Component {
   }
 
   push = (e) => {
-    let flavor = e.target.dataset.slug;
+    let flavor = e.target.dataset.routetag;
     if (!flavor) {
-      flavor = e.target.parentNode.dataset.slug;
+      flavor = e.target.parentNode.dataset.routetag;
     }
     this.props.push(`/juice/${flavor}`);
   };
@@ -38,14 +38,10 @@ class NavbarNavsJuicesDropdnMidthird extends Component {
         <div className="shop-dropdown-content-midThird-juices">
           { popularProducts.map(productObj => (
             <NavbarNavsJuicesDropdnJuiceCards
-              key={
-                productObj._id ||
-                new Buffer(`${productObj.nicotineStrength}${productObj.title}`, 'utf8')
-                .toString('base64')
-              }
-              slug={productObj.product.routeTag}
+              key={productObj._id}
+              routeTag={productObj.routeTag}
               push={this.push}
-              productInfo={productObj}
+              product={productObj}
             />))
           }
         </div>

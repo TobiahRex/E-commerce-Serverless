@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { propTypes, defaultProps } from './propTypes';
 import {
   ImageGroup,
   JuiceTitle,
@@ -10,33 +10,11 @@ import {
   NewMemberPromotionBtn,
   NicotineBtns,
   SocialMediaBtns,
-} from '../container/component.imports';
-
-const { any, bool, func, string, number, objectOf } = PropTypes;
+} from '../../container/component.imports';
 
 class ProductDisplay extends Component {
-  static propTypes = {
-    qty: number.isRequired,
-    // fbLike: func.isRequired,
-    added: bool,
-    error: bool,
-    errorMsg: string,
-    loggedIn: bool.isRequired,
-    productId: string,
-    productObj: objectOf(any),
-    qtyHandler: func.isRequired,
-    chosenStrength: number.isRequired,
-    modalHandler: func.isRequired,
-    nicotineHandler: func.isRequired,
-    addToCartHandler: func.isRequired,
-  };
-  static defaultProps = {
-    added: false,
-    error: false,
-    errorMsg: '',
-    productId: '',
-    productObj: null,
-  };
+  static propTypes = propTypes
+  static defaultProps = defaultProps;
 
   shouldComponentUpdate(nextProps) {
     if (!_.isEqual(nextProps, this.props)) return true;
@@ -48,6 +26,10 @@ class ProductDisplay extends Component {
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
 
+  composeCommonProduct = (arrayOfProducts) => {
+    // TODO create a common product from an array of products.
+  }
+
   render() {
     const {
       // fbLike,
@@ -56,11 +38,10 @@ class ProductDisplay extends Component {
       error,
       errorMsg,
       loggedIn,
-      productId,
-      productObj,
       qtyHandler,
-      chosenStrength,
       modalHandler,
+      productsArray,
+      chosenStrength,
       nicotineHandler,
       addToCartHandler,
     } = this.props;
@@ -72,7 +53,7 @@ class ProductDisplay extends Component {
       images,
       quantities: available,
       nicotineStrength,
-    } = productObj;
+    } = this.composeCommonProduct(productsArray);
     return (
       <div className="main__parent">
         <ImageGroup

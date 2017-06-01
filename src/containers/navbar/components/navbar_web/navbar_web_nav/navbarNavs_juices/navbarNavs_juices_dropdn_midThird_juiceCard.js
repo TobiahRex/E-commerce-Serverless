@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function NavbarNavsJuicesDropdnJuiceCards(props) {
   const {
-    slug,
     push,
-    productInfo: { product },
+    product,
+    routeTag,
   } = props;
   const imageUrl = product.images.reduce((accumObj, nextObj) => {
     switch (accumObj.purpose) {
@@ -18,7 +18,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
   return (
     <div className="midThird__juices-card">
       <button
-        data-slug={slug}
+        data-routetag={routeTag}
         className="juices-card__title"
         onClick={push}
       >
@@ -26,7 +26,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
       </button>
 
       <button
-        data-slug={slug}
+        data-routetag={routeTag}
         className="juices-card__image"
         onClick={push}
       >
@@ -42,7 +42,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
 }
 const { arrayOf, shape, string, func } = PropTypes;
 NavbarNavsJuicesDropdnJuiceCards.propTypes = {
-  productInfo: shape({
+  product: shape({
     title: string,
     price: string,
     nicotineStrength: string,
@@ -53,11 +53,11 @@ NavbarNavsJuicesDropdnJuiceCards.propTypes = {
       }),
     ),
   }),
-  slug: string,
+  routeTag: string,
   push: func.isRequired,
 };
 NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
-  productInfo: {
+  product: {
     title: '',
     price: '',
     nicotineStrength: '',
@@ -66,6 +66,6 @@ NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
       url: '',
     }],
   },
-  slug: '',
+  routeTag: '',
 };
 export default NavbarNavsJuicesDropdnJuiceCards;

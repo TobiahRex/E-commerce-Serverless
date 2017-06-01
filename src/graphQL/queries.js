@@ -13,7 +13,7 @@ export const FindProductsByFlavor = gql`
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
@@ -41,7 +41,7 @@ export const FindProductById = gql`
         flavor
         price
         sku
-        sizes
+        size
         nicotineStrength
         routeTag
         vendor
