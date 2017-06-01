@@ -44,29 +44,26 @@ const rootType = new ObjectType({
             description: 'The unique code for the product.',
             type: StringType,
           },
-          sizes: {
+          size: {
             description: 'The available sizes for the product.',
-            type: new ListType(
-              new EnumType({
-                name: 'ProductAvailableSizes',
-                /* eslint-disable quote-props */
-                values: {
-                  small: {
-                    value: '30 mil',
-                    description: '30 milliter bottle.',
-                  },
-                  medium: {
-                    value: '60 mil',
-                    description: '60 milliliter bottle.',
-                  },
-                  large: {
-                    value: '120 mil',
-                    description: '120 milliliter bottle',
-                  },
+            type: new EnumType({
+              name: 'ProductAvailableSizes',
+              /* eslint-disable quote-props */
+              values: {
+                '30 mil': {
+                  value: 30,
+                  description: '30 milliter bottle.',
                 },
-                /* eslint-enable quote-props */
-              }),
-            ),
+                '60 mil': {
+                  value: 60,
+                  description: '60 milliliter bottle.',
+                },
+                '120 mil': {
+                  value: 120,
+                  description: '120 milliliter bottle',
+                },
+              },
+            }),
           },
           nicotineStrength: {
             description: 'The nicotine strength for the Product.',
@@ -248,30 +245,27 @@ const mutations = {
                 description: 'The unique code for the new product.',
                 type: new NonNull(StringType),
               },
-              sizes: {
-                description: 'The available sizes for the new product.',
+              size: {
+                description: 'The available sizes for the product.',
                 type: new NonNull(
-                  new ListType(
-                    new EnumType({
-                      name: 'NewProductSize',
-                      /* eslint-disable quote-props */
-                      values: {
-                        small: {
-                          value: '30 mil',
-                          description: '30 milliliter bottle.',
-                        },
-                        medium: {
-                          value: '60 mil',
-                          description: '60 milliliter bottle.',
-                        },
-                        large: {
-                          value: '120 mil',
-                          description: '120 milliliter bottle',
-                        },
+                  new EnumType({
+                    name: 'ProductAvailableSizes',
+                    /* eslint-disable quote-props */
+                    values: {
+                      '30 mil': {
+                        value: 30,
+                        description: '30 milliter bottle.',
                       },
-                      /* eslint-enable quote-props */
-                    }),
-                  ),
+                      '60 mil': {
+                        value: 60,
+                        description: '60 milliliter bottle.',
+                      },
+                      '120 mil': {
+                        value: 120,
+                        description: '120 milliliter bottle',
+                      },
+                    },
+                  }),
                 ),
               },
               nicotineStrength: {
@@ -409,27 +403,26 @@ const mutations = {
                 description: 'The unique code for the new product.',
                 type: StringType,
               },
-              sizes: {
-                description: 'The available sizes for the new product.',
-                type: new ListType(
+              size: {
+                description: 'The available sizes for the product.',
+                type: new NonNull(
                   new EnumType({
-                    name: 'UpdateProductSize',
+                    name: 'ProductAvailableSizes',
                     /* eslint-disable quote-props */
                     values: {
-                      small: {
-                        value: '30 mil',
-                        description: '30 milliliter bottle.',
+                      '30 mil': {
+                        value: 30,
+                        description: '30 milliter bottle.',
                       },
-                      medium: {
-                        value: '60 mil',
+                      '60 mil': {
+                        value: 60,
                         description: '60 milliliter bottle.',
                       },
-                      large: {
-                        value: '120 mil',
+                      '120 mil': {
+                        value: 120,
                         description: '120 milliliter bottle',
                       },
                     },
-                    /* eslint-enable quote-props */
                   }),
                 ),
               },

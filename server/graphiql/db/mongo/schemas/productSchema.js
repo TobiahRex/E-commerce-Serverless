@@ -24,11 +24,11 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
-    sizes: [{
-      type: String,
-      enum: ['30 mil', '60 mil', '120 mil'],
+    size: {
+      type: Number,
+      enum: [30, 60, 120],
       required: true,
-    }],
+    },
     nicotineStrength: {
       type: Number,
       enum: [2, 4, 6, 8, 10, 12, 14, 16, 18],

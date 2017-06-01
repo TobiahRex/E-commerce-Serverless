@@ -393,7 +393,7 @@ class SingleProduct extends Component {
             modalHandler={this.modalHandler}
             nicotineHandler={this.nicotineHandler}
             addToCartHandler={this.addToCartHandler}
-            productObj={data.FindProductById ? data.FindProductById.product : null}
+            productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : null}
           />
         }
         <ActionBtns />
