@@ -48,9 +48,9 @@ new Promise((resolve, reject) => {
 });
 
 
-productSchema.statics.createProduct = product =>
+productSchema.statics.createProduct = (product, statistics) =>
 new Promise((resolve, reject) => {
-  bbPromise.fromCallback(cb => Product.create({ product }, cb))
+  bbPromise.fromCallback(cb => Product.create({ product, statistics }, cb))
   .then((newProduct) => {
     console.log('\n//mongo/model/product.js\n @ createProduct RESOLVE\n', newProduct);
     resolve(newProduct);

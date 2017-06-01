@@ -136,49 +136,50 @@ const juices = {
   }
   `,
   fruityBammBamm: `
-  mutation createProduct {
-    createProduct(product: {
-      mainTitle: "Switch Juice",
-      title: "Fruity Bamm Bamm",
-      flavor: "fruity_bamm_bamm",
-      price: "30",
-      sku: "NJ2JP0004",
-      size: small,
-      nicotineStrength: two,
-      images: [{
-  			purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png"
-      }, {
-        purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fruity-bamm-bamm.png"
-      }],
-      routeTag: "fruity_bamm_bamm",
-      vendor: "Vape Switch",
-      blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!!!!!"
-    }) {
-      _id,
-      product {
-        mainTitle
-        title
-        flavor
-        price
-        sku
-        size
-        nicotineStrength
-        routeTag
-        vendor
-        blurb
-        images {
-          purpose
-          url
-        }
-        dates {
-          added_to_store
-          removed_from_store
+  mutation CreateProduct {
+      CreateProduct(product: {
+        mainTitle: "Switch Juice",
+        title: "Fruity Bamm Bamm",
+        flavor: "fruity_bamm_bamm",
+        price: "30",
+        sku: "NJ2JP00016",
+        size: small,
+        nicotineStrength: eight,
+        images: [{
+    			purpose: "card",
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png"
+        }, {
+          purpose: "large",
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fruity-bamm-bamm.png"
+        }],
+        routeTag: "fruity_bamm_bamm",
+        vendor: "Vape Switch",
+        blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!!!!!"
+
+      }) {
+        _id,
+        product {
+          mainTitle
+          title
+          flavor
+          price
+          sku
+          size
+          nicotineStrength
+          routeTag
+          vendor
+          blurb
+          images {
+            purpose
+            url
+          }
+          dates {
+            added_to_store
+            removed_from_store
+          }
         }
       }
     }
-  }
   `,
   strawberriesNCream: `
   mutation CreateProduct {
