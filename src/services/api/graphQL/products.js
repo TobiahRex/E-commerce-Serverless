@@ -43,15 +43,14 @@ const createAPI = () => {
     query: `query PopularProducts($qty: Int!) {
       PopularProducts(qty: $qty) {
         _id
-        product {
-          title
-          routeTag
-          flavor
-          images {
-            purpose
-            url
-          }
+        docId
+        routeTag
+        images {
+          purpose
+          url
         }
+        title
+        completedCheckouts
       }
     }`,
     variables: {

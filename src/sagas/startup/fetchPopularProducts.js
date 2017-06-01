@@ -10,9 +10,15 @@ export default function* fetchPopularProducts() {
   const response = yield call(() => api.FetchPopularProducts(6));
 
   const { ok, problem, data: { data } } = cleanGQLresponse(response);
-
   if (ok) {
-    yield put(productActions.receivedPopularProducts(data.PopularProducts));
+    yield put(productActions.receivedPopularProducts({
+      _id: data.docId,
+      flavor: data._id,
+      title: data.title,
+      images: [...data.images],
+      routeTag: data.routeTag,
+      completedCheckouts: data.completedCheckouts,
+    }));
   } else {
     yield [
       put(productActions.productRequestError(problem)),
