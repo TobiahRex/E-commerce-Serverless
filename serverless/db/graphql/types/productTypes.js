@@ -170,6 +170,54 @@ const rootType = new ObjectType({
     },
   },
 });
+const queryTypes = {
+  popularProductsType: new ObjectType({
+    name: 'PopularProductType',
+    description: 'The return fields for querying popular products.',
+    fields: () => ({
+      _id: {
+        description: 'The unique identification for this popular product.  Default value is a unique product category.',
+        type: new NonNull(StringType),
+      },
+      docId: {
+        description: 'The Mongo ID for the underlying Product.',
+        type: new NonNull(StringType),
+      },
+      title: {
+        description: 'The main Title for this Product.',
+        type: new NonNull(StringType),
+      },
+      routeTag: {
+        description: 'The route tag (slug) for this product.',
+        type: new NonNull(StringType),
+      },
+      images: {
+        description: 'The images for Popular Products.',
+        type: new NonNull(
+          new ListType(
+            new ObjectType({
+              name: 'PopularProductImages',
+              fields: () => ({
+                purpose: {
+                  description: 'The intended purpose for this image.',
+                  type: StringType,
+                },
+                url: {
+                  description: 'The url for this image.',
+                  type: StringType,
+                },
+              }),
+            }),
+          ),
+        ),
+      },
+      completedCheckouts: {
+        description: 'The number of times this product has been successfully purchased.',
+        type: IntType,
+      },
+    }),
+  }),
+};
 const queries = {
   FetchMultipleProducts: {
     type: new ListType(rootType),
@@ -204,7 +252,7 @@ const queries = {
     resolve: (_, { _id }, { Product }) => Product.findProductById(_id),
   },
   PopularProducts: {
-    type: new ListType(rootType),
+    type: new ListType(queryTypes.popularProductsType),
     args: {
       qty: {
         type: new NonNull(IntType),

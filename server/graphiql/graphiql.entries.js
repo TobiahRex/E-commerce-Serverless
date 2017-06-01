@@ -1,5 +1,20 @@
 /* eslint-disable no-tabs, no-unused-vars */
 const juices = {
+  PopularProducts: `
+    {
+    PopularProducts(qty: 6){
+      _id
+      docId
+      routeTag
+      images {
+        purpose
+        url
+      }
+      title
+      completedCheckouts
+    }
+  }
+  `,
   frenchVanillaMocha: `
   mutation CreateProduct {
     CreateProduct(product: {

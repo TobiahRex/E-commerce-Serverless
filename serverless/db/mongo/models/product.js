@@ -112,19 +112,29 @@ export default (db) => {
 
   productSchema.statics.getPopularProducts = qty =>
   new Promise((resolve, reject) => {
-    console.log('\n//mongo/models/product.js @ getPopularProducts');
-    Product.find({})
+    Product.aggregate([
+      { $group: {
+        _id: '$product.flavor',
+        docId: { $first: '$_id' },
+        title: { $first: '$product.title' },
+        routeTag: { $first: '$product.routeTag' },
+        images: { $first: '$product.images' },
+        completedCheckouts: { $first: '$statistics.completed_checkouts' },
+      } },
+      { $sort: { completedCheckouts: -1 } },
+      { $limit: qty },
+    ])
     .exec()
     .then((dbProducts) => {
-      console.log('\n//mongo/model/products.js\n @ getPopularProducts: ', dbProducts.slice(0, qty));
-      resolve(dbProducts.slice(0, qty));
+      console.log(`
+        Found the following products: ${JSON.stringify(dbProducts, null, 2)}
+      `);
+      resolve(dbProducts);
     })
-    .catch(error =>
-      reject({
-        problem: `Could not fetch the ${qty} products you requested.
-        Mongo Error = ${error}`,
-      }),
-    );
+    .catch(error => reject({
+      problem: `Could not fetch the ${qty} products you requested.
+      Mongo Error = ${error}`,
+    }));
   });
 
   const Product = db.model('Product', productSchema);

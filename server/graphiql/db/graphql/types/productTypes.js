@@ -225,23 +225,26 @@ const queryTypes = {
         description: 'The route tag (slug) for this product.',
         type: new NonNull(StringType),
       },
-      images: new NonNull(
-        new ListType(
-          new ObjectType({
-            name: 'PopularProductImages',
-            fields: () => ({
-              purpose: {
-                description: 'The intended purpose for this image.',
-                type: StringType,
-              },
-              url: {
-                description: 'The url for this image.',
-                type: StringType,
-              },
+      images: {
+        description: 'The images for Popular Products.',
+        type: new NonNull(
+          new ListType(
+            new ObjectType({
+              name: 'PopularProductImages',
+              fields: () => ({
+                purpose: {
+                  description: 'The intended purpose for this image.',
+                  type: StringType,
+                },
+                url: {
+                  description: 'The url for this image.',
+                  type: StringType,
+                },
+              }),
             }),
-          }),
+          ),
         ),
-      ),
+      },
       completedCheckouts: {
         description: 'The number of times this product has been successfully purchased.',
         type: IntType,
@@ -249,6 +252,7 @@ const queryTypes = {
     }),
   }),
 };
+
 const queries = {
   FetchMultipleProducts: {
     type: new ListType(rootType),
