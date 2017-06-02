@@ -32,7 +32,7 @@ class ProductDisplay extends Component {
         accum = {
           nicotineStrengths: [{
             _id,
-            strength: product.nicotineStrength,
+            nicotineStrength: product.nicotineStrength,
           }],
           product: {
             sku: product.sku,
@@ -49,7 +49,7 @@ class ProductDisplay extends Component {
       }
       accum.nicotineStrengths.push({
         _id,
-        strength: product.nicotineStrength,
+        nicotineStrength: product.nicotineStrength,
       });
       return accum;
     }, {});

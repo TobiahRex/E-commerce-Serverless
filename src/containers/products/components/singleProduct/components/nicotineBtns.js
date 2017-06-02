@@ -10,17 +10,17 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
       backgroundColor: '#FC2525',
     },
   };
-  nicotineStrengths = nicotineStrengths.map(({ _id, strength }) => {
-    switch (strength) {
-      case 'two': return ({ strength: 2, _id });
-      case 'four': return ({ strength: 4, _id });
-      case 'six': return ({ strength: 6, _id });
-      case 'eight': return ({ strength: 8, _id });
-      case 'ten': return ({ strength: 10, _id });
-      case 'twelve': return ({ strength: 12, _id });
-      case 'fourteen': return ({ strength: 14, _id });
-      case 'sixteen': return ({ strength: 16, _id });
-      case 'eighteen': return ({ strength: 18, _id });
+  nicotineStrengths = nicotineStrengths.map(({ _id, nicotineStrength }) => {
+    switch (nicotineStrength) {
+      case 'two': return ({ nicotineStrength: 2, _id });
+      case 'four': return ({ nicotineStrength: 4, _id });
+      case 'six': return ({ nicotineStrength: 6, _id });
+      case 'eight': return ({ nicotineStrength: 8, _id });
+      case 'ten': return ({ nicotineStrength: 10, _id });
+      case 'twelve': return ({ nicotineStrength: 12, _id });
+      case 'fourteen': return ({ nicotineStrength: 14, _id });
+      case 'sixteen': return ({ nicotineStrength: 16, _id });
+      case 'eighteen': return ({ nicotineStrength: 18, _id });
       default: return 0;
     }
   });
@@ -30,20 +30,20 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
       <h3>Nicotine Strength</h3>
       <ul className="nicotine__list">
         {
-          nicotineStrengths.map(({ _id, strength }) => (
+          nicotineStrengths.map(({ _id, nicotineStrength }) => (
             <li
               key={_id}
               className="list--strength"
               style={
-                strength === chosenStrength ?
+                nicotineStrength === chosenStrength ?
                 style.active : style.inactive
               }
             >
               <button
-                data-strength={strength}
+                data-nicotinestrength={nicotineStrength}
                 data-product={_id}
                 className="strength__btn" onClick={nicotineHandler}
-              >{`${strength}mg`}</button>
+              >{`${nicotineStrength}mg`}</button>
             </li>
           ))
         }

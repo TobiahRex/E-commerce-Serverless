@@ -151,10 +151,10 @@ class SingleProduct extends Component {
 
   nicotineHandler = (e) => {
     let productId = e.target.dataset.product;
-    let nicStrength = e.target.dataset.strength;
+    let nicStrength = e.target.dataset.nicotinestrength;
     if (!nicStrength || !productId) {
       productId = e.target.parentNode.dataset.product;
-      nicStrength = e.target.parentNode.dataset.strength;
+      nicStrength = e.target.parentNode.dataset.nicotinestrength;
     }
     const product = this.props.data.FindProductsByFlavor.filter(({ _id }) => _id === productId)[0];
 
@@ -235,7 +235,7 @@ class SingleProduct extends Component {
 
         {
           qty,
-          chosenStrength: strength,
+          chosenStrength: nicotineStrength,
           product: {
             product,
             _id: productId,
@@ -264,7 +264,7 @@ class SingleProduct extends Component {
             _id: productId,
             qty,
             userId,
-            strength,
+            nicotineStrength,
             ...product,  // from state
           };
 
@@ -303,7 +303,7 @@ class SingleProduct extends Component {
                 variables: {
                   qty,
                   userId,
-                  nicotineStrength: strength,
+                  nicotineStrength,
                   product: productId,
                 },
               })
