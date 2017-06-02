@@ -112,6 +112,7 @@ new Promise((resolve, reject) => {
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {
+    console.log('%csavedUser', 'background:red;', savedUser.shopping.cart);
     console.log('Saved product to the User\'s Shopping Cart!');
     resolve(savedUser);
   })
