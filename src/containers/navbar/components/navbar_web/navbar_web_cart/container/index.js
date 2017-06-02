@@ -16,12 +16,14 @@ class NavbarCart extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   shouldComponentUpdate(nextProps) {
-    console.log('%cnextProps', 'background:pink;', nextProps);
-
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
-      { FetchMultipleProducts: { FetchMultipleProducts: nextUserCart } } = nextProps,
-      { FetchMultipleProducts: { FetchMultipleProducts: thisUserCart } } = this.props,
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: nextUserCart },
+      } = nextProps,
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: thisUserCart },
+      } = this.props,
 
       reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
       userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
