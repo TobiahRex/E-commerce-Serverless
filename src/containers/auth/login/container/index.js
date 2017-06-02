@@ -48,10 +48,8 @@ class Login extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (this.checkForRedirect(nextProps)) {
-      this.props.push(nextProps.previousPageUrl);
-    }
-    return true;
+    const { path, result } = this.checkForRedirect(nextProps);
+    if (result) this.props.push(path);
   }
 
   checkForRedirect = ({ loggedIn, previousPageUrl, currentActiveUrl }) => {

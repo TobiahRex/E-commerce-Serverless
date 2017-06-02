@@ -14,10 +14,10 @@ export const authTypes = Types;
 export default Creators;
 
 const INITIAL_STATE = Immutable({
-  authorizationInProgress: false,
-  loginSuccess: JSON.parse(localStorage.getItem('loginSuccess')),
-  loginError: null,
   loggedIn: JSON.parse(localStorage.getItem('loggedIn')) || false,
+  loginError: null,
+  loginSuccess: JSON.parse(localStorage.getItem('loginSuccess')),
+  authorizationInProgress: false,
 });
 
 const authorizationInProgress = state => ({
@@ -32,19 +32,22 @@ const loginSuccess = (state) => {
     ...state,
     loggedIn: true,
     loginSuccess: true,
+    authorizationInProgress: false,
   });
 };
 
 const loginFailure = (state, { error }) => ({
   loggedIn: false,
-  loginSuccess: false,
   loginError: error,
+  loginSuccess: false,
+  authorizationInProgress: false,
 });
 
 const loggedOut = state => ({
   ...state,
   loggedIn: false,
   loginSuccess: null,
+  authorizationInProgress: false,
 });
 
 export const authReducer = createReducer(INITIAL_STATE, {
