@@ -9,7 +9,6 @@ import {
 
 function NavbarCartDropdnContent({
   loading,
-  loggedIn,
   cartItems,
   cartTotal,
   editCartItem,
@@ -21,7 +20,6 @@ function NavbarCartDropdnContent({
         <NavbarCartPromotion />
         <NavbarCartRecentlyAdded />
         <NavbarCartProducts
-          loggedIn={loggedIn}
           loading={loading}
           cartItems={cartItems}
           cartTotal={cartTotal}
@@ -36,7 +34,6 @@ function NavbarCartDropdnContent({
 const { bool, arrayOf, object, number, func } = PropTypes;
 NavbarCartDropdnContent.propTypes = {
   loading: bool.isRequired,
-  loggedIn: bool.isRequired,
   cartItems: arrayOf(object).isRequired,
   cartTotal: number.isRequired,
   editCartItem: func.isRequired,

@@ -13,7 +13,6 @@ const { bool, func, object, number, arrayOf } = PropTypes;
 class NavbarCartProducts extends Component {
   static propTypes = {
     loading: bool.isRequired,
-    loggedIn: bool.isRequired,
     cartItems: arrayOf(object),
     cartTotal: number.isRequired,
     editCartItem: func.isRequired,
@@ -39,7 +38,6 @@ class NavbarCartProducts extends Component {
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
   renderListContent = ({ cartItems, loading }) => {
-    console.log('%cloading', 'background:purple;', loading);
     if (loading) {
       return (
         <div className="products-list-empty">
@@ -58,26 +56,21 @@ class NavbarCartProducts extends Component {
     }
     return this.renderCartItems(cartItems);
   }
-  renderCartItems = (productItems, loggedIn) =>
-  productItems.map((productObj) => {
-    let product;
-    if (loggedIn) product = { _id: productObj._id, ...productObj.product };
-    else product = { ...productObj };
-
+  renderCartItems = productItems => productItems.map((product) => {
     const {
       _id,
       qty,
       title,
       price,
       images,
-      strength,
+      nicotineStrength,
       routeTag,
     } = product;
 
     return (
       <li
         className="products-list-card"
-        key={`${_id}-${strength}`}
+        key={_id}
       >
         <NavbarCartProductsCardImage
           imageUrl={this.filterImages(images)}
@@ -88,7 +81,7 @@ class NavbarCartProducts extends Component {
           qty={qty}
           title={title}
           price={price}
-          strength={strength}
+          nicotineStrength={nicotineStrength}
         />
 
         <NavbarCartProductsCardActions

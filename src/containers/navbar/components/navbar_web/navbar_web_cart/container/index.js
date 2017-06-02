@@ -68,28 +68,49 @@ class NavbarCart extends Component {
     }
   }
 
+  zipUserCart = (userProfile, multipleProducts) => {
+    const zip = (left, right, combinerFunction) => {
+      let counter;
+      const results = [];
+
+      for (
+        counter = 0;
+        counter < Math.min(left.length, right.length);
+        counter += 1
+      ) {
+        results[counter] = combinerFunction(left[counter], right[counter]);
+      }
+      return results;
+    };
+
+    const profileCart = userProfile.shopping.cart;
+    return zip(profileCart, multipleProducts, (userCart, productCart) => ({
+      _id: productCart._id,
+      qty: userCart.qty,
+      nicotineStrength: userCart.nicotineStrength,
+      ...productCart.product,
+    }));
+  }
+
   render() {
     const {
       qty,
-      loggedIn,
       guestCart,
+      activeUser,
       FetchMultipleProducts: userCartResult,
     } = this.props;
-    console.log('%cuserCartResult.loading', 'background:cyan;', userCartResult.loading);
 
     let cartItems = [];
     if (!userCartResult.FetchMultipleProducts && guestCart.length) {
       cartItems = guestCart;
     } else if (userCartResult.FetchMultipleProducts) {
-      cartItems = userCartResult.FetchMultipleProducts;
+      cartItems = this.zipUserCart(activeUser, userCartResult.FetchMultipleProducts);
     }
-    console.log('%ccartItems', 'background:green;', cartItems);
 
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
         <NavbarCartDropdnContent
-          loggedIn={loggedIn}
           loading={!!userCartResult.FetchMultipleProducts && userCartResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
@@ -137,7 +158,6 @@ const NavbarCartWithStateAndGraphQL = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
     guestCart: orders.cart,
-    loggedIn: auth.loggedIn,
     activeUser: user.profile || { empty: true },
   }),
   dispatch => ({

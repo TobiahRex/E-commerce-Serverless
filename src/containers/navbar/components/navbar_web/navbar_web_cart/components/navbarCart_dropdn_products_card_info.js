@@ -5,7 +5,7 @@ function NavbarCartProductsCardInfo({
   title,
   qty,
   price,
-  strength,
+  nicotineStrength,
 }) {
   return (
     <div className="products-list-card-info">
@@ -17,7 +17,7 @@ function NavbarCartProductsCardInfo({
       </div>
       <div className="nic-strength">
         <i>
-          {`${strength}mg`}
+          {`${nicotineStrength}mg`}
         </i>
       </div>
     </div>
@@ -27,14 +27,14 @@ const { string, number } = PropTypes;
 NavbarCartProductsCardInfo.defaultProps = {
   price: '',
   qty: 0,
-  strength: 0,
   title: '',
+  nicotineStrength: 0,
 };
 NavbarCartProductsCardInfo.propTypes = {
   price: string,
   qty: number,
-  strength: number,
   title: string,
+  nicotineStrength: number,
 };
 
 export default NavbarCartProductsCardInfo;
