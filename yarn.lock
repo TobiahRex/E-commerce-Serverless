@@ -2510,6 +2510,10 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
+console-group@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/console-group/-/console-group-0.3.3.tgz#6d8eb6b9d6b757a2895284f62d09c7ad43f2bbce"
+
 console-stream@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/console-stream/-/console-stream-0.1.1.tgz#a095fe07b20465955f2fafd28b5d72bccd949d44"

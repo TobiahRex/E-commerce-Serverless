@@ -48,6 +48,7 @@
     "cheerio": "^0.22.0",
     "colors": "^1.1.2",
     "compression-webpack-plugin": "^0.3.2",
+    "console-group": "^0.3.3",
     "copyfiles": "^1.2.0",
     "css-loader": "^0.27.3",
     "dotenv": "^4.0.0",
