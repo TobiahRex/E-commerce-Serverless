@@ -37,9 +37,8 @@ class Login extends Component {
     };
   }
   componentWillMount() {
-    if (this.checkForRedirect(this.props)) {
-      this.props.push(this.props.previousPageUrl);
-    }
+    const { path, result } = this.checkForRedirect(this.props);
+    if (result) this.props.push(path);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,17 +56,14 @@ class Login extends Component {
 
   checkForRedirect = ({ loggedIn, previousPageUrl, currentActiveUrl }) => {
     if (loggedIn) {
-      if (previousPageUrl === '/login') return ({ result: true, path: '/' });
-      if (previousPageUrl !== currentActiveUrl) return ({ result: true, path: previousPageUrl });
-    } else {
-      return false;
+      if (previousPageUrl === '/login') {
+        return ({ result: true, path: '/' });
+      }
+      if (previousPageUrl !== currentActiveUrl) {
+        return ({ result: true, path: previousPageUrl });
+      }
     }
-
-
-    if (nextProps.loggedIn && nextProps.previousPageUrl !== '/login') {
-      return true;
-    } else if (!nextProps.loggedIn) return false;
-    return false;
+    return false; // not logged in = no re-direct;
   }
 
   socialLogin = (e) => {
