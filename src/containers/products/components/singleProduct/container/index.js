@@ -260,17 +260,34 @@ class SingleProduct extends Component {
       } else if (!deltaQty) {
         const { userId, loggedIn } = this.props,
 
-          currentProduct = {
+          currentGuestProduct = {
             _id: productId,
             qty,
             userId,
             nicotineStrength,
             ...product,  // from state
+          },
+
+          currentMemberProduct = {
+            qty,
+            nicotineStrength,
+            product: productId,
           };
 
-        if (!prevCartIds.includes(productId) && updatedCart.length) {
-          updatedCart.push(currentProduct);
-        }
+        // If user is logged in, and there's already products in their cart, but the current product is not one of them, add it.
+        if (
+          loggedIn &&
+          updatedCart.length &&
+          !prevCartIds.includes(productId)
+        ) updatedCart.push(currentMemberProduct);
+
+        // If user is NOT logged in, and there's already products in their cart, but the current product is not one of them, add it.
+        if (
+          !loggedIn &&
+          updatedCart.length &&
+          !prevCartIds.includes(productId)
+        ) updatedCart.push(currentGuestProduct);
+
 
         if (loggedIn) {
           if (updatedCart.length) {
