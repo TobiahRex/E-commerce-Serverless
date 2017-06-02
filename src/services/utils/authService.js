@@ -32,18 +32,14 @@ export default class AuthService extends EventEmitter {
       _idTokenVerification: false,
     }, (err, authResult) => {
       if (err) {
-        // console.error('parseHash Error: ', err)
         this.emit('login_failure', err);
       }
-      // console.warn('4) parseHash - authResult: ', authResult)
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setToken(authResult.accessToken, authResult.idToken);
         this.auth0.client.userInfo(authResult.accessToken, (error, profile) => {
           if (error) {
-            // console.error('userInfo Error:', error)
             this.emit('login_failure', error);
           } else {
-            // console.warn('5) userInfo - profile: ', authResult)
             this.emit('logged_in', { profile, idToken: authResult.idToken });
           }
         });

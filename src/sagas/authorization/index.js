@@ -87,6 +87,7 @@ export function* watchAuthActions() {
         put(push('/')),
         put(authActions.loggedOut()),
         put(userActions.removeProfile()),
+        put(sessionActions.resetPreLoginUrl()),
       ]; break;
 
       default: throw Error('Saga Login Error');

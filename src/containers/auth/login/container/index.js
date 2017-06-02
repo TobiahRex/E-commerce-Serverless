@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
-import LoadingOrError from './components/loginForm.loadingOrError';
-import SocialButtonList from './components/loginForm.socialButtonList';
-import authActions from '../../../redux/auth';
+import LoadingOrError from '../components/loginForm.loadingOrError';
+import SocialButtonList from '../components/loginForm.socialButtonList';
+import authActions from '../../../../redux/auth';
 
 const { objectOf, func, string, bool, any } = PropTypes;
 
@@ -55,8 +55,16 @@ class Login extends Component {
     return true;
   }
 
-  checkForRedirect = (nextProps) => {
-    if (nextProps.loggedIn && nextProps.previousPageUrl !== nextProps.currentActiveUrl) {
+  checkForRedirect = ({ loggedIn, previousPageUrl, currentActiveUrl }) => {
+    if (loggedIn) {
+      if (previousPageUrl === '/login') return ({ result: true, path: '/' });
+      if (previousPageUrl !== currentActiveUrl) return ({ result: true, path: previousPageUrl });
+    } else {
+      return false;
+    }
+
+
+    if (nextProps.loggedIn && nextProps.previousPageUrl !== '/login') {
       return true;
     } else if (!nextProps.loggedIn) return false;
     return false;

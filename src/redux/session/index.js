@@ -29,13 +29,13 @@ const save = (state, { page, url }) => ({
 });
 const savePreloginPage = state => ({
   ...state,
-  preLoginUrl: state.previousPageUrl,
+  preLoginUrl: state.previousPageUrl || '/',
 });
 const resetPreLoginUrl = (state) => {
   AuthService.emit('prelogin_url', state.preLoginUrl);
   return ({
     ...state,
-    preLoginUrl: '',
+    preLoginUrl: '/',
   });
 };
 export const sessionReducer = createReducer(INITIAL_STATE, {

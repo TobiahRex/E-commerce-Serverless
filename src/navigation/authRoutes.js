@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 
 // ----------------------------- Auth -------------------------------
 import ResetPasswordEmail from '../containers/auth/ResetEmail/reset';
-import Login from '../containers/auth/login';
+import Login from '../containers/auth/login/container/';
 // import Register from '../containers/auth/register';
 import Forgot from '../containers/auth/Forgot/forgot';
 
