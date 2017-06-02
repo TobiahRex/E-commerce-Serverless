@@ -17,21 +17,18 @@ class NavbarCart extends Component {
   static defaultProps = defaultProps
   shouldComponentUpdate(nextProps) {
     console.log('%cnextProps', 'background:pink;', nextProps);
+
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
-      reduxCart = isArrayEqual(nextProps.guestCart, this.props.guestCart);
+      { FetchMultipleProducts: { FetchMultipleProducts: nextUserCart } } = nextProps,
+      { FetchMultipleProducts: { FetchMultipleProducts: thisUserCart } } = this.props,
 
-    // data.FetchMultipleProducts will only exist if ApolloClient received non-null data.
-    // 1. If data was returned before, and now, compare and evaluate.
-    // 2. If data was not returned before, but now it has, automatically re-render.
-    let dbCart;
-    if (this.props.data) {                                                 // 1.
-      dbCart = isArrayEqual(nextProps.data.FetchMultipleProducts, this.props.data.FetchMultipleProducts);
-    } else if (!this.props.data && nextProps.data) {                      // 2.
+      reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
+      userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
+
+    if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
       return true;
     }
-
-    if (!_.isEqual(nextProps, this.props) || reduxCart || dbCart) return true;
     return false;
   }
 
@@ -77,7 +74,6 @@ class NavbarCart extends Component {
       guestCart,
       data,
     } = this.props;
-    console.log('%cthis.props', 'background:pink;', this.props);
 
     let cartItems = [];
     if (!data && guestCart.length) {
