@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
-const { number, string, shape, func, arrayOf, objectOf, object, any } = PropTypes;
+const { number, string, shape, bool, func, arrayOf, objectOf, object, any } = PropTypes;
 
 export const propTypes = {
   qty: number.isRequired,
   push: func.isRequired,
+  loggedIn: bool.isRequired,
   guestCart: arrayOf(object),
   saveProfile: func.isRequired,
   updateToGuestCart: func.isRequired,

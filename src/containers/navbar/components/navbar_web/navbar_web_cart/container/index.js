@@ -53,7 +53,7 @@ class NavbarCart extends Component {
     let productId = e.target.dataset.id;
     if (!productId) productId = e.target.parentNode.dataset.id;
 
-    if (activeUser) {
+    if (!!activeUser._id) {
       this.props.DeleteFromMemberCart({
         variables: {
           productId,
@@ -64,33 +64,33 @@ class NavbarCart extends Component {
         saveProfile(updatedUser);
       });
     } else {
-      updateToGuestCart(
-        guestCart.filter(({ _id }) => _id !== productId),
-      );
+      updateToGuestCart(guestCart.filter(({ _id }) => _id !== productId));
     }
   }
 
   render() {
     const {
       qty,
+      loggedIn,
       guestCart,
-      data,
+      FetchMultipleProducts: userCartResult,
     } = this.props;
+    console.log('%cuserCartResult.loading', 'background:cyan;', userCartResult.loading);
 
     let cartItems = [];
-    if (!data && guestCart.length) {
+    if (!userCartResult.FetchMultipleProducts && guestCart.length) {
       cartItems = guestCart;
-    } else if (!data && !guestCart.length) {
-      cartItems = [];
-    } else if (data.FetchMultipleProducts) {
-      cartItems = data.FetchMultipleProducts;
+    } else if (userCartResult.FetchMultipleProducts) {
+      cartItems = userCartResult.FetchMultipleProducts;
     }
+    console.log('%ccartItems', 'background:green;', cartItems);
 
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
         <NavbarCartDropdnContent
-          loading={!!data && data.loading}
+          loggedIn={loggedIn}
+          loading={!!userCartResult.FetchMultipleProducts && userCartResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}
@@ -137,6 +137,7 @@ const NavbarCartWithStateAndGraphQL = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
     guestCart: orders.cart,
+    loggedIn: auth.loggedIn,
     activeUser: user.profile || { empty: true },
   }),
   dispatch => ({

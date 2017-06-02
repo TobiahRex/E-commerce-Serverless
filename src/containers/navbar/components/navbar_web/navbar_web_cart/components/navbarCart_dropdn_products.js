@@ -13,19 +13,25 @@ const { bool, func, object, number, arrayOf } = PropTypes;
 class NavbarCartProducts extends Component {
   static propTypes = {
     loading: bool.isRequired,
-    cartItems: arrayOf(object).isRequired,
+    loggedIn: bool.isRequired,
+    cartItems: arrayOf(object),
     cartTotal: number.isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   };
+  static defaultProps = {
+    cartItems: [],
+  }
   shouldComponentUpdate(nextProps) {
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-    const productsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
+
+      productsDiff = isArrayEqual(nextProps.cartItems, this.props.cartItems);
 
     if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
     return false;
   }
   filterImages = (images) => {
+    console.log('%cimages', 'background:red;', images);
     if (!images.length) return '';
 
     const helper = ({ purpose }) => purpose === 'card';
@@ -33,12 +39,14 @@ class NavbarCartProducts extends Component {
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
   renderListContent = ({ cartItems, loading }) => {
+    console.log('%cloading', 'background:purple;', loading);
     if (loading) {
       return (
         <div className="products-list-empty">
-          Your Cart Is Loading...
+          <FontAwesome name="spinner" size="3x" pulse />
           <br />
-          <FontAwesome name="spinner" size="2x" pulse />
+          <br />
+          Your Cart Is Loading...
         </div>
       );
     } else if (!cartItems.length && !loading) {
@@ -50,8 +58,11 @@ class NavbarCartProducts extends Component {
     }
     return this.renderCartItems(cartItems);
   }
-  renderCartItems = productItems =>
-  productItems.map((product) => {
+  renderCartItems = (productItems, loggedIn) =>
+  productItems.map((productObj) => {
+    if (loggedIn) {
+      
+    }
     const {
       _id,
       qty,
@@ -60,7 +71,7 @@ class NavbarCartProducts extends Component {
       strength,
       images,
       routeTag,
-    } = product;
+    } = productObj;
     return (
       <li
         className="products-list-card"
@@ -84,9 +95,9 @@ class NavbarCartProducts extends Component {
           editCartItem={this.props.editCartItem}
           deleteFromCart={this.props.deleteFromCart}
         />
-      </li>
-    );
+      </li>);
   });
+
   render() {
     return (
       <div>
