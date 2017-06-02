@@ -139,7 +139,7 @@ const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: ({ activeUser }) => {
-      if (!activeUser.shopping) return ({ variables: { ids: [''] } });
+      if (!activeUser.shopping) return ({ variables: { ids: [] } });
 
       const ids = activeUser.shopping.cart.reduce((accum, { product: id }) => {
         accum.push(id);

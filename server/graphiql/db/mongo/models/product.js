@@ -24,6 +24,8 @@ new Promise((resolve, reject) => {
 
 productSchema.statics.fetchMultiple = ids =>
 new Promise((resolve, reject) => {
+  if (!ids.length) resolve();
+
   Product.find({ _id: { $in: [...ids] } })
   .exec()
   .then((dbProducts) => {
@@ -32,6 +34,7 @@ new Promise((resolve, reject) => {
   })
   .catch(error => reject(`
     problem: Could not fetch multiple products.
+
     Mongo Error = ${error}.
   `));
 });
