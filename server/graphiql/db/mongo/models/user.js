@@ -99,15 +99,15 @@ new Promise((resolve, reject) => {
   .catch(reject);
 });
 
-userSchema.statics.addToMemberCart = ({ userId, qty, strength, product }) =>
+userSchema.statics.addToMemberCart = ({ userId, qty, nicotineStrength, product }) =>
 new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart.push({
       qty,
-      strength,
       product,
+      nicotineStrength,
     });
     return dbUser.save({ validateBeforeSave: true });
   })
@@ -120,7 +120,7 @@ new Promise((resolve, reject) => {
     args: {
       userId: ${userId},
       qty: ${qty},
-      strength: ${strength},
+      nicotineStrength: ${nicotineStrength},
       product: ${product},
     }
     Mongo Error: ${error}`,
