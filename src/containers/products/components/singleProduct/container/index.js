@@ -175,6 +175,8 @@ class SingleProduct extends Component {
     if (loggedIn && userCart.length) {
       const updatedUserCart = userCart
       .map((productObj) => {
+        if (Object.prototype.hasOwnProperty.call(productObj, '__typename')) delete productObj.__typename;
+
         if (Object.prototype.hasOwnProperty.call(productObj, 'product')
         && (productObj.product === productId)) {
           productObj.qty += requestQty;
@@ -348,7 +350,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.addToGuestCart(currentProduct);
+              this.props.addToGuestCart(currentGuestProduct);
             });
           }
         }

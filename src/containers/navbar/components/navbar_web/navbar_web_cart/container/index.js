@@ -95,15 +95,16 @@ class NavbarCart extends Component {
   render() {
     const {
       qty,
+      loggedIn,
       guestCart,
       activeUser,
       FetchMultipleProducts: userCartResult,
     } = this.props;
 
     let cartItems = [];
-    if (!userCartResult.FetchMultipleProducts && guestCart.length) {
+    if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
-    } else if (userCartResult.FetchMultipleProducts) {
+    } else if (loggedIn) {
       cartItems = this.zipUserCart(activeUser, userCartResult.FetchMultipleProducts);
     }
 
@@ -138,7 +139,7 @@ const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: ({ activeUser }) => {
-      if (!activeUser.shopping) return ({ variables: { ids: [1] } });
+      if (!activeUser.shopping) return ({ variables: { ids: [''] } });
 
       const ids = activeUser.shopping.cart.reduce((accum, { product: id }) => {
         accum.push(id);
@@ -157,6 +158,7 @@ const NavbarCartWithData = compose(
 const NavbarCartWithStateAndGraphQL = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
+    loggedIn: auth.loggedIn,
     guestCart: orders.cart,
     activeUser: user.profile || { empty: true },
   }),
