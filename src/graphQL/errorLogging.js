@@ -1,7 +1,11 @@
 /* eslint-disable no-console, no-alert */
-import consoleGroup from 'console-group';
+const {
+  NODE_ENV,
+  GRAPHQL_PORT,
+  LAMBDA_GRAPHQL,
+} = process.env;
 
-consoleGroup.install();
+const graphiqlUrl = NODE_ENV === 'production' ? LAMBDA_GRAPHQL : `http://localhost:${GRAPHQL_PORT}/graphiql`;
 
 let processedRequests = 0;
 const requests = {};
@@ -24,14 +28,14 @@ const processGqlResponseErrors = (request, requestId) => {
 
   Object.keys(request).forEach((key) => {
     if (key === 'query') {
-      value = print(request[key]);
+      value = request[key].loc.source.body;
     } else {
-      const jsonResponseElement = JSON.stringify(request[key], null, 2);
+      const jsonResponseElement = JSON.stringify(request[key]);
 
       value = (jsonResponseElement.length > 300) ? `${jsonResponseElement.substr(0, 300)} ... ` : jsonResponseElement;
     }
-    console.log('key: ', key);
-    console.log('value: ', value);
+    console.log(key);
+    console.log(value);
     params.push(`${key}=${encodeURIComponent(value)}`);
   });
   console.groupEnd(`processGqlResponseErrors(${requestId})`);
@@ -41,7 +45,7 @@ const processGqlResponseErrors = (request, requestId) => {
       confirm(`
         Open failed GQL request: ${request.operationName} query in GraphiQL?
         `)
-    ) window.open(`${window.location.origin}/graphiql?${params.join('&')}`);
+    ) window.open(`${graphiqlUrl}?${params.join('&')}`);
   }
 };
 

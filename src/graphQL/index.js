@@ -3,6 +3,7 @@ import {
   createNetworkInterface,
 } from 'react-apollo';
 
+// import logErrors from './errorLogging';
 import {
   processGQLErrors,
   storeQueriesMiddleware,
@@ -22,25 +23,6 @@ console.info('Apollo Netowrk URI = ', uri); //eslint-disable-line
 const networkInterface = createNetworkInterface({ uri });
 networkInterface.use([storeQueriesMiddleware]);
 networkInterface.useAfter([processGQLErrors]);
-const client = new ApolloClient(networkInterface);
-// const client = new ApolloClient({
-//   networkInterface: createNetworkInterface({
-//     uri,
-//   }),
-// });
+const client = new ApolloClient({ networkInterface });
+
 export default client;
-//
-// import ApolloClient, { createNetworkInterface } from 'apollo-client';
-// import {logout} from './logout';
-// const networkInterface = createNetworkInterface({ uri: '/graphql' });
-// networkInterface.useAfter([{
-//   applyAfterware({ response }, next) {
-//     if (response.status === 401) {
-//       logout();
-//     }
-//     next();
-//   }
-// }]);
-// const client = new ApolloClient({
-//   networkInterface,
-// });

@@ -6,6 +6,7 @@ const {
   LAMBDA_GRAPHQL,
 } = process.env;
 const graphqlURL = NODE_ENV === 'production' ? LAMBDA_GRAPHQL : `http://localhost:${GRAPHQL_PORT}/graphql`;
+console.log('%cgraphqlURL', 'background:green;', graphqlURL);
 
 if (!graphqlURL) throw new Error(`Cannot create API: "graphqlURL" = ${typeof graphqlURL}.`);
 console.info('graphqlURL: ', graphqlURL); // eslint-disable-line
