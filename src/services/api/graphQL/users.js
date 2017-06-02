@@ -130,7 +130,7 @@ const createAPI = () => {
         shopping {
           cart {
             qty
-            strength
+            nicotineStrength
             product
           }
           transactions

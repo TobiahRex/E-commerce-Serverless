@@ -9,7 +9,7 @@ export default function NavbarUpper() {
       <div className="navbar-actionSection-upper-options">
         <NavbarLanguage />
       </div>
-
+      
       <NavbarUserActions />
 
       <div className="navbar actionSection upper mycart-container">

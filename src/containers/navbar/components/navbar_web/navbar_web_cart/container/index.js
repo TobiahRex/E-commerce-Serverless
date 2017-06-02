@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { push } from 'react-router-redux';
@@ -15,6 +16,7 @@ class NavbarCart extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   shouldComponentUpdate(nextProps) {
+    console.log('%cnextProps', 'background:pink;', nextProps);
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
       reduxCart = isArrayEqual(nextProps.guestCart, this.props.guestCart);
@@ -75,6 +77,7 @@ class NavbarCart extends Component {
       guestCart,
       data,
     } = this.props;
+    console.log('%cthis.props', 'background:pink;', this.props);
 
     let cartItems = [];
     if (!data && guestCart.length) {
@@ -112,26 +115,13 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
 
-const NavbarCartWithState = connect(
-  ({ user, auth, orders }) => ({
-    qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
-    guestCart: orders.cart,
-    activeUser: user.profile,
-  }),
-  dispatch => ({
-    push: location => dispatch(push(location)),
-
-    updateToGuestCart: updatedCartProducts =>
-    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
-
-    saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
-  }),
-)(NavbarCart);
-
-const NavbarCartWithStateAndGraphQL = compose(
+const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
-    options: ({ activeUser: { shopping: { cart } } }) => {
-      const ids = cart.reduce((accum, { product: id }) => {
+    name: 'FetchMultipleProducts',
+    options: ({ activeUser }) => {
+      if (!activeUser.shopping) return ({ variables: { ids: [1] } });
+
+      const ids = activeUser.shopping.cart.reduce((accum, { product: id }) => {
         accum.push(id);
         return accum;
       }, []);
@@ -141,12 +131,24 @@ const NavbarCartWithStateAndGraphQL = compose(
         },
       });
     },
-    skip: ({ activeUser }) => {
-      if (activeUser && activeUser.shopping.cart.length) return false;
-      return true;
-    },
   }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
-)(NavbarCartWithState);
+)(NavbarCart);
+
+const NavbarCartWithStateAndGraphQL = connect(
+  ({ user, auth, orders }) => ({
+    qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
+    guestCart: orders.cart,
+    activeUser: user.profile || { empty: true },
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
+
+    updateToGuestCart: updatedCartProducts =>
+    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+
+    saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
+  }),
+)(NavbarCartWithData);
 
 export default NavbarCartWithStateAndGraphQL;
