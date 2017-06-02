@@ -30,7 +30,10 @@ class ProductDisplay extends Component {
     .reduce((accum, { _id, product }, i) => {
       if (i === 0) {
         accum = {
-          nicotineStrengths: [product.nicotineStrength],
+          nicotineStrengths: [{
+            _id,
+            strength: product.nicotineStrength,
+          }],
           product: {
             sku: product.sku,
             price: product.price,
@@ -44,7 +47,10 @@ class ProductDisplay extends Component {
         };
         return accum;
       }
-      accum.nicotineStrengths.push(product.nicotineStrength);
+      accum.nicotineStrengths.push({
+        _id,
+        strength: product.nicotineStrength,
+      });
       return accum;
     }, {});
 

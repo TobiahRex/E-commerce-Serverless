@@ -31,14 +31,13 @@ function PriceInfo({ price, sku, inStock }) {
         </li>
       </ul>
     </div>
-
   );
 }
-const { string, number } = PropTypes;
+const { string, bool } = PropTypes;
 PriceInfo.propTypes = {
   id: string.isRequired,
   sku: string.isRequired,
   price: string.isRequired,
-  inStock: number.isRequired,
+  inStock: bool.isRequired,
 };
 export default PriceInfo;

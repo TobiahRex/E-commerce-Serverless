@@ -4,13 +4,13 @@ export const AddToMemberCart = gql`
   mutation AddToMemberCart(
     $userId: ID!
     $qty: Int!
-    $strength: String!
+    $nicotineStrength: Int!
     $product: ID!
   ) {
     AddToMemberCart(
       userId: $userId
       qty: $qty
-      strength: $strength
+      nicotineStrength: $nicotineStrength
       product: $product
     ) {
       _id
@@ -67,8 +67,8 @@ export const AddToMemberCart = gql`
       shopping {
         cart {
           qty
-          strength
           product
+          nicotineStrength
         }
         transactions
       }
@@ -95,20 +95,20 @@ export const EditToMemberCart = gql`
   mutation EditToMemberCart(
     $userId: ID!
     $qty: Int!
-    $strength: String!
+    $nicotineStrength: Int!
     $product: ID!
   ) {
     EditToMemberCart(
       userId: $userId
       qty: $qty
-      strength: $strength
+      nicotineStrength: $nicotineStrength
       product: $product
     ) {
       shopping {
         cart {
           qty
-          strength
           product
+          nicotineStrength
         }
       }
     }
@@ -175,8 +175,8 @@ export const DeleteFromMemberCart = gql`
       shopping {
         cart {
           qty
-          strength
           product
+          nicotineStrength
         }
         transactions
       }

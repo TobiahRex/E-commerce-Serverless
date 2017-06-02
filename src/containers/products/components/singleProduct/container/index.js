@@ -150,14 +150,19 @@ class SingleProduct extends Component {
   }
 
   nicotineHandler = (e) => {
-    let nicEl = e.target.dataset.tag;
-    if (!nicEl) {
-      nicEl = e.target.parentNode.dataset.tag;
+    let productId = e.target.dataset.product;
+    let nicStrength = e.target.dataset.strength;
+    if (!nicStrength || !productId) {
+      productId = e.target.parentNode.dataset.product;
+      nicStrength = e.target.parentNode.dataset.strength;
     }
-    return this.setState(() => ({
+    const product = this.props.data.FindProductsByFlavor.filter(({ _id }) => _id === productId)[0];
+
+    this.setState(() => ({
+      product,
       error: false,
       errorMsg: '',
-      chosenStrength: Number(nicEl),
+      chosenStrength: Number(nicStrength),
     }));
   }
 
@@ -231,7 +236,10 @@ class SingleProduct extends Component {
         {
           qty,
           chosenStrength: strength,
-          product: { _id: productId },
+          product: {
+            product,
+            _id: productId,
+          },
         } = this.state,
 
         deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
@@ -250,18 +258,14 @@ class SingleProduct extends Component {
           errorMsg: `You have too many items in your cart.  Please remove ${deltaQty} items from your cart to add the requested quantity.`,
         }));
       } else if (!deltaQty) {
-        const {
-          data,
-          userId,
-          loggedIn,
-        } = this.props,
+        const { userId, loggedIn } = this.props,
 
           currentProduct = {
             _id: productId,
             qty,
             userId,
             strength,
-            ...data.FindProductById.product,
+            ...product,  // from state
           };
 
         if (!prevCartIds.includes(productId) && updatedCart.length) {
@@ -299,7 +303,7 @@ class SingleProduct extends Component {
                 variables: {
                   qty,
                   userId,
-                  strength,
+                  nicotineStrength: strength,
                   product: productId,
                 },
               })
@@ -360,7 +364,7 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.log('%cdata', 'background:red;', data ? data.FindProductsByFlavor : 'empty');
+
     return (
       <div className="juice-page__main">
         <BreadCrumb

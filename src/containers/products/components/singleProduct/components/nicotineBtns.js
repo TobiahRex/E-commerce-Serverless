@@ -10,17 +10,17 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
       backgroundColor: '#FC2525',
     },
   };
-  nicotineStrengths = nicotineStrengths.map((strength) => {
+  nicotineStrengths = nicotineStrengths.map(({ _id, strength }) => {
     switch (strength) {
-      case 'two': return 2;
-      case 'four': return 4;
-      case 'six': return 6;
-      case 'eight': return 8;
-      case 'ten': return 10;
-      case 'twelve': return 12;
-      case 'fourteen': return 14;
-      case 'sixteen': return 16;
-      case 'eighteen': return 18;
+      case 'two': return ({ strength: 2, _id });
+      case 'four': return ({ strength: 4, _id });
+      case 'six': return ({ strength: 6, _id });
+      case 'eight': return ({ strength: 8, _id });
+      case 'ten': return ({ strength: 10, _id });
+      case 'twelve': return ({ strength: 12, _id });
+      case 'fourteen': return ({ strength: 14, _id });
+      case 'sixteen': return ({ strength: 16, _id });
+      case 'eighteen': return ({ strength: 18, _id });
       default: return 0;
     }
   });
@@ -30,9 +30,9 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
       <h3>Nicotine Strength</h3>
       <ul className="nicotine__list">
         {
-          nicotineStrengths.map(strength => (
+          nicotineStrengths.map(({ _id, strength }) => (
             <li
-              key={new Buffer(`${strength}mg`).toString('base64')}
+              key={_id}
               className="list--strength"
               style={
                 strength === chosenStrength ?
@@ -40,7 +40,8 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
               }
             >
               <button
-                data-tag={strength}
+                data-strength={strength}
+                data-product={_id}
                 className="strength__btn" onClick={nicotineHandler}
               >{`${strength}mg`}</button>
             </li>
@@ -50,10 +51,13 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
     </div>
   );
 }
-const { func, number, arrayOf, string } = PropTypes;
+const { func, number, arrayOf, string, shape } = PropTypes;
 NicotineBtns.propTypes = {
   chosenStrength: number.isRequired,
   nicotineHandler: func.isRequired,
-  nicotineStrengths: arrayOf(string).isRequired,
+  nicotineStrengths: arrayOf(shape({
+    _id: string,
+    nicotineStrength: string,
+  })).isRequired,
 };
 export default NicotineBtns;
