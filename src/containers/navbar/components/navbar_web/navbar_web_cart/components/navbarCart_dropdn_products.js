@@ -60,18 +60,20 @@ class NavbarCartProducts extends Component {
   }
   renderCartItems = (productItems, loggedIn) =>
   productItems.map((productObj) => {
-    if (loggedIn) {
-      
-    }
+    let product;
+    if (loggedIn) product = { _id: productObj._id, ...productObj.product };
+    else product = { ...productObj };
+
     const {
       _id,
       qty,
       title,
       price,
-      strength,
       images,
+      strength,
       routeTag,
-    } = productObj;
+    } = product;
+
     return (
       <li
         className="products-list-card"
