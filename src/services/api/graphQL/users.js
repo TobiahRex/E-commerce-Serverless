@@ -8,7 +8,7 @@ const {
 const graphqlURL = NODE_ENV === 'production' ? LAMBDA_GRAPHQL : `http://localhost:${GRAPHQL_PORT}/graphql`;
 
 if (!graphqlURL) throw new Error(`Cannot create API: "graphqlURL" = ${typeof graphqlURL}.`);
-console.info('graphqlURL: ', graphqlURL); // eslint-disable-line
+console.info('USERS graphql API: ', graphqlURL); // eslint-disable-line
 
 const createAPI = () => {
   const api = create({

@@ -9,7 +9,7 @@ export default (db) => {
     .exec()
     .then((dbProducts) => {
       console.log(`
-        Found ${dbProducts.length} product(s) with Flavor: "${flavor}"!
+        Found ${dbProducts.length} popular product(s) with Flavor: "${flavor}"!
       `);
       resolve(dbProducts);
     })
@@ -20,6 +20,25 @@ export default (db) => {
         Mongo Error = ${error}`,
       });
     });
+  });
+
+  productSchema.statics.fetchMultiple = ids =>
+  new Promise((resolve, reject) => {
+    if (!ids.length) {
+      resolve([]);
+    } else {
+      Product.find({ _id: { $in: [...ids] } })
+      .exec()
+      .then((dbProducts) => {
+        console.log('Found multiple Products.: ', dbProducts);
+        resolve(dbProducts);
+      })
+      .catch(error => reject(`
+        problem: Could not fetch multiple products.
+
+        Mongo Error = ${error}.
+      `));
+    }
   });
 
   productSchema.statics.findProductByIdAndDelete = _id =>
@@ -33,15 +52,15 @@ export default (db) => {
     }));
   });
 
-  productSchema.statics.createProduct = product =>
+
+  productSchema.statics.createProduct = (product, statistics) =>
   new Promise((resolve, reject) => {
-    bbPromise.fromCallback(cb => Product.create({ product }, cb))
+    bbPromise.fromCallback(cb => Product.create({ product, statistics }, cb))
     .then((newProduct) => {
       console.log('\n//mongo/model/product.js\n @ createProduct RESOLVE\n', newProduct);
       resolve(newProduct);
     })
     .catch((error) => {
-      console.log('\n//mongo/model/product.js\n @ createProduct REJECT\n', error);
       reject({
         problem: `Could not create a new product with this product object: ${JSON.stringify({ product }, null, 2)}
         Mongoose Error = ${error}`,
@@ -58,7 +77,6 @@ export default (db) => {
       resolve(dbProduct);
     })
     .catch((error) => {
-      console.log('\n//mongo/model/product.js\n @ findProductById REJECT\n', error);
       reject({
         problem: `Could not find the product with id ${_id}.  Are you sure that product exists?
         Mongo Error = ${error}`,
@@ -98,16 +116,15 @@ export default (db) => {
     Product.findByIdAndUpdate(_id, { $set: newProductObj }, { new: true })
     .exec()
     .then((updatedProduct) => {
-      console.log('\n//mongo/model/product.js\n @ findByIdAndUpdate RESOLVE\n', updatedProduct);
+      console.log(`
+        Updated Product!: ${_id};
+        `);
       resolve(updatedProduct);
     })
-    .catch((error) => {
-      console.log('\n//mongo/model/product.js\n @ findByIdAndUpdate REJECT\n', error);
-      reject({
-        problem: `Could not find the product with id ${_id}. Are you sure that product exists?
-        Mongo Error = ${error}`,
-      });
-    });
+    .catch(error => reject({
+      problem: `Could not find the product with id ${_id}. Are you sure that product exists?
+      Mongo Error = ${error}`,
+    }));
   });
 
   productSchema.statics.getPopularProducts = qty =>

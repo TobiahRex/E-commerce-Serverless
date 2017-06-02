@@ -9,7 +9,7 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbProducts) => {
     console.log(`
-      Found ${dbProducts.length} product(s) with Flavor: "${flavor}"!
+      Found ${dbProducts.length} popular product(s) with Flavor: "${flavor}"!
     `);
     resolve(dbProducts);
   })
@@ -24,19 +24,20 @@ new Promise((resolve, reject) => {
 
 productSchema.statics.fetchMultiple = ids =>
 new Promise((resolve, reject) => {
-  if (!ids.length) resolve();
-
-  Product.find({ _id: { $in: [...ids] } })
-  .exec()
-  .then((dbProducts) => {
-    console.log('Found multiple Products.: ', dbProducts);
-    resolve(dbProducts);
-  })
-  .catch(error => reject(`
-    problem: Could not fetch multiple products.
-
-    Mongo Error = ${error}.
-  `));
+  if (!ids.length) {
+    resolve([]);
+  } else {
+    Product.find({ _id: { $in: [...ids] } })
+    .exec()
+    .then((dbProducts) => {
+      console.log('Found multiple Products.: ', dbProducts);
+      resolve(dbProducts);
+    })
+    .catch(error => reject(`
+      problem: Could not fetch multiple products.
+      Mongo Error = ${error}.
+    `));
+  }
 });
 
 productSchema.statics.findProductByIdAndDelete = _id =>
