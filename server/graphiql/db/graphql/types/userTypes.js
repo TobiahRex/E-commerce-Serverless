@@ -734,24 +734,26 @@ const mutations = {
       },
       products: {
         description: 'A list of Products to be inserted into the users DB cart.',
-        type: new ListType(
-          new InputObject({
-            name: 'ProductsInput',
-            fields: () => ({
-              qty: {
-                description: 'The quantity of products to update.',
-                type: new NonNull(IntType),
-              },
-              nicotineStrength: {
-                description: 'The nicotine strength of the product to update.',
-                type: new NonNull(IntType),
-              },
-              product: {
-                description: 'The Mongo ObjectId of the product to update.',
-                type: new NonNull(MongoID),
-              },
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'ProductsInput',
+              fields: () => ({
+                qty: {
+                  description: 'The quantity of products to update.',
+                  type: new NonNull(IntType),
+                },
+                nicotineStrength: {
+                  description: 'The nicotine strength of the product to update.',
+                  type: new NonNull(IntType),
+                },
+                product: {
+                  description: 'The Mongo ObjectId of the product to update.',
+                  type: new NonNull(MongoID),
+                },
+              }),
             }),
-          }),
+          ),
         ),
       },
     },

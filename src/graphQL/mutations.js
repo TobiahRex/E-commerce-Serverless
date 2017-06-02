@@ -94,9 +94,7 @@ export const AddToMemberCart = gql`
 export const EditToMemberCart = gql`
   mutation EditToMemberCart(
     $userId: ID!
-    $qty: Int!
-    $nicotineStrength: Int!
-    $product: ID!
+    $products: [ProductsInput]!
   ) {
     EditToMemberCart(
       userId: $userId
