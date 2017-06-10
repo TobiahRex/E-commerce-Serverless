@@ -183,6 +183,7 @@ class SingleProduct extends Component {
     if (loggedIn && userCart.length) {
       const updatedUserCart = userCart
       .map((productObj) => {
+        console.log('%cproductObj', 'background:cyan;', productObj);
         if (Object.prototype.hasOwnProperty.call(productObj, '__typename')) delete productObj.__typename;
 
         if (Object.prototype.hasOwnProperty.call(productObj, 'product')
