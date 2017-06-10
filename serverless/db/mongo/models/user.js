@@ -132,7 +132,8 @@ export default (db) => {
     User.findById(userId)
     .exec()
     .then((dbUser) => {
-      dbUser.shopping.cart.filter(({ product }) => product !== productId);
+      dbUser.shopping.cart = dbUser.shopping.cart
+      .filter(({ product }) => String(product) !== String(productId));
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {
