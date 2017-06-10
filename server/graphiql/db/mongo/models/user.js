@@ -134,7 +134,7 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart = dbUser.shopping.cart
-    .filter(({ product }) => product !== productId);
+    .filter(({ product }) => String(product) !== String(productId));
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {
