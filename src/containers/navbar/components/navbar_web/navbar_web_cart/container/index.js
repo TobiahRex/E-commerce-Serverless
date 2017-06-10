@@ -21,6 +21,7 @@ class NavbarCart extends Component {
       { FetchMultipleProducts:
         { FetchMultipleProducts: nextUserCart },
       } = nextProps,
+
       { FetchMultipleProducts:
         { FetchMultipleProducts: thisUserCart },
       } = this.props,
@@ -104,7 +105,7 @@ class NavbarCart extends Component {
     let cartItems = [];
     if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
-    } else if (loggedIn) {
+    } else if (loggedIn && userCartResult.FetchMultipleProducts) {
       cartItems = this.zipUserCart(activeUser, userCartResult.FetchMultipleProducts);
     }
 
@@ -127,6 +128,7 @@ class NavbarCart extends Component {
     );
   }
 }
+
 const calculateQty = (loggedIn, guestCart, userProfile) => {
   const userCart = !!userProfile && Object.prototype.hasOwnProperty.call(userProfile, 'shopping') && userProfile.shopping.cart,
     cart = loggedIn ? userCart : guestCart;
@@ -134,7 +136,6 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
-
 const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
@@ -154,7 +155,6 @@ const NavbarCartWithData = compose(
   }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCart);
-
 const NavbarCartWithStateAndGraphQL = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
@@ -171,5 +171,4 @@ const NavbarCartWithStateAndGraphQL = connect(
     saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
   }),
 )(NavbarCartWithData);
-
 export default NavbarCartWithStateAndGraphQL;

@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
-import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
+import FontAwesome from 'react-fontawesome';
 import { propTypes, defaultProps } from './propTypes';
-
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
+
 import {
   FindProductById,
   FindProductsByFlavor,
@@ -44,11 +44,8 @@ class SingleProduct extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(nextProps, this.props)) {
-      const { loggedIn } = nextProps;
-      this.setState(() => ({ loggedIn }));
-    }
+  componentWillReceiveProps({ loggedIn }) {
+    if (loggedIn !== this.props.loggedIn) this.setState(() => ({ loggedIn }));
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -57,19 +54,20 @@ class SingleProduct extends Component {
     const userCartDiff = isArrayEqual(nextProps.userCart, this.props.userCart);
     const guestCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart);
 
-    if (!_.isEqual(nextState, this.state) || !_.isEqual(nextProps, this.props) || userCartDiff || guestCartDiff) return true;
+    if (!_.isEqual(nextState, this.state)
+    || !_.isEqual(nextProps, this.props)
+    || userCartDiff
+    || guestCartDiff) return true;
+
     return false;
   }
 
   modalHandler = (e) => {
     let parentEl = e.target.dataset.parent;
     let tagEl = e.target.dataset.tag;
-    if (!parentEl) {
-      parentEl = e.target.parentNode.dataset.parent;
-    }
-    if (!tagEl) {
-      tagEl = e.target.parentNode.dataset.tag;
-    }
+
+    if (!parentEl) parentEl = e.target.parentNode.dataset.parent;
+    if (!tagEl) tagEl = e.target.parentNode.dataset.tag;
 
     switch (parentEl) {
       case 'success': {
@@ -111,17 +109,15 @@ class SingleProduct extends Component {
 
   qtyHandler = (e) => {
     let buttonEl = e.target.dataset.tag;
-    if (!buttonEl) {
-      buttonEl = e.target.parentNode.dataset.tag;
-    }
+    if (!buttonEl) buttonEl = e.target.parentNode.dataset.tag;
 
     if (buttonEl === 'qty-plus') {
       if (this.state.qty <= 3) {
         this.setState(prevState => ({
           ...prevState,
+          qty: (prevState.qty += 1),
           error: false,
           errorMsg: '',
-          qty: (prevState.qty += 1),
         }));
       } else {
         this.setState(prevState => ({
@@ -135,9 +131,9 @@ class SingleProduct extends Component {
       if (qty >= 1 && qty <= 4) {
         this.setState(prevState => ({
           ...prevState,
+          qty: (prevState.qty -= 1),
           error: false,
           errorMsg: '',
-          qty: (prevState.qty -= 1),
         }));
       } else {
         this.setState(prevState => ({
@@ -152,11 +148,14 @@ class SingleProduct extends Component {
   nicotineHandler = (e) => {
     let productId = e.target.dataset.product;
     let nicStrength = e.target.dataset.nicotinestrength;
+
     if (!nicStrength || !productId) {
       productId = e.target.parentNode.dataset.product;
       nicStrength = e.target.parentNode.dataset.nicotinestrength;
     }
-    const product = this.props.data.FindProductsByFlavor.filter(({ _id }) => _id === productId)[0];
+
+    const product = this.props.data.FindProductsByFlavor
+    .filter(({ _id }) => _id === productId)[0];
 
     this.setState(() => ({
       product,
@@ -167,8 +166,17 @@ class SingleProduct extends Component {
   }
 
   composeGlobalCartInfo = () => {
-    const { loggedIn, guestCart, userCart } = this.props,
-      { qty: requestQty, product: { _id: productId } } = this.state,
+    const {
+      loggedIn,
+      guestCart,
+      userCart,
+    } = this.props;
+    const {
+        qty: requestQty,  // alias
+        product: {        // nested destructure
+          _id: productId, // alias
+        },
+      } = this.state,
       prevCartIds = [];
 
     let updatedCart = [];

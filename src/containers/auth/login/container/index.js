@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
+import authActions from '../../../../redux/auth';
 import LoadingOrError from '../components/loginForm.loadingOrError';
 import SocialButtonList from '../components/loginForm.socialButtonList';
-import authActions from '../../../../redux/auth';
 
 const { objectOf, func, string, bool, any } = PropTypes;
 
 class Login extends Component {
   static propTypes = {
-    route: objectOf(any).isRequired,
     push: func.isRequired,
-    authSocialLogin: func.isRequired,
-    previousPageUrl: string.isRequired,
-    currentActiveUrl: string.isRequired,
+    route: objectOf(any).isRequired,
     loggedIn: bool,
     loginError: objectOf(any),
     authInProgress: bool,
+    authSocialLogin: func.isRequired,
+    previousPageUrl: string.isRequired,
+    currentActiveUrl: string.isRequired,
   }
   static defaultProps = {
     loggedIn: false,
@@ -42,33 +43,31 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { path, result } = this.checkForRedirect(nextProps);
+    if (result) {
+      this.props.push(path);
+    }
     this.setState(() => ({ ...this.state,
       authInProgress: nextProps.authInProgress,
     }));
   }
 
-  shouldComponentUpdate(nextProps) {
-    const { path, result } = this.checkForRedirect(nextProps);
-    if (result) this.props.push(path);
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!_.isEqual(nextState, this.state)) return true;
+    return false;
   }
 
   checkForRedirect = ({ loggedIn, previousPageUrl, currentActiveUrl }) => {
     if (loggedIn) {
-      if (previousPageUrl === '/login') {
-        return ({ result: true, path: '/' });
-      }
-      if (previousPageUrl !== currentActiveUrl) {
-        return ({ result: true, path: previousPageUrl });
-      }
+      if (previousPageUrl === '/login') return ({ result: true, path: '/' });
+      if (previousPageUrl !== currentActiveUrl) return ({ result: true, path: previousPageUrl });
     }
-    return false; // not logged in = no re-direct;
+    return ({ result: false, path: '' });
   }
 
   socialLogin = (e) => {
     let socialType = e.target.dataset.tag;
-    if (!socialType) {
-      socialType = e.target.parentNode.dataset.tag;
-    }
+    if (!socialType) socialType = e.target.parentNode.dataset.tag;
     this.props.authSocialLogin(socialType);
   }
 
@@ -81,12 +80,10 @@ class Login extends Component {
             <h1>Login</h1>
           </div>
 
-          {/* NOTE This component = functional */}
           <LoadingOrError
             errorMessage={error.message}
             authInProgress={authInProgress}
           />
-          {/* NOTE This componet = PureComponent */}
           <SocialButtonList
             socialLogin={this.socialLogin}
             visibility={authInProgress}
@@ -118,16 +115,17 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = ({ session, auth }) => ({
-  previousPageUrl: session.previousPageUrl,
-  currentActiveUrl: session.currentActiveUrl,
-  authInProgress: !!auth.authorizationInProgress,
-  loggedIn: auth.loggedIn,
-  loginFailure: auth.loginFailure,
-});
-const mapDispatchToProps = dispatch => ({
-  push: location => dispatch(push(location)),
+export default connect(
+  ({ session, auth }) => ({
+    loggedIn: auth.loggedIn,
+    loginFailure: auth.loginFailure,
+    authInProgress: !!auth.authorizationInProgress,
+    previousPageUrl: session.previousPageUrl,
+    currentActiveUrl: session.currentActiveUrl,
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
 
-  authSocialLogin: socialType => dispatch(authActions.authSocialLogin(socialType)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+    authSocialLogin: socialType => dispatch(authActions.authSocialLogin(socialType)),
+  }),
+)(Login);
