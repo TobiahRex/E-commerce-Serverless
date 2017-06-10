@@ -166,6 +166,8 @@ class SingleProduct extends Component {
   }
 
   composeGlobalCartInfo = () => {
+    // --- When run the first time (no previous items in the cart) then a flag "updated" is a value of false.  This will make "globalRequestQty" to be assigned the "qty" value from state directly.  If this function is run a subsequent time (items already exist in the cart) then "globalRequestQty" will be assigned it's value based on a reduce across all items.
+
     const {
       loggedIn,
       guestCart,
@@ -179,11 +181,15 @@ class SingleProduct extends Component {
       } = this.state,
       prevCartIds = [];
 
-    let updatedCart = [];
+    // --- Update the User/Guest cart quantity with like items.
+    let updatedCart = [],
+      updated = true;
+    // If user has items in their cart && logged in check & update "like items".
     if (loggedIn && userCart.length) {
+      updated = true;
       const updatedUserCart = userCart
       .map((productObj) => {
-        console.log('%cproductObj', 'background:cyan;', productObj);
+        // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
         if (Object.prototype.hasOwnProperty.call(productObj, '__typename')) delete productObj.__typename;
 
         if (Object.prototype.hasOwnProperty.call(productObj, 'product')
@@ -194,7 +200,9 @@ class SingleProduct extends Component {
         return productObj;
       });
       updatedCart = [...updatedUserCart];
+    // If user has items in their cart & is a guest, check & update "like items"
     } else if (!loggedIn && guestCart.length) {
+      updated = true;
       const updatedGuestCart = guestCart
       .map((productObj) => {
         if (Object.prototype.hasOwnProperty.call(productObj, '_id')
@@ -207,15 +215,18 @@ class SingleProduct extends Component {
       updatedCart = [...updatedGuestCart];
     }
 
-    const globalRequestQty = updatedCart
+    // --- Add up all the product quantities to check for qty violations later. -- Also save the id's of all items to know which items are NEW and OLD to call "Add" or "Update" respectively.
+    const globalRequestQty = !updated ? requestQty : updatedCart
     .reduce((accum, nextObj) => {
       if (Object.prototype.hasOwnProperty.call(nextObj, '_id')) prevCartIds.push(nextObj._id);
 
+      // "product" = object on Guest cart, & string on Member cart.
       if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
 
       accum += nextObj.qty;
       return accum;
     }, 0);
+    // --- Return results to "addToCartHandler".
     return {
       updatedCart,
       prevCartIds,
@@ -254,6 +265,8 @@ class SingleProduct extends Component {
         } = this.state,
 
         deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
+        console.log('%cglobalRequestQty', 'background:pink;', globalRequestQty);
+        console.log('%cdeltaQty', 'background:red;', deltaQty);
 
       if (globalRequestQty > 4) {
         this.setState({

@@ -44,7 +44,6 @@ class NavbarCart extends Component {
   }
 
   deleteFromCart = (e) => {
-    console.log('%ce', 'background:pink;', e);
     const {
       guestCart,
       activeUser,

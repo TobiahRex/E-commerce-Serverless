@@ -30,7 +30,6 @@ class NavbarCartProducts extends Component {
     return false;
   }
   filterImages = (images) => {
-    console.log('%cimages', 'background:red;', images);
     if (!images.length) return '';
 
     const helper = ({ purpose }) => purpose === 'card';
