@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define, max-len, import/first */
+dotenv.load({ silent: true });
+
 import path from 'path';
 import dotenv from 'dotenv';
 import webpack from 'webpack';
@@ -10,8 +13,6 @@ import autoprefixer from 'autoprefixer';
 
 import CommonsChunkPlugin from './node_modules/webpack/lib/optimize/CommonsChunkPlugin';
 import webpackEnvs from './tools/webpack_envs';
-
-dotenv.load({ silent: true });
 
 const devConfig = {
   resolve: {
