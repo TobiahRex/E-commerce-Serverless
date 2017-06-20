@@ -2,12 +2,14 @@ import { create } from 'apisauce';
 
 const {
   NODE_ENV,
+  LAMBDA_ENV,
   GRAPHQL_PORT,
-  LAMBDA_GRAPHQL,
+  API_GATEWAY_GRAPHQL,
 } = process.env;
-const graphqlURL = NODE_ENV === 'production' ? LAMBDA_GRAPHQL : `http://localhost:${GRAPHQL_PORT}/graphql`;
 
-if (!graphqlURL) throw new Error(`Cannot create API: "graphqlURL" = ${typeof graphqlURL}.`);
+const graphqlURL = NODE_ENV === 'development' ? `http://localhost:${GRAPHQL_PORT}/graphql` : `${API_GATEWAY_GRAPHQL}/${LAMBDA_ENV}/graphql`;
+
+if (!graphqlURL) throw new Error(`Cannot create API: "graphqlURL" = ${graphqlURL}.`);
 console.info('PRODUCTS Graphql API: ', graphqlURL); // eslint-disable-line
 
 const createAPI = () => {
