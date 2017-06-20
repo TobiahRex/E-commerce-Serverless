@@ -12,7 +12,7 @@ import analyzer from 'webpack-bundle-analyzer';
 import autoprefixer from 'autoprefixer';
 
 import CommonsChunkPlugin from './node_modules/webpack/lib/optimize/CommonsChunkPlugin';
-import webpackEnvs from './tools/webpack_envs';
+import webpackEnvs from './tools/webpack.envs';
 
 const devConfig = {
   resolve: {

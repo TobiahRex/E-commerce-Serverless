@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import configureStore from './store';
 import rootSaga from '../sagas/';
-import apolloClient from '../graphQL/';
+import apolloClient from '../graphql/';
 // ------- Reducer Imports ------- //
 
 // import { thingReducer as things } from '../redux/ThingRedux';

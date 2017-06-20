@@ -6,26 +6,43 @@ import React from 'react';
 import './styles.scss';
 import 'masonry-layout';
 import { render } from 'react-dom';
-import { Router } from 'react-router';
+import { AppContainer } from 'react-hot-loader';
 import Perf from 'react-addons-perf';
-import { ApolloProvider } from 'react-apollo';
 import createStore from './redux/index';
-import client from './graphql';
-console.log('%cclient', 'background:red;', client);
-import saveLocation from './services/utils/saveLocation';
+import apolloClient from './graphql';
 import routes from './navigation/routes';
+import Root from './Root';
 
 window.Perf = Perf;
 const { store, history } = createStore();
 store.dispatch({ type: 'APP_STARTUP' });
 
+
 render(
-  <ApolloProvider client={client} store={store}>
-    <Router
-      history={history}
+  <AppContainer>
+    <Root
+      store={store}
       routes={routes}
-      onUpdate={() => saveLocation(store.dispatch)}
+      history={history}
+      apolloClient={apolloClient}
     />
-  </ApolloProvider >,
+  </AppContainer>,
   document.getElementById('app'),
 );
+
+if (module.hot) {
+  module.hot.accept('./Root', () => {
+    const NewRoot = require('./Root').default;
+    render(
+      <AppContainer>
+        <NewRoot
+          store={store}
+          routes={routes}
+          history={history}
+          apolloClient={apolloClient}
+        />
+      </AppContainer>,
+      document.getElementById('app'),
+    );
+  });
+}
