@@ -5,8 +5,9 @@ function NavbarCartProductsCardInfo({
   title,
   qty,
   price,
-  nicotineStrength,
+  nicotineStrength: stringStrength,
 }) {
+  const numberStrength = 
   return (
     <div className="products-list-card-info">
       <div className="product-title">
