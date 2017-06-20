@@ -15,8 +15,7 @@ app.use(express.static('dist'));
 app.get('*', (req, res) => res.sendFile(path.resolve('dist/index.html')));
 
 // --------------------------- Listeners ---------------------------------------
-const PORT = process.env.PORT || 3001;
 process.stdout.write('\n');
-app.listen(PORT, err =>
-  process.stdout.write(err || `==> 📡  Server @ ${PORT}
+app.listen(8000, err =>
+  process.stdout.write(err || `==> 📡  Server @ ${8000}
 `));

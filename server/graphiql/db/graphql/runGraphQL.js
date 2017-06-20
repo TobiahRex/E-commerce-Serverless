@@ -1,19 +1,20 @@
 /* eslint-disable no-console */
 import { graphql } from 'graphql';
 import schema from './schema';
+import { closeDB } from '../mongo/connection';
 
-const runGraphQL = ({ event, dbModels }) =>
+const runGraphQL = ({ event, dbModels, db }) =>
 new Promise((resolve, reject) => {
   const { variables, query } = event.body;
-  console.log('\nvariables: ', variables, '\ndbModels: ', dbModels);
 
-  graphql(schema, query, dbModels, variables)
-  .then((result) => {
-    console.log('\n//runGraphQL.js @ RESOLVE: \n', result);
-    resolve(result);
+  graphql(schema, query, null, dbModels, variables)
+  .then((dbResponse) => {
+    console.log('\n//runGraphQL.js @ graphql.then: \ndbResponse = ', dbResponse);
+    return closeDB(db, dbResponse);
   })
+  .then(resolve)
   .catch((error) => {
-    console.log('\n//runGraphQL.js @ REJECT');
+    console.log('\n//runGraphQL.js @ graphql.catch: \n error = ', error);
     reject(error);
   });
 });

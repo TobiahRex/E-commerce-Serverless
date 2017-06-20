@@ -68,7 +68,7 @@ const rootType = new ObjectType({
           nicotineStrength: {
             description: 'The nicotine strength for the new product.',
             type: new EnumType({
-              name: 'NewProductNicotineStrengthsEnum',
+              name: 'ProductNicotineStrengthsEnum',
               values: {
                 two: {
                   value: 2,
@@ -168,6 +168,40 @@ const rootType = new ObjectType({
         }),
       }),
     },
+    statistics: {
+      description: 'Statistics on purchases for this item.',
+      type: new ObjectType({
+        name: 'ProductStatistics',
+        fields: () => ({
+          adds_to_cart: {
+            description: 'The amount of times someone has added this product to their cart.',
+            type: IntType,
+          },
+          completed_checkouts: {
+            description: 'The amount of times this item has been successfully purchased.',
+            type: IntType,
+          },
+          transactions: {
+            description: 'A list of transactions for this product.',
+            type: new ListType(
+              new ObjectType({
+                name: 'ProductTransaction',
+                fields: () => ({
+                  transaction_id: {
+                    description: 'The Mongo ID for transactions.',
+                    type: MongoId,
+                  },
+                  user_id: {
+                    description: 'The mongo ID for users.',
+                    type: MongoId,
+                  },
+                }),
+              }),
+            ),
+          },
+        }),
+      }),
+    },
   },
 });
 const queryTypes = {
@@ -218,6 +252,7 @@ const queryTypes = {
     }),
   }),
 };
+
 const queries = {
   FetchMultipleProducts: {
     type: new ListType(rootType),
