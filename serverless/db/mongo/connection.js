@@ -7,6 +7,8 @@ mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
 const MONGO_DB = process.env.MONGO_URI;
 
+if (!MONGO_DB) throw new Error(`MONGO_DB URI value is: ${MONGO_DB.length ? MONGO_DB : 'undefined'}`);
+
 const mongooseConnection = () =>
 new Promise((resolve) => {
   const newDB = mongoose.createConnection(MONGO_DB, console.log);

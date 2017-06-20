@@ -10,7 +10,8 @@ import { Router } from 'react-router';
 import Perf from 'react-addons-perf';
 import { ApolloProvider } from 'react-apollo';
 import createStore from './redux/index';
-import client from './graphQL';
+import client from './graphql';
+console.log('%cclient', 'background:red;', client);
 import saveLocation from './services/utils/saveLocation';
 import routes from './navigation/routes';
 
