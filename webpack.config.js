@@ -63,7 +63,6 @@ const devConfig = {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: false,
-      debug: true,
       noInfo: true,
       options: {
         sassLoader: {
@@ -151,7 +150,6 @@ const prodConfig = {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      debug: false,
       noInfo: true,
       options: {
         sassLoader: {

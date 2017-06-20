@@ -5,11 +5,6 @@ import createUserModel from './models/user';
 
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
-const {
-  SLS_ENV,
-  LAMBDA_MONGO_DEV_URI,
-  LAMBDA_MONGO_PROD_URI,
-} = process.env;
 const MONGO_DB = process.env.MONGO_URI;
 
 const mongooseConnection = () =>

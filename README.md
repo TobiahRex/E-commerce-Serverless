@@ -77,6 +77,9 @@ Final Production site will be at http://www.nj2jp.com.
   - Cleaned up package.json
   - Removed node_modules/ and re-installed using `yarn`
 
+# Important Launch Notes:
+  1. Modifiy LAMBDA_GRAPHQL env variable throughout `src/` application to point to the `production` database & lambda endpoint.
+  2. Modify the serverless MONGO_URI env variable inside the AWS console dashboard.
 
 <!-- ## ScreenShots:
 * Terminal

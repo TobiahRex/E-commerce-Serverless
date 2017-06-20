@@ -97,6 +97,7 @@
   "dependencies": {
     "babel-plugin-react-display-name": "^2.0.0",
     "bluebird": "^3.5.0",
+    "compression": "^1.6.2",
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "express-graphql": "^0.6.4",

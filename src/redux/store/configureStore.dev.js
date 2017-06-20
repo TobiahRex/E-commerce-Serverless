@@ -8,7 +8,6 @@ import RehydrationServices from '../../services/utils/rehydrationServices';
 import apolloClient from '../../graphQL/';
 
 export default (rootReducer, rootSaga) => {
-  const enhancers = [];
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
     apolloClient.middleware(),
@@ -16,15 +15,17 @@ export default (rootReducer, rootSaga) => {
     createLogger(),
     sagaMiddleware,
   ];
-  enhancers.push(
+  const enhancers = [
     applyMiddleware(...middlewares),
     autoRehydrate(),
     window.devToolsExtension ? window.devToolsExtension() : _ => _,
-  );
+  ];
   const store = createStore(rootReducer, compose(...enhancers));
   const history = syncHistoryWithStore(browserHistory, store);
+
   sagaMiddleware.run(rootSaga);
   RehydrationServices.updateReducers(store);
+
   return {
     store,
     history,
