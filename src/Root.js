@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import saveLocation from './services/utils/saveLocation';
-import routes from './navigation/routes';
 
 export default class Root extends Component {
   render() {
@@ -21,7 +20,7 @@ export default class Root extends Component {
           routes={routes}
           onUpdate={() => saveLocation(store.dispatch)}
         />
-        </ApolloProvider >
+      </ApolloProvider >
     );
   }
 }

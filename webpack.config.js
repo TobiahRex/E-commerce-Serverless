@@ -25,17 +25,19 @@ const devConfig = {
   },
   entry: {
     app: [
+      './src/webpack-public-path',
+      'react-hot-loader/patch',
       'webpack-hot-middleware/client?reload=true',
-      path.resolve('./src/index'),
+      path.resolve(__dirname, 'src/index.js'), // Defining path seems necessary for this to work consistently on Windows machines.
     ],
     // vendor: ['react', 'react-dom', 'reduxsauce'],
   },
   output: {
-    path: path.resolve('src'),
+    path: path.resolve(__dirname, 'src'),
     publicPath: '/',
     filename: 'bundle.[name].js',
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   target: 'web',
   plugins: [
     new ProgressBarPlugin(),
@@ -75,7 +77,7 @@ const devConfig = {
   ],
   module: {
     rules: [
-      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /(node_modules|bower_components)/ },
+      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /(\.css|\.s[ac]ss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap'] },
       { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader' },
