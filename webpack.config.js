@@ -144,7 +144,7 @@ const prodConfig = {
       title: 'Nic Juice 2 Japan',
       filename: './index.html',
     }),
-    new ExtractTextPlugin('[name].[hash].css'),
+    new ExtractTextPlugin('style.css'),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       comments: false,

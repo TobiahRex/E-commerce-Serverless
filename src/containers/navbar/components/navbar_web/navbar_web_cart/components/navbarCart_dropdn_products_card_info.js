@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import convertStrengthToNumber from '../../../../../../services/utils/convertStrengthToNumber';
 
 function NavbarCartProductsCardInfo({
   title,
@@ -7,7 +8,7 @@ function NavbarCartProductsCardInfo({
   price,
   nicotineStrength: stringStrength,
 }) {
-  const numberStrength = 
+  const numberStrength = convertStrengthToNumber(stringStrength);
   return (
     <div className="products-list-card-info">
       <div className="product-title">
@@ -18,7 +19,7 @@ function NavbarCartProductsCardInfo({
       </div>
       <div className="nic-strength">
         <i>
-          {`${nicotineStrength}mg`}
+          {`${numberStrength} mg`}
         </i>
       </div>
     </div>
@@ -29,13 +30,13 @@ NavbarCartProductsCardInfo.defaultProps = {
   price: '',
   qty: 0,
   title: '',
-  nicotineStrength: 0,
+  nicotineStrength: '',
 };
 NavbarCartProductsCardInfo.propTypes = {
   price: string,
   qty: number,
   title: string,
-  nicotineStrength: number,
+  nicotineStrength: string,
 };
 
 export default NavbarCartProductsCardInfo;
