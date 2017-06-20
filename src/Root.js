@@ -10,7 +10,7 @@ export default class Root extends Component {
   render() {
     const {
       store,
-      routes
+      routes,
       history,
       apolloClient,
     } = this.props;
@@ -28,5 +28,7 @@ export default class Root extends Component {
 const { any, objectOf } = PropTypes;
 Root.propTypes = {
   store: objectOf(any).isRequired,
+  routes: objectOf(any).isRequired,
   history: objectOf(any).isRequired,
+  apolloClient: objectOf(any).isRequired,
 };
