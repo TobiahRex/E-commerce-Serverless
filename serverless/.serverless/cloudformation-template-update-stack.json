@@ -120,7 +120,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nj2jp/development/1496141590135-2017-05-30T10:53:10.135Z/nj2jp.zip"
+          "S3Key": "serverless/nj2jp/development/1497966267295-2017-06-20T13:44:27.295Z/nj2jp.zip"
         },
         "FunctionName": "nj2jp-development-graphql",
         "Handler": "handler.graphql",
@@ -135,16 +135,17 @@
         "Timeout": 20,
         "Environment": {
           "Variables": {
-            "MONGO_URI": "mongodb://10.0.1.241:27017/nj2jp",
-            "WAKE_UP_URL": "https://noa45x1sdb.execute-api.ap-northeast-1.amazonaws.com/development/graphql"
+            "SLS_ENV": "development",
+            "MONGO_URI": "mongodb://nj2jp:kSNEeF3iV38WXRRr@nj2jp-mongo-cluster-shard-00-00-wqafo.mongodb.net:27017,nj2jp-mongo-cluster-shard-00-01-wqafo.mongodb.net:27017,nj2jp-mongo-cluster-shard-00-02-wqafo.mongodb.net:27017/nj2jp-development?ssl=true&replicaSet=nj2jp-mongo-cluster-shard-0&authSource=admin",
+            "WAKE_UP_URL": "https://gccqem4cld.execute-api.ap-northeast-1.amazonaws.com/development"
           }
         },
         "VpcConfig": {
           "SecurityGroupIds": [
-            "sg-0d5db76b"
+            "sg-75f53413"
           ],
           "SubnetIds": [
-            "subnet-f76b18af"
+            "subnet-10464166"
           ]
         }
       },
@@ -153,14 +154,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GraphqlLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI": {
+    "GraphqlLambdaVersionyng2Aige1unBjLbVl1H70DSOqKvlSfMDAduB2job1E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphqlLambdaFunction"
         },
-        "CodeSha256": "yWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI="
+        "CodeSha256": "yng2Aige1unBjLbVl1H70DSOqKvlSfMD+AduB2job1E="
       }
     },
     "WakeupLambdaFunction": {
@@ -170,7 +171,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nj2jp/development/1496141590135-2017-05-30T10:53:10.135Z/nj2jp.zip"
+          "S3Key": "serverless/nj2jp/development/1497966267295-2017-06-20T13:44:27.295Z/nj2jp.zip"
         },
         "FunctionName": "nj2jp-development-wakeup",
         "Handler": "handler.wakeup",
@@ -185,8 +186,9 @@
         "Timeout": 20,
         "Environment": {
           "Variables": {
-            "MONGO_URI": "mongodb://10.0.1.241:27017/nj2jp",
-            "WAKE_UP_URL": "https://noa45x1sdb.execute-api.ap-northeast-1.amazonaws.com/development/graphql"
+            "SLS_ENV": "development",
+            "MONGO_URI": "mongodb://nj2jp:kSNEeF3iV38WXRRr@nj2jp-mongo-cluster-shard-00-00-wqafo.mongodb.net:27017,nj2jp-mongo-cluster-shard-00-01-wqafo.mongodb.net:27017,nj2jp-mongo-cluster-shard-00-02-wqafo.mongodb.net:27017/nj2jp-development?ssl=true&replicaSet=nj2jp-mongo-cluster-shard-0&authSource=admin",
+            "WAKE_UP_URL": "https://gccqem4cld.execute-api.ap-northeast-1.amazonaws.com/development"
           }
         }
       },
@@ -195,14 +197,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "WakeupLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI": {
+    "WakeupLambdaVersionyng2Aige1unBjLbVl1H70DSOqKvlSfMDAduB2job1E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "WakeupLambdaFunction"
         },
-        "CodeSha256": "yWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI="
+        "CodeSha256": "yng2Aige1unBjLbVl1H70DSOqKvlSfMD+AduB2job1E="
       }
     },
     "WakeupEventsRuleSchedule1": {
@@ -490,7 +492,7 @@
         ]
       }
     },
-    "ApiGatewayDeployment1496141590196": {
+    "ApiGatewayDeployment1497966267361": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -545,13 +547,13 @@
     "GraphqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphqlLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI"
+        "Ref": "GraphqlLambdaVersionyng2Aige1unBjLbVl1H70DSOqKvlSfMDAduB2job1E"
       }
     },
     "WakeupLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "WakeupLambdaVersionyWQwlLwNDUEEuPxqjgKoH5YaEsNjlKWME4r627OdDJI"
+        "Ref": "WakeupLambdaVersionyng2Aige1unBjLbVl1H70DSOqKvlSfMDAduB2job1E"
       }
     },
     "ServiceEndpoint": {

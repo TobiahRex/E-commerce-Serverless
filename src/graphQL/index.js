@@ -15,10 +15,6 @@ const {
   GRAPHQL_PORT,
   API_GATEWAY_GRAPHQL,
 } = process.env;
-console.log('%cNODE_ENV, LAMBDA_ENV, GRAPHQL_PORT, API_GATEWAY_GRAPHQL', 'background:red;', NODE_ENV,
-LAMBDA_ENV,
-GRAPHQL_PORT,
-API_GATEWAY_GRAPHQL);
 
 const uri = NODE_ENV === 'development' ? `http://localhost:${GRAPHQL_PORT}/graphql` : `${API_GATEWAY_GRAPHQL}/${LAMBDA_ENV}/graphql`;
 
