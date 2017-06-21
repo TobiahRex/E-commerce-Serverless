@@ -2,13 +2,7 @@ import {
   ApolloClient,
   createNetworkInterface,
 } from 'react-apollo';
-
-// import logErrors from './errorLogging';
-// import {
-//   processGQLErrors,
-//   storeQueriesMiddleware,
-// } from './errorLogging';
-import logErrors from './errorLogging.aws';
+import logErrors from './errorLogging';
 
 const {
   NODE_ENV,
