@@ -4,10 +4,11 @@ import {
 } from 'react-apollo';
 
 // import logErrors from './errorLogging';
-import {
-  processGQLErrors,
-  storeQueriesMiddleware,
-} from './errorLogging';
+// import {
+//   processGQLErrors,
+//   storeQueriesMiddleware,
+// } from './errorLogging';
+import logErrors from './errorLogging.aws';
 
 const {
   NODE_ENV,
@@ -23,8 +24,8 @@ if (!uri) throw new Error('Apollo Client network interface is not defined.');
 console.info('Apollo Netowrk URI = ', uri); //eslint-disable-line
 
 const networkInterface = createNetworkInterface({ uri });
-networkInterface.use([storeQueriesMiddleware]);
-networkInterface.useAfter([processGQLErrors]);
+// networkInterface.use([storeQueriesMiddleware]);
+networkInterface.useAfter([logErrors]);
 const client = new ApolloClient({ networkInterface });
 
 export default client;

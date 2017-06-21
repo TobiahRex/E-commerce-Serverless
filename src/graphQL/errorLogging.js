@@ -1,11 +1,12 @@
 /* eslint-disable no-console, no-alert */
 const {
   NODE_ENV,
+  LAMBDA_ENV,
   GRAPHQL_PORT,
-  LAMBDA_GRAPHQL,
+  API_GATEWAY_GRAPHQL,
 } = process.env;
 
-const graphiqlUrl = NODE_ENV === 'production' ? LAMBDA_GRAPHQL : `http://localhost:${GRAPHQL_PORT}/graphiql`;
+const graphiqlUrl = NODE_ENV === 'development' ? `http://localhost:${GRAPHQL_PORT}/graphql` : `${API_GATEWAY_GRAPHQL}/${LAMBDA_ENV}/graphql`;
 
 let processedRequests = 0;
 const requests = {};
