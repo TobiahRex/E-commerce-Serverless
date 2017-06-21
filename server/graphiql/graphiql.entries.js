@@ -27,10 +27,10 @@ const juices = {
       nicotineStrength: two
       images: [{
         purpose: "card"
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fvm.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png"
       }, {
         purpose: "large"
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fvm.jpg"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-fvm.jpg"
       }],
       routeTag: "french_vanilla_mocha"
       vendor: "Vape Switch"
@@ -81,10 +81,10 @@ const juices = {
       nicotineStrength: two,
       images: [{
         purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_klp.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_klp.png"
       }, {
         purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-klp.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-klp.png"
       }],
       routeTag: "keylime_pie",
       vendor: "Vape Switch",
@@ -126,10 +126,10 @@ const juices = {
       nicotineStrength: two,
       images: [{
         purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pc.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_pc.png"
       }, {
         purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-pc.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-pc.png"
       }],
       routeTag: "pina_colada",
       vendor: "Vape Switch",
@@ -171,10 +171,10 @@ const juices = {
         nicotineStrength: eight,
         images: [{
     			purpose: "card",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_fbb.png"
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fbb.png"
         }, {
           purpose: "large",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-fruity-bamm-bamm.png"
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-fruity-bamm-bamm.png"
         }],
         routeTag: "fruity_bamm_bamm",
         vendor: "Vape Switch",
@@ -217,10 +217,10 @@ const juices = {
         nicotineStrength: two,
         images: [{
     			purpose: "card",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_snc.png"
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_snc.png"
         }, {
           purpose: "large",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-strawberries-cream.png"
+          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-strawberries-cream.png"
         }],
         routeTag: "strawberries_n_cream",
         vendor: "Vape Switch",
@@ -262,10 +262,10 @@ const juices = {
       nicotineStrength: two,
       images: [{
   			purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp_juice_card_pb.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_pb.png"
       }, {
         purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-images/nj2jp-pappleberry.png"
+        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-pappleberry.png"
       }],
       routeTag: "papple_berry",
       vendor: "Vape Switch",
