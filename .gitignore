@@ -6,6 +6,7 @@ dist
 public
 
 # serverless
+.serverless
 config.yml
 
 # miscellaneous
