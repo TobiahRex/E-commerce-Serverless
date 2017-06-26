@@ -63,6 +63,8 @@ Final Production site will be at http://www.nj2jp.com.
     * [seamless-immutable](https://github.com/rtfeldman/seamless-immutable)
   4. ### Setting up S3 automation:
     * See setup instructions [HERE](https://github.com/TobiahRex/nj2jp/blob/master/readmeFiles/s3Automation.md).
+  5. ### Data Model Documentation:
+    * [Product Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/productSchema.md).
 
 # Updates:
 1. March 7th, 2017:
