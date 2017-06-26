@@ -1,0 +1,5 @@
+subnetId: subnet-xxxxxx
+securityGroupId: sg-xxxxxxx
+mongoURI: mongodb://<DB>:<PASSWORD>@<MONGO_ATLAST_CLUSTER_NAME>.mongodb.net:27017,<MONGO_ATLAST_CLUSTER_NAME_OTHER>.mongodb.net:27017,<MONGO_ATLAST_CLUSTER_NAME_OTHER>.mongodb.net:27017/<MONGO_ATLAST_CLUSTER_NAME_OTHER>?ssl=true&replicaSet=<MONGO_ATLAST_CLUSTER_NAME_OTHER>&authSource=admin
+slsEnv: <LAMBDA_URL_AS_ENV_VAR>
+wakeUpURL: <LAMBDA_URL_AS_ENV_VAR>

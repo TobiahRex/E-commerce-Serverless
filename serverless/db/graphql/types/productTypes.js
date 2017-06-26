@@ -484,7 +484,7 @@ const mutations = {
         }),
       },
     },
-    resolve: (_, { product, statistics }, Product) => Product.createProduct(product, statistics),
+    resolve: (_, { product, statistics }, { Product }) => Product.createProduct(product, statistics),
   },
   FindProductAndUpdate: {
     type: rootType,
