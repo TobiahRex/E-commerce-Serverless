@@ -24,7 +24,6 @@ provider:
   environment:
     SLS_ENV: ${file(./config.yml):slsEnv}
     MONGO_URI: ${file(./config.yml):mongoURI}
-    WAKE_UP_URL: ${file(./config.yml):wakeUpURL}
 
 plugins:
   - serverless-webpack
@@ -66,8 +65,3 @@ functions:
           response:
             headers:
               Access-Control-Allow-Origin: "'*'"
-
-  wakeup:
-    handler: handler.wakeup
-    events:
-      - schedule: rate(20 minutes)
