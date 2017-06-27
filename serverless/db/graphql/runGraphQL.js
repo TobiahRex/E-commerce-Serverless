@@ -9,12 +9,18 @@ new Promise((resolve, reject) => {
 
   graphql(schema, query, null, dbModels, variables)
   .then((dbResponse) => {
-    console.log('\n//runGraphQL.js @ graphql.then: \ndbResponse = ', dbResponse);
+    console.log(`
+    (runGraphQL.js @ graphql.catch)
+    Results = ${dbResponse}
+    `);
     return closeDB(db, dbResponse);
   })
   .then(resolve)
   .catch((error) => {
-    console.log('\n//runGraphQL.js @ graphql.catch: \n error = ', error);
+    console.log(`
+    (runGraphQL.js @ graphql.catch)
+    Error = ${error}
+    `);
     reject(error);
   });
 });
