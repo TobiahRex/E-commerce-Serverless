@@ -22,7 +22,6 @@ provider:
         - logs:CreateLogStream
         - logs:PutLogEvents
   environment:
-    SLS_ENV: ${file(./config.yml):slsEnv}
     MONGO_URI: ${file(./config.yml):mongoURI}
 
 plugins:
