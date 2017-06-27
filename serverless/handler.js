@@ -3,7 +3,6 @@ if (!global._babelPolyfill) require('babel-polyfill');
 
 import runGraphQL from './db/graphql/runGraphQL';
 import verifyDb from './db/mongo/connection';
-// import { verifyDb } from './db/mongo/connection';
 
 module.exports.graphql = (event, context, cb) => {
   console.log('\nEVENT: ', event);

@@ -21,14 +21,14 @@ const verifyDb = () =>
 new Promise((resolve) => {
   if (cachedDb && mongoose.connection.readyState === 1) {
     console.log(`
-      Previous connection found.
-      ${cachedDb.db.base.connections}
+      Previous connection found!
+      Current Connections: ${cachedDb.db.base.connections}
     `);
     resolve(cachedDb);
   } else {
     const newDb = mongoose.createConnection(MONGO_DB, console.log);
     console.log(`
-      Created new Mongo Connection: ${newDb}
+      Created new Mongo Connection: ${JSON.stringify(newDb, null, 2)}
     `);
     cachedDb = {
       db: newDb,
@@ -42,31 +42,3 @@ new Promise((resolve) => {
 });
 
 export default verifyDb;
-
-// export const closeDB = (db, GraphQLResponse) =>
-// new Promise((resolve) => {
-//   db.close(() => {
-//     console.log('\n//mongo/connection.js @ CLOSE DB');
-//     console.log('\n//mongo/connection.js \ndb.connections AFTER close: ', db.base.connections);
-//     resolve(GraphQLResponse);
-//   });
-// });
-//
-// export const startDB = () =>
-// new Promise((resolve) => {
-//   verifyDb()
-//   .then((newDB) => {
-//     console.log(`\nMongo Connected @ ${MONGO_DB}`);
-//     console.log('\nNew DB = ', newDB);
-//     resolve({
-//       db: newDB,
-//       dbModels: {
-//         Product: createProductModel(newDB),
-//         User: createUserModel(newDB),
-//       },
-//     });
-//   })
-//   .catch(error =>
-//     console.log(`\nCould not connect to Mongo DB.\nERROR: ${error}`),
-//   );
-// });
