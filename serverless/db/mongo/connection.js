@@ -17,7 +17,7 @@ new Promise((resolve) => {
 
 export const closeDB = (db, GraphQLResponse) =>
 new Promise((resolve) => {
-  db.close(() => {
+  db.disconnect(() => {
     console.log('\n//mongo/connection.js @ CLOSE DB');
     console.log('\n//mongo/connection.js \ndb.connections AFTER close: ', db.base.connections);
     resolve(GraphQLResponse);
