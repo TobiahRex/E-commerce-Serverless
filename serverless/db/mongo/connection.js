@@ -10,7 +10,7 @@ const MONGO_DB = process.env.MONGO_URI;
 if (!MONGO_DB) throw new Error(`MONGO_DB URI value is: ${MONGO_DB.length ? MONGO_DB : 'undefined'}`);
 
 let cachedDb = {
-  db: null,
+  connection: null,
   dbModels: {
     Product: null,
     User: null,
@@ -19,22 +19,27 @@ let cachedDb = {
 
 const verifyDb = () =>
 new Promise((resolve) => {
-  if (cachedDb && mongoose.connection.readyState === 1) {
+  console.log('mongoose.connection.readyState: ', mongoose.connection.readyState);
+  if (cachedDb.connection && (mongoose.connection.readyState === 1)) {
+    console.log('%cCONDITION PASSED', 'background:red;');
     console.log(`
       Previous connection found!
-      Current Connections: ${cachedDb.db.base.connections}
+      Current Connections: ${cachedDb.connection.base.connections}
     `);
     resolve(cachedDb);
   } else {
-    const newDb = mongoose.createConnection(MONGO_DB, console.log);
+    const connection = mongoose.createConnection(MONGO_DB, console.log);
     console.log(`
-      Created new Mongo Connection: ${JSON.stringify(newDb, null, 2)}
+      Created new Mongo Connection:
+      Connections: ${connection.base.connections}
+      DB: ${connection.base}
     `);
+    console.log('mongoose.connection.readyState: ', mongoose.connection.readyState);
     cachedDb = {
-      db: newDb,
+      connection,
       dbModels: {
-        Product: createProductModel(newDb),
-        User: createUserModel(newDb),
+        Product: createProductModel(connection),
+        User: createUserModel(connection),
       },
     };
     resolve(cachedDb);
