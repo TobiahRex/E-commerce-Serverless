@@ -19,19 +19,16 @@ let cachedDb = {
 
 const verifyDb = () =>
 new Promise((resolve) => {
-  console.log('mongoose.connection.readyState: ', mongoose.connection.readyState);
   if (cachedDb.connection && (cachedDb.connection._readyState === 1)) {
-    console.log('Previous DB CONDITION PASSED');
-    console.log(`
-      Previous connection found!
-      Current Connections: ${cachedDb.connection.base.connections}
-    `);
+    console.log('cachedDb.connection._readyState: ', cachedDb.connection._readyState);
+    console.log('FOUND PREVIOUS CONNECTION');
+    console.log('Current Connections: ', cachedDb.connection.base.connections);
     resolve(cachedDb);
   } else {
     const connection = mongoose.createConnection(MONGO_DB, console.log);
-    console.log('New Connection: ', connection);
+    console.log('CREATED NEW CONNECTION: ', connection);
     console.log('mongoose.connection.readyState: ', connection._readyState);
-    console.log('All Connections:', connection.base.connections);
+    console.log('All Connections:', connection.base);
     cachedDb = {
       connection,
       dbModels: {
