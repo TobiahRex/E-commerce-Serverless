@@ -4,7 +4,7 @@ if (!global._babelPolyfill) require('babel-polyfill');
 import runGraphQL from './db/graphql/runGraphQL';
 import verifyDb from './db/mongo/connection';
 
-module.exports.graphql = (event, context, cb) => {
+module.exports.graphql = (event, context) => {
   console.log('\nEVENT: ', event);
 
   verifyDb()
@@ -12,7 +12,6 @@ module.exports.graphql = (event, context, cb) => {
   .then((GraphQLResponse) => {
     console.log('\n//Final Lambda SUCCESS Response: ', GraphQLResponse);
     context.succeed && context.succeed(GraphQLResponse);
-    cb(null, GraphQLResponse);
   })
   .catch((error) => {
     console.log('\n//Final Lambda ERROR: ', error);
