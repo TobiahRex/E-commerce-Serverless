@@ -16,7 +16,17 @@ let cachedDb = {
     Product: null,
   },
 };
-
+/**
+ * 1) Checks for previous instance of database - "cachedDb".
+ * 2) If instance has been found - checks state of connection.
+ * 3a) If state === 1 ("connected") then return previous connection.
+ * 3b) If state !== 1 (most likely "2" - "connecting") then use new connection.
+ * 4) If making new connection: Connect to Mongo Cluster - set the size of available connections to the replica set to 100 concurrent connections.
+ * 5) Assign new connection to "cachedDb" and return result to handler.js
+ *
+ *
+ * @return {object} - Promise resolved with db connection.
+*/
 const verifyDb = () =>
 new Promise((resolve) => {
   if (cachedDb.connection && (cachedDb.connection._readyState === 1)) {

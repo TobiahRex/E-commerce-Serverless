@@ -1,11 +1,21 @@
-/* eslint-disable no-use-before-define */
-import db from '../connection';
+/* eslint-disable no-use-before-define, no-console */
+import { Promise as bbPromise } from 'bluebird';
 import transactionSchema from '../schemas/transactionSchema';
 
-transactionSchema.statics.createTransaction = (txn, cb) => {
-  Transaction.create(txn)
-  .then(dbTxn => cb(null, dbTxn))
-  .catch(error => cb({ problem: 'Could not create Transaction.', error }));
+export default (db) => {
+  transactionSchema.statics.createTransaction = txn =>
+  new Promise((resolve, reject) => {
+    bbPromise.fromCallback(cb => Transaction.create(txn, cb))
+    .then((newTransaction) => {
+      console.log(`Successfully created new Transaction. ${newTransaction}.`);
+      resolve(newTransaction);
+    })
+    .catch((error) => {
+      console.log(`Error trying to create new Transaction.  ERROR = ${error}`);
+      reject(`Error trying to create new Transaction.  ERROR = ${error}`);
+    });
+  });
+
+  const Transaction = db.model('Transaction', transactionSchema);
+  return Transaction;
 };
-const Transaction = db.model('Transaction', transactionSchema);
-export default Transaction;

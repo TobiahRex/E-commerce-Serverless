@@ -208,7 +208,7 @@ export default (db) => {
     .exec()
     .then((dbProducts) => {
       console.log(`Found the following products: ${JSON.stringify(dbProducts, null, 2)}`);
-      resolve(dbProducts);j
+      resolve(dbProducts);
     })
     .catch((error) => {
       console.log(`Error trying to find popular products. ERROR = ${error}.`);
