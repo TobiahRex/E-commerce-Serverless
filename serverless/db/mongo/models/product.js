@@ -3,25 +3,39 @@ import { Promise as bbPromise } from 'bluebird';
 import productSchema from '../schemas/productSchema';
 
 export default (db) => {
+  /**
+  * Locates all products with matching flavor.
+  *
+  * 1) Queries Products collection by input argument "flavor".
+  * 2) Resolves || Rejects with result.
+  *
+  * @param {string} flavor - Product flavor.
+  *
+  * @return {object} - Promise resolved with array of matching Product docs.
+  */
   productSchema.statics.findProductsByFlavor = flavor =>
   new Promise((resolve, reject) => {
     Product.find({ 'product.flavor': flavor })
     .exec()
     .then((dbProducts) => {
-      console.log(`
-        Found ${dbProducts.length} popular product(s) with Flavor: "${flavor}"!
-      `);
+      console.log(`Found ${dbProducts.length} popular product(s) with Flavor: "${flavor}"!`);
       resolve(dbProducts);
     })
     .catch((error) => {
-      reject({
-        problem: `Could not find any products with flavor ${flavor}.
-
-        Mongo Error = ${error}`,
-      });
+      console.log(`Error trying to find products by flavor "${flavor}". ERROR = ${error}`);
+      reject(`Error trying to find products by flavor "${flavor}". ERROR = ${error}`);
     });
   });
 
+  /**
+  * Fetches multiple products by id.
+  * 1) Finds procuts by Mongo _id.
+  * 2) Resolves || Rejects with result.
+  *
+  * @param {array} ids - Array of Product Mongo _ids.
+  *
+  * @return {object} - Promise resolved with array of Product Documents.
+  */
   productSchema.statics.fetchMultiple = ids =>
   new Promise((resolve, reject) => {
     if (!ids.length) {
@@ -33,54 +47,73 @@ export default (db) => {
         console.log('Found multiple Products.: ', dbProducts);
         resolve(dbProducts);
       })
-      .catch(error => reject(`
-        problem: Could not fetch multiple products.
-
-        Mongo Error = ${error}.
-      `));
+      .catch((error) => {
+        console.log(`Error qurying for multiple products with ids "${ids}". ERROR = ${error}`);
+        reject(`Error qurying for multiple products with ids "${ids}". ERROR = ${error}`);
+      });
     }
   });
 
+  /**
+  * 1) Removes product by id.
+  * 2) Resolves || Rejects with result.
+  *
+  * @param {string} _id - Mongo _id of Product to delete.
+  *
+  * @return {object} - Promise resolved with deleted Product Document.
+  */
   productSchema.statics.findProductByIdAndDelete = _id =>
   new Promise((resolve, reject) => {
     Product.findByIdAndRemove(_id)
     .exec()
     .then(resolve)
-    .catch(error => reject({
-      problem: `Could not create a delete product with _id:${_id}.  Verify the id is valid.
-      Mongoose Error = ${error}`,
-    }));
+    .catch((error) => {
+      console.log(`Error trying to delete product with id "${_id}".  ERROR = ${error}.`);
+      reject(`Error trying to delete product with id "${_id}".  ERROR = ${error}.`);
+    });
   });
 
-
+  /**
+  * 1) Creates new Product.
+  * 2) Resolves || Rejects with result.
+  *
+  * @param {object} product  - Product details.
+  * @param {object} statistics  - Product statistic details.
+  *
+  * @return {object} - Promise resolved with new Product Document.
+  */
   productSchema.statics.createProduct = (product, statistics) =>
   new Promise((resolve, reject) => {
     bbPromise.fromCallback(cb => Product.create({ product, statistics }, cb))
     .then((newProduct) => {
-      console.log('\n//mongo/model/product.js\n @ createProduct RESOLVE\n', newProduct);
+      console.log(`Created new Product document. DOC = ${newProduct}`);
       resolve(newProduct);
     })
     .catch((error) => {
-      reject({
-        problem: `Could not create a new product with this product object: ${JSON.stringify({ product }, null, 2)}
-        Mongoose Error = ${error}`,
-      });
+      console.log(`Error trying to create new product.  ERROR = ${error}`);
+      reject(`Error trying to create new product.  ERROR = ${error}`);
     });
   });
 
+  /**
+  * 1) Finds product by Mongo _id.
+  * 2) Resolves || Rejects with result.
+  *
+  * @param {string} _id  - Mongo _id.
+  *
+  * @return {object} - Promise resolved with found Product Document.
+  */
   productSchema.statics.findProductById = _id =>
   new Promise((resolve, reject) => {
     Product.findById(_id)
     .exec()
     .then((dbProduct) => {
-      console.log('\n//mongo/model/product.js\n @ findProductById RESOLVE\n', dbProduct);
+      console.log(`Found product.  DOC = ${dbProduct}`);
       resolve(dbProduct);
     })
     .catch((error) => {
-      reject({
-        problem: `Could not find the product with id ${_id}.  Are you sure that product exists?
-        Mongo Error = ${error}`,
-      });
+      console.log(`Error trying to find product with id "${_id}".  ERROR = ${error}`);
+      reject(`Error trying to find product with id "${_id}".  ERROR = ${error}`);
     });
   });
 
