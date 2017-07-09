@@ -99,5 +99,7 @@ const productSchema = new Schema({
       user_id: { type: ObjectId, ref: 'User' },
     }],
   },
+}, {
+  bufferCommands: true,
 });
 export default productSchema;

@@ -36,5 +36,7 @@ const transactionSchema = new Schema({
       unitprice: { type: Number, required: true },
     },
   },
+}, {
+  bufferCommands: true,
 });
 export default transactionSchema;
