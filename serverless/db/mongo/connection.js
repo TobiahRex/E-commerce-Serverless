@@ -23,7 +23,7 @@ new Promise((resolve) => {
     console.log('cachedDb.connection._readyState: ', cachedDb.connection._readyState, '\nFOUND PREVIOUS CONNECTION\n', '\nCurrent Connections: ', cachedDb.connection.base.connections);
     resolve(cachedDb);
   } else {
-    const connection = mongoose.createConnection(MONGO_DB, console.log);
+    const connection = mongoose.createConnection(MONGO_DB, { replset: { poolSize: 100 } });
 
     console.log('CREATED NEW CONNECTION: ', connection, '\nmongoose.connection.readyState: ', connection._readyState, '\nAll Connections:', connection.base);
 
