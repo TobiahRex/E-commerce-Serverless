@@ -12,8 +12,8 @@ if (!MONGO_DB) throw new Error(`MONGO_DB URI value is: ${MONGO_DB.length ? MONGO
 let cachedDb = {
   connection: null,
   dbModels: {
-    Product: null,
     User: null,
+    Product: null,
   },
 };
 
@@ -30,10 +30,11 @@ new Promise((resolve) => {
     cachedDb = {
       connection,
       dbModels: {
-        Product: createProductModel(connection),
         User: createUserModel(connection),
+        Product: createProductModel(connection),
       },
     };
+    console.log('\n\nCACHED Connection: \n\n', cachedDb.connection);
     resolve(cachedDb);
   }
 });
