@@ -8,6 +8,7 @@ public
 # serverless
 .serverless
 config.yml
+config.json
 
 # miscellaneous
 .DS_Store
