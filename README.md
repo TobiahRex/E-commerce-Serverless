@@ -1,4 +1,4 @@
-# Nic Juice 2 Japan _NJ2JP_:
+# Nic Juice 2 Japan (_NJ2JP_):
 E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
   - Deployed using _Serverless_ | AWS Lambda.  
   - Backend API = **GraphQL**.
