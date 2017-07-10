@@ -151,7 +151,7 @@ class SingleProduct extends Component {
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
   * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
   * 3) Returns new local state value for "qty".
-  *
+  * BUG - Need to add "GLOBAL" qty value to this function.
   * @param {e} object - the click event object.
   *
   * @return {new state} - returns new state with new qty value.
@@ -195,6 +195,16 @@ class SingleProduct extends Component {
     }
   }
 
+  /**
+  * 1) Extract productId & nicotine Strength value from click event object.
+  * 2) Fetch all db products matching the clicked flavor.
+  * 3) Filter results by the id of the clicked product's id.
+  * 4) Save result to local compoent state.
+  *
+  * @param {e} object - the click event object.
+  *
+  * @return {new state} - returns new state with new qty value.
+  */
   nicotineHandler = (e) => {
     let productId = e.target.dataset.product;
     let nicStrength = e.target.dataset.nicotinestrength;
