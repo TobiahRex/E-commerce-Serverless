@@ -158,16 +158,13 @@ class SingleProduct extends Component {
   */
   qtyHandler = (e) => {
     const { globalRequestQty } = this.composeGlobalCartInfo();
-    console.log('%cglobalRequestQty', 'background:red;', globalRequestQty);
-    console.log('%cstateQuantity', 'background:cyan;', this.state.qty);
-
     const qtyToCheck = 1;
 
     let buttonEl = e.target.dataset.tag;
     if (!buttonEl) buttonEl = e.target.parentNode.dataset.tag;
 
     if (buttonEl === 'qty-plus') {
-      if ((globalRequestQty + this.state.qty + qtyToCheck) < 4) {
+      if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
         this.setState(prevState => ({
           ...prevState,
           qty: (prevState.qty += 1),
