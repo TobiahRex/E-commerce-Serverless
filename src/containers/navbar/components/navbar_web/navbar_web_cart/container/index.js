@@ -226,9 +226,12 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
 };
 
 /**
-* Higher Order Component Breakdown:
-* 1) NavbarCartWithData - Receives the result from calling the Higher Order Component "compose" from react-apollo.  The compose function, is first called, creating various GraphQL query and mutation methods - "FetchMultipleProducts" & "DeleteFromMemberCart".  Once compose is complete, it returns a function, that is given the argument "NavbarCart".  NavbarCart will inherit as "props" - the 2 graphql methods created in the previous step.  The final resulting component is assigned to "NavbarCartWithData" as a new component.
-* 2) 
+* GraphQL & Redux Higher Order Component Control Flow:
+* 1) NavbarCartWithData - Receives the result from calling the Higher Order Component "compose" from react-apollo.  The compose function, is first called, creating various GraphQL query and mutation methods - "FetchMultipleProducts" & "DeleteFromMemberCart".  Once compose is complete, it returns a function, that is given the component "NavbarCart" as an argument.  NavbarCart will then inherit as "props" - the 2 graphql methods created in the previous step.  The final resulting component is assigned to "NavbarCartWithData" as a new component.
+*
+* 2) NavbarCartWithStateAndGraphQL - Receives the result from calling the Higher Order Component "connect" from 'react-redux'.  The "connect" function, receives 2 functions as arguments, typically named: "mapStateToProps" & "mapDispatchToProps".  In the code below, I've condensed them to anonymous functions instead.
+* 3) These two functions assign as "props" on the resulting component from step 1, methods and slices of the global redux state.  It does this by returning a function, that is then immediately invoked with the argument "NavbarCartWithData".  The final result will be a new component, with all the GraphQL methods created in Step 1 && all the Redux methods and state created in step 2.
+* 4) NOTE that the order when calling "compose" & "connect" matters very much.  Depending on which is called first, either Server-side data will be available to Redux's methods (when calling "connect") as possible arguments, OR, Redux state data will be available to GraphQL methods (when calling "compose") as possible argument.  Whichever wraps the base Component ("compose" || "connect"), will be receiving the others results as possible input arguments.
 *
 * @param {boolean} loggedIn - User logged in flag.
 * @param {array} guestCart - Array of values.
@@ -255,7 +258,7 @@ const NavbarCartWithData = compose(
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCart);
 
-const NavbarCartWithStateAndGraphQL = connect(
+const NavbarCartWithStateAndData = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
     loggedIn: auth.loggedIn,
@@ -271,4 +274,4 @@ const NavbarCartWithStateAndGraphQL = connect(
   }),
 )(NavbarCartWithData);
 
-export default NavbarCartWithStateAndGraphQL;
+export default NavbarCartWithStateAndData;
