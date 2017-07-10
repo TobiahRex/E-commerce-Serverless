@@ -44,14 +44,33 @@ class NavbarCart extends Component {
     return false;
   }
 
+  /**
+  * 1) Find the product ID from the event target.
+  * 2) Provide the id to the redux-router "push" method as a query parameter for lookup by the Cart container component.
+  *
+  * @param {object} e - Event object.
+  *
+  * @return {na} no return.
+  */
   editCartItem = (e) => {
     let route = e.target.dataset.route;
     let id = e.target.dataset.id;
+
     if (!route) route = e.target.parentNode.dataset.route;
     if (!id) id = e.target.parentNode.dataset.id;
-    this.props.push('/cart');
+
+    this.props.push(`/cart?id=${id}`);
   }
 
+  /**
+  * 1) Find the product id from the event target object.
+  * 2) Filter either "activeUser" cart, or "guestCart" by the id found in step 1.
+  * 3) Call either "saveProfile" if user is logged in.  Or call "updateToGuestCart" if user is a guest.
+  *
+  * @param {object} e - Event object.
+  *
+  * @return {na} no return.
+  */
   deleteFromCart = (e) => {
     const {
       guestCart,
@@ -64,6 +83,15 @@ class NavbarCart extends Component {
     if (!productId) productId = e.target.parentNode.dataset.id;
 
     if (!!activeUser._id) {
+      /**
+      * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
+      * 2) Dispatches redux action by calling props methods "saveProfile".
+      * 3) Redux action will update the user profile saved in Redux.
+      *
+      * @param {object} variables - GraphQL required variables.
+      *
+      * @return {promise} - Resolved or Rejected promise result.
+      */
       this.props.DeleteFromMemberCart({
         variables: {
           productId,
@@ -74,6 +102,13 @@ class NavbarCart extends Component {
         saveProfile(updatedUser);
       });
     } else {
+      /**
+      * 1) Filters the current guest cart by the id of the product found on the event target object.
+      *
+      * @param {array} (filter result) - filtered ids.
+      *
+      * @return N/A
+      */
       updateToGuestCart(guestCart.filter(({ _id }) => _id !== productId));
     }
   }
