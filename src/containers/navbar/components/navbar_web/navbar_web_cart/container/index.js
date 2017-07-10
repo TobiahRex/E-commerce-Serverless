@@ -18,6 +18,7 @@ class NavbarCart extends Component {
 
   shouldComponentUpdate(nextProps) {
     /**
+    * Function: "isArrayEqual"
     * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
     *
     * @param {object} np - nextProps
@@ -45,6 +46,7 @@ class NavbarCart extends Component {
   }
 
   /**
+  * Function: "editCartItem"
   * 1) Find the product ID from the event target.
   * 2) Provide the id to the redux-router "push" method as a query parameter for lookup by the Cart container component.
   *
@@ -63,6 +65,7 @@ class NavbarCart extends Component {
   }
 
   /**
+  * Function: "deleteFromCart"
   * 1) Find the product id from the event target object.
   * 2) Filter either "activeUser" cart, or "guestCart" by the id found in step 1.
   * 3) Call either "saveProfile" if user is logged in.  Or call "updateToGuestCart" if user is a guest.
@@ -84,6 +87,7 @@ class NavbarCart extends Component {
 
     if (!!activeUser._id) {
       /**
+      * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
       * 2) Dispatches redux action by calling props methods "saveProfile".
       * 3) Redux action will update the user profile saved in Redux.
@@ -103,6 +107,7 @@ class NavbarCart extends Component {
       });
     } else {
       /**
+      * Function: "updateToGuestCart"
       * 1) Filters the current guest cart by the id of the product found on the event target object.
       *
       * @param {array} (filter result) - filtered ids.
@@ -113,7 +118,27 @@ class NavbarCart extends Component {
     }
   }
 
+  /**
+  * Function: "zipUserCart"
+  * 1) Defines a "zip" function.
+  * 2) Creates a new array of objects containing the product details for the users cart by calling the "zip" function defined in step 1.
+  *
+  * @param {object} userProfile - The current user profile object.
+  * @param {array} multipleProducts - multiple product arrays.
+  *
+  * @return {array} updatedProducts - See step 2.
+  */
   zipUserCart = (userProfile, multipleProducts) => {
+    /**
+    * Function: "zip"
+    * 1) Iterates over 2 arrays simultaneously.
+    * 2) Iterations are limited to the input with the shortest array length.
+    *
+    * @param {array} left - Array of values.
+    * @param {array} right - Array of values.
+    *
+    * @return {array} results - New array of mixed values from the two input arrays.
+    */
     const zip = (left, right, combinerFunction) => {
       let counter;
       const results = [];
