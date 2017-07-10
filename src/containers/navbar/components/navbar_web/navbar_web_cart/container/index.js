@@ -186,6 +186,7 @@ class NavbarCart extends Component {
     return (
       <div className="mycart-main">
         <NavbarCartMainButton qty={qty} />
+
         <NavbarCartDropdnContent
           loading={!!userCartResult.FetchMultipleProducts && userCartResult.loading}
           cartItems={cartItems}
@@ -203,18 +204,22 @@ class NavbarCart extends Component {
   }
 }
 /**
-* Function: "zip"
-* 1) Iterates over 2 arrays simultaneously.
-* 2) Iterations are limited to the input with the shortest array length.
+* Function: "calculateQty"
+* 1) Checks to see if "userProfile" is truthy && if so, that the object has a property of "shopping", && if so, assigns "userCart" the value of "userProfile.shopping.cart".
+* 2) Creates "cart" variable and assigns value based on if the user is logged in or not.
+* 3a) If the user and guest cart's are both empty, then the final return will be 0;
+* 3b) Otherwise, reduce the total quantities of all products in the cart to a final number, and return that number to the function caller.
 *
-* @param {array} left - Array of values.
-* @param {array} right - Array of values.
+* @param {boolean} loggedIn - User logged in flag.
+* @param {array} guestCart - Array of values.
+* @param {object} userProfile - Parent object for all user's information.
 *
 * @return {array} results - New array of mixed values from the two input arrays.
 */
 const calculateQty = (loggedIn, guestCart, userProfile) => {
-  const userCart = !!userProfile && Object.prototype.hasOwnProperty.call(userProfile, 'shopping') && userProfile.shopping.cart,
-    cart = loggedIn ? userCart : guestCart;
+  const userCart = !!userProfile && Object.prototype.hasOwnProperty.call(userProfile, 'shopping') && userProfile.shopping.cart;
+
+  const cart = loggedIn ? userCart : guestCart;
 
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
