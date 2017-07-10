@@ -8,14 +8,23 @@ import { propTypes, defaultProps } from './propTypes.imports';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
 import userActions from '../../../../../../redux/user/';
-import { DeleteFromMemberCart } from '../../../../../../graphQL/mutations';
-import { FetchMultipleProducts } from '../../../../../../graphQL/queries';
+import { DeleteFromMemberCart } from '../../../../../../graphql/mutations';
+import { FetchMultipleProducts } from '../../../../../../graphql/queries';
 
 
 class NavbarCart extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
+
   shouldComponentUpdate(nextProps) {
+    /**
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
       { FetchMultipleProducts:

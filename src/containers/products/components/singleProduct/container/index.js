@@ -338,8 +338,6 @@ class SingleProduct extends Component {
         } = this.state,
 
         deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
-        console.log('%cglobalRequestQty', 'background:pink;', globalRequestQty);
-        console.log('%cdeltaQty', 'background:red;', deltaQty);
 
       if (globalRequestQty > 4) {
         this.setState({
