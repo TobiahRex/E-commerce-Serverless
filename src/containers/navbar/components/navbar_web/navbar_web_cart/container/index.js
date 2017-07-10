@@ -214,7 +214,7 @@ class NavbarCart extends Component {
 * @param {array} guestCart - Array of values.
 * @param {object} userProfile - Parent object for all user's information.
 *
-* @return {array} results - New array of mixed values from the two input arrays.
+* @return {number} result - Final reduced quantity of all items in the cart.
 */
 const calculateQty = (loggedIn, guestCart, userProfile) => {
   const userCart = !!userProfile && Object.prototype.hasOwnProperty.call(userProfile, 'shopping') && userProfile.shopping.cart;
@@ -224,6 +224,18 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
   if (!cart.length) return 0;
   return cart.reduce((accum, { qty }) => accum + qty, 0);
 };
+
+/**
+* Higher Order Component Breakdown:
+* 1) NavbarCartWithData - Receives the result from calling the Higher Order Component "compose" from react-apollo.  The compose function, is first called, creating various GraphQL query and mutation methods - "FetchMultipleProducts" & "DeleteFromMemberCart".  Once compose is complete, it returns a function, that is given the argument "NavbarCart".  NavbarCart will inherit as "props" - the 2 graphql methods created in the previous step.  The final resulting component is assigned to "NavbarCartWithData" as a new component.
+* 2) 
+*
+* @param {boolean} loggedIn - User logged in flag.
+* @param {array} guestCart - Array of values.
+* @param {object} userProfile - Parent object for all user's information.
+*
+* @return {number} result - Final reduced quantity of all items in the cart.
+*/
 const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
@@ -234,15 +246,15 @@ const NavbarCartWithData = compose(
         accum.push(id);
         return accum;
       }, []);
+
       return ({
-        variables: {
-          ids,
-        },
+        variables: { ids },
       });
     },
   }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCart);
+
 const NavbarCartWithStateAndGraphQL = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
@@ -252,11 +264,11 @@ const NavbarCartWithStateAndGraphQL = connect(
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
-
     updateToGuestCart: updatedCartProducts =>
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
     saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
   }),
 )(NavbarCartWithData);
+
 export default NavbarCartWithStateAndGraphQL;
