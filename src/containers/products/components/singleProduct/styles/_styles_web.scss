@@ -2,7 +2,6 @@
   .juice-page__main {
     max-width: 1080px;
     width: 100%;
-    height: 111em;
     & .main__loading {
       @include prefixflex();
       justify-content: center;
@@ -33,9 +32,7 @@
     & .main__parent {
       @include prefixflex();
       justify-content: center;
-      align-items: center;
-      max-height: 71em;
-      height: 100%;
+      align-items: flex-start;
       & .main__info--image {
         display: inline-block;
         position: relative;
@@ -95,7 +92,6 @@
         width: 100%;
         & .desc__title {
           @include prefixflex();
-          align-items: center;
           height: 7em;
           width: 100%;
           & h1 {

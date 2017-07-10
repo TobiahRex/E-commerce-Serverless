@@ -19,7 +19,7 @@ export default function OrderSuccess() {
         </div>
         <div className="ordered__header">
           <div className="header--date">
-            <p>Date: {new Date()}</p>
+            <p>Date: {Date.now()}</p>
             <p>Invoice #: {uuid()}</p>
           </div>
           <div className="header--status">

@@ -146,6 +146,7 @@
     height: 6em;
     background-color: $p-white;
     border-bottom: 1px solid rgba(0,0,0,.15);
+    margin-bottom: 20px;
     & .breadcrumb--list {
       @include prefixflex();
       justify-content: flex-start;

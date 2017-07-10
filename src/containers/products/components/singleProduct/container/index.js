@@ -1,21 +1,21 @@
 /* eslint-disable no-lone-blocks, import/first*/
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
+
 import { propTypes, defaultProps } from './propTypes';
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
-
 import {
   FindProductById,
   FindProductsByFlavor,
   AddToMemberCart,
   EditToMemberCart,
 } from './graphql.imports';
-
 import {
   MainTitle,
   BreadCrumb,
@@ -31,6 +31,7 @@ class SingleProduct extends Component {
   static defaultProps = defaultProps
   constructor(props) {
     super(props);
+
     this.state = {
       qty: 0,
       error: false,
@@ -48,20 +49,41 @@ class SingleProduct extends Component {
     if (loggedIn !== this.props.loggedIn) this.setState(() => ({ loggedIn }));
   }
 
+  /**
+  * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
+  *
+  * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
+  *
+  * @param {object} nextProps - New props.
+  * @param {object} nextState - New State.
+  *
+  * @return {boolean} true/false.
+  */
   shouldComponentUpdate(nextProps, nextState) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
 
     const userCartDiff = isArrayEqual(nextProps.userCart, this.props.userCart);
     const guestCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart);
 
-    if (!_.isEqual(nextState, this.state)
-    || !_.isEqual(nextProps, this.props)
-    || userCartDiff
-    || guestCartDiff) return true;
-
+    if (
+      !_.isEqual(nextState, this.state)
+      || !_.isEqual(nextProps, this.props)
+      || userCartDiff
+      || guestCartDiff
+    ) return true;
     return false;
   }
 
+  /**
+  * 1) receives "event" - and extracts parent element & tag element values.
+  * 2) Filters parent element via Switch block.
+  * 3) Once parent element has been identified, filters tag element via nested switch block.
+  * 4) Based on the type of modal that's been chosen by user, either "toggleModal" or "toggleModalAndGo" is called.  The difference between the two is that "toggleModal" simply shows static information but does not allow navigation to outside components.  "toggleModalAndGo" does allow navigation to outside components and is given the location as an input argument when called.
+  *
+  * @param {object} e - event object.
+  *
+  * @return {function call} - calls "toggleModal" || "toggleModalAndGo"
+  */
   modalHandler = (e) => {
     let parentEl = e.target.dataset.parent;
     let tagEl = e.target.dataset.tag;
@@ -97,16 +119,43 @@ class SingleProduct extends Component {
     }
   }
 
+  /**
+  * 1) recieves name of modal as input argument.
+  * 2) sets the show state variable for that modal to "true".
+  *
+  * @param {string} modal - name of the modal to show.
+  *
+  * @return {new state} - returns new state with new modal show value.
+  */
   toggleModal = (modal) => {
     this.setState(prevState => ({ [modal]: !prevState[modal] }));
   }
 
+  /**
+  * 1) recieves name of modal as input argument & destination name for in-modal navigation buttons.
+  * 2) sets the show state variable for that modal to "true".
+  *
+  * @param {string} modal - name of the modal to show.
+  * @param {string} location - name of the destination for nav buttons.
+  *
+  * @return {new state} - returns new state with new modal show value.
+  */
   toggleModalAndGo = (modal, location) => {
     this.setState(prevState => ({
       [modal]: !prevState[modal],
     }), () => this.props.push(location));
   }
 
+  /**
+  * 1) receives event object and determines if "+" or "-" button has been clicked.
+  * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
+  * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
+  * 3) Returns new local state value for "qty".
+  *
+  * @param {e} object - the click event object.
+  *
+  * @return {new state} - returns new state with new qty value.
+  */
   qtyHandler = (e) => {
     let buttonEl = e.target.dataset.tag;
     if (!buttonEl) buttonEl = e.target.parentNode.dataset.tag;
@@ -128,6 +177,7 @@ class SingleProduct extends Component {
       }
     } else if (buttonEl === 'qty-minus') {
       const { qty } = this.state;
+
       if (qty >= 1 && qty <= 4) {
         this.setState(prevState => ({
           ...prevState,
@@ -380,6 +430,10 @@ class SingleProduct extends Component {
     }
   }
 
+
+  /*
+  * Resets the state variable "added" to false to reset dynamic animations after user adds item to their cart.
+  */
   componentDidUpdate() {
     if (this.state.added) {
       setTimeout(() => {
@@ -467,6 +521,15 @@ class SingleProduct extends Component {
     );
   }
 }
+
+/**
+* NOTE: Connecting Redux & ApolloClient to Single Product Container. (below)
+*
+* 1) Redux's "connect" function maps state & dispatch to props on "SingleProduct" and returns HOC - "SingleProductWithState"
+* 2) React Apollo's "compose" function, composes multiple GraphQL queries and mutations onto the HOC returned in Step 1. - Redux's mapped props are available to these graphql functions if needed due to step 1.  Returns HOC "SingleProductWithStateAndData".
+* 3) This final HOC is the default export.
+*
+*/
 const SingleProductWithState = connect(
   ({ orders, auth, routing, user }) => ({
     userId: user.profile ? user.profile._id : '',
@@ -507,4 +570,5 @@ const SingleProductWithStateAndData = compose(
   graphql(AddToMemberCart, { name: 'AddToMemberCart' }),
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
 )(SingleProductWithState);
+
 export default SingleProductWithStateAndData;
