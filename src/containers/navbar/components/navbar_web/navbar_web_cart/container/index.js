@@ -171,6 +171,11 @@ class NavbarCart extends Component {
       FetchMultipleProducts: userCartResult,
     } = this.props;
 
+    /**
+    * IF-block
+    * 1) Dynamically assings "cartItems" to either the guest-cart or the logged-in-users-cart.
+    * 2) If the cartItems is to be assigned to the logged-in-users-cart, then the "zipUserCart" function is called.  The returned value will be an updated array.
+    */
     let cartItems = [];
     if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
@@ -197,7 +202,16 @@ class NavbarCart extends Component {
     );
   }
 }
-
+/**
+* Function: "zip"
+* 1) Iterates over 2 arrays simultaneously.
+* 2) Iterations are limited to the input with the shortest array length.
+*
+* @param {array} left - Array of values.
+* @param {array} right - Array of values.
+*
+* @return {array} results - New array of mixed values from the two input arrays.
+*/
 const calculateQty = (loggedIn, guestCart, userProfile) => {
   const userCart = !!userProfile && Object.prototype.hasOwnProperty.call(userProfile, 'shopping') && userProfile.shopping.cart,
     cart = loggedIn ? userCart : guestCart;
