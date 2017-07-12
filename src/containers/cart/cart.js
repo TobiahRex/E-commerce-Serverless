@@ -99,14 +99,15 @@ class ShoppingCart extends Component {
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
   calcProductAnalysis = () => {
+    const { loggedIn, userCart, guestCart } = this.props;
     let grandTotal = 0;
+    const juiceItems = loggedIn ? userCart : guestCart;
 
-    ShoppingCart.juices.forEach((juiceObj) => {
+    juiceItems.forEach((juiceObj) => {
       juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
       grandTotal += juiceObj.subTotal;
     });
     const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
-    console.log('taxes: ', taxes, '\ngrandTotal: ', grandTotal);
     grandTotal += taxes;
 
     this.setState({ taxes, grandTotal });
@@ -157,7 +158,7 @@ class ShoppingCart extends Component {
       console.log('juiceObj: ', juiceObj);
       const { grandTotal, taxes } = this.state;
 
-      if (this.state.mobileActive === 'false') {
+      if (this.state.mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
             key={`shopping-cart-table-row-${juiceObj.name}`}
@@ -170,8 +171,8 @@ class ShoppingCart extends Component {
         <ShoppingCartMobileProductCard
           key={`shopping-cart-table-row-${juiceObj.name}`}
           keyNum={i}
-          juiceObj={juiceObj}
           taxes={taxes}
+          juiceObj={juiceObj}
           grandTotal={grandTotal}
         />
       );

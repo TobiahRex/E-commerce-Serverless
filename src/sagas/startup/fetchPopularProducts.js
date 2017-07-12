@@ -1,7 +1,7 @@
 import { put, call } from 'redux-saga/effects';
 import apiActions from '../../redux/api';
 import productActions from '../../redux/products/';
-import productApi from '../../services/api/graphQL/products';
+import productApi from '../../services/api/graphql/products';
 import cleanGQLresponse from '../tools/cleanGQLresponse';
 
 const api = productApi.createAPI();

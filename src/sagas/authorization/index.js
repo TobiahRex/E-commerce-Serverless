@@ -7,7 +7,7 @@ import apiActions from '../../redux/api';
 import authActions from '../../redux/auth';
 import userActions from '../../redux/user';
 import sessionActions from '../../redux/session';
-import userApi from '../../services/api/graphQL/users';
+import userApi from '../../services/api/graphql/users';
 import cleanGQLresponse from '../tools/cleanGQLresponse';
 import cleanAuth0Profile from './cleanAuth0Profile';
 

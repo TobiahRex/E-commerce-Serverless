@@ -13,25 +13,27 @@ const propTypes = {
 
 function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) {
   return (
-    <div
-      key={`shopping-cart-mobile-row-${juiceObj.name}-${keyNum}`}
+    <tr
+      data-id={juiceObj._id}
+      key={`shopping-cart-mobile-row-${juiceObj._id}`}
+      keyNum={keyNum}
       className="shopping-cart-mobile-row"
     >
-      <div className="shopping-cart-mobile-product-parent">
+      <td className="shopping-cart-mobile-product-parent">
         <div className="shopping-cart-mobile-product-img">
           <img
-            src={juiceObj.imgSrc}
-            alt={juiceObj.name}
+            src={juiceObj.images[0].url}
+            alt={juiceObj.title}
             className="shopping-cart-mobile-product-img-src"
           />
         </div>
         <div className="shopping-cart-mobile-product-infobox">
           <div className="shopping-cart-mobile-product-infobox-title">
-            <h3>{juiceObj.name}</h3>
+            <h3>{juiceObj.title}</h3>
           </div>
           <div className="shopping-cart-mobile-product-infobox-nicotine">
             <p>Nicotine Strength:{'\u00A0'}</p>
-            <i>{juiceObj.nicotine}</i>
+            <i>{juiceObj.nicotineStrength}</i>
           </div>
           <div className="shopping-cart-mobile-product-infobox-sku">
             <p>SKU:{'\u00A0'}</p>
@@ -130,8 +132,8 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 }
 

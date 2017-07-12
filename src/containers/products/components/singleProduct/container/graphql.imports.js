@@ -1,2 +1,2 @@
-export { FindProductById, FindProductsByFlavor } from '../../../../../graphQL/queries';
-export { AddToMemberCart, EditToMemberCart } from '../../../../../graphQL/mutations';
+export { FindProductById, FindProductsByFlavor } from '../../../../../graphql/queries';
+export { AddToMemberCart, EditToMemberCart } from '../../../../../graphql/mutations';
