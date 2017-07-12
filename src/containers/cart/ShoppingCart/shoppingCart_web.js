@@ -1,26 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router';
-
-const { func, number, arrayOf, object } = PropTypes;
-
-const propTypes = {
-  renderWebJuices: func.isRequired,
-  grandTotal: number,
-  taxes: number,
-  cartItems: arrayOf(object),
-};
-const defaultProps = {
-  grandTotal: 0,
-  taxes: 0,
-  cartItems: [],
-};
 
 function ShoppingCartWeb({
   taxes,
   cartItems,
   grandTotal,
+  routerPush,
   renderWebJuices,
 }) {
   return (
@@ -67,7 +53,11 @@ function ShoppingCartWeb({
         </div>
       </div>
       <div className="shopping-cart-action-btns-parent">
-        <button className="shopping-cart-action-btn-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
+        <button
+          data-slug="express_checkout"
+          className="shopping-cart-action-btn-checkout sweep-right"
+          onClick={routerPush}
+        >
           <span className="btn-flex-parent">
             <FontAwesome name="credit-card-alt" />
             {'\u0020'}Express Checkout
@@ -80,13 +70,28 @@ function ShoppingCartWeb({
         </button>
       </div>
       <div className="shopping-cart-back-parent">
-        <button className="shopping-cart-back sweep-right" onClick={() => browserHistory.push('/')}>
+        <button
+          data-slug="/"
+          className="shopping-cart-back sweep-right"
+          onClick={routerPush}
+        >
           Back To Homepage
         </button>
       </div>
     </div>
   );
 }
-ShoppingCartWeb.propTypes = propTypes;
-ShoppingCartWeb.defaultProps = defaultProps;
+const { func, number, arrayOf, object } = PropTypes;
+ShoppingCartWeb.propTypes = {
+  taxes: number,
+  cartItems: arrayOf(object),
+  grandTotal: number,
+  routerPush: func.isRequired,
+  renderWebJuices: func.isRequired,
+};
+ShoppingCartWeb.defaultProps = {
+  taxes: 0,
+  cartItems: [],
+  grandTotal: 0,
+};
 export default ShoppingCartWeb;

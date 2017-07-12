@@ -80,6 +80,14 @@ class ShoppingCart extends Component {
     }
   }
 
+  routerPush = (e) => {
+    let slug = e.target.dataset.slug;
+
+    if (!slug) slug = e.target.parentNode.dataset.slug;
+
+    this.props.push(slug);
+  }
+
   /**
   * Function: "calcProductAnalysis"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
