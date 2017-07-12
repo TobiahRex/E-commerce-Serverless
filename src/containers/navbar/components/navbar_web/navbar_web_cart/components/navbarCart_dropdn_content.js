@@ -12,6 +12,7 @@ function NavbarCartDropdnContent({
   cartItems,
   cartTotal,
   deleteFromCart,
+  editCartItem,
 }) {
   return (
     <span className="dropdown-content">
@@ -23,6 +24,7 @@ function NavbarCartDropdnContent({
           cartItems={cartItems}
           cartTotal={cartTotal}
           deleteFromCart={deleteFromCart}
+          editCartItem={editCartItem}
         />
         <NavbarCartActionLinks />
       </div>
@@ -34,6 +36,7 @@ NavbarCartDropdnContent.propTypes = {
   loading: bool.isRequired,
   cartItems: arrayOf(object).isRequired,
   cartTotal: number.isRequired,
+  editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
 };
 export default NavbarCartDropdnContent;
