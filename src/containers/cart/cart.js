@@ -304,9 +304,10 @@ class ShoppingCart extends Component {
     if (mobileActive === false) {
       return (
         <ShoppingCartWeb
+          cart={cart}
           taxes={taxes}
-          cartItems={cart}
           grandTotal={grandTotal}
+          mobileActive={mobileActive}
           showProducts={this.showProductRow}
           routerPush={this.props.push}
         />
@@ -314,9 +315,10 @@ class ShoppingCart extends Component {
     }
     return (
       <ShoppingCartMobile
+        cart={cart}
         taxes={taxes}
         grandTotal={grandTotal}
-        cartItems={cart}
+        mobileActive={mobileActive}
         showProducts={this.showProductRow}
         routerPush={this.props.push}
       />
@@ -338,19 +340,23 @@ class ShoppingCart extends Component {
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
-            key={`shopping-cart-table-row-${juiceObj.name}`}
+            key={`shopping-cart-table-row-${juiceObj._id}`}
             keyNum={i}
+            taxes={taxes}
             juiceObj={juiceObj}
+            grandTotal={grandTotal}
+            mobileActive={mobileActive}
           />
         );
       }
       return (
         <ShoppingCartMobileProductCard
-          key={`shopping-cart-table-row-${juiceObj.name}`}
+          key={`shopping-cart-table-row-${juiceObj._id}`}
           keyNum={i}
           taxes={taxes}
           juiceObj={juiceObj}
           grandTotal={grandTotal}
+          mobileActive={mobileActive}
         />
       );
     })
@@ -359,6 +365,14 @@ class ShoppingCart extends Component {
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
     const { mobileActive, grandTotal, taxes } = this.state;
+
+    let emptyCart = true;
+    if (loggedIn) {
+      emptyCart = userCart.length ? false : true;
+    } else {
+      emptyCart = guestCart.length ? false : true;
+    }
+
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
@@ -370,7 +384,8 @@ class ShoppingCart extends Component {
         <div className="shopping-cart-main-title">
           <h1>Shopping Cart</h1>
         </div>
-        {this.showShoppingCart(
+        { emptyCart ? 
+          this.showShoppingCart(
           taxes,
           grandTotal,
           mobileActive,

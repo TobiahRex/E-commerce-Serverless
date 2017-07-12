@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function ShoppingCartWeb({
+  cart,
   taxes,
-  cartItems,
   grandTotal,
   routerPush,
   showProducts,
+  mobileActive,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -29,7 +30,7 @@ function ShoppingCartWeb({
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {showProducts(cartItems)}
+          {showProducts(taxes, grandTotal, mobileActive, cart)}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">
@@ -81,17 +82,18 @@ function ShoppingCartWeb({
     </div>
   );
 }
-const { func, number, arrayOf, object } = PropTypes;
+const { func, number, arrayOf, object, bool } = PropTypes;
 ShoppingCartWeb.propTypes = {
+  cart: arrayOf(object),
   taxes: number,
-  cartItems: arrayOf(object),
   grandTotal: number,
   routerPush: func.isRequired,
   showProducts: func.isRequired,
+  mobileActive: bool.isRequired,
 };
 ShoppingCartWeb.defaultProps = {
+  cart: [],
   taxes: 0,
-  cartItems: [],
   grandTotal: 0,
 };
 export default ShoppingCartWeb;
