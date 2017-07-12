@@ -154,6 +154,33 @@ class ShoppingCart extends Component {
   }
 
   /**
+  * Function: "calcProductAnalysis"
+  * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
+  * 2) Add that the individual subtotal to each juiceObj.
+  * 3) Add that amount to the "grandTotal".
+  *
+  * @param {none} N/A
+  *
+  * @return {N/A} Set's new state for taxes & grandTotal.
+  */
+  calcProductAnalysis = () => {
+    const { loggedIn, userCart, guestCart } = this.props;
+    let grandTotal = 0;
+    const juiceItems = loggedIn ? userCart : guestCart;
+
+    juiceItems.forEach((juiceObj) => {
+      juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
+      grandTotal += juiceObj.subTotal;
+    });
+    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
+    grandTotal += taxes;
+    return ({
+      taxes,
+      grandTotal,
+    });
+  }
+
+  /**
   * 1) receives event object and determines if "+" or "-" button has been clicked.
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
   * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
@@ -265,34 +292,6 @@ class ShoppingCart extends Component {
     console.log('slug: ', slug);
     this.props.push(slug);
   }
-
-  /**
-  * Function: "calcProductAnalysis"
-  * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
-  * 2) Add that the individual subtotal to each juiceObj.
-  * 3) Add that amount to the "grandTotal".
-  *
-  * @param {none} N/A
-  *
-  * @return {N/A} Set's new state for taxes & grandTotal.
-  */
-  calcProductAnalysis = () => {
-    const { loggedIn, userCart, guestCart } = this.props;
-    let grandTotal = 0;
-    const juiceItems = loggedIn ? userCart : guestCart;
-
-    juiceItems.forEach((juiceObj) => {
-      juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
-      grandTotal += juiceObj.subTotal;
-    });
-    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
-    grandTotal += taxes;
-    return ({
-      taxes,
-      grandTotal,
-    });
-  }
-
   /**
   * Function: "showShoppingCart"
   * 1) Dynamically render device cart based on mobile or web version.
@@ -334,7 +333,7 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (taxes, grandTotal, mobileActive, cart) => (
+  showProductRow = (mobileActive, cart) => (
     cart.map((juiceObj, i) => {
       console.log('juiceObj: ', juiceObj);
 
@@ -343,10 +342,9 @@ class ShoppingCart extends Component {
           <ShoppingCartWebProductRow
             key={`shopping-cart-table-row-${juiceObj._id}`}
             keyNum={i}
-            taxes={taxes}
             juiceObj={juiceObj}
-            grandTotal={grandTotal}
-            mobileActive={mobileActive}
+            qtyHandler={this.qtyHandler}
+            deleteFromCart={this.deleteFromCart}
           />
         );
       }
@@ -354,10 +352,9 @@ class ShoppingCart extends Component {
         <ShoppingCartMobileProductCard
           key={`shopping-cart-table-row-${juiceObj._id}`}
           keyNum={i}
-          taxes={taxes}
           juiceObj={juiceObj}
-          grandTotal={grandTotal}
-          mobileActive={mobileActive}
+          qtyHandler={this.qtyHandler}
+          deleteFromCart={this.deleteFromCart}
         />
       );
     })

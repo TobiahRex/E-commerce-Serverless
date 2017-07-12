@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
-function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
+function ShoppingCartWebProductRow({
+  keyNum,
+  juiceObj,
+  qtyHandler,
+  deleteFromCart,
+}) {
   return (
     <tr key={`shopping-cart-table-row-${juiceObj.name}-${keyNum}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">
@@ -33,7 +38,7 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
             <li className="shopping-cart-table-body-infobox-trash">
               <button
                 className="sweep-right"
-                onClick={() => console.log('delete')}
+                onClick={deleteFromCart}
               >
                 <FontAwesome name="trash-o" />
               </button>
@@ -55,15 +60,17 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
             </li>
             <li className="shopping-cart-table-body-qty-btns">
               <button
+                data-tag="qty-plus"
                 className="shopping-cart-table-body-qty-plus sweep-right"
-                onClick={() => console.log('increase')}
+                onClick={qtyHandler}
               >
                 <FontAwesome name="plus" />
               </button>
 
               <button
+                data-tag="qty-minus"
                 className="shopping-cart-table-body-qty-minus sweep-right"
-                onClick={() => console.log('decrease')}
+                onClick={qtyHandler}
               >
                 <FontAwesome name="minus" />
               </button>
@@ -85,10 +92,12 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
     </tr>
   );
 }
-const { objectOf, any, number } = PropTypes;
+const { objectOf, any, number, func } = PropTypes;
 const propTypes = {
   juiceObj: objectOf(any).isRequired,
   keyNum: number.isRequired,
+  deleteFromCart: func.isRequired,
+  qtyHandler: func.isRequired,
 };
 ShoppingCartWebProductRow.propTypes = propTypes;
 export default ShoppingCartWebProductRow;
