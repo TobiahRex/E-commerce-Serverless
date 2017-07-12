@@ -9,13 +9,36 @@ import ShoppingCartMobile from './ShoppingCart/shoppingCart_mobile';
 import ShoppingCartWebProductRow from './ShoppingCart/shoppingCart_web_productRow';
 import ShoppingCartMobileProductCard from './ShoppingCart/shoppingCart_mobile_productCard';
 
-const { string, number } = PropTypes;
+const { bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 
 class ShoppingCart extends Component {
   static propTypes = {
     mobileActive: string.isRequired,
     taxRate: number.isRequired,
+    loggedIn: bool.isRequired,
+    userCart: arrayOf(
+      shape({
+        qty: number,
+        strength: number,
+        product: string,
+      }),
+    ),
+    guestCart: arrayOf(
+      shape({
+        _id: string,
+        qty: number,
+        strength: number,
+        userId: string,
+        product: objectOf(any),
+      }),
+    ),
   }
+
+  static defaultProps = {
+    userCart: null,
+    guestCart: null,
+  }
+
   static juices = [{
     imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fbb.png',
     name: 'Fruity Bamm-Bamm',
@@ -163,8 +186,11 @@ class ShoppingCart extends Component {
     );
   }
 }
-const mapStateToProps = ({ mobile, orders }) => ({
+const mapStateToProps = ({ mobile, orders, auth, user }) => ({
   mobileActive: mobile.mobileType || 'false',
   taxRate: orders.taxRate.totalRate,
+  loggedIn: auth.loggedIn || false,
+  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  guestCart: orders.cart,
 });
 export default connect(mapStateToProps, null)(ShoppingCart);
