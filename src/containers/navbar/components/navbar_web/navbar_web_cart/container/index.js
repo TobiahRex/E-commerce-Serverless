@@ -4,13 +4,13 @@ import _ from 'lodash';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
+
 import { propTypes, defaultProps } from './propTypes.imports';
 import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
 import userActions from '../../../../../../redux/user/';
 import { DeleteFromMemberCart } from '../../../../../../graphql/mutations';
 import { FetchMultipleProducts } from '../../../../../../graphql/queries';
-
 
 class NavbarCart extends Component {
   static propTypes = propTypes
@@ -175,6 +175,7 @@ class NavbarCart extends Component {
     * IF-block
     * 1) Dynamically assings "cartItems" to either the guest-cart or the logged-in-users-cart.
     * 2) If the cartItems is to be assigned to the logged-in-users-cart, then the "zipUserCart" function is called.  The returned value will be an updated array.
+    * 3) Otherwise if the cartItems is to be assigned to the guestCart - a simple assignment is applied.
     */
     let cartItems = [];
     if (!loggedIn && guestCart.length) {

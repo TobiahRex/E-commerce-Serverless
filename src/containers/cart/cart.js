@@ -56,13 +56,21 @@ class ShoppingCart extends Component {
     }
   }
 
+  /**
+  * Function: "calcProductAnalysis"
+  * 1) For each product currently in the cart,
+  * 2) Provide the id to the redux-router "push" method as a query parameter for lookup by the Cart container component.
+  *
+  * @param {object} e - Event object.
+  *
+  * @return {na} no return.
+  */
   calcProductAnalysis = () => {
     let grandTotal = 0;
 
     ShoppingCart.juices.forEach((juiceObj) => {
-      const subTotal = (juiceObj.qty * Number(juiceObj.price));
-      juiceObj.subTotal = subTotal;
-      grandTotal += subTotal;
+      juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
+      grandTotal += juiceObj.subTotal;
     });
     const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
     console.log('taxes: ', taxes, '\ngrandTotal: ', grandTotal);
@@ -98,7 +106,7 @@ class ShoppingCart extends Component {
       if (this.state.mobileActive === 'false') {
         return (
           <ShoppingCartWebProductRow
-            key={`shopping-cart-table-row-${juiceObj.name}-${i}`}
+            key={`shopping-cart-table-row-${juiceObj.name}`}
             keyNum={i}
             juiceObj={juiceObj}
           />
@@ -106,7 +114,7 @@ class ShoppingCart extends Component {
       }
       return (
         <ShoppingCartMobileProductCard
-          key={`shopping-cart-table-row-${juiceObj.name}-${i}`}
+          key={`shopping-cart-table-row-${juiceObj.name}`}
           keyNum={i}
           juiceObj={juiceObj}
           taxes={taxes}

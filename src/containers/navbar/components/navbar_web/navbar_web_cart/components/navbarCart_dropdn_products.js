@@ -21,6 +21,7 @@ class NavbarCartProducts extends Component {
   static defaultProps = {
     cartItems: [],
   }
+
   shouldComponentUpdate(nextProps) {
     const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
@@ -29,6 +30,7 @@ class NavbarCartProducts extends Component {
     if (!_.isEqual(nextProps, this.props) || productsDiff) return true;
     return false;
   }
+
   filterImages = (images) => {
     if (!images.length) return '';
 
@@ -36,6 +38,7 @@ class NavbarCartProducts extends Component {
     const image = images.filter(helper).length;
     return !image ? '' : images.filter(helper).reduce(a => a).url;
   }
+
   renderListContent = ({ cartItems, loading }) => {
     if (loading) {
       return (
@@ -55,6 +58,7 @@ class NavbarCartProducts extends Component {
     }
     return this.renderCartItems(cartItems);
   }
+
   renderCartItems = productItems => productItems.map((product) => {
     const {
       _id,
