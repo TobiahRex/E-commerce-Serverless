@@ -239,10 +239,7 @@ class ShoppingCart extends Component {
       * @return {promise} - Resolved or Rejected promise result.
       */
       this.props.DeleteFromMemberCart({
-        variables: {
-          productId,
-          userId,
-        },
+        variables: { userId, productId },
       })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
         saveUser(updatedUser);
@@ -296,22 +293,21 @@ class ShoppingCart extends Component {
   }
 
   /**
-  * Function: "renderDeviceCart"
+  * Function: "showShoppingCart"
   * 1) Dynamically render device cart based on mobile or web version.
   *
   * @param {none} N/A
   *
   * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
   */
-  renderDeviceCart = (cartItems) => {
-    const { grandTotal, taxes } = this.state;
-    if (this.props.mobileActive === false) {
+  showShoppingCart = (taxes, grandTotal, mobileActive, cart) => {
+    if (mobileActive === false) {
       return (
         <ShoppingCartWeb
           taxes={taxes}
-          cartItems={cartItems}
+          cartItems={cart}
           grandTotal={grandTotal}
-          renderWebJuices={this.renderJuices}
+          showProducts={this.showProductRow}
           routerPush={this.props.push}
         />
       );
@@ -320,27 +316,26 @@ class ShoppingCart extends Component {
       <ShoppingCartMobile
         taxes={taxes}
         grandTotal={grandTotal}
-        cartItems={cartItems}
-        renderMobileJuices={this.renderJuices}
+        cartItems={cart}
+        showProducts={this.showProductRow}
         routerPush={this.props.push}
       />
     );
   }
 
   /**
-  * Function: "renderJuices"
+  * Function: "showProductRow"
   * 1) Depending on view (mobile or web) dynamically assign cart values to repsective components.
   *
   * @param {none} N/A
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  renderJuices = cartItems => (
-    cartItems.map((juiceObj, i) => {
+  showProductRow = (taxes, grandTotal, mobileActive, cart) => (
+    cart.map((juiceObj, i) => {
       console.log('juiceObj: ', juiceObj);
-      const { grandTotal, taxes } = this.state;
 
-      if (this.state.mobileActive === false) {
+      if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
             key={`shopping-cart-table-row-${juiceObj.name}`}
@@ -363,6 +358,7 @@ class ShoppingCart extends Component {
 
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
+    const { mobileActive, grandTotal, taxes } = this.state;
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
@@ -374,7 +370,10 @@ class ShoppingCart extends Component {
         <div className="shopping-cart-main-title">
           <h1>Shopping Cart</h1>
         </div>
-        {this.renderDeviceCart(
+        {this.showShoppingCart(
+          taxes,
+          grandTotal,
+          mobileActive,
           loggedIn ? userCart : guestCart,
         )}
       </div>

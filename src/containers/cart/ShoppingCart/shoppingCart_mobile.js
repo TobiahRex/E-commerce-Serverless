@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-function ShoppingCartMobile({ renderMobileJuices }) {
+function ShoppingCartMobile({ showProducts }) {
   return (
     <div className="shopping-cart-mobile-parent">
       <div className="shopping-cart-mobile-action-btn-top">
@@ -15,12 +15,12 @@ function ShoppingCartMobile({ renderMobileJuices }) {
         </button>
       </div>
       <div className="shopping-cart-mobile-product-list">
-        {renderMobileJuices()}
+        {showProducts()}
       </div>
     </div>
   );
 }
 const { func } = PropTypes;
-const propTypes = { renderMobileJuices: func.isRequired };
+const propTypes = { showProducts: func.isRequired };
 ShoppingCartMobile.propTypes = propTypes;
 export default ShoppingCartMobile;

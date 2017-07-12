@@ -7,7 +7,7 @@ function ShoppingCartWeb({
   cartItems,
   grandTotal,
   routerPush,
-  renderWebJuices,
+  showProducts,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -29,7 +29,7 @@ function ShoppingCartWeb({
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {renderWebJuices(cartItems)}
+          {showProducts(cartItems)}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">
@@ -87,7 +87,7 @@ ShoppingCartWeb.propTypes = {
   cartItems: arrayOf(object),
   grandTotal: number,
   routerPush: func.isRequired,
-  renderWebJuices: func.isRequired,
+  showProducts: func.isRequired,
 };
 ShoppingCartWeb.defaultProps = {
   taxes: 0,
