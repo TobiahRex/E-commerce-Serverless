@@ -58,12 +58,13 @@ class ShoppingCart extends Component {
 
   /**
   * Function: "calcProductAnalysis"
-  * 1) For each product currently in the cart,
-  * 2) Provide the id to the redux-router "push" method as a query parameter for lookup by the Cart container component.
+  * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
+  * 2) Add that the individual subtotal to each juiceObj.
+  * 3) Add that amount to the "grandTotal".
   *
-  * @param {object} e - Event object.
+  * @param {none} N/A
   *
-  * @return {na} no return.
+  * @return {N/A} Set's new state for taxes & grandTotal.
   */
   calcProductAnalysis = () => {
     let grandTotal = 0;
@@ -79,6 +80,14 @@ class ShoppingCart extends Component {
     this.setState({ taxes, grandTotal });
   }
 
+  /**
+  * Function: "renderDeviceCart"
+  * 1) Dynamically render device cart based on mobile or web version.
+  *
+  * @param {none} N/A
+  *
+  * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
+  */
   renderDeviceCart = () => {
     const { grandTotal, taxes } = this.state;
     if (this.props.mobileActive === 'false') {
@@ -99,6 +108,14 @@ class ShoppingCart extends Component {
     );
   }
 
+  /**
+  * Function: "renderJuices"
+  * 1) Depending on view (mobile or web) dynamically assign cart values to repsective components.
+  *
+  * @param {none} N/A
+  *
+  * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
+  */
   renderJuices = () => (
     ShoppingCart.juices.map((juiceObj, i) => {
       const { grandTotal, taxes } = this.state;

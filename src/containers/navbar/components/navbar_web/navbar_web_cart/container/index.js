@@ -61,7 +61,7 @@ class NavbarCart extends Component {
     if (!route) route = e.target.parentNode.dataset.route;
     if (!id) id = e.target.parentNode.dataset.id;
 
-    this.props.push(`/cart?id=${id}`);
+    this.props.push('/cart');
   }
 
   /**

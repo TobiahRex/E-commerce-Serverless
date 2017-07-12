@@ -11,7 +11,6 @@ function NavbarCartDropdnContent({
   loading,
   cartItems,
   cartTotal,
-  editCartItem,
   deleteFromCart,
 }) {
   return (
@@ -23,7 +22,6 @@ function NavbarCartDropdnContent({
           loading={loading}
           cartItems={cartItems}
           cartTotal={cartTotal}
-          editCartItem={editCartItem}
           deleteFromCart={deleteFromCart}
         />
         <NavbarCartActionLinks />
@@ -36,7 +34,6 @@ NavbarCartDropdnContent.propTypes = {
   loading: bool.isRequired,
   cartItems: arrayOf(object).isRequired,
   cartTotal: number.isRequired,
-  editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
 };
 export default NavbarCartDropdnContent;
