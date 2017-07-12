@@ -1,7 +1,7 @@
 import { call, put, take } from 'redux-saga/effects';
 import userActions, { userTypes } from '../../redux/user';
 import apiActions from '../../redux/api';
-import userApi from '../../services/api/graphQL/users';
+import userApi from '../../services/api/graphql/users';
 import cleanGQLresponse from '../tools/cleanGQLresponse';
 
 const api = userApi.createAPI();

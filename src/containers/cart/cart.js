@@ -16,7 +16,7 @@ const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 class ShoppingCart extends Component {
   static propTypes = {
     push: func.isRequired,
-    mobileActive: string.isRequired,
+    mobileActive: bool.isRequired,
     taxRate: number.isRequired,
     loggedIn: bool.isRequired,
     userCart: arrayOf(
@@ -40,43 +40,24 @@ class ShoppingCart extends Component {
     userCart: null,
     guestCart: null,
   }
-  static juices = [{
-    imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fbb.png',
-    name: 'Fruity Bamm-Bamm',
-    sku: '123123123',
-    nicotine: '6mg',
-    price: '30',
-    qty: 2,
-    subTotal: 0,
-  }, {
-    imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png',
-    name: 'French Vanilla Mocha',
-    sku: '123123123',
-    nicotine: '6mg',
-    price: '30',
-    qty: 2,
-    subTotal: 0,
-  }];
   constructor(props) {
     super(props);
 
     this.state = {
-      mobileActive: props.mobileActive,
-      grandTotal: 0,
       taxes: 0,
+      grandTotal: 0,
+      mobileActive: props.mobileActive,
     };
   }
 
-  componentDidMount() {
-    this.calcProductAnalysis();
-  }
-
   componentWillReceiveProps({ mobileActive, taxRate }) {
+    const { taxes, grandTotal } = this.calcProductAnalysis();
+
     if (this.state.mobileActive !== mobileActive) {
-      this.setState({ mobileActive });
+      this.setState({ mobileActive, taxes, grandTotal });
     }
     if (this.state.taxRate !== taxRate) {
-      this.setState({ taxRate });
+      this.setState({ taxRate, taxes, grandTotal });
     }
   }
 
@@ -105,12 +86,15 @@ class ShoppingCart extends Component {
 
     juiceItems.forEach((juiceObj) => {
       juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
+      console.log('%cjuiceObj.subTotal', 'background:red;', juiceObj.subTotal);
       grandTotal += juiceObj.subTotal;
     });
     const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
     grandTotal += taxes;
-
-    this.setState({ taxes, grandTotal });
+    return ({
+      taxes,
+      grandTotal,
+    });
   }
 
   /**

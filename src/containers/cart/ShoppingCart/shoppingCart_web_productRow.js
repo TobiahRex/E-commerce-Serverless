@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router';
 
 function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
   return (
@@ -8,25 +9,32 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
       <td className="shopping-cart-table-body-infobox">
         <div className="shopping-cart-table-body-infobox-flexparent">
           <div className="shopping-cart-table-body-infobox-img">
-            <img
-              src={juiceObj.imgSrc}
-              className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.name}
-            />
+            <Link to={`/juices/${juiceObj.routeTag}`}>
+              <img
+                src={juiceObj.images[0].url}
+                className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.title}
+              />
+            </Link>
           </div>
           <ul className="shopping-cart-table-body-infobox-list">
             <li className="shopping-cart-table-body-infobox-title">
-              <p>{juiceObj.name}</p>
+              <Link to={`/juices/${juiceObj.routeTag}`}>
+                <p>{juiceObj.title}</p>
+              </Link>
             </li>
             <li className="shopping-cart-table-body-infobox-nicotine">
               <p>Nicotine Strength:{'\u00A0'}</p>
-              <i>{juiceObj.nicotine}</i>
+              <i>{juiceObj.nicotineStrength}</i>
             </li>
             <li className="shopping-cart-table-body-infobox-sku">
               <p>SKU:{'\u00A0'}</p>
               <p>{juiceObj.sku}</p>
             </li>
             <li className="shopping-cart-table-body-infobox-trash">
-              <button className="sweep-right">
+              <button
+                className="sweep-right"
+                onClick={() => console.log('delete')}
+              >
                 <FontAwesome name="trash-o" />
               </button>
             </li>
@@ -46,10 +54,17 @@ function ShoppingCartWebProductRow({ juiceObj, keyNum }) {
               <p>{juiceObj.qty}</p>
             </li>
             <li className="shopping-cart-table-body-qty-btns">
-              <button className="shopping-cart-table-body-qty-plus sweep-right">
+              <button
+                className="shopping-cart-table-body-qty-plus sweep-right"
+                onClick={() => console.log('increase')}
+              >
                 <FontAwesome name="plus" />
               </button>
-              <button className="shopping-cart-table-body-qty-minus sweep-right">
+
+              <button
+                className="shopping-cart-table-body-qty-minus sweep-right"
+                onClick={() => console.log('decrease')}
+              >
                 <FontAwesome name="minus" />
               </button>
             </li>
