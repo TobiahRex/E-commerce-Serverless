@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
+import { push } from 'react-router-redux';
 
-import ShoppingCartWeb from './ShoppingCart/shoppingCart_web';
-import ShoppingCartMobile from './ShoppingCart/shoppingCart_mobile';
-import ShoppingCartWebProductRow from './ShoppingCart/shoppingCart_web_productRow';
-import ShoppingCartMobileProductCard from './ShoppingCart/shoppingCart_mobile_productCard';
+import {
+  BreadCrumb,
+  ShoppingCartWeb,
+  ShoppingCartMobile,
+  ShoppingCartWebProductRow,
+  ShoppingCartMobileProductCard,
+} from './component.imports';
 
-const { bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
+const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 
 class ShoppingCart extends Component {
   static propTypes = {
+    push: func.isRequired,
     mobileActive: string.isRequired,
     taxRate: number.isRequired,
     loggedIn: bool.isRequired,
@@ -33,12 +36,10 @@ class ShoppingCart extends Component {
       }),
     ),
   }
-
   static defaultProps = {
     userCart: null,
     guestCart: null,
   }
-
   static juices = [{
     imgSrc: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fbb.png',
     name: 'Fruity Bamm-Bamm',
@@ -111,22 +112,26 @@ class ShoppingCart extends Component {
   *
   * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
   */
-  renderDeviceCart = () => {
+  renderDeviceCart = (cartItems) => {
     const { grandTotal, taxes } = this.state;
-    if (this.props.mobileActive === 'false') {
+    if (this.props.mobileActive === false) {
       return (
         <ShoppingCartWeb
-          renderWebJuices={this.renderJuices}
-          grandTotal={grandTotal}
           taxes={taxes}
+          cartItems={cartItems}
+          grandTotal={grandTotal}
+          renderWebJuices={this.renderJuices}
+          routerPush={this.props.push}
         />
       );
     }
     return (
       <ShoppingCartMobile
-        renderMobileJuices={this.renderJuices}
-        grandTotal={grandTotal}
         taxes={taxes}
+        grandTotal={grandTotal}
+        cartItems={cartItems}
+        renderMobileJuices={this.renderJuices}
+        routerPush={this.props.push}
       />
     );
   }
@@ -139,8 +144,9 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  renderJuices = () => (
-    ShoppingCart.juices.map((juiceObj, i) => {
+  renderJuices = cartItems => (
+    cartItems.map((juiceObj, i) => {
+      console.log('juiceObj: ', juiceObj);
       const { grandTotal, taxes } = this.state;
 
       if (this.state.mobileActive === 'false') {
@@ -165,32 +171,34 @@ class ShoppingCart extends Component {
   );
 
   render() {
+    const { loggedIn, userCart, guestCart } = this.props;
     return (
       <div className="shopping-cart-main">
-        <div className="shopping-cart-breadcrumb-container">
-          <ul className="shopping-cart-breadcrumb-list">
-            <li className="shopping-cart-breadcrumb-path">
-              <Link className="breadcrumb-link" to="/">Home</Link>
-              <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
-            </li>
-            <li className="shopping-cart-breadcrumb-path">
-              Shopping Cart
-            </li>
-          </ul>
-        </div>
+        <BreadCrumb
+          paths={['Home']}
+          classes={['home']}
+          destination={['']}
+          lastCrumb="Shopping Cart"
+        />
         <div className="shopping-cart-main-title">
           <h1>Shopping Cart</h1>
         </div>
-        {this.renderDeviceCart()}
+        {this.renderDeviceCart(
+          loggedIn ? userCart : guestCart,
+        )}
       </div>
     );
   }
 }
 const mapStateToProps = ({ mobile, orders, auth, user }) => ({
-  mobileActive: mobile.mobileType || 'false',
+  mobileActive: mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
 });
-export default connect(mapStateToProps, null)(ShoppingCart);
+const mapDispatchToProps = dispatch => ({
+  push: location => dispatch(push(location)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

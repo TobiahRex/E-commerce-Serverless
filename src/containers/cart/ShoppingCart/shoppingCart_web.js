@@ -3,18 +3,26 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-const { func, number } = PropTypes;
+const { func, number, arrayOf, object } = PropTypes;
+
 const propTypes = {
   renderWebJuices: func.isRequired,
   grandTotal: number,
   taxes: number,
+  cartItems: arrayOf(object),
 };
 const defaultProps = {
   grandTotal: 0,
   taxes: 0,
+  cartItems: [],
 };
 
-function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
+function ShoppingCartWeb({
+  taxes,
+  cartItems,
+  grandTotal,
+  renderWebJuices,
+}) {
   return (
     <div className="shopping-cart-web-parent">
       <table className="shopping-cart-table">
@@ -35,7 +43,7 @@ function ShoppingCartWeb({ renderWebJuices, grandTotal, taxes }) {
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {renderWebJuices()}
+          {renderWebJuices(cartItems)}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">
