@@ -41,7 +41,7 @@ export const propTypes = {
   saveUser: func.isRequired,
   addToGuestCart: func.isRequired,
   AddToMemberCart: func.isRequired,
-  updateToGuestCart: func.isRequired,
+  saveGuestCart: func.isRequired,
   EditToMemberCart: func.isRequired,
   addToReduxMemberCart: func.isRequired,
   addToReduxProfileCart: func.isRequired,

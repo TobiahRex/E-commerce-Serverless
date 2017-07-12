@@ -5,7 +5,7 @@ const { Types, Creators } = createActions({
   getTaxRate: null,
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
-  updateToGuestCart: ['updatedProducts'],
+  saveGuestCart: ['updatedProducts'],
 });
 
 export const orderTypes = Types;
@@ -30,7 +30,7 @@ const addToGuestCart = (state, { productObj }) => ({
   cart: [...state.cart, { ...productObj }],
 });
 
-const updateToGuestCart = (state, { updatedProducts }) => ({
+const saveGuestCart = (state, { updatedProducts }) => ({
   ...state,
   cart: [...updatedProducts],
 });
@@ -38,5 +38,5 @@ const updateToGuestCart = (state, { updatedProducts }) => ({
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
-  [Types.UPDATE_TO_GUEST_CART]: updateToGuestCart,
+  [Types.SAVE_GUEST_CART]: saveGuestCart,
 });

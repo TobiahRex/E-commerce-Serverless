@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { graphql, compose } from 'react-apollo';
 
 import {
   BreadCrumb,
@@ -11,14 +12,23 @@ import {
   ShoppingCartMobileProductCard,
 } from './component.imports';
 
-const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
+import {
+  DeleteFromMemberCart,
+} from '../../graphql/mutations';
+import userActions from '../../redux/user';
+import orderActions from '../../redux/orders';
 
+const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 class ShoppingCart extends Component {
   static propTypes = {
     push: func.isRequired,
-    mobileActive: bool.isRequired,
+    userId: string,
     taxRate: number.isRequired,
     loggedIn: bool.isRequired,
+    saveUser: func.isRequired,
+    saveGuest: func.isRequired,
+    mobileActive: bool.isRequired,
+    DeleteFromMemberCart: func.isRequired,
     userCart: arrayOf(
       shape({
         qty: number,
@@ -37,6 +47,7 @@ class ShoppingCart extends Component {
     ),
   }
   static defaultProps = {
+    userId: '',
     userCart: null,
     guestCart: null,
   }
@@ -198,7 +209,7 @@ class ShoppingCart extends Component {
   * Function: "deleteFromCart"
   * 1) Find the product id from the event target object.
   * 2) Filter either "activeUser" cart, or "guestCart" by the id found in step 1.
-  * 3) Call either "saveProfile" if user is logged in.  Or call "updateToGuestCart" if user is a guest.
+  * 3) Call either "saveUser" if user is logged in.  Or call "saveGuestCart" if user is a guest.
   *
   * @param {object} e - Event object.
   *
@@ -206,20 +217,21 @@ class ShoppingCart extends Component {
   */
   deleteFromCart = (e) => {
     const {
+      userId,
+      saveUser,
+
       guestCart,
-      activeUser,
-      saveProfile,
-      updateToGuestCart,
+      saveGuest,
     } = this.props;
 
     let productId = e.target.dataset.id;
     if (!productId) productId = e.target.parentNode.dataset.id;
 
-    if (!!activeUser._id) {
+    if (userId) {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
-      * 2) Dispatches redux action by calling props methods "saveProfile".
+      * 2) Dispatches redux action by calling props methods "saveUser".
       * 3) Redux action will update the user profile saved in Redux.
       *
       * @param {object} variables - GraphQL required variables.
@@ -229,22 +241,22 @@ class ShoppingCart extends Component {
       this.props.DeleteFromMemberCart({
         variables: {
           productId,
-          userId: activeUser._id,
+          userId,
         },
       })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
-        saveProfile(updatedUser);
+        saveUser(updatedUser);
       });
     } else {
       /**
-      * Function: "updateToGuestCart"
+      * Function: "saveGuestCart"
       * 1) Filters the current guest cart by the id of the product found on the event target object.
       *
       * @param {array} (filter result) - filtered ids.
       *
       * @return N/A
       */
-      updateToGuestCart(guestCart.filter(({ _id }) => _id !== productId));
+      saveGuest(guestCart.filter(({ _id }) => _id !== productId));
     }
   }
 
@@ -270,11 +282,9 @@ class ShoppingCart extends Component {
     const { loggedIn, userCart, guestCart } = this.props;
     let grandTotal = 0;
     const juiceItems = loggedIn ? userCart : guestCart;
-    console.log('%cjuiceItems', 'background:cyan;', this.props);
 
     juiceItems.forEach((juiceObj) => {
       juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
-      console.log('%cjuiceObj.subTotal', 'background:red;', juiceObj.subTotal);
       grandTotal += juiceObj.subTotal;
     });
     const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
@@ -371,17 +381,22 @@ class ShoppingCart extends Component {
     );
   }
 }
-const mapStateToProps = ({ mobile, orders, auth, user }) => ({
+
+const ShoppingCartWithData = compose(
+  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
+)(ShoppingCart);
+
+const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) => ({
   mobileActive: mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
+  userId: user._id || '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-});
-const mapDispatchToProps = dispatch => ({
+}),
+dispatch => ({
   push: location => dispatch(push(location)),
-  // saveProfile: updatedProfile => dispatch(saveProfile(updatedProfile)),
-  // saveGuest: updatedGuest => dispatch(saveGuest(updatedGuest)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
+  saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
+  saveGuest: updatedGuest => dispatch(orderActions.saveGuest(updatedGuest)),
+}))(ShoppingCartWithData);
+export default ShoppingCartWithDataAndState;

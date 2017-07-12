@@ -68,7 +68,7 @@ class NavbarCart extends Component {
   * Function: "deleteFromCart"
   * 1) Find the product id from the event target object.
   * 2) Filter either "activeUser" cart, or "guestCart" by the id found in step 1.
-  * 3) Call either "saveUser" if user is logged in.  Or call "updateToGuestCart" if user is a guest.
+  * 3) Call either "saveUser" if user is logged in.  Or call "saveGuestCart" if user is a guest.
   *
   * @param {object} e - Event object.
   *
@@ -79,7 +79,7 @@ class NavbarCart extends Component {
       guestCart,
       activeUser,
       saveUser,
-      updateToGuestCart,
+      saveGuestCart,
     } = this.props;
 
     let productId = e.target.dataset.id;
@@ -107,14 +107,14 @@ class NavbarCart extends Component {
       });
     } else {
       /**
-      * Function: "updateToGuestCart"
+      * Function: "saveGuestCart"
       * 1) Filters the current guest cart by the id of the product found on the event target object.
       *
       * @param {array} (filter result) - filtered ids.
       *
       * @return N/A
       */
-      updateToGuestCart(guestCart.filter(({ _id }) => _id !== productId));
+      saveGuestCart(guestCart.filter(({ _id }) => _id !== productId));
     }
   }
 
@@ -268,8 +268,8 @@ const NavbarCartWithStateAndData = connect(
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
-    updateToGuestCart: updatedCartProducts =>
-    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+    saveGuestCart: updatedCartProducts =>
+    dispatch(orderActions.saveGuestCart(updatedCartProducts)),
 
     saveUser: updatedUser => dispatch(userActions.saveUser(updatedUser)),
   }),

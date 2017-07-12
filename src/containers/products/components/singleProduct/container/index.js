@@ -433,7 +433,7 @@ class SingleProduct extends Component {
               errorMsg: '',
               chosenStrength: 0,
             }), () => {
-              this.props.updateToGuestCart(updatedCart);
+              this.props.saveGuestCart(updatedCart);
             });
           } else {
             this.setState(() => ({
@@ -568,8 +568,8 @@ const SingleProductWithState = connect(
     addToGuestCart: productObj =>
     dispatch(orderActions.addToGuestCart(productObj)),
 
-    updateToGuestCart: updatedCartProducts =>
-    dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
+    saveGuestCart: updatedCartProducts =>
+    dispatch(orderActions.saveGuestCart(updatedCartProducts)),
 
     addToReduxProfileCart: cart => dispatch(userActions.addToReduxProfileCart(cart)),
 
