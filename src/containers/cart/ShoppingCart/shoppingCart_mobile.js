@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function ShoppingCartMobile({
+  cart,
   taxes,
-  cartItems,
   grandTotal,
   routerPush,
   mobileActive,
-  showProducts
+  showProducts,
 }) {
   return (
     <div className="shopping-cart-mobile-parent">
@@ -29,7 +29,18 @@ function ShoppingCartMobile({
     </div>
   );
 }
-const { func } = PropTypes;
-const propTypes = { showProducts: func.isRequired };
-ShoppingCartMobile.propTypes = propTypes;
+const { func, number, arrayOf, object, bool } = PropTypes;
+ShoppingCartMobile.propTypes = {
+  cart: arrayOf(object),
+  taxes: number,
+  grandTotal: number,
+  routerPush: func.isRequired,
+  showProducts: func.isRequired,
+  mobileActive: bool.isRequired,
+};
+ShoppingCartMobile.defaultProps = {
+  cart: [],
+  taxes: 0,
+  grandTotal: 0,
+};
 export default ShoppingCartMobile;

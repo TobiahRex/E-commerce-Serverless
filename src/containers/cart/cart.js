@@ -6,6 +6,7 @@ import { graphql, compose } from 'react-apollo';
 
 import {
   BreadCrumb,
+  EmptyCart,
   ShoppingCartWeb,
   ShoppingCartMobile,
   ShoppingCartWebProductRow,
@@ -365,13 +366,7 @@ class ShoppingCart extends Component {
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
     const { mobileActive, grandTotal, taxes } = this.state;
-
-    let emptyCart = true;
-    if (loggedIn) {
-      emptyCart = userCart.length ? false : true;
-    } else {
-      emptyCart = guestCart.length ? false : true;
-    }
+    const emptyCart = userCart.length || guestCart.length;
 
     return (
       <div className="shopping-cart-main">
@@ -384,12 +379,11 @@ class ShoppingCart extends Component {
         <div className="shopping-cart-main-title">
           <h1>Shopping Cart</h1>
         </div>
-        { emptyCart ? 
-          this.showShoppingCart(
-          taxes,
-          grandTotal,
-          mobileActive,
-          loggedIn ? userCart : guestCart,
+        { !emptyCart ? <EmptyCart /> : this.showShoppingCart(
+            taxes,
+            grandTotal,
+            mobileActive,
+            loggedIn ? userCart : guestCart,
         )}
       </div>
     );
