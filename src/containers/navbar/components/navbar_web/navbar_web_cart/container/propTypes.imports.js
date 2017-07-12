@@ -7,7 +7,7 @@ export const propTypes = {
   push: func.isRequired,
   loggedIn: bool.isRequired,
   guestCart: arrayOf(object),
-  saveProfile: func.isRequired,
+  saveUser: func.isRequired,
   updateToGuestCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,
   data: shape({

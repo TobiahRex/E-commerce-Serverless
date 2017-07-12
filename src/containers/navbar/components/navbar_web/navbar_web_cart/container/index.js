@@ -68,7 +68,7 @@ class NavbarCart extends Component {
   * Function: "deleteFromCart"
   * 1) Find the product id from the event target object.
   * 2) Filter either "activeUser" cart, or "guestCart" by the id found in step 1.
-  * 3) Call either "saveProfile" if user is logged in.  Or call "updateToGuestCart" if user is a guest.
+  * 3) Call either "saveUser" if user is logged in.  Or call "updateToGuestCart" if user is a guest.
   *
   * @param {object} e - Event object.
   *
@@ -78,7 +78,7 @@ class NavbarCart extends Component {
     const {
       guestCart,
       activeUser,
-      saveProfile,
+      saveUser,
       updateToGuestCart,
     } = this.props;
 
@@ -89,7 +89,7 @@ class NavbarCart extends Component {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
-      * 2) Dispatches redux action by calling props methods "saveProfile".
+      * 2) Dispatches redux action by calling props methods "saveUser".
       * 3) Redux action will update the user profile saved in Redux.
       *
       * @param {object} variables - GraphQL required variables.
@@ -103,7 +103,7 @@ class NavbarCart extends Component {
         },
       })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
-        saveProfile(updatedUser);
+        saveUser(updatedUser);
       });
     } else {
       /**
@@ -271,7 +271,7 @@ const NavbarCartWithStateAndData = connect(
     updateToGuestCart: updatedCartProducts =>
     dispatch(orderActions.updateToGuestCart(updatedCartProducts)),
 
-    saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
+    saveUser: updatedUser => dispatch(userActions.saveUser(updatedUser)),
   }),
 )(NavbarCartWithData);
 

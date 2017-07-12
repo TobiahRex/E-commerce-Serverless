@@ -19,7 +19,7 @@ const getProfileOrNull = () => {
 
 const { Types, Creators } = createActions({
   ageVerified: null,
-  saveProfile: ['profile'],
+  saveUser: ['profile'],
   removeProfile: null,
   saveLoginType: ['socialType'],
   fetchUserProfile: ['id'],
@@ -34,7 +34,7 @@ export const INITIAL_STATE = Immutable({
   socialLoginType: localStorage.getItem('socialType'),
 });
 
-const saveProfile = (state, { profile }) => {
+const saveUser = (state, { profile }) => {
   localStorage.setItem('profile', JSON.stringify(profile));
   return ({
     ...state,
@@ -76,7 +76,7 @@ const addToReduxProfileCart = (state, { cart }) => ({
 
 export const userReducer = createReducer(INITIAL_STATE, {
   [Types.AGE_VERIFIED]: verified,
-  [Types.SAVE_PROFILE]: saveProfile,
+  [Types.SAVE_USER]: saveUser,
   [Types.REMOVE_PROFILE]: removeProfile,
   [Types.SAVE_LOGIN_TYPE]: saveLoginType,
   [Types.ADD_TO_REDUX_PROFILE_CART]: addToReduxProfileCart,

@@ -17,7 +17,7 @@ export default function* fetchUserProfile() {
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(userActions.saveProfile(data.FetchUserProfile)),
+        put(userActions.saveUser(data.FetchUserProfile)),
       ];
     } else {
       yield put(apiActions.apiFail(problem));

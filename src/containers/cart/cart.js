@@ -380,6 +380,8 @@ const mapStateToProps = ({ mobile, orders, auth, user }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   push: location => dispatch(push(location)),
+  // saveProfile: updatedProfile => dispatch(saveProfile(updatedProfile)),
+  // saveGuest: updatedGuest => dispatch(saveGuest(updatedGuest)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

@@ -400,7 +400,7 @@ class SingleProduct extends Component {
                 },
               })
               .then(({ data: { EditToMemberCart: updatedUser } }) => {
-                this.props.saveProfile(updatedUser);
+                this.props.saveUser(updatedUser);
               });
             });
           } else {
@@ -420,7 +420,7 @@ class SingleProduct extends Component {
                 },
               })
               .then(({ data: { AddToMemberCart: updatedUser } }) => {
-                this.props.saveProfile(updatedUser);
+                this.props.saveUser(updatedUser);
               });
             });
           }
@@ -563,7 +563,7 @@ const SingleProductWithState = connect(
   dispatch => ({
     push: location => dispatch(push(location)),
 
-    saveProfile: updatedUser => dispatch(userActions.saveProfile(updatedUser)),
+    saveUser: updatedUser => dispatch(userActions.saveUser(updatedUser)),
 
     addToGuestCart: productObj =>
     dispatch(orderActions.addToGuestCart(productObj)),

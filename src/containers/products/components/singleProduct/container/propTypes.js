@@ -38,7 +38,7 @@ export const propTypes = {
   flavor: string,
   taxRate: number.isRequired,
   loggedIn: bool.isRequired,
-  saveProfile: func.isRequired,
+  saveUser: func.isRequired,
   addToGuestCart: func.isRequired,
   AddToMemberCart: func.isRequired,
   updateToGuestCart: func.isRequired,
