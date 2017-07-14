@@ -74,19 +74,20 @@ class ShoppingCart extends Component {
   }
 
   /**
-  * 1) receives event object and determines if "+" or "-" button has been clicked.
-  * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
-  * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
-  * 3) Returns new local state value for "qty".
+  * Function: "composedGlobalCartInfo"
+  * 1a) Creates variable {number} "globalRequestQty" and assigns it a value either from this.state.qty if being executed for the first time. Or...
+  * 1b) Reduces all quantities for items in the current global cart (either from Guest or from User) and assigns that value to "globalRequestQty".
+  * 2) Also, records all {string} "_id"'s of items currently in the cart.  This is needed to properly update the analytics and availability values for those repsective products.
+  * 3) Finally create's an {array of objects} "updatedCart" variable.  If the user has chosen any product that has inititated this invocation, and that product shares similar qualities (flavor, nicotineStrength, size) with other items in the cart, then those items should not be added to the cart an additional time.  Rather the quantity for those like items should be updated.
   *
   * @param none
   *
   * @return {object} - object containing values 1) "updatedCart" (updated quanitty values for either the user cart if the user is logged in, or the guest cart if the user is not logged in.), 2) "prevCartIds" used to determine whether we have to "update" the items in an existing cart, or "create" a new cart. 3) "globalRequestQty" the overall quantity of items the user is requesting.
   */
   composeGlobalCartInfo = () => {
-    // When run the first time (no previous items in the cart) then a flag "updated" is a value of false.  This will make "globalRequestQty" to be assigned the "qty" value from state directly.
+    // When run the first time (no previous items in the cart) then a flag {bool} "updated" is a value of "false".  This will make {number} "globalRequestQty" to be assigned the value of {number} "this.state.qty".
 
-    // If this function is run a subsequent time (items already exist in the cart) then "globalRequestQty" will be assigned it's value based on a reduce across all items.
+    // If this function is run a subsequent time (items already exist in the cart) then the variable {bool} "updated" will become "true" &  "globalRequestQty" will be assigned it's value based on a reduce across all items in the current cart.
     const prevCartIds = [];
 
     const {
@@ -110,10 +111,10 @@ class ShoppingCart extends Component {
 
       const updatedUserCart = userCart.map((userCartProduct) => {
         // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
-        if (Object.prototype.hasOwnProperty.call(userCartProduct, '__typename')) delete userCartProduct.__typename;
+        if (!!userCartProduct.__typename) delete userCartProduct.__typename; // eslint-disable-line
 
-        if (
-          Object.prototype.hasOwnProperty.call(userCartProduct, 'product') && (userCartProduct.product === stateProduct._id)
+        if (!!userCartProduct.product &&
+          (userCartProduct.product === stateProduct._id)
         ) userCartProduct.qty += requestQty;
 
         return userCartProduct;
@@ -122,10 +123,9 @@ class ShoppingCart extends Component {
       // If user has items in their cart & is a guest, check & update "like items"
     } else if (!loggedIn && guestCart.length) {
       updated = true;
-      const updatedGuestCart = guestCart
-      .map((guestCartProduct) => {
+      const updatedGuestCart = guestCart.map((guestCartProduct) => {
         if (
-          Object.prototype.hasOwnProperty.call(guestCartProduct, '_id') &&
+          !!guestCartProduct._id &&
           guestCartProduct._id === stateProduct._id
         ) guestCartProduct.qty += requestQty;
 
@@ -134,10 +134,9 @@ class ShoppingCart extends Component {
       updatedCart = [...updatedGuestCart];
     }
 
-    // --- Add up all the product quantities to check for qty violations later. -- Also save the id's of all items to know which items are NEW and OLD to call "Add" or "Update" respectively.
-    const globalRequestQty = !updated ? requestQty : updatedCart
-    .reduce((accum, nextObj) => {
-      if (nextObj && Object.prototype.hasOwnProperty.call(nextObj, '_id')) prevCartIds.push(nextObj._id);
+    //  Add up all the product quantities to check for qty violations later. Also save the id's of all items to know which items are NEW and OLD so we know whether to call "Add" or "Update" respectively.
+    const globalRequestQty = !updated ? requestQty : updatedCart.reduce((accum, nextObj) => {
+      if (nextObj && !!nextObj._id) prevCartIds.push(nextObj._id);
 
       // "product" = object on Guest cart, & string on Member cart.
       if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
