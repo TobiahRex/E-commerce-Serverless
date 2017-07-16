@@ -13,7 +13,7 @@
     "copy:error": "copyfiles -f './src/containers/404/error/*' ./dist",
     "copy:package": "copyfiles 'package.json' ./dist/",
     "copy:images": "copyfiles -f './src/images/*' ./dist",
-    "graphiql": "babel-watch ./server/graphiql/server.js",
+    "graphql": "babel-watch ./server/graphiql/server.js",
     "s3:clean": "aws s3 rm s3://nj2jp-react --recursive",
     "s3:deploy": "aws s3 sync dist/ s3://nj2jp-react",
     "sls-deploy": "cd ./serverless && serverless deploy",
