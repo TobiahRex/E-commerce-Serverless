@@ -56,7 +56,10 @@ class ShoppingCart extends Component {
     super(props);
 
     this.state = {
+      qty: 0,
       taxes: 0,
+      error: null,
+      errorMsg: '',
       grandTotal: 0,
       mobileActive: props.mobileActive,
     };
@@ -84,7 +87,7 @@ class ShoppingCart extends Component {
   *
   * @return {object} - object containing values 1) "updatedCart" (updated quanitty values for either the user cart if the user is logged in, or the guest cart if the user is not logged in.), 2) "prevCartIds" used to determine whether we have to "update" the items in an existing cart, or "create" a new cart. 3) "globalRequestQty" the overall quantity of items the user is requesting.
   */
-  composeGlobalCartInfo = (productId) => {
+  composeGlobalCartInfo = (productId, qtyChangeType) => {
     // When run the first time (no previous items in the cart) then a flag {bool} "updated" is a value of "false".  This will make {number} "globalRequestQty" to be assigned the value of {number} "this.state.qty".
 
     // If this function is run a subsequent time (items already exist in the cart) then the variable {bool} "updated" will become "true" &  "globalRequestQty" will be assigned it's value based on a reduce across all items in the current cart.
@@ -110,7 +113,13 @@ class ShoppingCart extends Component {
 
         if (!!userCartProduct.product &&
           (userCartProduct.product === productId)
-        ) userCartProduct.qty += 1;
+        ) {
+          switch (qtyChangeType) {
+            case 'qty-plus': userCartProduct.qty += 1; break;
+            case 'qty-minus': userCartProduct.qty -= 1; break;
+            default: throw Error('Could not change quantity.');
+          }
+        }
 
         return userCartProduct;
       });
@@ -122,7 +131,13 @@ class ShoppingCart extends Component {
         if (
           !!guestCartProduct._id &&
           guestCartProduct._id === productId
-        ) guestCartProduct.qty += 1;
+        ) {
+          switch (qtyChangeType) {
+            case 'qty-plus': guestCartProduct.qty += 1; break;
+            case 'qty-minus': guestCartProduct.qty -= 1; break;
+            default: throw Error('Could not change quantity.');
+          }
+        }
 
         return guestCartProduct;
       });
@@ -191,12 +206,10 @@ class ShoppingCart extends Component {
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
     const { globalRequestQty } = this.composeGlobalCartInfo(productId, changeType);
+    console.log('%cglobalRequestQty', 'background:red;', globalRequestQty);
     const qtyToCheck = 1;
 
-    let buttonEl = e.target.dataset.tag;
-    if (!buttonEl) buttonEl = e.target.parentNode.dataset.tag;
-
-    if (buttonEl === 'qty-plus') {
+    if (changeType === 'qty-plus') {
       if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
         this.setState(prevState => ({
           ...prevState,
@@ -211,7 +224,7 @@ class ShoppingCart extends Component {
           errorMsg: 'Too much',
         }));
       }
-    } else if (buttonEl === 'qty-minus') {
+    } else if (changeType === 'qty-minus') {
       const { qty } = this.state;
 
       if (qty >= 1 && qty <= 4) {
@@ -280,7 +293,10 @@ class ShoppingCart extends Component {
       *
       * @return N/A
       */
-      saveGuest(guestCart.filter(({ _id }) => _id !== productId));
+      saveGuest(guestCart.filter(({ _id }) => {
+        console.log('_id: ', _id, '\nproductId: ', productId);
+        return _id !== productId;
+      }));
     }
   }
 
@@ -401,6 +417,6 @@ const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) =>
 dispatch => ({
   push: location => dispatch(push(location)),
   saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
-  saveGuest: updatedGuest => dispatch(orderActions.saveGuest(updatedGuest)),
+  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
 }))(ShoppingCartWithData);
 export default ShoppingCartWithDataAndState;
