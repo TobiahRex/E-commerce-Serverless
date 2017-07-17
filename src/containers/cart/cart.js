@@ -187,10 +187,10 @@ class ShoppingCart extends Component {
   * @return {new state} - returns new state with new qty value.
   */
   qtyHandler = (e) => {
-    let productId = e.target.dataset.id;
-    if (!productId) productId = e.target.parentNode.dataset.id;
+    const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
+    const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    const { globalRequestQty } = this.composeGlobalCartInfo(productId);
+    const { globalRequestQty } = this.composeGlobalCartInfo(productId, changeType);
     const qtyToCheck = 1;
 
     let buttonEl = e.target.dataset.tag;
