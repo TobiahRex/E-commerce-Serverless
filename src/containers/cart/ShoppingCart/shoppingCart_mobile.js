@@ -24,7 +24,7 @@ function ShoppingCartMobile({
         </button>
       </div>
       <div className="shopping-cart-mobile-product-list">
-        {showProductRow(mobileActive, cart)}
+        {showProductRow(mobileActive, cart, taxes, grandTotal)}
       </div>
     </div>
   );

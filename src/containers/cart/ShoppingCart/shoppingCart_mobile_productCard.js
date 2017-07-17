@@ -4,11 +4,12 @@ import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
 function ShoppingCartMobileProductCard({
-  juiceObj,
   keyNum,
   taxes,
   grandTotal,
+  juiceObj,
   qtyHandler,
+  deleteFromCart,
 }) {
   return (
     <tr
@@ -135,7 +136,11 @@ function ShoppingCartMobileProductCard({
             </div>
           </div>
           <div className="shopping-cart-mobile-continue-shopping">
-            <button className="shopping-cart-mobile-continue-shopping-btn sweep-right" onClick={() => browserHistory.push('/juices')}>
+            <button
+              data-tag='juices'
+              className="shopping-cart-mobile-continue-shopping-btn sweep-right"
+              onClick={routerPush}
+            >
               Continue Shopping
             </button>
           </div>
@@ -145,12 +150,14 @@ function ShoppingCartMobileProductCard({
   );
 }
 
-const { objectOf, any, number } = PropTypes;
+const { objectOf, any, number, func } = PropTypes;
 
 ShoppingCartMobileProductCard.propTypes = {
   juiceObj: objectOf(any).isRequired,
   keyNum: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
+  qtyHandler: func.isRequired,
+  deleteFromCart: func.isRequired,
 };
 export default ShoppingCartMobileProductCard;

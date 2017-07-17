@@ -331,10 +331,8 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (mobileActive, cart) => (
+  showProductRow = (mobileActive, cart, taxes, grandTotal) => (
     cart.map((juiceObj, i) => {
-      console.log('"showProductRow" > juiceObj: ', juiceObj);
-
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
@@ -350,6 +348,8 @@ class ShoppingCart extends Component {
         <ShoppingCartMobileProductCard
           key={`shopping-cart-table-row-${juiceObj._id}`}
           keyNum={i}
+          taxes={taxes}
+          grandTotal={grandTotal}
           juiceObj={juiceObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
