@@ -79,11 +79,7 @@ function ShoppingCartWebProductRow({
               </button>
             </li>
           </ul>
-          <div className="shopping-cart-table-body-qty-msg">
-            <p>Maximum 4 bottles per customer, per address.</p>
-            <br />
-            <p>Japanese Statute # 123123123.</p>
-          </div>
+          <ErrorMsg error={error} errorMsg={errorMsg} />
         </div>
       </td>
       <td className="shopping-cart-table-body-total">
@@ -95,12 +91,14 @@ function ShoppingCartWebProductRow({
     </tr>
   );
 }
-const { objectOf, any, number, func } = PropTypes;
+const { objectOf, any, number, func, bool, string } = PropTypes;
 const propTypes = {
   juiceObj: objectOf(any).isRequired,
   keyNum: number.isRequired,
   deleteFromCart: func.isRequired,
   qtyHandler: func.isRequired,
+  error: bool.isRequired,
+  errorMsg: string.isRequired,
 };
 ShoppingCartWebProductRow.propTypes = propTypes;
 export default ShoppingCartWebProductRow;

@@ -217,17 +217,19 @@ class ShoppingCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    const { cartType, globalRequestQty } = this.composeGlobalCartInfo(productId, changeType);
+    const { cartType, globalRequestQty, updatedCart } = this.composeGlobalCartInfo(productId, changeType);
     const qtyToCheck = 1;
 
     if (changeType === 'qty-plus') {
       if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
         this.setState(prevState => ({
           ...prevState,
-          qty: (prevState.qty += 1),
+          // qty: (prevState.qty += 1),
           error: false,
           errorMsg: '',
-        }));
+        }), () => {
+          this.props[`save${cartType}`](updatedCart);
+        });
       } else {
         this.setState(prevState => ({
           ...prevState,
@@ -244,7 +246,9 @@ class ShoppingCart extends Component {
           qty: (prevState.qty -= 1),
           error: false,
           errorMsg: '',
-        }));
+        }), () => {
+          this.props[`save${cartType}`](updatedCart);
+        });
       } else {
         this.setState(prevState => ({
           ...prevState,
