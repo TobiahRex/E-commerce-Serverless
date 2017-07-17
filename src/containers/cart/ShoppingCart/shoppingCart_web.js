@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartWeb({
-  cart,
-  taxes,
-  grandTotal,
-  routerPush,
-  showProductRow,
-  mobileActive,
-}) {
+function ShoppingCartWeb(props) {
+  const {
+    taxes,
+    grandTotal,
+    routerPush,
+    showProductRow,
+  } = props;
   return (
     <div className="shopping-cart-web-parent">
       <table className="shopping-cart-table">
@@ -30,7 +29,7 @@ function ShoppingCartWeb({
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {showProductRow(mobileActive, cart)}
+          {showProductRow(props)}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">

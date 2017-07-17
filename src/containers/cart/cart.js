@@ -320,7 +320,7 @@ class ShoppingCart extends Component {
   *
   * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
   */
-  showShoppingCart = (taxes, grandTotal, mobileActive, cart) => {
+  showShoppingCart = (mobileActive, cart, taxes, grandTotal) => {
     if (mobileActive === false) {
       return (
         <ShoppingCartWeb
@@ -353,36 +353,47 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (mobileActive, cart, taxes, grandTotal, error, errorMsg) => (
-    cart.map((juiceObj, i) => {
-      if (mobileActive === false) {
+  showProductRow = (propArgs) => {
+    const {
+      cart,
+      taxes,
+      error,
+      errorMsg,
+      grandTotal,
+      mobileActive,
+    } = propArgs;
+
+    return (
+      cart.map((juiceObj, i) => {
+        if (mobileActive === false) {
+          return (
+            <ShoppingCartWebProductRow
+              key={`shopping-cart-table-row-${juiceObj._id}`}
+              keyNum={i}
+              error={error}
+              errorMsg={errorMsg}
+              juiceObj={juiceObj}
+              qtyHandler={this.qtyHandler}
+              deleteFromCart={this.deleteFromCart}
+            />
+          );
+        }
         return (
-          <ShoppingCartWebProductRow
+          <ShoppingCartMobileProductCard
             key={`shopping-cart-table-row-${juiceObj._id}`}
             keyNum={i}
+            taxes={taxes}
             error={error}
             errorMsg={errorMsg}
+            grandTotal={grandTotal}
             juiceObj={juiceObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
           />
         );
-      }
-      return (
-        <ShoppingCartMobileProductCard
-          key={`shopping-cart-table-row-${juiceObj._id}`}
-          keyNum={i}
-          taxes={taxes}
-          error={error}
-          errorMsg={errorMsg}
-          grandTotal={grandTotal}
-          juiceObj={juiceObj}
-          qtyHandler={this.qtyHandler}
-          deleteFromCart={this.deleteFromCart}
-        />
-      );
-    })
-  );
+      })
+    );
+  }
 
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
