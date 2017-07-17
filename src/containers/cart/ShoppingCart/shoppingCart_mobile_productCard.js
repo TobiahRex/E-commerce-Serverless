@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import ErrorMsg from './errorMsgCart';
 
 function ShoppingCartMobileProductCard({
   keyNum,
   taxes,
+  error,
+  errorMsg,
   grandTotal,
   juiceObj,
   routerPush,
@@ -82,6 +85,7 @@ function ShoppingCartMobileProductCard({
                 </div>
               </div>
             </div>
+            <ErrorMsg error={error} errorMsg={errorMsg} />
           </li>
           <li className="shopping-cart-mobile-product-actions-subtotal">
             <div className="shopping-cart-mobile-product-actions-subtotal-title">
@@ -158,12 +162,14 @@ function ShoppingCartMobileProductCard({
   );
 }
 
-const { objectOf, any, number, func } = PropTypes;
+const { objectOf, any, number, func, bool, string } = PropTypes;
 
 ShoppingCartMobileProductCard.propTypes = {
-  juiceObj: objectOf(any).isRequired,
-  keyNum: number.isRequired,
   taxes: number.isRequired,
+  keyNum: number.isRequired,
+  error: bool.isRequired,
+  errorMsg: string.isRequired,
+  juiceObj: objectOf(any).isRequired,
   grandTotal: number.isRequired,
   routerPush: func.isRequired,
   qtyHandler: func.isRequired,

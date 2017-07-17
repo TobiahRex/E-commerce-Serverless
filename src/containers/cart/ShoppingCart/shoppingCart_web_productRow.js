@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import ErrorMsg from './errorMsgCart';
 
 function ShoppingCartWebProductRow({
   keyNum,
+  error,
+  errorMsg,
   juiceObj,
   qtyHandler,
   deleteFromCart,
