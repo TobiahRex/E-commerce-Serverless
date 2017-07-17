@@ -119,11 +119,10 @@ class ShoppingCart extends Component {
     } else if (!loggedIn && guestCart.length) {
       updated = true;
       const updatedGuestCart = guestCart.map((guestCartProduct) => {
-        console.log('%cguestCartProduct', 'background:red;', guestCartProduct);
         if (
           !!guestCartProduct._id &&
-          guestCartProduct._id === stateProduct._id
-        ) guestCartProduct.qty += requestQty;
+          guestCartProduct._id === productId
+        ) guestCartProduct.qty += 1;
 
         return guestCartProduct;
       });
@@ -131,13 +130,15 @@ class ShoppingCart extends Component {
     }
 
     //  Add up all the product quantities to check for qty violations later. Also save the id's of all items to know which items are NEW and OLD so we know whether to call "Add" or "Update" respectively.
-    const globalRequestQty = !updated ? requestQty : updatedCart.reduce((accum, nextObj) => {
+    const globalRequestQty = !updated ?
+    1 :
+    updatedCart.reduce((accum, nextObj) => {
       if (nextObj && !!nextObj._id) prevCartIds.push(nextObj._id);
 
       // "product" = object on Guest cart, & string on Member cart.
       if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
 
-      accum += nextObj.qty;
+      if (nextObj && !!nextObj.qty) accum += nextObj.qty;
       return accum;
     }, 0);
     // --- Return results to "addToCartHandler".
