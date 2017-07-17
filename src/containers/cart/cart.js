@@ -1,3 +1,5 @@
+/* eslint-disable no-extra-boolean-cast */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -22,6 +24,7 @@ import orderActions from '../../redux/orders';
 const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 class ShoppingCart extends Component {
   static propTypes = {
+    qty: number.isRequired,
     push: func.isRequired,
     userId: string,
     taxRate: number.isRequired,
@@ -56,7 +59,7 @@ class ShoppingCart extends Component {
     super(props);
 
     this.state = {
-      qty: 0,
+      qty: props.qty,
       taxes: 0,
       error: null,
       errorMsg: '',
@@ -65,15 +68,50 @@ class ShoppingCart extends Component {
     };
   }
 
-  componentWillReceiveProps({ mobileActive, taxRate }) {
-    const { taxes, grandTotal } = this.calcProductAnalysis();
+  componentWillReceiveProps({ mobileActive, taxRate, qty }) {
+    const { taxes, grandTotal } = this.calculateTotalsDue();
 
     if (this.state.mobileActive !== mobileActive) {
-      this.setState({ mobileActive, taxes, grandTotal });
+      this.setState({ mobileActive, taxes, grandTotal, qty });
+    }
+    if (this.state.qty !== qty) {
+      this.setState({ mobileActive, taxes, grandTotal, qty });
     }
     if (this.state.taxRate !== taxRate) {
-      this.setState({ taxRate, taxes, grandTotal });
+      this.setState({ taxRate, taxes, grandTotal, qty });
     }
+    if (this.state.grandTotal !== grandTotal) {
+      this.setState({ taxRate, taxes, grandTotal, qty });
+    }
+    if (this.state.taxes !== taxes) {
+      this.setState({ taxRate, taxes, grandTotal, qty });
+    }
+  }
+  /**
+  * Function: "calculateTotalsDue"
+  * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
+  * 2) Add that the individual subtotal to each juiceObj.
+  * 3) Add that amount to the "grandTotal".
+  *
+  * @param {none} N/A
+  *
+  * @return {N/A} Set's new state for taxes & grandTotal.
+  */
+  calculateTotalsDue = () => {
+    const { loggedIn, userCart, guestCart } = this.props;
+    let grandTotal = 0;
+    const juiceItems = loggedIn ? userCart : guestCart;
+
+    juiceItems.forEach((juiceObj) => {
+      juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
+      grandTotal += juiceObj.subTotal;
+    });
+    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
+    grandTotal += taxes;
+    return ({
+      taxes,
+      grandTotal,
+    });
   }
 
   /**
@@ -158,37 +196,11 @@ class ShoppingCart extends Component {
     }, 0);
     // --- Return results to "addToCartHandler".
     return {
+      cartType: loggedIn ? 'User' : 'Guest',
       updatedCart,
       prevCartIds,
       globalRequestQty,
     };
-  }
-
-  /**
-  * Function: "calcProductAnalysis"
-  * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
-  * 2) Add that the individual subtotal to each juiceObj.
-  * 3) Add that amount to the "grandTotal".
-  *
-  * @param {none} N/A
-  *
-  * @return {N/A} Set's new state for taxes & grandTotal.
-  */
-  calcProductAnalysis = () => {
-    const { loggedIn, userCart, guestCart } = this.props;
-    let grandTotal = 0;
-    const juiceItems = loggedIn ? userCart : guestCart;
-
-    juiceItems.forEach((juiceObj) => {
-      juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
-      grandTotal += juiceObj.subTotal;
-    });
-    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
-    grandTotal += taxes;
-    return ({
-      taxes,
-      grandTotal,
-    });
   }
 
   /**
@@ -205,8 +217,7 @@ class ShoppingCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    const { globalRequestQty } = this.composeGlobalCartInfo(productId, changeType);
-    console.log('%cglobalRequestQty', 'background:red;', globalRequestQty);
+    const { cartType, globalRequestQty } = this.composeGlobalCartInfo(productId, changeType);
     const qtyToCheck = 1;
 
     if (changeType === 'qty-plus') {
@@ -243,8 +254,6 @@ class ShoppingCart extends Component {
       }
     }
   }
-
-
   /**
   * Function: "deleteFromCart"
   * 1) Find the product id from the event target object.
@@ -259,14 +268,14 @@ class ShoppingCart extends Component {
     const {
       userId,
       saveUser,
-
+      loggedIn,
       guestCart,
       saveGuest,
     } = this.props;
 
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
 
-    if (userId) {
+    if (loggedIn) {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
@@ -292,19 +301,12 @@ class ShoppingCart extends Component {
       *
       * @return N/A
       */
-      saveGuest(guestCart.filter(({ _id }) => {
-        console.log('_id: ', _id, '\nproductId: ', productId);
-        return _id !== productId;
-      }));
+      saveGuest(guestCart.filter(({ _id }) => _id !== productId));
     }
   }
 
   routerPush = (e) => {
-    let slug = e.target.dataset.slug;
-
-    if (!slug) slug = e.target.parentNode.dataset.slug;
-    console.log('slug: ', slug);
-    this.props.push(slug);
+    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
   /**
   * Function: "showShoppingCart"
@@ -400,12 +402,21 @@ class ShoppingCart extends Component {
     );
   }
 }
+const calculateCartQty = cart =>
+cart.reduce((accum, next) => {
+  if (!!next.qty) {
+    accum += next.qty;
+    return accum;
+  }
+  return accum;
+}, 0);
 
 const ShoppingCartWithData = compose(
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCart);
 
 const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) => ({
+  qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
   mobileActive: mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
