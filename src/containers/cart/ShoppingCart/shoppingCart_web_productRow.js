@@ -37,6 +37,7 @@ function ShoppingCartWebProductRow({
             </li>
             <li className="shopping-cart-table-body-infobox-trash">
               <button
+                data-id={juiceObj._id}
                 className="sweep-right"
                 onClick={deleteFromCart}
               >

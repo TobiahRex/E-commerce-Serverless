@@ -264,8 +264,7 @@ class ShoppingCart extends Component {
       saveGuest,
     } = this.props;
 
-    let productId = e.target.dataset.id;
-    if (!productId) productId = e.target.parentNode.dataset.id;
+    const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
 
     if (userId) {
       /**
