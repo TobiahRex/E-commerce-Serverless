@@ -60,6 +60,7 @@ function ShoppingCartWebProductRow({
             </li>
             <li className="shopping-cart-table-body-qty-btns">
               <button
+                data-id={juiceObj._id}
                 data-tag="qty-plus"
                 className="shopping-cart-table-body-qty-plus sweep-right"
                 onClick={qtyHandler}
@@ -68,6 +69,7 @@ function ShoppingCartWebProductRow({
               </button>
 
               <button
+                data-id={juiceObj._id}
                 data-tag="qty-minus"
                 className="shopping-cart-table-body-qty-minus sweep-right"
                 onClick={qtyHandler}

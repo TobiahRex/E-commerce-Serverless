@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-const { objectOf, any, number } = PropTypes;
-const propTypes = {
-  juiceObj: objectOf(any).isRequired,
-  keyNum: number.isRequired,
-  taxes: number.isRequired,
-  grandTotal: number.isRequired,
-};
-
-function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) {
+function ShoppingCartMobileProductCard({
+  juiceObj,
+  keyNum,
+  taxes,
+  grandTotal,
+  qtyHandler,
+}) {
   return (
     <tr
       data-id={juiceObj._id}
@@ -61,12 +59,22 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
                 </div>
                 <div className="shopping-cart-mobile-product-actions-qty-btns">
                   <div className="shopping-cart-mobile-product-actions-qty-btn-plus">
-                    <button className="sweep-right">
+                    <button
+                      data-id={juiceObj._id}
+                      data-tag="qty-plus"
+                      className="sweep-right"
+                      onClick={qtyHandler}
+                    >
                       <FontAwesome name="plus" />
                     </button>
                   </div>
                   <div className="shopping-cart-mobile-product-actions-qty-btn-minus">
-                    <button className="sweep-right">
+                    <button
+                      data-id={juiceObj._id}
+                      data-tag="qty-minus"
+                      className="sweep-right"
+                      onClick={qtyHandler}
+                    >
                       <FontAwesome name="minus" />
                     </button>
                   </div>
@@ -137,5 +145,12 @@ function ShoppingCartMobileProductCard({ juiceObj, keyNum, taxes, grandTotal }) 
   );
 }
 
-ShoppingCartMobileProductCard.propTypes = propTypes;
+const { objectOf, any, number } = PropTypes;
+
+ShoppingCartMobileProductCard.propTypes = {
+  juiceObj: objectOf(any).isRequired,
+  keyNum: number.isRequired,
+  taxes: number.isRequired,
+  grandTotal: number.isRequired,
+};
 export default ShoppingCartMobileProductCard;

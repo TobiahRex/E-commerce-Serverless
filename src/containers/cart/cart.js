@@ -84,7 +84,7 @@ class ShoppingCart extends Component {
   *
   * @return {object} - object containing values 1) "updatedCart" (updated quanitty values for either the user cart if the user is logged in, or the guest cart if the user is not logged in.), 2) "prevCartIds" used to determine whether we have to "update" the items in an existing cart, or "create" a new cart. 3) "globalRequestQty" the overall quantity of items the user is requesting.
   */
-  composeGlobalCartInfo = () => {
+  composeGlobalCartInfo = (productId) => {
     // When run the first time (no previous items in the cart) then a flag {bool} "updated" is a value of "false".  This will make {number} "globalRequestQty" to be assigned the value of {number} "this.state.qty".
 
     // If this function is run a subsequent time (items already exist in the cart) then the variable {bool} "updated" will become "true" &  "globalRequestQty" will be assigned it's value based on a reduce across all items in the current cart.
@@ -95,11 +95,6 @@ class ShoppingCart extends Component {
       guestCart,
       userCart,
     } = this.props;
-
-    const {
-      qty: requestQty,  // alias
-      product: stateProduct,
-    } = this.state;
 
     // Update the User/Guest cart quantity with like items.
     let updatedCart = [];
@@ -114,8 +109,8 @@ class ShoppingCart extends Component {
         if (!!userCartProduct.__typename) delete userCartProduct.__typename; // eslint-disable-line
 
         if (!!userCartProduct.product &&
-          (userCartProduct.product === stateProduct._id)
-        ) userCartProduct.qty += requestQty;
+          (userCartProduct.product === productId)
+        ) userCartProduct.qty += 1;
 
         return userCartProduct;
       });
@@ -124,6 +119,7 @@ class ShoppingCart extends Component {
     } else if (!loggedIn && guestCart.length) {
       updated = true;
       const updatedGuestCart = guestCart.map((guestCartProduct) => {
+        console.log('%cguestCartProduct', 'background:red;', guestCartProduct);
         if (
           !!guestCartProduct._id &&
           guestCartProduct._id === stateProduct._id
@@ -190,7 +186,10 @@ class ShoppingCart extends Component {
   * @return {new state} - returns new state with new qty value.
   */
   qtyHandler = (e) => {
-    const { globalRequestQty } = this.composeGlobalCartInfo();
+    let productId = e.target.dataset.id;
+    if (!productId) productId = e.target.parentNode.dataset.id;
+
+    const { globalRequestQty } = this.composeGlobalCartInfo(productId);
     const qtyToCheck = 1;
 
     let buttonEl = e.target.dataset.tag;
