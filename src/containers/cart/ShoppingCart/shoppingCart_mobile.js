@@ -6,6 +6,13 @@ function ShoppingCartMobile(props) {
   const {
     routerPush,
     showProductRow,
+
+    cart,
+    taxes,
+    error,
+    errorMsg,
+    grandTotal,
+    mobileActive,
   } = props;
 
   return (
@@ -27,14 +34,16 @@ function ShoppingCartMobile(props) {
     </div>
   );
 }
-const { func, number, arrayOf, object, bool } = PropTypes;
+const { func, number, arrayOf, object, bool, string } = PropTypes;
 ShoppingCartMobile.propTypes = {
+  routerPush: func.isRequired,
+  showProductRow: func.isRequired,
   cart: arrayOf(object),
   taxes: number,
   grandTotal: number,
-  routerPush: func.isRequired,
-  showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
+  error: bool.isRequired,
+  errorMsg: string.isRequired,
 };
 ShoppingCartMobile.defaultProps = {
   cart: [],

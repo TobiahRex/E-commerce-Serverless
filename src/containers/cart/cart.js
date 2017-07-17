@@ -398,8 +398,8 @@ class ShoppingCart extends Component {
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
     const { mobileActive, grandTotal, taxes } = this.state;
-    const emptyCart = userCart.length || guestCart.length;
-
+    const cartHasProducts = userCart.length || guestCart.length;
+    console.log('this.state: ', this.state);
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
@@ -411,12 +411,12 @@ class ShoppingCart extends Component {
         <div className="shopping-cart-main-title">
           <h1>Shopping Cart</h1>
         </div>
-        { !emptyCart ? <EmptyCart /> : this.showShoppingCart(
-            taxes,
-            grandTotal,
-            mobileActive,
-            loggedIn ? userCart : guestCart,
-        )}
+        { !cartHasProducts ?
+
+          <EmptyCart /> :
+
+          this.showShoppingCart(taxes, grandTotal, mobileActive, loggedIn ? userCart : guestCart)
+        }
       </div>
     );
   }

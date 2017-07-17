@@ -4,10 +4,15 @@ import FontAwesome from 'react-fontawesome';
 
 function ShoppingCartWeb(props) {
   const {
-    taxes,
     grandTotal,
     routerPush,
     showProductRow,
+
+    cart,
+    taxes,
+    error,
+    errorMsg,
+    mobileActive,
   } = props;
   return (
     <div className="shopping-cart-web-parent">
@@ -29,7 +34,14 @@ function ShoppingCartWeb(props) {
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {showProductRow(props)}
+          {showProductRow(
+            cart,
+            taxes,
+            error,
+            errorMsg,
+            grandTotal,
+            mobileActive,
+          )}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">
@@ -81,7 +93,7 @@ function ShoppingCartWeb(props) {
     </div>
   );
 }
-const { func, number, arrayOf, object, bool } = PropTypes;
+const { func, number, arrayOf, object, bool, string } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
   taxes: number,
@@ -89,6 +101,8 @@ ShoppingCartWeb.propTypes = {
   routerPush: func.isRequired,
   showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
+  error: bool.isRequired,
+  errorMsg: string.isRequired,
 };
 ShoppingCartWeb.defaultProps = {
   cart: [],
