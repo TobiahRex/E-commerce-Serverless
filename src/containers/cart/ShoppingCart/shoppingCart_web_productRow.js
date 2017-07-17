@@ -14,7 +14,7 @@ function ShoppingCartWebProductRow({
       <td className="shopping-cart-table-body-infobox">
         <div className="shopping-cart-table-body-infobox-flexparent">
           <div className="shopping-cart-table-body-infobox-img">
-            <Link to={`/juices/${juiceObj.routeTag}`}>
+            <Link to={`/juice/${juiceObj.routeTag}`}>
               <img
                 src={juiceObj.images[0].url}
                 className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.title}
@@ -23,7 +23,7 @@ function ShoppingCartWebProductRow({
           </div>
           <ul className="shopping-cart-table-body-infobox-list">
             <li className="shopping-cart-table-body-infobox-title">
-              <Link to={`/juices/${juiceObj.routeTag}`}>
+              <Link to={`/juice/${juiceObj.routeTag}`}>
                 <p>{juiceObj.title}</p>
               </Link>
             </li>

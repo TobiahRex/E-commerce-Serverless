@@ -8,7 +8,7 @@ function ShoppingCartMobile({
   grandTotal,
   routerPush,
   mobileActive,
-  showProducts,
+  showProductRow,
 }) {
   return (
     <div className="shopping-cart-mobile-parent">
@@ -24,7 +24,7 @@ function ShoppingCartMobile({
         </button>
       </div>
       <div className="shopping-cart-mobile-product-list">
-        {showProducts(taxes, grandTotal, mobileActive, cart)}
+        {showProductRow(mobileActive, cart)}
       </div>
     </div>
   );
@@ -35,7 +35,7 @@ ShoppingCartMobile.propTypes = {
   taxes: number,
   grandTotal: number,
   routerPush: func.isRequired,
-  showProducts: func.isRequired,
+  showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
 };
 ShoppingCartMobile.defaultProps = {

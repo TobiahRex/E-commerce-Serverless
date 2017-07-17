@@ -7,7 +7,7 @@ function ShoppingCartWeb({
   taxes,
   grandTotal,
   routerPush,
-  showProducts,
+  showProductRow,
   mobileActive,
 }) {
   return (
@@ -30,7 +30,7 @@ function ShoppingCartWeb({
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {showProducts(taxes, grandTotal, mobileActive, cart)}
+          {showProductRow(mobileActive, cart)}
         </tbody>
       </table>
       <div className="shopping-cart-analysis-main">
@@ -88,7 +88,7 @@ ShoppingCartWeb.propTypes = {
   taxes: number,
   grandTotal: number,
   routerPush: func.isRequired,
-  showProducts: func.isRequired,
+  showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
 };
 ShoppingCartWeb.defaultProps = {

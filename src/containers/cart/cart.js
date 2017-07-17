@@ -307,7 +307,7 @@ class ShoppingCart extends Component {
           taxes={taxes}
           grandTotal={grandTotal}
           mobileActive={mobileActive}
-          showProducts={this.showProductRow}
+          showProductRow={this.showProductRow}
           routerPush={this.props.push}
         />
       );
@@ -318,7 +318,7 @@ class ShoppingCart extends Component {
         taxes={taxes}
         grandTotal={grandTotal}
         mobileActive={mobileActive}
-        showProducts={this.showProductRow}
+        showProductRow={this.showProductRow}
         routerPush={this.props.push}
       />
     );
@@ -334,7 +334,7 @@ class ShoppingCart extends Component {
   */
   showProductRow = (mobileActive, cart) => (
     cart.map((juiceObj, i) => {
-      console.log('juiceObj: ', juiceObj);
+      console.log('"showProductRow" > juiceObj: ', juiceObj);
 
       if (mobileActive === false) {
         return (
