@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router';
 
 function ShoppingCartMobileProductCard({
   keyNum,
   taxes,
   grandTotal,
   juiceObj,
+  routerPush,
   qtyHandler,
   deleteFromCart,
 }) {
@@ -97,7 +97,11 @@ function ShoppingCartMobileProductCard({
               <p>Actions</p>
             </div>
             <div className="shopping-cart-mobile-product-actions-trash-btn-container">
-              <button className="shopping-cart-mobile-product-actions-trash-btn sweep-right">
+              <button
+                data-id={juiceObj._id}
+                className="shopping-cart-mobile-product-actions-trash-btn sweep-right"
+                onClick={deleteFromCart}
+              >
                 <FontAwesome name="trash-o" />
               </button>
             </div>
@@ -107,7 +111,11 @@ function ShoppingCartMobileProductCard({
           <button className="shopping-cart-mobile-user-actions-btns-clear sweep-right">
             Clear Shopping Cart
           </button>
-          <button className="shopping-cart-mobile-user-actions-btns-checkout sweep-right" onClick={() => browserHistory.push('/express_checkout')}>
+          <button
+            data-slug="express_checkout"
+            className="shopping-cart-mobile-user-actions-btns-checkout sweep-right"
+            onClick={routerPush}
+          >
             <span className="btn-flex-parent">
               <FontAwesome name="credit-card-alt" />
               {'\u0020'}Express Checkout
@@ -137,7 +145,7 @@ function ShoppingCartMobileProductCard({
           </div>
           <div className="shopping-cart-mobile-continue-shopping">
             <button
-              data-tag='juices'
+              data-slug="juices"
               className="shopping-cart-mobile-continue-shopping-btn sweep-right"
               onClick={routerPush}
             >
@@ -157,6 +165,7 @@ ShoppingCartMobileProductCard.propTypes = {
   keyNum: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
+  routerPush: func.isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,
 };
