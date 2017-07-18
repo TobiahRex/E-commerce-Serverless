@@ -179,6 +179,11 @@ class ShoppingCart extends Component {
   /**
   * Function: "qtyHandler"
   * 1) Determines the id and the type of qty change the user requested.
+  * 2) Determines which type of cart the user is currently operating with: "guest" or "user".
+  * 3) calls "verifyQtyChange" passing 3 arguments.  All 3 determined in the prev. 2 steps.
+  * 4a) Step 3 returns a "result" object.  If the key "problem" has a non-falsey value, it calls the appropriate qty update method for either the "guest" || "user" cart from the Component props.
+  * 4b) If the key "problem" has a truthy value, then local state is updated by calling "setState" assigning appropriate values for "error" & "errorMsg".
+  * 5) Step 4a must explicitly set the "error" & "errorMsg" fields to initial values.
   * @param {e} object - the click event object.
   *
   * @return {new state} - returns new state with new qty value.
