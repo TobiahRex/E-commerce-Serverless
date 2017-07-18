@@ -122,7 +122,55 @@ class ShoppingCart extends Component {
   *
   * @return {object} -
   */
+  verifyQtyChange = ({ qtyChangeType, productObj }) => {
+    const qtyToCheck = 1;
 
+    switch (qtyChangeType) {
+      case 'qty-plus': {
+        if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
+          productObj.qty += 1
+          // -----
+          this.setState(prevState => ({
+            ...prevState,
+            // qty: (prevState.qty += 1),
+            error: false,
+            errorMsg: '',
+          }), () => {
+            this.props[`save${cartType}`](updatedCart);
+          });
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            error: true,
+            errorMsg: 'Too much',
+          }));
+        }
+      } break;
+      case 'qty-minus': {
+        productObj.qty -= 1
+        // -----
+        const { qty } = this.state;
+
+        if (qty >= 1 && qty <= 4) {
+          this.setState(prevState => ({
+            ...prevState,
+            qty: (prevState.qty -= 1),
+            error: false,
+            errorMsg: '',
+          }), () => {
+            this.props[`save${cartType}`](updatedCart);
+          });
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            error: true,
+            errorMsg: 'Not enough',
+          }));
+        }
+      } break;
+      default: throw Error('Could not change quantity.');
+    }
+  }
   /**
   * Function: "composedGlobalCartInfo"
   * 1a) Creates variable {number} "globalRequestQty" and assigns it a value either from this.state.qty if being executed for the first time. Or...
@@ -138,8 +186,6 @@ class ShoppingCart extends Component {
     // When run the first time (no previous items in the cart) then a flag {bool} "updated" is a value of "false".  This will make {number} "globalRequestQty" to be assigned the value of {number} "this.state.qty".
 
     // If this function is run a subsequent time (items already exist in the cart) then the variable {bool} "updated" will become "true" &  "globalRequestQty" will be assigned it's value based on a reduce across all items in the current cart.
-    const prevCartIds = [];
-
     const {
       loggedIn,
       guestCart,
@@ -161,11 +207,12 @@ class ShoppingCart extends Component {
         if (!!userCartProduct.product &&
           (userCartProduct.product === productId)
         ) {
-          switch (qtyChangeType) {
-            case 'qty-plus': userCartProduct.qty += 1; break;
-            case 'qty-minus': userCartProduct.qty -= 1; break;
-            default: throw Error('Could not change quantity.');
-          }
+          this.verifyQtyChange(qtyChangeType, userCartProduct);
+          // switch (qtyChangeType) {
+          //   case 'qty-plus': userCartProduct.qty += 1; break;
+          //   case 'qty-minus': userCartProduct.qty -= 1; break;
+          //   default: throw Error('Could not change quantity.');
+          // }
         }
 
         return userCartProduct;
@@ -179,12 +226,12 @@ class ShoppingCart extends Component {
           !!guestCartProduct._id &&
           guestCartProduct._id === productId
         ) {
-
-          switch (qtyChangeType) {
-            case 'qty-plus': guestCartProduct.qty += 1; break;
-            case 'qty-minus': guestCartProduct.qty -= 1; break;
-            default: throw Error('Could not change quantity.');
-          }
+          this.verifyQtyChange(qtyChangeType, guestCartProduct);
+          // switch (qtyChangeType) {
+          //   case 'qty-plus': guestCartProduct.qty += 1; break;
+          //   case 'qty-minus': guestCartProduct.qty -= 1; break;
+          //   default: throw Error('Could not change quantity.');
+          // }
         }
 
         return guestCartProduct;
@@ -196,11 +243,6 @@ class ShoppingCart extends Component {
     const globalRequestQty = !updated ?
     1 :
     updatedCart.reduce((accum, nextObj) => {
-      if (nextObj && !!nextObj._id) prevCartIds.push(nextObj._id);
-
-      // "product" = object on Guest cart, & string on Member cart.
-      if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
-
       if (nextObj && !!nextObj.qty) accum += nextObj.qty;
       return accum;
     }, 0);
@@ -208,7 +250,6 @@ class ShoppingCart extends Component {
     return {
       cartType: loggedIn ? 'User' : 'Guest',
       updatedCart,
-      prevCartIds,
       globalRequestQty,
     };
   }
