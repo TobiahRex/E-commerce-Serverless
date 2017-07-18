@@ -144,11 +144,12 @@ class ShoppingCart extends Component {
   * Error: {object} Error message
   */
   verifyQtyChange = (qtyChangeType, productId, cart) => {
-    let globalRequestQty = 0;
     let globalError = false;
 
     switch (qtyChangeType) {
       case 'qty-plus': {
+        let globalRequestQty = 0;
+
         let newCart = cart.map((productObj) => {
           productObj.error = false;
           productObj.errorMsg = '';
@@ -157,10 +158,9 @@ class ShoppingCart extends Component {
             const productCopy = Object.assign({}, productObj);
             productCopy.qty += 1;
             globalRequestQty += productCopy.qty;
-          } else {
-            globalRequestQty += productObj.qty;
+            return productCopy;
           }
-
+          globalRequestQty += productObj.qty;
           return productObj;
         });
 
@@ -184,6 +184,7 @@ class ShoppingCart extends Component {
         });
       }
       case 'qty-minus': {
+        let productToEditQty = 0;
         let newCart = cart.map((productObj) => {
           productObj.error = false;
           productObj.errorMsg = '';
@@ -191,26 +192,17 @@ class ShoppingCart extends Component {
           if (productObj._id === productId) {
             const productCopy = Object.assign({}, productObj);
             productCopy.qty -= 1;
-            globalRequestQty += productCopy.qty;
-          } else {
-            globalRequestQty += productObj.qty;
+            if (productCopy.qty !== 0) {
+              productToEditQty += productCopy.qty;
+            }
+            return productCopy;
           }
-
           return productObj;
         });
 
-        if (globalRequestQty < 1) {
-          globalError = true;
-          newCart = newCart.map((productObj) => {
-            if (productObj._id === productId) {
-              const productWithError = Object.assign({}, productObj);
-              productWithError.error = true;
-              productWithError.errorMsg = 'Not Enough';
-              productWithError.qty += 1;
-              return productWithError;
-            }
-            return productObj;
-          });
+        console.log('%cproductToEditQty', 'background:orange;', productToEditQty);
+        if (productToEditQty < 1) {
+          newCart = newCart.filter(({ _id }) => _id !== productId);
         }
 
         return ({
