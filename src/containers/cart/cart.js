@@ -123,8 +123,6 @@ class ShoppingCart extends Component {
   * @return {object} -
   */
   verifyQtyChange = (qtyChangeType, productId, cart, cartType) => {
-    const qtyToCheck = 1;
-
     switch (qtyChangeType) {
       case 'qty-plus': {
         let globalRequestQty = 0;
@@ -149,13 +147,18 @@ class ShoppingCart extends Component {
           cart: [],
         });
       } break;
-
       case 'qty-minus': {
-        productObj.qty -= 1
-        // -----
-        const { qty } = this.state;
 
-        if (qty >= 1 && qty <= 4) {
+        let globalRequestQty = 0;
+        const updatedCart = cart.map(({ _id, qty }) => {
+          if (_id === productId) {
+            qty -= 1;
+            globalRequestQty -= qty;
+          }
+          globalRequestQty -= qty;
+        });
+
+        if (globalRequestQty >= 1 && globalRequestQty <= 4) {
           return ({
             cartType,
             problem: '',
@@ -169,74 +172,9 @@ class ShoppingCart extends Component {
           });
         }
       } break;
-      default: throw Error('Could not change quantity.');
+      default: throw Error('Could not verify quantity change.');
     }
   }
-  /**
-  * Function: "composedGlobalCartInfo"
-  * 1a) Creates variable {number} "globalRequestQty" and assigns it a value either from this.state.qty if being executed for the first time. Or...
-  * 1b) Reduces all quantities for items in the current global cart (either from Guest or from User) and assigns that value to "globalRequestQty".
-  * 2) Also, records all {string} "_id"'s of items currently in the cart.  This is needed to properly update the analytics and availability values for those repsective products.
-  * 3) Finally create's an {array of objects} "updatedCart" variable.  If the user has chosen any product that has inititated this invocation, and that product shares similar qualities (flavor, nicotineStrength, size) with other items in the cart, then those items should not be added to the cart an additional time.  Rather the quantity for those like items should be updated.
-  *
-  * @param none
-  *
-  * @return {object} - object containing values 1) "updatedCart" (updated quanitty values for either the user cart if the user is logged in, or the guest cart if the user is not logged in.), 2) "prevCartIds" used to determine whether we have to "update" the items in an existing cart, or "create" a new cart. 3) "globalRequestQty" the overall quantity of items the user is requesting.
-  */
-  composeGlobalCartInfo = (productId, qtyChangeType) => {
-    // When run the first time (no previous items in the cart) then a flag {bool} "updated" is a value of "false".  This will make {number} "globalRequestQty" to be assigned the value of {number} "this.state.qty".
-
-    // If this function is run a subsequent time (items already exist in the cart) then the variable {bool} "updated" will become "true" &  "globalRequestQty" will be assigned it's value based on a reduce across all items in the current cart.
-    const {
-      loggedIn,
-      guestCart,
-      userCart,
-    } = this.props;
-
-    // Update the User/Guest cart quantity with like items.
-    let updatedCart = [];
-    let updated = false;
-
-    // If user has items in their cart && logged in check & update "like items".
-    if (loggedIn && userCart.length) {
-      updated = true;
-      return this.verifyQtyChange(qtyChangeType, productId, userCart);
-      }
-    } else if (!loggedIn && guestCart.length) {
-      updated = true;
-      const updatedGuestCart = guestCart.map((guestCartProduct) => {
-        if (
-          !!guestCartProduct._id &&
-          guestCartProduct._id === productId
-        ) {
-          this.verifyQtyChange(qtyChangeType, guestCartProduct);
-          // switch (qtyChangeType) {
-          //   case 'qty-plus': guestCartProduct.qty += 1; break;
-          //   case 'qty-minus': guestCartProduct.qty -= 1; break;
-          //   default: throw Error('Could not change quantity.');
-          // }
-        }
-
-        return guestCartProduct;
-      });
-      updatedCart = [...updatedGuestCart];
-    }
-
-    //  Add up all the product quantities to check for qty violations later. Also save the id's of all items to know which items are NEW and OLD so we know whether to call "Add" or "Update" respectively.
-    const globalRequestQty = !updated ?
-    1 :
-    updatedCart.reduce((accum, nextObj) => {
-      if (nextObj && !!nextObj.qty) accum += nextObj.qty;
-      return accum;
-    }, 0);
-    // --- Return results to "qtyHandler".
-    return {
-      cartType: loggedIn ? 'User' : 'Guest',
-      updatedCart,
-      globalRequestQty,
-    };
-  }
-
   /**
   * 1) receives event object and determines if "+" or "-" button has been clicked.
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
@@ -251,7 +189,19 @@ class ShoppingCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    const result = this.composeGlobalCartInfo(productId, changeType);
+    const {
+      loggedIn,
+      guestCart,
+      userCart,
+    } = this.props;
+
+    let result = null;
+
+    if (loggedIn) {
+      result = this.verifyQtyChange(changeType, productId, userCart);
+    } else {
+      result = this.verifyQtyChange(changeType, productId, guestCart);
+    }
 
     if (result.problem) {
       this.setState(prevState => ({
@@ -265,44 +215,7 @@ class ShoppingCart extends Component {
         error: false,
         errorMsg: '',
       }), () => this.props[`save${result.cartType}`]([...result.cart]));
-    };
-    // if (changeType === 'qty-plus') {
-    //   if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
-    //     this.setState(prevState => ({
-    //       ...prevState,
-    //       // qty: (prevState.qty += 1),
-    //       error: false,
-    //       errorMsg: '',
-    //     }), () => {
-    //       this.props[`save${cartType}`](updatedCart);
-    //     });
-    //   } else {
-    //     this.setState(prevState => ({
-    //       ...prevState,
-    //       error: true,
-    //       errorMsg: 'Too much',
-    //     }));
-    //   }
-    // } else if (changeType === 'qty-minus') {
-    //   const { qty } = this.state;
-    //
-    //   if (qty >= 1 && qty <= 4) {
-    //     this.setState(prevState => ({
-    //       ...prevState,
-    //       qty: (prevState.qty -= 1),
-    //       error: false,
-    //       errorMsg: '',
-    //     }), () => {
-    //       this.props[`save${cartType}`](updatedCart);
-    //     });
-    //   } else {
-    //     this.setState(prevState => ({
-    //       ...prevState,
-    //       error: true,
-    //       errorMsg: 'Not enough',
-    //     }));
-    //   }
-    // }
+    }
   }
   /**
   * Function: "deleteFromCart"
