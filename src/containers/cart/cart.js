@@ -122,50 +122,51 @@ class ShoppingCart extends Component {
   *
   * @return {object} -
   */
-  verifyQtyChange = (qtyChangeType, productObj, globalRequestQty) => {
+  verifyQtyChange = (qtyChangeType, productId, cart, cartType) => {
     const qtyToCheck = 1;
 
     switch (qtyChangeType) {
       case 'qty-plus': {
-        if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
-          productObj.qty += 1
-          // -----
-          this.setState(prevState => ({
-            ...prevState,
-            // qty: (prevState.qty += 1),
-            error: false,
-            errorMsg: '',
-          }), () => {
-            this.props[`save${cartType}`](updatedCart);
+        let globalRequestQty = 0;
+        const updatedCart = cart.map(({ _id, qty }) => {
+          if (_id === productId) {
+            qty += 1;
+            globalRequestQty += qty;
+          }
+          globalRequestQty += qty;
+        });
+
+        if (globalRequestQty < 5) {
+          return ({
+            cartType,
+            problem: '',
+            cart: updatedCart,
           });
-        } else {
-          this.setState(prevState => ({
-            ...prevState,
-            error: true,
-            errorMsg: 'Too much',
-          }));
         }
+        return ({
+          cartType,
+          problem: 'Too much',
+          cart: [],
+        });
       } break;
+
       case 'qty-minus': {
         productObj.qty -= 1
         // -----
         const { qty } = this.state;
 
         if (qty >= 1 && qty <= 4) {
-          this.setState(prevState => ({
-            ...prevState,
-            qty: (prevState.qty -= 1),
-            error: false,
-            errorMsg: '',
-          }), () => {
-            this.props[`save${cartType}`](updatedCart);
+          return ({
+            cartType,
+            problem: '',
+            cart: [...updatedCart],
           });
         } else {
-          this.setState(prevState => ({
-            ...prevState,
-            error: true,
-            errorMsg: 'Not enough',
-          }));
+          return ({
+            cartType,
+            cart: [],
+            problem: 'Not enough',
+          });
         }
       } break;
       default: throw Error('Could not change quantity.');
@@ -199,21 +200,8 @@ class ShoppingCart extends Component {
     // If user has items in their cart && logged in check & update "like items".
     if (loggedIn && userCart.length) {
       updated = true;
-      const { verified, cart } = this.verifyQtyChange(qtyChangeType, productId, userCart);
-      if (verified) {
-        updatedCart = [...cart];
-        this.setState(prevState => ({
-          ...prevState,
-          // qty: (prevState.qty += 1),
-          error: false,
-          errorMsg: '',
-        }), () => {
-          this.props.saveUser(updatedCart);
-        });
-      } else {
-
+      return this.verifyQtyChange(qtyChangeType, productId, userCart);
       }
-      // If user has items in their cart & is a guest, check & update "like items"
     } else if (!loggedIn && guestCart.length) {
       updated = true;
       const updatedGuestCart = guestCart.map((guestCartProduct) => {
@@ -263,8 +251,21 @@ class ShoppingCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    this.composeGlobalCartInfo(productId, changeType);
+    const result = this.composeGlobalCartInfo(productId, changeType);
 
+    if (result.problem) {
+      this.setState(prevState => ({
+        ...prevState,
+        error: true,
+        errorMsg: result.problem,
+      }));
+    } else {
+      this.setState(prevState => ({
+        ...prevState,
+        error: false,
+        errorMsg: '',
+      }), () => this.props[`save${result.cartType}`]([...result.cart]));
+    };
     // if (changeType === 'qty-plus') {
     //   if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
     //     this.setState(prevState => ({
