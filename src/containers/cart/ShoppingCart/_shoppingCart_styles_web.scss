@@ -223,12 +223,15 @@
                     }
                   }
                 }
-                & .shopping-cart-table-body-qty-msg {
+                & .actions__warning-msg {
                   text-align: center;
                   width: 13em;
-                  p {
-                    font-size: 1.2em;
-                    color: $s-grey;
+                  p, a {
+                    font-size: 12px;
+                    color: $p-red;
+                  }
+                  a {
+                    text-decoration: underline;
                   }
                 }
               }
