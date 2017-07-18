@@ -1,5 +1,6 @@
 /* eslint-disable no-extra-boolean-cast */
 // TODO: Need to updated UserCart Schema to track "error" & "errorMsg" (Same as GuestCart).
+// TODO: Create func. desc. for "verifyQtyChange"
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -137,26 +138,35 @@ class ShoppingCart extends Component {
 
     switch (qtyChangeType) {
       case 'qty-plus': {
-        const newCart = cart.map((productObj) => {
-          const productCopy = Object.assign({}, productObj);
-          productCopy.error = false;
-          productCopy.errorMsg = '';
+        let newCart = cart.map((productObj) => {
+          productObj.error = false;
+          productObj.errorMsg = '';
 
-          if (productCopy._id === productId) {
+          if (productObj._id === productId) {
+            const productCopy = Object.assign({}, productObj);
             productCopy.qty += 1;
             globalRequestQty += productCopy.qty;
           } else {
-            globalRequestQty += productCopy.qty;
+            globalRequestQty += productObj.qty;
           }
 
-          if (globalRequestQty > 4) {
-            globalError = true;
-            productCopy.error = true;
-            productCopy.errorMsg = 'Too much';
-            productCopy.qty -= 1;
-          }
-          return productCopy;
+          return productObj;
         });
+
+        if (globalRequestQty > 4) {
+          globalError = true;
+          newCart = newCart.map((productObj) => {
+            if (productObj._id === productId) {
+              const productWithError = Object.assign({}, productObj);
+              productWithError.error = true;
+              productWithError.errorMsg = 'Too much';
+              productWithError.qty -= 1;
+              return productWithError;
+            }
+            return productObj;
+          });
+        }
+
         return ({
           error: globalError,
           newCart: [...newCart],
@@ -179,7 +189,6 @@ class ShoppingCart extends Component {
             globalError = true;
             productCopy.error = true;
             productCopy.errorMsg = 'Not enough';
-            productCopy.qty += 1;
           }
           return productCopy;
         });
@@ -223,6 +232,7 @@ class ShoppingCart extends Component {
       result = this.verifyQtyChange(changeType, productId, guestCart);
       cartOwner = 'Guest';
     }
+    console.log('%cresult', 'background:blue;', result);
 
     if (result.error) {
       this.setState(prevState => ({
@@ -344,10 +354,10 @@ class ShoppingCart extends Component {
   * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
   */
   showShoppingCart = (
+    cart,
     taxes,
     grandTotal,
     mobileActive,
-    cart,
   ) => {
     if (mobileActive === false) {
       return (
@@ -376,9 +386,13 @@ class ShoppingCart extends Component {
 
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
-    const { taxes, grandTotal, mobileActive } = this.state;
+    const { taxes, grandTotal, mobileActive, updatedCart } = this.state;
     const cartHasProducts = userCart.length || guestCart.length;
-    console.log('this.state.error: ', this.state.error);
+
+    let cart = loggedIn ? userCart : guestCart;
+    if (updatedCart.length) {
+      cart = updatedCart;
+    }
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
@@ -395,10 +409,10 @@ class ShoppingCart extends Component {
           <EmptyCart /> :
 
           this.showShoppingCart(
+            cart,
             taxes,
             grandTotal,
             mobileActive,
-            loggedIn ? userCart : guestCart,
           )
         }
       </div>
