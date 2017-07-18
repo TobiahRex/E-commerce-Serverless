@@ -58,7 +58,7 @@ function ShoppingCartWeb({
           </div>
           <div className="shopping-cart-analysis-grand-total-cost">
             <FontAwesome name="usd" />
-            <h3>{'\u00A0'}{`${grandTotal}`}</h3>
+            <h3>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h3>
           </div>
         </div>
       </div>

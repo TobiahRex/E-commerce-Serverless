@@ -115,7 +115,6 @@ class ShoppingCart extends Component {
 
     const taxes = (grandTotal * this.props.taxRate).toFixed(2);
     grandTotal += Number(taxes);
-    grandTotal.toFixed(2);
 
     return ({
       taxes,
@@ -133,55 +132,57 @@ class ShoppingCart extends Component {
   */
   verifyQtyChange = (qtyChangeType, productId, cart) => {
     let globalRequestQty = 0;
+    let globalError = false;
 
     switch (qtyChangeType) {
       case 'qty-plus': {
         const updatedCart = cart.map((productObj) => {
           const productCopy = Object.assign({}, productObj);
+          productCopy.error = false;
+          productCopy.errorMsg = '';
 
           if (productCopy._id === productId) {
             productCopy.qty += 1;
             globalRequestQty += productCopy.qty;
-            return productCopy;
+          } else {
+            globalRequestQty += productCopy.qty;
           }
-          globalRequestQty += productCopy.qty;
+
+          if (globalRequestQty > 5) {
+            globalError = true;
+            productCopy.error = true;
+            productCopy.errorMsg = 'Too much';
+          }
           return productCopy;
         });
-
-        if (globalRequestQty < 5) {
-          return ({
-            problem: '',
-            cart: [...updatedCart],
-          });
-        }
         return ({
-          cart: [],
-          problem: 'Too much',
+          error: globalError,
+          cart: [...updatedCart],
         });
       }
-
       case 'qty-minus': {
         const updatedCart = cart.map((productObj) => {
           const productCopy = Object.assign({}, productObj);
+          productCopy.error = false;
+          productCopy.errorMsg = '';
 
           if (productCopy._id === productId) {
             productCopy.qty -= 1;
             globalRequestQty += productCopy.qty;
-            return productCopy;
+          } else {
+            globalRequestQty += productCopy.qty;
           }
-          globalRequestQty += productCopy.qty;
+
+          if (globalRequestQty > 0 && globalRequestQty < 5) {
+            globalError = true;
+            productCopy.error = true;
+            productCopy.errorMsg = 'Not enough';
+          }
           return productCopy;
         });
-
-        if (globalRequestQty > 0 && globalRequestQty < 5) {
-          return ({
-            problem: '',
-            cart: [...updatedCart],
-          });
-        }
         return ({
-          cart: [],
-          problem: 'Not enough',
+          error: globalError,
+          cart: [...updatedCart],
         });
       }
       default: throw Error('Switch block did not catch @ "verifyQtyChange".');
