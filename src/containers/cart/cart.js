@@ -126,11 +126,22 @@ class ShoppingCart extends Component {
 
   /**
   * Function: "verifyQtyChange"
-  * 1a)
+  * 1) Determine via switchblock, type of qty change.
+  * 2) Iterate over cart, and find the product by _id to be changed.
+  * 3) Change qty per "changeType".
+  * 4) Increment "globalRequestQty" by each products quantity.
+  * 4) return all products into new array "newCart".
+  * 5) Check "globalRequestQty" for total qty violations.
+  * 6a) If violation is found, iterate over array "newCart" and locate product to updated.
+  * 6aa) Once found, copy object to avoid inheritence. Update key "error" to true. Update key "errorMsg" with appropriate type of error.  Update key "qty" to non-violating value.
+  * 6ab) Re-assign array "newCart" to new updated productArray.
+  * 7) return final value as object.
   *
-  * @param none
+  * @param {string} qtyChangeType, {string} productId, {array} cart
   *
-  * @return {object} -
+  * @return
+  * Success: {object} KEYS: "error", "newCart"
+  * Error: {object} Error message
   */
   verifyQtyChange = (qtyChangeType, productId, cart) => {
     let globalRequestQty = 0;
@@ -173,25 +184,35 @@ class ShoppingCart extends Component {
         });
       }
       case 'qty-minus': {
-        const newCart = cart.map((productObj) => {
-          const productCopy = Object.assign({}, productObj);
-          productCopy.error = false;
-          productCopy.errorMsg = '';
+        let newCart = cart.map((productObj) => {
+          productObj.error = false;
+          productObj.errorMsg = '';
 
-          if (productCopy._id === productId) {
+          if (productObj._id === productId) {
+            const productCopy = Object.assign({}, productObj);
             productCopy.qty -= 1;
             globalRequestQty += productCopy.qty;
           } else {
-            globalRequestQty += productCopy.qty;
+            globalRequestQty += productObj.qty;
           }
 
-          if (globalRequestQty < 1) {
-            globalError = true;
-            productCopy.error = true;
-            productCopy.errorMsg = 'Not enough';
-          }
-          return productCopy;
+          return productObj;
         });
+
+        if (globalRequestQty < 1) {
+          globalError = true;
+          newCart = newCart.map((productObj) => {
+            if (productObj._id === productId) {
+              const productWithError = Object.assign({}, productObj);
+              productWithError.error = true;
+              productWithError.errorMsg = 'Not Enough';
+              productWithError.qty += 1;
+              return productWithError;
+            }
+            return productObj;
+          });
+        }
+
         return ({
           error: globalError,
           newCart: [...newCart],
