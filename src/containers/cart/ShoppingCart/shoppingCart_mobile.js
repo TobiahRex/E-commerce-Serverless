@@ -2,19 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartMobile(props) {
-  const {
-    routerPush,
-    showProductRow,
-
-    cart,
-    taxes,
-    error,
-    errorMsg,
-    grandTotal,
-    mobileActive,
-  } = props;
-
+function ShoppingCartMobile(
+  cart,
+  taxes,
+  error,
+  errorMsg,
+  grandTotal,
+  routerPush,
+  mobileActive,
+  showProductRow,
+) {
   return (
     <div className="shopping-cart-mobile-parent">
       <div className="shopping-cart-mobile-action-btn-top">
@@ -29,7 +26,14 @@ function ShoppingCartMobile(props) {
         </button>
       </div>
       <div className="shopping-cart-mobile-product-list">
-        {showProductRow(props)}
+        {showProductRow(
+          cart,
+          taxes,
+          error,
+          errorMsg,
+          grandTotal,
+          mobileActive,
+        )}
       </div>
     </div>
   );

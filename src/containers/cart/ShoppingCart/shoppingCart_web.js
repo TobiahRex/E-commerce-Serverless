@@ -2,18 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartWeb(props) {
-  const {
-    grandTotal,
-    routerPush,
-    showProductRow,
-
-    cart,
-    taxes,
-    error,
-    errorMsg,
-    mobileActive,
-  } = props;
+function ShoppingCartWeb(
+  cart,
+  taxes,
+  error,
+  errorMsg,
+  grandTotal,
+  routerPush,
+  mobileActive,
+  showProductRow,
+) {
   return (
     <div className="shopping-cart-web-parent">
       <table className="shopping-cart-table">

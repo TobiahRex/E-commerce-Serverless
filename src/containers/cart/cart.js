@@ -312,38 +312,6 @@ class ShoppingCart extends Component {
   routerPush = (e) => {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
-  /**
-  * Function: "showShoppingCart"
-  * 1) Dynamically render device cart based on mobile or web version.
-  *
-  * @param {none} N/A
-  *
-  * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
-  */
-  showShoppingCart = (mobileActive, cart, taxes, grandTotal) => {
-    if (mobileActive === false) {
-      return (
-        <ShoppingCartWeb
-          cart={cart}
-          taxes={taxes}
-          grandTotal={grandTotal}
-          mobileActive={mobileActive}
-          showProductRow={this.showProductRow}
-          routerPush={this.props.push}
-        />
-      );
-    }
-    return (
-      <ShoppingCartMobile
-        cart={cart}
-        taxes={taxes}
-        grandTotal={grandTotal}
-        mobileActive={mobileActive}
-        showProductRow={this.showProductRow}
-        routerPush={this.props.push}
-      />
-    );
-  }
 
   /**
   * Function: "showProductRow"
@@ -353,7 +321,7 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (propArgs) => {
+  showProductRow = (args) => {
     const {
       cart,
       taxes,
@@ -361,7 +329,7 @@ class ShoppingCart extends Component {
       errorMsg,
       grandTotal,
       mobileActive,
-    } = propArgs;
+    } = args;
 
     return (
       cart.map((juiceObj, i) => {
@@ -395,9 +363,54 @@ class ShoppingCart extends Component {
     );
   }
 
+  /**
+  * Function: "showShoppingCart"
+  * 1) Dynamically render device cart based on mobile or web version.
+  *
+  * @param {none} N/A
+  *
+  * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
+  */
+  showShoppingCart = (
+    taxes,
+    error,
+    errorMsg,
+    grandTotal,
+    mobileActive,
+    cart,
+  ) => {
+    if (mobileActive === false) {
+      return (
+        <ShoppingCartWeb
+          cart={cart}
+          taxes={taxes}
+          error={error}
+          errorMsg={errorMsg}
+          grandTotal={grandTotal}
+          routerPush={this.props.push}
+          mobileActive={mobileActive}
+          showProductRow={this.showProductRow}
+        />
+      );
+    }
+    return (
+      <ShoppingCartMobile
+        cart={cart}
+        taxes={taxes}
+        error={error}
+        errorMsg={errorMsg}
+        grandTotal={grandTotal}
+        routerPush={this.props.push}
+        mobileActive={mobileActive}
+        showProductRow={this.showProductRow}
+      />
+    );
+  }
+
+
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
-    const { mobileActive, grandTotal, taxes } = this.state;
+    const { taxes, error, errorMsg, grandTotal, mobileActive } = this.state;
     const cartHasProducts = userCart.length || guestCart.length;
     console.log('this.state: ', this.state);
     return (
@@ -415,7 +428,14 @@ class ShoppingCart extends Component {
 
           <EmptyCart /> :
 
-          this.showShoppingCart(taxes, grandTotal, mobileActive, loggedIn ? userCart : guestCart)
+          this.showShoppingCart(
+            taxes,
+            error,
+            errorMsg,
+            grandTotal,
+            mobileActive,
+            loggedIn ? userCart : guestCart,
+          )
         }
       </div>
     );
