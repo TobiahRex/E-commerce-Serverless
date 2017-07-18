@@ -95,13 +95,16 @@ function ShoppingCartWebProductRow({
   );
 }
 const { objectOf, any, number, func, bool, string } = PropTypes;
+
 const propTypes = {
-  juiceObj: objectOf(any).isRequired,
   keyNum: number.isRequired,
-  deleteFromCart: func.isRequired,
-  qtyHandler: func.isRequired,
   error: bool.isRequired,
   errorMsg: string.isRequired,
+  juiceObj: objectOf(any).isRequired,
+  qtyHandler: func.isRequired,
+  deleteFromCart: func.isRequired,
 };
+
 ShoppingCartWebProductRow.propTypes = propTypes;
+
 export default ShoppingCartWebProductRow;

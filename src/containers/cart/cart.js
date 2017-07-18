@@ -98,16 +98,20 @@ class ShoppingCart extends Component {
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
   calculateTotalsDue = () => {
-    const { loggedIn, userCart, guestCart } = this.props;
     let grandTotal = 0;
-    const juiceItems = loggedIn ? userCart : guestCart;
 
-    juiceItems.forEach((juiceObj) => {
-      juiceObj.subTotal = (juiceObj.qty * Number(juiceObj.price));
+    const { loggedIn, userCart, guestCart } = this.props;
+    const cart = loggedIn ? userCart : guestCart;
+
+    cart.forEach((juiceObj) => {
+      juiceObj.subTotal = juiceObj.qty * Number(juiceObj.price);
       grandTotal += juiceObj.subTotal;
     });
+
     const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
+
     grandTotal += taxes;
+
     return ({
       taxes,
       grandTotal,
@@ -173,11 +177,8 @@ class ShoppingCart extends Component {
     }
   }
   /**
-  * 1) receives event object and determines if "+" or "-" button has been clicked.
-  * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
-  * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
-  * 3) Returns new local state value for "qty".
-  * BUG - Need to add "GLOBAL" qty value to this function.
+  * Function: "qtyHandler"
+  * 1) Determines the id and the type of qty change the user requested.
   * @param {e} object - the click event object.
   *
   * @return {new state} - returns new state with new qty value.
@@ -193,11 +194,14 @@ class ShoppingCart extends Component {
     } = this.props;
 
     let result = null;
+    let cartOwner = '';
 
     if (loggedIn) {
       result = this.verifyQtyChange(changeType, productId, userCart);
+      cartOwner = 'User';
     } else {
       result = this.verifyQtyChange(changeType, productId, guestCart);
+      cartOwner = 'Guest';
     }
 
     if (result.problem) {
@@ -211,7 +215,7 @@ class ShoppingCart extends Component {
         ...prevState,
         error: false,
         errorMsg: '',
-      }), () => this.props[`save${result.cartType}`]([...result.cart]));
+      }), () => this.props[`save${cartOwner}`]([...result.cart]));
     }
   }
   /**
@@ -286,7 +290,6 @@ class ShoppingCart extends Component {
     mobileActive,
   ) => (
     cart.map((juiceObj, i) => {
-      console.log('%cjuiceObj', 'background:red;', juiceObj);
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
