@@ -132,13 +132,15 @@ class ShoppingCart extends Component {
     switch (qtyChangeType) {
       case 'qty-plus': {
         const updatedCart = cart.map((productObj) => {
-          if (productObj._id === productId) {
-            productObj.qty += 1;
-            globalRequestQty += productObj.qty;
-            return productObj;
+          const productCopy = Object.assign({}, productObj);
+
+          if (productCopy._id === productId) {
+            productCopy.qty += 1;
+            globalRequestQty += productCopy.qty;
+            return productCopy;
           }
-          globalRequestQty += productObj.qty;
-          return productObj;
+          globalRequestQty += productCopy.qty;
+          return productCopy;
         });
 
         if (globalRequestQty < 5) {
@@ -155,13 +157,15 @@ class ShoppingCart extends Component {
 
       case 'qty-minus': {
         const updatedCart = cart.map((productObj) => {
-          if (productObj._id === productId) {
-            productObj.qty -= 1;
-            globalRequestQty += productObj.qty;
-            return productObj;
+          const productCopy = Object.assign({}, productObj);
+
+          if (productCopy._id === productId) {
+            productCopy.qty -= 1;
+            globalRequestQty += productCopy.qty;
+            return productCopy;
           }
-          globalRequestQty += productObj.qty;
-          return productObj;
+          globalRequestQty += productCopy.qty;
+          return productCopy;
         });
 
         if (globalRequestQty > 0 && globalRequestQty < 5) {
