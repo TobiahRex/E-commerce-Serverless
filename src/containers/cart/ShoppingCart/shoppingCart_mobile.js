@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartMobile(
+function ShoppingCartMobile({
   cart,
   taxes,
   error,
@@ -11,7 +11,7 @@ function ShoppingCartMobile(
   routerPush,
   mobileActive,
   showProductRow,
-) {
+}) {
   return (
     <div className="shopping-cart-mobile-parent">
       <div className="shopping-cart-mobile-action-btn-top">

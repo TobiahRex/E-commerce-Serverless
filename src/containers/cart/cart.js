@@ -321,47 +321,43 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (args) => {
-    const {
-      cart,
-      taxes,
-      error,
-      errorMsg,
-      grandTotal,
-      mobileActive,
-    } = args;
-
-    return (
-      cart.map((juiceObj, i) => {
-        if (mobileActive === false) {
-          return (
-            <ShoppingCartWebProductRow
-              key={`shopping-cart-table-row-${juiceObj._id}`}
-              keyNum={i}
-              error={error}
-              errorMsg={errorMsg}
-              juiceObj={juiceObj}
-              qtyHandler={this.qtyHandler}
-              deleteFromCart={this.deleteFromCart}
-            />
-          );
-        }
+  showProductRow = (
+    cart,
+    taxes,
+    error,
+    errorMsg,
+    grandTotal,
+    mobileActive,
+  ) => (
+    cart.map((juiceObj, i) => {
+      if (mobileActive === false) {
         return (
-          <ShoppingCartMobileProductCard
+          <ShoppingCartWebProductRow
             key={`shopping-cart-table-row-${juiceObj._id}`}
             keyNum={i}
-            taxes={taxes}
             error={error}
             errorMsg={errorMsg}
-            grandTotal={grandTotal}
             juiceObj={juiceObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
           />
         );
-      })
-    );
-  }
+      }
+      return (
+        <ShoppingCartMobileProductCard
+          key={`shopping-cart-table-row-${juiceObj._id}`}
+          keyNum={i}
+          taxes={taxes}
+          error={error}
+          errorMsg={errorMsg}
+          grandTotal={grandTotal}
+          juiceObj={juiceObj}
+          qtyHandler={this.qtyHandler}
+          deleteFromCart={this.deleteFromCart}
+        />
+      );
+    })
+  );
 
   /**
   * Function: "showShoppingCart"

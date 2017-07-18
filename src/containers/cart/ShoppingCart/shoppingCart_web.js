@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartWeb(
+function ShoppingCartWeb({
   cart,
   taxes,
   error,
@@ -11,7 +11,7 @@ function ShoppingCartWeb(
   routerPush,
   mobileActive,
   showProductRow,
-) {
+}) {
   return (
     <div className="shopping-cart-web-parent">
       <table className="shopping-cart-table">
