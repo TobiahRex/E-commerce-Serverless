@@ -122,7 +122,7 @@ class ShoppingCart extends Component {
   *
   * @return {object} -
   */
-  verifyQtyChange = ({ qtyChangeType, productObj }) => {
+  verifyQtyChange = (qtyChangeType, productObj, globalRequestQty) => {
     const qtyToCheck = 1;
 
     switch (qtyChangeType) {
@@ -199,25 +199,20 @@ class ShoppingCart extends Component {
     // If user has items in their cart && logged in check & update "like items".
     if (loggedIn && userCart.length) {
       updated = true;
+      const { verified, cart } = this.verifyQtyChange(qtyChangeType, productId, userCart);
+      if (verified) {
+        updatedCart = [...cart];
+        this.setState(prevState => ({
+          ...prevState,
+          // qty: (prevState.qty += 1),
+          error: false,
+          errorMsg: '',
+        }), () => {
+          this.props.saveUser(updatedCart);
+        });
+      } else {
 
-      const updatedUserCart = userCart.map((userCartProduct) => {
-        // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
-        if (!!userCartProduct.__typename) delete userCartProduct.__typename; // eslint-disable-line
-
-        if (!!userCartProduct.product &&
-          (userCartProduct.product === productId)
-        ) {
-          this.verifyQtyChange(qtyChangeType, userCartProduct);
-          // switch (qtyChangeType) {
-          //   case 'qty-plus': userCartProduct.qty += 1; break;
-          //   case 'qty-minus': userCartProduct.qty -= 1; break;
-          //   default: throw Error('Could not change quantity.');
-          // }
-        }
-
-        return userCartProduct;
-      });
-      updatedCart = [...updatedUserCart];
+      }
       // If user has items in their cart & is a guest, check & update "like items"
     } else if (!loggedIn && guestCart.length) {
       updated = true;
@@ -268,7 +263,7 @@ class ShoppingCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    this.verifyQtyChange(this.composeGlobalCartInfo(productId, changeType));
+    this.composeGlobalCartInfo(productId, changeType);
 
     // if (changeType === 'qty-plus') {
     //   if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
