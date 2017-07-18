@@ -131,13 +131,14 @@ class ShoppingCart extends Component {
 
     switch (qtyChangeType) {
       case 'qty-plus': {
-        const updatedCart = cart.forEach(({ _id, qty }) => {
-          if (_id === productId) {
-            qty += 1;
-            globalRequestQty += qty;
-          } else {
-            globalRequestQty += qty;
+        const updatedCart = cart.map((productObj) => {
+          if (productObj._id === productId) {
+            productObj.qty += 1;
+            globalRequestQty += productObj.qty;
+            return productObj;
           }
+          globalRequestQty += productObj.qty;
+          return productObj;
         });
 
         if (globalRequestQty < 5) {
@@ -153,13 +154,14 @@ class ShoppingCart extends Component {
       }
 
       case 'qty-minus': {
-        const updatedCart = cart.forEach(({ _id, qty }) => {
-          if (_id === productId) {
-            qty -= 1;
-            globalRequestQty -= qty;
-          } else {
-            globalRequestQty -= qty;
+        const updatedCart = cart.map((productObj) => {
+          if (productObj._id === productId) {
+            productObj.qty -= 1;
+            globalRequestQty += productObj.qty;
+            return productObj;
           }
+          globalRequestQty += productObj.qty;
+          return productObj;
         });
 
         if (globalRequestQty > 0 && globalRequestQty < 5) {
