@@ -1,4 +1,5 @@
 /* eslint-disable no-extra-boolean-cast */
+// TODO: Need to updated UserCart Schema to track "error" & "errorMsg" (Same as GuestCart).
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -60,6 +61,7 @@ class ShoppingCart extends Component {
 
     this.state = {
       qty: props.qty,
+      updatedCart: [],
       taxes: 0,
       error: false,
       grandTotal: 0,
@@ -135,7 +137,7 @@ class ShoppingCart extends Component {
 
     switch (qtyChangeType) {
       case 'qty-plus': {
-        const updatedCart = cart.map((productObj) => {
+        const newCart = cart.map((productObj) => {
           const productCopy = Object.assign({}, productObj);
           productCopy.error = false;
           productCopy.errorMsg = '';
@@ -151,16 +153,17 @@ class ShoppingCart extends Component {
             globalError = true;
             productCopy.error = true;
             productCopy.errorMsg = 'Too much';
+            productCopy.qty -= 1;
           }
           return productCopy;
         });
         return ({
           error: globalError,
-          cart: [...updatedCart],
+          newCart: [...newCart],
         });
       }
       case 'qty-minus': {
-        const updatedCart = cart.map((productObj) => {
+        const newCart = cart.map((productObj) => {
           const productCopy = Object.assign({}, productObj);
           productCopy.error = false;
           productCopy.errorMsg = '';
@@ -176,12 +179,13 @@ class ShoppingCart extends Component {
             globalError = true;
             productCopy.error = true;
             productCopy.errorMsg = 'Not enough';
+            productCopy.qty += 1;
           }
           return productCopy;
         });
         return ({
           error: globalError,
-          cart: [...updatedCart],
+          newCart: [...newCart],
         });
       }
       default: throw Error('Switch block did not catch @ "verifyQtyChange".');
@@ -220,16 +224,17 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
     }
 
-    console.log('%cresult', 'background:red;', result);
     if (result.error) {
       this.setState(prevState => ({
         ...prevState,
         error: result.error,
+        updatedCart: [...result.newCart],
       }));
     } else {
       this.setState(prevState => ({
         ...prevState,
         error: false,
+        updatedCart: [...result.newCart],
       }), () => {
         this.props[`save${cartOwner}`]([...result.cart]);
       });
