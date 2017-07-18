@@ -88,7 +88,7 @@ function ShoppingCartWebProductRow({
       <td className="shopping-cart-table-body-total">
         <div className="shopping-cart-table-body-total-flexparent">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{`${juiceObj.subTotal}.00`}</h3>
+          <h3>{'\u00A0'}{`${juiceObj.qty * Number(juiceObj.price)}.00`}</h3>
         </div>
       </td>
     </tr>

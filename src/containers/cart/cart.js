@@ -68,23 +68,31 @@ class ShoppingCart extends Component {
     };
   }
 
-  componentWillReceiveProps({ mobileActive, taxRate, qty }) {
-    const { taxes, grandTotal } = this.calculateTotalsDue();
+  componentWillReceiveProps(nextProps) {
+    const {
+      qty,
+      taxRate,
+      loggedIn,
+      userCart,
+      guestCart,
+      mobileActive,
+    } = nextProps;
 
-    if (this.state.mobileActive !== mobileActive) {
-      this.setState({ mobileActive, taxes, grandTotal, qty });
-    }
-    if (this.state.qty !== qty) {
-      this.setState({ mobileActive, taxes, grandTotal, qty });
-    }
-    if (this.state.taxRate !== taxRate) {
-      this.setState({ taxRate, taxes, grandTotal, qty });
-    }
-    if (this.state.grandTotal !== grandTotal) {
-      this.setState({ taxRate, taxes, grandTotal, qty });
-    }
-    if (this.state.taxes !== taxes) {
-      this.setState({ taxRate, taxes, grandTotal, qty });
+    const { taxes, grandTotal } = this.calculateTotalsDue(loggedIn ? userCart : guestCart);
+
+    if (
+      this.state.qty !== qty ||
+      this.state.taxes !== taxes ||
+      this.state.taxRate !== taxRate ||
+      this.state.grandTotal !== grandTotal ||
+      this.state.mobileActive !== mobileActive
+    ) {
+      this.setState({
+        qty,
+        taxes,
+        grandTotal,
+        mobileActive,
+      });
     }
   }
   /**
@@ -97,20 +105,17 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
-  calculateTotalsDue = () => {
+  calculateTotalsDue = (cart) => {
     let grandTotal = 0;
-
-    const { loggedIn, userCart, guestCart } = this.props;
-    const cart = loggedIn ? userCart : guestCart;
 
     cart.forEach((juiceObj) => {
       juiceObj.subTotal = juiceObj.qty * Number(juiceObj.price);
       grandTotal += juiceObj.subTotal;
     });
 
-    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
-
-    grandTotal += taxes;
+    const taxes = (grandTotal * this.props.taxRate).toFixed(2);
+    grandTotal += Number(taxes);
+    grandTotal.toFixed(2);
 
     return ({
       taxes,
