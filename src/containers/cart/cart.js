@@ -122,57 +122,54 @@ class ShoppingCart extends Component {
   *
   * @return {object} -
   */
-  verifyQtyChange = (qtyChangeType, productId, cart, cartType) => {
+  verifyQtyChange = (qtyChangeType, productId, cart) => {
+    let globalRequestQty = 0;
+
     switch (qtyChangeType) {
       case 'qty-plus': {
-        let globalRequestQty = 0;
-        const updatedCart = cart.map(({ _id, qty }) => {
+        const updatedCart = cart.forEach(({ _id, qty }) => {
           if (_id === productId) {
             qty += 1;
             globalRequestQty += qty;
+          } else {
+            globalRequestQty += qty;
           }
-          globalRequestQty += qty;
         });
 
         if (globalRequestQty < 5) {
           return ({
-            cartType,
-            problem: '',
-            cart: updatedCart,
-          });
-        }
-        return ({
-          cartType,
-          problem: 'Too much',
-          cart: [],
-        });
-      } break;
-      case 'qty-minus': {
-
-        let globalRequestQty = 0;
-        const updatedCart = cart.map(({ _id, qty }) => {
-          if (_id === productId) {
-            qty -= 1;
-            globalRequestQty -= qty;
-          }
-          globalRequestQty -= qty;
-        });
-
-        if (globalRequestQty >= 1 && globalRequestQty <= 4) {
-          return ({
-            cartType,
             problem: '',
             cart: [...updatedCart],
           });
-        } else {
+        }
+        return ({
+          cart: [],
+          problem: 'Too much',
+        });
+      }
+
+      case 'qty-minus': {
+        const updatedCart = cart.forEach(({ _id, qty }) => {
+          if (_id === productId) {
+            qty -= 1;
+            globalRequestQty -= qty;
+          } else {
+            globalRequestQty -= qty;
+          }
+        });
+
+        if (globalRequestQty > 0 && globalRequestQty < 5) {
           return ({
-            cartType,
-            cart: [],
-            problem: 'Not enough',
+            problem: '',
+            cart: [...updatedCart],
           });
         }
-      } break;
-      default: throw Error('Could not verify quantity change.');
+        return ({
+          cart: [],
+          problem: 'Not enough',
+        });
+      }
+      default: throw Error('Switch block did not catch @ "verifyQtyChange".');
     }
   }
   /**
