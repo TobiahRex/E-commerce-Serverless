@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 function ErrorMsg({ error, errorMsg }) {
+  console.log('%cerror, \nerrorMsg', 'background:red;', error, '\n', errorMsg);
+
   let style;
   let showErrorMsg = () => ('');
 

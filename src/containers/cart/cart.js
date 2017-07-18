@@ -147,7 +147,7 @@ class ShoppingCart extends Component {
             globalRequestQty += productCopy.qty;
           }
 
-          if (globalRequestQty > 5) {
+          if (globalRequestQty > 4) {
             globalError = true;
             productCopy.error = true;
             productCopy.errorMsg = 'Too much';
@@ -220,6 +220,7 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
     }
 
+    console.log('%cresult', 'background:red;', result);
     if (result.error) {
       this.setState(prevState => ({
         ...prevState,
@@ -372,6 +373,7 @@ class ShoppingCart extends Component {
     const { loggedIn, userCart, guestCart } = this.props;
     const { taxes, grandTotal, mobileActive } = this.state;
     const cartHasProducts = userCart.length || guestCart.length;
+    console.log('this.state.error: ', this.state.error);
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
