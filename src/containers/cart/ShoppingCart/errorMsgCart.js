@@ -66,7 +66,12 @@ function ErrorMsg({ error, errorMsg }) {
 }
 const { bool, string } = PropTypes;
 ErrorMsg.propTypes = {
-  error: bool.isRequired,
-  errorMsg: string.isRequired,
+  error: bool,
+  errorMsg: string,
 };
+ErrorMsg.defaultProps = {
+  error: false,
+  errorMsg: '',
+};
+
 export default ErrorMsg;

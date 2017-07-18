@@ -5,8 +5,6 @@ import FontAwesome from 'react-fontawesome';
 function ShoppingCartWeb({
   cart,
   taxes,
-  error,
-  errorMsg,
   grandTotal,
   routerPush,
   mobileActive,
@@ -35,8 +33,6 @@ function ShoppingCartWeb({
           {showProductRow(
             cart,
             taxes,
-            error,
-            errorMsg,
             grandTotal,
             mobileActive,
           )}
@@ -94,17 +90,15 @@ function ShoppingCartWeb({
 const { func, number, arrayOf, object, bool, string } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
-  taxes: number,
+  taxes: string,
   grandTotal: number,
   routerPush: func.isRequired,
   showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
-  error: bool.isRequired,
-  errorMsg: string.isRequired,
 };
 ShoppingCartWeb.defaultProps = {
   cart: [],
-  taxes: 0,
-  grandTotal: 0,
+  taxes: '0.00', // converted to string to ensure 2 decimal places.
+  grandTotal: 0, // will be converted to string for same reasons in JSX.
 };
 export default ShoppingCartWeb;

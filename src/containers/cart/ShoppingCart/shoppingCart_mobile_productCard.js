@@ -6,8 +6,6 @@ import ErrorMsg from './errorMsgCart';
 function ShoppingCartMobileProductCard({
   keyNum,
   taxes,
-  error,
-  errorMsg,
   grandTotal,
   juiceObj,
   routerPush,
@@ -85,7 +83,7 @@ function ShoppingCartMobileProductCard({
                 </div>
               </div>
             </div>
-            <ErrorMsg error={error} errorMsg={errorMsg} />
+            <ErrorMsg error={juiceObj.error} errorMsg={juiceObj.errorMsg} />
           </li>
           <li className="shopping-cart-mobile-product-actions-subtotal">
             <div className="shopping-cart-mobile-product-actions-subtotal-title">
@@ -144,7 +142,7 @@ function ShoppingCartMobileProductCard({
             </div>
             <div className="shopping-cart-mobile-analysis-grand-total-cost">
               <FontAwesome name="usd" />
-              <h3>{'\u00A0'}{`${grandTotal}`}</h3>
+              <h3>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h3>
             </div>
           </div>
           <div className="shopping-cart-mobile-continue-shopping">
@@ -162,13 +160,11 @@ function ShoppingCartMobileProductCard({
   );
 }
 
-const { objectOf, any, number, func, bool, string } = PropTypes;
+const { objectOf, any, number, func, string } = PropTypes;
 
 ShoppingCartMobileProductCard.propTypes = {
-  taxes: number.isRequired,
+  taxes: string.isRequired,
   keyNum: number.isRequired,
-  error: bool.isRequired,
-  errorMsg: string.isRequired,
   juiceObj: objectOf(any).isRequired,
   grandTotal: number.isRequired,
   routerPush: func.isRequired,

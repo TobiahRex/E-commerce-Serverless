@@ -6,8 +6,6 @@ import ErrorMsg from './errorMsgCart';
 
 function ShoppingCartWebProductRow({
   keyNum,
-  error,
-  errorMsg,
   juiceObj,
   qtyHandler,
   deleteFromCart,
@@ -82,7 +80,7 @@ function ShoppingCartWebProductRow({
               </button>
             </li>
           </ul>
-          <ErrorMsg error={error} errorMsg={errorMsg} />
+          <ErrorMsg error={juiceObj.error} errorMsg={juiceObj.errorMsg} />
         </div>
       </td>
       <td className="shopping-cart-table-body-total">
@@ -94,12 +92,10 @@ function ShoppingCartWebProductRow({
     </tr>
   );
 }
-const { objectOf, any, number, func, bool, string } = PropTypes;
+const { objectOf, any, number, func } = PropTypes;
 
 const propTypes = {
   keyNum: number.isRequired,
-  error: bool.isRequired,
-  errorMsg: string.isRequired,
   juiceObj: objectOf(any).isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,

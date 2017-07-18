@@ -62,7 +62,6 @@ class ShoppingCart extends Component {
       qty: props.qty,
       taxes: 0,
       error: false,
-      errorMsg: '',
       grandTotal: 0,
       mobileActive: props.mobileActive,
     };
@@ -173,7 +172,7 @@ class ShoppingCart extends Component {
             globalRequestQty += productCopy.qty;
           }
 
-          if (globalRequestQty > 0 && globalRequestQty < 5) {
+          if (globalRequestQty < 1) {
             globalError = true;
             productCopy.error = true;
             productCopy.errorMsg = 'Not enough';
@@ -221,18 +220,18 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
     }
 
-    if (result.problem) {
+    if (result.error) {
       this.setState(prevState => ({
         ...prevState,
-        error: true,
-        errorMsg: result.problem,
+        error: result.error,
       }));
     } else {
       this.setState(prevState => ({
         ...prevState,
         error: false,
-        errorMsg: '',
-      }), () => this.props[`save${cartOwner}`]([...result.cart]));
+      }), () => {
+        this.props[`save${cartOwner}`]([...result.cart]);
+      });
     }
   }
   /**
@@ -301,8 +300,6 @@ class ShoppingCart extends Component {
   showProductRow = (
     cart,
     taxes,
-    error,
-    errorMsg,
     grandTotal,
     mobileActive,
   ) => (
@@ -312,8 +309,6 @@ class ShoppingCart extends Component {
           <ShoppingCartWebProductRow
             key={`shopping-cart-table-row-${juiceObj._id}`}
             keyNum={i}
-            error={error}
-            errorMsg={errorMsg}
             juiceObj={juiceObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
@@ -325,8 +320,6 @@ class ShoppingCart extends Component {
           key={`shopping-cart-table-row-${juiceObj._id}`}
           keyNum={i}
           taxes={taxes}
-          error={error}
-          errorMsg={errorMsg}
           grandTotal={grandTotal}
           juiceObj={juiceObj}
           qtyHandler={this.qtyHandler}
@@ -346,8 +339,6 @@ class ShoppingCart extends Component {
   */
   showShoppingCart = (
     taxes,
-    error,
-    errorMsg,
     grandTotal,
     mobileActive,
     cart,
@@ -357,10 +348,8 @@ class ShoppingCart extends Component {
         <ShoppingCartWeb
           cart={cart}
           taxes={taxes}
-          error={error}
-          errorMsg={errorMsg}
           grandTotal={grandTotal}
-          routerPush={this.props.push}
+          routerPush={this.routerPush}
           mobileActive={mobileActive}
           showProductRow={this.showProductRow}
         />
@@ -370,10 +359,8 @@ class ShoppingCart extends Component {
       <ShoppingCartMobile
         cart={cart}
         taxes={taxes}
-        error={error}
-        errorMsg={errorMsg}
         grandTotal={grandTotal}
-        routerPush={this.props.push}
+        routerPush={this.routerPush}
         mobileActive={mobileActive}
         showProductRow={this.showProductRow}
       />
@@ -383,9 +370,8 @@ class ShoppingCart extends Component {
 
   render() {
     const { loggedIn, userCart, guestCart } = this.props;
-    const { taxes, error, errorMsg, grandTotal, mobileActive } = this.state;
+    const { taxes, grandTotal, mobileActive } = this.state;
     const cartHasProducts = userCart.length || guestCart.length;
-    console.log('this.state: ', this.state);
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
@@ -403,8 +389,6 @@ class ShoppingCart extends Component {
 
           this.showShoppingCart(
             taxes,
-            error,
-            errorMsg,
             grandTotal,
             mobileActive,
             loggedIn ? userCart : guestCart,
