@@ -61,7 +61,7 @@ class ShoppingCart extends Component {
     this.state = {
       qty: props.qty,
       taxes: 0,
-      error: null,
+      error: false,
       errorMsg: '',
       grandTotal: 0,
       mobileActive: props.mobileActive,
@@ -113,6 +113,15 @@ class ShoppingCart extends Component {
       grandTotal,
     });
   }
+
+  /**
+  * Function: "verifyQtyChange"
+  * 1a)
+  *
+  * @param none
+  *
+  * @return {object} -
+  */
 
   /**
   * Function: "composedGlobalCartInfo"
@@ -170,6 +179,7 @@ class ShoppingCart extends Component {
           !!guestCartProduct._id &&
           guestCartProduct._id === productId
         ) {
+
           switch (qtyChangeType) {
             case 'qty-plus': guestCartProduct.qty += 1; break;
             case 'qty-minus': guestCartProduct.qty -= 1; break;
@@ -194,7 +204,7 @@ class ShoppingCart extends Component {
       if (nextObj && !!nextObj.qty) accum += nextObj.qty;
       return accum;
     }, 0);
-    // --- Return results to "addToCartHandler".
+    // --- Return results to "qtyHandler".
     return {
       cartType: loggedIn ? 'User' : 'Guest',
       updatedCart,
@@ -217,46 +227,45 @@ class ShoppingCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const changeType = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    const { cartType, globalRequestQty, updatedCart } = this.composeGlobalCartInfo(productId, changeType);
-    const qtyToCheck = 1;
+    this.verifyQtyChange(this.composeGlobalCartInfo(productId, changeType));
 
-    if (changeType === 'qty-plus') {
-      if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
-        this.setState(prevState => ({
-          ...prevState,
-          // qty: (prevState.qty += 1),
-          error: false,
-          errorMsg: '',
-        }), () => {
-          this.props[`save${cartType}`](updatedCart);
-        });
-      } else {
-        this.setState(prevState => ({
-          ...prevState,
-          error: true,
-          errorMsg: 'Too much',
-        }));
-      }
-    } else if (changeType === 'qty-minus') {
-      const { qty } = this.state;
-
-      if (qty >= 1 && qty <= 4) {
-        this.setState(prevState => ({
-          ...prevState,
-          qty: (prevState.qty -= 1),
-          error: false,
-          errorMsg: '',
-        }), () => {
-          this.props[`save${cartType}`](updatedCart);
-        });
-      } else {
-        this.setState(prevState => ({
-          ...prevState,
-          error: true,
-          errorMsg: 'Not enough',
-        }));
-      }
-    }
+    // if (changeType === 'qty-plus') {
+    //   if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
+    //     this.setState(prevState => ({
+    //       ...prevState,
+    //       // qty: (prevState.qty += 1),
+    //       error: false,
+    //       errorMsg: '',
+    //     }), () => {
+    //       this.props[`save${cartType}`](updatedCart);
+    //     });
+    //   } else {
+    //     this.setState(prevState => ({
+    //       ...prevState,
+    //       error: true,
+    //       errorMsg: 'Too much',
+    //     }));
+    //   }
+    // } else if (changeType === 'qty-minus') {
+    //   const { qty } = this.state;
+    //
+    //   if (qty >= 1 && qty <= 4) {
+    //     this.setState(prevState => ({
+    //       ...prevState,
+    //       qty: (prevState.qty -= 1),
+    //       error: false,
+    //       errorMsg: '',
+    //     }), () => {
+    //       this.props[`save${cartType}`](updatedCart);
+    //     });
+    //   } else {
+    //     this.setState(prevState => ({
+    //       ...prevState,
+    //       error: true,
+    //       errorMsg: 'Not enough',
+    //     }));
+    //   }
+    // }
   }
   /**
   * Function: "deleteFromCart"
@@ -330,6 +339,7 @@ class ShoppingCart extends Component {
     mobileActive,
   ) => (
     cart.map((juiceObj, i) => {
+      console.log('%cjuiceObj', 'background:red;', juiceObj);
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
