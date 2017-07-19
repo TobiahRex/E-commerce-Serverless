@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import ErrorMsg from './errorMsgCart';
+import convertNicotineStrength from './nicotineStrengthConverter';
 
 function ShoppingCartWebProductRow({
   keyNum,
@@ -30,7 +31,7 @@ function ShoppingCartWebProductRow({
             </li>
             <li className="shopping-cart-table-body-infobox-nicotine">
               <p>Nicotine Strength:{'\u00A0'}</p>
-              <i>{juiceObj.nicotineStrength}</i>
+              <i>{convertNicotineStrength(juiceObj.nicotineStrength)}</i>
             </li>
             <li className="shopping-cart-table-body-infobox-sku">
               <p>SKU:{'\u00A0'}</p>
