@@ -81,7 +81,6 @@ class ShoppingCart extends Component {
     } = nextProps;
 
     const { taxes, grandTotal } = this.calculateTotalsDue(loggedIn ? userCart : guestCart);
-
     if (
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
@@ -192,14 +191,18 @@ class ShoppingCart extends Component {
           if (productObj._id === productId) {
             const productCopy = Object.assign({}, productObj);
             productCopy.qty -= 1;
+
             if (productCopy.qty !== 0) {
               productToEditQty += productCopy.qty;
+            } else {
+              productToEditQty -= 1;
             }
+
             return productCopy;
           }
           return productObj;
         });
-
+        console.log('newCart: ', newCart);
         console.log('%cproductToEditQty', 'background:orange;', productToEditQty);
         if (productToEditQty < 1) {
           newCart = newCart.filter(({ _id }) => _id !== productId);
@@ -245,8 +248,6 @@ class ShoppingCart extends Component {
       result = this.verifyQtyChange(changeType, productId, guestCart);
       cartOwner = 'Guest';
     }
-    console.log('%cresult', 'background:blue;', result);
-
     if (result.error) {
       this.setState(prevState => ({
         ...prevState,
@@ -259,7 +260,7 @@ class ShoppingCart extends Component {
         error: false,
         updatedCart: [...result.newCart],
       }), () => {
-        this.props[`save${cartOwner}`]([...result.cart]);
+        this.props[`save${cartOwner}`]([...result.newCart]);
       });
     }
   }

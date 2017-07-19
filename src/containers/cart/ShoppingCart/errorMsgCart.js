@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 function ErrorMsg({ error, errorMsg }) {
-  console.log('%cerror, \nerrorMsg', 'background:red;', error, '\n', errorMsg);
-
   let style;
   let showErrorMsg = () => ('');
 
@@ -60,6 +58,7 @@ function ErrorMsg({ error, errorMsg }) {
       opacity: 0,
     };
   }
+  console.log('WHERE WILL I APPEAR?');
   return (
     <div className="actions__warning-msg" style={style}>
       {showErrorMsg()}
