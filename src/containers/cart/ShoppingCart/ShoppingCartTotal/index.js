@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
-  const results = cart.reduce((accum, next) => {
-    if (!!next.price) {
-      accum.totalQty += 1;
+  const { discount, totalQty, subTotal } = cart.reduce((accum, next) => {
+    if (!!next.qty) {
+      accum.totalQty += next.qty;
       accum.subTotal += (Number(next.price) * next.qty);
       return accum;
     }
@@ -20,18 +20,17 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
       registerAmount: 0,
     },
   });
-  const { discount, totalQty } = results;
 
   if (totalQty >= 4) {
     discount.qty = true;
-    discount.qtyAmount = results.subTotal * 0.25;
-    results.subTotal -= discount.qtyAmount;
+    discount.qtyAmount = subTotal * 0.25;
+    grandTotal -= discount.qtyAmount;
   }
 
   if (newUser) {
     discount.register = true;
-    discount.qtyAmount = results.subTotal * 0.1;
-    results.subTotal -= discount.qtyAmount;
+    discount.qtyAmount = subTotal * 0.1;
+    grandTotal -= discount.qtyAmount;
   }
 
   return (
