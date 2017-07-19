@@ -35,11 +35,11 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
 
   return (
     <div className="shopping-cart-analysis-main">
-      <div className="shopping-cart-analysis-taxes">
-        <div className="shopping-cart-analysis-taxes-title">
+      <div className="shopping-cart-analysis-subtotal">
+        <div className="shopping-cart-analysis-subtotal-title">
           <h4 className="title">Subtotal</h4>
         </div>
-        <div className="shopping-cart-analysis-taxes-cost">
+        <div className="shopping-cart-analysis-subtotal-cost">
           <FontAwesome name="usd" />
           <h4>{'\u00A0'}{`${subTotal.toFixed(2)}`}</h4>
         </div>
@@ -71,8 +71,10 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
               <h4 className="title required">Quantity Discount</h4>
             </div>
             <div className="shopping-cart-analysis-qty-discount-cost required">
-              <FontAwesome name="usd" />
-              <h4>{'\u00A0'}-{discount.qtyAmount.toFixed(2)}</h4>
+              <FontAwesome name="usd" style={{ color: '#FC2525' }} />
+              <h4 style={{ color: '#FC2525' }}>
+                {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
+              </h4>
             </div>
           </div>
       }
@@ -84,8 +86,10 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
               <h4 className="title required">Register Discount</h4>
             </div>
             <div className="shopping-cart-analysis-register-discount-cost required">
-              <FontAwesome name="usd" />
-              <h4>{'\u00A0'}-{discount.registerAmount.toFixed(2)}</h4>
+              <FontAwesome name="usd" style={{ color: '#FC2525' }} />
+              <h4 style={{ color: '#FC2525' }}>
+                {'\u00A0'}-{discount.registerAmount.toFixed(2)}
+              </h4>
             </div>
           </div>
 

@@ -263,7 +263,11 @@
         align-content: flex-end;
         width: 100%;
         & .shopping-cart-analysis-taxes,
-        & .shopping-cart-analysis-grand-total {
+        .shopping-cart-analysis-subtotal,
+        .shopping-cart-analysis-shipping,
+        .shopping-cart-analysis-qty-discount,
+        .shopping-cart-analysis-register-discount,
+        .shopping-cart-analysis-grand-total {
           @include prefixflex();
           justify-content: center;
           align-items: center;
@@ -271,47 +275,54 @@
           width: 26em;
           background-color: $p-grey;
           border: 1px solid $s-grey;
-          margin-top: .5em;
           & .shopping-cart-analysis-taxes-title,
-          .shopping-cart-analysis-taxes-cost,
+          .shopping-cart-analysis-subtotal-title,
+          .shopping-cart-analysis-shipping-title,
+          .shopping-cart-analysis-qty-discount-title,
+          .shopping-cart-analysis-register-discount-title,
           .shopping-cart-analysis-grand-total-title,
+
+          .shopping-cart-analysis-subtotal-cost,
+          .shopping-cart-analysis-taxes-cost,
+          .shopping-cart-analysis-shipping-cost,
+          .shopping-cart-analysis-qty-discount-cost,
+          .shopping-cart-analysis-register-discount-cost,
           .shopping-cart-analysis-grand-total-cost {
             @include prefixflex();
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 6em;
-            width: 15em;
-            h3 {
-              font-weight: 600;
-            }
-            h3.title {
-              text-align: center;
-              width: 14em;
+            width: 14em;
+            padding-left: 1em;
+            h4 {
+              font-weight: 400;
             }
             span {
-              font-size: 2em;
+              font-size: 1.4em;
               color: $p-blue;
             }
           }
+          & .shopping-cart-analysis-grand-total-title {
+            h4 {
+              font-weight: 600;
+            }
+          }
           & .shopping-cart-analysis-taxes-cost,
+          .shopping-cart-analysis-subtotal-cost,
+          .shopping-cart-analysis-shipping-cost,
+          .shopping-cart-analysis-qty-discount-cost,
+          .shopping-cart-analysis-register-discount-cost,
           .shopping-cart-analysis-grand-total-cost {
             width: 10em;
-          }
-          & .shopping-cart-analysis-taxes-title,
-          .shopping-cart-analysis-grand-total-title {
-            &:after {
-              content: '';
-              margin-bottom: -3px;
-              margin-left: 10px;
-              display: inline-block;
-              width: 1px;
-              height: 20px;
-              background-color: $s-grey;
-            }
+            justify-content: flex-end;
+            padding-right: 1em;
           }
         }
         & .shopping-cart-analysis-grand-total {
           margin: 0 0 1em 0;
+        }
+        & .shopping-cart-analysis-subtotal {
+          margin-top: 2em;
         }
       }
       & .shopping-cart-action-btns-parent {
