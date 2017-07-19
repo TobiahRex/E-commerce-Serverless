@@ -8,7 +8,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
   - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), **Redux** & **Redux Persist** (with WebStorage).
 
 ## Cloud Architecture
-<img src="http://i.imgur.com/00So8Ua.png" />
+<img src="http://imgur.com/a/nML7ygit" />
 
 ## Site Address
  [Nic Juice 2 Japan](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
