@@ -9,6 +9,7 @@ import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 
 import {
+  EmptyMemberCart,
   DeleteFromMemberCart,
 } from '../../graphql/mutations';
 import userActions from '../../redux/user';
