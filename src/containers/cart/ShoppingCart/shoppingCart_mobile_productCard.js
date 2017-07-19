@@ -9,6 +9,7 @@ function ShoppingCartMobileProductCard({
   routerPush,
   qtyHandler,
   deleteFromCart,
+  emptyMemberCart,
 }) {
   return (
     <tr
@@ -110,9 +111,9 @@ function ShoppingCartMobileProductCard({
         <div className="shopping-cart-mobile-user-actions-btns">
           <button
             className="shopping-cart-mobile-user-actions-btns-clear sweep-right"
-            onClick={() => console.warn('clear shopping cart')}
+            onClick={emptyMemberCart}
           >
-            Clear Shopping Cart
+            Empty Shopping Cart
           </button>
           <button
             data-slug="express_checkout"
@@ -140,5 +141,6 @@ ShoppingCartMobileProductCard.propTypes = {
   routerPush: func.isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,
+  emptyMemberCart: func.isRequired,
 };
 export default ShoppingCartMobileProductCard;

@@ -34,6 +34,7 @@ class ShoppingCart extends Component {
     saveUser: func.isRequired,
     saveGuest: func.isRequired,
     mobileActive: bool.isRequired,
+    EmptyMemberCart: func.isRequired,
     DeleteFromMemberCart: func.isRequired,
     userCart: arrayOf(
       shape({
@@ -320,19 +321,16 @@ class ShoppingCart extends Component {
     }
   }
 
-  clearShoppingCart = (e) => {
+  emptyMemberCart = () => {
     const {
       userId,
       saveUser,
       loggedIn,
-      guestCart,
       saveGuest,
     } = this.props;
 
     if (loggedIn) {
-      this.props.ClearShoppingCart({
-        variables: { userId },
-      })
+      this.props.EmptyMemberCart({ variables: { userId } })
       .then(({ data: { ClearShoppingCart: updatedUser } }) => {
         saveUser(updatedUser);
       });
@@ -368,6 +366,7 @@ class ShoppingCart extends Component {
             juiceObj={juiceObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
+            emptyMemberCart={this.emptyMemberCart}
           />
         );
       }
@@ -378,6 +377,7 @@ class ShoppingCart extends Component {
           juiceObj={juiceObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
+          emptyMemberCart={this.emptyMemberCart}
         />
       );
     })
@@ -474,6 +474,7 @@ const checkNewUser = (user, loggedIn) => {
 };
 
 const ShoppingCartWithData = compose(
+  graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCart);
 
