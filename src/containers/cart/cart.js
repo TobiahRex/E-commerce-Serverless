@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
+import _ from 'lodash';
 
 import {
   BreadCrumb,
@@ -71,6 +72,8 @@ class ShoppingCart extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
+
     const {
       qty,
       taxRate,
@@ -80,8 +83,13 @@ class ShoppingCart extends Component {
       mobileActive,
     } = nextProps;
 
+    const updatedCart = loggedIn ? userCart : guestCart;
+
+    const cartDiff = isArrayEqual(updatedCart, this.state.userCart);
+
     const { taxes, grandTotal } = this.calculateTotalsDue(loggedIn ? userCart : guestCart);
     if (
+      cartDiff ||
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
       this.state.taxRate !== taxRate ||
@@ -92,6 +100,7 @@ class ShoppingCart extends Component {
         qty,
         taxes,
         grandTotal,
+        updatedCart,
         mobileActive,
       });
     }
@@ -114,8 +123,8 @@ class ShoppingCart extends Component {
       grandTotal += juiceObj.subTotal;
     });
 
-    const taxes = (grandTotal * this.props.taxRate).toFixed(2);
-    grandTotal += Number(taxes);
+    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
+    grandTotal += taxes;
 
     return ({
       taxes,
@@ -202,8 +211,7 @@ class ShoppingCart extends Component {
           }
           return productObj;
         });
-        console.log('newCart: ', newCart);
-        console.log('%cproductToEditQty', 'background:orange;', productToEditQty);
+
         if (productToEditQty < 1) {
           newCart = newCart.filter(({ _id }) => _id !== productId);
         }
@@ -407,6 +415,9 @@ class ShoppingCart extends Component {
     if (updatedCart.length) {
       cart = updatedCart;
     }
+    console.log('%cupdatedCart', 'background:red;', updatedCart);
+    console.log('%ccart', 'background:orange;', cart);
+
     return (
       <div className="shopping-cart-main">
         <BreadCrumb

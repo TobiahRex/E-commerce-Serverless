@@ -58,7 +58,6 @@ function ErrorMsg({ error, errorMsg }) {
       opacity: 0,
     };
   }
-  console.log('WHERE WILL I APPEAR?');
   return (
     <div className="actions__warning-msg" style={style}>
       {showErrorMsg()}

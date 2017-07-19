@@ -480,7 +480,7 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-
+    console.warn('are you rendering?');
     return (
       <div className="juice-page__main">
         <BreadCrumb

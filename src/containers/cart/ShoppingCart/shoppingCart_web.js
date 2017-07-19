@@ -45,7 +45,7 @@ function ShoppingCartWeb({
           </div>
           <div className="shopping-cart-analysis-taxes-cost">
             <FontAwesome name="usd" />
-            <h3>{'\u00A0'}{`${taxes}`}</h3>
+            <h3>{'\u00A0'}{`${taxes.toFixed(2)}`}</h3>
           </div>
         </div>
         <div className="shopping-cart-analysis-grand-total">
@@ -87,10 +87,10 @@ function ShoppingCartWeb({
     </div>
   );
 }
-const { func, number, arrayOf, object, bool, string } = PropTypes;
+const { func, number, arrayOf, object, bool } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
-  taxes: string,
+  taxes: number,
   grandTotal: number,
   routerPush: func.isRequired,
   showProductRow: func.isRequired,

@@ -132,7 +132,7 @@ function ShoppingCartMobileProductCard({
             <div className="shopping-cart-mobile-analysis-taxes-cost">
               <FontAwesome name="usd" />
               <h3>
-                {'\u00A0'}{taxes}
+                {'\u00A0'}{taxes.toFixed(2)}
               </h3>
             </div>
           </div>
@@ -160,10 +160,10 @@ function ShoppingCartMobileProductCard({
   );
 }
 
-const { objectOf, any, number, func, string } = PropTypes;
+const { objectOf, any, number, func } = PropTypes;
 
 ShoppingCartMobileProductCard.propTypes = {
-  taxes: string.isRequired,
+  taxes: number.isRequired,
   keyNum: number.isRequired,
   juiceObj: objectOf(any).isRequired,
   grandTotal: number.isRequired,
