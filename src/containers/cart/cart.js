@@ -85,16 +85,14 @@ class ShoppingCart extends Component {
 
     const updatedCart = loggedIn ? userCart : guestCart;
 
-    const cartDiff = isArrayEqual(updatedCart, this.state.userCart);
-
     const { taxes, grandTotal } = this.calculateTotalsDue(loggedIn ? userCart : guestCart);
     if (
-      cartDiff ||
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
       this.state.taxRate !== taxRate ||
       this.state.grandTotal !== grandTotal ||
-      this.state.mobileActive !== mobileActive
+      this.state.mobileActive !== mobileActive ||
+      isArrayEqual(updatedCart, this.state.userCart)
     ) {
       this.setState({
         qty,
