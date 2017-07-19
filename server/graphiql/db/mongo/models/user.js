@@ -149,7 +149,7 @@ new Promise((resolve, reject) => {
   `));
 });
 
-userSchema.statics.emptyFromCart = ({ userId }) =>
+userSchema.statics.emptyCart = ({ userId }) =>
 new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
@@ -158,7 +158,6 @@ new Promise((resolve, reject) => {
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((updatedUser) => {
-    console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
     console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
     resolve(updatedUser);
   })
