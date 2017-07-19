@@ -28,6 +28,7 @@ class ShoppingCart extends Component {
     qty: number.isRequired,
     push: func.isRequired,
     userId: string,
+    newUser: bool.isRequired,
     taxRate: number.isRequired,
     loggedIn: bool.isRequired,
     saveUser: func.isRequired,
@@ -319,6 +320,27 @@ class ShoppingCart extends Component {
     }
   }
 
+  clearShoppingCart = (e) => {
+    const {
+      userId,
+      saveUser,
+      loggedIn,
+      guestCart,
+      saveGuest,
+    } = this.props;
+
+    if (loggedIn) {
+      this.props.ClearShoppingCart({
+        variables: { userId },
+      })
+      .then(({ data: { ClearShoppingCart: updatedUser } }) => {
+        saveUser(updatedUser);
+      });
+    } else {
+      saveGuest([]);
+    }
+  }
+
   routerPush = (e) => {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
@@ -446,6 +468,11 @@ cart.reduce((accum, next) => {
   return accum;
 }, 0);
 
+const checkNewUser = (user, loggedIn) => {
+  if (!loggedIn) return false;
+  return user.authentication.logins.length && !user.shopping.cart.length;
+};
+
 const ShoppingCartWithData = compose(
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCart);
@@ -458,7 +485,7 @@ const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) =>
   userId: user._id || '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  // newUser: user.
+  newUser: checkNewUser(user, auth.loggedIn),
 }),
 dispatch => ({
   push: location => dispatch(push(location)),

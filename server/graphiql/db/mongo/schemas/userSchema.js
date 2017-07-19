@@ -55,8 +55,8 @@ const userSchema = new Schema({
   shopping: {
     cart: [{
       qty: { type: Number },
-      nicotineStrength: { type: Number },
-      product: { type: ObjectId, ref: 'Product' },
+      nicotineStrength: { type: String },
+      product: [{ type: ObjectId, ref: 'Product' }],
     }],
     transactions: [{ type: ObjectId, ref: 'Transaction' }],
   },

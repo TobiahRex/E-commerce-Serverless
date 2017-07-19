@@ -108,7 +108,10 @@ function ShoppingCartMobileProductCard({
           </li>
         </ul>
         <div className="shopping-cart-mobile-user-actions-btns">
-          <button className="shopping-cart-mobile-user-actions-btns-clear sweep-right">
+          <button
+            className="shopping-cart-mobile-user-actions-btns-clear sweep-right"
+            onClick={() => console.warn('clear shopping cart')}
+          >
             Clear Shopping Cart
           </button>
           <button
