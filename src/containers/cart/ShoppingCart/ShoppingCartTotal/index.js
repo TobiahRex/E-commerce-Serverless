@@ -58,7 +58,7 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
 
       <div className="shopping-cart-analysis-shipping">
         <div className="shopping-cart-analysis-shipping-title">
-          <h4 className="title" style={{ 'text-align': 'left' }}>International Shipping</h4>
+          <h4 className="title" style={{ textAlign: 'left' }}>International Shipping</h4>
         </div>
         <div className="shopping-cart-analysis-shipping-cost">
           <FontAwesome name="usd" />
@@ -69,7 +69,7 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
         discount.qty &&
           <div className="shopping-cart-analysis-qty-discount">
             <div className="shopping-cart-analysis-qty-discount-title">
-              <h4 className="title required" style={{ 'text-align': 'left' }}>Quantity Discount</h4>
+              <h4 className="title required" style={{ textAlign: 'left' }}>Quantity Discount</h4>
             </div>
             <div className="shopping-cart-analysis-qty-discount-cost required">
               <h4 style={{ color: '#FC2525' }}> 25%{'\u00A0'}</h4>
