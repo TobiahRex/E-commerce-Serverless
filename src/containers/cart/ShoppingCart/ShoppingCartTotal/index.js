@@ -37,55 +37,55 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
     <div className="shopping-cart-analysis-main">
       <div className="shopping-cart-analysis-taxes">
         <div className="shopping-cart-analysis-taxes-title">
-          <h3 className="title">Subtotal</h3>
+          <h4 className="title">Subtotal</h4>
         </div>
         <div className="shopping-cart-analysis-taxes-cost">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{`${subTotal.toFixed(2)}`}</h3>
+          <h4>{'\u00A0'}{`${subTotal.toFixed(2)}`}</h4>
         </div>
       </div>
 
       <div className="shopping-cart-analysis-taxes">
         <div className="shopping-cart-analysis-taxes-title">
-          <h3 className="title">Taxes</h3>
+          <h4 className="title">Taxes</h4>
         </div>
         <div className="shopping-cart-analysis-taxes-cost">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{`${taxes.toFixed(2)}`}</h3>
+          <h4>{'\u00A0'}{`${taxes.toFixed(2)}`}</h4>
         </div>
       </div>
 
-      <div className="shopping-cart-analysis-taxes">
-        <div className="shopping-cart-analysis-taxes-title">
-          <h3 className="title">International Shipping</h3>
+      <div className="shopping-cart-analysis-shipping">
+        <div className="shopping-cart-analysis-shipping-title">
+          <h4 className="title">International Shipping</h4>
         </div>
-        <div className="shopping-cart-analysis-taxes-cost">
+        <div className="shopping-cart-analysis-shipping-cost">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}Free</h3>
+          <h4>{'\u00A0'}Free</h4>
         </div>
       </div>
       {
         discount.qty &&
-          <div className="shopping-cart-analysis-taxes">
-            <div className="shopping-cart-analysis-taxes-title">
-              <h3 className="title required">Quantity Discount</h3>
+          <div className="shopping-cart-analysis-qty-discount">
+            <div className="shopping-cart-analysis-qty-discount-title">
+              <h4 className="title required">Quantity Discount</h4>
             </div>
-            <div className="shopping-cart-analysis-taxes-cost">
+            <div className="shopping-cart-analysis-qty-discount-cost required">
               <FontAwesome name="usd" />
-              <h3>{'\u00A0'}-{discount.qtyAmount.toFixed(2)}</h3>
+              <h4>{'\u00A0'}-{discount.qtyAmount.toFixed(2)}</h4>
             </div>
           </div>
       }
 
       {
         discount.register &&
-          <div className="shopping-cart-analysis-taxes">
-            <div className="shopping-cart-analysis-taxes-title">
-              <h3 className="title required">Register Discount</h3>
+          <div className="shopping-cart-analysis-register-discount">
+            <div className="shopping-cart-analysis-register-discount-title">
+              <h4 className="title required">Register Discount</h4>
             </div>
-            <div className="shopping-cart-analysis-taxes-cost">
+            <div className="shopping-cart-analysis-register-discount-cost required">
               <FontAwesome name="usd" />
-              <h3>{'\u00A0'}-{discount.registerAmount.toFixed(2)}</h3>
+              <h4>{'\u00A0'}-{discount.registerAmount.toFixed(2)}</h4>
             </div>
           </div>
 
@@ -93,11 +93,11 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
 
       <div className="shopping-cart-analysis-grand-total">
         <div className="shopping-cart-analysis-grand-total-title">
-          <h3 className="title">Grand Total</h3>
+          <h4 className="title">Grand Total</h4>
         </div>
         <div className="shopping-cart-analysis-grand-total-cost">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h3>
+          <h4>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h4>
         </div>
       </div>
     </div>
