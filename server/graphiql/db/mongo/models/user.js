@@ -149,6 +149,22 @@ new Promise((resolve, reject) => {
   `));
 });
 
+userSchema.statics.emptyFromCart = ({ userId }) =>
+new Promise((resolve, reject) => {
+  User.findById(userId)
+  .exec()
+  .then((dbUser) => {
+    dbUser.shopping.cart = [];
+    return dbUser.save({ validateBeforeSave: true });
+  })
+  .then((updatedUser) => {
+    console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
+    console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
+    resolve(updatedUser);
+  })
+  .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
+});
+
 userSchema.statics.editToMemberCart = ({ userId, products }) =>
 new Promise((resolve, reject) => {
   User.findById(userId)
