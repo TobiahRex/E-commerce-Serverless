@@ -709,6 +709,17 @@ const mutations = {
     },
     resolve: (_, args) => User.addToMemberCart(args),
   },
+  EmptyMemberCart: {
+    type: rootType,
+    description: 'Completely erase all saved products from the Users cart.',
+    args: {
+      userId: {
+        description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args) => User.emptyCart(args),
+  },
   DeleteFromMemberCart: {
     type: rootType,
     description: 'Delete a Product from the Users cart.',
