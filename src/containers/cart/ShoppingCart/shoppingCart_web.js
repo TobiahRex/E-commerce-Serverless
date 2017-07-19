@@ -11,7 +11,7 @@ function ShoppingCartWeb({
   routerPush,
   mobileActive,
   showProductRow,
-  emptyMemberCart,
+  emptyCart,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -62,7 +62,7 @@ function ShoppingCartWeb({
         </button>
         <button
           className="shopping-cart-action-btn-clear sweep-right"
-          onClick={emptyMemberCart}
+          onClick={emptyCart}
         >
           <span className="btn-flex-parent">
             Clear Shopping Cart
@@ -90,7 +90,7 @@ ShoppingCartWeb.propTypes = {
   routerPush: func.isRequired,
   showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
-  emptyMemberCart: func.isRequired,
+  emptyCart: func.isRequired,
 };
 ShoppingCartWeb.defaultProps = {
   cart: [],

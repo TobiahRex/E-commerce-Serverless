@@ -322,7 +322,7 @@ class ShoppingCart extends Component {
     }
   }
 
-  emptyMemberCart = () => {
+  emptyCart = () => {
     const {
       userId,
       saveUser,
@@ -367,7 +367,6 @@ class ShoppingCart extends Component {
             juiceObj={juiceObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
-            emptyMemberCart={this.emptyMemberCart}
           />
         );
       }
@@ -378,7 +377,7 @@ class ShoppingCart extends Component {
           juiceObj={juiceObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
-          emptyMemberCart={this.emptyMemberCart}
+          emptyCart={this.emptyCart}
         />
       );
     })
@@ -406,6 +405,7 @@ class ShoppingCart extends Component {
           taxes={taxes}
           newUser={newUser}
           grandTotal={grandTotal}
+          emptyCart={this.emptyCart}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
           showProductRow={this.showProductRow}
