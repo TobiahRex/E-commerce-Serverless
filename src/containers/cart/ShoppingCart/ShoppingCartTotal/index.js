@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartTotal({ taxes, grandTotal, cart }) {
+function ShoppingCartTotal({ taxes, grandTotal, cart, newUser }) {
   const results = cart.reduce((accum, next) => {
     if (!!next.price) {
-      accum.
+      accum.totalQty += 1;
+
     }
-  }, { registerDiscount: false, qtyDiscount: false, subtotal: 0 });
+    return accum;
+  }, { totalQty: 0, registerDiscount: false, qtyDiscount: false, subtotal: 0 });
 
   return (
     <div className="shopping-cart-analysis-main">
