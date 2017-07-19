@@ -1,6 +1,5 @@
 /* eslint-disable no-extra-boolean-cast */
 // TODO: Need to updated UserCart Schema to track "error" & "errorMsg" (Same as GuestCart).
-// TODO: Create func. desc. for "verifyQtyChange"
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -10,6 +9,11 @@ import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 
 import {
+  DeleteFromMemberCart,
+} from '../../graphql/mutations';
+import userActions from '../../redux/user';
+import orderActions from '../../redux/orders';
+import {
   BreadCrumb,
   EmptyCart,
   ShoppingCartWeb,
@@ -17,12 +21,6 @@ import {
   ShoppingCartWebProductRow,
   ShoppingCartMobileProductCard,
 } from './component.imports';
-
-import {
-  DeleteFromMemberCart,
-} from '../../graphql/mutations';
-import userActions from '../../redux/user';
-import orderActions from '../../redux/orders';
 
 const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 class ShoppingCart extends Component {
@@ -355,8 +353,6 @@ class ShoppingCart extends Component {
         <ShoppingCartMobileProductCard
           key={`shopping-cart-table-row-${juiceObj._id}`}
           keyNum={i}
-          taxes={taxes}
-          grandTotal={grandTotal}
           juiceObj={juiceObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
@@ -376,6 +372,7 @@ class ShoppingCart extends Component {
   showShoppingCart = (
     cart,
     taxes,
+    newUser,
     grandTotal,
     mobileActive,
   ) => {
@@ -384,6 +381,7 @@ class ShoppingCart extends Component {
         <ShoppingCartWeb
           cart={cart}
           taxes={taxes}
+          newUser={newUser}
           grandTotal={grandTotal}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
@@ -395,6 +393,7 @@ class ShoppingCart extends Component {
       <ShoppingCartMobile
         cart={cart}
         taxes={taxes}
+        newUser={newUser}
         grandTotal={grandTotal}
         routerPush={this.routerPush}
         mobileActive={mobileActive}
@@ -403,18 +402,13 @@ class ShoppingCart extends Component {
     );
   }
 
-
   render() {
-    const { loggedIn, userCart, guestCart } = this.props;
+    const { loggedIn, userCart, guestCart, newUser } = this.props;
     const { taxes, grandTotal, mobileActive, updatedCart } = this.state;
     const cartHasProducts = userCart.length || guestCart.length;
 
     let cart = loggedIn ? userCart : guestCart;
-    if (updatedCart.length) {
-      cart = updatedCart;
-    }
-    console.log('%cupdatedCart', 'background:red;', updatedCart);
-    console.log('%ccart', 'background:orange;', cart);
+    if (updatedCart.length) cart = updatedCart;
 
     return (
       <div className="shopping-cart-main">
@@ -434,6 +428,7 @@ class ShoppingCart extends Component {
           this.showShoppingCart(
             cart,
             taxes,
+            newUser,
             grandTotal,
             mobileActive,
           )
@@ -463,6 +458,7 @@ const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) =>
   userId: user._id || '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
+  // newUser: user.
 }),
 dispatch => ({
   push: location => dispatch(push(location)),

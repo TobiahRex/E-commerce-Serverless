@@ -6,6 +6,7 @@ import ShoppingCartTotal from './ShoppingCartTotal';
 function ShoppingCartWeb({
   cart,
   taxes,
+  newUser,
   grandTotal,
   routerPush,
   mobileActive,
@@ -44,6 +45,7 @@ function ShoppingCartWeb({
         cart={cart}
         taxes={taxes}
         grandTotal={grandTotal}
+        newUser={newUser}
       />
 
       <div className="shopping-cart-action-btns-parent">
@@ -79,6 +81,7 @@ const { func, number, arrayOf, object, bool } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
   taxes: number,
+  newUser: bool.isRequired,
   grandTotal: number,
   routerPush: func.isRequired,
   showProductRow: func.isRequired,

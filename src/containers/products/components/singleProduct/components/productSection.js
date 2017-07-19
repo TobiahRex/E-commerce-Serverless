@@ -104,7 +104,8 @@ class ProductSection extends Component {
     this.setState({ nicStrength: Number(nicEl) });
   }
 
-  // TODO: Finish Facebook Like button handler @ singleProduct.js
+  // TODO: MVP2
+  // Finish Facebook Like button handler @ singleProduct.js
   // fbLike = () => {
   //   /* eslint-disable no-undef */
   //   window.fbAsyncInit = () => {
@@ -146,10 +147,11 @@ class ProductSection extends Component {
           addToCartHandler={this.addToCartHandler}
           qtyHandler={this.qtyHandler}
         />
-        <SocialMediaBtns
+        {/* TODO: MVP2
+          <SocialMediaBtns
           fbLike={this.fbLike}
           location={`${process.env.BASE_URL}/juice/fruity_bamm_bamm`}
-        />
+        /> */}
       </div>
     );
   }

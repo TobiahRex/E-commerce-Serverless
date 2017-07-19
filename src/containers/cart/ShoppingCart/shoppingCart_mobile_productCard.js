@@ -5,8 +5,6 @@ import ErrorMsg from './errorMsgCart';
 
 function ShoppingCartMobileProductCard({
   keyNum,
-  taxes,
-  grandTotal,
   juiceObj,
   routerPush,
   qtyHandler,
@@ -123,37 +121,6 @@ function ShoppingCartMobileProductCard({
               {'\u0020'}Express Checkout
             </span>
           </button>
-        </div>
-        <div className="shopping-cart-mobile-analysis-main">
-          <div className="shopping-cart-mobile-analysis-taxes">
-            <div className="shopping-cart-mobile-analysis-taxes-title">
-              <h3 className="title">Taxes</h3>
-            </div>
-            <div className="shopping-cart-mobile-analysis-taxes-cost">
-              <FontAwesome name="usd" />
-              <h3>
-                {'\u00A0'}{taxes.toFixed(2)}
-              </h3>
-            </div>
-          </div>
-          <div className="shopping-cart-mobile-analysis-grand-total">
-            <div className="shopping-cart-mobile-analysis-grand-total-title">
-              <h3 className="title">Grand Total</h3>
-            </div>
-            <div className="shopping-cart-mobile-analysis-grand-total-cost">
-              <FontAwesome name="usd" />
-              <h3>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h3>
-            </div>
-          </div>
-          <div className="shopping-cart-mobile-continue-shopping">
-            <button
-              data-slug="juices"
-              className="shopping-cart-mobile-continue-shopping-btn sweep-right"
-              onClick={routerPush}
-            >
-              Continue Shopping
-            </button>
-          </div>
         </div>
       </td>
     </tr>

@@ -274,7 +274,8 @@
           height: 7em;
           width: 26em;
           background-color: $p-grey;
-          border: 1px solid $s-grey;
+          border-left: 1px solid $s-grey;
+          border-right: 1px solid $s-grey;
           & .shopping-cart-analysis-taxes-title,
           .shopping-cart-analysis-subtotal-title,
           .shopping-cart-analysis-shipping-title,
@@ -302,7 +303,8 @@
               color: $p-blue;
             }
           }
-          & .shopping-cart-analysis-grand-total-title {
+          & .shopping-cart-analysis-grand-total-title,
+          .shopping-cart-analysis-grand-total-cost {
             h4 {
               font-weight: 600;
             }
@@ -320,9 +322,11 @@
         }
         & .shopping-cart-analysis-grand-total {
           margin: 0 0 1em 0;
+          border-bottom: 1px solid $s-grey;
         }
         & .shopping-cart-analysis-subtotal {
           margin-top: 2em;
+          border-top: 1px solid $s-grey;
         }
       }
       & .shopping-cart-action-btns-parent {

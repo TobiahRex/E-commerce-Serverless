@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 function ShoppingCartMobile({
   cart,
   taxes,
+  newUser,
   grandTotal,
   routerPush,
   mobileActive,
@@ -27,6 +28,7 @@ function ShoppingCartMobile({
         {showProductRow(
           cart,
           taxes,
+          newUser,
           grandTotal,
           mobileActive,
         )}
@@ -40,6 +42,7 @@ ShoppingCartMobile.propTypes = {
   showProductRow: func.isRequired,
   cart: arrayOf(object),
   taxes: number,
+  newUser: bool.isRequired,
   grandTotal: number,
   mobileActive: bool.isRequired,
 };
