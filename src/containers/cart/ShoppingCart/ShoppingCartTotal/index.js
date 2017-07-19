@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartTotal = () => {
+function ShoppingCartTotal({ taxes, grandTotal, cart }) {
+  const subTotal = cart.reduce(({ qty, price }) => Number(price) * qty);
+
   return (
     <div className="shopping-cart-analysis-main">
+      <div className="shopping-cart-analysis-taxes">
+        <div className="shopping-cart-analysis-taxes-title">
+          <h3 className="title">Subtotal</h3>
+        </div>
+        <div className="shopping-cart-analysis-taxes-cost">
+          <FontAwesome name="usd" />
+          <h3>{'\u00A0'}{`${subTotal}`}</h3>
+        </div>
+      </div>
       <div className="shopping-cart-analysis-taxes">
         <div className="shopping-cart-analysis-taxes-title">
           <h3 className="title">Taxes</h3>
@@ -22,13 +34,13 @@ function ShoppingCartTotal = () => {
           <h3>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h3>
         </div>
       </div>
-    </div>}
-  )
+    </div>
+  );
 }
-const {  } = PropTypes;
+const { arrayOf, object, number } = PropTypes;
 ShoppingCartTotal.propTypes = {
-  taxes: string.isRequired,
+  cart: arrayOf(object).isRequired,
+  taxes: number.isRequired,
   grandTotal: number.isRequired,
-  mobileActive: bool.isRequired,
-}
+};
 export default ShoppingCartTotal;

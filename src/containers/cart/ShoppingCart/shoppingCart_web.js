@@ -44,7 +44,6 @@ function ShoppingCartWeb({
         cart={cart}
         taxes={taxes}
         grandTotal={grandTotal}
-        mobileActive={mobileActive}
       />
 
       <div className="shopping-cart-action-btns-parent">
