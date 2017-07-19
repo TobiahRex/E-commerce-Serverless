@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function ShoppingCartTotal({ taxes, grandTotal, cart }) {
-  const subTotal = cart.reduce(({ qty, price }) => Number(price) * qty);
+  const results = cart.reduce((accum, next) => {
+    if (!!next.price) {
+      accum.
+    }
+  }, { registerDiscount: false, qtyDiscount: false, subtotal: 0 });
 
   return (
     <div className="shopping-cart-analysis-main">
@@ -13,7 +17,7 @@ function ShoppingCartTotal({ taxes, grandTotal, cart }) {
         </div>
         <div className="shopping-cart-analysis-taxes-cost">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{`${subTotal}`}</h3>
+          <h3>{'\u00A0'}{`${subTotal.toFixed(2)}`}</h3>
         </div>
       </div>
       <div className="shopping-cart-analysis-taxes">
@@ -23,6 +27,24 @@ function ShoppingCartTotal({ taxes, grandTotal, cart }) {
         <div className="shopping-cart-analysis-taxes-cost">
           <FontAwesome name="usd" />
           <h3>{'\u00A0'}{`${taxes.toFixed(2)}`}</h3>
+        </div>
+      </div>
+      <div className="shopping-cart-analysis-taxes">
+        <div className="shopping-cart-analysis-taxes-title">
+          <h3 className="title">International Shipping</h3>
+        </div>
+        <div className="shopping-cart-analysis-taxes-cost">
+          <FontAwesome name="usd" />
+          <h3>{'\u00A0'}Free</h3>
+        </div>
+      </div>
+      <div className="shopping-cart-analysis-taxes">
+        <div className="shopping-cart-analysis-taxes-title">
+          <h3 className="title required">Discount</h3>
+        </div>
+        <div className="shopping-cart-analysis-taxes-cost">
+          <FontAwesome name="usd" />
+          <h3>{'\u00A0'}{discount.toFixed(2)}</h3>
         </div>
       </div>
       <div className="shopping-cart-analysis-grand-total">
