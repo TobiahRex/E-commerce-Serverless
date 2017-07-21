@@ -86,7 +86,7 @@ class ShoppingCart extends Component {
 
     const updatedCart = loggedIn ? userCart : guestCart;
 
-    const { taxes, grandTotal } = this.calculateTotalsDue(loggedIn ? userCart : guestCart);
+    const { taxes, grandTotal } = this.calculateTotalsDue(updatedCart);
     if (
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
@@ -107,8 +107,9 @@ class ShoppingCart extends Component {
   /**
   * Function: "calculateTotalsDue"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
-  * 2) Add that the individual subtotal to each juiceObj.
+  * 2) Add that to the individual subtotal (newly created key) to each juiceObj.
   * 3) Add that amount to the "grandTotal".
+  * @NOTE - Mutates the original "juiceObj" by adding key "subTotal".
   *
   * @param {none} N/A
   *
@@ -133,16 +134,27 @@ class ShoppingCart extends Component {
 
   /**
   * Function: "verifyQtyChange"
+  * TODO) Need to add keys "error" & "errorMsg" to the user's shopping cart product values.
   * 1) Determine via switchblock, type of qty change.
   * 2) Iterate over cart, and find the product by _id to be changed.
   * 3) Change qty per "changeType".
-  * 4) Increment "globalRequestQty" by each products quantity.
-  * 4) return all products into new array "newCart".
+  * // --
+  * 4a) If "qty-plus" Increment "globalRequestQty" by each products quantity.
+  * 4b) return all products into new array "newCart".
   * 5) Check "globalRequestQty" for total qty violations.
-  * 6a) If violation is found, iterate over array "newCart" and locate product to updated.
-  * 6aa) Once found, copy object to avoid inheritence. Update key "error" to true. Update key "errorMsg" with appropriate type of error.  Update key "qty" to non-violating value.
+  * 6a) If qty violation (too many) is found. If found, iterate over array "newCart" and locate product to be fixed.
+  * 6aa) 1) Once found, copy object to avoid inheritence. 2) Update key "error" to true. 3) Update key "errorMsg" with appropriate type of error.  Update key "qty" to a value one less than its violation value.
   * 6ab) Re-assign array "newCart" to new updated productArray.
-  * 7) return final value as object.
+  * 7) return final object with results.
+  * // --
+  * 4) If "qty-minus" 1) Iterate over cart.  2) Create new keys "error and "errorMsg" on the current productObj.
+  * 5) If the current productObj matches the current productId.  1) Make copy of "productObj" to avoid prototypal inheritance. 2) Decrement the copied object's key of "qty" by a value of 1.
+  * 6) Check to see if the product's qty that was just decremented is now a value of 0. if not...
+  * 7) Add the updated product's qty to the total qty tracker "productToEditQty".  Otherwise...
+  * 8) subtract a value of 1 from "productToEditQty" because it will be removed from the cart completely in a following step.
+  * 9) return the modifed product object.
+  * 10) Check to see if the total qty tracker variable "productToEditQty" is 0.  If so, remove the respective product object via filter, and re-assign "newCart" to the resulting filtered array.
+  * 11) return final object with results.
   *
   * @param {string} qtyChangeType, {string} productId, {array} cart
   *
@@ -192,6 +204,7 @@ class ShoppingCart extends Component {
       }
       case 'qty-minus': {
         let productToEditQty = 0;
+
         let newCart = cart.map((productObj) => {
           productObj.error = false;
           productObj.errorMsg = '';
@@ -255,6 +268,7 @@ class ShoppingCart extends Component {
       result = this.verifyQtyChange(changeType, productId, guestCart);
       cartOwner = 'Guest';
     }
+
     if (result.error) {
       this.setState(prevState => ({
         ...prevState,
@@ -296,8 +310,8 @@ class ShoppingCart extends Component {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
-      * 2) Dispatches redux action by calling props methods "saveUser".
-      * 3) Redux action will update the user profile saved in Redux.
+      * 2) Dispatches redux action by calling props method "saveUser".
+      * 3) Redux action will update Redux state with updated user object.
       *
       * @param {object} variables - GraphQL required variables.
       *
@@ -312,9 +326,9 @@ class ShoppingCart extends Component {
     } else {
       /**
       * Function: "saveGuestCart"
-      * 1) Filters the current guest cart by the id of the product found on the event target object.
+      * 1) Filters the guest cart, by id of the product, found on the event target object.
       *
-      * @param {array} (filter result) - filtered ids.
+      * @param {array} (filtered cart) - product objects.
       *
       * @return N/A
       */

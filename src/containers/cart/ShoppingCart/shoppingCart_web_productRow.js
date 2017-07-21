@@ -10,7 +10,6 @@ function ShoppingCartWebProductRow({
   juiceObj,
   qtyHandler,
   deleteFromCart,
-  emptyMemberCart,
 }) {
   return (
     <tr key={`shopping-cart-table-row-${juiceObj.name}-${keyNum}`} className="shopping-cart-table-body-row">
@@ -101,7 +100,6 @@ const propTypes = {
   juiceObj: objectOf(any).isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,
-  emptyMemberCart: func.isRequired,
 };
 
 ShoppingCartWebProductRow.propTypes = propTypes;

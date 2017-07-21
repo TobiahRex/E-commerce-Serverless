@@ -56,8 +56,8 @@ export default ({ orders, user, geo, locale, mobile }, auth0Facebook) => {
     },
   };
 
-  if (orders.guest && orders.guest.length) {
-    orders.guest.forEach(({ id: product, qty, strength }) => {
+  if (orders.cart && orders.cart.length) {
+    orders.cart.forEach(({ _id: product, qty, strength }) => {
       profile.shopping.cart.push({ qty, strength, product });
     });
   }

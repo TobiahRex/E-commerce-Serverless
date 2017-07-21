@@ -25,6 +25,7 @@ const createAPI = () => {
   const LoginOrRegister = ({
     auth0Id,
     loginType,
+    order: { cart },
     profile: {
       name,
       pictures,
@@ -34,7 +35,6 @@ const createAPI = () => {
       contactInfoLocation,
       contactInfoDevices,
       contactInfoSocialNetworks,
-      shoppingCart,
       contactInfo,
       shopping,
       permissions,
@@ -169,7 +169,7 @@ const createAPI = () => {
       contactInfoDevices,
       contactInfoSocialNetworks,
       shopping,
-      shoppingCart,
+      shoppingCart: cart,
       permissions,
       userStory,
       socialProfileBlob,
