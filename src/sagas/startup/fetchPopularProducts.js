@@ -16,7 +16,7 @@ export default function* fetchPopularProducts() {
     flavor: productObj._id,
     title: productObj.title,
     images: [...productObj.images],
-    routeTag: productObj.routeTag,
+    slug: productObj.slug,
     completedCheckouts: productObj.completedCheckouts,
   }));
 

@@ -13,7 +13,7 @@ export const productType = {
         url: '',
       },
     ],
-    routeTag: '',
+    slug: '',
     vendor: '',
     blurb: '',
     quantities: {

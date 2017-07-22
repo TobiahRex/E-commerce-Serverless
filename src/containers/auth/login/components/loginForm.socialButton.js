@@ -12,7 +12,7 @@ function SocialButton({ callback, slug, faName }) {
   }
   return (
     <button data-tag={slug} onClick={callback}>
-      <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/line_logo.png" alt="Line" />
+      <img src="/images/line_logo.png" alt="Line" />
     </button>
   );
 }

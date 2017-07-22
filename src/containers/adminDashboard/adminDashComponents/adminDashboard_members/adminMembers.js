@@ -136,7 +136,7 @@ function AdminMembers({ location }) {
                         </div>
                       </div>
                       <div className="register-stats__right">
-                        <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/world_heatmap.png" alt="World Heat Map" />
+                        <img src="/images/world_heatmap.png" alt="World Heat Map" />
                       </div>
                     </div>
                   </div>
@@ -204,7 +204,7 @@ function AdminMembers({ location }) {
                                   <h4>Snow, John</h4>
                                 </div>
                                 <div className="name__image">
-                                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
+                                  <img src="/images/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
                                 </div>
                                 <div className="name__id">
                                   User ID: {uuid()}
@@ -332,7 +332,7 @@ function AdminMembers({ location }) {
                                   <h4>Snow, John</h4>
                                 </div>
                                 <div className="name__image">
-                                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
+                                  <img src="/images/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
                                 </div>
                                 <div className="name__id">
                                   User ID: {uuid()}
@@ -460,7 +460,7 @@ function AdminMembers({ location }) {
                                   <h4>Snow, John</h4>
                                 </div>
                                 <div className="name__image">
-                                  <img src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
+                                  <img src="/images/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
                                 </div>
                                 <div className="name__id">
                                   User ID: {uuid()}
@@ -643,7 +643,7 @@ function AdminMembers({ location }) {
                                     <h4>Snow, John</h4>
                                   </div>
                                   <div className="name__image">
-                                    <img src=".https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
+                                    <img src="/images/default-user.png" alt="Profile Pic" style={{ borderRadius: '50%' }} />
                                   </div>
                                   <div className="name__id">
                                     User ID: {uuid()}

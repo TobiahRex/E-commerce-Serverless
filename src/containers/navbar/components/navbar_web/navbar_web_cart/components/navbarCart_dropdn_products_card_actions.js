@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function NavbarCartProductsCardActions({
-  routeTag,
+  slug,
   productId,
   editCartItem,
   deleteFromCart,
@@ -13,7 +13,7 @@ function NavbarCartProductsCardActions({
       <div href="" className="products-list-card-actions-edit sweep-right">
         <button
           data-id={productId}
-          data-route={routeTag}
+          data-route={slug}
           onClick={editCartItem}
           className="products-list-card-actions-delete sweep-right"
         >
@@ -38,13 +38,13 @@ function NavbarCartProductsCardActions({
 }
 const { string, func } = PropTypes;
 NavbarCartProductsCardActions.propTypes = {
-  routeTag: string,
+  slug: string,
   productId: string,
   editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
 };
 NavbarCartProductsCardActions.defaultProps = {
-  routeTag: '',
+  slug: '',
   productId: '',
 };
 export default NavbarCartProductsCardActions;

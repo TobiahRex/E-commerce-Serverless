@@ -5,7 +5,7 @@ const juices = {
     PopularProducts(qty: 6){
       _id
       docId
-      routeTag
+      slug
       images {
         purpose
         url
@@ -32,7 +32,7 @@ const juices = {
         purpose: "large"
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-fvm.jpg"
       }],
-      routeTag: "french_vanilla_mocha"
+      slug: "french_vanilla_mocha"
       vendor: "Vape Switch"
       blurb: "The French Vanilla Mocha is a delicious blend of French Vanilla, Mocha Milk Chocolate and dash of Dark Chocolate and brings a smooth, enjoyable flavor.  A nice morning Vape to replace that cigarette with your coffee, but it can easily be considered and all-day Vape."
     }
@@ -50,7 +50,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -86,7 +86,7 @@ const juices = {
         purpose: "large",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-klp.png"
       }],
-      routeTag: "keylime_pie",
+      slug: "keylime_pie",
       vendor: "Vape Switch",
       blurb: "Key lime Pie tastes exactly like Key Lime Pie.  It’s Delicious!"
     }) {
@@ -99,7 +99,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -131,7 +131,7 @@ const juices = {
         purpose: "large",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-pc.png"
       }],
-      routeTag: "pina_colada",
+      slug: "pina_colada",
       vendor: "Vape Switch",
       blurb: "Piña Colada is a tasty blend of Pineapple and Coconut with a hint of rum flavor.  It has been steeped to give it a refined sweetness and a subtle coconut flavor.  You are sure to enjoy this blend."
     }) {
@@ -144,7 +144,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -176,7 +176,7 @@ const juices = {
           purpose: "large",
           url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-fruity-bamm-bamm.png"
         }],
-        routeTag: "fruity_bamm_bamm",
+        slug: "fruity_bamm_bamm",
         vendor: "Vape Switch",
         blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!!!!!"
 
@@ -190,7 +190,7 @@ const juices = {
           sku
           size
           nicotineStrength
-          routeTag
+          slug
           vendor
           blurb
           images {
@@ -222,7 +222,7 @@ const juices = {
           purpose: "large",
           url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-strawberries-cream.png"
         }],
-        routeTag: "strawberries_n_cream",
+        slug: "strawberries_n_cream",
         vendor: "Vape Switch",
         blurb: "Fresh Strawberries with wonderful Cream.  So creamy and so very good!"
       }) {
@@ -235,7 +235,7 @@ const juices = {
           sku
           size
           nicotineStrength
-          routeTag
+          slug
           vendor
           blurb
           images {
@@ -267,7 +267,7 @@ const juices = {
         purpose: "large",
         url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-pappleberry.png"
       }],
-      routeTag: "papple_berry",
+      slug: "papple_berry",
       vendor: "Vape Switch",
       blurb: "Pappleberry is a wonderful blend of Peach, Apple and Strawberry.  These 3 fruity flavors masterfully combined together make a fantastic all-day vape."
     }) {
@@ -280,7 +280,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {

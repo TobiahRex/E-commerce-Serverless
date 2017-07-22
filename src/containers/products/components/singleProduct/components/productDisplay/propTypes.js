@@ -8,7 +8,7 @@ const ProductShape = shape({
     qty: number,
     price: string,
     title: string,
-    routeTag: string,
+    slug: string,
     strength: number,
     mainTitle: string,
     nicotineStrength: string,

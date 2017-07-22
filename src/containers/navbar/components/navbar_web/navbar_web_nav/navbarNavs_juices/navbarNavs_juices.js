@@ -24,7 +24,7 @@ class NavbarNavsShop extends Component {
               purpose: string,
               url: string,
             })),
-          routeTag: string,
+          slug: string,
         }),
       }),
     ),

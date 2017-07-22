@@ -24,7 +24,7 @@ class ProductSection extends Component {
       title: string,
       nicotineStrength: string,
       imageUrl: string,
-      routeTag: string,
+      slug: string,
     }).isRequired,
     addToMemberCart: func.isRequired,
     addToGuestCart: func.isRequired,
@@ -159,7 +159,7 @@ class ProductSection extends Component {
 const filterJuices = (routingObj, popularProducts) => {
   const location = routingObj.locationBeforeTransitions.pathname;
   const juiceName = location.split('/')[2];
-  return popularProducts.filter(({ routeTag }) => routeTag === juiceName)[0];
+  return popularProducts.filter(({ slug }) => slug === juiceName)[0];
 };
 
 export default connect(({

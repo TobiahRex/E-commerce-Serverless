@@ -67,7 +67,7 @@ class NavbarCartProducts extends Component {
       price,
       images,
       nicotineStrength,
-      routeTag,
+      slug,
     } = product;
 
     return (
@@ -89,7 +89,7 @@ class NavbarCartProducts extends Component {
 
         <NavbarCartProductsCardActions
           productId={_id}
-          routeTag={routeTag}
+          slug={slug}
           editCartItem={this.props.editCartItem}
           deleteFromCart={this.props.deleteFromCart}
         />
