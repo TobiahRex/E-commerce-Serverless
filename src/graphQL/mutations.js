@@ -4,13 +4,11 @@ export const AddToMemberCart = gql`
   mutation AddToMemberCart(
     $userId: ID!
     $qty: Int!
-    $nicotineStrength: Int!
     $product: ID!
   ) {
     AddToMemberCart(
       userId: $userId
       qty: $qty
-      nicotineStrength: $nicotineStrength
       product: $product
     ) {
       _id

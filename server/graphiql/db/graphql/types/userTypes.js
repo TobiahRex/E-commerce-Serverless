@@ -694,10 +694,6 @@ const mutations = {
         description: 'The quantity of products to add.',
         type: new NonNull(IntType),
       },
-      nicotineStrength: {
-        description: 'The nicotine strength of the product to add.',
-        type: new NonNull(IntType),
-      },
       product: {
         description: 'The Mongo ObjectId of the product to add.',
         type: new NonNull(MongoID),

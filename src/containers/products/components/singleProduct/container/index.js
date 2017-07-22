@@ -331,15 +331,17 @@ class SingleProduct extends Component {
   * 11b) Once complete, call the GraphQL mutation "AddToMemberCart" , passing in the user's id, and the updated array of products as variables.
   * 12b) Once GraphQL mutation is complete, update the redux state with the new user's profile information.
   * // ---------------------------------------------------------
+  * 10c) If the user is a NOT logged in, and there's already items in their cart, then reset component's state,
+  * 11c) Once complete dispatch a redux action called "saveGuestCart" passing in the array of updated products which will update a pre-existing array in the Redux store.
+  * // ---------------------------------------------------------
+  * 10d) If the user is NOT logged in, and there's no items in their cart, then reset component's state,
+  * 11d) Once complete dispatch a redux action called "addToGuestCart" and pass in the single object "currentGuestProduct".
   *
   * @param none
   *
   * @return {object} -
   */
   addToCartHandler = () => {
-    // 1. If the total items in the cart (redux store) are >= 4, then throw error.
-    // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
-    // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
     if (this.state.qty === 0) {
       this.setState(() => ({
         error: true,
@@ -437,8 +439,7 @@ class SingleProduct extends Component {
                 variables: {
                   qty,
                   userId,
-                  nicotineStrength,
-                  product: productId,
+                  product: product._id,
                 },
               })
               .then(({ data: { AddToMemberCart: updatedUser } }) => {
