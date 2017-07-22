@@ -107,9 +107,9 @@ class ShoppingCart extends Component {
   /**
   * Function: "calculateTotalsDue"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
-  * 2) Add that to the individual subtotal (newly created key) to each juiceObj.
+  * 2) Add that to the individual subtotal (newly created key) to each productObj.
   * 3) Add that amount to the "grandTotal".
-  * @NOTE - Mutates the original "juiceObj" by adding key "subTotal".
+  * @NOTE - Mutates the original "productObj" by adding key "subTotal".
   *
   * @param {none} N/A
   *
@@ -118,9 +118,9 @@ class ShoppingCart extends Component {
   calculateTotalsDue = (cart) => {
     let grandTotal = 0;
 
-    cart.forEach((juiceObj) => {
-      juiceObj.subTotal = juiceObj.qty * Number(juiceObj.price);
-      grandTotal += juiceObj.subTotal;
+    cart.forEach((productObj) => {
+      productObj.subTotal = productObj.qty * Number(productObj.product.price);
+      grandTotal += productObj.subTotal;
     });
 
     const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
@@ -170,9 +170,6 @@ class ShoppingCart extends Component {
         let globalRequestQty = 0;
 
         let newCart = cart.map((productObj) => {
-          productObj.error = false;
-          productObj.errorMsg = '';
-
           if (productObj._id === productId) {
             const productCopy = Object.assign({}, productObj);
             productCopy.qty += 1;
@@ -206,9 +203,6 @@ class ShoppingCart extends Component {
         let productToEditQty = 0;
 
         let newCart = cart.map((productObj) => {
-          productObj.error = false;
-          productObj.errorMsg = '';
-
           if (productObj._id === productId) {
             const productCopy = _.clone(productObj, true);
             productCopy.qty -= 1;
@@ -372,12 +366,12 @@ class ShoppingCart extends Component {
     grandTotal,
     mobileActive,
   ) => (
-    cart.map((juiceObj) => {
+    cart.map((productObj) => {
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
-            key={`shopping-cart-table-row-${juiceObj._id}`}
-            juiceObj={juiceObj}
+            key={`shopping-cart-table-row-${productObj._id}`}
+            productObj={productObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
           />
@@ -385,8 +379,8 @@ class ShoppingCart extends Component {
       }
       return (
         <ShoppingCartMobileProductCard
-          key={`shopping-cart-table-row-${juiceObj._id}`}
-          juiceObj={juiceObj}
+          key={`shopping-cart-table-row-${productObj._id}`}
+          productObj={productObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
           emptyCart={this.emptyCart}

@@ -94,7 +94,7 @@ ShoppingCartWeb.propTypes = {
 };
 ShoppingCartWeb.defaultProps = {
   cart: [],
-  taxes: '0.00', // converted to string to ensure 2 decimal places.
-  grandTotal: 0, // will be converted to string for same reasons in JSX.
+  taxes: 0,
+  grandTotal: 0,
 };
 export default ShoppingCartWeb;
