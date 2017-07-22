@@ -1,4 +1,5 @@
 import { create } from 'apisauce';
+import optimizeGuestCartForLogin from './optimizeGuestCartForLogin';
 
 const {
   NODE_ENV,
@@ -37,6 +38,7 @@ const createAPI = () => {
       contactInfoSocialNetworks,
       contactInfo,
       shopping,
+      shoppingCart,
       permissions,
       userStory,
       socialProfileBlob,
@@ -169,7 +171,7 @@ const createAPI = () => {
       contactInfoDevices,
       contactInfoSocialNetworks,
       shopping,
-      shoppingCart: cart,
+      shoppingCart,
       permissions,
       userStory,
       socialProfileBlob,
