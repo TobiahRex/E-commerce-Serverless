@@ -476,7 +476,10 @@ class ShoppingCart extends Component {
 }
 /**
 * Function: "calculateCartQty"
-* 1)
+* 1) calls a reduce method on the input "cart" array.
+* 2) verifies the next object has a key of "qty", if not, returns the final accumulated value. If so...
+* 3) Increments the accumulated value by the value of "qty".  Returns the result to the next iteration.
+*
 * @param {array} cart - an array of product objects.
 *
 * @return {number} accum - the final qty number;
