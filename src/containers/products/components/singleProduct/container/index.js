@@ -319,7 +319,18 @@ class SingleProduct extends Component {
   * 5) Verify that "globalRequestQty" is not exceeding the 4 count limit.  If so, show "Max Items" error message. Otherwise...
   * 6) Verify that for this instance, the user is not choose too high a number for "qty".  If so, show applicable error message about too many items. If not, continue..
   * 7) Destructure "userId" & "loggedIn" from this.props.  If the user is loggedIn, we'll update the loggedIn user's cart using the id.  Otherwise, we'll update the guest cart and the userId will not be needed.
-  * 8) Define const "currentGuestProduct" which is an object that contains the product id as "_id".  The qty requested for this product. The nicotine strength level
+  * 8) Define const "currentGuestProduct" which is an object that contains the product saved to state "nicotineHandler" was called.  And the requested qty.
+  * 9) Define const "currentMemberProduct" which is an object that contains the product id as "productId", that saved to state when "nicotineHandler" was called. And the requested qty.
+  * // ---------------------------------------------------------
+  * 10a) If user is logged in, and there's already products in their cart, but if the current product is not one of them, add it.
+  * 11a) If user is NOT logged in, and there's already products in their cart, but the current product is not one of them, add it.
+  * 12a) If the user is logged in, and there's already products in their cart, then reset the component's local state.  Once complete, call the GraphQL mutation "EditToMemberCart", passing in the user's id, and the updated array of products as variables.
+  * 13a) Once GraphQL mutation is complete, update the redux state with the new user's profile information.
+  * // ---------------------------------------------------------
+  * 10b) If the user is logged in, BUT there's no items in their cart yet, then reset component's state.
+  * 11b) Once complete, call the GraphQL mutation "AddToMemberCart" , passing in the user's id, and the updated array of products as variables.
+  * 12b) Once GraphQL mutation is complete, update the redux state with the new user's profile information.
+  * // ---------------------------------------------------------
   *
   * @param none
   *
@@ -371,9 +382,8 @@ class SingleProduct extends Component {
         const { userId, loggedIn } = this.props,
 
           currentGuestProduct = {
-            _id: product._id,
             qty,
-            ...product,  // from state
+            ...product,
           },
 
           currentMemberProduct = {
@@ -385,14 +395,14 @@ class SingleProduct extends Component {
         if (
           loggedIn &&
           updatedCart.length &&
-          !prevCartIds.includes(productId)
+          !prevCartIds.includes(product._id)
         ) updatedCart.push(currentMemberProduct);
 
         // If user is NOT logged in, and there's already products in their cart, but the current product is not one of them, add it.
         if (
           !loggedIn &&
           updatedCart.length &&
-          !prevCartIds.includes(productId)
+          !prevCartIds.includes(product._id)
         ) updatedCart.push(currentGuestProduct);
 
 
