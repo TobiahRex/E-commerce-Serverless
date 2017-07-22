@@ -493,9 +493,19 @@ cart.reduce((accum, next) => {
   return accum;
 }, 0);
 
+/**
+* Function: "checkNewUser"
+* 1) If the user is not logged in, then obviously there is no user.
+* 2) If the user is logged in but they have not purchased any new products, then return true.
+*
+* @param {object} user - the user object.
+* @param {bool} loggedIn - flag for if the user is logged in or not.
+*
+* @return {bool} - Determines eligibility for the 10% new user discount.
+*/
 const checkNewUser = (user, loggedIn) => {
   if (!loggedIn) return false;
-  return user.authentication.logins.length && !user.shopping.cart.length;
+  return !user.shopping.cart.length;
 };
 
 const ShoppingCartWithData = compose(
