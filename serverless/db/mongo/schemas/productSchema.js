@@ -6,7 +6,7 @@ const productSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  errorMsg: { type: String },
+  errorMsg: { type: String, default: '' },
   product: {
     mainTitle: {
       type: String,
@@ -68,7 +68,7 @@ const productSchema = new Schema({
       },
     },
     quantities: {
-      available: { type: Number },
+      available: { type: Number, default: 500 },
       in_cart: { type: Number },
     },
   },

@@ -35,6 +35,9 @@ const createAPI = () => {
         }
         nicotineStrength
         slug
+        quantities {
+          available
+        }
       }
     }`,
     variables: {

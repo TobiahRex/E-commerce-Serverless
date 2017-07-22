@@ -23,6 +23,7 @@ provider:
         - logs:PutLogEvents
   environment:
     MONGO_URI: ${file(./config.yml):mongoURI}
+    AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
 
 plugins:
   - serverless-webpack
