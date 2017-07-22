@@ -5,11 +5,7 @@ import FontAwesome from 'react-fontawesome';
 function ActionBtns({ routerBack, routerPush }) {
   return (
     <div className="main__back-btn">
-      <button
-        className="back-btn sweep-right"
-        routerBack="goBack"
-        onClick={routerBack}
-      >
+      <button className="back-btn sweep-right" onClick={routerBack} >
         <span className="flex-btn-parent">
           <FontAwesome name="angle-double-left" />
           {'\u00A0'}Back

@@ -33,13 +33,13 @@ NavbarCartProductsCardInfo.defaultProps = {
   price: '',
   qty: 0,
   title: '',
-  nicotineStrength: 0,
+  nicotineStrength: '',
 };
 NavbarCartProductsCardInfo.propTypes = {
   price: string,
   qty: number,
   title: string,
-  nicotineStrength: number,
+  nicotineStrength: string,
 };
 
 export default NavbarCartProductsCardInfo;

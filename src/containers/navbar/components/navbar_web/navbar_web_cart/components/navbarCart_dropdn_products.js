@@ -59,16 +59,18 @@ class NavbarCartProducts extends Component {
     return this.renderCartItems(cartItems);
   }
 
-  renderCartItems = productItems => productItems.map((product) => {
+  renderCartItems = productItems => productItems.map((productObj) => {
     const {
       _id,
       qty,
-      title,
-      price,
-      images,
-      nicotineStrength,
-      slug,
-    } = product;
+      product: {
+        title,
+        price,
+        images,
+        nicotineStrength,
+        slug,
+      },
+    } = productObj;
 
     return (
       <li
