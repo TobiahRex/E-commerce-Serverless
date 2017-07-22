@@ -1,4 +1,5 @@
 /* eslint-disable no-lone-blocks, import/first*/
+// TODO - Need to write a function description for "addToCartHandler"
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -50,6 +51,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "shouldComponentUpdate"
   * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
   *
   * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
@@ -75,6 +77,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "modalHandler"
   * 1) receives "event" - and extracts parent element & tag element values.
   * 2) Filters parent element via Switch block.
   * 3) Once parent element has been identified, filters tag element via nested switch block.
@@ -120,6 +123,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "toggleModal"
   * 1) recieves name of modal as input argument.
   * 2) sets the show state variable for that modal to "true".
   *
@@ -132,6 +136,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "toggleModalAndGo"
   * 1) recieves name of modal as input argument & destination name for in-modal navigation buttons.
   * 2) sets the show state variable for that modal to "true".
   *
@@ -147,6 +152,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "qtyHandler"
   * 1) receives event object and determines if "+" or "-" button has been clicked.
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
   * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
@@ -199,6 +205,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "nicotineHandler"
   * 1) Extract productId & nicotine Strength value from click event object.
   * 2) Fetch all db products matching the clicked flavor.
   * 3) Filter results by the id of the clicked product's id.
@@ -229,6 +236,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "composeGlobalCartInfo"
   * 1) receives event object and determines if "+" or "-" button has been clicked.
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
   * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
@@ -307,6 +315,18 @@ class SingleProduct extends Component {
     };
   }
 
+  /**
+  * Function: "addToCartHandler"
+  * 1) Verify that the user specified a quantity.  If not - show error msg. If they have, continue...
+  * 2) Verify that the user specified a nicotineStrength. If not - show error msg. If they have, continue...
+  * 3) call "composeGlobalCartInfo" and destructure the 3 return values into their own constants.
+  * 4) destructure "this.state", and create a flag variable called {bool} "deltaQty" which will help detect errors in too much or too little quantity when adding item to the cart.
+  * 5) Verify that "globalRequestQty" is not exceeding the 4 count limit.  If so
+  *
+  * @param none
+  *
+  * @return {object} -
+  */
   addToCartHandler = () => {
     // 1. If the total items in the cart (redux store) are >= 4, then throw error.
     // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
@@ -452,8 +472,12 @@ class SingleProduct extends Component {
   }
 
 
-  /*
+  /**
+  * Function: "componentDidUpdate"
   * Resets the state variable "added" to false to reset dynamic animations after user adds item to their cart.
+  * @param none.
+  *
+  * @return none.
   */
   componentDidUpdate() {
     if (this.state.added) {

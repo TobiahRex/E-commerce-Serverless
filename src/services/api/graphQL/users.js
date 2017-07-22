@@ -26,7 +26,6 @@ const createAPI = () => {
   const LoginOrRegister = ({
     auth0Id,
     loginType,
-    order: { cart },
     profile: {
       name,
       pictures,
