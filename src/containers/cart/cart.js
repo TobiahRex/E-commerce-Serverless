@@ -372,12 +372,11 @@ class ShoppingCart extends Component {
     grandTotal,
     mobileActive,
   ) => (
-    cart.map((juiceObj, i) => {
+    cart.map((juiceObj) => {
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
             key={`shopping-cart-table-row-${juiceObj._id}`}
-            keyNum={i}
             juiceObj={juiceObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
@@ -387,7 +386,6 @@ class ShoppingCart extends Component {
       return (
         <ShoppingCartMobileProductCard
           key={`shopping-cart-table-row-${juiceObj._id}`}
-          keyNum={i}
           juiceObj={juiceObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
@@ -445,7 +443,7 @@ class ShoppingCart extends Component {
     const cartHasProducts = userCart.length || guestCart.length;
 
     let cart = loggedIn ? userCart : guestCart;
-    if (updatedCart.length) cart = updatedCart;
+    if (!!updatedCart.length) cart = updatedCart;
 
     return (
       <div className="shopping-cart-main">

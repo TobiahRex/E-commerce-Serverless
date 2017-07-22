@@ -48,7 +48,7 @@ ShoppingCartMobile.propTypes = {
 };
 ShoppingCartMobile.defaultProps = {
   cart: [],
-  taxes: '0.00', // converted to string to ensure 2 decimal places.
-  grandTotal: 0, // will also be converted to string in JSX.
+  taxes: 0,
+  grandTotal: 0,
 };
 export default ShoppingCartMobile;

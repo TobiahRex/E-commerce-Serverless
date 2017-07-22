@@ -4,8 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import ErrorMsg from './errorMsgCart';
 
 function ShoppingCartMobileProductCard({
-  keyNum,
-  juiceObj,
+  productObj,
   routerPush,
   qtyHandler,
   deleteFromCart,
@@ -13,30 +12,29 @@ function ShoppingCartMobileProductCard({
 }) {
   return (
     <tr
-      data-id={juiceObj._id}
-      key={`shopping-cart-mobile-row-${juiceObj._id}`}
-      keyNum={keyNum}
+      data-id={productObj._id}
+      key={`shopping-cart-mobile-row-${productObj._id}`}
       className="shopping-cart-mobile-row"
     >
       <td className="shopping-cart-mobile-product-parent">
         <div className="shopping-cart-mobile-product-img">
           <img
-            src={juiceObj.images[0].url}
-            alt={juiceObj.title}
+            src={productObj.product.images[0].url}
+            alt={productObj.product.title}
             className="shopping-cart-mobile-product-img-src"
           />
         </div>
         <div className="shopping-cart-mobile-product-infobox">
           <div className="shopping-cart-mobile-product-infobox-title">
-            <h3>{juiceObj.title}</h3>
+            <h3>{productObj.product.title}</h3>
           </div>
           <div className="shopping-cart-mobile-product-infobox-nicotine">
             <p>Nicotine Strength:{'\u00A0'}</p>
-            <i>{juiceObj.nicotineStrength}</i>
+            <i>{productObj.product.nicotineStrength}</i>
           </div>
           <div className="shopping-cart-mobile-product-infobox-sku">
             <p>SKU:{'\u00A0'}</p>
-            <p>{juiceObj.sku}</p>
+            <p>{productObj.product.sku}</p>
           </div>
         </div>
         <ul className="shopping-cart-mobile-product-actions-list">
@@ -46,7 +44,7 @@ function ShoppingCartMobileProductCard({
             </div>
             <div className="shopping-cart-mobile-product-actions-price-amt">
               <FontAwesome name="usd" />
-              <p>{'\u00A0'}{`${juiceObj.price}.00`}</p>
+              <p>{'\u00A0'}{Number(productObj.product.price).toFixed(2)}</p>
             </div>
           </li>
           <li className="shopping-cart-mobile-product-actions-quantity">
@@ -56,12 +54,12 @@ function ShoppingCartMobileProductCard({
             <div className="shopping-cart-mobile-product-actions-qty-btns">
               <div className="shopping-cart-mobile-product-actions-qty-btns-container">
                 <div className="shopping-cart-mobile-product-actions-qty-readout">
-                  <p>{juiceObj.qty}</p>
+                  <p>{productObj.qty}</p>
                 </div>
                 <div className="shopping-cart-mobile-product-actions-qty-btns">
                   <div className="shopping-cart-mobile-product-actions-qty-btn-plus">
                     <button
-                      data-id={juiceObj._id}
+                      data-id={productObj._id}
                       data-tag="qty-plus"
                       className="sweep-right"
                       onClick={qtyHandler}
@@ -71,7 +69,7 @@ function ShoppingCartMobileProductCard({
                   </div>
                   <div className="shopping-cart-mobile-product-actions-qty-btn-minus">
                     <button
-                      data-id={juiceObj._id}
+                      data-id={productObj._id}
                       data-tag="qty-minus"
                       className="sweep-right"
                       onClick={qtyHandler}
@@ -82,7 +80,7 @@ function ShoppingCartMobileProductCard({
                 </div>
               </div>
             </div>
-            <ErrorMsg error={juiceObj.error} errorMsg={juiceObj.errorMsg} />
+            <ErrorMsg error={productObj.error} errorMsg={productObj.errorMsg} />
           </li>
           <li className="shopping-cart-mobile-product-actions-subtotal">
             <div className="shopping-cart-mobile-product-actions-subtotal-title">
@@ -90,7 +88,7 @@ function ShoppingCartMobileProductCard({
             </div>
             <div className="shopping-cart-mobile-product-actions-subtotal-qty">
               <FontAwesome name="usd" />
-              <p>{'\u00A0'}{`${juiceObj.subTotal}.00`}</p>
+              <p>{'\u00A0'}{`${productObj.subTotal}.00`}</p>
             </div>
           </li>
           <li className="shopping-cart-mobile-product-actions-trash">
@@ -99,7 +97,7 @@ function ShoppingCartMobileProductCard({
             </div>
             <div className="shopping-cart-mobile-product-actions-trash-btn-container">
               <button
-                data-id={juiceObj._id}
+                data-id={productObj._id}
                 className="shopping-cart-mobile-product-actions-trash-btn sweep-right"
                 onClick={deleteFromCart}
               >
@@ -135,8 +133,7 @@ const { objectOf, any, number, func } = PropTypes;
 
 ShoppingCartMobileProductCard.propTypes = {
   taxes: number.isRequired,
-  keyNum: number.isRequired,
-  juiceObj: objectOf(any).isRequired,
+  productObj: objectOf(any).isRequired,
   grandTotal: number.isRequired,
   routerPush: func.isRequired,
   qtyHandler: func.isRequired,
