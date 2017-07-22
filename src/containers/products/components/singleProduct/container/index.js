@@ -268,24 +268,32 @@ class SingleProduct extends Component {
       const updatedUserCart = userCart
       .map((userCartProduct) => {
         // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
-        if (Object.prototype.hasOwnProperty.call(userCartProduct, '__typename')) delete userCartProduct.__typename;
+        if (!!userCartProduct.__typename) {
+          delete userCartProduct.__typename;
+        }
 
         if (
-          Object.prototype.hasOwnProperty.call(userCartProduct, 'product') && (userCartProduct.product === stateProduct._id)
-        ) userCartProduct.qty += requestQty;
+          !!userCartProduct.productId &&
+          userCartProduct.productId === stateProduct._id
+        ) {
+          userCartProduct.qty += requestQty;
+        }
 
         return userCartProduct;
       });
+
       updatedCart = [...updatedUserCart];
+
     // If user has items in their cart & is a guest, check & update "like items"
-    } else if (!loggedIn && guestCart.length) {
+    } else if (!loggedIn && !!guestCart.length) {
       updated = true;
-      const updatedGuestCart = guestCart
-      .map((guestCartProduct) => {
+      const updatedGuestCart = guestCart.map((guestCartProduct) => {
         if (
-          Object.prototype.hasOwnProperty.call(guestCartProduct, '_id') &&
+          !!guestCartProduct._id &&
           guestCartProduct._id === stateProduct._id
-        ) guestCartProduct.qty += requestQty;
+        ) {
+          guestCartProduct.qty += requestQty;
+        }
 
         return guestCartProduct;
       });
@@ -293,17 +301,15 @@ class SingleProduct extends Component {
     }
 
     // --- Add up all the product quantities to check for qty violations later. -- Also save the id's of all items to know which items are NEW and OLD to call "Add" or "Update" respectively.
-    const globalRequestQty = !updated ? requestQty : updatedCart
-    .reduce((accum, nextObj) => {
-      if (nextObj && Object.prototype.hasOwnProperty.call(nextObj, '_id')) prevCartIds.push(nextObj._id);
-
-      // "product" = object on Guest cart, & string on Member cart.
-      if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
-
-      accum += nextObj.qty;
+    const globalRequestQty = !updated ? requestQty : updatedCart.reduce((accum, nextObj) => {
+      if (nextObj && !!nextObj.qty) {
+        accum += nextObj.qty;
+        if (!!nextObj._id) prevCartIds.push(nextObj._id);
+        if (!!nextObj.productId) prevCartIds.push(nextObj.productId);
+      }
       return accum;
     }, 0);
-    // --- Return results to "addToCartHandler".
+
     return {
       updatedCart,
       prevCartIds,
@@ -513,7 +519,7 @@ class SingleProduct extends Component {
           paths={['Home', 'Juices']}
           classes={['home', 'home']}
           destination={['', 'juices']}
-          lastCrumb={!!data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
+          lastCrumb={data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
         />
         {
           data.FindProductById ?

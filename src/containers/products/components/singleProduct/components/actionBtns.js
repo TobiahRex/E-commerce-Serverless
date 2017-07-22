@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
-export default function ActionBtns() {
+function ActionBtns({ routerBack, routerPush }) {
   return (
     <div className="main__back-btn">
       <button
         className="back-btn sweep-right"
-        onClick={browserHistory.goBack}
+        routerBack="goBack"
+        onClick={routerBack}
       >
         <span className="flex-btn-parent">
           <FontAwesome name="angle-double-left" />
@@ -16,9 +18,15 @@ export default function ActionBtns() {
       </button>
       <button
         className="juices-btn sweep-right"
-        onClick={() => browserHistory.push('/juices')}
+        data-tag="juices"
+        onClick={routerPush}
       >Shop All Juices
       </button>
     </div>
   );
 }
+ActionBtns.propTypes = {
+  routerPush: PropTypes.func.isRequired,
+  routerBack: PropTypes.func.isRequired,
+};
+export default ActionBtns;
