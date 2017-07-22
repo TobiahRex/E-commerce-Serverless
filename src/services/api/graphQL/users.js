@@ -1,5 +1,4 @@
 import { create } from 'apisauce';
-import optimizeGuestCartForLogin from './optimizeGuestCartForLogin';
 
 const {
   NODE_ENV,

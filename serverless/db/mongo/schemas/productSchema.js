@@ -63,7 +63,7 @@ const productSchema = new Schema({
       },
     },
     quantities: {
-      available: { type: Number },
+      available: { type: Number, default: 500 },
       in_cart: { type: Number },
     },
   },
