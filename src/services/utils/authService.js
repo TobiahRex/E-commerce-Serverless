@@ -29,7 +29,7 @@ export default class AuthService extends EventEmitter {
   parseHash = (hash) => {
     this.auth0.parseHash({
       hash,
-      _idTokenVerification: false,
+      // _idTokenVerification: false,
     }, (err, authResult) => {
       if (err) {
         this.emit('login_failure', err);

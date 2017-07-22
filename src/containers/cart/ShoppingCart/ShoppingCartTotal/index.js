@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-redux';
 
 function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
-  const { discount, totalQty, subTotal } = cart.reduce((accum, next) => {
+  const { subTotal, totalQty } = cart.reduce((accum, next) => {
     if (!!next.qty) {
       accum.totalQty += next.qty;
-      accum.subTotal += (Number(next.price) * next.qty);
+      accum.subTotal += (Number(next.product.price) * next.qty);
       return accum;
     }
     return accum;
   }, {
-    totalQty: 0,
     subTotal: 0,
-    discount: {
-      qty: false,
-      qtyAmount: 0,
-      register: false,
-      registerAmount: 0,
-    },
+    totalQty: 0,
   });
+
+  const discount = {
+    qty: false,
+    qtyAmount: 0,
+    register: false,
+    registerAmount: 0,
+  };
 
   if (totalQty >= 4) {
     discount.qty = true;

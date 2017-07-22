@@ -497,7 +497,7 @@ cart.reduce((accum, next) => {
 */
 const checkNewUser = (user, loggedIn) => {
   if (!loggedIn) return false;
-  return !user.shopping.cart.length;
+  return !user.profile.shopping.cart.length;
 };
 
 

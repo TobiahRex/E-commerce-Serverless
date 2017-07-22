@@ -10,7 +10,9 @@
   - Client side.
 
   TODO: Backlog
-  - Make the GuestCart in client side match the db side User Schema for cart products.  *That way whenever a guest adds items to their cart before registering or signing-in, the cart products may be added to their user cart.
+  - If the user is logged in, call a GraphQL query for the products in the logged in users cart by the products _id.  The response data should be distributed to Navbar, and Cart.
+
+  - once the user logs in, also clear the guest Cart from local storage and redux-persist.
 
   - Build "Transaction" model & schema.
 
