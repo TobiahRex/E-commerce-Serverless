@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router';
 
 function ActionBtns({ routerBack, routerPush }) {
   return (
@@ -18,7 +17,7 @@ function ActionBtns({ routerBack, routerPush }) {
       </button>
       <button
         className="juices-btn sweep-right"
-        data-tag="juices"
+        data-slug="juices"
         onClick={routerPush}
       >Shop All Juices
       </button>

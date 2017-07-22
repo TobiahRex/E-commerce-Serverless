@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
@@ -13,9 +13,9 @@ import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import {
   FindProductById,
-  FindProductsByFlavor,
   AddToMemberCart,
   EditToMemberCart,
+  FindProductsByFlavor,
 } from './graphql.imports';
 import {
   MainTitle,
@@ -68,10 +68,10 @@ class SingleProduct extends Component {
     const guestCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart);
 
     if (
-      !_.isEqual(nextState, this.state)
-      || !_.isEqual(nextProps, this.props)
-      || userCartDiff
-      || guestCartDiff
+      userCartDiff ||
+      guestCartDiff ||
+      !_.isEqual(nextState, this.state) ||
+      !_.isEqual(nextProps, this.props)
     ) return true;
     return false;
   }
@@ -481,6 +481,10 @@ class SingleProduct extends Component {
   }
 
 
+  routerPush = (e) => {
+    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
+  }
+
   /**
   * Function: "componentDidUpdate"
   * Resets the state variable "added" to false to reset dynamic animations after user adds item to their cart.
@@ -549,7 +553,10 @@ class SingleProduct extends Component {
             productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : null}
           />
         }
-        <ActionBtns />
+        <ActionBtns
+          routerBack={this.props.goBack}
+          routerPush={this.routerPush}
+        />
 
         <SuccessModal
           qty={qty}
@@ -594,6 +601,8 @@ const SingleProductWithState = connect(
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
+
+    goBack: () => dispatch(goBack()),
 
     saveUser: updatedUser => dispatch(userActions.saveUser(updatedUser)),
 
