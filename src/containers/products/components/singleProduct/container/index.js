@@ -210,6 +210,7 @@ class SingleProduct extends Component {
   * 2) Fetch all db products matching the clicked flavor.
   * 3) Filter results by the id of the clicked product's id.
   * 4) Save result to component's state.
+  * NOTE - need to save "chosenStrength" to state, to highlight the nicotine strength the user chooses visually.
   *
   * @param {e} object - the click event object.
   *
@@ -361,7 +362,6 @@ class SingleProduct extends Component {
 
       const {
           qty,
-          chosenStrength: nicotineStrength,
           product,
         } = this.state,
 
@@ -507,14 +507,13 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.warn('are you rendering?');
     return (
       <div className="juice-page__main">
         <BreadCrumb
           paths={['Home', 'Juices']}
           classes={['home', 'home']}
           destination={['', 'juices']}
-          lastCrumb={data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
+          lastCrumb={!!data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
         />
         {
           data.FindProductById ?
@@ -571,7 +570,7 @@ class SingleProduct extends Component {
 }
 
 /**
-* NOTE: Connecting Redux & ApolloClient to Single Product Container. (below)
+* NOTE: This component calls GraphQL compose function first, and provides the results to the react-redux-connect function as props.
 *
 * 1) Redux's "connect" function maps state & dispatch to props on "SingleProduct" and returns HOC - "SingleProductWithState"
 * 2) React Apollo's "compose" function, composes multiple GraphQL queries and mutations onto the HOC returned in Step 1. - Redux's mapped props are available to these graphql functions if needed due to step 1.  Returns HOC "SingleProductWithStateAndData".

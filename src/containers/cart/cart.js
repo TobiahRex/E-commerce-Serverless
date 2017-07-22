@@ -474,6 +474,13 @@ class ShoppingCart extends Component {
     );
   }
 }
+/**
+* Function: "calculateCartQty"
+* 1)
+* @param {array} cart - an array of product objects.
+*
+* @return {number} accum - the final qty number;
+*/
 const calculateCartQty = cart =>
 cart.reduce((accum, next) => {
   if (!!next.qty) {
