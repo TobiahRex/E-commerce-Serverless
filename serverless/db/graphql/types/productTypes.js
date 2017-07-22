@@ -247,20 +247,20 @@ const queryTypes = {
       },
       quantities: {
         description: 'The total number of products available for purchase.',
-        type: new NonNull(new ObjectType ({
-            name: 'PopularProductQuantities',
-            fields: () => ({
-              available: {
-                description: 'The Total number of products available for purchase.',
-                type: IntType,
-              },
-              in_cart: {
-                description: 'The total number of this product that are in the global product cart.'
-              }
-            })
-          })
+        type: new NonNull(new ObjectType({
+          name: 'PopularProductQuantities',
+          fields: () => ({
+            available: {
+              description: 'The Total number of products available for purchase.',
+              type: IntType,
+            },
+            in_cart: {
+              description: 'The total number of this product that are in the global product cart.',
+            },
+          }),
+        }),
         ),
-      }
+      },
       completedCheckouts: {
         description: 'The number of times this product has been successfully purchased.',
         type: IntType,
