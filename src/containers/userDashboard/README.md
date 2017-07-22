@@ -4,4 +4,4 @@ User Dashboard has many levels.  Anywhere a link exists throughout the site that
   1. _Tracking #: <Number>_ Redirects to `/user_:id/order_:orderid/tracking_:trackingid`
     - _userOrderTracking.js_ is the respective view.  The link is found at their Order Success page inside the invoice table && within their Emails in their invoice information.
 
-    NOTES: _orderTracking.js_ is for Guests who want to track their order but do not have an account.  They would be redirected to `https://nj2jp.com/guest/order_:order_id/tracking_:tracking_id` from their invoice email.
+    NOTES: _orderTracking.js_ is for Guests who want to track their order but do not have an account.  They would be redirected to `/iamges/tracking_:tracking_id` from their invoice email.
