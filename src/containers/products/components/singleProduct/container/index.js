@@ -209,20 +209,15 @@ class SingleProduct extends Component {
   * 1) Extract productId & nicotine Strength value from click event object.
   * 2) Fetch all db products matching the clicked flavor.
   * 3) Filter results by the id of the clicked product's id.
-  * 4) Save result to local compoent state.
+  * 4) Save result to component's state.
   *
   * @param {e} object - the click event object.
   *
   * @return {new state} - returns new state with chosen product from local DB && nicotine strength value.
   */
   nicotineHandler = (e) => {
-    let productId = e.target.dataset.product;
-    let nicStrength = e.target.dataset.nicotinestrength;
-
-    if (!nicStrength || !productId) {
-      productId = e.target.parentNode.dataset.product;
-      nicStrength = e.target.parentNode.dataset.nicotinestrength;
-    }
+    const productId = e.target.dataset.product || e.target.parentNode.dataset.product;
+    const nicStrength = e.target.dataset.nicotinestrength || e.target.parentNode.dataset.nicotinestrength;
 
     const product = this.props.data.FindProductsByFlavor
     .filter(({ _id }) => _id === productId)[0];
@@ -321,7 +316,10 @@ class SingleProduct extends Component {
   * 2) Verify that the user specified a nicotineStrength. If not - show error msg. If they have, continue...
   * 3) call "composeGlobalCartInfo" and destructure the 3 return values into their own constants.
   * 4) destructure "this.state", and create a flag variable called {bool} "deltaQty" which will help detect errors in too much or too little quantity when adding item to the cart.
-  * 5) Verify that "globalRequestQty" is not exceeding the 4 count limit.  If so
+  * 5) Verify that "globalRequestQty" is not exceeding the 4 count limit.  If so, show "Max Items" error message. Otherwise...
+  * 6) Verify that for this instance, the user is not choose too high a number for "qty".  If so, show applicable error message about too many items. If not, continue..
+  * 7) Destructure "userId" & "loggedIn" from this.props.  If the user is loggedIn, we'll update the loggedIn user's cart using the id.  Otherwise, we'll update the guest cart and the userId will not be needed.
+  * 8) Define const "currentGuestProduct" which is an object that contains the product id as "_id".  The qty requested for this product. The nicotine strength level
   *
   * @param none
   *
@@ -351,10 +349,7 @@ class SingleProduct extends Component {
       const {
           qty,
           chosenStrength: nicotineStrength,
-          product: {
-            product,
-            _id: productId,
-          },
+          product,
         } = this.state,
 
         deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
@@ -376,17 +371,14 @@ class SingleProduct extends Component {
         const { userId, loggedIn } = this.props,
 
           currentGuestProduct = {
-            _id: productId,
+            _id: product._id,
             qty,
-            userId,
-            nicotineStrength,
             ...product,  // from state
           },
 
           currentMemberProduct = {
             qty,
-            nicotineStrength,
-            product: productId,
+            productId: product._id,
           };
 
         // If user is logged in, and there's already products in their cart, but the current product is not one of them, add it.
