@@ -163,11 +163,10 @@ class SingleProduct extends Component {
   * @return {new state} - returns new state with new qty value.
   */
   qtyHandler = (e) => {
-    const { globalRequestQty } = this.composeGlobalCartInfo();
-    const qtyToCheck = 1;
+    const buttonEl = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    let buttonEl = e.target.dataset.tag;
-    if (!buttonEl) buttonEl = e.target.parentNode.dataset.tag;
+    const qtyToCheck = 1;
+    const { globalRequestQty } = this.composeGlobalCartInfo();
 
     if (buttonEl === 'qty-plus') {
       if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {

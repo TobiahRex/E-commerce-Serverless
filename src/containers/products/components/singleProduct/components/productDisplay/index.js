@@ -20,10 +20,11 @@ class ProductDisplay extends Component {
     if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   }
+
   filterImages = (images) => {
     const helper = ({ purpose }) => purpose === 'large';
-    const image = images.filter(helper).length;
-    return !image ? '' : images.filter(helper).reduce(a => a).url;
+    const image = !!images.filter(helper).length;
+    return image ? images.filter(helper).reduce((a, n) => n.url, '') : '';
   }
 
   composeSingleProduct = arrayOfProducts => arrayOfProducts
