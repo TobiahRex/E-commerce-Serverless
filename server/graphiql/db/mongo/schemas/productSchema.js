@@ -2,6 +2,11 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
+  error: {
+    type: Boolean,
+    default: false,
+  },
+  errorMsg: { type: String },
   product: {
     mainTitle: {
       type: String,

@@ -187,7 +187,7 @@ class ShoppingCart extends Component {
           globalError = true;
           newCart = newCart.map((productObj) => {
             if (productObj._id === productId) {
-              const productWithError = Object.assign({}, productObj);
+              const productWithError = _.clone(productObj, true);
               productWithError.error = true;
               productWithError.errorMsg = 'Too much';
               productWithError.qty -= 1;
@@ -210,7 +210,7 @@ class ShoppingCart extends Component {
           productObj.errorMsg = '';
 
           if (productObj._id === productId) {
-            const productCopy = Object.assign({}, productObj);
+            const productCopy = _.clone(productObj, true);
             productCopy.qty -= 1;
 
             if (productCopy.qty !== 0) {
@@ -258,15 +258,15 @@ class ShoppingCart extends Component {
       userCart,
     } = this.props;
 
-    let result = null;
     let cartOwner = '';
+    let result = null;
 
     if (loggedIn) {
-      result = this.verifyQtyChange(changeType, productId, userCart);
       cartOwner = 'User';
+      result = this.verifyQtyChange(changeType, productId, userCart);
     } else {
-      result = this.verifyQtyChange(changeType, productId, guestCart);
       cartOwner = 'Guest';
+      result = this.verifyQtyChange(changeType, productId, guestCart);
     }
 
     if (result.error) {
@@ -508,6 +508,7 @@ const checkNewUser = (user, loggedIn) => {
   return !user.shopping.cart.length;
 };
 
+
 const ShoppingCartWithData = compose(
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
@@ -515,10 +516,10 @@ const ShoppingCartWithData = compose(
 
 const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) => ({
   qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
-  mobileActive: mobile.mobileType || false,
+  mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
-  userId: user._id || '',
+  userId: user._id ? user._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   newUser: checkNewUser(user, auth.loggedIn),

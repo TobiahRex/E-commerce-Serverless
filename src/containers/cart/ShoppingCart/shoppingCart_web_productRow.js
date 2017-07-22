@@ -6,17 +6,16 @@ import ErrorMsg from './errorMsgCart';
 import convertNicotineStrength from './nicotineStrengthConverter';
 
 function ShoppingCartWebProductRow({
-  keyNum,
   juiceObj,
   qtyHandler,
   deleteFromCart,
 }) {
   return (
-    <tr key={`shopping-cart-table-row-${juiceObj.name}-${keyNum}`} className="shopping-cart-table-body-row">
+    <tr key={`shopping-cart-table-row-${juiceObj._id}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">
         <div className="shopping-cart-table-body-infobox-flexparent">
           <div className="shopping-cart-table-body-infobox-img">
-            <Link to={`/juice/${juiceObj.routeTag}`}>
+            <Link to={`/juice/${juiceObj.product.routeTag}`}>
               <img
                 src={juiceObj.images[0].url}
                 className="shopping-cart-table-body-infobox-img-src" alt={juiceObj.title}
@@ -25,7 +24,7 @@ function ShoppingCartWebProductRow({
           </div>
           <ul className="shopping-cart-table-body-infobox-list">
             <li className="shopping-cart-table-body-infobox-title">
-              <Link to={`/juice/${juiceObj.routeTag}`}>
+              <Link to={`/juice/${juiceObj.product.routeTag}`}>
                 <p>{juiceObj.title}</p>
               </Link>
             </li>
@@ -93,10 +92,9 @@ function ShoppingCartWebProductRow({
     </tr>
   );
 }
-const { objectOf, any, number, func } = PropTypes;
+const { objectOf, any, func } = PropTypes;
 
 const propTypes = {
-  keyNum: number.isRequired,
   juiceObj: objectOf(any).isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,

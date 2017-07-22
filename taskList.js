@@ -13,4 +13,6 @@
   - Make the GuestCart in client side match the db side User Schema for cart products.  *That way whenever a guest adds items to their cart before registering or signing-in, the cart products may be added to their user cart.
 
   - Build "Transaction" model & schema.
+
+  - Extract tax rate from Square API.
 */
