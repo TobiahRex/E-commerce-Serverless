@@ -143,11 +143,11 @@ export default (db) => {
   * 3) Saves changes.
   * 4) Resolves || Rejects with result.
   *
-  * @param {object} cartObj - userId {string}, qty {number}, nicotineStrength {number}, product {object}.
+  * @param {object} cartObj - userId {string}, qty {number}, product {object}.
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, nicotineStrength, product }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, product }) =>
   new Promise((resolve, reject) => {
     User
     .findById(userId)
@@ -156,7 +156,6 @@ export default (db) => {
       dbUser.shopping.cart.push({
         qty,
         product,
-        nicotineStrength,
       });
       return dbUser.save({ validateBeforeSave: true });
     })

@@ -12,7 +12,7 @@ const userSchema = new Schema({
     large: { type: String },
     default: {
       type: String,
-      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
+      default: '/images/default-user.png',
     },
   },
   authentication: {
@@ -91,5 +91,7 @@ const userSchema = new Schema({
     twitter: { type: String },
     linkedin: { type: String },
   },
+}, {
+  bufferCommands: true,
 });
 export default userSchema;

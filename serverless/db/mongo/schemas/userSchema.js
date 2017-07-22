@@ -12,7 +12,7 @@ const userSchema = new Schema({
     large: { type: String },
     default: {
       type: String,
-      default: 'https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/default-user.png',
+      default: '/images/default-user.png',
     },
   },
   authentication: {
@@ -20,7 +20,7 @@ const userSchema = new Schema({
     password: { type: String },
     createdAt: { type: Date },
     totalLogins: { type: Number },
-    lastLogin: [{
+    logins: [{
       date: { type: Date, default: new Date() },
       device: { type: String, default: 'computer' },
     }],
@@ -55,8 +55,7 @@ const userSchema = new Schema({
   shopping: {
     cart: [{
       qty: { type: Number },
-      nicotineStrength: { type: Number },
-      product: { type: ObjectId, ref: 'Product' },
+      productId: [{ type: ObjectId, ref: 'Product' }],
     }],
     transactions: [{ type: ObjectId, ref: 'Transaction' }],
   },

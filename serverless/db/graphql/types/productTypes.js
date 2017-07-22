@@ -121,7 +121,7 @@ const rootType = new ObjectType({
               }),
             ),
           },
-          routeTag: {
+          slug: {
             description: 'The name of the route for the product.',
             type: StringType,
           },
@@ -221,7 +221,7 @@ const queryTypes = {
         description: 'The main Title for this Product.',
         type: new NonNull(StringType),
       },
-      routeTag: {
+      slug: {
         description: 'The route tag (slug) for this product.',
         type: new NonNull(StringType),
       },
@@ -417,7 +417,7 @@ const mutations = {
                   ),
                 ),
               },
-              routeTag: {
+              slug: {
                 description: 'The name of the route for the new product.',
                 type: new NonNull(StringType),
               },
@@ -604,7 +604,7 @@ const mutations = {
                   }),
                 ),
               },
-              routeTag: {
+              slug: {
                 description: 'The name of the route for the new product.',
                 type: StringType,
               },

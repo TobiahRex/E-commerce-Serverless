@@ -4,12 +4,12 @@ export const AddToMemberCart = gql`
   mutation AddToMemberCart(
     $userId: ID!
     $qty: Int!
-    $product: ID!
+    $productId: ID!
   ) {
     AddToMemberCart(
       userId: $userId
       qty: $qty
-      product: $product
+      productId: $productId
     ) {
       _id
       name {
@@ -65,8 +65,7 @@ export const AddToMemberCart = gql`
       shopping {
         cart {
           qty
-          product
-          nicotineStrength
+          productId
         }
         transactions
       }
@@ -152,8 +151,7 @@ export const EditToMemberCart = gql`
       shopping {
         cart {
           qty
-          product
-          nicotineStrength
+          productId
         }
         transactions
       }
@@ -236,8 +234,7 @@ export const DeleteFromMemberCart = gql`
       shopping {
         cart {
           qty
-          product
-          nicotineStrength
+          productId
         }
         transactions
       }
@@ -317,8 +314,7 @@ mutation EmptyMemberCart($userId: ID!) {
     shopping {
       cart {
         qty
-        product
-        nicotineStrength
+        productId
       }
       transactions
     }

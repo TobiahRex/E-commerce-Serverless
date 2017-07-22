@@ -15,7 +15,7 @@ export const FindProductsByFlavor = gql`
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -43,7 +43,7 @@ export const FindProductById = gql`
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -68,7 +68,7 @@ export const FetchMultipleProducts = gql`
         flavor
         price
         sku
-        routeTag
+        slug
         vendor
         images {
           purpose

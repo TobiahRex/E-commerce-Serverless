@@ -228,11 +228,7 @@ const rootType = new ObjectType({
                     description: 'The quantity of items of this product.',
                     type: IntType,
                   },
-                  nicotineStrength: {
-                    description: 'The nicotine strength of this product.',
-                    type: IntType,
-                  },
-                  product: {
+                  productId: {
                     description: 'The Mongo ObjectID for this product.',
                     type: MongoID,
                   },
@@ -597,11 +593,7 @@ const mutations = {
                   description: 'The quantity of items of this product.',
                   type: IntType,
                 },
-                nicotineStrength: {
-                  description: 'The nicotine strength of this product.',
-                  type: IntType,
-                },
-                product: {
+                productId: {
                   description: 'The Mongo ObjectID for this product.',
                   type: MongoID,
                 },
@@ -695,10 +687,6 @@ const mutations = {
         description: 'The quantity of products to add.',
         type: new NonNull(IntType),
       },
-      nicotineStrength: {
-        description: 'The nicotine strength of the product to add.',
-        type: new NonNull(IntType),
-      },
       product: {
         description: 'The Mongo ObjectId of the product to add.',
         type: new NonNull(MongoID),
@@ -737,10 +725,6 @@ const mutations = {
             fields: () => ({
               qty: {
                 description: 'The quantity of products to update.',
-                type: new NonNull(IntType),
-              },
-              nicotineStrength: {
-                description: 'The nicotine strength of the product to update.',
                 type: new NonNull(IntType),
               },
               product: {

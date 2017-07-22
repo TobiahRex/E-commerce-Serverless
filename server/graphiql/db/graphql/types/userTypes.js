@@ -230,11 +230,7 @@ const rootType = new ObjectType({
                     description: 'The quantity of items of this product.',
                     type: IntType,
                   },
-                  nicotineStrength: {
-                    description: 'The nicotine strength of this product.',
-                    type: IntType,
-                  },
-                  product: {
+                  productId: {
                     description: 'The Mongo ObjectID for this product.',
                     type: MongoID,
                   },

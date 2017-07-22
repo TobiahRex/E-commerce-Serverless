@@ -2,6 +2,11 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
+  error: {
+    type: Boolean,
+    default: false,
+  },
+  errorMsg: { type: String },
   product: {
     mainTitle: {
       type: String,
@@ -44,7 +49,7 @@ const productSchema = new Schema({
         required: true,
       },
     }],
-    routeTag: {
+    slug: {
       type: String,
       required: true,
     },
@@ -63,7 +68,7 @@ const productSchema = new Schema({
       },
     },
     quantities: {
-      available: { type: Number, default: 500 },
+      available: { type: Number },
       in_cart: { type: Number },
     },
   },

@@ -34,7 +34,7 @@ const createAPI = () => {
           url
         }
         nicotineStrength
-        routeTag
+        slug
       }
     }`,
     variables: {
@@ -46,7 +46,7 @@ const createAPI = () => {
       PopularProducts(qty: $qty) {
         _id
         docId
-        routeTag
+        slug
         images {
           purpose
           url
@@ -70,7 +70,7 @@ const createAPI = () => {
           flavor
           price
           sku
-          routeTag
+          slug
           vendor
           images{
             purpose

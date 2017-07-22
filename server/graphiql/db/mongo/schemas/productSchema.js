@@ -49,7 +49,7 @@ const productSchema = new Schema({
         required: true,
       },
     }],
-    routeTag: {
+    slug: {
       type: String,
       required: true,
     },
