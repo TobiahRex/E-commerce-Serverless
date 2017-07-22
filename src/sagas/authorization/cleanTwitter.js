@@ -60,11 +60,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Twitter) => {
     },
   };
 
-  if (orders.guest && orders.guest.length) {
-    orders.guest.forEach(({ id: product, qty, strength }) => {
-      profile.shopping.cart.push({ qty, strength, product });
-    });
+  if (!!orders.cart && orders.cart.length) {
+    profile.shoppingCart = orders.cart.map(({ _id, qty }) => ({ productId: _id, qty }));
   }
+
   return {
     profile,
     loginType: 'twitter',
