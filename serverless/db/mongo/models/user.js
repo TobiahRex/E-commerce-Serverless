@@ -147,16 +147,13 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, product }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, productId }) =>
   new Promise((resolve, reject) => {
     User
     .findById(userId)
     .exec()
     .then((dbUser) => {
-      dbUser.shopping.cart.push({
-        qty,
-        product,
-      });
+      dbUser.shopping.cart.push({ qty, productId });
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {
@@ -186,7 +183,7 @@ export default (db) => {
     .exec()
     .then((dbUser) => {
       dbUser.shopping.cart = dbUser.shopping.cart
-      .filter(({ product }) => String(product) !== String(productId));
+      .filter(cartObj => String(cartObj.productId) !== String(productId));
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {

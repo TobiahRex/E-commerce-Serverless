@@ -133,7 +133,7 @@ new Promise((resolve, reject) => {
       _id: '$product.flavor',
       docId: { $first: '$_id' },
       title: { $first: '$product.title' },
-      routeTag: { $first: '$product.routeTag' },
+      slug: { $first: '$product.slug' },
       images: { $first: '$product.images' },
       completedCheckouts: { $first: '$statistics.completed_checkouts' },
     } },
