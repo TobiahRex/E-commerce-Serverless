@@ -109,8 +109,10 @@ class NavbarCart extends Component {
   * 1) Defines a "zip" function.
   * - a) establishes a counter & results variables.
   * - b) creates a for loop, whose length is restricted to the shortest array.
-  * 
-  * 2)
+  * - c) dynamically assigns at index "counter" the result of the "combinerFunction".
+  * - d) returns result.
+  * 2) calls the "zip" func. passing in the array with qty's and id's of products in the users cart as "userCartIdsAndQtys", as well as the resulting array from fetching the entire product object by id, inside the userCart array.
+  * 3) Using the two arrays from step 2, creates a "combinerFunction" that takes the "qty" value from the first array, and the product info & _id from the second array, and returns a new object with those values.
   *
   * @param {object} userProfile - The current user profile object.
   * @param {array} multipleProducts - multiple product arrays.
