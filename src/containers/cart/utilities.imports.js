@@ -1,1 +1,1 @@
-export zipUserCart from '../../../services/utils/zipUserCart';
+export zipUserCart from '../../services/utils/zipUserCart';

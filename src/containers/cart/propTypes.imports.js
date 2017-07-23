@@ -23,7 +23,7 @@ export const propTypes = {
   mobileActive: bool.isRequired,
   EmptyMemberCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,
-  FetchMultipleProducts: func.isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
   userCart: arrayOf(
     shape({
       qty: number,

@@ -2,7 +2,6 @@
 // TODO: Need to updated UserCart Schema to track "error" & "errorMsg" (Same as GuestCart).
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
@@ -26,9 +25,7 @@ import {
   ShoppingCartMobileProductCard,
 } from './component.imports';
 import { propTypes, defaultProps } from './propTypes.imports';
-import {
-  zipUserCart as zip,
-} from './utilities.imports';
+import { zipUserCart as zip } from './utilities.imports';
 
 class ShoppingCart extends Component {
   static propTypes = propTypes;
@@ -56,6 +53,7 @@ class ShoppingCart extends Component {
       userCart,
       guestCart,
       mobileActive,
+      FetchMultipleProducts: fetchCartProductsResult,
     } = nextProps;
 
     const updatedCart = loggedIn ? userCart : guestCart;
@@ -78,6 +76,35 @@ class ShoppingCart extends Component {
       });
     }
   }
+
+  shouldComponentUpdate(nextProps) {
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
+
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: nextUserCart },
+      } = nextProps,
+
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: thisUserCart },
+      } = this.props,
+
+      reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
+      userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
+
+    if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
+      return true;
+    }
+    return false;
+  }
   /**
   * Function: "calculateTotalsDue"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
@@ -93,6 +120,7 @@ class ShoppingCart extends Component {
     let grandTotal = 0;
 
     cart.forEach((productObj) => {
+      console.log('%cproductObj', 'background:cyan;', productObj);
       productObj.subTotal = productObj.qty * Number(productObj.product.price);
       grandTotal += productObj.subTotal;
     });
@@ -415,6 +443,7 @@ class ShoppingCart extends Component {
       guestCart,
       FetchMultipleProducts: fetchCartProductsResult,
     } = this.props;
+    console.log('%cthis.props', 'background:red;', this.props);
 
     const {
       taxes,
@@ -432,6 +461,7 @@ class ShoppingCart extends Component {
     } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
       cart = this.zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
     }
+    console.log('%ccart', 'background:red;', cart);
 
     if (!!updatedCart.length) cart = updatedCart;
 

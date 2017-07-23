@@ -16,7 +16,10 @@ import {
   NavbarCartDropdnContent,
 } from './imports';
 import { propTypes, defaultProps } from './propTypes.imports';
-import { zipUserCart as zip } from './utilities.imports';
+import {
+  zipUserCart as ZipUserCart,
+  determineCartType as DetermineCartType,
+} from './utilities.imports';
 
 class NavbarCart extends Component {
   static propTypes = propTypes
@@ -114,7 +117,9 @@ class NavbarCart extends Component {
   * Function: "zipUserCart"
   * See function description at src/services/utils/zipUserCart.js
   */
-  zipUserCart = (userCartIdsAndQtys, productsArray) => zip(userCartIdsAndQtys, productsArray);
+  zipUserCart = (userCartIdsAndQtys, productsArray) => ZipUserCart(userCartIdsAndQtys, productsArray);
+
+  determineCartType = (loggedIn, guestCart, userCart, fetchCartProductsResult) => DetermineCartType(loggedIn, guestCart, userCart, fetchCartProductsResult);
 
   render() {
     const {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const { number, string, shape, bool, func, arrayOf, object } = PropTypes;
+const { number, string, shape, bool, func, arrayOf, object, objectOf, any } = PropTypes;
 
 export const propTypes = {
   qty: number.isRequired,
@@ -11,7 +11,7 @@ export const propTypes = {
   saveUser: func.isRequired,
   saveGuestCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,
-  FetchMultipleProducts: func.isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
   data: shape({
     FetchUserProfile: shape({
       qty: number,
