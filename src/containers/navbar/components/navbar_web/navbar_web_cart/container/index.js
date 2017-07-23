@@ -119,29 +119,30 @@ class NavbarCart extends Component {
   */
   zipUserCart = (userCartIdsAndQtys, productsArray) => ZipUserCart(userCartIdsAndQtys, productsArray);
 
+  /**
+  * Function: "determineCartType"
+  * See function description at src/services/utils/determineCartType.js
+  */
   determineCartType = (loggedIn, guestCart, userCart, fetchCartProductsResult) => DetermineCartType(loggedIn, guestCart, userCart, fetchCartProductsResult);
+
+  calculateQty = (loggedIn, guestCart, userCart, fetchCartProductsResult) => calculateQty(loggedIn, guestCart, userCart, fetchCartProductsResult)
 
   render() {
     const {
-      qty,
       loggedIn,
       guestCart,
       userCart,  // only contains id's and quantities.
       FetchMultipleProducts: fetchCartProductsResult,
     } = this.props;
 
-    /**
-    * IF-block
-    * 1) Dynamically assings "cartItems" to either the guest-cart or the logged-in-users-cart.
-    * 2) If the cartItems is to be assigned to the logged-in-users-cart, then the "zipUserCart" function is called.  The returned value will be an updated array.
-    * 3) Otherwise if the cartItems is to be assigned to the guestCart - a simple assignment is applied.
-    */
-    let cartItems = [];
-    if (!loggedIn && guestCart.length) {
-      cartItems = guestCart;
-    } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
-      cartItems = this.zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
-    }
+    const { cartItems } = this.determineCartType(
+      loggedIn,
+      guestCart,
+      userCart,
+      fetchCartProductsResult,
+    );
+
+    const { qty } = this.calculateQty(loggedIn, guestCart, userCart, fetchCartProductsResult);
 
     return (
       <div className="mycart-main">
@@ -177,13 +178,18 @@ class NavbarCart extends Component {
 *
 * @return {number} result - Final reduced quantity of all items in the cart.
 */
-const calculateQty = (loggedIn, guestCart, userProfile) => {
+const calculateQty = (loggedIn, guestCart, userProfile, fetchCartProductsResult) => {
   const userCart = !!userProfile && !!userProfile.shopping && userProfile.shopping.cart;
 
-  const cart = loggedIn ? userCart : guestCart;
+  const { cartItems } = DetermineCartType(
+    loggedIn,
+    guestCart,
+    userCart,
+    fetchCartProductsResult,
+  );
 
-  if (!cart.length) return 0;
-  return cart.reduce((accum, { qty }) => accum + qty, 0);
+  if (!cartItems.length) return 0;
+  return cartItems.reduce((accum, { qty }) => accum + qty, 0);
 };
 
 /**
@@ -220,7 +226,7 @@ const NavbarCartWithData = compose(
 
 const NavbarCartWithStateAndData = connect(
   ({ user, auth, orders }) => ({
-    qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
+    qty: 0,
     userId: auth.loggedIn ? user.profile._id : '',
     loggedIn: auth.loggedIn,
     guestCart: orders.cart,
