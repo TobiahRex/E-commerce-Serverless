@@ -107,7 +107,10 @@ class NavbarCart extends Component {
   /**
   * Function: "zipUserCart"
   * 1) Defines a "zip" function.
-  * 2) Creates a new array of objects containing the product details for the users cart by calling the "zip" function defined in step 1.
+  * - a) establishes a counter & results variables.
+  * - b) creates a for loop, whose length is restricted to the shortest array.
+  * 
+  * 2)
   *
   * @param {object} userProfile - The current user profile object.
   * @param {array} multipleProducts - multiple product arrays.
@@ -115,7 +118,6 @@ class NavbarCart extends Component {
   * @return {array} updatedProducts - See step 2.
   */
   zipUserCart = (userCartIdsAndQtys, productsArray) => {
-    console.log('%cproductsArray', 'background:red;', productsArray);
     /**
     * Function: "zip"
     * 1) Iterates over 2 arrays simultaneously.
