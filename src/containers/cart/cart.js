@@ -25,7 +25,10 @@ import {
   ShoppingCartMobileProductCard,
 } from './component.imports';
 import { propTypes, defaultProps } from './propTypes.imports';
-import { zipUserCart as zip } from './utilities.imports';
+import {
+  zipUserCart as ZipUserCart,
+  determineCartType as DetermineCartType,
+} from './utilities.imports';
 
 class ShoppingCart extends Component {
   static propTypes = propTypes;
@@ -433,7 +436,7 @@ class ShoppingCart extends Component {
     );
   }
 
-  zipUserCart = (userCartIdsAndQtys, productsArray) => zip(userCartIdsAndQtys, productsArray);
+  zipUserCart = (userCartIdsAndQtys, productsArray) => ZipUserCart(userCartIdsAndQtys, productsArray);
 
   render() {
     const {

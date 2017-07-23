@@ -123,7 +123,17 @@ class NavbarCart extends Component {
   * Function: "determineCartType"
   * See function description at src/services/utils/determineCartType.js
   */
-  determineCartType = (loggedIn, guestCart, userCart, fetchCartProductsResult) => DetermineCartType(loggedIn, guestCart, userCart, fetchCartProductsResult);
+  determineCartType = (
+    loggedIn,
+    guestCart,
+    userCart,
+    fetchCartProductsResult,
+  ) => DetermineCartType(
+    loggedIn,
+    guestCart,
+    userCart,
+    fetchCartProductsResult,
+  );
 
   render() {
     const {
@@ -133,7 +143,7 @@ class NavbarCart extends Component {
       FetchMultipleProducts: fetchCartProductsResult,
     } = this.props;
 
-    const { cartItems } = this.determineCartType(
+    const cartItems = this.determineCartType(
       loggedIn,
       guestCart,
       userCart,
