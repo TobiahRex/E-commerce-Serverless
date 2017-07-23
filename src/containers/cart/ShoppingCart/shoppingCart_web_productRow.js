@@ -10,6 +10,7 @@ function ShoppingCartWebProductRow({
   qtyHandler,
   deleteFromCart,
 }) {
+  console.log('%cproductObj', 'background:red;', productObj);
   return (
     <tr key={`shopping-cart-table-row-${productObj._id}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">

@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   getTaxRate: null,
-  emptyUserCart: null,
+  emptyGuestCart: null,
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
@@ -36,14 +36,17 @@ const saveGuestCart = (state, { updatedProducts }) => ({
   cart: [...updatedProducts],
 });
 
-const emptyUserCart = state => ({
-  ...state,
-  cart: [],
-});
+const emptyGuestCart = (state) => {
+  localStorage.removeItem('guestCart');
+  return ({
+    ...state,
+    cart: [],
+  });
+};
 
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.SAVE_GUEST_CART]: saveGuestCart,
-  [Types.EMPTY_USER_CART]: emptyUserCart,
+  [Types.EMPTY_GUEST_CART]: emptyGuestCart,
 });

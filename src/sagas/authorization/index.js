@@ -4,6 +4,7 @@ import { eventChannel } from 'redux-saga';
 import { push } from 'react-router-redux';
 import { auth as AuthService } from '../../navigation/routes';
 import apiActions from '../../redux/api';
+import orderActions from '../../redux/orders';
 import authActions from '../../redux/auth';
 import userActions from '../../redux/user';
 import sessionActions from '../../redux/session';
@@ -48,7 +49,7 @@ function* postLoginActions(payload) {
 
   if (ok) {
     yield [
-      // put(userActions.saveUser(profile)),
+      put(orderActions.emptyGuestCart()),
       put(userActions.saveUser(data.data.LoginOrRegister)),
       put(authActions.loginSuccess()),
       put(sessionActions.resetPreLoginUrl()),
