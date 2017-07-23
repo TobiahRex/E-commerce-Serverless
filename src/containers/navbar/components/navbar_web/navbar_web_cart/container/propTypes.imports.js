@@ -27,27 +27,15 @@ export const propTypes = {
       }),
     }),
   }),
-  activeUser: shape({
-    _id: string,
-    shopping: shape({
-      cart: arrayOf(shape({
-        qty: number,
-        strength: number,
-        product: string,
-      })),
+  userCart: arrayOf(
+    shape({
+      qty: number,
+      productId: string,
     }),
-    name: objectOf(any),
-    pictures: objectOf(any),
-    authentication: objectOf(any),
-    contactInfo: objectOf(any),
-    permissions: objectOf(any),
-    userStory: objectOf(any),
-    marketHero: objectOf(any),
-    socialProfileBlob: objectOf(any),
-  }),
+  ),
 };
 export const defaultProps = {
   data: null,
   guestCart: null,
-  activeUser: null,
+  userCart: null,
 };

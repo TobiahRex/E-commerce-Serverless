@@ -54,7 +54,7 @@ class NavbarCart extends Component {
   /**
   * Function: "deleteFromCart"
   * 1) Find the product id from the event target object.
-  * 2) Filter either "activeUser" cart, or "guestCart" by the id found in step 1.
+  * 2) Filter either "userCart" cart, or "guestCart" by the id found in step 1.
   * 3) Call either "saveUser" if user is logged in.  Or call "saveGuestCart" if user is a guest.
   *
   * @param {object} e - Event object.
@@ -65,12 +65,12 @@ class NavbarCart extends Component {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const {
       guestCart,
-      activeUser,
+      userCart,
       saveUser,
       saveGuestCart,
     } = this.props;
 
-    if (!!activeUser._id) {
+    if (!!userCart._id) {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
@@ -84,7 +84,7 @@ class NavbarCart extends Component {
       this.props.DeleteFromMemberCart({
         variables: {
           productId,
-          userId: activeUser._id,
+          userId: userCart._id,
         },
       })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
@@ -152,10 +152,9 @@ class NavbarCart extends Component {
       qty,
       loggedIn,
       guestCart,
-      activeUser,
+      userCart,
       FetchMultipleProducts: userCartResult,
     } = this.props;
-    console.log('%cuserCartResult', 'background:red;', userCartResult);
 
     /**
     * IF-block
@@ -167,7 +166,7 @@ class NavbarCart extends Component {
     if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
     } else if (loggedIn && userCartResult.FetchMultipleProducts) {
-      cartItems = this.zipUserCart(activeUser, userCartResult.FetchMultipleProducts);
+      cartItems = this.zipUserCart(userCart, userCartResult.FetchMultipleProducts);
     }
 
     return (
