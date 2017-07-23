@@ -6,7 +6,12 @@
 *
 * @param {bool} loggedIn - is the user logged in?
 * @param {array} guestCart - array of product objects & "qty".
-* @param {}
+* @param {array} userCart - array of "qty" and the product _id.
+* @param {array} fetchCartProductsResult - apollo query result array - contains pure product objects from mongo.
+*
+* @return {array} cartItems - either the guest cart or the populated userCart.
+*
+* NOTE - This function is called for the Single Product page, as well as the Cart page.
 */
 export default (
   loggedIn,
