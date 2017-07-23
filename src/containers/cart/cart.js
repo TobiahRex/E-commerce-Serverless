@@ -12,8 +12,11 @@ import {
   EmptyMemberCart,
   DeleteFromMemberCart,
 } from '../../graphql/mutations';
+import { FetchMultipleProducts } from '../../graphql/queries';
+
 import userActions from '../../redux/user';
 import orderActions from '../../redux/orders';
+
 import {
   BreadCrumb,
   EmptyCart,
@@ -22,43 +25,14 @@ import {
   ShoppingCartWebProductRow,
   ShoppingCartMobileProductCard,
 } from './component.imports';
+import { propTypes, defaultProps } from './propTypes.imports';
+import {
+  zipUserCart as zip,
+} from './utilities.imports';
 
-const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 class ShoppingCart extends Component {
-  static propTypes = {
-    qty: number.isRequired,
-    push: func.isRequired,
-    userId: string,
-    newUser: bool.isRequired,
-    taxRate: number.isRequired,
-    loggedIn: bool.isRequired,
-    saveUser: func.isRequired,
-    saveGuest: func.isRequired,
-    mobileActive: bool.isRequired,
-    EmptyMemberCart: func.isRequired,
-    DeleteFromMemberCart: func.isRequired,
-    userCart: arrayOf(
-      shape({
-        qty: number,
-        strength: number,
-        product: string,
-      }),
-    ),
-    guestCart: arrayOf(
-      shape({
-        _id: string,
-        qty: number,
-        strength: number,
-        userId: string,
-        product: objectOf(any),
-      }),
-    ),
-  }
-  static defaultProps = {
-    userId: '',
-    userCart: null,
-    guestCart: null,
-  }
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
   constructor(props) {
     super(props);
 
@@ -431,12 +405,34 @@ class ShoppingCart extends Component {
     );
   }
 
+  zipUserCart = (userCartIdsAndQtys, productsArray) => zip(userCartIdsAndQtys, productsArray);
+
   render() {
-    const { loggedIn, userCart, guestCart, newUser } = this.props;
-    const { taxes, grandTotal, mobileActive, updatedCart } = this.state;
+    const {
+      newUser,
+      loggedIn,
+      userCart,
+      guestCart,
+      FetchMultipleProducts: fetchCartProductsResult,
+    } = this.props;
+
+    const {
+      taxes,
+      grandTotal,
+      updatedCart,
+      mobileActive,
+    } = this.state;
+
     const cartHasProducts = userCart.length || guestCart.length;
 
-    let cart = loggedIn ? userCart : guestCart;
+    // let cart = loggedIn ? userCart : guestCart;
+    let cart = [];
+    if (!loggedIn && guestCart.length) {
+      cart = guestCart;
+    } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
+      cart = this.zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
+    }
+
     if (!!updatedCart.length) cart = updatedCart;
 
     return (
@@ -502,6 +498,20 @@ const checkNewUser = (user, loggedIn) => {
 
 
 const ShoppingCartWithData = compose(
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: ({ loggedIn, userCart }) => {
+      if (!loggedIn) return ({ variables: { ids: [] } });
+
+      let ids = [];
+
+      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
+
+      return ({
+        variables: { ids },
+      });
+    },
+  }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCart);

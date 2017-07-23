@@ -5,12 +5,18 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 
-import { propTypes, defaultProps } from './propTypes.imports';
-import { NavbarCartMainButton, NavbarCartDropdnContent } from './imports';
 import orderActions from '../../../../../../redux/orders/';
 import userActions from '../../../../../../redux/user/';
+
 import { DeleteFromMemberCart } from '../../../../../../graphql/mutations';
 import { FetchMultipleProducts } from '../../../../../../graphql/queries';
+
+import {
+  NavbarCartMainButton,
+  NavbarCartDropdnContent,
+} from './imports';
+import { propTypes, defaultProps } from './propTypes.imports';
+import { zipUserCart as zip } from './utilities.imports';
 
 class NavbarCart extends Component {
   static propTypes = propTypes
@@ -106,49 +112,9 @@ class NavbarCart extends Component {
 
   /**
   * Function: "zipUserCart"
-  * 1) Defines a "zip" function.
-  * - a) establishes a counter & results variables.
-  * - b) creates a for loop, whose length is restricted to the shortest array.
-  * - c) dynamically assigns at index "counter" the result of the "combinerFunction".
-  * - d) returns result.
-  * 2) calls the "zip" func. passing in the array with qty's and id's of products in the users cart as "userCartIdsAndQtys", as well as the resulting array from fetching the entire product object by id, inside the userCart array.
-  * 3) Using the two arrays from step 2, creates a "combinerFunction" that takes the "qty" value from the first array, and the product info & _id from the second array, and returns a new object with those values.
-  *
-  * @param {object} userProfile - The current user profile object.
-  * @param {array} multipleProducts - multiple product arrays.
-  *
-  * @return {array} updatedProducts - See step 2.
+  * See function description at src/services/utils/zipUserCart.js
   */
-  zipUserCart = (userCartIdsAndQtys, productsArray) => {
-    /**
-    * Function: "zip"
-    * 1) Iterates over 2 arrays simultaneously.
-    * 2) Iterations are limited to the input with the shortest array length.
-    *
-    * @param {array} left - Array of values.
-    * @param {array} right - Array of values.
-    *
-    * @return {array} results - New array of mixed values from the two input arrays.
-    */
-    const zip = (left, right, combinerFunction) => {
-      let counter;
-      const results = [];
-
-      for (
-        counter = 0;
-        counter < Math.min(left.length, right.length);
-        counter += 1
-      ) {
-        results[counter] = combinerFunction(left[counter], right[counter]);
-      }
-      return results;
-    };
-
-    return zip(userCartIdsAndQtys, productsArray, ({ qty }, productObj) => ({
-      qty,
-      ...productObj,
-    }));
-  }
+  zipUserCart = (userCartIdsAndQtys, productsArray) => zip(userCartIdsAndQtys, productsArray);
 
   render() {
     const {
@@ -156,7 +122,7 @@ class NavbarCart extends Component {
       loggedIn,
       guestCart,
       userCart,  // only contains id's and quantities.
-      FetchMultipleProducts: populateUserCartResult,
+      FetchMultipleProducts: fetchCartProductsResult,
     } = this.props;
 
     /**
@@ -168,8 +134,8 @@ class NavbarCart extends Component {
     let cartItems = [];
     if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
-    } else if (loggedIn && !!populateUserCartResult.FetchMultipleProducts) {
-      cartItems = this.zipUserCart(userCart, populateUserCartResult.FetchMultipleProducts);
+    } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
+      cartItems = this.zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
     }
 
     return (
@@ -177,7 +143,7 @@ class NavbarCart extends Component {
         <NavbarCartMainButton qty={qty} />
 
         <NavbarCartDropdnContent
-          loading={!!populateUserCartResult && populateUserCartResult.loading}
+          loading={!!fetchCartProductsResult && fetchCartProductsResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}

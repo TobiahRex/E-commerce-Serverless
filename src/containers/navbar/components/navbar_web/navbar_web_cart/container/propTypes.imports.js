@@ -11,6 +11,7 @@ export const propTypes = {
   saveUser: func.isRequired,
   saveGuestCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,
+  FetchMultipleProducts: func.isRequired,
   data: shape({
     FetchUserProfile: shape({
       qty: number,
