@@ -114,7 +114,7 @@ class NavbarCart extends Component {
   *
   * @return {array} updatedProducts - See step 2.
   */
-  zipUserCart = (userCart, multipleProducts) => {
+  zipUserCart = (userCartIdsAndQtys, productsArray) => {
     /**
     * Function: "zip"
     * 1) Iterates over 2 arrays simultaneously.
@@ -139,11 +139,9 @@ class NavbarCart extends Component {
       return results;
     };
 
-    const profileCart = userCart;
-    return zip(userCart, multipleProducts, (productObject, productCart) => ({
-      _id: productCart._id,
-      qty: userCart.qty,
-      ...productCart.product,
+    return zip(userCartIdsAndQtys, productsArray, ({ qty }, productObj) => ({
+      qty,
+      ...productObj,
     }));
   }
 
@@ -204,7 +202,7 @@ class NavbarCart extends Component {
 * @return {number} result - Final reduced quantity of all items in the cart.
 */
 const calculateQty = (loggedIn, guestCart, userProfile) => {
-  const userCart = !!userProfile && Object.prototype.hasOwnProperty.call(userProfile, 'shopping') && userProfile.shopping.cart;
+  const userCart = !!userProfile && !!userProfile.shopping && userProfile.shopping.cart;
 
   const cart = loggedIn ? userCart : guestCart;
 
