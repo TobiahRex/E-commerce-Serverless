@@ -125,8 +125,6 @@ class NavbarCart extends Component {
   */
   determineCartType = (loggedIn, guestCart, userCart, fetchCartProductsResult) => DetermineCartType(loggedIn, guestCart, userCart, fetchCartProductsResult);
 
-  calculateQty = (loggedIn, guestCart, userCart, fetchCartProductsResult) => calculateQty(loggedIn, guestCart, userCart, fetchCartProductsResult)
-
   render() {
     const {
       loggedIn,
@@ -142,7 +140,10 @@ class NavbarCart extends Component {
       fetchCartProductsResult,
     );
 
-    const { qty } = this.calculateQty(loggedIn, guestCart, userCart, fetchCartProductsResult);
+    let qty = 0;
+    if (!!cartItems.length) {
+      qty = cartItems.reduce((accum, next) => accum + next.qty, 0);
+    }
 
     return (
       <div className="mycart-main">
@@ -164,33 +165,6 @@ class NavbarCart extends Component {
     );
   }
 }
-
-/**
-* Function: "calculateQty"
-* 1) Checks to see if "userProfile" is truthy && if so, that the object has a property of "shopping", && if so, assigns "userCart" the value of "userProfile.shopping.cart".
-* 2) Creates "cart" variable and assigns value based on if the user is logged in or not.
-* 3a) If the user and guest cart's are both empty, then the final return will be 0;
-* 3b) Otherwise, reduce the total quantities of all products in the cart to a final number, and return that number to the function caller.
-*
-* @param {boolean} loggedIn - User logged in flag.
-* @param {array} guestCart - Array of values.
-* @param {object} userProfile - Parent object for all user's information.
-*
-* @return {number} result - Final reduced quantity of all items in the cart.
-*/
-const calculateQty = (loggedIn, guestCart, userProfile, fetchCartProductsResult) => {
-  const userCart = !!userProfile && !!userProfile.shopping && userProfile.shopping.cart;
-
-  const { cartItems } = DetermineCartType(
-    loggedIn,
-    guestCart,
-    userCart,
-    fetchCartProductsResult,
-  );
-
-  if (!cartItems.length) return 0;
-  return cartItems.reduce((accum, { qty }) => accum + qty, 0);
-};
 
 /**
 * GraphQL & Redux Higher Order Component Control Flow:
