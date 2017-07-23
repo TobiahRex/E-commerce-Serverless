@@ -59,7 +59,13 @@ class ShoppingCart extends Component {
       FetchMultipleProducts: fetchCartProductsResult,
     } = nextProps;
 
-    const updatedCart = loggedIn ? userCart : guestCart;
+    const updatedCart = this.determineCartType(
+      loggedIn,
+      guestCart,
+      userCart,
+      fetchCartProductsResult,
+      ZipUserCart,
+    );
 
     const { taxes, grandTotal } = this.calculateTotalsDue(updatedCart);
     if (
@@ -436,7 +442,29 @@ class ShoppingCart extends Component {
     );
   }
 
+  /**
+  * Function: "zipUserCart"
+  * See function description at src/services/utils/zipUserCart.js
+  */
   zipUserCart = (userCartIdsAndQtys, productsArray) => ZipUserCart(userCartIdsAndQtys, productsArray);
+
+  /**
+  * Function: "determineCartType"
+  * See function description at src/services/utils/determineCartType.js
+  */
+  determineCartType = (
+    loggedIn,
+    guestCart,
+    userCart,
+    fetchCartProductsResult,
+    zipCartFunction,
+  ) => DetermineCartType(
+    loggedIn,
+    guestCart,
+    userCart,
+    fetchCartProductsResult,
+    zipCartFunction,
+  );
 
   render() {
     const {
@@ -446,7 +474,6 @@ class ShoppingCart extends Component {
       guestCart,
       FetchMultipleProducts: fetchCartProductsResult,
     } = this.props;
-    console.log('%cthis.props', 'background:red;', this.props);
 
     const {
       taxes,
@@ -457,14 +484,14 @@ class ShoppingCart extends Component {
 
     const cartHasProducts = userCart.length || guestCart.length;
 
-    // let cart = loggedIn ? userCart : guestCart;
-    let cart = [];
-    if (!loggedIn && guestCart.length) {
-      cart = guestCart;
-    } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
-      cart = this.zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
-    }
-    console.log('%ccart', 'background:red;', cart);
+    let cart = this.determineCartType(
+      loggedIn,
+      guestCart,
+      userCart,
+      fetchCartProductsResult,
+      ZipUserCart,
+    );
+
 
     if (!!updatedCart.length) cart = updatedCart;
 

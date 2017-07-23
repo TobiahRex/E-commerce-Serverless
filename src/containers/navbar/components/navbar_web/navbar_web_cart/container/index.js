@@ -128,11 +128,13 @@ class NavbarCart extends Component {
     guestCart,
     userCart,
     fetchCartProductsResult,
+    zipCartFunction,
   ) => DetermineCartType(
     loggedIn,
     guestCart,
     userCart,
     fetchCartProductsResult,
+    zipCartFunction,
   );
 
   render() {
@@ -148,6 +150,7 @@ class NavbarCart extends Component {
       guestCart,
       userCart,
       fetchCartProductsResult,
+      ZipUserCart,
     );
 
     let qty = 0;

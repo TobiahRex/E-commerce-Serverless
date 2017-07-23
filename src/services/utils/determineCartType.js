@@ -18,12 +18,13 @@ export default (
   guestCart,
   userCart,
   fetchCartProductsResult,
+  zipUserCart,
 ) => {
   let cartItems = [];
   if (!loggedIn && guestCart.length) {
     cartItems = guestCart;
   } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
-    cartItems = this.zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
+    cartItems = zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
   }
   return cartItems;
 };
