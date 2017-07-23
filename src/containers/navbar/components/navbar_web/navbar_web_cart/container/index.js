@@ -64,13 +64,14 @@ class NavbarCart extends Component {
   deleteFromCart = (e) => {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const {
+      userId,
+      loggedIn,
       guestCart,
-      userCart,
       saveUser,
       saveGuestCart,
     } = this.props;
 
-    if (!!userCart._id) {
+    if (loggedIn) {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
@@ -83,8 +84,8 @@ class NavbarCart extends Component {
       */
       this.props.DeleteFromMemberCart({
         variables: {
+          userId,
           productId,
-          userId: userCart._id,
         },
       })
       .then(({ data: { DeleteFromMemberCart: updatedUser } }) => {
@@ -113,7 +114,7 @@ class NavbarCart extends Component {
   *
   * @return {array} updatedProducts - See step 2.
   */
-  zipUserCart = (userProfile, multipleProducts) => {
+  zipUserCart = (userCart, multipleProducts) => {
     /**
     * Function: "zip"
     * 1) Iterates over 2 arrays simultaneously.
@@ -138,11 +139,10 @@ class NavbarCart extends Component {
       return results;
     };
 
-    const profileCart = userProfile.shopping.cart;
-    return zip(profileCart, multipleProducts, (userCart, productCart) => ({
+    const profileCart = userCart;
+    return zip(userCart, multipleProducts, (productObject, productCart) => ({
       _id: productCart._id,
       qty: userCart.qty,
-      nicotineStrength: userCart.nicotineStrength,
       ...productCart.product,
     }));
   }
@@ -152,8 +152,8 @@ class NavbarCart extends Component {
       qty,
       loggedIn,
       guestCart,
-      userCart,
-      FetchMultipleProducts: userCartResult,
+      userCart,  // only contains id's and quantities.
+      FetchMultipleProducts: populateUserCartResult,
     } = this.props;
 
     /**
@@ -165,8 +165,8 @@ class NavbarCart extends Component {
     let cartItems = [];
     if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
-    } else if (loggedIn && userCartResult.FetchMultipleProducts) {
-      cartItems = this.zipUserCart(userCart, userCartResult.FetchMultipleProducts);
+    } else if (loggedIn && !!populateUserCartResult.FetchMultipleProducts) {
+      cartItems = this.zipUserCart(userCart, populateUserCartResult);
     }
 
     return (
@@ -174,7 +174,7 @@ class NavbarCart extends Component {
         <NavbarCartMainButton qty={qty} />
 
         <NavbarCartDropdnContent
-          loading={!!userCartResult.FetchMultipleProducts && userCartResult.loading}
+          loading={!!populateUserCartResult && populateUserCartResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}
@@ -247,6 +247,7 @@ const NavbarCartWithData = compose(
 const NavbarCartWithStateAndData = connect(
   ({ user, auth, orders }) => ({
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
+    userId: auth.loggedIn ? user.profile._id : '',
     loggedIn: auth.loggedIn,
     guestCart: orders.cart,
     userCart: auth.loggedIn ? user.profile.shopping.cart : [],
