@@ -47,22 +47,9 @@ class NavbarCart extends Component {
 
   /**
   * Function: "editCartItem"
-  * 1) Find the product ID from the event target.
-  * 2) Provide the id to the redux-router "push" method as a query parameter for lookup by the Cart container component.
-  *
-  * @param {object} e - Event object.
-  *
-  * @return {na} no return.
+  * 1) Navigate to the cart page.
   */
-  editCartItem = (e) => {
-    let route = e.target.dataset.route;
-    let id = e.target.dataset.id;
-
-    if (!route) route = e.target.parentNode.dataset.route;
-    if (!id) id = e.target.parentNode.dataset.id;
-
-    this.props.push('/cart');
-  }
+  editCartItem = () => this.props.push('/cart');
 
   /**
   * Function: "deleteFromCart"
@@ -75,15 +62,13 @@ class NavbarCart extends Component {
   * @return {na} no return.
   */
   deleteFromCart = (e) => {
+    const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const {
       guestCart,
       activeUser,
       saveUser,
       saveGuestCart,
     } = this.props;
-
-    let productId = e.target.dataset.id;
-    if (!productId) productId = e.target.parentNode.dataset.id;
 
     if (!!activeUser._id) {
       /**
@@ -204,6 +189,7 @@ class NavbarCart extends Component {
     );
   }
 }
+
 /**
 * Function: "calculateQty"
 * 1) Checks to see if "userProfile" is truthy && if so, that the object has a property of "shopping", && if so, assigns "userCart" the value of "userProfile.shopping.cart".
@@ -243,13 +229,17 @@ const calculateQty = (loggedIn, guestCart, userProfile) => {
 const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ activeUser }) => {
-      if (!activeUser.shopping) return ({ variables: { ids: [] } });
-
-      const ids = activeUser.shopping.cart.reduce((accum, { product: id }) => {
-        accum.push(id);
-        return accum;
-      }, []);
+    options: ({ loggedIn, userCart }) => {
+      if (!loggedIn) return ({ variables: { ids: [] } });
+      let ids = [];
+      if (!!userCart.length) {
+        ids = userCart.reduce((accum, next) => {
+          if (!!next && next.productId) {
+            accum.push(next.productId);
+          }
+          return accum;
+        }, []);
+      }
 
       return ({
         variables: { ids },
@@ -264,7 +254,7 @@ const NavbarCartWithStateAndData = connect(
     qty: calculateQty(auth.loggedIn, orders.cart, user.profile),
     loggedIn: auth.loggedIn,
     guestCart: orders.cart,
-    activeUser: user.profile || { empty: true },
+    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
