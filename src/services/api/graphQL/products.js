@@ -26,17 +26,19 @@ const createAPI = () => {
     query: `query FetchProductById($_id: String!) {
       FetchProductById(_id: $_id) {
         _id
-        mainTitle
-        title
-        price
-        images {
-          purpose
-          url
-        }
-        nicotineStrength
-        slug
-        quantities {
-          available
+        product {
+          mainTitle
+          title
+          price
+          images {
+            purpose
+            url
+          }
+          nicotineStrength
+          slug
+          quantities {
+            available
+          }
         }
       }
     }`,

@@ -155,6 +155,7 @@ class NavbarCart extends Component {
       activeUser,
       FetchMultipleProducts: userCartResult,
     } = this.props;
+    console.log('%cuserCartResult', 'background:red;', userCartResult);
 
     /**
     * IF-block
@@ -231,15 +232,10 @@ const NavbarCartWithData = compose(
     name: 'FetchMultipleProducts',
     options: ({ loggedIn, userCart }) => {
       if (!loggedIn) return ({ variables: { ids: [] } });
+
       let ids = [];
-      if (!!userCart.length) {
-        ids = userCart.reduce((accum, next) => {
-          if (!!next && next.productId) {
-            accum.push(next.productId);
-          }
-          return accum;
-        }, []);
-      }
+
+      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
 
       return ({
         variables: { ids },
