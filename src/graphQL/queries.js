@@ -70,6 +70,7 @@ export const FetchMultipleProducts = gql`
         sku
         slug
         vendor
+        nicotineStrength
         images {
           purpose
           url

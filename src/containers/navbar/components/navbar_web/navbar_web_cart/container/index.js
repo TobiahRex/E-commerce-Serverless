@@ -115,6 +115,7 @@ class NavbarCart extends Component {
   * @return {array} updatedProducts - See step 2.
   */
   zipUserCart = (userCartIdsAndQtys, productsArray) => {
+    console.log('%cproductsArray', 'background:red;', productsArray);
     /**
     * Function: "zip"
     * 1) Iterates over 2 arrays simultaneously.
@@ -164,7 +165,7 @@ class NavbarCart extends Component {
     if (!loggedIn && guestCart.length) {
       cartItems = guestCart;
     } else if (loggedIn && !!populateUserCartResult.FetchMultipleProducts) {
-      cartItems = this.zipUserCart(userCart, populateUserCartResult);
+      cartItems = this.zipUserCart(userCart, populateUserCartResult.FetchMultipleProducts);
     }
 
     return (
@@ -179,7 +180,7 @@ class NavbarCart extends Component {
           cartTotal={
             cartItems.length ?
             cartItems.reduce((acc, next) =>
-              acc + (Number(next.price) * next.qty)
+              acc + (Number(next.product.price) * next.qty)
             , 0) : 0
           }
         />

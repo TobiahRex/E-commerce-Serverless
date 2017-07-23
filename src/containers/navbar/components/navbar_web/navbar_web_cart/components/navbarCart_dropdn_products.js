@@ -71,6 +71,7 @@ class NavbarCartProducts extends Component {
         slug,
       },
     } = productObj;
+    console.log('%cnicotineStrength', 'background:red;', nicotineStrength);
 
     return (
       <li
