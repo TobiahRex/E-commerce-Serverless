@@ -80,7 +80,9 @@ export default class AuthService extends EventEmitter {
   getToken = () => localStorage.getItem('id_token');
 
   logout = () => {
-    localStorage.clear();
+    const guestCart = localStorage.getItem('guestCart') || {};
+    localStorage.clear().setItem('guestCart', guestCart);
+
     this.emit('logged_out');
   };
 }
