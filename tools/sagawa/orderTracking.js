@@ -1,12 +1,6 @@
+/* eslint-disable no-console */
 import { create } from 'apisauce';
 import xml2js from 'xml2js';
-import fs from 'fs';
-
-const xmlOut = str => str
-.replace(/&/g, '&amp;')
-.replace(/</g, '&lt;')
-.replace(/>/g, '&gt;')
-.replace(/"/g, '');
 
 const createSagawaTrackingAPI = () => {
   const api = create({
@@ -18,10 +12,10 @@ const createSagawaTrackingAPI = () => {
     },
   });
 
-  const getStatus = trackingNumber => api.get('xmltrack.asp', { REF: trackingNumber});
+  const getStatus = trackingNumber => api.get('xmltrack.asp', { REF: trackingNumber });
 
   return {
-  getStatus,
+    getStatus,
   };
 };
 const sagawaTrackingAPI = createSagawaTrackingAPI();

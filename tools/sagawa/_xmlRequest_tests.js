@@ -69,7 +69,6 @@ sagawaUploadAPI.uploadOrder(`
 </DATA>
 `)
 .then((response) => {
-  // response.data.pipe(fs.createWriteStream('_sagawaResponse.xml'));
   const { problem, ok, data } = response;
   console.log('RESPONSE:\n', response, '\n\n');
   if (problem) {
