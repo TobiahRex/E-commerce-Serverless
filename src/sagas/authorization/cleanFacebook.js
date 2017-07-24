@@ -22,7 +22,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Facebook) => {
     }],
     authenticationAuth0Identities: [...auth0Facebook.identities],
     contactInfo: {
-      email: '',
+      email: auth0Facebook.email,
       phone: '',
       locale: auth0Facebook.locale,
       timezone: auth0Facebook.timezone,

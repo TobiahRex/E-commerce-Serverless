@@ -47,7 +47,7 @@ export default (db) => {
     delete args.loginType;
 
     User
-    .findOne({ 'authentication.auth0Identities.user_id': auth0Id })
+    .findOne({ 'authentication.auth0Identities.userId': auth0Id })
     .exec()
     .then((dbUser) => {
       if (!dbUser) return User.registerUser(args);
@@ -111,6 +111,7 @@ export default (db) => {
       authenticationLogins,
       authenticationAuth0Identities,
       contactInfo,
+      contactInfoEmail,
       contactInfoLocation,
       contactInfoDevices,
       contactInfoSocialNetworks,
@@ -131,6 +132,7 @@ export default (db) => {
       },
       contactInfo: {
         ...contactInfo,
+        email: contactInfoEmail || '',
         location: { ...contactInfoLocation },
         devices: [...contactInfoDevices],
         socialNetworks: [...contactInfoSocialNetworks],

@@ -128,7 +128,6 @@ class ShoppingCart extends Component {
     let grandTotal = 0;
 
     cart.forEach((productObj) => {
-      console.log('%cproductObj', 'background:cyan;', productObj);
       productObj.subTotal = productObj.qty * Number(productObj.product.price);
       grandTotal += productObj.subTotal;
     });

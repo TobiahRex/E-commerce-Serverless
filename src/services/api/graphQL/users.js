@@ -79,6 +79,11 @@ const createAPI = () => {
         socialProfileBlob: $socialProfileBlob
       ) {
         _id
+        error {
+          hard
+          soft
+          message
+        }
         name {
           first
           last
@@ -180,6 +185,11 @@ const createAPI = () => {
       query FetchUserProfile($id: ID!) {
         FetchUserProfile(id: $id) {
           _id
+          error {
+            hard
+            soft
+            message
+          }
           name {
             first
             last

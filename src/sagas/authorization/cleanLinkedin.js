@@ -23,7 +23,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Linkedin) => {
     }],
     authenticationAuth0Identities: [...auth0Linkedin.identities],
     contactInfo: {
-      email: '',
+      email: auth0Linkedin.email,
       phone: '',
       locale: `${locale.activeLanguage.slice(0, 2)}-${locale.country}`,
       timezone: (() => {

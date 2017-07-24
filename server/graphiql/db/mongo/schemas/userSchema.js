@@ -41,7 +41,7 @@ const userSchema = new Schema({
     ageVerified: { type: Boolean, default: false },
     auth0Identities: [{
       provider: { type: String },
-      user_id: { type: String },
+      userId: { type: String },
       connection: { type: String },
       isSocial: { type: Boolean },
     }],
