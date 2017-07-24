@@ -1,5 +1,4 @@
 /* eslint-disable no-extra-boolean-cast */
-// TODO: Need to updated UserCart Schema to track "error" & "errorMsg" (Same as GuestCart).
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -196,8 +195,8 @@ class ShoppingCart extends Component {
           newCart = newCart.map((productObj) => {
             if (productObj._id === productId) {
               const productWithError = _.clone(productObj, true);
-              productWithError.error = true;
-              productWithError.errorMsg = 'Too much';
+              productWithError.error.soft = true;
+              productWithError.error.message = 'Too much';
               productWithError.qty -= 1;
               return productWithError;
             }

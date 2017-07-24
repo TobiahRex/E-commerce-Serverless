@@ -10,7 +10,6 @@ function ShoppingCartWebProductRow({
   qtyHandler,
   deleteFromCart,
 }) {
-  console.log('%cproductObj', 'background:red;', productObj);
   return (
     <tr key={`shopping-cart-table-row-${productObj._id}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">
@@ -81,7 +80,7 @@ function ShoppingCartWebProductRow({
               </button>
             </li>
           </ul>
-          <ErrorMsg error={productObj.error} errorMsg={productObj.errorMsg} />
+          <ErrorMsg error={productObj.error} errorMsg={productObj.error.message} />
         </div>
       </td>
       <td className="shopping-cart-table-body-total">

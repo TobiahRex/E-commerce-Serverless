@@ -80,7 +80,7 @@ function ShoppingCartMobileProductCard({
                 </div>
               </div>
             </div>
-            <ErrorMsg error={productObj.error} errorMsg={productObj.errorMsg} />
+            <ErrorMsg error={productObj.error} errorMsg={productObj.error.message} />
           </li>
           <li className="shopping-cart-mobile-product-actions-subtotal">
             <div className="shopping-cart-mobile-product-actions-subtotal-title">
@@ -135,9 +135,9 @@ ShoppingCartMobileProductCard.propTypes = {
   taxes: number.isRequired,
   productObj: objectOf(any).isRequired,
   grandTotal: number.isRequired,
+  emptyCart: func.isRequired,
   routerPush: func.isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,
-  emptyCart: func.isRequired,
 };
 export default ShoppingCartMobileProductCard;
