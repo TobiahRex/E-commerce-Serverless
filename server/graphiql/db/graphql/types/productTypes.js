@@ -179,7 +179,7 @@ const rootType = new ObjectType({
                   description: 'The available quanitty for this product.',
                   type: IntType,
                 },
-                in_cart: {
+                inCart: {
                   description: 'The quantity for products currently in customers\' carts.',
                   type: IntType,
                 },
@@ -194,11 +194,11 @@ const rootType = new ObjectType({
       type: new ObjectType({
         name: 'ProductStatistics',
         fields: () => ({
-          adds_to_cart: {
+          addsToCart: {
             description: 'The amount of times someone has added this product to their cart.',
             type: IntType,
           },
-          completed_checkouts: {
+          completedCheckouts: {
             description: 'The amount of times this item has been successfully purchased.',
             type: IntType,
           },
@@ -208,11 +208,11 @@ const rootType = new ObjectType({
               new ObjectType({
                 name: 'ProductTransaction',
                 fields: () => ({
-                  transaction_id: {
+                  transactionId: {
                     description: 'The Mongo ID for transactions.',
                     type: MongoId,
                   },
-                  user_id: {
+                  userId: {
                     description: 'The mongo ID for users.',
                     type: MongoId,
                   },
@@ -459,7 +459,7 @@ const mutations = {
                       description: 'The available quanitty for this product.',
                       type: IntType,
                     },
-                    in_cart: {
+                    inCart: {
                       description: 'The quantity for products currently in customers\' carts.',
                       type: IntType,
                     },
@@ -647,7 +647,7 @@ const mutations = {
                       description: 'The available quanitty for this product.',
                       type: IntType,
                     },
-                    in_cart: {
+                    inCart: {
                       description: 'The quantity for products currently in customers\' carts.',
                       type: IntType,
                     },
