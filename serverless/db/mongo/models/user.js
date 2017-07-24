@@ -73,8 +73,22 @@ export default (db) => {
     dbUser.authentication.totalLogins += 1;
     dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
     dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
-    dbUser.shopping.cart = [...userObj.shoppingCart];
     dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
+
+    const savedOldCart = [...dbUser.shopping.cart];
+    const newCart = [...savedOldCart, ...userObj.shoppingCart];
+
+    if (!!newCart.length) {
+      const newQty = newCart.reduce((accum, next) => (accum += next.qty), 0);
+
+      if (newQty > 4) {
+        dbUser.error.soft = true;
+        dbUser.error.hard = false;
+        dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+      } else {
+        dbUser.shopping.cart = [...newCart];
+      }
+    }
 
     dbUser.save({ validateBeforeSave: true })
     .then(resolve);

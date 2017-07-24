@@ -47,16 +47,17 @@ new Promise((resolve) => {
   dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
 
   const savedOldCart = [...dbUser.shopping.cart];
-  dbUser.shopping.cart = [...savedOldCart, ...userObj.shoppingCart];
+  const newCart = [...savedOldCart, ...userObj.shoppingCart];
 
-  if (!!dbUser.shopping.cart.length) {
-    const totalQty = dbUser.shopping.cart
-    .reduce((accum, next) => (accum += next.qty), 0);
+  if (!!newCart.length) {
+    const newQty = newCart.reduce((accum, next) => (accum += next.qty), 0);
 
-    if (totalQty > 4) {
-      dbUser.shopping.cart = [...savedOldCart];
+    if (newQty > 4) {
       dbUser.error.soft = true;
+      dbUser.error.hard = false;
       dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+    } else {
+      dbUser.shopping.cart = [...newCart];
     }
   }
 
