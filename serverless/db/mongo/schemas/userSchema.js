@@ -2,6 +2,20 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const userSchema = new Schema({
+  error: {
+    hard: {
+      type: Boolean,
+      default: false,
+    },
+    soft: {
+      type: Boolean,
+      default: false,
+    },
+    message: {
+      type: String,
+      default: '',
+    },
+  },
   name: {
     first: { type: String },
     last: { type: String },

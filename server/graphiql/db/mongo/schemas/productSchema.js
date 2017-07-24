@@ -3,10 +3,19 @@ const Schema = require('mongoose').Schema;
 export const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
   error: {
-    type: Boolean,
-    default: false,
+    hard: {
+      type: Boolean,
+      default: false,
+    },
+    soft: {
+      type: Boolean,
+      default: false,
+    },
+    message: {
+      type: String,
+      default: '',
+    },
   },
-  errorMsg: { type: String },
   product: {
     mainTitle: {
       type: String,
