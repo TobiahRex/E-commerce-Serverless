@@ -28,7 +28,7 @@ new Promise((resolve, reject) => {
   delete args.auth0Id;
   delete args.loginType;
 
-  User.findOne({ 'authentication.auth0Identities.userId': auth0Id })
+  User.findOne({ 'authentication.auth0Identities.user_id': auth0Id })
   .exec()
   .then((dbUser) => {
     if (!dbUser) return User.registerUser(args);

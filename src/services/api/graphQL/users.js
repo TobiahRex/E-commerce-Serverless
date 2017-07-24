@@ -31,7 +31,6 @@ const createAPI = () => {
       authentication,
       authenticationLogins,
       authenticationAuth0Identities,
-      contactInfoEmail,
       contactInfoLocation,
       contactInfoDevices,
       contactInfoSocialNetworks,
