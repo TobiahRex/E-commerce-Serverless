@@ -2,11 +2,6 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
-  // error: {
-  //   type: Boolean,
-  //   default: false,
-  // },
-  // errorMsg: { type: String, default: '' },
   error: {
     hard: {
       type: Boolean,
@@ -73,33 +68,33 @@ const productSchema = new Schema({
       required: true,
     },
     dates: {
-      added_to_store: {
+      addedToStore: {
         type: Date,
         default: Date.now,
       },
-      removed_from_store: {
+      removedFromStore: {
         type: Date,
       },
     },
     quantities: {
       available: { type: Number, default: 500 },
-      in_cart: { type: Number },
+      inCart: { type: Number },
     },
   },
   reviews: [{
-    reviews_id: { type: ObjectId, ref: 'Reviews' },
-    user_id: { type: ObjectId, ref: 'User' },
+    reviewsId: { type: ObjectId, ref: 'Reviews' },
+    userId: { type: ObjectId, ref: 'User' },
   }],
   distribution: {
-    restock_threshold: {
+    restockThreshold: {
       type: Number,
       default: 500,
     },
-    restock_amount: {
+    restockAmount: {
       type: Number,
       default: 500,
     },
-    last_replenishment: [{
+    lastReplenishment: [{
       date: {
         type: Date,
       },
@@ -108,14 +103,14 @@ const productSchema = new Schema({
         default: 500,
       },
     }],
-    wholesale_price: { type: Number },
+    wholesalePrice: { type: Number },
   },
   statistics: {
-    adds_to_cart: { type: Number },
-    completed_checkouts: { type: Number },
+    addsToCart: { type: Number },
+    completedCheckouts: { type: Number },
     transactions: [{
-      transaction_id: { type: ObjectId, ref: 'Transaction' },
-      user_id: { type: ObjectId, ref: 'User' },
+      transactionId: { type: ObjectId, ref: 'Transaction' },
+      userId: { type: ObjectId, ref: 'User' },
     }],
   },
 }, {

@@ -47,7 +47,7 @@ sagawaUploadAPI.uploadOrder(`
     <POSTAL>1400012</POSTAL>
     <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
     <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-    <CONTEL>08039188013</CONTEL>
+    <CONTEL>8039188013</CONTEL>
     <KBN>TEST1465</KBN>
     <WGT>1.5</WGT>
     <SHINADAI>100.98</SHINADAI>
@@ -112,58 +112,29 @@ const createSagawaCheckZipAPI = () => {
 };
 
 
-/*
-<ADDRESS>
-<PRINTERNAME></PRINTERNAME>  (1. What should go here?  The customer name?)
-1.  you do not have to input this since you don't print Japan domestic delivery label in US.
+/**
+* Success Response:
+* PARSE OK:
+ {
 
-<BOXID>PCH 2016 10 11 0001 </BOXID>  (2. Is this the same as the order number? 14 digits + VPS ?)
-2. yes, it should be an order number for each parcel.   VPS + yyyymmdd+ 001  or something like that.
-
-<SHIPDATE>2012/08/07</SHIPDATE>
-<KANA>ヤマモト　アツシ</KANA>   (3. Is this the same as the order number? 14 digits + VPS ?)
-3. no, this is the name of consignee. It should be alphabets or Japanese KATAKANA or HIRAGANA,
-we need information of how to read, how to pronounce the name, so should not be in Japanese KANJI.
-
-<POSTAL>1400012</POSTAL>
-<JPADDRESS1>東京都品川区勝島</JPADDRESS1>
-<JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-<CONTEL>0337688503</CONTEL>
-<KBN>11111111111</KBN>  (4. What is this?)
-4. this is an account number for our system. I will provide you later.
-it will be 4 digits number.
-
-<WGT>1.5</WGT>
-<SHINADAI>0</SHINADAI>  (5. What is this?)
-5. total item value. ( not mandatory )  If you do not input the value,  the system will calculate from unit price.
-
-<SHITEIBI></SHITEIBI>  (6. What is this?)
-6. specified delivery day ( not mandatory )
-
-<SHITEIJIKAN></SHITEIJIKAN>  (7. What is this?)
-7. specified delivery time ( not mandatory )
-
-<SOURYO>0</SOURYO>  (8. What is this?)
-8. shipping fee ( not mandatory )
-
-<TESURYO>0</TESURYO>  (9. What is this?)
-9.  commission fee ( not mandatory )
-
-<TTLAMOUNT>0</TTLAMOUNT>  (10. What is this?)
-10.  Total amount of above, item value + shipping fee + commission fee etc.
-
-<CODFLG>0</CODFLG>  (11. What is this?)
-11.  flag for distinguished COD or not  ( always " 0 " if all shipment are not COD )
-
-</ADDRESS>
-<ITEM>
-<ITEMCD>1234</ITEMCD>  (12. What is this?)
-12. item code for each item which can be used for searching on the web
-
-<ITEMNAME>Tablet PC with Windows7</ITEMNAME>
-<USAGE>0</USAGE>" & _
-"<ORIGIN>CN</ORIGIN>
-<PIECE>1</PIECE>
-<UNITPRICE>7000</UNITPRICE>
-</ITEM>
+  "soapenv:Envelope": {
+    "$": {
+      "xmlns:soapenv": "http://schemas.xmlsoap.org/soap/envelope/"
+    },
+    "soapenv:Body": [
+      {
+        "ns:uploadDataResponse": [
+          {
+            "$": {
+              "xmlns:ns": "http://ws.com"
+            },
+            "ns:return": [
+              "ok:15175840|VPS201707240001|C7016404D|7016|404|A200000951360A|2000-0095-1360|0"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
 */

@@ -35,12 +35,7 @@ const juices = {
       slug: "french_vanilla_mocha"
       vendor: "Vape Switch"
       blurb: "The French Vanilla Mocha is a delicious blend of French Vanilla, Mocha Milk Chocolate and dash of Dark Chocolate and brings a smooth, enjoyable flavor.  A nice morning Vape to replace that cigarette with your coffee, but it can easily be considered and all-day Vape."
-    }
-    statistics: {
-        adds_to_cart: 1
-        completed_checkouts: 1
-      }
-    ) {
+    }) {
       _id,
       product {
         mainTitle
@@ -58,13 +53,13 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
       statistics {
-        adds_to_cart
-        completed_checkouts
+        addsToCart
+        completedCheckouts
       }
     }
   }
