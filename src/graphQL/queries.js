@@ -29,7 +29,7 @@ export const FindProductsByFlavor = gql`
         }
         quantities {
           available
-          in_cart
+          inCart
         }
       }
     }
@@ -62,7 +62,7 @@ export const FindProductById = gql`
         }
         quantities {
           available
-          in_cart
+          inCart
         }
       }
     }

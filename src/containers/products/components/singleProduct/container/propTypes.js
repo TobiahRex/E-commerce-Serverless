@@ -27,7 +27,7 @@ const ProductShape = shape({
     })),
     quantities: shape({
       available: number,
-      in_cart: number,
+      inCart: number,
     }),
   }),
 });
