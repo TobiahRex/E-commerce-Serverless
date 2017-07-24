@@ -37,6 +37,11 @@ const juices = {
       blurb: "The French Vanilla Mocha is a delicious blend of French Vanilla, Mocha Milk Chocolate and dash of Dark Chocolate and brings a smooth, enjoyable flavor.  A nice morning Vape to replace that cigarette with your coffee, but it can easily be considered and all-day Vape."
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -173,7 +178,7 @@ const juices = {
         }],
         slug: "fruity_bamm_bamm",
         vendor: "Vape Switch",
-        blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!!!!!"
+        blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!"
 
       }) {
         _id,

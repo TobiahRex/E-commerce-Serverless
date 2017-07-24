@@ -159,11 +159,11 @@ const rootType = new ObjectType({
             type: new ObjectType({
               name: 'ProductDateObject',
               fields: () => ({
-                added_to_store: {
+                addedToStore: {
                   description: 'The Date the product was first added to the store.',
                   type: StringType,
                 },
-                removed_from_store: {
+                removedFromStore: {
                   description: 'The Date the product was removed from the store.',
                   type: StringType,
                 },
