@@ -111,7 +111,6 @@ export default (db) => {
       authenticationLogins,
       authenticationAuth0Identities,
       contactInfo,
-      contactInfoEmail,
       contactInfoLocation,
       contactInfoDevices,
       contactInfoSocialNetworks,
@@ -132,7 +131,7 @@ export default (db) => {
       },
       contactInfo: {
         ...contactInfo,
-        email: contactInfoEmail || '',
+        email: contactInfo.email ? contactInfo.email : '',
         location: { ...contactInfoLocation },
         devices: [...contactInfoDevices],
         socialNetworks: [...contactInfoSocialNetworks],

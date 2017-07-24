@@ -74,7 +74,6 @@ new Promise((resolve, reject) => {
     authenticationLogins,
     authenticationAuth0Identities,
     contactInfo,
-    contactInfoEmail,
     contactInfoLocation,
     contactInfoDevices,
     contactInfoSocialNetworks,
@@ -95,7 +94,7 @@ new Promise((resolve, reject) => {
     },
     contactInfo: {
       ...contactInfo,
-      email: contactInfoEmail || '',
+      email: contactInfo.email ? contactInfo.email : '',
       location: { ...contactInfoLocation },
       devices: [...contactInfoDevices],
       socialNetworks: [...contactInfoSocialNetworks],

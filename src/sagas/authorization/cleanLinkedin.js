@@ -1,5 +1,4 @@
 export default ({ orders, user, geo, locale, mobile }, auth0Linkedin) => {
-  console.log('%cauth0Linkedin', 'background:red;', auth0Linkedin);
   const profile = {
     name: {
       first: auth0Linkedin.given_name,
