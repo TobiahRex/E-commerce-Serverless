@@ -91,6 +91,11 @@ const juices = {
       blurb: "Key lime Pie tastes exactly like Key Lime Pie.  It’s Delicious!"
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -107,8 +112,8 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
     }
@@ -136,6 +141,11 @@ const juices = {
       blurb: "Piña Colada is a tasty blend of Pineapple and Coconut with a hint of rum flavor.  It has been steeped to give it a refined sweetness and a subtle coconut flavor.  You are sure to enjoy this blend."
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -152,8 +162,8 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
     }
@@ -182,6 +192,11 @@ const juices = {
 
       }) {
         _id,
+        error {
+          hard
+          soft
+          message
+        }
         product {
           mainTitle
           title
@@ -198,12 +213,13 @@ const juices = {
             url
           }
           dates {
-            added_to_store
-            removed_from_store
+            addedToStore
+            removedFromStore
           }
         }
       }
     }
+  }
   `,
   strawberriesNCream: `
   mutation CreateProduct {
@@ -227,6 +243,11 @@ const juices = {
         blurb: "Fresh Strawberries with wonderful Cream.  So creamy and so very good!"
       }) {
         _id,
+        error {
+          hard
+          soft
+          message
+        }
         product {
           mainTitle
           title
@@ -243,8 +264,8 @@ const juices = {
             url
           }
           dates {
-            added_to_store
-            removed_from_store
+            addedToStore
+            removedFromStore
           }
         }
       }
@@ -272,6 +293,11 @@ const juices = {
       blurb: "Pappleberry is a wonderful blend of Peach, Apple and Strawberry.  These 3 fruity flavors masterfully combined together make a fantastic all-day vape."
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -288,8 +314,8 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
     }

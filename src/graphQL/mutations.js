@@ -12,6 +12,11 @@ export const AddToMemberCart = gql`
       productId: $productId
     ) {
       _id
+      error {
+        hard
+        soft
+        message
+      }
       name {
         first
         last
@@ -98,6 +103,11 @@ export const EditToMemberCart = gql`
       products: $products
     ) {
       _id
+      error {
+        hard
+        soft
+        message
+      }
       name {
         first
         last
@@ -181,6 +191,11 @@ export const DeleteFromMemberCart = gql`
   ){
     DeleteFromMemberCart(productId: $productId, userId: $userId){
       _id
+      error {
+        hard
+        soft
+        message
+      }
       name {
         first
         last
@@ -261,6 +276,11 @@ export const EmptyMemberCart = gql`
 mutation EmptyMemberCart($userId: ID!) {
   EmptyMemberCart(userId: $userId){
     _id
+    error {
+      hard
+      soft
+      message
+    }
     name {
       first
       last
