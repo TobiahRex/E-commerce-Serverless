@@ -44,8 +44,23 @@ new Promise((resolve) => {
   dbUser.authentication.totalLogins += 1;
   dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
   dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
-  dbUser.shopping.cart = [...userObj.shoppingCart];
   dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
+
+  let savedOldCart = [...dbUser.shopping.cart];
+  dbUser.shopping.cart = [...savedOldCart, ...userObj.shoppingCart];
+
+  if (!!dbUser.shopping.cart.length) {
+    const totalQty = dbUser.shopping.cart.reduce((accum, next) => {
+      if (!!next.qty) {
+        accum += next.qty;
+      }
+      return accum;
+    }, 0);
+    if (totalQty > 4) {
+      return dbUser.shopping.cart =
+    }
+  }
+
 
   dbUser.save({ validateBeforeSave: true })
   .then(resolve);
