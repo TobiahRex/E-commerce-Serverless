@@ -4,6 +4,7 @@ import {
   GraphQLList as ListType,
   GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
+  GraphQLBoolean as BoolType,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
@@ -16,6 +17,26 @@ const rootType = new ObjectType({
     _id: {
       description: 'The ID of the Product.',
       type: new NonNull(MongoId),
+    },
+    error: {
+      description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+      type: new ObjectType({
+        name: 'ProductError',
+        fields: () => ({
+          hard: {
+            description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+            type: BoolType,
+          },
+          soft: {
+            description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+            type: BoolType,
+          },
+          message: {
+            description: 'Amplifying information about error.  Should be written for user readibility.',
+            type: StringType,
+          },
+        }),
+      }),
     },
     product: {
       description: 'Object: All the important details for the product.',

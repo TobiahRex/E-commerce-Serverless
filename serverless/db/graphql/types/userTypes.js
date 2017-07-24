@@ -27,10 +27,12 @@ const rootType = new ObjectType({
             type: BoolType,
           },
           soft: {
-            description: 'Boolean flag for a soft failure.'
+            description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+            type: BoolType,
           },
           message: {
-
+            description: 'Amplifying information about error.  Should be written for user readibility.',
+            type: StringType,
           },
         }),
       }),
