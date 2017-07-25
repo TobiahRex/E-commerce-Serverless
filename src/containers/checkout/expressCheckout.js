@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 import {
+  BreadCrumb,
   BillingAddress,
   ShippingAddress,
   ShippingMethod,
@@ -32,20 +33,12 @@ class ExpressCheckout extends Component {
   render() {
     return (
       <div className="checkout__container">
-        <div className="checkout__breadcrumb--container">
-          <ul className="list">
-            <li className="path">
-              <Link className="path__link" to="/">Home</Link>
-              <FontAwesome
-                className="path__link--right-chevron"
-                name="angle-right"
-              />
-            </li>
-            <li className="path">
-              Express Checkout
-            </li>
-          </ul>
-        </div>
+        <BreadCrumb
+          paths={['Home']}
+          classes={['home']}
+          destination={['']}
+          lastCrumb="Express Checkout"
+        />
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
