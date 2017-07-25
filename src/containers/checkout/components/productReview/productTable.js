@@ -23,9 +23,8 @@ class ProductReviewTable extends PureComponent {
     this.setState(() => ({ cart: [...nextProps] }));
   }
 
-  renderTableRow = (cart) => {
-    console.log('%ccart', 'background:lime;', cart);
-    return cart.map(({ _id, qty, product }) => (
+  renderTableRow = cart => cart
+    .map(({ _id, qty, product }) => (
       <tr className="body__row" key={_id}>
         <td className="body__row--product-name">
           <div className="image__container">
@@ -38,20 +37,19 @@ class ProductReviewTable extends PureComponent {
         </td>
         <td className="body__row--product-qty">
           <div className="qty--container">
-            <p>3</p>
+            <p>{qty}</p>
           </div>
         </td>
         <td className="body__row--product-subtotal">
           <div className="product-subtotal-container">
             <p>
               <FontAwesome name="usd" />{'\u00A0'}
-              {Number(product.price) * qty}
+              {(Number(product.price) * qty).toFixed(2)}
             </p>
           </div>
         </td>
       </tr>
     ));
-  }
 
   render() {
     const {
