@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import ErrorMsg from './errorMsgCart';
+import {
+  nicotineStrengthConverter as NicotineStrengthConverter,
+} from '../utilities.imports';
+
 
 function ShoppingCartMobileProductCard({
   productObj,
@@ -30,7 +34,7 @@ function ShoppingCartMobileProductCard({
           </div>
           <div className="shopping-cart-mobile-product-infobox-nicotine">
             <p>Nicotine Strength:{'\u00A0'}</p>
-            <i>{productObj.product.nicotineStrength}</i>
+            <i>{NicotineStrengthConverter(productObj.product.nicotineStrength)}</i>
           </div>
           <div className="shopping-cart-mobile-product-infobox-sku">
             <p>SKU:{'\u00A0'}</p>

@@ -1,6 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import {
+  nicotineStrengthConverter as NicotineStrengthConverter,
+} from '../../utilities.imports';
+
+const { arrayOf, object } = PropTypes;
 
 class ProductReviewTable extends PureComponent {
   static propTypes = {
@@ -20,34 +25,32 @@ class ProductReviewTable extends PureComponent {
 
   renderTableRow = (cart) => {
     console.log('%ccart', 'background:lime;', cart);
-    return cart.map(({ _id, qty, product }) => {
-      return (
-        <tr className="body__row" key={_id}>
-          <td className="body__row--product-name">
-            <div className="image__container">
-              <img alt="Juice" className="image--source" />
-            </div>
-            <div className="description__container">
-              <p>{product.title}</p>
-              <p>Nicotine Strength: <i>{product.nicotineStrength}</i></p>
-            </div>
-          </td>
-          <td className="body__row--product-qty">
-            <div className="qty--container">
-              <p>3</p>
-            </div>
-          </td>
-          <td className="body__row--product-subtotal">
-            <div className="product-subtotal-container">
-              <p>
-                <FontAwesome name="usd" />{'\u00A0'}
-                {Number(product.price) * qty}
-              </p>
-            </div>
-          </td>
-        </tr>
-      );
-    });
+    return cart.map(({ _id, qty, product }) => (
+      <tr className="body__row" key={_id}>
+        <td className="body__row--product-name">
+          <div className="image__container">
+            <img alt="Juice" className="image--source" />
+          </div>
+          <div className="description__container">
+            <p>{product.title}</p>
+            <p>Nicotine Strength: <i>{NicotineStrengthConverter(product.nicotineStrength)}</i></p>
+          </div>
+        </td>
+        <td className="body__row--product-qty">
+          <div className="qty--container">
+            <p>3</p>
+          </div>
+        </td>
+        <td className="body__row--product-subtotal">
+          <div className="product-subtotal-container">
+            <p>
+              <FontAwesome name="usd" />{'\u00A0'}
+              {Number(product.price) * qty}
+            </p>
+          </div>
+        </td>
+      </tr>
+    ));
   }
 
   render() {

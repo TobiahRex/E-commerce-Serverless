@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import ErrorMsg from './errorMsgCart';
-import convertNicotineStrength from './nicotineStrengthConverter';
+import {
+  nicotineStrengthConverter as NicotineStrengthConverter,
+} from '../utilities.imports';
 
 function ShoppingCartWebProductRow({
   productObj,
@@ -30,7 +32,7 @@ function ShoppingCartWebProductRow({
             </li>
             <li className="shopping-cart-table-body-infobox-nicotine">
               <p>Nicotine Strength:{'\u00A0'}</p>
-              <i>{convertNicotineStrength(productObj.product.nicotineStrength)}</i>
+              <i>{NicotineStrengthConverter(productObj.product.nicotineStrength)}</i>
             </li>
             <li className="shopping-cart-table-body-infobox-sku">
               <p>SKU:{'\u00A0'}</p>
