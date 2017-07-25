@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
-import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 
-class ProductReviewComments extends PureComponent() {
+class ProductReviewComments extends PureComponent {
+  static propTypes = {
+    cart: arrayOf(object).isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -16,6 +19,10 @@ class ProductReviewComments extends PureComponent() {
   }
 
   render() {
+    const {
+      cart,
+    } = this.props;
+
     return (
       <table className="table__container">
         <thead className="table__header">

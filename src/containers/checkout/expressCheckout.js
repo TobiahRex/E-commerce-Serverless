@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { graphql, compose } from 'react-apollo';
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
 } from './utilities.imports';
+import { FetchMultipleProducts } from '../../graphql/queries';
 
 import {
   BreadCrumb,
@@ -56,6 +58,7 @@ class ExpressCheckout extends Component {
     const {
       cart,
     } = this.props;
+    console.log('%ccart', 'background:green;', cart);
 
     const {
       newsletterDecision,
@@ -99,12 +102,45 @@ class ExpressCheckout extends Component {
   }
 }
 
-export default connect(({ auth, user, orders }) => {
+const ExpressCheckoutWithState = connect(({
+  auth,
+  user,
+  orders,
+}, ownProps) => {
   const userCart = auth.loggedIn ? user.profile.shopping.cart : [];
-
   return ({
-    cart: DetermineCartType(auth.loggedIn, orders.cart, userCart, ,ZipUserCart),
+    cart: DetermineCartType(
+      auth.loggedIn,
+      orders.cart,
+      userCart,
+      ownProps.FetchMultipleProducts,
+      ZipUserCart,
+    ),
   });
 }, dispatch => ({
   push: location => dispatch(push(location)),
 }))(ExpressCheckout);
+
+const ExpressCheckoutWithStateAndData = compose(
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: ({ loggedIn, userCart }) => {
+      if (!loggedIn) return ({ variables: { ids: [] } });
+
+      let ids = [];
+
+      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
+
+      return ({
+        variables: { ids },
+      });
+    },
+  }),
+)(ExpressCheckoutWithState);
+
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user }) => ({
+  loggedIn: auth.loggedIn || false,
+  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+}), null)(ExpressCheckoutWithStateAndData);
+
+export default ExpressCheckoutWithStateAndData2;

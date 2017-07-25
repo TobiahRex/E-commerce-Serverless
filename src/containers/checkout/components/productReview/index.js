@@ -8,7 +8,6 @@ function ProductReview({
   cart,
   routerPush,
   newsletterDecision,
-  productReviewComment,
   handleNewsletterChange,
 }) {
   return (
@@ -16,11 +15,9 @@ function ProductReview({
       <div className="title">
         <h3>Product Review</h3>
       </div>
-      <ProductTable cart={cart} />
+      <ProductTable cart={cart || []} />
 
-      <ProductReviewComment
-        productReviewComment={productReviewComment}
-      />
+      <ProductReviewComment />
 
       <NewsletterOption
         newsletterDecision={newsletterDecision}

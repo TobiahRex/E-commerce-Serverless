@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class ProductReviewComments extends PureComponent() {
+class ProductReviewComments extends PureComponent {
   constructor(props) {
     super(props);
 
