@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
 import {
@@ -8,37 +9,63 @@ import {
   ShippingMethod,
   CreditCardInfo,
   ProductReview,
+  GrandTotal,
+  ErrorDialogue,
 } from './component.imports';
 
+const { arrayOf, object } = PropTypes;
 
-export default function ExpressCheckout() {
-  return (
-    <div className="checkout__container">
-      <div className="checkout__breadcrumb--container">
-        <ul className="list">
-          <li className="path">
-            <Link className="path__link" to="/">Home</Link>
-            <FontAwesome
-              className="path__link--right-chevron"
-              name="angle-right"
-            />
-          </li>
-          <li className="path">
-            Express Checkout
-          </li>
-        </ul>
+class ExpressCheckout extends Component {
+  static propTypes = {
+    cart: arrayOf(object),
+  }
+  static defaultProps = {
+    cart: [],
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      cart: [],
+    };
+  }
+
+  render() {
+    return (
+      <div className="checkout__container">
+        <div className="checkout__breadcrumb--container">
+          <ul className="list">
+            <li className="path">
+              <Link className="path__link" to="/">Home</Link>
+              <FontAwesome
+                className="path__link--right-chevron"
+                name="angle-right"
+              />
+            </li>
+            <li className="path">
+              Express Checkout
+            </li>
+          </ul>
+        </div>
+        <div className="checkout__title">
+          <h1>Express Checkout</h1>
+        </div>
+        <div className="checkout__body grid" data-masonry='{ "itemSelector": ".checkout__grid", "columnWidth": 340, "gutter": 22 }'>
+          <div className="checkout__grid">
+            <ProductReview />
+            <ShippingMethod />
+          </div>
+          <div className="checkout__grid">
+            <BillingAddress />
+            <ShippingAddress />
+          </div>
+          <div className="checkout__grid">
+            <CreditCardInfo />
+            <GrandTotal />
+            <ErrorDialogue />
+          </div>
+        </div>
       </div>
-      <div className="checkout__title">
-        <h1>Express Checkout</h1>
-      </div>
-      <div className="checkout__body grid" data-masonry='{ "itemSelector": ".checkout__grid", "columnWidth": 340, "gutter": 22 }'>
-        <BillingAddress />
-        <ShippingAddress />
-        <ShippingMethod />
-        <CreditCardInfo />
-        <ProductReview />
-        <GrandTotal />
-      </div>
-    </div>
-  );
+    );
+  }
 }
+export default ExpressCheckout;
