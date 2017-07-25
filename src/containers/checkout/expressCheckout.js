@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'masonry-layout';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import {
   BreadCrumb,
@@ -13,11 +15,12 @@ import {
   ErrorDialogue,
 } from './component.imports';
 
-const { arrayOf, object } = PropTypes;
+const { arrayOf, object, func } = PropTypes;
 
 class ExpressCheckout extends Component {
   static propTypes = {
     cart: arrayOf(object),
+    push: func.isRequired,
   }
   static defaultProps = {
     cart: [],
@@ -47,7 +50,7 @@ class ExpressCheckout extends Component {
 
   render() {
     const {
-      cart
+      cart,
     } = this.props;
 
     const {
@@ -91,4 +94,8 @@ class ExpressCheckout extends Component {
     );
   }
 }
-export default ExpressCheckout;
+
+export default connect(null,
+  dispatch => ({
+    push: location => dispatch(push(location)),
+  }))(ExpressCheckout);
