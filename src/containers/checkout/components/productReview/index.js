@@ -1,23 +1,33 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import PrComment from './prComment';
 import ProductTable from './productTable';
 import NewsletterOption from './newsletterOption';
 
-export default function ProductReview() {
+function ProductReview({
+  cart,
+  routerPush,
+  onInputChange,
+  newsletterDecision,
+  productReviewComment,
+  handleNewsletterChange,
+}) {
   return (
     <div className="checkout__product-review">
       <div className="title">
         <h3>Product Review</h3>
       </div>
-      <ProductTable cart={this.props.cart} />
+      <ProductTable cart={cart} />
 
       <PrComment
-        onInputChange={this.props.onInputChange}
-        prCommentValue={this.props.prCommentValue}
+        onInputChange={onInputChange}
+        productReviewComment={productReviewComment}
       />
-      
-      <NewsletterOption optionValue={this.props.nlOptionValue} />
+
+      <NewsletterOption
+        newsletterDecision={newsletterDecision}
+        handleNewsletterChange={handleNewsletterChange}
+      />
 
       <div className="input__row">
         <div className="input__row--guest-warning">
@@ -27,11 +37,26 @@ export default function ProductReview() {
 
       <div className="input__row">
         <div className="input__row--guest-register">
-          <button className="guest-register sweep-right" onClick={() => browserHistory.push('/register')}>
+          <button
+            className="guest-register sweep-right"
+            slug="register"
+            onClick={routerPush}
+          >
             Register & Save 10%
           </button>
+
         </div>
       </div>
     </div>
   );
 }
+const { arrayOf, object, func, bool, string } = PropTypes;
+ProductReview.propTypes = {
+  cart: arrayOf(object).isRequired,
+  routerPush: func.isRequired,
+  onInputChange: func.isRequired,
+  newsletterDecision: bool.isRequired,
+  productReviewComment: string.isRequired,
+  handleNewsletterChange: func.isRequired,
+};
+export default ProductReview;

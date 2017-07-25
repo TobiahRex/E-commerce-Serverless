@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NewsletterOption({ optionValue, handleChange }) {
+function NewsletterOption({ optionValue, handleNewsletterChange }) {
   return (
     <div className="input__row">
       <div className="input__row--newsletter">
         <input
           type="checkbox"
-          onChange={handleChange}
+          onChange={handleNewsletterChange}
           value={optionValue}
         />
         <p>Sign Up for Newsletter</p>
@@ -18,6 +18,6 @@ function NewsletterOption({ optionValue, handleChange }) {
 const { bool, func } = PropTypes;
 NewsletterOption.propTypes = {
   optionValue: bool.isRequired,
-  handleChange: func.isRequired,
+  handleNewsletterChange: func.isRequired,
 };
 export default NewsletterOption;
