@@ -5,6 +5,9 @@ import FontAwesome from 'react-fontawesome';
 import {
   BillingAddress,
   ShippingAddress,
+  ShippingMethod,
+  CreditCardInfo,
+  ProductReview,
 } from './component.imports';
 
 
@@ -29,8 +32,13 @@ export default function ExpressCheckout() {
         <h1>Express Checkout</h1>
       </div>
       <div className="checkout__body grid" data-masonry='{ "itemSelector": ".checkout__grid", "columnWidth": 340, "gutter": 22 }'>
-        <BillingAddress />
-        <ShippingAddress />
+        <div className="checkout__grid">
+          <BillingAddress />
+          <ShippingAddress />
+          <ShippingMethod />
+          <CreditCardInfo />
+          <ProductReview />
+        </div>
         <div className="checkout__grid">
           <div className="checkout__grand-total">
             <div className="title">
