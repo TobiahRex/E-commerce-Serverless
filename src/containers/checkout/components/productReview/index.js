@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PrComment from './prComment';
 import ProductTable from './productTable';
 import NewsletterOption from './newsletterOption';
+import ProductReviewComment from './productReviewComment';
 
 function ProductReview({
   cart,
   routerPush,
-  onInputChange,
   newsletterDecision,
   productReviewComment,
   handleNewsletterChange,
@@ -19,8 +18,7 @@ function ProductReview({
       </div>
       <ProductTable cart={cart} />
 
-      <PrComment
-        onInputChange={onInputChange}
+      <ProductReviewComment
         productReviewComment={productReviewComment}
       />
 
@@ -54,7 +52,6 @@ const { arrayOf, object, func, bool, string } = PropTypes;
 ProductReview.propTypes = {
   cart: arrayOf(object).isRequired,
   routerPush: func.isRequired,
-  onInputChange: func.isRequired,
   newsletterDecision: bool.isRequired,
   productReviewComment: string.isRequired,
   handleNewsletterChange: func.isRequired,

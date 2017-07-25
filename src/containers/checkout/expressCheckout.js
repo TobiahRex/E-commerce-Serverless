@@ -27,6 +27,7 @@ class ExpressCheckout extends Component {
 
     this.state = {
       cart: [],
+      newsletterDecision: true,
     };
   }
 
@@ -38,7 +39,21 @@ class ExpressCheckout extends Component {
     });
   }
 
+  routerPush = (e) => {
+    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
+  }
+
+  handleNewsletterChange = () => this.setState(prevState => ({ newsletterDecision: !prevState.newsletterDecision }))
+
   render() {
+    const {
+      cart
+    } = this.props;
+
+    const {
+      newsletterDecision,
+    } = this.state;
+
     return (
       <div className="checkout__container">
         <BreadCrumb
@@ -53,7 +68,12 @@ class ExpressCheckout extends Component {
         <form onSubmit={this.handlerSubmitOrder}>
           <div className="checkout__body grid">
             <div className="checkout__grid">
-              <ProductReview />
+              <ProductReview
+                cart={cart}
+                routerPush={this.routerPush}
+                newsletterDecision={newsletterDecision}
+                handleNewsletterChange={this.handleNewsletterChange}
+              />
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
