@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   FirstName,
+  LastName,
 } from './component.imports';
 
 export default function BillingAddress() {
@@ -12,13 +13,7 @@ export default function BillingAddress() {
       </div>
       <div className="input__row">
         <FirstName />
-        <div className="input__row--last-name">
-          <p>Last Name</p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
+        <LastName />
       </div>
 
       <div className="input__row">
