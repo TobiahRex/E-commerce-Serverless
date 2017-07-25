@@ -1,7 +1,8 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import */
 import axios from 'axios';
 import { Promise as bbPromise } from 'bluebird';
-import marketHeroSchema from '../schemas/marketHeroSchema';
+import marketHeroSchema from '../../schemas/marketHeroSchema';
+import db from '../../connection';
 require('dotenv').load({ silent: true });
 
 /**
@@ -148,4 +149,3 @@ new Promise((resolve, reject) => {
 });
 
 const MarketHero = db.model('MarketHero', marketHeroSchema);
-return MarketHero;

@@ -24,6 +24,7 @@ provider:
   environment:
     MONGO_URI: ${file(./config.yml):mongoURI}
     AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
+    MARKET_HERO_API_KEY: ${file(./config.yml):marketHeroApiKey}
 
 plugins:
   - serverless-webpack
