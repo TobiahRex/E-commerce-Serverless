@@ -1,7 +1,8 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 
 import PrComment from './prComment';
+import ProductTable from './productTable';
+import NewsletterOption from './newsletterOption';
 
 export default function ProductReview() {
   return (
@@ -9,74 +10,14 @@ export default function ProductReview() {
       <div className="title">
         <h3>Product Review</h3>
       </div>
-      <table className="table__container">
-        <thead className="table__header">
-          <tr className="header__row">
-            <th className="header__row--product-name">Product Name</th>
-            <th className="header__row--qty">Qty</th>
-            <th className="header__row--subtotal">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody className="table__body">
-          <tr className="body__row">
-            <td className="body__row--product-name">
-              <div className="image__container">
-                <img alt="Juice" className="image--source" />
-              </div>
-              <div className="description__container">
-                <p>Fruity Bamm-Bamm</p>
-                <p>Nicotine Strength: <i>6mg</i></p>
-              </div>
-            </td>
-            <td className="body__row--product-qty">
-              <div className="qty--container">
-                <p>3</p>
-              </div>
-            </td>
-            <td className="body__row--product-subtotal">
-              <div className="product-subtotal-container">
-                <p><FontAwesome name="usd" />{'\u00A0'}90.00</p>
-              </div>
-            </td>
-          </tr>
-          <tr className="body__row">
-            <td className="body__row--product-name">
-              <div className="image__container">
-                <img alt="Juice" className="image--source" />
-              </div>
-              <div className="description__container">
-                <p>French Vanilla Mocha</p>
-                <p>Nicotine Strength: <i>8mg</i></p>
-              </div>
-            </td>
-            <td className="body__row--product-qty">
-              <div className="qty--container">
-                <p>1</p>
-              </div>
-            </td>
-            <td className="body__row--product-subtotal">
-              <div className="product-subtotal-container">
-                <p><FontAwesome name="usd" />{'\u00A0'}30.00</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <ProductTable cart={this.props.cart} />
 
       <PrComment
         onInputChange={this.props.onInputChange}
         prCommentValue={this.props.prCommentValue}
       />
-
-      <div className="input__row">
-        <div className="input__row--newsletter">
-          <input
-            type="checkbox"
-            onChange={e => console.log(e.target.value)}
-          />
-          <p>Sign Up for Newsletter</p>
-        </div>
-      </div>
+      
+      <NewsletterOption optionValue={this.props.nlOptionValue} />
 
       <div className="input__row">
         <div className="input__row--guest-warning">
