@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  FirstName,
+} from './component.imports';
+
 export default function BillingAddress() {
   return (
     <div className="checkout__billing">
@@ -7,13 +11,7 @@ export default function BillingAddress() {
         <h3>Billing Address</h3>
       </div>
       <div className="input__row">
-        <div className="input__row--first-name">
-          <p>First Name</p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
+        <FirstName />
         <div className="input__row--last-name">
           <p>Last Name</p>
           <input

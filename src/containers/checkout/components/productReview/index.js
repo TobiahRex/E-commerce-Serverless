@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import ProductTable from './productTable';
 import NewsletterOption from './newsletterOption';
 import ProductReviewComment from './productReviewComment';
+import NewUserDiscountOffer from './newUserDiscountOffer';
 
 function ProductReview({
   cart,
+  loggedIn,
   routerPush,
   newsletterDecision,
   handleNewsletterChange,
@@ -24,30 +26,14 @@ function ProductReview({
         handleNewsletterChange={handleNewsletterChange}
       />
 
-      <div className="input__row">
-        <div className="input__row--guest-warning">
-          <p><span className="warning-bold">Warning: </span>You are currently checking out as a “Guest”. If you would like to save your checkout info for future purchases, register now and we will save your information & you will receive 10% off your first order as a new member.</p>
-        </div>
-      </div>
-
-      <div className="input__row">
-        <div className="input__row--guest-register">
-          <button
-            className="guest-register sweep-right"
-            slug="register"
-            onClick={routerPush}
-          >
-            Register & Save 10%
-          </button>
-
-        </div>
-      </div>
+      {loggedIn && <NewUserDiscountOffer routerPush={routerPush} />}
     </div>
   );
 }
 const { arrayOf, object, func, bool } = PropTypes;
 ProductReview.propTypes = {
   cart: arrayOf(object),
+  loggedIn: bool.isRequired,
   routerPush: func.isRequired,
   newsletterDecision: bool.isRequired,
   handleNewsletterChange: func.isRequired,
