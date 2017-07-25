@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function ShippingMethod() {
+export default function ErrorDialogue() {
   return (
     <div>
       <div className="checkout__error-dialogue">

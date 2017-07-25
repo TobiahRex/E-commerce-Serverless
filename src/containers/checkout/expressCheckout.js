@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
+import Masonry from 'masonry-layout';
 
 import {
   BreadCrumb,
@@ -25,9 +24,18 @@ class ExpressCheckout extends Component {
   }
   constructor(props) {
     super(props);
+
     this.state = {
       cart: [],
     };
+  }
+
+  componentWillUpdate() {
+    const msnry = new Masonry('.grid', { // eslint-disable-line
+      itemSelector: '.checkout__grid',
+      columnWidth: 340,
+      gutter: 22,
+    });
   }
 
   render() {
@@ -42,7 +50,9 @@ class ExpressCheckout extends Component {
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
-        <div className="checkout__body grid" data-masonry='{ "itemSelector": ".checkout__grid", "columnWidth": 340, "gutter": 22 }'>
+        <div
+          className="checkout__body grid"
+        >
           <div className="checkout__grid">
             <ProductReview />
             <ShippingMethod />

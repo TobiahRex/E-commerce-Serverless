@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default function CreditCardInfo() {
+export default function ProductReview() {
   return (
     <div className="checkout__product-review">
       <div className="title">
@@ -61,9 +61,7 @@ export default function CreditCardInfo() {
         </tbody>
       </table>
 
-      <div className="checkout__comments">
-        <textarea cols="40" rows="5" value={'Comments'} />
-      </div>
+      <Comments />
 
       <div className="input__row">
         <div className="input__row--newsletter">

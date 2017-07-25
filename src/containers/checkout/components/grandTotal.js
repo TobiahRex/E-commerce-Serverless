@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
-export default function ShippingMethod() {
+export default function GrandTotal() {
   return (
     <div className="checkout__grand-total">
       <div className="title">
