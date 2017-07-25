@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-function ProductReviewComments() {
-  return (
-    <div className="checkout__comments">
-      <textarea cols="40" rows="5" value={'Comments'} />
-    </div>
-  );
+class ProductReviewComments extends PureComponent() {
+  constructor(props) {
+    super(props);
+    this.state {
+      comment: '',
+    };
+  }
+  render () {
+    return (
+      <div className="checkout__comments">
+        <textarea
+          cols="40"
+          rows="5"
+          value={'Comments'}
+        />
+      </div>
+    );
+  }
 }
 
 ProductReviewComments.propTypes = {
   onInputChange: PropTypes.func.isRequired,
+  productReviewComment: string
 };
+ProductReviewComments.defaultProps = {
+  ProductReviewComments: '',
+}
 export default ProductReviewComments;
