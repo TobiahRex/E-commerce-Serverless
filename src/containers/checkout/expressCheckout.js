@@ -58,7 +58,6 @@ class ExpressCheckout extends Component {
     const {
       cart,
     } = this.props;
-    console.log('%ccart', 'background:green;', cart);
 
     const {
       newsletterDecision,

@@ -45,12 +45,14 @@ function ProductReview({
     </div>
   );
 }
-const { arrayOf, object, func, bool, string } = PropTypes;
+const { arrayOf, object, func, bool } = PropTypes;
 ProductReview.propTypes = {
-  cart: arrayOf(object).isRequired,
+  cart: arrayOf(object),
   routerPush: func.isRequired,
   newsletterDecision: bool.isRequired,
-  productReviewComment: string.isRequired,
   handleNewsletterChange: func.isRequired,
+};
+ProductReview.defaultProps = {
+  cart: [],
 };
 export default ProductReview;

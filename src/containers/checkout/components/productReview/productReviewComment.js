@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
 class ProductReviewComments extends PureComponent {
   constructor(props) {
@@ -19,21 +18,12 @@ class ProductReviewComments extends PureComponent {
           name="prComment"
           cols="40"
           rows="5"
-          value={this.props.comment}
+          value={this.state.comment}
           onChange={this.handleChange}
         />
       </div>
     );
   }
 }
-
-ProductReviewComments.propTypes = {
-  comment: PropTypes.string,
-  onInputChange: PropTypes.func.isRequired,
-  submitPrComment: PropTypes.func.isRequired,
-};
-ProductReviewComments.defaultProps = {
-  comment: '',
-};
 
 export default ProductReviewComments;
