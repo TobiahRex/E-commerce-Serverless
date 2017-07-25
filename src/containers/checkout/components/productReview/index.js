@@ -1,6 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import PrComment from './prComment';
+
 export default function ProductReview() {
   return (
     <div className="checkout__product-review">
@@ -61,7 +63,10 @@ export default function ProductReview() {
         </tbody>
       </table>
 
-      <Comments />
+      <PrComment
+        onInputChange={this.props.onInputChange}
+        prCommentValue={this.props.prCommentValue}
+      />
 
       <div className="input__row">
         <div className="input__row--newsletter">

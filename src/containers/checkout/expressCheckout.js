@@ -50,23 +50,23 @@ class ExpressCheckout extends Component {
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
-        <div
-          className="checkout__body grid"
-        >
-          <div className="checkout__grid">
-            <ProductReview />
-            <ShippingMethod />
+        <form onSubmit={this.handlerSubmitOrder}>
+          <div className="checkout__body grid">
+            <div className="checkout__grid">
+              <ProductReview />
+              <ShippingMethod />
+            </div>
+            <div className="checkout__grid">
+              <BillingAddress />
+              <ShippingAddress />
+            </div>
+            <div className="checkout__grid">
+              <CreditCardInfo />
+              <GrandTotal />
+              <ErrorDialogue />
+            </div>
           </div>
-          <div className="checkout__grid">
-            <BillingAddress />
-            <ShippingAddress />
-          </div>
-          <div className="checkout__grid">
-            <CreditCardInfo />
-            <GrandTotal />
-            <ErrorDialogue />
-          </div>
-        </div>
+        </form>
       </div>
     );
   }

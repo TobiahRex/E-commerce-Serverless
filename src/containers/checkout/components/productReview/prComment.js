@@ -4,17 +4,23 @@ import PropTypes from 'prop-types';
 class ProductReviewComments extends PureComponent() {
   constructor(props) {
     super(props);
-    this.state {
+
+    this.state = {
       comment: '',
     };
   }
-  render () {
+
+  handleChange = e => this.setState({ comment: e.target.value });
+
+  render() {
     return (
       <div className="checkout__comments">
         <textarea
+          name="prComment"
           cols="40"
           rows="5"
-          value={'Comments'}
+          value={this.props.comment}
+          onChange={this.handleChange}
         />
       </div>
     );
@@ -22,10 +28,12 @@ class ProductReviewComments extends PureComponent() {
 }
 
 ProductReviewComments.propTypes = {
+  comment: PropTypes.string,
   onInputChange: PropTypes.func.isRequired,
-  productReviewComment: string
+  submitPrComment: PropTypes.func.isRequired,
 };
 ProductReviewComments.defaultProps = {
-  ProductReviewComments: '',
-}
+  comment: '',
+};
+
 export default ProductReviewComments;
