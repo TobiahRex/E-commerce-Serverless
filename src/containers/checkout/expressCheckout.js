@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import {
+  zipUserCart as ZipUserCart,
+  determineCartType as DetermineCartType,
+} from './utilities.imports';
 
 import {
   BreadCrumb,
@@ -95,7 +99,12 @@ class ExpressCheckout extends Component {
   }
 }
 
-export default connect(null,
-  dispatch => ({
-    push: location => dispatch(push(location)),
-  }))(ExpressCheckout);
+export default connect(({ auth, user, orders }) => {
+  const userCart = auth.loggedIn ? user.profile.shopping.cart : [];
+
+  return ({
+    cart: DetermineCartType(auth.loggedIn, orders.cart, userCart, ,ZipUserCart),
+  });
+}, dispatch => ({
+  push: location => dispatch(push(location)),
+}))(ExpressCheckout);
