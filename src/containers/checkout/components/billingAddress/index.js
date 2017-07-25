@@ -3,6 +3,8 @@ import React from 'react';
 import {
   FirstName,
   LastName,
+  Email,
+  AddressLine,
 } from './component.imports';
 
 export default function BillingAddress() {
@@ -17,33 +19,15 @@ export default function BillingAddress() {
       </div>
 
       <div className="input__row">
-        <div className="input__row--email">
-          <p>Email <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
+        <Email />
       </div>
 
       <div className="input__row">
-        <div className="input__row--address-line-1">
-          <p>Address Line 1 <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
+        <AddressLine lineNumber={1} />
       </div>
 
       <div className="input__row">
-        <div className="input__row--address-line-2">
-          <p>Address Line 2 <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
+        <AddressLine lineNumber={2} />
       </div>
 
       <div className="input__row">

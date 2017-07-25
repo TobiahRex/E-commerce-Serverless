@@ -13,7 +13,7 @@ class Email extends PureComponent {
 
   render() {
     return (
-      <div className="input__row--first-name">
+      <div className="input__row--email">
         <p>Email <span className="required">*</span></p>
         <input
           name="email"
