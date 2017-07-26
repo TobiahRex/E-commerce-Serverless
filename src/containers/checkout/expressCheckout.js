@@ -37,7 +37,6 @@ class ExpressCheckout extends Component {
     this.state = {
       cart: [],
       newsletterDecision: true,
-      sameAsBillingValue: true,
     };
   }
 
@@ -55,7 +54,6 @@ class ExpressCheckout extends Component {
 
   handleNewsletterChange = () => this.setState(prevState => ({ newsletterDecision: !prevState.newsletterDecision }))
 
-  handleSameAsBilling = () => this.setState(prevState => ({ sameAsBillingValue: !prevState.sameAsBillingValue }))
 
   render() {
     const {
@@ -64,7 +62,6 @@ class ExpressCheckout extends Component {
 
     const {
       newsletterDecision,
-      sameAsBillingValue,
     } = this.state;
 
     return (
@@ -90,11 +87,8 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <BillingAddress
-                sameAsBilling={sameAsBillingValue}
-                handleSameAsBilling={this.handleSameAsBilling}
-              />
-              {!sameAsBillingValue ? <ShippingAddress /> : ''}
+              <BillingAddress />
+              <ShippingAddress />
             </div>
             <div className="checkout__grid">
               <CreditCardInfo />

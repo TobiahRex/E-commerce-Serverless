@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {
   FirstName,
@@ -14,10 +13,7 @@ import {
   SameAsBilling,
 } from './component.imports';
 
-function ShippingAddress({
-  sameAsBilling,
-  handleSameAsBilling,
-}) {
+function ShippingAddress() {
   return (
     <div className="checkout__shipping">
       <div className="title">
@@ -44,15 +40,9 @@ function ShippingAddress({
 
       <PhoneNumber />
 
-      <SameAsBilling
-        sameAsBilling={sameAsBilling}
-        handleSameAsBilling={handleSameAsBilling}
-      />
+      <SameAsBilling />
     </div>
   );
 }
-ShippingAddress.propTypes = {
-  sameAsBilling: PropTypes.func.isRequired,
-  handleSameAsBilling: PropTypes.string.isRequired,
-};
+
 export default ShippingAddress;
