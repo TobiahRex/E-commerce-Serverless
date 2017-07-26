@@ -6,3 +6,4 @@ export CreditCardInfo from './components/creditCardInfo/';
 export ProductReview from './components/productReview/';
 export GrandTotal from './components/grandTotal';
 export ErrorDialogue from './components/errorDialogue';
+export CvnModal from './components/creditCardInfo/creditCardExpiration/cvnModal';

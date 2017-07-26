@@ -19,6 +19,7 @@ import {
   ProductReview,
   GrandTotal,
   ErrorDialogue,
+  CvnModal,
 } from './component.imports';
 
 const { arrayOf, object, func } = PropTypes;
@@ -97,6 +98,8 @@ class ExpressCheckout extends Component {
             </div>
           </div>
         </form>
+
+        <CvnModal />
       </div>
     );
   }
