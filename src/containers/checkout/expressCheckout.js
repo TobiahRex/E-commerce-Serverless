@@ -38,6 +38,7 @@ class ExpressCheckout extends Component {
     this.state = {
       cart: [],
       newsletterDecision: true,
+      cvnModal: false,
     };
   }
 
@@ -57,7 +58,10 @@ class ExpressCheckout extends Component {
 
   toggleModal = (e) => {
     let modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
-    this.setState(prevState => ({ [modal]: !prevState[modal] }));
+
+    this.setState(prevState =>
+      ({ [modal]: !prevState[modal] })
+    );
   }
 
   render() {

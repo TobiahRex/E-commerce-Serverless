@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 import {
@@ -8,7 +9,7 @@ import {
   CreditCardCvn,
 } from './component.imports';
 
-export default function CreditCardInfo() {
+function CreditCardInfo({ showCvnModal, toggleModal }) {
   return (
     <div className="checkout__credit-card">
       <div className="title">
@@ -37,3 +38,10 @@ export default function CreditCardInfo() {
     </div>
   );
 }
+const { func, bool } = PropTypes;
+CreditCardInfo.propTypes = {
+  toggleModal: func.isRequired,
+  showCvnModal: bool.isRequired,
+};
+
+export default CreditCardInfo;

@@ -23,7 +23,7 @@ class CreditCardCvn extends PureComponent {
             value={this.state.creditCardCvn}
           />
           <button
-            data-modal="registerModal"
+            data-modal="cvnModal"
             className="button--cvn-modal"
             onClick={this.props.toggleModal}
           >Whats this ?</button>
