@@ -57,10 +57,10 @@ class ExpressCheckout extends Component {
   handleNewsletterChange = () => this.setState(prevState => ({ newsletterDecision: !prevState.newsletterDecision }))
 
   toggleModal = (e) => {
-    let modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
+    const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
 
     this.setState(prevState =>
-      ({ [modal]: !prevState[modal] })
+      ({ [modal]: !prevState[modal] }),
     );
   }
 
