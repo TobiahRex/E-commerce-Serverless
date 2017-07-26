@@ -2,7 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
+const { bool, func } = PropTypes;
+
 class CvnModal extends PureComponent {
+  static propTypes = {
+    showModal: bool.isRequired,
+    toggleModal: func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -19,17 +26,16 @@ class CvnModal extends PureComponent {
         height: '100%',
         width: '100%',
       });
-    } else {
-      return ({
-        display: 'none',
-        opacity: 0,
-        height: 0,
-        width: 0,
-      });
     }
+    return ({
+      display: 'none',
+      opacity: 0,
+      height: 0,
+      width: 0,
+    });
   }
 
-  toggleModal = (e) => this.props.toggleModal(e)
+  toggleModal = e => this.props.toggleModal(e)
 
   render() {
     return (
@@ -39,7 +45,7 @@ class CvnModal extends PureComponent {
 
             <button
               data-parent="exit__btn"
-              data-tag=""
+              data-modal="showCvnModal"
               className="exit-btn"
               onClick={this.toggleModal}
             ><FontAwesome name="plus" />
@@ -69,7 +75,7 @@ class CvnModal extends PureComponent {
 
             <button
               data-parent="promotion-register"
-              data-tag=""
+              data-modal="showCvnModal"
               className="action-btn__close primary-button sweep-right"
               onClick={this.toggleModal}
             >Close
@@ -81,9 +87,5 @@ class CvnModal extends PureComponent {
     );
   }
 }
-const { bool, func } = PropTypes;
-CvnModal.propTypes = {
-  showModal: bool.isRequired,
-  toggleModal: func.isRequired,
-};
+
 export default CvnModal;

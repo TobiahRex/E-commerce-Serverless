@@ -9,12 +9,11 @@ import {
   CreditCardCvn,
 } from './component.imports';
 
-const { func, bool } = PropTypes;
+const { func } = PropTypes;
 
 class CreditCardInfo extends PureComponent {
   static propTypes = {
     toggleModal: func.isRequired,
-    showCvnModal: bool.isRequired,
   }
 
   constructor(props) {
@@ -49,10 +48,7 @@ class CreditCardInfo extends PureComponent {
 
         <CreditCardExpiration />
 
-        <CreditCardCvn
-          showModal={this.props.showCvnModal}
-          toggleModal={this.props.toggleModal}
-        />
+        <CreditCardCvn toggleModal={this.props.toggleModal} />
       </div>
     );
   }

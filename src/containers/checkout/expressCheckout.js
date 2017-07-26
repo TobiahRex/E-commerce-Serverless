@@ -100,17 +100,17 @@ class ExpressCheckout extends Component {
               <ShippingAddress />
             </div>
             <div className="checkout__grid">
-              <CreditCardInfo
-                showCvnModal={this.state.showCvnModal}
-                toggleModal={this.toggleModal}
-              />
+              <CreditCardInfo toggleModal={this.toggleModal} />
               <GrandTotal />
               <ErrorDialogue />
             </div>
           </div>
         </form>
 
-        <CvnModal />
+        <CvnModal
+          showModal={this.state.showCvnModal}
+          toggleModal={this.toggleModal}
+        />
       </div>
     );
   }
