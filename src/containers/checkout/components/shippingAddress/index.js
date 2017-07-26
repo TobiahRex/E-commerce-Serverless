@@ -10,7 +10,6 @@ import {
   PostalCode,
   City,
   PhoneNumber,
-  SameAsBilling,
 } from './component.imports';
 
 function ShippingAddress() {
@@ -40,7 +39,6 @@ function ShippingAddress() {
 
       <PhoneNumber />
 
-      <SameAsBilling />
     </div>
   );
 }

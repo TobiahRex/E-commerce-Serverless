@@ -5,7 +5,7 @@ class Country extends PureComponent {
     super(props);
 
     this.state = {
-      country: '',
+      country: 'Japan',
     };
   }
 
@@ -21,6 +21,7 @@ class Country extends PureComponent {
             type="text"
             onChange={this.handleChange}
             value={this.state.country}
+            disabled
           />
         </div>
       </div>

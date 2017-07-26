@@ -7,4 +7,3 @@ export PrefectureState from './prefectureState';
 export PostalCode from './postalCode';
 export City from './city';
 export PhoneNumber from './phoneNumber';
-export SameAsBilling from './sameAsBilling';
