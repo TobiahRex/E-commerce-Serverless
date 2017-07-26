@@ -5,6 +5,7 @@ import {
   NameOnCard,
   CreditCardNumber,
   CreditCardExpiration,
+  CreditCardCvn,
 } from './component.imports';
 
 export default function CreditCardInfo() {
@@ -32,19 +33,7 @@ export default function CreditCardInfo() {
 
       <CreditCardExpiration />
 
-      <div className="input__row cvn">
-        <div className="input__row--cvn-number">
-          <p>Card Verification Number (CVN) <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-          <button
-            className="button--cvn-modal"
-            onClick={() => console.info('Show CVN modal')}
-          >Whats this ?</button>
-        </div>
-      </div>
+      <CreditCardCvn />
     </div>
   );
 }
