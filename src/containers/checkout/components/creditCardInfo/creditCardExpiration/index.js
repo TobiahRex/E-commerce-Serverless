@@ -24,8 +24,14 @@ class CreditCardExpiration extends PureComponent {
     </option>
   ))
 
-  renderMonthOptions = months => months.map(({ name, number }) => (
-
+  renderMonthOptions = months => months.map(({ month, number }) => (
+    <option
+      key={new Buffer(`${month}${number}`, 'utf8').toString('base64')}
+      value={number}
+      className="input--option"
+    >
+      {number} - {month}
+    </option>
   ))
 
   render() {

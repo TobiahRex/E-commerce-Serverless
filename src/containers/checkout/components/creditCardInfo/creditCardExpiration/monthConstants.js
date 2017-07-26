@@ -1,50 +1,50 @@
 const MONTHS = [
   {
-    name: 'January',
+    month: 'January',
     number: '01',
   },
   {
-    name: 'February',
+    month: 'February',
     number: '02',
   },
   {
-    name: 'March',
+    month: 'March',
     number: '03',
   },
   {
-    name: 'April',
+    month: 'April',
     number: '04',
   },
   {
-    name: 'May',
+    month: 'May',
     number: '05',
   },
   {
-    name: 'June',
+    month: 'June',
     number: '06',
   },
   {
-    name: 'July',
+    month: 'July',
     number: '07',
   },
   {
-    name: 'August',
+    month: 'August',
     number: '08',
   },
   {
-    name: 'September',
+    month: 'September',
     number: '09',
   },
   {
-    name: 'October',
+    month: 'October',
     number: '10',
   },
   {
-    name: 'November',
+    month: 'November',
     number: '11',
   },
   {
-    name: 'December',
+    month: 'December',
     number: '12',
   },
 ];
