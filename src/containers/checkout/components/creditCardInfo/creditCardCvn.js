@@ -1,7 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+const { bool, func } = PropTypes;
+
 class CreditCardCvn extends PureComponent {
+  static propTypes = {
+    showCvnModal: bool.isRequired,
+    toggleModal: func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -39,7 +46,4 @@ class CreditCardCvn extends PureComponent {
     );
   }
 }
-CreditCardCvn.propTypes = {
-  toggleModal: PropTypes.func.isRequired,
-};
 export default CreditCardCvn;

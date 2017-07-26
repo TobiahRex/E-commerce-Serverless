@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-class CvnModal extends PureComponewnt {
+class CvnModal extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -11,37 +11,40 @@ class CvnModal extends PureComponewnt {
     };
   }
 
-  getModalStyle = (showModal) => {
-    if (showModal) {
-      return {
+  getModalStyle = (show) => {
+    if (show) {
+      return ({
         display: 'flex',
         opacity: 1,
         height: '100%',
         width: '100%',
-      };
+      });
     } else {
-      return {
+      return ({
         display: 'none',
         opacity: 0,
         height: 0,
         width: 0,
-      };
+      });
     }
   }
 
+  toggleModal = (e) => this.props.toggleModal(e)
+
   render() {
     return (
-      <div style={this.getModalStyle} className="checkout__cvn-modal">
+      <div style={this.getModalStyle(this.props.showModal)} className="checkout__cvn-modal">
         <div className="cvn-modal__dialogue">
           <div className="dialogue__exit--container">
+
             <button
               data-parent="exit__btn"
               data-tag=""
               className="exit-btn"
-              onClick={toggleModal}
-            >
-              <FontAwesome name="plus" />
+              onClick={this.toggleModal}
+            ><FontAwesome name="plus" />
             </button>
+
           </div>
           <div className="dialogue__cvn-blurb">
             <h1 className="cvn-blurb__title">
@@ -63,12 +66,15 @@ class CvnModal extends PureComponewnt {
             />
           </div>
           <div className="dialogue__action-btns">
+
             <button
               data-parent="promotion-register"
               data-tag=""
               className="action-btn__close primary-button sweep-right"
-              onClick={toggleModal}
-            >Close</button>
+              onClick={this.toggleModal}
+            >Close
+            </button>
+
           </div>
         </div>
       </div>
