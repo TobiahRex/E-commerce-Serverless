@@ -1,51 +1,26 @@
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { PureComponent } from 'react';
+import Months from './monthConstants';
+import Years from './yearConstants';
 
-export default function CreditCardInfo() {
-  return (
-    <div className="checkout__credit-card">
-      <div className="title">
-        <h3>Credit Card Information</h3>
-      </div>
+class CreditCardExpiration extends PureComponent {
+  constructor(props) {
+    super(props);
 
-      <div className="input__row">
-        <div className="input__row--cc-type">
-          <p>Accepted Credit Card Types</p>
-          <div className="types">
-            <FontAwesome name="cc-visa" />
-            <FontAwesome name="cc-mastercard" />
-            <FontAwesome name="cc-discover" />
-            <FontAwesome name="cc-amex" />
-          </div>
-        </div>
-      </div>
+    this.state = {
+      expirationMonth: '',
+      expirationYear: '',
+    };
+  }
 
-      <div className="input__row">
-        <div className="input__row--name-on-card">
-          <p>Name on Card <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
-      </div>
+  handleInputChange = e => this.setState({ [e.target.id]: e.target.value })
 
-
-      <div className="input__row">
-        <div className="input__row--cc-number">
-          <p>Credit Card Number <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-        </div>
-      </div>
-
+  render() {
+    return (
       <div className="input__row">
         <div className="input__row--exp-date">
           <div className="input__container--exp-month">
             <p>Expiration Date <span className="required">*</span></p>
-            <select className="input--select">
+            <select className="input--select" id="expirationMonth">
               <option value="Month" className="input--option">Month</option>
               <option value="01 - January" className="input--option">
                 01 - January
@@ -87,7 +62,7 @@ export default function CreditCardInfo() {
           </div>
           <div className="input__container--exp-year">
             <p>{'\u00A0'}</p>
-            <select className="input--select">
+            <select className="input--select" id="expirationYear">
               <option value="Month" className="input--option">Year</option>
               <option value="2017" className="input--option">
                 2017
@@ -129,20 +104,7 @@ export default function CreditCardInfo() {
           </div>
         </div>
       </div>
-
-      <div className="input__row cvn">
-        <div className="input__row--cvn-number">
-          <p>Card Verification Number (CVN) <span className="required">*</span></p>
-          <input
-            type="text"
-            onChange={e => console.log(e.target.value)}
-          />
-          <button
-            className="button--cvn-modal"
-            onClick={() => console.info('Show CVN modal')}
-          >Whats this ?</button>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 }
+export default CreditCardExpiration;
