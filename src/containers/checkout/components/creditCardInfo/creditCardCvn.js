@@ -18,6 +18,7 @@ class CreditCardCvn extends PureComponent {
         <div className="input__row--cvn-number">
           <p>Card Verification Number (CVN) <span className="required">*</span></p>
           <input
+            name="creditCardCvn"
             type="text"
             onChange={this.handleInputChange}
             value={this.state.creditCardCvn}

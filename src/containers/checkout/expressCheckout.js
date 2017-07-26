@@ -38,7 +38,7 @@ class ExpressCheckout extends Component {
     this.state = {
       cart: [],
       newsletterDecision: true,
-      cvnModal: false,
+      showCvnModal: false,
     };
   }
 
@@ -100,7 +100,10 @@ class ExpressCheckout extends Component {
               <ShippingAddress />
             </div>
             <div className="checkout__grid">
-              <CreditCardInfo />
+              <CreditCardInfo
+                showCvnModal={this.state.showCvnModal}
+                toggleModal={this.toggleModal}
+              />
               <GrandTotal />
               <ErrorDialogue />
             </div>
