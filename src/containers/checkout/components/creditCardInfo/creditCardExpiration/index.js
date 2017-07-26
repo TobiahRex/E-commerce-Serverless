@@ -14,8 +14,18 @@ class CreditCardExpiration extends PureComponent {
 
   handleInputChange = e => this.setState({ [e.target.id]: e.target.value })
 
-  renderYearOptions = () => Years.map((year) => (
-    
+  renderYearOptions = years => years.map(year => (
+    <option
+      key={new Buffer(year, 'utf8').toString('base64')}
+      value={`${year}`}
+      className="input--option"
+    >
+      {year}
+    </option>
+  ))
+
+  renderMonthOptions = months => months.map(({ name, number }) => (
+
   ))
 
   render() {
@@ -26,84 +36,14 @@ class CreditCardExpiration extends PureComponent {
             <p>Expiration Date <span className="required">*</span></p>
             <select className="input--select" id="expirationMonth">
               <option value="Month" className="input--option">Month</option>
-              <option value="01 - January" className="input--option">
-                01 - January
-              </option>
-              <option value="02 - February" className="input--option">
-                02 - February
-              </option>
-              <option value="03 - March" className="input--option">
-                03 - March
-              </option>
-              <option value="04 - April" className="input--option">
-                04 - April
-              </option>
-              <option value="05 - May" className="input--option">
-                05 - May
-              </option>
-              <option value="01 - January" className="input--option">
-                06 - June
-              </option>
-              <option value="01 - January" className="input--option">
-                07 - July
-              </option>
-              <option value="01 - January" className="input--option">
-                08 - August
-              </option>
-              <option value="01 - January" className="input--option">
-                09 - September
-              </option>
-              <option value="01 - January" className="input--option">
-                10- October
-              </option>
-              <option value="01 - January" className="input--option">
-                11 - November
-              </option>
-              <option value="01 - January" className="input--option">
-                12 - December
-              </option>
+              {this.renderMonthOptions(Months)}
             </select>
           </div>
           <div className="input__container--exp-year">
             <p>{'\u00A0'}</p>
             <select className="input--select" id="expirationYear">
               <option value="Month" className="input--option">Year</option>
-              <option value="2017" className="input--option">
-                2017
-              </option>
-              <option value="2018" className="input--option">
-                2018
-              </option>
-              <option value="2019" className="input--option">
-                2019
-              </option>
-              <option value="2020" className="input--option">
-                2020
-              </option>
-              <option value="2021" className="input--option">
-                2021
-              </option>
-              <option value="2017" className="input--option">
-                2022
-              </option>
-              <option value="2017" className="input--option">
-                2023
-              </option>
-              <option value="2017" className="input--option">
-                2024
-              </option>
-              <option value="2017" className="input--option">
-                2025
-              </option>
-              <option value="2017" className="input--option">
-                2026
-              </option>
-              <option value="2017" className="input--option">
-                2027
-              </option>
-              <option value="2017" className="input--option">
-                2028
-              </option>
+              {this.renderYearOptions(Years)}
             </select>
           </div>
         </div>
