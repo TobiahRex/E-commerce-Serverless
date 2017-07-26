@@ -22,12 +22,13 @@ import {
   CvnModal,
 } from './component.imports';
 
-const { arrayOf, object, func } = PropTypes;
+const { arrayOf, object, func, bool } = PropTypes;
 
 class ExpressCheckout extends Component {
   static propTypes = {
     cart: arrayOf(object),
     push: func.isRequired,
+    loggedIn: bool.isRequired,
   }
   static defaultProps = {
     cart: [],
@@ -67,6 +68,7 @@ class ExpressCheckout extends Component {
   render() {
     const {
       cart,
+      loggedIn,
     } = this.props;
 
     const {
@@ -89,6 +91,7 @@ class ExpressCheckout extends Component {
             <div className="checkout__grid">
               <ProductReview
                 cart={cart}
+                loggedIn={loggedIn}
                 routerPush={this.routerPush}
                 newsletterDecision={newsletterDecision}
                 handleNewsletterChange={this.handleNewsletterChange}

@@ -70,7 +70,7 @@
         justify-content: flex-start;;
         align-items: center;
         flex-direction: column;
-        height: 86em;
+        // height: 86em;
         width: 34em;
         background-color: $p-grey;
         margin: 0 0 2em 0;
@@ -143,6 +143,9 @@
             }
           }
         }
+      }
+      & .checkout__billing {
+        padding-bottom: 3em;
       }
       & .checkout__shipping {
         height: 82em;
