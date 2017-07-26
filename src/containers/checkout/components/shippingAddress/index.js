@@ -14,14 +14,14 @@ import {
   SameAsBilling,
 } from './component.imports';
 
-function BillingAddress({
+function ShippingAddress({
   sameAsBilling,
   handleSameAsBilling,
 }) {
   return (
-    <div className="checkout__billing">
+    <div className="checkout__shipping">
       <div className="title">
-        <h3>Billing Address</h3>
+        <h3>Shipping Address</h3>
       </div>
       <div className="input__row">
         <FirstName />
@@ -51,8 +51,8 @@ function BillingAddress({
     </div>
   );
 }
-BillingAddress.propTypes = {
+ShippingAddress.propTypes = {
   sameAsBilling: PropTypes.func.isRequired,
   handleSameAsBilling: PropTypes.string.isRequired,
 };
-export default BillingAddress;
+export default ShippingAddress;

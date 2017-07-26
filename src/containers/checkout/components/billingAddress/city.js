@@ -1,30 +1,30 @@
 import React, { PureComponent } from 'react';
 
-class Email extends PureComponent {
+class City extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
+      city: '',
     };
   }
 
-  handleChange = e => this.setState({ email: e.target.value })
+  handleChange = e => this.setState({ city: e.target.value })
 
   render() {
     return (
       <div className="input__row">
-        <div className="input__row--email">
-          <p>Email <span className="required">*</span></p>
+        <div className="input__row--city">
+          <p>City <span className="required">*</span></p>
           <input
-            name="email"
+            name="city"
             type="text"
             onChange={this.handleChange}
-            value={this.state.email}
+            value={this.state.city}
           />
         </div>
       </div>
     );
   }
 }
-export default Email;
+export default City;
