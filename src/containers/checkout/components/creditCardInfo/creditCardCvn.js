@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class CreditCardCvn extends PureComponent {
   constructor(props) {
@@ -22,12 +23,16 @@ class CreditCardCvn extends PureComponent {
             value={this.state.creditCardCvn}
           />
           <button
+            data-modal="registerModal"
             className="button--cvn-modal"
-            onClick={() => console.info('Show CVN modal')}
+            onClick={this.props.toggleModal}
           >Whats this ?</button>
         </div>
       </div>
     );
   }
 }
+CreditCardCvn.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+};
 export default CreditCardCvn;

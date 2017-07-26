@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function CvnModal({ showModal, modalHandler }) {
+function CvnModal({ showModal, toggleModal }) {
   let style;
   if (showModal) {
     style = {
@@ -21,14 +21,14 @@ function CvnModal({ showModal, modalHandler }) {
   }
 
   return (
-    <div style={{ display: 'flex' }} className="checkout__cvn-modal">
+    <div style={style} className="checkout__cvn-modal">
       <div className="cvn-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
             data-parent="exit__btn"
             data-tag=""
             className="exit-btn"
-            onClick={modalHandler}
+            onClick={toggleModal}
           >
             <FontAwesome name="plus" />
           </button>
@@ -57,7 +57,7 @@ function CvnModal({ showModal, modalHandler }) {
             data-parent="promotion-register"
             data-tag=""
             className="action-btn__close primary-button sweep-right"
-            onClick={modalHandler}
+            onClick={toggleModal}
           >Close</button>
         </div>
       </div>
@@ -67,6 +67,6 @@ function CvnModal({ showModal, modalHandler }) {
 const { bool, func } = PropTypes;
 CvnModal.propTypes = {
   showModal: bool.isRequired,
-  modalHandler: func.isRequired,
+  toggleModal: func.isRequired,
 };
 export default CvnModal;
