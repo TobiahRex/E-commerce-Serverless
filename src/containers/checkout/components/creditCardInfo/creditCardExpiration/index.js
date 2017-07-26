@@ -12,25 +12,26 @@ class CreditCardExpiration extends PureComponent {
     };
   }
 
-  handleInputChange = e => this.setState({ [e.target.id]: e.target.value })
+  handleOptionChange = e => this.setState({ [e.target.name]: e.target.value })
 
-  renderYearOptions = years => years.map(year => (
-    <option
-      key={new Buffer(year, 'utf8').toString('base64')}
-      value={`${year}`}
-      className="input--option"
-    >
-      {year}
-    </option>
-  ))
 
   renderMonthOptions = months => months.map(({ month, number }) => (
     <option
       key={new Buffer(`${month}${number}`, 'utf8').toString('base64')}
+      name="expirationMonth"
       value={number}
       className="input--option"
-    >
-      {number} - {month}
+    >{number} - {month}
+    </option>
+  ))
+
+  renderYearOptions = years => years.map(year => (
+    <option
+      key={new Buffer(year, 'utf8').toString('base64')}
+      name="expirationYear"
+      value={`${year}`}
+      className="input--option"
+    >{year}
     </option>
   ))
 
@@ -40,17 +41,31 @@ class CreditCardExpiration extends PureComponent {
         <div className="input__row--exp-date">
           <div className="input__container--exp-month">
             <p>Expiration Date <span className="required">*</span></p>
-            <select className="input--select" id="expirationMonth">
-              <option value="Month" className="input--option">Month</option>
+
+            <select
+              name="creditCardExpirationMonth"
+              className="input--select"
+              value={this.state.expirationMonth}
+              onChange={this.handleOptionChange}
+            >
+              <option value="Month" className="input--option" >Month</option>
               {this.renderMonthOptions(Months)}
             </select>
+
           </div>
           <div className="input__container--exp-year">
             <p>{'\u00A0'}</p>
-            <select className="input--select" id="expirationYear">
+
+            <select
+              name="creditCardExpirationYear"
+              className="input--select"
+              value={this.state.expirationYear}
+              onChange={this.handleOptionChange}
+            >
               <option value="Month" className="input--option">Year</option>
               {this.renderYearOptions(Years)}
             </select>
+
           </div>
         </div>
       </div>
