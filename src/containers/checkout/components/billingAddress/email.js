@@ -1,15 +1,20 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Email extends PureComponent {
+class Email extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    billingEmail: PropTypes.string.isRequired,
+  }
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
+      email: props.billingEmail,
     };
   }
 
-  handleChange = e => this.setState({ email: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
@@ -17,10 +22,10 @@ class Email extends PureComponent {
         <div className="input__row--email">
           <p>Email <span className="required">*</span></p>
           <input
-            name="email"
+            name="billingEmail"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.email}
+            onChange={this.handlleOnChange}
+            value={this.props.billingEmail}
           />
         </div>
       </div>

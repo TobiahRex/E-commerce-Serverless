@@ -19,6 +19,7 @@ class BillingAddress extends PureComponent {
     this.state = {
       billingFirstName: '',
       billingLastName: '',
+      billingEmail: '',
       billingCountry: '',
     };
   }
@@ -42,7 +43,10 @@ class BillingAddress extends PureComponent {
           />
         </div>
 
-        <Email />
+        <Email
+          billingEmail={this.state.billingEmail}
+          handleOnChange={this.handleOnChange}
+        />
 
         <AddressLine lineNumber={1} />
 
