@@ -25,6 +25,8 @@ class BillingAddress extends PureComponent {
     };
   }
 
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+
   render() {
     return (
       <div className="checkout__billing">
@@ -42,7 +44,9 @@ class BillingAddress extends PureComponent {
 
         <AddressLine lineNumber={2} />
 
-        <Country />
+        <Country
+          handleOnChange={this.handleOnChange} country={this.state.country}
+        />
 
         <PrefectureState country={this.state.country} />
 

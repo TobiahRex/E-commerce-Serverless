@@ -1,7 +1,12 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Countries from './countryConstants';
 
-class Country extends PureComponent {
+class Country extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    country: PropTypes.string.isRequired,
+  }
   constructor(props) {
     super(props);
 
