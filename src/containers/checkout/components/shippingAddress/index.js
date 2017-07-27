@@ -6,7 +6,7 @@ import {
   Email,
   AddressLine,
   Country,
-  PrefectureState,
+  Prefecture,
   PostalCode,
   City,
   PhoneNumber,
@@ -31,7 +31,7 @@ function ShippingAddress() {
 
       <Country />
 
-      <PrefectureState />
+      <Prefecture />
 
       <PostalCode />
 

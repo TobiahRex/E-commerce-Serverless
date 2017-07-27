@@ -23,14 +23,14 @@ class PrefectureState extends PureComponent {
 
   renderOptions = (country, prefectures, states) => {
     switch (country) {
-      case 'Japan (JA)': return prefectures.map(({ en, kanji }) => (
+      case 'Japan': return prefectures.map(({ en, kanji }) => (
         <option
           key={new Buffer(`${kanji}${en}`, 'utf8').toString('base64')}
           value={kanji}
         >{kanji} - {en}
         </option>
       ));
-      case 'United States (US)': return states.map(({ name, code }) => (
+      case 'United States': return states.map(({ name, code }) => (
         <option
           key={new Buffer(`${name}${code}`, 'utf8').toString('base64')}
           value={code}
@@ -41,15 +41,9 @@ class PrefectureState extends PureComponent {
     }
   }
 
-  render() {
-    const {
-      billingCountry: country,
-    } = this.props;
-
-    let prefectureStateOptions;
-
-    if (country !== 'Japan (JA)' || country !== 'United States (US)') {
-      prefectureStateOptions = (
+  renderHelper = (country) => {
+    if (country !== 'Japan' || country !== 'United States') {
+      return (
         <input
           name="billingPrefectureState"
           type="text"
@@ -57,26 +51,31 @@ class PrefectureState extends PureComponent {
           value={this.state.prefectureState}
         />
       );
-    } else {
-      prefectureStateOptions = (
-        <select
-          name="billingPrefectureState"
-          className="input--select"
-          value={this.props.billingPrefectureState}
-          onChange={this.handleOnChange}
-        >
-          <option value="Choose">Choose</option>
-          {
-            this.renderOptions(this.props.billingCountry, Prefectures, States)
-          };
-        </select>
-      );
     }
+    return (
+      <select
+        name="billingPrefectureState"
+        className="input--select"
+        value={this.props.billingPrefectureState}
+        onChange={this.handleOnChange}
+      >
+        <option value="Choose">Choose</option>
+        {
+          this.renderOptions(country, Prefectures, States)
+        };
+      </select>
+    );
+  }
+
+  render() {
+    const {
+      billingCountry: country,
+    } = this.props;
     return (
       <div className="input__row">
         <div className="input__row--prefecture">
           <p>State / Prefecture <span className="required">*</span></p>
-          {prefectureStateOptions}
+          {this.renderHelper(country)}
         </div>
       </div>
     );

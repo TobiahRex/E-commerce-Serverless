@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Prefectures from './component.imports';
+import { Prefectures } from './component.imports';
 
 class Prefecture extends PureComponent {
   constructor(props) {

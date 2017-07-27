@@ -1,15 +1,21 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class PhoneNumber extends PureComponent {
+class PhoneNumber extends React.PureComponent {
+  static propTypes = {
+    billingPhoneNumber: PropTypes.string.isRequired,
+    handleOnChange: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      phone: '',
+      phone: props.billingPhoneNumber,
     };
   }
 
-  handleChange = e => this.setState({ phone: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
@@ -17,10 +23,10 @@ class PhoneNumber extends PureComponent {
         <div className="input__row--phone">
           <p>Phone / Cell <span className="required">*</span></p>
           <input
-            name="phone"
+            name="billingPhoneNumber"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.phone}
+            onChange={this.handleOnChange}
+            value={this.props.billingPhoneNumber}
           />
         </div>
       </div>

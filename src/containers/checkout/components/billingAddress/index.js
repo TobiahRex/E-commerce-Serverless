@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 import {
   FirstName,
@@ -8,11 +8,12 @@ import {
   Country,
   PrefectureState,
   PostalCode,
+
   City,
   PhoneNumber,
 } from './component.imports';
 
-class BillingAddress extends PureComponent {
+class BillingAddress extends React.Component {
   constructor(props) {
     super(props);
 
@@ -24,12 +25,16 @@ class BillingAddress extends PureComponent {
       billingAddressLine2: '',
       billingCountry: '',
       billingPrefectureState: '',
+      billingPostalCode: null,
+      billingCity: '',
     };
   }
 
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
   render() {
+    console.log('%cstate', 'background:lime;', this.state);
+
     return (
       <div className="checkout__billing">
         <div className="title">
@@ -64,7 +69,8 @@ class BillingAddress extends PureComponent {
         />
 
         <Country
-          handleOnChange={this.handleOnChange} billingCountry={this.state.billingCountry}
+          billingCountry={this.state.billingCountry}
+          handleOnChange={this.handleOnChange}
         />
 
         <PrefectureState
@@ -73,11 +79,20 @@ class BillingAddress extends PureComponent {
           handleOnChange={this.handleOnChange}
         />
 
-        <PostalCode />
+        <PostalCode
+          billingPostalCode={this.state.billingPostalCode}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <City />
+        <City
+          billingCity={this.state.billingCity}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <PhoneNumber />
+        <PhoneNumber
+          billingPhoneNumber={this.state.billingPhoneNumber}
+          handleOnChange={this.handleOnChange}
+        />
 
         {/* TODO: MVP2
           <SameAsBilling />

@@ -5,13 +5,13 @@ import { Countries } from './component.imports';
 class Country extends React.PureComponent {
   static propTypes = {
     handleOnChange: PropTypes.func.isRequired,
-    country: PropTypes.string.isRequired,
+    billingCountry: PropTypes.string.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      country: props.country || '',
+      billingCountry: props.billingCountry || '',
     };
   }
 

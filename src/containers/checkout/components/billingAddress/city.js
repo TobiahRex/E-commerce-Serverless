@@ -1,15 +1,21 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class City extends PureComponent {
+class City extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    billingCity: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      city: '',
+      billingCity: props.billingCity,
     };
   }
 
-  handleChange = e => this.setState({ city: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
@@ -17,10 +23,10 @@ class City extends PureComponent {
         <div className="input__row--city">
           <p>City <span className="required">*</span></p>
           <input
-            name="city"
+            name="billingCity"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.city}
+            onChange={this.handleOnChange}
+            value={this.props.billingCity}
           />
         </div>
       </div>

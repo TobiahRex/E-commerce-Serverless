@@ -1,15 +1,25 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class PostalCode extends PureComponent {
+class PostalCode extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    billingPostalCode: PropTypes.number,
+  }
+
+  static defaultProps = {
+    billingPostalCode: '',
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      postalCode: '',
+      billingPostalCode: props.billingPostalCode,
     };
   }
 
-  handleChange = e => this.setState({ postalCode: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
@@ -17,10 +27,10 @@ class PostalCode extends PureComponent {
         <div className="input__row--postal-code">
           <p>Postal Code <span className="required">*</span></p>
           <input
-            name="postalCode"
+            name="billingPostalCode"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.postalCode}
+            onChange={this.handleOnChange}
+            value={this.props.billingPostalCode}
           />
         </div>
       </div>
