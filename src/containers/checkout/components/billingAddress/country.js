@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Countries from './countryConstants';
+import { Countries } from './component.imports';
 
 class Country extends React.PureComponent {
   static propTypes = {

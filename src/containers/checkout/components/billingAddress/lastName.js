@@ -1,24 +1,31 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class LastName extends PureComponent {
+class LastName extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    billingLastName: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      lastName: '',
+      billingLastName: props.billingLastName,
     };
   }
 
-  handleChange = e => this.setState({ lastName: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
       <div className="input__row--last-name">
         <p>Last Name</p>
         <input
-          name="lastName"
+          name="billingLastName"
           type="text"
-          onChange={this.handleChange}
+          onChange={this.handleOnChange}
+          value={this.props.billingLastName}
         />
       </div>
     );

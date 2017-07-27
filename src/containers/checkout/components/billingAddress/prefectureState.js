@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Prefectures from './prefectureConstants';
-import States from './stateConstants';
+import {
+  Prefectures,
+  States,
+} from './component.imports';
 
 class PrefectureState extends PureComponent {
   static propTypes = {

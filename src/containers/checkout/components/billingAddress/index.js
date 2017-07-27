@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
 import {
   FirstName,
@@ -18,6 +17,8 @@ class BillingAddress extends PureComponent {
     super(props);
 
     this.state = {
+      billingFirstName: '',
+      billingLastName: '',
       billingCountry: '',
     };
   }
@@ -31,8 +32,14 @@ class BillingAddress extends PureComponent {
           <h3>Billing Address</h3>
         </div>
         <div className="input__row">
-          <FirstName />
-          <LastName />
+          <FirstName
+            billingFirstName={this.state.billingFirstName}
+            handleOnChange={this.handleOnChange}
+          />
+          <LastName
+            billingLastName={this.state.billingLastName}
+            handleOnChange={this.handleOnChange}
+          />
         </div>
 
         <Email />
