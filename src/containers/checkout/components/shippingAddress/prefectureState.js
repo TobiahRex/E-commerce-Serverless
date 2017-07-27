@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Prefectures from './prefectureConstants';
 
 class PrefectureState extends PureComponent {
   constructor(props) {
@@ -15,7 +16,7 @@ class PrefectureState extends PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--prefecture">
-          <p>State / Prefecture <span className="required">*</span></p>
+          <p>Prefecture <span className="required">*</span></p>
           <input
             name="prefectureState"
             type="text"

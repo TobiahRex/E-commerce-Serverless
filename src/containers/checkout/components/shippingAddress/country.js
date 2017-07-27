@@ -5,7 +5,7 @@ class Country extends PureComponent {
     super(props);
 
     this.state = {
-      country: 'Japan',
+      country: 'Japan (JA)',
     };
   }
 

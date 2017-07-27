@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PrefectureAndStates from './prefectureAndStates';
 
 class PrefectureState extends PureComponent {
   constructor(props) {

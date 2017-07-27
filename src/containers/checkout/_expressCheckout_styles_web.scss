@@ -130,6 +130,23 @@
               margin-left: 0;
             }
           }
+          & .input__row--country {
+            @include prefixflex();
+            align-items: flex-start;
+            flex-direction: column;
+            select {
+              color: $p-blue;
+              font-family: $p-font;
+              font-size: 1.4em;
+              width: 21em;
+              height: 2.5em;
+              padding-left: .71em;
+              border: 0;
+              outline: 1px solid $s-grey;
+              background-color: $p-white;
+              cursor: pointer;
+            }
+          }
           & .input__row--same-as-billing,
           .input__row--free-shipping {
             @include prefixflex();
