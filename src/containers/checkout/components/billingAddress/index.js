@@ -20,7 +20,10 @@ class BillingAddress extends PureComponent {
       billingFirstName: '',
       billingLastName: '',
       billingEmail: '',
+      billingAddressLine1: '',
+      billingAddressLine2: '',
       billingCountry: '',
+      billingPrefectureState: '',
     };
   }
 
@@ -48,15 +51,27 @@ class BillingAddress extends PureComponent {
           handleOnChange={this.handleOnChange}
         />
 
-        <AddressLine lineNumber={1} />
+        <AddressLine
+          lineNumber={1}
+          billingAddressLine={this.state.billingAddressLine1}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <AddressLine lineNumber={2} />
+        <AddressLine
+          lineNumber={2}
+          billingAddressLine={this.state.billingAddressLine2}
+          handleOnChange={this.handleOnChange}
+        />
 
         <Country
           handleOnChange={this.handleOnChange} billingCountry={this.state.billingCountry}
         />
 
-        <PrefectureState billingCountry={this.state.billingCountry} />
+        <PrefectureState
+          billingCountry={this.state.billingCountry}
+          billingPrefectureState={this.state.billingPrefectureState}
+          handleOnChange={this.handleOnChange}
+        />
 
         <PostalCode />
 

@@ -8,16 +8,18 @@ import {
 class PrefectureState extends PureComponent {
   static propTypes = {
     billingCountry: PropTypes.string.isRequired,
+    billingPrefectureState: PropTypes.string.isRequired,
+    handleOnChange: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      prefectureState: '',
+      billingPrefectureState: props.billingPrefectureState,
     };
   }
 
-  handleChange = e => this.setState({ prefectureState: e.target.value })
+  handleChange = e => this.props.handleOnChange(e)
 
   renderOptions = (country, prefectures, states) => {
     switch (country) {
@@ -40,18 +42,35 @@ class PrefectureState extends PureComponent {
   }
 
   render() {
+    const {
+      billingCountry: country,
+    } = this.props;
+
     let prefectureStateOptions;
+
     if (country !== 'Japan (JA)' || country !== 'United States (US)') {
       prefectureStateOptions = (
         <input
-          name="prefectureState"
+          name="billingPrefectureState"
           type="text"
           onChange={this.handleChange}
           value={this.state.prefectureState}
         />
-      )
+      );
     } else {
-      prefectureStateOptions = this.renderOptions(this.props.billingCountry, Prefectures, States)
+      prefectureStateOptions = (
+        <select
+          name="billingPrefectureState"
+          className="input--select"
+          value={this.props.billingPrefectureState}
+          onChange={this.handleOnChange}
+        >
+          <option value="Choose">Choose</option>
+          {
+            this.renderOptions(this.props.billingCountry, Prefectures, States)
+          };
+        </select>
+      );
     }
     return (
       <div className="input__row">
