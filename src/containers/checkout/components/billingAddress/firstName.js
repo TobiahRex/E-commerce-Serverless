@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap/lib/';
 
 class FirstName extends React.PureComponent {
   static propTypes = {
@@ -19,13 +20,18 @@ class FirstName extends React.PureComponent {
   render() {
     return (
       <div className="input__row--first-name">
-        <p>First Name</p>
-        <input
+        <FormGroup validationState={this.validate()}>
+          <p>First Name <span className="required">*</span></p>
+
+          <FormGroup>
+
+        {/* <input
           type="text"
           name="billingFirstName"
           onChange={this.handleOnChange}
           value={this.props.billingFirstName}
-        />
+          required
+        /> */}
       </div>
     );
   }

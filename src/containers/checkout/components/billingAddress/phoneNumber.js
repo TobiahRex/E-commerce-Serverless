@@ -24,9 +24,10 @@ class PhoneNumber extends React.PureComponent {
           <p>Phone / Cell <span className="required">*</span></p>
           <input
             name="billingPhoneNumber"
-            type="text"
+            type="tel"
             onChange={this.handleOnChange}
             value={this.props.billingPhoneNumber}
+            required
           />
         </div>
       </div>

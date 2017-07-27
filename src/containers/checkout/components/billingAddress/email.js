@@ -23,9 +23,10 @@ class Email extends React.PureComponent {
           <p>Email <span className="required">*</span></p>
           <input
             name="billingEmail"
-            type="text"
-            onChange={this.handlleOnChange}
+            type="email"
+            onChange={this.handleOnChange}
             value={this.props.billingEmail}
+            required
           />
         </div>
       </div>

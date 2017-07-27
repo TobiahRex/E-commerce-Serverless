@@ -32,6 +32,7 @@ class AddressLine extends React.PureComponent {
             type="text"
             onChange={this.handleOnChange}
             value={billingAddressLine}
+            required
           />
         </div>
       </div>

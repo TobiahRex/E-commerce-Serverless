@@ -19,10 +19,9 @@ class PrefectureState extends PureComponent {
     };
   }
 
-  handleChange = e => this.props.handleOnChange(e)
+  handleOnChange = e => this.props.handleOnChange(e)
 
   renderOptions = (country, prefectures, states) => {
-    console.warn('are you getting called?');
     switch (country) {
       case 'Japan': return prefectures.map(({ en, kanji }) => (
         <option
@@ -50,6 +49,7 @@ class PrefectureState extends PureComponent {
           className="input--select"
           value={this.props.billingPrefectureState}
           onChange={this.handleOnChange}
+          required
         >
           <option value="Choose">Choose</option>
           {
@@ -62,8 +62,9 @@ class PrefectureState extends PureComponent {
       <input
         name="billingPrefectureState"
         type="text"
-        onChange={this.handleChange}
+        onChange={this.handleOnChange}
         value={this.state.prefectureState}
+        required
       />
     );
   }

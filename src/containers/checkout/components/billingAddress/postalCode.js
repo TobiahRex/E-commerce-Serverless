@@ -28,7 +28,7 @@ class PostalCode extends React.PureComponent {
           <p>Postal Code <span className="required">*</span></p>
           <input
             name="billingPostalCode"
-            type="text"
+            type="number"
             onChange={this.handleOnChange}
             value={this.props.billingPostalCode}
           />

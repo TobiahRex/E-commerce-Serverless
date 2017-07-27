@@ -20,12 +20,13 @@ class LastName extends React.PureComponent {
   render() {
     return (
       <div className="input__row--last-name">
-        <p>Last Name</p>
+        <p>Last Name <span className="required">*</span></p>
         <input
           name="billingLastName"
           type="text"
           onChange={this.handleOnChange}
           value={this.props.billingLastName}
+          required
         />
       </div>
     );
