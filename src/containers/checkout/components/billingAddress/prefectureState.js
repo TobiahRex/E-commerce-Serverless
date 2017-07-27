@@ -20,12 +20,28 @@ class PrefectureState extends PureComponent {
   renderOptions = (country, prefectures, states) => {
     switch (country) {
       case 'Japan (JA)': return prefectures.map(({ en, kanji }) => (
-        <div></div>
+        <option
+          key={new Buffer(`${kanji}${en}`, 'utf8').toString('base64')}
+          value={kanji}
+        >{kanji} - {en}
+        </option>
       ));
       case 'United States (US)': return prefectures.map(({ name, code }) => (
-        <div></div>
+        <option
+          key={new Buffer(`${kanji}${en}`, 'utf8').toString('base64')}
+          value={kanji}
+        >{kanji} - {en}
+        </option>
       ));
-    } default; break;
+      default: return (
+        <input
+          name="prefectureState"
+          type="text"
+          onChange={this.handleChange}
+          value={this.state.prefectureState}
+        />
+      );
+    }
   }
 
   render() {
@@ -33,12 +49,7 @@ class PrefectureState extends PureComponent {
       <div className="input__row">
         <div className="input__row--prefecture">
           <p>State / Prefecture <span className="required">*</span></p>
-          <input
-            name="prefectureState"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.prefectureState}
-          />
+
         </div>
       </div>
     );
