@@ -14,14 +14,11 @@ import {
 } from './component.imports';
 
 class BillingAddress extends PureComponent {
-  static propTypes = {
-    country: PropTypes.string.isRequired,
-  }
   constructor(props) {
     super(props);
 
     this.state = {
-      country: '',
+      billingCountry: '',
     };
   }
 
@@ -45,10 +42,10 @@ class BillingAddress extends PureComponent {
         <AddressLine lineNumber={2} />
 
         <Country
-          handleOnChange={this.handleOnChange} country={this.state.country}
+          handleOnChange={this.handleOnChange} billingCountry={this.state.billingCountry}
         />
 
-        <PrefectureState country={this.state.country} />
+        <PrefectureState billingCountry={this.state.billingCountry} />
 
         <PostalCode />
 

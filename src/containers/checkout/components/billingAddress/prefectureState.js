@@ -5,7 +5,7 @@ import States from './stateConstants';
 
 class PrefectureState extends PureComponent {
   static propTypes = {
-    country: PropTypes.string.isRequired,
+    billingCountry: PropTypes.string.isRequired,
   }
   constructor(props) {
     super(props);
@@ -33,23 +33,29 @@ class PrefectureState extends PureComponent {
         >{name} ({code})
         </option>
       ));
-      default: return (
+      default: throw new Error('Could not render Prefecture / State options for Billing Address.  Check "prefectureState.js".');
+    }
+  }
+
+  render() {
+    let prefectureStateOptions;
+    if (country !== 'Japan (JA)' || country !== 'United States (US)') {
+      prefectureStateOptions = (
         <input
           name="prefectureState"
           type="text"
           onChange={this.handleChange}
           value={this.state.prefectureState}
         />
-      );
+      )
+    } else {
+      prefectureStateOptions = this.renderOptions(this.props.billingCountry, Prefectures, States)
     }
-  }
-
-  render() {
     return (
       <div className="input__row">
         <div className="input__row--prefecture">
           <p>State / Prefecture <span className="required">*</span></p>
-          {this.renderOptions(this.props.country, Prefectures, States)}
+          {prefectureStateOptions}
         </div>
       </div>
     );

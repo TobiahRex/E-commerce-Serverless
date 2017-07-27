@@ -11,11 +11,11 @@ class Country extends React.PureComponent {
     super(props);
 
     this.state = {
-      country: '',
+      country: props.country || '',
     };
   }
 
-  handleChange = e => this.setState({ country: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   renderCountryOptions = countries => countries.map(({ name, code }) => (
     <option
@@ -34,7 +34,7 @@ class Country extends React.PureComponent {
             name="billingCountry"
             className="input--select"
             value={this.state.country}
-            onChange={this.handleChange}
+            onChange={this.handleOnChange}
           >
             <option value="Choose">Choose</option>
             {this.renderCountryOptions(Countries)}
