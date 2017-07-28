@@ -34,8 +34,6 @@ class BillingAddress extends React.Component {
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
   render() {
-    console.log('%cstate', 'background:lime;', this.state);
-
     return (
       <div className="checkout__billing">
         <div className="title">
@@ -56,7 +54,9 @@ class BillingAddress extends React.Component {
           billingEmail={this.state.billingEmail}
           handleOnChange={this.handleOnChange}
         />
+        {/*
 
+        /> */}
         <AddressLine
           required
           lineNumber={1}
@@ -70,10 +70,11 @@ class BillingAddress extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
-        <Country
-          billingCountry={this.state.billingCountry}
-          handleOnChange={this.handleOnChange}
-        />
+        {/*
+            <Country
+            billingCountry={this.state.billingCountry}
+            handleOnChange={this.handleOnChange}
+        /> */}
 
         <PrefectureState
           billingCountry={this.state.billingCountry}
@@ -97,7 +98,7 @@ class BillingAddress extends React.Component {
         />
 
         {/* TODO: MVP2
-          <SameAsBilling />
+            <SameAsBilling />
         */}
       </div>
     );

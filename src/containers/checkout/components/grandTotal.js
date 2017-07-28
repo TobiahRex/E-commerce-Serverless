@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
-import { Button } from 'react-validation/lib/build/validation.rc';
+import Validation from 'react-validation';
 
 function GrandTotal({ onSubmit }) {
   return (
@@ -40,13 +40,13 @@ function GrandTotal({ onSubmit }) {
         </Link></p>
       </div>
       <div className="purchase-btn">
-        <Button className="button" errorClassName="asd">
+        <Validation.components.Button className="button" errorClassName="asd">
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
             {'\u00A0'}
             <p>Place Order Now</p>
           </span>
-        </Button>
+        </Validation.components.Button>
       </div>
     </div>
   );

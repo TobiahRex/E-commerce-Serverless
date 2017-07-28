@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 import { Countries } from './component.imports';
 
 class Country extends React.PureComponent {
@@ -30,16 +31,16 @@ class Country extends React.PureComponent {
       <div className="input__row">
         <div className="input__row--country">
           <p>Country <span className="required">*</span></p>
-          <select
+          <Validation.components.Select
+            errorClassName="is-invalid-input"
             name="billingCountry"
-            className="input--select"
-            value={this.state.country}
+            validations={['required']}
+            value={this.props.billingCountry}
             onChange={this.handleOnChange}
-            required
           >
-            <option value="Choose">Choose</option>
+            <option value="">Choose</option>
             {this.renderCountryOptions(Countries)}
-          </select>
+          </Validation.components.Select>
         </div>
       </div>
     );

@@ -164,6 +164,16 @@
               background-color: $p-white;
               cursor: pointer;
             }
+            // select.is-invalid-input:not(:focus) {
+            //   background-color: rgba(236, 88, 64, 0.1);
+            //   border: 1px solid #ec5840;
+            // }
+            // span.form-error.is-visible {
+            //   color: $p-red;
+            //   font-family: $p-font;
+            //   font-size: 1em;
+            //   padding: 1em 0;
+            // }
           }
           & .input__row--same-as-billing,
           .input__row--free-shipping {

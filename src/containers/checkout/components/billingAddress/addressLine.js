@@ -31,6 +31,9 @@ class AddressLine extends React.PureComponent {
       billingAddressLine,
     } = this.props;
 
+    const validations = [];
+    if (required) validations.push('required');
+
     return (
       <div className="input__row">
         <div className={`input__row--address-line-${lineNumber}`}>
@@ -40,7 +43,7 @@ class AddressLine extends React.PureComponent {
             type="text"
             containerClassName=""
             name={`billingAddressLine${lineNumber}`}
-            validations={[required ? 'required' : '']}
+            validations={[...validations]}
             onChange={this.handleOnChange}
             value={billingAddressLine}
           />
