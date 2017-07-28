@@ -4,7 +4,6 @@ import { Prefectures } from './component.imports';
 
 class PrefectureState extends PureComponent {
   static propTypes = {
-    shippingCountry: PropTypes.string.isRequired,
     shippingPrefectureState: PropTypes.string.isRequired,
     handleOnChange: PropTypes.func.isRequired,
   }
@@ -18,8 +17,8 @@ class PrefectureState extends PureComponent {
 
   handleOnChange = e => this.props.handleOnChange(e)
 
-  renderOptions = (country, prefectures) => prefectures.map(({ en, kanji }) =>
-  (
+  renderOptions = prefectures =>
+  prefectures.map(({ en, kanji }) => (
     <option
       key={new Buffer(`${kanji}${en}`, 'utf8').toString('base64')}
       value={kanji}
@@ -27,44 +26,23 @@ class PrefectureState extends PureComponent {
     </option>
   ))
 
-  renderHelper = (country) => {
-    if (country === 'United States' || country === 'Japan') {
-      return (
-        <select
-          name="shippingPrefectureState"
-          className="input--select"
-          value={this.props.shippingPrefectureState}
-          onChange={this.handleOnChange}
-          required
-        >
-          <option value="Choose">Choose</option>
-          {
-            this.renderOptions(country, Prefectures, States)
-          };
-        </select>
-      );
-    }
-    return (
-      <input
-        name="shippingPrefectureState"
-        type="text"
-        onChange={this.handleOnChange}
-        value={this.state.prefectureState}
-        required
-      />
-    );
-  }
-
   render() {
-    const {
-      shippingCountry: country,
-    } = this.props;
-
     return (
       <div className="input__row">
         <div className="input__row--prefecture">
           <p>State / Prefecture <span className="required">*</span></p>
-          {this.renderHelper(country)}
+          <select
+            name="shippingPrefectureState"
+            className="input--select"
+            value={this.props.shippingPrefectureState}
+            onChange={this.handleOnChange}
+            required
+          >
+            <option value="">Choose</option>
+            {
+              this.renderOptions(Prefectures)
+            };
+          </select>
         </div>
       </div>
     );

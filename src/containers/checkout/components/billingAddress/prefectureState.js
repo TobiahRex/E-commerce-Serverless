@@ -51,7 +51,7 @@ class PrefectureState extends PureComponent {
           onChange={this.handleOnChange}
           required
         >
-          <option value="Choose">Choose</option>
+          <option value="">Choose</option>
           {
             this.renderOptions(country, Prefectures, States)
           };
