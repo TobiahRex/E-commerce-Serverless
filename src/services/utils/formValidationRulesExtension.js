@@ -5,9 +5,7 @@ import Validation from 'react-validation';
 Object.assign(Validation.rules, {
   api: {
     hint: value => (
-      <button
-        className="form-error is-visible"
-      >
+      <button className="form-error is-visible">
         API Error on {`"${value}"`} value. Focus to hide.
       </button>
     ),

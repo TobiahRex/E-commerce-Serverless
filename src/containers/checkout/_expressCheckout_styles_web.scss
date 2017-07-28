@@ -2,7 +2,6 @@
   .required {
     color: $p-red;
   }
-
   .checkout__container {
     max-width: 1086px;
     width: 100%;
@@ -107,6 +106,20 @@
             font-size: 1.4em;
             font-family: $p-font;
             color: $p-blue;
+          }
+
+          & span {
+            &.form-error.is-visible {
+              color: $p-red;
+              font-family: $p-font;
+              font-size: 1em;
+              padding: 1em 0;
+            }
+          }
+
+          & .is-invalid-input:not(:focus) {
+            background-color: rgba(236, 88, 64, 0.1);
+            border: 1px solid #ec5840;
           }
         }
       }
@@ -439,6 +452,10 @@
                 font-weight: 200;
               }
             }
+          }
+          & button:disabled {
+            background-color: $s-grey;
+            cursor: not-allowed;
           }
         }
       }

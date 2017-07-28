@@ -4,7 +4,7 @@ import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
-import { Form } from 'react-validation/lib/build/validation.rc';
+import Validation from 'react-validation';
 
 import {
   zipUserCart as ZipUserCart,
@@ -99,7 +99,7 @@ class ExpressCheckout extends Component {
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
-        <Form
+        <Validation.components.Form
           ref={this.assignRefToForm} onSubmit={this.handlerSubmitOrder}
         >
           <div className="checkout__body grid">
@@ -125,7 +125,7 @@ class ExpressCheckout extends Component {
               <ErrorDialogue />
             </div>
           </div>
-        </Form>
+        </Validation.components.Form>
 
         <CvnModal
           showModal={this.state.showCvnModal}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'react-validation/lib/build/validation.rc';
+import Validation from 'react-validation';
 
 class FirstName extends React.PureComponent {
   static propTypes = {
@@ -21,7 +21,7 @@ class FirstName extends React.PureComponent {
     return (
       <div className="input__row--first-name">
         <p>First Name <span className="required">*</span></p>
-        <Input
+        <Validation.components.Input
           errorClassName="is-invalid-input"
           type="text"
           containerClassName=""
