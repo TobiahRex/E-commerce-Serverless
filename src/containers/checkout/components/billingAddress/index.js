@@ -80,6 +80,7 @@ class BillingAddress extends React.Component {
         />
 
         <PostalCode
+          billingCountry={this.state.billingCountry}
           billingPostalCode={this.state.billingPostalCode}
           handleOnChange={this.handleOnChange}
         />

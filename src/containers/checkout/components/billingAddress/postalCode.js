@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
+const { func, string } = PropTypes;
+
 class PostalCode extends React.PureComponent {
   static propTypes = {
-    handleOnChange: PropTypes.func.isRequired,
-    billingPostalCode: PropTypes.string,
+    handleOnChange: func.isRequired,
+    billingPostalCode: string,
+    billingCountry: string.isRequired,
   }
 
   static defaultProps = {
@@ -22,25 +25,30 @@ class PostalCode extends React.PureComponent {
 
   handleOnChange = e => this.props.handleOnChange(e)
 
+  determineValidations = (country) => {
+    const validations = ['required'];
+    if (country === 'United States') {
+      validations.push('us-zipcode');
+      return validations;
+    } else if (this.props.billingCountry === 'Japan') {
+      validations.push('japan-postal');
+      return validations;
+    }
+    validations.push('numeric');
+    return validations;
+  }
+
   render() {
     return (
       <div className="input__row">
         <div className="input__row--postal-code">
           <p>Postal Code <span className="required">*</span></p>
-          {/* <input
-            name="billingPostalCode"
-            type="number"
-            onChange={this.handleOnChange}
-            value={this.props.billingPostalCode || ''}
-            placeholder={87505}
-            required
-          /> */}
           <Validation.components.Input
             errorClassName="is-invalid-input"
             type="text"
             containerClassName=""
             name="billingPostalCode"
-            validations={['required', 'numeric']}
+            validations={this.determineValidations(this.props.billingCountry)}
             onChange={this.handleOnChange}
             value={this.props.billingPostalCode}
           />

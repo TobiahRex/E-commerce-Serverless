@@ -31,13 +31,17 @@ Object.assign(Validation.rules, {
   },
 
   numeric: {
-    rule: value => validator.isNumberic(value),
+    rule: value => validator.isNumeric(value),
     hint: () => (
       <span className="form-error is-visible">
         Postal code should only contain numbers (0-9).
       </span>
     ),
   },
+
+  postal: {
+    rule: value => validator.isLength(value, { min: 5, max: 5 })
+  }
 
   password: {
     rule: (value, components) => {
