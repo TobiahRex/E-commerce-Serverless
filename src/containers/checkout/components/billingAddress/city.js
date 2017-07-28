@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
 class City extends React.PureComponent {
   static propTypes = {
@@ -22,12 +23,14 @@ class City extends React.PureComponent {
       <div className="input__row">
         <div className="input__row--city">
           <p>City <span className="required">*</span></p>
-          <input
-            name="billingCity"
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="text"
+            containerClassName=""
+            name="billingCity"
+            validations={['required', 'alpha']}
             onChange={this.handleOnChange}
             value={this.props.billingCity}
-            required
           />
         </div>
       </div>

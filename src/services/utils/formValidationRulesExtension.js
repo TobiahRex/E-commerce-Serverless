@@ -39,8 +39,40 @@ Object.assign(Validation.rules, {
     ),
   },
 
-  postal: {
-    rule: value => validator.isLength(value, { min: 5, max: 5 })
+  'us-zip': {
+    rule: value => /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        U.S. Zip Codes must be in (12345) or (12345-6789) format.
+      </span>
+    ),
+  },
+
+  'japan-postal': {
+    rule: value => /(^\d{7}$)|(^\d{3}-\d{4}$)/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        Not a valid phone number.
+      </span>
+    ),
+  },
+
+  phone: {
+    rule: value => validator.isMobilePhone(value, 'any'),
+    hint: () => (
+      <span className="form-error is-visible">
+        not sure.
+      </span>
+    ),
+  },
+
+  city: {
+    rule: value => validator.isAlpha(value, { min: 3, max: 20 }),
+    hint: () => (
+      <span className="form-error is-visible">
+        That's not a valid city name.
+      </span>
+    ),
   }
 
   password: {

@@ -28,7 +28,7 @@ class PostalCode extends React.PureComponent {
   determineValidations = (country) => {
     const validations = ['required'];
     if (country === 'United States') {
-      validations.push('us-zipcode');
+      validations.push('us-zip');
       return validations;
     } else if (this.props.billingCountry === 'Japan') {
       validations.push('japan-postal');

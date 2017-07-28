@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
 class PhoneNumber extends React.PureComponent {
   static propTypes = {
@@ -11,7 +12,7 @@ class PhoneNumber extends React.PureComponent {
     super(props);
 
     this.state = {
-      phone: props.billingPhoneNumber,
+      billingPhoneNumber: props.billingPhoneNumber,
     };
   }
 
@@ -22,12 +23,14 @@ class PhoneNumber extends React.PureComponent {
       <div className="input__row">
         <div className="input__row--phone">
           <p>Phone / Cell <span className="required">*</span></p>
-          <input
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
+            type="string"
+            containerClassName=""
             name="billingPhoneNumber"
-            type="tel"
+            validations={['required', 'phone']}
             onChange={this.handleOnChange}
             value={this.props.billingPhoneNumber}
-            required
           />
         </div>
       </div>
