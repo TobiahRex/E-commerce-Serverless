@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Prefectures } from './component.imports';
 
-class PrefectureState extends PureComponent {
+class Prefecture extends PureComponent {
   static propTypes = {
-    shippingPrefectureState: PropTypes.string.isRequired,
+    shippingPrefecture: PropTypes.string.isRequired,
     handleOnChange: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      shippingPrefectureState: props.shippingPrefectureState,
+      shippingPrefecture: props.shippingPrefecture,
     };
   }
 
@@ -32,9 +32,9 @@ class PrefectureState extends PureComponent {
         <div className="input__row--prefecture">
           <p>State / Prefecture <span className="required">*</span></p>
           <select
-            name="shippingPrefectureState"
+            name="shippingPrefecture"
             className="input--select"
-            value={this.props.shippingPrefectureState}
+            value={this.props.shippingPrefecture}
             onChange={this.handleOnChange}
             required
           >
@@ -48,4 +48,4 @@ class PrefectureState extends PureComponent {
     );
   }
 }
-export default PrefectureState;
+export default Prefecture;

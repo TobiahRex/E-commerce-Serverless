@@ -39,10 +39,10 @@ class Country extends React.PureComponent {
             onChange={this.handleOnChange}
           >
             <option value="">Choose</option>
-            <hr />
+            <option value="" />
             <option value="United States">United States (US)</option>
             <option value="Japan">Japan (JA)</option>
-            <hr />
+            <option value="" />
             {this.renderCountryOptions(Countries)}
           </Validation.components.Select>
         </div>

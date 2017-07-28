@@ -1,26 +1,36 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
-class City extends PureComponent {
+class City extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: PropTypes.func.isRequired,
+    shippingCity: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      city: '',
+      shippingCity: props.shippingCity,
     };
   }
 
-  handleChange = e => this.setState({ city: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
       <div className="input__row">
         <div className="input__row--city">
           <p>City <span className="required">*</span></p>
-          <input
-            name="city"
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.city}
+            containerClassName=""
+            name="shippingCity"
+            validations={['required', 'alpha', 'city']}
+            onChange={this.handleOnChange}
+            value={this.props.shippingCity}
           />
         </div>
       </div>

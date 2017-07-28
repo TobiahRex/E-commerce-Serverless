@@ -22,7 +22,7 @@ class ShippingAddress extends React.Component {
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: '',
-      shippingPrefectureState: '',
+      shippingPrefecture: '',
       shippingCity: '',
       shippingPostalCode: '',
       shippingPhoneNumber: '',
@@ -51,13 +51,13 @@ class ShippingAddress extends React.Component {
         <AddressLine
           required
           lineNumber={1}
-          shippingAddressLine1={this.state.shippingAddressLine1}
+          shippingAddressLine={this.state.shippingAddressLine1}
           handleOnChange={this.handleOnChange}
         />
-        
+
         <AddressLine
           lineNumber={2}
-          shippingAddressLine2={this.state.shippingAddressLine2}
+          shippingAddressLine={this.state.shippingAddressLine2}
           handleOnChange={this.handleOnChange}
         />
 

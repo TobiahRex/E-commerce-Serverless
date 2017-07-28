@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import Validation from 'react-validation';
 
-function GrandTotal({ onSubmit }) {
+export default function GrandTotal() {
   return (
     <div className="checkout__grand-total">
       <div className="title">
@@ -51,7 +50,3 @@ function GrandTotal({ onSubmit }) {
     </div>
   );
 }
-GrandTotal.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-export default GrandTotal;
