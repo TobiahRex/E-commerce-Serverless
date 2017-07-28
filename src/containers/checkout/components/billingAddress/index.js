@@ -8,7 +8,6 @@ import {
   Country,
   PrefectureState,
   PostalCode,
-
   City,
   PhoneNumber,
 } from './component.imports';
@@ -25,9 +24,8 @@ class BillingAddress extends React.Component {
       billingAddressLine2: '',
       billingCountry: '',
       billingPrefectureState: '',
-      billingPostalCode: '',
-      billingPhoneNumber: '',
       billingCity: '',
+      billingPostalCode: '',
     };
   }
 
@@ -87,11 +85,6 @@ class BillingAddress extends React.Component {
 
         <City
           billingCity={this.state.billingCity}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <PhoneNumber
-          billingPhoneNumber={this.state.billingPhoneNumber}
           handleOnChange={this.handleOnChange}
         />
 

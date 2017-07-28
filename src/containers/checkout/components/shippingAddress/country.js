@@ -1,31 +1,18 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import Validation from 'react-validation';
 
-class Country extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      country: 'Japan (JA)',
-    };
-  }
-
-  handleChange = e => this.setState({ country: e.target.value })
-
-  render() {
-    return (
-      <div className="input__row">
-        <div className="input__row--country">
-          <p>Country <span className="required">*</span></p>
-          <input
-            name="country"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.country}
-            disabled
-          />
-        </div>
+export default function Country() {
+  return (
+    <div className="input__row">
+      <div className="input__row--country">
+        <p>Country <span className="required">*</span></p>
+        <Validation.components.Input
+          errorClassName="is-invalid-input"
+          name="shippingCountry"
+          validations={['required']}
+          value="Japan"
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
-export default Country;

@@ -1,32 +1,51 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
-class AddressLine extends PureComponent {
+class AddressLine extends React.PureComponent {
   static propTypes = {
+    required: PropTypes.bool,
     lineNumber: PropTypes.number.isRequired,
+    handleOnChange: PropTypes.func.isRequired,
+    shippingAddressLine: PropTypes.string.isRequired,
   }
+
+  static defaultProps = {
+    required: false,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      addressLine: '',
+      shippingAddressLine: props.shippingAddressLine,
     };
   }
 
-  handleChange = e => this.setState({ addressLine: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
-    const { lineNumber } = this.props;
+    const {
+      required,
+      lineNumber,
+      shippingAddressLine,
+    } = this.props;
+
+    const validations = [];
+    if (required) validations.push('required');
 
     return (
       <div className="input__row">
         <div className={`input__row--address-line-${lineNumber}`}>
           <p>AddressLine {lineNumber} <span className="required">*</span></p>
-          <input
-            name={`addressLine${lineNumber}`}
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.addressLine}
+            containerClassName=""
+            name={`shippingAddressLine${lineNumber}`}
+            validations={[...validations]}
+            onChange={this.handleOnChange}
+            value={shippingAddressLine}
           />
         </div>
       </div>
