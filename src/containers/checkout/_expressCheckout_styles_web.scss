@@ -143,6 +143,11 @@
               margin-left: 0;
             }
           }
+          & .input__row--last-name {
+            & span.form-error.is-visible {
+              margin-left: 1.5em;
+            }
+          }
           & .input__row--country {
             @include prefixflex();
             align-items: flex-start;

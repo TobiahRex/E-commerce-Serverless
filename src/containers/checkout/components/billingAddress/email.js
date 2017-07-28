@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
 class Email extends React.PureComponent {
   static propTypes = {
@@ -21,12 +22,14 @@ class Email extends React.PureComponent {
       <div className="input__row">
         <div className="input__row--email">
           <p>Email <span className="required">*</span></p>
-          <input
-            name="billingEmail"
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="email"
+            containerClassName=""
+            name="billingEmail"
+            validations={['required', 'email']}
             onChange={this.handleOnChange}
             value={this.props.billingEmail}
-            required
           />
         </div>
       </div>
