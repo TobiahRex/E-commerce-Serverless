@@ -54,9 +54,7 @@ class BillingAddress extends React.Component {
           billingEmail={this.state.billingEmail}
           handleOnChange={this.handleOnChange}
         />
-        {/*
 
-        /> */}
         <AddressLine
           required
           lineNumber={1}
@@ -70,11 +68,10 @@ class BillingAddress extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
-        {/*
-            <Country
-            billingCountry={this.state.billingCountry}
-            handleOnChange={this.handleOnChange}
-        /> */}
+        <Country
+          billingCountry={this.state.billingCountry}
+          handleOnChange={this.handleOnChange}
+        />
 
         <PrefectureState
           billingCountry={this.state.billingCountry}
