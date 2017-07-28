@@ -52,7 +52,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{7}$)|(^\d{3}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid phone number.
+        Japanese postal codes must be in format (123-4567) or (1234567) only.
       </span>
     ),
   },
@@ -61,19 +61,19 @@ Object.assign(Validation.rules, {
     rule: value => validator.isMobilePhone(value, 'any'),
     hint: () => (
       <span className="form-error is-visible">
-        not sure.
+        Not a valid phone number.
       </span>
     ),
   },
 
   city: {
-    rule: value => validator.isAlpha(value, { min: 3, max: 20 }),
+    rule: value => validator.isLength(value, { min: 3, max: 20 }),
     hint: () => (
       <span className="form-error is-visible">
-        That's not a valid city name.
+        Not a valid city name.
       </span>
     ),
-  }
+  },
 
   password: {
     rule: (value, components) => {

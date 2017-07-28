@@ -28,7 +28,7 @@ class City extends React.PureComponent {
             type="text"
             containerClassName=""
             name="billingCity"
-            validations={['required', 'alpha']}
+            validations={['required', 'alpha', 'city']}
             onChange={this.handleOnChange}
             value={this.props.billingCity}
           />

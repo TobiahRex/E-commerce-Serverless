@@ -70,7 +70,7 @@ class ExpressCheckout extends Component {
 
   assignRefToForm = (formComp) => { this.form = formComp; }
 
-  onSubmit = (e) => {
+  handleOnSubmit = (e) => {
     e.preventDefault();
     console.log('%ce', 'background:blue;', e);
 
@@ -100,7 +100,7 @@ class ExpressCheckout extends Component {
           <h1>Express Checkout</h1>
         </div>
         <Validation.components.Form
-          ref={this.assignRefToForm} onSubmit={this.handlerSubmitOrder}
+          ref={this.assignRefToForm} onSubmit={this.handleOnSubmit}
         >
           <div className="checkout__body grid">
             <div className="checkout__grid">
