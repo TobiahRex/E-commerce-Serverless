@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
 class AddressLine extends React.PureComponent {
   static propTypes = {
@@ -25,6 +26,7 @@ class AddressLine extends React.PureComponent {
 
   render() {
     const {
+      required,
       lineNumber,
       billingAddressLine,
     } = this.props;
@@ -33,12 +35,14 @@ class AddressLine extends React.PureComponent {
       <div className="input__row">
         <div className={`input__row--address-line-${lineNumber}`}>
           <p>AddressLine {lineNumber} <span className="required">*</span></p>
-          <input
-            name={`billingAddressLine${lineNumber}`}
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="text"
+            containerClassName=""
+            name={`billingAddressLine${lineNumber}`}
+            validations={[required ? 'required' : '']}
             onChange={this.handleOnChange}
             value={billingAddressLine}
-            required={this.props.required}
           />
         </div>
       </div>
