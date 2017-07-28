@@ -30,6 +30,15 @@ Object.assign(Validation.rules, {
     ),
   },
 
+  numeric: {
+    rule: value => validator.isNumberic(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        Postal code should only contain numbers (0-9).
+      </span>
+    ),
+  },
+
   password: {
     rule: (value, components) => {
       const password = components.password.state;

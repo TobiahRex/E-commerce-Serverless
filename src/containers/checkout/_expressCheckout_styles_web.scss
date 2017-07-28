@@ -148,7 +148,8 @@
               margin-left: 1.5em;
             }
           }
-          & .input__row--country {
+          & .input__row--country,
+          .input__row--prefecture {
             @include prefixflex();
             align-items: flex-start;
             flex-direction: column;
