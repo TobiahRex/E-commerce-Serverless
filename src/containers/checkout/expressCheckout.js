@@ -4,6 +4,8 @@ import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
+import { Form } from 'react-validation/lib/build/validation.rc';
+
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
@@ -40,6 +42,7 @@ class ExpressCheckout extends Component {
       cart: [],
       newsletterDecision: true,
       showCvnModal: false,
+      errors: {},
     };
   }
 
@@ -65,6 +68,15 @@ class ExpressCheckout extends Component {
     );
   }
 
+  assignRefToForm = (formComp) => { this.form = formComp; }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    console.log('%ce', 'background:blue;', e);
+
+    this.setState({ error: this.form.validateAll() });
+  }
+
   render() {
     const {
       cart,
@@ -74,6 +86,7 @@ class ExpressCheckout extends Component {
     const {
       newsletterDecision,
     } = this.state;
+    console.log('%cthis.state', 'background:cyan;', this.state);
 
     return (
       <div className="checkout__container">
@@ -86,7 +99,9 @@ class ExpressCheckout extends Component {
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
-        <form onSubmit={this.handlerSubmitOrder}>
+        <Form
+          ref={this.assignRefToForm} onSubmit={this.handlerSubmitOrder}
+        >
           <div className="checkout__body grid">
             <div className="checkout__grid">
               <ProductReview
@@ -104,11 +119,13 @@ class ExpressCheckout extends Component {
             </div>
             <div className="checkout__grid">
               <CreditCardInfo toggleModal={this.toggleModal} />
-              <GrandTotal />
+              <GrandTotal
+                onSubmit={this.onSubmit}
+              />
               <ErrorDialogue />
             </div>
           </div>
-        </form>
+        </Form>
 
         <CvnModal
           showModal={this.state.showCvnModal}

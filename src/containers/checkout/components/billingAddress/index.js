@@ -32,18 +32,6 @@ class BillingAddress extends React.Component {
 
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
-  validateState = ({ name, vSuccess, vWarning, vError }) => {
-    const easyInputs = ['billingFirstName', 'billingLastName'];
-
-    if (easyInputs.includes(name)) {
-      const length = this.state[name].length;
-      if (length >= vSuccess) return 'success';
-      if (length === vWarning) return 'warning';
-      if (length <= vError) return 'error';
-    }
-    return 'error';
-  }
-
   render() {
     console.log('%cstate', 'background:lime;', this.state);
 
@@ -54,7 +42,6 @@ class BillingAddress extends React.Component {
         </div>
         <div className="input__row">
           <FirstName
-            validateInput={this.validateState}
             billingFirstName={this.state.billingFirstName}
             handleOnChange={this.handleOnChange}
           />
@@ -70,6 +57,7 @@ class BillingAddress extends React.Component {
         />
 
         <AddressLine
+          required
           lineNumber={1}
           billingAddressLine={this.state.billingAddressLine1}
           handleOnChange={this.handleOnChange}

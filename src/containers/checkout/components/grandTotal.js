@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import { Button } from 'react-validation/lib/build/validation.rc';
 
-export default function GrandTotal() {
+function GrandTotal({ onSubmit }) {
   return (
     <div className="checkout__grand-total">
       <div className="title">
@@ -38,16 +40,18 @@ export default function GrandTotal() {
         </Link></p>
       </div>
       <div className="purchase-btn">
-        <button
-          onClick={() => console.info('PLACE ORDER')}
-        >
+        <Button>
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
             {'\u00A0'}
             <p>Place Order Now</p>
           </span>
-        </button>
+        </Button>
       </div>
     </div>
   );
 }
+GrandTotal.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+export default GrandTotal;

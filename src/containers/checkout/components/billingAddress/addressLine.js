@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 
 class AddressLine extends React.PureComponent {
   static propTypes = {
+    required: PropTypes.bool,
     lineNumber: PropTypes.number.isRequired,
     handleOnChange: PropTypes.func.isRequired,
     billingAddressLine: PropTypes.string.isRequired,
   }
+
+  static defaultProps = {
+    required: false,
+  }
+
   constructor(props) {
     super(props);
 
@@ -32,7 +38,7 @@ class AddressLine extends React.PureComponent {
             type="text"
             onChange={this.handleOnChange}
             value={billingAddressLine}
-            required
+            required={this.props.required}
           />
         </div>
       </div>
