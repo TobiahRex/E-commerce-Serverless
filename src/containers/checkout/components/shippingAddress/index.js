@@ -54,7 +54,7 @@ class ShippingAddress extends React.Component {
           shippingAddressLine1={this.state.shippingAddressLine1}
           handleOnChange={this.handleOnChange}
         />
-
+        
         <AddressLine
           lineNumber={2}
           shippingAddressLine2={this.state.shippingAddressLine2}

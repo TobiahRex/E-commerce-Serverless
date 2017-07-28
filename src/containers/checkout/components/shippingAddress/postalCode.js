@@ -1,26 +1,42 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 
-class PostalCode extends PureComponent {
+const { func, string } = PropTypes;
+
+class PostalCode extends React.PureComponent {
+  static propTypes = {
+    handleOnChange: func.isRequired,
+    shippingPostalCode: string,
+  }
+
+  static defaultProps = {
+    shippingPostalCode: '',
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      postalCode: '',
+      shippingPostalCode: props.shippingPostalCode,
     };
   }
 
-  handleChange = e => this.setState({ postalCode: e.target.value })
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
       <div className="input__row">
         <div className="input__row--postal-code">
           <p>Postal Code <span className="required">*</span></p>
-          <input
-            name="postalCode"
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.postalCode}
+            containerClassName=""
+            name="shippingPostalCode"
+            validations={['required', 'japan-postal']}
+            onChange={this.handleOnChange}
+            value={this.props.shippingPostalCode}
           />
         </div>
       </div>
