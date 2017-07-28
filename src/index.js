@@ -1,13 +1,17 @@
 /* eslint-disable import/default, global-require, no-unused-expressions, import/first */
 // if (!global._babelPolyfill) require('babel-polyfill'); // eslint-disable-line
 
-import 'babel-polyfill';
 import React from 'react';
+
+import 'babel-polyfill';
 import './styles.scss';
 import 'masonry-layout';
+import './services/utils/formValidationRulesExtension';
+
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Perf from 'react-addons-perf';
+
 import createStore from './redux/index';
 import apolloClient from './graphql';
 import routes from './navigation/routes';

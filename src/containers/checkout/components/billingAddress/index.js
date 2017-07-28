@@ -25,7 +25,8 @@ class BillingAddress extends React.Component {
       billingAddressLine2: '',
       billingCountry: '',
       billingPrefectureState: '',
-      billingPostalCode: null,
+      billingPostalCode: 0,
+      billingPhoneNumber: '',
       billingCity: '',
     };
   }

@@ -40,7 +40,7 @@ function GrandTotal({ onSubmit }) {
         </Link></p>
       </div>
       <div className="purchase-btn">
-        <Button>
+        <Button className="button" errorClassName="asd">
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
             {'\u00A0'}

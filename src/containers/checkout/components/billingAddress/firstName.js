@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Input } from 'react-validation/lib/build/validation.rc';
 
 class FirstName extends React.PureComponent {
   static propTypes = {
@@ -20,12 +21,14 @@ class FirstName extends React.PureComponent {
     return (
       <div className="input__row--first-name">
         <p>First Name <span className="required">*</span></p>
-        <input
+        <Input
+          errorClassName="is-invalid-input"
           type="text"
+          containerClassName=""
           name="billingFirstName"
+          validations={['required', 'alpha']}
           onChange={this.handleOnChange}
           value={this.props.billingFirstName}
-          required
         />
       </div>
     );

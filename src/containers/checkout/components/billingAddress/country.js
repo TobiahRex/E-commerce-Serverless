@@ -35,6 +35,7 @@ class Country extends React.PureComponent {
             className="input--select"
             value={this.state.country}
             onChange={this.handleOnChange}
+            required
           >
             <option value="Choose">Choose</option>
             {this.renderCountryOptions(Countries)}

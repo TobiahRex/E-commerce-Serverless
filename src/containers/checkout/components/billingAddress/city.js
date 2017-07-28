@@ -27,6 +27,7 @@ class City extends React.PureComponent {
             type="text"
             onChange={this.handleOnChange}
             value={this.props.billingCity}
+            required
           />
         </div>
       </div>

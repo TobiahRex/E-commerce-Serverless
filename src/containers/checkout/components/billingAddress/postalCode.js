@@ -30,7 +30,9 @@ class PostalCode extends React.PureComponent {
             name="billingPostalCode"
             type="number"
             onChange={this.handleOnChange}
-            value={this.props.billingPostalCode}
+            value={this.props.billingPostalCode || ''}
+            placeholder={87505}
+            required
           />
         </div>
       </div>
