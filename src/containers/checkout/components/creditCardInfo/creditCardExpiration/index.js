@@ -1,8 +1,16 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Months from './monthConstants';
 import Years from './yearConstants';
 
-class CreditCardExpiration extends PureComponent {
+const { string, func } = PropTypes;
+
+class CreditCardExpiration extends React.PureComponent {
+  static propTypes = {
+    ccNameOnCard: string.isRequired,
+    handleOnChange: func.isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -12,7 +20,13 @@ class CreditCardExpiration extends PureComponent {
     };
   }
 
-  handleOptionChange = e => this.setState({ [e.target.name]: e.target.value })
+  componentWillReceiveProps(nextProps) {
+    const nextPropsCopy = Object.assign({}, nextProps);
+    delete nextPropsCopy.handleOnChange;
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  }
+
+  handleOnChange = e => this.props.handleOnChange(e)
 
 
   renderMonthOptions = months => months.map(({ month, number }) => (
@@ -46,9 +60,11 @@ class CreditCardExpiration extends PureComponent {
               name="creditCardExpirationMonth"
               className="input--select"
               value={this.state.expirationMonth}
-              onChange={this.handleOptionChange}
+              onChange={this.handleOnChange}
             >
-              <option value="Month" className="input--option" >Month</option>
+              <option value="" className="input--option">
+                Month
+              </option>
               {this.renderMonthOptions(Months)}
             </select>
 
@@ -60,9 +76,11 @@ class CreditCardExpiration extends PureComponent {
               name="creditCardExpirationYear"
               className="input--select"
               value={this.state.expirationYear}
-              onChange={this.handleOptionChange}
+              onChange={this.handleOnChange}
             >
-              <option value="Month" className="input--option">Year</option>
+              <option value="" className="input--option">
+                Year
+              </option>
               {this.renderYearOptions(Years)}
             </select>
 
