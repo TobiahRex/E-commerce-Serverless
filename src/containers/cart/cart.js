@@ -32,6 +32,7 @@ import {
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
+  calculateTotalsDue as CalculateTotalsDue,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -127,22 +128,7 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
-  calculateTotalsDue = (cart) => {
-    let grandTotal = 0;
-
-    cart.forEach((productObj) => {
-      productObj.subTotal = productObj.qty * Number(productObj.product.price);
-      grandTotal += productObj.subTotal;
-    });
-
-    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
-    grandTotal += taxes;
-
-    return ({
-      taxes,
-      grandTotal,
-    });
-  }
+  calculateTotalsDue = (cart) => CalculateTotalsDue(cart)
 
   /**
   * Function: "verifyQtyChange"
