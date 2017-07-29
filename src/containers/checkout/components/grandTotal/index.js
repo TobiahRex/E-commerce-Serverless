@@ -14,8 +14,11 @@ class GrandTotal extends React.PureComponent {
       taxes: number.isRequired,
       grandTotal: number.isRequired,
       discount: shape({
-        
-      }).isRequired
+        qty: bool.isRequired,
+        qtyAmount: number.isRequired,
+        register: bool.isRequired,
+        registerAmount: number.isRequired,
+      }).isRequired,
     }).isRequired,
     handleOnChange: func.isRequired,
     termsAgreement: bool.isRequired,
