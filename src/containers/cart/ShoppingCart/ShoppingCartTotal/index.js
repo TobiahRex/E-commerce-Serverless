@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartTotal(total) {
-  console.log('%ctotal', 'background:lime;', total);
+function ShoppingCartTotal({ total }) {
   const {
     discount,
     subTotal,
     grandTotal,
     taxes,
   } = total;
+  console.log('%ctotal', 'background:red;', total);
+
   return (
     <div className="shopping-cart-analysis-main">
       <div className="shopping-cart-analysis-subtotal">

@@ -76,7 +76,6 @@ class ShoppingCart extends Component {
     const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
 
     const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
-    console.log('%ctotal', 'background:pink;', total);
 
     if (
       this.state.qty !== qty ||
@@ -552,15 +551,26 @@ cart.reduce((accum, next) => {
 */
 
 const ShoppingCartWithState = connect((state, ownProps) => {
-  const userCart = DetermineCartType(
+  const cart = DetermineCartType(
     ownProps.loggedIn,
     ownProps.userCart,
     ownProps.FetchMultipleProducts,
     ZipUserCart,
   );
 
-  const { taxes, grandTotal } = CalculateTotalsDue(userCart, taxRate);
+  const { taxes, grandTotal } = CalculateTotalsDue(
+    cart,
+    ownProps.taxRate,
+  );
 
+  const total = CalculateDiscounts(
+    cart,
+    taxes,
+    grandTotal,
+    ownProps.newUser,
+  );
+
+  return ({ total });
 }, null)(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(
@@ -598,8 +608,3 @@ dispatch => ({
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
 }))(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
-
-const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
-
-const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
-console.log('%ctotal', 'background:pink;', total);
