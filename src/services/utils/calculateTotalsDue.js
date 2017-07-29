@@ -9,7 +9,7 @@
 *
 * @return {N/A} Set's new state for taxes & grandTotal.
 */
-const calculateTotalsDue = (cart) => {
+const calculateTotalsDue = (cart, taxRate) => {
   let grandTotal = 0;
 
   cart.forEach((productObj) => {
@@ -17,7 +17,7 @@ const calculateTotalsDue = (cart) => {
     grandTotal += productObj.subTotal;
   });
 
-  const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
+  const taxes = Number((grandTotal * taxRate).toFixed(2));
   grandTotal += taxes;
 
   return ({

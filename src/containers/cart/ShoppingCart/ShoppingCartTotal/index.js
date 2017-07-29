@@ -2,38 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
-  const { subTotal, totalQty } = cart.reduce((accum, next) => {
-    if (!!next.qty) {
-      accum.totalQty += next.qty;
-      accum.subTotal += (Number(next.product.price) * next.qty);
-      return accum;
-    }
-    return accum;
-  }, {
-    subTotal: 0,
-    totalQty: 0,
-  });
-
-  const discount = {
-    qty: false,
-    qtyAmount: 0,
-    register: false,
-    registerAmount: 0,
-  };
-
-  if (totalQty >= 4) {
-    discount.qty = true;
-    discount.qtyAmount = subTotal * 0.25;
-    grandTotal -= discount.qtyAmount;
-  }
-
-  if (newUser) {
-    discount.register = true;
-    discount.qtyAmount = subTotal * 0.1;
-    grandTotal -= discount.qtyAmount;
-  }
-
+function ShoppingCartTotal({ subTotal, taxes, grandTotal, discount }) {
   return (
     <div className="shopping-cart-analysis-main">
       <div className="shopping-cart-analysis-subtotal">
@@ -156,11 +125,19 @@ function ShoppingCartTotal({ cart, taxes, grandTotal, newUser }) {
     </button>
   </div>
 </div> */}
-const { arrayOf, object, bool, number } = PropTypes;
+
+const { bool, number, shape } = PropTypes;
 ShoppingCartTotal.propTypes = {
-  cart: arrayOf(object).isRequired,
+  total: shape({
+    discount: shape({
+      qty: bool.isRequired,
+      qtyAmount: number.isRequired,
+      register: bool.isRequired,
+      registerAmount: number.isRequired,
+    }),
+  }).isRequired,
   taxes: number.isRequired,
-  newUser: bool.isRequired,
   grandTotal: number.isRequired,
+  subTotal: number.isRequired,
 };
 export default ShoppingCartTotal;

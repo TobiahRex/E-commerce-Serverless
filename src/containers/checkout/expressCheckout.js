@@ -13,6 +13,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   calculateTotalsDue as CalculateTotalsDue,
+  calculateDiscounts as CalculateDiscounts,
 } from './utilities.imports';
 import { FetchMultipleProducts } from '../../graphql/queries';
 
@@ -102,9 +103,15 @@ class ExpressCheckout extends Component {
       ZipUserCart,
     );
 
-    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart);
+    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
+
+    const { discount, subTotal, grandTotal } = CalculateDiscounts(cart, taxes, grandTotal, newUser);
 
     if (
+      this.state.discount.qty !== discount.qty ||
+      this.state.discount.qtyAmount !== discount.qtyAmount ||
+      this.state.discount.register !== discount.register ||
+      this.state.discount.registerAmount !== discount.registerAmount ||
       this.state.total.taxes !== taxes ||
       this.state.total.grandTotal !== grandTotal ||
       !_.isEqual(nextProps, this.props) ||

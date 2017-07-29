@@ -70,7 +70,8 @@ class ShoppingCart extends Component {
       ZipUserCart,
     );
 
-    const { taxes, grandTotal } = this.calculateTotalsDue(updatedCart);
+    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
+
     if (
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
@@ -118,7 +119,6 @@ class ShoppingCart extends Component {
     return false;
   }
   /**
-  * Function: "calculateTotalsDue"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
   * 2) Add that to the individual subtotal (newly created key) to each productObj.
   * 3) Add that amount to the "grandTotal".
@@ -128,7 +128,6 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
-  calculateTotalsDue = (cart) => CalculateTotalsDue(cart)
 
   /**
   * Function: "verifyQtyChange"
