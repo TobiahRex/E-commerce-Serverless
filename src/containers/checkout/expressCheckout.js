@@ -63,6 +63,12 @@ class ExpressCheckout extends Component {
       shippingCity: '',
       shippingPostalCode: '',
       shippingPhoneNumber: '',
+      // --- Credit Card Info State ---
+      ccNameOnCard: '',
+      ccNumber: '',
+      ccExpireMonth: '',
+      ccExpireYear: '',
+      ccCvn: '',
     };
   }
 
@@ -128,6 +134,11 @@ class ExpressCheckout extends Component {
       shippingPostalCode,
       shippingPhoneNumber,
       // ---
+      ccNameOnCard,
+      ccNumber,
+      ccExpireMonth,
+      ccExpireYear,
+      ccCvn,
     } = this.state;
 
     console.log('%cthis.state', 'background:cyan;', this.state);
@@ -185,6 +196,12 @@ class ExpressCheckout extends Component {
             </div>
             <div className="checkout__grid">
               <CreditCardInfo
+                ccNameOnCard={ccNameOnCard}
+                ccNumber={ccNumber}
+                ccExpireMonth={ccExpireMonth}
+                ccExpireYear={ccExpireYear}
+                ccCvn={ccCvn}
+                handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
               />
               <GrandTotal
