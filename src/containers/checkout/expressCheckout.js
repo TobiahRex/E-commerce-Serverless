@@ -43,6 +43,17 @@ class ExpressCheckout extends Component {
       newsletterDecision: true,
       showCvnModal: false,
       errors: {},
+      // --- Billing Address State ---
+      billingFirstName: '',
+      billingLastName: '',
+      billingEmail: '',
+      billingAddressLine1: '',
+      billingAddressLine2: '',
+      billingCountry: '',
+      billingPrefectureState: '',
+      billingCity: '',
+      billingPostalCode: '',
+      // --- Shipping Address State ---
     };
   }
 
@@ -87,7 +98,19 @@ class ExpressCheckout extends Component {
 
     const {
       newsletterDecision,
+      // ---
+      billingFirstName,
+      billingLastName,
+      billingEmail,
+      billingAddressLine1,
+      billingAddressLine2,
+      billingCountry,
+      billingPrefectureState,
+      billingCity,
+      billingPostalCode,
+      // ---
     } = this.state;
+
     console.log('%cthis.state', 'background:cyan;', this.state);
 
     return (
@@ -116,8 +139,20 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <BillingAddress />
-              <ShippingAddress />
+              <BillingAddress
+                billingFirstName={billingFirstName}
+                billingLastName={billingLastName}
+                billingEmail={billingEmail}
+                billingAddressLine1={billingAddressLine1}
+                billingAddressLine2={billingAddressLine2}
+                billingCountry={billingCountry}
+                billingPrefectureState={billingPrefectureState}
+                billingCity={billingCity}
+                billingPostalCode={billingPostalCode}
+                handleOnChange={this.handleOnChange}
+              />
+              <ShippingAddress
+              />
             </div>
             <div className="checkout__grid">
               <CreditCardInfo toggleModal={this.toggleModal} />
