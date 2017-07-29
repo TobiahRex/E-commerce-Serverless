@@ -516,19 +516,20 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
+    console.log('%cdata', 'background:red;', data);
     return (
       <div className="juice-page__main">
         <BreadCrumb
           paths={['Home', 'Juices']}
           classes={['home', 'home']}
           destination={['', 'juices']}
-          lastCrumb={data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
+          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title : 'Juice Page'}
         />
         {
-          data.FindProductById ?
+          data.FindProductsByFlavor ?
             <MainTitle
-              vendor={data.FindProductById.product.vendor}
-              mainTitle={data.FindProductById.product.mainTitle}
+              vendor={data.FindProductsByFlavor[0].product.vendor}
+              mainTitle={data.FindProductsByFlavor[0].product.mainTitle}
             /> : ''
         }
         {

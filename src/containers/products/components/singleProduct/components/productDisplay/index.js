@@ -14,7 +14,7 @@ import {
 
 import {
   arrayDeepEquality as ArrayDeepEquality,
-} from './'
+} from '../../container/utilities.imports';
 
 class ProductDisplay extends React.Component {
   static propTypes = propTypes
@@ -29,6 +29,7 @@ class ProductDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('%cnextProps @ ProductDisplay', 'background:lime;', nextProps);
     if (!ArrayDeepEquality(nextProps.productsArray, this.props.productsArray)) {
       this.setState(prevState => ({
         ...prevState,
