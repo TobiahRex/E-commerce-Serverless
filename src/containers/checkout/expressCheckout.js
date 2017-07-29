@@ -326,10 +326,10 @@ const ExpressCheckoutWithState = connect(({
 const ExpressCheckoutWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart }) => {
-      if (!loggedIn) return ({ variables: { ids: [] } });
-
+    options: ({ loggedIn, userCart, guestCart }) => {
       let ids = [];
+
+      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
 
       if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
 
