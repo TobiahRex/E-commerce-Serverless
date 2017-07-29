@@ -16,6 +16,10 @@ import userActions from '../../redux/user';
 import orderActions from '../../redux/orders';
 
 import {
+  propTypes,
+  defaultProps,
+} from './propTypes.imports';
+import {
   BreadCrumb,
   EmptyCart,
   ShoppingCartWeb,
@@ -23,11 +27,11 @@ import {
   ShoppingCartWebProductRow,
   ShoppingCartMobileProductCard,
 } from './component.imports';
-import { propTypes, defaultProps } from './propTypes.imports';
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
+  arrayDeepEquality as ArrayDeepEquality,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -47,8 +51,6 @@ class ShoppingCart extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-
     const {
       qty,
       taxRate,
@@ -74,7 +76,7 @@ class ShoppingCart extends Component {
       this.state.taxRate !== taxRate ||
       this.state.grandTotal !== grandTotal ||
       this.state.mobileActive !== mobileActive ||
-      isArrayEqual(updatedCart, this.state.userCart)
+      ArrayDeepEquality(updatedCart, this.state.userCart)
     ) {
       this.setState({
         qty,
