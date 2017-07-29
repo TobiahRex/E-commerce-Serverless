@@ -136,6 +136,7 @@ class ProductDisplay extends React.Component {
           />
 
           <ProductActions
+            inStock={!!available}
             added={added}
             error={error}
             quantity={qty}

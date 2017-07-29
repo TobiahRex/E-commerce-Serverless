@@ -10,7 +10,7 @@ import {
   ProductActions,
   NewMemberPromotionBtn,
   NicotineBtns,
-  SocialMediaBtns,
+  // SocialMediaBtns, TODO MVP2
 } from '../container/component.imports';
 
 const { func, bool, string, shape } = PropTypes;
