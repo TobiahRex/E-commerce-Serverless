@@ -78,6 +78,25 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const {
+      loggedIn,
+      newUser,
+      userCart,
+      guestCart,
+      taxRate,
+      FetchMultipleProducts: fetchCartProductsResult,
+    } = this.props;
+
+    const updatedCart = this.determineCartType(
+      loggedIn,
+      guestCart,
+      userCart,
+      fetchCartProductsResult,
+      ZipUserCart,
+    );
+
+    const { taxes, grandTotal } = this.calculateTotalsDue(updatedCart);
+
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextProps });
   }
 
@@ -109,8 +128,6 @@ class ExpressCheckout extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log('%ce', 'background:blue;', e);
-
     this.setState({ error: this.form.validateAll() });
   }
 
@@ -276,10 +293,12 @@ const ExpressCheckoutWithStateAndData = compose(
   }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
   loggedIn: auth.loggedIn || false,
-  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   newUser: CheckNewUser(user, auth.loggedIn),
+  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  guestCart: orders.cart,
+  taxRate: orders.taxRate.totalRate,
 }), null)(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
