@@ -22,6 +22,7 @@ import {
   GrandTotal,
   ErrorDialogue,
   CvnModal,
+  SubmitOrder,
 } from './component.imports';
 
 const { arrayOf, object, func, bool } = PropTypes;
@@ -141,6 +142,8 @@ class ExpressCheckout extends Component {
       ccExpireMonth,
       ccExpireYear,
       ccCvn,
+      // ---
+      termsAgreement
     } = this.state;
 
     console.log('%cthis.state', 'background:cyan;', this.state);
@@ -171,7 +174,7 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <BillingAddress
+              {/* <BillingAddress
                 billingFirstName={billingFirstName}
                 billingLastName={billingLastName}
                 billingEmail={billingEmail}
@@ -182,8 +185,8 @@ class ExpressCheckout extends Component {
                 billingCity={billingCity}
                 billingPostalCode={billingPostalCode}
                 handleOnChange={this.handleOnChange}
-              />
-              <ShippingAddress
+                />
+                <ShippingAddress
                 shippingFirstName={shippingFirstName}
                 shippingLastName={shippingLastName}
                 shippingAddressLine1={shippingAddressLine1}
@@ -194,10 +197,10 @@ class ExpressCheckout extends Component {
                 shippingPostalCode={shippingPostalCode}
                 shippingPhoneNumber={shippingPhoneNumber}
                 handleOnChange={this.handleOnChange}
-              />
+              /> */}
             </div>
             <div className="checkout__grid">
-              <CreditCardInfo
+              {/* <CreditCardInfo
                 ccNameOnCard={ccNameOnCard}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}
@@ -205,11 +208,16 @@ class ExpressCheckout extends Component {
                 ccCvn={ccCvn}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
-              />
+              /> */}
               <GrandTotal
-                onSubmit={this.onSubmit}
+                termsAgreement={termsAgreement}
+                handleOnChange={this.handleOnChange}
               />
+
+              <SubmitOrder />
+
               <ErrorDialogue />
+
             </div>
           </div>
         </Validation.components.Form>

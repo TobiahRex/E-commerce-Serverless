@@ -5,5 +5,6 @@ export ShippingMethod from './components/shippingMethod';
 export CreditCardInfo from './components/creditCardInfo/';
 export ProductReview from './components/productReview/';
 export GrandTotal from './components/grandTotal';
+export SubmitOrder from './components/submitOrder';
 export ErrorDialogue from './components/errorDialogue';
 export CvnModal from './components/creditCardInfo/cvnModal';

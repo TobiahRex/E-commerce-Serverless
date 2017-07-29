@@ -1,15 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types;'
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import Validation from 'react-validation';
 
-const { string, bool, func } = PropTypes;
+const { bool, func } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
   static propTypes = {
-    ccNameOnCard: string.isRequired,
     handleOnChange: func.isRequired,
+    termsAgreement: bool.isRequired,
   }
   constructor(props) {
     super(props);
@@ -24,7 +25,10 @@ class GrandTotal extends React.PureComponent {
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
   }
 
-  handleOnChange = e => this.props.handleOnChange(e)
+  handleOnChange = (e) => {
+    e.target.value = !this.state.termsAgreement;
+    this.props.handleOnChange(e);
+  };
 
   render() {
     return (
@@ -56,9 +60,12 @@ class GrandTotal extends React.PureComponent {
           </div>
         </div>
         <div className="terms-agreement">
-          <input
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="checkbox"
-            className="checkbox"
+            containerClassName="checkbox"
+            name="termsAgreement"
+            validations={['required']}
             value={this.state.termsAgreement}
             onChange={this.handleOnChange}
           />
@@ -66,16 +73,8 @@ class GrandTotal extends React.PureComponent {
             Terms & Conditions
           </Link></p>
         </div>
-        <div className="purchase-btn">
-          <Validation.components.Button className="button" errorClassName="asd">
-            <span className="btn-flex-parent">
-              <FontAwesome name="barcode" />
-              {'\u00A0'}
-              <p>Place Order Now</p>
-            </span>
-          </Validation.components.Button>
-        </div>
       </div>
     );
   }
 }
+export default GrandTotal;
