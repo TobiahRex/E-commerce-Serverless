@@ -27,6 +27,7 @@ import { propTypes, defaultProps } from './propTypes.imports';
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
+  checkNewUser as CheckNewUser,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -549,11 +550,6 @@ cart.reduce((accum, next) => {
 *
 * @return {bool} - Determines eligibility for the 10% new user discount.
 */
-const checkNewUser = (user, loggedIn) => {
-  if (!loggedIn) return false;
-  return !user.profile.shopping.cart.length;
-};
-
 
 const ShoppingCartWithData = compose(
   graphql(FetchMultipleProducts, {
@@ -582,7 +578,7 @@ const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) =>
   userId: user._id ? user._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  newUser: checkNewUser(user, auth.loggedIn),
+  newUser: CheckNewUser(user, auth.loggedIn),
 }),
 dispatch => ({
   push: location => dispatch(push(location)),

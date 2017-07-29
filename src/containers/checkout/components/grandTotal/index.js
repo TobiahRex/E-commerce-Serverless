@@ -5,6 +5,10 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import Validation from 'react-validation';
 
+import {
+  checkNewUser as CheckNewUser,
+} from 'utilities.imports';
+
 const { bool, func } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
@@ -74,4 +78,6 @@ class GrandTotal extends React.PureComponent {
     );
   }
 }
+const checkNewUser = (user, loggedIn) => CheckNewUser(user, loggedIn);
+
 export default GrandTotal;
