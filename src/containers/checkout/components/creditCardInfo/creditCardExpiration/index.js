@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import Validation from 'react-validation';
 import Months from './monthConstants';
 import Years from './yearConstants';
 
@@ -54,12 +55,14 @@ class CreditCardExpiration extends React.PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--exp-date">
+
           <div className="input__container--exp-month">
             <p>Expiration Date <span className="required">*</span></p>
 
-            <select
+            <Validation.components.Select
+              errorClassName="is-invalid-input"
               name="ccExpireMonth"
-              className="input--select"
+              validations={['required']}
               value={this.state.ccExpireMonth}
               onChange={this.handleOnChange}
             >
@@ -67,23 +70,24 @@ class CreditCardExpiration extends React.PureComponent {
                 Month
               </option>
               {this.renderMonthOptions(Months)}
-            </select>
-
+            </Validation.components.Select>
           </div>
+
           <div className="input__container--exp-year">
             <p>{'\u00A0'}</p>
 
-            <select
+            <Validation.components.Select
+              errorClassName="is-invalid-input"
               name="ccExpireYear"
-              className="input--select"
-              value={this.state.ccExpireYear}
+              validations={['required']}
+              value={this.state.ccExpireMonth}
               onChange={this.handleOnChange}
             >
               <option value="" className="input--option">
                 Year
               </option>
               {this.renderYearOptions(Years)}
-            </select>
+            </Validation.components.Select>
 
           </div>
         </div>
