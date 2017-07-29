@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import { propTypes, defaultProps } from './propTypes';
 import {
@@ -12,9 +12,30 @@ import {
   SocialMediaBtns,
 } from '../../container/component.imports';
 
-class ProductDisplay extends Component {
+import {
+  arrayDeepEquality as ArrayDeepEquality,
+} from './'
+
+class ProductDisplay extends React.Component {
   static propTypes = propTypes
   static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      productsArray: [],
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!ArrayDeepEquality(nextProps.productsArray, this.props.productsArray)) {
+      this.setState(prevState => ({
+        ...prevState,
+        productsArray: [...nextProps.productsArray],
+      }));
+    }
+  }
 
   shouldComponentUpdate(nextProps) {
     if (!_.isEqual(nextProps, this.props)) return true;
@@ -70,6 +91,7 @@ class ProductDisplay extends Component {
       nicotineHandler,
       addToCartHandler,
     } = this.props;
+
     const {
       nicotineStrengths,
       product: {
@@ -82,6 +104,7 @@ class ProductDisplay extends Component {
         quantities: { available },
       },
     } = this.composeSingleProduct(productsArray);
+
     return (
       <div className="main__parent">
         <ImageGroup
