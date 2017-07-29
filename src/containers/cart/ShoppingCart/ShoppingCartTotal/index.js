@@ -9,7 +9,6 @@ function ShoppingCartTotal({ total }) {
     grandTotal,
     taxes,
   } = total;
-  console.log('%ctotal', 'background:red;', total);
 
   return (
     <div className="shopping-cart-analysis-main">

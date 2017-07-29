@@ -5,15 +5,17 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import Validation from 'react-validation';
 
-const { bool, func, shape, string } = PropTypes;
+const { bool, func, shape, number } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
   static propTypes = {
     total: shape({
-      subTotal: string.isRequired,
-      taxes: string.isRequired,
-      grandTotal: string.isRequired,
-      discount: string.isRequired,
+      subTotal: number.isRequired,
+      taxes: number.isRequired,
+      grandTotal: number.isRequired,
+      discount: shape({
+        
+      }).isRequired
     }).isRequired,
     handleOnChange: func.isRequired,
     termsAgreement: bool.isRequired,
