@@ -60,6 +60,8 @@ class ExpressCheckout extends Component {
 
   handleNewsletterChange = () => this.setState(prevState => ({ newsletterDecision: !prevState.newsletterDecision }))
 
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+
   toggleModal = (e) => {
     const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
 
