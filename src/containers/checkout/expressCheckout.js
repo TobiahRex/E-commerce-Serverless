@@ -10,6 +10,7 @@ import Validation from 'react-validation';
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
+  checkNewUser as CheckNewUser,
 } from './utilities.imports';
 import { FetchMultipleProducts } from '../../graphql/queries';
 
@@ -77,6 +78,8 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    
+
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextProps });
   }
 
@@ -278,6 +281,7 @@ const ExpressCheckoutWithStateAndData = compose(
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user }) => ({
   loggedIn: auth.loggedIn || false,
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  newUser: CheckNewUser(user, auth.loggedIn),
 }), null)(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
