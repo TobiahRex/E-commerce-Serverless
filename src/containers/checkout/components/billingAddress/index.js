@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import {
   FirstName,
@@ -9,10 +10,9 @@ import {
   PrefectureState,
   PostalCode,
   City,
-  PhoneNumber,
 } from './component.imports';
 
-class BillingAddress extends React.Component {
+class BillingAddress extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -27,6 +27,10 @@ class BillingAddress extends React.Component {
       billingCity: '',
       billingPostalCode: '',
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextProps });
   }
 
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -77,16 +81,17 @@ class BillingAddress extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
+        <City
+          billingCity={this.state.billingCity}
+          handleOnChange={this.handleOnChange}
+        />
+
         <PostalCode
           billingCountry={this.state.billingCountry}
           billingPostalCode={this.state.billingPostalCode}
           handleOnChange={this.handleOnChange}
         />
 
-        <City
-          billingCity={this.state.billingCity}
-          handleOnChange={this.handleOnChange}
-        />
 
         {/* TODO: MVP2
             <SameAsBilling />
