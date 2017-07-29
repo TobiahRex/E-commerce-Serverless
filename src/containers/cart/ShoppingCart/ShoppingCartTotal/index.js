@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function ShoppingCartTotal({ total }) {
-  console.log('%ctotal @ ShoppingCartTotal: ', 'background:lime;', total);
   const {
     discount,
     subTotal,

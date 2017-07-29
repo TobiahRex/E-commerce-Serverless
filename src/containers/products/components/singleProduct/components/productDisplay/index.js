@@ -9,7 +9,7 @@ import {
   ProductActions,
   NewMemberPromotionBtn,
   NicotineBtns,
-  SocialMediaBtns,
+  // SocialMediaBtns, TODO: MVP 2
 } from '../../container/component.imports';
 
 import {
@@ -29,7 +29,6 @@ class ProductDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps @ ProductDisplay', 'background:lime;', nextProps);
     if (!ArrayDeepEquality(nextProps.productsArray, this.props.productsArray)) {
       this.setState(prevState => ({
         ...prevState,
@@ -146,10 +145,11 @@ class ProductDisplay extends React.Component {
             addToCartHandler={addToCartHandler}
           />
 
-          <SocialMediaBtns
+          {/* TODO: MVP 2
+            <SocialMediaBtns
             // fbLike={fbLike}
             location={`${process.env.BASE_URL}/juice/${title}?id=${productId}`}
-          />
+          /> */}
         </div>
       </div>
     );

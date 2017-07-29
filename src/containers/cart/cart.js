@@ -199,7 +199,9 @@ class ShoppingCart extends Component {
           globalError = true;
           newCart = newCart.map((productObj) => {
             if (productObj._id === productId) {
-              const productWithError = _.clone(productObj, true);
+              const productWithError = Object.assign({}, productObj);
+              const newError = Object.assign({}, productObj.error);
+              productWithError.error = newError;
               productWithError.error.soft = true;
               productWithError.error.message = 'Too much';
               productWithError.qty -= 1;
@@ -567,7 +569,6 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     ownProps.FetchMultipleProducts,
     ZipUserCart,
   );
-  console.log('%cownProps', 'background:violet;', ownProps);
 
   const { taxes, grandTotal } = CalculateTotalsDue(
     cart,
@@ -580,7 +581,6 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     grandTotal,
     ownProps.newUser,
   );
-  console.log('%ctotal', 'background:pink;', total);
 
   return ({ total });
 }, null)(ShoppingCart);

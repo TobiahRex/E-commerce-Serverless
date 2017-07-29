@@ -19,7 +19,7 @@ function ProductActions({
     <div className="desc__actions">
       {
         inStock ?
-        (  <div className="actions__btn-container">
+        (<div className="actions__btn-container">
           <div className="btn-container__qty--container">
             <ul className="qty__list">
               <li className="list--qty-title">
