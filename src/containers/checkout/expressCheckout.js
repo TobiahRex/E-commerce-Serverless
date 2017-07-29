@@ -54,6 +54,15 @@ class ExpressCheckout extends Component {
       billingCity: '',
       billingPostalCode: '',
       // --- Shipping Address State ---
+      shippingFirstName: '',
+      shippingLastName: '',
+      shippingAddressLine1: '',
+      shippingAddressLine2: '',
+      shippingCountry: 'Japan',
+      shippingPrefecture: '',
+      shippingCity: '',
+      shippingPostalCode: '',
+      shippingPhoneNumber: '',
     };
   }
 
@@ -109,6 +118,16 @@ class ExpressCheckout extends Component {
       billingCity,
       billingPostalCode,
       // ---
+      shippingFirstName,
+      shippingLastName,
+      shippingAddressLine1,
+      shippingAddressLine2,
+      shippingCountry,
+      shippingPrefecture,
+      shippingCity,
+      shippingPostalCode,
+      shippingPhoneNumber,
+      // ---
     } = this.state;
 
     console.log('%cthis.state', 'background:cyan;', this.state);
@@ -152,10 +171,22 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               />
               <ShippingAddress
+                shippingFirstName={shippingFirstName}
+                shippingLastName={shippingLastName}
+                shippingAddressLine1={shippingAddressLine1}
+                shippingAddressLine2={shippingAddressLine2}
+                shippingCountry={shippingCountry}
+                shippingPrefecture={shippingPrefecture}
+                shippingCity={shippingCity}
+                shippingPostalCode={shippingPostalCode}
+                shippingPhoneNumber={shippingPhoneNumber}
+                handleOnChange={this.handleOnChange}
               />
             </div>
             <div className="checkout__grid">
-              <CreditCardInfo toggleModal={this.toggleModal} />
+              <CreditCardInfo
+                toggleModal={this.toggleModal}
+              />
               <GrandTotal
                 onSubmit={this.onSubmit}
               />
