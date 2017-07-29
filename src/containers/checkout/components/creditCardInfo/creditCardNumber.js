@@ -7,7 +7,7 @@ const { string, func } = PropTypes;
 
 class CreditCardNumber extends React.PureComponent {
   static propTypes = {
-    ccNameOnCard: string.isRequired,
+    ccNumber: string.isRequired,
     handleOnChange: func.isRequired,
   }
 

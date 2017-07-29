@@ -8,15 +8,16 @@ const { string, func } = PropTypes;
 
 class CreditCardExpiration extends React.PureComponent {
   static propTypes = {
-    ccNameOnCard: string.isRequired,
+    ccExpireMonth: string.isRequired,
+    ccExpireYear: string.isRequired,
     handleOnChange: func.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      expirationMonth: '',
-      expirationYear: '',
+      ccExpireMonth: '',
+      ccExpireYear: '',
     };
   }
 
@@ -32,7 +33,7 @@ class CreditCardExpiration extends React.PureComponent {
   renderMonthOptions = months => months.map(({ month, number }) => (
     <option
       key={new Buffer(`${month}${number}`, 'utf8').toString('base64')}
-      name="expirationMonth"
+      name="ccExpireMonth"
       value={number}
       className="input--option"
     >{number} - {month}
@@ -42,8 +43,8 @@ class CreditCardExpiration extends React.PureComponent {
   renderYearOptions = years => years.map(year => (
     <option
       key={new Buffer(year, 'utf8').toString('base64')}
-      name="expirationYear"
-      value={`${year}`}
+      name="ccExpireYear"
+      value={year}
       className="input--option"
     >{year}
     </option>
@@ -57,9 +58,9 @@ class CreditCardExpiration extends React.PureComponent {
             <p>Expiration Date <span className="required">*</span></p>
 
             <select
-              name="creditCardExpirationMonth"
+              name="ccExpireMonth"
               className="input--select"
-              value={this.state.expirationMonth}
+              value={this.state.ccExpireMonth}
               onChange={this.handleOnChange}
             >
               <option value="" className="input--option">
@@ -73,9 +74,9 @@ class CreditCardExpiration extends React.PureComponent {
             <p>{'\u00A0'}</p>
 
             <select
-              name="creditCardExpirationYear"
+              name="ccExpireYear"
               className="input--select"
-              value={this.state.expirationYear}
+              value={this.state.ccExpireYear}
               onChange={this.handleOnChange}
             >
               <option value="" className="input--option">
