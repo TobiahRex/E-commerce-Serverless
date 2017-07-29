@@ -85,10 +85,10 @@ Object.assign(Validation.rules, {
   },
 
   ccNumber: {
-    rule: value => /(^\d{16})|(^\d{4}-\d{4)-\d{4)-\d{4)/.test(value),
+    rule: value => /(^\d{16}$)|(^\d{4}-\d{4}-\d{4}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        Credit Card can only have format (1234567891234567) or (1234-5678-9123-4567) only.
+        Credit Card numbers must be 16 digits & can only have format (1234567891234567) or (1234-5678-9123-4567).
       </span>
     ),
   },

@@ -1,25 +1,45 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+import Validation from 'react-validation';
 
-class CreditCardNumber extends PureComponent {
+const { string, func } = PropTypes;
+
+class CreditCardNumber extends React.PureComponent {
+  static propTypes = {
+    ccNameOnCard: string.isRequired,
+    handleOnChange: func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      creditCardNumber: '',
+      ccNumber: '',
     };
   }
 
-  handleInputChange = e => this.setState({ creditCardNumber: e.target.value })
+  componentWillReceiveProps(nextProps) {
+    const nextPropsCopy = Object.assign({}, nextProps);
+    delete nextPropsCopy.handleOnChange;
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  }
+
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
       <div className="input__row">
         <div className="input__row--cc-number">
           <p>Credit Card Number <span className="required">*</span></p>
-          <input
+          <Validation.components.Input
+            errorClassName="is-invalid-input"
             type="text"
-            onChange={this.handleInputChange}
-            value={this.state.creditCardNumber}
+            containerClassName=""
+            name="ccNumber"
+            validations={['required', 'ccNumber']}
+            onChange={this.handleOnChange}
+            value={this.state.ccNumber}
           />
         </div>
       </div>
