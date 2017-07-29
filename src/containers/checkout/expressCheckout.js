@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -75,6 +76,10 @@ class ExpressCheckout extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextProps });
+  }
+
   componentWillUpdate() {
     const msnry = new Masonry('.grid', { // eslint-disable-line
       itemSelector: '.checkout__grid',
@@ -143,7 +148,9 @@ class ExpressCheckout extends Component {
       ccExpireYear,
       ccCvn,
       // ---
-      termsAgreement
+      termsAgreement,
+      // ---
+      total,
     } = this.state;
 
     console.log('%cthis.state', 'background:cyan;', this.state);
@@ -210,6 +217,7 @@ class ExpressCheckout extends Component {
                 toggleModal={this.toggleModal}
               />
               <GrandTotal
+                total={total}
                 termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
               />
