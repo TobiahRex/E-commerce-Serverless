@@ -25,10 +25,7 @@ class GrandTotal extends React.PureComponent {
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
   }
 
-  handleOnChange = (e) => {
-    e.target.value = !this.state.termsAgreement;
-    this.props.handleOnChange(e);
-  };
+  handleOnChange = e => this.props.handleOnChange(e);
 
   render() {
     return (
@@ -65,7 +62,7 @@ class GrandTotal extends React.PureComponent {
             type="checkbox"
             containerClassName="checkbox"
             name="termsAgreement"
-            validations={['boolRequired']}
+            validations={['required']}
             value={this.state.termsAgreement}
             onChange={this.handleOnChange}
           />

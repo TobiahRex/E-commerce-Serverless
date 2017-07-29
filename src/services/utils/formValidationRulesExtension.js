@@ -17,10 +17,7 @@ Object.assign(Validation.rules, {
   },
 
   boolRequired: {
-    rule: (value) => { // eslint-disable-line
-      if (value === 'true') return true;
-      if (value === 'false') return false;
-    },
+    rule: (value) => Boolean(value),
     hint: () => <span className="form-error is-visible">Required</span>,
   },
 

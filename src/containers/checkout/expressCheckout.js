@@ -174,7 +174,7 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              {/* <BillingAddress
+              <BillingAddress
                 billingFirstName={billingFirstName}
                 billingLastName={billingLastName}
                 billingEmail={billingEmail}
@@ -185,8 +185,8 @@ class ExpressCheckout extends Component {
                 billingCity={billingCity}
                 billingPostalCode={billingPostalCode}
                 handleOnChange={this.handleOnChange}
-                />
-                <ShippingAddress
+              />
+              <ShippingAddress
                 shippingFirstName={shippingFirstName}
                 shippingLastName={shippingLastName}
                 shippingAddressLine1={shippingAddressLine1}
@@ -197,10 +197,10 @@ class ExpressCheckout extends Component {
                 shippingPostalCode={shippingPostalCode}
                 shippingPhoneNumber={shippingPhoneNumber}
                 handleOnChange={this.handleOnChange}
-              /> */}
+              />
             </div>
             <div className="checkout__grid">
-              {/* <CreditCardInfo
+              <CreditCardInfo
                 ccNameOnCard={ccNameOnCard}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}
@@ -208,7 +208,7 @@ class ExpressCheckout extends Component {
                 ccCvn={ccCvn}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
-              /> */}
+              />
               <GrandTotal
                 termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
