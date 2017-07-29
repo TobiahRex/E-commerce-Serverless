@@ -569,6 +569,7 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     grandTotal,
     ownProps.newUser,
   );
+  console.log('%ctotal', 'background:pink;', total);
 
   return ({ total });
 }, null)(ShoppingCart);
