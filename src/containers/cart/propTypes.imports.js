@@ -40,10 +40,32 @@ export const propTypes = {
       product: objectOf(any),
     }),
   ),
+  total: shape({
+    discount: {
+      qty: bool,
+      qtyAmount: number,
+      register: bool,
+      registerAmount: number,
+    },
+    taxes: number,
+    grandTotal: number,
+    subTotal: number,
+  }),
 };
 
 export const defaultProps = {
   userId: '',
   userCart: null,
   guestCart: null,
+  total: {
+    discount: {
+      qty: false,
+      qtyAmount: 0,
+      register: false,
+      registerAmount: 0,
+    },
+    taxes: 0,
+    grandTotal: 0,
+    subTotal: 0,
+  },
 };

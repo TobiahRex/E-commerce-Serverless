@@ -49,7 +49,17 @@ class ShoppingCart extends Component {
       error: false,
       grandTotal: 0,
       mobileActive: props.mobileActive,
-      total: null,
+      total: {
+        discount: {
+          qty: false,
+          qtyAmount: 0,
+          register: false,
+          registerAmount: 0,
+        },
+        taxes: 0,
+        grandTotal: 0,
+        subTotal: 0,
+      },
     };
   }
 
@@ -557,6 +567,7 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     ownProps.FetchMultipleProducts,
     ZipUserCart,
   );
+  console.log('%cownProps', 'background:violet;', ownProps);
 
   const { taxes, grandTotal } = CalculateTotalsDue(
     cart,
@@ -577,10 +588,10 @@ const ShoppingCartWithState = connect((state, ownProps) => {
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart }) => {
-      if (!loggedIn) return ({ variables: { ids: [] } });
-
+    options: ({ loggedIn, userCart, guestCart }) => {
       let ids = [];
+
+      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
 
       if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
 
