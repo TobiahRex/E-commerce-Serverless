@@ -17,7 +17,12 @@ Object.assign(Validation.rules, {
   },
 
   boolRequired: {
-    rule: value => { console.warn('wtf are you?: ', value); return true; },
+    rule: (value) => {
+      if (value === 'true') return value;
+      if (value === 'false') return '';
+      return '';
+    },
+    hint: () => <span className="form-error is-visible">Required</span>,
   },
 
   email: {

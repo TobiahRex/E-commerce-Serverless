@@ -65,7 +65,7 @@ class GrandTotal extends React.PureComponent {
             type="checkbox"
             containerClassName="checkbox"
             name="termsAgreement"
-            validations={['required']}
+            validations={['boolRequired']}
             value={this.state.termsAgreement}
             onChange={this.handleOnChange}
           />
