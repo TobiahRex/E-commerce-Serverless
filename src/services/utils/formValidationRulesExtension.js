@@ -93,6 +93,15 @@ Object.assign(Validation.rules, {
     ),
   },
 
+  ccCvn: {
+    rule: value => /(^\d{3}$)/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        Credit Card CVN numbers should only be 3 digits.
+      </span>
+    ),
+  },
+
   password: {
     rule: (value, components) => {
       const password = components.password.state;

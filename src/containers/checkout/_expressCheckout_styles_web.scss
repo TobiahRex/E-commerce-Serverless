@@ -184,7 +184,7 @@
         padding-bottom: 3em;
       }
       & .checkout__shipping {
-        height: 82em;
+        padding-bottom: 3em;
         order: 2;
       }
       & .checkout__shipping-method {
@@ -262,6 +262,9 @@
                 outline: none;
 
               }
+            }
+            & span.form-error.is-visible {
+              margin-left: 1em;
             }
           }
         }
