@@ -32,6 +32,10 @@ class CreditCardInfo extends PureComponent {
   render() {
     const {
       ccNameOnCard,
+      ccNumber,
+      ccExpireMonth,
+      ccExpireYear,
+      ccCvn,
     } = this.state;
 
     return (
@@ -53,15 +57,26 @@ class CreditCardInfo extends PureComponent {
         </div>
 
         <NameOnCard
-          ccNameOnCard={this.ccNameOnCard}
+          ccNameOnCard={ccNameOnCard}
           handleOnChange={this.handleOnChange}
         />
 
-        <CreditCardNumber />
+        <CreditCardNumber
+          ccNumber={ccNumber}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <CreditCardExpiration />
+        <CreditCardExpiration
+          ccExpireMonth={ccExpireMonth}
+          ccExpireYear={ccExpireYear}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <CreditCardCvn toggleModal={this.props.toggleModal} />
+        <CreditCardCvn
+          toggleModal={this.props.toggleModal}
+          ccCvn={ccCvn}
+          handleOnChange={this.handleOnChange}
+        />
       </div>
     );
   }

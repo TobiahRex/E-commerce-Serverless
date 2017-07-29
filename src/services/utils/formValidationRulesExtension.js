@@ -75,6 +75,8 @@ Object.assign(Validation.rules, {
     ),
   },
 
+
+
   password: {
     rule: (value, components) => {
       const password = components.password.state;
@@ -91,6 +93,8 @@ Object.assign(Validation.rules, {
 
       return password.value === passwordConfirm.value;
     },
-    hint: () => <span className="form-error is-visible">Passwords should be equal.</span>,
+    hint: () => (
+      <span className="form-error is-visible">Passwords should be equal.</span>
+    ),
   },
 });

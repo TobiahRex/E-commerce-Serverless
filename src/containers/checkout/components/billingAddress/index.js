@@ -47,13 +47,12 @@ class BillingAddress extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const nextPropsCopy = Object.assign({}, nextProps);
     delete nextPropsCopy.handleOnChange;
-    if (!_.isEqual(nextPropsCopy, this.props)) this.setState({ ...nextPropsCopy });
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
   }
 
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
-    console.warn('BILLING IS RE-RENDERING');
     return (
       <div className="checkout__billing">
         <div className="title">
