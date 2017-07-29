@@ -75,7 +75,23 @@ Object.assign(Validation.rules, {
     ),
   },
 
+  ccName: {
+    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        That name uses invalid characters. Please try again.
+      </span>
+    ),
+  },
 
+  ccNumber: {
+    rule: value => /(^\d{16})|(^\d{4}-\d{4)-\d{4)-\d{4)/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        Credit Card can only have format (1234567891234567) or (1234-5678-9123-4567) only.
+      </span>
+    ),
+  },
 
   password: {
     rule: (value, components) => {
