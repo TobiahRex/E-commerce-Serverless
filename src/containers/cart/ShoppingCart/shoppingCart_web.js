@@ -6,12 +6,12 @@ import ShoppingCartTotal from './ShoppingCartTotal';
 function ShoppingCartWeb({
   cart,
   taxes,
-  newUser,
   grandTotal,
   routerPush,
   mobileActive,
   showProductRow,
   emptyCart,
+  total,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -42,12 +42,7 @@ function ShoppingCartWeb({
         </tbody>
       </table>
 
-      <ShoppingCartTotal
-        cart={cart}
-        taxes={taxes}
-        grandTotal={grandTotal}
-        newUser={newUser}
-      />
+      <ShoppingCartTotal total={total} />
 
       <div className="shopping-cart-action-btns-parent">
         <button
@@ -81,16 +76,26 @@ function ShoppingCartWeb({
     </div>
   );
 }
-const { func, number, arrayOf, object, bool } = PropTypes;
+const { func, number, arrayOf, object, bool, shape } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
   taxes: number,
-  newUser: bool.isRequired,
   grandTotal: number,
   routerPush: func.isRequired,
   showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
   emptyCart: func.isRequired,
+  total: shape({
+    discount: shape({
+      qty: bool.isRequired,
+      qtyAmount: number.isRequired,
+      register: bool.isRequired,
+      registerAmount: number.isRequired,
+    }),
+    taxes: number.isRequired,
+    grandTotal: number.isRequired,
+    subTotal: number.isRequired,
+  }).isRequired,
 };
 ShoppingCartWeb.defaultProps = {
   cart: [],

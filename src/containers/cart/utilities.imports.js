@@ -4,3 +4,4 @@ export nicotineStrengthConverter from '../../services/utils/nicotineStrengthConv
 export checkNewUser from '../../services/utils/checkNewUser';
 export arrayDeepEquality from '../../services/utils/arrayDeepEquality';
 export calculateTotalsDue from '../../services/utils/calculateTotalsDue';
+export calculateDiscounts from '../../services/utils/calculateDiscounts';

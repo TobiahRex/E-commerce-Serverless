@@ -33,6 +33,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   calculateTotalsDue as CalculateTotalsDue,
+  calculateDiscounts as CalculateDiscounts,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -48,12 +49,14 @@ class ShoppingCart extends Component {
       error: false,
       grandTotal: 0,
       mobileActive: props.mobileActive,
+      total: null,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     const {
       qty,
+      newUser,
       taxRate,
       loggedIn,
       userCart,
@@ -72,12 +75,16 @@ class ShoppingCart extends Component {
 
     const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
 
+    const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
+    console.log('%ctotal', 'background:pink;', total);
+
     if (
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
       this.state.taxRate !== taxRate ||
       this.state.grandTotal !== grandTotal ||
       this.state.mobileActive !== mobileActive ||
+      !_.isEqual(total, this.state.total) ||
       ArrayDeepEquality(updatedCart, this.state.userCart)
     ) {
       this.setState({
@@ -86,11 +93,12 @@ class ShoppingCart extends Component {
         grandTotal,
         updatedCart,
         mobileActive,
+        total: { ...total },
       });
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     /**
     * Function: "isArrayEqual"
     * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
@@ -116,6 +124,7 @@ class ShoppingCart extends Component {
     if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
       return true;
     }
+    if (!_.isEqual(nextState, this.state)) return true;
     return false;
   }
   /**
@@ -400,18 +409,19 @@ class ShoppingCart extends Component {
     newUser,
     grandTotal,
     mobileActive,
+    total,
   ) => {
     if (mobileActive === false) {
       return (
         <ShoppingCartWeb
           cart={cart}
           taxes={taxes}
-          newUser={newUser}
           grandTotal={grandTotal}
           emptyCart={this.emptyCart}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
           showProductRow={this.showProductRow}
+          total={total}
         />
       );
     }
@@ -424,6 +434,7 @@ class ShoppingCart extends Component {
         routerPush={this.routerPush}
         mobileActive={mobileActive}
         showProductRow={this.showProductRow}
+        total={total}
       />
     );
   }
@@ -462,6 +473,7 @@ class ShoppingCart extends Component {
     } = this.props;
 
     const {
+      total,
       taxes,
       grandTotal,
       updatedCart,
@@ -502,6 +514,7 @@ class ShoppingCart extends Component {
             newUser,
             grandTotal,
             mobileActive,
+            total,
           )
         }
       </div>
@@ -538,7 +551,19 @@ cart.reduce((accum, next) => {
 * @return {bool} - Determines eligibility for the 10% new user discount.
 */
 
-const ShoppingCartWithData = compose(
+const ShoppingCartWithState = connect((state, ownProps) => {
+  const userCart = DetermineCartType(
+    ownProps.loggedIn,
+    ownProps.userCart,
+    ownProps.FetchMultipleProducts,
+    ZipUserCart,
+  );
+
+  const { taxes, grandTotal } = CalculateTotalsDue(userCart, taxRate);
+
+}, null)(ShoppingCart);
+
+const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: ({ loggedIn, userCart }) => {
@@ -555,9 +580,9 @@ const ShoppingCartWithData = compose(
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
-)(ShoppingCart);
+)(ShoppingCartWithState);
 
-const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) => ({
+const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
   qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
   mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
@@ -571,5 +596,10 @@ dispatch => ({
   push: location => dispatch(push(location)),
   saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-}))(ShoppingCartWithData);
-export default ShoppingCartWithDataAndState;
+}))(ShoppingCartWithStateAndData);
+export default ShoppingCartWithStateAndData2;
+
+const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
+
+const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
+console.log('%ctotal', 'background:pink;', total);

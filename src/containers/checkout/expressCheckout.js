@@ -50,11 +50,10 @@ class ExpressCheckout extends Component {
     super(props);
 
     this.state = {
-      cart: [],
-      newsletterDecision: true,
       showCvnModal: false,
       errors: {},
-      // --- Billing Address State ---
+      // --- Form Data from Nested Components ---
+      newsletterDecision: true,
       billingFirstName: '',
       billingLastName: '',
       billingEmail: '',
@@ -64,7 +63,6 @@ class ExpressCheckout extends Component {
       billingPrefectureState: '',
       billingCity: '',
       billingPostalCode: '',
-      // --- Shipping Address ---
       shippingFirstName: '',
       shippingLastName: '',
       shippingAddressLine1: '',
@@ -74,14 +72,25 @@ class ExpressCheckout extends Component {
       shippingCity: '',
       shippingPostalCode: '',
       shippingPhoneNumber: '',
-      // --- Credit Card Info ---
       ccNameOnCard: '',
       ccNumber: '',
       ccExpireMonth: '',
       ccExpireYear: '',
       ccCvn: '',
-      // --- Terms Agreement ---
       termsAgreement: false,
+      // --- From props ---
+      cart: [],
+      total: {
+        discount: {
+          qty: false,
+          qtyAmount: 0,
+          register: false,
+          registerAmount: 0,
+        },
+        subTotal: 0,
+        grandTotal: 0,
+        taxes: 0,
+      },
     };
   }
 
@@ -93,7 +102,7 @@ class ExpressCheckout extends Component {
       guestCart,
       taxRate,
       FetchMultipleProducts: fetchCartProductsResult,
-    } = this.props;
+    } = nextProps;
 
     const updatedCart = this.determineCartType(
       loggedIn,
@@ -103,17 +112,33 @@ class ExpressCheckout extends Component {
       ZipUserCart,
     );
 
-    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
+    const {
+      taxes,
+      grandTotal: total,
+    } = CalculateTotalsDue(updatedCart, taxRate);
 
-    const { discount, subTotal, grandTotal } = CalculateDiscounts(cart, taxes, grandTotal, newUser);
+    const {
+      discount,
+      subTotal,
+      grandTotal,
+    } = CalculateDiscounts(updatedCart, taxes, total, newUser);
+
+    const objectToCheck = {
+      total: {
+        discount: {
+          qty: discount.qty,
+          qtyAmount: discount.qtyAmount,
+          register: discount.register,
+          registerAmount: discount.registerAmount,
+        },
+        subTotal,
+        grandTotal,
+        taxes,
+      },
+    };
 
     if (
-      this.state.discount.qty !== discount.qty ||
-      this.state.discount.qtyAmount !== discount.qtyAmount ||
-      this.state.discount.register !== discount.register ||
-      this.state.discount.registerAmount !== discount.registerAmount ||
-      this.state.total.taxes !== taxes ||
-      this.state.total.grandTotal !== grandTotal ||
+      !_.isEqual(objectToCheck, this.state) ||
       !_.isEqual(nextProps, this.props) ||
       ArrayDeepEquality(updatedCart, this.state.cart)
     ) {
@@ -135,8 +160,6 @@ class ExpressCheckout extends Component {
   routerPush = (e) => {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
-
-  handleNewsletterChange = () => this.setState(prevState => ({ newsletterDecision: !prevState.newsletterDecision }))
 
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
@@ -218,7 +241,7 @@ class ExpressCheckout extends Component {
                 loggedIn={loggedIn}
                 routerPush={this.routerPush}
                 newsletterDecision={newsletterDecision}
-                handleNewsletterChange={this.handleNewsletterChange}
+                handleOnChange={this.handleOnChange}
               />
               <ShippingMethod />
             </div>

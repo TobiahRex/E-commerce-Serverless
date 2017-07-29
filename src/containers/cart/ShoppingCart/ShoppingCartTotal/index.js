@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function ShoppingCartTotal({ subTotal, taxes, grandTotal, discount }) {
+function ShoppingCartTotal(total) {
+  console.log('%ctotal', 'background:lime;', total);
+  const {
+    discount,
+    subTotal,
+    grandTotal,
+    taxes,
+  } = total;
   return (
     <div className="shopping-cart-analysis-main">
       <div className="shopping-cart-analysis-subtotal">
@@ -44,7 +51,7 @@ function ShoppingCartTotal({ subTotal, taxes, grandTotal, discount }) {
               <h4 style={{ color: '#FC2525' }}> 25%{'\u00A0'}</h4>
               <FontAwesome name="usd" style={{ color: '#FC2525' }} />
               <h4 style={{ color: '#FC2525' }}>
-                {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
+                {'\u00A0'}-{discount.qtyAmount .toFixed(2)}
               </h4>
             </div>
           </div>
@@ -135,9 +142,9 @@ ShoppingCartTotal.propTypes = {
       register: bool.isRequired,
       registerAmount: number.isRequired,
     }),
+    taxes: number.isRequired,
+    grandTotal: number.isRequired,
+    subTotal: number.isRequired,
   }).isRequired,
-  taxes: number.isRequired,
-  grandTotal: number.isRequired,
-  subTotal: number.isRequired,
 };
 export default ShoppingCartTotal;
