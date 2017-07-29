@@ -5,14 +5,16 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import Validation from 'react-validation';
 
-import {
-  checkNewUser as CheckNewUser,
-} from 'utilities.imports';
-
-const { bool, func } = PropTypes;
+const { bool, func, shape, string } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
   static propTypes = {
+    total: shape({
+      subTotal: string.isRequired,
+      taxes: string.isRequired,
+      grandTotal: string.isRequired,
+      discount: string.isRequired,
+    }).isRequired,
     handleOnChange: func.isRequired,
     termsAgreement: bool.isRequired,
   }
@@ -21,17 +23,28 @@ class GrandTotal extends React.PureComponent {
 
     this.state = {
       termsAgreement: false,
+      total: null,
     };
   }
+
   componentWillReceiveProps(nextProps) {
     const nextPropsCopy = Object.assign({}, nextProps);
     delete nextPropsCopy.handleOnChange;
-    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+    if (!_.isEqual(nextProps, this.props, true)) this.setState({ ...nextPropsCopy });
   }
 
   handleOnChange = e => this.props.handleOnChange(e);
 
   render() {
+    const {
+      total: {
+        subTotal,
+        taxes,
+        grandTotal,
+        discount,
+      },
+      termsAgreement,
+    } = this.state;
     return (
       <div className="checkout__grand-total">
         <div className="title">
@@ -39,26 +52,52 @@ class GrandTotal extends React.PureComponent {
         </div>
 
         <div className="analysis-container">
+
           <div className="analysis-container--subtotal">
             <p>Subtotal</p>
-            <p><FontAwesome name="usd" />{'\u00A0'}90.00</p>
+            <p><FontAwesome name="usd" />{'\u00A0'}{subTotal}</p>
           </div>
+
           <div className="analysis-container--shipping">
             <p>Shipping & Handling</p>
             <p><i>Free</i></p>
           </div>
-          <div className="analysis-container--discount">
-            <p>New Member Discount</p>
-            <p><FontAwesome name="usd" />{'\u00A0'}-9.00</p>
-          </div>
+
+          {
+              discount.qty &&
+            (
+              <div className="analysis-container--discount">
+                <p>Quantity Discount</p>
+                <p>
+                  <FontAwesome name="usd" />
+                  {'\u00A0'}-{discount.qty.amount.toFixed(2)}
+                </p>
+              </div>
+            )
+          }
+          {
+              discount.register &&
+            (
+              <div className="analysis-container--discount">
+                <p>New Member Discount</p>
+                <p>
+                  <FontAwesome name="usd" />
+                  {'\u00A0'}-{discount.register.amount.toFixed(2)}
+                </p>
+              </div>
+            )
+          }
+
           <div className="analysis-container--taxes">
             <p>Taxes</p>
-            <p><FontAwesome name="usd" />{'\u00A0'}8.10</p>
+            <p><FontAwesome name="usd" />{'\u00A0'}{taxes.toFixed(2)}</p>
           </div>
+
           <div className="analysis-container--grand-total">
             <h3>Grand Total</h3>
-            <h3><FontAwesome name="usd" />{'\u00A0'}8.10</h3>
+            <h3><FontAwesome name="usd" />{'\u00A0'}{grandTotal.toFixed(2)}</h3>
           </div>
+
         </div>
         <div className="terms-agreement">
           <Validation.components.Input
@@ -67,7 +106,7 @@ class GrandTotal extends React.PureComponent {
             containerClassName="checkbox"
             name="termsAgreement"
             validations={['required']}
-            value={this.state.termsAgreement}
+            value={termsAgreement}
             onChange={this.handleOnChange}
           />
           <p>I have read & agree to all <Link to="/terms_and_conditions">
@@ -78,6 +117,5 @@ class GrandTotal extends React.PureComponent {
     );
   }
 }
-const checkNewUser = (user, loggedIn) => CheckNewUser(user, loggedIn);
 
 export default GrandTotal;
