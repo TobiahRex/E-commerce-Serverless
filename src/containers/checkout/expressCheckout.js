@@ -28,16 +28,21 @@ import {
   SubmitOrder,
 } from './component.imports';
 
-const { arrayOf, object, func, bool } = PropTypes;
+const { arrayOf, object, func, number, bool, objectOf, any } = PropTypes;
 
 class ExpressCheckout extends Component {
   static propTypes = {
-    cart: arrayOf(object),
     push: func.isRequired,
     loggedIn: bool.isRequired,
+    FetchMultipleProducts: objectOf(any).isRequired,
+    newUser: bool.isRequired,
+    userCart: arrayOf(object),
+    guestCart: arrayOf(object),
+    taxRate: number.isRequired,
   }
   static defaultProps = {
-    cart: [],
+    userCart: [],
+    guestCart: [],
   }
   constructor(props) {
     super(props);
@@ -98,6 +103,12 @@ class ExpressCheckout extends Component {
 
     const { taxes, grandTotal } = this.calculateTotalsDue(updatedCart);
 
+    const {
+      total: {
+        newUser
+      }
+    }
+
     if (
       !_.isEqual(nextProps, this.props) ||
       ArrayDeepEquality(updatedCart, this.state.cart)
@@ -142,11 +153,11 @@ class ExpressCheckout extends Component {
 
   render() {
     const {
-      cart,
       loggedIn,
     } = this.props;
 
     const {
+      cart,
       newsletterDecision,
       // ---
       billingFirstName,
