@@ -53,6 +53,7 @@ class BillingAddress extends React.PureComponent {
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
+    console.warn('BILLING IS RE-RENDERING');
     return (
       <div className="checkout__billing">
         <div className="title">

@@ -19,11 +19,21 @@ class CreditCardInfo extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      na: '',
+      ccNameOnCard: '',
+      ccNumber: '',
+      ccExpireMonth: '',
+      ccExpireYear: '',
+      ccCvn: '',
     };
   }
 
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+
   render() {
+    const {
+      ccNameOnCard,
+    } = this.state;
+
     return (
       <div className="checkout__credit-card">
         <div className="title">
@@ -42,7 +52,10 @@ class CreditCardInfo extends PureComponent {
           </div>
         </div>
 
-        <NameOnCard />
+        <NameOnCard
+          ccNameOnCard={this.ccNameOnCard}
+          handleOnChange={this.handleOnChange}
+        />
 
         <CreditCardNumber />
 
