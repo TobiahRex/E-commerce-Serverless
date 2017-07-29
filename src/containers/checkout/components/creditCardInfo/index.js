@@ -9,7 +9,7 @@ import {
   CreditCardCvn,
 } from './component.imports';
 
-const { func } = PropTypes;
+const { func, string } = PropTypes;
 
 class CreditCardInfo extends PureComponent {
   static propTypes = {

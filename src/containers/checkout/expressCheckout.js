@@ -53,7 +53,7 @@ class ExpressCheckout extends Component {
       billingPrefectureState: '',
       billingCity: '',
       billingPostalCode: '',
-      // --- Shipping Address State ---
+      // --- Shipping Address ---
       shippingFirstName: '',
       shippingLastName: '',
       shippingAddressLine1: '',
@@ -63,12 +63,14 @@ class ExpressCheckout extends Component {
       shippingCity: '',
       shippingPostalCode: '',
       shippingPhoneNumber: '',
-      // --- Credit Card Info State ---
+      // --- Credit Card Info ---
       ccNameOnCard: '',
       ccNumber: '',
       ccExpireMonth: '',
       ccExpireYear: '',
       ccCvn: '',
+      // --- Terms Agreement ---
+      termsAgreement: false,
     };
   }
 
