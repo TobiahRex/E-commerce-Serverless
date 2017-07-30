@@ -32,6 +32,7 @@
     "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
     "graphql": "^0.9.6",
+    "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.9.7",
     "request": "^2.81.0",
     "serverless-plugin-graphiql": "^0.3.0"
