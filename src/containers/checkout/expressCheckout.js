@@ -84,8 +84,6 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps', 'background:cyan;', nextProps);
-
     if (
       !_.isEqual(nextProps, this.props) ||
       ArrayDeepEquality(nextProps.cart, this.state.cart)
@@ -251,10 +249,8 @@ class ExpressCheckout extends Component {
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
-  console.log('%ctotal', 'background:lime;', total);
 
   const cart = DetermineCartType(ownProps, ZipUserCart);
-  console.log('%ccart', 'background:pink;', cart);
 
   return ({
     total,

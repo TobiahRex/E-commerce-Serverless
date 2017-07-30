@@ -9,7 +9,7 @@ function Discounts({ discount }) {
         <p>Quantity Discount</p>
         <p>
           <FontAwesome name="usd" />
-          {'\u00A0'}-{discount.qty.amount.toFixed(2)}
+          {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
         </p>
       </div>
     );
@@ -21,13 +21,13 @@ function Discounts({ discount }) {
         <p>New Member Discount</p>
         <p>
           <FontAwesome name="usd" />
-          {'\u00A0'}-{discount.register.amount.toFixed(2)}
+          {'\u00A0'}-{discount.registerAmount.toFixed(2)}
         </p>
       </div>
     );
   }
 
-  return '';
+  return <div className="analysis-container--discount" />;
 }
 
 const { number, bool, shape } = PropTypes;

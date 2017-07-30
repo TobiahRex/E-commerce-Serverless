@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import TotalContent from './totalContent';
+console.log('%cTotalContent', 'background:red;', TotalContent);
 import Loading from './loading';
 
 const { bool, func, shape, number } = PropTypes;
@@ -9,15 +10,15 @@ const { bool, func, shape, number } = PropTypes;
 class GrandTotal extends React.PureComponent {
   static propTypes = {
     total: shape({
-      subTotal: number.isRequired,
-      taxes: number.isRequired,
-      grandTotal: number.isRequired,
+      subTotal: number,
+      taxes: number,
+      grandTotal: number,
       discount: shape({
-        qty: bool.isRequired,
-        qtyAmount: number.isRequired,
-        register: bool.isRequired,
-        registerAmount: number.isRequired,
-      }).isRequired,
+        qty: bool,
+        qtyAmount: number,
+        register: bool,
+        registerAmount: number,
+      }),
     }).isRequired,
     handleOnChange: func.isRequired,
     termsAgreement: bool.isRequired,
@@ -66,7 +67,7 @@ class GrandTotal extends React.PureComponent {
             taxes={taxes}
             subTotal={subTotal}
             discount={discount}
-            grandtotal={grandTotal}
+            grandTotal={grandTotal}
             termsAgreement={termsAgreement}
             handleOnChange={this.handleOnChange}
           /> :

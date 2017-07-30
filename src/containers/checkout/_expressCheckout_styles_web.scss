@@ -392,6 +392,14 @@
           width: 28em;
           height: 17.5em;
           padding: 1em;
+          & .analysis-container--discount {
+            & p {
+              color: $p-red;
+            }
+            & span {
+              color: $p-red;
+            }
+          }
           & div {
             @include prefixflex();
             justify-content: space-between;
@@ -426,12 +434,13 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
+          padding: 0 1em;
           & input {
             cursor: pointer;
           }
           & p {
             color: $p-blue;
-            font-size: 1.4em;
+            font-size: 1.2em;
             margin-left: .71em;
             a {
               color: $p-blue;

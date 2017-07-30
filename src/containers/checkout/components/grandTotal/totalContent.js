@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import Validation from 'react-validation';
-import { Link } from 'react-router-redux';
+import { Link } from 'react-router';
 import Discounts from './discounts';
 
 function TotalContent({
@@ -62,13 +62,13 @@ function TotalContent({
   );
 }
 
-const { number, bool, shape, string, func } = PropTypes;
+const { number, bool, shape, func } = PropTypes;
 
 TotalContent.propTypes = {
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
-  termsAgreement: string.isRequired,
+  termsAgreement: bool.isRequired,
   handleOnChange: func.isRequired,
   discount: shape({
     qty: bool.isRequired,
