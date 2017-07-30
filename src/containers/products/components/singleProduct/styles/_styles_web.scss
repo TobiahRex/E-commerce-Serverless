@@ -15,6 +15,7 @@
       align-items: center;
       height: 8em;
       width: 100%;
+      margin-bottom: 2em;
       h1 {
         font-size: 5em;
         font-weight: 200;
@@ -25,6 +26,7 @@
       & .main__title--vendor {
         bottom: .5em;
         font-size: 2em;
+        margin-left: .5em;
         position: relative;
         align-self: flex-end;
       }

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import {
   FirstName,
@@ -9,10 +11,23 @@ import {
   PrefectureState,
   PostalCode,
   City,
-  PhoneNumber,
 } from './component.imports';
 
-class BillingAddress extends React.Component {
+const { string, func } = PropTypes;
+
+class BillingAddress extends React.PureComponent {
+  static propTypes = {
+    billingFirstName: string.isRequired,
+    billingLastName: string.isRequired,
+    billingEmail: string.isRequired,
+    billingAddressLine1: string.isRequired,
+    billingAddressLine2: string.isRequired,
+    billingCountry: string.isRequired,
+    billingPrefectureState: string.isRequired,
+    billingCity: string.isRequired,
+    billingPostalCode: string.isRequired,
+    handleOnChange: func.isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -29,7 +44,13 @@ class BillingAddress extends React.Component {
     };
   }
 
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  componentWillReceiveProps(nextProps) {
+    const nextPropsCopy = Object.assign({}, nextProps);
+    delete nextPropsCopy.handleOnChange;
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  }
+
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
@@ -77,16 +98,17 @@ class BillingAddress extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
+        <City
+          billingCity={this.state.billingCity}
+          handleOnChange={this.handleOnChange}
+        />
+
         <PostalCode
           billingCountry={this.state.billingCountry}
           billingPostalCode={this.state.billingPostalCode}
           handleOnChange={this.handleOnChange}
         />
 
-        <City
-          billingCity={this.state.billingCity}
-          handleOnChange={this.handleOnChange}
-        />
 
         {/* TODO: MVP2
             <SameAsBilling />

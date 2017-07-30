@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import { propTypes, defaultProps } from './propTypes';
 import {
@@ -9,12 +9,33 @@ import {
   ProductActions,
   NewMemberPromotionBtn,
   NicotineBtns,
-  SocialMediaBtns,
+  // SocialMediaBtns, TODO: MVP 2
 } from '../../container/component.imports';
 
-class ProductDisplay extends Component {
+import {
+  arrayDeepEquality as ArrayDeepEquality,
+} from '../../container/utilities.imports';
+
+class ProductDisplay extends React.Component {
   static propTypes = propTypes
   static defaultProps = defaultProps;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      productsArray: [],
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!ArrayDeepEquality(nextProps.productsArray, this.props.productsArray)) {
+      this.setState(prevState => ({
+        ...prevState,
+        productsArray: [...nextProps.productsArray],
+      }));
+    }
+  }
 
   shouldComponentUpdate(nextProps) {
     if (!_.isEqual(nextProps, this.props)) return true;
@@ -70,6 +91,7 @@ class ProductDisplay extends Component {
       nicotineHandler,
       addToCartHandler,
     } = this.props;
+
     const {
       nicotineStrengths,
       product: {
@@ -82,6 +104,7 @@ class ProductDisplay extends Component {
         quantities: { available },
       },
     } = this.composeSingleProduct(productsArray);
+
     return (
       <div className="main__parent">
         <ImageGroup
@@ -112,6 +135,7 @@ class ProductDisplay extends Component {
           />
 
           <ProductActions
+            inStock={!!available}
             added={added}
             error={error}
             quantity={qty}
@@ -121,10 +145,11 @@ class ProductDisplay extends Component {
             addToCartHandler={addToCartHandler}
           />
 
-          <SocialMediaBtns
+          {/* TODO: MVP 2
+            <SocialMediaBtns
             // fbLike={fbLike}
             location={`${process.env.BASE_URL}/juice/${title}?id=${productId}`}
-          />
+          /> */}
         </div>
       </div>
     );

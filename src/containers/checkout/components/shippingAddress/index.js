@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import {
   FirstName,
   LastName,
-  Email,
   AddressLine,
   Country,
   Prefecture,
@@ -12,7 +13,21 @@ import {
   PhoneNumber,
 } from './component.imports';
 
+const { string, func } = PropTypes;
+
 class ShippingAddress extends React.Component {
+  static propTypes = {
+    shippingFirstName: string.isRequired,
+    shippingLastName: string.isRequired,
+    shippingAddressLine1: string.isRequired,
+    shippingAddressLine2: string.isRequired,
+    shippingCountry: string.isRequired,
+    shippingPrefecture: string.isRequired,
+    shippingCity: string.isRequired,
+    shippingPostalCode: string.isRequired,
+    shippingPhoneNumber: string.isRequired,
+    handleOnChange: func.isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -29,7 +44,13 @@ class ShippingAddress extends React.Component {
     };
   }
 
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  componentWillReceiveProps(nextProps) {
+    const nextPropsCopy = Object.assign({}, nextProps);
+    delete nextPropsCopy.handleOnChange;
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  }
+
+  handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (

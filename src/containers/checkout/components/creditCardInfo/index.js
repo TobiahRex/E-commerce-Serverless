@@ -9,21 +9,48 @@ import {
   CreditCardCvn,
 } from './component.imports';
 
-const { func } = PropTypes;
+const { func, string } = PropTypes;
 
 class CreditCardInfo extends PureComponent {
   static propTypes = {
+    ccNameOnCard: string.isRequired,
+    ccNumber: string.isRequired,
+    ccExpireMonth: string.isRequired,
+    ccExpireYear: string.isRequired,
+    ccCvn: string.isRequired,
+    handleOnChange: func.isRequired,
     toggleModal: func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      na: '',
+      ccNameOnCard: '',
+      ccNumber: '',
+      ccExpireMonth: '',
+      ccExpireYear: '',
+      ccCvn: '',
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const nextPropsCopy = Object.assign({}, nextProps);
+    delete nextPropsCopy.handleOnChange;
+    delete nextPropsCopy.toggleModal;
+    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  }
+
+  handleOnChange = e => this.props.handleOnChange(e)
+
   render() {
+    const {
+      ccNameOnCard,
+      ccNumber,
+      ccExpireMonth,
+      ccExpireYear,
+      ccCvn,
+    } = this.state;
+
     return (
       <div className="checkout__credit-card">
         <div className="title">
@@ -42,13 +69,27 @@ class CreditCardInfo extends PureComponent {
           </div>
         </div>
 
-        <NameOnCard />
+        <NameOnCard
+          ccNameOnCard={ccNameOnCard}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <CreditCardNumber />
+        <CreditCardNumber
+          ccNumber={ccNumber}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <CreditCardExpiration />
+        <CreditCardExpiration
+          ccExpireMonth={ccExpireMonth}
+          ccExpireYear={ccExpireYear}
+          handleOnChange={this.handleOnChange}
+        />
 
-        <CreditCardCvn toggleModal={this.props.toggleModal} />
+        <CreditCardCvn
+          toggleModal={this.props.toggleModal}
+          ccCvn={ccCvn}
+          handleOnChange={this.handleOnChange}
+        />
       </div>
     );
   }

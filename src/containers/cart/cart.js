@@ -16,6 +16,10 @@ import userActions from '../../redux/user';
 import orderActions from '../../redux/orders';
 
 import {
+  propTypes,
+  defaultProps,
+} from './propTypes.imports';
+import {
   BreadCrumb,
   EmptyCart,
   ShoppingCartWeb,
@@ -23,10 +27,13 @@ import {
   ShoppingCartWebProductRow,
   ShoppingCartMobileProductCard,
 } from './component.imports';
-import { propTypes, defaultProps } from './propTypes.imports';
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
+  checkNewUser as CheckNewUser,
+  arrayDeepEquality as ArrayDeepEquality,
+  calculateTotalsDue as CalculateTotalsDue,
+  calculateDiscounts as CalculateDiscounts,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -42,14 +49,24 @@ class ShoppingCart extends Component {
       error: false,
       grandTotal: 0,
       mobileActive: props.mobileActive,
+      total: {
+        discount: {
+          qty: false,
+          qtyAmount: 0,
+          register: false,
+          registerAmount: 0,
+        },
+        taxes: 0,
+        grandTotal: 0,
+        subTotal: 0,
+      },
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-
     const {
       qty,
+      newUser,
       taxRate,
       loggedIn,
       userCart,
@@ -66,14 +83,18 @@ class ShoppingCart extends Component {
       ZipUserCart,
     );
 
-    const { taxes, grandTotal } = this.calculateTotalsDue(updatedCart);
+    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
+
+    const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
+
     if (
       this.state.qty !== qty ||
       this.state.taxes !== taxes ||
       this.state.taxRate !== taxRate ||
       this.state.grandTotal !== grandTotal ||
       this.state.mobileActive !== mobileActive ||
-      isArrayEqual(updatedCart, this.state.userCart)
+      !_.isEqual(total, this.state.total) ||
+      ArrayDeepEquality(updatedCart, this.state.userCart)
     ) {
       this.setState({
         qty,
@@ -81,11 +102,12 @@ class ShoppingCart extends Component {
         grandTotal,
         updatedCart,
         mobileActive,
+        total: { ...total },
       });
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     /**
     * Function: "isArrayEqual"
     * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
@@ -111,10 +133,10 @@ class ShoppingCart extends Component {
     if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
       return true;
     }
+    if (!_.isEqual(nextState, this.state)) return true;
     return false;
   }
   /**
-  * Function: "calculateTotalsDue"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
   * 2) Add that to the individual subtotal (newly created key) to each productObj.
   * 3) Add that amount to the "grandTotal".
@@ -124,22 +146,6 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
-  calculateTotalsDue = (cart) => {
-    let grandTotal = 0;
-
-    cart.forEach((productObj) => {
-      productObj.subTotal = productObj.qty * Number(productObj.product.price);
-      grandTotal += productObj.subTotal;
-    });
-
-    const taxes = Number((grandTotal * this.props.taxRate).toFixed(2));
-    grandTotal += taxes;
-
-    return ({
-      taxes,
-      grandTotal,
-    });
-  }
 
   /**
   * Function: "verifyQtyChange"
@@ -193,7 +199,9 @@ class ShoppingCart extends Component {
           globalError = true;
           newCart = newCart.map((productObj) => {
             if (productObj._id === productId) {
-              const productWithError = _.clone(productObj, true);
+              const productWithError = Object.assign({}, productObj);
+              const newError = Object.assign({}, productObj.error);
+              productWithError.error = newError;
               productWithError.error.soft = true;
               productWithError.error.message = 'Too much';
               productWithError.qty -= 1;
@@ -412,18 +420,19 @@ class ShoppingCart extends Component {
     newUser,
     grandTotal,
     mobileActive,
+    total,
   ) => {
     if (mobileActive === false) {
       return (
         <ShoppingCartWeb
           cart={cart}
           taxes={taxes}
-          newUser={newUser}
           grandTotal={grandTotal}
           emptyCart={this.emptyCart}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
           showProductRow={this.showProductRow}
+          total={total}
         />
       );
     }
@@ -436,6 +445,7 @@ class ShoppingCart extends Component {
         routerPush={this.routerPush}
         mobileActive={mobileActive}
         showProductRow={this.showProductRow}
+        total={total}
       />
     );
   }
@@ -474,6 +484,7 @@ class ShoppingCart extends Component {
     } = this.props;
 
     const {
+      total,
       taxes,
       grandTotal,
       updatedCart,
@@ -514,6 +525,7 @@ class ShoppingCart extends Component {
             newUser,
             grandTotal,
             mobileActive,
+            total,
           )
         }
       </div>
@@ -549,19 +561,37 @@ cart.reduce((accum, next) => {
 *
 * @return {bool} - Determines eligibility for the 10% new user discount.
 */
-const checkNewUser = (user, loggedIn) => {
-  if (!loggedIn) return false;
-  return !user.profile.shopping.cart.length;
-};
 
+const ShoppingCartWithState = connect((state, ownProps) => {
+  const cart = DetermineCartType(
+    ownProps.loggedIn,
+    ownProps.userCart,
+    ownProps.FetchMultipleProducts,
+    ZipUserCart,
+  );
 
-const ShoppingCartWithData = compose(
+  const { taxes, grandTotal } = CalculateTotalsDue(
+    cart,
+    ownProps.taxRate,
+  );
+
+  const total = CalculateDiscounts(
+    cart,
+    taxes,
+    grandTotal,
+    ownProps.newUser,
+  );
+
+  return ({ total });
+}, null)(ShoppingCart);
+
+const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart }) => {
-      if (!loggedIn) return ({ variables: { ids: [] } });
-
+    options: ({ loggedIn, userCart, guestCart }) => {
       let ids = [];
+
+      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
 
       if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
 
@@ -572,9 +602,9 @@ const ShoppingCartWithData = compose(
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
-)(ShoppingCart);
+)(ShoppingCartWithState);
 
-const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) => ({
+const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
   qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
   mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
@@ -582,11 +612,11 @@ const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) =>
   userId: user._id ? user._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  newUser: checkNewUser(user, auth.loggedIn),
+  newUser: CheckNewUser(user, auth.loggedIn),
 }),
 dispatch => ({
   push: location => dispatch(push(location)),
   saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-}))(ShoppingCartWithData);
-export default ShoppingCartWithDataAndState;
+}))(ShoppingCartWithStateAndData);
+export default ShoppingCartWithStateAndData2;

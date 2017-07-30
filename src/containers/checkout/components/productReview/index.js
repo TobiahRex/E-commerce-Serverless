@@ -10,7 +10,7 @@ function ProductReview({
   loggedIn,
   routerPush,
   newsletterDecision,
-  handleNewsletterChange,
+  handleOnChange,
 }) {
   return (
     <div className="checkout__product-review">
@@ -22,8 +22,8 @@ function ProductReview({
       <ProductReviewComment />
 
       <NewsletterOption
+        handleOnChange={handleOnChange}
         newsletterDecision={newsletterDecision}
-        handleNewsletterChange={handleNewsletterChange}
       />
 
       {loggedIn && <NewUserDiscountOffer routerPush={routerPush} />}
@@ -36,7 +36,7 @@ ProductReview.propTypes = {
   loggedIn: bool.isRequired,
   routerPush: func.isRequired,
   newsletterDecision: bool.isRequired,
-  handleNewsletterChange: func.isRequired,
+  handleOnChange: func.isRequired,
 };
 ProductReview.defaultProps = {
   cart: [],

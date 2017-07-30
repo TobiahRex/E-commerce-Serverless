@@ -16,6 +16,11 @@ Object.assign(Validation.rules, {
     hint: () => <span className="form-error is-visible">Required</span>,
   },
 
+  boolRequired: {
+    rule: (value) => Boolean(value),
+    hint: () => <span className="form-error is-visible">Required</span>,
+  },
+
   email: {
     rule: value => validator.isEmail(value),
     hint: value => <span className="form-error is-visible">{value} is not an Email.</span>,
@@ -75,6 +80,33 @@ Object.assign(Validation.rules, {
     ),
   },
 
+  ccName: {
+    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        That name uses invalid characters. Please try again.
+      </span>
+    ),
+  },
+
+  ccNumber: {
+    rule: value => /(^\d{16}$)|(^\d{4}-\d{4}-\d{4}-\d{4}$)/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        Credit Card numbers must be 16 digits & can only have format (1234567891234567) or (1234-5678-9123-4567).
+      </span>
+    ),
+  },
+
+  ccCvn: {
+    rule: value => /(^\d{3}$)/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        Credit Card CVN numbers should only be 3 digits.
+      </span>
+    ),
+  },
+
   password: {
     rule: (value, components) => {
       const password = components.password.state;
@@ -91,6 +123,8 @@ Object.assign(Validation.rules, {
 
       return password.value === passwordConfirm.value;
     },
-    hint: () => <span className="form-error is-visible">Passwords should be equal.</span>,
+    hint: () => (
+      <span className="form-error is-visible">Passwords should be equal.</span>
+    ),
   },
 });
