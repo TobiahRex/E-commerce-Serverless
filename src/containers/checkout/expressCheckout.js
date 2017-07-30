@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
@@ -15,6 +14,10 @@ import {
   calculateTotalsDue as CalculateTotalsDue,
   calculateDiscounts as CalculateDiscounts,
 } from './utilities.imports';
+import {
+  propTypes,
+  defaultProps,
+} from './propTypes.imports';
 import { FetchMultipleProducts } from '../../graphql/queries';
 
 import {
@@ -30,22 +33,9 @@ import {
   SubmitOrder,
 } from './component.imports';
 
-const { arrayOf, object, func, number, bool, objectOf, any } = PropTypes;
-
 class ExpressCheckout extends Component {
-  static propTypes = {
-    push: func.isRequired,
-    loggedIn: bool.isRequired,
-    FetchMultipleProducts: objectOf(any).isRequired,
-    newUser: bool.isRequired,
-    userCart: arrayOf(object),
-    guestCart: arrayOf(object),
-    taxRate: number.isRequired,
-  }
-  static defaultProps = {
-    userCart: [],
-    guestCart: [],
-  }
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
   constructor(props) {
     super(props);
 
@@ -304,20 +294,30 @@ class ExpressCheckout extends Component {
   }
 }
 
-const ExpressCheckoutWithState = connect(({
-  auth,
-  user,
-  orders,
-}, ownProps) => {
-  const userCart = auth.loggedIn ? user.profile.shopping.cart : [];
+const ExpressCheckoutWithState = connect((state, ownProps) => {
+  const cart = DetermineCartType(
+    ownProps.loggedIn,
+    ownProps.guestCart,
+    ownProps.userCart,
+    ownProps.FetchMultipleProducts,
+    ZipUserCart,
+  );
+
+  const {
+    taxes,
+    grandTotal,
+  } = CalculateTotalsDue(cart, ownProps.taxRate);
+
+  const total = CalculateDiscounts(
+    cart,
+    taxes,
+    grandTotal,
+    ownProps.newUser,
+  );
+
   return ({
-    cart: DetermineCartType(
-      auth.loggedIn,
-      orders.cart,
-      userCart,
-      ownProps.FetchMultipleProducts,
-      ZipUserCart,
-    ),
+    total,
+    cart,
   });
 }, dispatch => ({
   push: location => dispatch(push(location)),
