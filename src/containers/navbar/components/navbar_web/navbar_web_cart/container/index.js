@@ -125,7 +125,7 @@ class NavbarCart extends Component {
       loggedIn,
       guestCart,
       userCart,
-      FetchMultipleProducts,
+      FetchMultipleProducts: fetchCartProductsResult,
     }, ZipUserCart);
 
     let qty = 0;

@@ -9,13 +9,13 @@ const composeFinalTotal = ({
   loggedIn,
   userCart,
   guestCart,
-  allProducts,
+  FetchMultipleProducts,
 }) => {
   const cart = DetermineCartType({
     loggedIn,
     guestCart,
     userCart,
-    allProducts,
+    FetchMultipleProducts,
   }, ZipUserCart);
 
   const { taxes, grandTotal } = CalculateTotalsDue(cart, taxRate);
