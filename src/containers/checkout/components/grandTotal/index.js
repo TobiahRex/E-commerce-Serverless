@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import TotalContent from './totalContent';
+import Loading from './loading';
 
 const { bool, func, shape, number } = PropTypes;
 
@@ -60,7 +62,14 @@ class GrandTotal extends React.PureComponent {
     return (
       <div className="checkout__grand-total">
         { grandTotal ?
-          <TotalContent /> :
+          <TotalContent
+            taxes={taxes}
+            subTotal={subTotal}
+            discount={discount}
+            grandtotal={grandTotal}
+            termsAgreement={termsAgreement}
+            handleOnChange={this.handleOnChange}
+          /> :
           <Loading />
         }
       </div>
