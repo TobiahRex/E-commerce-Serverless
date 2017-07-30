@@ -432,30 +432,24 @@ class ShoppingCart extends Component {
   render() {
     const {
       newUser,
-      // loggedIn,
-      // userCart,
-      // guestCart,
-      // FetchMultipleProducts: fetchCartProductsResult,
+      loggedIn,
+      userCart,
+      guestCart,
+      FetchMultipleProducts: allProducts,
     } = this.props;
 
     const {
       total,
-      updatedCart,
       mobileActive,
     } = this.state;
 
-    const cartHasProducts = !!updatedCart.length;
-
-    // let cart = DetermineCartType(
-    //   loggedIn,
-    //   guestCart,
-    //   userCart,
-    //   fetchCartProductsResult,
-    //   ZipUserCart,
-    // );
-    //
-    //
-    // if (!!updatedCart.length) cart = updatedCart;
+    const cart = DetermineCartType({
+      loggedIn,
+      userCart,
+      guestCart,
+      FetchMultipleProducts: allProducts,
+    }, ZipUserCart);
+    const cartHasProducts = !!cart.length;
 
     return (
       <div className="shopping-cart-main">
@@ -473,7 +467,7 @@ class ShoppingCart extends Component {
           <EmptyCart /> :
 
           this.showShoppingCart(
-            updatedCart,
+            cart,
             newUser,
             mobileActive,
             total,
