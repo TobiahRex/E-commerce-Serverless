@@ -7,7 +7,7 @@ const runGraphQL = ({ event, dbModels }) =>
 new Promise((resolve, reject) => {
   const { variables, query } = event.body;
 
-  graphql(schema, query, null, dbModels, variables)
+  graphql(schema, query, null, {...dbModels, ...event.headers}, variables)
   .then((dbResponse) => {
     console.log(`
     (runGraphQL.js @ graphql.catch)
