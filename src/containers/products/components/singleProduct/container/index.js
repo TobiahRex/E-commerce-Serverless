@@ -516,7 +516,6 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-    console.log('%cdata', 'background:red;', data);
     return (
       <div className="juice-page__main">
         <BreadCrumb
