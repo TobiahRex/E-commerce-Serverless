@@ -66,44 +66,21 @@ class ShoppingCart extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       qty,
-      // newUser,
-      taxRate,
-      // loggedIn,
-      // userCart,
-      // guestCart,
+      total,
       updatedCart,
       mobileActive,
-      // FetchMultipleProducts: fetchCartProductsResult,
-      total,
     } = nextProps;
-
-    // const updatedCart = this.determineCartType(
-    //   loggedIn,
-    //   guestCart,
-    //   userCart,
-    //   fetchCartProductsResult,
-    //   ZipUserCart,
-    // );
-    //
-    // const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
-    //
-    // const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
 
     if (
       this.state.qty !== qty ||
-      this.state.taxRate !== taxRate ||
-      this.state.total.taxes !== total.taxes ||
-      this.state.total.grandTotal !== total.grandTotal ||
-      this.state.mobileActive !== mobileActive ||
       !_.isEqual(total, this.state.total) ||
-      ArrayDeepEquality(updatedCart, this.state.userCart)
+      ArrayDeepEquality(updatedCart, this.state.userCart) ||
+      this.state.mobileActive !== mobileActive
     ) {
       this.setState({
         qty,
-        // taxes,
-        // grandTotal,
-        updatedCart,
         mobileActive,
+        updatedCart,
         total: { ...total },
       });
     }
@@ -119,18 +96,23 @@ class ShoppingCart extends Component {
     *
     * @return {boolean} true/false.
     */
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
-      { FetchMultipleProducts:
-        { FetchMultipleProducts: nextUserCart },
-      } = nextProps,
+    const {
+      FetchMultipleProducts: { FetchMultipleProducts: nextUserCart },
+    } = nextProps,
 
       { FetchMultipleProducts:
         { FetchMultipleProducts: thisUserCart },
       } = this.props,
 
-      reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
-      userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
+      reduxCartDiff = ArrayDeepEquality(
+        nextProps.guestCart,
+        this.props.guestCart,
+      ),
+      userCartDiff = ArrayDeepEquality(
+        nextUserCart,
+        thisUserCart,
+      );
 
     if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
       return true;
@@ -561,6 +543,7 @@ cart.reduce((accum, next) => {
 const ShoppingCartWithState = connect((state, ownProps) => {
   const cart = DetermineCartType(
     ownProps.loggedIn,
+    ownProps.guestCart,
     ownProps.userCart,
     ownProps.FetchMultipleProducts,
     ZipUserCart,
