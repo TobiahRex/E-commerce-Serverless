@@ -113,30 +113,6 @@ class NavbarCart extends Component {
     }
   }
 
-  /**
-  * Function: "zipUserCart"
-  * See function description at src/services/utils/zipUserCart.js
-  */
-  zipUserCart = (userCartIdsAndQtys, productsArray) => ZipUserCart(userCartIdsAndQtys, productsArray);
-
-  /**
-  * Function: "determineCartType"
-  * See function description at src/services/utils/determineCartType.js
-  */
-  determineCartType = (
-    loggedIn,
-    guestCart,
-    userCart,
-    fetchCartProductsResult,
-    zipCartFunction,
-  ) => DetermineCartType(
-    loggedIn,
-    guestCart,
-    userCart,
-    fetchCartProductsResult,
-    zipCartFunction,
-  );
-
   render() {
     const {
       loggedIn,
@@ -145,13 +121,12 @@ class NavbarCart extends Component {
       FetchMultipleProducts: fetchCartProductsResult,
     } = this.props;
 
-    const cartItems = this.determineCartType(
+    const cartItems = DetermineCartType({
       loggedIn,
       guestCart,
       userCart,
-      fetchCartProductsResult,
-      ZipUserCart,
-    );
+      FetchMultipleProducts: fetchCartProductsResult,
+    }, ZipUserCart);
 
     let qty = 0;
     if (!!cartItems.length) {

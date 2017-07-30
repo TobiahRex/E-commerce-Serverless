@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
-
+import userActions from '../../redux/user';
+import orderActions from '../../redux/orders';
 import {
   EmptyMemberCart,
   DeleteFromMemberCart,
 } from '../../graphql/mutations';
 import { FetchMultipleProducts } from '../../graphql/queries';
-
-import userActions from '../../redux/user';
-import orderActions from '../../redux/orders';
 
 import {
   propTypes,
@@ -32,8 +30,7 @@ import {
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
-  calculateTotalsDue as CalculateTotalsDue,
-  calculateDiscounts as CalculateDiscounts,
+  composeFinalTotal as ComposeFinalTotal,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -66,42 +63,21 @@ class ShoppingCart extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       qty,
-      newUser,
-      taxRate,
-      loggedIn,
-      userCart,
-      guestCart,
+      total,
+      updatedCart,
       mobileActive,
-      FetchMultipleProducts: fetchCartProductsResult,
     } = nextProps;
-
-    const updatedCart = this.determineCartType(
-      loggedIn,
-      guestCart,
-      userCart,
-      fetchCartProductsResult,
-      ZipUserCart,
-    );
-
-    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
-
-    const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
 
     if (
       this.state.qty !== qty ||
-      this.state.taxes !== taxes ||
-      this.state.taxRate !== taxRate ||
-      this.state.grandTotal !== grandTotal ||
-      this.state.mobileActive !== mobileActive ||
       !_.isEqual(total, this.state.total) ||
-      ArrayDeepEquality(updatedCart, this.state.userCart)
+      ArrayDeepEquality(updatedCart, this.state.userCart) ||
+      this.state.mobileActive !== mobileActive
     ) {
       this.setState({
         qty,
-        taxes,
-        grandTotal,
-        updatedCart,
         mobileActive,
+        updatedCart,
         total: { ...total },
       });
     }
@@ -117,18 +93,23 @@ class ShoppingCart extends Component {
     *
     * @return {boolean} true/false.
     */
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
 
-      { FetchMultipleProducts:
-        { FetchMultipleProducts: nextUserCart },
-      } = nextProps,
+    const {
+      FetchMultipleProducts: { FetchMultipleProducts: nextUserCart },
+    } = nextProps,
 
       { FetchMultipleProducts:
         { FetchMultipleProducts: thisUserCart },
       } = this.props,
 
-      reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
-      userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
+      reduxCartDiff = ArrayDeepEquality(
+        nextProps.guestCart,
+        this.props.guestCart,
+      ),
+      userCartDiff = ArrayDeepEquality(
+        nextUserCart,
+        thisUserCart,
+      );
 
     if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
       return true;
@@ -416,9 +397,7 @@ class ShoppingCart extends Component {
   */
   showShoppingCart = (
     cart,
-    taxes,
     newUser,
-    grandTotal,
     mobileActive,
     total,
   ) => {
@@ -426,8 +405,8 @@ class ShoppingCart extends Component {
       return (
         <ShoppingCartWeb
           cart={cart}
-          taxes={taxes}
-          grandTotal={grandTotal}
+          taxes={total.taxes}
+          grandTotal={total.grandTotal}
           emptyCart={this.emptyCart}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
@@ -439,9 +418,9 @@ class ShoppingCart extends Component {
     return (
       <ShoppingCartMobile
         cart={cart}
-        taxes={taxes}
+        taxes={total.taxes}
         newUser={newUser}
-        grandTotal={grandTotal}
+        grandTotal={total.grandTotal}
         routerPush={this.routerPush}
         mobileActive={mobileActive}
         showProductRow={this.showProductRow}
@@ -450,59 +429,27 @@ class ShoppingCart extends Component {
     );
   }
 
-  /**
-  * Function: "zipUserCart"
-  * See function description at src/services/utils/zipUserCart.js
-  */
-  zipUserCart = (userCartIdsAndQtys, productsArray) => ZipUserCart(userCartIdsAndQtys, productsArray);
-
-  /**
-  * Function: "determineCartType"
-  * See function description at src/services/utils/determineCartType.js
-  */
-  determineCartType = (
-    loggedIn,
-    guestCart,
-    userCart,
-    fetchCartProductsResult,
-    zipCartFunction,
-  ) => DetermineCartType(
-    loggedIn,
-    guestCart,
-    userCart,
-    fetchCartProductsResult,
-    zipCartFunction,
-  );
-
   render() {
     const {
       newUser,
       loggedIn,
       userCart,
       guestCart,
-      FetchMultipleProducts: fetchCartProductsResult,
+      FetchMultipleProducts: allProducts,
     } = this.props;
 
     const {
       total,
-      taxes,
-      grandTotal,
-      updatedCart,
       mobileActive,
     } = this.state;
 
-    const cartHasProducts = userCart.length || guestCart.length;
-
-    let cart = this.determineCartType(
+    const cart = DetermineCartType({
       loggedIn,
-      guestCart,
       userCart,
-      fetchCartProductsResult,
-      ZipUserCart,
-    );
-
-
-    if (!!updatedCart.length) cart = updatedCart;
+      guestCart,
+      FetchMultipleProducts: allProducts,
+    }, ZipUserCart);
+    const cartHasProducts = !!cart.length;
 
     return (
       <div className="shopping-cart-main">
@@ -521,9 +468,7 @@ class ShoppingCart extends Component {
 
           this.showShoppingCart(
             cart,
-            taxes,
             newUser,
-            grandTotal,
             mobileActive,
             total,
           )
@@ -563,26 +508,14 @@ cart.reduce((accum, next) => {
 */
 
 const ShoppingCartWithState = connect((state, ownProps) => {
-  const cart = DetermineCartType(
-    ownProps.loggedIn,
-    ownProps.userCart,
-    ownProps.FetchMultipleProducts,
-    ZipUserCart,
-  );
+  const total = ComposeFinalTotal(ownProps);
 
-  const { taxes, grandTotal } = CalculateTotalsDue(
-    cart,
-    ownProps.taxRate,
-  );
+  const cart = DetermineCartType(ownProps, ZipUserCart);
 
-  const total = CalculateDiscounts(
-    cart,
-    taxes,
-    grandTotal,
-    ownProps.newUser,
-  );
-
-  return ({ total });
+  return ({
+    total,
+    updatedCart: cart,
+  });
 }, null)(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(

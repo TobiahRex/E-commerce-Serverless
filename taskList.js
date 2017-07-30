@@ -1,6 +1,6 @@
 /*
   NOTE: Where did I leave off?
-
+  - You are about to add the same functionality from cart to expresscheckout in a  2nd redux connect function.
 
   TODO: Backlog
   - rebuild all products since the schema has changed.
