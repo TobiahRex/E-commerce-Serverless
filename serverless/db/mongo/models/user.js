@@ -1,8 +1,51 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
+import jwt from 'jsonwebtoken';
 
 export default (db) => {
+  /**
+  * 1) Retrieve the auth0Identities.user_id from User collection using input argument "userId".
+  * 2) Retrieve the user_id by decoding the accessToken.
+  * 3) Check whether the access_token matches the userID.
+  * 4) Resolves || Rejects with result.
+  *
+  * @param {string} userId - the user's Mongo _id.
+  * @param {string} authorization - the user's JWT based access_token.
+  *
+  * @return {object} - Promise resolved with found User document.
+  */
+  userSchema.statics.authorize = (userId, accessToken) =>
+
+  new Promise((resolve, reject) => {
+    let match = accessToken.match(/^Bearer (.*)$/);
+
+    if (!match || match.length < 2) {
+      throw new Error("Invalid Authorization token -" + tokenString + " does not match the bearer");
+    }
+
+    const decoded = jwt.decode(match[1], {complete: true});
+    const jwtUserId = decoded.payload.sub.split("|")[1];
+
+    User
+    .findById(userId)
+    .exec()
+    .then((dbUser) => {
+      dbUser.authentication.auth0Identities.forEach((socialAuth, i) => {
+        if (jwtUserId === socialAuth.user_id) {
+          console.log(`Authorized User: ${jwtUserId}.`);
+          resolve(dbUser);
+        } else {
+          reject(`UnAuthorized User: ${userId}`);
+        }
+      });
+    })
+    .catch((error) => {
+      console.log(`Mongo ERROR: ${error}`);
+      reject(`Mongo ERROR: ${error}`);
+    });
+  });
+
   /**
   * 1) Query User collection using input argument "userId".
   * 2) Resolves || Rejects with result.
@@ -11,11 +54,10 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with found User document.
   */
-  userSchema.statics.fetchUserProfile = userId =>
+  userSchema.statics.fetchUserProfile = (userId, authorization) =>
   new Promise((resolve, reject) => {
-    User
-    .findById(userId)
-    .exec()
+
+    return User.authorize(userId, authorization);
     .then((dbUser) => {
       console.log(`User Found: ${dbUser._id}. Sending updated profile to Client.  `);
       resolve(dbUser);
