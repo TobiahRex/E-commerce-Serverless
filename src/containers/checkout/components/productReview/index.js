@@ -26,7 +26,7 @@ function ProductReview({
         newsletterDecision={newsletterDecision}
       />
 
-      {loggedIn && <NewUserDiscountOffer routerPush={routerPush} />}
+      {!loggedIn && <NewUserDiscountOffer routerPush={routerPush} />}
     </div>
   );
 }

@@ -275,6 +275,7 @@
       & .checkout__product-review {
         max-height: 75em;
         order: 6;
+        padding-bottom: 3em;
         & .table__container {
           width: 28em;
           border-collapse: collapse;
@@ -327,9 +328,8 @@
           }
         }
         & .input__row {
-          &:nth-child(5) {
-            height: 12em;
-          }
+          @include prefixflex();
+          flex-direction: column;
           &:nth-child(6) {
             @include prefixflex();
             align-items: center;
@@ -347,7 +347,6 @@
             }
           }
           & .input__row--guest-warning {
-            height: 12em;
             width: 26em;
             margin-top: 2em;
             & p {
@@ -367,6 +366,7 @@
             & button {
               height: 3.57em;
               width: 17.8em;
+              padding: 2em 0;
               color: $p-white;
               font-size: 1.4em;
               font-family: $p-font;
@@ -375,9 +375,6 @@
               cursor: pointer;
             }
           }
-        }
-        & .input__row:nth-child(1) {
-          height: 12em;
         }
       }
       & .checkout__grand-total {
@@ -446,13 +443,24 @@
             flex-direction: column;
           }
         }
+        & .checkout__loading {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          text-align: center;
+          padding: 10px 0;
+          font-family: $p-font;
+          & span {
+            margin-top: .5em;
+          }
+        }
         & span.form-error.is-visible {
           color: $p-red;
           font-family: $p-font;
           font-size: 1em;
           padding: 1em 0;
         }
-
         & .is-invalid-input:not(:focus) {
           background-color: rgba(236, 88, 64, 0.1);
           border: 1px solid #ec5840;
