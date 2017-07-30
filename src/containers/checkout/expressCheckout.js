@@ -11,8 +11,7 @@ import {
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
-  calculateTotalsDue as CalculateTotalsDue,
-  calculateDiscounts as CalculateDiscounts,
+  composeFinalTotal as ComposeFinalTotal,
 } from './utilities.imports';
 import {
   propTypes,
@@ -85,59 +84,13 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {
-      loggedIn,
-      newUser,
-      userCart,
-      guestCart,
-      taxRate,
-      FetchMultipleProducts: fetchCartProductsResult,
-      total,
-    } = nextProps;
-    console.log('%ctotal', 'background:lime;', total);
-
-    const updatedCart = this.determineCartType(
-      loggedIn,
-      guestCart,
-      userCart,
-      fetchCartProductsResult,
-      ZipUserCart,
-    );
-
-    const {
-      taxes,
-      grandTotal: totalBeforeDiscount,
-    } = CalculateTotalsDue(updatedCart, taxRate);
-
-    const {
-      discount,
-      subTotal,
-      grandTotal,
-    } = CalculateDiscounts(updatedCart, taxes, totalBeforeDiscount, newUser);
-
-    const objectToCheck = {
-      total: {
-        discount: {
-          qty: discount.qty,
-          qtyAmount: discount.qtyAmount,
-          register: discount.register,
-          registerAmount: discount.registerAmount,
-        },
-        subTotal,
-        grandTotal,
-        taxes,
-      },
-    };
+    console.log('%cnextProps', 'background:cyan;', nextProps);
 
     if (
-      !_.isEqual(objectToCheck, this.state) ||
       !_.isEqual(nextProps, this.props) ||
-      ArrayDeepEquality(updatedCart, this.state.cart)
+      ArrayDeepEquality(nextProps.cart, this.state.cart)
     ) {
-      this.setState({
-        ...nextProps,
-        cart: updatedCart,
-      });
+      this.setState({ ...nextProps });
     }
   }
 
@@ -297,21 +250,11 @@ class ExpressCheckout extends Component {
 }
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
+  const total = ComposeFinalTotal(ownProps);
+  console.log('%ctotal', 'background:lime;', total);
+
   const cart = DetermineCartType(ownProps, ZipUserCart);
-
-  const total = composeFinalTotal(ownProps);
-
-  const {
-    taxes,
-    grandTotal,
-  } = CalculateTotalsDue(cart, ownProps.taxRate);
-
-  const total = CalculateDiscounts(
-    cart,
-    taxes,
-    grandTotal,
-    ownProps.newUser,
-  );
+  console.log('%ccart', 'background:pink;', cart);
 
   return ({
     total,
