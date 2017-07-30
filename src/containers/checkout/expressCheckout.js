@@ -92,7 +92,9 @@ class ExpressCheckout extends Component {
       guestCart,
       taxRate,
       FetchMultipleProducts: fetchCartProductsResult,
+      total,
     } = nextProps;
+    console.log('%ctotal', 'background:lime;', total);
 
     const updatedCart = this.determineCartType(
       loggedIn,
@@ -104,14 +106,14 @@ class ExpressCheckout extends Component {
 
     const {
       taxes,
-      grandTotal: total,
+      grandTotal: totalBeforeDiscount,
     } = CalculateTotalsDue(updatedCart, taxRate);
 
     const {
       discount,
       subTotal,
       grandTotal,
-    } = CalculateDiscounts(updatedCart, taxes, total, newUser);
+    } = CalculateDiscounts(updatedCart, taxes, totalBeforeDiscount, newUser);
 
     const objectToCheck = {
       total: {

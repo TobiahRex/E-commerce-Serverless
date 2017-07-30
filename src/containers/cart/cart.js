@@ -66,40 +66,42 @@ class ShoppingCart extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       qty,
-      newUser,
+      // newUser,
       taxRate,
-      loggedIn,
-      userCart,
-      guestCart,
+      // loggedIn,
+      // userCart,
+      // guestCart,
+      updatedCart,
       mobileActive,
-      FetchMultipleProducts: fetchCartProductsResult,
+      // FetchMultipleProducts: fetchCartProductsResult,
+      total,
     } = nextProps;
 
-    const updatedCart = this.determineCartType(
-      loggedIn,
-      guestCart,
-      userCart,
-      fetchCartProductsResult,
-      ZipUserCart,
-    );
-
-    const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
-
-    const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
+    // const updatedCart = this.determineCartType(
+    //   loggedIn,
+    //   guestCart,
+    //   userCart,
+    //   fetchCartProductsResult,
+    //   ZipUserCart,
+    // );
+    //
+    // const { taxes, grandTotal } = CalculateTotalsDue(updatedCart, taxRate);
+    //
+    // const total = CalculateDiscounts(updatedCart, taxes, grandTotal, newUser);
 
     if (
       this.state.qty !== qty ||
-      this.state.taxes !== taxes ||
       this.state.taxRate !== taxRate ||
-      this.state.grandTotal !== grandTotal ||
+      this.state.total.taxes !== total.taxes ||
+      this.state.total.grandTotal !== total.grandTotal ||
       this.state.mobileActive !== mobileActive ||
       !_.isEqual(total, this.state.total) ||
       ArrayDeepEquality(updatedCart, this.state.userCart)
     ) {
       this.setState({
         qty,
-        taxes,
-        grandTotal,
+        // taxes,
+        // grandTotal,
         updatedCart,
         mobileActive,
         total: { ...total },
@@ -416,9 +418,7 @@ class ShoppingCart extends Component {
   */
   showShoppingCart = (
     cart,
-    taxes,
     newUser,
-    grandTotal,
     mobileActive,
     total,
   ) => {
@@ -426,8 +426,8 @@ class ShoppingCart extends Component {
       return (
         <ShoppingCartWeb
           cart={cart}
-          taxes={taxes}
-          grandTotal={grandTotal}
+          taxes={total.taxes}
+          grandTotal={total.grandTotal}
           emptyCart={this.emptyCart}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
@@ -439,9 +439,9 @@ class ShoppingCart extends Component {
     return (
       <ShoppingCartMobile
         cart={cart}
-        taxes={taxes}
+        taxes={total.taxes}
         newUser={newUser}
-        grandTotal={grandTotal}
+        grandTotal={total.grandTotal}
         routerPush={this.routerPush}
         mobileActive={mobileActive}
         showProductRow={this.showProductRow}
@@ -485,8 +485,6 @@ class ShoppingCart extends Component {
 
     const {
       total,
-      taxes,
-      grandTotal,
       updatedCart,
       mobileActive,
     } = this.state;
@@ -521,9 +519,7 @@ class ShoppingCart extends Component {
 
           this.showShoppingCart(
             cart,
-            taxes,
             newUser,
-            grandTotal,
             mobileActive,
             total,
           )
@@ -582,7 +578,10 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     ownProps.newUser,
   );
 
-  return ({ total });
+  return ({
+    total,
+    updatedCart: cart,
+  });
 }, null)(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(
