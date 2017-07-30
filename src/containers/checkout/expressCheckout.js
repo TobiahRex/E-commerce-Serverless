@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
@@ -12,9 +11,12 @@ import {
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
-  calculateTotalsDue as CalculateTotalsDue,
-  calculateDiscounts as CalculateDiscounts,
+  composeFinalTotal as ComposeFinalTotal,
 } from './utilities.imports';
+import {
+  propTypes,
+  defaultProps,
+} from './propTypes.imports';
 import { FetchMultipleProducts } from '../../graphql/queries';
 
 import {
@@ -30,22 +32,9 @@ import {
   SubmitOrder,
 } from './component.imports';
 
-const { arrayOf, object, func, number, bool, objectOf, any } = PropTypes;
-
 class ExpressCheckout extends Component {
-  static propTypes = {
-    push: func.isRequired,
-    loggedIn: bool.isRequired,
-    FetchMultipleProducts: objectOf(any).isRequired,
-    newUser: bool.isRequired,
-    userCart: arrayOf(object),
-    guestCart: arrayOf(object),
-    taxRate: number.isRequired,
-  }
-  static defaultProps = {
-    userCart: [],
-    guestCart: [],
-  }
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
   constructor(props) {
     super(props);
 
@@ -95,57 +84,11 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {
-      loggedIn,
-      newUser,
-      userCart,
-      guestCart,
-      taxRate,
-      FetchMultipleProducts: fetchCartProductsResult,
-    } = nextProps;
-
-    const updatedCart = this.determineCartType(
-      loggedIn,
-      guestCart,
-      userCart,
-      fetchCartProductsResult,
-      ZipUserCart,
-    );
-
-    const {
-      taxes,
-      grandTotal: total,
-    } = CalculateTotalsDue(updatedCart, taxRate);
-
-    const {
-      discount,
-      subTotal,
-      grandTotal,
-    } = CalculateDiscounts(updatedCart, taxes, total, newUser);
-
-    const objectToCheck = {
-      total: {
-        discount: {
-          qty: discount.qty,
-          qtyAmount: discount.qtyAmount,
-          register: discount.register,
-          registerAmount: discount.registerAmount,
-        },
-        subTotal,
-        grandTotal,
-        taxes,
-      },
-    };
-
     if (
-      !_.isEqual(objectToCheck, this.state) ||
       !_.isEqual(nextProps, this.props) ||
-      ArrayDeepEquality(updatedCart, this.state.cart)
+      ArrayDeepEquality(nextProps.cart, this.state.cart)
     ) {
-      this.setState({
-        ...nextProps,
-        cart: updatedCart,
-      });
+      this.setState({ ...nextProps });
     }
   }
 
@@ -304,20 +247,14 @@ class ExpressCheckout extends Component {
   }
 }
 
-const ExpressCheckoutWithState = connect(({
-  auth,
-  user,
-  orders,
-}, ownProps) => {
-  const userCart = auth.loggedIn ? user.profile.shopping.cart : [];
+const ExpressCheckoutWithState = connect((state, ownProps) => {
+  const total = ComposeFinalTotal(ownProps);
+
+  const cart = DetermineCartType(ownProps, ZipUserCart);
+
   return ({
-    cart: DetermineCartType(
-      auth.loggedIn,
-      orders.cart,
-      userCart,
-      ownProps.FetchMultipleProducts,
-      ZipUserCart,
-    ),
+    total,
+    cart,
   });
 }, dispatch => ({
   push: location => dispatch(push(location)),

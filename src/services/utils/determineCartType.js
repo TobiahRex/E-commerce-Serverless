@@ -13,18 +13,19 @@
 *
 * NOTE - This function is called for the Single Product page, as well as the Cart page.
 */
-export default (
+export default ({
   loggedIn,
   guestCart,
   userCart,
-  fetchCartProductsResult,
-  zipUserCart,
-) => {
+  FetchMultipleProducts,
+}, zipUserCart) => {
   let cartItems = [];
-  if (!loggedIn && guestCart.length) {
+
+  if (!loggedIn && !!guestCart.length) {
     cartItems = guestCart;
-  } else if (loggedIn && !!fetchCartProductsResult.FetchMultipleProducts) {
-    cartItems = zipUserCart(userCart, fetchCartProductsResult.FetchMultipleProducts);
+  } else if (loggedIn && !!FetchMultipleProducts.FetchMultipleProducts) {
+    cartItems = zipUserCart(userCart, FetchMultipleProducts.FetchMultipleProducts);
   }
+
   return cartItems;
 };

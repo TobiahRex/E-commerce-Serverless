@@ -69,6 +69,7 @@ export default (db) => {
   });
 
   /**
+  * Function: "loginOrRegister"
   * Checks for previous user matching the input auth0 id.  If found, logs user in. If not found, registers user.
   *
   * 1) Saves "auth0Id" & "loginType" to external variables and removes those from input "args" arguments.  By removing from args input, register user can cleanly create new instance with 1 input, "args".
