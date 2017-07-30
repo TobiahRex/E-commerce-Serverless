@@ -364,7 +364,7 @@ const queries = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, { id }, { User }) => User.fetchUserProfile(id),
+    resolve: (_, { id }, { User, Authorization }) => User.fetchUserProfile(id, Authorization),
   },
 };
 const mutations = {
