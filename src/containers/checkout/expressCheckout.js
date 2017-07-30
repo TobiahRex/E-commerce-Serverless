@@ -297,13 +297,9 @@ class ExpressCheckout extends Component {
 }
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
-  const cart = DetermineCartType(
-    ownProps.loggedIn,
-    ownProps.guestCart,
-    ownProps.userCart,
-    ownProps.FetchMultipleProducts,
-    ZipUserCart,
-  );
+  const cart = DetermineCartType(ownProps, ZipUserCart);
+
+  const total = composeFinalTotal(ownProps);
 
   const {
     taxes,

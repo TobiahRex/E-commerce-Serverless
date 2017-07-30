@@ -11,13 +11,12 @@ const composeFinalTotal = ({
   guestCart,
   allProducts,
 }) => {
-  const cart = DetermineCartType(
+  const cart = DetermineCartType({
     loggedIn,
     guestCart,
     userCart,
     allProducts,
-    ZipUserCart,
-  );
+  }, ZipUserCart);
 
   const { taxes, grandTotal } = CalculateTotalsDue(cart, taxRate);
 

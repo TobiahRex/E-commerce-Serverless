@@ -518,7 +518,6 @@ const ShoppingCartWithState = connect((state, ownProps) => {
 
   const cart = DetermineCartType(ownProps, ZipUserCart);
 
-
   return ({
     total,
     updatedCart: cart,
