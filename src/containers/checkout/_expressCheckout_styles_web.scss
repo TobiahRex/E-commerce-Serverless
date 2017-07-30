@@ -90,7 +90,7 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          height: 6.5em;
+          // height: 6.5em;
           width: 29em;
           margin-top: 1em;
           & div > input {
@@ -363,10 +363,10 @@
             }
           }
           & .input__row--guest-register {
+            padding: 2em 0;
             & button {
               height: 3.57em;
               width: 17.8em;
-              padding: 2em 0;
               color: $p-white;
               font-size: 1.4em;
               font-family: $p-font;
@@ -374,6 +374,10 @@
               background-color: $p-red;
               cursor: pointer;
             }
+          }
+          & p {
+            font-size: 10px;
+            line-height: 1em;
           }
         }
       }

@@ -6,7 +6,9 @@ function NewUserDiscountOffer({ routerPush }) {
     <div>
       <div className="input__row">
         <div className="input__row--guest-warning">
-          <p><span className="warning-bold">Warning: </span>You are currently checking out as a “Guest”. If you would like to save your checkout info for future purchases, register now and we will save your information* & you will receive 10% off your first order as a new member.</p>
+          <p><span className="warning-bold">Warning: </span>You are currently checking out as a “Guest”. If you would like to save your checkout info for future purchases, register now and we will save your information
+            <span className="required">* </span>
+          & you will receive 10% off your first order as a new member.</p>
         </div>
       </div>
 
@@ -22,7 +24,7 @@ function NewUserDiscountOffer({ routerPush }) {
 
         </div>
         <br />
-        <p> Your credit card information is extremely sensitive and we respect that.  We will never save your credit card information.</p>
+        <p> <span className="required">* </span> Your credit card information is extremely sensitive and we respect that.  We will never save your credit card information.</p>
       </div>
     </div>
   );
