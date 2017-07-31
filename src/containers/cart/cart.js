@@ -246,8 +246,9 @@ class ShoppingCart extends Component {
 
     const {
       loggedIn,
-      guestCart,
-      userCart,
+      // guestCart,
+      // userCart,
+      updatedCart,
     } = this.props;
 
     let cartOwner = '';
@@ -255,10 +256,10 @@ class ShoppingCart extends Component {
 
     if (loggedIn) {
       cartOwner = 'User';
-      result = this.verifyQtyChange(changeType, productId, userCart);
+      result = this.verifyQtyChange(changeType, productId, updatedCart);
     } else {
       cartOwner = 'Guest';
-      result = this.verifyQtyChange(changeType, productId, guestCart);
+      result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
 
     if (result.error) {
