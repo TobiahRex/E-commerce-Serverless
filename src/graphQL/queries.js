@@ -95,11 +95,14 @@ export const FetchMultipleProducts = gql`
 `;
 
 export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) => {
+  console.log('%cguestCart', 'background:red;', guestCart);
+  console.log('%cuserCart', 'background:red;', userCart);
+  console.log('%cloggedIn', 'background:red;', loggedIn);
   let ids = [];
 
   if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
 
-  if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
+  if (!!userCart.length) ids = userCart.map(({ product }) => product);
 
   return ({
     variables: { ids },

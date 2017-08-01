@@ -492,14 +492,16 @@ class ShoppingCart extends Component {
 *
 * @return {number} accum - the final qty number;
 */
-const calculateCartQty = cart =>
-cart.reduce((accum, next) => {
-  if (!!next.qty) {
-    accum += next.qty;
+const calculateCartQty = (auth, userObj, ordersObj) => {
+  const cart = auth.loggedIn ? userObj.profile.shopping.cart : ordersObj.cart;
+  return cart.reduce((accum, next) => {
+    if (!!next.qty) {
+      accum += next.qty;
+      return accum;
+    }
     return accum;
-  }
-  return accum;
-}, 0);
+  }, 0);
+};
 
 /**
 * Function: "checkNewUser"
@@ -535,17 +537,7 @@ const ShoppingCartWithState = connect((state, ownProps) => {
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart, guestCart }) => {
-      let ids = [];
-
-      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
-
-      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
-
-      return ({
-        variables: { ids },
-      });
-    },
+    options: FetchMultipleProductsOptions,
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
@@ -553,7 +545,7 @@ const ShoppingCartWithStateAndData = compose(
 )(ShoppingCartWithState);
 
 const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
-  qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
+  qty: calculateCartQty(auth, user, orders),
   mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
