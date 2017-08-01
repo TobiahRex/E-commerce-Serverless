@@ -260,6 +260,7 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
       result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
+    console.log('%cresult', 'background:lime;', result);
 
     if (result.error) {
       this.setState(prevState => ({

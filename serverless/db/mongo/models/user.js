@@ -86,7 +86,7 @@ export default (db) => {
       if (newQty > 4) {
         dbUser.error.soft = true;
         dbUser.error.hard = false;
-        dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+        dbUser.error.message = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
       } else {
         dbUser.shopping.cart = [...newCart];
       }
