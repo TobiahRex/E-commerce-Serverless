@@ -10,6 +10,7 @@ import orderActions from '../../redux/orders';
 import {
   EmptyMemberCart,
   DeleteFromMemberCart,
+  EditToMemberCart,
 } from '../../graphql/mutations';
 import { FetchMultipleProducts } from '../../graphql/queries';
 
@@ -246,11 +247,8 @@ class ShoppingCart extends Component {
 
     const {
       loggedIn,
-      // guestCart,
-      // userCart,
       updatedCart,
     } = this.props;
-    console.log('%cupdatedCart', 'background:cyan;', updatedCart);
 
     let cartOwner = '';
     let result = null;
@@ -262,7 +260,6 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
       result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
-    console.log('%cresult', 'background:lime;', result);
 
     if (result.error) {
       this.setState(prevState => ({
@@ -519,7 +516,11 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     total,
     updatedCart: cart,
   });
-}, null)(ShoppingCart);
+}, dispatch => ({
+  push: location => dispatch(push(location)),
+  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
+  saveUser: (udpatedCart)
+}))(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
@@ -538,6 +539,7 @@ const ShoppingCartWithStateAndData = compose(
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
+  graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
 )(ShoppingCartWithState);
 
 const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
@@ -549,10 +551,5 @@ const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) =
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   newUser: CheckNewUser(user, auth.loggedIn),
-}),
-dispatch => ({
-  push: location => dispatch(push(location)),
-  saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
-  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-}))(ShoppingCartWithStateAndData);
+}), null)(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
