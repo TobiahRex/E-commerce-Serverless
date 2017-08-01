@@ -9,7 +9,7 @@ export const AddToMemberCart = gql`
     AddToMemberCart(
       userId: $userId
       qty: $qty
-      productId: $productId
+      product: $product
     ) {
       _id
       error {
