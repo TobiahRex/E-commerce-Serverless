@@ -123,7 +123,7 @@ new Promise((resolve, reject) => {
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {
-    console.log('Saved product to the User\'s Shopping Cart!');
+    console.log('Saved product ID & QTY to the User\'s Shopping Cart!: ', product);
     resolve(savedUser);
   })
   .catch(error => reject({

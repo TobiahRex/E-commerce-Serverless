@@ -93,3 +93,15 @@ export const FetchMultipleProducts = gql`
     }
   }
 `;
+
+export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) => {
+  let ids = [];
+
+  if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
+
+  if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
+
+  return ({
+    variables: { ids },
+  });
+};

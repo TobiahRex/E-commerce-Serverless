@@ -69,7 +69,7 @@ const userSchema = new Schema({
   shopping: {
     cart: [{
       qty: { type: Number },
-      productId: [{ type: ObjectId, ref: 'Product' }],
+      product: [{ type: ObjectId, ref: 'Product' }],
     }],
     transactions: [{ type: ObjectId, ref: 'Transaction' }],
   },

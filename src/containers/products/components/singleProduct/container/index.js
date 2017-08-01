@@ -364,6 +364,7 @@ class SingleProduct extends Component {
         prevCartIds,
         globalRequestQty,
       } = this.composeGlobalCartInfo();
+      console.log('%cupdatedCart', 'background:red;', updatedCart);
 
       const {
           qty,

@@ -9,7 +9,10 @@ import orderActions from '../../../../../../redux/orders/';
 import userActions from '../../../../../../redux/user/';
 
 import { DeleteFromMemberCart } from '../../../../../../graphql/mutations';
-import { FetchMultipleProducts } from '../../../../../../graphql/queries';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../../../../../graphql/queries';
 
 import {
   NavbarCartMainButton,
@@ -171,17 +174,7 @@ class NavbarCart extends Component {
 const NavbarCartWithData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart }) => {
-      if (!loggedIn) return ({ variables: { ids: [] } });
-
-      let ids = [];
-
-      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
-
-      return ({
-        variables: { ids },
-      });
-    },
+    options: FetchMultipleProductsOptions,
   }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(NavbarCart);

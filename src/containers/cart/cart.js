@@ -12,7 +12,10 @@ import {
   DeleteFromMemberCart,
   EditToMemberCart,
 } from '../../graphql/mutations';
-import { FetchMultipleProducts } from '../../graphql/queries';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
 
 import {
   propTypes,
