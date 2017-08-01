@@ -21,11 +21,11 @@ export default (db) => {
     let match = accessToken.match(/^Bearer (.*)$/);
 
     if (!match || match.length < 2) {
-      throw new Error("Invalid Authorization token -" + tokenString + " does not match the bearer");
+      reject("Invalid Authorization token -" + accessToken + " does not match the bearer");
     }
 
     const decoded = jwt.decode(match[1], {complete: true});
-    const jwtUserId = decoded.payload.sub.split("|")[1];
+    const jwtUserId = decoded.payload.sub;
 
     User
     .findById(userId)
@@ -35,10 +35,9 @@ export default (db) => {
         if (jwtUserId === socialAuth.user_id) {
           console.log(`Authorized User: ${jwtUserId}.`);
           resolve(dbUser);
-        } else {
-          reject(`UnAuthorized User: ${userId}`);
         }
       });
+      reject(`UnAuthorized User: ${userId}`);
     })
     .catch((error) => {
       console.log(`Mongo ERROR: ${error}`);
@@ -205,11 +204,10 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, productId }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, productId }, authorization) =>
   new Promise((resolve, reject) => {
-    User
-    .findById(userId)
-    .exec()
+
+    return User.authorize(userId, authorization);
     .then((dbUser) => {
       dbUser.shopping.cart.push({ qty, productId });
       return dbUser.save({ validateBeforeSave: true });
@@ -235,10 +233,9 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.deleteFromCart = ({ userId, productId }) =>
+  userSchema.statics.deleteFromCart = ({ userId, productId }, authorization) =>
   new Promise((resolve, reject) => {
-    User.findById(userId)
-    .exec()
+    return User.authorize(userId, authorization);
     .then((dbUser) => {
       dbUser.shopping.cart = dbUser.shopping.cart
       .filter(cartObj => String(cartObj.productId) !== String(productId));
@@ -265,11 +262,9 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updates User Document.
   */
-  userSchema.statics.editToMemberCart = ({ userId, products }) =>
+  userSchema.statics.editToMemberCart = ({ userId, products }, authorization) =>
   new Promise((resolve, reject) => {
-    User
-    .findById(userId)
-    .exec()
+    return User.authorize(userId, authorization);
     .then((dbUser) => {
       dbUser.shopping.cart = products;
       return dbUser.save({ validateBeforeSave: true });
