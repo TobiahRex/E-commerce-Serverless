@@ -712,7 +712,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.addToMemberCart(args),
+    resolve: (_, args, { User, Authorization }) => User.addToMemberCart(args, Authorization),
   },
   DeleteFromMemberCart: {
     type: rootType,
@@ -727,7 +727,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.deleteFromCart(args),
+    resolve: (_, args, { User, Authorization }) => User.deleteFromCart(args, Authorization),
   },
   EditToMemberCart: {
     type: rootType,
@@ -756,7 +756,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args, { User }) => User.editToMemberCart(args),
+    resolve: (_, args, { User, Authorization }) => User.editToMemberCart(args, Authorization),
   },
 };
 const UserTypes = {
