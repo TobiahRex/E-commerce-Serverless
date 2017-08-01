@@ -517,6 +517,7 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
 const ShoppingCartWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
   const cart = DetermineCartType(ownProps, ZipUserCart);
+  console.log('%ccart', 'background:lime;', cart);
   return ({
     total,
     updatedCart: cart,
