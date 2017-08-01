@@ -18,6 +18,7 @@ export default ({
   guestCart,
   userCart,
   FetchMultipleProducts,
+  updatedCart,
 }, zipUserCart) => {
   let cartItems = [];
 

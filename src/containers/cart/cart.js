@@ -262,7 +262,6 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
       result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
-    console.log('%cresult', 'background:lime;', result);
 
     if (result.error) {
       this.setState(prevState => ({
@@ -446,12 +445,15 @@ class ShoppingCart extends Component {
       mobileActive,
       updatedCart,
     } = this.state;
+    console.log('%cupdatedCart', 'background:lime;', updatedCart);
 
     const cart = DetermineCartType({
       loggedIn,
       userCart,
       guestCart,
-      FetchMultipleProducts: updatedCart,
+      FetchMultipleProducts: {
+        FetchMultipleProducts: updatedCart,
+      },
     }, ZipUserCart);
     const cartHasProducts = !!cart.length;
     console.log('%ccart', 'background:red;', cart);
