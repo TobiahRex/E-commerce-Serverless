@@ -118,14 +118,14 @@ class NavbarCart extends Component {
       loggedIn,
       guestCart,
       userCart,  // only contains id's and quantities.
-      FetchMultipleProducts: fetchCartProductsResult,
+      FetchMultipleProducts: fetchProductsResult,
     } = this.props;
 
     const cartItems = DetermineCartType({
       loggedIn,
       guestCart,
       userCart,
-      FetchMultipleProducts: fetchCartProductsResult,
+      FetchMultipleProducts: fetchProductsResult,
     }, ZipUserCart);
 
     let qty = 0;
@@ -138,7 +138,7 @@ class NavbarCart extends Component {
         <NavbarCartMainButton qty={qty} />
 
         <NavbarCartDropdnContent
-          loading={!!fetchCartProductsResult && fetchCartProductsResult.loading}
+          loading={!!fetchProductsResult && fetchProductsResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}
