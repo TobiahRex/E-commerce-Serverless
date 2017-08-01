@@ -509,9 +509,7 @@ cart.reduce((accum, next) => {
 
 const ShoppingCartWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
-
   const cart = DetermineCartType(ownProps, ZipUserCart);
-
   return ({
     total,
     updatedCart: cart,
@@ -520,11 +518,11 @@ const ShoppingCartWithState = connect((state, ownProps) => {
   push: location => dispatch(push(location)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
   saveUser: (updatedCart) => {
-    ownProps.EmptyMemberCart({
-      variables: { userId, productId },
+    ownProps.EditToMemberCart({
+      variables: { userId: ownProps.userId, products: [...updatedCart] },
     })
     .then(({ data: { EditToMemberCart: updatedUser } }) => {
-      saveUser(updatedUser);
+      dispatch(userActions.saveUser(updatedUser));
     });
   },
 }))(ShoppingCart);
@@ -554,7 +552,7 @@ const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) =
   mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
-  userId: user._id ? user._id : '',
+  userId: user.profile ? user.profile._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   newUser: CheckNewUser(user, auth.loggedIn),
