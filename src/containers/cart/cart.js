@@ -516,10 +516,17 @@ const ShoppingCartWithState = connect((state, ownProps) => {
     total,
     updatedCart: cart,
   });
-}, dispatch => ({
+}, (dispatch, ownProps) => ({
   push: location => dispatch(push(location)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-  saveUser: (udpatedCart)
+  saveUser: (updatedCart) => {
+    ownProps.EmptyMemberCart({
+      variables: { userId, productId },
+    })
+    .then(({ data: { EditToMemberCart: updatedUser } }) => {
+      saveUser(updatedUser);
+    });
+  },
 }))(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(
