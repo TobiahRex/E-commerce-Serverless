@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import TotalContent from './totalContent';
-console.log('%cTotalContent', 'background:red;', TotalContent);
 import Loading from './loading';
 
 const { bool, func, shape, number } = PropTypes;

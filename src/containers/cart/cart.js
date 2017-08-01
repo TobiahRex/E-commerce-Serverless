@@ -10,6 +10,7 @@ import orderActions from '../../redux/orders';
 import {
   EmptyMemberCart,
   DeleteFromMemberCart,
+  EditToMemberCart,
 } from '../../graphql/mutations';
 import { FetchMultipleProducts } from '../../graphql/queries';
 
@@ -246,8 +247,7 @@ class ShoppingCart extends Component {
 
     const {
       loggedIn,
-      guestCart,
-      userCart,
+      updatedCart,
     } = this.props;
 
     let cartOwner = '';
@@ -255,11 +255,12 @@ class ShoppingCart extends Component {
 
     if (loggedIn) {
       cartOwner = 'User';
-      result = this.verifyQtyChange(changeType, productId, userCart);
+      result = this.verifyQtyChange(changeType, productId, updatedCart);
     } else {
       cartOwner = 'Guest';
-      result = this.verifyQtyChange(changeType, productId, guestCart);
+      result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
+    console.log('%cresult', 'background:lime;', result);
 
     if (result.error) {
       this.setState(prevState => ({
@@ -509,14 +510,23 @@ cart.reduce((accum, next) => {
 
 const ShoppingCartWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
-
   const cart = DetermineCartType(ownProps, ZipUserCart);
-
   return ({
     total,
     updatedCart: cart,
   });
-}, null)(ShoppingCart);
+}, (dispatch, ownProps) => ({
+  push: location => dispatch(push(location)),
+  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
+  saveUser: (updatedCart) => {
+    ownProps.EditToMemberCart({
+      variables: { userId: ownProps.userId, products: [...updatedCart] },
+    })
+    .then(({ data: { EditToMemberCart: updatedUser } }) => {
+      dispatch(userActions.saveUser(updatedUser));
+    });
+  },
+}))(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
@@ -535,6 +545,7 @@ const ShoppingCartWithStateAndData = compose(
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
+  graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
 )(ShoppingCartWithState);
 
 const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
@@ -542,14 +553,9 @@ const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) =
   mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,
-  userId: user._id ? user._id : '',
+  userId: user.profile ? user.profile._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   newUser: CheckNewUser(user, auth.loggedIn),
-}),
-dispatch => ({
-  push: location => dispatch(push(location)),
-  saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
-  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-}))(ShoppingCartWithStateAndData);
+}), null)(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
