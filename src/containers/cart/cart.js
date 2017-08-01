@@ -75,15 +75,16 @@ class ShoppingCart extends Component {
     if (
       this.state.qty !== qty ||
       !_.isEqual(total, this.state.total) ||
-      ArrayDeepEquality(updatedCart, this.state.userCart) ||
+      !ArrayDeepEquality(updatedCart, this.state.userCart) ||
       this.state.mobileActive !== mobileActive
     ) {
-      this.setState({
+      this.setState(prevState => ({
+        ...prevState,
         qty,
         mobileActive,
         updatedCart,
         total: { ...total },
-      });
+      }));
     }
   }
 
@@ -106,11 +107,11 @@ class ShoppingCart extends Component {
         { FetchMultipleProducts: thisUserCart },
       } = this.props,
 
-      reduxCartDiff = ArrayDeepEquality(
+      reduxCartDiff = !ArrayDeepEquality(
         nextProps.guestCart,
         this.props.guestCart,
       ),
-      userCartDiff = ArrayDeepEquality(
+      userCartDiff = !ArrayDeepEquality(
         nextUserCart,
         thisUserCart,
       );
@@ -439,7 +440,7 @@ class ShoppingCart extends Component {
       loggedIn,
       userCart,
       guestCart,
-      FetchMultipleProducts: allProducts,
+      // FetchMultipleProducts: allProducts,
     } = this.props;
 
     const {
@@ -455,6 +456,7 @@ class ShoppingCart extends Component {
       FetchMultipleProducts: updatedCart,
     }, ZipUserCart);
     const cartHasProducts = !!cart.length;
+    console.log('%ccart', 'background:red;', cart);
 
     return (
       <div className="shopping-cart-main">
@@ -517,7 +519,6 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
 const ShoppingCartWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
   const cart = DetermineCartType(ownProps, ZipUserCart);
-  console.log('%ccart', 'background:lime;', cart);
   return ({
     total,
     updatedCart: cart,

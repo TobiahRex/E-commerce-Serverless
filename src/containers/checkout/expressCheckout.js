@@ -86,7 +86,7 @@ class ExpressCheckout extends Component {
   componentWillReceiveProps(nextProps) {
     if (
       !_.isEqual(nextProps, this.props) ||
-      ArrayDeepEquality(nextProps.cart, this.state.cart)
+      !ArrayDeepEquality(nextProps.cart, this.state.cart)
     ) {
       this.setState({ ...nextProps });
     }
