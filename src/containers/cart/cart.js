@@ -105,21 +105,19 @@ class ShoppingCart extends Component {
 
       { FetchMultipleProducts:
         { FetchMultipleProducts: thisUserCart },
-      } = this.props,
+      } = this.props;
 
-      reduxCartDiff = !ArrayDeepEquality(
-        nextProps.guestCart,
-        this.props.guestCart,
-      ),
-      userCartDiff = !ArrayDeepEquality(
-        nextUserCart,
-        thisUserCart,
-      );
+    if (
+        !_.isEqual(nextProps, this.props) ||
+        !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
+        !ArrayDeepEquality(nextUserCart, thisUserCart)
+      ) return true;
 
-    if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
-      return true;
-    }
-    if (!_.isEqual(nextState, this.state)) return true;
+    if (
+      !_.isEqual(nextState, this.state) ||
+      !ArrayDeepEquality(nextState.updatedCart, this.state.updatedCart)
+    ) return true;
+
     return false;
   }
   /**
