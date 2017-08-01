@@ -250,7 +250,7 @@ const rootType = new ObjectType({
                     description: 'The quantity of items of this product.',
                     type: IntType,
                   },
-                  productId: {
+                  product: {
                     description: 'The Mongo ObjectID for this product.',
                     type: MongoID,
                   },
@@ -616,7 +616,7 @@ const mutations = {
                   description: 'The quantity of items of this product.',
                   type: IntType,
                 },
-                productId: {
+                product: {
                   description: 'The Mongo ObjectID for this product.',
                   type: MongoID,
                 },
@@ -732,12 +732,12 @@ const mutations = {
     type: rootType,
     description: 'Delete a Product from the Users cart.',
     args: {
-      productId: {
-        description: 'The Product Mongo Id to delete.',
-        type: new NonNull(MongoID),
-      },
       userId: {
         description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+      product: {
+        description: 'The Product Mongo Id to delete.',
         type: new NonNull(MongoID),
       },
     },

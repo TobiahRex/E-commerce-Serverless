@@ -442,13 +442,14 @@ class ShoppingCart extends Component {
     const {
       total,
       mobileActive,
+      updatedCart,
     } = this.state;
 
     const cart = DetermineCartType({
       loggedIn,
       userCart,
       guestCart,
-      FetchMultipleProducts: allProducts,
+      FetchMultipleProducts: updatedCart,
     }, ZipUserCart);
     const cartHasProducts = !!cart.length;
 
