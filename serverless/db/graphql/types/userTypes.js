@@ -756,6 +756,10 @@ const mutations = {
                       description: 'If the error is a soft fail - Simple notification / warning of an error NOT requiring user input/interaction to be corrected.',
                       type: BoolType,
                     },
+                    message: {
+                      description: 'Amplifying information for hard || soft errors.',
+                      type: StringType,
+                    },
                   }),
                 }),
               },
