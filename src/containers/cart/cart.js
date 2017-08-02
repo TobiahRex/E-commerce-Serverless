@@ -35,6 +35,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
+  cleanOffTypename as CleanOffTypename,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -525,6 +526,7 @@ const ShoppingCartWithState = connect((state, ownProps) => {
   push: location => dispatch(push(location)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
   saveUser: (updatedCart) => {
+    const cleanedCart = CleanOffTypename(updatedCart);
     ownProps.EditToMemberCart({
       variables: { userId: ownProps.userId, products: [...updatedCart] },
     })
