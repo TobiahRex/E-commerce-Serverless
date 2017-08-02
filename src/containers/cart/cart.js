@@ -445,7 +445,6 @@ class ShoppingCart extends Component {
       mobileActive,
       updatedCart,
     } = this.state;
-    console.log('%cupdatedCart', 'background:lime;', updatedCart);
 
     const cart = DetermineCartType({
       loggedIn,
@@ -456,7 +455,6 @@ class ShoppingCart extends Component {
       },
     }, ZipUserCart);
     const cartHasProducts = !!cart.length;
-    console.log('%ccart', 'background:red;', cart);
 
     return (
       <div className="shopping-cart-main">

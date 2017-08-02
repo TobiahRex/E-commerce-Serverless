@@ -743,6 +743,22 @@ const mutations = {
           new InputObject({
             name: 'ProductsInput',
             fields: () => ({
+              error: {
+                description: 'Errors object showing hard and soft fail Boolean flags and the error message.',
+                type: new InputObject({
+                  name: 'ProductsErrorInput',
+                  fields: () => ({
+                    hard: {
+                      description: 'If the error is a hard fail - Requires user input/interaction to be corrected.',
+                      type: BoolType,
+                    },
+                    soft: {
+                      description: 'If the error is a soft fail - Simple notification / warning of an error NOT requiring user input/interaction to be corrected.',
+                      type: BoolType,
+                    },
+                  }),
+                }),
+              },
               qty: {
                 description: 'The quantity of products to update.',
                 type: new NonNull(IntType),
