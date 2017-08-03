@@ -49,8 +49,9 @@ const cleanOffTypename = (input) => {
       Object.keys(input).forEach((key) => {
         if (typeof input[key] !== 'object') {
           if (key === '__typename') {
-            delete input[key];
-            cleanedObject = { ...input };
+            const objectCopy = { ...input };
+            delete objectCopy[key];
+            cleanedObject = { ...objectCopy };
           } else {
             cleanedObject[key] = input[key];
           }
