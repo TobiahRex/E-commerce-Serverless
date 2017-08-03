@@ -19,52 +19,50 @@ const example = {
   },
 };
 
-// const cleanOffTypename = (cleanMe) => {
-//
-//
-//   if (Array.isArray(cleanMe)) {
-//     cleanMe.map((object) => {
-//
-//     })
-//   } else if (!Array.isArray(cleanMe) && (typeof cleanMe === 'object')) {
-//     const newObject = {};
-//     Object.keys(cleanMe)
-//     .forEach((key) => {
-//       if (key !== '__typename') {
-//         newObject[key] = cleanMe[key];
-//       }
-//     });
-//   }
-// };
+/**
+* Function: "cleanOffTypename"
+* - Takes any input, but acts only on an object.  Looks through each key, if a key is "__typename" then the key and value are removed.  If the key is a nested property, then the nested property is recursively called and the same evaluation takes place.
+1) Ensure type is an object (array or object literal).
+2) If an object literal, map through each key.
+3) If key is a Scalar type...
+3a) And key is "__typename", delete and return result.
+3b) if key is
+*/
 
-// 1) Check if input is an array.  If so, recursively check again.
-// 2) Once an object is found, then do some work, and return the result.
-
-const recursiveArrayCheck = (input) => {
+const cleanOffTypename = (input) => {
   if (typeof input === 'object') {
     let result;
 
     if (!Array.isArray(input)) {
-      const cleanedObject = {};
+      let cleanedObject = {};
 
       Object.keys(input).forEach((key) => {
         if (typeof input[key] !== 'object') {
-          if (key === '__typename') delete input[key];
-          cleanedObject[key] = input[key];
+          if (key === '__typename') {
+            delete input[key];
+            cleanedObject = { ...input };
+          } else {
+            cleanedObject[key] = input[key];
+          }
+        } else if (Array.isArray(input[key])) {
+          const nestedCleanedArray = input[key].map(content => cleanOffTypename(content));
+          cleanedObject[key] = [...nestedCleanedArray];
+        } else {
+          const nestedCleanedObject = cleanOffTypename(input[key]);
+          cleanedObject[key] = { ...nestedCleanedObject };
         }
-        cleanedObject[key] = { ...input[key] };
       });
-      result = recursiveArrayCheck(cleanedObject);
-    } else {
+      result = { ...cleanedObject };
+    } else if (Array.isArray(input)) {
       input.forEach((arrayContent) => {
-        result = recursiveArrayCheck(arrayContent);
+        result = cleanOffTypename(arrayContent);
       });
     }
     return result;
   }
   return input;
 };
-console.log(JSON.stringify(recursiveArrayCheck(example), null, 2));
+console.log(JSON.stringify(cleanTypeName(example), null, 2));
 
 
 const example2 = [0, 0, [1, 1, 1, [2, 2, [3, 3, 3]]]];
