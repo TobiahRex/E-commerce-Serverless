@@ -1,17 +1,25 @@
 const example = {
-  __typename: 'layer1',
-  layer1Name: 'toby',
-  entry1: {
-    __typename: 'layer2',
-    layer2Name: 'tobiah',
-    entry2: [{
-      __typename: 'layer3',
-      layer3Name: 'tobiah rex',
-    }, {
-      __typename: 'layer3',
-      layer3Name: 'bickley',
-    }],
+  error: {
+    hard: false,
+    soft: false,
+    message: 'blah blah',
+    __typename: 'Error',
   },
+  _id: '123123123',
+  product: {
+    title: 'Fruity Bamm Bamm',
+    images: [{
+      purpose: 'large',
+      url: 'http://a;lkjasd;flkjasdf',
+      __typename: 'Product Image',
+    }, {
+      purpose: 'card',
+      url: 'http://a;lkjasd;flkjasdf',
+      __typename: 'Product Image',
+    }],
+    __typename: 'Product Content',
+  },
+  __typename: 'Product',
 };
 
 /**

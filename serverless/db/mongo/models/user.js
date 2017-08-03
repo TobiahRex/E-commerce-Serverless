@@ -234,7 +234,7 @@ export default (db) => {
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((updatedUser) => {
-      console.log('Updated user shopping cart!');
+      console.log('Updated user shopping cart!: ', updatedUser.shopping.cart);
       resolve(updatedUser);
     })
     .catch((error) => {
