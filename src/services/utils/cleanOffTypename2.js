@@ -1,31 +1,47 @@
 const example = [{
-  __typename: 'layer1',
-  layer1Name: 'toby',
-  entry1: {
-    __typename: 'layer2',
-    layer2Name: 'tobiah',
-    entry2: [{
-      __typename: 'layer3',
-      layer3Name: 'tobiah rex',
-    }, {
-      __typename: 'layer3',
-      layer3Name: 'bickley',
-    }],
+  error: {
+    hard: false,
+    soft: false,
+    message: 'blah blah',
+    __typename: 'Error',
   },
+  _id: '123123123',
+  product: {
+    title: 'Fruity Bamm Bamm',
+    images: [{
+      purpose: 'large',
+      url: 'http://a;lkjasd;flkjasdf',
+      __typename: 'Product Image',
+    }, {
+      purpose: 'card',
+      url: 'http://a;lkjasd;flkjasdf',
+      __typename: 'Product Image',
+    }],
+    __typename: 'Product Content',
+  },
+  __typename: 'Product',
 }, {
-  __typename: 'layer1',
-  layer1Name: 'toby',
-  entry1: {
-    __typename: 'layer2',
-    layer2Name: 'tobiah',
-    entry2: [{
-      __typename: 'layer3',
-      layer3Name: 'tobiah rex',
-    }, {
-      __typename: 'layer3',
-      layer3Name: 'bickley',
-    }],
+  error: {
+    hard: false,
+    soft: false,
+    message: 'blah blah',
+    __typename: 'Error',
   },
+  _id: '123123123',
+  product: {
+    title: 'Fruity Bamm Bamm',
+    images: [{
+      purpose: 'large',
+      url: 'http://a;lkjasd;flkjasdf',
+      __typename: 'Product Image',
+    }, {
+      purpose: 'card',
+      url: 'http://a;lkjasd;flkjasdf',
+      __typename: 'Product Image',
+    }],
+    __typename: 'Product Content',
+  },
+  __typename: 'Product',
 }];
 
 /**
@@ -79,13 +95,11 @@ const cleanOffTypename = (input) => {
       });
       result = { ...cleanedObject };
     } else if (Array.isArray(input)) {
-      input.forEach((arrayContent) => {
-        result = cleanOffTypename(arrayContent);
-      });
+      result = input.map(content => cleanOffTypename(content));
     }
     return result;
   }
   return input;
 };
-export default cleanOffTypename;
-// console.log(JSON.stringify(cleanOffTypename(example), null, 2));
+// export default cleanOffTypename;
+console.log(JSON.stringify(cleanOffTypename(example), null, 2));

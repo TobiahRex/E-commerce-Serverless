@@ -526,10 +526,10 @@ const ShoppingCartWithState = connect((state, ownProps) => {
   push: location => dispatch(push(location)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
   saveUser: (updatedCart) => {
-    const cleanedCart = updatedCart.map(content => CleanOffTypename(content));
-    console.log('%ccleanedCart', 'background:lime;', cleanedCart);
+    const products = updatedCart.map(({ qty, _id }) => ({ qty, product: _id }));
+
     ownProps.EditToMemberCart({
-      variables: { userId: ownProps.userId, products: [...cleanedCart] },
+      variables: { userId: ownProps.userId, products },
     })
     .then(({ data: { EditToMemberCart: updatedUser } }) => {
       dispatch(userActions.saveUser(updatedUser));
