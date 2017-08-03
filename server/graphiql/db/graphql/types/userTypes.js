@@ -736,7 +736,7 @@ const mutations = {
         description: 'The User Mongo Id to perform the operation on.',
         type: new NonNull(MongoID),
       },
-      product: {
+      productId: {
         description: 'The Product Mongo Id to delete.',
         type: new NonNull(MongoID),
       },
