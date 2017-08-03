@@ -142,7 +142,7 @@ new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
   .then((dbUser) => {
-    dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.productId) !== String(productId));
+    dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.product) !== String(productId));
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {
