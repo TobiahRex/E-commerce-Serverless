@@ -17,7 +17,10 @@ import {
   propTypes,
   defaultProps,
 } from './propTypes.imports';
-import { FetchMultipleProducts } from '../../graphql/queries';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
 
 import {
   BreadCrumb,
@@ -249,6 +252,7 @@ class ExpressCheckout extends Component {
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
+  console.log('%ctotal', 'background:lime;', total);
 
   const cart = DetermineCartType(ownProps, ZipUserCart);
 
@@ -263,17 +267,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
 const ExpressCheckoutWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart, guestCart }) => {
-      let ids = [];
-
-      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
-
-      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
-
-      return ({
-        variables: { ids },
-      });
-    },
+    options: FetchMultipleProductsOptions,
   }),
 )(ExpressCheckoutWithState);
 
