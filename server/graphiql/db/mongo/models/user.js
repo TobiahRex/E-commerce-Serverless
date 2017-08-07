@@ -3,6 +3,15 @@ import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 import db from '../connection';
 
+/**
+* Function: "fetchUserProfile"
+* 1) Query User collection using input argument "userId".
+* 2) Resolves || Rejects with result.
+*
+* @param {string} userId - the user's Mongo _id.
+*
+* @return {object} - Promise resolved with found User document.
+*/
 userSchema.statics.fetchUserProfile = userId =>
 new Promise((resolve, reject) => {
   User.findById(userId).exec()

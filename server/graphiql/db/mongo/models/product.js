@@ -131,6 +131,7 @@ new Promise((resolve, reject) => {
 productSchema.statics.findProductAndUpdate = (_id, productObj) =>
 new Promise((resolve, reject) => {
   const newProductObj = {};
+
   /**
   * 1) Map over each key for "productObj"
   * 2a) If the current key is "images" then map over each image in nested loop.
@@ -145,26 +146,24 @@ new Promise((resolve, reject) => {
   *
   * @return {object} - Promise resolved with updated Product Document.
   */
-  Object
+  Object // 1)
   .keys(productObj)
-  .map((key) => {
+  .map((key) => { // 2)
     if (key === 'images') {
       const imageKeys = [];
       const imageObjs = [];
+
       productObj.images.forEach((imageObj, i) => {
         imageKeys.push(`product.images[${i}]`);
         imageObjs.push(imageObj);
       });
-      return imageKeys.map((newKey, i) => ({
-        [newKey]: imageObjs[i],
-      }));
-    }
+
+      return imageKeys.map((newKey, i) => ({ [newKey]: imageObjs[i] }));
+    } // else 3)
     const newKey = `product.${key}`;
     const value = productObj[key];
-    return ({
-      [newKey]: value,
-    });
-  })
+    return ({ [newKey]: value });
+  }) // 4)
   .forEach((object) => {
     const key = Object.keys(object)[0];
     newProductObj[key] = object[key];
@@ -175,17 +174,23 @@ new Promise((resolve, reject) => {
   Product.findByIdAndUpdate(_id, { $set: newProductObj }, { new: true })
   .exec()
   .then((updatedProduct) => {
-    console.log(`
-      Updated Product!: ${_id};
-      `);
+    console.log(`Updated Product!: ${_id}.`);
     resolve(updatedProduct);
   })
-  .catch(error => reject({
-    problem: `Could not find the product with id ${_id}. Are you sure that product exists?
-    Mongo Error = ${error}`,
-  }));
+  .catch((error) => {
+    console.log(`Error while tring to update Product _id "${_id}".  ERROR = ${error}.`);
+    reject(`Error while tring to update Product _id "${_id}".  ERROR = ${error}.`);
+  });
 });
 
+/**
+* 1) Find popoular X number of popular products - popularity is based on the total number of completed purchases.
+* 2) Resolve || Reject with results.
+*
+* @param {number} qty  - Number of desired results.
+*
+* @return {object} - Promise resolved with found Product Document(s).
+*/
 productSchema.statics.getPopularProducts = qty =>
 new Promise((resolve, reject) => {
   Product.aggregate([
@@ -207,10 +212,10 @@ new Promise((resolve, reject) => {
     `);
     resolve(dbProducts);
   })
-  .catch(error => reject({
-    problem: `Could not fetch the ${qty} products you requested.
-    Mongo Error = ${error}`,
-  }));
+  .catch((error) => {
+    console.log(`Error trying to find popular products. ERROR = ${error}.`);
+    reject(`Error trying to find popular products. ERROR = ${error}.`);
+  });
 });
 
 const Product = db.model('Product', productSchema);
