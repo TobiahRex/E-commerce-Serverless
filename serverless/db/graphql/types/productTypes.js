@@ -487,11 +487,11 @@ const mutations = {
                 new InputObject({
                   name: 'NewProductTransactionInput',
                   fields: () => ({
-                    transactionId: {
+                    transaction_id: {
                       description: 'The Mongo ID for transactions.',
                       type: MongoId,
                     },
-                    userId: {
+                    user_id: {
                       description: 'The mongo ID for users.',
                       type: MongoId,
                     },
