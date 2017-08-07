@@ -248,7 +248,7 @@ const rootType = new ObjectType({
                     description: 'The quantity of items of this product.',
                     type: IntType,
                   },
-                  productId: {
+                  product: {
                     description: 'The Mongo ObjectID for this product.',
                     type: MongoID,
                   },
@@ -364,7 +364,7 @@ const queries = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, { id }, { User }) => User.fetchUserProfile(id)
+    resolve: (_, { id }, { User }) => User.fetchUserProfile(id),
   },
 };
 const mutations = {
@@ -613,7 +613,7 @@ const mutations = {
                   description: 'The quantity of items of this product.',
                   type: IntType,
                 },
-                productId: {
+                product: {
                   description: 'The Mongo ObjectID for this product.',
                   type: MongoID,
                 },
@@ -713,6 +713,17 @@ const mutations = {
       },
     },
     resolve: (_, args, { User }) => User.addToMemberCart(args),
+  },
+  EmptyMemberCart: {
+    type: rootType,
+    description: 'Completely erase all saved products from the Users cart.',
+    args: {
+      userId: {
+        description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args, { User }) => User.emptyCart(args),
   },
   DeleteFromMemberCart: {
     type: rootType,
