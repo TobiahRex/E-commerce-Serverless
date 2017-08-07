@@ -164,22 +164,37 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, productId }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, product }) =>
   new Promise((resolve, reject) => {
-    User
-    .findById(userId)
+    User.findById(userId)
     .exec()
     .then((dbUser) => {
-      dbUser.shopping.cart.push({ qty, productId });
+      dbUser.shopping.cart.push({ qty, product });
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {
-      console.log('Saved product to the User\'s Shopping Cart!');
+      console.log('Saved product ID & QTY to the User\'s Shopping Cart!: ', product);
       resolve(savedUser);
     })
     .catch((error) => {
-      console.log(`Could not save product to Users shopping cart. ERROR = ${error}`);
-      reject(`Could not save product to Users shopping cart. ERROR = ${error}`);
+      console.log({
+        problem: `Could not save to the Users shopping cart.
+        args: {
+          userId: ${userId},
+          qty: ${qty},
+          product: ${product},
+        }
+        Mongo Error: ${error}`,
+      });
+      reject({
+        problem: `Could not save to the Users shopping cart.
+        args: {
+          userId: ${userId},
+          qty: ${qty},
+          product: ${product},
+        }
+        Mongo Error: ${error}`,
+      });
     });
   });
 
@@ -199,12 +214,13 @@ export default (db) => {
     User.findById(userId)
     .exec()
     .then((dbUser) => {
-      dbUser.shopping.cart = dbUser.shopping.cart
-      .filter(cartObj => String(cartObj.productId) !== String(productId));
+      dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.product) !== String(productId));
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {
-      console.log(`Deleted Product: ${productId} from User: ${savedUser._id}.`);
+      console.log(`
+        Deleted Product: ${productId} from User: ${savedUser._id}.
+      `);
       resolve(savedUser);
     })
     .catch((error) => {
@@ -213,6 +229,26 @@ export default (db) => {
     });
   });
 
+  /**
+  * Function: "emptyCart"
+  * 1) find User by "userId".
+  * 2) 
+  */
+
+  userSchema.statics.emptyCart = ({ userId }) =>
+  new Promise((resolve, reject) => {
+    User.findById(userId)
+    .exec()
+    .then((dbUser) => {
+      dbUser.shopping.cart = [];
+      return dbUser.save({ validateBeforeSave: true });
+    })
+    .then((updatedUser) => {
+      console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
+      resolve(updatedUser);
+    })
+    .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
+  });
   /**
   * Modifies product(s) in user's shopping cart.
   * 1) Finds user by Mongo _id.
