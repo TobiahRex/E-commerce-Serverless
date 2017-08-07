@@ -82,12 +82,10 @@ const rootType = new ObjectType({
                   description: '120 milliliter bottle',
                 },
               },
-              /* eslint-enable quote-props */
-
             }),
           },
           nicotineStrength: {
-            description: 'The nicotine strength for the new product.',
+            description: 'The nicotine strength for the Product.',
             type: new EnumType({
               name: 'ProductNicotineStrengthsEnum',
               values: {
@@ -264,24 +262,6 @@ const queryTypes = {
               }),
             }),
           ),
-        ),
-      },
-      quantities: {
-        description: 'The total number of products available for purchase.',
-        type: new NonNull(
-          new ObjectType({
-            name: 'PopularProductQuantities',
-            fields: () => ({
-              available: {
-                description: 'The Total number of products available for purchase.',
-                type: IntType,
-              },
-              inCart: {
-                description: 'The total number of this product that are in the global product cart.',
-                type: IntType,
-              },
-            }),
-          }),
         ),
       },
       completedCheckouts: {
