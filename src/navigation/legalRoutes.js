@@ -2,7 +2,6 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Legal -------------------------------
-import Shipping from '../containers/legal/shippingPolicy';
 import Returns from '../containers/legal/returnsPolicy';
 
 const errorLoading = (error) => {
@@ -13,7 +12,14 @@ const loadRoute = cb => module => cb(null, module.default);
 const LegalRoutes = () => (
   <div>
     <Route path="return_policy" component={Returns} />
-    <Route path="shipping_policy" component={Shipping} />
+    <Route
+      path="/shipping_policy"
+      getComponent={(location, cb) => {
+        System.import('../containers/legal/components/shippingPolicy')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     <Route
       path="/privacy_policy"
       getComponent={(location, cb) => {
