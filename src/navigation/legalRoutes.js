@@ -2,19 +2,42 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Legal -------------------------------
-import NicotineDisclaimer from '../containers/legal/nicotineDisclaimer';
 import Shipping from '../containers/legal/shippingPolicy';
 import Returns from '../containers/legal/returnsPolicy';
-import PrivacyPolicy from '../containers/legal/privacyPolicy';
-import TermsConditions from '../containers/legal/termsConditions';
+
+const errorLoading = (error) => {
+  throw new Error(`Dyanmic page loading failed   ${error}`);
+};
+const loadRoute = cb => module => cb(null, module.default);
 
 const LegalRoutes = () => (
   <div>
-    <Route path="nicotine_disclaimer" component={NicotineDisclaimer} />
     <Route path="return_policy" component={Returns} />
     <Route path="shipping_policy" component={Shipping} />
-    <Route path="privacy_policy" component={PrivacyPolicy} />
-    <Route path="terms_and_conditions" component={TermsConditions} />
+    <Route
+      path="/privacy_policy"
+      getComponent={(location, cb) => {
+        System.import('../containers/legal/components/privacyPolicy')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
+    <Route
+      path="/terms_and_conditions"
+      getComponent={(location, cb) => {
+        System.import('../containers/legal/components/termsAndConditions')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
+    <Route
+      path="/nicotine_disclaimer"
+      getComponent={(location, cb) => {
+        System.import('../containers/legal/components/nicotineDisclaimer')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
   </div>
 );
 

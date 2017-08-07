@@ -1,9 +1,9 @@
 /* eslint-disable import/default, global-require, no-unused-expressions, import/first */
 // if (!global._babelPolyfill) require('babel-polyfill'); // eslint-disable-line
 
+import 'babel-polyfill';
 import React from 'react';
 
-import 'babel-polyfill';
 import './styles.scss';
 import 'masonry-layout';
 import './services/utils/formValidationRulesExtension';
