@@ -227,6 +227,17 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "emptyCart"
+* 1) find User by "userId".
+* 2) Once found, assign their shopping cart to an empty array.
+* 3) Save changes.
+* 4) Return the modified user document.
+*
+* @param {string} userid - Mongo User _id.
+*
+* @return {object} userDocument - Promise resolved with updates to User Document.
+*/
 userSchema.statics.emptyCart = ({ userId }) =>
 new Promise((resolve, reject) => {
   User.findById(userId)
@@ -241,26 +252,34 @@ new Promise((resolve, reject) => {
   })
   .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
 });
-
+/**
+* Modifies product(s) in user's shopping cart.
+* 1) Finds user by Mongo _id.
+* 2) Replaces shopping cart with new products array.
+* 3) Saves changes.
+* 4) Resolves || Rejects with result.
+*
+* @param {object} cartObj - userId {string}, products {array}.
+*
+* @return {object} - Promise resolved with updates User Document.
+*/
 userSchema.statics.editToMemberCart = ({ userId, products }) =>
 new Promise((resolve, reject) => {
-  User.findById(userId)
+  User
+  .findById(userId)
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart = products;
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((updatedUser) => {
-    console.log(`
-      Updated user shopping cart!
-    `);
+    console.log('Updated user shopping cart!: ', updatedUser.shopping.cart);
     resolve(updatedUser);
   })
-  .catch(error => reject(`
-    Could not Update User: ${userId}.
-
-    Mongo Error = ${error}
-  `));
+  .catch((error) => {
+    console.log(`Could not Update User: ${userId}. ERROR = ${error}`);
+    reject(`Could not Update User: ${userId}. ERROR = ${error}`);
+  });
 });
 
 const User = db.model('User', userSchema);

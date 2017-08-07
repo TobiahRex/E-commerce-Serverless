@@ -232,9 +232,14 @@ export default (db) => {
   /**
   * Function: "emptyCart"
   * 1) find User by "userId".
-  * 2) 
+  * 2) Once found, assign their shopping cart to an empty array.
+  * 3) Save changes.
+  * 4) Return the modified user document.
+  *
+  * @param {string} userid - Mongo User _id.
+  *
+  * @return {object} userDocument - Promise resolved with updates to User Document.
   */
-
   userSchema.statics.emptyCart = ({ userId }) =>
   new Promise((resolve, reject) => {
     User.findById(userId)
