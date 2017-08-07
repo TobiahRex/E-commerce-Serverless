@@ -1,6 +1,6 @@
-@media only screen and (max-width : 930px) {
-// @media only screen and (max-width : 640px) {
-  .nicotine-disclaimer__main {
+@media only screen and (min-width : 931px) {
+  .returns-policy__main {
+    max-width: 1080px;
     width: 100%;
     & .main__breadcrumb--container {
       @include prefixflex();

@@ -1,9 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-// ----------------------------- Legal -------------------------------
-import Returns from '../containers/legal/returnsPolicy';
-
 const errorLoading = (error) => {
   throw new Error(`Dyanmic page loading failed   ${error}`);
 };
@@ -11,7 +8,14 @@ const loadRoute = cb => module => cb(null, module.default);
 
 const LegalRoutes = () => (
   <div>
-    <Route path="return_policy" component={Returns} />
+    <Route
+      path="/return_policy"
+      getComponent={(location, cb) => {
+        System.import('../containers/legal/components/returnsPolicy')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     <Route
       path="/shipping_policy"
       getComponent={(location, cb) => {
