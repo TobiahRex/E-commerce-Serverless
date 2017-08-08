@@ -5,6 +5,7 @@ import _ from 'lodash';
 import {
   FirstName,
   LastName,
+  Email,
   AddressLine,
   Country,
   Prefecture,
@@ -19,6 +20,7 @@ class ShippingAddress extends React.Component {
   static propTypes = {
     shippingFirstName: string.isRequired,
     shippingLastName: string.isRequired,
+    shippingEmail: string.isRequired,
     shippingAddressLine1: string.isRequired,
     shippingAddressLine2: string.isRequired,
     shippingCountry: string.isRequired,
@@ -34,6 +36,7 @@ class ShippingAddress extends React.Component {
     this.state = {
       shippingFirstName: '',
       shippingLastName: '',
+      shippingEmail: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: '',

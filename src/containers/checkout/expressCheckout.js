@@ -18,12 +18,6 @@ import {
   defaultProps,
 } from './propTypes.imports';
 import {
-  SubmitFinalOrder,
-  FetchMultipleProducts,
-  FetchMultipleProductsOptions,
-} from '../../graphql/queries';
-
-import {
   BreadCrumb,
   BillingAddress,
   ShippingAddress,
@@ -35,6 +29,14 @@ import {
   CvnModal,
   SubmitOrder,
 } from './component.imports';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
+import {
+  SubmitFinalOrder,
+  SubmitFinalOrderOptions,
+} from '../../graphql/mutations';
 
 class ExpressCheckout extends Component {
   static propTypes = propTypes;
@@ -51,17 +53,18 @@ class ExpressCheckout extends Component {
       },
       // --- Form Data from Nested Components ---
       newsletterDecision: true,
-      billingFirstName: '',
-      billingLastName: '',
-      billingEmail: '',
-      billingAddressLine1: '',
-      billingAddressLine2: '',
-      billingCountry: '',
-      billingPrefectureState: '',
-      billingCity: '',
-      billingPostalCode: '',
+      // billingFirstName: '',
+      // billingLastName: '',
+      // billingEmail: '',
+      // billingAddressLine1: '',
+      // billingAddressLine2: '',
+      // billingCountry: '',
+      // billingPrefectureState: '',
+      // billingCity: '',
+      // billingPostalCode: '',
       shippingFirstName: '',
       shippingLastName: '',
+      shippingEmail: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: 'Japan',
@@ -74,6 +77,7 @@ class ExpressCheckout extends Component {
       ccExpireMonth: '',
       ccExpireYear: '',
       ccCvn: '',
+      ccZip: '',
       termsAgreement: false,
       // --- From props ---
       cart: [],
@@ -140,18 +144,19 @@ class ExpressCheckout extends Component {
       errors,
       newsletterDecision,
       // ---
-      billingFirstName,
-      billingLastName,
-      billingEmail,
-      billingAddressLine1,
-      billingAddressLine2,
-      billingCountry,
-      billingPrefectureState,
-      billingCity,
-      billingPostalCode,
+      // billingFirstName,
+      // billingLastName,
+      // billingEmail,
+      // billingAddressLine1,
+      // billingAddressLine2,
+      // billingCountry,
+      // billingPrefectureState,
+      // billingCity,
+      // billingPostalCode,
       // ---
       shippingFirstName,
       shippingLastName,
+      shippingEmail,
       shippingAddressLine1,
       shippingAddressLine2,
       shippingCountry,
@@ -165,6 +170,7 @@ class ExpressCheckout extends Component {
       ccExpireMonth,
       ccExpireYear,
       ccCvn,
+      ccZip,
       // ---
       termsAgreement,
       // ---
@@ -199,7 +205,7 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <BillingAddress
+              {/* <BillingAddress
                 billingFirstName={billingFirstName}
                 billingLastName={billingLastName}
                 billingEmail={billingEmail}
@@ -210,10 +216,11 @@ class ExpressCheckout extends Component {
                 billingCity={billingCity}
                 billingPostalCode={billingPostalCode}
                 handleOnChange={this.handleOnChange}
-              />
+              /> */}
               <ShippingAddress
                 shippingFirstName={shippingFirstName}
                 shippingLastName={shippingLastName}
+                shippingEmail={shippingEmail}
                 shippingAddressLine1={shippingAddressLine1}
                 shippingAddressLine2={shippingAddressLine2}
                 shippingCountry={shippingCountry}
@@ -231,6 +238,7 @@ class ExpressCheckout extends Component {
                 ccExpireMonth={ccExpireMonth}
                 ccExpireYear={ccExpireYear}
                 ccCvn={ccCvn}
+                ccZip={ccZip}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
               />

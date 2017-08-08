@@ -358,7 +358,7 @@ mutation EmptyMemberCart($userId: ID!) {
 }
 `;
 
-const SubmitFinalOrder = graphql`
+export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
   $billingFirstName: String!
   $billingLastName: String!
@@ -410,29 +410,46 @@ mutation SubmitFinalOrder(
     ccCvn: $ccCvn
     termsAgreement: $termsAgreement
   ) {
-    transaction {
-      _id
-      error {
-        hard
-        soft
-        message
-      }
-      date
-      user
-      products
-      subTotal
-      tax
-      grandTotal
-      shippingInfo {
-        address
-        item
-      }
+    _id
+    error {
+      hard
+      soft
+      message
+    }
+    discount
+    subTotal
+    tax
+    grandTotal
+    sagawa {
+      awbNumber
+      referenceNumber
+      address
+    }
+    square {
       billingInfo {
         nameOnCard
         last4
+        amount
         email
       }
+    }
+    sesEmail {
+      sent
+      mailId
+      address
     }
   }
 }
 `;
+
+export const SubmitFinalOrderOptions = () => {
+  // let ids = [];
+  //
+  // if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
+  //
+  // if (!!userCart.length) ids = userCart.map(({ product }) => product);
+
+  return ({
+    variables: '',
+  });
+};

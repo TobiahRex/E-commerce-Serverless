@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
+import _ from 'lodash';
 import {
   NameOnCard,
   CreditCardNumber,
   CreditCardExpiration,
-  CreditCardCvn,
+  CvnAndZip,
 } from './component.imports';
 
 const { func, string } = PropTypes;
@@ -49,6 +49,7 @@ class CreditCardInfo extends PureComponent {
       ccExpireMonth,
       ccExpireYear,
       ccCvn,
+      ccZip,
     } = this.state;
 
     return (
@@ -85,11 +86,13 @@ class CreditCardInfo extends PureComponent {
           handleOnChange={this.handleOnChange}
         />
 
-        <CreditCardCvn
+        <CvnAndZip
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
+          ccZip={ccZip}
           handleOnChange={this.handleOnChange}
         />
+
       </div>
     );
   }

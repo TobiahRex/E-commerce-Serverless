@@ -244,32 +244,39 @@
               margin-left: .71em;
             }
           }
-          & .input__row--cvn-number {
+          & .input__row--cvn-number,
+          .input__row--zip-code {
+            & .cvn-number--wrapper {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & button {
+                font-size: 1.4em;
+                font-family: $p-font;
+                color: $p-blue;
+                border: none;
+                background-color: transparent;
+                cursor: help;
+                &:hover,
+                &:active,
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
             & input {
               width: 8em;
-            }
-            & button {
-              font-size: 1.4em;
-              font-family: $p-font;
-              color: $p-blue;
-              border: none;
-              background-color: transparent;
-              margin-left: .71em;
-              cursor: help;
-              &:hover,
-              &:active,
-              &:focus {
-                outline: none;
-
-              }
             }
             & span.form-error.is-visible {
               margin-left: 1em;
             }
           }
+          & .input__row--zip-code {
+            margin-left: 2em;
+          }
         }
         & .input__row.cvn {
-          justify-content: flex-start;
+          justify-content: space-between;;
         }
       }
       & .checkout__product-review {
