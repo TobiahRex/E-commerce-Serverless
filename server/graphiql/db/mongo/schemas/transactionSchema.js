@@ -28,7 +28,8 @@ const transactionSchema = new Schema({
   subtotal: { type: String, required: true },
   tax: { type: String, required: true },
   grandTotal: { type: String, required: true },
-  shippingInfo: {
+  sagawaShipping: {
+    trackingNumber: { type: Number, default: '' },
     address: {
       boxid: { type: String, required: true },
       shipdate: { type: Date, required: true },
