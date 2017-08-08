@@ -229,6 +229,7 @@ class ExpressCheckout extends Component {
               />
               <GrandTotal
                 total={total}
+                show={!!cart.length}
                 termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
               />

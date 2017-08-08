@@ -6,7 +6,7 @@
   "repository": "https://github.com/TobiahRex/nj2jp.git",
   "scripts": {
     "analyze-bundle": "NODE_ENV=production babel-node ./tools/analyzeBundle.js",
-    "deploy": "NODE_ENV=production npm-run-all prebuild build:bundle copy:assets s3:clean s3:deploy cf:invalidate start-prod",
+    "deploy": "NODE_ENV=production npm-run-all prebuild build:bundle copy:assets s3:clean s3:deploy cf:invalidate",
     "build:bundle": "babel-node ./tools/build.js",
     "cf:invalidate": "babel-node ./tools/cf_invalidate_script.js",
     "copy:assets": "npm-run-all copy:error copy:package copy:images",
