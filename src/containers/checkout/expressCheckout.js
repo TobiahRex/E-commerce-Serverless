@@ -30,7 +30,7 @@ import {
   CreditCardInfo,
   ProductReview,
   GrandTotal,
-  ErrorDialogue,
+  NetworkStatus,
   CvnModal,
   SubmitOrder,
 } from './component.imports';
@@ -131,6 +131,7 @@ class ExpressCheckout extends Component {
   render() {
     const {
       loggedIn,
+      SubmitFinalOrder,
     } = this.props;
 
     const {
@@ -241,7 +242,7 @@ class ExpressCheckout extends Component {
 
               <SubmitOrder show={!!cart.length} />
 
-              <ErrorDialogue errors={errors} />
+              <NetworkStatus errors={errors} loading={SubmitFinalOrder.loading} />
 
             </div>
           </div>
@@ -258,8 +259,6 @@ class ExpressCheckout extends Component {
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
-  console.log('%ctotal', 'background:lime;', total);
-
   const cart = DetermineCartType(ownProps, ZipUserCart);
 
   return ({
@@ -275,6 +274,10 @@ const ExpressCheckoutWithStateAndData = compose(
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
   }),
+  // graphql(SubmitFinalOrder, {
+  //   name: 'SubmitFinalOrder',
+  //   options: SubmitFinalOrderOptions,
+  // }),
 )(ExpressCheckoutWithState);
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
