@@ -37,12 +37,11 @@ NetworkStatus.defaultProps = {
 
 const NetworkStatusWithHandlers = withHandlers({
   renderHelper: ({ errors, loading, success }) => () => {
-    errors = { hard: true, soft: false, message: 'That card was declined.  Please use a different card.' };
     const { hard, soft, message } = errors;
     const showError = !!hard || !!soft || !!message.length;
 
     const hardError = (
-      <div clasName="checkout__error-hard">
+      <div className="checkout__error-hard">
         <div className="error-hard__title">
           <FontAwesome className="error-icon" name="times-circle" />
           <h2>Error!</h2>
@@ -53,10 +52,13 @@ const NetworkStatusWithHandlers = withHandlers({
     );
 
     const softError = (
-      <div className="checkout__error--soft">
-        <FontAwesome className="caution-icon" name="exclamation-triangle" />
-        <span className="alert-title">Caution: </span>
-        {message}
+      <div className="checkout__error-soft">
+        <div className="error-soft__title">
+          <FontAwesome className="error-icon" name="exclamation-triangle" />
+          <h2>Error!</h2>
+        </div>
+        <br />
+        <p>{message}</p>
       </div>
     );
 

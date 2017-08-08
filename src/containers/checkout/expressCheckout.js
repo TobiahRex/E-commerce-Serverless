@@ -18,6 +18,7 @@ import {
   defaultProps,
 } from './propTypes.imports';
 import {
+  SubmitFinalOrder,
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
@@ -131,7 +132,7 @@ class ExpressCheckout extends Component {
   render() {
     const {
       loggedIn,
-      SubmitFinalOrder,
+      // SubmitFinalOrder,
     } = this.props;
 
     const {
@@ -235,17 +236,18 @@ class ExpressCheckout extends Component {
               />
               <GrandTotal
                 total={total}
-                show={!!cart.length}
+                showTotal={!!cart.length}
                 termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder show={!!cart.length} />
+              <SubmitOrder enable={!!cart.length} />
 
               <NetworkStatus
                 errors={errors}
                 loading={false}
                 success={false}
+                routerPush={this.routerPush}
               />
 
             </div>
@@ -278,10 +280,10 @@ const ExpressCheckoutWithStateAndData = compose(
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
   }),
-  // graphql(SubmitFinalOrder, {
-  //   name: 'SubmitFinalOrder',
-  //   options: SubmitFinalOrderOptions,
-  // }),
+  graphql(SubmitFinalOrder, {
+    name: 'SubmitFinalOrder',
+    options: SubmitFinalOrderOptions,
+  }),
 )(ExpressCheckoutWithState);
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
@@ -290,6 +292,6 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   taxRate: orders.taxRate.totalRate,
-}), null)(ExpressCheckoutWithStateAndData);
+}))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;

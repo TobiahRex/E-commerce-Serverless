@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
 
-function SubmitOrder({ show }) {
+function SubmitOrder({ enable }) {
   return (
-    show ?
+    enable ?
       <div className="checkout__purchase-btn">
         <Validation.components.Button
           className="button"
@@ -31,6 +31,6 @@ function SubmitOrder({ show }) {
   );
 }
 SubmitOrder.propTypes = {
-  show: PropTypes.bool.isRequired,
+  enable: PropTypes.bool.isRequired,
 };
 export default SubmitOrder;
