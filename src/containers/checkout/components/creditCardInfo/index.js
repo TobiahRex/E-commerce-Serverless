@@ -67,6 +67,7 @@ class CreditCardInfo extends PureComponent {
               <FontAwesome name="cc-visa" />
               <FontAwesome name="cc-mastercard" />
               <FontAwesome name="cc-discover" />
+              <FontAwesome name="cc-jcb" />
               <FontAwesome name="cc-amex" />
             </div>
           </div>
@@ -81,7 +82,7 @@ class CreditCardInfo extends PureComponent {
           ccNumber={ccNumber}
           handleOnChange={this.handleOnChange}
         />
-        
+
         <CreditCardExpiration
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}

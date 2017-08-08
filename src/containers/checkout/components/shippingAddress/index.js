@@ -97,13 +97,13 @@ class ShippingAddress extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
-        <PostalCode
-          shippingPostalCode={this.state.shippingPostalCode}
+        <City
+          shippingCity={this.state.shippingCity}
           handleOnChange={this.handleOnChange}
         />
 
-        <City
-          shippingCity={this.state.shippingCity}
+        <PostalCode
+          shippingPostalCode={this.state.shippingPostalCode}
           handleOnChange={this.handleOnChange}
         />
 

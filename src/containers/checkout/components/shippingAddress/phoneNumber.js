@@ -28,7 +28,7 @@ class PhoneNumber extends React.PureComponent {
             type="string"
             containerClassName=""
             name="shippingPhoneNumber"
-            validations={['required', 'phone-startWithZero', 'phone-japanLength']}
+            validations={['required', 'numeric', 'phone-startWithZero', 'phone-japanLength']}
             onChange={this.handleOnChange}
             value={this.props.shippingPhoneNumber}
           />

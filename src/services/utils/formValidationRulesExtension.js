@@ -17,7 +17,7 @@ Object.assign(Validation.rules, {
   },
 
   boolRequired: {
-    rule: (value) => Boolean(value),
+    rule: value => Boolean(value),
     hint: () => <span className="form-error is-visible">Required</span>,
   },
 
@@ -98,6 +98,15 @@ Object.assign(Validation.rules, {
     hint: () => (
       <span className="form-error is-visible">
         That name uses invalid characters. Please try again.
+      </span>
+    ),
+  },
+
+  'ccName-firstLast': {
+    rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        You must include a First name & a Last name.
       </span>
     ),
   },
