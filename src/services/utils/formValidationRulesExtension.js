@@ -79,7 +79,7 @@ Object.assign(Validation.rules, {
     rule: value => (value[0] === '0'),
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}
+        Phone number should start with {'\"0\"'}.
       </span>
     ),
   },
