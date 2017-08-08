@@ -468,6 +468,24 @@
             margin-top: .5em;
           }
         }
+        & .checkout__successful-purchase {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          text-align: center;
+          padding: 10px 0;
+          font-family: $p-font;
+          background-color: $p-green;
+          border: 1px solid $s-green;
+          & span {
+            margin-top: .5em;
+            color: $p-white;
+          }
+          & p {
+            color: $p-white;
+          }
+        }
         & span.form-error.is-visible {
           color: $p-red;
           font-family: $p-font;

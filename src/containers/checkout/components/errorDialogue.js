@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { withHandlers } from 'recompose';
 
-function ErrorDialogue({ routerPush, errors, renderHelper }) {
+function NetworkStatus({ routerPush, errors, renderHelper }) {
   return (
     <div>
       <div className="checkout__error-dialogue">
@@ -31,17 +31,21 @@ function ErrorDialogue({ routerPush, errors, renderHelper }) {
   );
 }
 const { shape, string, bool, func } = PropTypes;
-ErrorDialogue.propTypes = {
+NetworkStatus.propTypes = {
   errors: shape({
     hard: bool,
     soft: bool,
     messages: string,
   }).isRequired,
+  loading: bool,
   renderHelper: func.isRequired,
 };
+NetworkStatus.defaultProps = {
+  loading: false,
+};
 
-const ErrorDialogueWithHandlers = () => withHandlers({
-  renderHelper: ({ errors }) => {
+const NetworkStatusWithHandlers = () => withHandlers({
+  renderHelper: ({ errors, loading }) => {
     const { hard, soft, message } = errors;
     const showError = !!hard || !!soft || !!message.length;
 
@@ -61,7 +65,7 @@ const ErrorDialogueWithHandlers = () => withHandlers({
       </p>
     );
 
-    const loading = (
+    const loadingMsg = (
       <div className="checkout__loading-icon">
         <FontAwesome className="spinner-icon" name="spinner" spin />
         <p>One moment please</p>
@@ -69,10 +73,19 @@ const ErrorDialogueWithHandlers = () => withHandlers({
       </div>
     );
 
-    if (!showError && loading)
+    const success = (
+      <div className="checkout__successful-purchase">
+        <FontAwesome name="check-circle" />
+        <p>{'You\'ve'} successfully submitted your order!</p>
+      </div>
+    );
+
     if (showError && hard) return hardError;
     if (showError && soft) return softError;
-  }
-})(ErrorDialogue);
+    if (!showError && loading) return loadingMsg;
+    if (!showError && success) return loadingMsg;
+    return '';
+  },
+})(NetworkStatus);
 
-export default ErrorDialogueWithHandlers;
+export default NetworkStatusWithHandlers;

@@ -242,7 +242,11 @@ class ExpressCheckout extends Component {
 
               <SubmitOrder show={!!cart.length} />
 
-              <NetworkStatus errors={errors} loading={SubmitFinalOrder.loading} />
+              <NetworkStatus
+                errors={errors}
+                loading={SubmitFinalOrder.loading}
+                success={SubmitFinalOrder.SubmitFinalOrder}
+              />
 
             </div>
           </div>
