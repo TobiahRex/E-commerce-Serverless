@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
 
-export default function SubmitOrder() {
+function SubmitOrder() {
   return (
     <div className="checkout__purchase-btn">
       <Validation.components.Button className="button" errorClassName="asd" >
@@ -15,3 +16,7 @@ export default function SubmitOrder() {
     </div>
   );
 }
+SubmitOrder.propTypes = {
+  show: PropTypes.bool.isRequired,
+};
+export default SubmitOrder;
