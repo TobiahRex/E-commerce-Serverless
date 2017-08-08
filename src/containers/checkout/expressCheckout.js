@@ -43,7 +43,11 @@ class ExpressCheckout extends Component {
 
     this.state = {
       showCvnModal: false,
-      errors: {},
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
       // --- Form Data from Nested Components ---
       newsletterDecision: true,
       billingFirstName: '',
@@ -131,6 +135,7 @@ class ExpressCheckout extends Component {
 
     const {
       cart,
+      errors,
       newsletterDecision,
       // ---
       billingFirstName,
@@ -236,7 +241,7 @@ class ExpressCheckout extends Component {
 
               <SubmitOrder show={!!cart.length} />
 
-              <ErrorDialogue />
+              <ErrorDialogue errors={errors} />
 
             </div>
           </div>
