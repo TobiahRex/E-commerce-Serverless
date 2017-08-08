@@ -28,7 +28,7 @@ const transactionSchema = new Schema({
   subtotal: { type: String, required: true },
   tax: { type: String, required: true },
   grandTotal: { type: String, required: true },
-  sagawaShipping: {
+  sagawa: {
     awbNumber: { type: String, default: '' },
     referenceNumber: { type: String, defualt: '' },
     trackingInfo: [],
@@ -69,6 +69,18 @@ const transactionSchema = new Schema({
     locationId: { type: String, default: '' },
     transactionId: { type: String, default: '' },
     cardNonce: { type: String, default: '' },
+  },
+  marketHero: {
+    updated: { type: Boolean, default: false },
+    tags: [{
+      name: { type: String, default: '' },
+      purpose: { type: String, default: '' },
+    }],
+  },
+  sesEmail: {
+    sent: { type: Boolean, default: false },
+    mailId: { type: String, default: '' },
+    address: { type: String, default: '' },
   },
 });
 export default transactionSchema;
