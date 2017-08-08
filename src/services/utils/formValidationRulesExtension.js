@@ -62,14 +62,21 @@ Object.assign(Validation.rules, {
     ),
   },
 
-  phone: {
+  'phone-japanLength': {
     rule: (value) => {
-      console.log('typeof value: ', typeof value);
       const validPhone = /(^\d{11}$)/.test(value);
-      const startsWithZero = value[0] === '0';
       const minLength = value.length === 11;
-      return (validPhone && minLength && startsWithZero);
+      return (validPhone && minLength);
     },
+    hint: () => (
+      <span className="form-error is-visible">
+        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}
+      </span>
+    ),
+  },
+
+  'phone-startWithZero': {
+    rule: value => (value[0] === '0'),
     hint: () => (
       <span className="form-error is-visible">
         Not a valid phone number. Acceptable Format: {'\"01234567890\"'}
