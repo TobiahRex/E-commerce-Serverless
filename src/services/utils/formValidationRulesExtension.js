@@ -64,12 +64,15 @@ Object.assign(Validation.rules, {
 
   phone: {
     rule: (value) => {
-      const validPhone = validator.isMobilePhone(value, 'any');
-      const validLength = value.length === 11;
+      console.log('typeof value: ', typeof value);
+      const validPhone = /(^\d{11}$)/.test(value);
+      const startsWithZero = value[0] === '0';
+      const minLength = value.length === 11;
+      return (validPhone && minLength && startsWithZero);
     },
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid phone number.
+        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}
       </span>
     ),
   },
