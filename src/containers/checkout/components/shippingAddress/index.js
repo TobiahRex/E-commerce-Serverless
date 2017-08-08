@@ -72,6 +72,11 @@ class ShippingAddress extends React.Component {
           />
         </div>
 
+        <Email
+          shippingEmail={this.state.shippingEmail}
+          handleOnChange={this.handleOnChange}
+        />
+
         <AddressLine
           required
           lineNumber={1}
