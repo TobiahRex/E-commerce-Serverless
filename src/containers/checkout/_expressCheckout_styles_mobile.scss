@@ -479,6 +479,50 @@
           }
         }
       }
+      & .checkout__successful-purchase {
+        display: none;
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
+        min-height: 10em;
+        width: 31em;
+        padding: 1.5em;
+        background-color: $p-green;
+        border: 2px solid $s-green;
+        & .successful-purchase__title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & .success-icon {
+            color: $p-white;
+            font-size: 5em;
+            font-weight: 200;
+            line-height: 1.25em;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+          & h2 {
+            margin-left: .25em;
+            color: $p-white;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+        }
+        & p {
+          text-align: center;
+          color: $p-white;
+          font-size: 1.6em;
+          line-height: 1.21em;
+          font-weight: 200;
+          @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          & .success-spinner-icon {
+            color: $p-white;
+            font-size: 1.6em;
+            font-weight: 200;
+            line-height: 1.25em;
+          }
+        }
+      }
       & .checkout__back-home-btn {
         @include prefixflex();
         justify-content: center;

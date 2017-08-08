@@ -245,7 +245,7 @@ class ExpressCheckout extends Component {
               <NetworkStatus
                 errors={errors}
                 loading={false}
-                success={true}
+                success={false}
               />
 
             </div>

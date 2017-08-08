@@ -66,8 +66,12 @@ const NetworkStatusWithHandlers = withHandlers({
 
     const successMsg = (
       <div className="checkout__successful-purchase">
-        <FontAwesome className="success-icon" name="check-circle" />
-        <p>{'You\'ve'} successfully submitted your order!</p>
+        <div className="successful-purchase__title">
+          <FontAwesome className="success-icon" name="check-circle" />
+          <h2>Success!</h2>
+        </div>
+        <br />
+        <p>Please wait one moment moment while we generate your Invoice...{'\u0020'}<FontAwesome className="success-spinner-icon" name="spinner" spin /></p>
       </div>
     );
 
