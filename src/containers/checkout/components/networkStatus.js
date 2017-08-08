@@ -3,25 +3,15 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { withHandlers } from 'recompose';
 
-function NetworkStatus({ routerPush, errors, renderHelper }) {
+function NetworkStatus({ routerPush, renderHelper }) {
   return (
     <div>
-      <div className="checkout__error-dialogue">
-        <p>
-          <FontAwesome className="error-icon" name="times-circle" />
-          <span className="error-title">ERROR: </span>
-          There was an error placing your order: Credit card information was invalid.
-        </p>
-      </div>
-      <div className="checkout__loading-icon">
-        <FontAwesome className="spinner-icon" name="spinner" spin />
-        <p>One moment please</p>
-        <p>while we process your order...</p>
-      </div>
+      {renderHelper()}
       <div className="checkout__back-home-btn ">
         <button
           className="sweep-right"
           data-slug="/"
+          type="button"
           onClick={routerPush}
         >
           Back To Homepage
@@ -38,14 +28,15 @@ NetworkStatus.propTypes = {
     messages: string,
   }).isRequired,
   loading: bool,
+  routerPush: func.isRequired,
   renderHelper: func.isRequired,
 };
 NetworkStatus.defaultProps = {
   loading: false,
 };
 
-const NetworkStatusWithHandlers = () => withHandlers({
-  renderHelper: ({ errors, loading }) => {
+const NetworkStatusWithHandlers = withHandlers({
+  renderHelper: ({ errors, loading, success }) => () => {
     const { hard, soft, message } = errors;
     const showError = !!hard || !!soft || !!message.length;
 
@@ -73,9 +64,9 @@ const NetworkStatusWithHandlers = () => withHandlers({
       </div>
     );
 
-    const success = (
+    const successMsg = (
       <div className="checkout__successful-purchase">
-        <FontAwesome name="check-circle" />
+        <FontAwesome className="success-icon" name="check-circle" />
         <p>{'You\'ve'} successfully submitted your order!</p>
       </div>
     );
@@ -83,7 +74,7 @@ const NetworkStatusWithHandlers = () => withHandlers({
     if (showError && hard) return hardError;
     if (showError && soft) return softError;
     if (!showError && loading) return loadingMsg;
-    if (!showError && success) return loadingMsg;
+    if (!showError && success) return successMsg;
     return '';
   },
 })(NetworkStatus);
