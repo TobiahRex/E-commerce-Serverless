@@ -22,7 +22,7 @@ class PhoneNumber extends React.PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--phone">
-          <p>Phone / Cell <span className="required">*</span></p>
+          <p>Phone Number (Japanese) <span className="required">*</span></p>
           <Validation.components.Input
             errorClassName="is-invalid-input"
             type="string"

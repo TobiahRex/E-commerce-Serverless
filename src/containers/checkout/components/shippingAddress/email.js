@@ -5,13 +5,13 @@ import Validation from 'react-validation';
 class Email extends React.PureComponent {
   static propTypes = {
     handleOnChange: PropTypes.func.isRequired,
-    billingEmail: PropTypes.string.isRequired,
+    shippingEmail: PropTypes.string.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      email: props.billingEmail,
+      email: props.shippingEmail,
     };
   }
 
@@ -26,10 +26,10 @@ class Email extends React.PureComponent {
             errorClassName="is-invalid-input"
             type="email"
             containerClassName=""
-            name="billingEmail"
+            name="shippingEmail"
             validations={['required', 'email']}
             onChange={this.handleOnChange}
-            value={this.props.billingEmail}
+            value={this.props.shippingEmail}
           />
         </div>
       </div>

@@ -30,7 +30,7 @@ class Prefecture extends PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--prefecture">
-          <p>State / Prefecture <span className="required">*</span></p>
+          <p>Prefecture <span className="required">*</span></p>
           <select
             name="shippingPrefecture"
             className="input--select"

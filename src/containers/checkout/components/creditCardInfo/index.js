@@ -18,6 +18,7 @@ class CreditCardInfo extends PureComponent {
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
     ccCvn: string.isRequired,
+    ccZip: string.isRequired,
     handleOnChange: func.isRequired,
     toggleModal: func.isRequired,
   }
@@ -30,6 +31,7 @@ class CreditCardInfo extends PureComponent {
       ccExpireMonth: '',
       ccExpireYear: '',
       ccCvn: '',
+      ccZip: '',
     };
   }
 

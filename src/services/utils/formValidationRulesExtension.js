@@ -63,7 +63,10 @@ Object.assign(Validation.rules, {
   },
 
   phone: {
-    rule: value => validator.isMobilePhone(value, 'any'),
+    rule: (value) => {
+      const validPhone = validator.isMobilePhone(value, 'any');
+      const validLength = value.length === 11;
+    },
     hint: () => (
       <span className="form-error is-visible">
         Not a valid phone number.
