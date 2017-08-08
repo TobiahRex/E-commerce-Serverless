@@ -19,7 +19,7 @@ import {
 } from './propTypes.imports';
 import {
   BreadCrumb,
-  BillingAddress,
+  // BillingAddress,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,

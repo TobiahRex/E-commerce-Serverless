@@ -358,19 +358,24 @@ mutation EmptyMemberCart($userId: ID!) {
 }
 `;
 
+export const AuthorizeSquarePayment = gql`
+  mutation AuthorizeSquarePayment(
+
+  ) {
+    AuthorizeSquarePayment(
+
+    ) {
+      
+    }
+  }
+`;
+
 export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
-  $billingFirstName: String!
-  $billingLastName: String!
-  $billingEmail: String!
-  $billingAddressLine1: String!
-  $billingAddressLine2: String!
-  $billingCountry: String!
-  $billingPrefectureState: String!
-  $billingCity: String!
-  $billingPostalCode: String!
+  $newsletterDecision: Bool!
   $shippingFirstName: String!
   $shippingLastName: String!
+  $shippingEmail: String!
   $shippingAddressLine1: String!
   $shippingAddressLine2: String!
   $shippingCountry: String!,
@@ -383,19 +388,21 @@ mutation SubmitFinalOrder(
   $ccExpireMonth: String!
   $ccExpireYear: String!
   $ccCvn: String!
+  $ccZip: String!
   $termsAgreement: Bool!,
+  $subTotal: String!
+  $grandTotal: String!
+  $taxes: String!
+  $discountQty: Bool!
+  $discountQtyAmount: String!
+  $discountRegister: Bool!
+  $discountRegisterAmount: String!
 ) {
   SubmitFinalOrder (billingFirstName: $billingFirstName
-    billingLastName: $billingLastName
-    billingEmail: $billingEmail
-    billingAddressLine1: $billingAddressLine1
-    billingAddressLine2: $billingAddressLine2
-    billingCountry: $billingCountry
-    billingPrefectureState: $billingPrefectureState
-    billingCity: $billingCity
-    billingPostalCode: $billingPostalCode
+    newsletterDecision: $newsletterDecision
     shippingFirstName: $shippingFirstName
     shippingLastName: $shippingLastName
+    shippingEmail: $shippingEmail
     shippingAddressLine1: $shippingAddressLine1
     shippingAddressLine2: $shippingAddressLine2
     shippingCountry: $shippingCountry
@@ -408,7 +415,12 @@ mutation SubmitFinalOrder(
     ccExpireMonth: $ccExpireMonth
     ccExpireYear: $ccExpireYear
     ccCvn: $ccCvn
+    ccZip: $ccZip
     termsAgreement: $termsAgreement
+    discountQty: $discountQty
+    discountQtyAmount: $discountQtyAmount
+    discountRegister: $discountRegister
+    discountRegisterAmount: $discountRegisterAmount
   ) {
     _id
     error {

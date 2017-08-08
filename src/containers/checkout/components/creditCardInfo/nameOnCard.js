@@ -35,7 +35,7 @@ class NameOnCard extends React.PureComponent {
             type="text"
             containerClassName=""
             name="ccNameOnCard"
-            validations={['required', 'ccName']}
+            validations={['required', 'ccName', 'ccName-firstLast']}
             onChange={this.handleOnChange}
             value={this.state.ccNameOnCard}
           />
