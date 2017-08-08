@@ -29,7 +29,9 @@ const transactionSchema = new Schema({
   tax: { type: String, required: true },
   grandTotal: { type: String, required: true },
   sagawaShipping: {
-    trackingNumber: { type: Number, default: '' },
+    awbNumber: { type: String, default: '' },
+    referenceNumber: { type: String, defualt: '' },
+    trackingInfo: [],
     address: {
       boxid: { type: String, required: true },
       shipdate: { type: Date, required: true },
@@ -57,10 +59,16 @@ const transactionSchema = new Schema({
       unitprice: { type: Number, required: true },
     },
   },
-  billingInfo: {
-    nameOnCard: { type: String, required: true },
-    last4: { type: String },
-    email: { type: String, required: true },
+  square: {
+    billingInfo: {
+      nameOnCard: { type: String, required: true },
+      last4: { type: String },
+      amount: { type: Number, required: true },
+      email: { type: String, required: true },
+    },
+    locationId: { type: String, default: '' },
+    transactionId: { type: String, default: '' },
+    cardNonce: { type: String, default: '' },
   },
 });
 export default transactionSchema;
