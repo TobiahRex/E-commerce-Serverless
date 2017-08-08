@@ -37,23 +37,27 @@ NetworkStatus.defaultProps = {
 
 const NetworkStatusWithHandlers = withHandlers({
   renderHelper: ({ errors, loading, success }) => () => {
+    errors = { hard: true, soft: false, message: 'That card was declined.  Please use a different card.' };
     const { hard, soft, message } = errors;
     const showError = !!hard || !!soft || !!message.length;
 
     const hardError = (
-      <p>
-        <FontAwesome className="error-icon" name="times-circle" />
-        <span className="error-title">ERROR: </span>
-        {message}
-      </p>
+      <div clasName="checkout__error-hard">
+        <div className="error-hard__title">
+          <FontAwesome className="error-icon" name="times-circle" />
+          <h2>Error!</h2>
+        </div>
+        <br />
+        <p>{message}</p>
+      </div>
     );
 
     const softError = (
-      <p>
+      <div className="checkout__error--soft">
         <FontAwesome className="caution-icon" name="exclamation-triangle" />
         <span className="alert-title">Caution: </span>
         {message}
-      </p>
+      </div>
     );
 
     const loadingMsg = (
@@ -71,12 +75,12 @@ const NetworkStatusWithHandlers = withHandlers({
           <h2>Success!</h2>
         </div>
         <br />
-        <p>Please wait one moment moment while we generate your Invoice...{'\u0020'}<FontAwesome className="success-spinner-icon" name="spinner" spin /></p>
+        <p>Please wait one moment while we generate your Invoice...{'\u0020'}<FontAwesome className="success-spinner-icon" name="spinner" spin /></p>
       </div>
     );
 
-    if (showError && hard) return hardError;
-    if (showError && soft) return softError;
+    if (hard) return hardError;
+    if (soft) return softError;
     if (!showError && loading) return loadingMsg;
     if (!showError && success) return successMsg;
     return '';
