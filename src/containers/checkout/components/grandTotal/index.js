@@ -77,7 +77,13 @@ class GrandTotal extends React.PureComponent {
       );
     }
     return (
-      <h5>Your cart is currently Empty.</h5>
+      <div>
+        <h4 style={{ color: '#365899', padding: '2em 0em 1em 0em' }}>
+          <span className="required">
+            Your cart is currently Empty.
+          </span>
+        </h4>
+      </div>
     );
   }
   render() {

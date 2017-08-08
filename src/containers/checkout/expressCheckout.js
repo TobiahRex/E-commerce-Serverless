@@ -233,8 +233,8 @@ class ExpressCheckout extends Component {
                 termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
               />
-
-              <SubmitOrder />
+              
+              <SubmitOrder show={!!cart.length} />
 
               <ErrorDialogue />
 

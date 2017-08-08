@@ -30,7 +30,7 @@ function TotalContent({
           <p>Shipping & Handling</p>
           <p><i>Free</i></p>
         </div>
-
+        
         <Discounts discount={discount} />
 
         <div className="analysis-container--taxes">
