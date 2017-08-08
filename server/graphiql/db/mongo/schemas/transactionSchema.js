@@ -24,7 +24,14 @@ const transactionSchema = new Schema({
   user: { type: ObjectId, ref: 'User' },
   products: [{
     id: { type: ObjectId, ref: 'Product' },
+    qty: { type: Number, required: true },
   }],
+  discount: {
+    qty: { type: Boolean, default: false },
+    qtyAmount: { type: String, default: '' },
+    register: { type: Boolean, default: false },
+    registerAmount: { type: String, default: '' },
+  },
   subtotal: { type: String, required: true },
   tax: { type: String, required: true },
   grandTotal: { type: String, required: true },
