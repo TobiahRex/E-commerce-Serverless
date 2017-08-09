@@ -142,14 +142,15 @@ class ExpressCheckout extends Component {
   }
 
   handleNonceResponse = (errors, nonce, cardData) => {
+    console.log('%cerrors', 'background:red;', errors);
     if (errors) {
       this.setState(prevState => ({
         ...prevState,
         errors: {
           hard: true,
           soft: false,
-          message: errors.reduce((accum, next) => {
-            accum = `  ${next.message}`;
+          message: errors.reduce((accum, next, i) => {
+            accum += `   ${i + 1}) ${next.message}.`;
             return accum;
           }, ''),
         },

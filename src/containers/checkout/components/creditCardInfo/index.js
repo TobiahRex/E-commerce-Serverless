@@ -73,10 +73,11 @@ class CreditCardInfo extends PureComponent {
           </div>
         </div>
 
-        <NameOnCard
+        {/* NOTE: "Not required from Square."
+          <NameOnCard
           ccNameOnCard={ccNameOnCard}
           handleOnChange={this.handleOnChange}
-        />
+        /> */}
 
         <CreditCardNumber
           ccNumber={ccNumber}

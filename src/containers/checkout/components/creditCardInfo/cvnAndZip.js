@@ -35,7 +35,7 @@ class CvnAndZip extends PureComponent {
       <div className="input__row cvn">
         <div className="input__row--cvn-number">
           <div className="cvn-number--wrapper">
-            <p>CVN <span className="required">*</span>
+            <p>CVV <span className="required">*</span>
             </p>
             <button
               type="button"
