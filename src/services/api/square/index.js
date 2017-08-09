@@ -10,6 +10,14 @@ const createSquareAPI = () => {
     locationId,
     transactionId,
     shippingEmail,
+    shippingAddressLine1,
+    shippingAddressLine2,
+    shippingCity,
+    shippingPrefecture,
+    shippingPostalCode,
+    shippingCountry,
+    grandTotal,
+    cardNonce,
   }) => api.post(
     `/locations/${locationId}/transactions`,
     {
@@ -24,6 +32,14 @@ const createSquareAPI = () => {
           postal_code: shippingPostalCode,
           country: shippingCountry,
         },
+        amount_money: {
+          amount: grandTotal,
+          currency: 'USD',
+        },
+        card_nonce: cardNonce,
+        reference_id: transactionId,
+        note: 'Web API order.',
+        delay_capture: true,
       },
     },
 
