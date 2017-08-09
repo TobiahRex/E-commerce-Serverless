@@ -1,4 +1,5 @@
 import {
+  GraphQLID as MongoId,
   GraphQLInt as IntType,
   GraphQLList as ListType,
   GraphQLString as StringType,
@@ -70,6 +71,16 @@ const queryTypes = {
 
 const queries = {
   FetchLocations: {
-    type: new ListType()
-  }
-}
+    type: new ListType(queryTypes.squareLocations),
+    args: {
+      userId: {
+        description: 'The user\'s unique _id.',
+        type: MongoId,
+      },
+      accessToken: {
+        description: 'The user\'s Auth0 access token.',
+        type: StringType,
+      },
+    },
+  },
+};
