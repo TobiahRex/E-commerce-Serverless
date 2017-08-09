@@ -107,8 +107,8 @@ export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) 
 };
 
 export const FetchSquareLocations = gql`
-  query FetchSquareLocations() {
-    FetchSquareLocations() {
+  query FetchSquareLocations {
+    FetchSquareLocations {
       error {
         hard
         soft
