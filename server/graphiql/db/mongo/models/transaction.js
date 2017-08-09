@@ -59,5 +59,58 @@ new Promise((resolve, reject) => {
   });
 });
 
+transactionSchema.statics.authorizeDelayTransaction = ({
+  locationId,
+  transactionId,
+  shippingEmail,
+  shippingAddressLine1,
+  shippingAddressLine2,
+  shippingCity,
+  shippingPrefecture,
+  shippingPostalCode,
+  shippingCountry,
+  grandTotal,
+  cardNonce,
+}) =>
+new Promise((resolve, reject) => {
+  axios.post(
+    `/locations/${locationId}/transactions`,
+    {
+      data: {
+        idempotency_key: transactionId,
+        buyer_email_address: shippingEmail,
+        shipping_address: {
+          address_line_1: shippingAddressLine1,
+          address_line_2: shippingAddressLine2,
+          locality: shippingCity,
+          administrative_district_level_1: shippingPrefecture,
+          postal_code: shippingPostalCode,
+          country: shippingCountry,
+        },
+        amount_money: {
+          amount: grandTotal,
+          currency: 'USD',
+        },
+        card_nonce: cardNonce,
+        reference_id: transactionId,
+        note: 'Web API order.',
+        delay_capture: true,
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearear ${process.env.SQUARE_ACCESS_TOKEN}`,
+      },
+    },
+  )
+  .then((response) => {
+    console.log('Successfully charged customer.  Respons = ', response.data);
+  })
+  .catch((error) => {
+    console.log('Error while trying to Authorize Square payment. Error = ', error);
+    reject(`Error while trying to Authorize Square payment. Error = ${error}`);
+  });
+});
+
 const Transaction = db.model('Transaction', transactionSchema);
 export default Transaction;

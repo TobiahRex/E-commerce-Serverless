@@ -45,7 +45,7 @@ const createSquareAPI = () => {
 
     {
       headers: {
-
+        Authorization: `Bearear ${process.env.SQUARE_ACCESS_TOKEN}`,
       },
     },
   );
