@@ -37,15 +37,14 @@ const transactionSchema = new Schema({
   grandTotal: { type: String, required: true },
   sagawa: {
     awbNumber: { type: String, default: '' },
-    referenceNumber: { type: String, defualt: '' },
-    trackingInfo: [],
+    referenceNumber: { type: Number, defualt: '' },
     address: {
-      boxid: { type: String, required: true },
-      shipdate: { type: Date, required: true },
+      boxId: { type: String, required: true },
+      shipDate: { type: Date, required: true },
       customerName: { type: String, required: true },
       postal: { type: Number, required: true },
-      jpaddress1: { type: String, required: true },
-      jpaddress2: { type: String },
+      jpAddress1: { type: String, required: true },
+      jpAddress2: { type: String },
       phoneNumber: { type: Number, required: true },
       kbn: { type: Number, required: true },
       wgt: { type: Number },
@@ -78,7 +77,7 @@ const transactionSchema = new Schema({
     cardNonce: { type: String, default: '' },
   },
   marketHero: {
-    updated: { type: Boolean, default: false },
+    leadUpdated: { type: Boolean, default: false },
     tags: [{
       name: { type: String, default: '' },
       purpose: { type: String, default: '' },

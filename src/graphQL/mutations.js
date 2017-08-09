@@ -358,14 +358,15 @@ mutation EmptyMemberCart($userId: ID!) {
 }
 `;
 
-export const AuthorizeSquarePayment = gql`
-  mutation AuthorizeSquarePayment(
+
+export const SquareAuthorizePayment = gql`
+  mutation SquareAuthorizePayment(
 
   ) {
-    AuthorizeSquarePayment(
+    SquareAuthorizePayment(
 
     ) {
-      
+
     }
   }
 `;

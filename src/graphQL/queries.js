@@ -105,3 +105,24 @@ export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) 
     variables: { ids },
   });
 };
+
+export const SquareGetLocations = gql`
+  query SquareGetLocations(
+    # $userId: String!
+    # $accessToken: String!
+    $locationId: String!
+  ) {
+    SquareGetLocations(
+      # userId: $userId
+      # accessToken: $accessToken
+      locationId: $locationId
+    ) {
+      id
+      name
+      address
+      timezone
+      capabilities
+      status
+    }
+  }
+`;

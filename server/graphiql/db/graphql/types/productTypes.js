@@ -2,10 +2,10 @@ import {
   GraphQLID as MongoId,
   GraphQLInt as IntType,
   GraphQLList as ListType,
-  GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
