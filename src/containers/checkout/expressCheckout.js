@@ -143,23 +143,20 @@ class ExpressCheckout extends Component {
 
   handleNonceResponse = (errors, nonce, cardData) => {
     if (errors) {
-      console.error("Encountered errors:");
-
-      let errorMessage = '';
-      errors.forEach((error) => {
-        errorMessage = `  ${error.message}`;
-      });
       this.setState(prevState => ({
         ...prevState,
         errors: {
           hard: true,
           soft: false,
-          message: errorMessage,
+          message: errors.reduce((accum, next) => {
+            accum = `  ${next.message}`;
+            return accum;
+          }, ''),
         },
       }));
+
       // No errors occurred. Extract the card nonce.
     } else {
-
       // Delete this line and uncomment the lines below when you're ready
       // to start submitting nonces to your server.
       alert('Nonce received: ' + nonce);
