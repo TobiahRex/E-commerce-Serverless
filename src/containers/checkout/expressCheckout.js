@@ -45,7 +45,7 @@ class ExpressCheckout extends Component {
   constructor(props) {
     super(props);
 
-    this.squarePaymentForm = SquarePaymentForm(this.handleNonceResponse);
+    this.squarePaymentForm = null;
 
     this.state = {
       showCvnModal: false,
@@ -119,7 +119,14 @@ class ExpressCheckout extends Component {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
 
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleOnChange = e => {
+    if (e.target.name === 'shippingCountry') {
+      const countriesWithPostal = ['United States', '']
+      if ()
+      this.squarePaymentForm = SquarePaymentForm(this.handleNonceResponse);
+    }
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   toggleModal = (e) => {
     const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
@@ -142,7 +149,6 @@ class ExpressCheckout extends Component {
   }
 
   handleNonceResponse = (errors, nonce, cardData) => {
-    console.log('%cerrors', 'background:red;', errors);
     if (errors) {
       this.setState(prevState => ({
         ...prevState,
