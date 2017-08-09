@@ -6,6 +6,8 @@ import {
   GraphQLObjectType as ObjectType,
 } from 'graphql';
 
+import Square from '../../mongo/models/square';
+
 const rootType = new ObjectType({
   name: 'TransactionSquareInfo',
   fields: () => ({
@@ -73,14 +75,15 @@ const queries = {
   FetchLocations: {
     type: new ListType(queryTypes.squareLocations),
     args: {
-      userId: {
-        description: 'The user\'s unique _id.',
-        type: MongoId,
-      },
-      accessToken: {
-        description: 'The user\'s Auth0 access token.',
-        type: StringType,
-      },
+      // userId: {
+      //   description: 'The user\'s unique _id.',
+      //   type: MongoId,
+      // },
+      // accessToken: {
+      //   description: 'The user\'s Auth0 access token.',
+      //   type: StringType,
+      // },
     },
+    resolve: (_, args) => Square.fetchLocation(),
   },
 };
