@@ -1,4 +1,6 @@
 import {
+  GraphQLInt as IntType,
+  GraphQLList as ListType,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
 } from 'graphql';
@@ -31,3 +33,43 @@ const rootType = new ObjectType({
     },
   }),
 });
+
+const queryTypes = {
+  squareLocations: new ObjectType({
+    name: 'SquareLocations',
+    fields: () => ({
+      id: {
+        description: 'The location id.',
+        type: StringType,
+      },
+      name: {
+        description: 'The name of this location.',
+        type: StringType,
+      },
+      address: new ObjectType({
+        name: 'SqaureLocationAddressInfo',
+        fields: () => ({
+          address_line_1: { type: StringType },
+          locality: { type: StringType },
+          administrative_district_level_1: { type: StringType },
+          postal_code: { type: IntType },
+          country: {
+            description: 'Two character country code.',
+            type: StringType,
+          },
+        }),
+      }),
+      timezone: {
+        description: '"Country"/"City" format.',
+        type: StringType,
+      },
+      capabilities: new ListType(StringType),
+    }),
+  }),
+};
+
+const queries = {
+  FetchLocations: {
+    type: new ListType()
+  }
+}
