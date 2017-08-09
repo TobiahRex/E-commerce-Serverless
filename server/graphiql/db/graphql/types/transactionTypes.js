@@ -144,7 +144,7 @@ const queryTypes = {
             address_line_1: { type: StringType },
             locality: { type: StringType },
             administrative_district_level_1: { type: StringType },
-            postal_code: { type: IntType },
+            postal_code: { type: StringType },
             country: {
               description: 'Two character country code.',
               type: StringType,

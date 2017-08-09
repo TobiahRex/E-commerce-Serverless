@@ -21,28 +21,36 @@ new Promise((resolve, reject) => {
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
 
-    const location = response.data.locations.filter(({ name }) => name === 'Nj2jp')[0];
+    const locations = response.data.locations.filter(({ name }) => name === 'Thomas NFriends');
 
-    if (!location.id) {
+    if (locations.length) {
+      const newLocation = { ...locations[0] };
+      newLocation.error = {
+        hard: false,
+        soft: false,
+        message: '',
+      };
+
+      if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
+        console.log('Found Nj2jp location object.');
+        resolve(newLocation);
+      } else {
+        newLocation.error = {
+          hard: true,
+          soft: false,
+          message: `Location "${newLocation.name}" does not have permission "CREDIT_CARD_PROCESSING".`,
+        };
+        resolve(newLocation);
+      }
+    } else {
       console.log('Did not find Nj2jp in Square locations.');
-      reject({
+      resolve({
         error: {
           hard: true,
           soft: false,
           message: 'Did not find Nj2jp in Square locations.',
         },
       });
-    }
-
-    if (location.capabilities === 'CREDIT_CARD_PROCESSING') {
-      console.log('Found Nj2jp location object.');
-      const newLocation = { ...location };
-      newLocation.error = {
-        hard: false,
-        soft: false,
-        message: '',
-      };
-      resolve(location);
     }
   })
   .catch((error) => {
