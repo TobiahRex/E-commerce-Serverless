@@ -137,30 +137,35 @@ const queryTypes = {
         description: 'The name of this location.',
         type: StringType,
       },
-      address: new ObjectType({
-        name: 'SqaureLocationAddressInfo',
-        fields: () => ({
-          address_line_1: { type: StringType },
-          locality: { type: StringType },
-          administrative_district_level_1: { type: StringType },
-          postal_code: { type: IntType },
-          country: {
-            description: 'Two character country code.',
-            type: StringType,
-          },
+      address: {
+        type: new ObjectType({
+          name: 'SqaureLocationAddressInfo',
+          fields: () => ({
+            address_line_1: { type: StringType },
+            locality: { type: StringType },
+            administrative_district_level_1: { type: StringType },
+            postal_code: { type: IntType },
+            country: {
+              description: 'Two character country code.',
+              type: StringType,
+            },
+          }),
         }),
-      }),
+      },
       timezone: {
         description: '"Country"/"City" format.',
         type: StringType,
       },
-      capabilities: new ListType(StringType),
+      capabilities: {
+        description: 'Lists the assigned permissions for the location.',
+        type: new ListType(StringType),
+      },
     }),
   }),
 };
 
 const queries = {
-  FetchLocations: {
+  FetchSquareLocations: {
     type: new ListType(queryTypes.squareLocations),
     args: {
       // userId: {

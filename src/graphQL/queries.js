@@ -106,17 +106,14 @@ export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) 
   });
 };
 
-export const SquareGetLocations = gql`
-  query SquareGetLocations(
-    # $userId: String!
-    # $accessToken: String!
-    $locationId: String!
-  ) {
-    SquareGetLocations(
-      # userId: $userId
-      # accessToken: $accessToken
-      locationId: $locationId
-    ) {
+export const FetchSquareLocations = gql`
+  query FetchSquareLocations() {
+    FetchSquareLocations() {
+      error {
+        hard
+        soft
+        message
+      }
       id
       name
       address
@@ -126,3 +123,26 @@ export const SquareGetLocations = gql`
     }
   }
 `;
+// export const FetchSquareLocations = gql`
+//   query FetchSquareLocations(
+//     # $userId: String!
+//     # $accessToken: String!
+//   ) {
+//     FetchSquareLocations(
+//       # userId: $userId
+//       # accessToken: $accessToken
+//     ) {
+//       error {
+//         hard
+//         soft
+//         message
+//       }
+//       id
+//       name
+//       address
+//       timezone
+//       capabilities
+//       status
+//     }
+//   }
+// `;

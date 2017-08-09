@@ -4,6 +4,7 @@ import {
 } from 'graphql';
 import ProductTypes from './types/productTypes';
 import UserTypes from './types/userTypes';
+import Transaction from './types/transactionTypes';
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -14,6 +15,7 @@ const query = new GraphQLObjectType({
     FindProductsByFlavor: ProductTypes.queries.FindProductsByFlavor,
     PopularProducts: ProductTypes.queries.PopularProducts,
     FetchMultipleProducts: ProductTypes.queries.FetchMultipleProducts,
+    FetchSquareLocations: Transaction.queries.FetchSquareLocations,
   }),
 });
 
