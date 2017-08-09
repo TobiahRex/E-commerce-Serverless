@@ -7,7 +7,7 @@ if (applicationId == '') {
   alert('You need to provide a value for the applicationId variable.');
 }
 
-export default  () => {
+export default (handleNonceResponse) => {
   // Initializes the payment form. See the documentation for descriptions of
   // each of these parameters.
   return new SqPaymentForm({ //eslint-disable-line
@@ -18,10 +18,7 @@ export default  () => {
         color: '#365899',
         fontFamily: 'Arial, sans-serif',
         fontSize: '14px',
-        // width: '200px',
-        height: '40px',
-        // paddingLeft: '7.1px',
-        // border: '1px solid #9E9EA5',
+        padding: '.8em 0 .9em .71em',
       },
     ],
     cardNumber: {
@@ -34,47 +31,48 @@ export default  () => {
     },
     expirationDate: {
       elementId: 'sq-expiration-date',
-      placeholder: 'MM/YY'
+      placeholder: 'MM/YY',
     },
     postalCode: {
       elementId: 'sq-postal-code',
-      placeholder: '99999'
+      placeholder: '99999',
     },
     callbacks: {
 
       // Called when the SqPaymentForm completes a request to generate a card
       // nonce, even if the request failed because of an error.
       cardNonceResponseReceived: (errors, nonce, cardData) => {
-        if (errors) {
-          console.log("Encountered errors:");
-
-          // This logs all errors encountered during nonce generation to the
-          // Javascript console.
-          errors.forEach((error) => {
-            console.log('  ' + error.message);
-          });
-
-          // No errors occurred. Extract the card nonce.
-        } else {
-
-          // Delete this line and uncomment the lines below when you're ready
-          // to start submitting nonces to your server.
-          alert('Nonce received: ' + nonce);
-
-
-          /*
-          These lines assign the generated card nonce to a hidden input
-          field, then submit that field to your server.
-          Uncomment them when you're ready to test out submitting nonces.
-
-          You'll also need to set the action attribute of the form element
-          at the bottom of this sample, to correspond to the URL you want to
-          submit the nonce to.
-          */
-          // document.getElementById('card-nonce').value = nonce;
-          // document.getElementById('nonce-form').submit();
-
-        }
+        handleNonceResponse(errors, nonce, cardData);
+        // if (errors) {
+        //   console.log("Encountered errors:");
+        //
+        //   // This logs all errors encountered during nonce generation to the
+        //   // Javascript console.
+        //   errors.forEach((error) => {
+        //     console.log('  ' + error.message);
+        //   });
+        //
+        //   // No errors occurred. Extract the card nonce.
+        // } else {
+        //
+        //   // Delete this line and uncomment the lines below when you're ready
+        //   // to start submitting nonces to your server.
+        //   alert('Nonce received: ' + nonce);
+        //
+        //
+        //   /*
+        //   These lines assign the generated card nonce to a hidden input
+        //   field, then submit that field to your server.
+        //   Uncomment them when you're ready to test out submitting nonces.
+        //
+        //   You'll also need to set the action attribute of the form element
+        //   at the bottom of this sample, to correspond to the URL you want to
+        //   submit the nonce to.
+        //   */
+        //   // document.getElementById('card-nonce').value = nonce;
+        //   // document.getElementById('nonce-form').submit();
+        //
+        // }
       },
 
       unsupportedBrowserDetected: () => {

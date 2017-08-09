@@ -42,9 +42,10 @@ import {
 class ExpressCheckout extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
-  static squarePaymentForm = SquarePaymentForm()
   constructor(props) {
     super(props);
+
+    this.squarePaymentForm = SquarePaymentForm(this.handleNonceResponse);
 
     this.state = {
       showCvnModal: false,
@@ -132,7 +133,37 @@ class ExpressCheckout extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.setState({ error: this.form.validateAll() });
+    // this.requestCardNonce();
+    // this.setState({ error: this.form.validateAll() });
+  }
+
+  requestCardNonce = () => {
+    this.squarePaymentForm.requestCardNonce();
+  }
+
+  handleNonceResponse = (errors, nonce, cardData) => {
+    if (errors) {
+      console.error("Encountered errors:");
+
+      let errorMessage = '';
+      errors.forEach((error) => {
+        errorMessage = `  ${error.message}`;
+      });
+      this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          hard: true,
+          soft: false,
+          message: errorMessage,
+        },
+      }));
+      // No errors occurred. Extract the card nonce.
+    } else {
+
+      // Delete this line and uncomment the lines below when you're ready
+      // to start submitting nonces to your server.
+      alert('Nonce received: ' + nonce);
+    }
   }
 
   render() {
@@ -180,8 +211,11 @@ class ExpressCheckout extends Component {
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
+        <button onClick={this.requestCardNonce} >Get Nonce</button>
         <Validation.components.Form
-          ref={this.assignRefToForm} onSubmit={this.handleOnSubmit}
+          id="nonce-form"
+          ref={this.assignRefToForm}
+          onSubmit={this.handleOnSubmit}
         >
           <div className="checkout__body grid">
             <div className="checkout__grid">
@@ -256,6 +290,7 @@ class ExpressCheckout extends Component {
           showModal={this.state.showCvnModal}
           toggleModal={this.toggleModal}
         />
+
       </div>
     );
   }

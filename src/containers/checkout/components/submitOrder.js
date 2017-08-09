@@ -32,5 +32,6 @@ function SubmitOrder({ enable }) {
 }
 SubmitOrder.propTypes = {
   enable: PropTypes.bool.isRequired,
+  submitOrder: PropTypes.func.isRequired,
 };
 export default SubmitOrder;
