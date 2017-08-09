@@ -92,105 +92,13 @@ const rootType = new ObjectType({
       description: 'The grand total amount for this transaction.',
       type: StringType,
     },
-    sagawa: new ObjectType({
-      name: 'TransactionSagawaInfo',
-      fields: () => ({
-        awbNumber: {
-          description: 'One of the unique numbers associated with an individual Sagawa order.',
-          type: StringType,
-        },
-        referenceNumber: {
-          description: 'The unique reference number associated with an individual Sagawa order.',
-          type: IntType,
-        },
-        address: new ObjectType({
-          name: 'TransactionSagawaShippingAddress',
-          fields: () => ({
-            boxId: { type: StringType },
-            shipDate: { type: StringType },
-            customerName: { type: StringType },
-            postal: { type: IntType },
-            jpAddress1: { type: StringType },
-            jpAddress2: { type: StringType },
-            phoneNumber: { type: IntType },
-            kbn: { type: IntType },
-            wgt: { type: IntType },
-            totalPrice: { type: IntType },
-            deliveryDate: { type: StringType },
-            deliveryTime: { type: StringType },
-            souryo: { type: IntType },
-            tesuryo: { type: IntType },
-            ttlAmount: { type: IntType },
-            codFlg: { type: IntType },
-          }),
-        }),
-        item: new ObjectType({
-          name: 'TransactionSagawaItemInfo',
-          fields: () => ({
-            upcCode: { type: IntType },
-            itemName: { type: StringType },
-            usage: { type: IntType },
-            origin: { type: StringType },
-            piece: { type: IntType },
-            unitPrice: { type: IntType },
-          }),
-        }),
-      }),
-      square: new ObjectType({
-        name: 'TransactionSquareInfo',
-        fields: () => ({
-          billingInfo: {
-            description: 'Billing information used to purchase products.',
-            type: new ObjectType({
-              name: 'TransactionSquareBillingInfo',
-              fields: () => ({
-                nameOnCard: { type: StringType },
-                last4: { type: StringType },
-                amount: { type: StringType },
-                email: { type: StringType },
-              }),
-            }),
-          },
-          locationId: {
-            description: 'The Square location Id used for this transaction.',
-            type: StringType,
-          },
-          transactionId: {
-            description: 'The Square transaction Id generated for this transaction.',
-            type: StringType,
-          },
-          cardNonce: {
-            description: 'The Square generated, unique code that maps all sensitive CC info to this transaction.',
-          },
-        }),
-      }),
-      marketHero: new ObjectType({
-        name: 'TransactionMarketHeroInfo',
-        fields: () => ({
-          leadUpdated: {
-            description: 'Identifies if Market Hero Lead has been updated with tags that identify the lead as having purchased products from this application.',
-            type: BoolType,
-          },
-          tags: new ListType(
-            new ObjectType({
-              name: 'TransactionMarketHeroLeadsInfo',
-              fields: () => ({
-                name: {
-                  description: 'The name of the Tag assigned to the lead.',
-                  type: StringType,
-                },
-                purpose: {
-                  description: 'The meaning for this tag.',
-                  type: StringType,
-                },
-              }),
-            }),
-          ),
-        }),
-      }),
-      sesEmail: new ObjectType({
-        name: 'Transaction`'
-      }),
-    }),
+  },
+  marketHero: {
+    description: 'The Mongo _id for the Market Hero lead.',
+    type: MongoId,
+  },
+  invoiceEmail: {
+    description: 'The Mongo _id for the invoice Email that was sent.',
+    type: MongoId,
   },
 });

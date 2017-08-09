@@ -83,10 +83,6 @@ const transactionSchema = new Schema({
       purpose: { type: String, default: '' },
     }],
   },
-  sesEmail: {
-    sent: { type: Boolean, default: false },
-    mailId: { type: String, default: '' },
-    address: { type: String, default: '' },
-  },
+  invoiceEmail: { type: ObjectId, ref: 'Email' },
 });
 export default transactionSchema;
