@@ -42,7 +42,7 @@ import {
 class ExpressCheckout extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
-  static squarePaymentForm = SquarePaymentForm
+  static squarePaymentForm = SquarePaymentForm()
   constructor(props) {
     super(props);
 
@@ -168,8 +168,6 @@ class ExpressCheckout extends Component {
       // ---
       total,
     } = this.state;
-
-    console.log('%cthis.state', 'background:cyan;', this.state);
 
     return (
       <div className="checkout__container">

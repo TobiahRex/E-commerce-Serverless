@@ -59,21 +59,22 @@ class CreditCardExpiration extends React.PureComponent {
           <div className="input__container--exp-month">
             <p>Expiration Date <span className="required">*</span></p>
 
-            <Validation.components.Select
+            <div id="sq-expiration-date"></div>
+            {/* <Validation.components.Select
               errorClassName="is-invalid-input"
               name="ccExpireMonth"
               validations={['required']}
               value={this.state.ccExpireMonth}
               onChange={this.handleOnChange}
-            >
+              >
               <option value="" className="input--option">
                 Month
               </option>
               {this.renderMonthOptions(Months)}
-            </Validation.components.Select>
+            </Validation.components.Select> */}
           </div>
 
-          <div className="input__container--exp-year">
+          {/* <div className="input__container--exp-year">
             <p>{'\u00A0'}</p>
 
             <Validation.components.Select
@@ -88,8 +89,7 @@ class CreditCardExpiration extends React.PureComponent {
               </option>
               {this.renderYearOptions(Years)}
             </Validation.components.Select>
-
-          </div>
+          </div> */}
         </div>
       </div>
     );

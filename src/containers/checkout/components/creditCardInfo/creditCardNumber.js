@@ -33,6 +33,7 @@ class CreditCardNumber extends React.PureComponent {
         <div className="input__row--cc-number">
           <p>Credit Card Number <span className="required">*</span></p>
           <Validation.components.Input
+            id="sq-card-number"
             errorClassName="is-invalid-input"
             type="text"
             containerClassName=""

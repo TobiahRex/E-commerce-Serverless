@@ -8,15 +8,20 @@ if (applicationId == '') {
 }
 
 export default  () => {
-
   // Initializes the payment form. See the documentation for descriptions of
   // each of these parameters.
-  var paymentForm = new SqPaymentForm({ //eslint-disable-line
+  return new SqPaymentForm({ //eslint-disable-line
     applicationId,
     inputClass: 'sq-input',
     inputStyles: [
       {
-        fontSize: '15px',
+        color: '#365899',
+        fontFamily: 'Arial, sans-serif',
+        fontSize: '14px',
+        // width: '200px',
+        height: '40px',
+        // paddingLeft: '7.1px',
+        // border: '1px solid #9E9EA5',
       },
     ],
     cardNumber: {
@@ -29,10 +34,11 @@ export default  () => {
     },
     expirationDate: {
       elementId: 'sq-expiration-date',
-      placeholder: 'MM/YY',
+      placeholder: 'MM/YY'
     },
     postalCode: {
       elementId: 'sq-postal-code',
+      placeholder: '99999'
     },
     callbacks: {
 
@@ -119,5 +125,4 @@ export default  () => {
   //
   //   paymentForm.requestCardNonce();
   // }
-
 }
