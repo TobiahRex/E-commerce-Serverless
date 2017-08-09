@@ -12,6 +12,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
+  squarePaymentForm as SquarePaymentForm,
 } from './utilities.imports';
 import {
   propTypes,
@@ -39,8 +40,9 @@ import {
 } from '../../graphql/mutations';
 
 class ExpressCheckout extends Component {
-  static propTypes = propTypes;
-  static defaultProps = defaultProps;
+  static propTypes = propTypes
+  static defaultProps = defaultProps
+  static squarePaymentForm = SquarePaymentForm
   constructor(props) {
     super(props);
 
@@ -143,16 +145,6 @@ class ExpressCheckout extends Component {
       cart,
       errors,
       newsletterDecision,
-      // ---
-      // billingFirstName,
-      // billingLastName,
-      // billingEmail,
-      // billingAddressLine1,
-      // billingAddressLine2,
-      // billingCountry,
-      // billingPrefectureState,
-      // billingCity,
-      // billingPostalCode,
       // ---
       shippingFirstName,
       shippingLastName,
