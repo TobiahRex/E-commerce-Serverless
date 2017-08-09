@@ -39,13 +39,13 @@ import {
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
+let squarePaymentForm = null;
+
 class ExpressCheckout extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   constructor(props) {
     super(props);
-
-    this.squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
 
     this.state = {
       showCvnModal: false,
@@ -61,7 +61,7 @@ class ExpressCheckout extends Component {
       // billingEmail: '',
       // billingAddressLine1: '',
       // billingAddressLine2: '',
-      billingCountry: '',
+      // billingCountry: '',
       // billingPrefectureState: '',
       // billingCity: '',
       // billingPostalCode: '',
@@ -81,6 +81,7 @@ class ExpressCheckout extends Component {
       ccExpireYear: '',
       ccCvn: '',
       ccZip: '',
+      ccCountry: '',
       termsAgreement: false,
       // --- From props ---
       cart: [],
@@ -96,6 +97,10 @@ class ExpressCheckout extends Component {
         taxes: 0,
       },
     };
+  }
+
+  componentDidMount = () => {
+    squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -119,12 +124,15 @@ class ExpressCheckout extends Component {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
 
-  handleOnChange = e => {
-    if (e.target.name === 'shippingCountry') {
+  handleOnChange = (e) => {
+    if (e.target.name === 'ccCountry') {
       const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
       if (countriesWithPostal.includes(e.target.value)) {
-        this.squarePaymentForm.destroy();
-        this.squarePaymentForm = SquarePaymentForm(true, this.handleNonceResponse);
+        squarePaymentForm.destroy();
+        squarePaymentForm = (true, this.handleNonceResponse);
+      } else {
+        squarePaymentForm.destroy();
+        squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
       }
     }
     this.setState({ [e.target.name]: e.target.value });
@@ -147,7 +155,7 @@ class ExpressCheckout extends Component {
   }
 
   requestCardNonce = () => {
-    this.squarePaymentForm.requestCardNonce();
+    squarePaymentForm.requestCardNonce();
   }
 
   handleNonceResponse = (errors, nonce, cardData) => {
@@ -183,8 +191,6 @@ class ExpressCheckout extends Component {
       errors,
       newsletterDecision,
       // ---
-      billingCountry,
-      // ---
       shippingFirstName,
       shippingLastName,
       shippingEmail,
@@ -200,6 +206,7 @@ class ExpressCheckout extends Component {
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
+      ccCountry,
       ccCvn,
       ccZip,
       // ---
@@ -250,22 +257,22 @@ class ExpressCheckout extends Component {
                 shippingPhoneNumber={shippingPhoneNumber}
                 handleOnChange={this.handleOnChange}
               />
-              <BillingAddress
-                // billingFirstName={billingFirstName}
-                // billingLastName={billingLastName}
-                // billingEmail={billingEmail}
-                // billingAddressLine1={billingAddressLine1}
-                // billingAddressLine2={billingAddressLine2}
+              {/* <BillingAddress
+                billingFirstName={billingFirstName}
+                billingLastName={billingLastName}
+                billingEmail={billingEmail}
+                billingAddressLine1={billingAddressLine1}
+                billingAddressLine2={billingAddressLine2}
+                billingPrefectureState={billingPrefectureState}
+                billingCity={billingCity}
+                billingPostalCode={billingPostalCode}
                 billingCountry={billingCountry}
-                // billingPrefectureState={billingPrefectureState}
-                // billingCity={billingCity}
-                // billingPostalCode={billingPostalCode}
-                // handleOnChange={this.handleOnChange}
-              />
+                handleOnChange={this.handleOnChange}
+              /> */}
             </div>
             <div className="checkout__grid">
               <CreditCardInfo
-                ccNameOnCard={ccNameOnCard}
+                ccCountry={ccCountry}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}
                 ccExpireYear={ccExpireYear}
