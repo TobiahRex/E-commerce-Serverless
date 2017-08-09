@@ -166,7 +166,7 @@ const queryTypes = {
 
 const queries = {
   FetchSquareLocations: {
-    type: new ListType(queryTypes.squareLocations),
+    type: queryTypes.squareLocations,
     args: {
       // userId: {
       //   description: 'The user\'s unique _id.',
