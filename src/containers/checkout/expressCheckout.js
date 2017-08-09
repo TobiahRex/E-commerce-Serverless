@@ -20,7 +20,7 @@ import {
 } from './propTypes.imports';
 import {
   BreadCrumb,
-  // BillingAddress,
+  BillingAddress,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,
@@ -45,7 +45,7 @@ class ExpressCheckout extends Component {
   constructor(props) {
     super(props);
 
-    this.squarePaymentForm = null;
+    this.squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
 
     this.state = {
       showCvnModal: false,
@@ -61,7 +61,7 @@ class ExpressCheckout extends Component {
       // billingEmail: '',
       // billingAddressLine1: '',
       // billingAddressLine2: '',
-      // billingCountry: '',
+      billingCountry: '',
       // billingPrefectureState: '',
       // billingCity: '',
       // billingPostalCode: '',
@@ -121,9 +121,11 @@ class ExpressCheckout extends Component {
 
   handleOnChange = e => {
     if (e.target.name === 'shippingCountry') {
-      const countriesWithPostal = ['United States', '']
-      if ()
-      this.squarePaymentForm = SquarePaymentForm(this.handleNonceResponse);
+      const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
+      if (countriesWithPostal.includes(e.target.value)) {
+        this.squarePaymentForm.destroy();
+        this.squarePaymentForm = SquarePaymentForm(true, this.handleNonceResponse);
+      }
     }
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -181,6 +183,8 @@ class ExpressCheckout extends Component {
       errors,
       newsletterDecision,
       // ---
+      billingCountry,
+      // ---
       shippingFirstName,
       shippingLastName,
       shippingEmail,
@@ -233,18 +237,6 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              {/* <BillingAddress
-                billingFirstName={billingFirstName}
-                billingLastName={billingLastName}
-                billingEmail={billingEmail}
-                billingAddressLine1={billingAddressLine1}
-                billingAddressLine2={billingAddressLine2}
-                billingCountry={billingCountry}
-                billingPrefectureState={billingPrefectureState}
-                billingCity={billingCity}
-                billingPostalCode={billingPostalCode}
-                handleOnChange={this.handleOnChange}
-              /> */}
               <ShippingAddress
                 shippingFirstName={shippingFirstName}
                 shippingLastName={shippingLastName}
@@ -257,6 +249,18 @@ class ExpressCheckout extends Component {
                 shippingPostalCode={shippingPostalCode}
                 shippingPhoneNumber={shippingPhoneNumber}
                 handleOnChange={this.handleOnChange}
+              />
+              <BillingAddress
+                // billingFirstName={billingFirstName}
+                // billingLastName={billingLastName}
+                // billingEmail={billingEmail}
+                // billingAddressLine1={billingAddressLine1}
+                // billingAddressLine2={billingAddressLine2}
+                billingCountry={billingCountry}
+                // billingPrefectureState={billingPrefectureState}
+                // billingCity={billingCity}
+                // billingPostalCode={billingPostalCode}
+                // handleOnChange={this.handleOnChange}
               />
             </div>
             <div className="checkout__grid">
