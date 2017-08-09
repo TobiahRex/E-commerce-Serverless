@@ -14,6 +14,16 @@ new Promise((resolve, reject) => {
   })
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
+    const location = response.data.locations.filter(({ name }) => name === 'NJ2JP')[0];
+    if (!location.id) {
+      console.log('Did not find NJ2JP location in Square locations.');
+      reject('Did not find NJ2JP location in Square locations.');
+    }
+
+    if (location.capabilities === 'CREDIT_CARD_PROCESSING') {
+      console.log('Found NJ2JP location object.');
+      resolve(location);
+    }
   })
   .catch((error) => {
     console.log('Error while fetching location from Square.  Error = ', error);
@@ -22,3 +32,4 @@ new Promise((resolve, reject) => {
 });
 
 const Square = db.model('Square', squareSchema);
+export default Square;
