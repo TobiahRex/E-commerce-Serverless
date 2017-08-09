@@ -32,7 +32,7 @@ new Promise((resolve, reject) => {
       };
 
       if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-        console.log('Found Nj2jp location object.');
+        console.log('Found location object! Resolving...');
         resolve(newLocation);
       } else {
         newLocation.error = {
