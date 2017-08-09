@@ -35,36 +35,6 @@ const transactionSchema = new Schema({
   subtotal: { type: String, required: true },
   tax: { type: String, required: true },
   grandTotal: { type: String, required: true },
-  sagawa: {
-    awbNumber: { type: String, default: '' },
-    referenceNumber: { type: Number, defualt: '' },
-    address: {
-      boxId: { type: String, required: true },
-      shipDate: { type: Date, required: true },
-      customerName: { type: String, required: true },
-      postal: { type: Number, required: true },
-      jpAddress1: { type: String, required: true },
-      jpAddress2: { type: String },
-      phoneNumber: { type: Number, required: true },
-      kbn: { type: Number, required: true },
-      wgt: { type: Number },
-      totalPrice: { type: Number, required: true },
-      deliveryDate: { type: String },
-      deliveryTime: { type: String },
-      souryo: { type: Number, default: 0 },
-      tesuryo: { type: Number, default: 0 },
-      ttlAmount: { type: Number, required: true },
-      codFlg: { type: Number, default: 0 },
-    },
-    item: {
-      upcCode: { type: Number, required: true },
-      itemName: { type: String, required: true },
-      usage: { type: Number, default: 0 },
-      origin: { type: String },
-      piece: { type: Number, required: true, default: 1 },
-      unitprice: { type: Number, required: true },
-    },
-  },
   square: {
     billingInfo: {
       nameOnCard: { type: String, required: true },
@@ -76,13 +46,8 @@ const transactionSchema = new Schema({
     transactionId: { type: String, default: '' },
     cardNonce: { type: String, default: '' },
   },
-  marketHero: {
-    leadUpdated: { type: Boolean, default: false },
-    tags: [{
-      name: { type: String, default: '' },
-      purpose: { type: String, default: '' },
-    }],
-  },
+  sagawa: { type: ObjectId, ref: 'Sagawa' },
+  marketHero: { type: ObjectId, ref: 'MarketHero' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
 });
 export default transactionSchema;

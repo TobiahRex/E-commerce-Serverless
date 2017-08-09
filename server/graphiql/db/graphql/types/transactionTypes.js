@@ -8,6 +8,8 @@ import {
   GraphQLObjectType as ObjectType,
 } from 'graphql';
 
+import Transaction from '../../mongo/models/transaction';
+
 const rootType = new ObjectType({
   name: 'Transaction',
   description: 'A application transaction.',
@@ -102,3 +104,80 @@ const rootType = new ObjectType({
     type: MongoId,
   },
 });
+
+const queryTypes = {
+  squareLocations: new ObjectType({
+    name: 'SquareLocations',
+    fields: () => ({
+      error: {
+        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+        type: new ObjectType({
+          name: 'SquareLocationError',
+          fields: () => ({
+            hard: {
+              description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+              type: BoolType,
+            },
+            soft: {
+              description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+              type: BoolType,
+            },
+            message: {
+              description: 'Amplifying information about error.  Should be written for user readibility.',
+              type: StringType,
+            },
+          }),
+        }),
+      },
+      id: {
+        description: 'The location id.',
+        type: StringType,
+      },
+      name: {
+        description: 'The name of this location.',
+        type: StringType,
+      },
+      address: new ObjectType({
+        name: 'SqaureLocationAddressInfo',
+        fields: () => ({
+          address_line_1: { type: StringType },
+          locality: { type: StringType },
+          administrative_district_level_1: { type: StringType },
+          postal_code: { type: IntType },
+          country: {
+            description: 'Two character country code.',
+            type: StringType,
+          },
+        }),
+      }),
+      timezone: {
+        description: '"Country"/"City" format.',
+        type: StringType,
+      },
+      capabilities: new ListType(StringType),
+    }),
+  }),
+};
+
+const queries = {
+  FetchLocations: {
+    type: new ListType(queryTypes.squareLocations),
+    args: {
+      // userId: {
+      //   description: 'The user\'s unique _id.',
+      //   type: MongoId,
+      // },
+      // accessToken: {
+      //   description: 'The user\'s Auth0 access token.',
+      //   type: StringType,
+      // },
+    },
+    resolve: () => Transaction.fetchSquareLocation(),
+  },
+};
+
+export default {
+  rootType,
+  queries,
+  // mutations,
+};

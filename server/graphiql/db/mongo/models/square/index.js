@@ -41,7 +41,13 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('Error while fetching location from Square.  Error = ', error);
-    reject(`Error while fetching location from Square.  Error =  ${error}`);
+    reject({
+      error: {
+        hard: true,
+        soft: false,
+        message: error,
+      },
+    });
   });
 });
 

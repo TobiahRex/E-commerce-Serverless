@@ -105,6 +105,6 @@ const queries = {
       //   type: StringType,
       // },
     },
-    resolve: (_, args) => Square.fetchLocation(),
+    resolve: (_, args) => Square.fetchSquareLocation(),
   },
 };
