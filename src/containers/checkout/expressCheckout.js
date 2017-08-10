@@ -45,7 +45,7 @@ class ExpressCheckout extends Component {
     super(props);
 
     this.state = {
-      ccRenderKey: 1,
+      ccRenderKey: 'renderWithoutZip',
       showCvnModal: false,
       errors: {
         hard: false,
@@ -232,7 +232,6 @@ class ExpressCheckout extends Component {
         <Validation.components.Form
           id="nonce-form"
           ref={this.assignRefToForm}
-          onSubmit={this.handleOnSubmit}
         >
           <div className="checkout__body grid">
             <div className="checkout__grid">
@@ -246,7 +245,7 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <ShippingAddress
+              {/* <ShippingAddress
                 shippingFirstName={shippingFirstName}
                 shippingLastName={shippingLastName}
                 shippingEmail={shippingEmail}
@@ -257,18 +256,6 @@ class ExpressCheckout extends Component {
                 shippingCity={shippingCity}
                 shippingPostalCode={shippingPostalCode}
                 shippingPhoneNumber={shippingPhoneNumber}
-                handleOnChange={this.handleOnChange}
-              />
-              {/* <BillingAddress
-                billingFirstName={billingFirstName}
-                billingLastName={billingLastName}
-                billingEmail={billingEmail}
-                billingAddressLine1={billingAddressLine1}
-                billingAddressLine2={billingAddressLine2}
-                billingPrefectureState={billingPrefectureState}
-                billingCity={billingCity}
-                billingPostalCode={billingPostalCode}
-                billingCountry={billingCountry}
                 handleOnChange={this.handleOnChange}
               /> */}
             </div>
@@ -295,6 +282,7 @@ class ExpressCheckout extends Component {
                 enable={!!cart.length}
                 ccRenderKey={ccRenderKey}
                 requestCardNonce={this.requestCardNonce}
+                handleNonceResponse={this.handleNonceResponse}
               />
 
               <NetworkStatus

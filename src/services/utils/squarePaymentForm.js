@@ -4,12 +4,16 @@ const applicationId = process.env.SQUARE_APPLICATION_ID;
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
 
 export default (ccRenderKey, handleNonceResponse) => {
-  let postalRequired = null;
+  console.log('%cccRenderKey', 'background:red;', ccRenderKey);
+  let postalCode = null;
 
   if (ccRenderKey === 'renderWithZip') {
-    postalRequired = true;
+    postalCode = {
+      elementId: 'sq-postal-code',
+      placeholder: '99999',
+    };
   } else if (ccRenderKey === 'renderWithoutZip') {
-    postalRequired = false;
+    postalCode = false;
   }
 
   return (
@@ -36,10 +40,7 @@ export default (ccRenderKey, handleNonceResponse) => {
         elementId: 'sq-expiration-date',
         placeholder: 'MM/YY',
       },
-      postalCode: postalRequired && {
-        elementId: 'sq-postal-code',
-        placeholder: '99999',
-      },
+      postalCode,
       callbacks: {
 
         // Called when the SqPaymentForm completes a request to generate a card

@@ -9,11 +9,12 @@ class SubmitOrder extends React.Component {
     enable: PropTypes.bool.isRequired,
     ccRenderKey: PropTypes.number.isRequired,
     requestCardNonce: PropTypes.func.isRequired,
+    handleNonceResponse: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);
 
-    this.sqrPaymentForm = SquarePaymentForm(props.ccRenderKey, this.handleOnSubmit);
+    this.sqrPaymentForm = SquarePaymentForm(props.ccRenderKey, props.handleNonceResponse);
 
     this.state = {
       ccRenderKey: '',
@@ -26,7 +27,8 @@ class SubmitOrder extends React.Component {
     }
   }
 
-  handleOnSubmit = () => {
+  handleOnSubmit = (e) => {
+    e.preventDefault();
     this.props.requestCardNonce(SubmitOrder.sqrPaymentForm);
   }
 
@@ -42,6 +44,7 @@ class SubmitOrder extends React.Component {
         <Validation.components.Button
           className="button"
           errorClassName="asd"
+          onSubmit={this.handleOnSubmit}
         >
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
