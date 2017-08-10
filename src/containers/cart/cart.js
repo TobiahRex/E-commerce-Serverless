@@ -196,7 +196,6 @@ class ShoppingCart extends Component {
           });
         }
 
-        console.log('%cnewCart', 'background:red;', newCart);
         return ({
           error: globalError,
           newCart: [...newCart],
@@ -263,7 +262,6 @@ class ShoppingCart extends Component {
     } else {
       cartOwner = 'Guest';
       result = this.verifyQtyChange(changeType, productId, updatedCart);
-      console.log('%cguest result', 'background:pink;', result);
     }
 
     if (result.error) {
@@ -437,9 +435,9 @@ class ShoppingCart extends Component {
   render() {
     const {
       newUser,
-      loggedIn,
-      userCart,
-      guestCart,
+      // loggedIn,
+      // userCart,
+      // guestCart,
       // FetchMultipleProducts: allProducts,
     } = this.props;
 
@@ -449,15 +447,15 @@ class ShoppingCart extends Component {
       updatedCart,
     } = this.state;
 
-    const cart = DetermineCartType({
-      loggedIn,
-      userCart,
-      guestCart,
-      FetchMultipleProducts: {
-        FetchMultipleProducts: updatedCart,
-      },
-    }, ZipUserCart);
-    const cartHasProducts = !!cart.length;
+    // const cart = DetermineCartType({
+    //   loggedIn,
+    //   userCart,
+    //   guestCart,
+    //   FetchMultipleProducts: {
+    //     FetchMultipleProducts: updatedCart,
+    //   },
+    // }, ZipUserCart);
+    const cartHasProducts = !!updatedCart.length;
 
     return (
       <div className="shopping-cart-main">
@@ -475,7 +473,8 @@ class ShoppingCart extends Component {
           <EmptyCart /> :
 
           this.showShoppingCart(
-            cart,
+            updatedCart,
+            // cart,
             newUser,
             mobileActive,
             total,
