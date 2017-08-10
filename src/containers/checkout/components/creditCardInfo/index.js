@@ -1,39 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
-import _ from 'lodash';
-import {
-  Country,
-  CreditCardNumber,
-  CreditCardExpiration,
-  CvnAndZip,
-} from './component.imports';
 
-const { func, string } = PropTypes;
+const { objectOf, any, string } = PropTypes;
 
 class CheckoutGrid extends React.Component {
   static propTypes = {
+    children: objectOf(any).isRequired,
     ccRenderKey: string.isRequired,
-    ccCountry: string.isRequired,
-    ccNumber: string.isRequired,
-    ccExpireMonth: string.isRequired,
-    ccExpireYear: string.isRequired,
-    ccCvn: string.isRequired,
-    ccZip: string.isRequired,
-    handleOnChange: func.isRequired,
-    toggleModal: func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
       ccRenderKey: props.ccRenderKey,
-      ccCountry: '',
-      ccNumber: '',
-      ccExpireMonth: '',
-      ccExpireYear: '',
-      ccCvn: '',
-      ccZip: '',
     };
   }
 
@@ -57,16 +36,6 @@ class CheckoutGrid extends React.Component {
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
-    const {
-      ccRenderKey,
-      ccCountry,
-      ccNumber,
-      ccExpireMonth,
-      ccExpireYear,
-      ccCvn,
-      ccZip,
-    } = this.state;
-
     return (
     <div className="checkout__grid">
       {this.props.children}
