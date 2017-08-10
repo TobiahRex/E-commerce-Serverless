@@ -1,9 +1,8 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import {
-  // NameOnCard,
   Country,
   CreditCardNumber,
   CreditCardExpiration,
@@ -12,8 +11,9 @@ import {
 
 const { func, string } = PropTypes;
 
-class CreditCardInfo extends PureComponent {
+class CreditCardInfo extends React.PureComponent {
   static propTypes = {
+    ccRenderKey: string.isRequired,
     ccCountry: string.isRequired,
     ccNumber: string.isRequired,
     ccExpireMonth: string.isRequired,
@@ -27,6 +27,7 @@ class CreditCardInfo extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      ccRenderKey: '',
       ccCountry: '',
       ccNumber: '',
       ccExpireMonth: '',
@@ -47,6 +48,7 @@ class CreditCardInfo extends PureComponent {
 
   render() {
     const {
+      ccRenderKey,
       ccCountry,
       ccNumber,
       ccExpireMonth,
@@ -91,6 +93,7 @@ class CreditCardInfo extends PureComponent {
         />
 
         <CreditCardExpiration
+          ccRenderKey={ccRenderKey}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}

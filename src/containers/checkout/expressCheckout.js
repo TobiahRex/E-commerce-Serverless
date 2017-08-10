@@ -80,7 +80,7 @@ class ExpressCheckout extends Component {
       ccCvn: '',
       ccZip: '',
       ccCountry: '',
-      termsAgreement: false,
+      termsAgreement: 'false',
       // --- From props ---
       cart: [],
       total: {
@@ -232,6 +232,7 @@ class ExpressCheckout extends Component {
         <Validation.components.Form
           id="nonce-form"
           ref={this.assignRefToForm}
+          onSubmit={this.handleOnSubmit}
         >
           <div className="checkout__body grid">
             <div className="checkout__grid">
@@ -278,12 +279,14 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder
-                enable={!!cart.length}
-                ccRenderKey={ccRenderKey}
-                requestCardNonce={this.requestCardNonce}
-                handleNonceResponse={this.handleNonceResponse}
-              />
+              <div key={ccRenderKey}>
+                <SubmitOrder
+                  enable={!!cart.length}
+                  ccRenderKey={ccRenderKey}
+                  requestCardNonce={this.requestCardNonce}
+                  handleNonceResponse={this.handleNonceResponse}
+                />
+              </div>
 
               <NetworkStatus
                 errors={errors}

@@ -32,7 +32,8 @@ class CreditCardNumber extends React.PureComponent {
       <div className="input__row">
         <div className="input__row--cc-number">
           <p>Credit Card Number <span className="required">*</span></p>
-          <Validation.components.Input
+          <div id="sq-card-number" />
+          {/* <Validation.components.Input
             id="sq-card-number"
             errorClassName="is-invalid-input"
             type="text"
@@ -41,7 +42,7 @@ class CreditCardNumber extends React.PureComponent {
             validations={['required', 'ccNumber']}
             onChange={this.handleOnChange}
             value={this.state.ccNumber}
-          />
+          /> */}
         </div>
       </div>
     );

@@ -30,7 +30,7 @@ function TotalContent({
           <p>Shipping & Handling</p>
           <p><i>Free</i></p>
         </div>
-        
+
         <Discounts discount={discount} />
 
         <div className="analysis-container--taxes">
@@ -62,13 +62,13 @@ function TotalContent({
   );
 }
 
-const { number, bool, shape, func } = PropTypes;
+const { number, bool, shape, func, string } = PropTypes;
 
 TotalContent.propTypes = {
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
-  termsAgreement: bool.isRequired,
+  termsAgreement: string.isRequired,
   handleOnChange: func.isRequired,
   discount: shape({
     qty: bool.isRequired,

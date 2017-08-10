@@ -4,7 +4,7 @@ import _ from 'lodash';
 import TotalContent from './totalContent';
 import Loading from './loading';
 
-const { bool, func, shape, number } = PropTypes;
+const { bool, func, shape, number, string } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
   static propTypes = {
@@ -21,7 +21,7 @@ class GrandTotal extends React.PureComponent {
       }),
     }).isRequired,
     handleOnChange: func.isRequired,
-    termsAgreement: bool.isRequired,
+    termsAgreement: string.isRequired,
   }
   constructor(props) {
     super(props);

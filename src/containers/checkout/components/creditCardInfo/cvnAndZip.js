@@ -46,7 +46,8 @@ class CvnAndZip extends PureComponent {
               Whats this ?
             </button>
           </div>
-          <Validation.components.Input
+          <div id="sq-cvv" />
+          {/* <Validation.components.Input
             id="sq-cvv"
             errorClassName="is-invalid-input"
             type="text"
@@ -55,12 +56,13 @@ class CvnAndZip extends PureComponent {
             validations={['required', 'ccCvn']}
             onChange={this.handleOnChange}
             value={this.state.ccCvn}
-          />
+          /> */}
 
         </div>
         <div className="input__row--zip-code">
           <p>Zip / Postal Code <span className="required">*</span></p>
-          <Validation.components.Input
+          <div id="sq-postal-code" />
+          {/* <Validation.components.Input
             id="sq-postal-code"
             errorClassName="is-invalid-input"
             type="text"
@@ -69,7 +71,7 @@ class CvnAndZip extends PureComponent {
             validations={['required', 'numeric']}
             onChange={this.handleOnChange}
             value={this.state.ccZip}
-          />
+          /> */}
         </div>
       </div>
     );
