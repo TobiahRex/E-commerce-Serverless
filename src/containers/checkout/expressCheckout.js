@@ -45,7 +45,7 @@ class ExpressCheckout extends Component {
     super(props);
 
     this.state = {
-      ccRenderKey: 'renderWithoutZip',
+      ccRenderKey: 'renderWithZip',
       showCvnModal: false,
       errors: {
         hard: false,
@@ -80,7 +80,7 @@ class ExpressCheckout extends Component {
       ccCvn: '',
       ccZip: '',
       ccCountry: '',
-      termsAgreement: 'false',
+      termsAgreement: false,
       // --- From props ---
       cart: [],
       total: {
@@ -153,7 +153,7 @@ class ExpressCheckout extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
     // this.requestCardNonce();
-    // this.setState({ error: this.form.validateAll() });
+    this.setState({ error: this.form.validateAll() });
   }
 
   requestCardNonce = (paymentForm) => {
@@ -230,10 +230,23 @@ class ExpressCheckout extends Component {
           <h1>Express Checkout</h1>
         </div>
         <Validation.components.Form
-          id="nonce-form"
           ref={this.assignRefToForm}
           onSubmit={this.handleOnSubmit}
         >
+          {/* <Validation.components.Input
+            errorClassName='is-invalid-input'
+            type='checkbox'
+            name='policy'
+            value='1'
+            validations={['required']}
+          /> */}
+          {/* <Validation.components.Button
+            className='button'
+            errorClassName='asd'
+            >
+            Submit
+          </Validation.components.Button> */}
+
           <div className="checkout__body grid">
             <div className="checkout__grid">
               <ProductReview
@@ -261,7 +274,7 @@ class ExpressCheckout extends Component {
               /> */}
             </div>
             <div className="checkout__grid">
-              <CreditCardInfo
+              {/* <CreditCardInfo
                 ccRenderKey={ccRenderKey}
                 ccCountry={ccCountry}
                 ccNumber={ccNumber}
@@ -271,22 +284,22 @@ class ExpressCheckout extends Component {
                 ccZip={ccZip}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
-              />
-              <GrandTotal
+              /> */}
+              {/* <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
                 termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
-              />
+                />
 
-              <div key={ccRenderKey}>
+                <div key={ccRenderKey}>
                 <SubmitOrder
                   enable={!!cart.length}
                   ccRenderKey={ccRenderKey}
                   requestCardNonce={this.requestCardNonce}
                   handleNonceResponse={this.handleNonceResponse}
                 />
-              </div>
+              </div> */}
 
               <NetworkStatus
                 errors={errors}

@@ -21,7 +21,7 @@ class GrandTotal extends React.PureComponent {
       }),
     }).isRequired,
     handleOnChange: func.isRequired,
-    termsAgreement: string.isRequired,
+    termsAgreement: bool.isRequired,
   }
   constructor(props) {
     super(props);
@@ -49,7 +49,10 @@ class GrandTotal extends React.PureComponent {
     if (!_.isEqual(nextProps, this.props, true)) this.setState({ ...nextPropsCopy });
   }
 
-  handleOnChange = e => this.props.handleOnChange(e);
+  handleOnChange = e => {
+    console.warn('e.target.value: ', e.target.value);
+    this.props.handleOnChange(e)
+  };
 
   renderHelper = (state) => {
     const {

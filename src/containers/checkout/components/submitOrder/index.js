@@ -14,25 +14,24 @@ class SubmitOrder extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.sqrPaymentForm = SquarePaymentForm(props.ccRenderKey, props.handleNonceResponse);
-
     this.state = {
       ccRenderKey: '',
+      paymentForm: SquarePaymentForm(props.ccRenderKey, props.handleNonceResponse),
     };
-  }
-
-  componentDidMount() {
-    console.warn('SubmitOrder has Mounted')
   }
 
   componentWillReceiveProps({ ccRenderKey }) {
     if (ccRenderKey !== this.state.ccRenderKey) {
-      this.setState(() => ({ ccRenderKey }));
+      this.state.paymentForm.destroy();
+      this.setState(() => ({
+        ccRenderKey,
+        paymentForm: SquarePaymentForm(ccRenderKey, this.props.handleNonceResponse),
+      }));
     }
   }
 
   handleOnSubmit = () => {
-    this.props.requestCardNonce(this.sqrPaymentForm);
+    this.props.requestCardNonce(this.state.paymentForm);
   }
 
   render() {
@@ -41,12 +40,11 @@ class SubmitOrder extends React.PureComponent {
       ccRenderKey,
     } = this.props;
     console.log('%cccRenderKey', 'background:red;', ccRenderKey);
-    console.log('this.sqrPaymentForm: ', this.sqrPaymentForm);
+    console.log('this.state.paymentForm: ', this.state.paymentForm);
     return (
     enable ?
       <div className="checkout__purchase-btn" >
         <Validation.components.Button
-          type="button"
           className="button"
           errorClassName="asd"
           onClick={this.handleOnSubmit}

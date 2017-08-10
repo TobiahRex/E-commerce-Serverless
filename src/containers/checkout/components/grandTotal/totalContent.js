@@ -13,6 +13,7 @@ function TotalContent({
   termsAgreement,
   handleOnChange,
 }) {
+  console.log('%ctermsAgreement', 'background:red;', termsAgreement);
   return (
     <div>
       <div className="title">
@@ -45,15 +46,15 @@ function TotalContent({
 
       </div>
       <div className="terms-agreement">
+
         <Validation.components.Input
-          errorClassName="is-invalid-input"
           type="checkbox"
-          containerClassName="checkbox"
+          errorClassName="is-invalid-input"
           name="termsAgreement"
+          value="1"
           validations={['required']}
-          value={termsAgreement}
-          onChange={handleOnChange}
         />
+
         <p>I have read & agree to all <Link to="/terms_and_conditions">
           Terms & Conditions
         </Link></p>
@@ -68,7 +69,7 @@ TotalContent.propTypes = {
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
-  termsAgreement: string.isRequired,
+  termsAgreement: bool.isRequired,
   handleOnChange: func.isRequired,
   discount: shape({
     qty: bool.isRequired,

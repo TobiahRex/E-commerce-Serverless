@@ -27,7 +27,7 @@ class CreditCardInfo extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      ccRenderKey: '',
+      ccRenderKey: props.ccRenderKey,
       ccCountry: '',
       ccNumber: '',
       ccExpireMonth: '',
@@ -93,13 +93,13 @@ class CreditCardInfo extends React.PureComponent {
         />
 
         <CreditCardExpiration
-          ccRenderKey={ccRenderKey}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}
         />
 
         <CvnAndZip
+          ccRenderKey={ccRenderKey}
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
           ccZip={ccZip}

@@ -9,7 +9,6 @@ const { string, func } = PropTypes;
 
 class CreditCardExpiration extends React.PureComponent {
   static propTypes = {
-    ccRenderKey: string.isRequired,
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
     handleOnChange: func.isRequired,
@@ -18,7 +17,6 @@ class CreditCardExpiration extends React.PureComponent {
     super(props);
 
     this.state = {
-      ccRenderKey: '',
       ccExpireMonth: '',
       ccExpireYear: '',
     };
