@@ -279,6 +279,7 @@ class ExpressCheckout extends Component {
               <div key={ccRenderKey}>
                 <SubmitOrder
                   enable={!!cart.length}
+                  ccCountry={ccCountry}
                   ccRenderKey={ccRenderKey}
                   handleNonceResponse={this.handleNonceResponse}
                 />

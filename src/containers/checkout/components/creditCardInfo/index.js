@@ -37,10 +37,6 @@ class CreditCardInfo extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.warn('Credit card info mounted.');
-  }
-
   componentWillReceiveProps(nextProps) {
     const nextPropsCopy = Object.assign({}, nextProps);
     delete nextPropsCopy.handleOnChange;

@@ -3,8 +3,10 @@ import { create } from 'apisauce';
 
 const createSquareAPI = () => {
   const api = create({
-    basURL: 'https://connect.squareup.com/v2',
+    baseURL: 'https://connect.squareup.com/v2',
   });
+
+  const fetchPaymentForm = () => api.get('/paymentForm');
 
   const authorizeDelayTransaction = ({
     locationId,
@@ -52,6 +54,7 @@ const createSquareAPI = () => {
 
   return {
     authorizeDelayTransaction,
+    fetchPaymentForm,
   };
 };
 

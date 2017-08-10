@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
-import { squarePaymentForm as SqrPaymentForm } from './utilities.imports';
+import {
+  squarePaymentForm as SqrPaymentForm,
+} from './utilities.imports';
 
-let paymentForm = null;
+let paymentForm = {};
 
 class SubmitOrder extends React.Component {
   static propTypes = {
     enable: PropTypes.bool.isRequired,
+    ccCountry: PropTypes.string.isRequired,
     ccRenderKey: PropTypes.string.isRequired,
     handleNonceResponse: PropTypes.func.isRequired,
   }
@@ -16,26 +19,34 @@ class SubmitOrder extends React.Component {
     super(props);
 
     this.state = {
+      ccCountry: props.ccCountry,
       ccRenderKey: props.ccRenderKey,
     };
   }
 
-  componentDidMount() {
-    console.warn('SUBMIT ORDER - Mounted');
-    paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.props.handleNonceResponse);
-    paymentForm.build();
+  componentWillMount() {
+    if (!!paymentForm.options) {
+      // paymentForm.destroy();
+      // paymentForm = {};
+    }
   }
 
-  componentWillUnmount() {
-    console.warn('SUBMIT ORDER - Will unmount');
-    // paymentForm.destroy();
+  componentDidMount() {
+    console.log('%cpaymentForm', 'background:blue;', paymentForm);
+    console.log('%cthis.props.ccRenderKey', 'background:pink;', this.props.ccRenderKey);
+
+    SqrPaymentForm(this.props.ccRenderKey, this.props.handleNonceResponse)
+    .then((form) => {
+      paymentForm = form;
+    })
+    .catch(alert);
+    paymentForm.build();
+    console.warn('SUBMIT ORDER - Mounted');
   }
 
   componentWillReceiveProps({ ccRenderKey }) {
-    console.log('%cccRenderKey', 'background:pink;', ccRenderKey);
-    console.log('%cccthis.state.RenderKey', 'background:lime;', this.props.ccRenderKey);
-
     if (ccRenderKey !== this.state.ccRenderKey) {
+      // paymentForm.build();
       this.setState(() => ({ ccRenderKey }));
     }
   }
@@ -53,6 +64,7 @@ class SubmitOrder extends React.Component {
     return (
     enable ?
       <div className="checkout__purchase-btn" >
+        <button onClick={() => paymentForm.destroy()}>destroy</button>
         <Validation.components.Button
           className="button"
           errorClassName="asd"
