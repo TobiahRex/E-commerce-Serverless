@@ -12,6 +12,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
+  squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 import {
   propTypes,
@@ -37,6 +38,8 @@ import {
   SubmitFinalOrder,
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
+
+let paymentForm = null;
 
 class ExpressCheckout extends Component {
   static propTypes = propTypes
@@ -87,6 +90,10 @@ class ExpressCheckout extends Component {
         taxes: 0,
       },
     };
+  }
+
+  componentDidMount() {
+    paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.handleNonceResponse);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -211,7 +218,7 @@ class ExpressCheckout extends Component {
     } = this.state;
 
     return (
-      <div className="checkout__container">
+      <div className="checkout__container" key={ccRenderKey}>
         <BreadCrumb
           paths={['Home']}
           classes={['home']}
