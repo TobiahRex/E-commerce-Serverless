@@ -123,14 +123,21 @@ class ExpressCheckout extends Component {
     if (e.target.name === 'ccCountry') {
       const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
       if (countriesWithPostal.includes(e.target.value)) {
-        this.squarePaymentForm.destroy();
-        this.squarePaymentForm = (true, this.handleNonceResponse);
+        this.setState(prevState => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+          ccRenderKey: 'renderWithZip',
+        }));
       } else {
-        this.squarePaymentForm.destroy();
-        this.squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
+        this.setState(prevState => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+          ccRenderKey: 'renderWithoutZip',
+        }));
       }
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
     }
-    this.setState({ [e.target.name]: e.target.value });
   };
 
   toggleModal = (e) => {
@@ -149,8 +156,8 @@ class ExpressCheckout extends Component {
     // this.setState({ error: this.form.validateAll() });
   }
 
-  requestCardNonce = () => {
-    squarePaymentForm.requestCardNonce();
+  requestCardNonce = (paymentForm) => {
+    paymentForm.requestCardNonce();
   }
 
   handleNonceResponse = (errors, nonce, cardData) => {
@@ -198,7 +205,7 @@ class ExpressCheckout extends Component {
       shippingPostalCode,
       shippingPhoneNumber,
       // ---
-      ccNameOnCard,
+      // ccNameOnCard,
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
@@ -222,7 +229,6 @@ class ExpressCheckout extends Component {
         <div className="checkout__title">
           <h1>Express Checkout</h1>
         </div>
-        <button onClick={this.requestCardNonce} >Get Nonce</button>
         <Validation.components.Form
           id="nonce-form"
           ref={this.assignRefToForm}
@@ -285,7 +291,10 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder enable={!!cart.length} />
+              <SubmitOrder
+                enable={!!cart.length}
+                requestCardNonce={this.requestCardNonce}
+              />
 
               <NetworkStatus
                 errors={errors}

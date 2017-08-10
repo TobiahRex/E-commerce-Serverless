@@ -6,13 +6,13 @@ import { Countries } from './component.imports';
 class Country extends React.PureComponent {
   static propTypes = {
     handleOnChange: PropTypes.func.isRequired,
-    ccCountry: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      ccCountry: props.ccCountry || '',
+      country: props.country || '',
     };
   }
 
@@ -35,7 +35,7 @@ class Country extends React.PureComponent {
             errorClassName="is-invalid-input"
             name="ccCountry"
             validations={['required']}
-            value={this.props.ccCountry}
+            value={this.props.country}
             onChange={this.handleOnChange}
           >
             <option value="">Choose</option>
