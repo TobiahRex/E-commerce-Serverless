@@ -41,12 +41,11 @@ class CvnAndZip extends React.PureComponent {
     }
   }
 
-  handleOnChange = e => {
-    e.target.value = e.target.value.slice(0, 4);
-    this.props.handleOnChange(e);
-  }
+  handleOnChange = (e) => this.props.handleOnChange(e);
 
   render() {
+    const showZip = this.state.ccRenderKey === 'renderWithZip';
+
     return (
       <div className="input__row cvn">
         <div className="input__row--cvn-number">
@@ -80,17 +79,20 @@ class CvnAndZip extends React.PureComponent {
             <div className="input__row--zip-code">
               <p>Zip Code <span className="required">*</span></p>
               <div id="sq-postal-code" />
-              <input
+              {/* <input
                 id="sq-postal-code"
                 type="text"
                 className={this.state.zipError}
                 // containerClassName=""
                 name="ccZip"
                 placeholder="99999"
+                maxLength="5"
                 // validations={['required', 'numeric']}
+                pattern="\d{5}"
                 onChange={this.handleOnChange}
                 value={this.state.ccZip}
-              />
+                required
+              /> */}
             </div>
         }
       </div>
