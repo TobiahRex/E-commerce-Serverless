@@ -44,7 +44,7 @@ class CvnAndZip extends React.PureComponent {
   handleOnChange = (e) => this.props.handleOnChange(e);
 
   render() {
-    const showZip = this.state.ccRenderKey === 'renderWithZip';
+    const enableZip = this.state.ccRenderKey === 'renderWithZip';
 
     return (
       <div className="input__row cvn">
@@ -74,27 +74,24 @@ class CvnAndZip extends React.PureComponent {
           /> */}
 
         </div>
-        {
-          showZip &&
-            <div className="input__row--zip-code">
-              <p>Zip Code <span className="required">*</span></p>
-              <div id="sq-postal-code" />
-              {/* <input
-                id="sq-postal-code"
-                type="text"
-                className={this.state.zipError}
-                // containerClassName=""
-                name="ccZip"
-                placeholder="99999"
-                maxLength="5"
-                // validations={['required', 'numeric']}
-                pattern="\d{5}"
-                onChange={this.handleOnChange}
-                value={this.state.ccZip}
-                required
-              /> */}
-            </div>
-        }
+        <div className="input__row--zip-code">
+          <p>Zip Code <span className="required">*</span></p>
+          <div id="sq-postal-code" disabled={enableZip && false} />
+          {/* <input
+            id="sq-postal-code"
+            type="text"
+            className={this.state.zipError}
+            // containerClassName=""
+            name="ccZip"
+            placeholder="99999"
+            maxLength="5"
+            // validations={['required', 'numeric']}
+            pattern="\d{5}"
+            onChange={this.handleOnChange}
+            value={this.state.ccZip}
+            required
+          /> */}
+        </div>
       </div>
     );
   }
