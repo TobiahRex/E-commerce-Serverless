@@ -45,9 +45,8 @@ class ExpressCheckout extends Component {
   constructor(props) {
     super(props);
 
-    this.squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
-
     this.state = {
+      ccRenderKey: 1,
       showCvnModal: false,
       errors: {
         hard: false,
@@ -183,6 +182,7 @@ class ExpressCheckout extends Component {
     } = this.props;
 
     const {
+      ccRenderKey,
       cart,
       errors,
       newsletterDecision,
@@ -268,6 +268,7 @@ class ExpressCheckout extends Component {
             </div>
             <div className="checkout__grid">
               <CreditCardInfo
+                ccRenderKey={ccRenderKey}
                 ccCountry={ccCountry}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}

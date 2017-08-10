@@ -10,10 +10,11 @@ import {
   CvnAndZip,
 } from './component.imports';
 
-const { func, string } = PropTypes;
+const { func, string, number } = PropTypes;
 
 class CreditCardInfo extends PureComponent {
   static propTypes = {
+    ccRenderKey: number.isRequired,
     ccCountry: string.isRequired,
     ccNumber: string.isRequired,
     ccExpireMonth: string.isRequired,
@@ -27,6 +28,7 @@ class CreditCardInfo extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      ccRenderKey: '',
       ccCountry: '',
       ccNumber: '',
       ccExpireMonth: '',
@@ -47,6 +49,7 @@ class CreditCardInfo extends PureComponent {
 
   render() {
     const {
+      ccRenderKey,
       ccCountry,
       ccNumber,
       ccExpireMonth,
@@ -58,7 +61,7 @@ class CreditCardInfo extends PureComponent {
     console.log('%cRENDERING credit card info', 'background:lime;');
 
     return (
-      <div className="checkout__credit-card">
+      <div className="checkout__credit-card" key={ccRenderKey}>
         <div className="title">
           <h3>Credit Card Information</h3>
         </div>
