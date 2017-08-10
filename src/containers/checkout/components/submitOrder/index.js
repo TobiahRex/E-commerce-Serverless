@@ -28,12 +28,15 @@ class SubmitOrder extends React.Component {
 
   componentWillUnmount() {
     console.warn('SUBMIT ORDER - Will unmount');
-    paymentForm.destroy();
+    // paymentForm.destroy();
   }
 
   componentWillReceiveProps({ ccRenderKey }) {
+    console.log('%cccRenderKey', 'background:pink;', ccRenderKey);
+    console.log('%cccthis.state.RenderKey', 'background:lime;', this.props.ccRenderKey);
+
     if (ccRenderKey !== this.state.ccRenderKey) {
-      this.setState(() => ({ ccRenderKey, }));
+      this.setState(() => ({ ccRenderKey }));
     }
   }
 

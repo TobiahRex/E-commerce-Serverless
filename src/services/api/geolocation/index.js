@@ -2,7 +2,7 @@ import { create } from 'apisauce';
 
 const createGeoAPI = () => {
   const api = create({
-    baseURL: 'http://ipinfo.io',
+    baseURL: 'https://ipinfo.io',
     credentials: 'omit',
   });
 

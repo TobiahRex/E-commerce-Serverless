@@ -21,7 +21,7 @@ import {
 import {
   BreadCrumb,
   // BillingAddress,
-  CheckoutGrid,
+  // CheckoutGrid,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,
@@ -40,7 +40,7 @@ import {
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
-let paymentForm = null;
+// let paymentForm = null;
 
 class ExpressCheckout extends Component {
   static propTypes = propTypes
@@ -49,7 +49,7 @@ class ExpressCheckout extends Component {
     super(props);
 
     this.state = {
-      ccRenderKey: 'renderWithoutZip',
+      ccRenderKey: 'renderWithZip',
       showCvnModal: false,
       error: null,
       errors: {
