@@ -8,3 +8,4 @@ export GrandTotal from './components/grandTotal/';
 export SubmitOrder from './components/submitOrder/';
 export NetworkStatus from './components/networkStatus';
 export CvnModal from './components/creditCardInfo/cvnModal';
+export CheckoutGrid from './components/checkoutGrid';

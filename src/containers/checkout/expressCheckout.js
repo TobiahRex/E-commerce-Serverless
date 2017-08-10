@@ -12,7 +12,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
-  squarePaymentForm as SqrPaymentForm,
+  // squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 import {
   propTypes,
@@ -21,6 +21,7 @@ import {
 import {
   BreadCrumb,
   // BillingAddress,
+  CheckoutGrid,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,
@@ -262,7 +263,10 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               /> */}
             </div>
-            <CheckoutGrid ccRenderKey={ccRenderKey} >
+            <CheckoutGrid
+              ccRenderKey={ccRenderKey}
+              handleNonceResponse={this.handleNonceResponse}
+            >
               <CreditCardInfo
                 ccRenderKey={ccRenderKey}
                 ccCountry={ccCountry}

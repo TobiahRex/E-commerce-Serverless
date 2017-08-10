@@ -1,117 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
-import _ from 'lodash';
+
 import {
-  Country,
-  CreditCardNumber,
-  CreditCardExpiration,
-  CvnAndZip,
-} from './component.imports';
+  squarePaymentForm as SqrPaymentForm,
+} from './utilities.imports';
 
-const { func, string } = PropTypes;
+const { objectOf, any, string, func } = PropTypes;
 
-class CreditCardInfo extends React.Component {
+let paymentForm = null;
+
+class CheckoutGrid extends React.Component {
   static propTypes = {
+    children: objectOf(any).isRequired,
     ccRenderKey: string.isRequired,
-    ccCountry: string.isRequired,
-    ccNumber: string.isRequired,
-    ccExpireMonth: string.isRequired,
-    ccExpireYear: string.isRequired,
-    ccCvn: string.isRequired,
-    ccZip: string.isRequired,
-    handleOnChange: func.isRequired,
-    toggleModal: func.isRequired,
+    handleNonceResponse: func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
       ccRenderKey: props.ccRenderKey,
-      ccCountry: '',
-      ccNumber: '',
-      ccExpireMonth: '',
-      ccExpireYear: '',
-      ccCvn: '',
-      ccZip: '',
     };
   }
 
   componentDidMount() {
-    console.warn('Credit card info mounted.');
+    console.warn('CHECKOUT GRID - Mounted');
+    paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.handleNonceResponse);
+    paymentForm.build();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const nextPropsCopy = Object.assign({}, nextProps);
-    delete nextPropsCopy.handleOnChange;
-    delete nextPropsCopy.toggleModal;
-    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  componentWillUnmount() {
+    console.warn('CHECKOUT GRID - Will unmount');
   }
 
-  handleOnChange = e => this.props.handleOnChange(e)
+  componentWillReceiveProps({ ccRenderKey }) {
+    if (ccRenderKey !== this.state.ccRenderKey);
+  }
+
+  handleNonceResponse = () => this.props.handleNonceResponse()
 
   render() {
-    const {
-      ccRenderKey,
-      ccCountry,
-      ccNumber,
-      ccExpireMonth,
-      ccExpireYear,
-      ccCvn,
-      ccZip,
-    } = this.state;
-
     return (
-      <div className="checkout__credit-card">
-        <div className="title">
-          <h3>Credit Card Information</h3>
-        </div>
-
-        <div className="input__row">
-          <div className="input__row--cc-type">
-            <p>Accepted Credit Card Types</p>
-            <div className="types">
-              <FontAwesome name="cc-visa" />
-              <FontAwesome name="cc-mastercard" />
-              <FontAwesome name="cc-discover" />
-              <FontAwesome name="cc-jcb" />
-              <FontAwesome name="cc-amex" />
-            </div>
-          </div>
-        </div>
-
-        {/* NOTE: "Not required from Square."
-          <NameOnCard
-          ccNameOnCard={ccNameOnCard}
-          handleOnChange={this.handleOnChange}
-        /> */}
-
-        <Country
-          country={ccCountry}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CreditCardNumber
-          ccNumber={ccNumber}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CreditCardExpiration
-          ccExpireMonth={ccExpireMonth}
-          ccExpireYear={ccExpireYear}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CvnAndZip
-          ccRenderKey={ccRenderKey}
-          toggleModal={this.props.toggleModal}
-          ccCvn={ccCvn}
-          ccZip={ccZip}
-          handleOnChange={this.handleOnChange}
-        />
-
+      <div className="checkout__grid" key={this.props.ccRenderKey}>
+        {this.props.children}
       </div>
     );
   }
 }
-export default CreditCardInfo;
+export default CheckoutGrid;
