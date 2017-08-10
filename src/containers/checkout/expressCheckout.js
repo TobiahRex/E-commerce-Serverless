@@ -262,7 +262,7 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               /> */}
             </div>
-            <div className="checkout__grid">
+            <CheckoutGrid ccRenderKey={ccRenderKey} >
               <CreditCardInfo
                 ccRenderKey={ccRenderKey}
                 ccCountry={ccCountry}
@@ -295,7 +295,7 @@ class ExpressCheckout extends Component {
                 routerPush={this.routerPush}
               />
 
-            </div>
+            </CheckoutGrid>
           </div>
         </Validation.components.Form>
 

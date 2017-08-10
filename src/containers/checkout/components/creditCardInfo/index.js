@@ -11,7 +11,7 @@ import {
 
 const { func, string } = PropTypes;
 
-class CreditCardInfo extends React.Component {
+class CheckoutGrid extends React.Component {
   static propTypes = {
     ccRenderKey: string.isRequired,
     ccCountry: string.isRequired,
@@ -38,7 +38,13 @@ class CreditCardInfo extends React.Component {
   }
 
   componentDidMount() {
-    console.warn('Credit card info mounted.');
+    console.warn('EXPRESS CHECKOUT - Mounted');
+    paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.handleNonceResponse);
+    paymentForm.build();
+  }
+
+  componentWillUnmount() {
+    console.warn('EXPRESS CHECKOUT - Will unmount');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,56 +68,10 @@ class CreditCardInfo extends React.Component {
     } = this.state;
 
     return (
-      <div className="checkout__credit-card">
-        <div className="title">
-          <h3>Credit Card Information</h3>
-        </div>
-
-        <div className="input__row">
-          <div className="input__row--cc-type">
-            <p>Accepted Credit Card Types</p>
-            <div className="types">
-              <FontAwesome name="cc-visa" />
-              <FontAwesome name="cc-mastercard" />
-              <FontAwesome name="cc-discover" />
-              <FontAwesome name="cc-jcb" />
-              <FontAwesome name="cc-amex" />
-            </div>
-          </div>
-        </div>
-
-        {/* NOTE: "Not required from Square."
-          <NameOnCard
-          ccNameOnCard={ccNameOnCard}
-          handleOnChange={this.handleOnChange}
-        /> */}
-
-        <Country
-          country={ccCountry}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CreditCardNumber
-          ccNumber={ccNumber}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CreditCardExpiration
-          ccExpireMonth={ccExpireMonth}
-          ccExpireYear={ccExpireYear}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CvnAndZip
-          ccRenderKey={ccRenderKey}
-          toggleModal={this.props.toggleModal}
-          ccCvn={ccCvn}
-          ccZip={ccZip}
-          handleOnChange={this.handleOnChange}
-        />
-
-      </div>
+    <div className="checkout__grid">
+      {this.props.children}
+    </div>
     );
   }
 }
-export default CreditCardInfo;
+export default CheckoutGrid;
