@@ -122,6 +122,7 @@ class ExpressCheckout extends Component {
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
       const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
+
       if (countriesWithPostal.includes(e.target.value)) {
         this.setState(prevState => ({
           ...prevState,
@@ -293,6 +294,7 @@ class ExpressCheckout extends Component {
 
               <SubmitOrder
                 enable={!!cart.length}
+                ccRenderKey={ccRenderKey}
                 requestCardNonce={this.requestCardNonce}
               />
 
