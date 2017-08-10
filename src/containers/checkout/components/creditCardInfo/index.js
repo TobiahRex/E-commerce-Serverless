@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  squarePaymentForm as SqrPaymentForm,
+} from './utilities.imports';
+
 const { objectOf, any, string } = PropTypes;
+
+let paymentForm = null;
 
 class CheckoutGrid extends React.Component {
   static propTypes = {
@@ -17,20 +23,17 @@ class CheckoutGrid extends React.Component {
   }
 
   componentDidMount() {
-    console.warn('EXPRESS CHECKOUT - Mounted');
+    console.warn('CHECKOUT GRID - Mounted');
     paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.handleNonceResponse);
     paymentForm.build();
   }
 
   componentWillUnmount() {
-    console.warn('EXPRESS CHECKOUT - Will unmount');
+    console.warn('CHECKOUT GRID - Will unmount');
   }
 
-  componentWillReceiveProps(nextProps) {
-    const nextPropsCopy = Object.assign({}, nextProps);
-    delete nextPropsCopy.handleOnChange;
-    delete nextPropsCopy.toggleModal;
-    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+  componentWillReceiveProps({ ccRenderKey }) {
+    if (ccRenderKey !== )
   }
 
   handleOnChange = e => this.props.handleOnChange(e)
