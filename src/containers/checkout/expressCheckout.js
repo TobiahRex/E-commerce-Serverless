@@ -92,16 +92,6 @@ class ExpressCheckout extends Component {
     };
   }
 
-  componentDidMount() {
-    console.warn('EXPRESS CHECKOUT - Mounted');
-    paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.handleNonceResponse);
-    paymentForm.build();
-  }
-
-  componentWillUnmount() {
-    console.warn('EXPRESS CHECKOUT - Will unmount');
-  }
-
   componentWillReceiveProps(nextProps) {
     if (
       !_.isEqual(nextProps, this.props) ||
@@ -224,7 +214,7 @@ class ExpressCheckout extends Component {
     } = this.state;
 
     return (
-      <div className="checkout__container" key={ccRenderKey}>
+      <div className="checkout__container">
         <BreadCrumb
           paths={['Home']}
           classes={['home']}
