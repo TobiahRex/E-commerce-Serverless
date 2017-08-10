@@ -435,10 +435,6 @@ class ShoppingCart extends Component {
   render() {
     const {
       newUser,
-      // loggedIn,
-      // userCart,
-      // guestCart,
-      // FetchMultipleProducts: allProducts,
     } = this.props;
 
     const {
@@ -447,14 +443,6 @@ class ShoppingCart extends Component {
       updatedCart,
     } = this.state;
 
-    // const cart = DetermineCartType({
-    //   loggedIn,
-    //   userCart,
-    //   guestCart,
-    //   FetchMultipleProducts: {
-    //     FetchMultipleProducts: updatedCart,
-    //   },
-    // }, ZipUserCart);
     const cartHasProducts = !!updatedCart.length;
 
     return (
@@ -474,7 +462,6 @@ class ShoppingCart extends Component {
 
           this.showShoppingCart(
             updatedCart,
-            // cart,
             newUser,
             mobileActive,
             total,
