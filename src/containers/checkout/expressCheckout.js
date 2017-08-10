@@ -20,7 +20,7 @@ import {
 } from './propTypes.imports';
 import {
   BreadCrumb,
-  BillingAddress,
+  // BillingAddress,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,
@@ -39,13 +39,13 @@ import {
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
-let squarePaymentForm = null;
-
 class ExpressCheckout extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   constructor(props) {
     super(props);
+
+    this.squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
 
     this.state = {
       showCvnModal: false,
@@ -99,10 +99,6 @@ class ExpressCheckout extends Component {
     };
   }
 
-  componentDidMount = () => {
-    squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
-  }
-
   componentWillReceiveProps(nextProps) {
     if (
       !_.isEqual(nextProps, this.props) ||
@@ -128,11 +124,11 @@ class ExpressCheckout extends Component {
     if (e.target.name === 'ccCountry') {
       const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
       if (countriesWithPostal.includes(e.target.value)) {
-        squarePaymentForm.destroy();
-        squarePaymentForm = (true, this.handleNonceResponse);
+        this.squarePaymentForm.destroy();
+        this.squarePaymentForm = (true, this.handleNonceResponse);
       } else {
-        squarePaymentForm.destroy();
-        squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
+        this.squarePaymentForm.destroy();
+        this.squarePaymentForm = SquarePaymentForm(false, this.handleNonceResponse);
       }
     }
     this.setState({ [e.target.name]: e.target.value });

@@ -196,6 +196,7 @@ class ShoppingCart extends Component {
           });
         }
 
+        console.log('%cnewCart', 'background:red;', newCart);
         return ({
           error: globalError,
           newCart: [...newCart],
@@ -262,6 +263,7 @@ class ShoppingCart extends Component {
     } else {
       cartOwner = 'Guest';
       result = this.verifyQtyChange(changeType, productId, updatedCart);
+      console.log('%cguest result', 'background:pink;', result);
     }
 
     if (result.error) {

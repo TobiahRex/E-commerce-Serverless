@@ -30,7 +30,7 @@ class Country extends React.PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--country">
-          <p>Country <span className="required">*</span></p>
+          <p>Billing Country <span className="required">*</span></p>
           <Validation.components.Select
             errorClassName="is-invalid-input"
             name="ccCountry"
