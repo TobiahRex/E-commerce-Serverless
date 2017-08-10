@@ -93,7 +93,13 @@ class ExpressCheckout extends Component {
   }
 
   componentDidMount() {
+    console.warn('EXPRESS CHECKOUT - Mounted');
     paymentForm = SqrPaymentForm(this.state.ccRenderKey, this.handleNonceResponse);
+    paymentForm.build();
+  }
+
+  componentWillUnmount() {
+    console.warn('EXPRESS CHECKOUT - Will unmount');
   }
 
   componentWillReceiveProps(nextProps) {

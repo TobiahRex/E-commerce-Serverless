@@ -11,7 +11,7 @@ import {
 
 const { func, string } = PropTypes;
 
-class CreditCardInfo extends React.PureComponent {
+class CreditCardInfo extends React.Component {
   static propTypes = {
     ccRenderKey: string.isRequired,
     ccCountry: string.isRequired,
@@ -35,6 +35,10 @@ class CreditCardInfo extends React.PureComponent {
       ccCvn: '',
       ccZip: '',
     };
+  }
+
+  componentDidMount() {
+    console.warn('Credit card info mounted.');
   }
 
   componentWillReceiveProps(nextProps) {

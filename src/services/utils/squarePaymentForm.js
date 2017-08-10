@@ -1,10 +1,12 @@
 
 const applicationId = process.env.SQUARE_APPLICATION_ID;
 
+{/* <script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script> */}
+
+
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
 
 export default (ccRenderKey, handleNonceResponse) => {
-  console.log('%cccRenderKey', 'background:red;', ccRenderKey);
   let postalCode = null;
 
   if (ccRenderKey === 'renderWithZip') {

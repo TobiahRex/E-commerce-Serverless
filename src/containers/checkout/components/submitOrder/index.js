@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
-import { squarePaymentForm as SquarePaymentForm } from './utilities.imports';
+// import { squarePaymentForm as SquarePaymentForm } from './utilities.imports';
 
 class SubmitOrder extends React.Component {
   static propTypes = {
@@ -16,19 +16,18 @@ class SubmitOrder extends React.Component {
 
     this.state = {
       ccRenderKey: '',
-      paymentForm: SquarePaymentForm(props.ccRenderKey, props.handleNonceResponse),
     };
   }
 
-  componentWillReceiveProps({ ccRenderKey }) {
-    if (ccRenderKey !== this.state.ccRenderKey) {
-      this.state.paymentForm.destroy();
-      this.setState(() => ({
-        ccRenderKey,
-        paymentForm: SquarePaymentForm(ccRenderKey, this.props.handleNonceResponse),
-      }));
-    }
-  }
+  // componentWillReceiveProps({ ccRenderKey }) {
+  //   if (ccRenderKey !== this.state.ccRenderKey) {
+  //     this.state.paymentForm.destroy();
+  //     this.setState(() => ({
+  //       ccRenderKey,
+  //       paymentForm: SquarePaymentForm(ccRenderKey, this.props.handleNonceResponse),
+  //     }));
+  //   }
+  // }
 
   handleOnSubmit = () => {
     this.props.requestCardNonce(this.state.paymentForm);
@@ -39,8 +38,7 @@ class SubmitOrder extends React.Component {
       enable,
       ccRenderKey,
     } = this.props;
-    console.log('%cccRenderKey', 'background:red;', ccRenderKey);
-    console.log('this.state.paymentForm: ', this.state.paymentForm);
+
     return (
     enable ?
       <div className="checkout__purchase-btn" >
