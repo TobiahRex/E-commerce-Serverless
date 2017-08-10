@@ -4,7 +4,8 @@ const applicationId = process.env.SQUARE_APPLICATION_ID;
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
 
 export default (ccRenderKey, handleNonceResponse) => {
-  let postalRequired = false;
+  let postalRequired = null;
+
   if (ccRenderKey === 'renderWithZip') {
     postalRequired = true;
   } else if (ccRenderKey === 'renderWithoutZip') {

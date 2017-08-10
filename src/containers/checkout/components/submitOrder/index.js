@@ -20,6 +20,12 @@ class SubmitOrder extends React.Component {
     };
   }
 
+  componentWillReceiveProps({ ccRenderKey }) {
+    if (ccRenderKey !== this.state.ccRenderKey) {
+      this.setState(() => ({ ccRenderKey }))
+    }
+  }
+
   handleOnSubmit = () => {
     this.props.requestCardNonce(SubmitOrder.sqrPaymentForm);
   }
