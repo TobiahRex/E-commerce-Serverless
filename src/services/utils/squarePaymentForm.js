@@ -82,6 +82,7 @@ export default (ccRenderKey, handleNonceResponse) => {
         },
 
         paymentFormLoaded: () => {
+          console.info('FINISHED LOADING');
           // Fill in this callback to perform actions after the payment form is
           // done loading (such as setting the postal code field programmatically).
           // paymentForm.setPostalCode('94103');

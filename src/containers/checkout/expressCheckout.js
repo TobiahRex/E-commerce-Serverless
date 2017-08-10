@@ -152,10 +152,6 @@ class ExpressCheckout extends Component {
     this.setState({ error: this.form.validateAll() });
   }
 
-  requestCardNonce = (paymentForm) => {
-    paymentForm.requestCardNonce();
-  }
-
   handleNonceResponse = (errors, nonce, cardData) => {
     if (errors) {
       this.setState(prevState => ({
@@ -263,10 +259,7 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               /> */}
             </div>
-            <CheckoutGrid
-              ccRenderKey={ccRenderKey}
-              handleNonceResponse={this.handleNonceResponse}
-            >
+            <div className="checkout__grid">
               <CreditCardInfo
                 ccRenderKey={ccRenderKey}
                 ccCountry={ccCountry}
@@ -287,7 +280,6 @@ class ExpressCheckout extends Component {
                 <SubmitOrder
                   enable={!!cart.length}
                   ccRenderKey={ccRenderKey}
-                  requestCardNonce={this.requestCardNonce}
                   handleNonceResponse={this.handleNonceResponse}
                 />
               </div>
@@ -298,8 +290,7 @@ class ExpressCheckout extends Component {
                 success={false}
                 routerPush={this.routerPush}
               />
-
-            </CheckoutGrid>
+            </div>
           </div>
         </Validation.components.Form>
 
