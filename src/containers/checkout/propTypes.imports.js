@@ -29,7 +29,7 @@ export const propTypes = {
     grandTotal: number,
     subTotal: number,
   }),
-  SubmitFinalOrder: objectOf(any),
+  SubmitFinalOrder: func,
   // SubmitFinalOrder: objectOf(any).isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
 };

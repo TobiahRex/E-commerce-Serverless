@@ -12,7 +12,6 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
-  squarePaymentForm as SquarePaymentForm,
 } from './utilities.imports';
 import {
   propTypes,

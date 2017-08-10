@@ -22,7 +22,7 @@ class SubmitOrder extends React.Component {
 
   componentWillReceiveProps({ ccRenderKey }) {
     if (ccRenderKey !== this.state.ccRenderKey) {
-      this.setState(() => ({ ccRenderKey }))
+      this.setState(() => ({ ccRenderKey }));
     }
   }
 
@@ -63,8 +63,5 @@ class SubmitOrder extends React.Component {
     );
   }
 }
-SubmitOrder.propTypes = {
-  enable: PropTypes.bool.isRequired,
-  submitOrder: PropTypes.func.isRequired,
-};
+
 export default SubmitOrder;
