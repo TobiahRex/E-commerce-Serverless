@@ -49,7 +49,7 @@ class ExpressCheckout extends Component {
     super(props);
 
     this.state = {
-      ccRenderKey: 'renderWithZip',
+      ccRenderKey: 'renderWithoutZip',
       showCvnModal: false,
       error: null,
       errors: {

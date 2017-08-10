@@ -35,7 +35,6 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
-  cleanOffTypename as CleanOffTypename,
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
@@ -88,7 +87,17 @@ class ShoppingCart extends Component {
       }));
     }
   }
-
+    /**
+    * Function: "shouldComponentUpdate"
+    * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
+    *
+    * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
+    *
+    * @param {object} nextProps - New props.
+    * @param {object} nextState - New State.
+    *
+    * @return {boolean} true/false.
+    */
   shouldComponentUpdate(nextProps, nextState) {
     /**
     * Function: "isArrayEqual"
