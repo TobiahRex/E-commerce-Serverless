@@ -61,7 +61,7 @@ class CvnAndZip extends React.PureComponent {
               Whats this ?
             </button>
           </div>
-          <div id="sq-cvv"></div>
+          <div id="sq-cvv" />
           {/* <Validation.components.Input
             id="sq-cvv"
             errorClassName="is-invalid-input"
@@ -75,8 +75,10 @@ class CvnAndZip extends React.PureComponent {
 
         </div>
         <div className="input__row--zip-code">
-          <p>Zip Code <span className="required">*</span></p>
-          <div id="sq-postal-code" disabled={enableZip && false} />
+          <p>Zip Code
+            { enableZip && <span className="required">*</span> }
+          </p>
+          <div id="sq-postal-code" />
           {/* <input
             id="sq-postal-code"
             type="text"
