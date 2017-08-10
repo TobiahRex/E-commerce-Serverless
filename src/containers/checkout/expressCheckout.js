@@ -47,6 +47,7 @@ class ExpressCheckout extends Component {
     this.state = {
       ccRenderKey: 'renderWithZip',
       showCvnModal: false,
+      error: null,
       errors: {
         hard: false,
         soft: false,
@@ -240,12 +241,6 @@ class ExpressCheckout extends Component {
             value='1'
             validations={['required']}
           /> */}
-          {/* <Validation.components.Button
-            className='button'
-            errorClassName='asd'
-            >
-            Submit
-          </Validation.components.Button> */}
 
           <div className="checkout__body grid">
             <div className="checkout__grid">
@@ -274,7 +269,7 @@ class ExpressCheckout extends Component {
               /> */}
             </div>
             <div className="checkout__grid">
-              {/* <CreditCardInfo
+              <CreditCardInfo
                 ccRenderKey={ccRenderKey}
                 ccCountry={ccCountry}
                 ccNumber={ccNumber}
@@ -284,22 +279,20 @@ class ExpressCheckout extends Component {
                 ccZip={ccZip}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
-              /> */}
-              {/* <GrandTotal
+              />
+              <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
-                termsAgreement={termsAgreement}
-                handleOnChange={this.handleOnChange}
-                />
+              />
 
-                <div key={ccRenderKey}>
+              <div key={ccRenderKey}>
                 <SubmitOrder
                   enable={!!cart.length}
                   ccRenderKey={ccRenderKey}
                   requestCardNonce={this.requestCardNonce}
                   handleNonceResponse={this.handleNonceResponse}
                 />
-              </div> */}
+              </div>
 
               <NetworkStatus
                 errors={errors}

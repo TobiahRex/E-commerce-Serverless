@@ -4,7 +4,7 @@ import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
 import { squarePaymentForm as SquarePaymentForm } from './utilities.imports';
 
-class SubmitOrder extends React.PureComponent {
+class SubmitOrder extends React.Component {
   static propTypes = {
     enable: PropTypes.bool.isRequired,
     ccRenderKey: PropTypes.string.isRequired,

@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 const { string, func } = PropTypes;
 
-class CreditCardExpiration extends React.PureComponent {
+class CreditCardExpiration extends React.Component {
   static propTypes = {
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,

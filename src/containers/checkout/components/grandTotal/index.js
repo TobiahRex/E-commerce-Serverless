@@ -21,13 +21,13 @@ class GrandTotal extends React.PureComponent {
       }),
     }).isRequired,
     handleOnChange: func.isRequired,
-    termsAgreement: bool.isRequired,
+    termsAgreement: string.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      termsAgreement: false,
+      termsAgreement: '',
       showTotal: false,
       total: {
         discount: {
@@ -50,7 +50,6 @@ class GrandTotal extends React.PureComponent {
   }
 
   handleOnChange = e => {
-    console.warn('e.target.value: ', e.target.value);
     this.props.handleOnChange(e)
   };
 
