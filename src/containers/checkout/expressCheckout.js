@@ -347,11 +347,7 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder
-                enable={!!cart.length}
-                ccCountry={ccCountry}
-                ccRenderKey={ccRenderKey}
-              />
+              <SubmitOrder enable={!!cart.length} />
 
               <NetworkStatus
                 errors={errors}

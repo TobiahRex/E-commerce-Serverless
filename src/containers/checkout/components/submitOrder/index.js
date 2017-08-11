@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
+import { withHandlers } from 'recompose';
+
 import {
   squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 
-function SubmitOrder({ enable }) {
+function SubmitOrder({ enable, requestCardNonce }) {
   if (enable) {
     return (
       <div className="checkout__purchase-btn" >
         <Validation.components.Button
           className="button"
           errorClassName="asd"
-          onClick={this.handleOnSubmit}
+          onClick={requestCardNonce}
         >
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
@@ -39,5 +40,12 @@ function SubmitOrder({ enable }) {
 }
 SubmitOrder.propTypes = {
   enable: PropTypes.bool.isRequired,
+  requestCardNonce: PropTypes.func.isRequired,
 };
-export default SubmitOrder;
+const SubmitOrderWithHandlers = withHandlers({
+  requestCardNonce: () => (e) => {
+    SqrPaymentForm.get().requestCardNonce();
+  }
+})(SubmitOrder);
+
+export default SubmitOrderWithHandlers;
