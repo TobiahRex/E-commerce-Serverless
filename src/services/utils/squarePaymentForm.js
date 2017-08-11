@@ -26,7 +26,6 @@ class SqrPaymentForm {
   create(type, handleNonceResponse) {
     console.log('%cCreating payment form.', 'background:yellow;');
     let postalCode = null;
-    console.log('this: ', this);
     this.type = type;
 
     if (type === 'renderWithZip') {
@@ -107,7 +106,7 @@ class SqrPaymentForm {
         },
       },
     });
-
+    console.log('%cthis.paymentForm.', 'background:orange;', this.paymentForm);
     return (this.paymentForm);
   }
 }
