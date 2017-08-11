@@ -35,12 +35,13 @@ import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
+console.log('FETCHMULTIPLEPRODUCTS', FetchMultipleProducts)
 import {
   SubmitFinalOrder,
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
-// let paymentForm = null;
+// let paymewntForm = null;
 
 class ExpressCheckout extends Component {
   static propTypes = propTypes
@@ -264,7 +265,7 @@ class ExpressCheckout extends Component {
       shippingPostalCode,
       shippingPhoneNumber,
       // ---
-      // ccNameOnCard,
+      ccNameOnCard,
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
@@ -272,10 +273,11 @@ class ExpressCheckout extends Component {
       ccCvn,
       ccZip,
       // ---
-      termsAgreement,
+      // termsAgreement,
       // ---
       total,
     } = this.state;
+    console.log('THIS.FORM', this.form);
 
     return (
       <div className="checkout__container">
@@ -327,8 +329,9 @@ class ExpressCheckout extends Component {
               /> */}
             </div>
             <div className="checkout__grid">
-              <CreditCardInfo
+              {/* <CreditCardInfo
                 ccRenderKey={ccRenderKey}
+                ccNameOnCard={ccNameOnCard}
                 ccCountry={ccCountry}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}
@@ -337,10 +340,11 @@ class ExpressCheckout extends Component {
                 ccZip={ccZip}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
-              />
+              /> */}
               <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
+                handleOnChange={this.handleOnChange}
               />
 
               <SubmitOrder

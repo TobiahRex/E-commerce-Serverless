@@ -4,10 +4,11 @@ import _ from 'lodash';
 import TotalContent from './totalContent';
 import Loading from './loading';
 
-const { bool, shape, number } = PropTypes;
+const { bool, shape, number, func } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
   static propTypes = {
+    handleOnChange: func.isRequired,
     showTotal: bool.isRequired,
     total: shape({
       subTotal: number,
@@ -47,6 +48,8 @@ class GrandTotal extends React.PureComponent {
     if (!_.isEqual(nextProps, this.props, true)) this.setState({ ...nextPropsCopy });
   }
 
+  handleOnChange = e => this.props.handleOnChange(e)
+
   renderHelper = (state) => {
     const {
       total: {
@@ -66,6 +69,7 @@ class GrandTotal extends React.PureComponent {
             taxes={taxes}
             discount={discount}
             grandTotal={grandTotal}
+            handleOnChange={this.handleOnChange}
           /> : <Loading />
       );
     }

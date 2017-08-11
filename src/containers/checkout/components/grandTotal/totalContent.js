@@ -11,7 +11,7 @@ function TotalContent({
   discount,
   grandTotal,
   // termsAgreement,
-  // handleOnChange,
+  handleOnChange,
 }) {
   return (
     <div>
@@ -53,6 +53,7 @@ function TotalContent({
           name="policy"
           value="1"
           validations={['required']}
+          onChange={handleOnChange}
         />
         <p>I have read & agree to all <Link to="/terms_and_conditions">
           Terms & Conditions
@@ -62,14 +63,14 @@ function TotalContent({
   );
 }
 
-const { number, bool, shape, func, string } = PropTypes;
+const { number, bool, shape, func } = PropTypes;
 
 TotalContent.propTypes = {
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
   // termsAgreement: bool.isRequired,
-  // handleOnChange: func.isRequired,
+  handleOnChange: func.isRequired,
   discount: shape({
     qty: bool.isRequired,
     qtyAmount: number.isRequired,
