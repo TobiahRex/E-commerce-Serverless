@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
-import Validation from 'react-validation';
+// import _ from 'lodash';
+// import Validation from 'react-validation';
 
 const { string, func } = PropTypes;
 
 class CreditCardNumber extends React.Component {
   static propTypes = {
-    ccRenderKey: string.isRequired,
     ccNumber: string.isRequired,
     handleOnChange: func.isRequired,
   }
@@ -18,14 +17,6 @@ class CreditCardNumber extends React.Component {
     this.state = {
       ccNumber: '',
     };
-  }
-
-  componentDidMount() {
-    console.info('CreditCardNumber did Mount.')
-  }
-
-  componentWillUnmount() {
-    console.info('CreditCardNumber will Unmount.')
   }
 
   componentWillReceiveProps(nextProps) {

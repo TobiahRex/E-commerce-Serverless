@@ -24,13 +24,7 @@ class CvnAndZip extends React.Component {
       zipError: '',
     };
   }
-  componentDidMount() {
-    console.info('CreditCardCvn&Zip did Mount.')
-  }
 
-  componentWillUnmount() {
-    console.info('CreditCardCvn&Zip will Unmount.')
-  }
   componentWillReceiveProps(nextProps) {
     const {
       ccRenderKey,
@@ -50,14 +44,10 @@ class CvnAndZip extends React.Component {
   handleOnChange = e => this.props.handleOnChange(e);
 
   render() {
-    const {
-      ccRenderKey,
-    } = this.state;
-
     const enableZip = this.state.ccRenderKey === 'renderWithZip';
 
     return (
-      <div className="input__row cvn" key={ccRenderKey}>
+      <div className="input__row cvn">
         <div className="input__row--cvn-number">
           <div className="cvn-number--wrapper">
             <p>CVV <span className="required">*</span>

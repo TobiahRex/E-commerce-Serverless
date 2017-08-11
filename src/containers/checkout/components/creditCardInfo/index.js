@@ -82,31 +82,29 @@ class CreditCardInfo extends React.Component {
           handleOnChange={this.handleOnChange}
         /> */}
 
-        <div key={ccRenderKey}>
-          <Country
-            country={ccCountry}
-            handleOnChange={this.handleOnChange}
-          />
-          <CreditCardNumber
-            ccNumber={ccNumber}
-            handleOnChange={this.handleOnChange}
-          />
+        {/* <div key={ccRenderKey}> */}
+        <Country
+          country={ccCountry}
+          handleOnChange={this.handleOnChange}
+        />
+        <CreditCardNumber
+          ccNumber={ccNumber}
+          handleOnChange={this.handleOnChange}
+        />
 
-          <CreditCardExpiration
-            ccRenderKey={ccRenderKey}
-            ccExpireMonth={ccExpireMonth}
-            ccExpireYear={ccExpireYear}
-            handleOnChange={this.handleOnChange}
-          />
+        <CreditCardExpiration
+          ccExpireMonth={ccExpireMonth}
+          ccExpireYear={ccExpireYear}
+          handleOnChange={this.handleOnChange}
+        />
 
-          <CvnAndZip
-            ccRenderKey={ccRenderKey}
-            toggleModal={this.props.toggleModal}
-            ccCvn={ccCvn}
-            ccZip={ccZip}
-            handleOnChange={this.handleOnChange}
-          />
-        </div>
+        <CvnAndZip
+          toggleModal={this.props.toggleModal}
+          ccCvn={ccCvn}
+          ccZip={ccZip}
+          handleOnChange={this.handleOnChange}
+        />
+        {/* </div> */}
 
 
       </div>
