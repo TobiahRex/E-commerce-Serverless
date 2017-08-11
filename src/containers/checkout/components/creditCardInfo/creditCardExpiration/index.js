@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+// import _ from 'lodash';
 // import Validation from 'react-validation';
 // import Months from './monthConstants';
 // import Years from './yearConstants';
@@ -20,13 +20,6 @@ class CreditCardExpiration extends React.Component {
       ccExpireMonth: '',
       ccExpireYear: '',
     };
-  }
-  componentDidMount() {
-    console.info('CreditCardExpiration did Mount.')
-  }
-
-  componentWillUnmount() {
-    console.info('CreditCardExpiration will Unmount.')
   }
   componentWillReceiveProps(nextProps) {
     const {

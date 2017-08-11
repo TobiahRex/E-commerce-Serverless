@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import Validation from 'react-validation';
+// import Validation from 'react-validation';
 
 const { func, string } = PropTypes;
 

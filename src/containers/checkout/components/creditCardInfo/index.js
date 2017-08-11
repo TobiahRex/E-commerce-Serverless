@@ -48,7 +48,6 @@ class CreditCardInfo extends React.Component {
 
   render() {
     const {
-      ccRenderKey,
       ccCountry,
       ccNumber,
       ccExpireMonth,

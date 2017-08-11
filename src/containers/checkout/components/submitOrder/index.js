@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
 import {
   squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 
-let paymentForm = {};
+// let paymentForm = {};
 
-class SubmitOrder extends React.Component {
+class SubmitOrder extends React.PureComponent {
   static propTypes = {
     enable: PropTypes.bool.isRequired,
     ccCountry: PropTypes.string.isRequired,
@@ -21,24 +22,43 @@ class SubmitOrder extends React.Component {
     this.state = {
       ccCountry: props.ccCountry,
       ccRenderKey: props.ccRenderKey,
+      paymentForm: SqrPaymentForm(
+        props.ccRenderKey,
+        props.handleNonceResponse,
+      ),
     };
   }
 
   componentDidMount() {
-    if (!!paymentForm.options) {
-      paymentForm.build();
-    } else {
-      paymentForm = SqrPaymentForm(this.props.ccRenderKey, this.props.handleNonceResponse);
-      paymentForm.build();
+    this.state.paymentForm.build();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      ccCountry,
+      ccRenderKey,
+      handleNonceResponse,
+    } = nextProps;
+
+    if (!_.isEqual(nextProps, this.props)) {
+      this.state.paymentForm.destroy();
+      this.setState({
+        ccCountry,
+        ccRenderKey,
+        paymentForm: SqrPaymentForm(
+          ccRenderKey,
+          handleNonceResponse,
+        ),
+      });
     }
   }
 
-  componentWillUnmount() {
-    // paymentForm.destroy();
+  componentDidUpdate() {
+    this.state.paymentForm.build();
   }
 
   handleOnSubmit = () => {
-    paymentForm.requestCardNonce();
+    this.state.paymentForm.requestCardNonce();
   }
 
   render() {
@@ -50,11 +70,15 @@ class SubmitOrder extends React.Component {
     return (
     enable ?
       <div className="checkout__purchase-btn" >
-        <button onClick={() => paymentForm.destroy()}>Destroy</button>
+        <button onClick={() => this.state.paymentForm.destroy()}>Destroy</button>
         <button onClick={() => {
-          paymentForm = SqrPaymentForm(ccRenderKey, this.props.handleNonceResponse);
-          paymentForm.build();
-        }}>Build</button>
+          this.state.paymentForm = SqrPaymentForm('renderWithZip', this.props.handleNonceResponse);
+          this.state.paymentForm.build();
+        }}>Build US</button>
+        <button onClick={() => {
+          this.state.paymentForm = SqrPaymentForm('renderWithoutZip', this.props.handleNonceResponse);
+          this.state.paymentForm.build();
+        }}>Build Non-US</button>
         <Validation.components.Button
           className="button"
           errorClassName="asd"
