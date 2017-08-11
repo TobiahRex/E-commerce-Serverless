@@ -6,11 +6,12 @@ import logErrors from './errorLogging';
 
 const {
   NODE_ENV,
+  LAMBDA_ENV,
   GRAPHQL_PORT,
   API_GATEWAY_GRAPHQL,
 } = process.env;
 
-const uri = NODE_ENV === 'development' ? `http://localhost:${GRAPHQL_PORT}/graphql` : `${API_GATEWAY_GRAPHQL}/${NODE_ENV}/graphql`;
+const uri = NODE_ENV === 'development' ? `http://localhost:${GRAPHQL_PORT}/graphql` : `${API_GATEWAY_GRAPHQL}/${LAMBDA_ENV}/graphql`;
 
 
 if (!uri) throw new Error('Apollo Client network interface is not defined.');
