@@ -14,7 +14,7 @@ class SubmitOrder extends React.PureComponent {
     enable: PropTypes.bool.isRequired,
     ccCountry: PropTypes.string.isRequired,
     ccRenderKey: PropTypes.string.isRequired,
-    handleNonceResponse: PropTypes.func.isRequired,
+    // handleNonceResponse: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);

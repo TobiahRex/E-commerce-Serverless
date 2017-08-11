@@ -94,7 +94,7 @@ class ExpressCheckout extends Component {
   }
 
   componentDidMount() {
-    SqrPaymentForm.build('renderWithZip', this.handleNonceResponse);
+    SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
   }
 
   componentWillReceiveProps(nextProps) {
