@@ -48,6 +48,7 @@ class CreditCardInfo extends React.Component {
 
   render() {
     const {
+      ccRenderKey,
       ccCountry,
       ccNumber,
       ccExpireMonth,
@@ -74,7 +75,7 @@ class CreditCardInfo extends React.Component {
             </div>
           </div>
         </div>
-
+        
         {/* NOTE: "Not required from Square."
           <NameOnCard
           ccNameOnCard={ccNameOnCard}
@@ -98,6 +99,7 @@ class CreditCardInfo extends React.Component {
         />
 
         <CvnAndZip
+          ccRenderKey={ccRenderKey}
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
           ccZip={ccZip}

@@ -30,7 +30,7 @@ class SubmitOrder extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.state.paymentForm.build();
+    // this.state.paymentForm.build();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,7 +41,8 @@ class SubmitOrder extends React.PureComponent {
     } = nextProps;
 
     if (!_.isEqual(nextProps, this.props)) {
-      this.state.paymentForm.destroy();
+      console.warn('CREATING NEW PAYMENT FORM.')
+      // this.state.paymentForm.destroy();
       this.setState({
         ccCountry,
         ccRenderKey,
