@@ -43,7 +43,7 @@ SubmitOrder.propTypes = {
   requestCardNonce: PropTypes.func.isRequired,
 };
 const SubmitOrderWithHandlers = withHandlers({
-  requestCardNonce: () => (e) => {
+  requestCardNonce: () => (event) => { //eslint-disable-line
     SqrPaymentForm.get().requestCardNonce();
   }
 })(SubmitOrder);

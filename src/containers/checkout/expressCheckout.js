@@ -329,7 +329,7 @@ class ExpressCheckout extends Component {
               /> */}
             </div>
             <div className="checkout__grid">
-              {/* <CreditCardInfo
+              <CreditCardInfo
                 ccRenderKey={ccRenderKey}
                 ccNameOnCard={ccNameOnCard}
                 ccCountry={ccCountry}
@@ -340,7 +340,7 @@ class ExpressCheckout extends Component {
                 ccZip={ccZip}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
-              /> */}
+              />
               <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
