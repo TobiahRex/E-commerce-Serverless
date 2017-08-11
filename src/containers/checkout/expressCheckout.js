@@ -343,13 +343,11 @@ class ExpressCheckout extends Component {
                 showTotal={!!cart.length}
               />
 
-              {/* <div key={ccRenderKey}> */}
               <SubmitOrder
                 enable={!!cart.length}
                 ccCountry={ccCountry}
                 ccRenderKey={ccRenderKey}
               />
-              {/* </div> */}
 
               <NetworkStatus
                 errors={errors}

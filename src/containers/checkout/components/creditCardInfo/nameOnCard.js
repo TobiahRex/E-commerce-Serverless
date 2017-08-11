@@ -30,7 +30,7 @@ class NameOnCard extends React.PureComponent {
       <div className="input__row">
         <div className="input__row--name-on-card">
           <p>Name on Card <span className="required">*</span></p>
-          <Validation.components.Input
+          {/* <Validation.components.Input
             errorClassName="is-invalid-input"
             type="text"
             containerClassName=""
@@ -38,7 +38,7 @@ class NameOnCard extends React.PureComponent {
             validations={['required', 'ccName', 'ccName-firstLast']}
             onChange={this.handleOnChange}
             value={this.state.ccNameOnCard}
-          />
+          /> */}
         </div>
       </div>
     );

@@ -81,8 +81,8 @@ class CvnAndZip extends React.Component {
           <p>Zip Code {'\u0020'}
             <span className="required">*</span>
           </p>
-          {/* <div id="sq-postal-code" /> */}
-          <input
+          <div id="sq-postal-code" />
+          {/* <input
             id="sq-postal-code"
             type="text"
             className={this.state.zipError}
@@ -94,7 +94,7 @@ class CvnAndZip extends React.Component {
             onChange={this.handleOnChange}
             value={this.state.ccZip}
             // required
-          />
+          /> */}
         </div>
       </div>
     );

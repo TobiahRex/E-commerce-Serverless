@@ -39,10 +39,6 @@ class SubmitOrder extends React.PureComponent {
     }
   }
 
-  componentDidUpdate() {
-    // SqrPaymentForm.build();
-  }
-
   handleOnSubmit = () => {
     SqrPaymentForm.get().requestCardNonce();
   }
@@ -78,7 +74,7 @@ class SubmitOrder extends React.PureComponent {
         </Validation.components.Button>
       </div>
         :
-      <div className="checkout__purchase-btn" key={ccRenderKey}>
+      <div className="checkout__purchase-btn">
         <button className="button" disabled>
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
