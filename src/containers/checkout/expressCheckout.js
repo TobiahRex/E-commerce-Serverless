@@ -12,7 +12,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
-  // squarePaymentForm as SqrPaymentForm,
+  squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 import {
   propTypes,
@@ -93,6 +93,10 @@ class ExpressCheckout extends Component {
     };
   }
 
+  componentDidMount() {
+    SqrPaymentForm.build('renderWithZip', this.handleNonceResponse);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (
       !_.isEqual(nextProps, this.props) ||
@@ -119,17 +123,44 @@ class ExpressCheckout extends Component {
       const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
 
       if (countriesWithPostal.includes(e.target.value)) {
+        if (SqrPaymentForm.type === 'renderWithZip') {
+          this.setState(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            ccRenderKey: 'renderWithZip',
+          }), () => {
+            SqrPaymentForm.build();
+          });
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            ccRenderKey: 'renderWithZip',
+          }), () => {
+            SqrPaymentForm.destroy();
+            SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+            SqrPaymentForm.build();
+          });
+        }
+      }
+      if (SqrPaymentForm.type === 'renderWithoutZip') {
         this.setState(prevState => ({
           ...prevState,
           [e.target.name]: e.target.value,
-          ccRenderKey: 'renderWithZip',
-        }));
+          ccRenderKey: 'renderWithoutZip',
+        }), () => {
+          SqrPaymentForm.build();
+        });
       } else {
         this.setState(prevState => ({
           ...prevState,
           [e.target.name]: e.target.value,
           ccRenderKey: 'renderWithoutZip',
-        }));
+        }), () => {
+          SqrPaymentForm.destroy();
+          SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+          SqrPaymentForm.build();
+        });
       }
     } else {
       this.setState({ [e.target.name]: e.target.value });
@@ -281,7 +312,6 @@ class ExpressCheckout extends Component {
                 enable={!!cart.length}
                 ccCountry={ccCountry}
                 ccRenderKey={ccRenderKey}
-                handleNonceResponse={this.handleNonceResponse}
               />
               {/* </div> */}
 

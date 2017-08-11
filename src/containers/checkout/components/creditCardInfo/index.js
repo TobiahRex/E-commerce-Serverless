@@ -75,7 +75,7 @@ class CreditCardInfo extends React.Component {
             </div>
           </div>
         </div>
-        
+
         {/* NOTE: "Not required from Square."
           <NameOnCard
           ccNameOnCard={ccNameOnCard}

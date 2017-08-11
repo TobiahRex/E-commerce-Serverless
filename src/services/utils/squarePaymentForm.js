@@ -2,15 +2,21 @@ const applicationId = process.env.SQUARE_APPLICATION_ID;
 
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
 
-export default () => ({
+export default {
   paymentForm: {},
-  getPaymentForm: () => this.paymentForm,
-  destroyPaymentForm: () => {
+  type: '',
+  get: () => this.paymentForm,
+  destroy: () => {
     this.paymentForm.destroy();
     this.paymentForm = {};
   },
-  createPaymentForm: (type, handleNonceResponse) => {
+  build: () => {
+    this.paymentForm.build();
+  },
+  create: (type, handleNonceResponse) => {
     let postalCode = null;
+
+    this.type = type;
 
     if (type === 'renderWithZip') {
       postalCode = {
@@ -94,4 +100,4 @@ export default () => ({
       })
     );
   },
-});
+};

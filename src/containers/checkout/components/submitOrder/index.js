@@ -22,34 +22,19 @@ class SubmitOrder extends React.PureComponent {
     this.state = {
       ccCountry: props.ccCountry,
       ccRenderKey: props.ccRenderKey,
-      paymentForm: SqrPaymentForm(
-        props.ccRenderKey,
-        props.handleNonceResponse,
-      ),
     };
-  }
-
-  componentDidMount() {
-    // this.state.paymentForm.build();
   }
 
   componentWillReceiveProps(nextProps) {
     const {
       ccCountry,
       ccRenderKey,
-      handleNonceResponse,
     } = nextProps;
 
     if (!_.isEqual(nextProps, this.props)) {
-      console.warn('CREATING NEW PAYMENT FORM.')
-      // this.state.paymentForm.destroy();
       this.setState({
         ccCountry,
         ccRenderKey,
-        paymentForm: SqrPaymentForm(
-          ccRenderKey,
-          handleNonceResponse,
-        ),
       });
     }
   }
@@ -71,15 +56,15 @@ class SubmitOrder extends React.PureComponent {
     return (
     enable ?
       <div className="checkout__purchase-btn" >
-        <button onClick={() => this.state.paymentForm.destroy()}>Destroy</button>
-        <button onClick={() => {
+        {/* <button onClick={() => this.state.paymentForm.destroy()}>Destroy</button>
+          <button onClick={() => {
           this.state.paymentForm = SqrPaymentForm('renderWithZip', this.props.handleNonceResponse);
           this.state.paymentForm.build();
-        }}>Build US</button>
-        <button onClick={() => {
+          }}>Build US</button>
+          <button onClick={() => {
           this.state.paymentForm = SqrPaymentForm('renderWithoutZip', this.props.handleNonceResponse);
           this.state.paymentForm.build();
-        }}>Build Non-US</button>
+        }}>Build Non-US</button> */}
         <Validation.components.Button
           className="button"
           errorClassName="asd"
