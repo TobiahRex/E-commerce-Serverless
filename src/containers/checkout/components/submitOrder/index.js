@@ -24,17 +24,16 @@ class SubmitOrder extends React.Component {
     };
   }
 
-  componentWillMount() {
-    if (!!paymentForm.options) {
-      paymentForm.destroy();
-      paymentForm = {};
-    }
-  }
-
   componentDidMount() {
+    console.log('%cMOUNTING Submit Order', 'background:red;');
     paymentForm = SqrPaymentForm(this.props.ccRenderKey, this.props.handleNonceResponse);
     paymentForm.build();
-    console.warn('SUBMIT ORDER - Mounted');
+  }
+
+  componentWillUnmount() {
+    paymentForm.destroy();
+    paymentForm = {};
+    console.log('%cUNMOUNTING Submit Order\n paymentForm =  ', 'background:red;', paymentForm);
   }
 
   componentWillReceiveProps({ ccRenderKey }) {
