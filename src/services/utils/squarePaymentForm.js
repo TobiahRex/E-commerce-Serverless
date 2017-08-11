@@ -8,17 +8,23 @@ class SqrPaymentForm {
     this.type = '';
   }
 
-  logThis() { console.log('this: ', this)}
+  destroy() {
+    this.paymentForm.destroy();
+    this.paymentForm = null;
+    console.log('%cDestroyed payment form.', 'background:pink;');
+  }
 
   get() {
     return this.paymentForm;
   }
 
   build() {
-    this.paymentForm.build()
+    this.paymentForm.build();
+    console.log('%cBuilt payment form.', 'background:lime;');
   }
 
   create(type, handleNonceResponse) {
+    console.log('%cCreating payment form.', 'background:yellow;');
     let postalCode = null;
     console.log('this: ', this);
     this.type = type;
@@ -206,4 +212,4 @@ class SqrPaymentForm {
 //   },
 // };
 
-export default SqrPaymentForm;
+export default new SqrPaymentForm();

@@ -40,7 +40,7 @@ class SubmitOrder extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    this.state.paymentForm.build();
+    // SqrPaymentForm.build();
   }
 
   handleOnSubmit = () => {
