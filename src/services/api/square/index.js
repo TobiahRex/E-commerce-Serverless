@@ -6,8 +6,6 @@ const createSquareAPI = () => {
     baseURL: 'https://connect.squareup.com/v2',
   });
 
-  const fetchPaymentForm = () => api.get('/paymentForm');
-
   const authorizeDelayTransaction = ({
     locationId,
     transactionId,
@@ -54,7 +52,6 @@ const createSquareAPI = () => {
 
   return {
     authorizeDelayTransaction,
-    fetchPaymentForm,
   };
 };
 

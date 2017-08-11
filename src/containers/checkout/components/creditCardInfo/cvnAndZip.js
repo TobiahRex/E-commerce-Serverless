@@ -74,7 +74,7 @@ class CvnAndZip extends React.PureComponent {
           /> */}
 
         </div>
-        <div className="input__row--zip-code">
+        <div className="input__row--zip-code" key={ccRenderKey}>
           <p>Zip Code {'\u0020'}
             { enableZip && <span className="required">*</span> }
           </p>

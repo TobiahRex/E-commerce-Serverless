@@ -1,31 +1,21 @@
-import {
-  squareAPI as SquareAPI,
-} from '../api/square';
-
 const applicationId = process.env.SQUARE_APPLICATION_ID;
-
-{/* <script type="text/javascript" src="https://js.squareup.com/v2/paymentform"></script> */}
-
 
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
 
-export default (ccRenderKey, handleNonceResponse) =>
-new Promise((resolve, reject) => {
-  SquareAPI.fetchPaymentForm()
-  .then((iffe) => {
-    iffe();
-    let postalCode = null;
+export default (ccRenderKey, handleNonceResponse) => {
+  let postalCode = null;
 
-    if (ccRenderKey === 'renderWithZip') {
-      postalCode = {
-        elementId: 'sq-postal-code',
-        placeholder: '99999',
-      };
-    } else if (ccRenderKey === 'renderWithoutZip') {
-      postalCode = false;
-    }
+  if (ccRenderKey === 'renderWithZip') {
+    postalCode = {
+      elementId: 'sq-postal-code',
+      placeholder: '99999',
+    };
+  } else if (ccRenderKey === 'renderWithoutZip') {
+    postalCode = false;
+  }
 
-    let paymentForm =  new SqPaymentForm({ // eslint-disable-line
+  return (
+    new SqPaymentForm({ // eslint-disable-line
       applicationId,
       inputClass: 'sq-input',
       inputStyles: [
@@ -63,29 +53,29 @@ new Promise((resolve, reject) => {
 
         // Fill in these cases to respond to various events that can occur while a
         // buyer is using the payment form.
-        // inputEventReceived: (inputEvent) => {
-        //   switch (inputEvent.eventType) {
-        //     case 'focusClassAdded':
-        //     // Handle as desired
-        //     break;
-        //     case 'focusClassRemoved':
-        //     // Handle as desired
-        //     break;
-        //     case 'errorClassAdded':
-        //     // Handle as desired
-        //     break;
-        //     case 'errorClassRemoved':
-        //     // Handle as desired
-        //     break;
-        //     case 'cardBrandChanged':
-        //     // Handle as desired
-        //     break;
-        //     case 'postalCodeChanged':
-        //     // Handle as desired
-        //     break;
-        //     default: break;
-        //   }
-        // },
+        inputEventReceived: (inputEvent) => {
+          switch (inputEvent.eventType) {
+            case 'focusClassAdded':
+            // Handle as desired
+              break;
+            case 'focusClassRemoved':
+            // Handle as desired
+              break;
+            case 'errorClassAdded':
+            // Handle as desired
+              break;
+            case 'errorClassRemoved':
+            // Handle as desired
+              break;
+            case 'cardBrandChanged':
+            // Handle as desired
+              break;
+            case 'postalCodeChanged':
+            // Handle as desired
+              break;
+            default: break;
+          }
+        },
 
         paymentFormLoaded: () => {
           console.warn('FINISHED LOADING');
@@ -94,9 +84,6 @@ new Promise((resolve, reject) => {
           // paymentForm.setPostalCode('94103');
         },
       },
-    });
-
-    resolve(paymentForm);
-  })
-  .catch(alert);
-});
+    })
+  );
+};
