@@ -25,20 +25,17 @@ class SubmitOrder extends React.Component {
   }
 
   componentDidMount() {
-    console.log('%cMOUNTING Submit Order', 'background:red;');
     paymentForm = SqrPaymentForm(this.props.ccRenderKey, this.props.handleNonceResponse);
     paymentForm.build();
   }
 
   componentWillUnmount() {
-    paymentForm.destroy();
-    paymentForm = {};
-    console.log('%cUNMOUNTING Submit Order\n paymentForm =  ', 'background:red;', paymentForm);
+    // paymentForm.destroy();
   }
 
   componentWillReceiveProps({ ccRenderKey }) {
     if (ccRenderKey !== this.state.ccRenderKey) {
-      // paymentForm.build();
+      console.warn('ccRenderKey is DIFFERENT');
       this.setState(() => ({ ccRenderKey }));
     }
   }
@@ -56,7 +53,11 @@ class SubmitOrder extends React.Component {
     return (
     enable ?
       <div className="checkout__purchase-btn" >
-        <button onClick={() => paymentForm.destroy()}>destroy</button>
+        <button onClick={() => paymentForm.destroy()}>Destroy</button>
+        <button onClick={() => {
+          paymentForm = SqrPaymentForm(ccRenderKey, this.props.handleNonceResponse);
+          paymentForm.build();
+        }}>Build</button>
         <Validation.components.Button
           className="button"
           errorClassName="asd"

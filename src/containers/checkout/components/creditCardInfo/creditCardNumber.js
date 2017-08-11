@@ -5,8 +5,9 @@ import Validation from 'react-validation';
 
 const { string, func } = PropTypes;
 
-class CreditCardNumber extends React.PureComponent {
+class CreditCardNumber extends React.Component {
   static propTypes = {
+    ccRenderKey: string.isRequired,
     ccNumber: string.isRequired,
     handleOnChange: func.isRequired,
   }
@@ -16,20 +17,33 @@ class CreditCardNumber extends React.PureComponent {
 
     this.state = {
       ccNumber: '',
+      ccRenderKey: '',
     };
   }
 
+  componentDidMount() {
+    console.info('CreditCardNumber did Mount.')
+  }
+
+  componentWillUnmount() {
+    console.info('CreditCardNumber will Unmount.')
+  }
+
   componentWillReceiveProps(nextProps) {
-    const nextPropsCopy = Object.assign({}, nextProps);
-    delete nextPropsCopy.handleOnChange;
-    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+    const {
+      ccRenderKey,
+      ccNumber,
+    } = nextProps;
+    if (nextProps !== this.props) {
+      this.setState({ ccRenderKey, ccNumber });
+    }
   }
 
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
     return (
-      <div className="input__row">
+      <div className="input__row" key={this.props.ccRenderKey}>
         <div className="input__row--cc-number">
           <p>Credit Card Number <span className="required">*</span></p>
           <div id="sq-card-number" />

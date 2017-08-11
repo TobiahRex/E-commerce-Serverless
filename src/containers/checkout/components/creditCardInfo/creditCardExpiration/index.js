@@ -9,6 +9,7 @@ const { string, func } = PropTypes;
 
 class CreditCardExpiration extends React.Component {
   static propTypes = {
+    ccRenderKey: string.isRequired,
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
     handleOnChange: func.isRequired,
@@ -19,13 +20,25 @@ class CreditCardExpiration extends React.Component {
     this.state = {
       ccExpireMonth: '',
       ccExpireYear: '',
+      ccRenderKey: '',
     };
   }
+  componentDidMount() {
+    console.info('CreditCardExpiration did Mount.')
+  }
 
+  componentWillUnmount() {
+    console.info('CreditCardExpiration will Unmount.')
+  }
   componentWillReceiveProps(nextProps) {
-    const nextPropsCopy = Object.assign({}, nextProps);
-    delete nextPropsCopy.handleOnChange;
-    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+    const {
+      ccRenderKey,
+      ccExpireMonth,
+      ccExpireYear,
+    } = nextProps;
+    if (nextProps !== this.props) {
+      this.setState({ ccRenderKey, ccExpireMonth, ccExpireYear });
+    }
   }
 
   handleOnChange = e => this.props.handleOnChange(e)
@@ -53,7 +66,7 @@ class CreditCardExpiration extends React.Component {
 
   render() {
     return (
-      <div className="input__row">
+      <div className="input__row" key={this.props.ccRenderKey}>
         <div className="input__row--exp-date">
 
           <div className="input__container--exp-month">

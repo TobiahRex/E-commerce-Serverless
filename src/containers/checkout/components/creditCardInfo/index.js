@@ -88,11 +88,13 @@ class CreditCardInfo extends React.Component {
         />
 
         <CreditCardNumber
+          ccRenderKey={ccRenderKey}
           ccNumber={ccNumber}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardExpiration
+          ccRenderKey={ccRenderKey}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}

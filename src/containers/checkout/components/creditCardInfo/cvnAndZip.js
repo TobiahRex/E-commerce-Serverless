@@ -5,7 +5,7 @@ import Validation from 'react-validation';
 
 const { func, string } = PropTypes;
 
-class CvnAndZip extends React.PureComponent {
+class CvnAndZip extends React.Component {
   static propTypes = {
     ccRenderKey: string.isRequired,
     toggleModal: func.isRequired,
@@ -24,7 +24,13 @@ class CvnAndZip extends React.PureComponent {
       zipError: '',
     };
   }
+  componentDidMount() {
+    console.info('CreditCardCvn&Zip did Mount.')
+  }
 
+  componentWillUnmount() {
+    console.info('CreditCardCvn&Zip will Unmount.')
+  }
   componentWillReceiveProps(nextProps) {
     const {
       ccRenderKey,
@@ -51,7 +57,7 @@ class CvnAndZip extends React.PureComponent {
     const enableZip = this.state.ccRenderKey === 'renderWithZip';
 
     return (
-      <div className="input__row cvn">
+      <div className="input__row cvn" key={ccRenderKey}>
         <div className="input__row--cvn-number">
           <div className="cvn-number--wrapper">
             <p>CVV <span className="required">*</span>
@@ -78,13 +84,15 @@ class CvnAndZip extends React.PureComponent {
           /> */}
 
         </div>
-        <div className="input__row--zip-code" >
+        <div
+          className="input__row--zip-code"
+          style={{ visibility: enableZip ? 'visible' : 'hidden' }}
+        >
           <p>Zip Code {'\u0020'}
-            { enableZip && <span className="required">*</span> }
+            <span className="required">*</span>
           </p>
           {/* <div id="sq-postal-code" /> */}
           <input
-            style={{ visibility:  }}
             id="sq-postal-code"
             type="text"
             className={this.state.zipError}
