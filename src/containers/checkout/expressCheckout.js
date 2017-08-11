@@ -97,13 +97,16 @@ class ExpressCheckout extends Component {
     // console.log('%cthis.paymentForm: ', 'background:blue;', SqrPaymentForm.paymentForm);
 
     if (!!SqrPaymentForm.paymentForm) {
-      SqrPaymentForm.destroy();
-      const iFrames = document.getElementsByTagName('iframe');
-      iFrames.forEach((frame) => {
-        const frameId = frame.getAttribute('id');
-        const newEl = document.createElement('div').setAttribute('id', frameId);
-        frame.parentNode.replaceChild(frame, newEl);
-      });
+      SqrPaymentForm.build();
+      // SqrPaymentForm.destroy();
+      // const iFrames = document.getElementsByTagName('iframe');
+      // if (iFrames.length) {
+      //   iFrames.forEach((frame) => {
+      //     const frameId = frame.getAttribute('id');
+      //     const newEl = document.createElement('div').setAttribute('id', frameId);
+      //     frame.parentNode.replaceChild(frame, newEl);
+      //   });
+      // }
     }
     SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
     SqrPaymentForm.build();
