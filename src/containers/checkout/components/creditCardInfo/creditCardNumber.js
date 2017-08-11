@@ -17,7 +17,6 @@ class CreditCardNumber extends React.Component {
 
     this.state = {
       ccNumber: '',
-      ccRenderKey: '',
     };
   }
 
@@ -31,11 +30,10 @@ class CreditCardNumber extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      ccRenderKey,
       ccNumber,
     } = nextProps;
     if (nextProps !== this.props) {
-      this.setState({ ccRenderKey, ccNumber });
+      this.setState({ ccNumber });
     }
   }
 
@@ -43,7 +41,7 @@ class CreditCardNumber extends React.Component {
 
   render() {
     return (
-      <div className="input__row" key={this.props.ccRenderKey}>
+      <div className="input__row" >
         <div className="input__row--cc-number">
           <p>Credit Card Number <span className="required">*</span></p>
           <div id="sq-card-number" />

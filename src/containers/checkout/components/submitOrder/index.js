@@ -25,12 +25,15 @@ class SubmitOrder extends React.Component {
   }
 
   componentDidMount() {
+    if (!!paymentForm.options) {
+      paymentForm.build();
+    }
     paymentForm = SqrPaymentForm(this.props.ccRenderKey, this.props.handleNonceResponse);
     paymentForm.build();
   }
 
   componentWillUnmount() {
-    // paymentForm.destroy();
+    paymentForm.destroy();
   }
 
   componentWillReceiveProps({ ccRenderKey }) {
