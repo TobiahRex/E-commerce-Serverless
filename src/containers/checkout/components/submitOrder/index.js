@@ -44,7 +44,7 @@ class SubmitOrder extends React.PureComponent {
   }
 
   handleOnSubmit = () => {
-    this.state.paymentForm.requestCardNonce();
+    SqrPaymentForm.get().requestCardNonce();
   }
 
   render() {
