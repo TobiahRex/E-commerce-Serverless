@@ -22,6 +22,7 @@ function NetworkStatus({ routerPush, renderHelper }) {
 }
 const { shape, string, bool, func } = PropTypes;
 NetworkStatus.propTypes = {
+  postalError: string,
   errors: shape({
     hard: bool,
     soft: bool,
@@ -32,13 +33,17 @@ NetworkStatus.propTypes = {
   renderHelper: func.isRequired,
 };
 NetworkStatus.defaultProps = {
+  postalError: '',
   loading: false,
 };
 
 const NetworkStatusWithHandlers = withHandlers({
-  renderHelper: ({ errors, loading, success }) => () => {
-    const { hard, soft, message } = errors;
-    const showError = !!hard || !!soft || !!message.length;
+  renderHelper: ({ errors, loading, success, apiError }) => () => {
+    let { message } = errors;
+    const { hard, soft } = errors;
+    const showError = !!hard || !!soft || !!message.length || apiError;
+
+    if (apiError) message = apiError;
 
     const hardError = (
       <div className="checkout__error-hard">

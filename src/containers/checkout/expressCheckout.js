@@ -228,7 +228,7 @@ class ExpressCheckout extends Component {
   render() {
     const {
       loggedIn,
-      // SubmitFinalOrder,
+      postalError,
     } = this.props;
 
     const {
@@ -325,6 +325,7 @@ class ExpressCheckout extends Component {
               <SubmitOrder enable={!!cart.length} />
 
               <NetworkStatus
+                apiError={postalError}
                 errors={errors}
                 loading={false}
                 success={false}
