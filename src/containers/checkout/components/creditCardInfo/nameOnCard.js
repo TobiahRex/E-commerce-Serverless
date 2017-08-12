@@ -21,6 +21,7 @@ class NameOnCard extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const nextPropsCopy = Object.assign({}, nextProps);
     delete nextPropsCopy.handleOnChange;
+
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
   }
 

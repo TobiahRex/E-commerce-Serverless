@@ -26,18 +26,16 @@ class CvnAndZip extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {
-      ccRenderKey,
-      ccCvn,
-      ccZip,
-    } = nextProps;
+    const nextPropsCopy = Object.assign({}, nextProps);
+    delete nextPropsCopy.show;
+    delete nextPropsCopy.toggleModal;
+    delete nextPropsCopy.handleOnChange;
 
     if (!_.isEqual(nextProps, this.props)) {
-      this.setState({
-        ccRenderKey,
-        ccCvn,
-        ccZip,
-      });
+      this.setState(prevState => ({
+        ...prevState,
+        ...nextPropsCopy,
+      }));
     }
   }
 
@@ -62,17 +60,6 @@ class CvnAndZip extends React.Component {
             </button>
           </div>
           <div id="sq-cvv" />
-          {/* <Validation.components.Input
-            id="sq-cvv"
-            errorClassName="is-invalid-input"
-            type="text"
-            containerClassName=""
-            name="ccCvn"
-            validations={['required', 'ccCvn']}
-            onChange={this.handleOnChange}
-            value={this.state.ccCvn}
-          /> */}
-
         </div>
         <div
           className="input__row--zip-code"
@@ -82,19 +69,6 @@ class CvnAndZip extends React.Component {
             <span className="required">*</span>
           </p>
           <div id="sq-postal-code" />
-          {/* <input
-            id="sq-postal-code"
-            type="text"
-            className={this.state.zipError}
-            // containerClassName=""
-            name="ccZip"
-            // placeholder="99999"
-            // maxLength="5"
-            // pattern="\d{5}"
-            onChange={this.handleOnChange}
-            value={this.state.ccZip}
-            // required
-          /> */}
         </div>
       </div>
     );

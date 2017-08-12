@@ -222,7 +222,6 @@ class ExpressCheckout extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    // this.requestCardNonce();
     this.setState({ error: this.form.validateAll() });
   }
 
@@ -242,8 +241,6 @@ class ExpressCheckout extends Component {
 
       // No errors occurred. Extract the card nonce.
     } else {
-      // Delete this line and uncomment the lines below when you're ready
-      // to start submitting nonces to your server.
       alert('Nonce received: ' + nonce);
     }
   }
@@ -299,111 +296,103 @@ class ExpressCheckout extends Component {
         <Validation.components.Form
           ref={this.assignRefToForm}
           onSubmit={this.handleOnSubmit}
-          >
-            {/* <Validation.components.Input
-              errorClassName='is-invalid-input'
-              type='checkbox'
-              name='policy'
-              value='1'
-              validations={['required']}
-            /> */}
-
-            <div className="checkout__body grid">
-              <div className="checkout__grid">
-                <ProductReview
-                  cart={cart}
-                  loggedIn={loggedIn}
-                  routerPush={this.routerPush}
-                  newsletterDecision={newsletterDecision}
-                  handleOnChange={this.handleOnChange}
-                />
-                <ShippingMethod />
-              </div>
-              <div className="checkout__grid">
-                {/* <ShippingAddress
-                  shippingFirstName={shippingFirstName}
-                  shippingLastName={shippingLastName}
-                  shippingEmail={shippingEmail}
-                  shippingAddressLine1={shippingAddressLine1}
-                  shippingAddressLine2={shippingAddressLine2}
-                  shippingCountry={shippingCountry}
-                  shippingPrefecture={shippingPrefecture}
-                  shippingCity={shippingCity}
-                  shippingPostalCode={shippingPostalCode}
-                  shippingPhoneNumber={shippingPhoneNumber}
-                  handleOnChange={this.handleOnChange}
-                /> */}
-              </div>
-              <div className="checkout__grid">
-                <CreditCardInfo
-                  ccRenderKey={ccRenderKey}
-                  ccNameOnCard={ccNameOnCard}
-                  ccCountry={ccCountry}
-                  ccNumber={ccNumber}
-                  ccExpireMonth={ccExpireMonth}
-                  ccExpireYear={ccExpireYear}
-                  ccCvn={ccCvn}
-                  ccZip={ccZip}
-                  handleOnChange={this.handleOnChange}
-                  toggleModal={this.toggleModal}
-                />
-                <GrandTotal
-                  total={total}
-                  showTotal={!!cart.length}
-                  handleOnChange={this.handleOnChange}
-                />
-
-                <SubmitOrder enable={!!cart.length} />
-
-                <NetworkStatus
-                  errors={errors}
-                  loading={false}
-                  success={false}
-                  routerPush={this.routerPush}
-                />
-              </div>
+        >
+          <div className="checkout__body grid">
+            <div className="checkout__grid">
+              <ProductReview
+                cart={cart}
+                loggedIn={loggedIn}
+                routerPush={this.routerPush}
+                newsletterDecision={newsletterDecision}
+                handleOnChange={this.handleOnChange}
+              />
+              <ShippingMethod />
             </div>
-          </Validation.components.Form>
+            <div className="checkout__grid">
+              <ShippingAddress
+                shippingFirstName={shippingFirstName}
+                shippingLastName={shippingLastName}
+                shippingEmail={shippingEmail}
+                shippingAddressLine1={shippingAddressLine1}
+                shippingAddressLine2={shippingAddressLine2}
+                shippingCountry={shippingCountry}
+                shippingPrefecture={shippingPrefecture}
+                shippingCity={shippingCity}
+                shippingPostalCode={shippingPostalCode}
+                shippingPhoneNumber={shippingPhoneNumber}
+                handleOnChange={this.handleOnChange}
+              />
+            </div>
+            <div className="checkout__grid">
+              <CreditCardInfo
+                ccRenderKey={ccRenderKey}
+                ccNameOnCard={ccNameOnCard}
+                ccCountry={ccCountry}
+                ccNumber={ccNumber}
+                ccExpireMonth={ccExpireMonth}
+                ccExpireYear={ccExpireYear}
+                ccCvn={ccCvn}
+                ccZip={ccZip}
+                handleOnChange={this.handleOnChange}
+                toggleModal={this.toggleModal}
+              />
+              <GrandTotal
+                total={total}
+                showTotal={!!cart.length}
+                handleOnChange={this.handleOnChange}
+              />
 
-          <CvnModal
-            showModal={this.state.showCvnModal}
-            toggleModal={this.toggleModal}
-          />
+              <SubmitOrder enable={!!cart.length} />
 
-        </div>
-      );
-    }
+              <NetworkStatus
+                errors={errors}
+                loading={false}
+                success={false}
+                routerPush={this.routerPush}
+              />
+            </div>
+          </div>
+        </Validation.components.Form>
+
+        <CvnModal
+          showModal={this.state.showCvnModal}
+          toggleModal={this.toggleModal}
+        />
+
+      </div>
+    );
   }
+}
 
-  const ExpressCheckoutWithState = connect((state, ownProps) => {
-    const total = ComposeFinalTotal(ownProps);
-    const cart = DetermineCartType(ownProps, ZipUserCart);
+const ExpressCheckoutWithState = connect((state, ownProps) => {
+  const total = ComposeFinalTotal(ownProps);
+  const cart = DetermineCartType(ownProps, ZipUserCart);
 
-    return ({
-      total,
-      cart,
-    });
-  }, dispatch => ({
-    push: location => dispatch(push(location)),
-  }))(ExpressCheckout);
+  return ({
+    total,
+    cart,
+  });
+}, dispatch => ({
+  push: location => dispatch(push(location)),
+}))(ExpressCheckout);
 
-  const ExpressCheckoutWithStateAndData = compose(
-    graphql(FetchMultipleProducts, {
-      name: 'FetchMultipleProducts',
-      options: FetchMultipleProductsOptions,
-    }),
-    graphql(SubmitFinalOrder, {
-      name: 'SubmitFinalOrder',
-      options: SubmitFinalOrderOptions,
-    }),
-  )(ExpressCheckoutWithState);
+const ExpressCheckoutWithStateAndData = compose(
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: FetchMultipleProductsOptions,
+  }),
+  graphql(SubmitFinalOrder, {
+    name: 'SubmitFinalOrder',
+    options: SubmitFinalOrderOptions,
+  }),
+)(ExpressCheckoutWithState);
 
-  const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
-    loggedIn: auth.loggedIn || false,
-    newUser: CheckNewUser(user, auth.loggedIn),
-    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
-    guestCart: orders.cart,
-    taxRate: orders.taxRate.totalRate,
-  }))(ExpressCheckoutWithStateAndData);
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
+  loggedIn: auth.loggedIn || false,
+  newUser: CheckNewUser(user, auth.loggedIn),
+  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  guestCart: orders.cart,
+  taxRate: orders.taxRate.totalRate,
+}))(ExpressCheckoutWithStateAndData);
 
-  export default ExpressCheckoutWithStateAndData2;
+export default ExpressCheckoutWithStateAndData2;
