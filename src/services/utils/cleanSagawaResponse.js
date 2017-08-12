@@ -12,7 +12,7 @@ const extractData = (jsonResponse) => {
   };
 }
 
-const postal = (response) => {
+const handlePostal = (response) => {
   let { problem, data } = response;
   const { ok } = response;
   console.log('RESPONSE:\n', response, '\n\n');
@@ -23,26 +23,35 @@ const postal = (response) => {
     xml2js.parseString(data, (err, results) => {
       if (err) {
         problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
-      } else {
-        const { error, postalCode, jpAddress } = extractData(results);
-        if (error) {
-          problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-        } else {
-          data = {
-            postalCode,
-            jpAddress,
-          };
-          return ({
-            ok,
-            data,
-            problem,
-          });
-        }
+        return ({
+          ok,
+          data,
+          problem,
+        });
       }
+
+      const { error, postalCode, jpAddress } = extractData(results);
+
+      if (error) {
+        problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
+        return ({
+          ok,
+          data,
+          problem,
+        });
+      }
+      return ({
+        ok,
+        data: {
+          jpAddress,
+          postalCode,
+        },
+        problem,
+      });
     });
   }
 };
 
 export default {
-  postal,
+  handlePostal,
 };
