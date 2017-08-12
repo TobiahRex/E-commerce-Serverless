@@ -225,10 +225,13 @@ class ExpressCheckout extends Component {
     }
   }
 
+  removeApiError = () => this.form.hideError('shippingPostalCode')
+
   render() {
     const {
       loggedIn,
       postalError,
+      apiFetching,
     } = this.props;
 
     const {
@@ -260,7 +263,6 @@ class ExpressCheckout extends Component {
       // ---
       total,
     } = this.state;
-    console.log('THIS.FORM', this.form);
 
     return (
       <div className="checkout__container">
@@ -327,7 +329,7 @@ class ExpressCheckout extends Component {
               <NetworkStatus
                 apiError={postalError}
                 errors={errors}
-                loading={false}
+                loading={apiFetching}
                 success={false}
                 routerPush={this.routerPush}
               />
@@ -368,7 +370,8 @@ const ExpressCheckoutWithStateAndData = compose(
   }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
+  apiFetching: api.fetching,
   postalError: orders.postalError,
   loggedIn: auth.loggedIn || false,
   newUser: CheckNewUser(user, auth.loggedIn),

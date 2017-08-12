@@ -39,11 +39,14 @@ NetworkStatus.defaultProps = {
 
 const NetworkStatusWithHandlers = withHandlers({
   renderHelper: ({ errors, loading, success, apiError }) => () => {
-    let { message } = errors;
-    const { hard, soft } = errors;
+    let { message, hard } = errors;
+    const { soft } = errors;
     const showError = !!hard || !!soft || !!message.length || apiError;
 
-    if (apiError) message = apiError;
+    if (apiError) {
+      hard = true;
+      message = apiError;
+    }
 
     const hardError = (
       <div className="checkout__error-hard">

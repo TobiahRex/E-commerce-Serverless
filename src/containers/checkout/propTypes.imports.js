@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 
 const {
-  arrayOf,
-  object,
   func,
-  number,
   bool,
-  objectOf,
   any,
   shape,
+  object,
+  string,
+  number,
+  arrayOf,
+  objectOf,
 } = PropTypes;
 
 export const propTypes = {
@@ -18,6 +19,8 @@ export const propTypes = {
   userCart: arrayOf(object),
   guestCart: arrayOf(object),
   taxRate: number.isRequired,
+  postalError: string,
+  apiFetching: bool,
   total: shape({
     discount: {
       qty: bool,
@@ -30,7 +33,6 @@ export const propTypes = {
     subTotal: number,
   }),
   SubmitFinalOrder: func,
-  // SubmitFinalOrder: objectOf(any).isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
 };
 export const defaultProps = {
@@ -47,4 +49,6 @@ export const defaultProps = {
     grandTotal: 0,
     subTotal: 0,
   },
+  postalError: '',
+  apiFetching: false,
 };
