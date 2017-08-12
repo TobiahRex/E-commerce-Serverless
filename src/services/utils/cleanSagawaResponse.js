@@ -21,6 +21,17 @@ const extractData = (jsonResponse) => {
   });
 };
 
+/**
+* Function: "handlePostal";
+* 1. Extracts the 3 parts of the axios response: ok, problem & data.
+* 2a. Checks for a network error from axios.  If found, assign the "problem" value with amplifying information to the customer.
+* 2b. If there was no network error, parses the XML response into JSON.
+* 3. 
+*
+* @param {string} postalCode - the postal code to validate.
+*
+* @return {object} XML parsed as JSON response object.
+*/
 const handlePostal = (response) => {
   let { problem } = response;
   const { ok, data } = response;
@@ -48,6 +59,7 @@ const handlePostal = (response) => {
           problem,
         });
       }
+
       return ({
         ok,
         data: {

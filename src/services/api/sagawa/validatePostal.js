@@ -58,11 +58,10 @@ const sagawaZipAPI = createSagawaCheckZipAPI();
 
 /**
 * Function: "checkZip";
-* 1. Calls Sagawa API with postal code as arg.
-* 2. Receives response.
-* 3. Destructures response as { problem, ok, data }.
-* 4a. If problem, parse the XML problem and assign to Redux state error object value.
-* 4b. If no problem, parse the XML results into JSON and return the results object.
+* 1. Receives response.
+* 2. Destructures response as { problem, ok, data }.
+* 3a. If problem, parse the XML problem and assign to Redux state error object value.
+* 3b. If no problem, parse the XML results into JSON and return the results object.
 *
 * @param {string} postalCode - the postal code to validate.
 *
