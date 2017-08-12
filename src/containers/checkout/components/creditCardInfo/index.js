@@ -1,23 +1,27 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
+import _ from 'lodash';
 import {
+  Country,
   NameOnCard,
   CreditCardNumber,
   CreditCardExpiration,
-  CreditCardCvn,
+  CvnAndZip,
 } from './component.imports';
 
 const { func, string } = PropTypes;
 
-class CreditCardInfo extends PureComponent {
+class CreditCardInfo extends React.Component {
   static propTypes = {
     ccNameOnCard: string.isRequired,
+    ccRenderKey: string.isRequired,
+    ccCountry: string.isRequired,
     ccNumber: string.isRequired,
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
     ccCvn: string.isRequired,
+    ccZip: string.isRequired,
     handleOnChange: func.isRequired,
     toggleModal: func.isRequired,
   }
@@ -26,10 +30,13 @@ class CreditCardInfo extends PureComponent {
     super(props);
     this.state = {
       ccNameOnCard: '',
+      ccRenderKey: props.ccRenderKey,
+      ccCountry: '',
       ccNumber: '',
       ccExpireMonth: '',
       ccExpireYear: '',
       ccCvn: '',
+      ccZip: '',
     };
   }
 
@@ -45,10 +52,13 @@ class CreditCardInfo extends PureComponent {
   render() {
     const {
       ccNameOnCard,
+      ccRenderKey,
+      ccCountry,
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
       ccCvn,
+      ccZip,
     } = this.state;
 
     return (
@@ -64,32 +74,45 @@ class CreditCardInfo extends PureComponent {
               <FontAwesome name="cc-visa" />
               <FontAwesome name="cc-mastercard" />
               <FontAwesome name="cc-discover" />
+              <FontAwesome name="cc-jcb" />
               <FontAwesome name="cc-amex" />
             </div>
           </div>
         </div>
 
+        <Country
+          country={ccCountry}
+          handleOnChange={this.handleOnChange}
+        />
+
         <NameOnCard
+          show={!!ccCountry}
           ccNameOnCard={ccNameOnCard}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardNumber
+          show={!!ccCountry}
           ccNumber={ccNumber}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardExpiration
+          show={!!ccCountry}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}
         />
 
-        <CreditCardCvn
+        <CvnAndZip
+          show={!!ccCountry}
+          ccRenderKey={ccRenderKey}
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
+          ccZip={ccZip}
           handleOnChange={this.handleOnChange}
         />
+
       </div>
     );
   }

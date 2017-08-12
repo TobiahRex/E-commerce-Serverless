@@ -27,6 +27,10 @@ import {
   ProductDisplay,
 } from './component.imports';
 
+import {
+  arrayDeepEquality as ArrayDeepEquality,
+} from './utilities.imports';
+
 class SingleProduct extends Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
@@ -62,17 +66,23 @@ class SingleProduct extends Component {
   * @return {boolean} true/false.
   */
   shouldComponentUpdate(nextProps, nextState) {
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-
-    const userCartDiff = isArrayEqual(nextProps.userCart, this.props.userCart);
-    const guestCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart);
-
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
     if (
-      userCartDiff ||
-      guestCartDiff ||
-      !_.isEqual(nextState, this.state) ||
+      !ArrayDeepEquality(nextProps.userCart, this.props.userCart) ||
+      !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
       !_.isEqual(nextProps, this.props)
     ) return true;
+
+    if (!_.isEqual(nextState, this.state)) return true;
+
     return false;
   }
 
@@ -364,6 +374,7 @@ class SingleProduct extends Component {
         prevCartIds,
         globalRequestQty,
       } = this.composeGlobalCartInfo();
+      console.log('%cupdatedCart', 'background:red;', updatedCart);
 
       const {
           qty,
@@ -589,16 +600,8 @@ class SingleProduct extends Component {
 * 3) This final HOC is the default export.
 *
 */
-const SingleProductWithState = connect(
-  ({ orders, auth, routing, user }) => ({
-    userId: user.profile ? user.profile._id : '',
-    flavor: routing.locationBeforeTransitions.pathname.split('/')[1],
-    taxRate: orders.taxRate.totalRate,
-    loggedIn: auth.loggedIn || false,
-    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
-    guestCart: orders.cart,
-  }),
-  dispatch => ({
+const SingleProductWithState = connect(null,
+  (dispatch) => ({
     push: location => dispatch(push(location)),
 
     goBack: () => dispatch(goBack()),
@@ -620,9 +623,10 @@ const SingleProductWithState = connect(
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
-  graphql(FindProductById, { skip: true }),
+  graphql(FindProductById, { skip: true, name: 'FindProductById' }),
   graphql(FindProductsByFlavor, {
     options: ({ location }) => ({
+      name: 'FindProductsByFlavor',
       variables: {
         flavor: location.pathname.split('/')[2],
       },
@@ -632,4 +636,14 @@ const SingleProductWithStateAndData = compose(
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
 )(SingleProductWithState);
 
-export default SingleProductWithStateAndData;
+const SingleProductWithStateAndData2 = connect(
+({ orders, auth, routing, user }) => ({
+  userId: user.profile ? user.profile._id : '',
+  flavor: routing.locationBeforeTransitions.pathname.split('/')[1],
+  taxRate: orders.taxRate.totalRate,
+  loggedIn: auth.loggedIn || false,
+  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  guestCart: orders.cart,
+}))(SingleProductWithStateAndData);
+
+export default SingleProductWithStateAndData2;

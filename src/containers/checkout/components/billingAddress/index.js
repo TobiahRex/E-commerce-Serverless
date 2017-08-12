@@ -3,44 +3,44 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import {
-  FirstName,
-  LastName,
-  Email,
-  AddressLine,
   Country,
-  PrefectureState,
-  PostalCode,
-  City,
+  // FirstName,
+  // LastName,
+  // Email,
+  // AddressLine,
+  // PrefectureState,
+  // PostalCode,
+  // City,
 } from './component.imports';
 
 const { string, func } = PropTypes;
 
 class BillingAddress extends React.PureComponent {
   static propTypes = {
-    billingFirstName: string.isRequired,
-    billingLastName: string.isRequired,
-    billingEmail: string.isRequired,
-    billingAddressLine1: string.isRequired,
-    billingAddressLine2: string.isRequired,
-    billingCountry: string.isRequired,
-    billingPrefectureState: string.isRequired,
-    billingCity: string.isRequired,
-    billingPostalCode: string.isRequired,
     handleOnChange: func.isRequired,
+    billingCountry: string.isRequired,
+    // billingFirstName: string.isRequired,
+    // billingLastName: string.isRequired,
+    // billingEmail: string.isRequired,
+    // billingAddressLine1: string.isRequired,
+    // billingAddressLine2: string.isRequired,
+    // billingPrefectureState: string.isRequired,
+    // billingCity: string.isRequired,
+    // billingPostalCode: string.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      billingFirstName: '',
-      billingLastName: '',
-      billingEmail: '',
-      billingAddressLine1: '',
-      billingAddressLine2: '',
       billingCountry: '',
-      billingPrefectureState: '',
-      billingCity: '',
-      billingPostalCode: '',
+      // billingFirstName: '',
+      // billingLastName: '',
+      // billingEmail: '',
+      // billingAddressLine1: '',
+      // billingAddressLine2: '',
+      // billingPrefectureState: '',
+      // billingCity: '',
+      // billingPostalCode: '',
     };
   }
 
@@ -58,7 +58,7 @@ class BillingAddress extends React.PureComponent {
         <div className="title">
           <h3>Billing Address</h3>
         </div>
-        <div className="input__row">
+        {/* <div className="input__row">
           <FirstName
             billingFirstName={this.state.billingFirstName}
             handleOnChange={this.handleOnChange}
@@ -67,47 +67,47 @@ class BillingAddress extends React.PureComponent {
             billingLastName={this.state.billingLastName}
             handleOnChange={this.handleOnChange}
           />
-        </div>
+        </div> */}
 
-        <Email
+        {/* <Email
           billingEmail={this.state.billingEmail}
           handleOnChange={this.handleOnChange}
-        />
+          />
 
-        <AddressLine
+          <AddressLine
           required
           lineNumber={1}
           billingAddressLine={this.state.billingAddressLine1}
           handleOnChange={this.handleOnChange}
-        />
-
-        <AddressLine
+          />
+          
+          <AddressLine
           lineNumber={2}
           billingAddressLine={this.state.billingAddressLine2}
           handleOnChange={this.handleOnChange}
-        />
+        /> */}
 
         <Country
           billingCountry={this.state.billingCountry}
           handleOnChange={this.handleOnChange}
         />
-
-        <PrefectureState
+        {/*
+          <PrefectureState
           billingCountry={this.state.billingCountry}
           billingPrefectureState={this.state.billingPrefectureState}
           handleOnChange={this.handleOnChange}
-        />
+          />
 
-        <City
+          <City
           billingCity={this.state.billingCity}
           handleOnChange={this.handleOnChange}
-        />
+          />
 
-        <PostalCode
+          <PostalCode
           billingCountry={this.state.billingCountry}
           billingPostalCode={this.state.billingPostalCode}
           handleOnChange={this.handleOnChange}
-        />
+        /> */}
 
 
         {/* TODO: MVP2

@@ -14,7 +14,6 @@ const {
 export const propTypes = {
   push: func.isRequired,
   loggedIn: bool.isRequired,
-  FetchMultipleProducts: objectOf(any).isRequired,
   newUser: bool.isRequired,
   userCart: arrayOf(object),
   guestCart: arrayOf(object),
@@ -30,6 +29,9 @@ export const propTypes = {
     grandTotal: number,
     subTotal: number,
   }),
+  SubmitFinalOrder: func,
+  // SubmitFinalOrder: objectOf(any).isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
 };
 export const defaultProps = {
   userCart: [],

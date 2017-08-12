@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
-import Validation from 'react-validation';
-import Months from './monthConstants';
-import Years from './yearConstants';
+// import _ from 'lodash';
+// import Validation from 'react-validation';
+// import Months from './monthConstants';
+// import Years from './yearConstants';
 
-const { string, func } = PropTypes;
+const { string, func, bool } = PropTypes;
 
-class CreditCardExpiration extends React.PureComponent {
+class CreditCardExpiration extends React.Component {
   static propTypes = {
+    show: bool.isRequired,
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
     handleOnChange: func.isRequired,
@@ -21,11 +22,14 @@ class CreditCardExpiration extends React.PureComponent {
       ccExpireYear: '',
     };
   }
-
   componentWillReceiveProps(nextProps) {
-    const nextPropsCopy = Object.assign({}, nextProps);
-    delete nextPropsCopy.handleOnChange;
-    if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
+    const {
+      ccExpireMonth,
+      ccExpireYear,
+    } = nextProps;
+    if (nextProps !== this.props) {
+      this.setState({ ccExpireMonth, ccExpireYear });
+    }
   }
 
   handleOnChange = e => this.props.handleOnChange(e)
@@ -52,28 +56,30 @@ class CreditCardExpiration extends React.PureComponent {
   ))
 
   render() {
+    const { show } = this.props;
     return (
-      <div className="input__row">
+      <div className="input__row" style={{ visibility: show ? 'visibile' : 'hidden' }}>
         <div className="input__row--exp-date">
 
           <div className="input__container--exp-month">
             <p>Expiration Date <span className="required">*</span></p>
 
-            <Validation.components.Select
+            <div id="sq-expiration-date" />
+            {/* <Validation.components.Select
               errorClassName="is-invalid-input"
               name="ccExpireMonth"
               validations={['required']}
               value={this.state.ccExpireMonth}
               onChange={this.handleOnChange}
-            >
+              >
               <option value="" className="input--option">
                 Month
               </option>
               {this.renderMonthOptions(Months)}
-            </Validation.components.Select>
+            </Validation.components.Select> */}
           </div>
 
-          <div className="input__container--exp-year">
+          {/* <div className="input__container--exp-year">
             <p>{'\u00A0'}</p>
 
             <Validation.components.Select
@@ -88,8 +94,7 @@ class CreditCardExpiration extends React.PureComponent {
               </option>
               {this.renderYearOptions(Years)}
             </Validation.components.Select>
-
-          </div>
+          </div> */}
         </div>
       </div>
     );

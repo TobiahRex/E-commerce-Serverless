@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Validation from 'react-validation';
 
-const { func, string } = PropTypes;
+const { func, string, bool } = PropTypes;
 
 class NameOnCard extends React.PureComponent {
   static propTypes = {
+    show: bool.isRequired,
     ccNameOnCard: string.isRequired,
     handleOnChange: func.isRequired,
   }
@@ -26,8 +27,9 @@ class NameOnCard extends React.PureComponent {
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
+    const { show } = this.props;
     return (
-      <div className="input__row">
+      <div className="input__row" style={{ visibility: show ? 'visibile' : 'hidden' }}>
         <div className="input__row--name-on-card">
           <p>Name on Card <span className="required">*</span></p>
           <Validation.components.Input
@@ -35,7 +37,7 @@ class NameOnCard extends React.PureComponent {
             type="text"
             containerClassName=""
             name="ccNameOnCard"
-            validations={['required', 'ccName']}
+            validations={['required', 'ccName', 'ccName-firstLast']}
             onChange={this.handleOnChange}
             value={this.state.ccNameOnCard}
           />

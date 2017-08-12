@@ -57,7 +57,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Facebook) => {
   };
 
   if (!!orders.cart && orders.cart.length) {
-    profile.shoppingCart = orders.cart.map(({ _id, qty }) => ({ productId: _id, qty }));
+    profile.shoppingCart = orders.cart.map(({ _id, qty }) => ({ product: _id, qty }));
   }
 
   return {

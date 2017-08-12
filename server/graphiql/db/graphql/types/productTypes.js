@@ -2,10 +2,10 @@ import {
   GraphQLID as MongoId,
   GraphQLInt as IntType,
   GraphQLList as ListType,
-  GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
@@ -91,9 +91,17 @@ const rootType = new ObjectType({
             type: new EnumType({
               name: 'ProductNicotineStrengthsEnum',
               values: {
+                zero: {
+                  value: 0,
+                  description: '0mg of Nicotine.',
+                },
                 two: {
                   value: 2,
                   description: '2mg of Nicotine.',
+                },
+                three: {
+                  value: 3,
+                  description: '3mg of Nicotine.',
                 },
                 four: {
                   value: 4,
@@ -378,8 +386,16 @@ const mutations = {
                   new EnumType({
                     name: 'NewProductNicotineStrengthsEnum',
                     values: {
+                      zero: {
+                        value: 0,
+                        description: '2mg of Nicotine.',
+                      },
                       two: {
                         value: 2,
+                        description: '2mg of Nicotine.',
+                      },
+                      three: {
+                        value: 3,
                         description: '2mg of Nicotine.',
                       },
                       four: {
@@ -569,9 +585,17 @@ const mutations = {
                 type: new EnumType({
                   name: 'UpdateProductNicotineStrengthsEnum',
                   values: {
+                    zero: {
+                      value: 0,
+                      description: '2mg of Nicotine.',
+                    },
                     two: {
                       value: 2,
                       description: '2mg of Nicotine.',
+                    },
+                    three: {
+                      value: 3,
+                      description: '4mg of Nicotine.',
                     },
                     four: {
                       value: 4,

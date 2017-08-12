@@ -137,7 +137,7 @@ const createAPI = () => {
         shopping {
           cart {
             qty
-            productId
+            product
           }
           transactions
         }
@@ -243,7 +243,7 @@ const createAPI = () => {
           shopping {
             cart {
               qty
-              productId
+              product
             }
             transactions
           }

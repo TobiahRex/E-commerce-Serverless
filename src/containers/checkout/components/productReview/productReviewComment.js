@@ -18,6 +18,7 @@ class ProductReviewComments extends PureComponent {
           name="prComment"
           cols="40"
           rows="5"
+          placeholder="Comments..."
           value={this.state.comment}
           onChange={this.handleChange}
         />

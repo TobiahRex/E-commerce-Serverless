@@ -6,3 +6,4 @@ export arrayDeepEquality from '../../services/utils/arrayDeepEquality';
 export calculateTotalsDue from '../../services/utils/calculateTotalsDue';
 export calculateDiscounts from '../../services/utils/calculateDiscounts';
 export composeFinalTotal from '../../services/utils/composeFinalTotal';
+export cleanOffTypename from '../../services/utils/cleanOffTypename';

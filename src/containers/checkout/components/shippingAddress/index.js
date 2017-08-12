@@ -5,6 +5,7 @@ import _ from 'lodash';
 import {
   FirstName,
   LastName,
+  Email,
   AddressLine,
   Country,
   Prefecture,
@@ -19,6 +20,7 @@ class ShippingAddress extends React.Component {
   static propTypes = {
     shippingFirstName: string.isRequired,
     shippingLastName: string.isRequired,
+    shippingEmail: string.isRequired,
     shippingAddressLine1: string.isRequired,
     shippingAddressLine2: string.isRequired,
     shippingCountry: string.isRequired,
@@ -34,6 +36,7 @@ class ShippingAddress extends React.Component {
     this.state = {
       shippingFirstName: '',
       shippingLastName: '',
+      shippingEmail: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: '',
@@ -69,6 +72,11 @@ class ShippingAddress extends React.Component {
           />
         </div>
 
+        <Email
+          shippingEmail={this.state.shippingEmail}
+          handleOnChange={this.handleOnChange}
+        />
+
         <AddressLine
           required
           lineNumber={1}
@@ -77,6 +85,7 @@ class ShippingAddress extends React.Component {
         />
 
         <AddressLine
+          required={false}
           lineNumber={2}
           shippingAddressLine={this.state.shippingAddressLine2}
           handleOnChange={this.handleOnChange}
@@ -89,13 +98,13 @@ class ShippingAddress extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
-        <PostalCode
-          shippingPostalCode={this.state.shippingPostalCode}
+        <City
+          shippingCity={this.state.shippingCity}
           handleOnChange={this.handleOnChange}
         />
 
-        <City
-          shippingCity={this.state.shippingCity}
+        <PostalCode
+          shippingPostalCode={this.state.shippingPostalCode}
           handleOnChange={this.handleOnChange}
         />
 

@@ -18,13 +18,13 @@ function NavbarNavsJuicesDropdnTopthird() {
           </p>
         </div>
       </div>
-      <div className="shop-dropdown-content-topThird-video">
+      {/* <div className="shop-dropdown-content-topThird-video">
         <video width="300" height="160" controls>
           <source src="empty.mp4" type="video/mp4" />
           <source src="empty.ogg" type="video/ogg" />
           Your browser does not support HTML5 video.
         </video>
-      </div>
+      </div> */}
     </div>
   );
 }

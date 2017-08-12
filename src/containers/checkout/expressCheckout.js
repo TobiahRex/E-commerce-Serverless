@@ -12,48 +12,57 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
+  squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 import {
   propTypes,
   defaultProps,
 } from './propTypes.imports';
-import { FetchMultipleProducts } from '../../graphql/queries';
-
 import {
   BreadCrumb,
-  BillingAddress,
+  // BillingAddress,
+  // CheckoutGrid,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,
   ProductReview,
   GrandTotal,
-  ErrorDialogue,
+  NetworkStatus,
   CvnModal,
   SubmitOrder,
 } from './component.imports';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
+console.log('FETCHMULTIPLEPRODUCTS', FetchMultipleProducts)
+import {
+  SubmitFinalOrder,
+  SubmitFinalOrderOptions,
+} from '../../graphql/mutations';
+
+// let paymewntForm = null;
 
 class ExpressCheckout extends Component {
-  static propTypes = propTypes;
-  static defaultProps = defaultProps;
+  static propTypes = propTypes
+  static defaultProps = defaultProps
   constructor(props) {
     super(props);
 
     this.state = {
+      ccRenderKey: 'renderWithZip',
       showCvnModal: false,
-      errors: {},
+      error: null,
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
       // --- Form Data from Nested Components ---
       newsletterDecision: true,
-      billingFirstName: '',
-      billingLastName: '',
-      billingEmail: '',
-      billingAddressLine1: '',
-      billingAddressLine2: '',
-      billingCountry: '',
-      billingPrefectureState: '',
-      billingCity: '',
-      billingPostalCode: '',
       shippingFirstName: '',
       shippingLastName: '',
+      shippingEmail: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: 'Japan',
@@ -66,6 +75,8 @@ class ExpressCheckout extends Component {
       ccExpireMonth: '',
       ccExpireYear: '',
       ccCvn: '',
+      ccZip: '',
+      ccCountry: '',
       termsAgreement: false,
       // --- From props ---
       cart: [],
@@ -83,10 +94,29 @@ class ExpressCheckout extends Component {
     };
   }
 
+  componentDidMount() {
+    // console.log('%cthis.paymentForm: ', 'background:blue;', SqrPaymentForm.paymentForm);
+
+    // if (!!SqrPaymentForm.paymentForm) {
+    //   SqrPaymentForm.build();
+    //   // SqrPaymentForm.destroy();
+    //   // const iFrames = document.getElementsByTagName('iframe');
+    //   // if (iFrames.length) {
+    //   //   iFrames.forEach((frame) => {
+    //   //     const frameId = frame.getAttribute('id');
+    //   //     const newEl = document.createElement('div').setAttribute('id', frameId);
+    //   //     frame.parentNode.replaceChild(frame, newEl);
+    //   //   });
+    //   // }
+    // }
+    // SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+    // SqrPaymentForm.build();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (
       !_.isEqual(nextProps, this.props) ||
-      ArrayDeepEquality(nextProps.cart, this.state.cart)
+      !ArrayDeepEquality(nextProps.cart, this.state.cart)
     ) {
       this.setState({ ...nextProps });
     }
@@ -104,7 +134,75 @@ class ExpressCheckout extends Component {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
 
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleOnChange = (e) => {
+    if (e.target.name === 'ccCountry') {
+      const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
+
+      if (countriesWithPostal.includes(e.target.value)) {
+        if (!!SqrPaymentForm.options) {
+          if (SqrPaymentForm.type === 'renderWithZip') {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithZip',
+            }), () => {
+              SqrPaymentForm.build();
+            });
+          } else {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithZip',
+            }), () => {
+              SqrPaymentForm.destroy();
+              SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+              SqrPaymentForm.build();
+            });
+          }
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            ccRenderKey: 'renderWithZip',
+          }), () => {
+            SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+            SqrPaymentForm.build();
+          });
+        }
+      } else if (!!SqrPaymentForm.options) {
+        if (SqrPaymentForm.type === 'renderWithoutZip') {
+          this.setState(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            ccRenderKey: 'renderWithoutZip',
+          }), () => {
+            SqrPaymentForm.build();
+          });
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            ccRenderKey: 'renderWithoutZip',
+          }), () => {
+            SqrPaymentForm.destroy();
+            SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+            SqrPaymentForm.build();
+          });
+        }
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+          ccRenderKey: 'renderWithoutZip',
+        }), () => {
+          SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+          SqrPaymentForm.build();
+        });
+      }
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+  };
 
   toggleModal = (e) => {
     const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
@@ -118,30 +216,47 @@ class ExpressCheckout extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+    // this.requestCardNonce();
     this.setState({ error: this.form.validateAll() });
+  }
+
+  handleNonceResponse = (errors, nonce, cardData) => {
+    if (errors) {
+      this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          hard: true,
+          soft: false,
+          message: errors.reduce((accum, next, i) => {
+            accum += `   ${i + 1}) ${next.message}.`;
+            return accum;
+          }, ''),
+        },
+      }));
+
+      // No errors occurred. Extract the card nonce.
+    } else {
+      // Delete this line and uncomment the lines below when you're ready
+      // to start submitting nonces to your server.
+      alert('Nonce received: ' + nonce);
+    }
   }
 
   render() {
     const {
       loggedIn,
+      // SubmitFinalOrder,
     } = this.props;
 
     const {
+      ccRenderKey,
       cart,
+      errors,
       newsletterDecision,
-      // ---
-      billingFirstName,
-      billingLastName,
-      billingEmail,
-      billingAddressLine1,
-      billingAddressLine2,
-      billingCountry,
-      billingPrefectureState,
-      billingCity,
-      billingPostalCode,
       // ---
       shippingFirstName,
       shippingLastName,
+      shippingEmail,
       shippingAddressLine1,
       shippingAddressLine2,
       shippingCountry,
@@ -154,14 +269,15 @@ class ExpressCheckout extends Component {
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
+      ccCountry,
       ccCvn,
+      ccZip,
       // ---
-      termsAgreement,
+      // termsAgreement,
       // ---
       total,
     } = this.state;
-
-    console.log('%cthis.state', 'background:cyan;', this.state);
+    console.log('THIS.FORM', this.form);
 
     return (
       <div className="checkout__container">
@@ -175,8 +291,17 @@ class ExpressCheckout extends Component {
           <h1>Express Checkout</h1>
         </div>
         <Validation.components.Form
-          ref={this.assignRefToForm} onSubmit={this.handleOnSubmit}
+          ref={this.assignRefToForm}
+          onSubmit={this.handleOnSubmit}
         >
+          {/* <Validation.components.Input
+            errorClassName='is-invalid-input'
+            type='checkbox'
+            name='policy'
+            value='1'
+            validations={['required']}
+          /> */}
+
           <div className="checkout__body grid">
             <div className="checkout__grid">
               <ProductReview
@@ -189,21 +314,10 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <BillingAddress
-                billingFirstName={billingFirstName}
-                billingLastName={billingLastName}
-                billingEmail={billingEmail}
-                billingAddressLine1={billingAddressLine1}
-                billingAddressLine2={billingAddressLine2}
-                billingCountry={billingCountry}
-                billingPrefectureState={billingPrefectureState}
-                billingCity={billingCity}
-                billingPostalCode={billingPostalCode}
-                handleOnChange={this.handleOnChange}
-              />
-              <ShippingAddress
+              {/* <ShippingAddress
                 shippingFirstName={shippingFirstName}
                 shippingLastName={shippingLastName}
+                shippingEmail={shippingEmail}
                 shippingAddressLine1={shippingAddressLine1}
                 shippingAddressLine2={shippingAddressLine2}
                 shippingCountry={shippingCountry}
@@ -212,28 +326,35 @@ class ExpressCheckout extends Component {
                 shippingPostalCode={shippingPostalCode}
                 shippingPhoneNumber={shippingPhoneNumber}
                 handleOnChange={this.handleOnChange}
-              />
+              /> */}
             </div>
             <div className="checkout__grid">
               <CreditCardInfo
+                ccRenderKey={ccRenderKey}
                 ccNameOnCard={ccNameOnCard}
+                ccCountry={ccCountry}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}
                 ccExpireYear={ccExpireYear}
                 ccCvn={ccCvn}
+                ccZip={ccZip}
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
               />
               <GrandTotal
                 total={total}
-                termsAgreement={termsAgreement}
+                showTotal={!!cart.length}
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder />
+              <SubmitOrder enable={!!cart.length} />
 
-              <ErrorDialogue />
-
+              <NetworkStatus
+                errors={errors}
+                loading={false}
+                success={false}
+                routerPush={this.routerPush}
+              />
             </div>
           </div>
         </Validation.components.Form>
@@ -242,6 +363,7 @@ class ExpressCheckout extends Component {
           showModal={this.state.showCvnModal}
           toggleModal={this.toggleModal}
         />
+
       </div>
     );
   }
@@ -249,7 +371,6 @@ class ExpressCheckout extends Component {
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
-
   const cart = DetermineCartType(ownProps, ZipUserCart);
 
   return ({
@@ -263,17 +384,11 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
 const ExpressCheckoutWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart, guestCart }) => {
-      let ids = [];
-
-      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
-
-      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
-
-      return ({
-        variables: { ids },
-      });
-    },
+    options: FetchMultipleProductsOptions,
+  }),
+  graphql(SubmitFinalOrder, {
+    name: 'SubmitFinalOrder',
+    options: SubmitFinalOrderOptions,
   }),
 )(ExpressCheckoutWithState);
 
@@ -283,6 +398,6 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   taxRate: orders.taxRate.totalRate,
-}), null)(ExpressCheckoutWithStateAndData);
+}))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;

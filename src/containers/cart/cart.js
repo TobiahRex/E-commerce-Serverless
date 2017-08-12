@@ -12,7 +12,10 @@ import {
   DeleteFromMemberCart,
   EditToMemberCart,
 } from '../../graphql/mutations';
-import { FetchMultipleProducts } from '../../graphql/queries';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
 
 import {
   propTypes,
@@ -72,18 +75,29 @@ class ShoppingCart extends Component {
     if (
       this.state.qty !== qty ||
       !_.isEqual(total, this.state.total) ||
-      ArrayDeepEquality(updatedCart, this.state.userCart) ||
+      !ArrayDeepEquality(updatedCart, this.state.userCart) ||
       this.state.mobileActive !== mobileActive
     ) {
-      this.setState({
+      this.setState(prevState => ({
+        ...prevState,
         qty,
         mobileActive,
         updatedCart,
         total: { ...total },
-      });
+      }));
     }
   }
-
+    /**
+    * Function: "shouldComponentUpdate"
+    * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
+    *
+    * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
+    *
+    * @param {object} nextProps - New props.
+    * @param {object} nextState - New State.
+    *
+    * @return {boolean} true/false.
+    */
   shouldComponentUpdate(nextProps, nextState) {
     /**
     * Function: "isArrayEqual"
@@ -101,21 +115,19 @@ class ShoppingCart extends Component {
 
       { FetchMultipleProducts:
         { FetchMultipleProducts: thisUserCart },
-      } = this.props,
+      } = this.props;
 
-      reduxCartDiff = ArrayDeepEquality(
-        nextProps.guestCart,
-        this.props.guestCart,
-      ),
-      userCartDiff = ArrayDeepEquality(
-        nextUserCart,
-        thisUserCart,
-      );
+    if (
+        !_.isEqual(nextProps, this.props) ||
+        !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
+        !ArrayDeepEquality(nextUserCart, thisUserCart)
+      ) return true;
 
-    if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
-      return true;
-    }
-    if (!_.isEqual(nextState, this.state)) return true;
+    if (
+      !_.isEqual(nextState, this.state) ||
+      !ArrayDeepEquality(nextState.updatedCart, this.state.updatedCart)
+    ) return true;
+
     return false;
   }
   /**
@@ -260,7 +272,6 @@ class ShoppingCart extends Component {
       cartOwner = 'Guest';
       result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
-    console.log('%cresult', 'background:lime;', result);
 
     if (result.error) {
       this.setState(prevState => ({
@@ -433,10 +444,6 @@ class ShoppingCart extends Component {
   render() {
     const {
       newUser,
-      loggedIn,
-      userCart,
-      guestCart,
-      FetchMultipleProducts: allProducts,
     } = this.props;
 
     const {
@@ -445,13 +452,7 @@ class ShoppingCart extends Component {
       updatedCart,
     } = this.state;
 
-    const cart = DetermineCartType({
-      loggedIn,
-      userCart,
-      guestCart,
-      FetchMultipleProducts: updatedCart,
-    }, ZipUserCart);
-    const cartHasProducts = !!cart.length;
+    const cartHasProducts = !!updatedCart.length;
 
     return (
       <div className="shopping-cart-main">
@@ -469,7 +470,7 @@ class ShoppingCart extends Component {
           <EmptyCart /> :
 
           this.showShoppingCart(
-            cart,
+            updatedCart,
             newUser,
             mobileActive,
             total,
@@ -489,14 +490,16 @@ class ShoppingCart extends Component {
 *
 * @return {number} accum - the final qty number;
 */
-const calculateCartQty = cart =>
-cart.reduce((accum, next) => {
-  if (!!next.qty) {
-    accum += next.qty;
+const calculateCartQty = (auth, userObj, ordersObj) => {
+  const cart = auth.loggedIn ? userObj.profile.shopping.cart : ordersObj.cart;
+  return cart.reduce((accum, next) => {
+    if (!!next.qty) {
+      accum += next.qty;
+      return accum;
+    }
     return accum;
-  }
-  return accum;
-}, 0);
+  }, 0);
+};
 
 /**
 * Function: "checkNewUser"
@@ -520,8 +523,10 @@ const ShoppingCartWithState = connect((state, ownProps) => {
   push: location => dispatch(push(location)),
   saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
   saveUser: (updatedCart) => {
+    const products = updatedCart.map(({ qty, _id }) => ({ qty, product: _id }));
+
     ownProps.EditToMemberCart({
-      variables: { userId: ownProps.userId, products: [...updatedCart] },
+      variables: { userId: ownProps.userId, products },
     })
     .then(({ data: { EditToMemberCart: updatedUser } }) => {
       dispatch(userActions.saveUser(updatedUser));
@@ -532,17 +537,7 @@ const ShoppingCartWithState = connect((state, ownProps) => {
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
-    options: ({ loggedIn, userCart, guestCart }) => {
-      let ids = [];
-
-      if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
-
-      if (!!userCart.length) ids = userCart.map(({ productId }) => productId);
-
-      return ({
-        variables: { ids },
-      });
-    },
+    options: FetchMultipleProductsOptions,
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
@@ -550,7 +545,7 @@ const ShoppingCartWithStateAndData = compose(
 )(ShoppingCartWithState);
 
 const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
-  qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
+  qty: calculateCartQty(auth, user, orders),
   mobileActive: !!mobile.mobileType || false,
   taxRate: orders.taxRate.totalRate,
   loggedIn: auth.loggedIn || false,

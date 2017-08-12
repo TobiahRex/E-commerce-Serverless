@@ -17,7 +17,7 @@ Object.assign(Validation.rules, {
   },
 
   boolRequired: {
-    rule: (value) => Boolean(value),
+    rule: value => Boolean(value),
     hint: () => <span className="form-error is-visible">Required</span>,
   },
 
@@ -62,11 +62,24 @@ Object.assign(Validation.rules, {
     ),
   },
 
-  phone: {
-    rule: value => validator.isMobilePhone(value, 'any'),
+  'phone-japanLength': {
+    rule: (value) => {
+      const validPhone = /(^\d{11}$)/.test(value);
+      const minLength = value.length === 11;
+      return (validPhone && minLength);
+    },
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid phone number.
+        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}
+      </span>
+    ),
+  },
+
+  'phone-startWithZero': {
+    rule: value => (value[0] === '0'),
+    hint: () => (
+      <span className="form-error is-visible">
+        Phone number should start with {'\"0\"'}.
       </span>
     ),
   },
@@ -85,6 +98,15 @@ Object.assign(Validation.rules, {
     hint: () => (
       <span className="form-error is-visible">
         That name uses invalid characters. Please try again.
+      </span>
+    ),
+  },
+
+  'ccName-firstLast': {
+    rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        You must include a First name & a Last name.
       </span>
     ),
   },

@@ -736,7 +736,7 @@ const mutations = {
         description: 'The User Mongo Id to perform the operation on.',
         type: new NonNull(MongoID),
       },
-      product: {
+      productId: {
         description: 'The Product Mongo Id to delete.',
         type: new NonNull(MongoID),
       },
@@ -760,10 +760,6 @@ const mutations = {
               fields: () => ({
                 qty: {
                   description: 'The quantity of products to update.',
-                  type: new NonNull(IntType),
-                },
-                nicotineStrength: {
-                  description: 'The nicotine strength of the product to update.',
                   type: new NonNull(IntType),
                 },
                 product: {

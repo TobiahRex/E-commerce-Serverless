@@ -4,10 +4,12 @@ import _ from 'lodash';
 import TotalContent from './totalContent';
 import Loading from './loading';
 
-const { bool, func, shape, number } = PropTypes;
+const { bool, shape, number, func } = PropTypes;
 
 class GrandTotal extends React.PureComponent {
   static propTypes = {
+    handleOnChange: func.isRequired,
+    showTotal: bool.isRequired,
     total: shape({
       subTotal: number,
       taxes: number,
@@ -19,14 +21,13 @@ class GrandTotal extends React.PureComponent {
         registerAmount: number,
       }),
     }).isRequired,
-    handleOnChange: func.isRequired,
-    termsAgreement: bool.isRequired,
   }
   constructor(props) {
     super(props);
 
     this.state = {
-      termsAgreement: false,
+      termsAgreement: '',
+      showTotal: false,
       total: {
         discount: {
           qty: false,
@@ -47,9 +48,9 @@ class GrandTotal extends React.PureComponent {
     if (!_.isEqual(nextProps, this.props, true)) this.setState({ ...nextPropsCopy });
   }
 
-  handleOnChange = e => this.props.handleOnChange(e);
+  handleOnChange = e => this.props.handleOnChange(e)
 
-  render() {
+  renderHelper = (state) => {
     const {
       total: {
         subTotal,
@@ -57,21 +58,35 @@ class GrandTotal extends React.PureComponent {
         grandTotal,
         discount,
       },
-      termsAgreement,
-    } = this.state;
-    return (
-      <div className="checkout__grand-total">
-        { grandTotal ?
+      showTotal,
+    } = state;
+
+    if (showTotal) {
+      return (
+        grandTotal ?
           <TotalContent
-            taxes={taxes}
             subTotal={subTotal}
+            taxes={taxes}
             discount={discount}
             grandTotal={grandTotal}
-            termsAgreement={termsAgreement}
             handleOnChange={this.handleOnChange}
-          /> :
-          <Loading />
-        }
+          /> : <Loading />
+      );
+    }
+    return (
+      <div>
+        <h4 style={{ color: '#365899', padding: '2em 0em 1em 0em' }}>
+          <span className="required">
+            Your cart is currently Empty.
+          </span>
+        </h4>
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div className="checkout__grand-total">
+        {this.renderHelper(this.state)}
       </div>
     );
   }

@@ -248,7 +248,7 @@ const rootType = new ObjectType({
                     description: 'The quantity of items of this product.',
                     type: IntType,
                   },
-                  productId: {
+                  product: {
                     description: 'The Mongo ObjectID for this product.',
                     type: MongoID,
                   },
@@ -364,7 +364,7 @@ const queries = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, { id }, { User }) => User.fetchUserProfile(id)
+    resolve: (_, { id }, { User }) => User.fetchUserProfile(id),
   },
 };
 const mutations = {
@@ -613,7 +613,7 @@ const mutations = {
                   description: 'The quantity of items of this product.',
                   type: IntType,
                 },
-                productId: {
+                product: {
                   description: 'The Mongo ObjectID for this product.',
                   type: MongoID,
                 },
@@ -714,16 +714,27 @@ const mutations = {
     },
     resolve: (_, args, { User }) => User.addToMemberCart(args),
   },
+  EmptyMemberCart: {
+    type: rootType,
+    description: 'Completely erase all saved products from the Users cart.',
+    args: {
+      userId: {
+        description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args, { User }) => User.emptyCart(args),
+  },
   DeleteFromMemberCart: {
     type: rootType,
     description: 'Delete a Product from the Users cart.',
     args: {
-      productId: {
-        description: 'The Product Mongo Id to delete.',
-        type: new NonNull(MongoID),
-      },
       userId: {
         description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+      productId: {
+        description: 'The Product Mongo Id to delete.',
         type: new NonNull(MongoID),
       },
     },
@@ -739,20 +750,22 @@ const mutations = {
       },
       products: {
         description: 'A list of Products to be inserted into the users DB cart.',
-        type: new ListType(
-          new InputObject({
-            name: 'ProductsInput',
-            fields: () => ({
-              qty: {
-                description: 'The quantity of products to update.',
-                type: new NonNull(IntType),
-              },
-              product: {
-                description: 'The Mongo ObjectId of the product to update.',
-                type: new NonNull(MongoID),
-              },
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'ProductsInput',
+              fields: () => ({
+                qty: {
+                  description: 'The quantity of products to update.',
+                  type: new NonNull(IntType),
+                },
+                product: {
+                  description: 'The Mongo ObjectId of the product to update.',
+                  type: new NonNull(MongoID),
+                },
+              }),
             }),
-          }),
+          ),
         ),
       },
     },

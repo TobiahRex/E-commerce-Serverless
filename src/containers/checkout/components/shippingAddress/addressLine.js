@@ -37,7 +37,9 @@ class AddressLine extends React.PureComponent {
     return (
       <div className="input__row">
         <div className={`input__row--address-line-${lineNumber}`}>
-          <p>AddressLine {lineNumber} <span className="required">*</span></p>
+          <p>Address Line {lineNumber}{'\u0020'}
+            {required && <span className="required">*</span>}
+          </p>
           <Validation.components.Input
             errorClassName="is-invalid-input"
             type="text"
