@@ -17,16 +17,8 @@ class PostalCode extends React.PureComponent {
     shippingPostalCode: '',
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      shippingPostalCode: props.shippingPostalCode,
-    };
-  }
-
   validatePostal = () => {
-    
+    this.props.SgValidatePostal(this.props.shippingPostalCode);
   }
 
   handleOnChange = e => this.props.handleOnChange(e)
@@ -43,7 +35,7 @@ class PostalCode extends React.PureComponent {
             name="shippingPostalCode"
             validations={['required', 'japan-postal']}
             onChange={this.handleOnChange}
-            onFocusOut={this.validatePostal}
+            onBlur={this.validatePostal}
             value={this.props.shippingPostalCode}
           />
         </div>
@@ -53,7 +45,7 @@ class PostalCode extends React.PureComponent {
 }
 
 const PostalCodeWithRedux = connect(null, dispatch => ({
-  SgValidatePostal: e => dispatch(orderActions.validatePostal(e.target.value)),
+  SgValidatePostal: postalCode => dispatch(orderActions.validatePostal(postalCode)),
 }))(PostalCode);
 
 export default PostalCodeWithRedux;
