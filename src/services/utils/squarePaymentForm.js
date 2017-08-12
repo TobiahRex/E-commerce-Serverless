@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const applicationId = process.env.SQUARE_APPLICATION_ID;
 
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
