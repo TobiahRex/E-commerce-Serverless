@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
-function PostalCode() {
+function PostalCode({ SgValidatePostal, shippingPostalCode, handleOnChange }) {
   return (
     <div className="input__row">
       <div className="input__row--postal-code">
@@ -13,9 +13,9 @@ function PostalCode() {
           containerClassName=""
           name="shippingPostalCode"
           validations={['required', 'japan-postal']}
-          onChange={this.handleOnChange}
-          onBlur={this.props.SgValidatePostal}
-          value={this.props.shippingPostalCode}
+          onChange={handleOnChange}
+          onBlur={SgValidatePostal}
+          value={shippingPostalCode}
         />
       </div>
     </div>

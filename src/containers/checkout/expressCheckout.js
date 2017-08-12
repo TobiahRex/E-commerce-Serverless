@@ -30,6 +30,15 @@ import {
   NetworkStatus,
   CvnModal,
   SubmitOrder,
+  FirstName,
+  LastName,
+  Email,
+  AddressLine,
+  Country,
+  Prefecture,
+  PostalCode,
+  City,
+  PhoneNumber,
 } from './component.imports';
 import {
   FetchMultipleProducts,
@@ -95,7 +104,6 @@ class ExpressCheckout extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.apiError) {
       this.form.showError('shippingPostalCode', 'postalApi');
-      console.warn('call ShowError')
     } else if (!_.isEqual(nextProps, this.props) ||
       !ArrayDeepEquality(nextProps.cart, this.state.cart)
     ) {
@@ -302,7 +310,59 @@ class ExpressCheckout extends Component {
                 shippingPostalCode={shippingPostalCode}
                 shippingPhoneNumber={shippingPhoneNumber}
                 handleOnChange={this.handleOnChange}
-              />
+              >
+                <div className="input__row">
+                  <FirstName
+                    shippingFirstName={this.state.shippingFirstName}
+                    handleOnChange={this.handleOnChange}
+                  />
+                  <LastName
+                    shippingLastName={this.state.shippingLastName}
+                    handleOnChange={this.handleOnChange}
+                  />
+                </div>
+
+                <Email
+                  shippingEmail={this.state.shippingEmail}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <AddressLine
+                  required
+                  lineNumber={1}
+                  shippingAddressLine={this.state.shippingAddressLine1}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <AddressLine
+                  required={false}
+                  lineNumber={2}
+                  shippingAddressLine={this.state.shippingAddressLine2}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <Country />
+
+                <Prefecture
+                  shippingPrefecture={this.state.shippingPrefecture}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <City
+                  shippingCity={this.state.shippingCity}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <PostalCode
+                  shippingPostalCode={this.state.shippingPostalCode}
+                  handleOnChange={this.handleOnChange}
+                />
+                
+                <PhoneNumber
+                  shippingPhoneNumber={this.state.shippingPhoneNumber}
+                  handleOnChange={this.handleOnChange}
+                />
+              </ShippingAddress>
             </div>
             <div className="checkout__grid">
               <CreditCardInfo
