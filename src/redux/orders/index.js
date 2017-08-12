@@ -7,6 +7,7 @@ const { Types, Creators } = createActions({
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
+  validatePostal: ['postal'],
 });
 
 export const orderTypes = Types;

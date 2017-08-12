@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
+import { connect } from 'react-redux';
+import { orderActions } from './redux.imports';
 
 const { func, string } = PropTypes;
 
@@ -8,7 +10,7 @@ class PostalCode extends React.PureComponent {
   static propTypes = {
     handleOnChange: func.isRequired,
     shippingPostalCode: string,
-    sagawaValidatePostal: func.isRequired,
+    SgValidatePostal: func.isRequired,
   }
 
   static defaultProps = {
@@ -37,7 +39,7 @@ class PostalCode extends React.PureComponent {
             name="shippingPostalCode"
             validations={['required', 'japan-postal']}
             onChange={this.handleOnChange}
-            onBlur={this.props.sagawaValidatePostal}
+            onBlur={this.props.SgValidatePostal}
             value={this.props.shippingPostalCode}
           />
         </div>
@@ -45,4 +47,9 @@ class PostalCode extends React.PureComponent {
     );
   }
 }
-export default PostalCode;
+
+const PostalCodeWithRedux = connect(null, dispatch => ({
+  SgValidatePostal: postal => dispatch(orderActions.validatePostal(postal)),
+}))(PostalCode);
+
+export default PostalCodeWithRedux;
