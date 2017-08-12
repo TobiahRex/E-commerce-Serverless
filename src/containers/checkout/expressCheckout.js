@@ -232,7 +232,7 @@ class ExpressCheckout extends Component {
     }
   }
 
-  removeApiError = () => this.form.hideError('shippingPostalCode')
+  clearValidationError = name => this.form.hideError(name)
 
   render() {
     const {
@@ -346,6 +346,7 @@ class ExpressCheckout extends Component {
                 <PhoneNumber
                   shippingPhoneNumber={shippingPhoneNumber}
                   handleOnChange={this.handleOnChange}
+                  clearError={this.clearValidationError}
                 />
               </ShippingAddress>
             </div>
