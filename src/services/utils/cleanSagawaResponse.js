@@ -24,9 +24,12 @@ const extractData = (jsonResponse) => {
 /**
 * Function: "handlePostal";
 * 1. Extracts the 3 parts of the axios response: ok, problem & data.
-* 2a. Checks for a network error from axios.  If found, assign the "problem" value with amplifying information to the customer.
+* 2a. Checks for a network error from axios.  If found, assign the "problem" value with amplifying information to the customer and returns the entire response object to the Saga that initiated the network request.
 * 2b. If there was no network error, parses the XML response into JSON.
-* 3. 
+* 3a. Checks for a parse error.  If found, assign the "problem" value with amplifying info to the customer and returns the entire response object to the Saga that initiated the network request.
+* 3b. If no parsing error, calls "extractData" passing in the results object.
+* 4. Once extraction is complete, checks for an error given by the "extractData" function. If found, assign the "problem" value with amplifying information to the customer and returns the entire response object to the Saga that initiated the network request.
+* 5. If extraction was successful, and no errors occured, returns the entire response object to the Saga that initiated the network request.
 *
 * @param {string} postalCode - the postal code to validate.
 *
