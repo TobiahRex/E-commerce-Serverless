@@ -334,7 +334,7 @@ class ExpressCheckout extends Component {
             </div>
           </div>
         </Validation.components.Form>
-
+        
         <CvnModal
           showModal={this.state.showCvnModal}
           toggleModal={this.toggleModal}
@@ -374,7 +374,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
   loggedIn: auth.loggedIn || false,
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  apiError: orders.postalInfo.error && api.problem,
+  apiError: orders.postalInfo.error ? api.problem : '',
   apiFetching: api.fetching,
 }))(ExpressCheckoutWithStateAndData);
 

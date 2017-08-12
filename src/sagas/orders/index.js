@@ -6,7 +6,7 @@ import cleanSagawaResponse from '../../services/utils/cleanSagawaResponse';
 
 export default function* validatePostal() {
   while(true) { //eslint-disable-line
-    const { postal } = yield take(orderTypes.VALIDATE_POSTAL_CODE);
+    const { postal } = yield take(orderTypes.VALIDATE_POSTAL);
     const responses = yield [
       put(apiActions.fetching()),
       call(() => sagawaApi.validatePostal(postal)),
