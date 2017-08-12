@@ -8,6 +8,7 @@ class PostalCode extends React.PureComponent {
   static propTypes = {
     handleOnChange: func.isRequired,
     shippingPostalCode: string,
+    sagawaValidatePostal: func.isRequired,
   }
 
   static defaultProps = {
@@ -36,6 +37,7 @@ class PostalCode extends React.PureComponent {
             name="shippingPostalCode"
             validations={['required', 'japan-postal']}
             onChange={this.handleOnChange}
+            onBlur={this.props.sagawaValidatePostal}
             value={this.props.shippingPostalCode}
           />
         </div>
