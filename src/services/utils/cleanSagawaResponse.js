@@ -47,7 +47,13 @@ const handlePostal = (response) => {
         problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
         return ({
           ok,
-          data,
+          data: {
+            postalInfo: {
+              error: true,
+              jpAddress: '',
+              postalCode: '',
+            },
+          },
           problem,
         });
       }
@@ -58,7 +64,13 @@ const handlePostal = (response) => {
         problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
         return ({
           ok,
-          data,
+          data: {
+            postalInfo: {
+              error: true,
+              jpAddress,
+              postalCode,
+            },
+          },
           problem,
         });
       }
@@ -67,6 +79,7 @@ const handlePostal = (response) => {
         ok,
         data: {
           postalInfo: {
+            error: false,
             jpAddress,
             postalCode,
           },

@@ -19,7 +19,7 @@ export const propTypes = {
   userCart: arrayOf(object),
   guestCart: arrayOf(object),
   taxRate: number.isRequired,
-  postalError: string,
+  apiError: string,
   apiFetching: bool,
   total: shape({
     discount: {
@@ -49,6 +49,6 @@ export const defaultProps = {
     grandTotal: 0,
     subTotal: 0,
   },
-  postalError: '',
+  apiError: '',
   apiFetching: false,
 };

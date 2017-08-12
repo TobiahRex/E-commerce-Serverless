@@ -22,7 +22,7 @@ function NetworkStatus({ routerPush, renderHelper }) {
 }
 const { shape, string, bool, func } = PropTypes;
 NetworkStatus.propTypes = {
-  postalError: string,
+  apiError: string,
   errors: shape({
     hard: bool,
     soft: bool,
@@ -33,7 +33,7 @@ NetworkStatus.propTypes = {
   renderHelper: func.isRequired,
 };
 NetworkStatus.defaultProps = {
-  postalError: '',
+  apiError: '',
   loading: false,
 };
 

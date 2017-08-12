@@ -230,7 +230,7 @@ class ExpressCheckout extends Component {
   render() {
     const {
       loggedIn,
-      postalError,
+      apiError,
       apiFetching,
     } = this.props;
 
@@ -258,8 +258,6 @@ class ExpressCheckout extends Component {
       ccCountry,
       ccCvn,
       ccZip,
-      // ---
-      // termsAgreement,
       // ---
       total,
     } = this.state;
@@ -327,7 +325,7 @@ class ExpressCheckout extends Component {
               <SubmitOrder enable={!!cart.length} />
 
               <NetworkStatus
-                apiError={postalError}
+                apiError={apiError}
                 errors={errors}
                 loading={apiFetching}
                 success={false}
@@ -371,13 +369,13 @@ const ExpressCheckoutWithStateAndData = compose(
 )(ExpressCheckoutWithState);
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
-  apiFetching: api.fetching,
-  postalError: orders.postalError,
-  loggedIn: auth.loggedIn || false,
+  taxRate: orders.taxRate.totalRate,
   newUser: CheckNewUser(user, auth.loggedIn),
+  loggedIn: auth.loggedIn || false,
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  taxRate: orders.taxRate.totalRate,
+  apiError: orders.postalInfo.error && api.problem,
+  apiFetching: api.fetching,
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
