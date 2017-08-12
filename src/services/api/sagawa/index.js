@@ -1,5 +1,5 @@
 import postalApi from './validatePostal';
 
 export default {
-  postalApi,
+  validatePostal: postalApi.validatePostal,
 };

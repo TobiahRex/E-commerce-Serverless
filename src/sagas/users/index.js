@@ -13,7 +13,9 @@ export default function* fetchUserProfile() {
       put(apiActions.fetching()),
       call(() => api.FetchUserProfile(userId)),
     ];
+
     const { ok, problem, data: { data } } = cleanGQLresponse(responses[1]);
+
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),

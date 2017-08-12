@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { create } from 'apisauce';
-import xml2js from 'xml2js';
+// import xml2js from 'xml2js';
 
 /**
 * Function: "xmlOut";
@@ -67,7 +67,6 @@ export default createSagawaCheckZipAPI();
 *
 * @return {object} XML parsed as JSON response object.
 */
-
 sagawaZipAPI.checkZip('2220033')
 .then((response) => {
   const { problem, ok, data } = response;

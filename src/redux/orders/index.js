@@ -8,6 +8,7 @@ const { Types, Creators } = createActions({
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
   validatePostal: ['postal'],
+  receivedValidPostal: ['response'],
 });
 
 export const orderTypes = Types;
