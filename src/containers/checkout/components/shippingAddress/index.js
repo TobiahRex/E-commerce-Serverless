@@ -1,18 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import _ from 'lodash';
-
-// import {
-//   FirstName,
-//   LastName,
-//   Email,
-//   AddressLine,
-//   Country,
-//   Prefecture,
-//   PostalCode,
-//   City,
-//   PhoneNumber,
-// } from './component.imports';
 
 function ShippingAddress({ children }) {
   return (
@@ -24,19 +11,10 @@ function ShippingAddress({ children }) {
     </div>
   );
 }
-const { objectOf, any } = PropTypes;
+const { arrayOf, object } = PropTypes;
+
 ShippingAddress.propTypes = {
-  children: objectOf(any),
-  // shippingFirstName: string.isRequired,
-  // shippingLastName: string.isRequired,
-  // shippingEmail: string.isRequired,
-  // shippingAddressLine1: string.isRequired,
-  // shippingAddressLine2: string.isRequired,
-  // shippingCountry: string.isRequired,
-  // shippingPrefecture: string.isRequired,
-  // shippingCity: string.isRequired,
-  // shippingPostalCode: string.isRequired,
-  // shippingPhoneNumber: string.isRequired,
-  // handleOnChange: func.isRequired,
+  children: arrayOf(object).isRequired,
 };
+
 export default ShippingAddress;

@@ -20,8 +20,6 @@ import {
 } from './propTypes.imports';
 import {
   BreadCrumb,
-  // BillingAddress,
-  // CheckoutGrid,
   ShippingAddress,
   ShippingMethod,
   CreditCardInfo,
@@ -254,7 +252,6 @@ class ExpressCheckout extends Component {
       shippingEmail,
       shippingAddressLine1,
       shippingAddressLine2,
-      shippingCountry,
       shippingPrefecture,
       shippingCity,
       shippingPostalCode,
@@ -298,68 +295,56 @@ class ExpressCheckout extends Component {
               <ShippingMethod />
             </div>
             <div className="checkout__grid">
-              <ShippingAddress
-                shippingFirstName={shippingFirstName}
-                shippingLastName={shippingLastName}
-                shippingEmail={shippingEmail}
-                shippingAddressLine1={shippingAddressLine1}
-                shippingAddressLine2={shippingAddressLine2}
-                shippingCountry={shippingCountry}
-                shippingPrefecture={shippingPrefecture}
-                shippingCity={shippingCity}
-                shippingPostalCode={shippingPostalCode}
-                shippingPhoneNumber={shippingPhoneNumber}
-                handleOnChange={this.handleOnChange}
-              >
+              <ShippingAddress>
                 <div className="input__row">
                   <FirstName
-                    shippingFirstName={this.state.shippingFirstName}
+                    shippingFirstName={shippingFirstName}
                     handleOnChange={this.handleOnChange}
                   />
                   <LastName
-                    shippingLastName={this.state.shippingLastName}
+                    shippingLastName={shippingLastName}
                     handleOnChange={this.handleOnChange}
                   />
                 </div>
 
                 <Email
-                  shippingEmail={this.state.shippingEmail}
+                  shippingEmail={shippingEmail}
                   handleOnChange={this.handleOnChange}
                 />
 
                 <AddressLine
                   required
                   lineNumber={1}
-                  shippingAddressLine={this.state.shippingAddressLine1}
+                  shippingAddressLine={shippingAddressLine1}
                   handleOnChange={this.handleOnChange}
                 />
 
                 <AddressLine
                   required={false}
                   lineNumber={2}
-                  shippingAddressLine={this.state.shippingAddressLine2}
+                  shippingAddressLine={shippingAddressLine2}
                   handleOnChange={this.handleOnChange}
                 />
 
                 <Country />
 
                 <Prefecture
-                  shippingPrefecture={this.state.shippingPrefecture}
+                  shippingPrefecture={shippingPrefecture}
                   handleOnChange={this.handleOnChange}
                 />
 
                 <City
-                  shippingCity={this.state.shippingCity}
+                  shippingCity={shippingCity}
                   handleOnChange={this.handleOnChange}
                 />
 
                 <PostalCode
-                  shippingPostalCode={this.state.shippingPostalCode}
+                  shippingPostalCode={shippingPostalCode}
                   handleOnChange={this.handleOnChange}
                 />
-                
+
                 <PhoneNumber
-                  shippingPhoneNumber={this.state.shippingPhoneNumber}
+                  shippingPhoneNumber={shippingPhoneNumber}
                   handleOnChange={this.handleOnChange}
                 />
               </ShippingAddress>
