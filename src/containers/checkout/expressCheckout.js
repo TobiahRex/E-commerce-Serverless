@@ -136,7 +136,10 @@ class ExpressCheckout extends Component {
 
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
-      if (SqrPaymentForm.count === 2) {
+      const countIsTooHigh = SqrPaymentForm === 2;
+      const postalNotReq = SqrPaymentForm.type === 'renderWithoutZip';
+
+      if (countIsTooHigh || postalNotReq) {
         window.location.reload();
       } else {
         const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
