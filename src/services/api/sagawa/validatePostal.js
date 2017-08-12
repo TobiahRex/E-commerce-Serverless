@@ -19,6 +19,15 @@ const createSagawaCheckZipAPI = () => {
     },
   });
 
+  /**
+  * Function: "validatePostal";
+  * 1. Inserts postal code into XML formatted request.
+  * 2. Returns the result.
+  *
+  * @param {string} postalCode - the postal code to validate.
+  *
+  * @return {object} axios formatted response object.
+  */
   const validatePostal = postalCode => api.post('getAddr',
   `<?xml version='1.0' encoding='utf-8'?>
   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
