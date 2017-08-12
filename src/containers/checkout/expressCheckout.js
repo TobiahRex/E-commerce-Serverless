@@ -92,28 +92,10 @@ class ExpressCheckout extends Component {
     };
   }
 
-  componentDidMount() {
-    // console.log('%cthis.paymentForm: ', 'background:blue;', SqrPaymentForm.paymentForm);
-
-    // if (!!SqrPaymentForm.paymentForm) {
-    //   SqrPaymentForm.build();
-    //   // SqrPaymentForm.destroy();
-    //   // const iFrames = document.getElementsByTagName('iframe');
-    //   // if (iFrames.length) {
-    //   //   iFrames.forEach((frame) => {
-    //   //     const frameId = frame.getAttribute('id');
-    //   //     const newEl = document.createElement('div').setAttribute('id', frameId);
-    //   //     frame.parentNode.replaceChild(frame, newEl);
-    //   //   });
-    //   // }
-    // }
-    // SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
-    // SqrPaymentForm.build();
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (
-      !_.isEqual(nextProps, this.props) ||
+    if (nextProps.apiError) {
+      this.form.showError('shippingPostalCode', 'postalApi');
+    } else if (!_.isEqual(nextProps, this.props) ||
       !ArrayDeepEquality(nextProps.cart, this.state.cart)
     ) {
       this.setState({ ...nextProps });
@@ -385,7 +367,8 @@ const ExpressCheckoutWithStateAndData = compose(
   }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
+  postalError: orders.postalError,
   loggedIn: auth.loggedIn || false,
   newUser: CheckNewUser(user, auth.loggedIn),
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
