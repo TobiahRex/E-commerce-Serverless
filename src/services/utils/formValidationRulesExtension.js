@@ -149,8 +149,9 @@ Object.assign(Validation.rules, {
       <span className="form-error is-visible">Passwords should be equal.</span>
     ),
   },
+
   postalApi: {
-    rule: () => '',
+    // rule: () => '',
     hint: () => (
       <span className="form-error is-visible">
         Postal code is invalid. See error message for details.

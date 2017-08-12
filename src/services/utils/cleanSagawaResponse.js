@@ -40,13 +40,13 @@ const handlePostal = (response) => {
   const { ok, data } = response;
 
   if (problem) {
-    problem = `There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+    problem = 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
     return ({
       ok,
       problem,
       data: {
         postalInfo: {
-          error: true,
+          error: problem,
           jpAddress: '',
           postalCode: '',
         },
@@ -59,14 +59,14 @@ const handlePostal = (response) => {
       problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
       return ({
         ok,
+        problem,
         data: {
           postalInfo: {
-            error: true,
+            error: problem,
             jpAddress: '',
             postalCode: '',
           },
         },
-        problem,
       });
     }
 
@@ -76,27 +76,27 @@ const handlePostal = (response) => {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
       return ({
         ok,
+        problem,
         data: {
           postalInfo: {
-            error: true,
+            error: problem,
             jpAddress,
             postalCode,
           },
         },
-        problem,
       });
     }
 
     return ({
       ok,
+      problem,
       data: {
         postalInfo: {
-          error: false,
+          error: problem,
           jpAddress,
           postalCode,
         },
       },
-      problem,
     });
   });
 };
