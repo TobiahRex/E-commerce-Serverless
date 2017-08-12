@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 function PostalCode({
-  clearError,
+  validatePostal,
   handleOnChange,
-  SgValidatePostal,
   shippingPostalCode,
+  clearValidationError,
 }) {
   return (
     <div className="input__row">
@@ -19,8 +19,8 @@ function PostalCode({
           name="shippingPostalCode"
           validations={['required', 'japan-postal']}
           onChange={handleOnChange}
-          onBlur={SgValidatePostal}
-          onFocus={() => clearError('shippingPostalCode')}
+          onBlur={validatePostal}
+          onFocus={() => clearValidationError('shippingPostalCode')}
           value={shippingPostalCode}
         />
       </div>
@@ -30,10 +30,10 @@ function PostalCode({
 
 const { func, string } = PropTypes;
 PostalCode.propTypes = {
-  clearError: func.isRequired,
   handleOnChange: func.isRequired,
-  SgValidatePostal: func.isRequired,
+  validatePostal: func.isRequired,
   shippingPostalCode: string,
+  clearValidationError: func.isRequired,
 };
 
 PostalCode.defaultProps = {

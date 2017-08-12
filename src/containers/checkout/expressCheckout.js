@@ -7,6 +7,10 @@ import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
 
 import {
+  orderActions,
+} from './redux.imports';
+
+import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
@@ -232,6 +236,10 @@ class ExpressCheckout extends Component {
     }
   }
 
+  validatePostal = () => {
+    this.props.SgValidatePostal(this.state.shippingPostalCode);
+  }
+
   clearValidationError = name => this.form.hideError(name)
 
   render() {
@@ -339,14 +347,15 @@ class ExpressCheckout extends Component {
                 />
 
                 <PostalCode
-                  shippingPostalCode={shippingPostalCode}
                   handleOnChange={this.handleOnChange}
+                  validatePostal={this.validatePostal}
+                  shippingPostalCode={shippingPostalCode}
+                  clearValidationError={this.clearValidationError}
                 />
 
                 <PhoneNumber
                   shippingPhoneNumber={shippingPhoneNumber}
                   handleOnChange={this.handleOnChange}
-                  clearError={this.clearValidationError}
                 />
               </ShippingAddress>
             </div>
@@ -402,6 +411,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
   });
 }, dispatch => ({
   push: location => dispatch(push(location)),
+  SgValidatePostal: postal => dispatch(orderActions.validatePostal(postal)),
 }))(ExpressCheckout);
 
 const ExpressCheckoutWithStateAndData = compose(
