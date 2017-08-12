@@ -6,16 +6,24 @@ const extractData = (jsonResponse) => {
   const postalCode = response.split('|')[0];
   const jpAddress = response.split('|')[1];
 
-  data = {
+  if (!postalCode.length || !jpAddress.length) {
+    return ({
+      error: true,
+      postalCode,
+      jpAddress,
+    });
+  }
+
+  return ({
+    error: false,
     postalCode,
     jpAddress,
-  };
-}
+  });
+};
 
 const handlePostal = (response) => {
-  let { problem, data } = response;
-  const { ok } = response;
-  console.log('RESPONSE:\n', response, '\n\n');
+  let { problem } = response;
+  const { ok, data } = response;
 
   if (problem) {
     problem = `There was a Network Error.  ${problem}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
