@@ -6,6 +6,7 @@ class SqrPaymentForm {
   constructor() {
     this.paymentForm = null;
     this.type = '';
+    this.count = 0;
   }
 
   destroy() {
@@ -27,6 +28,7 @@ class SqrPaymentForm {
     console.log('%cCreating payment form.', 'background:yellow;');
     let postalCode = null;
     this.type = type;
+    this.countr += 1;
 
     if (type === 'renderWithZip') {
       postalCode = {

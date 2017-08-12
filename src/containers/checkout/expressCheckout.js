@@ -135,14 +135,37 @@ class ExpressCheckout extends Component {
 
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
-      const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
+      if (SqrPaymentForm.count === 2) {
+        window.location.reload();
+      } else {
+        const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
 
-      if (countriesWithPostal.includes(e.target.value)) {
-        if (SqrPaymentForm.type === 'renderWithZip') {
+        if (countriesWithPostal.includes(e.target.value)) {
+          if (SqrPaymentForm.type === 'renderWithZip') {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithZip',
+            }), () => {
+              SqrPaymentForm.build();
+            });
+          } else {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithZip',
+            }), () => {
+              SqrPaymentForm.destroy();
+              SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+              SqrPaymentForm.build();
+            });
+          }
+        }
+        if (SqrPaymentForm.type === 'renderWithoutZip') {
           this.setState(prevState => ({
             ...prevState,
             [e.target.name]: e.target.value,
-            ccRenderKey: 'renderWithZip',
+            ccRenderKey: 'renderWithoutZip',
           }), () => {
             SqrPaymentForm.build();
           });
@@ -150,32 +173,13 @@ class ExpressCheckout extends Component {
           this.setState(prevState => ({
             ...prevState,
             [e.target.name]: e.target.value,
-            ccRenderKey: 'renderWithZip',
+            ccRenderKey: 'renderWithoutZip',
           }), () => {
             SqrPaymentForm.destroy();
-            SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+            SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
             SqrPaymentForm.build();
           });
         }
-      }
-      if (SqrPaymentForm.type === 'renderWithoutZip') {
-        this.setState(prevState => ({
-          ...prevState,
-          [e.target.name]: e.target.value,
-          ccRenderKey: 'renderWithoutZip',
-        }), () => {
-          SqrPaymentForm.build();
-        });
-      } else {
-        this.setState(prevState => ({
-          ...prevState,
-          [e.target.name]: e.target.value,
-          ccRenderKey: 'renderWithoutZip',
-        }), () => {
-          SqrPaymentForm.destroy();
-          SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
-          SqrPaymentForm.build();
-        });
       }
     } else {
       this.setState({ [e.target.name]: e.target.value });
