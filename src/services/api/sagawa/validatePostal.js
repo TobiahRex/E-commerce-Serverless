@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { create } from 'apisauce';
-// import xml2js from 'xml2js';
+import xml2js from 'xml2js';
 
 /**
 * Function: "xmlOut";
@@ -53,7 +53,8 @@ const createSagawaCheckZipAPI = () => {
   };
 };
 
-export default createSagawaCheckZipAPI();
+const sagawaZipAPI = createSagawaCheckZipAPI();
+// export default createSagawaCheckZipAPI();
 
 /**
 * Function: "checkZip";
@@ -67,10 +68,10 @@ export default createSagawaCheckZipAPI();
 *
 * @return {object} XML parsed as JSON response object.
 */
-sagawaZipAPI.checkZip('2220033')
+sagawaZipAPI.validatePostal('222003')
 .then((response) => {
   const { problem, ok, data } = response;
-  console.log('RESPONSE:\n', response, '\n\n');
+  // console.log('RESPONSE:\n', response., '\n\n');
   if (problem) {
     console.log('\nERROR: ', problem);
     xml2js.parseString(data, (err, results) => {
@@ -86,7 +87,7 @@ sagawaZipAPI.checkZip('2220033')
   }
 });
 
-const goodResponse = { //eslint-disable-line
+const goodResponse = {
  'soapenv:Envelope': {
    '$': {
      'xmlns:soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
