@@ -9,6 +9,7 @@ const { Types, Creators } = createActions({
   saveGuestCart: ['updatedProducts'],
   validatePostal: ['postalCode'],
   receivedValidPostal: ['postalInfo'],
+  receivedInvalidPostal: ['postalInfo'],
 });
 
 export const orderTypes = Types;
@@ -33,7 +34,7 @@ const setTaxRate = (state, { taxRate }) => {
   return ({
     ...state,
     taxRate,
-  })
+  });
 };
 
 const addToGuestCart = (state, { productObj }) => ({

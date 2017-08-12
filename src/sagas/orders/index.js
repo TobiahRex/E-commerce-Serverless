@@ -18,12 +18,12 @@ export default function* validatePostal() {
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(orderActions.receivedValidPostal(data.postalInfo)),
+        put(orderActions.receivedValidPostal(data)),
       ];
     } else {
       yield [
+        put(orderActions.receivedInvalidPostal(data)),
         put(apiActions.apiFail(problem)),
-        put(orderActions.receivedInvalidPostal(data.postalInfo)),
       ];
     }
   }

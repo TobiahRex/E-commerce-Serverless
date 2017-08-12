@@ -6,7 +6,7 @@ import { orderActions } from './redux.imports';
 
 const { func, string } = PropTypes;
 
-class PostalCode extends React.PureComponent {
+class PostalCode extends React.Component {
   static propTypes = {
     handleOnChange: func.isRequired,
     shippingPostalCode: string,

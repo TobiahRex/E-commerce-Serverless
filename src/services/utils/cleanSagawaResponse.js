@@ -40,7 +40,7 @@ const handlePostal = (response) => {
   const { ok, data } = response;
 
   if (problem) {
-    problem = `There was a Network Error.  ${problem}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+    problem = `There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
     return ({
       ok,
       problem,

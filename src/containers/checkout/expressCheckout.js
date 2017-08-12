@@ -93,8 +93,10 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%capiError', 'background:red;', nextProps.apiError);
+    console.warn('this.form:, ', this.form);
+    console.warn('this.form:, ', this.form.showError);
     if (nextProps.apiError) {
+      console.log('%cCONDITION PASSED', 'background:red;');
       this.form.showError('shippingPostalCode', 'postalApi');
     } else if (!_.isEqual(nextProps, this.props) ||
       !ArrayDeepEquality(nextProps.cart, this.state.cart)
@@ -375,7 +377,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
   loggedIn: auth.loggedIn || false,
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  apiError: orders.postalInfo.error ? api.problem : '',
+  apiError: orders.postalInfo.error ? api.error : '',
   apiFetching: api.fetching,
 }))(ExpressCheckoutWithStateAndData);
 
