@@ -19,22 +19,36 @@ const createSagawaCheckZipAPI = () => {
     },
   });
 
-  const checkZip = zip => api.post('getAddr',
+  const validatePostal = postalCode => api.post('getAddr',
   `<?xml version='1.0' encoding='utf-8'?>
   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
   <soap:Body>
     <getAddr xmlns='http://ws.com'>
-    <zipcode>${xmlOut(zip)}</zipcode>
+    <zipcode>${xmlOut(postalCode)}</zipcode>
   </getAddr>
 </soap:body>
 </soap:Envelope>`);
 
   return {
-    checkZip,
+    validatePostal,
   };
 };
 
-const sagawaZipAPI = createSagawaCheckZipAPI();
+export default createSagawaCheckZipAPI();
+
+/**
+* Function: "checkZip";
+* 1. Calls Sagawa API with postal code as arg.
+* 2. Receives response.
+* 3. Destructures response as { problem, ok, data }.
+* 4a. If problem, parse the XML problem and assign to Redux state error object value.
+* 4b. If no problem, parse the XML results into JSON and return the results object.
+*
+* @param {string} postalCode - the postal code to validate.
+*
+* @return {object} XML parsed as JSON response object.
+*/
+
 sagawaZipAPI.checkZip('2220033')
 .then((response) => {
   const { problem, ok, data } = response;
