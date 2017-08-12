@@ -41,53 +41,64 @@ const handlePostal = (response) => {
 
   if (problem) {
     problem = `There was a Network Error.  ${problem}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
-  } else if (ok) {
-    xml2js.parseString(data, (err, results) => {
-      if (err) {
-        problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
-        return ({
-          ok,
-          data: {
-            postalInfo: {
-              error: true,
-              jpAddress: '',
-              postalCode: '',
-            },
-          },
-          problem,
-        });
-      }
+    return ({
+      ok,
+      problem,
+      data: {
+        postalInfo: {
+          error: true,
+          jpAddress: '',
+          postalCode: '',
+        },
+      },
+    });
+  }
 
-      const { error, postalCode, jpAddress } = extractData(results);
-
-      if (error) {
-        problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-        return ({
-          ok,
-          data: {
-            postalInfo: {
-              error: true,
-              jpAddress,
-              postalCode,
-            },
-          },
-          problem,
-        });
-      }
-
+  return xml2js.parseString(data, (err, results) => {
+    if (err) {
+      problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
       return ({
         ok,
         data: {
           postalInfo: {
-            error: false,
+            error: true,
+            jpAddress: '',
+            postalCode: '',
+          },
+        },
+        problem,
+      });
+    }
+
+    const { error, postalCode, jpAddress } = extractData(results);
+
+    if (error) {
+      problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
+      return ({
+        ok,
+        data: {
+          postalInfo: {
+            error: true,
             jpAddress,
             postalCode,
           },
         },
         problem,
       });
+    }
+
+    return ({
+      ok,
+      data: {
+        postalInfo: {
+          error: false,
+          jpAddress,
+          postalCode,
+        },
+      },
+      problem,
     });
-  }
+  });
 };
 
 export default {

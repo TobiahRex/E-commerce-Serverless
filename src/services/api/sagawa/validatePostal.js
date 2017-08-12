@@ -18,7 +18,6 @@ const xmlOut = str => str
 .replace(/>/g, '&gt;')
 .replace(/"/g, '');
 
-
 const createSagawaCheckZipAPI = () => {
   const api = create({
     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',

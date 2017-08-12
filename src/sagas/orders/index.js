@@ -7,15 +7,13 @@ import cleanSagawaResponse from '../../services/utils/cleanSagawaResponse';
 export default function* validatePostal() {
   while(true) { //eslint-disable-line
     const { postalCode } = yield take(orderTypes.VALIDATE_POSTAL);
-    console.log('%cpostalCode', 'background:red;', postalCode);
 
     const responses = yield [
       put(apiActions.fetching()),
       call(() => sagawaApi.validatePostal(postalCode)),
     ];
-    console.log('%cSAGAWA POSTAL RESPONSE', 'background:lime;', responses[1]);
 
-    const { ok, problem, data } = cleanSagawaResponse.postal(responses[1]);
+    const { ok, problem, data } = cleanSagawaResponse.handlePostal(responses[1]);
 
     if (ok) {
       yield [
@@ -23,7 +21,10 @@ export default function* validatePostal() {
         put(orderActions.receivedValidPostal(data.postalInfo)),
       ];
     } else {
-      yield put(apiActions.apiFail(problem));
+      yield [
+        put(apiActions.apiFail(problem)),
+        put(orderActions.receivedInvalidPostal(data.postalInfo)),
+      ];
     }
   }
 }

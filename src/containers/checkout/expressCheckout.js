@@ -93,6 +93,7 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('%capiError', 'background:red;', nextProps.apiError);
     if (nextProps.apiError) {
       this.form.showError('shippingPostalCode', 'postalApi');
     } else if (!_.isEqual(nextProps, this.props) ||
@@ -334,7 +335,7 @@ class ExpressCheckout extends Component {
             </div>
           </div>
         </Validation.components.Form>
-        
+
         <CvnModal
           showModal={this.state.showCvnModal}
           toggleModal={this.toggleModal}
