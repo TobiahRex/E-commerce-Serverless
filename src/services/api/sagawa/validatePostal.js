@@ -2,6 +2,16 @@
 import { create } from 'apisauce';
 import xml2js from 'xml2js';
 
+/**
+* Function: "xmlOut";
+* 1. Receives standard Javascript string
+* 2. Replaces special characters with XML compliant syntax.
+* 3. Returns the result.
+*
+* @param {string} postalCode - the postal code to validate.
+*
+* @return {string} cleaned
+*/
 const xmlOut = str => str
 .replace(/&/g, '&amp;')
 .replace(/</g, '&lt;')
