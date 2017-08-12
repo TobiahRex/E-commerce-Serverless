@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import {
   Country,
+  NameOnCard,
   CreditCardNumber,
   CreditCardExpiration,
   CvnAndZip,
@@ -13,6 +14,7 @@ const { func, string } = PropTypes;
 
 class CreditCardInfo extends React.Component {
   static propTypes = {
+    ccNameOnCard: string.isRequired,
     ccRenderKey: string.isRequired,
     ccCountry: string.isRequired,
     ccNumber: string.isRequired,
@@ -27,6 +29,7 @@ class CreditCardInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      ccNameOnCard: '',
       ccRenderKey: props.ccRenderKey,
       ccCountry: '',
       ccNumber: '',
@@ -48,6 +51,7 @@ class CreditCardInfo extends React.Component {
 
   render() {
     const {
+      ccNameOnCard,
       ccRenderKey,
       ccCountry,
       ccNumber,
@@ -76,37 +80,38 @@ class CreditCardInfo extends React.Component {
           </div>
         </div>
 
-        {/* NOTE: "Not required from Square."
-          <NameOnCard
-          ccNameOnCard={ccNameOnCard}
-          handleOnChange={this.handleOnChange}
-        /> */}
-
-        {/* <div key={ccRenderKey}> */}
         <Country
           country={ccCountry}
           handleOnChange={this.handleOnChange}
         />
+
+        <NameOnCard
+          show={!!ccCountry}
+          ccNameOnCard={ccNameOnCard}
+          handleOnChange={this.handleOnChange}
+        />
+
         <CreditCardNumber
+          show={!!ccCountry}
           ccNumber={ccNumber}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardExpiration
+          show={!!ccCountry}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}
         />
 
         <CvnAndZip
+          show={!!ccCountry}
           ccRenderKey={ccRenderKey}
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
           ccZip={ccZip}
           handleOnChange={this.handleOnChange}
         />
-        {/* </div> */}
-
 
       </div>
     );

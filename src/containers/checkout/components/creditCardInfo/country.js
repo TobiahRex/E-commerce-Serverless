@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import { Countries } from './component.imports';
 
-class Country extends React.PureComponent {
+class Country extends React.Component {
   static propTypes = {
     handleOnChange: PropTypes.func.isRequired,
     country: PropTypes.string.isRequired,

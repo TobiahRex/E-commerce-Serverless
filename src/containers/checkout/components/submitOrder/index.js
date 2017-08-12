@@ -1,74 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
+import { withHandlers } from 'recompose';
+
 import {
   squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 
-// let paymentForm = {};
-
-class SubmitOrder extends React.PureComponent {
-  static propTypes = {
-    enable: PropTypes.bool.isRequired,
-    ccCountry: PropTypes.string.isRequired,
-    ccRenderKey: PropTypes.string.isRequired,
-    // handleNonceResponse: PropTypes.func.isRequired,
-  }
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      ccCountry: props.ccCountry,
-      ccRenderKey: props.ccRenderKey,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      ccCountry,
-      ccRenderKey,
-    } = nextProps;
-
-    if (!_.isEqual(nextProps, this.props)) {
-      this.setState({
-        ccCountry,
-        ccRenderKey,
-      });
-    }
-  }
-
-  componentDidUpdate() {
-    // SqrPaymentForm.build();
-  }
-
-  handleOnSubmit = () => {
-    SqrPaymentForm.get().requestCardNonce();
-  }
-
-  render() {
-    const {
-      enable,
-      ccRenderKey,
-    } = this.props;
-
+function SubmitOrder({ enable, requestCardNonce }) {
+  if (enable) {
     return (
-    enable ?
       <div className="checkout__purchase-btn" >
-        {/* <button onClick={() => this.state.paymentForm.destroy()}>Destroy</button>
-          <button onClick={() => {
-          this.state.paymentForm = SqrPaymentForm('renderWithZip', this.props.handleNonceResponse);
-          this.state.paymentForm.build();
-          }}>Build US</button>
-          <button onClick={() => {
-          this.state.paymentForm = SqrPaymentForm('renderWithoutZip', this.props.handleNonceResponse);
-          this.state.paymentForm.build();
-        }}>Build Non-US</button> */}
         <Validation.components.Button
           className="button"
           errorClassName="asd"
-          onClick={this.handleOnSubmit}
+          onClick={requestCardNonce}
         >
           <span className="btn-flex-parent">
             <FontAwesome name="barcode" />
@@ -77,18 +24,28 @@ class SubmitOrder extends React.PureComponent {
           </span>
         </Validation.components.Button>
       </div>
-        :
-      <div className="checkout__purchase-btn" key={ccRenderKey}>
-        <button className="button" disabled>
-          <span className="btn-flex-parent">
-            <FontAwesome name="barcode" />
-            {'\u00A0'}
-            <p>Place Order Now</p>
-          </span>
-        </button>
-      </div>
     );
   }
+  return (
+    <div className="checkout__purchase-btn">
+      <button className="button" disabled>
+        <span className="btn-flex-parent">
+          <FontAwesome name="barcode" />
+          {'\u00A0'}
+          <p>Place Order Now</p>
+        </span>
+      </button>
+    </div>
+  );
 }
+SubmitOrder.propTypes = {
+  enable: PropTypes.bool.isRequired,
+  requestCardNonce: PropTypes.func.isRequired,
+};
+const SubmitOrderWithHandlers = withHandlers({
+  requestCardNonce: () => (event) => { //eslint-disable-line
+    SqrPaymentForm.get().requestCardNonce();
+  }
+})(SubmitOrder);
 
-export default SubmitOrder;
+export default SubmitOrderWithHandlers;

@@ -45,7 +45,7 @@ const productSchema = new Schema({
     },
     nicotineStrength: {
       type: Number,
-      enum: [2, 4, 6, 8, 10, 12, 14, 16, 18],
+      enum: [0, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18],
       required: true,
     },
     images: [{

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-// import Validation from 'react-validation';
 
-const { func, string } = PropTypes;
+const { func, string, bool } = PropTypes;
 
 class CvnAndZip extends React.Component {
   static propTypes = {
+    show: bool.isRequired,
     ccRenderKey: string.isRequired,
     toggleModal: func.isRequired,
     ccCvn: string.isRequired,
@@ -45,9 +45,9 @@ class CvnAndZip extends React.Component {
 
   render() {
     const enableZip = this.state.ccRenderKey === 'renderWithZip';
-
+    const { show } = this.props;
     return (
-      <div className="input__row cvn">
+      <div className="input__row cvn" style={{ display: show ? '' : 'none' }}>
         <div className="input__row--cvn-number">
           <div className="cvn-number--wrapper">
             <p>CVV <span className="required">*</span>
@@ -81,8 +81,8 @@ class CvnAndZip extends React.Component {
           <p>Zip Code {'\u0020'}
             <span className="required">*</span>
           </p>
-          {/* <div id="sq-postal-code" /> */}
-          <input
+          <div id="sq-postal-code" />
+          {/* <input
             id="sq-postal-code"
             type="text"
             className={this.state.zipError}
@@ -94,7 +94,7 @@ class CvnAndZip extends React.Component {
             onChange={this.handleOnChange}
             value={this.state.ccZip}
             // required
-          />
+          /> */}
         </div>
       </div>
     );

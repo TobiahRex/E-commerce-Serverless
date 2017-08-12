@@ -35,12 +35,13 @@ import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
+console.log('FETCHMULTIPLEPRODUCTS', FetchMultipleProducts)
 import {
   SubmitFinalOrder,
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
-// let paymentForm = null;
+// let paymewntForm = null;
 
 class ExpressCheckout extends Component {
   static propTypes = propTypes
@@ -96,20 +97,20 @@ class ExpressCheckout extends Component {
   componentDidMount() {
     // console.log('%cthis.paymentForm: ', 'background:blue;', SqrPaymentForm.paymentForm);
 
-    if (!!SqrPaymentForm.paymentForm) {
-      SqrPaymentForm.build();
-      // SqrPaymentForm.destroy();
-      // const iFrames = document.getElementsByTagName('iframe');
-      // if (iFrames.length) {
-      //   iFrames.forEach((frame) => {
-      //     const frameId = frame.getAttribute('id');
-      //     const newEl = document.createElement('div').setAttribute('id', frameId);
-      //     frame.parentNode.replaceChild(frame, newEl);
-      //   });
-      // }
-    }
-    SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
-    SqrPaymentForm.build();
+    // if (!!SqrPaymentForm.paymentForm) {
+    //   SqrPaymentForm.build();
+    //   // SqrPaymentForm.destroy();
+    //   // const iFrames = document.getElementsByTagName('iframe');
+    //   // if (iFrames.length) {
+    //   //   iFrames.forEach((frame) => {
+    //   //     const frameId = frame.getAttribute('id');
+    //   //     const newEl = document.createElement('div').setAttribute('id', frameId);
+    //   //     frame.parentNode.replaceChild(frame, newEl);
+    //   //   });
+    //   // }
+    // }
+    // SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+    // SqrPaymentForm.build();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -139,13 +140,43 @@ class ExpressCheckout extends Component {
         window.location.reload();
       } else {
         const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
-
         if (countriesWithPostal.includes(e.target.value)) {
-          if (SqrPaymentForm.type === 'renderWithZip') {
+          if (!!SqrPaymentForm.options) {
+            if (SqrPaymentForm.type === 'renderWithZip') {
+              this.setState(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithZip',
+              }), () => {
+                SqrPaymentForm.build();
+              });
+            } else {
+              this.setState(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithZip',
+              }), () => {
+                SqrPaymentForm.destroy();
+                SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+                SqrPaymentForm.build();
+              });
+            }
+          } else {
             this.setState(prevState => ({
               ...prevState,
               [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithZip',
+              ccRenderKey: 'renderWithoutZip',
+            }), () => {
+              SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+              SqrPaymentForm.build();
+            });
+          }
+        } else if (!!SqrPaymentForm.options) {
+          if (SqrPaymentForm.type === 'renderWithoutZip') {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithoutZip',
             }), () => {
               SqrPaymentForm.build();
             });
@@ -153,29 +184,19 @@ class ExpressCheckout extends Component {
             this.setState(prevState => ({
               ...prevState,
               [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithZip',
+              ccRenderKey: 'renderWithoutZip',
             }), () => {
               SqrPaymentForm.destroy();
-              SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+              SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
               SqrPaymentForm.build();
             });
           }
-        }
-        if (SqrPaymentForm.type === 'renderWithoutZip') {
-          this.setState(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-            ccRenderKey: 'renderWithoutZip',
-          }), () => {
-            SqrPaymentForm.build();
-          });
         } else {
           this.setState(prevState => ({
             ...prevState,
             [e.target.name]: e.target.value,
             ccRenderKey: 'renderWithoutZip',
           }), () => {
-            SqrPaymentForm.destroy();
             SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
             SqrPaymentForm.build();
           });
@@ -247,7 +268,7 @@ class ExpressCheckout extends Component {
       shippingPostalCode,
       shippingPhoneNumber,
       // ---
-      // ccNameOnCard,
+      ccNameOnCard,
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
@@ -255,10 +276,11 @@ class ExpressCheckout extends Component {
       ccCvn,
       ccZip,
       // ---
-      termsAgreement,
+      // termsAgreement,
       // ---
       total,
     } = this.state;
+    console.log('THIS.FORM', this.form);
 
     return (
       <div className="checkout__container">
@@ -274,115 +296,111 @@ class ExpressCheckout extends Component {
         <Validation.components.Form
           ref={this.assignRefToForm}
           onSubmit={this.handleOnSubmit}
-        >
-          {/* <Validation.components.Input
-            errorClassName='is-invalid-input'
-            type='checkbox'
-            name='policy'
-            value='1'
-            validations={['required']}
-          /> */}
+          >
+            {/* <Validation.components.Input
+              errorClassName='is-invalid-input'
+              type='checkbox'
+              name='policy'
+              value='1'
+              validations={['required']}
+            /> */}
 
-          <div className="checkout__body grid">
-            <div className="checkout__grid">
-              <ProductReview
-                cart={cart}
-                loggedIn={loggedIn}
-                routerPush={this.routerPush}
-                newsletterDecision={newsletterDecision}
-                handleOnChange={this.handleOnChange}
-              />
-              <ShippingMethod />
+            <div className="checkout__body grid">
+              <div className="checkout__grid">
+                <ProductReview
+                  cart={cart}
+                  loggedIn={loggedIn}
+                  routerPush={this.routerPush}
+                  newsletterDecision={newsletterDecision}
+                  handleOnChange={this.handleOnChange}
+                />
+                <ShippingMethod />
+              </div>
+              <div className="checkout__grid">
+                {/* <ShippingAddress
+                  shippingFirstName={shippingFirstName}
+                  shippingLastName={shippingLastName}
+                  shippingEmail={shippingEmail}
+                  shippingAddressLine1={shippingAddressLine1}
+                  shippingAddressLine2={shippingAddressLine2}
+                  shippingCountry={shippingCountry}
+                  shippingPrefecture={shippingPrefecture}
+                  shippingCity={shippingCity}
+                  shippingPostalCode={shippingPostalCode}
+                  shippingPhoneNumber={shippingPhoneNumber}
+                  handleOnChange={this.handleOnChange}
+                /> */}
+              </div>
+              <div className="checkout__grid">
+                <CreditCardInfo
+                  ccRenderKey={ccRenderKey}
+                  ccNameOnCard={ccNameOnCard}
+                  ccCountry={ccCountry}
+                  ccNumber={ccNumber}
+                  ccExpireMonth={ccExpireMonth}
+                  ccExpireYear={ccExpireYear}
+                  ccCvn={ccCvn}
+                  ccZip={ccZip}
+                  handleOnChange={this.handleOnChange}
+                  toggleModal={this.toggleModal}
+                />
+                <GrandTotal
+                  total={total}
+                  showTotal={!!cart.length}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <SubmitOrder enable={!!cart.length} />
+
+                <NetworkStatus
+                  errors={errors}
+                  loading={false}
+                  success={false}
+                  routerPush={this.routerPush}
+                />
+              </div>
             </div>
-            <div className="checkout__grid">
-              {/* <ShippingAddress
-                shippingFirstName={shippingFirstName}
-                shippingLastName={shippingLastName}
-                shippingEmail={shippingEmail}
-                shippingAddressLine1={shippingAddressLine1}
-                shippingAddressLine2={shippingAddressLine2}
-                shippingCountry={shippingCountry}
-                shippingPrefecture={shippingPrefecture}
-                shippingCity={shippingCity}
-                shippingPostalCode={shippingPostalCode}
-                shippingPhoneNumber={shippingPhoneNumber}
-                handleOnChange={this.handleOnChange}
-              /> */}
-            </div>
-            <div className="checkout__grid">
-              <CreditCardInfo
-                ccRenderKey={ccRenderKey}
-                ccCountry={ccCountry}
-                ccNumber={ccNumber}
-                ccExpireMonth={ccExpireMonth}
-                ccExpireYear={ccExpireYear}
-                ccCvn={ccCvn}
-                ccZip={ccZip}
-                handleOnChange={this.handleOnChange}
-                toggleModal={this.toggleModal}
-              />
-              <GrandTotal
-                total={total}
-                showTotal={!!cart.length}
-              />
+          </Validation.components.Form>
 
-              {/* <div key={ccRenderKey}> */}
-              <SubmitOrder
-                enable={!!cart.length}
-                ccCountry={ccCountry}
-                ccRenderKey={ccRenderKey}
-              />
-              {/* </div> */}
+          <CvnModal
+            showModal={this.state.showCvnModal}
+            toggleModal={this.toggleModal}
+          />
 
-              <NetworkStatus
-                errors={errors}
-                loading={false}
-                success={false}
-                routerPush={this.routerPush}
-              />
-            </div>
-          </div>
-        </Validation.components.Form>
-
-        <CvnModal
-          showModal={this.state.showCvnModal}
-          toggleModal={this.toggleModal}
-        />
-
-      </div>
-    );
+        </div>
+      );
+    }
   }
-}
 
-const ExpressCheckoutWithState = connect((state, ownProps) => {
-  const total = ComposeFinalTotal(ownProps);
-  const cart = DetermineCartType(ownProps, ZipUserCart);
+  const ExpressCheckoutWithState = connect((state, ownProps) => {
+    const total = ComposeFinalTotal(ownProps);
+    const cart = DetermineCartType(ownProps, ZipUserCart);
 
-  return ({
-    total,
-    cart,
-  });
-}, dispatch => ({
-  push: location => dispatch(push(location)),
-}))(ExpressCheckout);
+    return ({
+      total,
+      cart,
+    });
+  }, dispatch => ({
+    push: location => dispatch(push(location)),
+  }))(ExpressCheckout);
 
-const ExpressCheckoutWithStateAndData = compose(
-  graphql(FetchMultipleProducts, {
-    name: 'FetchMultipleProducts',
-    options: FetchMultipleProductsOptions,
-  }),
-  graphql(SubmitFinalOrder, {
-    name: 'SubmitFinalOrder',
-    options: SubmitFinalOrderOptions,
-  }),
-)(ExpressCheckoutWithState);
+  const ExpressCheckoutWithStateAndData = compose(
+    graphql(FetchMultipleProducts, {
+      name: 'FetchMultipleProducts',
+      options: FetchMultipleProductsOptions,
+    }),
+    graphql(SubmitFinalOrder, {
+      name: 'SubmitFinalOrder',
+      options: SubmitFinalOrderOptions,
+    }),
+  )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
-  loggedIn: auth.loggedIn || false,
-  newUser: CheckNewUser(user, auth.loggedIn),
-  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
-  guestCart: orders.cart,
-  taxRate: orders.taxRate.totalRate,
-}))(ExpressCheckoutWithStateAndData);
+  const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
+    loggedIn: auth.loggedIn || false,
+    newUser: CheckNewUser(user, auth.loggedIn),
+    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+    guestCart: orders.cart,
+    taxRate: orders.taxRate.totalRate,
+  }))(ExpressCheckoutWithStateAndData);
 
-export default ExpressCheckoutWithStateAndData2;
+  export default ExpressCheckoutWithStateAndData2;

@@ -215,6 +215,7 @@
       }
       & .checkout__credit-card {
         order: 5;
+        padding-bottom: 2em;
         & .input__row--country {
           @include prefixflex();
           align-items: flex-start;
