@@ -86,6 +86,28 @@ sagawaZipAPI.checkZip('2220033')
   }
 });
 
+const goodResponse = { //eslint-disable-line
+ 'soapenv:Envelope': {
+   '$': {
+     'xmlns:soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+   },
+
+   'soapenv:Body': [
+     {
+       'ns:getAddrResponse': [
+         {
+           '$': {
+             'xmlns:ns': 'http://ws.com',
+           },
+           'ns:return': [
+             '2220033|神奈川県横浜市港北区新横浜|0',
+           ],
+         },
+       ],
+     },
+   ],
+ },
+};
 
 /**
 * Successful Response:
