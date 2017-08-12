@@ -35,13 +35,11 @@ import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
-console.log('FETCHMULTIPLEPRODUCTS', FetchMultipleProducts)
+
 import {
   SubmitFinalOrder,
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
-
-// let paymewntForm = null;
 
 class ExpressCheckout extends Component {
   static propTypes = propTypes
@@ -387,7 +385,7 @@ const ExpressCheckoutWithStateAndData = compose(
   }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
   loggedIn: auth.loggedIn || false,
   newUser: CheckNewUser(user, auth.loggedIn),
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],

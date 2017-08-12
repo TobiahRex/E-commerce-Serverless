@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { create } from 'apisauce';
-import xml2js from 'xml2js';
+// import xml2js from 'xml2js';
 
 /**
 * Function: "xmlOut";
@@ -53,11 +53,11 @@ const createSagawaCheckZipAPI = () => {
   };
 };
 
-const sagawaZipAPI = createSagawaCheckZipAPI();
-// export default createSagawaCheckZipAPI();
+export default createSagawaCheckZipAPI();
 
 /**
 * Function: "checkZip";
+* NOTE This function is only meant to be used during testing.
 * 1. Receives response.
 * 2. Destructures response as { problem, ok, data }.
 * 3a. If problem, parse the XML problem and assign to Redux state error object value.
@@ -67,71 +67,44 @@ const sagawaZipAPI = createSagawaCheckZipAPI();
 *
 * @return {object} XML parsed as JSON response object.
 */
-sagawaZipAPI.validatePostal('222003')
-.then((response) => {
-  const { problem, ok, data } = response;
-  // console.log('RESPONSE:\n', response., '\n\n');
-  if (problem) {
-    console.log('\nERROR: ', problem);
-    xml2js.parseString(data, (err, results) => {
-      if (err) console.log('PARSE ERROR: \n', err);
-      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-    });
-  }
-  if (ok) {
-    xml2js.parseString(data, (err, results) => {
-      if (err) console.log('PARSE ERROR: \n', err);
-      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-    });
-  }
-});
+// sagawaZipAPI.validatePostal('222003')
+// .then((response) => {
+//   const { problem, ok, data } = response;
+//   // console.log('RESPONSE:\n', response., '\n\n');
+//   if (problem) {
+//     console.log('\nERROR: ', problem);
+//     xml2js.parseString(data, (err, results) => {
+//       if (err) console.log('PARSE ERROR: \n', err);
+//       console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+//     });
+//   }
+//   if (ok) {
+//     xml2js.parseString(data, (err, results) => {
+//       if (err) console.log('PARSE ERROR: \n', err);
+//       console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+//     });
+//   }
+// });
 
-const goodResponse = {
- 'soapenv:Envelope': {
-   '$': {
-     'xmlns:soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
-   },
-
-   'soapenv:Body': [
-     {
-       'ns:getAddrResponse': [
-         {
-           '$': {
-             'xmlns:ns': 'http://ws.com',
-           },
-           'ns:return': [
-             '2220033|神奈川県横浜市港北区新横浜|0',
-           ],
-         },
-       ],
-     },
-   ],
- },
-};
-
-/**
-* Successful Response:
-PARSE OK:
- {
-  "soapenv:Envelope": {
-    "$": {
-      "xmlns:soapenv": "http://schemas.xmlsoap.org/soap/envelope/"
-    },
-
-    "soapenv:Body": [
-      {
-        "ns:getAddrResponse": [
-          {
-            "$": {
-              "xmlns:ns": "http://ws.com"
-            },
-            "ns:return": [
-              "2220033|神奈川県横浜市港北区新横浜|0"
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-*/
+// const goodResponse = {
+//  'soapenv:Envelope': {
+//    '$': {
+//      'xmlns:soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+//    },
+//
+//    'soapenv:Body': [
+//      {
+//        'ns:getAddrResponse': [
+//          {
+//            '$': {
+//              'xmlns:ns': 'http://ws.com',
+//            },
+//            'ns:return': [
+//              '2220033|神奈川県横浜市港北区新横浜|0',
+//            ],
+//          },
+//        ],
+//      },
+//    ],
+//  },
+// };

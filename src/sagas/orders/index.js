@@ -2,7 +2,7 @@ import { call, put, take } from 'redux-saga/effects';
 import apiActions from '../../redux/api';
 import orderActions, { orderTypes } from '../../redux/orders';
 import sagawaApi from '../../services/api/sagawa';
-
+import cleanSagawaResponse from '../../services/utils/cleanSagawaResponse';
 
 export default function* validatePostal() {
   while(true) { //eslint-disable-line
@@ -18,7 +18,7 @@ export default function* validatePostal() {
     if (ok) {
       yield [
         put(apiActions.apiSuccess()),
-        put(orderActions.receivedValidPostal(data)),
+        put(orderActions.receivedValidPostal(data.postalInfo)),
       ];
     } else {
       yield put(apiActions.apiFail(problem));

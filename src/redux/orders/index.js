@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
-  validatePostal: ['postal'],
+  validatePostal: ['postalCode'],
   receivedValidPostal: ['postalInfo'],
 });
 

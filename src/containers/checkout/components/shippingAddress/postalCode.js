@@ -49,7 +49,7 @@ class PostalCode extends React.PureComponent {
 }
 
 const PostalCodeWithRedux = connect(null, dispatch => ({
-  SgValidatePostal: postal => dispatch(orderActions.validatePostal(postal)),
+  SgValidatePostal: postalCode => dispatch(orderActions.validatePostal(postalCode)),
 }))(PostalCode);
 
 export default PostalCodeWithRedux;
