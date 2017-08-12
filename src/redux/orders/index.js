@@ -28,10 +28,13 @@ export const INITIAL_STATE = Immutable({
   },
 });
 
-const setTaxRate = (state, { taxRate }) => ({
-  ...state,
-  taxRate,
-});
+const setTaxRate = (state, { taxRate }) => {
+  console.log('%cstate', 'background:lime;', state);
+  return ({
+    ...state,
+    taxRate,
+  })
+};
 
 const addToGuestCart = (state, { productObj }) => ({
   ...state,

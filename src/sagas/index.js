@@ -1,7 +1,7 @@
 // ----- Sagas ----- //
 import applicationStartup from './startup';
 import authorizationSaga, { watchAuthActions } from './authorization';
-import { fetchPopularProducts } from './products/';
+import fetchPopularProducts from './products/';
 import fetchUserProfile from './users/';
 // ----- api's ----- //
 export default function* rootSaga() {
