@@ -15,9 +15,9 @@ const extractData = (jsonResponse) => {
   }
 
   return ({
+    verified: true,
     postalCode,
     jpAddress,
-    verified: false,
   });
 };
 
@@ -52,10 +52,13 @@ new Promise((resolve, reject) => {
     }
 
     const { verified, postalCode, jpAddress } = extractData(results);
+    console.log('verified: ', verified)
+    console.log('postalCode: ', postalCode)
+    console.log('jpAddress: ', jpAddress);
 
     if (!verified) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-      resolve(problem);
+      reject(problem);
     }
 
     resolve({
@@ -69,7 +72,6 @@ new Promise((resolve, reject) => {
       },
     });
   });
-
 });
 
 export default {

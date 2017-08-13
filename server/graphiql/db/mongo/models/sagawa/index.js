@@ -38,13 +38,13 @@ new Promise((resolve, reject) => {
       SOAPAction: 'http://ws.com',
     },
   })
-  .then((response) => { //eslint-disable-line
-    const result = cleanSagawaResponse.handlePostal(response);
-
-    console.log('result: ', result);
-
-    const { problem, data } = result;
-
+  .then((response) => {
+    console.log('Reieved response from Sagawa.');
+    return cleanSagawaResponse.handlePostal(response)
+  })
+  .then(({ problem, data }) => { //eslint-disable-line
+    console.log('data: ', data);
+    console.log('problem: ', problem);
     if (problem) {
       console.log('There was an error while trying to validate postal code', postalCode, '.  Error = ', problem);
       reject({
@@ -70,8 +70,8 @@ new Promise((resolve, reject) => {
     });
   })
   .catch((error) => {
-    console.log(`Network Error while trying to validate postal code. Error = ${error}`);
-    reject(`Network Error while trying to validate postal code. Error = ${error}`);
+    console.log(`Error while trying to validate postal code: ${error}`);
+    reject(`Error while trying to validate postal code: ${error}`);
   });
 });
 
