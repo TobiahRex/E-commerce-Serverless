@@ -330,13 +330,13 @@ class ExpressCheckout extends Component {
                 <AddressLine
                   disabled
                   required={false}
-                  lineNumber={1}
+                  title={'City | Prefecture'}
                   shippingAddressLine={shippingAddressLine1}
                 />
 
                 <AddressLine
                   required
-                  lineNumber={2}
+                  title={'Room # | Street # | Street Name'}
                   shippingAddressLine={shippingAddressLine2}
                   handleOnChange={this.handleOnChange}
                 />
