@@ -1,4 +1,27 @@
 /* eslint-disable no-tabs, no-unused-vars */
+const sagawa = {
+  ValidatePostal: `
+  query {
+  ValidatePostal(
+    postalCode: "2220033"
+    userId: "59807ba06907df3a4524cbb9"
+  ) {
+    _id
+		error {
+		  hard
+		  soft
+		  message
+		}
+    postalInfo {
+      verified
+      postalCode
+      jpAddress
+    }
+  }
+}
+`
+}
+
 const juices = {
   PopularProducts: `
     {

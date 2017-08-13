@@ -58,10 +58,7 @@ new Promise((resolve, reject) => {
       console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.', data);
       return bbPromise.fromCallback(cb => Sagawa.create({
         userId,
-        postalInfo: {
-          jpAddress: data.jpAddress,
-          potalCode: data.postalCode,
-        },
+        postalInfo: data.postalInfo,
       }, cb));
     }
   })
