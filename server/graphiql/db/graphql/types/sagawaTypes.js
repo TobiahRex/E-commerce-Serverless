@@ -1,6 +1,7 @@
 import {
   GraphQLID as MongoId,
   GraphQLInt as IntType,
+  GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
@@ -86,3 +87,19 @@ const rootType = new ObjectType({
     },
   },
 });
+
+const queries = {
+  ValidatePostal: {
+    type: rootType,
+    args: {
+      userId: {
+        description: 'The user\'s unique _id.',
+        type: new NonNull(MongoId),
+      },
+      postalCode: {
+        description: 'The postal code to validate.',
+        type: new NonNull(StringType),
+      },
+    },
+  }
+}
