@@ -25,7 +25,7 @@ export default function ShippingPolicy() {
         <p>
           <h4>ORDER PROCESSING & SHIPMENT DELIVERY TIME</h4>
           <br />
-          Orders will be processed and shipped at the next available business day.  Business days are between Monday (07:00 PST) - Friday (07:00 PST).  All Weekend orders (Friday after 07:00, Saturday & Sunday) are processed first thing Monday morning at 07:00.  This time frame usually results in your order being shipped within 1-3 business days after your full payment has been received. Shipment transit time will be between 2-7 business days depending on your physical address.
+          Orders will be processed and shipped at the next available business day.  Business days are between Monday (07:00 PST) - Friday (07:00 PST).  All Weekend orders (Friday after 07:00 PST, Saturday & Sunday) are processed first thing Monday morning at 07:00 PST.  This time frame usually results in your order being shipped within 1-3 business days after your full payment has been received. Shipment transit time will be between 2-7 business days depending on your physical address, accuracy of address information, availability of customers to answer questions (by contact number) from delivery personnel in the event of ambiguous shipping information, and/or any other unforseen circumstances.
           <br />
           <br />
           <h4>QUANTITY RESTRICTIONS</h4>
