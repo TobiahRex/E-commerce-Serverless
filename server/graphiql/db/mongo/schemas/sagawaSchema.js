@@ -48,14 +48,14 @@ const sagawaSchema = new Schema({
     ttlAmount: { type: Number },
     codFlg: { type: Number, default: 0 },
   },
-  item: {
+  items: [{
     itemcd: { type: Number },
     itemname: { type: String },
     usage: { type: Number, default: 0 },
     origin: { type: String },
     piece: { type: Number },
     unitprice: { type: Number },
-  },
+  }],
 }, {
   bufferCommands: true,
 });

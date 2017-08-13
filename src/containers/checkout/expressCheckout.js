@@ -320,15 +320,22 @@ class ExpressCheckout extends Component {
                   handleOnChange={this.handleOnChange}
                 />
 
-                <AddressLine
-                  required
-                  lineNumber={1}
-                  shippingAddressLine={shippingAddressLine1}
+                <PostalCode
                   handleOnChange={this.handleOnChange}
+                  validatePostal={this.validatePostal}
+                  shippingPostalCode={shippingPostalCode}
+                  clearValidationError={this.clearValidationError}
                 />
 
                 <AddressLine
+                  disabled
                   required={false}
+                  lineNumber={1}
+                  shippingAddressLine={shippingAddressLine1}
+                />
+
+                <AddressLine
+                  required
                   lineNumber={2}
                   shippingAddressLine={shippingAddressLine2}
                   handleOnChange={this.handleOnChange}
@@ -344,13 +351,6 @@ class ExpressCheckout extends Component {
                 <City
                   shippingCity={shippingCity}
                   handleOnChange={this.handleOnChange}
-                />
-
-                <PostalCode
-                  handleOnChange={this.handleOnChange}
-                  validatePostal={this.validatePostal}
-                  shippingPostalCode={shippingPostalCode}
-                  clearValidationError={this.clearValidationError}
                 />
 
                 <PhoneNumber

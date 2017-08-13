@@ -3,17 +3,6 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 class AddressLine extends React.PureComponent {
-  static propTypes = {
-    required: PropTypes.bool,
-    lineNumber: PropTypes.number.isRequired,
-    handleOnChange: PropTypes.func.isRequired,
-    shippingAddressLine: PropTypes.string.isRequired,
-  }
-
-  static defaultProps = {
-    required: false,
-  }
-
   constructor(props) {
     super(props);
 
@@ -54,4 +43,17 @@ class AddressLine extends React.PureComponent {
     );
   }
 }
+const { bool, number, string, func } = PropTypes;
+const AddressLine.propTypes = {
+  disabled: bool,
+  required: bool,
+  lineNumber: number.isRequired,
+  shippingAddressLine: string.isRequired,
+  handleOnChange: func,
+};
+const AddressLine.defaultProps = {
+  disabled: false,
+  handleOnChange: null,
+  required: false,
+};
 export default AddressLine;

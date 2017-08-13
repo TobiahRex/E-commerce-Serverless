@@ -1,6 +1,7 @@
 import {
   GraphQLID as MongoId,
   GraphQLInt as IntType,
+  GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
@@ -20,7 +21,7 @@ const rootType = new ObjectType({
     error: {
       description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
       type: new ObjectType({
-        name: 'ProductError',
+        name: 'SagawaError',
         fields: () => ({
           hard: {
             description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
@@ -49,41 +50,58 @@ const rootType = new ObjectType({
       description: 'A status identifying if the order has been uploaded to Sagawa.',
       type: StringType,
     },
-    postalInfo: new ObjectType({
-      name: 'SagawaPostalInfo',
-      fields: () => ({
-        verified: { type: BoolType },
-        postalCode: { type: StringType },
-        jpAddress: { type: StringType },
+    postalInfo: {
+      description: 'The postal code validation response from Sagawa.',
+      type: new ObjectType({
+        name: 'SagawaPostalInfo',
+        fields: () => ({
+          verified: { type: BoolType },
+          postalCode: { type: StringType },
+          jpAddress: { type: StringType },
+        }),
       }),
-    }),
-    shippingAddress: {
-      awbId: { type: StringType },
-      referenceId: { type: StringType },
-      boxid: { type: StringType },
-      shipdate: { type: StringType },
-      customerName: { type: StringType },
-      postal: { type: IntType },
-      jpaddress1: { type: StringType },
-      jpaddress2: { type: StringType },
-      phoneNumber: { type: IntType },
-      kbn: { type: StringType },
-      wgt: { type: IntType },
-      grandTotal: { type: IntType },
-      deliveryDate: { type: StringType },
-      deliveryTime: { type: IntType },
-      souryo: { type: IntType },
-      tesuryo: { type: IntType },
-      ttlAmount: { type: IntType },
-      codFlg: { type: IntType },
     },
-    item: {
-      itemcd: { type: IntType },
-      itemname: { type: StringType },
-      usage: { type: IntType },
-      origin: { type: StringType },
-      piece: { type: IntType },
-      unitprice: { type: IntType },
+    shippingAddress: {
+      description: 'The shipping information in Sagawa required format.',
+      type: new ObjectType({
+        name: 'SagawaShippingInformation',
+        fields: () => ({
+          awbId: { type: StringType },
+          referenceId: { type: StringType },
+          boxid: { type: StringType },
+          shipdate: { type: StringType },
+          customerName: { type: StringType },
+          postal: { type: IntType },
+          jpaddress1: { type: StringType },
+          jpaddress2: { type: StringType },
+          phoneNumber: { type: IntType },
+          kbn: { type: StringType },
+          wgt: { type: IntType },
+          grandTotal: { type: IntType },
+          deliveryDate: { type: StringType },
+          deliveryTime: { type: IntType },
+          souryo: { type: IntType },
+          tesuryo: { type: IntType },
+          ttlAmount: { type: IntType },
+          codFlg: { type: IntType },
+        }),
+      }),
+    },
+    items: {
+      description: 'The itemization information in Sagawa required format.',
+      type: new ListType(
+        new ObjectType({
+          name: 'SagawaItemObject',
+          fields: () => ({
+            itemcd: { type: IntType },
+            itemname: { type: StringType },
+            usage: { type: IntType },
+            origin: { type: StringType },
+            piece: { type: IntType },
+            unitprice: { type: IntType },
+          }),
+        }),
+      ),
     },
   },
 });
