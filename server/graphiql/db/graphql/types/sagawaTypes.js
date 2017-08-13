@@ -1,7 +1,8 @@
 import {
   GraphQLID as MongoId,
-  GraphQLObjectType as ObjectType,
   GraphQLBoolean as BoolType,
+  GraphQLString as StringType,
+  GraphQLObjectType as ObjectType,
 } from 'graphql';
 
 import Sagawa from '../../mongo/models/sagawa';
@@ -33,6 +34,20 @@ const rootType = new ObjectType({
           },
         }),
       }),
+    },
+    userId: {
+      description: 'A reference ID to the User Document who owns this information.',
+      type: MongoId,
+    },
+    transactionId: {
+      description: 'A reference ID to the Transaction Document that is mapped to this information.',
+      type: MongoId,
+    },
+    status: {
+      description: 'A status identifying if the order has been uploaded to Sagawa.',
+      type: String,
+      enum: ['pending', 'uploaded'],
+      default: 'pending',
     },
   },
 });
