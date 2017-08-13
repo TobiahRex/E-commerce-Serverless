@@ -14,7 +14,6 @@ const { func, string } = PropTypes;
 
 class CreditCardInfo extends React.Component {
   static propTypes = {
-    ccNameOnCard: string.isRequired,
     ccRenderKey: string.isRequired,
     ccCountry: string.isRequired,
     ccNumber: string.isRequired,

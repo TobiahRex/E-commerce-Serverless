@@ -34,7 +34,7 @@ class CreditCardNumber extends React.Component {
   render() {
     const { show } = this.props;
     return (
-      <div className="input__row" style={{ visibility: show ? 'visibile' : 'hidden' }}>
+      <div className="input__row" style={{ display: show ? '' : 'none' }}>
         <div className="input__row--cc-number">
           <p>Credit Card Number <span className="required">*</span></p>
           <div id="sq-card-number" />

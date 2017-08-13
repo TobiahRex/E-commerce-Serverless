@@ -33,6 +33,7 @@ const createSagawaCheckZipAPI = () => {
     checkZip,
   };
 };
+
 const sagawaZipAPI = createSagawaCheckZipAPI();
 sagawaZipAPI.checkZip('2220033')
 .then((response) => {

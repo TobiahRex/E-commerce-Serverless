@@ -21,6 +21,7 @@ class NameOnCard extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const nextPropsCopy = Object.assign({}, nextProps);
     delete nextPropsCopy.handleOnChange;
+
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
   }
 
@@ -29,7 +30,7 @@ class NameOnCard extends React.PureComponent {
   render() {
     const { show } = this.props;
     return (
-      <div className="input__row" style={{ visibility: show ? 'visibile' : 'hidden' }}>
+      <div className="input__row" style={{ display: show ? '' : 'none' }}>
         <div className="input__row--name-on-card">
           <p>Name on Card <span className="required">*</span></p>
           <Validation.components.Input

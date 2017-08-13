@@ -7,6 +7,9 @@ const { Types, Creators } = createActions({
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
+  validatePostal: ['postalCode'],
+  receivedValidPostal: ['postalInfo'],
+  receivedInvalidPostal: ['postalInfo'],
 });
 
 export const orderTypes = Types;
@@ -19,12 +22,20 @@ export const INITIAL_STATE = Immutable({
     cityRate: 0.030,
     totalRate: 0.090,
   },
+  postalInfo: {
+    error: '',
+    jpAddress: '',
+    postalCode: '',
+  },
 });
 
-const setTaxRate = (state, { taxRate }) => ({
-  ...state,
-  taxRate,
-});
+const setTaxRate = (state, { taxRate }) => {
+  console.log('%cstate', 'background:lime;', state);
+  return ({
+    ...state,
+    taxRate,
+  });
+};
 
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
@@ -44,9 +55,21 @@ const emptyGuestCart = (state) => {
   });
 };
 
+const receivedInvalidPostal = (state, { postalInfo }) => ({
+  ...state,
+  ...postalInfo,
+});
+
+const receivedValidPostal = (state, { postalInfo }) => ({
+  ...state,
+  ...postalInfo,
+});
+
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.SAVE_GUEST_CART]: saveGuestCart,
   [Types.EMPTY_GUEST_CART]: emptyGuestCart,
+  [Types.RECEIVED_VALID_POSTAL]: receivedValidPostal,
+  [Types.RECEIVED_INVALID_POSTAL]: receivedInvalidPostal,
 });

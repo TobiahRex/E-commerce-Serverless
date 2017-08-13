@@ -8,3 +8,16 @@ export GrandTotal from './components/grandTotal/';
 export SubmitOrder from './components/submitOrder/';
 export NetworkStatus from './components/networkStatus';
 export CvnModal from './components/creditCardInfo/cvnModal';
+
+export FirstName from './components/shippingAddress/firstName';
+export LastName from './components/shippingAddress/lastName';
+export Email from './components/shippingAddress/email';
+export AddressLine from './components/shippingAddress/addressLine';
+export Country from './components/shippingAddress/country';
+export Prefecture from './components/shippingAddress/prefecture';
+export PostalCode from './components/shippingAddress/postalCode';
+export City from './components/shippingAddress/city';
+export PhoneNumber from './components/shippingAddress/phoneNumber';
+export Prefectures from './components/prefectureConstants';
+export Countries from './components/countryConstants';
+export States from './components/stateConstants';
