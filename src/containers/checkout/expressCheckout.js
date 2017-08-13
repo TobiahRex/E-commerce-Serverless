@@ -330,6 +330,7 @@ class ExpressCheckout extends Component {
                 <AddressLine
                   disabled
                   required={false}
+                  placeHolder={'Generated from Postal Code...'}
                   title={'City | Prefecture'}
                   shippingAddressLine={shippingAddressLine1}
                 />
@@ -343,15 +344,16 @@ class ExpressCheckout extends Component {
 
                 <Country />
 
-                <Prefecture
+                {/* NOTE - not required for Sagawa.
+                  <Prefecture
                   shippingPrefecture={shippingPrefecture}
                   handleOnChange={this.handleOnChange}
-                />
+                  />
 
-                <City
+                  <City
                   shippingCity={shippingCity}
                   handleOnChange={this.handleOnChange}
-                />
+                /> */}
 
                 <PhoneNumber
                   shippingPhoneNumber={shippingPhoneNumber}
