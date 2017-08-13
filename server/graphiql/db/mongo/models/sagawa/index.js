@@ -23,6 +23,7 @@ const xmlOut = str => str
 
 sagawaSchema.statics.verifyPostal = ({ userId, postalCode }) =>
 new Promise((resolve, reject) => {
+  console.log('SENDING REQUEST TO SAGAWA');
   axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/getAddr',
   `<?xml version='1.0' encoding='utf-8'?>
   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
@@ -38,6 +39,7 @@ new Promise((resolve, reject) => {
     },
   })
   .then((response) => { //eslint-disable-line
+    console.log('Received response from Sagawa.');
     const { problem, data } = cleanSagawaResponse.handlepostal(response);
 
     if (problem) {
@@ -50,6 +52,7 @@ new Promise((resolve, reject) => {
         },
       });
     } else {
+      console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.');
       return bbPromise(cb => Sagawa.create(({
         userId,
         postalInfo: { ...data },

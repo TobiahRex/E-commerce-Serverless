@@ -110,5 +110,14 @@ export const ValidatePostal = gql`
   query ValidatePostal(
     $postalCode: StringType!
     $userId: ID!
-  )
+  ) {
+    ValidatePostal(
+      potalCode: $postalCode
+      userId: $userId
+    ) {
+      _id
+      error
+      postalInfo
+    }
+  }
 `;
