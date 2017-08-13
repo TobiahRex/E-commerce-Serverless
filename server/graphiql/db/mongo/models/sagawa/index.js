@@ -40,7 +40,7 @@ new Promise((resolve, reject) => {
   })
   .then((response) => {
     console.log('Reieved response from Sagawa.');
-    return cleanSagawaResponse.handlePostal(response)
+    return cleanSagawaResponse.handlePostal(response);
   })
   .then(({ problem, data }) => { //eslint-disable-line
     console.log('data: ', data);
@@ -58,7 +58,10 @@ new Promise((resolve, reject) => {
       console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.', data);
       return bbPromise.fromCallback(cb => Sagawa.create({
         userId,
-        postalInfo: { ...data },
+        postalInfo: {
+          jpAddress: data.jpAddress,
+          potalCode: data.postalCode,
+        },
       }, cb));
     }
   })
