@@ -20,7 +20,7 @@ const xmlOut = str => str
 
 const createSagawaCheckZipAPI = () => {
   const api = create({
-    baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
+    baseURL: 'https://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
     credentials: 'omit',
     headers: {
       'Content-Type': 'text/xml; charset=utf-8',
