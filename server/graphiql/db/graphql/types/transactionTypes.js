@@ -12,7 +12,7 @@ import Transaction from '../../mongo/models/transaction';
 
 const rootType = new ObjectType({
   name: 'Transaction',
-  description: 'A application transaction.',
+  description: 'An application transaction.',
   fields: {
     _id: {
       description: 'The ID of the Product.',

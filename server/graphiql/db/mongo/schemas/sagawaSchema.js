@@ -2,13 +2,28 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const sagawaSchema = new Schema({
+  error: {
+    hard: {
+      type: Boolean,
+      default: false,
+    },
+    soft: {
+      type: Boolean,
+      default: false,
+    },
+    message: {
+      type: String,
+      default: '',
+    },
+  },
+  userId: { type: ObjectId, ref: 'User' },
+  transactionId: { type: ObjectId, ref: 'Transaction' },
   status: {
     type: String,
     enum: ['pending', 'uploaded'],
     default: 'pending',
   },
   postalInfo: {
-    error: { type: String, default: '' },
     verified: { type: Boolean, default: false, required: true },
     postalCode: { type: String, required: true },
     jpAddress: { type: String, required: true },
