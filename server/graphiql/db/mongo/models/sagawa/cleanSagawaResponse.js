@@ -35,7 +35,10 @@ const extractData = (jsonResponse) => {
 *
 * @return {object} results - the modified axios response object.
 */
-const handlePostal = (response) => {
+const handlePostal = (response) =>
+new Promise((resolve, reject) => {
+
+});
   const { status, data } = response;
   let problem = status !== 200;
 
@@ -53,7 +56,7 @@ const handlePostal = (response) => {
     });
   }
 
-  return xml2js.parseString(data, (err, results) => {
+  xml2js.parseString(data, (err, results) => {
     if (err) {
       problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
       return ({
@@ -70,9 +73,11 @@ const handlePostal = (response) => {
 
     const { verified, postalCode, jpAddress } = extractData(results);
 
+    let result = {};
+
     if (!verified) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-      return ({
+      resolve({
         problem,
         data: {
           postalInfo: {
@@ -84,7 +89,7 @@ const handlePostal = (response) => {
       });
     }
 
-    return ({
+    resolve({
       problem,
       data: {
         postalInfo: {
@@ -95,7 +100,6 @@ const handlePostal = (response) => {
       },
     });
   });
-};
 
 export default {
   handlePostal,

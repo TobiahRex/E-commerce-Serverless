@@ -21,7 +21,7 @@ const xmlOut = str => str
 .replace(/>/g, '&gt;')
 .replace(/"/g, '');
 
-sagawaSchema.statics.verifyPostal = ({ userId, postalCode }) =>
+sagawaSchema.statics.validatePostal = ({ userId, postalCode }) =>
 new Promise((resolve, reject) => {
   console.log('SENDING REQUEST TO SAGAWA');
   axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/getAddr',
@@ -39,8 +39,11 @@ new Promise((resolve, reject) => {
     },
   })
   .then((response) => { //eslint-disable-line
-    console.log('Received response from Sagawa.');
-    const { problem, data } = cleanSagawaResponse.handlepostal(response);
+    const result = cleanSagawaResponse.handlePostal(response);
+
+    console.log('result: ', result);
+
+    const { problem, data } = result;
 
     if (problem) {
       console.log('There was an error while trying to validate postal code', postalCode, '.  Error = ', problem);
@@ -52,11 +55,11 @@ new Promise((resolve, reject) => {
         },
       });
     } else {
-      console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.');
-      return bbPromise(cb => Sagawa.create(({
+      console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.', data);
+      return bbPromise.fromCallback(cb => Sagawa.create({
         userId,
         postalInfo: { ...data },
-      }), cb));
+      }, cb));
     }
   })
   .then((newDoc) => {
