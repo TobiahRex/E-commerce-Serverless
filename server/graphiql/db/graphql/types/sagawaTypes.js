@@ -101,5 +101,11 @@ const queries = {
         type: new NonNull(StringType),
       },
     },
-  }
-}
+    resolve: (_, args) => Sagawa.validatePostal(args),
+  },
+};
+
+export default {
+  rootType,
+  queries,
+};
