@@ -36,16 +36,16 @@ const extractData = (jsonResponse) => {
 * @return {object} results - the modified axios response object.
 */
 const handlePostal = (response) => {
-  let { problem } = response;
-  const { ok, data } = response;
+  const { status, data } = response;
+  let problem = status !== 200;
 
   if (problem) {
     problem = 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
     return ({
-      ok,
       problem,
       data: {
         postalInfo: {
+          validated: false,
           error: problem,
           jpAddress: '',
           postalCode: '',
@@ -58,10 +58,10 @@ const handlePostal = (response) => {
     if (err) {
       problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
       return ({
-        ok,
         problem,
         data: {
           postalInfo: {
+            validated: false,
             error: problem,
             jpAddress: '',
             postalCode: '',
@@ -75,10 +75,10 @@ const handlePostal = (response) => {
     if (error) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
       return ({
-        ok,
         problem,
         data: {
           postalInfo: {
+            validated: false,
             error: problem,
             jpAddress,
             postalCode,
@@ -88,10 +88,10 @@ const handlePostal = (response) => {
     }
 
     return ({
-      ok,
       problem,
       data: {
         postalInfo: {
+          validated: true,
           error: problem,
           jpAddress,
           postalCode,
