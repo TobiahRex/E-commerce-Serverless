@@ -342,7 +342,7 @@ class ExpressCheckout extends Component {
                   handleOnChange={this.handleOnChange}
                 />
 
-                <Country />
+                <Country disabled />
 
                 {/* NOTE - not required for Sagawa.
                   <Prefecture
