@@ -45,9 +45,21 @@ const rootType = new ObjectType({
     },
     status: {
       description: 'A status identifying if the order has been uploaded to Sagawa.',
-      type: String,
-      enum: ['pending', 'uploaded'],
-      default: 'pending',
+      type: StringType,
     },
+    postalInfo: new ObjectType({
+      name: 'SagawaPostalInfo',
+      fields: () => ({
+        verified: {
+          type: BoolType,
+        },
+        postalCode: {
+          type: StringType,
+        },
+        jpAddress: {
+          type: StringType,
+        },
+      }),
+    }),
   },
 });

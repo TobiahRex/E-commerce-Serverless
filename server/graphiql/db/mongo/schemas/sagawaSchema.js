@@ -24,7 +24,6 @@ const sagawaSchema = new Schema({
     default: 'pending',
   },
   postalInfo: {
-    error: { type: String, default: '' },
     verified: { type: Boolean, default: false, required: true },
     postalCode: { type: String, required: true },
     jpAddress: { type: String, required: true },

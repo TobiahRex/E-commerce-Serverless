@@ -8,16 +8,16 @@ const extractData = (jsonResponse) => {
 
   if (!postalCode.length || !jpAddress.length) {
     return ({
-      error: true,
+      verified: false,
       postalCode,
       jpAddress,
     });
   }
 
   return ({
-    error: false,
     postalCode,
     jpAddress,
+    verified: false,
   });
 };
 
@@ -45,8 +45,7 @@ const handlePostal = (response) => {
       problem,
       data: {
         postalInfo: {
-          validated: false,
-          error: problem,
+          verified: false,
           jpAddress: '',
           postalCode: '',
         },
@@ -61,8 +60,7 @@ const handlePostal = (response) => {
         problem,
         data: {
           postalInfo: {
-            validated: false,
-            error: problem,
+            verified: false,
             jpAddress: '',
             postalCode: '',
           },
@@ -70,16 +68,15 @@ const handlePostal = (response) => {
       });
     }
 
-    const { error, postalCode, jpAddress } = extractData(results);
+    const { verified, postalCode, jpAddress } = extractData(results);
 
-    if (error) {
+    if (!verified) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
       return ({
         problem,
         data: {
           postalInfo: {
-            validated: false,
-            error: problem,
+            verified,
             jpAddress,
             postalCode,
           },
@@ -91,8 +88,7 @@ const handlePostal = (response) => {
       problem,
       data: {
         postalInfo: {
-          validated: true,
-          error: problem,
+          verified,
           jpAddress,
           postalCode,
         },
