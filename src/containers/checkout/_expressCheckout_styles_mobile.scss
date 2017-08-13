@@ -279,6 +279,7 @@
         & .checkout__comments {
           margin-top: 2em;
           & textarea {
+            resize: vertical;
             color: $p-blue;
             font-family: $p-font;
           }

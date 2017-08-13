@@ -21,7 +21,7 @@ class LastName extends React.PureComponent {
   render() {
     return (
       <div className="input__row--last-name">
-        <p>Last Name <span className="required">*</span></p>
+        <p>Family Name <span className="required">*</span></p>
         <Validation.components.Input
           errorClassName="is-invalid-input"
           type="text"

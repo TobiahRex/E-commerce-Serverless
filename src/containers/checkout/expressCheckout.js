@@ -333,6 +333,7 @@ class ExpressCheckout extends Component {
 
                 <AddressLine
                   required
+                  placeHolder={'RM3 1-1-8 Odakicho'}
                   title={'Room # | Street # | Street Name'}
                   shippingAddressLine={shippingAddressLine2}
                   handleOnChange={this.handleOnChange}

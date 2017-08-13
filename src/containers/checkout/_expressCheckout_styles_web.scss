@@ -188,7 +188,7 @@
           & .input__row--address-line-disabled,
           .input__row--country-disabled {
             & input {
-              cursor: not-allowed;,
+              cursor: not-allowed;
             }
           }
           & .input__row--same-as-billing,
@@ -375,6 +375,7 @@
           & textarea {
             color: $p-blue;
             font-family: $p-font;
+            resize: vertical;
           }
         }
         & .input__row {
