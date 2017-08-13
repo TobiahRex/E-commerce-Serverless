@@ -23,6 +23,7 @@ export const INITIAL_STATE = Immutable({
     totalRate: 0.090,
   },
   postalInfo: {
+    validated: false,
     error: '',
     jpAddress: '',
     postalCode: '',
