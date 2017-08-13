@@ -41,7 +41,14 @@ new Promise((resolve, reject) => {
     const { problem, data } = cleanSagawaResponse.handlepostal(response);
 
     if (problem) {
-      reject(problem);
+      console.log('There was an error while trying to validate postal code', postalCode, '.  Error = ', problem);
+      reject({
+        error: {
+          hard: true,
+          soft: false,
+          message: problem,
+        },
+      });
     } else {
       return bbPromise(cb => Sagawa.create(({
         userId,
