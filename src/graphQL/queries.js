@@ -106,43 +106,9 @@ export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) 
   });
 };
 
-export const FetchSquareLocations = gql`
-  query FetchSquareLocations {
-    FetchSquareLocations {
-      error {
-        hard
-        soft
-        message
-      }
-      id
-      name
-      address
-      timezone
-      capabilities
-      status
-    }
-  }
+export const ValidatePostal = gql`
+  query ValidatePostal(
+    $postalCode: StringType!
+    $userId: ID!
+  )
 `;
-// export const FetchSquareLocations = gql`
-//   query FetchSquareLocations(
-//     # $userId: String!
-//     # $accessToken: String!
-//   ) {
-//     FetchSquareLocations(
-//       # userId: $userId
-//       # accessToken: $accessToken
-//     ) {
-//       error {
-//         hard
-//         soft
-//         message
-//       }
-//       id
-//       name
-//       address
-//       timezone
-//       capabilities
-//       status
-//     }
-//   }
-// `;
