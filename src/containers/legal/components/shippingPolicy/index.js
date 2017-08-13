@@ -23,10 +23,15 @@ export default function ShippingPolicy() {
       </div>
       <div className="main__body">
         <p>
-          <h4>ORDER PROCESSING TIME</h4>
+          <h4>ORDER PROCESSING & SHIPMENT DELIVERY TIME</h4>
           <br />
-          Orders will be processed within 2-5 business days after your full payment has been received. Shipment time will be between 2-7 business days depending on your physical address. The total wait time after you place your order will be between 2-10 business days. Shipping time and cost vary depending on location, and product ordered.
+          Orders will be processed and shipped at the next available business day.  Business days are between Monday (07:00 PST) - Friday (07:00 PST).  All Weekend orders (Friday after 07:00, Saturday & Sunday) are processed first thing Monday morning at 07:00.  This time frame usually results in your order being shipped within 1-3 business days after your full payment has been received. Shipment transit time will be between 2-7 business days depending on your physical address.
           <br />
+          <br />
+          <h4>QUANTITY RESTRICTIONS</h4>
+          <br />
+          Japanese Ministry of Health & Labour have passed regulations on Nicotine e-juice imports.  A person(s) can import up to a maximum of 120 milliliters into the country at any one time, per person, per address, per month.  You can find more information at their website here: http://www.mhlw.go.jp/english/
+          <h4>CODs</h4>
           <br />
           <h4>CODs</h4>
           <br />
