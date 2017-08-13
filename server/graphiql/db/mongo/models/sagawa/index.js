@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
-import sagawaSchema from '../schemas/sagawaSchema';
-import db from '../connection';
 import axios from 'axios';
+import sagawaSchema from '../../schemas/sagawaSchema';
+import db from '../../connection';
 import cleanSagawaResponse from './cleanSagawaResponse';
 
 /**
@@ -21,7 +21,7 @@ const xmlOut = str => str
 .replace(/>/g, '&gt;')
 .replace(/"/g, '');
 
-sagawaSchema.statics.verifyPostal = postalCode =>
+sagawaSchema.statics.verifyPostal = ({ userId, postalCode }) =>
 new Promise((resolve, reject) => {
   axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/getAddr',
   `<?xml version='1.0' encoding='utf-8'?>
@@ -43,8 +43,18 @@ new Promise((resolve, reject) => {
     if (problem) {
       reject(problem);
     } else {
-      return bbPromise(cb => Sagawa.create(({ postalInfo: { ...data } }), cb));
+      return bbPromise(cb => Sagawa.create(({
+        userId,
+        postalInfo: { ...data },
+      }), cb));
     }
+  })
+  .then((newDoc) => {
+    console.log('Successfully created new Sagawa document.', newDoc);
+    resolve({
+      _id: newDoc._id,
+      postalInfo: newDoc.postalInfo,
+    });
   })
   .catch((error) => {
     console.log(`Network Error while trying to validate postal code. Error = ${error}`);

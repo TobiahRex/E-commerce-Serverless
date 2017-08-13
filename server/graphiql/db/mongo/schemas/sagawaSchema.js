@@ -2,6 +2,8 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const sagawaSchema = new Schema({
+  userId: { type: ObjectId, ref: 'User' },
+  transactionId: { type: ObjectId, ref: 'Transaction' },
   status: {
     type: String,
     enum: ['pending', 'uploaded'],
