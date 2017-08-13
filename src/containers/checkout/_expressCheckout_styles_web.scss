@@ -185,6 +185,12 @@
               cursor: pointer;
             }
           }
+          & .input__row--address-line-disabled,
+          .input__row--country-disabled {
+            & input {
+              cursor: 'not-allowed',
+            }
+          }
           & .input__row--same-as-billing,
           .input__row--free-shipping {
             @include prefixflex();

@@ -5,7 +5,7 @@ import Validation from 'react-validation';
 function Country({ disabled }) {
   return (
     <div className="input__row">
-      <div className="input__row--country">
+      <div className={`input__row--country${disabled ? '-disabled' : ''}`}>
         <p>Country <span className="required">*</span></p>
         <Validation.components.Input
           disabled={disabled}

@@ -68,16 +68,14 @@ class ExpressCheckout extends Component {
         message: '',
       },
       // --- Form Data from Nested Components ---
-      newsletterDecision: true,
+      newsletterDecision: false,
       shippingFirstName: '',
       shippingLastName: '',
       shippingEmail: '',
+      shippingPostalCode: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: 'Japan',
-      shippingPrefecture: '',
-      shippingCity: '',
-      shippingPostalCode: '',
       shippingPhoneNumber: '',
       ccNameOnCard: '',
       ccNumber: '',
@@ -260,8 +258,6 @@ class ExpressCheckout extends Component {
       shippingEmail,
       shippingAddressLine1,
       shippingAddressLine2,
-      shippingPrefecture,
-      shippingCity,
       shippingPostalCode,
       shippingPhoneNumber,
       // ---
@@ -343,17 +339,6 @@ class ExpressCheckout extends Component {
                 />
 
                 <Country disabled />
-
-                {/* NOTE - not required for Sagawa.
-                  <Prefecture
-                  shippingPrefecture={shippingPrefecture}
-                  handleOnChange={this.handleOnChange}
-                  />
-
-                  <City
-                  shippingCity={shippingCity}
-                  handleOnChange={this.handleOnChange}
-                /> */}
 
                 <PhoneNumber
                   shippingPhoneNumber={shippingPhoneNumber}
