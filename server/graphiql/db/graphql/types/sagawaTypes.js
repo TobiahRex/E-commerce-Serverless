@@ -1,5 +1,6 @@
 import {
   GraphQLID as MongoId,
+  GraphQLInt as IntType,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
@@ -50,16 +51,38 @@ const rootType = new ObjectType({
     postalInfo: new ObjectType({
       name: 'SagawaPostalInfo',
       fields: () => ({
-        verified: {
-          type: BoolType,
-        },
-        postalCode: {
-          type: StringType,
-        },
-        jpAddress: {
-          type: StringType,
-        },
+        verified: { type: BoolType },
+        postalCode: { type: StringType },
+        jpAddress: { type: StringType },
       }),
     }),
+    shippingAddress: {
+      awbId: { type: StringType },
+      referenceId: { type: StringType },
+      boxid: { type: StringType },
+      shipdate: { type: StringType },
+      customerName: { type: StringType },
+      postal: { type: IntType },
+      jpaddress1: { type: StringType },
+      jpaddress2: { type: StringType },
+      phoneNumber: { type: IntType },
+      kbn: { type: StringType },
+      wgt: { type: IntType },
+      grandTotal: { type: IntType },
+      deliveryDate: { type: StringType },
+      deliveryTime: { type: IntType },
+      souryo: { type: IntType },
+      tesuryo: { type: IntType },
+      ttlAmount: { type: IntType },
+      codFlg: { type: IntType },
+    },
+    item: {
+      itemcd: { type: IntType },
+      itemname: { type: StringType },
+      usage: { type: IntType },
+      origin: { type: StringType },
+      piece: { type: IntType },
+      unitprice: { type: IntType },
+    },
   },
 });
