@@ -64,10 +64,7 @@ new Promise((resolve, reject) => {
   })
   .then((newDoc) => {
     console.log('Successfully created new Sagawa document.', newDoc);
-    resolve({
-      _id: newDoc._id,
-      postalInfo: newDoc.postalInfo,
-    });
+    resolve(newDoc);
   })
   .catch((error) => {
     console.log(`Error while trying to validate postal code: ${error}`);

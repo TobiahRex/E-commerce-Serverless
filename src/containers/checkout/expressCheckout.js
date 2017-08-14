@@ -235,7 +235,34 @@ class ExpressCheckout extends Component {
   }
 
   validatePostal = () => {
-    this.props.ValidatePostalRedux(this.state.shippingPostalCode);
+    this.props.ValidatePostalRedux(this.state.shippingPostalCode)
+    .then((response) => {
+      console.log('%cresponse', 'background:red;', response.data.ValidatePostal);
+
+      // const {
+      //   data: {
+      //     ValidatePostal: {
+      //       _id,
+      //       error,
+      //       postalInfo,
+      //     },
+      //   },
+      // } = response;
+      //
+      // if (!!error.hard || !!error.soft) {
+      //   this.props.apiHasFailed(error.message);
+      //   this.props.postalHasError({
+      //     ...postalInfo,
+      //     error: error.message,
+      //   });
+      // } else {
+      //   dispatch(orderActions.receivedValidPostal({
+      //     ...postalInfo,
+      //     sagawaDocId: _id,
+      //   }));
+      // }
+    })
+    .catch(error => this.props.apiHasFailed(error));
   }
 
   clearValidationError = name => this.form.hideError(name)
@@ -401,35 +428,12 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
   push: location => dispatch(push(location)),
   ValidatePostalRedux: (postalCode) => {
     ownProps.apiIsFetching();
-
-    ownProps.ValidatePostal({
+    return ownProps.ValidatePostal({
       variables: {
         postalCode,
         userId: '59807ba06907df3a4524cbb9',
       },
-    })
-    .then((response) => {
-      const {
-        data: {
-          ValidatePostal: {
-            _id,
-            error,
-            postalInfo,
-          },
-        },
-      } = response;
-
-      if (!!error.hard || !!error.soft) {
-        ownProps.apiHasFailed(error.message);
-        ownProps.postalHasError(postalInfo);
-      } else {
-        dispatch(orderActions.receivedValidPostal({
-          ...postalInfo,
-          sagawaDocId: _id,
-        }));
-      }
-    })
-    .catch(error => ownProps.apiHasFailed(error));
+    });
   },
 }))(ExpressCheckout);
 
