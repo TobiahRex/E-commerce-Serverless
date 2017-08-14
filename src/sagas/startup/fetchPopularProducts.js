@@ -1,12 +1,15 @@
 import { put, call } from 'redux-saga/effects';
 import apiActions from '../../redux/api';
-import productActions from '../../redux/products/';
+import productActions from '../../redux/products';
+import toasterActions from '../../redux/toaster';
 import productApi from '../../services/api/graphql/products';
 import cleanGQLresponse from '../tools/cleanGQLresponse';
 
 const api = productApi.createAPI();
 
 export default function* fetchPopularProducts() {
+  yield put(apiActions.apiFetching());
+
   const response = yield call(() => api.FetchPopularProducts(6));
 
   const { ok, problem, data: { data: { PopularProducts } } } = cleanGQLresponse(response);
@@ -21,11 +24,15 @@ export default function* fetchPopularProducts() {
   }));
 
   if (ok) {
-    yield put(productActions.receivedPopularProducts(popularProducts));
+    yield [
+      put(productActions.receivedPopularProducts(popularProducts)),
+      put(apiActions.apiSuccess()),
+    ];
   } else {
     yield [
       put(productActions.productRequestError(problem)),
-      put(apiActions.apiFail(problem)),
+      put(toasterActions.toastError({ error: true, message: problem })),
+      put(apiActions.apiFail()),
     ];
   }
 }

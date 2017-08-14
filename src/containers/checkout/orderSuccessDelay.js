@@ -16,7 +16,7 @@ export default function OrderSuccess() {
             <h1>Your order has been successfully placed!</h1>
             <h4>The invoice shown below has been sent to your email.</h4>
             <br />
-            <h4>Your order will be shipping on the next business day.  At that time, you will receive another email that contains your Tracking Number.  To track your shipment, simply click on the link in your email.</h4>
+            <h4>Your order will be shipping on the next business day.  At that time, you will receive another email that contains your Tracking Number.  To track your shipment, simply click on the {'"Tracking #:"'} link in the email.</h4>
           </div>
         </div>
         <div className="ordered__header">
@@ -29,7 +29,7 @@ export default function OrderSuccess() {
           </div>
           <div className="header--info">
             <div className="header__tracking">
-              <p>Tracking #: {uuid()}</p>
+              <p>Tracking #: <i>Stand by for email...</i></p>
               <p>Order #: {uuid()}</p>
             </div>
             <div className="header__price">

@@ -25,10 +25,6 @@ import {
   checkForToast as CheckForToast,
 } from './utilities.imports';
 import {
-  propTypes,
-  defaultProps,
-} from './propTypes.imports';
-import {
   BreadCrumb,
   ShippingAddress,
   ShippingMethod,
@@ -58,8 +54,6 @@ import {
 } from '../../graphql/mutations';
 
 class ExpressCheckout extends React.Component {
-  static propTypes = propTypes
-  static defaultProps = defaultProps
   constructor(props) {
     super(props);
 
@@ -110,7 +104,7 @@ class ExpressCheckout extends React.Component {
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
 
-    if (nextProps.apiError) {
+    if (!!nextProps.postalError) {
       this.form.showError('shippingPostalCode', 'postalApi');
     } else if (!_.isEqual(npCopy, tpCopy)) {
       this.setState(prevState => ({
@@ -295,6 +289,7 @@ class ExpressCheckout extends React.Component {
 
       if (!!error.hard || !!error.soft) {
         this.props.apiFail();
+        this.props.gotInvalidPostal({ error: true });
         this.props.toastError({
           error: true,
           warning: false,
@@ -531,13 +526,14 @@ const ExpressCheckoutWithStateAndData = compose(
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
   toast: CheckForToast(toaster),
-  userId: !!user.profile && user.profile._id,
-  taxRate: !!orders.taxRate && orders.taxRate.totalRate,
+  userId: !!user.profile ? user.profile._id : '',
+  taxRate: !!orders.taxRate ? orders.taxRate.totalRate : 9.5,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
-  userCart: !!auth.loggedIn && user.profile.shopping.cart,
+  userCart: !!auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
   apiFetching: api.fetching,
+  postalError: orders.postalInfo.error,
 }), dispatch => ({
   toastError: toast => dispatch(toasterActions.toastError(toast)),
   toastSuccess: toast => dispatch(toasterActions.toastSuccess(toast)),
@@ -547,9 +543,9 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   apiFail: () => dispatch(apiActions.apiFail()),
   apiSuccess: () => dispatch(apiActions.apiSuccess()),
   //
+  gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
   gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
-
 
 const {
   func,
@@ -564,18 +560,34 @@ const {
 } = PropTypes;
 
 ExpressCheckout.propTypes = {
+  push: func.isRequired,
+  // ---
+  gotValidPostal: func.isRequired,
+  gotInvalidPostal: func.isRequired,
+  postalError: bool.isRequired,
+  // ---
   toast: shape({
     type: string,
     message: string,
   }).isRequired,
-  push: func.isRequired,
+  toastError: func.isRequired,
+  toastWarning: func.isRequired,
+  toastSuccess: func.isRequired,
+  // ---
+  apiFail: func.isRequired,
+  apiSuccess: func.isRequired,
+  apiFetching: bool,
+  apiIsFetching: func.isRequired,
+  // ---
+  cart: arrayOf(object),
+  userCart: arrayOf(object),
+  guestCart: arrayOf(object),
+  // ---
   userId: string.isRequired,
   loggedIn: bool.isRequired,
   newUser: bool.isRequired,
-  userCart: arrayOf(object),
-  guestCart: arrayOf(object),
+  // ---
   taxRate: number.isRequired,
-  apiFetching: bool,
   total: shape({
     discount: {
       qty: bool,
@@ -587,15 +599,13 @@ ExpressCheckout.propTypes = {
     grandTotal: number,
     subTotal: number,
   }),
-  apiSuccess: func.isRequired,
-  apiIsFetching: func.isRequired,
-  apiFail: func.isRequired,
-  gotValidPostal: func.isRequired,
+  // ---
   ValidatePostalRedux: func.isRequired,
   SubmitFinalOrder: func,
   FetchMultipleProducts: objectOf(any).isRequired,
 };
 ExpressCheckout.defaultProps = {
+  cart: [],
   userCart: [],
   guestCart: [],
   total: {
