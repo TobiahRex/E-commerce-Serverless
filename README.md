@@ -53,6 +53,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [AWS Lambda](https://aws.amazon.com/lambda/) | All Backend Services.
     * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoints for Lambda services.
   2. ### Libraries & Packages
+    * Uses _recompose_ for customized Higher Order Component implementation.
     * Uses _apisauce_ for API calls. See API README.md for details.
     * Uses _react-router-redux_ for dispatching route changes & history.
     * Uses _apollo-grpahql_ for providing API calls directly to componenents.
@@ -61,8 +62,8 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * Uses _redux_sauce_ for creating reducers.
     * Uses _redux-logger_ for informative dev. workflow @ devtools console.  
     * Uses _redux-devtools-extension_ for  dev. workflow @ devtools console.
+    * Uses _babel-node_ for latest ECMA version transpiling of dev-backend and Hot reloading.
     * Uses _BEM_ syntax styling for classNames.
-    * Uses _babel-node_ for dev-backend ES6 syntax transpiling and Hot reloading.
     * Uses _Airbnb Style Guide_.
 
 # NOTES:
