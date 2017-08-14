@@ -42,6 +42,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [fixer.io](http://fixer.io) | Exchange Rates.
     * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates.
     * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation.
+    * [Auth0](http://auth0.com) | User Management | Auth0 solutions.
     * [Square](http://squareup.com) | Payment Services via Connect API.
     * [Market Hero](http://markethero.com) | Marketing API.
     * [Serverless](http://serverless.com) | Framework covering AWS Lambda.

@@ -298,8 +298,9 @@ class ExpressCheckout extends Component {
       }
     })
     .catch((error) => {
-      console.log('%cerror', 'background:pink;', error);
-      this.props.postalHasError({ error: error.message });
+      this.props.postalHasError({
+        error: error.message.replace(/^(GraphQL error: )/, ''),
+      });
       this.props.apiHasFailed(error.message);
     });
   }
@@ -312,7 +313,6 @@ class ExpressCheckout extends Component {
       apiError,
       apiFetching,
     } = this.props;
-    console.log('%capiError', 'background:pink;', apiError);
 
     const {
       ccRenderKey,

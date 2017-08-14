@@ -57,20 +57,21 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{7}$)|(^\d{3}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        Japanese postal codes must be in format (123-4567) or (1234567) only.
+        Japanese postal codes must be in format (123-4567) or (1234567) and 7 digits long.
       </span>
     ),
   },
 
   'phone-japanLength': {
     rule: (value) => {
-      const validPhone = /(^\d{11}$)/.test(value);
-      const minLength = value.length === 11;
+      const validPhone = /(^\d{10}$)|(^\d{11}$)/.test(value);
+      const minLength = value.length === 10;
       return (validPhone && minLength);
     },
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}
+        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}.
+        Either 10 (Landline) or 11 (Cell) digits long.
       </span>
     ),
   },
@@ -151,10 +152,9 @@ Object.assign(Validation.rules, {
   },
 
   postalApi: {
-    // rule: () => '',
     hint: () => (
       <span className="form-error is-visible">
-        Postal code is invalid. See error message for details.
+        Postal code is invalid. See error message for details. Focus to clear.
       </span>
     ),
   },
