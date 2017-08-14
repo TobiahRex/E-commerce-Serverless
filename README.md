@@ -1,21 +1,21 @@
 # Nic Juice 2 Japan (_NJ2JP_):
 E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
-  - Deployed using _Serverless_ | AWS Lambda.  
+  - Deployed using _Serverless_ | AWS Lambda | AWS S3.  
   - Backend API = **GraphQL**.
   - Database utilizes a **Mongo Cluster** with 3 nodes. 2 Full + 1 Arbiter.
-  - Client requests are generated from **Apollo Client** wrapped components.
-  - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), and **Redux**.
+  - Client-side API requests are generated from **Apollo Client** wrapped components.
+  - Other Client-side API requests are also generated from the npm library **api-sauce**.
+  - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), **Redux** & **Redux Persist** (with WebStorage).
 
 ## Cloud Architecture
 <img src="http://i.imgur.com/00So8Ua.png" />
 
-### Development Version deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
-  - ☝🏼 That _Amazon S3_ link is under **Heavy Development** and may at times, not be working.  Will update here once availability is 100%.
+## Site Address
+ [Nic Juice 2 Japan](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
+  - ☝🏼 That site is under **Heavy Development** and may at times, not be working.  Will update here once availability is 100%.
 
+## Splash Preview
 <img src="http://i.imgur.com/wuHyw50.png" />
-
-This is a temporary development deployment.
-Final Production site will be at http://www.nj2jp.com.
 
 ## SETUP:
   - `npm i` || `yarn` to install dependencies
@@ -39,9 +39,17 @@ Final Production site will be at http://www.nj2jp.com.
 
 ## TECHNOLOGIES:
   1. ### API's
-    * [fixer.io](http://fixer.io) | Exchange Rates
-    * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates
-    * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation
+    * [fixer.io](http://fixer.io) | Exchange Rates.
+    * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates.
+    * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation.
+    * [Square](http://squareup.com) | Connect API.
+    * [Market Hero](http://markethero.com) | Marketing API.
+    * [AWS SES](https://aws.amazon.com/ses/) | Email Notifications.
+    * [AWS SNS](https://aws.amazon.com/sns/) | Receiving Backend Push Notifications.
+    * [AWS S3](https://aws.amazon.com/s3/) | Static asset hosting.
+    * [AWS Lambda](https://aws.amazon.com/lambda/) | All Backend Services.
+    * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoings for Lambda services.
+    * [AWS CloudFront](https://aws.amazon.com/cloudfront/) | Serving static assets as CDN.
   2. ### Libraries & Packages
     * Uses _apisauce_ for API calls. See API README.md for details.
     * Uses _redux-sagas_ to call customized api methods.
