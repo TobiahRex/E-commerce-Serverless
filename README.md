@@ -79,23 +79,6 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [Product Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/productSchema.md)
     * [User Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/userSchema.md)
 
-# Updates:
-1. March 7th, 2017:
-  - Added Sketch Mockups & Wireframes file to `tools/`
-  - Responsiveness is still in development. Media Queries are `@media only screen and (max-width : 640px)` for mobile & `@media only screen and (min-wdith : 641px)` for web.  This is a recent change, and I haven't optimized all style sheets for those settings as of yet.
-  - Not all stylesheets are implementing _BEM_.  It was recent change and previous naming conventions are still in use for some style sheets.
-2. March 28th, 2017:
-  - Updated `webpack-image-loader` version from `3.2` to `3.3`.
-  - Updated `webpack` to version `2.2`.
-  - Updated `node` to version `7.7.3`. Added `engines` object to `package.json`.
-3. March 31st, 2017:
-  - Cleaned up package.json
-  - Removed node_modules/ and re-installed using `yarn`
-
 # Important Launch Notes:
   1. Modifiy LAMBDA_GRAPHQL env variable throughout `src/` application to point to the `production` database & lambda endpoint.
   2. Modify the serverless MONGO_URI env variable inside the AWS console dashboard.
-
-<!-- ## ScreenShots:
-* Terminal
-  - <img src="http://i.imgur.com/RjJ7yfA.png" /> -->
