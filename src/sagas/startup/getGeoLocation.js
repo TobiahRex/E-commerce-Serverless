@@ -6,20 +6,20 @@ import apiActions from '../../redux/api';
 import geoApi from '../../services/api/geolocation';
 
 export default function* getGeoLocation() {
-  yield put(apiActions.apiFetching());
+  yield put(apiActions.fetching());
 
   const { ok, problem, data } = yield call(() => geoApi.getGeoLocation());
 
   if (ok) {
     const { ip, loc, country } = data;
     yield [
-      put(apiActions.apiSuccess()),
       put(geoActions.updateGeo(ip, loc)),
       put(localeActions.setCountry(country)),
+      put(apiActions.apiSuccess()),
     ];
   } else {
     yield [
-      put(toasterActions.toastError({ error: true, message: problem })),
+      put(toasterActions.toastError(true, problem)),
       put(apiActions.apiFail()),
     ];
   }

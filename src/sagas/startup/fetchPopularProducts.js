@@ -8,7 +8,7 @@ import cleanGQLresponse from '../tools/cleanGQLresponse';
 const api = productApi.createAPI();
 
 export default function* fetchPopularProducts() {
-  yield put(apiActions.apiFetching());
+  yield put(apiActions.fetching());
 
   const response = yield call(() => api.FetchPopularProducts(6));
 
@@ -31,7 +31,7 @@ export default function* fetchPopularProducts() {
   } else {
     yield [
       put(productActions.productRequestError(problem)),
-      put(toasterActions.toastError({ error: true, message: problem })),
+      put(toasterActions.toastError(true, problem)),
       put(apiActions.apiFail()),
     ];
   }

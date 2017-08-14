@@ -290,12 +290,7 @@ class ExpressCheckout extends React.Component {
       if (!!error.hard || !!error.soft) {
         this.props.apiFail();
         this.props.gotInvalidPostal({ error: true });
-        this.props.toastError({
-          error: true,
-          warning: false,
-          success: false,
-          message: error.message,
-        });
+        this.props.toastError(true, error.message);
       } else {
         this.setState(prevState => ({
           ...prevState,
@@ -303,6 +298,7 @@ class ExpressCheckout extends React.Component {
           shippingAddressLine1: postalInfo.jpAddress,
         }), () => {
           this.props.apiSuccess();
+          this.props.clearToaster();
           this.props.gotValidPostal({
             ...postalInfo,
             sagawaDocId: _id,
@@ -315,27 +311,14 @@ class ExpressCheckout extends React.Component {
 
       if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
         errorMsg = 'You must login or register to complete this transaction.';
-
-        this.props.toastError({
-          error: false,
-          warning: true,
-          success: false,
-          message: errorMsg,
-        });
       } else if (
         /(GraphQL error: )/.test(error.message)
       ) {
         errorMsg = error.message.replace(/^(GraphQL error: )/, '');
-
-        this.props.toastError({
-          error: true,
-          warning: false,
-          success: false,
-          message: errorMsg,
-        });
       }
 
-      this.props.apiFail(!!errorMsg);
+      this.props.toastError(true, errorMsg);
+      this.props.apiFail();
     });
   }
 
@@ -535,9 +518,10 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   apiFetching: api.fetching,
   postalError: orders.postalInfo.error,
 }), dispatch => ({
-  toastError: toast => dispatch(toasterActions.toastError(toast)),
-  toastSuccess: toast => dispatch(toasterActions.toastSuccess(toast)),
-  toastWarning: toast => dispatch(toasterActions.toastWarning(toast)),
+  toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
+  toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
+  toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
+  clearToaster: () => dispatch(toasterActions.clearToaster()),
   //
   apiIsFetching: () => dispatch(apiActions.fetching()),
   apiFail: () => dispatch(apiActions.apiFail()),
@@ -573,6 +557,7 @@ ExpressCheckout.propTypes = {
   toastError: func.isRequired,
   toastWarning: func.isRequired,
   toastSuccess: func.isRequired,
+  clearToaster: func.isRequired,
   // ---
   apiFail: func.isRequired,
   apiSuccess: func.isRequired,
