@@ -32,6 +32,7 @@ export const propTypes = {
     grandTotal: number,
     subTotal: number,
   }),
+  apiSuccess: func.isRequired,
   apiIsFetching: func.isRequired,
   apiHasFailed: func.isRequired,
   postalHasError: func.isRequired,

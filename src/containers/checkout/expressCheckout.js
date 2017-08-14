@@ -259,6 +259,7 @@ class ExpressCheckout extends Component {
           shippingPostalCode: postalInfo.postalCode,
           shippingAddressLine1: postalInfo.jpAddress,
         }), () => {
+          this.props.
           this.props.postalIsValid(orderActions.receivedValidPostal({
             ...postalInfo,
             sagawaDocId: _id,
@@ -464,6 +465,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
 }), dispatch => ({
   apiIsFetching: () => dispatch(apiActions.fetching()),
   apiHasFailed: error => dispatch(apiActions.apiFail(error)),
+  apiSuccess: () => dispatch(apiActions.apiSuccess()),
   postalHasError: postalInfo => dispatch(orderActions.receivedInvalidPostal(postalInfo)),
   postalIsValid: postalInfo => dispatch(orderActions.receivedValidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
