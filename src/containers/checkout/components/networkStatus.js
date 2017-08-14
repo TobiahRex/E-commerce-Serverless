@@ -22,7 +22,10 @@ function NetworkStatus({ routerPush, renderHelper }) {
 }
 const { shape, string, bool, func } = PropTypes;
 NetworkStatus.propTypes = {
-  apiError: string,
+  toast: shape({
+    type: string,
+    message: string,
+  }).isRequired,
   errors: shape({
     hard: bool,
     soft: bool,
@@ -33,19 +36,17 @@ NetworkStatus.propTypes = {
   renderHelper: func.isRequired,
 };
 NetworkStatus.defaultProps = {
-  apiError: '',
   loading: false,
 };
 
 const NetworkStatusWithHandlers = withHandlers({
-  renderHelper: ({ errors, loading, success, apiError }) => () => {
+  renderHelper: ({ errors, loading, success, toast }) => () => {
     let { message, hard } = errors;
     const { soft } = errors;
-    const showError = !!hard || !!soft || !!message.length || apiError;
+    const showError = !!hard || !!soft || !!message.length || !!toast.message;
 
-    if (apiError) {
-      hard = true;
-      message = apiError;
+    if (!!toast.message) {
+      message = toast.message;
     }
 
     const hardError = (
@@ -64,6 +65,17 @@ const NetworkStatusWithHandlers = withHandlers({
         <div className="error-soft__title">
           <FontAwesome className="error-icon" name="exclamation-triangle" />
           <h2>Error!</h2>
+        </div>
+        <br />
+        <p>{message}</p>
+      </div>
+    );
+
+    const warningMsg = (
+      <div className="checkout__error-soft">
+        <div className="error-soft__title">
+          <FontAwesome className="error-icon" name="exclamation-triangle" />
+          <h2>Warning!</h2>
         </div>
         <br />
         <p>{message}</p>
@@ -91,6 +103,9 @@ const NetworkStatusWithHandlers = withHandlers({
 
     if (hard) return hardError;
     if (soft) return softError;
+    if (toast.type === 'error') return hardError;
+    if (toast.type === 'warning') return warningMsg;
+    if (toast.type === 'success') return successMsg;
     if (!showError && loading) return loadingMsg;
     if (!showError && success) return successMsg;
     return '';

@@ -5,7 +5,7 @@ const { Types, Creators } = createActions({
   receivedError: ['error', 'message'],
   receivedWarning: ['warning', 'message'],
   receivedSuccess: ['success', 'message'],
-  clearNotification: null,
+  clearToaster: null,
 });
 
 export const errorTypes = Types;
@@ -37,16 +37,16 @@ const receivedSuccess = (state, { success, message }) => ({
   message,
 });
 
-const clearNotification = () => ({
+const clearToaster = () => ({
   error: false,
   warning: false,
   success: false,
   message: '',
 });
 
-export const notificationsReducer = createReducer(INITIAL_STATE, {
+export const toasterReducer = createReducer(INITIAL_STATE, {
   [Types.RECEIVED_ERROR]: receivedError,
   [Types.RECEIVED_WARNING]: receivedWarning,
   [Types.RECEIVED_SUCCESS]: receivedSuccess,
-  [Types.CLEAR_NOTIFICATION]: clearNotification,
+  [Types.CLEAR_TOASTER]: clearToaster,
 });

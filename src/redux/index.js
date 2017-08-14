@@ -15,11 +15,11 @@ import { mobileReducer as mobile } from './mobile';
 import { localeReducer as locale } from './locale';
 import { sessionReducer as session } from './session';
 import { authReducer as auth } from './auth';
-import { notificationsReducer as notifications } from './notifications';
+import { toasterReducer as toaster } from './toaster';
 
 export default () => {
   const rootReducer = combineReducers({
-    notifications,
+    toaster,
     auth,
     user,
     products,

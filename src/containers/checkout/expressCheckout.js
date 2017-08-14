@@ -19,7 +19,7 @@ import {
   composeFinalTotal as ComposeFinalTotal,
   squarePaymentForm as SqrPaymentForm,
   cleanOffTypename as CleanOffTypename,
-  checkForNotifications as CheckForNotifications,
+  checkForToast as CheckForToast,
 } from './utilities.imports';
 import {
   propTypes,
@@ -330,7 +330,7 @@ class ExpressCheckout extends Component {
     const {
       userId,
       loggedIn,
-      apiError,
+      toast,
       apiFetching,
     } = this.props;
 
@@ -456,7 +456,7 @@ class ExpressCheckout extends Component {
               <SubmitOrder enable={!!cart.length && userId} />
 
               <NetworkStatus
-                apiError={apiError}
+                toast={toast}
                 errors={errors}
                 loading={apiFetching}
                 success={false}
@@ -509,15 +509,14 @@ const ExpressCheckoutWithStateAndData = compose(
   }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, notifications }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
+  toast: CheckForToast(toaster),
   userId: !!user.profile && user.profile._id,
   taxRate: orders.taxRate.totalRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
   userCart: !!auth.loggedIn && user.profile.shopping.cart,
   guestCart: orders.cart,
-  notificationError: !!orders.postalInfo && orders.postalInfo.error,
-  notificationMessage: CheckForNotifications(notifications),
   apiFetching: api.fetching,
 }), dispatch => ({
   apiIsFetching: () => dispatch(apiActions.fetching()),

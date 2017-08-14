@@ -13,6 +13,10 @@ const {
 } = PropTypes;
 
 export const propTypes = {
+  toast: shape({
+    type: string,
+    message: string,
+  }).isRequired,
   push: func.isRequired,
   userId: string.isRequired,
   loggedIn: bool.isRequired,
@@ -56,6 +60,5 @@ export const defaultProps = {
     grandTotal: 0,
     subTotal: 0,
   },
-  apiError: '',
   apiFetching: false,
 };

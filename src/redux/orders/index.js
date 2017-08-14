@@ -8,8 +8,7 @@ const { Types, Creators } = createActions({
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
   validatePostal: ['postalCode'],
-  receivedValidPostal: ['postalInfo'],
-  receivedInvalidPostal: ['postalInfo'],
+  gotValidPostal: ['postalInfo'],
 });
 
 export const orderTypes = Types;
@@ -23,7 +22,6 @@ export const INITIAL_STATE = Immutable({
     totalRate: 0.090,
   },
   postalInfo: {
-    error: '',
     sagawaDocId: '',
     jpAddress: '',
     postalCode: '',
@@ -31,12 +29,10 @@ export const INITIAL_STATE = Immutable({
   },
 });
 
-const setTaxRate = (state, { taxRate }) => {
-  return ({
-    ...state,
-    taxRate,
-  });
-};
+const setTaxRate = (state, { taxRate }) => ({
+  ...state,
+  taxRate,
+});
 
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
@@ -56,14 +52,7 @@ const emptyGuestCart = (state) => {
   });
 };
 
-const receivedInvalidPostal = (state, { postalInfo }) => ({
-  ...state,
-  postalInfo: {
-    ...postalInfo,
-  },
-});
-
-const receivedValidPostal = (state, { postalInfo }) => ({
+const gotValidPostal = (state, { postalInfo }) => ({
   ...state,
   postalInfo: {
     ...postalInfo,
@@ -75,6 +64,5 @@ export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.SAVE_GUEST_CART]: saveGuestCart,
   [Types.EMPTY_GUEST_CART]: emptyGuestCart,
-  [Types.RECEIVED_VALID_POSTAL]: receivedValidPostal,
-  [Types.RECEIVED_INVALID_POSTAL]: receivedInvalidPostal,
+  [Types.GOT_VALID_POSTAL]: gotValidPostal,
 });

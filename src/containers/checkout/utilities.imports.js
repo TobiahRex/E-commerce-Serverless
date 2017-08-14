@@ -6,3 +6,4 @@ export arrayDeepEquality from '../../services/utils/arrayDeepEquality';
 export composeFinalTotal from '../../services/utils/composeFinalTotal';
 export squarePaymentForm from '../../services/utils/squarePaymentForm';
 export cleanOffTypename from '../../services/utils/cleanOffTypename';
+export checkForToast from '../../services/utils/checkForToast';
