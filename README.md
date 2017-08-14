@@ -48,9 +48,10 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [AWS SES](https://aws.amazon.com/ses/) | Email Notifications.
     * [AWS SNS](https://aws.amazon.com/sns/) | Receiving Backend Push Notifications.
     * [AWS S3](https://aws.amazon.com/s3/) | Static asset hosting.
+    * [AWS Route 53](https://aws.amazon.com/route53/) | DNS routing.
+    * [AWS CloudFront](https://aws.amazon.com/cloudfront/) | Latency reduction via CDN.
     * [AWS Lambda](https://aws.amazon.com/lambda/) | All Backend Services.
-    * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoings for Lambda services.
-    * [AWS CloudFront](https://aws.amazon.com/cloudfront/) | Serving static assets as CDN.
+    * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoints for Lambda services.
   2. ### Libraries & Packages
     * Uses _apisauce_ for API calls. See API README.md for details.
     * Uses _redux-sagas_ to call customized api methods.
