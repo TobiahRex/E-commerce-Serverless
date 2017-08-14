@@ -121,3 +121,7 @@ export const ValidatePostal = gql`
     }
   }
 `;
+
+export const ValidatePostalOptions = ({  }) => {
+
+};

@@ -37,12 +37,12 @@ import {
   Email,
   AddressLine,
   Country,
-  Prefecture,
   PostalCode,
-  City,
   PhoneNumber,
 } from './component.imports';
 import {
+  ValidatePostal,
+  ValidatePostalOptions,
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
@@ -327,7 +327,7 @@ class ExpressCheckout extends Component {
                   disabled
                   required={false}
                   placeHolder={'Generated from Postal Code...'}
-                  title={'City | Prefecture'}
+                  title={'Prefecture | City | District'}
                   shippingAddressLine={shippingAddressLine1}
                 />
 
@@ -403,6 +403,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
 }))(ExpressCheckout);
 
 const ExpressCheckoutWithStateAndData = compose(
+  graphql(ValidatePostal, { name: 'ValidatePostal' }),
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
