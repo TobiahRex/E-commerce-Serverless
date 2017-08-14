@@ -9,6 +9,7 @@ import Validation from 'react-validation';
 import {
   apiActions,
   orderActions,
+  toasterActions,
 } from './redux.imports';
 
 import {
@@ -519,11 +520,15 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   guestCart: orders.cart,
   apiFetching: api.fetching,
 }), dispatch => ({
+  toastError: toast => dispatch(toasterActions.toastError(toast)),
+  toastSuccess: toast => dispatch(toasterActions.toastSuccess(toast)),
+  toastWarning: toast => dispatch(toasterActions.toastWarning(toast)),
+  //
   apiIsFetching: () => dispatch(apiActions.fetching()),
-  apiHasFailed: error => dispatch(apiActions.apiFail(error)),
+  apiHasFailed: () => dispatch(apiActions.apiFail()),
   apiSuccess: () => dispatch(apiActions.apiSuccess()),
-  postalHasError: postalInfo => dispatch(orderActions.receivedInvalidPostal(postalInfo)),
-  postalIsValid: postalInfo => dispatch(orderActions.receivedValidPostal(postalInfo)),
+  //
+  gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;

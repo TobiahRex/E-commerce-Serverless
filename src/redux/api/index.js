@@ -25,10 +25,10 @@ const success = state => ({
   error: false,
 });
 
-const fail = (state, { error }) => ({
+const fail = state => ({
   fetching: false,
   count: state.fetching - 1,
-  error,
+  error: true,
 });
 
 const fetching = state => ({
