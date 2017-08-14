@@ -42,7 +42,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [fixer.io](http://fixer.io) | Exchange Rates.
     * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates.
     * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation.
-    * [Square](http://squareup.com) | Connect API.
+    * [Square](http://squareup.com) | Payment Services via Connect API.
     * [Market Hero](http://markethero.com) | Marketing API.
     * [Serverless](http://serverless.com) | Framework covering AWS Lambda.
     * [AWS SES](https://aws.amazon.com/ses/) | Email Notifications.
@@ -54,11 +54,13 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoints for Lambda services.
   2. ### Libraries & Packages
     * Uses _apisauce_ for API calls. See API README.md for details.
-    * Uses _redux-sagas_ to call customized api methods.
-    * Uses _redux_sauce_ to create Types, Creators & Reducer.
-    * Uses _redux-logger_ to allow for informative workflow from the devtools console.  
-    * Uses _redux-devtools-extension_ to allow for a macro perspective picture of your current store's state.
-    * Configured for front end environment variables using webpack.DefinePlugin().
+    * Uses _react-router-redux_ for dispatching route changes & history.
+    * Uses _apollo-grpahql_ for providing API calls directly to componenents.
+    * Uses _redux-persist_ for long term browser caching.
+    * Uses _redux-sagas_ for dispatching and handling async actions.
+    * Uses _redux_sauce_ for creating reducers.
+    * Uses _redux-logger_ for informative dev. workflow @ devtools console.  
+    * Uses _redux-devtools-extension_ for  dev. workflow @ devtools console.
     * Uses _BEM_ syntax styling for classNames.
     * Airbnb Style Guide implemented.
 
