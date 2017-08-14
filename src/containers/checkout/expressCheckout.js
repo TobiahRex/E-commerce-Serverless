@@ -113,7 +113,9 @@ class ExpressCheckout extends Component {
         ...prevState,
         ...nextProps,
       }));
-    } else if (
+    }
+
+    if (
       !ArrayDeepEquality(this.state.cart, nextProps.cart) ||
       !_.isEqual(this.state.total, nextProps.total)
     ) {
@@ -128,15 +130,10 @@ class ExpressCheckout extends Component {
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
 
-    if (!_.isEqual(npCopy, tpCopy)) {
-      console.log('%cPROPS ARE DIFF.', 'background:cyan;');
-      return true;
-    }
+    if (!_.isEqual(npCopy, tpCopy)) return true;
 
-    if (!_.isEqual(nextState, this.state)) {
-      console.log('%cSTATES ARE DIFF.', 'background:cyan;');
-      return true;
-    }
+    if (!_.isEqual(nextState, this.state)) return true;
+
     return false;
   }
 
@@ -186,7 +183,7 @@ class ExpressCheckout extends Component {
             this.setState(prevState => ({
               ...prevState,
               [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithoutZip',
+              ccRenderKey: 'renderWithZip',
             }), () => {
               SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
               SqrPaymentForm.build();
@@ -298,13 +295,12 @@ class ExpressCheckout extends Component {
     })
     .catch((error) => {
       let errorMsg = '';
-      if (/(GraphQL error: )/.test(error.message)) {
+
+      if (/(ObjectID failed for value "" at path "userId")/.test(error.message)) {
         errorMsg = error.message.replace(/^(GraphQL error: )/, '');
-      } else if (/(ObjectID failed for value "" at path "userId")/.test(error.message)) {
-        console.warn('no user id')
+      } else if (/(GraphQL error: )/.test(error.message)) {
         errorMsg = 'You must login or register to complete this transaction.';
       }
-      console.log('%cerror', 'background:lime;', errorMsg);
 
       this.props.postalHasError({ error: errorMsg });
       this.props.apiHasFailed(errorMsg || error.message);
