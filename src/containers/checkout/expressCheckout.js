@@ -254,10 +254,16 @@ class ExpressCheckout extends Component {
           error: error.message,
         });
       } else {
-        dispatch(orderActions.receivedValidPostal({
-          ...postalInfo,
-          sagawaDocId: _id,
-        }));
+        this.setState(prevState => ({
+          ...prevState,
+          shippingPostalCode: postalInfo.postalCode,
+          shippingAddressLine1: postalInfo.jpAddress,
+        }), () => {
+          this.props.postalIsValid(orderActions.receivedValidPostal({
+            ...postalInfo,
+            sagawaDocId: _id,
+          }));
+        });
       }
     })
     .catch(error => this.props.apiHasFailed(error));
