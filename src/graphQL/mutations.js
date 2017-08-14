@@ -467,7 +467,7 @@ export const SubmitFinalOrderOptions = () => {
 
 export const ValidatePostal = gql`
   mutation ValidatePostal(
-    $postalCode: StringType!
+    $postalCode: String!
     $userId: ID!
   ) {
     ValidatePostal(

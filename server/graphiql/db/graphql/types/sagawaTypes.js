@@ -123,7 +123,25 @@ const queries = {
   },
 };
 
+const mutations = {
+  ValidatePostal: {
+    type: rootType,
+    args: {
+      userId: {
+        description: 'The user\'s unique _id.',
+        type: new NonNull(MongoId),
+      },
+      postalCode: {
+        description: 'The postal code to validate.',
+        type: new NonNull(StringType),
+      },
+    },
+    resolve: (_, args) => Sagawa.validatePostal(args),
+  },
+};
+
 export default {
   rootType,
+  mutations,
   queries,
 };
