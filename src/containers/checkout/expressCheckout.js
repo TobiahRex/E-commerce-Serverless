@@ -237,30 +237,28 @@ class ExpressCheckout extends Component {
   validatePostal = () => {
     this.props.ValidatePostalRedux(this.state.shippingPostalCode)
     .then((response) => {
-      console.log('%cresponse', 'background:red;', response.data.ValidatePostal);
+      const {
+        data: {
+          ValidatePostal: {
+            _id,
+            error,
+            postalInfo,
+          },
+        },
+      } = response;
 
-      // const {
-      //   data: {
-      //     ValidatePostal: {
-      //       _id,
-      //       error,
-      //       postalInfo,
-      //     },
-      //   },
-      // } = response;
-      //
-      // if (!!error.hard || !!error.soft) {
-      //   this.props.apiHasFailed(error.message);
-      //   this.props.postalHasError({
-      //     ...postalInfo,
-      //     error: error.message,
-      //   });
-      // } else {
-      //   dispatch(orderActions.receivedValidPostal({
-      //     ...postalInfo,
-      //     sagawaDocId: _id,
-      //   }));
-      // }
+      if (!!error.hard || !!error.soft) {
+        this.props.apiHasFailed(error.message);
+        this.props.postalHasError({
+          ...postalInfo,
+          error: error.message,
+        });
+      } else {
+        dispatch(orderActions.receivedValidPostal({
+          ...postalInfo,
+          sagawaDocId: _id,
+        }));
+      }
     })
     .catch(error => this.props.apiHasFailed(error));
   }
@@ -461,6 +459,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
   apiIsFetching: () => dispatch(apiActions.fetching()),
   apiHasFailed: error => dispatch(apiActions.apiFail(error)),
   postalHasError: postalInfo => dispatch(orderActions.receivedInvalidPostal(postalInfo)),
+  postalIsValid: postalInfo => dispatch(orderActions.receivedValidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
