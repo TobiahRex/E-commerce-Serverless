@@ -32,6 +32,8 @@ export const propTypes = {
     grandTotal: number,
     subTotal: number,
   }),
+  apiIsFetching: func.isRequired,
+  ValidatePostalRedux: func.isRequired,
   SubmitFinalOrder: func,
   FetchMultipleProducts: objectOf(any).isRequired,
 };

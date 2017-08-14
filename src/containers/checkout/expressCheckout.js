@@ -42,12 +42,12 @@ import {
   PhoneNumber,
 } from './component.imports';
 import {
-  ValidatePostal,
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
 
 import {
+  ValidatePostal,
   SubmitFinalOrder,
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
@@ -400,9 +400,13 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
 }, (dispatch, ownProps) => ({
   push: location => dispatch(push(location)),
   ValidatePostalRedux: (postalCode) => {
-    console.log('ownProp: ', ownProps);
+    ownProps.apiIsFetching();
+
     ownProps.ValidatePostal({
-      variables: { postalCode },
+      variables: {
+        postalCode,
+        userId: '59807ba06907df3a4524cbb9',
+      },
     })
     .then((result) => {
       console.log('%cresult', 'background:lime;', result);
@@ -412,10 +416,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
 }))(ExpressCheckout);
 
 const ExpressCheckoutWithStateAndData = compose(
-  graphql(ValidatePostal, {
-    skip: true,
-    name: 'ValidatePostal',
-  }),
+  graphql(ValidatePostal, { name: 'ValidatePostal' }),
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
@@ -435,7 +436,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
   apiError: orders.postalInfo.error,
   apiFetching: api.fetching,
 }), dispatch => ({
-  apiFetching: () => dispatch(apiActions.fetching()),
+  apiIsFetching: () => dispatch(apiActions.fetching()),
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
