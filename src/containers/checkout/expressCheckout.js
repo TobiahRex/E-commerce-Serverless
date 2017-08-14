@@ -103,22 +103,32 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
     if (nextProps.apiError) {
       this.form.showError('shippingPostalCode', 'postalApi');
-    } else if (!_.isEqual(nextProps, this.props) ||
-      !ArrayDeepEquality(nextProps.cart, this.state.cart)
+    } else if (!_.isEqual(npCopy, tpCopy)) {
+      this.setState(prevState => ({
+        ...prevState,
+        ...nextProps,
+      }));
+    } else if (
+      !ArrayDeepEquality(this.state.cart, nextProps.cart) ||
+      !_.isEqual(this.state.total, nextProps.total)
     ) {
-      this.setState({ ...nextProps });
+      this.setState(prevState => ({
+        ...prevState,
+        cart: nextProps.cart,
+      }));
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const propsCopy = _.cloneDeep(nextProps);
-    Object.keys(propsCopy).forEach((key) => {
-      if (typeof propsCopy[key] === 'function') delete propsCopy[key];
-    });
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
 
-    if (!_.isEqual(nextProps, this.props)) {
+    if (!_.isEqual(npCopy, tpCopy)) {
       console.log('%cPROPS ARE DIFF.', 'background:cyan;');
       return true;
     }
