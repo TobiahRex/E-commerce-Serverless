@@ -309,6 +309,7 @@ class ExpressCheckout extends Component {
 
   render() {
     const {
+      userId,
       loggedIn,
       apiError,
       apiFetching,
@@ -433,7 +434,7 @@ class ExpressCheckout extends Component {
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder enable={!!cart.length} />
+              <SubmitOrder enable={!!cart.length && userId} />
 
               <NetworkStatus
                 apiError={apiError}
@@ -471,7 +472,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
     return ownProps.ValidatePostal({
       variables: {
         postalCode,
-        userId: '59807ba06907df3a4524cbb9',
+        userId: ownProps.userId,
       },
     });
   },
@@ -490,6 +491,7 @@ const ExpressCheckoutWithStateAndData = compose(
 )(ExpressCheckoutWithState);
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
+  userId: !!user.profile ? user.profile._id : '',
   taxRate: orders.taxRate.totalRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,

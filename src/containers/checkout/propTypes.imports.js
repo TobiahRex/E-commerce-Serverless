@@ -14,6 +14,7 @@ const {
 
 export const propTypes = {
   push: func.isRequired,
+  userId: string.isRequired,
   loggedIn: bool.isRequired,
   newUser: bool.isRequired,
   userCart: arrayOf(object),
