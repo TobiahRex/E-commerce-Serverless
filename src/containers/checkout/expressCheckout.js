@@ -140,7 +140,6 @@ class ExpressCheckout extends Component {
     return false;
   }
 
-
   componentWillUpdate() {
     const msnry = new Masonry('.grid', { // eslint-disable-line
       itemSelector: '.checkout__grid',
@@ -260,7 +259,7 @@ class ExpressCheckout extends Component {
 
       // No errors occurred. Extract the card nonce.
     } else {
-      alert('Nonce received: ' + nonce);
+      alert('Nonce received: ' + nonce + '.\n Card Data: ' + cardData);
     }
   }
 
@@ -298,10 +297,17 @@ class ExpressCheckout extends Component {
       }
     })
     .catch((error) => {
-      this.props.postalHasError({
-        error: error.message.replace(/^(GraphQL error: )/, ''),
-      });
-      this.props.apiHasFailed(error.message);
+      let errorMsg = '';
+      if (/(GraphQL error: )/.test(error.message)) {
+        errorMsg = error.message.replace(/^(GraphQL error: )/, '');
+      } else if (/(ObjectID failed for value "" at path "userId")/.test(error.message)) {
+        console.warn('no user id')
+        errorMsg = 'You must login or register to complete this transaction.';
+      }
+      console.log('%cerror', 'background:lime;', errorMsg);
+
+      this.props.postalHasError({ error: errorMsg });
+      this.props.apiHasFailed(errorMsg || error.message);
     });
   }
 
