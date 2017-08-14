@@ -44,6 +44,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation.
     * [Square](http://squareup.com) | Connect API.
     * [Market Hero](http://markethero.com) | Marketing API.
+    * [Serverless](http://serverless.com) | Framework covering AWS Lambda.
     * [AWS SES](https://aws.amazon.com/ses/) | Email Notifications.
     * [AWS SNS](https://aws.amazon.com/sns/) | Receiving Backend Push Notifications.
     * [AWS S3](https://aws.amazon.com/s3/) | Static asset hosting.
