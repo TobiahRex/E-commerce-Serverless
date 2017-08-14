@@ -18,6 +18,7 @@ import {
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
   squarePaymentForm as SqrPaymentForm,
+  cleanOffTypename as CleanOffTypename,
 } from './utilities.imports';
 import {
   propTypes,
@@ -245,7 +246,7 @@ class ExpressCheckout extends Component {
             postalInfo,
           },
         },
-      } = response;
+      } = CleanOffTypename(response);
 
       if (!!error.hard || !!error.soft) {
         this.props.apiHasFailed(error.message);
@@ -259,7 +260,7 @@ class ExpressCheckout extends Component {
           shippingPostalCode: postalInfo.postalCode,
           shippingAddressLine1: postalInfo.jpAddress,
         }), () => {
-          this.props.
+          this.props.apiSuccess();
           this.props.postalIsValid(orderActions.receivedValidPostal({
             ...postalInfo,
             sagawaDocId: _id,
