@@ -17,7 +17,6 @@ const query = new GraphQLObjectType({
     PopularProducts: ProductTypes.queries.PopularProducts,
     FetchMultipleProducts: ProductTypes.queries.FetchMultipleProducts,
     FetchSquareLocations: Transaction.queries.FetchSquareLocations,
-    ValidatePostal: Sagawa.queries.ValidatePostal,
   }),
 });
 
@@ -33,6 +32,7 @@ const mutation = new GraphQLObjectType({
     DeleteFromMemberCart: UserTypes.mutations.DeleteFromMemberCart,
     FindProductAndUpdate: ProductTypes.mutations.FindProductAndUpdate,
     FindProductByIdAndDelete: ProductTypes.mutations.FindProductByIdAndDelete,
+    ValidatePostal: Sagawa.mutations.ValidatePostal,
   }),
 });
 
