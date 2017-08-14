@@ -149,9 +149,29 @@ class ExpressCheckout extends Component {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
 
+  /**
+  * Function: "handleOnChange"
+  * 1. If the input that triggered the event is "ccCountry", then continue...  Otherwise, simply set the state of the event target name, with the event target value.
+  * 2. Check to see if we've created a SquarePaymentForm twice already.  If so, the count is too high, and we need to refresh the page, to re-invoke the main <scrpt> tag from Square.
+  * 3. Identify the current form type: With postal code as a required field? or not?
+  * 4. If either of the values in steps 2 or 3 are truthy, refresh the page.  Otherwise...
+  * 5. Check to see if the country the user chose, is a country that requires a postal code field to successfully validate and receive a card nonce.
+  * // ---
+  * 6.  If the country requires a postal code, then immediately check to see if there is currently an active Form.  If not, simply set the state with the new target value for the target name, and once complete, create a new form with the postal field required, and then call build once the form is finished being created.  The "build" call, is required for SPA's.
+  * 7. If there is already a form created, then check to see if the form already is built with the postal field...
+  * 8a. If the postal fields is already a part of the form that is cached, simply call "build" again which will reset the form, but not create a new one.
+  * 8b.  If the postal field is NOT already a part of the form that is cached, then call "setState" with the new target value for the target name, and once compelete "destroy" on the cached form, then "create" for a new one, and then "build" to activate it.
+  * // ---
+  * 6. If the country does NOT require a postal code, then do all the above steps but with create a form (when required) without the postal code input.
+  *
+  * @param: {object} event - the event object.
+  *
+  * @return: null
+  */
+
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
-      const countIsTooHigh = SqrPaymentForm === 2;
+      const countIsTooHigh = SqrPaymentForm.count === 2;
       const postalNotReq = SqrPaymentForm.type === 'renderWithoutZip';
 
       if (countIsTooHigh || postalNotReq) {
@@ -227,10 +247,7 @@ class ExpressCheckout extends Component {
 
   toggleModal = (e) => {
     const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
-
-    this.setState(prevState =>
-      ({ [modal]: !prevState[modal] }),
-    );
+    this.setState(prevState => ({ [modal]: !prevState[modal] }));
   }
 
   assignRefToForm = (formComp) => { this.form = formComp; }
@@ -254,7 +271,6 @@ class ExpressCheckout extends Component {
         },
       }));
 
-      // No errors occurred. Extract the card nonce.
     } else {
       alert('Nonce received: ' + nonce + '.\n Card Data: ' + cardData);
     }
@@ -296,14 +312,14 @@ class ExpressCheckout extends Component {
     .catch((error) => {
       let errorMsg = '';
 
-      if (/(ObjectID failed for value "" at path "userId")/.test(error.message)) {
-        errorMsg = error.message.replace(/^(GraphQL error: )/, '');
-      } else if (/(GraphQL error: )/.test(error.message)) {
+      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
         errorMsg = 'You must login or register to complete this transaction.';
+      } else if (/(GraphQL error: )/.test(error.message)) {
+        errorMsg = error.message.replace(/^(GraphQL error: )/, '');
       }
 
       this.props.postalHasError({ error: errorMsg });
-      this.props.apiHasFailed(errorMsg || error.message);
+      this.props.apiHasFailed(!!errorMsg);
     });
   }
 
@@ -493,13 +509,13 @@ const ExpressCheckoutWithStateAndData = compose(
 )(ExpressCheckoutWithState);
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
-  userId: !!user.profile ? user.profile._id : '',
+  userId: !!user.profile && user.profile._id,
   taxRate: orders.taxRate.totalRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
-  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  userCart: !!auth.loggedIn && user.profile.shopping.cart,
   guestCart: orders.cart,
-  apiError: orders.postalInfo.error,
+  apiError: !!orders.postalInfo && orders.postalInfo.error,
   apiFetching: api.fetching,
 }), dispatch => ({
   apiIsFetching: () => dispatch(apiActions.fetching()),
