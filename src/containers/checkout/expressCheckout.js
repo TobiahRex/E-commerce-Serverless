@@ -421,6 +421,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
 
       if (!!error.hard || !!error.soft) {
         ownProps.apiHasFailed(error.message);
+        ownProps.postalHasError(postalInfo);
       } else {
         dispatch(orderActions.receivedValidPostal({
           ...postalInfo,
@@ -455,6 +456,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
 }), dispatch => ({
   apiIsFetching: () => dispatch(apiActions.fetching()),
   apiHasFailed: error => dispatch(apiActions.apiFail(error)),
+  postalHasError: postalInfo => dispatch(orderActions.receivedInvalidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
