@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
@@ -55,7 +57,7 @@ import {
   SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
-class ExpressCheckout extends Component {
+class ExpressCheckout extends React.Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   constructor(props) {
@@ -292,10 +294,12 @@ class ExpressCheckout extends Component {
       } = CleanOffTypename(response);
 
       if (!!error.hard || !!error.soft) {
-        this.props.apiHasFailed(error.message);
-        this.props.postalHasError({
-          ...postalInfo,
-          error: error.message,
+        this.props.apiFail();
+        this.props.toastError({
+          error: true,
+          warning: false,
+          success: false,
+          message: error.message,
         });
       } else {
         this.setState(prevState => ({
@@ -304,10 +308,10 @@ class ExpressCheckout extends Component {
           shippingAddressLine1: postalInfo.jpAddress,
         }), () => {
           this.props.apiSuccess();
-          this.props.postalIsValid(orderActions.receivedValidPostal({
+          this.props.gotValidPostal({
             ...postalInfo,
             sagawaDocId: _id,
-          }));
+          });
         });
       }
     })
@@ -316,12 +320,27 @@ class ExpressCheckout extends Component {
 
       if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
         errorMsg = 'You must login or register to complete this transaction.';
-      } else if (/(GraphQL error: )/.test(error.message)) {
+
+        this.props.toastError({
+          error: false,
+          warning: true,
+          success: false,
+          message: errorMsg,
+        });
+      } else if (
+        /(GraphQL error: )/.test(error.message)
+      ) {
         errorMsg = error.message.replace(/^(GraphQL error: )/, '');
+
+        this.props.toastError({
+          error: true,
+          warning: false,
+          success: false,
+          message: errorMsg,
+        });
       }
 
-      this.props.postalHasError({ error: errorMsg });
-      this.props.apiHasFailed(!!errorMsg);
+      this.props.apiFail(!!errorMsg);
     });
   }
 
@@ -513,7 +532,7 @@ const ExpressCheckoutWithStateAndData = compose(
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
   toast: CheckForToast(toaster),
   userId: !!user.profile && user.profile._id,
-  taxRate: orders.taxRate.totalRate,
+  taxRate: !!orders.taxRate && orders.taxRate.totalRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
   userCart: !!auth.loggedIn && user.profile.shopping.cart,
@@ -525,10 +544,73 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   toastWarning: toast => dispatch(toasterActions.toastWarning(toast)),
   //
   apiIsFetching: () => dispatch(apiActions.fetching()),
-  apiHasFailed: () => dispatch(apiActions.apiFail()),
+  apiFail: () => dispatch(apiActions.apiFail()),
   apiSuccess: () => dispatch(apiActions.apiSuccess()),
   //
   gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
+
+
+const {
+  func,
+  bool,
+  any,
+  shape,
+  object,
+  string,
+  number,
+  arrayOf,
+  objectOf,
+} = PropTypes;
+
+ExpressCheckout.propTypes = {
+  toast: shape({
+    type: string,
+    message: string,
+  }).isRequired,
+  push: func.isRequired,
+  userId: string.isRequired,
+  loggedIn: bool.isRequired,
+  newUser: bool.isRequired,
+  userCart: arrayOf(object),
+  guestCart: arrayOf(object),
+  taxRate: number.isRequired,
+  apiFetching: bool,
+  total: shape({
+    discount: {
+      qty: bool,
+      qtyAmount: number,
+      register: bool,
+      registerAmount: number,
+    },
+    taxes: number,
+    grandTotal: number,
+    subTotal: number,
+  }),
+  apiSuccess: func.isRequired,
+  apiIsFetching: func.isRequired,
+  apiFail: func.isRequired,
+  gotValidPostal: func.isRequired,
+  ValidatePostalRedux: func.isRequired,
+  SubmitFinalOrder: func,
+  FetchMultipleProducts: objectOf(any).isRequired,
+};
+ExpressCheckout.defaultProps = {
+  userCart: [],
+  guestCart: [],
+  total: {
+    discount: {
+      qty: false,
+      qtyAmount: 0,
+      register: false,
+      registerAmount: 0,
+    },
+    taxes: 0,
+    grandTotal: 0,
+    subTotal: 0,
+  },
+  apiFetching: false,
+  SubmitFinalOrder: func,
+};
 
 export default ExpressCheckoutWithStateAndData2;

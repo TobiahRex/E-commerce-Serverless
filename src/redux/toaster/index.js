@@ -2,9 +2,9 @@ import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
-  receivedError: ['error', 'message'],
-  receivedWarning: ['warning', 'message'],
-  receivedSuccess: ['success', 'message'],
+  toastError: ['error', 'message'],
+  toastWarning: ['warning', 'message'],
+  toastSuccess: ['success', 'message'],
   clearToaster: null,
 });
 
@@ -19,19 +19,19 @@ const INITIAL_STATE = Immutable({
   message: '',
 });
 
-const receivedError = (state, { error, message }) => ({
+const toastError = (state, { error, message }) => ({
   ...state,
   error,
   message,
 });
 
-const receivedWarning = (state, { warning, message }) => ({
+const toastWarning = (state, { warning, message }) => ({
   ...state,
   warning,
   message,
 });
 
-const receivedSuccess = (state, { success, message }) => ({
+const toastSuccess = (state, { success, message }) => ({
   ...state,
   success,
   message,
@@ -45,8 +45,8 @@ const clearToaster = () => ({
 });
 
 export const toasterReducer = createReducer(INITIAL_STATE, {
-  [Types.RECEIVED_ERROR]: receivedError,
-  [Types.RECEIVED_WARNING]: receivedWarning,
-  [Types.RECEIVED_SUCCESS]: receivedSuccess,
+  [Types.TOAST_ERROR]: toastError,
+  [Types.TOAST_WARNING]: toastWarning,
+  [Types.TOAST_SUCCESS]: toastSuccess,
   [Types.CLEAR_TOASTER]: clearToaster,
 });
