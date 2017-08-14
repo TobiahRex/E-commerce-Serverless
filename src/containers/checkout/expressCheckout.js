@@ -113,11 +113,18 @@ class ExpressCheckout extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    const propsCopy = _.cloneDeep(nextProps);
+    Object.keys(propsCopy).forEach((key) => {
+      if (typeof propsCopy[key] === 'function') delete propsCopy[key];
+    });
+
     if (!_.isEqual(nextProps, this.props)) {
+      console.log('%cPROPS ARE DIFF.', 'background:cyan;');
       return true;
     }
 
     if (!_.isEqua(nextState, this.state)) {
+      console.log('%cSTATES ARE DIFF.', 'background:cyan;');
       return true;
     }
     return false;
