@@ -471,12 +471,20 @@ export const ValidatePostal = gql`
     $userId: ID!
   ) {
     ValidatePostal(
-      potalCode: $postalCode
+      postalCode: $postalCode
       userId: $userId
     ) {
       _id
-      error
-      postalInfo
+      error {
+        hard
+        soft
+        message
+      }
+      postalInfo {
+        postalCode
+        jpAddress
+        verified
+      }
     }
   }
 `;
