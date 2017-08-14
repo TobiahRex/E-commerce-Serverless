@@ -19,6 +19,7 @@ import {
   composeFinalTotal as ComposeFinalTotal,
   squarePaymentForm as SqrPaymentForm,
   cleanOffTypename as CleanOffTypename,
+  checkForNotifications as CheckForNotifications,
 } from './utilities.imports';
 import {
   propTypes,
@@ -508,14 +509,15 @@ const ExpressCheckoutWithStateAndData = compose(
   }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, notifications }) => ({
   userId: !!user.profile && user.profile._id,
   taxRate: orders.taxRate.totalRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
   userCart: !!auth.loggedIn && user.profile.shopping.cart,
   guestCart: orders.cart,
-  apiError: !!orders.postalInfo && orders.postalInfo.error,
+  notificationError: !!orders.postalInfo && orders.postalInfo.error,
+  notificationMessage: CheckForNotifications(notifications),
   apiFetching: api.fetching,
 }), dispatch => ({
   apiIsFetching: () => dispatch(apiActions.fetching()),
