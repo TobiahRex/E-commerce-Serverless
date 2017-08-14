@@ -112,6 +112,18 @@ class ExpressCheckout extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!_.isEqual(nextProps, this.props)) {
+      return true;
+    }
+
+    if (!_.isEqua(nextState, this.state)) {
+      return true;
+    }
+    return false;
+  }
+
+
   componentWillUpdate() {
     const msnry = new Masonry('.grid', { // eslint-disable-line
       itemSelector: '.checkout__grid',
@@ -268,7 +280,10 @@ class ExpressCheckout extends Component {
         });
       }
     })
-    .catch(error => this.props.apiHasFailed(error));
+    .catch((error) => {
+      this.props.postalHasError({ error });
+      this.props.apiHasFailed(error);
+    });
   }
 
   clearValidationError = name => this.form.hideError(name)
@@ -279,6 +294,7 @@ class ExpressCheckout extends Component {
       apiError,
       apiFetching,
     } = this.props;
+    console.log('%capiError', 'background:pink;', apiError);
 
     const {
       ccRenderKey,
