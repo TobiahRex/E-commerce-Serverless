@@ -411,7 +411,8 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
     .then((result) => {
       console.log('%cresult', 'background:lime;', result);
       // dispatch(orderActions.validatePostal(postal));
-    });
+    })
+    .catch(error => ownProps.apiHasFailed(error));
   },
 }))(ExpressCheckout);
 
@@ -437,6 +438,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
   apiFetching: api.fetching,
 }), dispatch => ({
   apiIsFetching: () => dispatch(apiActions.fetching()),
+  apiHasFailed: error => dispatch(apiActions.apiFail(error)),
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;
