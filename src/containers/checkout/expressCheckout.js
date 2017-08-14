@@ -7,6 +7,7 @@ import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
 
 import {
+  apiActions,
   orderActions,
 } from './redux.imports';
 
@@ -42,7 +43,6 @@ import {
 } from './component.imports';
 import {
   ValidatePostal,
-  ValidatePostalOptions,
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
@@ -235,7 +235,7 @@ class ExpressCheckout extends Component {
   }
 
   validatePostal = () => {
-    this.props.SgValidatePostal(this.state.shippingPostalCode);
+    this.props.ValidatePostalRedux(this.state.shippingPostalCode);
   }
 
   clearValidationError = name => this.form.hideError(name)
@@ -397,13 +397,25 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
     total,
     cart,
   });
-}, dispatch => ({
+}, (dispatch, ownProps) => ({
   push: location => dispatch(push(location)),
-  SgValidatePostal: postal => dispatch(orderActions.validatePostal(postal)),
+  ValidatePostalRedux: (postalCode) => {
+    console.log('ownProp: ', ownProps);
+    ownProps.ValidatePostal({
+      variables: { postalCode },
+    })
+    .then((result) => {
+      console.log('%cresult', 'background:lime;', result);
+      // dispatch(orderActions.validatePostal(postal));
+    });
+  },
 }))(ExpressCheckout);
 
 const ExpressCheckoutWithStateAndData = compose(
-  graphql(ValidatePostal, { name: 'ValidatePostal' }),
+  graphql(ValidatePostal, {
+    skip: true,
+    name: 'ValidatePostal',
+  }),
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
@@ -422,6 +434,8 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) =
   guestCart: orders.cart,
   apiError: orders.postalInfo.error,
   apiFetching: api.fetching,
+}), dispatch => ({
+  apiFetching: () => dispatch(apiActions.fetching()),
 }))(ExpressCheckoutWithStateAndData);
 
 export default ExpressCheckoutWithStateAndData2;

@@ -601,7 +601,7 @@ class SingleProduct extends Component {
 *
 */
 const SingleProductWithState = connect(null,
-  (dispatch) => ({
+  dispatch => ({
     push: location => dispatch(push(location)),
 
     goBack: () => dispatch(goBack()),
