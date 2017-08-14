@@ -58,12 +58,16 @@ const emptyGuestCart = (state) => {
 
 const receivedInvalidPostal = (state, { postalInfo }) => ({
   ...state,
-  ...postalInfo,
+  postalInfo: {
+    ...postalInfo,
+  },
 });
 
 const receivedValidPostal = (state, { postalInfo }) => ({
   ...state,
-  ...postalInfo,
+  postalInfo: {
+    ...postalInfo,
+  },
 });
 
 export const orderReducer = createReducer(INITIAL_STATE, {

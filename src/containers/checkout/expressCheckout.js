@@ -133,7 +133,7 @@ class ExpressCheckout extends Component {
       return true;
     }
 
-    if (!_.isEqua(nextState, this.state)) {
+    if (!_.isEqual(nextState, this.state)) {
       console.log('%cSTATES ARE DIFF.', 'background:cyan;');
       return true;
     }
@@ -298,8 +298,9 @@ class ExpressCheckout extends Component {
       }
     })
     .catch((error) => {
-      this.props.postalHasError({ error });
-      this.props.apiHasFailed(error);
+      console.log('%cerror', 'background:pink;', error);
+      this.props.postalHasError({ error: error.message });
+      this.props.apiHasFailed(error.message);
     });
   }
 
