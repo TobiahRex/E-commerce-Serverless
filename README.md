@@ -62,7 +62,8 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * Uses _redux-logger_ for informative dev. workflow @ devtools console.  
     * Uses _redux-devtools-extension_ for  dev. workflow @ devtools console.
     * Uses _BEM_ syntax styling for classNames.
-    * Airbnb Style Guide implemented.
+    * Uses _babel-node_ for dev-backend ES6 syntax transpiling and Hot reloading.
+    * Uses _Airbnb Style Guide_.
 
 # NOTES:
   1. ### Redux Reducers:
