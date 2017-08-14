@@ -408,9 +408,25 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
         userId: '59807ba06907df3a4524cbb9',
       },
     })
-    .then((result) => {
-      console.log('%cresult', 'background:lime;', result);
-      // dispatch(orderActions.validatePostal(postal));
+    .then((response) => {
+      const {
+        data: {
+          ValidatePostal: {
+            _id,
+            error,
+            postalInfo,
+          },
+        },
+      } = response;
+
+      if (!!error.hard || !!error.soft) {
+        ownProps.apiHasFailed(error.message);
+      } else {
+        dispatch(orderActions.receivedValidPostal({
+          ...postalInfo,
+          sagawaDocId: _id,
+        }));
+      }
     })
     .catch(error => ownProps.apiHasFailed(error));
   },
