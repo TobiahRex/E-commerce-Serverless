@@ -54,8 +54,8 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
     * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoints for Lambda services.
   2. ### Libraries & Packages
     * Uses _recompose_ for customized Higher Order Component implementation.
-    * Uses _apisauce_ for API calls. See API README.md for details.
-    * Uses _react-router-redux_ for dispatching route changes & history.
+    * Uses _apisauce_ for API calls.
+    * Uses _react-router-redux_ for dispatching route changes & tracking nav history via redux.
     * Uses _apollo-grpahql_ for providing API calls directly to componenents.
     * Uses _redux-persist_ for long term browser caching.
     * Uses _redux-sagas_ for dispatching and handling async actions.
