@@ -234,8 +234,21 @@ const queries = {
   },
 };
 
+const mutations = {
+  SubmitFinalOrder: {
+    type: rootType,
+    args: {
+      userId: {
+        description: 'The Mongo _id of the User submitting the order.',
+        type: new NonNull(MongoId),
+      },
+      
+    },
+  },
+};
+
 export default {
   rootType,
   queries,
-  // mutations,
+  mutations,
 };
