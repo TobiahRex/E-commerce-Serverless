@@ -434,7 +434,7 @@ class ExpressCheckout extends React.Component {
                   prefecture={shippingPrefecture}
                   handleOnChange={this.handleOnChange}
                 />
-                
+
                 <City
                   type="shipping"
                   city={shippingCity}
