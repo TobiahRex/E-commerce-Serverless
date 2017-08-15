@@ -76,10 +76,14 @@ const rootType = new ObjectType({
       description: 'The reference Mongo _id for the Market Hero lead.',
       type: MongoID,
     },
+    invoiceEmail: {
+      description: 'The Mongo _id for the invoice Email that was sent.',
+      type: MongoID,
+    },
     taxes: {
       description: 'The global tax information at the trime of executing this transaction',
-      type: new InputObject({
-        name: 'TransactionTaxesInfoInput',
+      type: new ObjectType({
+        name: 'TransactionTaxesInfo',
         fields: () => ({
           city: { type: IntType },
           state: { type: IntType },
@@ -87,9 +91,28 @@ const rootType = new ObjectType({
         }),
       }),
     },
-    invoiceEmail: {
-      description: 'The Mongo _id for the invoice Email that was sent.',
-      type: MongoID,
+    total: {
+      description: 'The final amount totals including discount & taxes for this transaction.',
+      type: new InputObject({
+        name: 'TransactionTotalsInfo',
+        fields: () => ({
+          subTotal: { type: StringType },
+          tax: { type: StringType },
+          grandTotal: { type: StringType },
+          discount: {
+            description: 'The discount(s) applied to this transaction.',
+            type: new InputObject({
+              name: 'TransactionTotalsDiscount',
+              fields: () => ({
+                qty: { type: BoolType },
+                qtyAmount: { type: StringType },
+                register: { type: BoolType },
+                registerAmount: { type: StringType },
+              }),
+            }),
+          },
+        }),
+      }),
     },
     subTotal: {
       description: 'The subTotal amount for this transaction.',
@@ -308,9 +331,9 @@ const mutations = {
           new InputObject({
             name: 'TransactionTotalsInfoInput',
             fields: () => ({
-              subTotal: { type: IntType },
-              taxes: { type: IntType },
-              grandTotal: { type: IntType },
+              subTotal: { type: new NonNull(StringType) },
+              tax: { type: new NonNull(StringType) },
+              grandTotal: { type: new NonNull(StringType) },
               discount: {
                 description: 'The discount(s) applied to this transaction.',
                 type: new NonNull(
@@ -318,7 +341,7 @@ const mutations = {
                     name: 'TransactionTotalsDiscountInput',
                     fields: () => ({
                       qty: { type: BoolType },
-                      qtyAmount: { type: IntType },
+                      qtyAmount: { type: StringType },
                       register: { type: BoolType },
                       registerAmount: { type: StringType },
                     }),

@@ -32,18 +32,18 @@ const transactionSchema = new Schema({
   taxes: {
     city: { type: Number, required: true },
     state: { type: Number, required: true },
-    total: { type: String, required: true },
+    total: { type: Number, required: true },
   },
   total: {
     subtotal: { type: String, required: true },
-    tax: { type: Number, required: true },
+    tax: { type: String, required: true },
+    grandTotal: { type: String, required: true },
     discount: {
       qty: { type: Boolean, default: false },
       qtyAmount: { type: String, default: '' },
       register: { type: Boolean, default: false },
       registerAmount: { type: String, default: '' },
     },
-    grandTotal: { type: String, required: true },
   },
   square: {
     locationId: { type: String, default: '' },
