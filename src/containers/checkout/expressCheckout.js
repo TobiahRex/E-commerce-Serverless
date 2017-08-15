@@ -23,6 +23,7 @@ import {
   squarePaymentForm as SqrPaymentForm,
   cleanOffTypename as CleanOffTypename,
   checkForToast as CheckForToast,
+  generateOrderForm as GenerateOrderForm,
 } from './utilities.imports';
 import {
   BreadCrumb,
@@ -257,7 +258,7 @@ class ExpressCheckout extends React.Component {
     this.setState({ error: this.form.validateAll() });
   }
 
-  handleNonceResponse = (errors, nonce, cardData) => {
+  handleNonceResponse = (errors, cardNonce, cardData) => {
     if (errors) {
       this.setState(prevState => ({
         ...prevState,
@@ -271,7 +272,7 @@ class ExpressCheckout extends React.Component {
         },
       }));
     } else {
-      alert('Nonce received: ' + nonce + '.\n Card Data: ' + cardData);
+
     }
   }
 
@@ -414,7 +415,7 @@ class ExpressCheckout extends React.Component {
                 <AddressLine
                   line={1}
                   type="shipping"
-                  title={'Japanese District'}
+                  title={'Kanji Address'}
                   disabled
                   required={false}
                   placeHolder={'Generated from Postal Code...'}
