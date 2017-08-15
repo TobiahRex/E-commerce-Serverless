@@ -343,12 +343,35 @@ const mutations = {
           new InputObject({
             name: 'TransactionSqaureInformationInput',
             fields: () => ({
-              billingCountry: { type: new NonNull(StringType) },
-              last4: { type: new NonNull(IntType) },
-              expiration: { type: new NonNull(StringType) },
-              cardNonce: { type: new NonNull(StringType) },
-              cvn: { type: new NonNull(IntType) },
-              postalCode: { type: StringType },
+              billingAddress: {
+                description: 'The address information required by Square.',
+                type: new NonNull(
+                  new InputObject({
+                    name: 'TransactionSquareBillingAddressInput',
+                    fields: () => ({
+                      billingCountry: { type: new NonNull(StringType) },
+                      billingCity: { type: new NonNull(StringType) },
+                      billingPrefecture: { type: new NonNull(StringType) },
+                    }),
+                  }),
+                ),
+              },
+              cardInfo: {
+                description: 'The non-sensitive credit card information provided by Square.',
+                type: new NonNull(
+                  new InputObject({
+                    name: 'TransactionSquareCCInfoInput',
+                    fields: () => ({
+                      nameOnCard: { type: new NonNull(StringType) },
+                      last4: { type: new NonNull(IntType) },
+                      expiration: { type: new NonNull(StringType) },
+                      cardNonce: { type: new NonNull(StringType) },
+                      cvn: { type: new NonNull(IntType) },
+                      postalCode: { type: StringType },
+                    }),
+                  }),
+                ),
+              },
             }),
           }),
         ),

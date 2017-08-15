@@ -48,10 +48,21 @@ const transactionSchema = new Schema({
   square: {
     locationId: { type: String, default: '' },
     transactionId: { type: String, default: '' },
-    cardNonce: { type: String, default: '' },
-    nameOnCard: { type: String, required: true },
-    last4: { type: String },
-    amount: { type: Number, required: true },
+    billingAddres: {
+      billingCountry: { type: String, required: true },
+      billingPrefecture: { type: String, required: true },
+      billingCity: { type: String, required: true },
+    },
+    cardInfo: {
+      last4: { type: String },
+      expiration: { type: String, required: true },
+      cardNonce: { type: String, default: '' },
+      nameOnCard: { type: String, required: true },
+    },
+    charge: {
+      amount: { type: Number, required: true },
+      currency: { type: String },
+    },
   },
 });
 export default transactionSchema;
