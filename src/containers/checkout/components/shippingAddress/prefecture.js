@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import { Prefectures } from './component.imports';
 
 class Prefecture extends PureComponent {
-  static propTypes = {
-    type: string.isRequired,
-    shippingPrefecture: string.isRequired,
-    handleOnChange: func.isRequired,
-  }
   constructor(props) {
     super(props);
 
     this.state = {
-      shippingPrefecture: props.shippingPrefecture,
+      prefecture: props.prefecture,
     };
   }
 
@@ -33,9 +28,9 @@ class Prefecture extends PureComponent {
         <div className="input__row--prefecture">
           <p>Prefecture <span className="required">*</span></p>
           <select
-            name="shippingPrefecture"
+            name={`${this.props.type}Prefecture`}
             className="input--select"
-            value={this.props.shippingPrefecture}
+            value={this.props.prefecture}
             onChange={this.handleOnChange}
             required
           >
@@ -49,4 +44,10 @@ class Prefecture extends PureComponent {
     );
   }
 }
+const { string, func } = PropTypes;
+Prefecture.propTypes = {
+  type: string.isRequired,
+  prefecture: string.isRequired,
+  handleOnChange: func.isRequired,
+};
 export default Prefecture;

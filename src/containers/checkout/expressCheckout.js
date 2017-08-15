@@ -345,6 +345,8 @@ class ExpressCheckout extends React.Component {
       shippingAddressLine1,
       shippingAddressLine2,
       shippingPostalCode,
+      shippingPrefecture,
+      shippingCity,
       shippingPhoneNumber,
       // ---
       ccNameOnCard,
@@ -432,9 +434,10 @@ class ExpressCheckout extends React.Component {
                   prefecture={shippingPrefecture}
                   handleOnChange={this.handleOnChange}
                 />
-
+                
                 <City
-                  s
+                  type="shipping"
+                  city={shippingCity}
                   handleOnChange={this.handleOnChange}
                 />
 
