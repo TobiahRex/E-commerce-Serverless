@@ -8,22 +8,22 @@ export default function ComposeLocalData({
     shippingAddressLine1,
     shippingAddressLine2,
     shippingCountry,
+    shippingPrefecture,
+    shippingCity,
     shippingPhoneNumber,
     ccNameOnCard,
-    ccNumber,
-    ccExpireMonth,
-    ccExpireYear,
-    ccCvn,
-    ccZip,
     ccCountry,
     termsAgreement,
     cart,
     total,
   },
+  cardData,
 }) {
   return ({
     userId: '', // from redux
-    cart: cart.reduce((a, n) => {  // from state
+    newsletterDecision,
+    termsAgreement,
+    cart: cart.reduce((a, n) => {
       if (!!n._id) {
         a._id = n._id;
         a.qty = n.qty;
@@ -32,10 +32,10 @@ export default function ComposeLocalData({
       return a;
     }, {}),
     taxes: {}, // from redux
-    total, // from state
+    total,
     sagawa: {
       sagawaId: '',  // from redux TODO add this to "postalInfo"
-      shippingAddress: { // form state
+      shippingAddress: {
         givenName: shippingFirstName,
         familyName: shippingLastName,
         email: shippingEmail,
@@ -47,20 +47,20 @@ export default function ComposeLocalData({
       },
     },
     square: {
-      billingAddress: {  // from state & cardData
+      billingAddress: {
         billingCountry: ccCountry,
         billingCity: shippingCity,
         billingPrefecture: shippingPrefecture,
       },
-      cardInfo: {  // from state & card Data
+      cardInfo: {
         last4: cardData.last4,
-        nameOnCard: cardData.nameOnCard,
+        nameOnCard: ccNameOnCard,
         cardNonce: cardData.cardNonce,
-        postalCode: cardData.postalCode,
+        postalCode: !!cardData.postalCode ? cardData.postalCode : '',
       },
-      charge: {  // manual input
-        amount: charge.amount,
-        currency: charge.currency,
+      charge: {
+        amount: total.grandTotal,
+        currency: 'USD',
       },
     },
   });

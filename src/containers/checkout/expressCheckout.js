@@ -54,7 +54,6 @@ import {
 import {
   ValidatePostal,
   SubmitFinalOrder,
-  SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
 class ExpressCheckout extends React.Component {
