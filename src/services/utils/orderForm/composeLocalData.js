@@ -17,10 +17,13 @@ export default function ComposeLocalData({
     cart,
     total,
   },
+  props: {
+    userId,
+  },
   cardData,
 }) {
   return ({
-    userId: '', // from redux
+    userId,
     newsletterDecision,
     termsAgreement,
     cart: cart.reduce((a, n) => {

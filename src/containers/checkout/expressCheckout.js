@@ -554,7 +554,7 @@ const ExpressCheckoutWithStateAndData = compose(
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
   toast: CheckForToast(toaster),
   userId: !!user.profile ? user.profile._id : '',
-  taxRate: !!orders.taxRate ? orders.taxRate.totalRate : 9.5,
+  taxRate: orders.taxRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
   userCart: !!auth.loggedIn ? user.profile.shopping.cart : [],
@@ -616,7 +616,11 @@ ExpressCheckout.propTypes = {
   loggedIn: bool.isRequired,
   newUser: bool.isRequired,
   // ---
-  taxRate: number.isRequired,
+  taxRate: shape({
+    stateRate: number,
+    cityRate: number,
+    totalRate: number,
+  }).isRequired,
   total: shape({
     discount: {
       qty: bool,
