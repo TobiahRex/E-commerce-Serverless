@@ -284,7 +284,23 @@ const mutations = {
           new InputObject({
             name: 'TransactionTotalsInfoInput',
             fields: () => ({
-              
+              subTotal: { type: IntType },
+              taxes: { type: IntType },
+              grandTotal: { type: IntType },
+              discount: {
+                description: 'The discount(s) applied to this transaction.',
+                type: new NonNull(
+                  new InputObject({
+                    name: 'TransactionTotalsDiscountInput',
+                    fields: () => ({
+                      qty: { type: BoolType },
+                      qtyAmount: { type: IntType },
+                      register: { type: BoolType },
+                      registerAmount: { type: StringType },
+                    }),
+                  }),
+                ),
+              },
             }),
           }),
         ),
