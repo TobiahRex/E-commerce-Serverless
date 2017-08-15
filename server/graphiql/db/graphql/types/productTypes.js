@@ -575,7 +575,7 @@ const mutations = {
                 description: 'The available sizes for the product.',
                 type: new NonNull(
                   new EnumType({
-                    name: 'ProductAvailableSizesInput',
+                    name: 'ProductAvailableSizesUpdate',
                     /* eslint-disable quote-props */
                     values: {
                       'small': {

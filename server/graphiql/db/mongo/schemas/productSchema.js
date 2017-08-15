@@ -38,6 +38,10 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
+    upc: {
+      type: String,
+      required: true,
+    },
     size: {
       type: Number,
       enum: [30, 60, 120],
