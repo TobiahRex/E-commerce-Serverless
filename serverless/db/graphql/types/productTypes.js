@@ -223,6 +223,7 @@ const rootType = new ObjectType({
     },
   },
 });
+
 const queryTypes = {
   popularProductsType: new ObjectType({
     name: 'PopularProductType',
@@ -271,7 +272,6 @@ const queryTypes = {
     }),
   }),
 };
-
 const queries = {
   FetchMultipleProducts: {
     type: new ListType(rootType),
@@ -316,6 +316,7 @@ const queries = {
     resolve: (_, { qty }, { Product }) => Product.getPopularProducts(qty),
   },
 };
+
 const mutations = {
   CreateProduct: { // This is only used from GraphiQL to seed database.
     type: rootType,

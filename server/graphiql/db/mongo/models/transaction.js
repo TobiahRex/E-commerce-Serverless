@@ -11,7 +11,7 @@ transactionSchema.statics.createTransaction = (txn, cb) => {
   .catch(error => cb({ problem: 'Could not create Transaction.', error }));
 };
 
-transactionSchema.statics.fetchSquareLocation = () =>
+transactionSchema.statics.fetchSquareLocation = locationName =>
 new Promise((resolve, reject) => {
   axios({
     method: 'get',
@@ -21,7 +21,8 @@ new Promise((resolve, reject) => {
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
 
-    const locations = response.data.locations.filter(({ name }) => name === 'Thomas NFriends');
+    // locationName = 'Thomas NFriends'
+    const locations = response.data.locations.filter(({ name }) => name === locationName);
 
     if (locations.length) {
       const newLocation = { ...locations[0] };
@@ -110,6 +111,12 @@ new Promise((resolve, reject) => {
     console.log('Error while trying to Authorize Square payment. Error = ', error);
     reject(`Error while trying to Authorize Square payment. Error = ${error}`);
   });
+});
+
+transactionSchema.statics.submitFinalOrder = (args) =>
+new Promise((resolve, reject) => {
+  console.log('ARGS: \n', JSON.stringify(args, null, 2));
+  resolve();
 });
 
 const Transaction = db.model('Transaction', transactionSchema);

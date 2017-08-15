@@ -33,6 +33,7 @@ const mutation = new GraphQLObjectType({
     FindProductAndUpdate: ProductTypes.mutations.FindProductAndUpdate,
     FindProductByIdAndDelete: ProductTypes.mutations.FindProductByIdAndDelete,
     ValidatePostal: Sagawa.mutations.ValidatePostal,
+    SubmitFinalOrder: Transaction.mutations.SubmitFinalOrder,
   }),
 });
 
