@@ -20,23 +20,25 @@ const rootType = new ObjectType({
     },
     error: {
       description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
-      type: new ObjectType({
-        name: 'ProductError',
-        fields: () => ({
-          hard: {
-            description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
-            type: BoolType,
-          },
-          soft: {
-            description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
-            type: BoolType,
-          },
-          message: {
-            description: 'Amplifying information about error.  Should be written for user readibility.',
-            type: StringType,
-          },
+      type: new NonNull(
+        new ObjectType({
+          name: 'ProductError',
+          fields: () => ({
+            hard: {
+              description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+              type: BoolType,
+            },
+            soft: {
+              description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+              type: BoolType,
+            },
+            message: {
+              description: 'Amplifying information about error.  Should be written for user readibility.',
+              type: StringType,
+            },
+          }),
         }),
-      }),
+      ),
     },
     date: {
       description: 'The date this transaction occured.',
@@ -61,6 +63,35 @@ const rootType = new ObjectType({
         }),
       }),
     ),
+    marketHero: {
+      description: 'The Mongo _id for the Market Hero lead.',
+      type: MongoId,
+    },
+    invoiceEmail: {
+      description: 'The Mongo _id for the invoice Email that was sent.',
+      type: MongoId,
+    },
+    subTotal: {
+      description: 'The subTotal amount for this transaction.',
+      type: StringType,
+    },
+    tax: {
+      description: 'The taxes amount for this transaction.',
+      type: new ObjectType({
+        name: 'TransactionTaxInfo',
+        fields: () => ({
+          city: {
+            type: IntType,
+          },
+          state: {
+            type: IntType,
+          },
+          total: {
+            type: IntType,
+          },
+        }),
+      }),
+    },
     discount: new ObjectType({
       name: 'TransactionDiscounts',
       fields: () => ({
@@ -82,26 +113,16 @@ const rootType = new ObjectType({
         },
       }),
     }),
-    subTotal: {
-      description: 'The subTotal amount for this transaction.',
-      type: StringType,
-    },
-    tax: {
-      description: 'The taxes amount for this transaction.',
-      type: StringType,
-    },
     grandTotal: {
       description: 'The grand total amount for this transaction.',
       type: StringType,
     },
-  },
-  marketHero: {
-    description: 'The Mongo _id for the Market Hero lead.',
-    type: MongoId,
-  },
-  invoiceEmail: {
-    description: 'The Mongo _id for the invoice Email that was sent.',
-    type: MongoId,
+    square: new ObjectType({
+      name: 'TransactionSquareInfo',
+      fields: () =>({
+        
+      }),
+    }),
   },
 });
 
