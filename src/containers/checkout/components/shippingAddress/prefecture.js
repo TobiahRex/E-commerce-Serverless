@@ -4,8 +4,9 @@ import { Prefectures } from './component.imports';
 
 class Prefecture extends PureComponent {
   static propTypes = {
-    shippingPrefecture: PropTypes.string.isRequired,
-    handleOnChange: PropTypes.func.isRequired,
+    type: string.isRequired,
+    shippingPrefecture: string.isRequired,
+    handleOnChange: func.isRequired,
   }
   constructor(props) {
     super(props);

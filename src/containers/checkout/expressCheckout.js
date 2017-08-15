@@ -39,6 +39,8 @@ import {
   Email,
   AddressLine,
   Country,
+  Prefecture,
+  City,
   PostalCode,
   PhoneNumber,
 } from './component.imports';
@@ -424,6 +426,17 @@ class ExpressCheckout extends React.Component {
                 />
 
                 <Country disabled />
+
+                <Prefecture
+                  type="shipping"
+                  prefecture={shippingPrefecture}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <City
+                  s
+                  handleOnChange={this.handleOnChange}
+                />
 
                 <PhoneNumber
                   shippingPhoneNumber={shippingPhoneNumber}
