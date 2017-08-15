@@ -65,6 +65,10 @@ const rootType = new ObjectType({
             description: 'The unique code for the product.',
             type: StringType,
           },
+          upc: {
+            description: 'The unique product code for the product.',
+            type: new NonNull(StringType),
+          },
           size: {
             description: 'The available sizes for the product.',
             type: new EnumType({
@@ -332,7 +336,7 @@ export const mutationTypes = {
     description: 'Object: All the important details for the product.',
     type: new NonNull(
       new InputObject({
-        name: 'ProductObject',
+        name: 'ProductObjectInput',
         fields: () => ({
           mainTitle: {
             description: 'The main title for the Single Product page for the new product - e.g. The "Cateogry" of the new product.',
@@ -352,6 +356,10 @@ export const mutationTypes = {
           },
           sku: {
             description: 'The unique code for the new product.',
+            type: new NonNull(StringType),
+          },
+          upc: {
+            description: 'The unique product code for the product.',
             type: new NonNull(StringType),
           },
           size: {
@@ -382,7 +390,7 @@ export const mutationTypes = {
             description: 'The nicotine strength for the new product.',
             type: new NonNull(
               new EnumType({
-                name: 'ProductNicotineStrengthsEnum',
+                name: 'ProductNicotineStrengthsEnumInput',
                 values: {
                   zero: {
                     value: 0,
@@ -437,7 +445,7 @@ export const mutationTypes = {
             type: new NonNull(
               new ListType(
                 new InputObject({
-                  name: 'ProductImageObject',
+                  name: 'ProductImageObjectInput',
                   fields: () => ({
                     purpose: {
                       description: 'What this specific image will be used for - e.g. "Juice Card"',
@@ -467,7 +475,7 @@ export const mutationTypes = {
           quantities: {
             description: 'Availability stats for this new product.',
             type: new InputObject({
-              name: 'ProductQuantityInfo',
+              name: 'ProductQuantityInfoInput',
               fields: () => ({
                 available: {
                   description: 'The available quanitty for this product.',

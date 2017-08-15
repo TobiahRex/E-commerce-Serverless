@@ -260,7 +260,7 @@ const rootType = new ObjectType({
           },
           transactions: {
             description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-            type: new ListType(StringType),
+            type: new ListType(MongoID),
           },
         }),
       }),
