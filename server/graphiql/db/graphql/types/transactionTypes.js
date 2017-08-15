@@ -24,7 +24,7 @@ const rootType = new ObjectType({
       description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
       type: new NonNull(
         new ObjectType({
-          name: 'ProductError',
+          name: 'TransactionError',
           fields: () => ({
             hard: {
               description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
@@ -146,14 +146,17 @@ const rootType = new ObjectType({
             description: 'The card-nonce (Good only for 24 hours from first issue), that is used to execute the transaction.',
             type: StringType,
           },
-          billingInfo: new ObjectType({
-            name: 'TransactionSquareBillingInfo',
-            fields: () => ({
-              nameOnCard: { type: StringType },
-              last4: { type: StringType },
-              amount: { type: StringType },
+          billingInfo: {
+            description: 'The billing information received by Square.',
+            type: new ObjectType({
+              name: 'TransactionSquareBillingInfo',
+              fields: () => ({
+                nameOnCard: { type: StringType },
+                last4: { type: StringType },
+                amount: { type: StringType },
+              }),
             }),
-          }),
+          },
         }),
       }),
     },
