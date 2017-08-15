@@ -415,7 +415,7 @@ class ExpressCheckout extends React.Component {
                   disabled
                   required={false}
                   placeHolder={'Generated from Postal Code...'}
-                  title={'Prefecture | City | District'}
+                  title={'Japanese District'}
                   shippingAddressLine={shippingAddressLine1}
                 />
 
@@ -442,7 +442,7 @@ class ExpressCheckout extends React.Component {
                 />
 
                 <PhoneNumber
-                  shippingPhoneNumber={shippingPhoneNumber}
+                  phoneNumber={shippingPhoneNumber}
                   handleOnChange={this.handleOnChange}
                 />
               </ShippingAddress>
