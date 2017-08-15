@@ -24,7 +24,7 @@ export const INITIAL_STATE = Immutable({
   },
   postalInfo: {
     error: false,
-    sagawaDocId: '',
+    sagawaId: '',
     jpAddress: '',
     postalCode: '',
     verified: false,

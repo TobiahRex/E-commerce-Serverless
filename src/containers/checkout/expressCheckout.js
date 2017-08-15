@@ -273,14 +273,14 @@ class ExpressCheckout extends React.Component {
         },
       }));
     } else {
-      const formData = ComposeLocalData({
+      const formData = GenerateFinalForm({
         state: this.state,
         props: this.props,
         cardData,
         cardNonce,
       });
 
-      this.props.AddReduxAndSubmit(formData)
+      this.props.SubmitOrder(formData)
       .then((response) => {
         console.log('%cresponse', 'background:lime;', response);
       })
@@ -317,7 +317,7 @@ class ExpressCheckout extends React.Component {
           this.props.clearToaster();
           this.props.gotValidPostal({
             ...postalInfo,
-            sagawaDocId: _id,
+            sagawaId: _id,
           });
         });
       }
@@ -561,6 +561,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   guestCart: orders.cart,
   apiFetching: api.fetching,
   postalError: orders.postalInfo.error,
+  sagwaId: orders.postalInfo.sagawaId,
 }), dispatch => ({
   toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
   toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
@@ -593,6 +594,7 @@ ExpressCheckout.propTypes = {
   gotValidPostal: func.isRequired,
   gotInvalidPostal: func.isRequired,
   postalError: bool.isRequired,
+  sagwaId: string,
   // ---
   toast: shape({
     type: string,
@@ -653,6 +655,7 @@ ExpressCheckout.defaultProps = {
     grandTotal: 0,
     subTotal: 0,
   },
+  sagwaId: '',
   apiFetching: false,
   SubmitFinalOrder: func,
 };

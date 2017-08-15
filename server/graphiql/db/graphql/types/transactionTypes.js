@@ -297,6 +297,10 @@ const mutations = {
   SubmitFinalOrder: {
     type: rootType,
     args: {
+      // access_token: {
+      //   description: 'The Auth0 issued, JWT access_token.',
+      //   type: new NonNull(StringType),
+      // },
       userId: {
         description: 'The Mongo _id of the User submitting the order.',
         type: new NonNull(MongoID),
@@ -309,10 +313,6 @@ const mutations = {
         description: 'User\'s choice to receive future marketing newsletters.',
         type: new NonNull(BoolType),
       },
-      // access_token: {
-      //   description: 'The Auth0 issued, JWT access_token.',
-      //   type: new NonNull(StringType),
-      // },
       cart: {
         description: 'The array of products to be purchased.',
         type: new NonNull(

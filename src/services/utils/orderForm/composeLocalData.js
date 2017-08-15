@@ -19,14 +19,15 @@ export default function ComposeLocalData({
   },
   props: {
     userId,
+    sagawaId,
     taxRate: taxes,
   },
   cardData,
 }) {
   return ({
     userId,
-    newsletterDecision, // TODO add to transactionTypes,
-    termsAgreement, // TODO add to transactionTypes,
+    newsletterDecision,
+    termsAgreement,
     cart: cart.reduce((a, n) => {
       if (!!n._id) {
         a._id = n._id;
@@ -38,7 +39,7 @@ export default function ComposeLocalData({
     taxes,
     total,
     sagawa: {
-      sagawaId: '',  // from redux TODO add this to redux "postalInfo"
+      sagawaId,
       shippingAddress: {
         givenName: shippingFirstName,
         familyName: shippingLastName,
