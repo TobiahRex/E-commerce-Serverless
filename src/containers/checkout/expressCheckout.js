@@ -268,7 +268,6 @@ class ExpressCheckout extends React.Component {
           }, ''),
         },
       }));
-
     } else {
       alert('Nonce received: ' + nonce + '.\n Card Data: ' + cardData);
     }

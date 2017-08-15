@@ -440,9 +440,9 @@
           justify-content: flex-start;
           align-items: center;
           flex-direction: column;
-          width: 28em;
+          // width: 28em;
           height: 17.5em;
-          padding: 1em;
+          padding: 2em;
           & .analysis-container--discount {
             & p {
               color: $p-red;

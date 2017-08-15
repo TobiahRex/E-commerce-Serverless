@@ -65,13 +65,13 @@ Object.assign(Validation.rules, {
   'phone-japanLength': {
     rule: (value) => {
       const validPhone = /(^\d{10}$)|(^\d{11}$)/.test(value);
-      const minLength = value.length === 10;
+      const minLength = (value.length === 10) || (value.length === 11);
       return (validPhone && minLength);
     },
     hint: () => (
       <span className="form-error is-visible">
         Not a valid phone number. Acceptable Format: {'\"01234567890\"'}.
-        Either 10 (Landline) or 11 (Cell) digits long.
+        Either 10 digits (Landline) or 11 digits (Cell).
       </span>
     ),
   },
