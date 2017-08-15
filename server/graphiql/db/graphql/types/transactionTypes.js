@@ -76,6 +76,17 @@ const rootType = new ObjectType({
       description: 'The reference Mongo _id for the Market Hero lead.',
       type: MongoID,
     },
+    taxes: {
+      description: 'The global tax information at the trime of executing this transaction',
+      type: new InputObject({
+        name: 'TransactionTaxesInfoInput',
+        fields: () => ({
+          city: { type: IntType },
+          state: { type: IntType },
+          total: { type: IntType },
+        }),
+      }),
+    },
     invoiceEmail: {
       description: 'The Mongo _id for the invoice Email that was sent.',
       type: MongoID,
@@ -130,30 +141,32 @@ const rootType = new ObjectType({
       type: StringType,
     },
     square: {
-      description: 'The Square Payment Service information associated with this transaction.',
+      description: 'The information associated with billing and payment services.',
       type: new ObjectType({
-        name: 'TransactionSquareInfo',
+        name: 'TransactionSqaureInformation',
         fields: () => ({
-          locationId: {
-            description: 'The Square Acct. location ID that this transaction was added to.',
-            type: StringType,
-          },
-          transactionId: {
-            description: 'The Square Acct. transaction ID.',
-            type: StringType,
-          },
-          cardNonce: {
-            description: 'The card-nonce (Good only for 24 hours from first issue), that is used to execute the transaction.',
-            type: StringType,
-          },
-          billingInfo: {
-            description: 'The billing information received by Square.',
+          billingAddress: {
+            description: 'The address information required by Square.',
             type: new ObjectType({
-              name: 'TransactionSquareBillingInfo',
+              name: 'TransactionSquareBillingAddress',
+              fields: () => ({
+                billingCountry: { type: StringType },
+                billingCity: { type: StringType },
+                billingPrefecture: { type: StringType },
+              }),
+            }),
+          },
+          cardInfo: {
+            description: 'The non-sensitive credit card information provided by Square.',
+            type: new ObjectType({
+              name: 'TransactionSquareCCInfo',
               fields: () => ({
                 nameOnCard: { type: StringType },
-                last4: { type: StringType },
-                amount: { type: StringType },
+                last4: { type: IntType },
+                expiration: { type: StringType },
+                cardNonce: { type: StringType },
+                cvn: { type: IntType },
+                postalCode: { type: StringType },
               }),
             }),
           },
@@ -282,9 +295,9 @@ const mutations = {
           new InputObject({
             name: 'TransactionTaxesInfoInput',
             fields: () => ({
-              city: { type: IntType },
-              state: { type: IntType },
-              total: { type: IntType },
+              city: { type: new NonNull(IntType) },
+              state: { type: new NonNull(IntType) },
+              total: { type: new NonNull(IntType) },
             }),
           }),
         ),
