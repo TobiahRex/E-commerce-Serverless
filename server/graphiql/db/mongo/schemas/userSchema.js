@@ -92,11 +92,14 @@ const userSchema = new Schema({
     bio: { type: String },
     gender: { type: String },
   },
-  marketHero: {
-    tags: [{
-      name: { type: String },
-      date: { type: Date },
-    }],
+  marketing: {
+    newsletterDecision: { type: Boolean },
+    marketHero: {
+      tags: [{
+        name: { type: String },
+        date: { type: Date },
+      }],
+    },
   },
   socialProfileBlob: {
     line: { type: String },
