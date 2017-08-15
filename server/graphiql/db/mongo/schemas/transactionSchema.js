@@ -48,7 +48,7 @@ const transactionSchema = new Schema({
   square: {
     locationId: { type: String, default: '' },
     transactionId: { type: String, default: '' },
-    billingAddres: {
+    billingAddress: {
       billingCountry: { type: String, required: true },
       billingPrefecture: { type: String, required: true },
       billingCity: { type: String, required: true },

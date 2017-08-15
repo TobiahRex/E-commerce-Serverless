@@ -168,14 +168,22 @@ const rootType = new ObjectType({
       type: new ObjectType({
         name: 'TransactionSqaureInformation',
         fields: () => ({
+          locationId: {
+            description: 'The Square location ID that this transaction was added to.',
+            type: StringType,
+          },
+          transactionId: {
+            description: 'The Square transaction ID for this transaction.',
+            type: StringType,
+          },
           billingAddress: {
             description: 'The address information required by Square.',
             type: new ObjectType({
               name: 'TransactionSquareBillingAddress',
               fields: () => ({
-                billingCountry: { type: new NonNull(StringType) },
-                billingCity: { type: new NonNull(StringType) },
-                billingPrefecture: { type: new NonNull(StringType) },
+                billingCountry: { type: StringType },
+                billingPrefecture: { type: StringType },
+                billingCity: { type: StringType },
               }),
             }),
           },
@@ -184,8 +192,8 @@ const rootType = new ObjectType({
             type: new ObjectType({
               name: 'TransactionSquareCCInfo',
               fields: () => ({
-                nameOnCard: { type: StringType },
                 last4: { type: IntType },
+                nameOnCard: { type: StringType },
                 cardNonce: { type: StringType },
               }),
             }),
@@ -419,12 +427,24 @@ const mutations = {
                   new InputObject({
                     name: 'TransactionSquareCCInfoInput',
                     fields: () => ({
-                      nameOnCard: { type: new NonNull(StringType) },
                       last4: { type: new NonNull(IntType) },
-                      expiration: { type: new NonNull(StringType) },
+                      nameOnCard: { type: new NonNull(StringType) },
                       cardNonce: { type: new NonNull(StringType) },
+                      expiration: { type: new NonNull(StringType) },
                       cvn: { type: new NonNull(IntType) },
                       postalCode: { type: StringType },
+                    }),
+                  }),
+                ),
+              },
+              charge: {
+                description: 'The total charges made to the customers credit card for this transaction.',
+                type: new NonNull(
+                  new InputObject({
+                    name: 'TransactionSquareChargeInfoInput',
+                    fields: () => ({
+                      amount: { type: new NonNull(IntType) },
+                      currency: { type: new NonNull(StringType) },
                     }),
                   }),
                 ),
