@@ -2,8 +2,10 @@ export default function GenerateOrerForm({
   userId,
   taxRate,
   total,
+  address,
+  postalInfo,
 }) {
-  const result = {
+  return (){
     userId,
     cart: cart.reduce((a, n) => {
       if (!!n._id) {
@@ -12,7 +14,7 @@ export default function GenerateOrerForm({
         return a;
       }
       return a;
-    },{}),
+    }, {}),
     taxes: {
       city: String(taxRate.city),
       state: String(taxRate.state),
@@ -23,23 +25,23 @@ export default function GenerateOrerForm({
       tax: total.tax,
       grandTotal: total.grandTotal,
       discount: {
-        qty: false,
-        qtyAmount: "",
-        register: false,
-        registerAmount: "",
+        qty: total.discount.qty,
+        qtyAmount: total.discount.qtyAmount,
+        register: total.dicsount.register,
+        registerAmount: total.discount.registerAmount,
       },
     },
     sagawa: {
-      sagawaId: "123123123123",
+      sagawaId: '',
       shippingAddress: {
-        givenName: "Toby",
-        familyName: "Bickley",
-        email: "bob@bob.com",
-        postalCode: 1231234,
-        addressLine1: "asdfasdfsadf",
-        addressLine2: "asdfasdfsd",
-        country: "JP",
-        phoneNumber: "08039188013",
+        givenName: address.firstName,
+        familyName: address.lastName,
+        email: address.email,
+        postalCode: postalInfo.postalCode,
+        addressLine1: address.shippingAddressLine1,
+        addressLine2: address.shippingAddressLine2,
+        country: address.shippingCountry,
+        phoneNumber: address.phoneNumber,
       },
     },
     square: {
@@ -61,5 +63,5 @@ export default function GenerateOrerForm({
         currency: "USD",
       },
     },
-  };
+  });
 };
