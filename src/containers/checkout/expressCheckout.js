@@ -285,9 +285,7 @@ class ExpressCheckout extends React.Component {
         const cleanResponse = CleanOffTypename(response);
         console.log('%ccleanResponse', 'background:lime;', cleanResponse);
       })
-      .catch((error) => {
-
-      });
+      .catch(this.props.GraphQLhandleError);
     }
   }
 
@@ -449,6 +447,7 @@ class ExpressCheckout extends React.Component {
                 />
 
                 <PhoneNumber
+                  type="shipping"
                   phoneNumber={shippingPhoneNumber}
                   handleOnChange={this.handleOnChange}
                 />
@@ -628,7 +627,6 @@ ExpressCheckout.propTypes = {
     subTotal: number,
   }),
   // ---
-  AddReduxAndSubmit: func.isRequired,
   SubmitFinalOrder: func.isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
   GraphQLhandleError: func.isRequired,
