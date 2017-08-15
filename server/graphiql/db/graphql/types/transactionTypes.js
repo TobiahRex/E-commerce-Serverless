@@ -49,6 +49,10 @@ const rootType = new ObjectType({
       description: 'The _id of the user who executed this transaction.',
       type: MongoID,
     },
+    termsAgreement: {
+      description: 'Did the user agree to the Terms & Agreement for this transaction.',
+      type: BoolType,
+    },
     products: {
       description: 'An array of product(s) ID\'s and their respective quantities, that were purchased.',
       type: new ListType(
@@ -296,6 +300,14 @@ const mutations = {
       userId: {
         description: 'The Mongo _id of the User submitting the order.',
         type: new NonNull(MongoID),
+      },
+      termsAgreement: {
+        description: 'User\'s agreement to the Terms & Agreement policy at the time of purchase.',
+        type: new NonNull(BoolType),
+      },
+      newsletterDecision: {
+        description: 'User\'s choice to receive future marketing newsletters.',
+        type: new NonNull(BoolType),
       },
       // access_token: {
       //   description: 'The Auth0 issued, JWT access_token.',
