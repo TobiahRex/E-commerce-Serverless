@@ -5,10 +5,12 @@ import {
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLInputObjectType as InputObject,
   GraphQLObjectType as ObjectType,
 } from 'graphql';
 
 import Transaction from '../../mongo/models/transaction';
+import { mutationTypes as ProductMutationTypes } from './productTypes';
 
 const rootType = new ObjectType({
   name: 'Transaction',
@@ -59,7 +61,7 @@ const rootType = new ObjectType({
               type: MongoId,
             },
             qty: {
-              description: 'The quantity purchased.',
+              description: 'The quantity purchased for the respective product.',
               type: IntType,
             },
           }),
@@ -242,7 +244,26 @@ const mutations = {
         description: 'The Mongo _id of the User submitting the order.',
         type: new NonNull(MongoId),
       },
-      
+      // access_token: {
+      //   description: 'The Auth0 issued, JWT access_token.',
+      //   type: new NonNull(StringType),
+      // },
+      cart: {
+        description: 'The array of products to be purchased.',
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'TransactionCartProduct',
+              fields: () => ({
+                product: { ...ProductMutationTypes.ProductInput.type },
+                qty: {
+                  description: 'The quantity of '
+                }
+              }),
+            }),
+          ),
+        ),
+      },
     },
   },
 };
