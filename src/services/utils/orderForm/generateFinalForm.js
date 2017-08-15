@@ -9,8 +9,8 @@ export default function GenerateOrerForm({
   charge,
 }) {
   return ({
-    userId,
-    cart: cart.reduce((a, n) => {
+    userId, // from redux
+    cart: cart.reduce((a, n) => {  // from state
       if (!!n._id) {
         a._id = n._id;
         a.qty = n.qty;
@@ -18,12 +18,12 @@ export default function GenerateOrerForm({
       }
       return a;
     }, {}),
-    taxes: {
+    taxes: {  // from redux
       city: String(taxRate.city),
       state: String(taxRate.state),
       total: String(taxRate.total),
     },
-    total: {
+    total: { // from state
       subTotal: total.subTotal,
       tax: total.tax,
       grandTotal: total.grandTotal,
@@ -35,12 +35,12 @@ export default function GenerateOrerForm({
       },
     },
     sagawa: {
-      sagawaId: '',
-      shippingAddress: {
+      sagawaId: '',  // from redux TODO add this to "postalInfo"
+      shippingAddress: { // form state
         givenName: address.firstName,
         familyName: address.lastName,
         email: address.email,
-        postalCode: postalInfo.postalCode,
+        postalCode: postalInfo.postalCode,  // from redux
         addressLine1: address.shippingAddressLine1,
         addressLine2: address.shippingAddressLine2,
         country: address.shippingCountry.split(' - ')[1],

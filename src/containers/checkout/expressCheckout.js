@@ -170,7 +170,6 @@ class ExpressCheckout extends React.Component {
   *
   * @return: null
   */
-
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
       const countIsTooHigh = SqrPaymentForm.count === 2;
@@ -629,6 +628,7 @@ ExpressCheckout.propTypes = {
     subTotal: number,
   }),
   // ---
+  AddReduxAndSubmit: func.isRequired,
   ValidatePostalRedux: func.isRequired,
   SubmitFinalOrder: func,
   FetchMultipleProducts: objectOf(any).isRequired,
