@@ -15,11 +15,13 @@ class AddressLine extends React.PureComponent {
 
   render() {
     const {
+      type,
+      line,
       title,
       disabled,
       required,
+      addressLine,
       placeHolder,
-      shippingAddressLine,
     } = this.props;
 
     const validations = [];
@@ -37,28 +39,29 @@ class AddressLine extends React.PureComponent {
             disabled={disabled}
             containerClassName=""
             type="text"
-            name={`shippingAddressLine${title}`}
+            name={`${type}AddressLine${line}`}
             validations={[...validations]}
             onChange={this.handleOnChange}
-            value={shippingAddressLine}
+            value={addressLine}
           />
         </div>
       </div>
     );
   }
 }
-const { bool, string, func } = PropTypes;
+const { bool, string, func, number } = PropTypes;
 AddressLine.propTypes = {
+  line: number.isRequired,
+  type: string.isRequired,
   title: string.isRequired,
   disabled: bool,
   required: bool.isRequired,
+  addressLine: string.isRequired,
   placeHolder: string,
   handleOnChange: func,
-  shippingAddressLine: string.isRequired,
 };
 AddressLine.defaultProps = {
   disabled: false,
-  required: false,
   placeHolder: '',
   handleOnChange: null,
 };

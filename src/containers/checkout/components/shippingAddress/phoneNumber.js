@@ -22,10 +22,10 @@ class PhoneNumber extends React.PureComponent {
             errorClassName="is-invalid-input"
             type="string"
             containerClassName=""
-            name="shippingPhoneNumber"
+            name={`${this.props.type}PhoneNumber`}
             validations={['required', 'numeric', 'phone-startWithZero', 'phone-japanLength']}
             onChange={this.handleOnChange}
-            value={this.props.shippingPhoneNumber}
+            value={this.props.phoneNumber}
           />
         </div>
       </div>

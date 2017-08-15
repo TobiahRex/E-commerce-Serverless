@@ -412,18 +412,22 @@ class ExpressCheckout extends React.Component {
                 />
 
                 <AddressLine
+                  line={1}
+                  type="shipping"
+                  title={'Japanese District'}
                   disabled
                   required={false}
                   placeHolder={'Generated from Postal Code...'}
-                  title={'Japanese District'}
-                  shippingAddressLine={shippingAddressLine1}
+                  addressLine={shippingAddressLine1}
                 />
 
                 <AddressLine
                   required
+                  type="shipping"
+                  line={2}
                   placeHolder={'RM3 1-1-8 Odakicho'}
                   title={'Room # | Street # | Street Name'}
-                  shippingAddressLine={shippingAddressLine2}
+                  addressLine={shippingAddressLine2}
                   handleOnChange={this.handleOnChange}
                 />
 
