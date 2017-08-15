@@ -257,11 +257,36 @@ const mutations = {
               fields: () => ({
                 product: { ...ProductMutationTypes.ProductInput.type },
                 qty: {
-                  description: 'The quantity of '
-                }
+                  description: 'The quantity purchased for the respective product',
+                  type: new NonNull(IntType),
+                },
               }),
             }),
           ),
+        ),
+      },
+      taxes: {
+        description: 'The global tax information at the trime of executing this transaction',
+        type: new NonNull(
+          new InputObject({
+            name: 'TransactionTaxesInfoInput',
+            fields: () => ({
+              city: { type: IntType },
+              state: { type: IntType },
+              total: { type: IntType },
+            }),
+          }),
+        ),
+      },
+      total: {
+        description: 'The final amount totals including discount & taxes for this transaction.',
+        type: new NonNull(
+          new InputObject({
+            name: 'TransactionTotalsInfoInput',
+            fields: () => ({
+              
+            }),
+          }),
         ),
       },
     },
