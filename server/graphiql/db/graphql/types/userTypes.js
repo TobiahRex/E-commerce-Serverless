@@ -312,6 +312,7 @@ const rootType = new ObjectType({
           },
           marketHero: {
             description: 'The Mongo _id for the users associated Market Hero document',
+            type: MongoID,
           },
           emails: {
             description: 'The list of email _id\'s that the user has been sent.',

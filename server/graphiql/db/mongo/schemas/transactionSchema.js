@@ -22,6 +22,7 @@ const transactionSchema = new Schema({
     required: true,
   },
   user: { type: ObjectId, ref: 'User' },
+  termsAgreement: { type: Boolean },
   products: [{
     _id: { type: ObjectId, ref: 'Product', required: true },
     qty: { type: Number, required: true },
