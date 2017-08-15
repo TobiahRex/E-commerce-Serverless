@@ -100,6 +100,10 @@ const userSchema = new Schema({
         date: { type: Date },
       }],
     },
+    emails: [{
+      type: ObjectId,
+      ref: 'Email',
+    }],
   },
   socialProfileBlob: {
     line: { type: String },

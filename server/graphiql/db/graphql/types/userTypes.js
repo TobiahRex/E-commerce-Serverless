@@ -336,6 +336,10 @@ const rootType = new ObjectType({
               }),
             }),
           },
+          emails: {
+            description: 'The list of email _id\'s that the user has been sent.',
+            type: new ListType(MongoID),
+          },
         }),
       }),
     },
