@@ -331,7 +331,15 @@ const queries = {
   },
 };
 
-export const mutationTypes = {
+export const helperTypes = {
+  error: {
+    fields: uniqeName => ({
+
+    }),
+  },
+};
+
+export const inputTypes = {
   product: {
     fields: uniqueName => ({
       mainTitle: {
@@ -498,7 +506,7 @@ const mutations = {
         type: new NonNull(
           new InputObject({
             name: 'ProductObjectInput',
-            fields: mutationTypes.product.fields('CreateProduct'),
+            fields: inputTypes.product.fields('CreateProduct'),
           }),
         ),
       },

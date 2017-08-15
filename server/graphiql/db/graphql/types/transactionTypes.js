@@ -10,7 +10,7 @@ import {
 } from 'graphql';
 
 import Transaction from '../../mongo/models/transaction';
-import { mutationTypes as ProductMutationTypes } from './productTypes';
+import { inputTypes as ProductInputTypes } from './productTypes';
 
 const rootType = new ObjectType({
   name: 'Transaction',
@@ -260,7 +260,7 @@ const mutations = {
                   type: new NonNull(
                     new InputObject({
                       name: 'TransactionCartProductInput',
-                      fields: ProductMutationTypes.product.fields('SubmitFinalOrder'),
+                      fields: ProductInputTypes.product.fields('SubmitFinalOrder'),
                     }),
                   ),
                 },
