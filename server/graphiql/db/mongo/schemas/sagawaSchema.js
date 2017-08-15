@@ -37,7 +37,7 @@ const sagawaSchema = new Schema({
     postal: { type: Number },
     jpaddress1: { type: String },
     jpaddress2: { type: String },
-    phoneNumber: { type: Number },
+    phoneNumber: { type: String },
     kbn: { type: String },
     wgt: { type: Number },
     grandTotal: { type: Number },
