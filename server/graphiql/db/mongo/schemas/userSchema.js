@@ -93,17 +93,9 @@ const userSchema = new Schema({
     gender: { type: String },
   },
   marketing: {
+    marketHero: { type: ObjectId, ref: 'MarketHero' },
+    emails: [{ type: ObjectId, ref: 'Email' }],
     newsletterDecision: { type: Boolean },
-    marketHero: {
-      tags: [{
-        name: { type: String },
-        date: { type: Date },
-      }],
-    },
-    emails: [{
-      type: ObjectId,
-      ref: 'Email',
-    }],
   },
   socialProfileBlob: {
     line: { type: String },
