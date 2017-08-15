@@ -421,8 +421,6 @@ const mutations = {
                       last4: { type: new NonNull(IntType) },
                       nameOnCard: { type: new NonNull(StringType) },
                       cardNonce: { type: new NonNull(StringType) },
-                      expiration: { type: new NonNull(StringType) },
-                      cvn: { type: new NonNull(IntType) },
                       postalCode: { type: StringType },
                     }),
                   }),

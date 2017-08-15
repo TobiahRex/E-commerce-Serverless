@@ -23,7 +23,8 @@ import {
   squarePaymentForm as SqrPaymentForm,
   cleanOffTypename as CleanOffTypename,
   checkForToast as CheckForToast,
-  generateOrderForm as GenerateOrderForm,
+  composeLocalData as ComposeLocalData,
+  generateFinalForm as GenerateFinalForm,
 } from './utilities.imports';
 import {
   BreadCrumb,
@@ -77,7 +78,7 @@ class ExpressCheckout extends React.Component {
       shippingPostalCode: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
-      shippingCountry: 'Japan',
+      shippingCountry: 'Japan - JP',
       shippingPhoneNumber: '',
       ccNameOnCard: '',
       ccNumber: '',
@@ -272,7 +273,20 @@ class ExpressCheckout extends React.Component {
         },
       }));
     } else {
+      const formData = ComposeLocalData({
+        state: this.state,
+        props: this.props,
+        cardData,
+        cardNonce,
+      });
 
+      this.props.AddReduxAndSubmit(formData)
+      .then((response) => {
+        console.log('%cresponse', 'background:lime;', response);
+      })
+      .catch((error) => {
+        console.log('%cerror', 'background:pink;', error);
+      });
     }
   }
 
@@ -513,6 +527,19 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
       },
     });
   },
+  AddReduxAndSubmit: (formData) => {
+    const orderForm = GenerateFinalForm({
+      ...formData,
+      taxRate: ownProps.taxRate,
+      postalInfo: ownProps.postalInfo,
+    });
+
+    return ownProps.SubmitFinalOrder({
+      variables: {
+        ...orderForm,
+      },
+    });
+  },
 }))(ExpressCheckout);
 
 const ExpressCheckoutWithStateAndData = compose(
@@ -521,10 +548,7 @@ const ExpressCheckoutWithStateAndData = compose(
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
   }),
-  graphql(SubmitFinalOrder, {
-    name: 'SubmitFinalOrder',
-    options: SubmitFinalOrderOptions,
-  }),
+  graphql(SubmitFinalOrder, { name: 'SubmitFinalOrder' }),
 )(ExpressCheckoutWithState);
 
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({

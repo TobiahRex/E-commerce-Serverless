@@ -7,4 +7,5 @@ export composeFinalTotal from '../../services/utils/composeFinalTotal';
 export squarePaymentForm from '../../services/utils/squarePaymentForm';
 export cleanOffTypename from '../../services/utils/cleanOffTypename';
 export checkForToast from '../../services/utils/checkForToast';
-export generateOrderForm from '../../services/utils/generateOrderForm';
+export generateFinalForm from '../../services/utils/orderForm/generateFinalForm';
+export composeLocalData from '../../services/utils/orderForm/composeLocalData';

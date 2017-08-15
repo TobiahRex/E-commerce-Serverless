@@ -1,11 +1,14 @@
 export default function GenerateOrerForm({
   userId,
+  cart,
   taxRate,
   total,
   address,
   postalInfo,
+  cardData,
+  charge,
 }) {
-  return (){
+  return ({
     userId,
     cart: cart.reduce((a, n) => {
       if (!!n._id) {
@@ -40,28 +43,26 @@ export default function GenerateOrerForm({
         postalCode: postalInfo.postalCode,
         addressLine1: address.shippingAddressLine1,
         addressLine2: address.shippingAddressLine2,
-        country: address.shippingCountry,
+        country: address.shippingCountry.split(' - ')[1],
         phoneNumber: address.phoneNumber,
       },
     },
     square: {
       billingAddress: {
-        billingCountry: "Japan",
-        billingCity: "Yokohama",
-        billingPrefecture: "Kanagawa",
+        billingCountry: cardData.ccCountry,
+        billingCity: address.shippingCity,
+        billingPrefecture: address.shippingPrefecture,
       },
       cardInfo: {
-        last4: 1234,
-        nameOnCard: "Bob Bobby",
-        cardNonce: "123asdf123",
-        expiration: "12/18",
-        cvn: 123,
-        postalCode: "2342345",
+        last4: cardData.last4,
+        nameOnCard: cardData.nameOnCard,
+        cardNonce: cardData.cardNonce,
+        postalCode: cardData.postalCode,
       },
       charge: {
-        amount: 120,
-        currency: "USD",
+        amount: charge.amount,
+        currency: charge.currency,
       },
     },
   });
-};
+}
