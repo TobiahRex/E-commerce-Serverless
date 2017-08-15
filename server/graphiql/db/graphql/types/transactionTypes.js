@@ -48,23 +48,30 @@ const rootType = new ObjectType({
       description: 'The _id of the user who executed this transaction.',
       type: MongoId,
     },
-    products: new ListType(
-      new ObjectType({
-        name: 'TransactionProductList',
-        fields: () => ({
-          id: {
-            description: 'The _id of the Product',
-            type: MongoId,
-          },
-          qty: {
-            description: 'The quantity purchased.',
-            type: IntType,
-          },
+    products: {
+      description: 'An array of product(s) ID\'s and their respective quantities, that were purchased.',
+      type: new ListType(
+        new ObjectType({
+          name: 'TransactionProductList',
+          fields: () => ({
+            id: {
+              description: 'The _id of the Product',
+              type: MongoId,
+            },
+            qty: {
+              description: 'The quantity purchased.',
+              type: IntType,
+            },
+          }),
         }),
-      }),
-    ),
+      ),
+    },
+    sagawa: {
+      description: 'The reference Mongo _id for the Sagawa document that was generated due to this transaction.',
+      type: StringType,
+    },
     marketHero: {
-      description: 'The Mongo _id for the Market Hero lead.',
+      description: 'The reference Mongo _id for the Market Hero lead.',
       type: MongoId,
     },
     invoiceEmail: {
@@ -92,56 +99,62 @@ const rootType = new ObjectType({
         }),
       }),
     },
-    discount: new ObjectType({
-      name: 'TransactionDiscounts',
-      fields: () => ({
-        qty: {
-          description: 'Boolean describing whether or not the user has received the 25% OFF "Quantity Discount" for this Transaction.',
-          type: BoolType,
-        },
-        qtyAmount: {
-          description: 'The dollar amount value if receiving this discount.',
-          type: StringType,
-        },
-        register: {
-          description: 'Boolean describing whether or not the user has received the 10% OFF "Register Discount" for this Transaction.',
-          type: BoolType,
-        },
-        registerAmount: {
-          description: 'The dollar amount value if receiving this discount.',
-          type: StringType,
-        },
+    discount: {
+      description: 'Description of any discounts that were applied to this transaction.',
+      type: new ObjectType({
+        name: 'TransactionDiscounts',
+        fields: () => ({
+          qty: {
+            description: 'Boolean describing whether or not the user has received the 25% OFF "Quantity Discount" for this Transaction.',
+            type: BoolType,
+          },
+          qtyAmount: {
+            description: 'The dollar amount value if receiving this discount.',
+            type: StringType,
+          },
+          register: {
+            description: 'Boolean describing whether or not the user has received the 10% OFF "Register Discount" for this Transaction.',
+            type: BoolType,
+          },
+          registerAmount: {
+            description: 'The dollar amount value if receiving this discount.',
+            type: StringType,
+          },
+        }),
       }),
-    }),
+    },
     grandTotal: {
       description: 'The grand total amount for this transaction.',
       type: StringType,
     },
-    square: new ObjectType({
-      name: 'TransactionSquareInfo',
-      fields: () => ({
-        locationId: {
-          description: 'The Square Acct. location ID that this transaction was added to.',
-          type: StringType,
-        },
-        transactionId: {
-          description: 'The Square Acct. transaction ID.',
-          type: StringType,
-        },
-        cardNonce: {
-          description: 'The card-nonce (Good only for 24 hours from first issue), that is used to execute the transaction.',
-          type: StringType,
-        },
-        billingInfo: new ObjectType({
-          name: 'TransactionSquareBillingInfo',
-          fields: () => ({
-            nameOnCard: { type: StringType },
-            last4: { type: StringType },
-            amount: { type: StringType },
+    square: {
+      description: 'The Square Payment Service information associated with this transaction.',
+      type: new ObjectType({
+        name: 'TransactionSquareInfo',
+        fields: () => ({
+          locationId: {
+            description: 'The Square Acct. location ID that this transaction was added to.',
+            type: StringType,
+          },
+          transactionId: {
+            description: 'The Square Acct. transaction ID.',
+            type: StringType,
+          },
+          cardNonce: {
+            description: 'The card-nonce (Good only for 24 hours from first issue), that is used to execute the transaction.',
+            type: StringType,
+          },
+          billingInfo: new ObjectType({
+            name: 'TransactionSquareBillingInfo',
+            fields: () => ({
+              nameOnCard: { type: StringType },
+              last4: { type: StringType },
+              amount: { type: StringType },
+            }),
           }),
         }),
       }),
-    }),
+    },
   },
 });
 
