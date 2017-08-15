@@ -323,20 +323,7 @@ class ExpressCheckout extends React.Component {
         });
       }
     })
-    .catch((error) => {
-      let errorMsg = '';
-
-      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
-        errorMsg = 'You must login or register to complete this transaction.';
-      } else if (
-        /(GraphQL error: )/.test(error.message)
-      ) {
-        errorMsg = error.message.replace(/^(GraphQL error: )/, '');
-      }
-
-      this.props.toastError(true, errorMsg);
-      this.props.apiFail();
-    });
+    .catch(this.props.GraphQLhandleError);
   }
 
   clearValidationError = name => this.form.hideError(name)
@@ -521,8 +508,11 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
   push: location => dispatch(push(location)),
   GraphQLhandleError: (error) => {
     let errorMsg = '';
-    if (/(GraphQL error: )/.test(error.message)) {
-      errorMsg = error.message.replace(/^(GraphQL error: )/, '');
+
+    if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
+      errorMsg = 'You must login or register to complete this transaction.';
+    } else if (/(GraphQL error: )/.test(error.message)) {
+      errorMsg = error.message.replace(/^(GraphQL error: )/g, '');
     }
 
     ownProps.toastError(true, errorMsg);
@@ -639,10 +629,11 @@ ExpressCheckout.propTypes = {
   }),
   // ---
   AddReduxAndSubmit: func.isRequired,
-  GraphQLvalidatePostal: func.isRequired,
-  GraphQLsubmitOrder: func.isRequired,
   SubmitFinalOrder: func.isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
+  GraphQLhandleError: func.isRequired,
+  GraphQLvalidatePostal: func.isRequired,
+  GraphQLsubmitOrder: func.isRequired,
 };
 ExpressCheckout.defaultProps = {
   cart: [],
