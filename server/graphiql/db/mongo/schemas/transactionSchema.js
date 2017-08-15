@@ -23,7 +23,7 @@ const transactionSchema = new Schema({
   },
   user: { type: ObjectId, ref: 'User' },
   products: [{
-    id: { type: ObjectId, ref: 'Product' },
+    _id: { type: ObjectId, ref: 'Product', required: true },
     qty: { type: Number, required: true },
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
@@ -54,14 +54,13 @@ const transactionSchema = new Schema({
       billingCity: { type: String, required: true },
     },
     cardInfo: {
-      last4: { type: String },
-      expiration: { type: String, required: true },
-      cardNonce: { type: String, default: '' },
+      last4: { type: String, required: true },
       nameOnCard: { type: String, required: true },
+      cardNonce: { type: String, default: '', required: true },
     },
     charge: {
       amount: { type: Number, required: true },
-      currency: { type: String },
+      currency: { type: String, required: true },
     },
   },
 });

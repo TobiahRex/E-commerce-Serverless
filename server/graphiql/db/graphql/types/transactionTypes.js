@@ -56,7 +56,7 @@ const rootType = new ObjectType({
         new ObjectType({
           name: 'TransactionProductList',
           fields: () => ({
-            id: {
+            _id: {
               description: 'The _id of the Product',
               type: MongoID,
             },
@@ -173,9 +173,9 @@ const rootType = new ObjectType({
             type: new ObjectType({
               name: 'TransactionSquareBillingAddress',
               fields: () => ({
-                billingCountry: { type: StringType },
-                billingCity: { type: StringType },
-                billingPrefecture: { type: StringType },
+                billingCountry: { type: new NonNull(StringType) },
+                billingCity: { type: new NonNull(StringType) },
+                billingPrefecture: { type: new NonNull(StringType) },
               }),
             }),
           },
@@ -186,10 +186,17 @@ const rootType = new ObjectType({
               fields: () => ({
                 nameOnCard: { type: StringType },
                 last4: { type: IntType },
-                expiration: { type: StringType },
                 cardNonce: { type: StringType },
-                cvn: { type: IntType },
-                postalCode: { type: StringType },
+              }),
+            }),
+          },
+          charge: {
+            description: 'The total charges made to the customers credit card for this transaction.',
+            type: new ObjectType({
+              name: 'TransactionSquareChargeInfo',
+              fields: () => ({
+                amount: { type: IntType },
+                currency: { type: StringType },
               }),
             }),
           },
@@ -299,7 +306,10 @@ const mutations = {
                   type: new NonNull(
                     new InputObject({
                       name: 'TransactionCartProductInput',
-                      fields: ProductInputTypes.product.fields('SubmitFinalOrder'),
+                      fields: () => ({
+                        _id: { type: new NonNull(MongoID) },
+                        qty: { type: new NonNull(IntType) },
+                      }),
                     }),
                   ),
                 },
@@ -368,14 +378,14 @@ const mutations = {
                   new InputObject({
                     name: 'TransactionShippingInfoInput',
                     fields: () => ({
-                      givenName: { type: StringType },
-                      familyName: { type: StringType },
-                      email: { type: StringType },
-                      postalCode: { type: IntType },
-                      addressLine1: { type: StringType },
-                      addressLine2: { type: StringType },
-                      country: { type: StringType },
-                      phoneNumber: { type: IntType },
+                      givenName: { type: new NonNull(StringType) },
+                      familyName: { type: new NonNull(StringType) },
+                      email: { type: new NonNull(StringType) },
+                      postalCode: { type: new NonNull(IntType) },
+                      addressLine1: { type: new NonNull(StringType) },
+                      addressLine2: { type: new NonNull(StringType) },
+                      country: { type: new NonNull(StringType) },
+                      phoneNumber: { type: new NonNull(IntType) },
                     }),
                   }),
                 ),
