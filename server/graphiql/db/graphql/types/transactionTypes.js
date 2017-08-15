@@ -119,8 +119,27 @@ const rootType = new ObjectType({
     },
     square: new ObjectType({
       name: 'TransactionSquareInfo',
-      fields: () =>({
-        
+      fields: () => ({
+        locationId: {
+          description: 'The Square Acct. location ID that this transaction was added to.',
+          type: StringType,
+        },
+        transactionId: {
+          description: 'The Square Acct. transaction ID.',
+          type: StringType,
+        },
+        cardNonce: {
+          description: 'The card-nonce (Good only for 24 hours from first issue), that is used to execute the transaction.',
+          type: StringType,
+        },
+        billingInfo: new ObjectType({
+          name: 'TransactionSquareBillingInfo',
+          fields: () => ({
+            nameOnCard: { type: StringType },
+            last4: { type: StringType },
+            amount: { type: StringType },
+          }),
+        }),
       }),
     }),
   },
