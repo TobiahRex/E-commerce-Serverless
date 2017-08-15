@@ -280,18 +280,19 @@ class ExpressCheckout extends React.Component {
         cardNonce,
       });
 
-      this.props.SubmitOrder(formData)
+      this.props.GraphQLsubmitOrder(formData)
       .then((response) => {
-        console.log('%cresponse', 'background:lime;', response);
+        const cleanResponse = CleanOffTypename(response);
+        console.log('%ccleanResponse', 'background:lime;', cleanResponse);
       })
       .catch((error) => {
-        console.log('%cerror', 'background:pink;', error);
+
       });
     }
   }
 
   validatePostal = () => {
-    this.props.ValidatePostalRedux(this.state.shippingPostalCode)
+    this.props.GraphQLvalidatePostal(this.state.shippingPostalCode)
     .then((response) => {
       const {
         data: {
@@ -518,7 +519,16 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
   });
 }, (dispatch, ownProps) => ({
   push: location => dispatch(push(location)),
-  ValidatePostalRedux: (postalCode) => {
+  GraphQLhandleError: (error) => {
+    let errorMsg = '';
+    if (/(GraphQL error: )/.test(error.message)) {
+      errorMsg = error.message.replace(/^(GraphQL error: )/, '');
+    }
+
+    ownProps.toastError(true, errorMsg);
+    ownProps.apiFail();
+  },
+  GraphQLvalidatePostal: (postalCode) => {
     ownProps.apiIsFetching();
     return ownProps.ValidatePostal({
       variables: {
@@ -527,17 +537,10 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
       },
     });
   },
-  AddReduxAndSubmit: (formData) => {
-    const orderForm = GenerateFinalForm({
-      ...formData,
-      taxRate: ownProps.taxRate,
-      postalInfo: ownProps.postalInfo,
-    });
-
-    return ownProps.SubmitFinalOrder({
-      variables: {
-        ...orderForm,
-      },
+  GraphQLsubmitOrder: (formData) => {
+    ownProps.apiIsFetching();
+    ownProps.SubmitFinalOrder({
+      variables: { ...formData },
     });
   },
 }))(ExpressCheckout);
@@ -636,8 +639,9 @@ ExpressCheckout.propTypes = {
   }),
   // ---
   AddReduxAndSubmit: func.isRequired,
-  ValidatePostalRedux: func.isRequired,
-  SubmitFinalOrder: func,
+  GraphQLvalidatePostal: func.isRequired,
+  GraphQLsubmitOrder: func.isRequired,
+  SubmitFinalOrder: func.isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
 };
 ExpressCheckout.defaultProps = {
