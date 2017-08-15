@@ -48,18 +48,18 @@ export default function GenerateOrerForm({
       },
     },
     square: {
-      billingAddress: {
+      billingAddress: {  // from state & cardData
         billingCountry: cardData.ccCountry,
         billingCity: address.shippingCity,
         billingPrefecture: address.shippingPrefecture,
       },
-      cardInfo: {
+      cardInfo: {  // from state & card Data
         last4: cardData.last4,
         nameOnCard: cardData.nameOnCard,
         cardNonce: cardData.cardNonce,
         postalCode: cardData.postalCode,
       },
-      charge: {
+      charge: {  // manual input
         amount: charge.amount,
         currency: charge.currency,
       },

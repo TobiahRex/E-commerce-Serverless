@@ -79,6 +79,8 @@ class ExpressCheckout extends React.Component {
       shippingAddressLine1: '',
       shippingAddressLine2: '',
       shippingCountry: 'Japan - JP',
+      shippingPrefecture: '',
+      shippingCity: '',
       shippingPhoneNumber: '',
       ccNameOnCard: '',
       ccNumber: '',
