@@ -1,11 +1,12 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ProductReviewComments extends PureComponent {
+class ProductReviewComments extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      comment: '',
+      comment: props.comment,
     };
   }
 
@@ -26,5 +27,10 @@ class ProductReviewComments extends PureComponent {
     );
   }
 }
+const { string, func } = PropTypes;
 
+ProductReviewComments.propTypes = {
+  comment: string.isRequired,
+  handleOnChange: func.isRequired,
+}
 export default ProductReviewComments;

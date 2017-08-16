@@ -70,6 +70,7 @@ class ExpressCheckout extends React.Component {
         message: '',
       },
       // --- Form Data from Nested Components ---
+      comments: '',
       newsletterDecision: false,
       shippingFirstName: '',
       shippingLastName: '',
@@ -380,6 +381,7 @@ class ExpressCheckout extends React.Component {
             <div className="checkout__grid">
               <ProductReview
                 cart={cart}
+                comments={comments}
                 loggedIn={loggedIn}
                 routerPush={this.routerPush}
                 newsletterDecision={newsletterDecision}
@@ -472,7 +474,9 @@ class ExpressCheckout extends React.Component {
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder enable={!!cart.length && userId} />
+              <SubmitOrder
+                enable={(cart.length && userId) ? true : false} //eslint-disable-line
+              />
 
               <NetworkStatus
                 toast={toast}

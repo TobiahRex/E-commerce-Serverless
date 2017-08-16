@@ -12,7 +12,7 @@ export default function* getTaxRate() {
     data,
     problem,
   } = yield call(() => taxApi.getTaxRate('US', 98101));
-  console.warn(data);
+
   if (ok) {
     const taxRate = {
       stateRate: data.rates[0].rate,
