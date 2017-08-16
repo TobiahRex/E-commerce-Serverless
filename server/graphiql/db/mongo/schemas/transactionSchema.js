@@ -29,9 +29,9 @@ const transactionSchema = new Schema({
     qty: { type: Number, required: true },
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
-  marketHero: { type: ObjectId, ref: 'MarketHero', default: '' },
-  invoiceEmailNoTracking: { type: ObjectId, ref: 'Email', default: '' },
-  invoiceEmail: { type: ObjectId, ref: 'Email', default: '' },
+  marketHero: { type: ObjectId, ref: 'MarketHero' },
+  invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
+  invoiceEmail: { type: ObjectId, ref: 'Email' },
   taxes: {
     cityRate: { type: String, required: true },
     stateRate: { type: String, required: true },
