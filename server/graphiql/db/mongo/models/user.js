@@ -291,8 +291,8 @@ new Promise((resolve, reject) => {
     resolve(updatedUser);
   })
   .catch((error) => {
-    console.log(`Error while tring to update Product _id "${userId}".  ERROR = ${error}.`);
-    reject(`Error while tring to update Product _id "${userId}".  ERROR = ${error}.`);
+    console.log(`Error while tring to update User _id "${userId}": ${error}.`);
+    reject(`Error while tring to update User _id "${userId}": ${error}.`);
   });
 });
 

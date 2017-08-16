@@ -144,9 +144,13 @@ new Promise((resolve, reject) => {
       total,
       square,
     }, cb)),
-    User.editMemberProfile(userId, {
-      marketing: {
-        newsletterDecision,
+    User.editMemberProfile({ userId,
+      userObj: {
+        product: {
+          marketing: {
+            newsletterDecision,
+          },
+        },
       },
     }),
   ])
@@ -156,7 +160,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('Could not submit final order due to error: ', error);
-    reject('Failed to submit order due to error: ', error);
+    reject(`Failed to submit order due to error: ${error}`);
   });
 });
 
