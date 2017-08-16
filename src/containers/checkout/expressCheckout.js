@@ -501,6 +501,7 @@ class ExpressCheckout extends React.Component {
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
+  console.log('%ctotal', 'background:cyan;', total);
   const cart = DetermineCartType(ownProps, ZipUserCart);
 
   return ({

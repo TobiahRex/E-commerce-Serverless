@@ -60,6 +60,7 @@ class GrandTotal extends React.PureComponent {
       },
       showTotal,
     } = state;
+    console.log('%cgrandTotal', 'background:lime;', grandTotal);
 
     if (showTotal) {
       return (

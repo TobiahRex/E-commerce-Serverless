@@ -6,9 +6,7 @@ function NewUserDiscountOffer({ routerPush }) {
     <div>
       <div className="input__row">
         <div className="input__row--guest-warning">
-          <p><span className="warning-bold">Warning: </span>You are currently checking out as a “Guest”. If you would like to save your checkout info for future purchases, register now and we will save your information
-            <span className="required">* </span>
-          & you will receive 10% off your first order as a new member.</p>
+          <p><span className="warning-bold">Warning: </span>You are currently trying to checkout out as a “Guest”. You will need to login or register to complete this transaction.  If it is your first purchase with us you will receive 10% off your first order!<span className="required">* </span></p>
         </div>
       </div>
 
