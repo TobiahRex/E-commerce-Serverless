@@ -25,9 +25,6 @@ export default function ComposeLocalData({
   },
   cardData,
 }) {
-  console.log('%ctermsAgreement', 'background:orange;', termsAgreement);
-  console.log('%cnewsletterDecision', 'background:orange;', newsletterDecision);
-
   return ({
     userId,
     comments,
@@ -59,7 +56,7 @@ export default function ComposeLocalData({
         last4: cardData.last_4,
         nameOnCard: ccNameOnCard,
         cardNonce: cardData.cardNonce,
-        postalCode: !!cardData.postal_code ? cardData.postal_code : '',
+        postalCode: !!cardData.billing_postal_code ? cardData.billing_postal_code : '',
       },
       charge: {
         amount: total.grandTotal,

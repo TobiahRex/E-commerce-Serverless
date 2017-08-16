@@ -260,6 +260,7 @@ class ExpressCheckout extends React.Component {
   }
 
   handleNonceResponse = (errors, cardNonce, cardData) => {
+    console.log('%ccardData', 'background:orange;', cardData);
     if (errors) {
       this.setState(prevState => ({
         ...prevState,

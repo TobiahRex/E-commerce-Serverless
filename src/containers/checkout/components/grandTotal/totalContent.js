@@ -31,7 +31,21 @@ function TotalContent({
           <p><i>Free</i></p>
         </div>
 
-        <Discounts discount={discount} />
+        {
+          !!discount.qty &&
+            <Discounts
+              title="Quantity"
+              amount={discount.qtyAmount}
+            />
+        }
+
+        {
+          !!discount.register &&
+            <Discounts
+              title="Register"
+              amount={discount.registerAmount}
+            />
+        }
 
         <div className="analysis-container--taxes">
           <p>Taxes</p>

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 import { Prefectures } from './component.imports';
 
 class Prefecture extends PureComponent {
@@ -27,18 +28,19 @@ class Prefecture extends PureComponent {
       <div className="input__row">
         <div className="input__row--prefecture">
           <p>Prefecture <span className="required">*</span></p>
-          <select
+          <Validation.components.Select
+            errorClassName="is-invalid-input"
             name={`${this.props.type}Prefecture`}
-            className="input--select"
+            containerClassName=""
+            validations={['required']}
             value={this.props.prefecture}
             onChange={this.handleOnChange}
-            required
           >
             <option value="">Choose</option>
             {
               this.renderOptions(Prefectures)
             };
-          </select>
+          </Validation.components.Select>
         </div>
       </div>
     );
