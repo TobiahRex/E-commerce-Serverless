@@ -173,7 +173,7 @@ const rootType = new ObjectType({
             type: new ObjectType({
               name: 'TransactionSquareChargeInfo',
               fields: () => ({
-                amount: { type: IntType },
+                amount: { type: StringType },
                 currency: { type: StringType },
               }),
             }),

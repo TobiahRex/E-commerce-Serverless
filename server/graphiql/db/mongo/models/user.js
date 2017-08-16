@@ -284,7 +284,19 @@ new Promise((resolve, reject) => {
 
 userSchema.statics.editMemberProfile = ({ userId, userObj }) =>
 new Promise((resolve, reject) => {
-  User.findByIdAndUpdate(userId, { $set: { userObj } }, { new: true })
+  // Object // 1)
+  // .keys(userObj)
+  // .map((key) => { // 2)
+  //   const newKey = `${key}.${[]}`;
+  //   const value = productObj[key];
+  //   return ({ [key]: value });
+  // }) // 4)
+  // .forEach((object) => {
+  //   const key = Object.keys(object)[0];
+  //   newProductObj[key] = object[key];
+  // });
+
+  User.findByIdAndUpdate(userId, { $set: { ...userObj } }, { new: true })
   .exec()
   .then((updatedUser) => {
     console.log(`Updated User!: ${updatedUser._id}.`);
