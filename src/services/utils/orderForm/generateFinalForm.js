@@ -53,7 +53,7 @@ export default function ComposeLocalData({
         billingPrefecture: shippingPrefecture,
       },
       cardInfo: {
-        last4: cardData.last4,
+        last4: cardData.last_4,
         nameOnCard: ccNameOnCard,
         cardNonce: cardData.cardNonce,
         postalCode: !!cardData.postalCode ? cardData.postalCode : '',
