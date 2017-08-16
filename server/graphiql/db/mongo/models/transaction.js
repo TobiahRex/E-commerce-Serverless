@@ -6,7 +6,6 @@ import User from './user';
 import transactionSchema from '../schemas/transactionSchema';
 require('dotenv').load({ silent: true });
 
-
 transactionSchema.statics.createTransaction = (txn, cb) => {
   Transaction.create(txn)
   .then(dbTxn => cb(null, dbTxn))
@@ -62,14 +61,13 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.authorizeDelayTransaction = ({
+transactionSchema.statics.squareChargeCard = ({
   locationId,
   transactionId,
   shippingEmail,
-  shippingAddressLine1,
   shippingAddressLine2,
-  shippingCity,
-  shippingPrefecture,
+  billingCity,
+  billingPrefecture,
   shippingPostalCode,
   shippingCountry,
   grandTotal,
@@ -83,10 +81,10 @@ new Promise((resolve, reject) => {
         idempotency_key: transactionId,
         buyer_email_address: shippingEmail,
         shipping_address: {
-          address_line_1: shippingAddressLine1,
-          address_line_2: shippingAddressLine2,
-          locality: shippingCity,
-          administrative_district_level_1: shippingPrefecture,
+          address_line_1: shippingAddressLine2,
+          address_line_2: '',
+          locality: billingCity,
+          administrative_district_level_1: billingPrefecture,
           postal_code: shippingPostalCode,
           country: shippingCountry,
         },
@@ -96,8 +94,8 @@ new Promise((resolve, reject) => {
         },
         card_nonce: cardNonce,
         reference_id: transactionId,
-        note: 'Web API order.',
-        delay_capture: true,
+        note: `${process.env.SQUARE_LOCATION}: Online order.`,
+        delay_capture: false,
       },
     },
     {
@@ -115,9 +113,9 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.submitFinalOrder = (args) =>
+transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
-  console.log('ARGS: \n', JSON.stringify(args, null, 2));
+  console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
 
   const {
     userId,
@@ -125,13 +123,11 @@ new Promise((resolve, reject) => {
     termsAgreement,
     newsletterDecision,
     cart,
-    sagawa: {
-      sagawaId,
-    },
+    sagawa,
     taxes,
     total,
     square,
-  } = args;
+  } = orderForm;
 
   Promise.all([
     bbPromise.fromCallback(cb => Transaction.create({
@@ -139,22 +135,38 @@ new Promise((resolve, reject) => {
       termsAgreement,
       user: userId,
       products: cart,
-      sagawa: sagawaId,
+      sagawa: sagawa.sagawaId,
       taxes,
       total,
       square,
     }, cb)),
     User.editMemberProfile({ userId,
       userObj: {
+        contactInfo: {
+          email: sagawa.shippingAddress.email,
+        },
         marketing: {
           newsletterDecision,
         },
       },
     }),
+    Transaction.fetchSquareLocation(process.env.SQUARE_LOCATION),
   ])
   .then((results) => {
     console.log('results: ', JSON.stringify(results, null, 2));
     resolve(results[0]);
+    return Transaction.squareChargeCard({
+      locationId: results[2].id,
+      transactionId: results[0]._id,
+      shippingEmail: sagawa.shippingAddress.email,
+      shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
+      billingCity: square.billingAddress.billingCity,
+      billingPrefecture: square.billingAddress.billingPrefecture,
+      shippingPostalCode: sagawa.shippingAddress.postalCode,
+      shippingCountry: sagawa.shippingAddress.country,
+      grandTotal: total.grandTotal,
+      cardNonce: square.cardInfo.cardNonce,
+    });
   })
   .catch((error) => {
     console.log('Could not submit final order due to error: ', error);
