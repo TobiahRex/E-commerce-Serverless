@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import */
 import axios from 'axios';
+import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
 import db from '../connection';
 import User from './user';
@@ -66,8 +67,8 @@ transactionSchema.statics.squareChargeCard = ({
   transactionId,
   shippingEmail,
   shippingAddressLine2,
-  billingCity,
-  billingPrefecture,
+  shippingCity,
+  shippingPrefecture,
   shippingPostalCode,
   shippingCountry,
   grandTotal,
@@ -75,16 +76,16 @@ transactionSchema.statics.squareChargeCard = ({
 }) =>
 new Promise((resolve, reject) => {
   axios.post(
-    `/locations/${locationId}/transactions`,
+    `https://connect.squareup.com/v2/locations/${locationId}/transactions`,
     {
       data: {
-        idempotency_key: transactionId,
+        idempotency_key: uuid(),
         buyer_email_address: shippingEmail,
         shipping_address: {
           address_line_1: shippingAddressLine2,
           address_line_2: '',
-          locality: billingCity,
-          administrative_district_level_1: billingPrefecture,
+          locality: shippingCity,
+          administrative_district_level_1: shippingPrefecture,
           postal_code: shippingPostalCode,
           country: shippingCountry,
         },
@@ -105,18 +106,19 @@ new Promise((resolve, reject) => {
     },
   )
   .then((response) => {
-    console.log('Successfully charged customer.  Respons = ', response.data);
+    console.log('Successfully charged customer.  Response = ', response.data);
   })
   .catch((error) => {
-    console.log('Error while trying to Authorize Square payment. Error = ', error);
-    reject(`Error while trying to Authorize Square payment. Error = ${error}`);
+    console.log('Error while trying to Authorize Square payment. Error = ', error.response.data.errors);
+    // console.log('\n\n', Object.keys(error.response.data.errors), '\n\n');
+    reject(`Error while trying to Authorize Square payment. Error = ${error.response.data.errors[0].detail}`);
   });
 });
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
   console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
-
+  let newTransactionDoc = {};
   const {
     userId,
     comments,
@@ -153,23 +155,30 @@ new Promise((resolve, reject) => {
     Transaction.fetchSquareLocation(process.env.SQUARE_LOCATION),
   ])
   .then((results) => {
-    console.log('results: ', JSON.stringify(results, null, 2));
-    resolve(results[0]);
+    // console.log('results: ', JSON.stringify(results, null, 2));
+    console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
+
+    newTransactionDoc = results[0];
+
     return Transaction.squareChargeCard({
       locationId: results[2].id,
-      transactionId: results[0]._id,
+      TransactionId: String(results[0]._id),
       shippingEmail: sagawa.shippingAddress.email,
       shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
-      billingCity: square.billingAddress.billingCity,
-      billingPrefecture: square.billingAddress.billingPrefecture,
+      shippingCity: square.shippingAddress.shippingCity,
+      shippingPrefecture: square.shippingAddress.shippingPrefecture,
       shippingPostalCode: sagawa.shippingAddress.postalCode,
       shippingCountry: sagawa.shippingAddress.country,
       grandTotal: total.grandTotal,
       cardNonce: square.cardInfo.cardNonce,
     });
   })
+  .then((response) => {
+    console.log('SQUARE - RESPONSE: ', response);
+    resolve(newTransactionDoc);
+  })
   .catch((error) => {
-    console.log('Could not submit final order due to error: ', error);
+    console.log('Failed to submit order due to error: ', error);
     reject(`Failed to submit order due to error: ${error}`);
   });
 });

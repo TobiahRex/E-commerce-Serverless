@@ -441,10 +441,10 @@ mutation SubmitFinalOrder(
     square {
       locationId
       transactionId
-      billingAddress {
-        billingCountry
-        billingPrefecture
-        billingCity
+      shippingAddress {
+        shippingCountry
+        shippingPrefecture
+        shippingCity
       }
       cardInfo {
         last4

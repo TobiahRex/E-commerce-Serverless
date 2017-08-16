@@ -47,10 +47,10 @@ export default function ComposeLocalData({
       },
     },
     square: {
-      billingAddress: {
-        billingCountry: ccCountry,
-        billingCity: shippingCity,
-        billingPrefecture: shippingPrefecture.split('-')[1],
+      shippingAddress: {
+        shippingCountry: ccCountry,
+        shippingCity,
+        shippingPrefecture: shippingPrefecture.split('-')[1],
       },
       cardInfo: {
         last4: cardData.last_4,
