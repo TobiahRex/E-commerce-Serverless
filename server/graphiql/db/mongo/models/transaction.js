@@ -1,9 +1,11 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import */
 import axios from 'axios';
-import db from '../connection';
 import { Promise as bbPromise } from 'bluebird';
+import db from '../connection';
+import User from './user';
 import transactionSchema from '../schemas/transactionSchema';
 require('dotenv').load({ silent: true });
+
 
 transactionSchema.statics.createTransaction = (txn, cb) => {
   Transaction.create(txn)
@@ -131,7 +133,7 @@ new Promise((resolve, reject) => {
     square,
   } = args;
 
-  const results = Promise.all[
+  Promise.all([
     bbPromise.fromCallback(cb => Transaction.create({
       comments,
       termsAgreement,
@@ -143,25 +145,18 @@ new Promise((resolve, reject) => {
       square,
     }, cb)),
     User.editMemberProfile(userId, {
-      
-    })
-  ];
-
-  bbPromise.fromCallback(cb => Transaction.create({
-    comments,
-    termsAgreement,
-    user: userId,
-    products: cart,
-    sagawa: sagawaId,
-    taxes,
-    total,
-    square,
-  }, cb))
-  .then(() => {
-
+      marketing: {
+        newsletterDecision,
+      },
+    }),
+  ])
+  .then((results) => {
+    console.log('results: ', results);
+    resolve(results[0]);
   })
-  .catch(() => {
-
+  .catch((error) => {
+    console.log('Could not submit final order due to error: ', error);
+    reject('Failed to submit order due to error: ', error);
   });
 });
 
