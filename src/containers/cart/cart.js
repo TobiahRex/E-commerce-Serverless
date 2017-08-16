@@ -536,7 +536,7 @@ const ShoppingCartWithStateAndData = compose(
 const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
   qty: calculateCartQty(auth, user, orders),
   mobileActive: !!mobile.mobileType || false,
-  taxRate: orders.taxRate.totalRate,
+  taxRate: orders.taxRate,
   loggedIn: auth.loggedIn || false,
   userId: user.profile ? user.profile._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],

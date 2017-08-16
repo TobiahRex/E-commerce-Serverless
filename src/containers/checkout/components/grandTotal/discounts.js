@@ -3,30 +3,33 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 function Discounts({ discount }) {
-  if (discount.qty) {
-    return (
-      <div className="analysis-container--discount">
-        <p>Quantity Discount</p>
-        <p>
-          <FontAwesome name="usd" />
-          {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
-        </p>
-      </div>
-    );
-  }
+  const render = [];
+  if (discount.qty || discount.register) {
+    if (discount.qty) {
+      render.push(
+        <div className="analysis-container--discount">
+          <p>Quantity Discount</p>
+          <p>
+            <FontAwesome name="usd" />
+            {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
+          </p>
+        </div>,
+      );
+    }
 
-  if (discount.register) {
-    return (
-      <div className="analysis-container--discount">
-        <p>New Member Discount</p>
-        <p>
-          <FontAwesome name="usd" />
-          {'\u00A0'}-{discount.registerAmount.toFixed(2)}
-        </p>
-      </div>
-    );
+    if (discount.register) {
+      render.push(
+        <div className="analysis-container--discount">
+          <p>New Member Discount</p>
+          <p>
+            <FontAwesome name="usd" />
+            {'\u00A0'}-{discount.registerAmount.toFixed(2)}
+          </p>
+        </div>,
+      );
+    }
+    return render;
   }
-
   return <div className="analysis-container--discount" />;
 }
 

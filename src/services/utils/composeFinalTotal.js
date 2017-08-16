@@ -19,7 +19,6 @@ const composeFinalTotal = ({
   }, ZipUserCart);
 
   const { taxes, grandTotal } = CalculateTotalsDue(cart, taxRate);
-  console.log('%cgrandTotal', 'background:pink;', grandTotal);
 
   const total = CalculateDiscounts(
     cart,

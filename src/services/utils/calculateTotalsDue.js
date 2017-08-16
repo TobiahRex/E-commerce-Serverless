@@ -10,7 +10,6 @@
 * @return {N/A} Set's new state for taxes & grandTotal.
 */
 const calculateTotalsDue = (cart, { totalRate }) => {
-  console.log('%ctypeof totalrate', 'background:green;', typeof totalRate);
   let grandTotal = 0;
 
   cart.forEach((productObj) => {
