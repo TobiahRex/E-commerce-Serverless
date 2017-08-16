@@ -27,7 +27,7 @@ class GrandTotal extends React.PureComponent {
     super(props);
 
     this.state = {
-      termsAgreement: props.termsAgreement,
+      termsAgreement: false,
       showTotal: false,
       total: {
         discount: {

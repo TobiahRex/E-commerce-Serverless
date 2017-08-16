@@ -364,7 +364,6 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
-    console.log('%ctermsAgreement', 'background:pink;', termsAgreement);
 
     return (
       <div className="checkout__container">
@@ -523,7 +522,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
       errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
     }
 
-    ownProps.toastError(true, errorMsg);
+    ownProps.toastError(true, errorMsg || error.message);
     ownProps.apiFail();
   },
   GraphQLvalidatePostal: (postalCode) => {

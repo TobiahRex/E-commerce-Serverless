@@ -383,22 +383,25 @@
         }
         & .terms-agreement {
           @include prefixflex();
-          justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           & input {
             cursor: pointer;
           }
           & p {
             color: $p-blue;
-            font-size: 1.4em;
-            margin-left: .71em;
-            max-width: 13em;
-            text-align: center;
+            font-size: 1.2em;
+            margin-left: .1em;
             a {
               color: $p-blue;
               text-decoration: underline;
               cursor: pointer;
             }
+          }
+          & div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
           }
         }
         & .purchase-btn {
