@@ -34,7 +34,7 @@ const sagawaSchema = new Schema({
     boxid: { type: String },
     shipdate: { type: Date },
     customerName: { type: String },
-    postal: { type: Number },
+    postal: { type: String },
     jpaddress1: { type: String },
     jpaddress2: { type: String },
     phoneNumber: { type: String },

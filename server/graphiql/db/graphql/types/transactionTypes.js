@@ -363,7 +363,7 @@ const mutations = {
                       givenName: { type: new NonNull(StringType) },
                       familyName: { type: new NonNull(StringType) },
                       email: { type: new NonNull(StringType) },
-                      postalCode: { type: new NonNull(IntType) },
+                      postalCode: { type: new NonNull(StringType) },
                       addressLine1: { type: new NonNull(StringType) },
                       addressLine2: { type: new NonNull(StringType) },
                       country: { type: new NonNull(StringType) },

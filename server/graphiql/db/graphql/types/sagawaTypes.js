@@ -71,7 +71,7 @@ const rootType = new ObjectType({
           boxid: { type: StringType },
           shipdate: { type: StringType },
           customerName: { type: StringType },
-          postal: { type: IntType },
+          postal: { type: StringType },
           jpaddress1: { type: StringType },
           jpaddress2: { type: StringType },
           phoneNumber: { type: IntType },
