@@ -30,7 +30,7 @@ const transactionSchema = new Schema({
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
   marketHero: { type: ObjectId, ref: 'MarketHero' },
-  preInvoiceEmail: { type: ObjectId, ref: 'Email' },
+  invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
   taxes: {
     cityRate: { type: String, required: true },
