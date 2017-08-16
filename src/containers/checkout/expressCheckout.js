@@ -363,6 +363,7 @@ class ExpressCheckout extends React.Component {
       // ---
       total,
     } = this.state;
+    console.log('%cprComments', 'background:pink;', prComments);
 
     return (
       <div className="checkout__container">

@@ -2,15 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ProductReviewComments extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      comment: props.comment,
-    };
-  }
-
-  handleChange = e => this.setState({ comment: e.target.value });
+  handleOnChange = e => this.props.handleOnChange(e);
 
   render() {
     return (
@@ -20,7 +13,7 @@ class ProductReviewComments extends React.Component {
           cols="40"
           rows="5"
           placeholder="Comments..."
-          value={this.state.comment}
+          value={this.props.comment}
           onChange={this.handleOnChange}
         />
       </div>
@@ -30,7 +23,10 @@ class ProductReviewComments extends React.Component {
 const { string, func } = PropTypes;
 
 ProductReviewComments.propTypes = {
-  comment: string.isRequired,
+  comment: string,
   handleOnChange: func.isRequired,
+};
+ProductReviewComments.defaultProps = {
+  comment: '',
 };
 export default ProductReviewComments;

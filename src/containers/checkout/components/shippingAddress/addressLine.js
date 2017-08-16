@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 class AddressLine extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      shippingAddressLine: props.shippingAddressLine,
-    };
-  }
-
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {

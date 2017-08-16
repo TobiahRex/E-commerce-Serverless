@@ -32,9 +32,9 @@ const transactionSchema = new Schema({
   marketHero: { type: ObjectId, ref: 'MarketHero' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
   taxes: {
-    cityRate: { type: Number, required: true },
-    stateRate: { type: Number, required: true },
-    totalRate: { type: Number, required: true },
+    cityRate: { type: String, required: true },
+    stateRate: { type: String, required: true },
+    totalRate: { type: String, required: true },
   },
   total: {
     subTotal: { type: String, required: true },
@@ -61,7 +61,7 @@ const transactionSchema = new Schema({
       cardNonce: { type: String, default: '', required: true },
     },
     charge: {
-      amount: { type: Number, required: true },
+      amount: { type: String, required: true },
       currency: { type: String, required: true },
     },
   },
