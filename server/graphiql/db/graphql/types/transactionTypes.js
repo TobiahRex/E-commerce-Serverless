@@ -401,7 +401,7 @@ const mutations = {
                   new InputObject({
                     name: 'TransactionSquareCCInfoInput',
                     fields: () => ({
-                      last4: { type: new NonNull(IntType) },
+                      last4: { type: new NonNull(StringType) },
                       nameOnCard: { type: new NonNull(StringType) },
                       cardNonce: { type: new NonNull(StringType) },
                       postalCode: { type: StringType },
@@ -415,7 +415,7 @@ const mutations = {
                   new InputObject({
                     name: 'TransactionSquareChargeInfoInput',
                     fields: () => ({
-                      amount: { type: new NonNull(IntType) },
+                      amount: { type: new NonNull(StringType) },
                       currency: { type: new NonNull(StringType) },
                     }),
                   }),

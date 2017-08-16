@@ -16,7 +16,7 @@ class ProductReviewComments extends React.Component {
     return (
       <div className="checkout__comments">
         <textarea
-          name="prComment"
+          name="prComments"
           cols="40"
           rows="5"
           placeholder="Comments..."

@@ -17,7 +17,7 @@ class Prefecture extends PureComponent {
   prefectures.map(({ en, kanji }) => (
     <option
       key={new Buffer(`${kanji}${en}`, 'utf8').toString('base64')}
-      value={kanji}
+      value={`${kanji}-${en}`}
     >{kanji} - {en}
     </option>
   ))
