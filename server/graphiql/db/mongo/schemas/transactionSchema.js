@@ -21,6 +21,7 @@ const transactionSchema = new Schema({
     default: Date.now,
     required: true,
   },
+  comments: { type: String },
   termsAgreement: { type: Boolean },
   user: { type: ObjectId, ref: 'User' },
   products: [{
