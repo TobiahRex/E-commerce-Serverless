@@ -74,6 +74,7 @@ const cleanOffTypename = (input) => {
           cleanedObject[key] = [...nestedCleanedArray];
         } else {
           const nestedCleanedObject = cleanOffTypename(input[key]);
+          console.log('%cnestedCleanedObject', 'background:red;', nestedCleanedObject);
           cleanedObject[key] = { ...nestedCleanedObject };
         }
       });

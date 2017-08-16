@@ -13,7 +13,6 @@ class SqrPaymentForm {
   destroy() {
     this.paymentForm.destroy();
     this.paymentForm = null;
-    console.log('%cDestroyed payment form.', 'background:pink;');
   }
 
   get() {
@@ -22,11 +21,9 @@ class SqrPaymentForm {
 
   build() {
     this.paymentForm.build();
-    console.log('%cBuilt payment form.', 'background:lime;');
   }
 
   create(type, handleNonceResponse) {
-    console.log('%cCreating payment form.', 'background:yellow;');
     let postalCode = null;
     this.type = type;
     this.countr += 1;
@@ -109,7 +106,6 @@ class SqrPaymentForm {
         },
       },
     });
-    console.log('%cthis.paymentForm.', 'background:orange;', this.paymentForm);
     return (this.paymentForm);
   }
 }
