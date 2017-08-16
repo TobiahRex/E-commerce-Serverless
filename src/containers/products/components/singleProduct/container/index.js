@@ -282,8 +282,8 @@ class SingleProduct extends Component {
         }
 
         if (
-          !!userCartProduct.productId &&
-          userCartProduct.productId === stateProduct._id
+          !!userCartProduct.product &&
+          userCartProduct.product === stateProduct._id
         ) {
           userCartProduct.qty += requestQty;
         }
@@ -314,7 +314,7 @@ class SingleProduct extends Component {
       if (nextObj && !!nextObj.qty) {
         accum += nextObj.qty;
         if (!!nextObj._id) prevCartIds.push(nextObj._id);
-        if (!!nextObj.productId) prevCartIds.push(nextObj.productId);
+        if (!!nextObj.product) prevCartIds.push(nextObj.product);
       }
       return accum;
     }, 0);
@@ -406,7 +406,7 @@ class SingleProduct extends Component {
 
           currentMemberProduct = {
             qty,
-            productId: product._id,
+            product: product._id,
           };
 
         // If user is logged in, and there's already products in their cart, but the current product is not one of them, add it.
