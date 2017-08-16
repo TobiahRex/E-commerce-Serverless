@@ -385,84 +385,65 @@ export const ValidatePostal = gql`
 export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
   $userId: ID!
-  $newsletterDecision: Bool!
-  $termsAgreement: Bool!
-  $shippingFirstName: String!
-  $shippingLastName: String!
-  $shippingEmail: String!
-  $shippingAddressLine1: String!
-  $shippingAddressLine2: String!
-  $shippingCountry: String!,
-  $shippingPrefecture: String!
-  $shippingCity: String!
-  $shippingPostalCode: String!
-  $shippingPhoneNumber: String!
-  $ccNameOnCard: String!
-  $ccNumber: String!
-  $ccExpireMonth: String!
-  $ccExpireYear: String!
-  $ccCvn: String!
-  $ccZip: String!
-  $termsAgreement: Bool!,
-  $subTotal: String!
-  $grandTotal: String!
-  $taxes: String!
-  $discountQty: Bool!
-  $discountQtyAmount: String!
-  $discountRegister: Bool!
-  $discountRegisterAmount: String!
+  $termsAgreement: Boolean!
+  $newsletterDecision: Boolean!
+  $cart: [TransactionCartProduct]!
+  $taxes: TransactionTaxesInfoInput!
+  $total: TransactionTotalsInfoInput!
+  $sagawa: TransactionSagawaInfoInput!
+  $square: TransactionSqaureInformationInput!
 ) {
-  SubmitFinalOrder (billingFirstName: $billingFirstName
-    newsletterDecision: $newsletterDecision
-    shippingFirstName: $shippingFirstName
-    shippingLastName: $shippingLastName
-    shippingEmail: $shippingEmail
-    shippingAddressLine1: $shippingAddressLine1
-    shippingAddressLine2: $shippingAddressLine2
-    shippingCountry: $shippingCountry
-    shippingPrefecture: $shippingPrefecture
-    shippingCity: $shippingCity
-    shippingPostalCode: $shippingPostalCode
-    shippingPhoneNumber: $shippingPhoneNumber
-    ccNameOnCard: $ccNameOnCard
-    ccNumber: $ccNumber
-    ccExpireMonth: $ccExpireMonth
-    ccExpireYear: $ccExpireYear
-    ccCvn: $ccCvn
-    ccZip: $ccZip
+  SubmitFinalOrder (
+    userId: $userId
     termsAgreement: $termsAgreement
-    discountQty: $discountQty
-    discountQtyAmount: $discountQtyAmount
-    discountRegister: $discountRegister
-    discountRegisterAmount: $discountRegisterAmount
-  ) {
+    newsletterDecision: $newsletterDecision
+    cart: $cart
+    taxes: $taxes
+    total: $total
+    sagawa: $sagawa
+    square: $square
+) {
     _id
     error {
       hard
       soft
       message
     }
-    discount
-    subTotal
-    tax
-    grandTotal
-    sagawa {
-      awbNumber
-      referenceNumber
-      address
+    date
+    termsAgreement
+    user
+    products
+    sagawa
+    marketHero
+    invoiceEmail
+    taxes {
+      cityRate
+      stateRate
+      totalRate
     }
-    square {
-      billingInfo {
-        nameOnCard
-        last4
-        amount
-        email
+    total {
+      subTotal
+      taxes
+      grandTotal
+      discount {
+        qty
+        qtyAmount
+        register
+        registerAmount
       }
     }
-    sesEmail {
-      sent
-      mailId
-      address
+    square {
+      locationId
+      transactionId
+      billingAddress {
+        billingCountry
+        billingPrefecture
+        billingCity
+      }
+    }
+    charge {
+      amount
+      currency
     }
   }
 }

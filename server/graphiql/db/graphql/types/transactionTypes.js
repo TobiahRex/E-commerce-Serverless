@@ -45,13 +45,13 @@ const rootType = new ObjectType({
       description: 'The date this transaction occured.',
       type: StringType,
     },
-    user: {
-      description: 'The _id of the user who executed this transaction.',
-      type: MongoID,
-    },
     termsAgreement: {
       description: 'Did the user agree to the Terms & Agreement for this transaction.',
       type: BoolType,
+    },
+    user: {
+      description: 'The _id of the user who executed this transaction.',
+      type: MongoID,
     },
     products: {
       description: 'An array of product(s) ID\'s and their respective quantities, that were purchased.',
@@ -73,7 +73,7 @@ const rootType = new ObjectType({
     },
     sagawa: {
       description: 'The reference Mongo _id for the Sagawa document that was generated due to this transaction.',
-      type: StringType,
+      type: MongoID,
     },
     marketHero: {
       description: 'The reference Mongo _id for the Market Hero lead.',
@@ -100,71 +100,34 @@ const rootType = new ObjectType({
         name: 'TransactionTotalsInfo',
         fields: () => ({
           subTotal: { type: StringType },
-          tax: { type: StringType },
+          taxes: { type: StringType },
           grandTotal: { type: StringType },
           discount: {
-            description: 'The discount(s) applied to this transaction.',
+            description: 'Description of any discounts that were applied to this transaction.',
             type: new ObjectType({
-              name: 'TransactionTotalsDiscount',
+              name: 'TransactionDiscounts',
               fields: () => ({
-                qty: { type: BoolType },
-                qtyAmount: { type: StringType },
-                register: { type: BoolType },
-                registerAmount: { type: StringType },
+                qty: {
+                  description: 'Boolean describing whether or not the user has received the 25% OFF "Quantity Discount" for this Transaction.',
+                  type: BoolType,
+                },
+                qtyAmount: {
+                  description: 'The dollar amount value if receiving this discount.',
+                  type: StringType,
+                },
+                register: {
+                  description: 'Boolean describing whether or not the user has received the 10% OFF "Register Discount" for this Transaction.',
+                  type: BoolType,
+                },
+                registerAmount: {
+                  description: 'The dollar amount value if receiving this discount.',
+                  type: StringType,
+                },
               }),
             }),
           },
         }),
       }),
-    },
-    subTotal: {
-      description: 'The subTotal amount for this transaction.',
-      type: StringType,
-    },
-    tax: {
-      description: 'The taxes amount for this transaction.',
-      type: new ObjectType({
-        name: 'TransactionTaxInfo',
-        fields: () => ({
-          city: {
-            type: IntType,
-          },
-          state: {
-            type: IntType,
-          },
-          total: {
-            type: IntType,
-          },
-        }),
-      }),
-    },
-    discount: {
-      description: 'Description of any discounts that were applied to this transaction.',
-      type: new ObjectType({
-        name: 'TransactionDiscounts',
-        fields: () => ({
-          qty: {
-            description: 'Boolean describing whether or not the user has received the 25% OFF "Quantity Discount" for this Transaction.',
-            type: BoolType,
-          },
-          qtyAmount: {
-            description: 'The dollar amount value if receiving this discount.',
-            type: StringType,
-          },
-          register: {
-            description: 'Boolean describing whether or not the user has received the 10% OFF "Register Discount" for this Transaction.',
-            type: BoolType,
-          },
-          registerAmount: {
-            description: 'The dollar amount value if receiving this discount.',
-            type: StringType,
-          },
-        }),
-      }),
-    },
-    grandTotal: {
-      description: 'The grand total amount for this transaction.',
-      type: StringType,
     },
     square: {
       description: 'The information associated with billing and payment services.',
