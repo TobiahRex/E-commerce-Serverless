@@ -164,31 +164,3 @@ new Promise((resolve, reject) => {
 
 const Transaction = db.model('Transaction', transactionSchema);
 export default Transaction;
-
-
-// { __v: 0,
-//     comments: 'blah blah',
-//     termsAgreement: true,
-//     user: 5994620bbc20b46f936e8cbf,
-//     sagawa: 5994623fbc20b46f936e8cc6,
-//     _id: 599464e38dbfa37015a561cc,
-//     square:
-//      { charge: [Object],
-//        cardInfo: [Object],
-//        billingAddress: [Object],
-//        transactionId: '',
-//        locationId: '' },
-//     total:
-//      { subTotal: '120',
-//        taxes: '12.12',
-//        grandTotal: '90.12',
-//        discount: [Object] },
-//     taxes: { cityRate: '0.036', stateRate: '0.065', totalRate: '0.101' },
-//     products: [ [Object] ],
-//     date: 2017-08-16T15:29:39.871Z,
-//     error: {
-//       message: '',
-//       soft: false,
-//       hard: false
-//   }
-// }

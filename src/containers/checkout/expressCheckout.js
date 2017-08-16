@@ -285,8 +285,11 @@ class ExpressCheckout extends React.Component {
 
       this.props.GraphQLsubmitOrder(formData)
       .then((response) => {
+        console.log('%cresponse', 'background:orange;', response);
         const cleanResponse = CleanOffTypename(response);
         console.log('%ccleanResponse', 'background:lime;', cleanResponse);
+        this.props.toastSuccess(true, 'Order successfully submitted!');
+        // TODO create a redux action to save response into local state.
       })
       .catch(this.props.GraphQLhandleError);
     }
