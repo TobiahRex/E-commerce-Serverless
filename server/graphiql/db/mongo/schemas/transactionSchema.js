@@ -21,8 +21,8 @@ const transactionSchema = new Schema({
     default: Date.now,
     required: true,
   },
-  user: { type: ObjectId, ref: 'User' },
   termsAgreement: { type: Boolean },
+  user: { type: ObjectId, ref: 'User' },
   products: [{
     _id: { type: ObjectId, ref: 'Product', required: true },
     qty: { type: Number, required: true },
@@ -31,13 +31,13 @@ const transactionSchema = new Schema({
   marketHero: { type: ObjectId, ref: 'MarketHero' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
   taxes: {
-    city: { type: Number, required: true },
-    state: { type: Number, required: true },
-    total: { type: Number, required: true },
+    cityRate: { type: Number, required: true },
+    stateRate: { type: Number, required: true },
+    totalRate: { type: Number, required: true },
   },
   total: {
-    subtotal: { type: String, required: true },
-    tax: { type: String, required: true },
+    subTotal: { type: String, required: true },
+    taxes: { type: String, required: true },
     grandTotal: { type: String, required: true },
     discount: {
       qty: { type: Boolean, default: false },

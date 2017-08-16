@@ -546,6 +546,7 @@ const ExpressCheckoutWithStateAndData = compose(
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
   toast: CheckForToast(toaster),
   userId: !!user.profile ? user.profile._id : '',
+  sagwaId: orders.postalInfo.sagawaId,
   taxRate: orders.taxRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
@@ -553,7 +554,6 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   guestCart: orders.cart,
   apiFetching: api.fetching,
   postalError: orders.postalInfo.error,
-  sagwaId: orders.postalInfo.sagawaId,
 }), dispatch => ({
   toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
   toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),

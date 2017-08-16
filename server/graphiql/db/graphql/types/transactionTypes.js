@@ -302,9 +302,9 @@ const mutations = {
           new InputObject({
             name: 'TransactionTaxesInfoInput',
             fields: () => ({
-              city: { type: new NonNull(StringType) },
-              state: { type: new NonNull(StringType) },
-              total: { type: new NonNull(StringType) },
+              cityRate: { type: new NonNull(StringType) },
+              stateRate: { type: new NonNull(StringType) },
+              totalRate: { type: new NonNull(StringType) },
             }),
           }),
         ),
@@ -316,7 +316,7 @@ const mutations = {
             name: 'TransactionTotalsInfoInput',
             fields: () => ({
               subTotal: { type: new NonNull(StringType) },
-              tax: { type: new NonNull(StringType) },
+              taxes: { type: new NonNull(StringType) },
               grandTotal: { type: new NonNull(StringType) },
               discount: {
                 description: 'The discount(s) applied to this transaction.',

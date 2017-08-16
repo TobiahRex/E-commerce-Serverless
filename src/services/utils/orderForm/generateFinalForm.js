@@ -26,16 +26,9 @@ export default function ComposeLocalData({
 }) {
   return ({
     userId,
-    newsletterDecision,
     termsAgreement,
-    cart: cart.reduce((a, n) => {
-      if (!!n._id) {
-        a._id = n._id;
-        a.qty = n.qty;
-        return a;
-      }
-      return a;
-    }, {}),
+    newsletterDecision,
+    cart: cart.map(({ _id, qty }) => ({ _id, qty })),
     taxes,
     total,
     sagawa: {

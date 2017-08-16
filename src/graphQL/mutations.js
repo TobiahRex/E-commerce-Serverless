@@ -412,7 +412,10 @@ mutation SubmitFinalOrder(
     date
     termsAgreement
     user
-    products
+    products {
+      _id
+      qty
+    }
     sagawa
     marketHero
     invoiceEmail
@@ -440,10 +443,15 @@ mutation SubmitFinalOrder(
         billingPrefecture
         billingCity
       }
-    }
-    charge {
-      amount
-      currency
+      cardInfo {
+        last4
+        nameOnCard
+        cardNonce
+      }
+      charge {
+        amount
+        currency
+      }
     }
   }
 }
