@@ -150,14 +150,14 @@ const rootType = new ObjectType({
             description: 'The Square transaction ID for this transaction.',
             type: StringType,
           },
-          billingAddress: {
+          shippingAddress: {
             description: 'The address information required by Square.',
             type: new ObjectType({
-              name: 'TransactionSquareBillingAddress',
+              name: 'TransactionSquareShippingAddress',
               fields: () => ({
-                billingCountry: { type: StringType },
-                billingPrefecture: { type: StringType },
-                billingCity: { type: StringType },
+                shippingCountry: { type: StringType },
+                shippingPrefecture: { type: StringType },
+                shippingCity: { type: StringType },
               }),
             }),
           },
@@ -386,15 +386,15 @@ const mutations = {
           new InputObject({
             name: 'TransactionSqaureInformationInput',
             fields: () => ({
-              billingAddress: {
+              shippingAddress: {
                 description: 'The address information required by Square.',
                 type: new NonNull(
                   new InputObject({
-                    name: 'TransactionSquareBillingAddressInput',
+                    name: 'TransactionSquareShippingAddressInput',
                     fields: () => ({
-                      billingCountry: { type: new NonNull(StringType) },
-                      billingCity: { type: new NonNull(StringType) },
-                      billingPrefecture: { type: new NonNull(StringType) },
+                      shippingCountry: { type: new NonNull(StringType) },
+                      shippingCity: { type: new NonNull(StringType) },
+                      shippingPrefecture: { type: new NonNull(StringType) },
                     }),
                   }),
                 ),

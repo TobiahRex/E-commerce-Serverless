@@ -51,10 +51,10 @@ const transactionSchema = new Schema({
   square: {
     locationId: { type: String, default: '' },
     transactionId: { type: String, default: '' },
-    billingAddress: {
-      billingCountry: { type: String, required: true },
-      billingPrefecture: { type: String, required: true },
-      billingCity: { type: String, required: true },
+    shippingAddress: {
+      shippingCountry: { type: String, required: true },
+      shippingPrefecture: { type: String, required: true },
+      shippingCity: { type: String, required: true },
     },
     cardInfo: {
       last4: { type: String, required: true },
