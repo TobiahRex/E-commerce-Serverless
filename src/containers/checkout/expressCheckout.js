@@ -70,7 +70,7 @@ class ExpressCheckout extends React.Component {
       },
       // --- Form Data from Nested Components ---
       prComments: '',
-      newsletterDecision: false,
+      newsletterDecision: '',
       shippingFirstName: '',
       shippingLastName: '',
       shippingEmail: '',
@@ -501,7 +501,6 @@ class ExpressCheckout extends React.Component {
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
-  console.log('%ctotal', 'background:cyan;', total);
   const cart = DetermineCartType(ownProps, ZipUserCart);
 
   return ({
@@ -516,7 +515,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
     if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
       errorMsg = 'You must login or register to complete this transaction.';
     } else if (/(GraphQL error: )/.test(error.message)) {
-      errorMsg = error.message.replace(/^(GraphQL error: )/g, '');
+      errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
     }
 
     ownProps.toastError(true, errorMsg);
@@ -533,7 +532,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
   },
   GraphQLsubmitOrder: (formData) => {
     ownProps.apiIsFetching();
-    ownProps.SubmitFinalOrder({
+    return ownProps.SubmitFinalOrder({
       variables: { ...formData },
     });
   },

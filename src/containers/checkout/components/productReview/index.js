@@ -40,7 +40,7 @@ ProductReview.propTypes = {
   comments: string,
   loggedIn: bool.isRequired,
   routerPush: func.isRequired,
-  newsletterDecision: bool.isRequired,
+  newsletterDecision: string.isRequired,
   handleOnChange: func.isRequired,
 };
 ProductReview.defaultProps = {

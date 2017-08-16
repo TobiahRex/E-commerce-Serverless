@@ -92,9 +92,9 @@ const rootType = new ObjectType({
       type: new ObjectType({
         name: 'TransactionTaxesInfo',
         fields: () => ({
-          city: { type: StringType },
-          state: { type: StringType },
-          total: { type: StringType },
+          cityRate: { type: StringType },
+          stateRate: { type: StringType },
+          totalRate: { type: StringType },
         }),
       }),
     },

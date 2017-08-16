@@ -16,9 +16,9 @@ function NewsletterOption({ newsletterDecision, handleOnChange }) {
     </div>
   );
 }
-const { bool, func } = PropTypes;
+const { string, func } = PropTypes;
 NewsletterOption.propTypes = {
-  newsletterDecision: bool.isRequired,
+  newsletterDecision: string.isRequired,
   handleOnChange: func.isRequired,
 };
 export default NewsletterOption;
