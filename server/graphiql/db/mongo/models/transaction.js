@@ -125,7 +125,7 @@ new Promise((resolve, reject) => {
     termsAgreement,
     newsletterDecision,
     cart,
-    sagwa: {
+    sagawa: {
       sagawaId,
     },
     taxes,
