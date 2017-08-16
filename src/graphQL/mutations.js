@@ -358,20 +358,35 @@ mutation EmptyMemberCart($userId: ID!) {
 }
 `;
 
-
-// export const SquareAuthorizePayment = gql`
-//   mutation SquareAuthorizePayment() {
-//     SquareAuthorizePayment(
-//
-//     ) {
-//
-//     }
-//   }
-// `;
+export const ValidatePostal = gql`
+  mutation ValidatePostal(
+    $postalCode: String!
+    $userId: ID!
+  ) {
+    ValidatePostal(
+      postalCode: $postalCode
+      userId: $userId
+    ) {
+      _id
+      error {
+        hard
+        soft
+        message
+      }
+      postalInfo {
+        postalCode
+        jpAddress
+        verified
+      }
+    }
+  }
+`;
 
 export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
+  $userId: ID!
   $newsletterDecision: Bool!
+  $termsAgreement: Bool!
   $shippingFirstName: String!
   $shippingLastName: String!
   $shippingEmail: String!
@@ -451,40 +466,4 @@ mutation SubmitFinalOrder(
     }
   }
 }
-`;
-
-export const SubmitFinalOrderOptions = () => {
-  // let ids = [];
-  //
-  // if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
-  //
-  // if (!!userCart.length) ids = userCart.map(({ product }) => product);
-
-  return ({
-    variables: '',
-  });
-};
-
-export const ValidatePostal = gql`
-  mutation ValidatePostal(
-    $postalCode: String!
-    $userId: ID!
-  ) {
-    ValidatePostal(
-      postalCode: $postalCode
-      userId: $userId
-    ) {
-      _id
-      error {
-        hard
-        soft
-        message
-      }
-      postalInfo {
-        postalCode
-        jpAddress
-        verified
-      }
-    }
-  }
 `;
