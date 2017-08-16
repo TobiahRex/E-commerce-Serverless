@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import */
 import axios from 'axios';
 import db from '../connection';
-// import { Promise as bbPromise } from 'bluebird';
+import { Promise as bbPromise } from 'bluebird';
 import transactionSchema from '../schemas/transactionSchema';
 require('dotenv').load({ silent: true });
 
@@ -116,7 +116,53 @@ new Promise((resolve, reject) => {
 transactionSchema.statics.submitFinalOrder = (args) =>
 new Promise((resolve, reject) => {
   console.log('ARGS: \n', JSON.stringify(args, null, 2));
-  resolve();
+
+  const {
+    userId,
+    comments,
+    termsAgreement,
+    newsletterDecision,
+    cart,
+    sagwa: {
+      sagawaId,
+    },
+    taxes,
+    total,
+    square,
+  } = args;
+
+  const results = Promise.all[
+    bbPromise.fromCallback(cb => Transaction.create({
+      comments,
+      termsAgreement,
+      user: userId,
+      products: cart,
+      sagawa: sagawaId,
+      taxes,
+      total,
+      square,
+    }, cb)),
+    User.editMemberProfile(userId, {
+      
+    })
+  ];
+
+  bbPromise.fromCallback(cb => Transaction.create({
+    comments,
+    termsAgreement,
+    user: userId,
+    products: cart,
+    sagawa: sagawaId,
+    taxes,
+    total,
+    square,
+  }, cb))
+  .then(() => {
+
+  })
+  .catch(() => {
+
+  });
 });
 
 const Transaction = db.model('Transaction', transactionSchema);

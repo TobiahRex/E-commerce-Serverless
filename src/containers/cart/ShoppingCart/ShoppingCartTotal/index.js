@@ -51,7 +51,7 @@ function ShoppingCartTotal({ total }) {
               <h4 style={{ color: '#FC2525' }}> 25%{'\u00A0'}</h4>
               <FontAwesome name="usd" style={{ color: '#FC2525' }} />
               <h4 style={{ color: '#FC2525' }}>
-                {'\u00A0'}-{discount.qtyAmount .toFixed(2)}
+                {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
               </h4>
             </div>
           </div>
