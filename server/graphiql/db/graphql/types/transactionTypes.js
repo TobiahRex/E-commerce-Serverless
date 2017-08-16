@@ -45,6 +45,10 @@ const rootType = new ObjectType({
       description: 'The date this transaction occured.',
       type: StringType,
     },
+    comments: {
+      description: 'Options comments written by the customer at the time of checkout.',
+      type: StringType,
+    },
     termsAgreement: {
       description: 'Did the user agree to the Terms & Agreement for this transaction.',
       type: BoolType,
@@ -267,6 +271,10 @@ const mutations = {
       userId: {
         description: 'The Mongo _id of the User submitting the order.',
         type: new NonNull(MongoID),
+      },
+      comments: {
+        description: 'Options comments written by the customer at the time of checkout.',
+        type: StringType,
       },
       termsAgreement: {
         description: 'User\'s agreement to the Terms & Agreement policy at the time of purchase.',

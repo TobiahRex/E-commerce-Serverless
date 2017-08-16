@@ -21,7 +21,7 @@ class ProductReviewComments extends React.Component {
           rows="5"
           placeholder="Comments..."
           value={this.state.comment}
-          onChange={this.handleChange}
+          onChange={this.handleOnChange}
         />
       </div>
     );
@@ -32,5 +32,5 @@ const { string, func } = PropTypes;
 ProductReviewComments.propTypes = {
   comment: string.isRequired,
   handleOnChange: func.isRequired,
-}
+};
 export default ProductReviewComments;

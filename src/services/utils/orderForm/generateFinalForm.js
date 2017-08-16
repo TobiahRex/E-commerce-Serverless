@@ -1,5 +1,6 @@
 export default function ComposeLocalData({
   state: {
+    prComments: comments,
     newsletterDecision,
     shippingFirstName,
     shippingLastName,
@@ -26,6 +27,7 @@ export default function ComposeLocalData({
 }) {
   return ({
     userId,
+    comments,
     termsAgreement,
     newsletterDecision,
     cart: cart.map(({ _id, qty }) => ({ _id, qty })),

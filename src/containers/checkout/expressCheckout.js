@@ -23,7 +23,6 @@ import {
   squarePaymentForm as SqrPaymentForm,
   cleanOffTypename as CleanOffTypename,
   checkForToast as CheckForToast,
-  composeLocalData as ComposeLocalData,
   generateFinalForm as GenerateFinalForm,
 } from './utilities.imports';
 import {
@@ -70,7 +69,7 @@ class ExpressCheckout extends React.Component {
         message: '',
       },
       // --- Form Data from Nested Components ---
-      comments: '',
+      prComments: '',
       newsletterDecision: false,
       shippingFirstName: '',
       shippingLastName: '',
@@ -339,6 +338,7 @@ class ExpressCheckout extends React.Component {
       ccRenderKey,
       cart,
       errors,
+      prComments,
       newsletterDecision,
       // ---
       shippingFirstName,
@@ -381,7 +381,7 @@ class ExpressCheckout extends React.Component {
             <div className="checkout__grid">
               <ProductReview
                 cart={cart}
-                comments={comments}
+                comments={prComments}
                 loggedIn={loggedIn}
                 routerPush={this.routerPush}
                 newsletterDecision={newsletterDecision}

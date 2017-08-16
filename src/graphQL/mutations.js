@@ -385,6 +385,7 @@ export const ValidatePostal = gql`
 export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
   $userId: ID!
+  $comments: String
   $termsAgreement: Boolean!
   $newsletterDecision: Boolean!
   $cart: [TransactionCartProduct]!
@@ -395,6 +396,7 @@ mutation SubmitFinalOrder(
 ) {
   SubmitFinalOrder (
     userId: $userId
+    comments: $comments
     termsAgreement: $termsAgreement
     newsletterDecision: $newsletterDecision
     cart: $cart
@@ -410,6 +412,7 @@ mutation SubmitFinalOrder(
       message
     }
     date
+    comments
     termsAgreement
     user
     products {
