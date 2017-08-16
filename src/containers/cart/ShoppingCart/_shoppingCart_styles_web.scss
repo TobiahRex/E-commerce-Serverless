@@ -328,6 +328,9 @@
           margin-top: 2em;
           border-top: 1px solid $s-grey;
         }
+        & .shopping-cart-register-discount-title {
+          padding-left: 0px;
+        }
       }
       & .shopping-cart-action-btns-parent {
         @include prefixflex();

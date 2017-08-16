@@ -501,17 +501,6 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
   }, 0);
 };
 
-/**
-* Function: "checkNewUser"
-* 1) If the user is not logged in, then obviously there is no user.
-* 2) If the user is logged in but they have not purchased any new products, then return true.
-*
-* @param {object} user - the user object.
-* @param {bool} loggedIn - flag for if the user is logged in or not.
-*
-* @return {bool} - Determines eligibility for the 10% new user discount.
-*/
-
 const ShoppingCartWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
   const cart = DetermineCartType(ownProps, ZipUserCart);

@@ -11,5 +11,5 @@
 
 export default (user, loggedIn) => {
   if (!loggedIn) return false;
-  return !user.profile.shopping.cart.length;
+  return !user.profile.shopping.transactions.length;
 };
