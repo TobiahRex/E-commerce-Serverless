@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ProductReviewComments extends React.Component {
+class ProductReviewComments extends React.PureComponent {
 
   handleOnChange = e => this.props.handleOnChange(e);
 
@@ -13,7 +13,7 @@ class ProductReviewComments extends React.Component {
           cols="40"
           rows="5"
           placeholder="Comments..."
-          value={this.props.comment}
+          value={this.props.comments}
           onChange={this.handleOnChange}
         />
       </div>
@@ -23,10 +23,10 @@ class ProductReviewComments extends React.Component {
 const { string, func } = PropTypes;
 
 ProductReviewComments.propTypes = {
-  comment: string,
+  comments: string,
   handleOnChange: func.isRequired,
 };
 ProductReviewComments.defaultProps = {
-  comment: '',
+  comments: '',
 };
 export default ProductReviewComments;

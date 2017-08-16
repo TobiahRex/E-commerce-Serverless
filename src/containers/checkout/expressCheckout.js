@@ -70,7 +70,7 @@ class ExpressCheckout extends React.Component {
       },
       // --- Form Data from Nested Components ---
       prComments: '',
-      newsletterDecision: '',
+      newsletterDecision: false,
       shippingFirstName: '',
       shippingLastName: '',
       shippingEmail: '',
@@ -363,7 +363,7 @@ class ExpressCheckout extends React.Component {
       // ---
       total,
     } = this.state;
-    console.log('%cprComments', 'background:pink;', prComments);
+    console.log('%cnewsletterDecision', 'background:pink;', newsletterDecision);
 
     return (
       <div className="checkout__container">
