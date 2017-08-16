@@ -162,7 +162,7 @@ new Promise((resolve, reject) => {
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
-      TransactionId: String(results[0]._id),
+      transactionId: String(results[0]._id),
       shippingEmail: sagawa.shippingAddress.email,
       shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
       shippingCity: square.shippingAddress.shippingCity,
