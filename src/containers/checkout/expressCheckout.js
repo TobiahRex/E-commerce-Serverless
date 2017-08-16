@@ -362,8 +362,9 @@ class ExpressCheckout extends React.Component {
       ccZip,
       // ---
       total,
+      termsAgreement,
     } = this.state;
-    console.log('%cnewsletterDecision', 'background:pink;', newsletterDecision);
+    console.log('%ctermsAgreement', 'background:pink;', termsAgreement);
 
     return (
       <div className="checkout__container">
@@ -474,6 +475,7 @@ class ExpressCheckout extends React.Component {
               <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
+                termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
               />
 

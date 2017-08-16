@@ -9,6 +9,7 @@ const { bool, shape, number, func } = PropTypes;
 class GrandTotal extends React.PureComponent {
   static propTypes = {
     handleOnChange: func.isRequired,
+    termsAgreement: bool.isRequired,
     showTotal: bool.isRequired,
     total: shape({
       subTotal: number,
@@ -26,7 +27,7 @@ class GrandTotal extends React.PureComponent {
     super(props);
 
     this.state = {
-      termsAgreement: '',
+      termsAgreement: props.termsAgreement,
       showTotal: false,
       total: {
         discount: {
@@ -59,6 +60,7 @@ class GrandTotal extends React.PureComponent {
         discount,
       },
       showTotal,
+      termsAgreement,
     } = state;
 
     if (showTotal) {
@@ -69,6 +71,7 @@ class GrandTotal extends React.PureComponent {
             taxes={taxes}
             discount={discount}
             grandTotal={grandTotal}
+            termsAgreement={termsAgreement}
             handleOnChange={this.handleOnChange}
           /> : <Loading />
       );

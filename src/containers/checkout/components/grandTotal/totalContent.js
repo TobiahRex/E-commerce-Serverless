@@ -10,7 +10,7 @@ function TotalContent({
   taxes,
   discount,
   grandTotal,
-  // termsAgreement,
+  termsAgreement,
   handleOnChange,
 }) {
   return (
@@ -51,9 +51,14 @@ function TotalContent({
           type="checkbox"
           errorClassName="is-invalid-input"
           name="policy"
-          value="1"
+          value={termsAgreement}
           validations={['required']}
-          onChange={handleOnChange}
+          onChange={() => handleOnChange({
+            target: {
+              name: 'policy',
+              value: !termsAgreement,
+            },
+          })}
         />
         <p>I have read & agree to all <Link to="/terms_and_conditions">
           Terms & Conditions
@@ -69,7 +74,7 @@ TotalContent.propTypes = {
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
-  // termsAgreement: bool.isRequired,
+  termsAgreement: bool.isRequired,
   handleOnChange: func.isRequired,
   discount: shape({
     qty: bool.isRequired,
