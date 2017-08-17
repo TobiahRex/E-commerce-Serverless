@@ -155,7 +155,7 @@ new Promise((resolve, reject) => {
         },
       },
     }),
-    Transaction.fetchSquareLocation(square.shippingAddress.shippingCountry),
+    Transaction.fetchSquareLocation(square.shippingAddress.shippingCountry.split('-')[0]),
   ])
   .then((results) => {
     console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
@@ -170,7 +170,7 @@ new Promise((resolve, reject) => {
       shippingPrefecture: square.shippingAddress.shippingPrefecture,
       shippingPostalCode: sagawa.shippingAddress.postalCode,
       shippingCountry: sagawa.shippingAddress.country,
-      billingCountry: square.shippingAddress.shippingCountry.split('-')[0],
+      billingCountry: square.shippingAddress.billingCountry,
       grandTotal: total.grandTotal,
       cardNonce: square.cardInfo.cardNonce,
       jpyFxRate,

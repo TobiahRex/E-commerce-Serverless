@@ -49,8 +49,8 @@ export default function ComposeLocalData({
       },
     },
     square: {
+      billingCountry: ccCountry.split('-')[1],
       shippingAddress: {
-        shippingCountry: ccCountry,
         shippingCity,
         shippingPrefecture: shippingPrefecture.split('-')[1],
       },
