@@ -191,9 +191,12 @@ new Promise((resolve, reject) => {
       });
     }
     console.log('Successfully charge customer card:  Updated database.');
-
+    bbPromise.fromCallback(cb => Email.create({
+      
+    }, cb));
   })
   .then((response) => {
+    console.log('FINAL RESPONSE: ', response);
     resolve(newTransactionDoc);
   })
   .catch((error) => {
