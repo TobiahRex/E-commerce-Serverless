@@ -45,12 +45,12 @@ new Promise((resolve, reject) => {
         resolve(newLocation);
       }
     } else {
-      console.log('Did not find Nj2jp in Square locations.');
+      console.log('Did not find requested location in Square locations.');
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: 'Did not find Nj2jp in Square locations.',
+          message: 'Did not find requested lcoation in Square locations.',
         },
       });
     }
@@ -155,7 +155,7 @@ new Promise((resolve, reject) => {
         },
       },
     }),
-    Transaction.fetchSquareLocation(square.shippingAddress.shippingCountry.split('-')[0]),
+    Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
     console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
@@ -170,7 +170,7 @@ new Promise((resolve, reject) => {
       shippingPrefecture: square.shippingAddress.shippingPrefecture,
       shippingPostalCode: sagawa.shippingAddress.postalCode,
       shippingCountry: sagawa.shippingAddress.country,
-      billingCountry: square.shippingAddress.billingCountry,
+      billingCountry: square.billingCountry,
       grandTotal: total.grandTotal,
       cardNonce: square.cardInfo.cardNonce,
       jpyFxRate,
