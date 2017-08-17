@@ -34,5 +34,10 @@ export const getAmount = (country, grandTotal, fxRateJpy) => {
 
   if (country === 'JP') grandTotalInt *= jpyInt;
 
-  return grandTotalInt.toFixed(2).split('.').reduce((a, n) => a + n, '');
+  return Number(
+    grandTotalInt
+    .toFixed(2)
+    .split('.')
+    .reduce((a, n) => a + n, ''),
+  );
 };
