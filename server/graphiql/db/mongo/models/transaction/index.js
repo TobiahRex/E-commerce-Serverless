@@ -108,6 +108,7 @@ new Promise((resolve, reject) => {
   )
   .then((response) => {
     console.log('Successfully charged customer. ', response.data);
+    resolve(response);
   })
   .catch((error) => {
     console.log('%cerror', 'background:red;', error);
@@ -177,7 +178,17 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('SQUARE - RESPONSE: ', response);
+    console.log('SQUARE - RESPONSE: ', response.status);
+    if (response.status !== 200) {
+      console.log('Failed to charge customer card: ', response.data);
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: JSON.stringify(response.data),
+        },
+      });
+    }
     resolve(newTransactionDoc);
   })
   .catch((error) => {

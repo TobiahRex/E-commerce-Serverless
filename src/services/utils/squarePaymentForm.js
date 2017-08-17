@@ -6,7 +6,8 @@ const {
   JP_SQUARE_SANDBOX_APPLICATION_ID: jpSquareSandboxApplicationId,
 } = process.env;
 
-export const getSqToken = (country) => {
+export const getSqAppId = (country) => {
+  console.log('%ccountry', 'background:pink;', country);
   if (country === 'US') {
     if (squareEnv === 'development') return usSquareSandboxApplicationId;
     return usSquareApplicationId;
@@ -19,7 +20,9 @@ export const getSqToken = (country) => {
 /* eslint-disable no-console */
 if (squareEnv === '') console.error('You need to provide a value for the SQUARE_ENV variable.');
 if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
+if (usSquareSandboxApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
 if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+if (jpSquareSandboxApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
 /* eslint-enable no-console */
 
 class SqrPaymentForm {
@@ -57,7 +60,7 @@ class SqrPaymentForm {
     }
 
     this.paymentForm = new SqPaymentForm({ // eslint-disable-line
-      applicationId: getSqApplicationId(country),
+      applicationId: getSqAppId(country),
       inputClass: 'sq-input',
       inputStyles: [
         {
