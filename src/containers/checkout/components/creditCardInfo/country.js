@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
-import { Countries } from './component.imports';
+// import { Countries } from './component.imports';
 
 class Country extends React.Component {
   static propTypes = {
@@ -46,8 +46,8 @@ class Country extends React.Component {
             <option value="Japan-JP">
               Japan (JA)
             </option>
-            <hr />
-            {this.renderCountryOptions(Countries)}
+            {/* <hr /> */}
+            {/* {this.renderCountryOptions(Countries)} */}
           </Validation.components.Select>
         </div>
       </div>
