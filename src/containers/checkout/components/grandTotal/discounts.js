@@ -14,11 +14,11 @@ function Discounts({ title, amount }) {
   );
 }
 
-const { string } = PropTypes;
+const { string, number } = PropTypes;
 
 Discounts.propTypes = {
   title: string.isRequired,
-  amount: string.isRequired,
+  amount: number.isRequired,
 };
 
 export default Discounts;

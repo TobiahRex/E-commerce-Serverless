@@ -444,8 +444,8 @@ mutation SubmitFinalOrder(
     square {
       locationId
       transactionId
+      billingCountry
       shippingAddress {
-        shippingCountry
         shippingPrefecture
         shippingCity
       }

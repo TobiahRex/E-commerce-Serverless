@@ -6,14 +6,14 @@ const {
   JP_SQUARE_SANDBOX_APPLICATION_ID: jpSquareSandboxApplicationId,
 } = process.env;
 
-const getSqApplicationId = (country) => {  //eslint-disable-line
+export const getSqToken = (country) => {
   if (country === 'US') {
     if (squareEnv === 'development') return usSquareSandboxApplicationId;
     return usSquareApplicationId;
-  } else if (country === 'JP') {
-    if (squareEnv === 'development') return jpSquareSandboxApplicationId;
-    return jpSquareApplicationId;
   }
+
+  if (squareEnv === 'development') return jpSquareSandboxApplicationId;
+  return jpSquareApplicationId;
 };
 
 /* eslint-disable no-console */
