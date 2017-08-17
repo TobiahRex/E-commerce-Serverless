@@ -6,6 +6,7 @@ import FooterContactUs from './footer_contactUs';
 import FooterMyAccount from './footer_myAccount';
 import FooterMemberships from './footer_memberships';
 import FooterCustomerCare from './footer_customerCare';
+import FooterPaymentSticker from './footer_paymentSticker';
 
 const { bool } = PropTypes;
 
@@ -28,6 +29,7 @@ class FooterContainer extends PureComponent {
           <FooterContactUs />
           {/* {this.renderUserSxn()} */}
           <FooterCustomerCare />
+          <FooterPaymentSticker />
         </ul>
         <div className="footer-line-break" />
         <FooterCopyright />

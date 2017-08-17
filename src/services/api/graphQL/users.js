@@ -34,9 +34,9 @@ const createAPI = () => {
       contactInfoLocation,
       contactInfoDevices,
       contactInfoSocialNetworks,
-      shoppingCart,
       contactInfo,
       shopping,
+      shoppingCart,
       permissions,
       userStory,
       socialProfileBlob,
@@ -79,6 +79,11 @@ const createAPI = () => {
         socialProfileBlob: $socialProfileBlob
       ) {
         _id
+        error {
+          hard
+          soft
+          message
+        }
         name {
           first
           last
@@ -132,7 +137,6 @@ const createAPI = () => {
         shopping {
           cart {
             qty
-            nicotineStrength
             product
           }
           transactions
@@ -181,6 +185,11 @@ const createAPI = () => {
       query FetchUserProfile($id: ID!) {
         FetchUserProfile(id: $id) {
           _id
+          error {
+            hard
+            soft
+            message
+          }
           name {
             first
             last
@@ -234,7 +243,6 @@ const createAPI = () => {
           shopping {
             cart {
               qty
-              strength
               product
             }
             transactions

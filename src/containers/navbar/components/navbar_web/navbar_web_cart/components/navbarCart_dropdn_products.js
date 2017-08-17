@@ -59,16 +59,18 @@ class NavbarCartProducts extends Component {
     return this.renderCartItems(cartItems);
   }
 
-  renderCartItems = productItems => productItems.map((product) => {
+  renderCartItems = productItems => productItems.map((productObj) => {
     const {
       _id,
       qty,
-      title,
-      price,
-      images,
-      nicotineStrength,
-      routeTag,
-    } = product;
+      product: {
+        title,
+        price,
+        images,
+        nicotineStrength,
+        slug,
+      },
+    } = productObj;
 
     return (
       <li
@@ -89,7 +91,7 @@ class NavbarCartProducts extends Component {
 
         <NavbarCartProductsCardActions
           productId={_id}
-          routeTag={routeTag}
+          slug={slug}
           editCartItem={this.props.editCartItem}
           deleteFromCart={this.props.deleteFromCart}
         />

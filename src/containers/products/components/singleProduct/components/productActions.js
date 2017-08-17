@@ -6,49 +6,66 @@ import {
   AddToCartButton,
 } from '../container/component.imports';
 
-function ProductActions(props) {
+function ProductActions({
+  inStock,
+  qtyHandler,
+  quantity,
+  added,
+  addToCartHandler,
+  error,
+  errorMsg,
+}) {
   return (
     <div className="desc__actions">
-      <div className="actions__btn-container">
-        <div className="btn-container__qty--container">
-          <ul className="qty__list">
-            <li className="list--qty-title">
-              <p>Quantity</p>
-            </li>
-            <li className="list--qty-readout">
-              <p>{props.quantity}</p>
-            </li>
-            <li className="list--qty-adjust">
+      {
+        inStock ?
+        (<div className="actions__btn-container">
+          <div className="btn-container__qty--container">
+            <ul className="qty__list">
+              <li className="list--qty-title">
+                <p>Quantity</p>
+              </li>
+              <li className="list--qty-readout">
+                <p>{quantity}</p>
+              </li>
+              <li className="list--qty-adjust">
 
-              <button
-                data-tag="qty-plus"
-                className="qty-adjust__plus sweep-right"
-                onClick={props.qtyHandler}
-              ><FontAwesome name="plus" /></button>
+                <button
+                  data-tag="qty-plus"
+                  className="qty-adjust__plus sweep-right"
+                  onClick={qtyHandler}
+                ><FontAwesome name="plus" /></button>
 
-              <button
-                data-tag="qty-minus"
-                className="qty-adjust__minus sweep-right"
-                onClick={props.qtyHandler}
-              ><FontAwesome name="minus" /></button>
+                <button
+                  data-tag="qty-minus"
+                  className="qty-adjust__minus sweep-right"
+                  onClick={qtyHandler}
+                ><FontAwesome name="minus" /></button>
 
-            </li>
-          </ul>
-        </div>
-        <AddToCartButton
-          added={props.added}
-          addToCart={props.addToCartHandler}
+              </li>
+            </ul>
+          </div>
+          <AddToCartButton
+            added={added}
+            addToCart={addToCartHandler}
+          />
+        </div>)
+        :
+        <ErrorMsg
+          error="true"
+          errorMsg="Out of stock"
         />
-      </div>
+      }
       <ErrorMsg
-        error={props.error}
-        errorMsg={props.errorMsg}
+        error={error}
+        errorMsg={errorMsg}
       />
     </div>
   );
 }
 const { number, bool, string, func } = PropTypes;
 ProductActions.propTypes = {
+  inStock: bool.isRequired,
   added: bool.isRequired,
   error: bool.isRequired,
   errorMsg: string.isRequired,

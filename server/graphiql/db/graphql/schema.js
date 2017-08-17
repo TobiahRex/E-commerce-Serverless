@@ -4,6 +4,8 @@ import {
 } from 'graphql';
 import ProductTypes from './types/productTypes';
 import UserTypes from './types/userTypes';
+import Transaction from './types/transactionTypes';
+import Sagawa from './types/sagawaTypes';
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -14,6 +16,7 @@ const query = new GraphQLObjectType({
     FindProductsByFlavor: ProductTypes.queries.FindProductsByFlavor,
     PopularProducts: ProductTypes.queries.PopularProducts,
     FetchMultipleProducts: ProductTypes.queries.FetchMultipleProducts,
+    FetchSquareLocations: Transaction.queries.FetchSquareLocations,
   }),
 });
 
@@ -24,10 +27,13 @@ const mutation = new GraphQLObjectType({
     CreateProduct: ProductTypes.mutations.CreateProduct,
     LoginOrRegister: UserTypes.mutations.LoginOrRegister,
     AddToMemberCart: UserTypes.mutations.AddToMemberCart,
+    EmptyMemberCart: UserTypes.mutations.EmptyMemberCart,
     EditToMemberCart: UserTypes.mutations.EditToMemberCart,
     DeleteFromMemberCart: UserTypes.mutations.DeleteFromMemberCart,
     FindProductAndUpdate: ProductTypes.mutations.FindProductAndUpdate,
     FindProductByIdAndDelete: ProductTypes.mutations.FindProductByIdAndDelete,
+    ValidatePostal: Sagawa.mutations.ValidatePostal,
+    SubmitFinalOrder: Transaction.mutations.SubmitFinalOrder,
   }),
 });
 

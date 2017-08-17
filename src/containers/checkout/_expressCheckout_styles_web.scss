@@ -2,7 +2,25 @@
   .required {
     color: $p-red;
   }
-
+  .sq-input {
+    height: 4em;
+    border: 1px solid $s-grey;
+    border-radius: 4px 4px 4px 4px;
+  }
+  .sq-input--focus {
+     /* Indicates how form inputs should appear when they have focus */
+     outline: 5px auto rgb(59, 153, 252);
+     border-radius: 4px 4px 4px 4px;
+     outline-offset: -2px;
+     outline: -webkit-focus-ring-color auto 5px;
+   }
+   .sq-input--error {
+     /* Indicates how form inputs should appear when they contain invalid values */
+    //  outline: 5px auto rgb(255, 97, 97);
+     background-color: rgba(236, 88, 64, 0.1);
+     border: 2px solid #ec5840;
+    //  outline: -webkit-focus-ring-color auto 5px;
+   }
   .checkout__container {
     max-width: 1086px;
     width: 100%;
@@ -60,6 +78,7 @@
       & .checkout__billing,
       .checkout__shipping-method,
       .checkout__grand-total,
+      .checkout__purchase-btn,
       .checkout__shipping,
       .checkout__credit-card,
       .checkout__product-review,
@@ -70,7 +89,6 @@
         justify-content: flex-start;;
         align-items: center;
         flex-direction: column;
-        height: 86em;
         width: 34em;
         background-color: $p-grey;
         margin: 0 0 2em 0;
@@ -91,7 +109,7 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          height: 6.5em;
+          // height: 6.5em;
           width: 29em;
           margin-top: 1em;
           & div > input {
@@ -107,6 +125,20 @@
             font-size: 1.4em;
             font-family: $p-font;
             color: $p-blue;
+          }
+
+          & span {
+            &.form-error.is-visible {
+              color: $p-red;
+              font-family: $p-font;
+              font-size: 1em;
+              padding: 1em 0;
+            }
+          }
+
+          & .is-invalid-input:not(:focus) {
+            background-color: rgba(236, 88, 64, 0.1);
+            border: 1px solid #ec5840;
           }
         }
       }
@@ -130,6 +162,35 @@
               margin-left: 0;
             }
           }
+          & .input__row--last-name {
+            & span.form-error.is-visible {
+              margin-left: 1.5em;
+            }
+          }
+          & .input__row--country,
+          .input__row--prefecture {
+            @include prefixflex();
+            align-items: flex-start;
+            flex-direction: column;
+            select {
+              color: $p-blue;
+              font-family: $p-font;
+              font-size: 1.4em;
+              width: 21em;
+              height: 2.5em;
+              padding-left: .71em;
+              border: 0;
+              outline: 1px solid $s-grey;
+              background-color: $p-white;
+              cursor: pointer;
+            }
+          }
+          & .input__row--address-line-disabled,
+          .input__row--country-disabled {
+            & input {
+              cursor: not-allowed;
+            }
+          }
           & .input__row--same-as-billing,
           .input__row--free-shipping {
             @include prefixflex();
@@ -144,8 +205,11 @@
           }
         }
       }
+      & .checkout__billing {
+        padding-bottom: 3em;
+      }
       & .checkout__shipping {
-        height: 82em;
+        padding-bottom: 3em;
         order: 2;
       }
       & .checkout__shipping-method {
@@ -156,8 +220,25 @@
         }
       }
       & .checkout__credit-card {
-        height: 51em;
         order: 5;
+        padding-bottom: 2em;
+        & .input__row--country {
+          @include prefixflex();
+          align-items: flex-start;
+          flex-direction: column;
+          select {
+            color: $p-blue;
+            font-family: $p-font;
+            font-size: 1.4em;
+            width: 21em;
+            height: 2.5em;
+            padding-left: .71em;
+            border: 0;
+            outline: 1px solid $s-grey;
+            background-color: $p-white;
+            cursor: pointer;
+          }
+        }
         & .input__row, .input__row.cvn {
           & .input__row--cc-type {
             @include prefixflex();
@@ -167,7 +248,7 @@
               @include prefixflex();
               justify-content: space-between;
               align-items: center;
-              width: 22em;
+              min-width: 26em;
               margin-top: 1em;
               & span {
                 font-size: 3.5em;
@@ -196,39 +277,55 @@
                 background-color: $p-white;
                 cursor: pointer;
               }
+              select.is-invalid-input:not(:focus) {
+                background-color: rgba(236, 88, 64, 0.1);
+                border: 1px solid #ec5840;
+              }
             }
             & .input__container--exp-year {
               margin-left: .71em;
             }
           }
-          & .input__row--cvn-number {
+          & .input__row--cvn-number,
+          .input__row--zip-code {
+            & .cvn-number--wrapper {
+              @include prefixflex();
+              justify-content: center;
+              align-items: center;
+              & button {
+                font-size: 1.4em;
+                font-family: $p-font;
+                color: $p-blue;
+                border: none;
+                background-color: transparent;
+                cursor: help;
+                &:hover,
+                &:active,
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
             & input {
               width: 8em;
             }
-            & button {
-              font-size: 1.4em;
-              font-family: $p-font;
-              color: $p-blue;
-              border: none;
-              background-color: transparent;
-              margin-left: .71em;
-              cursor: help;
-              &:hover,
-              &:active,
-              &:focus {
-                outline: none;
-
-              }
+            & span.form-error.is-visible {
+              margin-left: 1em;
             }
+          }
+          & .input__row--zip-code {
+            margin-left: 2em;
           }
         }
         & .input__row.cvn {
-          justify-content: flex-start;
+          justify-content: space-between;
+          margin-bottom: 2em;
         }
       }
       & .checkout__product-review {
         max-height: 75em;
         order: 6;
+        padding-bottom: 3em;
         & .table__container {
           width: 28em;
           border-collapse: collapse;
@@ -278,12 +375,12 @@
           & textarea {
             color: $p-blue;
             font-family: $p-font;
+            resize: vertical;
           }
         }
         & .input__row {
-          &:nth-child(5) {
-            height: 12em;
-          }
+          @include prefixflex();
+          flex-direction: column;
           &:nth-child(6) {
             @include prefixflex();
             align-items: center;
@@ -301,7 +398,6 @@
             }
           }
           & .input__row--guest-warning {
-            height: 12em;
             width: 26em;
             margin-top: 2em;
             & p {
@@ -318,6 +414,7 @@
             }
           }
           & .input__row--guest-register {
+            padding: 2em 0;
             & button {
               height: 3.57em;
               width: 17.8em;
@@ -329,22 +426,31 @@
               cursor: pointer;
             }
           }
-        }
-        & .input__row:nth-child(1) {
-          height: 12em;
+          & p {
+            font-size: 10px;
+            line-height: 1em;
+          }
         }
       }
       & .checkout__grand-total {
         margin-right: 0;
-        height: 48em;
+        padding-bottom: 2em;
         & .analysis-container {
           @include prefixflex();
           justify-content: flex-start;
           align-items: center;
           flex-direction: column;
-          width: 28em;
+          max-width: 28em;
           height: 17.5em;
-          padding: 1em;
+          padding: 2em;
+          & .analysis-container--discount {
+            & p {
+              color: $p-red;
+            }
+            & span {
+              color: $p-red;
+            }
+          }
           & div {
             @include prefixflex();
             justify-content: space-between;
@@ -377,49 +483,80 @@
         }
         & .terms-agreement {
           @include prefixflex();
-          justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           & input {
             cursor: pointer;
           }
           & p {
             color: $p-blue;
-            font-size: 1.4em;
-            margin-left: .71em;
+            font-size: 1.2em;
+            margin-left: .1em;
             a {
               color: $p-blue;
               text-decoration: underline;
               cursor: pointer;
             }
           }
+          & div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
         }
-        & .purchase-btn {
+        & .checkout__loading {
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          width: 100%;
-          height: 14.5em;
-          margin-top: 2em;
-          background-color: $p-blue;
-          & button {
-            border: none;
-            height: 4em;
-            width: 14em;
-            font-size: 2em;
-            background-color: $p-red;
-            box-shadow: 3px 3px 3px rgba(0,0,0,.25);
-            cursor: pointer;
-            & span {
-              @include prefixflex();
-              justify-content: center;
-              align-items: center;
-              & p, span {
-                color: $p-white;
-                font-size: 1em;
-                font-weight: 200;
-              }
+          flex-direction: column;
+          text-align: center;
+          padding: 10px 0;
+          font-family: $p-font;
+          & span {
+            margin-top: .5em;
+          }
+        }
+        & span.form-error.is-visible {
+          color: $p-red;
+          font-family: $p-font;
+          font-size: 1em;
+          padding: 1em 0;
+        }
+        & .is-invalid-input:not(:focus) {
+          background-color: rgba(236, 88, 64, 0.1);
+          border: 1px solid #ec5840;
+        }
+      }
+      & .checkout__purchase-btn {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 14.5em;
+        margin-top: 2em;
+        background-color: $p-blue;
+        & button {
+          border: none;
+          height: 4em;
+          width: 14em;
+          font-size: 2em;
+          background-color: $p-red;
+          box-shadow: 3px 3px 3px rgba(0,0,0,.25);
+          cursor: pointer;
+          & span {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            & p, span {
+              color: $p-white;
+              font-size: 1em;
+              font-weight: 200;
             }
           }
+        }
+        & button:disabled {
+          background-color: $s-grey;
+          cursor: not-allowed;
         }
       }
       & .checkout__error-dialogue {
@@ -471,12 +608,145 @@
           }
         }
       }
+      & .checkout__error-hard {
+        display: none;
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
+        min-height: 10em;
+        width: 31em;
+        padding: 1.5em;
+        background-color: rgb(218, 203, 201);
+        border: 2px solid #ec5840;
+        & .error-hard__title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & .error-icon {
+            color: $p-red;
+            font-size: 5em;
+            font-weight: 200;
+            line-height: 1.25em;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+          & h2 {
+            margin-left: .25em;
+            color: $p-red;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+        }
+        & p {
+          text-align: center;
+          color: $p-red;
+          font-size: 1.6em;
+          line-height: 1.21em;
+          font-weight: 200;
+          @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.1));
+          & .success-spinner-icon {
+            color: $p-white;
+            font-size: 1.6em;
+            font-weight: 200;
+            line-height: 1.25em;
+          }
+        }
+      }
+      & .checkout__error-soft {
+        display: none;
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
+        min-height: 10em;
+        width: 31em;
+        padding: 1.5em;
+        background-color: #FF9C00;
+        border: 2px solid #FF6300;
+        & .error-soft__title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & .error-icon {
+            color: $p-white;
+            font-size: 5em;
+            font-weight: 200;
+            line-height: 1.25em;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+          & h2 {
+            margin-left: .25em;
+            color: $p-white;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+        }
+        & p {
+          text-align: center;
+          color: $p-white;
+          font-size: 1.6em;
+          line-height: 1.21em;
+          font-weight: 200;
+          @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          & .success-spinner-icon {
+            color: $p-white;
+            font-size: 1.6em;
+            font-weight: 200;
+            line-height: 1.25em;
+          }
+        }
+      }
+      & .checkout__successful-purchase {
+        display: none;
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 0;
+        min-height: 10em;
+        width: 31em;
+        padding: 1.5em;
+        background-color: $p-green;
+        border: 2px solid $s-green;
+        & .successful-purchase__title {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          & .success-icon {
+            color: $p-white;
+            font-size: 5em;
+            font-weight: 200;
+            line-height: 1.25em;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+          & h2 {
+            margin-left: .25em;
+            color: $p-white;
+            @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          }
+        }
+        & p {
+          text-align: center;
+          color: $p-white;
+          font-size: 1.6em;
+          line-height: 1.21em;
+          font-weight: 200;
+          @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+          & .success-spinner-icon {
+            color: $p-white;
+            font-size: 1.6em;
+            font-weight: 200;
+            line-height: 1.25em;
+          }
+        }
+      }
       & .checkout__back-home-btn {
         @include prefixflex();
         justify-content: center;
         align-items: center;
         height: 8em;
         order: 8;
+        margin-top: 2em;
         margin-right: 0;
         background-color: $p-white;
         & button {
@@ -490,6 +760,111 @@
           background-color: $p-red;
           box-shadow: 3px 3px 3px rgba(0,0,0,.25);
           cursor: pointer;
+        }
+      }
+    }
+
+    & .checkout__cvn-modal {
+      @include prefixflex();
+      width: 100%;
+      height: 100%;
+      z-index: 30;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,.75);
+      & .cvn-modal__dialogue {
+        @include prefixflex();
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: $p-white;
+        & .dialogue__exit--container {
+          width: 100%;
+          height: 4em;
+          @include prefixflex();
+          justify-content: flex-end;
+          & .exit-btn {
+            height: 2em;
+            width: 2em;
+            font-size: 1.5em;
+            color: $p-white;
+            border: none;
+            background-color: $p-red;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            &:hover,
+            &:active,
+            &:focus {
+              outline: none;
+              background-color: $p-blue;
+            }
+            span {
+              @include prefixed(transform, rotate(45deg));
+            }
+          }
+        }
+        & .dialogue__cvn-blurb {
+          @include prefixflex();
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          // height: 20em;
+          p {
+            font-family: $p-font;
+            color: $p-blue;
+            font-size: 1.8em;
+            line-height: 1.38em;
+            text-align: center;
+            & .sub-title__bold {
+              font-weight: bold;
+            }
+          }
+          & .product-title__example {
+            margin-top: 1em;
+            text-decoration: underline;
+          }
+          & .cvn-blurb__image-src {
+            padding: 2em 0;
+          }
+        }
+        & .dialogue__action-btns {
+          @include prefixflex();
+          justify-content: space-around;;
+          align-items: flex-end;
+          height: 13em;
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0 2em 2em 2em;
+          & .action-btn__msg {
+            @include prefixflex();
+            justify-content: center;
+            align-items: center;
+            padding: 2em;
+            margin-bottom: 2em;
+            flex-direction: column;
+            p {
+              font-family: $p-font;
+              color: $p-blue;
+              font-size: 1.8em;
+              line-height: 1.38em;
+              text-align: center;
+            }
+            & .msg__sub-title {
+              font-family: $p-font;
+              color: $p-blue;
+              font-size: 1.8em;
+              line-height: 1.38em;
+              margin-top: .5em;
+              text-align: center;
+              & span {
+                font-weight: bold;
+              }
+            }
+          }
         }
       }
     }

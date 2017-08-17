@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import ShoppingCartTotal from './ShoppingCartTotal';
 
 function ShoppingCartWeb({
   cart,
@@ -9,6 +10,8 @@ function ShoppingCartWeb({
   routerPush,
   mobileActive,
   showProductRow,
+  emptyCart,
+  total,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -38,26 +41,9 @@ function ShoppingCartWeb({
           )}
         </tbody>
       </table>
-      <div className="shopping-cart-analysis-main">
-        <div className="shopping-cart-analysis-taxes">
-          <div className="shopping-cart-analysis-taxes-title">
-            <h3 className="title">Taxes</h3>
-          </div>
-          <div className="shopping-cart-analysis-taxes-cost">
-            <FontAwesome name="usd" />
-            <h3>{'\u00A0'}{`${taxes}`}</h3>
-          </div>
-        </div>
-        <div className="shopping-cart-analysis-grand-total">
-          <div className="shopping-cart-analysis-grand-total-title">
-            <h3 className="title">Grand Total</h3>
-          </div>
-          <div className="shopping-cart-analysis-grand-total-cost">
-            <FontAwesome name="usd" />
-            <h3>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h3>
-          </div>
-        </div>
-      </div>
+
+      <ShoppingCartTotal total={total} />
+
       <div className="shopping-cart-action-btns-parent">
         <button
           data-slug="express_checkout"
@@ -69,7 +55,10 @@ function ShoppingCartWeb({
             {'\u0020'}Express Checkout
           </span>
         </button>
-        <button className="shopping-cart-action-btn-clear sweep-right">
+        <button
+          className="shopping-cart-action-btn-clear sweep-right"
+          onClick={emptyCart}
+        >
           <span className="btn-flex-parent">
             Clear Shopping Cart
           </span>
@@ -87,18 +76,30 @@ function ShoppingCartWeb({
     </div>
   );
 }
-const { func, number, arrayOf, object, bool, string } = PropTypes;
+const { func, number, arrayOf, object, bool, shape } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
-  taxes: string,
+  taxes: number,
   grandTotal: number,
   routerPush: func.isRequired,
   showProductRow: func.isRequired,
   mobileActive: bool.isRequired,
+  emptyCart: func.isRequired,
+  total: shape({
+    discount: shape({
+      qty: bool.isRequired,
+      qtyAmount: number.isRequired,
+      register: bool.isRequired,
+      registerAmount: number.isRequired,
+    }),
+    taxes: number.isRequired,
+    grandTotal: number.isRequired,
+    subTotal: number.isRequired,
+  }).isRequired,
 };
 ShoppingCartWeb.defaultProps = {
   cart: [],
-  taxes: '0.00', // converted to string to ensure 2 decimal places.
-  grandTotal: 0, // will be converted to string for same reasons in JSX.
+  taxes: 0,
+  grandTotal: 0,
 };
 export default ShoppingCartWeb;

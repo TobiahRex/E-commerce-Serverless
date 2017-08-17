@@ -1,553 +1,669 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+import Masonry from 'masonry-layout';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { graphql, compose } from 'react-apollo';
+import Validation from 'react-validation';
 
+import {
+  apiActions,
+  orderActions,
+  toasterActions,
+} from './redux.imports';
 
-export default function ExpressCheckout() {
-  return (
-    <div className="checkout__container">
-      <div className="checkout__breadcrumb--container">
-        <ul className="list">
-          <li className="path">
-            <Link className="path__link" to="/">Home</Link>
-            <FontAwesome
-              className="path__link--right-chevron"
-              name="angle-right"
-            />
-          </li>
-          <li className="path">
-            Express Checkout
-          </li>
-        </ul>
-      </div>
-      <div className="checkout__title">
-        <h1>Express Checkout</h1>
-      </div>
-      <div className="checkout__body grid" data-masonry='{ "itemSelector": ".checkout__grid", "columnWidth": 340, "gutter": 22 }'>
-        <div className="checkout__grid">
-          <div className="checkout__billing">
-            <div className="title">
-              <h3>Billing Address</h3>
-            </div>
-            <div className="input__row">
-              <div className="input__row--first-name">
-                <p>First Name</p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-              <div className="input__row--last-name">
-                <p>Last Name</p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+import {
+  zipUserCart as ZipUserCart,
+  determineCartType as DetermineCartType,
+  checkNewUser as CheckNewUser,
+  arrayDeepEquality as ArrayDeepEquality,
+  composeFinalTotal as ComposeFinalTotal,
+  squarePaymentForm as SqrPaymentForm,
+  cleanOffTypename as CleanOffTypename,
+  checkForToast as CheckForToast,
+  generateFinalForm as GenerateFinalForm,
+} from './utilities.imports';
+import {
+  BreadCrumb,
+  ShippingAddress,
+  ShippingMethod,
+  CreditCardInfo,
+  ProductReview,
+  GrandTotal,
+  NetworkStatus,
+  CvnModal,
+  SubmitOrder,
+  FirstName,
+  LastName,
+  Email,
+  AddressLine,
+  Country,
+  Prefecture,
+  City,
+  PostalCode,
+  PhoneNumber,
+} from './component.imports';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
 
-            <div className="input__row">
-              <div className="input__row--email">
-                <p>Email <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+import {
+  ValidatePostal,
+  SubmitFinalOrder,
+} from '../../graphql/mutations';
 
-            <div className="input__row">
-              <div className="input__row--address-line-1">
-                <p>Address Line 1 <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+class ExpressCheckout extends React.Component {
+  constructor(props) {
+    super(props);
 
-            <div className="input__row">
-              <div className="input__row--address-line-2">
-                <p>Address Line 2 <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+    this.state = {
+      ccRenderKey: 'renderWithZip',
+      showCvnModal: false,
+      error: null,
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
+      // --- Form Data from Nested Components ---
+      prComments: '',
+      newsletterDecision: false,
+      shippingFirstName: '',
+      shippingLastName: '',
+      shippingEmail: '',
+      shippingPostalCode: '',
+      shippingAddressLine1: '',
+      shippingAddressLine2: '',
+      shippingCountry: 'Japan - JP',
+      shippingPrefecture: '',
+      shippingCity: '',
+      shippingPhoneNumber: '',
+      ccNameOnCard: '',
+      ccNumber: '',
+      ccExpireMonth: '',
+      ccExpireYear: '',
+      ccCvn: '',
+      ccZip: '',
+      ccCountry: '',
+      termsAgreement: false,
+      // --- From props ---
+      cart: [],
+      total: {
+        discount: {
+          qty: false,
+          qtyAmount: 0,
+          register: false,
+          registerAmount: 0,
+        },
+        subTotal: 0,
+        grandTotal: 0,
+        taxes: 0,
+      },
+    };
+  }
 
-            <div className="input__row">
-              <div className="input__row--country">
-                <p>Country <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  componentWillReceiveProps(nextProps) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
 
-            <div className="input__row">
-              <div className="input__row--prefecture">
-                <p>Prefecture <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+    if (!!nextProps.postalError) {
+      this.form.showError('shippingPostalCode', 'postalApi');
+    } else if (!_.isEqual(npCopy, tpCopy)) {
+      this.setState(prevState => ({
+        ...prevState,
+        ...nextProps,
+      }));
+    }
 
-            <div className="input__row">
-              <div className="input__row--postal-code">
-                <p>Postal Code <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+    if (
+      !ArrayDeepEquality(this.state.cart, nextProps.cart) ||
+      !_.isEqual(this.state.total, nextProps.total)
+    ) {
+      this.setState(prevState => ({
+        ...prevState,
+        cart: nextProps.cart,
+      }));
+    }
+  }
 
-            <div className="input__row">
-              <div className="input__row--city">
-                <p>City <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  shouldComponentUpdate(nextProps, nextState) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
 
-            <div className="input__row">
-              <div className="input__row--phone">
-                <p>Phone / Cell <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+    if (!_.isEqual(npCopy, tpCopy)) return true;
 
-            <div className="input__row">
-              <div className="input__row--same-as-billing">
-                <input
-                  type="checkbox"
-                  onChange={e => console.log(e.target.value)}
-                />
-                <p>Use same address for shipping.<span className="required">*</span></p>
-              </div>
-            </div>
-          </div>
-          <div className="checkout__shipping">
-            <div className="title">
-              <h3>Shipping Address</h3>
-            </div>
-            <div className="input__row">
-              <div className="input__row--first-name">
-                <p>First Name</p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-              <div className="input__row--last-name">
-                <p>Last Name</p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+    if (!_.isEqual(nextState, this.state)) return true;
 
-            <div className="input__row">
-              <div className="input__row--email">
-                <p>Email <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+    return false;
+  }
 
-            <div className="input__row">
-              <div className="input__row--address-line-1">
-                <p>Address Line 1 <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  componentWillUpdate() {
+    const msnry = new Masonry('.grid', { // eslint-disable-line
+      itemSelector: '.checkout__grid',
+      columnWidth: 340,
+      gutter: 22,
+    });
+  }
 
-            <div className="input__row">
-              <div className="input__row--address-line-2">
-                <p>Address Line 2 <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  routerPush = (e) => {
+    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
+  }
 
-            <div className="input__row">
-              <div className="input__row--country">
-                <p>Country <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  /**
+  * Function: "handleOnChange"
+  * 1. If the input that triggered the event is "ccCountry", then continue...  Otherwise, simply set the state of the event target name, with the event target value.
+  * 2. Check to see if we've created a SquarePaymentForm twice already.  If so, the count is too high, and we need to refresh the page, to re-invoke the main <scrpt> tag from Square.
+  * 3. Identify the current form type: With postal code as a required field? or not?
+  * 4. If either of the values in steps 2 or 3 are truthy, refresh the page.  Otherwise...
+  * 5. Check to see if the country the user chose, is a country that requires a postal code field to successfully validate and receive a card nonce.
+  * // ---
+  * 6.  If the country requires a postal code, then immediately check to see if there is currently an active Form.  If not, simply set the state with the new target value for the target name, and once complete, create a new form with the postal field required, and then call build once the form is finished being created.  The "build" call, is required for SPA's.
+  * 7. If there is already a form created, then check to see if the form already is built with the postal field...
+  * 8a. If the postal fields is already a part of the form that is cached, simply call "build" again which will reset the form, but not create a new one.
+  * 8b.  If the postal field is NOT already a part of the form that is cached, then call "setState" with the new target value for the target name, and once compelete "destroy" on the cached form, then "create" for a new one, and then "build" to activate it.
+  * // ---
+  * 6. If the country does NOT require a postal code, then do all the above steps but with create a form (when required) without the postal code input.
+  *
+  * @param: {object} event - the event object.
+  *
+  * @return: null
+  */
+  handleOnChange = (e) => {
+    if (e.target.name === 'ccCountry') {
+      const country = e.target.value.split('-')[1];
+      const countIsTooHigh = SqrPaymentForm.count === 2;
+      const postalNotReq = SqrPaymentForm.type === 'renderWithoutZip';
 
-            <div className="input__row">
-              <div className="input__row--prefecture">
-                <p>Prefecture <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+      if (countIsTooHigh || postalNotReq) {
+        window.location.reload();
+      } else {
+        const countriesWithPostal = ['US', 'CA', 'UK'];
+        if (countriesWithPostal.includes(country)) {
+          if (!!SqrPaymentForm.options) {
+            if (SqrPaymentForm.type === 'renderWithZip') {
+              this.setState(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithZip',
+              }), () => {
+                SqrPaymentForm.build();
+              });
+            } else {
+              this.setState(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithZip',
+              }), () => {
+                SqrPaymentForm.destroy();
+                SqrPaymentForm.create('renderWithZip',
+                country, this.handleNonceResponse);
+                SqrPaymentForm.build();
+              });
+            }
+          } else {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithZip',
+            }), () => {
+              SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
+              SqrPaymentForm.build();
+            });
+          }
+        } else if (!!SqrPaymentForm.options) {
+          if (SqrPaymentForm.type === 'renderWithoutZip') {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithoutZip',
+            }), () => {
+              SqrPaymentForm.build();
+            });
+          } else {
+            this.setState(prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithoutZip',
+            }), () => {
+              SqrPaymentForm.destroy();
+              SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
+              SqrPaymentForm.build();
+            });
+          }
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            ccRenderKey: 'renderWithoutZip',
+          }), () => {
+            SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
+            SqrPaymentForm.build();
+          });
+        }
+      }
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+  };
 
-            <div className="input__row">
-              <div className="input__row--postal-code">
-                <p>Postal Code <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  toggleModal = (e) => {
+    const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
+    this.setState(prevState => ({ [modal]: !prevState[modal] }));
+  }
 
-            <div className="input__row">
-              <div className="input__row--city">
-                <p>City <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
+  assignRefToForm = (formComp) => { this.form = formComp; }
 
-            <div className="input__row">
-              <div className="input__row--phone">
-                <p>Phone / Cell <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
+  handleOnSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ error: this.form.validateAll() });
+  }
+
+  handleNonceResponse = (errors, cardNonce, cardData) => {
+    if (errors) {
+      this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          hard: true,
+          soft: false,
+          message: errors.reduce((accum, next, i) => {
+            accum += `   ${i + 1}) ${next.message}.`;
+            return accum;
+          }, ''),
+        },
+      }));
+    } else {
+      const formData = GenerateFinalForm({
+        state: this.state,
+        props: this.props,
+        cardData: {
+          ...cardData,
+          cardNonce,
+        },
+      });
+
+      this.props.GraphQLsubmitOrder(formData)
+      .then(({ data: { SubmitFinalOrder: response } }) => {
+        const cleanResponse = CleanOffTypename(response);
+
+        console.log('%ccleanResponse', 'background:lime;', cleanResponse);
+
+        this.props.toastSuccess(true, 'Order successfully submitted!');
+        // TODO create a redux action to save response into local state.
+      })
+      .catch(this.props.GraphQLhandleError);
+    }
+  }
+
+  validatePostal = () => {
+    this.props.GraphQLvalidatePostal(this.state.shippingPostalCode)
+    .then((response) => {
+      const {
+        data: {
+          ValidatePostal: {
+            _id,
+            error,
+            postalInfo,
+          },
+        },
+      } = CleanOffTypename(response);
+
+      if (!!error.hard || !!error.soft) {
+        this.props.apiFail();
+        this.props.gotInvalidPostal({ error: true });
+        this.props.toastError(true, error.message);
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          shippingPostalCode: postalInfo.postalCode,
+          shippingAddressLine1: postalInfo.jpAddress,
+        }), () => {
+          this.props.apiSuccess();
+          this.props.clearToaster();
+          this.props.gotValidPostal({
+            ...postalInfo,
+            sagawaId: _id,
+          });
+        });
+      }
+    })
+    .catch(this.props.GraphQLhandleError);
+  }
+
+  clearValidationError = name => this.form.hideError(name)
+
+  render() {
+    const {
+      userId,
+      loggedIn,
+      toast,
+      apiFetching,
+    } = this.props;
+
+    const {
+      ccRenderKey,
+      cart,
+      errors,
+      prComments,
+      newsletterDecision,
+      // ---
+      shippingFirstName,
+      shippingLastName,
+      shippingEmail,
+      shippingAddressLine1,
+      shippingAddressLine2,
+      shippingPostalCode,
+      shippingPrefecture,
+      shippingCity,
+      shippingPhoneNumber,
+      // ---
+      ccNameOnCard,
+      ccNumber,
+      ccExpireMonth,
+      ccExpireYear,
+      ccCountry,
+      ccCvn,
+      ccZip,
+      // ---
+      total,
+      termsAgreement,
+    } = this.state;
+
+    return (
+      <div className="checkout__container">
+        <BreadCrumb
+          paths={['Home']}
+          classes={['home']}
+          destination={['']}
+          lastCrumb="Express Checkout"
+        />
+        <div className="checkout__title">
+          <h1>Express Checkout</h1>
         </div>
-        <div className="checkout__grid">
-          <div className="checkout__shipping-method">
-            <div className="title">
-              <h3>Shipping Method</h3>
+        <Validation.components.Form
+          ref={this.assignRefToForm}
+          onSubmit={this.handleOnSubmit}
+        >
+          <div className="checkout__body grid">
+            <div className="checkout__grid">
+              <ProductReview
+                cart={cart}
+                comments={prComments}
+                loggedIn={loggedIn}
+                routerPush={this.routerPush}
+                newsletterDecision={newsletterDecision}
+                handleOnChange={this.handleOnChange}
+              />
+              <ShippingMethod />
             </div>
-            <div className="input__row">
-              <div className="input__row--free-shipping">
-                <input
-                  type="checkbox"
-                  checked
-                  onChange={e => console.log(e.target.value)}
-                />
-                <p>Free International Shipping.</p>
-              </div>
-            </div>
-          </div>
-          <div className="checkout__credit-card">
-            <div className="title">
-              <h3>Credit Card Information</h3>
-            </div>
-
-            <div className="input__row">
-              <div className="input__row--cc-type">
-                <p>Accepted Credit Card Types</p>
-                <div className="types">
-                  <FontAwesome name="cc-visa" />
-                  <FontAwesome name="cc-mastercard" />
-                  <FontAwesome name="cc-discover" />
-                  <FontAwesome name="cc-amex" />
+            <div className="checkout__grid">
+              <ShippingAddress>
+                <div className="input__row">
+                  <FirstName
+                    shippingFirstName={shippingFirstName}
+                    handleOnChange={this.handleOnChange}
+                  />
+                  <LastName
+                    shippingLastName={shippingLastName}
+                    handleOnChange={this.handleOnChange}
+                  />
                 </div>
-              </div>
-            </div>
 
-            <div className="input__row">
-              <div className="input__row--name-on-card">
-                <p>Name on Card <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
+                <Email
+                  shippingEmail={shippingEmail}
+                  handleOnChange={this.handleOnChange}
                 />
-              </div>
-            </div>
 
-
-            <div className="input__row">
-              <div className="input__row--cc-number">
-                <p>Credit Card Number <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
+                <PostalCode
+                  handleOnChange={this.handleOnChange}
+                  validatePostal={this.validatePostal}
+                  shippingPostalCode={shippingPostalCode}
+                  clearValidationError={this.clearValidationError}
                 />
-              </div>
-            </div>
 
-            <div className="input__row">
-              <div className="input__row--exp-date">
-                <div className="input__container--exp-month">
-                  <p>Expiration Date <span className="required">*</span></p>
-                  <select className="input--select">
-                    <option value="Month" className="input--option">Month</option>
-                    <option value="01 - January" className="input--option">
-                      01 - January
-                    </option>
-                    <option value="02 - February" className="input--option">
-                      02 - February
-                    </option>
-                    <option value="03 - March" className="input--option">
-                      03 - March
-                    </option>
-                    <option value="04 - April" className="input--option">
-                      04 - April
-                    </option>
-                    <option value="05 - May" className="input--option">
-                      05 - May
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      06 - June
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      07 - July
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      08 - August
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      09 - September
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      10- October
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      11 - November
-                    </option>
-                    <option value="01 - January" className="input--option">
-                      12 - December
-                    </option>
-                  </select>
-                </div>
-                <div className="input__container--exp-year">
-                  <p>{'\u00A0'}</p>
-                  <select className="input--select">
-                    <option value="Month" className="input--option">Year</option>
-                    <option value="2017" className="input--option">
-                      2017
-                    </option>
-                    <option value="2018" className="input--option">
-                      2018
-                    </option>
-                    <option value="2019" className="input--option">
-                      2019
-                    </option>
-                    <option value="2020" className="input--option">
-                      2020
-                    </option>
-                    <option value="2021" className="input--option">
-                      2021
-                    </option>
-                    <option value="2017" className="input--option">
-                      2022
-                    </option>
-                    <option value="2017" className="input--option">
-                      2023
-                    </option>
-                    <option value="2017" className="input--option">
-                      2024
-                    </option>
-                    <option value="2017" className="input--option">
-                      2025
-                    </option>
-                    <option value="2017" className="input--option">
-                      2026
-                    </option>
-                    <option value="2017" className="input--option">
-                      2027
-                    </option>
-                    <option value="2017" className="input--option">
-                      2028
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="input__row cvn">
-              <div className="input__row--cvn-number">
-                <p>Card Verification Number (CVN) <span className="required">*</span></p>
-                <input
-                  type="text"
-                  onChange={e => console.log(e.target.value)}
+                <AddressLine
+                  line={1}
+                  type="shipping"
+                  title={'Kanji Address'}
+                  disabled
+                  required={false}
+                  placeHolder={'Generated from Postal Code...'}
+                  addressLine={shippingAddressLine1}
                 />
-                <button
-                  className="button--cvn-modal"
-                  onClick={() => console.info('Show CVN modal')}
-                >Whats this ?</button>
-              </div>
-            </div>
 
-          </div>
-          <div className="checkout__product-review">
-            <div className="title">
-              <h3>Product Review</h3>
-            </div>
-
-            <table className="table__container">
-              <thead className="table__header">
-                <tr className="header__row">
-                  <th className="header__row--product-name">Product Name</th>
-                  <th className="header__row--qty">Qty</th>
-                  <th className="header__row--subtotal">Subtotal</th>
-                </tr>
-              </thead>
-              <tbody className="table__body">
-                <tr className="body__row">
-                  <td className="body__row--product-name">
-                    <div className="image__container">
-                      <img alt="Juice" className="image--source" />
-                    </div>
-                    <div className="description__container">
-                      <p>Fruity Bamm-Bamm</p>
-                      <p>Nicotine Strength: <i>6mg</i></p>
-                    </div>
-                  </td>
-                  <td className="body__row--product-qty">
-                    <div className="qty--container">
-                      <p>3</p>
-                    </div>
-                  </td>
-                  <td className="body__row--product-subtotal">
-                    <div className="product-subtotal-container">
-                      <p><FontAwesome name="usd" />{'\u00A0'}90.00</p>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="body__row">
-                  <td className="body__row--product-name">
-                    <div className="image__container">
-                      <img alt="Juice" className="image--source" />
-                    </div>
-                    <div className="description__container">
-                      <p>French Vanilla Mocha</p>
-                      <p>Nicotine Strength: <i>8mg</i></p>
-                    </div>
-                  </td>
-                  <td className="body__row--product-qty">
-                    <div className="qty--container">
-                      <p>1</p>
-                    </div>
-                  </td>
-                  <td className="body__row--product-subtotal">
-                    <div className="product-subtotal-container">
-                      <p><FontAwesome name="usd" />{'\u00A0'}30.00</p>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className="checkout__comments">
-              <textarea cols="40" rows="5" value={'Comments'} />
-            </div>
-
-            <div className="input__row">
-              <div className="input__row--newsletter">
-                <input
-                  type="checkbox"
-                  onChange={e => console.log(e.target.value)}
+                <AddressLine
+                  required
+                  type="shipping"
+                  line={2}
+                  placeHolder={'RM3 1-1-8 Odakicho'}
+                  title={'Room # | Street # | Street Name'}
+                  addressLine={shippingAddressLine2}
+                  handleOnChange={this.handleOnChange}
                 />
-                <p>Sign Up for Newsletter</p>
-              </div>
-            </div>
 
-            <div className="input__row">
-              <div className="input__row--guest-warning">
-                <p><span className="warning-bold">Warning: </span>You are currently checking out as a “Guest”. If you would like to save your checkout info for future purchases, register now and we will save your information & you will receive 10% off your first order as a new member.</p>
-              </div>
-            </div>
+                <Country disabled />
 
-            <div className="input__row">
-              <div className="input__row--guest-register">
-                <button className="guest-register sweep-right" onClick={() => browserHistory.push('/register')}>
-                  Register & Save 10%
-                </button>
-              </div>
-            </div>
+                <Prefecture
+                  type="shipping"
+                  prefecture={shippingPrefecture}
+                  handleOnChange={this.handleOnChange}
+                />
 
-          </div>
-        </div>
-        <div className="checkout__grid">
-          <div className="checkout__grand-total">
-            <div className="title">
-              <h3>Total</h3>
-            </div>
+                <City
+                  type="shipping"
+                  city={shippingCity}
+                  handleOnChange={this.handleOnChange}
+                />
 
-            <div className="analysis-container">
-              <div className="analysis-container--subtotal">
-                <p>Subtotal</p>
-                <p><FontAwesome name="usd" />{'\u00A0'}90.00</p>
-              </div>
-              <div className="analysis-container--shipping">
-                <p>Shipping & Handling</p>
-                <p><i>Free</i></p>
-              </div>
-              <div className="analysis-container--discount">
-                <p>New Member Discount</p>
-                <p><FontAwesome name="usd" />{'\u00A0'}-9.00</p>
-              </div>
-              <div className="analysis-container--taxes">
-                <p>Taxes</p>
-                <p><FontAwesome name="usd" />{'\u00A0'}8.10</p>
-              </div>
-              <div className="analysis-container--grand-total">
-                <h3>Grand Total</h3>
-                <h3><FontAwesome name="usd" />{'\u00A0'}8.10</h3>
-              </div>
+                <PhoneNumber
+                  type="shipping"
+                  phoneNumber={shippingPhoneNumber}
+                  handleOnChange={this.handleOnChange}
+                />
+              </ShippingAddress>
             </div>
-            <div className="terms-agreement">
-              <input type="checkbox" className="checkbox" value={'\f067'} />
-              <p>I have read & agree to all <Link to="/terms_and_conditions">
-                Terms & Conditions
-              </Link></p>
+            <div className="checkout__grid">
+              <CreditCardInfo
+                ccRenderKey={ccRenderKey}
+                ccNameOnCard={ccNameOnCard}
+                ccCountry={ccCountry}
+                ccNumber={ccNumber}
+                ccExpireMonth={ccExpireMonth}
+                ccExpireYear={ccExpireYear}
+                ccCvn={ccCvn}
+                ccZip={ccZip}
+                handleOnChange={this.handleOnChange}
+                toggleModal={this.toggleModal}
+              />
+              <GrandTotal
+                total={total}
+                showTotal={!!cart.length}
+                termsAgreement={termsAgreement}
+                handleOnChange={this.handleOnChange}
+              />
+
+              <SubmitOrder
+                enable={(cart.length && userId) ? true : false} //eslint-disable-line
+              />
+
+              <NetworkStatus
+                toast={toast}
+                errors={errors}
+                loading={apiFetching}
+                success={false}
+                routerPush={this.routerPush}
+              />
             </div>
-            <div className="purchase-btn">
-              <button
-                onClick={() => console.info('PLACE ORDER')}
-              >
-                <span className="btn-flex-parent">
-                  <FontAwesome name="barcode" />
-                  {'\u00A0'}
-                  <p>Place Order Now</p>
-                </span>
-              </button>
-            </div>
           </div>
-          <div className="checkout__error-dialogue">
-            <p>
-              <FontAwesome className="error-icon" name="times-circle" />
-              <span className="error-title">ERROR: </span>
-              There was an error placing your order: Credit card information was invalid.
-            </p>
-          </div>
-          <div className="checkout__loading-icon"  style={{ display: 'none' }}>
-            <FontAwesome className="spinner-icon" name="spinner" spin />
-            <p>One moment please</p>
-            <p>while we process your order...</p>
-          </div>
-          <div className="checkout__back-home-btn ">
-            <button className="sweep-right" onClick={() => browserHistory.push('/')}>Back To Homepage</button>
-          </div>
-        </div>
+        </Validation.components.Form>
+
+        <CvnModal
+          showModal={this.state.showCvnModal}
+          toggleModal={this.toggleModal}
+        />
+
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+const ExpressCheckoutWithState = connect((state, ownProps) => {
+  const total = ComposeFinalTotal(ownProps);
+  const cart = DetermineCartType(ownProps, ZipUserCart);
+
+  return ({
+    total,
+    cart,
+  });
+}, (dispatch, ownProps) => ({
+  push: location => dispatch(push(location)),
+  GraphQLhandleError: (error) => {
+    let errorMsg = '';
+
+    if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
+      errorMsg = 'You must login or register to complete this transaction.';
+    } else if (/(GraphQL error: )/.test(error.message)) {
+      errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
+    }
+
+    ownProps.toastError(true, errorMsg || error.message);
+    ownProps.apiFail();
+  },
+  GraphQLvalidatePostal: (postalCode) => {
+    ownProps.apiIsFetching();
+    return ownProps.ValidatePostal({
+      variables: {
+        postalCode,
+        userId: ownProps.userId,
+      },
+    });
+  },
+  GraphQLsubmitOrder: (formData) => {
+    ownProps.apiIsFetching();
+    return ownProps.SubmitFinalOrder({
+      variables: { ...formData },
+    });
+  },
+}))(ExpressCheckout);
+
+const ExpressCheckoutWithStateAndData = compose(
+  graphql(ValidatePostal, { name: 'ValidatePostal' }),
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: FetchMultipleProductsOptions,
+  }),
+  graphql(SubmitFinalOrder, { name: 'SubmitFinalOrder' }),
+)(ExpressCheckoutWithState);
+
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
+  toast: CheckForToast(toaster),
+  userId: !!user.profile ? user.profile._id : '',
+  sagawaId: orders.postalInfo.sagawaId,
+  taxRate: orders.taxRate,
+  newUser: CheckNewUser(user, auth.loggedIn),
+  loggedIn: auth.loggedIn || false,
+  userCart: !!auth.loggedIn ? user.profile.shopping.cart : [],
+  guestCart: orders.cart,
+  apiFetching: api.fetching,
+  postalError: orders.postalInfo.error,
+}), dispatch => ({
+  toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
+  toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
+  toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
+  clearToaster: () => dispatch(toasterActions.clearToaster()),
+  //
+  apiIsFetching: () => dispatch(apiActions.fetching()),
+  apiFail: () => dispatch(apiActions.apiFail()),
+  apiSuccess: () => dispatch(apiActions.apiSuccess()),
+  //
+  gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
+  gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
+}))(ExpressCheckoutWithStateAndData);
+
+const {
+  func,
+  bool,
+  any,
+  shape,
+  object,
+  string,
+  number,
+  arrayOf,
+  objectOf,
+} = PropTypes;
+
+ExpressCheckout.propTypes = {
+  push: func.isRequired,
+  // ---
+  gotValidPostal: func.isRequired,
+  gotInvalidPostal: func.isRequired,
+  postalError: bool.isRequired,
+  sagwaId: string,
+  // ---
+  toast: shape({
+    type: string,
+    message: string,
+  }).isRequired,
+  toastError: func.isRequired,
+  toastWarning: func.isRequired,
+  toastSuccess: func.isRequired,
+  clearToaster: func.isRequired,
+  // ---
+  apiFail: func.isRequired,
+  apiSuccess: func.isRequired,
+  apiFetching: bool,
+  apiIsFetching: func.isRequired,
+  // ---
+  cart: arrayOf(object),
+  userCart: arrayOf(object),
+  guestCart: arrayOf(object),
+  // ---
+  userId: string.isRequired,
+  loggedIn: bool.isRequired,
+  newUser: bool.isRequired,
+  // ---
+  taxRate: shape({
+    stateRate: number,
+    cityRate: number,
+    totalRate: number,
+  }).isRequired,
+  total: shape({
+    discount: {
+      qty: bool,
+      qtyAmount: number,
+      register: bool,
+      registerAmount: number,
+    },
+    taxes: number,
+    grandTotal: number,
+    subTotal: number,
+  }),
+  // ---
+  SubmitFinalOrder: func.isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
+  GraphQLhandleError: func.isRequired,
+  GraphQLvalidatePostal: func.isRequired,
+  GraphQLsubmitOrder: func.isRequired,
+};
+ExpressCheckout.defaultProps = {
+  cart: [],
+  userCart: [],
+  guestCart: [],
+  total: {
+    discount: {
+      qty: false,
+      qtyAmount: 0,
+      register: false,
+      registerAmount: 0,
+    },
+    taxes: 0,
+    grandTotal: 0,
+    subTotal: 0,
+  },
+  sagwaId: '',
+  apiFetching: false,
+  SubmitFinalOrder: func,
+};
+
+export default ExpressCheckoutWithStateAndData2;

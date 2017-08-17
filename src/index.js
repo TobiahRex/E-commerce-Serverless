@@ -3,11 +3,15 @@
 
 import 'babel-polyfill';
 import React from 'react';
+
 import './styles.scss';
 import 'masonry-layout';
+import './services/utils/formValidationRulesExtension';
+
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Perf from 'react-addons-perf';
+
 import createStore from './redux/index';
 import apolloClient from './graphql';
 import routes from './navigation/routes';

@@ -22,13 +22,12 @@
         & .footer-main-sections-list-contactus,
         .footer-main-sections-list-memberships,
         .footer-main-sections-list-myaccount,
-        .footer-main-sections-list-customercare {
+        .footer-main-sections-list-customercare,
+        .footer-main-sections-list-payment-options {
           display: flex;
-          justify-content:center;
-          align-items: center;
           flex-direction: column;
-          height: 25em;
           width: 30em;
+          margin-bottom: 2em;
           & h3 {
             color: $p-white;
             font-size: 2.5em;
@@ -40,11 +39,8 @@
           .footer-main-sections-memberships-list,
           .footer-main-sections-customercare-list {
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
             flex-direction: column;
             list-style-type: none;
-            padding: 0;
             & li {
               font-size: 1.5em;
               font-family: $s-font;
@@ -55,6 +51,13 @@
               cursor: pointer;
               transition: all .3s;
             }
+          }
+        }
+        & .footer-main-sections-list-payment-options {
+          justify-content: flex-end;
+          padding-bottom: 2em;
+          & img {
+            padding: 2em;
           }
         }
         & .footer-main-sections-list-contactus, {

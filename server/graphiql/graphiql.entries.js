@@ -1,11 +1,34 @@
 /* eslint-disable no-tabs, no-unused-vars */
+const sagawa = {
+  ValidatePostal: `
+  query {
+  ValidatePostal(
+    postalCode: "2220033"
+    userId: "59807ba06907df3a4524cbb9"
+  ) {
+    _id
+		error {
+		  hard
+		  soft
+		  message
+		}
+    postalInfo {
+      verified
+      postalCode
+      jpAddress
+    }
+  }
+}
+`
+}
+
 const juices = {
   PopularProducts: `
     {
     PopularProducts(qty: 6){
       _id
       docId
-      routeTag
+      slug
       images {
         purpose
         url
@@ -27,21 +50,21 @@ const juices = {
       nicotineStrength: two
       images: [{
         purpose: "card"
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fvm.png"
+        url: "/images/nj2jp_juice_card_fvm.png"
       }, {
         purpose: "large"
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-fvm.jpg"
+        url: "/images/nj2jp-fvm.jpg"
       }],
-      routeTag: "french_vanilla_mocha"
+      slug: "french_vanilla_mocha"
       vendor: "Vape Switch"
       blurb: "The French Vanilla Mocha is a delicious blend of French Vanilla, Mocha Milk Chocolate and dash of Dark Chocolate and brings a smooth, enjoyable flavor.  A nice morning Vape to replace that cigarette with your coffee, but it can easily be considered and all-day Vape."
-    }
-    statistics: {
-        adds_to_cart: 1
-        completed_checkouts: 1
-      }
-    ) {
+    }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -50,7 +73,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -58,13 +81,13 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
       statistics {
-        adds_to_cart
-        completed_checkouts
+        addsToCart
+        completedCheckouts
       }
     }
   }
@@ -81,16 +104,21 @@ const juices = {
       nicotineStrength: two,
       images: [{
         purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_klp.png"
+        url: "/images/nj2jp_juice_card_klp.png"
       }, {
         purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-klp.png"
+        url: "/images/nj2jp-klp.png"
       }],
-      routeTag: "keylime_pie",
+      slug: "keylime_pie",
       vendor: "Vape Switch",
       blurb: "Key lime Pie tastes exactly like Key Lime Pie.  It’s Delicious!"
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -99,7 +127,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -107,8 +135,8 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
     }
@@ -126,16 +154,21 @@ const juices = {
       nicotineStrength: two,
       images: [{
         purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_pc.png"
+        url: "/images/nj2jp_juice_card_pc.png"
       }, {
         purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-pc.png"
+        url: "/images/nj2jp-pc.png"
       }],
-      routeTag: "pina_colada",
+      slug: "pina_colada",
       vendor: "Vape Switch",
       blurb: "Piña Colada is a tasty blend of Pineapple and Coconut with a hint of rum flavor.  It has been steeped to give it a refined sweetness and a subtle coconut flavor.  You are sure to enjoy this blend."
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -144,7 +177,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -152,8 +185,8 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
     }
@@ -171,17 +204,22 @@ const juices = {
         nicotineStrength: eight,
         images: [{
     			purpose: "card",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_fbb.png"
+          url: "/images/nj2jp_juice_card_fbb.png"
         }, {
           purpose: "large",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-fruity-bamm-bamm.png"
+          url: "/images/nj2jp-fruity-bamm-bamm.png"
         }],
-        routeTag: "fruity_bamm_bamm",
+        slug: "fruity_bamm_bamm",
         vendor: "Vape Switch",
-        blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!!!!!"
+        blurb: "Taste just like Fruity Pebbles cereal and Its D-licious!"
 
       }) {
         _id,
+        error {
+          hard
+          soft
+          message
+        }
         product {
           mainTitle
           title
@@ -190,7 +228,7 @@ const juices = {
           sku
           size
           nicotineStrength
-          routeTag
+          slug
           vendor
           blurb
           images {
@@ -198,12 +236,13 @@ const juices = {
             url
           }
           dates {
-            added_to_store
-            removed_from_store
+            addedToStore
+            removedFromStore
           }
         }
       }
     }
+  }
   `,
   strawberriesNCream: `
   mutation CreateProduct {
@@ -217,16 +256,21 @@ const juices = {
         nicotineStrength: two,
         images: [{
     			purpose: "card",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_snc.png"
+          url: "/images/nj2jp_juice_card_snc.png"
         }, {
           purpose: "large",
-          url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-strawberries-cream.png"
+          url: "/images/nj2jp-strawberries-cream.png"
         }],
-        routeTag: "strawberries_n_cream",
+        slug: "strawberries_n_cream",
         vendor: "Vape Switch",
         blurb: "Fresh Strawberries with wonderful Cream.  So creamy and so very good!"
       }) {
         _id,
+        error {
+          hard
+          soft
+          message
+        }
         product {
           mainTitle
           title
@@ -235,7 +279,7 @@ const juices = {
           sku
           size
           nicotineStrength
-          routeTag
+          slug
           vendor
           blurb
           images {
@@ -243,8 +287,8 @@ const juices = {
             url
           }
           dates {
-            added_to_store
-            removed_from_store
+            addedToStore
+            removedFromStore
           }
         }
       }
@@ -262,16 +306,21 @@ const juices = {
       nicotineStrength: two,
       images: [{
   			purpose: "card",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_juice_card_pb.png"
+        url: "/images/nj2jp_juice_card_pb.png"
       }, {
         purpose: "large",
-        url: "https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp-pappleberry.png"
+        url: "/images/nj2jp-pappleberry.png"
       }],
-      routeTag: "papple_berry",
+      slug: "papple_berry",
       vendor: "Vape Switch",
       blurb: "Pappleberry is a wonderful blend of Peach, Apple and Strawberry.  These 3 fruity flavors masterfully combined together make a fantastic all-day vape."
     }) {
       _id,
+      error {
+        hard
+        soft
+        message
+      }
       product {
         mainTitle
         title
@@ -280,7 +329,7 @@ const juices = {
         sku
         size
         nicotineStrength
-        routeTag
+        slug
         vendor
         blurb
         images {
@@ -288,8 +337,8 @@ const juices = {
           url
         }
         dates {
-          added_to_store
-          removed_from_store
+          addedToStore
+          removedFromStore
         }
       }
     }

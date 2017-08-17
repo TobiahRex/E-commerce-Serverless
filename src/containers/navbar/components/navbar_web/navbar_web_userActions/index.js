@@ -13,7 +13,7 @@ function NavbarUserActions({ activeUser }) {
       {
         activeUser ?
           <NavbarUserActionsSignedIn activeUser={activeUser} /> :
-          <NavbarUserActionsNotSignedIn />
+        <NavbarUserActionsNotSignedIn />
       }
     </div>
   );

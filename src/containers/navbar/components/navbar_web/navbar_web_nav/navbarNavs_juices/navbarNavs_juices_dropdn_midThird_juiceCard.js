@@ -5,7 +5,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
   const {
     push,
     product,
-    routeTag,
+    slug,
   } = props;
   const imageUrl = product.images.reduce((accumObj, nextObj) => {
     switch (accumObj.purpose) {
@@ -18,7 +18,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
   return (
     <div className="midThird__juices-card">
       <button
-        data-routetag={routeTag}
+        data-slug={slug}
         className="juices-card__title"
         onClick={push}
       >
@@ -26,7 +26,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
       </button>
 
       <button
-        data-routetag={routeTag}
+        data-slug={slug}
         className="juices-card__image"
         onClick={push}
       >
@@ -53,7 +53,7 @@ NavbarNavsJuicesDropdnJuiceCards.propTypes = {
       }),
     ),
   }),
-  routeTag: string,
+  slug: string,
   push: func.isRequired,
 };
 NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
@@ -66,6 +66,6 @@ NavbarNavsJuicesDropdnJuiceCards.defaultProps = {
       url: '',
     }],
   },
-  routeTag: '',
+  slug: '',
 };
 export default NavbarNavsJuicesDropdnJuiceCards;

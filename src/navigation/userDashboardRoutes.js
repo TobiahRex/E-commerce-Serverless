@@ -23,7 +23,7 @@ function UserDashboardRoutes(requireAuth) {
   return (
     <Route
       path="/user_dashboard"
-      onEnter={requireAuth}
+      // onEnter={requireAuth}
       getComponet={(location, cb) => {
         System.import('../containers/userDashboard/userDashComponents/userDashboard')
         .then(loadRoute(cb))

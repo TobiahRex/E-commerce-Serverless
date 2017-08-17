@@ -2,8 +2,8 @@ import { create } from 'apisauce';
 
 const createGeoAPI = () => {
   const api = create({
-    baseURL: 'http://ipinfo.io',
-    // credentials: 'omit',
+    baseURL: 'https://ipinfo.io',
+    credentials: 'omit',
   });
 
   const getGeoLocation = () => api.get('');

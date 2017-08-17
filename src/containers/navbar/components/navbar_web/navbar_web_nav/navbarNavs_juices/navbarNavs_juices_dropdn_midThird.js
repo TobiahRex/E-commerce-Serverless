@@ -19,9 +19,9 @@ class NavbarNavsJuicesDropdnMidthird extends Component {
   }
 
   push = (e) => {
-    let flavor = e.target.dataset.routetag;
+    let flavor = e.target.dataset.slug;
     if (!flavor) {
-      flavor = e.target.parentNode.dataset.routetag;
+      flavor = e.target.parentNode.dataset.slug;
     }
     this.props.push(`/juice/${flavor}`);
   };
@@ -39,7 +39,7 @@ class NavbarNavsJuicesDropdnMidthird extends Component {
           { popularProducts.map(productObj => (
             <NavbarNavsJuicesDropdnJuiceCards
               key={productObj._id}
-              routeTag={productObj.routeTag}
+              slug={productObj.slug}
               push={this.push}
               product={productObj}
             />))

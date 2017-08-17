@@ -1,0 +1,6273 @@
+content-container {
+  padding-left: 20px;
+  color: #365899;
+}
+
+.content-container.text--text-body {
+  padding-right: 5px;
+  padding-left: 20px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+.content-container.text--text-body.text-body--japanese {
+  padding-right: 20px;
+  padding-left: 5px;
+  text-align: right;
+}
+
+.user-stories__heading-conainer {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.user-stories__heading-conainer.heading-container--heading {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 500;
+  text-align: left;
+}
+
+.user-stories__heading-conainer.heading-container--heading.heading--japanese {
+  text-align: right;
+}
+
+.order-tracking__title {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.order-tracking__title.order-tracking {
+  color: #365899;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+.order-tracking__title.order-tracking.order-tracking--header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.content__shipped-tracking {
+  float: right;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.content__shipped-tracking.content-tracking--tracking-text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  float: none;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: right;
+  text-shadow: none;
+}
+
+.content__shipped-tracking.shipped-tracking--shipped-text {
+  margin-bottom: -1px;
+  float: none;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.order-status {
+  margin: 25px 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-color: #000;
+}
+
+.content--text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 4px;
+  margin-bottom: 3px;
+  padding-bottom: 0px;
+  float: none;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+.content--text.order-status__content {
+  position: relative;
+  left: 11px;
+  right: 0px;
+  height: 100%;
+  max-height: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 1px;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  border-style: solid;
+  border-width: 0px;
+  border-color: rgba(0, 0, 0, .52);
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 15px;
+  -webkit-transform: perspective(2000px);
+  transform: perspective(2000px);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: 400;
+}
+
+.content--text.order-status__content.content--delivered {
+  border-right-width: 0px;
+  border-top-right-radius: 0px;
+  color: #fff;
+}
+
+.content--text.order-status__content.content--delivered.delivered--right {
+  left: 25px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.content--text.order-status__content.content--delivered.delivered--right.right--japanese {
+  left: 16px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.content--text.order-status__content.content--central {
+  left: -42px;
+  right: 9px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.content--text.order-status__content.content--central.central--japanese {
+  left: -44px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+}
+
+.order-status__packing {
+  padding-right: 0px;
+  padding-left: 0px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, .52);
+}
+
+.order-status__packing.order-status {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-width: 0px;
+  border-color: #365899;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+  background-image: linear-gradient(180deg, #365899, #365899);
+  -webkit-transform: skew(0deg, 0deg);
+  -ms-transform: skew(0deg, 0deg);
+  transform: skew(0deg, 0deg);
+}
+
+.order-status__shipped {
+  padding-right: 0px;
+  padding-left: 0px;
+  border-style: solid;
+  border-width: 2px 0px;
+  border-color: rgba(0, 0, 0, .52);
+}
+
+.order-status__shipped.order-status {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-color: #365899;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+}
+
+.order-status__delivered {
+  padding-bottom: 0px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, .52);
+}
+
+.order-status__delivered.order-status {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-width: 0px;
+  border-color: #365899;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-image: -webkit-linear-gradient(270deg, #727272, #727272);
+  background-image: linear-gradient(180deg, #727272, #727272);
+}
+
+.content-container__text {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.content-container__text.text--heading {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.content-container__text.text--heading.heading--japanese {
+  display: block;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.contenr-container__text {
+  color: #365899;
+}
+
+.contenr-container__text.text--sub-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.contenr-container__text.text--sub-heading.sub-heading--japanese {
+  text-align: right;
+}
+
+.activity-table {
+  display: block;
+  margin-right: 0px;
+  margin-left: 0px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  border-style: none;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, .52);
+}
+
+.activity-table.activity-table__location {
+  position: static;
+  padding-right: 20px;
+  border-width: 0px;
+}
+
+.activity-table.activity-table__date {
+  position: static;
+  margin-top: -20px;
+  border-width: 0px;
+  color: #365899;
+}
+
+.activity-table.activity-table__activity {
+  border-width: 0px;
+}
+
+.activity-table__top-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 13px;
+  margin-bottom: 11px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 20px;
+  line-height: 10px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: none;
+}
+
+.activity-table__content {
+  margin-top: 15px;
+  margin-right: -6px;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-width: 2px 0px;
+  border-color: rgba(0, 0, 0, .52);
+  text-align: center;
+}
+
+.activity-table__content.content--left-column {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  margin-right: -10px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-color: #365899;
+  border-top-width: 2px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.activity-table__content.content--left-column.left-column--row3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.activity-table__content.content--left-column.left-column--row4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.activity-table__content.content--right-column {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-width: 2px 0px 1px;
+  border-color: #365899;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.activity-table__content.content--right-column.right-column--row3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 5px;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.activity-table__content.content--right-column.right-column--row4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.activity-table__content.content--middle-column {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  margin-right: -20px;
+  margin-bottom: 0px;
+  margin-left: -20px;
+  padding: 5px 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-color: #365899;
+  border-top-width: 2px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.activity-table__content.content--middle-column.middle-column--row3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.activity-table__content.content--middle-column.middle-column--row4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 5px;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.body-2 {
+  margin-bottom: 4px;
+  padding-bottom: 0px;
+  border-radius: 100%;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.order-tracking__content {
+  margin-left: 0px;
+  padding-bottom: 3px;
+  border-color: rgba(0, 0, 0, .52);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.order-tracking__content.order-tracking {
+  border-bottom-width: 0px;
+}
+
+.order-tracking__content.content--shipped-tracking {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-color: #365899;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+}
+
+.page-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.order-summary.order-summary__container {
+  position: static;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 0px;
+  margin-left: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 2px solid #365899;
+}
+
+.order-summary.order-summary__title {
+  position: relative;
+  left: -39%;
+  top: -18px;
+  margin: 0px;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.order-summary.order-summary__title.title--jap {
+  left: -42%;
+}
+
+.order-summary.order-summary__top-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: visible;
+  width: 100%;
+  margin-top: -25px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  border-color: #365899;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.order-summary.order-summary--content {
+  position: static;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  border-top: 1px solid #365899;
+}
+
+.order-summary.order-summary__total {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-top: 1px solid #365899;
+}
+
+.order-summary.order-summary__tracking {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-image: -webkit-linear-gradient(270deg, hsla(0, 4%, 77%, .5), hsla(0, 4%, 77%, .5));
+  background-image: linear-gradient(180deg, hsla(0, 4%, 77%, .5), hsla(0, 4%, 77%, .5));
+}
+
+.order-summary__top-row.top-row__title-qty {
+  width: 10%;
+  max-width: 15%;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.order-summary__top-row.top-row--juice-desc {
+  width: 55%;
+  max-width: 60%;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.order-summary__top-row.top-row--price {
+  width: 20%;
+  max-width: 25%;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.order-summary__content.content--qty {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 15%;
+  max-width: 15%;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  text-align: center;
+}
+
+.order-summary__content.content--description {
+  width: 55%;
+  max-width: 60%;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.order-summary__content.content--price {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 20%;
+  max-width: 25%;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  text-align: right;
+}
+
+.order-summary__total.total--total-text {
+  width: 70%;
+  max-width: 75%;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  text-align: right;
+}
+
+.order-summary__total.total--price {
+  display: block;
+  width: 20%;
+  max-width: 25%;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  text-align: right;
+}
+
+.address__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.address__row.row--ship-to {
+  position: absolute;
+  top: 303px;
+  right: 1186px;
+  display: block;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.address__row.row--ship-to.ship-to--jap {
+  left: 367px;
+  right: 0px;
+  width: 90px;
+}
+
+.address__row.row--bill-to {
+  position: absolute;
+  left: 852px;
+  top: 303px;
+  display: block;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.address__bill-to.bill-to--content {
+  width: 100%;
+  height: 250px;
+  max-width: 100%;
+  margin-left: 15px;
+  padding: 15px 10px 10px;
+  border: 2px solid #365899;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.address__ship-to.ship-to--content {
+  width: 100%;
+  height: 250px;
+  max-width: 100%;
+  margin-right: 15px;
+  padding: 15px 10px 10px;
+  border: 2px solid #365899;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.address__ship-to.ship-to--content.content--paragraph {
+  height: 220px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  border-style: none;
+}
+
+.order-summary__tracking.tracking-content {
+  margin-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.order-success__image {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 13px;
+  padding-top: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.order-success__image.order-success__title {
+  margin-top: 0px;
+  padding-top: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #417505;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.order-success__image.order-success__content {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #417505;
+  font-size: 20px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.packaging-info {
+  padding-top: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.packaging-info.packaging-info__date-invoice {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.packaging-info.packaging-info__date {
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.packaging-info.packaging-info__tracking {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.packaging-info.packing-info__heading {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  padding-top: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.packaging-info.packing-info__order-details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.order-details.order-details__order-no {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+}
+
+.order-details.order-details__price {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  text-align: right;
+}
+
+.link {
+  color: #fc2525;
+}
+
+.user-stories.user-stories__heading-container {
+  text-align: right;
+}
+
+.user-stories.user-stories__content-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.user-stories.user-stories__content-container.content-container--japanese {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.successfully-registered {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 25px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.successfully-registered.successfully-registered__tick {
+  height: 105px;
+  margin-top: 10px;
+  padding: 0px;
+  font-family: Fontawesome, sans-serif;
+  color: #417505;
+  font-size: 120px;
+}
+
+.succsessfully-registered__heading {
+  margin-top: 10px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #417505;
+  font-weight: 700;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.successfully-registered__content {
+  padding-right: 0px;
+  padding-left: 0px;
+  font-family: 'Open Sans', sans-serif;
+  color: #417505;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.order-sucsess--image {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 1em;
+  margin-right: 30px;
+  padding-top: 0px;
+  padding-right: 0px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  font-family: Fontawesome, sans-serif;
+  color: #417505;
+  font-size: 120px;
+}
+
+.page-button__button-element {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 248.391px;
+  height: 59.9375px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, .5);
+  -webkit-transition: background-color 2000ms ease;
+  transition: background-color 2000ms ease;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.page-button__button-element:hover {
+  background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+  background-image: linear-gradient(180deg, #365899, #365899);
+  font-weight: 400;
+}
+
+.page-button__button-element.page_button-testing {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+}
+
+.page-button__button-element.page_button-testing:hover {
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+}
+
+.page-button__button-element.page_button-testing.page-button-blue {
+  position: relative;
+  left: 0px;
+  right: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  background-image: -webkit-linear-gradient(270deg, #233994, #233994);
+  background-image: linear-gradient(180deg, #233994, #233994);
+}
+
+.button-element__fontawesome {
+  padding-right: 5px;
+  font-family: Fontawesome, sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 100;
+}
+
+.container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.redbutton {
+  background-image: -webkit-linear-gradient(270deg, rgba(252, 10, 29, .99), rgba(252, 10, 29, .99));
+  background-image: linear-gradient(180deg, rgba(252, 10, 29, .99), rgba(252, 10, 29, .99));
+}
+
+.arrow-male {
+  position: relative;
+  left: 106px;
+  right: 0px;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 5px;
+  height: 100%;
+  max-width: 5px;
+  margin-top: 0px;
+  border-style: solid;
+  border-width: 20px 15px;
+  border-color: #fff #fff #fff transparent;
+  background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+  background-image: linear-gradient(180deg, #365899, #365899);
+}
+
+.arrow-male.arrow-female {
+  left: -129px;
+  right: 0px;
+  margin-top: 0px;
+  border-color: #fc2525 #fc2525 #fc2525 transparent;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+}
+
+.arrow-male.arrow-female.arrow--right {
+  left: -203px;
+  right: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-top-color: #727272;
+  border-right-color: #727272;
+  border-bottom-color: #727272;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+}
+
+.arrow-male.arrow-female.arrow--right.right--japanese {
+  left: -184px;
+}
+
+.arrow-male.arrow-female.arrow-female--japanese {
+  left: -110px;
+}
+
+.arrow-male.arrow-central--right {
+  left: 216px;
+  right: 0px;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+}
+
+.arrow-male.arrow-central--right.right--japanese {
+  left: 228px;
+}
+
+.arrow-male.arrow-male--japanese {
+  left: 120px;
+}
+
+.shopping-cart__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.shopping-cart__content.tittle--heading {
+  margin-left: 10px;
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 32px;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.shopping-cart__content.tittle--heading.heading--japanese {
+  display: block;
+  margin-right: 10px;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: right;
+}
+
+.shopping-cart__content.h2--text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 24px;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.shopping-cart__content.content--text {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.shopping-cart--font-image {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 180px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Fontawesome, sans-serif;
+  font-size: 150px;
+}
+
+.shopping-cart--font-image.shopping-cart__image {
+  font-family: Fontawesome, sans-serif;
+  color: #365899;
+}
+
+.registration__container {
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.registration__container.container--header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 101%;
+  height: 100px;
+  margin: -2px 0px -15px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+  background-image: linear-gradient(180deg, #365899, #365899);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.registration__container.container--header.header--tablet {
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-image: none;
+}
+
+.registration__container.container--header.header--jap {
+  background-image: none;
+}
+
+.registration__container.container--subheader {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 101%;
+  height: 70px;
+  margin-top: -22px;
+  margin-right: 4px;
+  margin-left: 4px;
+  padding-right: 0px;
+  border-right: 0px solid #365899;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.registration__container.container--subheader.subheader--text {
+  width: 100%;
+  margin: 0px;
+  background-image: none;
+}
+
+.registration__container.container--subheader.subheader--text.subheader-jap {
+  margin-top: 1px;
+}
+
+.registration__container.container--subheader.subheader-jap {
+  margin-top: -35px;
+}
+
+.registration__container.container--left-image {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-ordinal-group: 0;
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  order: -1;
+  border: 0px solid #365899;
+}
+
+.right-collumn__content {
+  display: block;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 18px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.right-collumn__content.content--jap {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.call-to-action-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 200px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, .5);
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.right-column__content-2 {
+  padding-top: 2px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 18px;
+  line-height: 50px;
+}
+
+.registration--container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 61%;
+  padding: 1px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  border-right-color: #365899;
+}
+
+.registration--image {
+  width: 40%;
+}
+
+.important-text {
+  border-color: #fc2525;
+  color: #365899;
+}
+
+.important-text-2 {
+  color: #365899;
+}
+
+.important-text-3 {
+  color: #365899;
+}
+
+.important-text-4 {
+  color: #365899;
+}
+
+.text-span-2 {
+  font-size: 12px;
+  line-height: 5px;
+}
+
+.masonry-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.masonry-container.masonry-container__news {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 340px;
+  margin: 10px 0px;
+  padding: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  background-image: -webkit-linear-gradient(270deg, #d8d8d8, #d8d8d8);
+  background-image: linear-gradient(180deg, #d8d8d8, #d8d8d8);
+}
+
+.masonry-container__news-heading {
+  width: 90%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding: 10px;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+  color: #385a97;
+  text-align: left;
+}
+
+.masonry-container__news-heading.masonry-container__news {
+  width: 95%;
+  margin-top: -30px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.masonry-container__news-heading.masonry-container__news.news--japanese {
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.masonry-container__news-content {
+  width: 90%;
+  padding: 10px;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+  color: #385a97;
+  font-style: normal;
+}
+
+.masonry-container__news-content.masonry-container__news {
+  width: 95%;
+  margin-bottom: 0px;
+  padding: 10px;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+.masonry-container__news-content.masonry-container__news.news--japanese {
+  text-align: right;
+}
+
+.masonry-container__news {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emphasized-text-4 {
+  line-height: 15px;
+  text-decoration: underline;
+}
+
+.masonry-container__reviews {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 340px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: -webkit-linear-gradient(270deg, #d8d8d8, #d8d8d8);
+  background-image: linear-gradient(180deg, #d8d8d8, #d8d8d8);
+}
+
+.body-3 {
+  margin-top: 1px;
+}
+
+.reviews__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+}
+
+.reviews__content.content--2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.reviews-content__image {
+  width: 195px;
+  height: 195px;
+  border-radius: 100%;
+}
+
+.reivws-content__header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #385a97;
+  font-size: 20px;
+  text-align: center;
+}
+
+.reivws-content__header.header--japanese {
+  text-align: center;
+}
+
+.reviews-conent__subheader {
+  font-family: 'Open Sans', sans-serif;
+  color: #385a97;
+  font-size: 16px;
+  text-align: center;
+}
+
+.reviews-content__text {
+  margin-bottom: 0px;
+  font-family: 'Open Sans', sans-serif;
+  color: #385a97;
+  font-size: 16px;
+}
+
+.reviews-content__text.text--japanese {
+  text-align: right;
+}
+
+.section-6 {
+  padding: 0px;
+}
+
+.link-2 {
+  margin-top: 0px;
+  line-height: 0px;
+}
+
+.faq__conatiner.container--text {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.faq__header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.faq__header.header--japanese {
+  text-align: left;
+}
+
+.container__text.text--header {
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.container__text.text--header.header--japanese {
+  text-align: right;
+}
+
+.container__text.text-content {
+  color: #365899;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.container__text.text-content.content--japanese {
+  text-align: right;
+}
+
+.masonry-container--link {
+  color: #fc2525;
+}
+
+.masonry-container--link.masonry-container {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.terms-conditions.termsconditions__header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.terms-conditions.termsconditions__header.header--japanese {
+  text-align: right;
+}
+
+.terms-conditions.terms-conditions__content {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.terms-conditions.terms-conditions__content.content--japanese {
+  text-align: right;
+}
+
+.terms-conditions.terms-conditions__content.content-phone-iphone-5 {
+  font-size: 14px;
+}
+
+.terms-conditions.terms-conditions__content-header {
+  font-size: 16px;
+}
+
+.privacy-policy.privacy-policy__header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.privacy-policy.privacy-policy__content {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.shipping.shipping__header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.shipping.shipping__header.header--japanese {
+  text-align: right;
+}
+
+.shipping.shipping__content {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.shipping.shipping__content.content--japanese {
+  text-align: right;
+}
+
+.nicotine-disclamer.nicotine-disclamer__header {
+  color: #365899;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.nicotine-disclamer.nicotine-disclamer__header.header--japanese {
+  text-align: right;
+}
+
+.nicotine-disclamer.nicotine-disclamer__content {
+  padding-right: 5px;
+  padding-left: 5px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
+
+.paragraph-12 {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: right;
+}
+
+.body-4 {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.product-reviews.product-reviews__image {
+  width: 13%;
+  height: 120px;
+  border-radius: 100px;
+}
+
+.product-reviews.product-reviews__medium-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 60px 17px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.product-reviews.product-reviews__content {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.product-reviews.product-reviews__content.content--japanese {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.product-reviews.product-reviews__buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.product-reviews__header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.product-reviews__header.header--japanese {
+  text-align: right;
+}
+
+.product-reviews__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 50px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.product-reviews__content.content--japanese {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.product-reviews__content.content--review-row {
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
+}
+
+.footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 350px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  background-image: -webkit-linear-gradient(270deg, #385a97, #385a97);
+  background-image: linear-gradient(180deg, #385a97, #385a97);
+  color: #385a97;
+}
+
+.footer__nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30%;
+  margin: 50px 5px 15px 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.footer__nav.nav--link {
+  width: 100%;
+  margin: 5px 0px;
+  font-family: 'Open Sans', sans-serif;
+  color: #cfcbcb;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.footer__about {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  margin: 50px 0px 15px 5px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.footer__legal-pages {
+  width: 50%;
+  margin: 50px 5px 15px;
+}
+
+.footer__contact {
+  width: 50%;
+  margin: 50px 5px 15px;
+}
+
+.footer__social-media {
+  width: 15%;
+  margin: 50px 5px 15px;
+}
+
+.footer__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px 15px 15px 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.footer__content.content--column-left {
+  padding-bottom: 0px;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+.footer__content.content--clumn-right {
+  padding-bottom: 0px;
+}
+
+.footer__heading {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: 400;
+}
+
+.body-5 {
+  font-family: Ubuntu, Helvetica, sans-serif;
+}
+
+.contact--table.table--column {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.column--content {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 25px;
+}
+
+.column--link-content {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #cfcbcb;
+}
+
+.social-connect-grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0px;
+}
+
+.social-connect-grid.social-connect-grid__icon {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+}
+
+.social-connect-grid.social-connect-grid__icon:hover {
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+}
+
+.link-3 {
+  font-family: Fontawesome, sans-serif;
+  color: #385a97;
+  font-size: 35px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.content--buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+}
+
+.content--buttons.button-content {
+  margin-right: 5px;
+  margin-left: 5px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-image: -webkit-linear-gradient(270deg, #fc2525, #fc2525);
+  background-image: linear-gradient(180deg, #fc2525, #fc2525);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .5);
+}
+
+.content--buttons.button-content:hover {
+  background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+  background-image: linear-gradient(180deg, #365899, #365899);
+}
+
+.product-reviews__line-break {
+  border-bottom: 1px solid #727272;
+}
+
+.success-element {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: Fontawesome, sans-serif;
+}
+
+.success-element.success-element__tick {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 105px;
+  margin-top: 10px;
+  padding: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #417505;
+  font-size: 120px;
+}
+
+.success-element.success-element__tick.success-element--100px {
+  height: 70px;
+  margin-right: 40px;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 70px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.success-element.success-element__tick.success-element--100px.tick--50px {
+  height: 40px;
+  margin-top: 11px;
+  font-family: Fontawesome, sans-serif;
+  font-size: 40px;
+}
+
+.success-element.success-element__header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #417505;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.success-element.success-element__header.success-element--100px {
+  margin-top: 15px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.success-element.success-element__header.success-element--100px.header--50px {
+  height: 20px;
+  margin-top: 4px;
+  margin-bottom: 7px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-size: 25px;
+}
+
+.success-element.success-element__content-container {
+  position: static;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: visible;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  color: #417505;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.success-element.success-element__content-container.success-element--100px {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.success-element.success-element__content-container.success-element--100px.success-element--phone-iphone-6p {
+  margin-bottom: 10px;
+}
+
+.success-element.success-element__content-container.success-element--50px {
+  margin-top: 3px;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 16px;
+}
+
+.success-element.success-element-100px.success-element__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border: 2px solid #417505;
+  background-image: -webkit-linear-gradient(270deg, #26b44e, #26b44e);
+  background-image: linear-gradient(180deg, #26b44e, #26b44e);
+  box-shadow: 1px 1px 3px 0 #000;
+}
+
+.success-element.review-post-success__text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  margin-right: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.success-element.review-post-success__text.text--50px {
+  height: 50px;
+}
+
+.success-element.review-post-success__container.container-50px {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 2px solid #417505;
+  background-image: -webkit-linear-gradient(270deg, #26b44e, #26b44e);
+  background-image: linear-gradient(180deg, #26b44e, #26b44e);
+}
+
+.success-element.success-element__exit {
+  position: relative;
+  left: 210px;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 200;
+  text-decoration: none;
+}
+
+.success-element.success-element__exit.exit--added {
+  position: static;
+  left: 231px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2px;
+  margin-right: 3px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.success-element.success-element__exit.exit--edited-small {
+  position: static;
+  left: 273px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.paragraph-17 {
+  width: 100%;
+  color: #cfcbcb;
+}
+
+.error-element {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 2px solid #670405;
+  background-image: -webkit-linear-gradient(270deg, #c4292e, #c4292e);
+  background-image: linear-gradient(180deg, #c4292e, #c4292e);
+  box-shadow: 1px 1px 3px 0 #000;
+}
+
+.error-element.error-element__image {
+  height: 70px;
+  margin-top: 5px;
+  margin-right: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-style: none;
+  background-image: none;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 70px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.error-element.error-element__image.image--phone-iphone-6p {
+  box-shadow: none;
+}
+
+.error-element.error-element__content-container {
+  height: 80px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-style: none;
+  background-image: none;
+  box-shadow: none;
+  line-height: 25px;
+}
+
+.error-element.error-element__exit {
+  position: relative;
+  left: 68px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-style: none;
+  background-image: none;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.error-element.error-element__exit.exit--delete {
+  position: static;
+  left: 200px;
+  margin-top: 2px;
+  margin-right: 3px;
+  box-shadow: none;
+}
+
+.error-element.error-element__content {
+  margin-top: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border-style: none;
+  background-image: none;
+  box-shadow: none;
+}
+
+.error-element__content-container.content-container__header {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.error-element__content-container.content-container__text {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 5px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.body-6 {
+  border: 2px solid #670405;
+}
+
+.warning-message {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-style: none none solid;
+  border-width: 2px;
+  border-color: #bd4c0c;
+  background-image: -webkit-linear-gradient(270deg, #fa9a32, #fa9a32);
+  background-image: linear-gradient(180deg, #fa9a32, #fa9a32);
+}
+
+.warning-message.warning-message__image {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  margin-right: 40px;
+  margin-left: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  border-style: none;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 70px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.warning-message.warning-message__container {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  border-style: none;
+  background-image: none;
+}
+
+.warning-message.warning-message__exit {
+  position: static;
+  left: 209px;
+  display: block;
+  margin-top: 2px;
+  margin-right: 3px;
+  border-style: none;
+  background-image: none;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.warning-message__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.warning-message__container.container--text {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 18px;
+  line-height: 25px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.warning-message__container.container--header {
+  margin-top: 10px;
+  margin-bottom: -1px;
+  padding-top: 0px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.footer-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 1px none #000;
+  background-image: -webkit-linear-gradient(270deg, #385a97, #385a97);
+  background-image: linear-gradient(180deg, #385a97, #385a97);
+}
+
+.footer__bottom {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-top: 2px solid #5673a6;
+}
+
+.footer__bottom.bottom--content {
+  border-top-style: none;
+}
+
+.column-left__text {
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  padding-right: 15px;
+  border-right: 2px solid #5673a6;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: right;
+}
+
+.column-right__text {
+  height: 30px;
+  margin-top: 10px;
+  padding-top: 0px;
+  font-family: Fontawesome, sans-serif;
+  color: #fff;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.emphasized-text-6 {
+  color: #fc2525;
+  font-style: normal;
+}
+
+.news.news__main-feed {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  border-top-style: none;
+}
+
+.news__top-article.top-article--image {
+  width: 100%;
+}
+
+.news__top-article.top-article--header {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.news__top-article.top-article--header.header--japanese {
+  text-align: right;
+}
+
+.news__top-article.top-article--author {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 15px;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.news__top-article.top-article--author.author--japanese {
+  padding-right: 15px;
+  padding-left: 0px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.author__text {
+  display: block;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-right: 15px;
+  padding-left: 15px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-family: 'Open Sans', sans-serif;
+  color: #727272;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.author__text.text--top {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.news__dual-articles {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.news__dual-articles.dual-articles--left-article {
+  width: 48%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.news__dual-articles.dual-articles--right-article {
+  width: 48%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.left-article__image {
+  height: 250px;
+}
+
+.right-article__image {
+  height: 250px;
+}
+
+.dual-articles__author {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+}
+
+.dual-articles__author.author--japanese {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  text-align: left;
+}
+
+.author__image {
+  width: 31px;
+  height: 31px;
+  border-radius: 100px;
+}
+
+.news__main-feed {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-top: 1px none #727272;
+}
+
+.news__main-feed.main-feed--content {
+  width: 110%;
+  padding-left: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  border-top-style: none;
+}
+
+.news__main-feed.main-feed--content.content--japanese {
+  width: 100%;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+.news__main-feed.main-feed--japanese {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.news__image {
+  position: static;
+  display: block;
+  width: 112%;
+  height: 200px;
+  padding: 15px;
+  clear: none;
+}
+
+.dual-articles__heading {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dual-articles__heading.heading--japanese {
+  text-align: right;
+}
+
+.main-feed__content.content--heading {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.main-feed__content.content--heading.heading--japanese {
+  text-align: right;
+}
+
+.main-feed__content.content--text {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+.main-feed__content.content--text.text--japanese {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.link-6 {
+  color: #385a97;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.link-7 {
+  color: #385a97;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.link-block {
+  width: 30%;
+}
+
+.news-main-feed__article-header-link {
+  color: #385a97;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.news-mainfeed__article-content-link {
+  color: #385a97;
+  text-decoration: none;
+}
+
+.link-10 {
+  color: #385a97;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.div-block-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.user-stories__content-container.content-continer--image {
+  width: 15%;
+  height: 100%;
+  margin-right: 10px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border-radius: 100%;
+}
+
+.user-stories__content-container.content-continer--image.image--japanese {
+  margin-right: 0px;
+  margin-left: 10px;
+}
+
+.user-stories__content-container.content-container--text {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.footer__container.container--row-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 40%;
+  margin-right: 5px;
+  margin-left: 5px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-image: -webkit-linear-gradient(270deg, #385a97, #385a97);
+  background-image: linear-gradient(180deg, #385a97, #385a97);
+}
+
+.footer__container.container--row-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 40%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.order--status {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.break {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.emphasized-text-7 {
+  font-style: normal;
+}
+
+html.w-mod-js *[data-ix="new-interaction-red"] {
+  opacity: 0;
+}
+
+html.w-mod-js *[data-ix="fade-down"] {
+  opacity: 0;
+  -webkit-transform: translate(0px, -100px);
+  -ms-transform: translate(0px, -100px);
+  transform: translate(0px, -100px);
+}
+
+html.w-mod-js *[data-ix="fade-down-2"] {
+  opacity: 0;
+  -webkit-transform: translate(0px, -100px);
+  -ms-transform: translate(0px, -100px);
+  transform: translate(0px, -100px);
+}
+
+html.w-mod-js *[data-ix="fade-down-3"] {
+  opacity: 0;
+  -webkit-transform: translate(0px, -100px);
+  -ms-transform: translate(0px, -100px);
+  transform: translate(0px, -100px);
+}
+
+html.w-mod-js *[data-ix="fade-down-4"] {
+  opacity: 0;
+  -webkit-transform: translate(0px, -100px);
+  -ms-transform: translate(0px, -100px);
+  transform: translate(0px, -100px);
+}
+
+html.w-mod-js *[data-ix="fade-down-5"] {
+  opacity: 0;
+  -webkit-transform: translate(0px, -100px);
+  -ms-transform: translate(0px, -100px);
+  transform: translate(0px, -100px);
+}
+
+html.w-mod-js *[data-ix="fade-down-6"] {
+  opacity: 0;
+  -webkit-transform: translate(0px, -100px);
+  -ms-transform: translate(0px, -100px);
+  transform: translate(0px, -100px);
+}
+
+html.w-mod-js *[data-ix="pop-in"] {
+  opacity: 0;
+  -webkit-transform: scale(0.9, 0.9);
+  -ms-transform: scale(0.9, 0.9);
+  transform: scale(0.9, 0.9);
+}
+
+@media (max-width: 991px) {
+  .body {
+    margin-right: -2px;
+  }
+  .content--text.order-status__content.content--central.central--japanese {
+    left: -32px;
+  }
+  .order-status__shipped.order-status {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .activity-table.activity-table__date {
+    padding-bottom: 0px;
+  }
+  .activity-table__content.content--left-column {
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .activity-table__content.content--left-column.left-column--row3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .activity-table__content.content--right-column {
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .activity-table__content.content--right-column.right-column--row3 {
+    padding-top: 20px;
+  }
+  .activity-table__content.content--middle-column {
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .activity-table__content.content--middle-column.middle-column--row3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .activity-table__content.content--middle-column.middle-column--row4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .order-summary.order-summary__title {
+    left: -36%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10 {
+    left: -39%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini {
+    left: -39%;
+  }
+  .address__row.row--ship-to {
+    left: 29px;
+    width: 89px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10 {
+    left: 48px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini {
+    left: 33px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10 {
+    left: 49px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini {
+    left: 32px;
+  }
+  .address__row.row--bill-to {
+    left: 406px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10 {
+    left: 425px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10.bill-to--tablet--ipad-mini {
+    left: 410px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10 {
+    left: 426px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini {
+    left: 411px;
+  }
+  .order-success__image.order-success__title {
+    font-size: 32px;
+  }
+  .order-success__image.order-success__content {
+    font-size: 18px;
+  }
+  .arrow-male {
+    left: 78px;
+    right: 0px;
+  }
+  .arrow-male.arrow-female {
+    left: -77px;
+  }
+  .arrow-male.arrow-female.arrow--right {
+    left: -164px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese {
+    left: -148px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese {
+    left: -61px;
+  }
+  .arrow-male.arrow-central--right {
+    left: 176px;
+  }
+  .arrow-male.arrow-central--right.right--japanese {
+    left: 193px;
+  }
+  .arrow-male.arrow-male--japanese {
+    left: 98px;
+  }
+  .shopping-cart__content.tittle--heading.heading--japanese {
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+  }
+  .shopping-cart--font-image.shopping-cart__image {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+  }
+  .registration__container.container--header {
+    height: 80px;
+    margin-bottom: 0px;
+  }
+  .registration__container.container--header.header--tablet {
+    padding-top: 0px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .registration__container.container--subheader {
+    height: 50px;
+  }
+  .right-collumn__content {
+    font-size: 16px;
+    line-height: 40px;
+  }
+  .registration--image.image--tablet {
+    height: 100%;
+  }
+  .product-reviews.product-reviews__image {
+    width: 15%;
+    height: 30%;
+    margin-bottom: 10px;
+    border-radius: 150px;
+  }
+  .product-reviews.product-reviews__content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .product-reviews.product-reviews__content.content--japanese {
+    width: 100%;
+  }
+  .product-reviews.product-reviews__buttons {
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .product-reviews__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+  .product-reviews__content.content--japanese {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .product-reviews__content.content--review-row {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .footer {
+    height: 500px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .footer__nav {
+    width: 40%;
+    margin-top: 20px;
+    margin-left: 5px;
+  }
+  .footer__about {
+    margin-top: 20px;
+  }
+  .footer__legal-pages {
+    margin-top: 20px;
+  }
+  .footer__contact {
+    margin-top: 20px;
+    margin-right: 5px;
+  }
+  .footer__social-media {
+    width: 15%;
+    margin-top: 20px;
+  }
+  .footer__content {
+    padding-right: 34px;
+  }
+  .contact--table.table--column {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .content--buttons.button-content {
+    width: 80%;
+    margin-right: 0px;
+    margin-left: 15px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    font-size: 16px;
+  }
+  .error-element.error-element__image {
+    margin-left: 10px;
+  }
+  .error-element__content-container.content-container__header {
+    margin-top: 0px;
+    font-family: Ubuntu, Helvetica, sans-serif;
+  }
+  .error-element__content-container.content-container__text {
+    height: 50px;
+    margin-top: 10px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .warning-message__container.container--text {
+    text-align: center;
+  }
+  .warning-message__container.container--header {
+    margin-top: 0px;
+  }
+  .footer-2 {
+    height: 70px;
+  }
+  .column-left__text {
+    margin-top: 0px;
+  }
+  .column-right__text {
+    margin-top: -2px;
+  }
+  .news__main-feed.main-feed--content {
+    width: 90%;
+  }
+  .user-stories__content-container.content-continer--image {
+    border-radius: 150%;
+  }
+  .footer__container.container--row-1 {
+    width: 35%;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+  .footer__container.container--row-2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 40%;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .order--status {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content-container {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .content-container.text--text-body {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+  }
+  .content-container.text--text-body.text-body--japanese {
+    text-align: left;
+  }
+  .user-stories__heading-conainer {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .user-stories__heading-conainer.heading-container--heading {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+  }
+  .order-tracking__title.order-tracking.order-tracking--header {
+    margin-left: 10px;
+    font-size: 34px;
+    text-align: center;
+  }
+  .content__shipped-tracking.content-tracking--tracking-text {
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  .content__shipped-tracking.shipped-tracking--shipped-text {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  .content--text.order-status__content {
+    left: 9px;
+    margin-right: 6px;
+    font-size: 22px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right {
+    left: 20px;
+    margin-right: 10px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese {
+    font-size: 22px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap {
+    font-size: 18px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap.right--phone-kindle-fire-7-jap {
+    font-size: 16px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire {
+    left: 29px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire.right--phone-blackberry-passport.right--phone-kindle-fire-7 {
+    left: 21px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire.right--phone-blackberry-passport.right--phone-kindle-fire-7.right--phone-iphone-6p.right--blackberry-q10.right--phone-iphone-5.right--phone-old-android {
+    font-size: 20px;
+  }
+  .content--text.order-status__content.content--central {
+    left: -30px;
+  }
+  .content--text.order-status__content.content--central.central--japanese {
+    font-size: 22px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap {
+    width: 70%;
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap {
+    font-size: 16px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire {
+    left: -37px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport {
+    left: -30px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport.central--phone-kindle-fire-7 {
+    left: -31px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport.central--phone-kindle-fire-7.central--phone-iphone-6p.central--phone-galaxy-note.central--phone-iphone-5.central--phone-old-android {
+    height: 40px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .content--text.order-status__content.content--phone-kindle-fire {
+    left: 4px;
+  }
+  .content--text.order-status__content.content--phone-kindle-fire.content--phone-blackberry-passport {
+    left: 10px;
+  }
+  .content--text.order-status__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-iphone-6p.content--blackberry-q10.content--phone-old-android {
+    font-size: 20px;
+  }
+  .content--text.order-status__content.content--japanese.content--phone-blackberry-passport-jap {
+    left: 16px;
+    font-size: 18px;
+  }
+  .content--text.order-status__content.content--japanese.content--phone-blackberry-passport-jap.content--phone-kindle-fire-7-jap {
+    font-size: 16px;
+  }
+  .content-container__text {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .content-container__text.text--heading {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+  }
+  .content-container__text.text--heading.heading--japanese {
+    text-align: left;
+  }
+  .contenr-container__text {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .contenr-container__text.text--sub-heading {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+  }
+  .activity-table.activity-table__date {
+    margin-top: 0px;
+  }
+  .activity-table__top-row {
+    height: 40px;
+  }
+  .activity-table__top-row.top-row--phone-old-android {
+    height: 40px;
+    margin-top: 0px;
+  }
+  .activity-table__content.content--left-column {
+    font-size: 14px;
+  }
+  .activity-table__content.content--right-column {
+    font-size: 14px;
+  }
+  .activity-table__content.content--middle-column {
+    font-size: 14px;
+  }
+  .order-tracking__content.content--shipped-tracking {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .order-summary.order-summary__title {
+    left: -32%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro {
+    left: -36%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire {
+    left: -33%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport {
+    left: -30%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7 {
+    left: -29%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini.title--phone-kindle-fire {
+    left: -37%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini.title--phone-kindle-fire.tittle--phone-blackberry-passport {
+    left: -34%;
+  }
+  .address__row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .address__row.row--ship-to {
+    left: 17px;
+    top: 348px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro {
+    left: 15px;
+    top: 304px;
+    right: 0px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire {
+    top: 348px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport {
+    top: 318px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to--phone-old-android.ship-to--mobile-land-720 {
+    top: 275px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to--phone-old-android.ship-to--mobile-land-720.ship-to--mobile-land-600 {
+    top: 317px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to--phone-old-android.ship-to--mobile-land-600 {
+    top: 274px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to-mobile-land-600 {
+    position: fixed;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to-mobile-land-600.ship-to-mobile-land-700 {
+    position: fixed;
+    top: 274px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro {
+    left: 18px;
+    top: 304px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport {
+    top: 320px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport.ship-to--phone-kindle-fire-7 {
+    top: 276px;
+  }
+  .address__row.row--bill-to {
+    left: 17px;
+    top: 618px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10.bill-to--tablet--ipad-mini.bill-to--phone-surface-pro {
+    left: 15px;
+    top: 574px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10.bill-to--tablet--ipad-mini.bill-to--phone-surface-pro.bill-to--phone-kindle-fire {
+    top: 619px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10.bill-to--tablet--ipad-mini.bill-to--phone-surface-pro.bill-to--phone-kindle-fire.bill-to--phone-blackberry-passport {
+    top: 588px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro {
+    left: 18px;
+    top: 577px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport {
+    top: 591px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport.bill-to--phone-kindle-fire-7 {
+    top: 547px;
+  }
+  .address__bill-to.bill-to--content {
+    width: 98%;
+    margin: 10px 5px 5px;
+  }
+  .address__ship-to.ship-to--content {
+    width: 98%;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+  .order-success__image.order-success__title {
+    text-align: center;
+  }
+  .order-success__image.order-success__title.title--phone-blackberry-passport {
+    font-size: 28px;
+  }
+  .order-success__image.order-success__title.title--phone-blackberry-passport.title--phone-kindle-fire-7 {
+    margin-left: -11px;
+  }
+  .order-success__image.order-success__title.title-jap.title--phone-kindle-fire-7 {
+    margin-left: -27px;
+    font-size: 28px;
+  }
+  .order-success__image.order-success__content {
+    padding-right: 0px;
+    font-size: 16px;
+  }
+  .order-success__image.order-success__content.content--phone-blackberry-passport {
+    font-size: 14px;
+    line-height: 25px;
+  }
+  .order-success__image.order-success__content.content--phone-blackberry-passport.content--phone-kindle-fire-7 {
+    width: 110%;
+    margin-left: -23px;
+    font-size: 14px;
+  }
+  .order-success__image.order-success__content.content--jap.content--phone-blackberry-passport {
+    width: 105%;
+    margin-left: -8px;
+  }
+  .order-success__image.order-success__content.content--jap.content--phone-blackberry-passport.content--phone-kindle-fire-7 {
+    margin-left: -14px;
+  }
+  .packaging-info.packaging-info__date {
+    margin-right: 10px;
+  }
+  .packaging-info.packaging-info__tracking {
+    margin-left: 5px;
+  }
+  .packaging-info.packaging-info__tracking.tracking--phone-surface-pro {
+    margin-left: 10px;
+  }
+  .order-details.order-details__order-no {
+    margin-left: 5px;
+  }
+  .order-details.order-details__order-no.order-no--phone-surface-pro {
+    margin-left: 10px;
+  }
+  .order-details.order-details__price {
+    margin-right: 5px;
+  }
+  .order-details.order-details__price.price--phone-surface-pro {
+    margin-right: 10px;
+  }
+  .user-stories {
+    display: block;
+  }
+  .user-stories.user-stories__content-container {
+    margin-bottom: 10px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .user-stories.user-stories__content-container.content-container--japanese {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .successfully-registered__content {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .order-sucsess--image {
+    margin-right: 10px;
+    margin-left: 5px;
+  }
+  .order-sucsess--image.image--phone-kindle-fire-7 {
+    font-size: 100px;
+  }
+  .order-sucsess--image.image--phone-kindle-fire-7 {
+    font-size: 100px;
+  }
+  .section-5 {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .arrow-male {
+    left: 31px;
+  }
+  .arrow-male.arrow-female {
+    left: -53px;
+  }
+  .arrow-male.arrow-female.arrow--right {
+    left: -135px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese {
+    left: -127px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface {
+    left: -153px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap {
+    left: -100px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap {
+    left: -86px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface {
+    left: -155px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire {
+    left: -134px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport {
+    left: -118px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese {
+    left: -33px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese.female--phone-ls-surface.female--phone-kindle-fire-jap {
+    left: -39px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese.female--phone-ls-surface.female--phone-kindle-fire-jap.female--phone-blackberry-passport-jap {
+    left: -37px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface {
+    left: -75px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport {
+    left: -38px;
+    border-left-color: #fff;
+  }
+  .arrow-male.arrow-central--right {
+    left: 176px;
+  }
+  .arrow-male.arrow-central--right.right--japanese {
+    left: 154px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap {
+    left: 143px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap {
+    left: 145px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface {
+    left: 176px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire {
+    left: 158px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport {
+    left: 140px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7 {
+    left: 133px;
+  }
+  .arrow-male.arrow-male--japanese {
+    left: 67px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap {
+    left: 70px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap {
+    left: 54px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap {
+    left: 51px;
+  }
+  .arrow-male.male--phone-ls-surface {
+    left: 72px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire {
+    left: 32px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport {
+    left: 37px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7 {
+    left: 30px;
+  }
+  .shopping-cart__content {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .shopping-cart__content.tittle--heading {
+    margin-left: 10px;
+  }
+  .shopping-cart__content.tittle--heading.heading--japanese {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    text-align: center;
+  }
+  .shopping-cart__content.tittle--heading.heading--mobile {
+    width: 100%;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
+  }
+  .registration__container.container--header {
+    height: 60px;
+    background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+    background-image: linear-gradient(180deg, #365899, #365899);
+  }
+  .registration__container.container--header.header--tablet.header--phone-kindle-fire {
+    height: 45px;
+    margin-top: -7px;
+    font-size: 28px;
+  }
+  .registration__container.container--header.header--tablet.header--phone-kindle-fire.header--phone-blackberry-passport {
+    font-size: 24px;
+  }
+  .registration__container.container--header.header--jap.header--phone-surface-pro {
+    margin-top: 0px;
+    font-size: 24px;
+  }
+  .registration__container.container--subheader.subheader--text {
+    font-size: 20px;
+  }
+  .registration__container.container--subheader.subheader--text.text--phone-blackberry-passport {
+    height: 40px;
+    font-size: 18px;
+  }
+  .registration__container.container--subheader.subheader--text.subheader-jap {
+    margin-top: 2px;
+  }
+  .registration__container.container--subheader.subheader--phone-kindle-fire {
+    height: 40px;
+    margin-top: -10px;
+  }
+  .registration__container.container--subheader.subheader-jap.subheader--phone-surface-pro {
+    margin-top: -56px;
+  }
+  .registration__container.container--subheader.subheader-jap.subheader--phone-surface-pro.subheader--phone-kindle-fire-jap {
+    margin-top: -2px;
+  }
+  .registration__container.container--left-image.container--phone-amazon-kindle-fire-7 {
+    background-image: -webkit-linear-gradient(270deg, #365899, #365899);
+    background-image: linear-gradient(180deg, #365899, #365899);
+  }
+  .right-collumn__content.content--phone-kindle-fire {
+    padding-right: 5px;
+    padding-left: 5px;
+    line-height: 30px;
+  }
+  .right-collumn__content.content--phone-kindle-fire.content--phone-blackberry-passport {
+    line-height: 25px;
+  }
+  .right-collumn__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-kindle-fire-7 {
+    font-size: 14px;
+  }
+  .call-to-action-button {
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .right-column__content-2 {
+    margin-top: 2px;
+    padding-top: 0px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .right-column__content-2.content-2--phone-kindle-fire {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 16px;
+  }
+  .right-column__content-2.content-2--phone-kindle-fire.content-2--phone-blackberry-passport {
+    line-height: 25px;
+  }
+  .right-column__content-2.content-2--phone-kindle-fire.content-2--phone-blackberry-passport.content-2--phone-kindle-fire-7 {
+    font-size: 14px;
+  }
+  .registration--container.container--phone-kindle-fire-7 {
+    background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+    background-image: linear-gradient(180deg, #fff, #fff);
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire {
+    width: 41%;
+    height: 100%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport {
+    width: 48%;
+    height: 10%;
+  }
+  .text-span-2 {
+    height: 20px;
+  }
+  .masonry-container.masonry-container__news {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .masonry-container__news-heading.masonry-container__news.news--phone-iphone-6p.news {
+    display: block;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .faq__header {
+    margin-left: 5px;
+  }
+  .masonry-container--link.masonry-container {
+    padding-top: 10px;
+  }
+  .terms-conditions.termsconditions__header {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .shipping.shipping__header {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .nicotine-disclamer.nicotine-disclamer__header {
+    margin-left: 5px;
+  }
+  .nicotine-disclamer.nicotine-disclamer__header.header--japanese {
+    margin-right: 5px;
+  }
+  .nicotine-disclamer.nicotine-disclamer__content {
+    margin-bottom: 0px;
+    padding: 10px;
+  }
+  .product-reviews.product-reviews__image {
+    width: 20%;
+  }
+  .product-reviews.product-reviews__content.content--japanese {
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .product-reviews.product-reviews__buttons {
+    margin-top: 20px;
+  }
+  .product-reviews__header {
+    margin-left: 5px;
+  }
+  .product-reviews__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .footer {
+    height: 800px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .footer__nav {
+    width: 50%;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  .footer__about {
+    margin-top: 10px;
+  }
+  .footer__legal-pages {
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  .footer__contact {
+    margin-top: 10px;
+  }
+  .footer__social-media {
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  .footer__content {
+    padding-top: 5px;
+  }
+  .footer__content.content--column-left {
+    padding-right: 13px;
+  }
+  .footer__content.content--clumn-right {
+    padding-right: 0px;
+  }
+  .footer__heading {
+    padding-left: 0px;
+  }
+  .contact--table {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+  .column--link-content {
+    padding-left: 15px;
+  }
+  .content--buttons.button-content {
+    width: 150px;
+  }
+  .success-element.success-element__tick.success-element--100px {
+    margin-left: 10px;
+  }
+  .success-element.success-element__header.success-element--100px {
+    margin-top: 5px;
+  }
+  .success-element.success-element__content-container.success-element--100px {
+    text-align: center;
+  }
+  .error-element.error-element__image {
+    margin-right: 20px;
+    margin-left: 10px;
+    box-shadow: none;
+  }
+  .error-element__content-container.content-container__header {
+    margin-top: 5px;
+    line-height: 40px;
+  }
+  .error-element__content-container.content-container__header.header--phone-iphone-6p.header--phone-old-android {
+    margin-top: 2px;
+    margin-bottom: 11px;
+  }
+  .error-element__content-container.content-container__text {
+    width: 100%;
+    font-size: 15px;
+    line-height: 18px;
+  }
+  .warning-message.warning-message__image {
+    margin-right: 20px;
+  }
+  .warning-message__container.container--text {
+    font-size: 16px;
+  }
+  .warning-message__container.container--text.text--phone-blackberry-passport {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .warning-message__container.container--text.text--phone-blackberry-passport.text--phone-amazon-kindle-fire-7 {
+    font-size: 12px;
+  }
+  .warning-message__container.container--header {
+    font-size: 34px;
+  }
+  .warning-message__container.container--header.header--phone-blackberry-passport {
+    font-size: 34px;
+  }
+  .column-right__text {
+    height: 40px;
+    margin-top: 0px;
+  }
+  .news.news__main-feed {
+    margin-top: 5px;
+  }
+  .news__top-article.top-article--header {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 32px;
+  }
+  .right-article__image {
+    height: 250px;
+  }
+  .dual-articles__author {
+    margin-bottom: 5px;
+  }
+  .news__main-feed {
+    border-top-style: none;
+  }
+  .news__main-feed.main-feed--content {
+    width: 80%;
+    margin-top: 5px;
+  }
+  .news__image {
+    height: 100%;
+    padding: 5px;
+  }
+  .dual-articles__heading {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 28px;
+  }
+  .main-feed__content.content--heading {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 28px;
+  }
+  .news-main-feed__article-header-link {
+    padding-right: 0px;
+    padding-left: 0px;
+    font-size: 28px;
+  }
+  .news-mainfeed__article-content-link {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .user-stories__content-container.content-continer--image {
+    width: 25%;
+    margin-left: 10px;
+  }
+  .user-stories__content-container.content-container--text {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .user-stories__content-container.content-container--text.text-japanese {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+  .footer__container.container--row-1 {
+    width: 100%;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+  }
+  .footer__container.container--row-2 {
+    width: 100%;
+  }
+  .order--status {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .order-success__text {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 479px) {
+  .content-container {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .content-container.text--text-body {
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .content-container.text--text-body.text-body--japanese {
+    margin-left: 0px;
+  }
+  .user-stories__heading-conainer.heading-container--heading {
+    text-align: center;
+  }
+  .user-stories__heading-conainer.heading-container--heading.heading--japanese {
+    font-size: 32px;
+  }
+  .order-tracking__title.order-tracking.order-tracking--header {
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 32px;
+  }
+  .order-tracking__title.order-tracking.order-tracking--header.header--phone-old-android {
+    font-size: 28px;
+  }
+  .content__shipped-tracking.content-tracking--tracking-text {
+    width: 100%;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+  .content__shipped-tracking.content-tracking--tracking-text.tracking-text--phone-old-android {
+    font-size: 12px;
+  }
+  .content__shipped-tracking.shipped-tracking--shipped-text {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-left: 0px;
+    padding-left: 5px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+  .content__shipped-tracking.shipped-tracking--shipped-text.shipped-text--phone-old-android {
+    font-size: 12px;
+  }
+  .order-status {
+    margin-top: 20px;
+  }
+  .content--text.order-status__content {
+    left: 5px;
+    z-index: 1;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    font-size: 18px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right {
+    left: 24px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 2;
+    font-size: 18px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese {
+    overflow: visible;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap.right--phone-kindle-fire-7-jap.right--phone-iphone-6p {
+    left: 30px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap.right--phone-kindle-fire-7-jap.right--phone-iphone-6p.right--phone-samsung-galaxy-note {
+    left: 27px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap.right--phone-kindle-fire-7-jap.right--phone-iphone-6p.right--phone-samsung-galaxy-note.right--phone-blackberry-classic.right--phone-iphone-6 {
+    left: 31px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap.right--phone-kindle-fire-7-jap.right--phone-iphone-6p.right--phone-samsung-galaxy-note.right--phone-blackberry-classic.right--phone-iphone-6.right--phone-nexus-5 {
+    font-size: 14px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right--japanese.right--phone-blackberry-passport-jap.right--phone-kindle-fire-7-jap.right--phone-iphone-6p.right--phone-samsung-galaxy-note.right--phone-blackberry-classic.right--phone-iphone-6.right--phone-nexus-5.right--phone-iphone-5 {
+    left: 15px;
+    margin-right: -15px;
+    font-size: 10px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire.right--phone-blackberry-passport.right--phone-kindle-fire-7.right--phone-iphone-6p {
+    left: 14px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire.right--phone-blackberry-passport.right--phone-kindle-fire-7.right--phone-iphone-6p.right--blackberry-q10 {
+    left: 8px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire.right--phone-blackberry-passport.right--phone-kindle-fire-7.right--phone-iphone-6p.right--blackberry-q10.right--phone-iphone-5 {
+    left: 6px;
+  }
+  .content--text.order-status__content.content--delivered.delivered--right.right-phone-kindle-fire.right--phone-blackberry-passport.right--phone-kindle-fire-7.right--phone-iphone-6p.right--blackberry-q10.right--phone-iphone-5.right--phone-old-android {
+    left: 1px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .content--text.order-status__content.content--central {
+    left: -31px;
+    z-index: 2;
+    font-size: 18px;
+  }
+  .content--text.order-status__content.content--central.central--japanese {
+    position: relative;
+    left: -35px;
+    top: 0px;
+    display: block;
+    width: 200px;
+    height: 100%;
+    margin-left: 0px;
+    padding-left: 0px;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    font-size: 16px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap {
+    z-index: 3;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: visible;
+    margin-right: 0px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap.central--phone-iphone-6p {
+    z-index: 0;
+    margin-right: -15px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap.central--phone-iphone-6p.central--phone-blackberry-classic {
+    margin-right: -20px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap.central--phone-iphone-6p.central--phone-blackberry-classic.central--phone-iphone-6 {
+    left: -37px;
+    margin-right: -23px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap.central--phone-iphone-6p.central--phone-blackberry-classic.central--phone-iphone-6.central--phone-nexus-5 {
+    font-size: 14px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap.central--phone-iphone-6p.central--phone-blackberry-classic.central--phone-iphone-6.central--phone-nexus-5.central--phone-iphone-5 {
+    left: -42px;
+    margin-right: -32px;
+  }
+  .content--text.order-status__content.content--central.central--japanese.central--phone-blackberry-passport-jap.central--phone-kindle-fire-7-jap.central--phone-iphone-6p.central--phone-blackberry-classic.central--phone-iphone-6.central--phone-nexus-5.central--phone-iphone-5.central--phone-old-android {
+    left: -53px;
+    z-index: 3;
+    margin-right: -45px;
+    margin-left: -1px;
+    font-size: 10px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport.central--phone-kindle-fire-7.central--phone-iphone-6p {
+    left: -35px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport.central--phone-kindle-fire-7.central--phone-iphone-6p.central--phone-galaxy-note {
+    left: -29px;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport.central--phone-kindle-fire-7.central--phone-iphone-6p.central--phone-galaxy-note.central--phone-iphone-5 {
+    left: -27px;
+    overflow: visible;
+  }
+  .content--text.order-status__content.content--central.central--phone-kindle-fire.central--phone-blackberry-passport.central--phone-kindle-fire-7.central--phone-iphone-6p.central--phone-galaxy-note.central--phone-iphone-5.central--phone-old-android {
+    left: -33px;
+    height: 40px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .content--text.order-status__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-iphone-6p {
+    left: 7px;
+  }
+  .content--text.order-status__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-iphone-6p.content--blackberry-q10 {
+    left: 12px;
+  }
+  .content--text.order-status__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-iphone-6p.content--blackberry-q10.content--phone-old-android {
+    left: 9px;
+    font-size: 12px;
+  }
+  .content--text.order-status__content.content--japanese.content--phone-blackberry-passport-jap.content--phone-kindle-fire-7-jap.content--phone-iphone-6p {
+    left: 9px;
+  }
+  .content--text.order-status__content.content--japanese.content--phone-blackberry-passport-jap.content--phone-kindle-fire-7-jap.content--phone-iphone-6p.content--phone-blackberry-classic.content--phone-nexus-5 {
+    font-size: 14px;
+  }
+  .content--text.order-status__content.content--japanese.content--phone-blackberry-passport-jap.content--phone-kindle-fire-7-jap.content--phone-iphone-6p.content--phone-blackberry-classic.content--phone-nexus-5.content--phone-iphone-5.content--phone-old-android {
+    left: 5px;
+    font-size: 10px;
+  }
+  .order-status__packing.order-status {
+    margin-top: 20px;
+  }
+  .order-status__shipped.order-status {
+    height: 40px;
+    margin-top: 20px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+  }
+  .order-status__delivered.order-status {
+    height: 40px;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .content-container__text.text--heading {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .content-container__text.text--heading.heading--japanese {
+    margin-left: 0px;
+  }
+  .contenr-container__text.text--sub-heading {
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .contenr-container__text.text--sub-heading.sub-heading--japanese {
+    margin-left: 0px;
+  }
+  .activity-table.activity-table__location {
+    padding-left: 5px;
+  }
+  .activity-table.activity-table__date {
+    margin-top: 0px;
+  }
+  .activity-table.activity-table__activity {
+    padding-right: 20px;
+  }
+  .activity-table.activity-table__activity.activity--phone-old-android {
+    padding-right: 10px;
+  }
+  .activity-table__top-row.top-row--phone-old-android {
+    width: 120%;
+    height: 50px;
+    margin-top: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .activity-table__top-row.top-row--phone-blackberry-classic {
+    line-height: 25px;
+  }
+  .activity-table__content.content--left-column {
+    height: 80px;
+  }
+  .activity-table__content.content--left-column.left-column--row4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-bottom: 30px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .activity-table__content.content--left-column.left-column--phone-old-android {
+    width: 130%;
+    font-size: 10px;
+  }
+  .activity-table__content.content--right-column {
+    height: 80px;
+  }
+  .activity-table__content.content--right-column.right-column--phone-old-android {
+    width: 110%;
+    font-size: 10px;
+  }
+  .activity-table__content.content--middle-column {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 80px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .activity-table__content.content--middle-column.middle-column--row4 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .activity-table__content.content--middle-column.middle-column--row4.middle-column--phone-old-android {
+    font-size: 10px;
+  }
+  .activity-table__content.content--middle-column.middle-column--phone-old-android {
+    font-size: 10px;
+  }
+  .order-tracking__content.content--shipped-tracking {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .order-summary.order-summary__title {
+    left: -18%;
+    font-size: 22px;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-6p {
+    left: -27%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-6p.tittle--phone-blackberry-classic {
+    left: -25%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-6p.tittle--phone-blackberry-classic.tittle--phone-nexus-5 {
+    left: -24%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-6p.tittle--phone-blackberry-classic.tittle--phone-nexus-5.tittle--phone-blackberry-q10 {
+    left: -22%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-6p.tittle--phone-blackberry-classic.tittle--phone-nexus-5.tittle--phone-blackberry-q10.tittle--phone-iphone-5 {
+    left: -20%;
+  }
+  .order-summary.order-summary__title.title--phone-surface-pro.title--phone-kindle-fire.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-6p.tittle--phone-blackberry-classic.tittle--phone-nexus-5.tittle--phone-blackberry-q10.tittle--phone-iphone-5.title--phone-old-android {
+    left: -13%;
+    font-size: 20px;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini.title--phone-kindle-fire.tittle--phone-blackberry-passport.title--phone-galaxy-note {
+    left: -31%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini.title--phone-kindle-fire.tittle--phone-blackberry-passport.title--phone-galaxy-note.title--phone-nexus-5 {
+    left: -30%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini.title--phone-kindle-fire.tittle--phone-blackberry-passport.title--phone-galaxy-note.title--phone-nexus-5.title--phone-iphone-5 {
+    left: -27%;
+  }
+  .order-summary.order-summary__title.title--jap.title--tablet-nexus-10.title--tablet-ipad-mini.title--phone-kindle-fire.tittle--phone-blackberry-passport.title--phone-galaxy-note.title--phone-nexus-5.title--phone-iphone-5.title--phone-old-android {
+    left: -20%;
+    font-size: 20px;
+  }
+  .order-summary__top-row.top-row__title-qty {
+    font-size: 18px;
+  }
+  .order-summary__top-row.top-row__title-qty.title-qty--phone-old-android {
+    padding-left: 0px;
+    font-size: 16px;
+  }
+  .order-summary__top-row.top-row__title-qty.top-row--phone-old-android {
+    font-size: 16px;
+  }
+  .order-summary__top-row.top-row--juice-desc {
+    font-size: 18px;
+  }
+  .order-summary__top-row.top-row--juice-desc.desc--phone-old-android {
+    font-size: 16px;
+  }
+  .order-summary__top-row.top-row--juice-desc.top-row--phone-old-android {
+    font-size: 16px;
+  }
+  .order-summary__top-row.top-row--price {
+    font-size: 18px;
+  }
+  .order-summary__top-row.top-row--price.price--phone-old-android {
+    font-size: 16px;
+  }
+  .order-summary__content.content--qty {
+    font-size: 14px;
+  }
+  .order-summary__content.content--qty.price--phone-old-android {
+    font-size: 12px;
+  }
+  .order-summary__content.content--description {
+    font-size: 14px;
+  }
+  .order-summary__content.content--description.description--phone-old-android {
+    font-size: 12px;
+  }
+  .order-summary__content.content--price {
+    font-size: 14px;
+  }
+  .order-summary__content.content--price.price--phone-old-android {
+    font-size: 12px;
+  }
+  .order-summary__total.total--total-text {
+    width: 60%;
+    font-size: 14px;
+  }
+  .order-summary__total.total--total-text.total-text--phone-old-android {
+    font-size: 12px;
+  }
+  .order-summary__total.total--price {
+    width: 35%;
+    font-size: 14px;
+  }
+  .order-summary__total.total--price.price--phone-old-android {
+    font-size: 12px;
+  }
+  .address__row.row--ship-to {
+    top: 597px;
+    font-size: 22px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p {
+    top: 485px;
+    width: 84px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to--phone-old-android {
+    top: 530px;
+    width: 76px;
+    font-size: 20px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to--phone-old-android.mobile-portrait-410 {
+    top: 470px;
+  }
+  .address__row.row--ship-to.ship-to--tablet--nexus-10.ship-to--tablet--ipad-mini.ship-to--phone-surface-pro.ship-to--phone-kindle-fire.ship-to--phone-blackberry-passport.ship-to--phone-iphone-6p.ship-to--phone-old-android.mobile-portrait-410.mobile-portrait-240 {
+    top: 531px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport.ship-to--phone-kindle-fire-7.ship-to--phone-iphone-6p {
+    top: 460px;
+    width: 79px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport.ship-to--phone-kindle-fire-7.ship-to--phone-iphone-6p.ship-to--phone-nexus-4 {
+    top: 485px;
+    width: 80px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport.ship-to--phone-kindle-fire-7.ship-to--phone-iphone-6p.ship-to--phone-nexus-4.ship-to--phone-blackberry-q10 {
+    top: 459px;
+    width: 77px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport.ship-to--phone-kindle-fire-7.ship-to--phone-iphone-6p.ship-to--phone-nexus-4.ship-to--phone-blackberry-q10.ship-to--phone-iphone-5 {
+    top: 485px;
+  }
+  .address__row.row--ship-to.ship-to--jap.ship-to--tablet-nexus-10.ship-to--tablet-ipad-mini.ship-to--phone-surface-pro.ship-to--phone-blackberry-passport.ship-to--phone-kindle-fire-7.ship-to--phone-iphone-6p.ship-to--phone-nexus-4.ship-to--phone-blackberry-q10.ship-to--phone-iphone-5.ship-to--phone-old-android {
+    top: 511px;
+    font-size: 20px;
+  }
+  .address__row.row--bill-to {
+    top: 869px;
+    font-size: 22px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10.bill-to--tablet--ipad-mini.bill-to--phone-surface-pro.bill-to--phone-kindle-fire.bill-to--phone-blackberry-passport.bill-to--phone-iphone-6p {
+    top: 755px;
+  }
+  .address__row.row--bill-to.bill-to--tablet--nexus-10.bill-to--tablet--ipad-mini.bill-to--phone-surface-pro.bill-to--phone-kindle-fire.bill-to--phone-blackberry-passport.bill-to--phone-iphone-6p.bill-to--phone-old-android {
+    top: 800px;
+    font-size: 20px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport.bill-to--phone-kindle-fire-7.bill-to--phone-iphone-6p {
+    top: 730px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport.bill-to--phone-kindle-fire-7.bill-to--phone-iphone-6p.bill-to--phone-nexus-4 {
+    top: 755px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport.bill-to--phone-kindle-fire-7.bill-to--phone-iphone-6p.bill-to--phone-nexus-4.bill-to--phone-blackberry-q10 {
+    top: 729px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport.bill-to--phone-kindle-fire-7.bill-to--phone-iphone-6p.bill-to--phone-nexus-4.bill-to--phone-blackberry-q10.bill-to--phone-iphone-5 {
+    top: 754px;
+  }
+  .address__row.row--bill-to.bill-to--jap.bill-to--tablet-nexus-10.bill-to--tablet-ipad-mini.bill-to--phone-surface-pro.bill-to--phone-blackberry-passport.bill-to--phone-kindle-fire-7.bill-to--phone-iphone-6p.bill-to--phone-nexus-4.bill-to--phone-blackberry-q10.bill-to--phone-iphone-5.bill-to--phone-old-android {
+    top: 781px;
+    font-size: 20px;
+  }
+  .address__bill-to.bill-to--content {
+    width: 97%;
+  }
+  .address__ship-to.ship-to--content {
+    width: 97%;
+  }
+  .address__ship-to.ship-to--content.content--paragraph {
+    height: 230px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+  }
+  .order-summary__tracking.tracking-content {
+    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 14px;
+  }
+  .order-summary__tracking.tracking-content.content--phone-old-android {
+    font-size: 12px;
+  }
+  .order-success__image {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .order-success__image.order-success__title {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 24px;
+    text-align: center;
+  }
+  .order-success__image.order-success__title.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-old-android {
+    margin-left: 6px;
+    font-size: 22px;
+    line-height: 35px;
+  }
+  .order-success__image.order-success__title.title--phone-blackberry-passport.title--phone-kindle-fire-7.title--phone-iphone-5 {
+    font-size: 24px;
+    line-height: 35px;
+  }
+  .order-success__image.order-success__title.title-jap.title--phone-kindle-fire-7.title--phone-iphone-6p {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 26px;
+  }
+  .order-success__image.order-success__title.title-jap.title--phone-kindle-fire-7.title--phone-iphone-6p.title--phone-iphone-5 {
+    font-size: 24px;
+  }
+  .order-success__image.order-success__title.title-jap.title--phone-kindle-fire-7.title--phone-iphone-6p.title--phone-iphone-5.title-phone-old-android {
+    font-size: 18px;
+  }
+  .order-success__image.order-success__content {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+    line-height: 30px;
+  }
+  .order-success__image.order-success__content.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-nexus-5 {
+    font-size: 12px;
+  }
+  .order-success__image.order-success__content.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-nexus-5.content--phone-old-android {
+    width: 100%;
+    margin-left: 0px;
+    padding-left: 0px;
+    line-height: 20px;
+  }
+  .order-success__image.order-success__content.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-nexus-5.content--phone-iphone-5 {
+    font-size: 11px;
+  }
+  .order-success__image.order-success__content.content--jap.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-iphone-6p {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .order-success__image.order-success__content.content--jap.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-iphone-6p.content--phone-blackberry-q10 {
+    margin-right: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 12px;
+  }
+  .packaging-info.packaging-info__date-invoice {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .packaging-info.packaging-info__date {
+    margin-left: 5px;
+  }
+  .packaging-info.packaging-info__date.date--phone-iphone-6p {
+    font-size: 14px;
+    text-align: center;
+  }
+  .packaging-info.packaging-info__tracking {
+    margin-right: 5px;
+  }
+  .packaging-info.packaging-info__tracking.tracking--phone-iphone-6p {
+    text-align: center;
+  }
+  .packaging-info.packaging-info__tracking.tracking--phone-iphone-6p.tracking--phone-old-android {
+    font-size: 14px;
+  }
+  .packaging-info.packaging-info__tracking.tracking--phone-surface-pro.tracking--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .packaging-info.packing-info__order-details {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .order-details.order-details__order-no {
+    margin-right: 5px;
+  }
+  .order-details.order-details__order-no.order-no--phone-iphone-6p {
+    text-align: center;
+  }
+  .order-details.order-details__order-no.order-no--phone-surface-pro.order-no--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .order-details.order-details__price {
+    margin-top: 10px;
+    margin-left: 5px;
+    text-align: left;
+  }
+  .order-details.order-details__price.price--phone-iphone-6p {
+    text-align: center;
+  }
+  .order-details.order-details__price.price--phone-surface-pro.price--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .user-stories.user-stories__content-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .page-button__button-element {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
+  }
+  .page-button__button-element.button-element--phone {
+    font-size: 16px;
+    text-align: center;
+  }
+  .arrow-male {
+    left: 7px;
+  }
+  .arrow-male.arrow-female {
+    left: -23px;
+  }
+  .arrow-male.arrow-female.arrow--right {
+    position: relative;
+    left: -85px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese {
+    left: -55px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p {
+    left: -81px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic {
+    left: -71px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4 {
+    left: -66px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5 {
+    left: -66px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10 {
+    left: -59px;
+    right: 0px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10.female--phone-iphone-5 {
+    left: -48px;
+  }
+  .arrow-male.arrow-female.arrow--right.right--japanese.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10.female--phone-iphone-5.female--phone-old-android {
+    left: -29px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7 {
+    left: -109px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note {
+    left: -101px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4 {
+    left: -101px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6 {
+    left: -101px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5 {
+    left: -101px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10 {
+    left: -101px;
+  }
+  .arrow-male.arrow-female.arrow--right.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10.female--phone-old-android {
+    left: -81px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese {
+    left: -45px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese.female--phone-ls-surface.female--phone-kindle-fire-jap.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p {
+    left: -40px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese.female--phone-ls-surface.female--phone-kindle-fire-jap.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4.female--phone-iphone-6.female--phone-blackberry-q10 {
+    left: -39px;
+  }
+  .arrow-male.arrow-female.arrow-female--japanese.female--phone-ls-surface.female--phone-kindle-fire-jap.female--phone-blackberry-passport-jap.female--phone-kindle-fire-7-jap.female--phone-iphone-6p.female--phone-nexus-6.female--phone-samsung-galaxy-note.female--phone-blackberry-classic.female--phone-nexus-4.female--phone-iphone-6.female--phone-blackberry-q10.female--phone-iphone-5.female--phone-old-android {
+    left: -45px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note {
+    left: -28px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4 {
+    left: -29px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6 {
+    left: -26px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5 {
+    left: -21px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10.female--phone-iphone-5 {
+    left: -14px;
+  }
+  .arrow-male.arrow-female.female--phone-ls-surface.female--phone-kindle-fire.female--phone-blackberry-passport.female--phone-kindle-fire-7.female--phone-iphone-6p.female--phone-galaxy-note.female--phone-nexus-4.female--phone-iphone-6.female--phone-nexus-5.female--phone-blackberry-q10.female--phone-iphone-5.female--phone-old-android {
+    left: -21px;
+    font-size: 12px;
+  }
+  .arrow-male.arrow-central--right {
+    left: 99px;
+  }
+  .arrow-male.arrow-central--right.right--japanese {
+    left: 94px;
+    right: 0px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p {
+    left: 127px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6 {
+    left: 128px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note {
+    left: 118px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic {
+    left: 122px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6 {
+    left: 117px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5 {
+    left: 106px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10 {
+    left: 104px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5 {
+    left: 98px;
+  }
+  .arrow-male.arrow-central--right.right--japanese.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5.male--phone-old-android {
+    left: 59px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p {
+    left: 110px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note {
+    left: 112px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4 {
+    left: 112px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6 {
+    left: 110px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5 {
+    left: 108px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10 {
+    left: 104px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5 {
+    left: 101px;
+  }
+  .arrow-male.arrow-central--right.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5.male--phone-old-android {
+    left: 71px;
+  }
+  .arrow-male.arrow-male--japanese {
+    left: 14px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p {
+    left: 38px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6 {
+    left: 36px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note {
+    left: 34px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4 {
+    left: 32px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6 {
+    left: 31px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5 {
+    left: 28px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5 {
+    left: 25px;
+  }
+  .arrow-male.arrow-male--japanese.male--phone-ls-surface.male--phone-kindle-fire-jap.male--phone-blackberry-passport-jap.male--phone-kindle-fire-7-jap.male--phone-iphone-6p.male--phone-nexus-6.male--phone-samsung-galaxy-note.male--phone-blackberry-classic.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5.male--phone-old-android {
+    left: 12px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p {
+    left: 22px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note {
+    left: 24px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4 {
+    left: 22px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6 {
+    left: 21px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5 {
+    left: 21px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10 {
+    left: 17px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5 {
+    left: 14px;
+  }
+  .arrow-male.male--phone-ls-surface.male--phone-kindle-fire.male--phone-blackberry-passport.male--phone-kindle-fire-7.male--phone-iphone-6p.male--phone-galaxy-note.male--phone-nexus-4.male--phone-iphone-6.male--phone-nexus-5.male--phone-blackberry-q10.male--phone-iphone-5.male--phone-old-android {
+    left: 2px;
+  }
+  .shopping-cart__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .shopping-cart__content.tittle--heading {
+    margin-right: 10px;
+  }
+  .shopping-cart__content.tittle--heading.heading--japanese {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+  .registration__container.container--header.header--tablet.header--phone-kindle-fire.header--phone-blackberry-passport.header--phone-iphone-6p {
+    font-size: 20px;
+  }
+  .registration__container.container--header.header--tablet.header--phone-kindle-fire.header--phone-blackberry-passport.header--phone-iphone-6p.header--phone-iphone-5 {
+    font-size: 18px;
+  }
+  .registration__container.container--header.header--phone-nexus-5 {
+    width: 105%;
+    margin-right: -6px;
+  }
+  .registration__container.container--header.header--phone-nexus-5.header--phone-old-android {
+    width: 145%;
+  }
+  .registration__container.container--subheader.subheader--text.text--phone-blackberry-passport.text--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .registration__container.container--subheader.subheader--text.text--phone-blackberry-passport.text--phone-iphone-6p.text--phone-nexus-5.text--phone-iphone-5 {
+    width: 101%;
+    font-size: 12px;
+  }
+  .registration__container.container--subheader.subheader--phone-kindle-fire {
+    width: 105%;
+    margin-right: -2px;
+  }
+  .registration__container.container--subheader.subheader--phone-kindle-fire.subheader--phone-old-android {
+    width: 145%;
+  }
+  .right-collumn__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-iphone-6p {
+    font-size: 12px;
+  }
+  .right-collumn__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-iphone-6p.content--phone-nexus-4 {
+    margin-left: -2px;
+  }
+  .right-collumn__content.content--phone-kindle-fire.content--phone-blackberry-passport.content--phone-kindle-fire-7.content--phone-iphone-6p.content--phone-nexus-4.content--phone-nexus-5 {
+    width: 101%;
+    padding-right: 5px;
+  }
+  .call-to-action-button.button--phone-iphone-6p {
+    font-size: 16px;
+  }
+  .call-to-action-button.button--phone-iphone-6p.button-phone-nexus-5 {
+    width: 205px;
+    margin-left: 7px;
+  }
+  .call-to-action-button.button--phone-iphone-6p.button-phone-nexus-5.button--phone-blackberry-q10 {
+    width: 197px;
+  }
+  .call-to-action-button.button--phone-iphone-6p.button-phone-nexus-5.button--phone-blackberry-q10.button--phone-iphone-5 {
+    width: 183px;
+  }
+  .call-to-action-button.button--phone-iphone-6p.button-phone-nexus-5.button--phone-blackberry-q10.button--phone-iphone-5.button--phone-old-android {
+    width: 200px;
+    margin-left: 0px;
+  }
+  .right-column__content-2.content-2--phone-kindle-fire.content-2--phone-blackberry-passport.content-2--phone-kindle-fire-7.content-2--phone-iphone-6p {
+    font-size: 12px;
+  }
+  .right-column__content-2.content-2--phone-kindle-fire.content-2--phone-blackberry-passport.content-2--phone-kindle-fire-7.content-2--phone-iphone-6p.content-2--phone-nexus-5 {
+    padding-right: 10px;
+  }
+  .registration--container.container--phone-kindle-fire-7.container--phone-iphone-6p {
+    position: relative;
+    left: -8px;
+    z-index: 2;
+    margin-right: -10px;
+    margin-left: -45px;
+  }
+  .registration--container.container--phone-kindle-fire-7.container--phone-iphone-6p.container--phone-nexus-5 {
+    margin-right: 0px;
+    margin-left: -70px;
+    padding-right: 23px;
+  }
+  .registration--container.container--phone-kindle-fire-7.container--phone-iphone-6p.container--phone-nexus-5.container--phone-blackberry-q10 {
+    left: -31px;
+    margin-left: -66px;
+  }
+  .registration--container.container--phone-kindle-fire-7.container--phone-iphone-6p.container--phone-nexus-5.container--phone-blackberry-q10.container--phone-iphone-5 {
+    left: -123px;
+  }
+  .registration--container.container--phone-kindle-fire-7.container--phone-iphone-6p.container--phone-nexus-5.container--phone-blackberry-q10.container--phone-iphone-5.container--phone-old-android {
+    left: -248px;
+    width: 200%;
+    margin-left: 0px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p {
+    width: 58%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p.image--phone-blackberry-classic {
+    width: 60%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p.image--phone-blackberry-classic.image--phone-nexus-4 {
+    width: 63%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p.image--phone-blackberry-classic.image--phone-nexus-4.image--phone-nexus-5 {
+    position: relative;
+    left: -40px;
+    width: 65%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p.image--phone-blackberry-classic.image--phone-nexus-4.image--phone-nexus-5.image-phone-blackberry-q10 {
+    left: -49px;
+    width: 75%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p.image--phone-blackberry-classic.image--phone-nexus-4.image--phone-nexus-5.image-phone-blackberry-q10.image--phone-iphone-5 {
+    left: -58px;
+    width: 79%;
+  }
+  .registration--image.image--tablet.image--phone-kindle-fire.image--phone-blackberry-passport.image--phone-iphone-6p.image--phone-blackberry-classic.image--phone-nexus-4.image--phone-nexus-5.image-phone-blackberry-q10.image--phone-iphone-5.image--phone-old-android {
+    left: -45px;
+    width: 200%;
+    height: 29%;
+  }
+  .text-span-2 {
+    font-size: 10px;
+  }
+  .masonry-container.masonry-container__news.news--phone-iphone-5 {
+    width: 300px;
+  }
+  .masonry-container.masonry-container__news.news--phone-blackberry-q10 {
+    width: 330px;
+  }
+  .masonry-container.masonry-container__news.news--phone-blackberry-q10.news--phone-iphone-5 {
+    width: 310px;
+  }
+  .masonry-container.masonry-container__news.news--phone-blackberry-q10.news--phone-iphone-5.news--phone-old-android {
+    width: 230px;
+  }
+  .masonry-container__news-heading.masonry-container__news.news--phone-iphone-6p {
+    font-size: 22px;
+  }
+  .masonry-container__news-heading.masonry-container__news.news--phone-iphone-6p.news--phone-old-android {
+    font-size: 18px;
+  }
+  .masonry-container__news-content.masonry-container__news.news--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .masonry-container__news-content.masonry-container__news.news--phone-iphone-6p.news--phone-old-android {
+    font-size: 13px;
+  }
+  .masonry-container__reviews {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .masonry-container__reviews.reviews--phone-blackberry-q10 {
+    width: 330px;
+    margin-left: 5px;
+  }
+  .masonry-container__reviews.reviews--phone-blackberry-q10.reviews--phone-iphone-5 {
+    width: 310px;
+  }
+  .masonry-container__reviews.reviews--phone-blackberry-q10.reviews--phone-iphone-5.reviews--phone-old-android {
+    width: 230px;
+  }
+  .reviews-content__image.image--phone-old-android {
+    width: 150px;
+    height: 150px;
+  }
+  .reviews-conent__subheader.subheader--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .reviews-content__text {
+    padding-right: 1px;
+  }
+  .reviews-content__text.text--phone-iphone-6p {
+    font-size: 14px;
+  }
+  .reviews-content__text.text--phone-iphone-6p.text--phone-old-android {
+    font-size: 14px;
+  }
+  .container__text.text-content.text--phone-android-old {
+    font-size: 14px;
+    line-height: 25px;
+  }
+  .masonry-container--link.masonry-container {
+    padding-top: 10px;
+  }
+  .terms-conditions.termsconditions__header {
+    font-family: Ubuntu, Helvetica, sans-serif;
+  }
+  .terms-conditions.termsconditions__header.header--phone-iphone-5 {
+    font-size: 32px;
+  }
+  .terms-conditions.terms-conditions__content.content-phone-iphone-5 {
+    font-size: 14px;
+  }
+  .terms-conditions.terms-conditions__header {
+    font-size: 16px;
+  }
+  .privacy-policy.privacy-policy__header.header--phone--iphone-5 {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 32px;
+  }
+  .privacy-policy.privacy-policy__content.content--phone-iphone-5 {
+    font-size: 14px;
+  }
+  .privacy-policy.privacy-policy--content-header {
+    font-size: 16px;
+  }
+  .shipping.shipping__header {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .shipping.shipping__header.header--japanese {
+    text-align: right;
+  }
+  .shipping.shipping__header.header--phone-iphone-5 {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 32px;
+  }
+  .shipping.shipping__content.content--japanese {
+    text-align: right;
+  }
+  .shipping.shipping__content.content--phone-iphone-5 {
+    font-size: 14px;
+  }
+  .nicotine-disclamer.nicotine-disclamer__header.header--japanese {
+    font-size: 34px;
+  }
+  .nicotine-disclamer.nicotine-disclamer__header.header--phone {
+    font-size: 32px;
+  }
+  .product-reviews.product-reviews__image {
+    width: 35%;
+  }
+  .product-reviews.product-reviews__medium-buttons {
+    width: 100%;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-left: 0px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .product-reviews.product-reviews__buttons {
+    width: 100%;
+  }
+  .product-reviews__header {
+    text-align: center;
+  }
+  .product-reviews__header.header--phone-iphone-5 {
+    margin-bottom: 11px;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 32px;
+    text-align: center;
+  }
+  .product-reviews__header.header--phone-iphone-5.header--phone-old-android {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  .footer {
+    height: 1100px;
+  }
+  .footer__nav {
+    width: 100%;
+  }
+  .footer__about {
+    width: 100%;
+    margin-left: 20px;
+  }
+  .footer__legal-pages {
+    width: 100%;
+    margin-top: 5px;
+  }
+  .footer__contact {
+    margin-left: 20px;
+  }
+  .footer__content {
+    width: 100%;
+    padding-right: 35px;
+    padding-bottom: 10px;
+  }
+  .footer__content.content--column-left {
+    padding-right: 5px;
+    padding-left: 0px;
+  }
+  .footer__heading {
+    margin-top: 5px;
+  }
+  .content--buttons.button-content {
+    margin-right: 15px;
+  }
+  .success-element.success-element__tick.success-element--100px {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 50px;
+    margin-top: 15px;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    font-size: 50px;
+  }
+  .success-element.success-element__tick.success-element--100px.tick--50px {
+    margin-bottom: 4px;
+  }
+  .success-element.success-element__tick.success-element--100px.tick--phone-iphone-6p {
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 11px;
+    margin-bottom: 11px;
+    padding-bottom: 0px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 30px;
+  }
+  .success-element.success-element__header.success-element--100px {
+    margin-top: -45px;
+    margin-bottom: 5px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .success-element.success-element__header.success-element--100px.header--50px {
+    margin-bottom: 0px;
+  }
+  .success-element.success-element__header.success-element--100px.success-element--phone-iphone-6p {
+    margin-top: -35px;
+    margin-left: 40px;
+    font-size: 26px;
+  }
+  .success-element.success-element__content-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  .success-element.success-element__content-container.success-element--100px {
+    margin-bottom: 5px;
+    padding-left: 12px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+  }
+  .success-element.success-element__content-container.success-element--100px.success-element--phone-iphone-6p {
+    width: 105%;
+    margin-top: -5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+  }
+  .success-element.success-element__content-container.success-element--50px {
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .success-element.success-element__content-container.success-element--50px.success-element--phone-old-android {
+    font-size: 10px;
+  }
+  .success-element.success-element-100px.success-element__container {
+    height: 80px;
+    box-shadow: 1px 1px 3px 0 #000;
+  }
+  .success-element.success-element-100px.success-element__container.container--phone-iphone-6 {
+    height: 95px;
+  }
+  .success-element.review-post-success__text {
+    margin-top: 0px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .error-element {
+    height: 80px;
+  }
+  .error-element.error-element__image {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 50px;
+    margin-top: 0px;
+    margin-left: 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    font-size: 50px;
+  }
+  .error-element.error-element__image.image--phone-iphone-6p {
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 10px;
+    font-size: 30px;
+  }
+  .error-element.error-element__image.image--phone-iphone-6p.image--phone-old-android {
+    margin-top: 0px;
+    margin-bottom: 12px;
+  }
+  .error-element.error-element__image.image--phone-iphone-6p.image--phone-iphone-5 {
+    margin-top: 2px;
+  }
+  .error-element.error-element__content-container {
+    width: 76%;
+    height: 100px;
+    margin-top: -60px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  .error-element.error-element__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+  }
+  .error-element__content-container.content-container__header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 100px;
+    padding-top: 4px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    font-size: 30px;
+  }
+  .error-element__content-container.content-container__header.header--phone-iphone-6p {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding-top: 0px;
+    font-size: 26px;
+  }
+  .error-element__content-container.content-container__header.header--phone-iphone-6p.header--phone-old-android {
+    margin-top: 14px;
+    font-size: 22px;
+  }
+  .error-element__content-container.content-container__header.header--phone-iphone-6p.header--phone-iphone-5 {
+    margin-bottom: 8px;
+  }
+  .error-element__content-container.content-container__header.header--phone-iphone-6p.header--phone-iphone-5.header--phone-old-android {
+    width: 100px;
+  }
+  .error-element__content-container.content-container__text {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 140%;
+    margin-top: -10px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .error-element__content-container.content-container__text.text--phone-iphone-5 {
+    font-size: 11px;
+  }
+  .error-element__content-container.content-container__text.text--phone-iphone-5.text--phone-old-android {
+    margin-top: -15px;
+  }
+  .error-element__content-container.content-container__text.text--phone-iphone-6p {
+    width: 137%;
+    font-size: 11px;
+  }
+  .error-element__content-container.content-container__text.text--phone-iphone-6p.text--phone-old-android {
+    width: 140%;
+    margin-top: -13px;
+  }
+  .body-6 {
+    height: 80px;
+    border-style: none;
+  }
+  .warning-message {
+    box-shadow: 1px 1px 3px 0 #000;
+  }
+  .warning-message.warning-message__image {
+    height: 60px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 2px;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    background-image: none;
+    box-shadow: none;
+    font-size: 70px;
+  }
+  .warning-message.warning-message__image.image--phone-iphone-6p {
+    height: 30px;
+    margin-top: -31px;
+    margin-left: 11px;
+    font-size: 30px;
+  }
+  .warning-message.warning-message__image.image--phone-iphone-6p.image--phone-old-android {
+    margin-top: -48px;
+  }
+  .warning-message.warning-message__container {
+    box-shadow: none;
+  }
+  .warning-message.warning-message__exit {
+    box-shadow: none;
+  }
+  .warning-message__container.container--text {
+    width: 120%;
+    margin-top: -5px;
+    margin-left: -35px;
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+    line-height: 15px;
+  }
+  .warning-message__container.container--text.text--old-android {
+    font-size: 12px;
+  }
+  .warning-message__container.container--text.text--phone-blackberry-passport.text--phone-old-android {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .warning-message__container.container--text.text--phone-blackberry-passport.text--phone-amazon-kindle-fire-7.text--phone-iphone-5 {
+    line-height: 15px;
+  }
+  .warning-message__container.container--header {
+    margin-top: 1px;
+    margin-bottom: 0px;
+    font-size: 28px;
+  }
+  .warning-message__container.container--header.header--phone-old-android {
+    font-size: 24px;
+  }
+  .footer-2 {
+    height: 70px;
+  }
+  .footer__bottom {
+    width: 100%;
+    height: 50px;
+  }
+  .column-left__text {
+    width: 150px;
+    height: 20px;
+    margin-top: -2px;
+    margin-left: 0px;
+    padding-left: 0px;
+    font-size: 14px;
+  }
+  .column-right__text {
+    width: 150px;
+    height: 20px;
+    padding-bottom: 0px;
+    font-size: 14px;
+  }
+  .news__top-article.top-article--image {
+    background-color: transparent;
+  }
+  .news__top-article.top-article--header {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .author__text {
+    padding-left: 5px;
+    font-size: 14px;
+  }
+  .author__text.text--top {
+    font-size: 14px;
+  }
+  .news__dual-articles {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .news__dual-articles.dual-articles--left-article {
+    width: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .news__dual-articles.dual-articles--right-article {
+    width: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .left-article__image {
+    height: 200px;
+    opacity: 1;
+  }
+  .right-article__image {
+    height: 200px;
+  }
+  .dual-articles__author {
+    margin-left: 15px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .author__image {
+    width: 25px;
+    height: 25px;
+  }
+  .news__main-feed {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .news__main-feed.main-feed--content {
+    width: 95%;
+    padding-right: 5px;
+    padding-left: 5px;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+  }
+  .news__image {
+    display: block;
+    width: 80%;
+    height: 180px;
+    margin-top: 15px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .dual-articles__heading {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .main-feed__content.content--heading {
+    width: 100%;
+    margin-top: 15px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 22px;
+    line-height: 25px;
+  }
+  .link-7 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .link-block {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 180px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .news-main-feed__article-header-link {
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .link-10 {
+    font-size: 24px;
+    line-height: 15px;
+  }
+  .user-stories__content-container.content-continer--image {
+    width: 40%;
+  }
+  .user-stories__content-container.content-container--text {
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+  }
+  .footer__container.container--row-1 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .footer__container.container--row-2 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .shipping__content.content--sub-header {
+    font-size: 16px;
+  }
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Bold.ttf') format('truetype'), url('../fonts/OpenSans-ExtraBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-BoldItalic.ttf') format('truetype'), url('../fonts/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Fontawesome';
+  src: url('../fonts/FontAwesome.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}

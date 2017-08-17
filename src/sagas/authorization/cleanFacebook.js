@@ -22,7 +22,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Facebook) => {
     }],
     authenticationAuth0Identities: [...auth0Facebook.identities],
     contactInfo: {
-      email: '',
+      email: auth0Facebook.email,
       phone: '',
       locale: auth0Facebook.locale,
       timezone: auth0Facebook.timezone,
@@ -56,11 +56,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Facebook) => {
     },
   };
 
-  if (orders.guest && orders.guest.length) {
-    orders.guest.forEach(({ id: product, qty, strength }) => {
-      profile.shopping.cart.push({ qty, strength, product });
-    });
+  if (!!orders.cart && orders.cart.length) {
+    profile.shoppingCart = orders.cart.map(({ _id, qty }) => ({ product: _id, qty }));
   }
+
   return {
     profile,
     loginType: 'facebook',

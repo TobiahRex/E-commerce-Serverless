@@ -13,7 +13,7 @@ export default Creators;
 
 // ------- Initial State ------- //
 export const INITIAL_STATE = Immutable({
-  fetching: null,
+  fetching: false,
   count: 0,
   error: false,
 });
@@ -25,10 +25,10 @@ const success = state => ({
   error: false,
 });
 
-const fail = (state, { error }) => ({
+const fail = state => ({
   fetching: false,
   count: state.fetching - 1,
-  error,
+  error: true,
 });
 
 const fetching = state => ({

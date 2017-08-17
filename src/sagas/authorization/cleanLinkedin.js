@@ -1,5 +1,4 @@
 export default ({ orders, user, geo, locale, mobile }, auth0Linkedin) => {
-  console.log('%cauth0Linkedin', 'background:red;', auth0Linkedin);
   const profile = {
     name: {
       first: auth0Linkedin.given_name,
@@ -23,7 +22,7 @@ export default ({ orders, user, geo, locale, mobile }, auth0Linkedin) => {
     }],
     authenticationAuth0Identities: [...auth0Linkedin.identities],
     contactInfo: {
-      email: '',
+      email: auth0Linkedin.email,
       phone: '',
       locale: `${locale.activeLanguage.slice(0, 2)}-${locale.country}`,
       timezone: (() => {
@@ -60,11 +59,10 @@ export default ({ orders, user, geo, locale, mobile }, auth0Linkedin) => {
     },
   };
 
-  if (orders.guest && orders.guest.length) {
-    orders.guest.forEach(({ id: product, qty, strength }) => {
-      profile.shopping.cart.push({ qty, strength, product });
-    });
+  if (!!orders.cart && orders.cart.length) {
+    profile.shoppingCart = orders.cart.map(({ _id, qty }) => ({ product: _id, qty }));
   }
+
   return {
     profile,
     loginType: 'linkedin',

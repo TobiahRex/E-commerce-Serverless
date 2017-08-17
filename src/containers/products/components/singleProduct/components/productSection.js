@@ -10,7 +10,7 @@ import {
   ProductActions,
   NewMemberPromotionBtn,
   NicotineBtns,
-  SocialMediaBtns,
+  // SocialMediaBtns, TODO MVP2
 } from '../container/component.imports';
 
 const { func, bool, string, shape } = PropTypes;
@@ -24,7 +24,7 @@ class ProductSection extends Component {
       title: string,
       nicotineStrength: string,
       imageUrl: string,
-      routeTag: string,
+      slug: string,
     }).isRequired,
     addToMemberCart: func.isRequired,
     addToGuestCart: func.isRequired,
@@ -104,7 +104,8 @@ class ProductSection extends Component {
     this.setState({ nicStrength: Number(nicEl) });
   }
 
-  // TODO: Finish Facebook Like button handler @ singleProduct.js
+  // TODO: MVP2
+  // Finish Facebook Like button handler @ singleProduct.js
   // fbLike = () => {
   //   /* eslint-disable no-undef */
   //   window.fbAsyncInit = () => {
@@ -146,10 +147,11 @@ class ProductSection extends Component {
           addToCartHandler={this.addToCartHandler}
           qtyHandler={this.qtyHandler}
         />
-        <SocialMediaBtns
+        {/* TODO: MVP2
+          <SocialMediaBtns
           fbLike={this.fbLike}
           location={`${process.env.BASE_URL}/juice/fruity_bamm_bamm`}
-        />
+        /> */}
       </div>
     );
   }
@@ -157,7 +159,7 @@ class ProductSection extends Component {
 const filterJuices = (routingObj, popularProducts) => {
   const location = routingObj.locationBeforeTransitions.pathname;
   const juiceName = location.split('/')[2];
-  return popularProducts.filter(({ routeTag }) => routeTag === juiceName)[0];
+  return popularProducts.filter(({ slug }) => slug === juiceName)[0];
 };
 
 export default connect(({

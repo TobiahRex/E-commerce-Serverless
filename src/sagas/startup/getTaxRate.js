@@ -1,22 +1,32 @@
 import { call, put } from 'redux-saga/effects';
 import orderActions from '../../redux/orders';
 import apiActions from '../../redux/api';
+import toasterActions from '../../redux/toaster';
 import taxApi from '../../services/api/taxes';
 
 export default function* getTaxRate() {
-  const response = yield call(() => taxApi.getTaxRate());
+  yield put(apiActions.fetching());
 
-  if (response.ok) {
+  const {
+    ok,
+    data,
+    problem,
+  } = yield call(() => taxApi.getTaxRate('US', 98101));
+
+  if (ok) {
     const taxRate = {
-      stateRate: response.data.rates[0].rate / 100,
-      cityRate: response.data.rates[1].rate / 100,
-      totalRate: response.data.totalRate / 100,
+      stateRate: data.rates[0].rate,
+      cityRate: data.rates[2].rate,
+      totalRate: data.totalRate,
     };
     yield [
-      put(apiActions.apiSuccess()),
       put(orderActions.setTaxRate(taxRate)),
+      put(apiActions.apiSuccess()),
     ];
   } else {
-    yield [put(apiActions.apiFail(response.problem))];
+    yield [
+      put(toasterActions.toastError(true, problem)),
+      put(apiActions.apiFail()),
+    ];
   }
 }

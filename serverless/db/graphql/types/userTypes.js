@@ -17,6 +17,26 @@ const rootType = new ObjectType({
       description: 'The ID of the User.',
       type: new NonNull(MongoID),
     },
+    error: {
+      description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+      type: new ObjectType({
+        name: 'UserError',
+        fields: () => ({
+          hard: {
+            description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+            type: BoolType,
+          },
+          soft: {
+            description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+            type: BoolType,
+          },
+          message: {
+            description: 'Amplifying information about error.  Should be written for user readibility.',
+            type: StringType,
+          },
+        }),
+      }),
+    },
     name: {
       description: 'The Given, Family, & Display name for the user.',
       type: new ObjectType({
@@ -226,10 +246,6 @@ const rootType = new ObjectType({
                 fields: () => ({
                   qty: {
                     description: 'The quantity of items of this product.',
-                    type: IntType,
-                  },
-                  nicotineStrength: {
-                    description: 'The nicotine strength of this product.',
                     type: IntType,
                   },
                   product: {
@@ -597,10 +613,6 @@ const mutations = {
                   description: 'The quantity of items of this product.',
                   type: IntType,
                 },
-                nicotineStrength: {
-                  description: 'The nicotine strength of this product.',
-                  type: IntType,
-                },
                 product: {
                   description: 'The Mongo ObjectID for this product.',
                   type: MongoID,
@@ -695,10 +707,6 @@ const mutations = {
         description: 'The quantity of products to add.',
         type: new NonNull(IntType),
       },
-      nicotineStrength: {
-        description: 'The nicotine strength of the product to add.',
-        type: new NonNull(IntType),
-      },
       product: {
         description: 'The Mongo ObjectId of the product to add.',
         type: new NonNull(MongoID),
@@ -706,16 +714,27 @@ const mutations = {
     },
     resolve: (_, args, { User }) => User.addToMemberCart(args),
   },
+  EmptyMemberCart: {
+    type: rootType,
+    description: 'Completely erase all saved products from the Users cart.',
+    args: {
+      userId: {
+        description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+    },
+    resolve: (_, args, { User }) => User.emptyCart(args),
+  },
   DeleteFromMemberCart: {
     type: rootType,
     description: 'Delete a Product from the Users cart.',
     args: {
-      productId: {
-        description: 'The Product Mongo Id to delete.',
-        type: new NonNull(MongoID),
-      },
       userId: {
         description: 'The User Mongo Id to perform the operation on.',
+        type: new NonNull(MongoID),
+      },
+      productId: {
+        description: 'The Product Mongo Id to delete.',
         type: new NonNull(MongoID),
       },
     },
@@ -731,24 +750,22 @@ const mutations = {
       },
       products: {
         description: 'A list of Products to be inserted into the users DB cart.',
-        type: new ListType(
-          new InputObject({
-            name: 'ProductsInput',
-            fields: () => ({
-              qty: {
-                description: 'The quantity of products to update.',
-                type: new NonNull(IntType),
-              },
-              nicotineStrength: {
-                description: 'The nicotine strength of the product to update.',
-                type: new NonNull(IntType),
-              },
-              product: {
-                description: 'The Mongo ObjectId of the product to update.',
-                type: new NonNull(MongoID),
-              },
+        type: new NonNull(
+          new ListType(
+            new InputObject({
+              name: 'ProductsInput',
+              fields: () => ({
+                qty: {
+                  description: 'The quantity of products to update.',
+                  type: new NonNull(IntType),
+                },
+                product: {
+                  description: 'The Mongo ObjectId of the product to update.',
+                  type: new NonNull(MongoID),
+                },
+              }),
             }),
-          }),
+          ),
         ),
       },
     },

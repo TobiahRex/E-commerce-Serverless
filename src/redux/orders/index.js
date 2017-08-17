@@ -3,9 +3,13 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   getTaxRate: null,
+  emptyGuestCart: null,
   setTaxRate: ['taxRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
+  validatePostal: ['postalCode'],
+  gotValidPostal: ['postalInfo'],
+  gotInvalidPostal: ['error'],
 });
 
 export const orderTypes = Types;
@@ -17,6 +21,13 @@ export const INITIAL_STATE = Immutable({
     stateRate: 0.060,
     cityRate: 0.030,
     totalRate: 0.090,
+  },
+  postalInfo: {
+    error: false,
+    sagawaId: '',
+    jpAddress: '',
+    postalCode: '',
+    verified: false,
   },
 });
 
@@ -35,8 +46,35 @@ const saveGuestCart = (state, { updatedProducts }) => ({
   cart: [...updatedProducts],
 });
 
+const emptyGuestCart = (state) => {
+  localStorage.removeItem('guestCart');
+  return ({
+    ...state,
+    cart: [],
+  });
+};
+
+const gotValidPostal = (state, { postalInfo }) => ({
+  ...state,
+  postalInfo: {
+    error: false,
+    ...postalInfo,
+  },
+});
+
+const gotInvalidPostal = (state, { error }) => ({
+  ...state,
+  postalInfo: {
+    ...state.postalInfo,
+    error,
+  },
+});
+
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.SAVE_GUEST_CART]: saveGuestCart,
+  [Types.EMPTY_GUEST_CART]: emptyGuestCart,
+  [Types.GOT_VALID_POSTAL]: gotValidPostal,
+  [Types.GOT_INVALID_POSTAL]: gotInvalidPostal,
 });

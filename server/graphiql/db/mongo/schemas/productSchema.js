@@ -2,6 +2,20 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema({
+  error: {
+    hard: {
+      type: Boolean,
+      default: false,
+    },
+    soft: {
+      type: Boolean,
+      default: false,
+    },
+    message: {
+      type: String,
+      default: '',
+    },
+  },
   product: {
     mainTitle: {
       type: String,
@@ -24,6 +38,10 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
+    upc: {
+      type: String,
+      required: true,
+    },
     size: {
       type: Number,
       enum: [30, 60, 120],
@@ -31,7 +49,7 @@ const productSchema = new Schema({
     },
     nicotineStrength: {
       type: Number,
-      enum: [2, 4, 6, 8, 10, 12, 14, 16, 18],
+      enum: [0, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18],
       required: true,
     },
     images: [{
@@ -44,7 +62,7 @@ const productSchema = new Schema({
         required: true,
       },
     }],
-    routeTag: {
+    slug: {
       type: String,
       required: true,
     },
@@ -54,33 +72,33 @@ const productSchema = new Schema({
       required: true,
     },
     dates: {
-      added_to_store: {
+      addedToStore: {
         type: Date,
         default: Date.now,
       },
-      removed_from_store: {
+      removedFromStore: {
         type: Date,
       },
     },
     quantities: {
-      available: { type: Number },
-      in_cart: { type: Number },
+      available: { type: Number, default: 500 },
+      inCart: { type: Number },
     },
   },
   reviews: [{
-    reviews_id: { type: ObjectId, ref: 'Reviews' },
-    user_id: { type: ObjectId, ref: 'User' },
+    reviewsId: { type: ObjectId, ref: 'Reviews' },
+    userId: { type: ObjectId, ref: 'User' },
   }],
   distribution: {
-    restock_threshold: {
+    restockThreshold: {
       type: Number,
       default: 500,
     },
-    restock_amount: {
+    restockAmount: {
       type: Number,
       default: 500,
     },
-    last_replenishment: [{
+    lastReplenishment: [{
       date: {
         type: Date,
       },
@@ -89,15 +107,17 @@ const productSchema = new Schema({
         default: 500,
       },
     }],
-    wholesale_price: { type: Number },
+    wholesalePrice: { type: Number },
   },
   statistics: {
-    adds_to_cart: { type: Number },
-    completed_checkouts: { type: Number },
+    addsToCart: { type: Number },
+    completedCheckouts: { type: Number },
     transactions: [{
-      transaction_id: { type: ObjectId, ref: 'Transaction' },
-      user_id: { type: ObjectId, ref: 'User' },
+      transactionId: { type: ObjectId, ref: 'Transaction' },
+      userId: { type: ObjectId, ref: 'User' },
     }],
   },
+}, {
+  bufferCommands: true,
 });
 export default productSchema;

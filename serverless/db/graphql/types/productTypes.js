@@ -4,6 +4,7 @@ import {
   GraphQLList as ListType,
   GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
+  GraphQLBoolean as BoolType,
   GraphQLString as StringType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
@@ -16,6 +17,26 @@ const rootType = new ObjectType({
     _id: {
       description: 'The ID of the Product.',
       type: new NonNull(MongoId),
+    },
+    error: {
+      description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+      type: new ObjectType({
+        name: 'ProductError',
+        fields: () => ({
+          hard: {
+            description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+            type: BoolType,
+          },
+          soft: {
+            description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+            type: BoolType,
+          },
+          message: {
+            description: 'Amplifying information about error.  Should be written for user readibility.',
+            type: StringType,
+          },
+        }),
+      }),
     },
     product: {
       description: 'Object: All the important details for the product.',
@@ -61,12 +82,10 @@ const rootType = new ObjectType({
                   description: '120 milliliter bottle',
                 },
               },
-              /* eslint-enable quote-props */
-
             }),
           },
           nicotineStrength: {
-            description: 'The nicotine strength for the new product.',
+            description: 'The nicotine strength for the Product.',
             type: new EnumType({
               name: 'ProductNicotineStrengthsEnum',
               values: {
@@ -121,7 +140,7 @@ const rootType = new ObjectType({
               }),
             ),
           },
-          routeTag: {
+          slug: {
             description: 'The name of the route for the product.',
             type: StringType,
           },
@@ -138,11 +157,11 @@ const rootType = new ObjectType({
             type: new ObjectType({
               name: 'ProductDateObject',
               fields: () => ({
-                added_to_store: {
+                addedToStore: {
                   description: 'The Date the product was first added to the store.',
                   type: StringType,
                 },
-                removed_from_store: {
+                removedFromStore: {
                   description: 'The Date the product was removed from the store.',
                   type: StringType,
                 },
@@ -158,7 +177,7 @@ const rootType = new ObjectType({
                   description: 'The available quanitty for this product.',
                   type: IntType,
                 },
-                in_cart: {
+                inCart: {
                   description: 'The quantity for products currently in customers\' carts.',
                   type: IntType,
                 },
@@ -173,11 +192,11 @@ const rootType = new ObjectType({
       type: new ObjectType({
         name: 'ProductStatistics',
         fields: () => ({
-          adds_to_cart: {
+          addsToCart: {
             description: 'The amount of times someone has added this product to their cart.',
             type: IntType,
           },
-          completed_checkouts: {
+          completedCheckouts: {
             description: 'The amount of times this item has been successfully purchased.',
             type: IntType,
           },
@@ -187,11 +206,11 @@ const rootType = new ObjectType({
               new ObjectType({
                 name: 'ProductTransaction',
                 fields: () => ({
-                  transaction_id: {
+                  transactionId: {
                     description: 'The Mongo ID for transactions.',
                     type: MongoId,
                   },
-                  user_id: {
+                  userId: {
                     description: 'The mongo ID for users.',
                     type: MongoId,
                   },
@@ -204,6 +223,7 @@ const rootType = new ObjectType({
     },
   },
 });
+
 const queryTypes = {
   popularProductsType: new ObjectType({
     name: 'PopularProductType',
@@ -221,7 +241,7 @@ const queryTypes = {
         description: 'The main Title for this Product.',
         type: new NonNull(StringType),
       },
-      routeTag: {
+      slug: {
         description: 'The route tag (slug) for this product.',
         type: new NonNull(StringType),
       },
@@ -252,7 +272,6 @@ const queryTypes = {
     }),
   }),
 };
-
 const queries = {
   FetchMultipleProducts: {
     type: new ListType(rootType),
@@ -297,6 +316,7 @@ const queries = {
     resolve: (_, { qty }, { Product }) => Product.getPopularProducts(qty),
   },
 };
+
 const mutations = {
   CreateProduct: { // This is only used from GraphiQL to seed database.
     type: rootType,
@@ -417,7 +437,7 @@ const mutations = {
                   ),
                 ),
               },
-              routeTag: {
+              slug: {
                 description: 'The name of the route for the new product.',
                 type: new NonNull(StringType),
               },
@@ -438,7 +458,7 @@ const mutations = {
                       description: 'The available quanitty for this product.',
                       type: IntType,
                     },
-                    in_cart: {
+                    inCart: {
                       description: 'The quantity for products currently in customers\' carts.',
                       type: IntType,
                     },
@@ -454,11 +474,11 @@ const mutations = {
         type: new InputObject({
           name: 'NewProductStatisticsInput',
           fields: () => ({
-            adds_to_cart: {
+            addsToCart: {
               description: 'The amount of times someone has added this product to their cart.',
               type: IntType,
             },
-            completed_checkouts: {
+            completedCheckouts: {
               description: 'The amount of times this item has been successfully purchased.',
               type: IntType,
             },
@@ -604,7 +624,7 @@ const mutations = {
                   }),
                 ),
               },
-              routeTag: {
+              slug: {
                 description: 'The name of the route for the new product.',
                 type: StringType,
               },
@@ -625,7 +645,7 @@ const mutations = {
                       description: 'The available quanitty for this product.',
                       type: IntType,
                     },
-                    in_cart: {
+                    inCart: {
                       description: 'The quantity for products currently in customers\' carts.',
                       type: IntType,
                     },

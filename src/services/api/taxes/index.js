@@ -2,11 +2,13 @@ import { create } from 'apisauce';
 
 const createTaxAPI = () => {
   const api = create({
-    baseURL: 'https://taxrates.api.avalara.com/postal?country=usa&postal=98101&apikey=fK%2BVk61LSB4Lg7piAan%2FgQudgwiqt4I2UbaFcrCgyqpnntXVWP%2FS1hZBQ6TLwq7Vr9lAeCW54bB0x%2B7J%2FxGbLQ%3D%3D&referrer=&lastReferrer=taxratesapi.avalara.com',
-    credentials: 'omit',
+    baseURL: 'https://sandbox-rest.avatax.com/api/v2/taxrates/',
+    headers: {
+      Authorization: `Basic ${new Buffer('2000229414:CD9D942F97564AD3', 'utf8').toString('base64')}`,
+    },
   });
 
-  const getTaxRate = () => api.get('');
+  const getTaxRate = (country, postalCode) => api.get(`/bypostalcode?country=${country}&postalCode=${postalCode}`);
 
   return {
     getTaxRate,

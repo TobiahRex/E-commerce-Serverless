@@ -3,13 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-function ErrorMsg({ error, errorMsg }) {
-  console.log('%cerror, \nerrorMsg', 'background:red;', error, '\n', errorMsg);
-
+function ErrorMsg({ error: { hard, soft }, errorMsg }) {
   let style;
   let showErrorMsg = () => ('');
 
-  if (error) {
+  if (hard || soft) {
     style = {
       display: 'block',
       opacity: 1,
@@ -66,13 +64,19 @@ function ErrorMsg({ error, errorMsg }) {
     </div>
   );
 }
-const { bool, string } = PropTypes;
+const { bool, string, shape } = PropTypes;
 ErrorMsg.propTypes = {
-  error: bool,
+  error: shape({
+    hard: bool,
+    soft: bool,
+  }),
   errorMsg: string,
 };
 ErrorMsg.defaultProps = {
-  error: false,
+  error: {
+    hard: false,
+    soft: false,
+  },
   errorMsg: '',
 };
 

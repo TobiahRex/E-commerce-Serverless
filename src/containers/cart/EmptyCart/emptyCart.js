@@ -6,12 +6,7 @@ export default function EmptyCart() {
   return (
     <div className="empty-cart-main">
       <div className="empty-cart-main-title">
-        <h2>Your Shopping Cart Is Empty</h2>
-        <img
-          src="https://s3-ap-northeast-1.amazonaws.com/nj2jp-react/nj2jp_confused_emoji.png"
-          alt="Confused Face"
-          style={{ maxWidth: '50px' }}
-        />
+        <h2>Your Shopping Cart Is Empty 😕 </h2>
       </div>
       <div className="empty-cart-main-icon">
         <FontAwesome name="shopping-basket" size="5x" />

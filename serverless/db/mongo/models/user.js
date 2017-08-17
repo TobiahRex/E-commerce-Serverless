@@ -4,6 +4,7 @@ import userSchema from '../schemas/userSchema';
 
 export default (db) => {
   /**
+  * Function: "fetchUserProfile"
   * 1) Query User collection using input argument "userId".
   * 2) Resolves || Rejects with result.
   *
@@ -27,6 +28,7 @@ export default (db) => {
   });
 
   /**
+  * Function: "loginOrRegister"
   * Checks for previous user matching the input auth0 id.  If found, logs user in. If not found, registers user.
   *
   * 1) Saves "auth0Id" & "loginType" to external variables and removes those from input "args" arguments.  By removing from args input, register user can cleanly create new instance with 1 input, "args".
@@ -47,7 +49,7 @@ export default (db) => {
     delete args.loginType;
 
     User
-    .findOne({ 'authentication.auth0Identities.user_id': auth0Id })
+    .findOne({ 'authentication.auth0Identities.userId': auth0Id })
     .exec()
     .then((dbUser) => {
       if (!dbUser) return User.registerUser(args);
@@ -73,8 +75,22 @@ export default (db) => {
     dbUser.authentication.totalLogins += 1;
     dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
     dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
-    dbUser.shopping.cart = [...userObj.shoppingCart];
     dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
+
+    const savedOldCart = [...dbUser.shopping.cart];
+    const newCart = [...savedOldCart, ...userObj.shoppingCart];
+
+    if (!!newCart.length) {
+      const newQty = newCart.reduce((accum, next) => (accum += next.qty), 0);
+
+      if (newQty > 4) {
+        dbUser.error.soft = true;
+        dbUser.error.hard = false;
+        dbUser.error.message = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+      } else {
+        dbUser.shopping.cart = [...newCart];
+      }
+    }
 
     dbUser.save({ validateBeforeSave: true })
     .then(resolve);
@@ -117,6 +133,7 @@ export default (db) => {
       },
       contactInfo: {
         ...contactInfo,
+        email: contactInfo.email ? contactInfo.email : '',
         location: { ...contactInfoLocation },
         devices: [...contactInfoDevices],
         socialNetworks: [...contactInfoSocialNetworks],
@@ -143,30 +160,41 @@ export default (db) => {
   * 3) Saves changes.
   * 4) Resolves || Rejects with result.
   *
-  * @param {object} cartObj - userId {string}, qty {number}, nicotineStrength {number}, product {object}.
+  * @param {object} cartObj - userId {string}, qty {number}, product {object}.
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, nicotineStrength, product }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, product }) =>
   new Promise((resolve, reject) => {
-    User
-    .findById(userId)
+    User.findById(userId)
     .exec()
     .then((dbUser) => {
-      dbUser.shopping.cart.push({
-        qty,
-        product,
-        nicotineStrength,
-      });
+      dbUser.shopping.cart.push({ qty, product });
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {
-      console.log('Saved product to the User\'s Shopping Cart!');
+      console.log('Saved product ID & QTY to the User\'s Shopping Cart!: ', product);
       resolve(savedUser);
     })
     .catch((error) => {
-      console.log(`Could not save product to Users shopping cart. ERROR = ${error}`);
-      reject(`Could not save product to Users shopping cart. ERROR = ${error}`);
+      console.log({
+        problem: `Could not save to the Users shopping cart.
+        args: {
+          userId: ${userId},
+          qty: ${qty},
+          product: ${product},
+        }
+        Mongo Error: ${error}`,
+      });
+      reject({
+        problem: `Could not save to the Users shopping cart.
+        args: {
+          userId: ${userId},
+          qty: ${qty},
+          product: ${product},
+        }
+        Mongo Error: ${error}`,
+      });
     });
   });
 
@@ -186,12 +214,13 @@ export default (db) => {
     User.findById(userId)
     .exec()
     .then((dbUser) => {
-      dbUser.shopping.cart = dbUser.shopping.cart
-      .filter(({ product }) => String(product) !== String(productId));
+      dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.product) !== String(productId));
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((savedUser) => {
-      console.log(`Deleted Product: ${productId} from User: ${savedUser._id}.`);
+      console.log(`
+        Deleted Product: ${productId} from User: ${savedUser._id}.
+      `);
       resolve(savedUser);
     })
     .catch((error) => {
@@ -200,6 +229,31 @@ export default (db) => {
     });
   });
 
+  /**
+  * Function: "emptyCart"
+  * 1) find User by "userId".
+  * 2) Once found, assign their shopping cart to an empty array.
+  * 3) Save changes.
+  * 4) Return the modified user document.
+  *
+  * @param {string} userid - Mongo User _id.
+  *
+  * @return {object} userDocument - Promise resolved with updates to User Document.
+  */
+  userSchema.statics.emptyCart = ({ userId }) =>
+  new Promise((resolve, reject) => {
+    User.findById(userId)
+    .exec()
+    .then((dbUser) => {
+      dbUser.shopping.cart = [];
+      return dbUser.save({ validateBeforeSave: true });
+    })
+    .then((updatedUser) => {
+      console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
+      resolve(updatedUser);
+    })
+    .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
+  });
   /**
   * Modifies product(s) in user's shopping cart.
   * 1) Finds user by Mongo _id.
@@ -221,7 +275,7 @@ export default (db) => {
       return dbUser.save({ validateBeforeSave: true });
     })
     .then((updatedUser) => {
-      console.log('Updated user shopping cart!');
+      console.log('Updated user shopping cart!: ', updatedUser.shopping.cart);
       resolve(updatedUser);
     })
     .catch((error) => {

@@ -1,9 +1,8 @@
 @media only screen and (min-width: 641px) {
   .footer-main {
-    height: 35em;
     width: 100%;
     margin-top: 5em;
-    padding: 1em 0;
+    padding-top: 1em;
     background-color: $p-blue;
     & .footer-main-sections-container {
       display: flex;
@@ -21,11 +20,12 @@
         & .footer-main-sections-list-contactus,
         .footer-main-sections-list-memberships,
         .footer-main-sections-list-myaccount,
-        .footer-main-sections-list-customercare {
+        .footer-main-sections-list-customercare,
+        .footer-main-sections-list-payment-options {
           display: flex;
           flex-direction: column;
-          height: 30em;
           width: 30em;
+          margin-bottom: 2em;
           & h3 {
             color: $p-white;
             font-size: 2.5em;
@@ -49,6 +49,13 @@
               cursor: pointer;
               transition: all .3s;
             }
+          }
+        }
+        & .footer-main-sections-list-payment-options {
+          justify-content: flex-end;
+          padding-bottom: 2em;
+          & img {
+            padding: 2em;
           }
         }
       }

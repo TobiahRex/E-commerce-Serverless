@@ -1,19 +1,26 @@
 import { put, call } from 'redux-saga/effects';
 import geoActions from '../../redux/geo';
 import localeActions from '../../redux/locale';
+import toasterActions from '../../redux/toaster';
 import apiActions from '../../redux/api';
 import geoApi from '../../services/api/geolocation';
 
 export default function* getGeoLocation() {
-  const response = yield call(() => geoApi.getGeoLocation());
-  if (response.ok) {
-    const { ip, loc, country } = response.data;
+  yield put(apiActions.fetching());
+
+  const { ok, problem, data } = yield call(() => geoApi.getGeoLocation());
+
+  if (ok) {
+    const { ip, loc, country } = data;
     yield [
-      put(apiActions.apiSuccess()),
       put(geoActions.updateGeo(ip, loc)),
       put(localeActions.setCountry(country)),
+      put(apiActions.apiSuccess()),
     ];
   } else {
-    yield put(apiActions.apiFail(response.problem));
+    yield [
+      put(toasterActions.toastError(true, problem)),
+      put(apiActions.apiFail()),
+    ];
   }
 }

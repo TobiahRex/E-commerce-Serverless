@@ -32,6 +32,8 @@ rules:
   react/jsx-boolean-value: 1
   react/sort-comp: 0
   react/no-unused-prop-types: 0
+  no-extra-boolean-cast:
+    - 0
   no-param-reassign:
     - 0
     - props: false

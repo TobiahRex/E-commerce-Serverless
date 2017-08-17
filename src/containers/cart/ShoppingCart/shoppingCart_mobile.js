@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 function ShoppingCartMobile({
   cart,
   taxes,
+  newUser,
   grandTotal,
   routerPush,
   mobileActive,
@@ -27,6 +28,7 @@ function ShoppingCartMobile({
         {showProductRow(
           cart,
           taxes,
+          newUser,
           grandTotal,
           mobileActive,
         )}
@@ -40,12 +42,13 @@ ShoppingCartMobile.propTypes = {
   showProductRow: func.isRequired,
   cart: arrayOf(object),
   taxes: number,
+  newUser: bool.isRequired,
   grandTotal: number,
   mobileActive: bool.isRequired,
 };
 ShoppingCartMobile.defaultProps = {
   cart: [],
-  taxes: '0.00', // converted to string to ensure 2 decimal places.
-  grandTotal: 0, // will also be converted to string in JSX.
+  taxes: 0,
+  grandTotal: 0,
 };
 export default ShoppingCartMobile;

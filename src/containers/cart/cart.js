@@ -1,13 +1,26 @@
 /* eslint-disable no-extra-boolean-cast */
-// TODO: Need to updated UserCart Schema to track "error" & "errorMsg" (Same as GuestCart).
-// TODO: Create func. desc. for "verifyQtyChange"
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
+import _ from 'lodash';
+import userActions from '../../redux/user';
+import orderActions from '../../redux/orders';
+import {
+  EmptyMemberCart,
+  DeleteFromMemberCart,
+  EditToMemberCart,
+} from '../../graphql/mutations';
+import {
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from '../../graphql/queries';
 
+import {
+  propTypes,
+  defaultProps,
+} from './propTypes.imports';
 import {
   BreadCrumb,
   EmptyCart,
@@ -16,47 +29,17 @@ import {
   ShoppingCartWebProductRow,
   ShoppingCartMobileProductCard,
 } from './component.imports';
-
 import {
-  DeleteFromMemberCart,
-} from '../../graphql/mutations';
-import userActions from '../../redux/user';
-import orderActions from '../../redux/orders';
+  zipUserCart as ZipUserCart,
+  determineCartType as DetermineCartType,
+  checkNewUser as CheckNewUser,
+  arrayDeepEquality as ArrayDeepEquality,
+  composeFinalTotal as ComposeFinalTotal,
+} from './utilities.imports';
 
-const { func, bool, string, number, arrayOf, shape, objectOf, any } = PropTypes;
 class ShoppingCart extends Component {
-  static propTypes = {
-    qty: number.isRequired,
-    push: func.isRequired,
-    userId: string,
-    taxRate: number.isRequired,
-    loggedIn: bool.isRequired,
-    saveUser: func.isRequired,
-    saveGuest: func.isRequired,
-    mobileActive: bool.isRequired,
-    DeleteFromMemberCart: func.isRequired,
-    userCart: arrayOf(
-      shape({
-        qty: number,
-        strength: number,
-        product: string,
-      }),
-    ),
-    guestCart: arrayOf(
-      shape({
-        _id: string,
-        qty: number,
-        strength: number,
-        userId: string,
-        product: objectOf(any),
-      }),
-    ),
-  }
-  static defaultProps = {
-    userId: '',
-    userCart: null,
-    guestCart: null,
-  }
+  static propTypes = propTypes;
+  static defaultProps = defaultProps;
   constructor(props) {
     super(props);
 
@@ -67,75 +50,120 @@ class ShoppingCart extends Component {
       error: false,
       grandTotal: 0,
       mobileActive: props.mobileActive,
+      total: {
+        discount: {
+          qty: false,
+          qtyAmount: 0,
+          register: false,
+          registerAmount: 0,
+        },
+        taxes: 0,
+        grandTotal: 0,
+        subTotal: 0,
+      },
     };
   }
 
   componentWillReceiveProps(nextProps) {
     const {
       qty,
-      taxRate,
-      loggedIn,
-      userCart,
-      guestCart,
+      total,
+      updatedCart,
       mobileActive,
     } = nextProps;
 
-    const { taxes, grandTotal } = this.calculateTotalsDue(loggedIn ? userCart : guestCart);
-
     if (
       this.state.qty !== qty ||
-      this.state.taxes !== taxes ||
-      this.state.taxRate !== taxRate ||
-      this.state.grandTotal !== grandTotal ||
+      !_.isEqual(total, this.state.total) ||
+      !ArrayDeepEquality(updatedCart, this.state.userCart) ||
       this.state.mobileActive !== mobileActive
     ) {
-      this.setState({
+      this.setState(prevState => ({
+        ...prevState,
         qty,
-        taxes,
-        grandTotal,
         mobileActive,
-      });
+        updatedCart,
+        total: { ...total },
+      }));
     }
   }
+    /**
+    * Function: "shouldComponentUpdate"
+    * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
+    *
+    * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
+    *
+    * @param {object} nextProps - New props.
+    * @param {object} nextState - New State.
+    *
+    * @return {boolean} true/false.
+    */
+  shouldComponentUpdate(nextProps, nextState) {
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
+
+    const {
+      FetchMultipleProducts: { FetchMultipleProducts: nextUserCart },
+    } = nextProps,
+
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: thisUserCart },
+      } = this.props;
+
+    if (
+        !_.isEqual(nextProps, this.props) ||
+        !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
+        !ArrayDeepEquality(nextUserCart, thisUserCart)
+      ) return true;
+
+    if (
+      !_.isEqual(nextState, this.state) ||
+      !ArrayDeepEquality(nextState.updatedCart, this.state.updatedCart)
+    ) return true;
+
+    return false;
+  }
   /**
-  * Function: "calculateTotalsDue"
   * 1) For each product currently in the cart, calculate the total for that item by multiplying the underlying price with the quantity requested.
-  * 2) Add that the individual subtotal to each juiceObj.
+  * 2) Add that to the individual subtotal (newly created key) to each productObj.
   * 3) Add that amount to the "grandTotal".
+  * @NOTE - Mutates the original "productObj" by adding key "subTotal".
   *
   * @param {none} N/A
   *
   * @return {N/A} Set's new state for taxes & grandTotal.
   */
-  calculateTotalsDue = (cart) => {
-    let grandTotal = 0;
-
-    cart.forEach((juiceObj) => {
-      juiceObj.subTotal = juiceObj.qty * Number(juiceObj.price);
-      grandTotal += juiceObj.subTotal;
-    });
-
-    const taxes = (grandTotal * this.props.taxRate).toFixed(2);
-    grandTotal += Number(taxes);
-
-    return ({
-      taxes,
-      grandTotal,
-    });
-  }
 
   /**
   * Function: "verifyQtyChange"
+  * TODO) Need to add keys "error" & "errorMsg" to the user's shopping cart product values.
   * 1) Determine via switchblock, type of qty change.
   * 2) Iterate over cart, and find the product by _id to be changed.
   * 3) Change qty per "changeType".
-  * 4) Increment "globalRequestQty" by each products quantity.
-  * 4) return all products into new array "newCart".
+  * // --
+  * 4a) If "qty-plus" Increment "globalRequestQty" by each products quantity.
+  * 4b) return all products into new array "newCart".
   * 5) Check "globalRequestQty" for total qty violations.
-  * 6a) If violation is found, iterate over array "newCart" and locate product to updated.
-  * 6aa) Once found, copy object to avoid inheritence. Update key "error" to true. Update key "errorMsg" with appropriate type of error.  Update key "qty" to non-violating value.
+  * 6a) If qty violation (too many) is found. If found, iterate over array "newCart" and locate product to be fixed.
+  * 6aa) 1) Once found, copy object to avoid inheritence. 2) Update key "error" to true. 3) Update key "errorMsg" with appropriate type of error.  Update key "qty" to a value one less than its violation value.
   * 6ab) Re-assign array "newCart" to new updated productArray.
-  * 7) return final value as object.
+  * 7) return final object with results.
+  * // --
+  * 4) If "qty-minus" 1) Iterate over cart.  2) Create new keys "error and "errorMsg" on the current productObj.
+  * 5) If the current productObj matches the current productId.  1) Make copy of "productObj" to avoid prototypal inheritance. 2) Decrement the copied object's key of "qty" by a value of 1.
+  * 6) Check to see if the product's qty that was just decremented is now a value of 0. if not...
+  * 7) Add the updated product's qty to the total qty tracker "productToEditQty".  Otherwise...
+  * 8) subtract a value of 1 from "productToEditQty" because it will be removed from the cart completely in a following step.
+  * 9) return the modifed product object.
+  * 10) Check to see if the total qty tracker variable "productToEditQty" is 0.  If so, remove the respective product object via filter, and re-assign "newCart" to the resulting filtered array.
+  * 11) return final object with results.
   *
   * @param {string} qtyChangeType, {string} productId, {array} cart
   *
@@ -151,9 +179,6 @@ class ShoppingCart extends Component {
         let globalRequestQty = 0;
 
         let newCart = cart.map((productObj) => {
-          productObj.error = false;
-          productObj.errorMsg = '';
-
           if (productObj._id === productId) {
             const productCopy = Object.assign({}, productObj);
             productCopy.qty += 1;
@@ -169,8 +194,10 @@ class ShoppingCart extends Component {
           newCart = newCart.map((productObj) => {
             if (productObj._id === productId) {
               const productWithError = Object.assign({}, productObj);
-              productWithError.error = true;
-              productWithError.errorMsg = 'Too much';
+              const newError = Object.assign({}, productObj.error);
+              productWithError.error = newError;
+              productWithError.error.soft = true;
+              productWithError.error.message = 'Too much';
               productWithError.qty -= 1;
               return productWithError;
             }
@@ -185,22 +212,23 @@ class ShoppingCart extends Component {
       }
       case 'qty-minus': {
         let productToEditQty = 0;
-        let newCart = cart.map((productObj) => {
-          productObj.error = false;
-          productObj.errorMsg = '';
 
+        let newCart = cart.map((productObj) => {
           if (productObj._id === productId) {
-            const productCopy = Object.assign({}, productObj);
+            const productCopy = _.clone(productObj, true);
             productCopy.qty -= 1;
+
             if (productCopy.qty !== 0) {
               productToEditQty += productCopy.qty;
+            } else {
+              productToEditQty -= 1;
             }
+
             return productCopy;
           }
           return productObj;
         });
 
-        console.log('%cproductToEditQty', 'background:orange;', productToEditQty);
         if (productToEditQty < 1) {
           newCart = newCart.filter(({ _id }) => _id !== productId);
         }
@@ -231,21 +259,19 @@ class ShoppingCart extends Component {
 
     const {
       loggedIn,
-      guestCart,
-      userCart,
+      updatedCart,
     } = this.props;
 
-    let result = null;
     let cartOwner = '';
+    let result = null;
 
     if (loggedIn) {
-      result = this.verifyQtyChange(changeType, productId, userCart);
       cartOwner = 'User';
+      result = this.verifyQtyChange(changeType, productId, updatedCart);
     } else {
-      result = this.verifyQtyChange(changeType, productId, guestCart);
       cartOwner = 'Guest';
+      result = this.verifyQtyChange(changeType, productId, updatedCart);
     }
-    console.log('%cresult', 'background:blue;', result);
 
     if (result.error) {
       this.setState(prevState => ({
@@ -259,7 +285,7 @@ class ShoppingCart extends Component {
         error: false,
         updatedCart: [...result.newCart],
       }), () => {
-        this.props[`save${cartOwner}`]([...result.cart]);
+        this.props[`save${cartOwner}`]([...result.newCart]);
       });
     }
   }
@@ -288,8 +314,8 @@ class ShoppingCart extends Component {
       /**
       * Function: "DeleteFromMemberCart"
       * 1) Executes GraphQL mutation "DeleteFromMemberCart" - Removes product from users local db profile, and returns the updated user.
-      * 2) Dispatches redux action by calling props methods "saveUser".
-      * 3) Redux action will update the user profile saved in Redux.
+      * 2) Dispatches redux action by calling props method "saveUser".
+      * 3) Redux action will update Redux state with updated user object.
       *
       * @param {object} variables - GraphQL required variables.
       *
@@ -304,13 +330,31 @@ class ShoppingCart extends Component {
     } else {
       /**
       * Function: "saveGuestCart"
-      * 1) Filters the current guest cart by the id of the product found on the event target object.
+      * 1) Filters the guest cart, by id of the product, found on the event target object.
       *
-      * @param {array} (filter result) - filtered ids.
+      * @param {array} (filtered cart) - product objects.
       *
       * @return N/A
       */
       saveGuest(guestCart.filter(({ _id }) => _id !== productId));
+    }
+  }
+
+  emptyCart = () => {
+    const {
+      userId,
+      saveUser,
+      loggedIn,
+      saveGuest,
+    } = this.props;
+
+    if (loggedIn) {
+      this.props.EmptyMemberCart({ variables: { userId } })
+      .then(({ data: { ClearShoppingCart: updatedUser } }) => {
+        saveUser(updatedUser);
+      });
+    } else {
+      saveGuest([]);
     }
   }
 
@@ -332,13 +376,12 @@ class ShoppingCart extends Component {
     grandTotal,
     mobileActive,
   ) => (
-    cart.map((juiceObj, i) => {
+    cart.map((productObj) => {
       if (mobileActive === false) {
         return (
           <ShoppingCartWebProductRow
-            key={`shopping-cart-table-row-${juiceObj._id}`}
-            keyNum={i}
-            juiceObj={juiceObj}
+            key={`shopping-cart-table-row-${productObj._id}`}
+            productObj={productObj}
             qtyHandler={this.qtyHandler}
             deleteFromCart={this.deleteFromCart}
           />
@@ -346,13 +389,11 @@ class ShoppingCart extends Component {
       }
       return (
         <ShoppingCartMobileProductCard
-          key={`shopping-cart-table-row-${juiceObj._id}`}
-          keyNum={i}
-          taxes={taxes}
-          grandTotal={grandTotal}
-          juiceObj={juiceObj}
+          key={`shopping-cart-table-row-${productObj._id}`}
+          productObj={productObj}
           qtyHandler={this.qtyHandler}
           deleteFromCart={this.deleteFromCart}
+          emptyCart={this.emptyCart}
         />
       );
     })
@@ -368,44 +409,51 @@ class ShoppingCart extends Component {
   */
   showShoppingCart = (
     cart,
-    taxes,
-    grandTotal,
+    newUser,
     mobileActive,
+    total,
   ) => {
     if (mobileActive === false) {
       return (
         <ShoppingCartWeb
           cart={cart}
-          taxes={taxes}
-          grandTotal={grandTotal}
+          taxes={total.taxes}
+          grandTotal={total.grandTotal}
+          emptyCart={this.emptyCart}
           routerPush={this.routerPush}
           mobileActive={mobileActive}
           showProductRow={this.showProductRow}
+          total={total}
         />
       );
     }
     return (
       <ShoppingCartMobile
         cart={cart}
-        taxes={taxes}
-        grandTotal={grandTotal}
+        taxes={total.taxes}
+        newUser={newUser}
+        grandTotal={total.grandTotal}
         routerPush={this.routerPush}
         mobileActive={mobileActive}
         showProductRow={this.showProductRow}
+        total={total}
       />
     );
   }
 
-
   render() {
-    const { loggedIn, userCart, guestCart } = this.props;
-    const { taxes, grandTotal, mobileActive, updatedCart } = this.state;
-    const cartHasProducts = userCart.length || guestCart.length;
+    const {
+      newUser,
+    } = this.props;
 
-    let cart = loggedIn ? userCart : guestCart;
-    if (updatedCart.length) {
-      cart = updatedCart;
-    }
+    const {
+      total,
+      mobileActive,
+      updatedCart,
+    } = this.state;
+
+    const cartHasProducts = !!updatedCart.length;
+
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
@@ -422,41 +470,77 @@ class ShoppingCart extends Component {
           <EmptyCart /> :
 
           this.showShoppingCart(
-            cart,
-            taxes,
-            grandTotal,
+            updatedCart,
+            newUser,
             mobileActive,
+            total,
           )
         }
       </div>
     );
   }
 }
-const calculateCartQty = cart =>
-cart.reduce((accum, next) => {
-  if (!!next.qty) {
-    accum += next.qty;
+/**
+* Function: "calculateCartQty"
+* 1) calls a reduce method on the input "cart" array.
+* 2) verifies the next object has a key of "qty", if not, returns the final accumulated value. If so...
+* 3) Increments the accumulated value by the value of "qty".  Returns the result to the next iteration.
+*
+* @param {array} cart - an array of product objects.
+*
+* @return {number} accum - the final qty number;
+*/
+const calculateCartQty = (auth, userObj, ordersObj) => {
+  const cart = auth.loggedIn ? userObj.profile.shopping.cart : ordersObj.cart;
+  return cart.reduce((accum, next) => {
+    if (!!next.qty) {
+      accum += next.qty;
+      return accum;
+    }
     return accum;
-  }
-  return accum;
-}, 0);
+  }, 0);
+};
 
-const ShoppingCartWithData = compose(
+const ShoppingCartWithState = connect((state, ownProps) => {
+  const total = ComposeFinalTotal(ownProps);
+  const cart = DetermineCartType(ownProps, ZipUserCart);
+  return ({
+    total,
+    updatedCart: cart,
+  });
+}, (dispatch, ownProps) => ({
+  push: location => dispatch(push(location)),
+  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
+  saveUser: (updatedCart) => {
+    const products = updatedCart.map(({ qty, _id }) => ({ qty, product: _id }));
+
+    ownProps.EditToMemberCart({
+      variables: { userId: ownProps.userId, products },
+    })
+    .then(({ data: { EditToMemberCart: updatedUser } }) => {
+      dispatch(userActions.saveUser(updatedUser));
+    });
+  },
+}))(ShoppingCart);
+
+const ShoppingCartWithStateAndData = compose(
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: FetchMultipleProductsOptions,
+  }),
+  graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
-)(ShoppingCart);
+  graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
+)(ShoppingCartWithState);
 
-const ShoppingCartWithDataAndState = connect(({ mobile, orders, auth, user }) => ({
-  qty: calculateCartQty(auth.loggedIn ? user.profile.shopping.cart : orders.cart),
-  mobileActive: mobile.mobileType || false,
-  taxRate: orders.taxRate.totalRate,
+const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
+  qty: calculateCartQty(auth, user, orders),
+  mobileActive: !!mobile.mobileType || false,
+  taxRate: orders.taxRate,
   loggedIn: auth.loggedIn || false,
-  userId: user._id || '',
+  userId: user.profile ? user.profile._id : '',
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-}),
-dispatch => ({
-  push: location => dispatch(push(location)),
-  saveUser: updatedProfile => dispatch(userActions.saveUser(updatedProfile)),
-  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-}))(ShoppingCartWithData);
-export default ShoppingCartWithDataAndState;
+  newUser: CheckNewUser(user, auth.loggedIn),
+}), null)(ShoppingCartWithStateAndData);
+export default ShoppingCartWithStateAndData2;

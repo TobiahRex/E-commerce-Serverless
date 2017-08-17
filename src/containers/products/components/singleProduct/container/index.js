@@ -1,8 +1,9 @@
 /* eslint-disable no-lone-blocks, import/first*/
+// TODO - Need to write a function description for "addToCartHandler"
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
@@ -12,9 +13,9 @@ import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import {
   FindProductById,
-  FindProductsByFlavor,
   AddToMemberCart,
   EditToMemberCart,
+  FindProductsByFlavor,
 } from './graphql.imports';
 import {
   MainTitle,
@@ -25,6 +26,10 @@ import {
   RegisterModal,
   ProductDisplay,
 } from './component.imports';
+
+import {
+  arrayDeepEquality as ArrayDeepEquality,
+} from './utilities.imports';
 
 class SingleProduct extends Component {
   static propTypes = propTypes
@@ -50,6 +55,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "shouldComponentUpdate"
   * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
   *
   * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
@@ -60,21 +66,28 @@ class SingleProduct extends Component {
   * @return {boolean} true/false.
   */
   shouldComponentUpdate(nextProps, nextState) {
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty();
-
-    const userCartDiff = isArrayEqual(nextProps.userCart, this.props.userCart);
-    const guestCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart);
-
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
     if (
-      !_.isEqual(nextState, this.state)
-      || !_.isEqual(nextProps, this.props)
-      || userCartDiff
-      || guestCartDiff
+      !ArrayDeepEquality(nextProps.userCart, this.props.userCart) ||
+      !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
+      !_.isEqual(nextProps, this.props)
     ) return true;
+
+    if (!_.isEqual(nextState, this.state)) return true;
+
     return false;
   }
 
   /**
+  * Function: "modalHandler"
   * 1) receives "event" - and extracts parent element & tag element values.
   * 2) Filters parent element via Switch block.
   * 3) Once parent element has been identified, filters tag element via nested switch block.
@@ -120,6 +133,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "toggleModal"
   * 1) recieves name of modal as input argument.
   * 2) sets the show state variable for that modal to "true".
   *
@@ -132,6 +146,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "toggleModalAndGo"
   * 1) recieves name of modal as input argument & destination name for in-modal navigation buttons.
   * 2) sets the show state variable for that modal to "true".
   *
@@ -147,6 +162,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "qtyHandler"
   * 1) receives event object and determines if "+" or "-" button has been clicked.
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
   * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
@@ -157,11 +173,10 @@ class SingleProduct extends Component {
   * @return {new state} - returns new state with new qty value.
   */
   qtyHandler = (e) => {
-    const { globalRequestQty } = this.composeGlobalCartInfo();
-    const qtyToCheck = 1;
+    const buttonEl = e.target.dataset.tag || e.target.parentNode.dataset.tag;
 
-    let buttonEl = e.target.dataset.tag;
-    if (!buttonEl) buttonEl = e.target.parentNode.dataset.tag;
+    const qtyToCheck = 1;
+    const { globalRequestQty } = this.composeGlobalCartInfo();
 
     if (buttonEl === 'qty-plus') {
       if ((globalRequestQty + this.state.qty + qtyToCheck) < 5) {
@@ -199,23 +214,20 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "nicotineHandler"
   * 1) Extract productId & nicotine Strength value from click event object.
   * 2) Fetch all db products matching the clicked flavor.
   * 3) Filter results by the id of the clicked product's id.
-  * 4) Save result to local compoent state.
+  * 4) Save result to component's state.
+  * NOTE - need to save "chosenStrength" to state, to highlight the nicotine strength the user chooses visually.
   *
   * @param {e} object - the click event object.
   *
   * @return {new state} - returns new state with chosen product from local DB && nicotine strength value.
   */
   nicotineHandler = (e) => {
-    let productId = e.target.dataset.product;
-    let nicStrength = e.target.dataset.nicotinestrength;
-
-    if (!nicStrength || !productId) {
-      productId = e.target.parentNode.dataset.product;
-      nicStrength = e.target.parentNode.dataset.nicotinestrength;
-    }
+    const productId = e.target.dataset.product || e.target.parentNode.dataset.product;
+    const nicStrength = e.target.dataset.nicotinestrength || e.target.parentNode.dataset.nicotinestrength;
 
     const product = this.props.data.FindProductsByFlavor
     .filter(({ _id }) => _id === productId)[0];
@@ -229,6 +241,7 @@ class SingleProduct extends Component {
   }
 
   /**
+  * Function: "composeGlobalCartInfo"
   * 1) receives event object and determines if "+" or "-" button has been clicked.
   * 2a) If "+" button has been chosen, compares the current total to the state total.  If the total amount exceeds 4, an error is thrown.  If amount is less than or equal to 4, the component state is allowed to update.
   * 2b) If the "-" button has been chosen, determines if the total qty already saved to local state is between 1 and 4.  If so, allows a decrement of 1.
@@ -264,24 +277,32 @@ class SingleProduct extends Component {
       const updatedUserCart = userCart
       .map((userCartProduct) => {
         // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
-        if (Object.prototype.hasOwnProperty.call(userCartProduct, '__typename')) delete userCartProduct.__typename;
+        if (!!userCartProduct.__typename) {
+          delete userCartProduct.__typename;
+        }
 
         if (
-          Object.prototype.hasOwnProperty.call(userCartProduct, 'product') && (userCartProduct.product === stateProduct._id)
-        ) userCartProduct.qty += requestQty;
+          !!userCartProduct.product &&
+          userCartProduct.product === stateProduct._id
+        ) {
+          userCartProduct.qty += requestQty;
+        }
 
         return userCartProduct;
       });
+
       updatedCart = [...updatedUserCart];
+
     // If user has items in their cart & is a guest, check & update "like items"
-    } else if (!loggedIn && guestCart.length) {
+    } else if (!loggedIn && !!guestCart.length) {
       updated = true;
-      const updatedGuestCart = guestCart
-      .map((guestCartProduct) => {
+      const updatedGuestCart = guestCart.map((guestCartProduct) => {
         if (
-          Object.prototype.hasOwnProperty.call(guestCartProduct, '_id') &&
+          !!guestCartProduct._id &&
           guestCartProduct._id === stateProduct._id
-        ) guestCartProduct.qty += requestQty;
+        ) {
+          guestCartProduct.qty += requestQty;
+        }
 
         return guestCartProduct;
       });
@@ -289,17 +310,15 @@ class SingleProduct extends Component {
     }
 
     // --- Add up all the product quantities to check for qty violations later. -- Also save the id's of all items to know which items are NEW and OLD to call "Add" or "Update" respectively.
-    const globalRequestQty = !updated ? requestQty : updatedCart
-    .reduce((accum, nextObj) => {
-      if (nextObj && Object.prototype.hasOwnProperty.call(nextObj, '_id')) prevCartIds.push(nextObj._id);
-
-      // "product" = object on Guest cart, & string on Member cart.
-      if (typeof nextObj.product === 'string') prevCartIds.push(nextObj.product);
-
-      accum += nextObj.qty;
+    const globalRequestQty = !updated ? requestQty : updatedCart.reduce((accum, nextObj) => {
+      if (nextObj && !!nextObj.qty) {
+        accum += nextObj.qty;
+        if (!!nextObj._id) prevCartIds.push(nextObj._id);
+        if (!!nextObj.product) prevCartIds.push(nextObj.product);
+      }
       return accum;
     }, 0);
-    // --- Return results to "addToCartHandler".
+
     return {
       updatedCart,
       prevCartIds,
@@ -307,10 +326,38 @@ class SingleProduct extends Component {
     };
   }
 
+  /**
+  * Function: "addToCartHandler"
+  * 1) Verify that the user specified a quantity.  If not - show error msg. If they have, continue...
+  * 2) Verify that the user specified a nicotineStrength. If not - show error msg. If they have, continue...
+  * 3) call "composeGlobalCartInfo" and destructure the 3 return values into their own constants.
+  * 4) destructure "this.state", and create a flag variable called {bool} "deltaQty" which will help detect errors in too much or too little quantity when adding item to the cart.
+  * 5) Verify that "globalRequestQty" is not exceeding the 4 count limit.  If so, show "Max Items" error message. Otherwise...
+  * 6) Verify that for this instance, the user is not choose too high a number for "qty".  If so, show applicable error message about too many items. If not, continue..
+  * 7) Destructure "userId" & "loggedIn" from this.props.  If the user is loggedIn, we'll update the loggedIn user's cart using the id.  Otherwise, we'll update the guest cart and the userId will not be needed.
+  * 8) Define const "currentGuestProduct" which is an object that contains the product saved to state "nicotineHandler" was called.  And the requested qty.
+  * 9) Define const "currentMemberProduct" which is an object that contains the product id as "productId", that saved to state when "nicotineHandler" was called. And the requested qty.
+  * // ---------------------------------------------------------
+  * 10a) If user is logged in, and there's already products in their cart, but if the current product is not one of them, add it.
+  * 11a) If user is NOT logged in, and there's already products in their cart, but the current product is not one of them, add it.
+  * 12a) If the user is logged in, and there's already products in their cart, then reset the component's local state.  Once complete, call the GraphQL mutation "EditToMemberCart", passing in the user's id, and the updated array of products as variables.
+  * 13a) Once GraphQL mutation is complete, update the redux state with the new user's profile information.
+  * // ---------------------------------------------------------
+  * 10b) If the user is logged in, BUT there's no items in their cart yet, then reset component's state.
+  * 11b) Once complete, call the GraphQL mutation "AddToMemberCart" , passing in the user's id, and the updated array of products as variables.
+  * 12b) Once GraphQL mutation is complete, update the redux state with the new user's profile information.
+  * // ---------------------------------------------------------
+  * 10c) If the user is a NOT logged in, and there's already items in their cart, then reset component's state,
+  * 11c) Once complete dispatch a redux action called "saveGuestCart" passing in the array of updated products which will update a pre-existing array in the Redux store.
+  * // ---------------------------------------------------------
+  * 10d) If the user is NOT logged in, and there's no items in their cart, then reset component's state,
+  * 11d) Once complete dispatch a redux action called "addToGuestCart" and pass in the single object "currentGuestProduct".
+  *
+  * @param none
+  *
+  * @return {object} -
+  */
   addToCartHandler = () => {
-    // 1. If the total items in the cart (redux store) are >= 4, then throw error.
-    // 2. If the total items in the cart are <4 than, verify the additional qty, will not exceed 4.  If so, throw an error.
-    // 3.  If the items to be added + the total <= 4, then reduce like items, and dispatch.
     if (this.state.qty === 0) {
       this.setState(() => ({
         error: true,
@@ -327,14 +374,11 @@ class SingleProduct extends Component {
         prevCartIds,
         globalRequestQty,
       } = this.composeGlobalCartInfo();
+      console.log('%cupdatedCart', 'background:red;', updatedCart);
 
       const {
           qty,
-          chosenStrength: nicotineStrength,
-          product: {
-            product,
-            _id: productId,
-          },
+          product,
         } = this.state,
 
         deltaQty = (globalRequestQty > 4) && (globalRequestQty - 4);
@@ -356,31 +400,27 @@ class SingleProduct extends Component {
         const { userId, loggedIn } = this.props,
 
           currentGuestProduct = {
-            _id: productId,
             qty,
-            userId,
-            nicotineStrength,
-            ...product,  // from state
+            ...product,
           },
 
           currentMemberProduct = {
             qty,
-            nicotineStrength,
-            product: productId,
+            product: product._id,
           };
 
         // If user is logged in, and there's already products in their cart, but the current product is not one of them, add it.
         if (
           loggedIn &&
           updatedCart.length &&
-          !prevCartIds.includes(productId)
+          !prevCartIds.includes(product._id)
         ) updatedCart.push(currentMemberProduct);
 
         // If user is NOT logged in, and there's already products in their cart, but the current product is not one of them, add it.
         if (
           !loggedIn &&
           updatedCart.length &&
-          !prevCartIds.includes(productId)
+          !prevCartIds.includes(product._id)
         ) updatedCart.push(currentGuestProduct);
 
 
@@ -415,8 +455,7 @@ class SingleProduct extends Component {
                 variables: {
                   qty,
                   userId,
-                  nicotineStrength,
-                  product: productId,
+                  product: product._id,
                 },
               })
               .then(({ data: { AddToMemberCart: updatedUser } }) => {
@@ -452,8 +491,16 @@ class SingleProduct extends Component {
   }
 
 
-  /*
+  routerPush = (e) => {
+    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
+  }
+
+  /**
+  * Function: "componentDidUpdate"
   * Resets the state variable "added" to false to reset dynamic animations after user adds item to their cart.
+  * @param none.
+  *
+  * @return none.
   */
   componentDidUpdate() {
     if (this.state.added) {
@@ -480,20 +527,19 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
-
     return (
       <div className="juice-page__main">
         <BreadCrumb
           paths={['Home', 'Juices']}
           classes={['home', 'home']}
           destination={['', 'juices']}
-          lastCrumb={data.FindProductById ? data.FindProductById.product.title : 'Juice Page'}
+          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title : 'Juice Page'}
         />
         {
-          data.FindProductById ?
+          data.FindProductsByFlavor ?
             <MainTitle
-              vendor={data.FindProductById.product.vendor}
-              mainTitle={data.FindProductById.product.mainTitle}
+              vendor={data.FindProductsByFlavor[0].product.vendor}
+              mainTitle={data.FindProductsByFlavor[0].product.mainTitle}
             /> : ''
         }
         {
@@ -517,7 +563,10 @@ class SingleProduct extends Component {
             productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : null}
           />
         }
-        <ActionBtns />
+        <ActionBtns
+          routerBack={this.props.goBack}
+          routerPush={this.routerPush}
+        />
 
         <SuccessModal
           qty={qty}
@@ -544,24 +593,18 @@ class SingleProduct extends Component {
 }
 
 /**
-* NOTE: Connecting Redux & ApolloClient to Single Product Container. (below)
+* NOTE: This component calls GraphQL compose function first, and provides the results to the react-redux-connect function as props.
 *
 * 1) Redux's "connect" function maps state & dispatch to props on "SingleProduct" and returns HOC - "SingleProductWithState"
 * 2) React Apollo's "compose" function, composes multiple GraphQL queries and mutations onto the HOC returned in Step 1. - Redux's mapped props are available to these graphql functions if needed due to step 1.  Returns HOC "SingleProductWithStateAndData".
 * 3) This final HOC is the default export.
 *
 */
-const SingleProductWithState = connect(
-  ({ orders, auth, routing, user }) => ({
-    userId: user.profile ? user.profile._id : '',
-    flavor: routing.locationBeforeTransitions.pathname.split('/')[1],
-    taxRate: orders.taxRate.totalRate,
-    loggedIn: auth.loggedIn || false,
-    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
-    guestCart: orders.cart,
-  }),
+const SingleProductWithState = connect(null,
   dispatch => ({
     push: location => dispatch(push(location)),
+
+    goBack: () => dispatch(goBack()),
 
     saveUser: updatedUser => dispatch(userActions.saveUser(updatedUser)),
 
@@ -580,9 +623,10 @@ const SingleProductWithState = connect(
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
-  graphql(FindProductById, { skip: true }),
+  graphql(FindProductById, { skip: true, name: 'FindProductById' }),
   graphql(FindProductsByFlavor, {
     options: ({ location }) => ({
+      name: 'FindProductsByFlavor',
       variables: {
         flavor: location.pathname.split('/')[2],
       },
@@ -592,4 +636,14 @@ const SingleProductWithStateAndData = compose(
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
 )(SingleProductWithState);
 
-export default SingleProductWithStateAndData;
+const SingleProductWithStateAndData2 = connect(
+({ orders, auth, routing, user }) => ({
+  userId: user.profile ? user.profile._id : '',
+  flavor: routing.locationBeforeTransitions.pathname.split('/')[1],
+  taxRate: orders.taxRate.totalRate,
+  loggedIn: auth.loggedIn || false,
+  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  guestCart: orders.cart,
+}))(SingleProductWithStateAndData);
+
+export default SingleProductWithStateAndData2;
