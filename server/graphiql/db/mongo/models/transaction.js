@@ -22,27 +22,20 @@ const {
 } = process.env;
 
 const getSqLocation = (country) => {
-  if (squareEnv === 'development') {
-    return squareSandboxLocation;
-  } else if (country === 'US') {
-    return usSquareLocation;
-  } else if (country === 'JP') {
-    return jpSquareLocation;
-  }
+  if (squareEnv === 'development') return squareSandboxLocation;
+  if (country === 'US') return usSquareLocation;
+  return jpSquareLocation;
 };
 
-const getSqToken = (country) => { //eslint-disable-line
+const getSqToken = (country) => {
   if (country === 'US') {
-    if (squareEnv === 'development') {
-      return usSquareSandboxAccessToken;
-    }
+    if (squareEnv === 'development') return usSquareSandboxAccessToken;
     return usSquareAccessToken;
-  } else if (country === 'JP') {
-    if (squareEnv === 'development') {
-      return jpSquareSandboxAccessToken;
-      return jpSquareAccessToken;
   }
-}
+
+  if (squareEnv === 'development') return jpSquareSandboxAccessToken;
+  return jpSquareAccessToken;
+};
 
 transactionSchema.statics.createTransaction = (txn, cb) => {
   Transaction.create(txn)
@@ -50,7 +43,7 @@ transactionSchema.statics.createTransaction = (txn, cb) => {
   .catch(error => cb({ problem: 'Could not create Transaction.', error }));
 };
 
-transactionSchema.statics.fetchSquareLocation = (country) =>
+transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
   axios({
     method: 'get',
@@ -190,7 +183,6 @@ new Promise((resolve, reject) => {
     Transaction.fetchSquareLocation(sagawa.shippingAddress.country),
   ])
   .then((results) => {
-    // console.log('results: ', JSON.stringify(results, null, 2));
     console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
 
     newTransactionDoc = results[0];
