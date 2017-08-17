@@ -9,7 +9,7 @@ import {
   getSqLocation,
   getSqToken,
   getAmount,
-} from './squareHelpers.js'
+} from './squareHelpers';
 
 require('dotenv').load({ silent: true });
 
@@ -112,7 +112,6 @@ new Promise((resolve, reject) => {
   .catch((error) => {
     console.log('%cerror', 'background:red;', error);
     console.log('Error while trying to Authorize Square payment: ', error.response.data.errors);
-    // console.log('\n\n', Object.keys(error.response.data.errors), '\n\n');
     reject(`Error while trying to Authorize Square payment:  ${error.response.data.errors[0].detail}`);
   });
 });
@@ -161,7 +160,6 @@ new Promise((resolve, reject) => {
     console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
 
     newTransactionDoc = results[0];
-    console.log('location information: ', results[2]);
     return Transaction.squareChargeCard({
       locationId: results[2].id,
       transactionId: String(results[0]._id),

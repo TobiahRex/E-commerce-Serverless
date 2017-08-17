@@ -389,6 +389,7 @@ mutation SubmitFinalOrder(
   $termsAgreement: Boolean!
   $newsletterDecision: Boolean!
   $cart: [TransactionCartProduct]!
+  $jpyFxRate: String!
   $taxes: TransactionTaxesInfoInput!
   $total: TransactionTotalsInfoInput!
   $sagawa: TransactionSagawaInfoInput!
