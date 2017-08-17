@@ -18,7 +18,7 @@ new Promise((resolve, reject) => {
   axios({
     method: 'get',
     url: 'https://connect.squareup.com/v2/locations',
-    headers: { Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}` },
+    headers: { Authorization: `Bearer ${process.env.SQUARE_SANDBOX_ACCESS_TOKEN}` },
   })
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
@@ -78,40 +78,39 @@ new Promise((resolve, reject) => {
   axios.post(
     `https://connect.squareup.com/v2/locations/${locationId}/transactions`,
     {
-      data: {
-        idempotency_key: uuid(),
-        buyer_email_address: shippingEmail,
-        shipping_address: {
-          address_line_1: shippingAddressLine2,
-          address_line_2: '',
-          locality: shippingCity,
-          administrative_district_level_1: shippingPrefecture,
-          postal_code: shippingPostalCode,
-          country: shippingCountry,
-        },
-        amount_money: {
-          amount: grandTotal,
-          currency: 'USD',
-        },
-        card_nonce: cardNonce,
-        reference_id: transactionId,
-        note: `${process.env.SQUARE_LOCATION}: Online order.`,
-        delay_capture: false,
+      idempotency_key: uuid(),
+      buyer_email_address: shippingEmail,
+      shipping_address: {
+        address_line_1: shippingAddressLine2,
+        address_line_2: 'asdf',
+        locality: shippingCity,
+        administrative_district_level_1: shippingPrefecture,
+        postal_code: shippingPostalCode,
+        country: shippingCountry,
       },
+      amount_money: {
+        amount: Number(grandTotal.split('.').reduce((a, n) => a + n, '')),
+        currency: 'USD',
+      },
+      card_nonce: cardNonce,
+      reference_id: transactionId,
+      note: `${process.env.SQUARE_SANDBOX_LOCATION}: Online order.`,
+      delay_capture: false,
     },
     {
       headers: {
-        Authorization: `Bearear ${process.env.SQUARE_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${process.env.SQUARE_SANDBOX_ACCESS_TOKEN}`,
       },
     },
   )
   .then((response) => {
-    console.log('Successfully charged customer.  Response = ', response.data);
+    console.log('Successfully charged customer. ', response.data);
   })
   .catch((error) => {
-    console.log('Error while trying to Authorize Square payment. Error = ', error.response.data.errors);
+    console.log('%cerror', 'background:red;', error);
+    console.log('Error while trying to Authorize Square payment: ', error.response.data.errors);
     // console.log('\n\n', Object.keys(error.response.data.errors), '\n\n');
-    reject(`Error while trying to Authorize Square payment. Error = ${error.response.data.errors[0].detail}`);
+    reject(`Error while trying to Authorize Square payment:  ${error.response.data.errors[0].detail}`);
   });
 });
 
@@ -152,14 +151,14 @@ new Promise((resolve, reject) => {
         },
       },
     }),
-    Transaction.fetchSquareLocation(process.env.SQUARE_LOCATION),
+    Transaction.fetchSquareLocation(process.env.SQUARE_SANDBOX_LOCATION),
   ])
   .then((results) => {
     // console.log('results: ', JSON.stringify(results, null, 2));
     console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
 
     newTransactionDoc = results[0];
-
+    console.log('location information: ', results[2]);
     return Transaction.squareChargeCard({
       locationId: results[2].id,
       transactionId: String(results[0]._id),
@@ -178,6 +177,7 @@ new Promise((resolve, reject) => {
     resolve(newTransactionDoc);
   })
   .catch((error) => {
+    console.log(error.response);
     console.log('Failed to submit order due to error: ', error);
     reject(`Failed to submit order due to error: ${error}`);
   });

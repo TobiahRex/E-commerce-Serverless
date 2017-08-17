@@ -4,11 +4,11 @@ dotenv.load({ silent: true });
 
 export default {
   development: {
-    SQUARE_APPLICATION_ID: JSON.stringify(process.env.SQUARE_SANDBOX_APPLICATION_ID),
+    JP_SQUARE_APPLICATION_ID: JSON.stringify(process.env.JP_SQUARE_SANDBOX_APPLICATION_ID),
+    US_SQUARE_APPLICATION_ID: JSON.stringify(process.env.US_SQUARE_SANDBOX_APPLICATION_ID),
     LAMBDA_ENV: JSON.stringify(process.env.LAMBDA_ENV),
     API_GATEWAY_GRAPHQL: JSON.stringify(process.env.API_GATEWAY_GRAPHQL),
     GRAPHQL_PORT: JSON.stringify(process.env.GRAPHQL_PORT),
-    // LOCAL_GRAPHQL: JSON.stringify(process.env.LOCAL_GRAPHQL),
     AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
     AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
     AUTH0_REDIRECT: JSON.stringify(process.env.AUTH0_REDIRECT),
@@ -22,6 +22,8 @@ export default {
     FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID),
   },
   production: {
+    JP_SQUARE_APPLICATION_ID: JSON.stringify(process.env.JP_SQUARE_APPLICATION_ID),
+    US_SQUARE_APPLICATION_ID: JSON.stringify(process.env.US_SQUARE_APPLICATION_ID),
     SQUARE_APPLICATION_ID: JSON.stringify(process.env.SQUARE_APPLICATION_ID),
     LAMBDA_ENV: JSON.stringify(process.env.LAMBDA_ENV),
     API_GATEWAY_GRAPHQL: JSON.stringify(process.env.API_GATEWAY_GRAPHQL),

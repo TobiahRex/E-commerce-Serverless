@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
@@ -173,14 +172,15 @@ class ExpressCheckout extends React.Component {
   */
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
+      const country = e.target.value.split('-')[1];
       const countIsTooHigh = SqrPaymentForm.count === 2;
       const postalNotReq = SqrPaymentForm.type === 'renderWithoutZip';
 
       if (countIsTooHigh || postalNotReq) {
         window.location.reload();
       } else {
-        const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
-        if (countriesWithPostal.includes(e.target.value)) {
+        const countriesWithPostal = ['US', 'CA', 'UK'];
+        if (countriesWithPostal.includes(country)) {
           if (!!SqrPaymentForm.options) {
             if (SqrPaymentForm.type === 'renderWithZip') {
               this.setState(prevState => ({
@@ -197,7 +197,8 @@ class ExpressCheckout extends React.Component {
                 ccRenderKey: 'renderWithZip',
               }), () => {
                 SqrPaymentForm.destroy();
-                SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+                SqrPaymentForm.create('renderWithZip',
+                country, this.handleNonceResponse);
                 SqrPaymentForm.build();
               });
             }
@@ -207,7 +208,7 @@ class ExpressCheckout extends React.Component {
               [e.target.name]: e.target.value,
               ccRenderKey: 'renderWithZip',
             }), () => {
-              SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+              SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
               SqrPaymentForm.build();
             });
           }
@@ -227,7 +228,7 @@ class ExpressCheckout extends React.Component {
               ccRenderKey: 'renderWithoutZip',
             }), () => {
               SqrPaymentForm.destroy();
-              SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+              SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
               SqrPaymentForm.build();
             });
           }
@@ -237,7 +238,7 @@ class ExpressCheckout extends React.Component {
             [e.target.name]: e.target.value,
             ccRenderKey: 'renderWithoutZip',
           }), () => {
-            SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+            SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
             SqrPaymentForm.build();
           });
         }

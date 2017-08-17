@@ -6,6 +6,7 @@ import getGeoLocation from './getGeoLocation';
 import mobileDetection from './mobileDetection';
 import generateMobileTitle from './generateMobileTitle';
 import fetchPopularProducts from './fetchPopularProducts';
+import getFxRate from './getFxRate';
 
 function* startupActions() {
   yield [
@@ -15,6 +16,7 @@ function* startupActions() {
     call(getGeoLocation),
     call(mobileDetection),
     call(generateMobileTitle),
+    call(getFxRate),
   ];
 }
 

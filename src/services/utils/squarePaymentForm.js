@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-const applicationId = process.env.SQUARE_APPLICATION_ID;
+const usApplicationId = process.env.US_SQUARE_APPLICATION_ID;
+const jpApplicationId = process.env.JP_SQUARE_APPLICATION_ID;
 
 if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
 
@@ -23,7 +24,7 @@ class SqrPaymentForm {
     this.paymentForm.build();
   }
 
-  create(type, handleNonceResponse) {
+  create(type, country, handleNonceResponse) {
     let postalCode = null;
     this.type = type;
     this.countr += 1;
@@ -37,7 +38,7 @@ class SqrPaymentForm {
       postalCode = false;
     }
     this.paymentForm = new SqPaymentForm({ // eslint-disable-line
-      applicationId,
+      applicationId: country === 'US' ? usApplicationId : jpApplicationId,
       inputClass: 'sq-input',
       inputStyles: [
         {

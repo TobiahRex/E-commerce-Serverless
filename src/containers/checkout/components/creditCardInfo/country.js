@@ -21,7 +21,7 @@ class Country extends React.Component {
   renderCountryOptions = countries => countries.map(({ name, code }) => (
     <option
       key={new Buffer(`${name}${code}`, 'utf8').toString('base64')}
-      value={name}
+      value={`${name}-${code}`}
     >{name} ({code})
     </option>
   ))
