@@ -10,12 +10,14 @@ export default function* () {
   const {
     ok,
     problem,
-    data
+    data,
   } = yield call(() => fxApi.getRates('USD'));
 
   if (ok) {
-    yield put(apiActions.apiSuccess());
-    console.log('%cok', 'background:orange;', data);
+    yield [
+      put(apiActions.apiSuccess()),
+      put(orderActions.setFxRate(data.rates.JPY)),
+    ];
   } else {
     yield [
       put(toasterActions.toastError(true, problem)),

@@ -5,6 +5,7 @@ const { Types, Creators } = createActions({
   getTaxRate: null,
   emptyGuestCart: null,
   setTaxRate: ['taxRate'],
+  setFxRate: ['exchangeRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
   validatePostal: ['postalCode'],
@@ -22,6 +23,9 @@ export const INITIAL_STATE = Immutable({
     cityRate: 0.030,
     totalRate: 0.090,
   },
+  exchangeRate: {
+    JPY: 0,
+  },
   postalInfo: {
     error: false,
     sagawaId: '',
@@ -34,6 +38,13 @@ export const INITIAL_STATE = Immutable({
 const setTaxRate = (state, { taxRate }) => ({
   ...state,
   taxRate,
+});
+
+const setFxRate = (state, { exchangeRate: { JPY } }) => ({
+  ...state,
+  exchangeRate: {
+    JPY,
+  },
 });
 
 const addToGuestCart = (state, { productObj }) => ({
@@ -72,6 +83,7 @@ const gotInvalidPostal = (state, { error }) => ({
 
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
+  [Types.SET_FX_RATE]: setFxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.SAVE_GUEST_CART]: saveGuestCart,
   [Types.EMPTY_GUEST_CART]: emptyGuestCart,
