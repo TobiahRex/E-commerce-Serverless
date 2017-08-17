@@ -3,13 +3,22 @@ import AWS from 'aws-sdk';
 import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
-import emailSchema from '../schemas/email';
-import config from '../../../config.json';
+import emailSchema from '../schemas/emailSchema';
+// import config from '../../../config.json';
+
+const {
+  AWS_ACCESS_KEY_ID: accessKeyId,
+  AWS_SECRET_ACCESS_KEY: secretAccessKey,
+  AWS_REGION: region,
+} = process.env;
 
 AWS.config.update({
-  accessKeyId: config.aws.accessKeyId,
-  secretAccessKey: config.aws.secretAccessKey,
-  region: config.aws.sesEmailRegion,
+  accessKeyId,
+  secretAccessKey,
+  region,
+  // accessKeyId: config.aws.accessKeyId,
+  // secretAccessKey: config.aws.secretAccessKey,
+  // region: config.aws.sesEmailRegion,
 });
 
 const ses = new AWS.SES();
