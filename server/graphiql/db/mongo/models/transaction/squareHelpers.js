@@ -27,3 +27,23 @@ export const getSqToken = (country) => {
   if (squareEnv === 'development') return jpSquareSandboxAccessToken;
   return jpSquareAccessToken;
 };
+
+export const getAmount = (country, grandTotal, fxRateJpy) => {
+  const grandTotalInt = Number(grandTotal);
+  const jpyInt = Number(fxRateJpy) / 100;
+  let intTotal = 0;
+
+  if (country === 'JP') {
+    intTotal = grandTotal;
+  } else {
+    intTotal = grandTotalInt * jpyInt;
+  }
+
+  return String(intTotal
+    .toFixed(2)
+    .split('.')
+    .reduce((a, n) => a + n, ''),
+  );
+};
+
+console.log(getAmount('JP', '100.00', 110.83));

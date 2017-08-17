@@ -72,8 +72,10 @@ new Promise((resolve, reject) => {
     shippingPrefecture,
     shippingPostalCode,
     shippingCountry,
+    billingCountry,
     grandTotal,
     cardNonce,
+    jpyFxRate,
   } = chargeInfo;
 
   axios.post(
@@ -90,17 +92,17 @@ new Promise((resolve, reject) => {
         country: shippingCountry,
       },
       amount_money: {
-        amount: Number(grandTotal.split('.').reduce((a, n) => a + n, '')),
-        currency: 'USD',
+        amount: getAmount(billingCountry, grandTotal, jpyFxRate),
+        currency: billingCountry === 'US' ? 'USD' : 'JPY',
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
-      note: `${getSqLocation(shippingCountry)}: Online order.`,
+      note: `${getSqLocation(billingCountry)}: Online order.`,
       delay_capture: false,
     },
     {
       headers: {
-        Authorization: `Bearer ${getSqToken(shippingCountry)}`,
+        Authorization: `Bearer ${getSqToken(billingCountry)}`,
       },
     },
   )
@@ -126,6 +128,7 @@ new Promise((resolve, reject) => {
     newsletterDecision,
     cart,
     sagawa,
+    jpyFxRate,
     taxes,
     total,
     square,
@@ -152,7 +155,7 @@ new Promise((resolve, reject) => {
         },
       },
     }),
-    Transaction.fetchSquareLocation(sagawa.shippingAddress.country),
+    Transaction.fetchSquareLocation(square.shippingAddress.shippingCountry),
   ])
   .then((results) => {
     console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
@@ -168,8 +171,10 @@ new Promise((resolve, reject) => {
       shippingPrefecture: square.shippingAddress.shippingPrefecture,
       shippingPostalCode: sagawa.shippingAddress.postalCode,
       shippingCountry: sagawa.shippingAddress.country,
+      billingCountry: square.shippingAddress.shippingCountry,
       grandTotal: total.grandTotal,
       cardNonce: square.cardInfo.cardNonce,
+      jpyFxRate,
     });
   })
   .then((response) => {
