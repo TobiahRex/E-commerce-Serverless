@@ -358,109 +358,107 @@ mutation EmptyMemberCart($userId: ID!) {
 }
 `;
 
-
-// export const SquareAuthorizePayment = gql`
-//   mutation SquareAuthorizePayment() {
-//     SquareAuthorizePayment(
-//
-//     ) {
-//
-//     }
-//   }
-// `;
+export const ValidatePostal = gql`
+  mutation ValidatePostal(
+    $postalCode: String!
+    $userId: ID!
+  ) {
+    ValidatePostal(
+      postalCode: $postalCode
+      userId: $userId
+    ) {
+      _id
+      error {
+        hard
+        soft
+        message
+      }
+      postalInfo {
+        postalCode
+        jpAddress
+        verified
+      }
+    }
+  }
+`;
 
 export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
-  $newsletterDecision: Bool!
-  $shippingFirstName: String!
-  $shippingLastName: String!
-  $shippingEmail: String!
-  $shippingAddressLine1: String!
-  $shippingAddressLine2: String!
-  $shippingCountry: String!,
-  $shippingPrefecture: String!
-  $shippingCity: String!
-  $shippingPostalCode: String!
-  $shippingPhoneNumber: String!
-  $ccNameOnCard: String!
-  $ccNumber: String!
-  $ccExpireMonth: String!
-  $ccExpireYear: String!
-  $ccCvn: String!
-  $ccZip: String!
-  $termsAgreement: Bool!,
-  $subTotal: String!
-  $grandTotal: String!
-  $taxes: String!
-  $discountQty: Bool!
-  $discountQtyAmount: String!
-  $discountRegister: Bool!
-  $discountRegisterAmount: String!
+  $userId: ID!
+  $comments: String
+  $termsAgreement: Boolean!
+  $newsletterDecision: Boolean!
+  $cart: [TransactionCartProduct]!
+  $jpyFxRate: String!
+  $taxes: TransactionTaxesInfoInput!
+  $total: TransactionTotalsInfoInput!
+  $sagawa: TransactionSagawaInfoInput!
+  $square: TransactionSqaureInformationInput!
 ) {
-  SubmitFinalOrder (billingFirstName: $billingFirstName
-    newsletterDecision: $newsletterDecision
-    shippingFirstName: $shippingFirstName
-    shippingLastName: $shippingLastName
-    shippingEmail: $shippingEmail
-    shippingAddressLine1: $shippingAddressLine1
-    shippingAddressLine2: $shippingAddressLine2
-    shippingCountry: $shippingCountry
-    shippingPrefecture: $shippingPrefecture
-    shippingCity: $shippingCity
-    shippingPostalCode: $shippingPostalCode
-    shippingPhoneNumber: $shippingPhoneNumber
-    ccNameOnCard: $ccNameOnCard
-    ccNumber: $ccNumber
-    ccExpireMonth: $ccExpireMonth
-    ccExpireYear: $ccExpireYear
-    ccCvn: $ccCvn
-    ccZip: $ccZip
+  SubmitFinalOrder (
+    userId: $userId
+    comments: $comments
     termsAgreement: $termsAgreement
-    discountQty: $discountQty
-    discountQtyAmount: $discountQtyAmount
-    discountRegister: $discountRegister
-    discountRegisterAmount: $discountRegisterAmount
-  ) {
+    newsletterDecision: $newsletterDecision
+    cart: $cart
+    jpyFxRate: $jpyFxRate
+    taxes: $taxes
+    total: $total
+    sagawa: $sagawa
+    square: $square
+) {
     _id
     error {
       hard
       soft
       message
     }
-    discount
-    subTotal
-    tax
-    grandTotal
-    sagawa {
-      awbNumber
-      referenceNumber
-      address
+    date
+    comments
+    termsAgreement
+    user
+    products {
+      _id
+      qty
     }
-    square {
-      billingInfo {
-        nameOnCard
-        last4
-        amount
-        email
+    sagawa
+    marketHero
+    invoiceEmail
+    jpyFxRate
+    taxes {
+      cityRate
+      stateRate
+      totalRate
+    }
+    total {
+      subTotal
+      taxes
+      grandTotal
+      discount {
+        qty
+        qtyAmount
+        register
+        registerAmount
       }
     }
-    sesEmail {
-      sent
-      mailId
-      address
+    square {
+      locationId
+      transactionId
+      billingCountry
+      shippingAddress {
+        shippingPrefecture
+        shippingCity
+      }
+      cardInfo {
+        last4
+        nameOnCard
+        cardNonce
+      }
+      charge {
+        amount
+        currency
+      }
     }
   }
 }
 `;
-
-export const SubmitFinalOrderOptions = () => {
-  // let ids = [];
-  //
-  // if (!loggedIn) ids = guestCart.map(({ _id }) => _id);
-  //
-  // if (!!userCart.length) ids = userCart.map(({ product }) => product);
-
-  return ({
-    variables: '',
-  });
-};

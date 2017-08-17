@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 class City extends React.PureComponent {
-  static propTypes = {
-    handleOnChange: PropTypes.func.isRequired,
-    shippingCity: PropTypes.string.isRequired,
-  }
-
   constructor(props) {
     super(props);
 
     this.state = {
-      shippingCity: props.shippingCity,
+      city: props.city,
     };
   }
 
@@ -27,14 +22,21 @@ class City extends React.PureComponent {
             errorClassName="is-invalid-input"
             type="text"
             containerClassName=""
-            name="shippingCity"
+            name={`${this.props.type}City`}
             validations={['required', 'alpha', 'city']}
             onChange={this.handleOnChange}
-            value={this.props.shippingCity}
+            value={this.props.city}
           />
         </div>
       </div>
     );
   }
 }
+
+const { string, func } = PropTypes;
+City.propTypes = {
+  city: string.isRequired,
+  type: string.isRequired,
+  handleOnChange: func.isRequired,
+};
 export default City;

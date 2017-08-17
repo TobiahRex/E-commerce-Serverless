@@ -34,10 +34,10 @@ const sagawaSchema = new Schema({
     boxid: { type: String },
     shipdate: { type: Date },
     customerName: { type: String },
-    postal: { type: Number },
+    postal: { type: String },
     jpaddress1: { type: String },
     jpaddress2: { type: String },
-    phoneNumber: { type: Number },
+    phoneNumber: { type: String },
     kbn: { type: String },
     wgt: { type: Number },
     grandTotal: { type: Number },
@@ -48,14 +48,14 @@ const sagawaSchema = new Schema({
     ttlAmount: { type: Number },
     codFlg: { type: Number, default: 0 },
   },
-  item: {
+  items: [{
     itemcd: { type: Number },
     itemname: { type: String },
     usage: { type: Number, default: 0 },
     origin: { type: String },
     piece: { type: Number },
     unitprice: { type: Number },
-  },
+  }],
 }, {
   bufferCommands: true,
 });

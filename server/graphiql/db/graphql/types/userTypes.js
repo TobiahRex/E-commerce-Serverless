@@ -260,7 +260,7 @@ const rootType = new ObjectType({
           },
           transactions: {
             description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-            type: new ListType(StringType),
+            type: new ListType(MongoID),
           },
         }),
       }),
@@ -301,28 +301,22 @@ const rootType = new ObjectType({
         }),
       }),
     },
-    marketHero: {
-      description: 'The User\'s Market Hero Meta-Data.',
+    marketing: {
+      description: 'The marketing data for this user.',
       type: new ObjectType({
-        name: 'UserMarketHero',
+        name: 'UserMarketing',
         fields: () => ({
-          tags: {
-            description: 'Array of objects, containing all the "Tags" that have been added to this User\'s Market Hero profile, and the respective date.',
-            type: new ListType(
-              new ObjectType({
-                name: 'UserMarketHeroTags',
-                fields: () => ({
-                  name: {
-                    description: 'The name of the "Tag".',
-                    type: StringType,
-                  },
-                  date: {
-                    description: 'The Date this "Tag" was added the User\'s Market Hero profile.',
-                    type: StringType,
-                  },
-                }),
-              }),
-            ),
+          newsletterDecision: {
+            description: 'The users newsletter optin choice.',
+            type: BoolType,
+          },
+          marketHero: {
+            description: 'The Mongo _id for the users associated Market Hero document',
+            type: MongoID,
+          },
+          emails: {
+            description: 'The list of email _id\'s that the user has been sent.',
+            type: new ListType(MongoID),
           },
         }),
       }),

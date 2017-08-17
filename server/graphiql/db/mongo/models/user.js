@@ -282,5 +282,20 @@ new Promise((resolve, reject) => {
   });
 });
 
+userSchema.statics.editMemberProfile = ({ userId, userObj }) =>
+new Promise((resolve, reject) => {
+
+  User.findByIdAndUpdate(userId, { $set: { ...userObj } }, { new: true })
+  .exec()
+  .then((updatedUser) => {
+    console.log(`Updated User!: ${updatedUser._id}.`);
+    resolve(updatedUser);
+  })
+  .catch((error) => {
+    console.log(`Error while tring to update User _id "${userId}": ${error}.`);
+    reject(`Error while tring to update User _id "${userId}": ${error}.`);
+  });
+});
+
 const User = db.model('User', userSchema);
 export default User;

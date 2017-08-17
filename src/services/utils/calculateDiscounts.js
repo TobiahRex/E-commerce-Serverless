@@ -1,5 +1,6 @@
 
 const calculateDiscounts = (cart, taxes, grandTotal, newUser) => {
+  // console.log('%cgrandTotal', 'background:pink;', grandTotal);
   let grandTotalCopy = grandTotal;
 
   const { subTotal, totalQty } = cart.reduce((accum, next) => {
@@ -29,9 +30,10 @@ const calculateDiscounts = (cart, taxes, grandTotal, newUser) => {
 
   if (newUser) {
     discount.register = true;
-    discount.qtyAmount = subTotal * 0.1;
-    grandTotalCopy -= discount.qtyAmount;
+    discount.registerAmount = subTotal * 0.1;
+    grandTotalCopy -= discount.registerAmount;
   }
+
   return ({
     discount,
     subTotal,

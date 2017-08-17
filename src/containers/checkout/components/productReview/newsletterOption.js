@@ -8,8 +8,12 @@ function NewsletterOption({ newsletterDecision, handleOnChange }) {
         <input
           type="checkbox"
           name="newsletterDecision"
-          onChange={handleOnChange}
           value={newsletterDecision}
+          onChange={() => handleOnChange({
+            target: {
+              name: 'newsletterDecision', value: !newsletterDecision,
+            },
+          })}
         />
         <p>Sign Up for Newsletter</p>
       </div>

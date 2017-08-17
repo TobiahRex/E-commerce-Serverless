@@ -5,11 +5,12 @@ const { Types, Creators } = createActions({
   getTaxRate: null,
   emptyGuestCart: null,
   setTaxRate: ['taxRate'],
+  setFxRate: ['exchangeRate'],
   addToGuestCart: ['productObj'],
   saveGuestCart: ['updatedProducts'],
   validatePostal: ['postalCode'],
-  receivedValidPostal: ['postalInfo'],
-  receivedInvalidPostal: ['postalInfo'],
+  gotValidPostal: ['postalInfo'],
+  gotInvalidPostal: ['error'],
 });
 
 export const orderTypes = Types;
@@ -22,20 +23,29 @@ export const INITIAL_STATE = Immutable({
     cityRate: 0.030,
     totalRate: 0.090,
   },
+  exchangeRate: {
+    JPY: 0,
+  },
   postalInfo: {
+    error: false,
+    sagawaId: '',
     jpAddress: '',
     postalCode: '',
     verified: false,
   },
 });
 
-const setTaxRate = (state, { taxRate }) => {
-  console.log('%cstate', 'background:lime;', state);
-  return ({
-    ...state,
-    taxRate,
-  });
-};
+const setTaxRate = (state, { taxRate }) => ({
+  ...state,
+  taxRate,
+});
+
+const setFxRate = (state, { exchangeRate: { JPY } }) => ({
+  ...state,
+  exchangeRate: {
+    JPY,
+  },
+});
 
 const addToGuestCart = (state, { productObj }) => ({
   ...state,
@@ -55,21 +65,28 @@ const emptyGuestCart = (state) => {
   });
 };
 
-const receivedInvalidPostal = (state, { postalInfo }) => ({
+const gotValidPostal = (state, { postalInfo }) => ({
   ...state,
-  ...postalInfo,
+  postalInfo: {
+    error: false,
+    ...postalInfo,
+  },
 });
 
-const receivedValidPostal = (state, { postalInfo }) => ({
+const gotInvalidPostal = (state, { error }) => ({
   ...state,
-  ...postalInfo,
+  postalInfo: {
+    ...state.postalInfo,
+    error,
+  },
 });
 
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
+  [Types.SET_FX_RATE]: setFxRate,
   [Types.ADD_TO_GUEST_CART]: addToGuestCart,
   [Types.SAVE_GUEST_CART]: saveGuestCart,
   [Types.EMPTY_GUEST_CART]: emptyGuestCart,
-  [Types.RECEIVED_VALID_POSTAL]: receivedValidPostal,
-  [Types.RECEIVED_INVALID_POSTAL]: receivedInvalidPostal,
+  [Types.GOT_VALID_POSTAL]: gotValidPostal,
+  [Types.GOT_INVALID_POSTAL]: gotInvalidPostal,
 });

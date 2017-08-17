@@ -1,7 +1,29 @@
-/* eslint-disable no-console */
-const applicationId = process.env.SQUARE_APPLICATION_ID;
+const {
+  SQUARE_ENV: squareEnv,
+  US_SQUARE_APPLICATION_ID: usSquareApplicationId,
+  US_SQUARE_SANDBOX_APPLICATION_ID: usSquareSandboxApplicationId,
+  JP_SQUARE_APPLICATION_ID: jpSquareApplicationId,
+  JP_SQUARE_SANDBOX_APPLICATION_ID: jpSquareSandboxApplicationId,
+} = process.env;
 
-if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
+export const getSqAppId = (country) => {
+  console.log('%ccountry', 'background:pink;', country);
+  if (country === 'US') {
+    if (squareEnv === 'development') return usSquareSandboxApplicationId;
+    return usSquareApplicationId;
+  }
+
+  if (squareEnv === 'development') return jpSquareSandboxApplicationId;
+  return jpSquareApplicationId;
+};
+
+/* eslint-disable no-console */
+if (squareEnv === '') console.error('You need to provide a value for the SQUARE_ENV variable.');
+if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
+if (usSquareSandboxApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
+if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+if (jpSquareSandboxApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+/* eslint-enable no-console */
 
 class SqrPaymentForm {
   constructor() {
@@ -13,7 +35,6 @@ class SqrPaymentForm {
   destroy() {
     this.paymentForm.destroy();
     this.paymentForm = null;
-    console.log('%cDestroyed payment form.', 'background:pink;');
   }
 
   get() {
@@ -22,14 +43,12 @@ class SqrPaymentForm {
 
   build() {
     this.paymentForm.build();
-    console.log('%cBuilt payment form.', 'background:lime;');
   }
 
-  create(type, handleNonceResponse) {
-    console.log('%cCreating payment form.', 'background:yellow;');
+  create(type, country, handleNonceResponse) {
     let postalCode = null;
     this.type = type;
-    this.countr += 1;
+    this.count += 1;
 
     if (type === 'renderWithZip') {
       postalCode = {
@@ -39,8 +58,9 @@ class SqrPaymentForm {
     } else if (type === 'renderWithoutZip') {
       postalCode = false;
     }
+
     this.paymentForm = new SqPaymentForm({ // eslint-disable-line
-      applicationId,
+      applicationId: getSqAppId(country),
       inputClass: 'sq-input',
       inputStyles: [
         {
@@ -102,14 +122,12 @@ class SqrPaymentForm {
         },
 
         paymentFormLoaded: () => {
-          console.warn('FINISHED LOADING');
           // Fill in this callback to perform actions after the payment form is
           // done loading (such as setting the postal code field programmatically).
           // paymentForm.setPostalCode('94103');
         },
       },
     });
-    console.log('%cthis.paymentForm.', 'background:orange;', this.paymentForm);
     return (this.paymentForm);
   }
 }

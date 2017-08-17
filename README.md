@@ -1,21 +1,21 @@
 # Nic Juice 2 Japan (_NJ2JP_):
 E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
-  - Deployed using _Serverless_ | AWS Lambda.  
+  - Deployed using _Serverless_ | AWS Lambda | AWS S3.  
   - Backend API = **GraphQL**.
   - Database utilizes a **Mongo Cluster** with 3 nodes. 2 Full + 1 Arbiter.
-  - Client requests are generated from **Apollo Client** wrapped components.
-  - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), and **Redux**.
+  - Client-side API requests are generated from **Apollo Client** wrapped components.
+  - Other Client-side API requests are also generated from the npm library **api-sauce**.
+  - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), **Redux** & **Redux Persist** (with WebStorage).
 
 ## Cloud Architecture
 <img src="http://i.imgur.com/00So8Ua.png" />
 
-### Development Version deployed on [Amazon S3](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
-  - ☝🏼 That _Amazon S3_ link is under **Heavy Development** and may at times, not be working.  Will update here once availability is 100%.
+## Site Address
+ [Nic Juice 2 Japan](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
+  - ☝🏼 That site is under **Heavy Development** and may at times, not be working.  Will update here once availability is 100%.
 
+## Splash Preview
 <img src="http://i.imgur.com/wuHyw50.png" />
-
-This is a temporary development deployment.
-Final Production site will be at http://www.nj2jp.com.
 
 ## SETUP:
   - `npm i` || `yarn` to install dependencies
@@ -39,18 +39,33 @@ Final Production site will be at http://www.nj2jp.com.
 
 ## TECHNOLOGIES:
   1. ### API's
-    * [fixer.io](http://fixer.io) | Exchange Rates
-    * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates
-    * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation
+    * [fixer.io](http://fixer.io) | Exchange Rates.
+    * [taxratesapi.avalara.com](http://taxratesapi.avalara.com/) | Tax Rates.
+    * [ipinfo.io](http://ipinfo.io) | IP address & Geolocation.
+    * [Auth0](http://auth0.com) | User Management | Auth0 solutions.
+    * [Square](http://squareup.com) | Payment Services via Connect API.
+    * [Market Hero](http://markethero.com) | Marketing API.
+    * [Serverless](http://serverless.com) | Framework covering AWS Lambda.
+    * [AWS SES](https://aws.amazon.com/ses/) | Email Notifications.
+    * [AWS SNS](https://aws.amazon.com/sns/) | Receiving Backend Push Notifications.
+    * [AWS S3](https://aws.amazon.com/s3/) | Static asset hosting.
+    * [AWS Route 53](https://aws.amazon.com/route53/) | DNS routing.
+    * [AWS CloudFront](https://aws.amazon.com/cloudfront/) | Latency reduction via CDN.
+    * [AWS Lambda](https://aws.amazon.com/lambda/) | All Backend Services.
+    * [AWS Api-Gateway](https://aws.amazon.com/api-gateway/) | HTTP endpoints for Lambda services.
   2. ### Libraries & Packages
-    * Uses _apisauce_ for API calls. See API README.md for details.
-    * Uses _redux-sagas_ to call customized api methods.
-    * Uses _redux_sauce_ to create Types, Creators & Reducer.
-    * Uses _redux-logger_ to allow for informative workflow from the devtools console.  
-    * Uses _redux-devtools-extension_ to allow for a macro perspective picture of your current store's state.
-    * Configured for front end environment variables using webpack.DefinePlugin().
+    * Uses _recompose_ for customized Higher Order Component implementation.
+    * Uses _apisauce_ for API calls.
+    * Uses _react-router-redux_ for dispatching route changes & tracking nav history via redux.
+    * Uses _apollo-grpahql_ for providing API calls directly to componenents.
+    * Uses _redux-persist_ for long term browser caching.
+    * Uses _redux-sagas_ for dispatching and handling async actions.
+    * Uses _redux_sauce_ for creating reducers.
+    * Uses _redux-logger_ for informative dev. workflow @ devtools console.  
+    * Uses _redux-devtools-extension_ for  dev. workflow @ devtools console.
+    * Uses _babel-node_ for latest ECMA version transpiling of dev-backend and Hot reloading.
     * Uses _BEM_ syntax styling for classNames.
-    * Airbnb Style Guide implemented.
+    * Uses _Airbnb Style Guide_.
 
 # NOTES:
   1. ### Redux Reducers:
@@ -70,23 +85,6 @@ Final Production site will be at http://www.nj2jp.com.
     * [Product Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/productSchema.md)
     * [User Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/userSchema.md)
 
-# Updates:
-1. March 7th, 2017:
-  - Added Sketch Mockups & Wireframes file to `tools/`
-  - Responsiveness is still in development. Media Queries are `@media only screen and (max-width : 640px)` for mobile & `@media only screen and (min-wdith : 641px)` for web.  This is a recent change, and I haven't optimized all style sheets for those settings as of yet.
-  - Not all stylesheets are implementing _BEM_.  It was recent change and previous naming conventions are still in use for some style sheets.
-2. March 28th, 2017:
-  - Updated `webpack-image-loader` version from `3.2` to `3.3`.
-  - Updated `webpack` to version `2.2`.
-  - Updated `node` to version `7.7.3`. Added `engines` object to `package.json`.
-3. March 31st, 2017:
-  - Cleaned up package.json
-  - Removed node_modules/ and re-installed using `yarn`
-
 # Important Launch Notes:
   1. Modifiy LAMBDA_GRAPHQL env variable throughout `src/` application to point to the `production` database & lambda endpoint.
   2. Modify the serverless MONGO_URI env variable inside the AWS console dashboard.
-
-<!-- ## ScreenShots:
-* Terminal
-  - <img src="http://i.imgur.com/RjJ7yfA.png" /> -->

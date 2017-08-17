@@ -2,42 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function Discounts({ discount }) {
-  if (discount.qty) {
-    return (
-      <div className="analysis-container--discount">
-        <p>Quantity Discount</p>
-        <p>
-          <FontAwesome name="usd" />
-          {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
-        </p>
-      </div>
-    );
-  }
-
-  if (discount.register) {
-    return (
-      <div className="analysis-container--discount">
-        <p>New Member Discount</p>
-        <p>
-          <FontAwesome name="usd" />
-          {'\u00A0'}-{discount.registerAmount.toFixed(2)}
-        </p>
-      </div>
-    );
-  }
-
-  return <div className="analysis-container--discount" />;
+function Discounts({ title, amount }) {
+  return (
+    <div className="analysis-container--discount">
+      <p>{title} Discount</p>
+      <p>
+        <FontAwesome name="usd" />
+        {'\u00A0'}-{amount.toFixed(2)}
+      </p>
+    </div>
+  );
 }
 
-const { number, bool, shape } = PropTypes;
+const { string, number } = PropTypes;
 
 Discounts.propTypes = {
-  discount: shape({
-    qty: bool.isRequired,
-    qtyAmount: number.isRequired,
-    register: bool.isRequired,
-    registerAmount: number.isRequired,
-  }).isRequired,
+  title: string.isRequired,
+  amount: number.isRequired,
 };
+
 export default Discounts;

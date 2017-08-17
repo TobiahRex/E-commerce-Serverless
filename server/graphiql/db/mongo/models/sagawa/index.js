@@ -21,8 +21,9 @@ const xmlOut = str => str
 .replace(/>/g, '&gt;')
 .replace(/"/g, '');
 
-sagawaSchema.statics.verifyPostal = ({ userId, postalCode }) =>
+sagawaSchema.statics.validatePostal = ({ userId, postalCode }) =>
 new Promise((resolve, reject) => {
+  console.log('SENDING REQUEST TO SAGAWA');
   axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/getAddr',
   `<?xml version='1.0' encoding='utf-8'?>
   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
@@ -37,9 +38,13 @@ new Promise((resolve, reject) => {
       SOAPAction: 'http://ws.com',
     },
   })
-  .then((response) => { //eslint-disable-line
-    const { problem, data } = cleanSagawaResponse.handlepostal(response);
-
+  .then((response) => {
+    console.log('Reieved response from Sagawa.');
+    return cleanSagawaResponse.handlePostal(response);
+  })
+  .then(({ problem, data }) => { //eslint-disable-line
+    console.log('data: ', data);
+    console.log('problem: ', problem);
     if (problem) {
       console.log('There was an error while trying to validate postal code', postalCode, '.  Error = ', problem);
       reject({
@@ -50,22 +55,20 @@ new Promise((resolve, reject) => {
         },
       });
     } else {
-      return bbPromise(cb => Sagawa.create(({
+      console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.', data);
+      return bbPromise.fromCallback(cb => Sagawa.create({
         userId,
-        postalInfo: { ...data },
-      }), cb));
+        postalInfo: data.postalInfo,
+      }, cb));
     }
   })
   .then((newDoc) => {
     console.log('Successfully created new Sagawa document.', newDoc);
-    resolve({
-      _id: newDoc._id,
-      postalInfo: newDoc.postalInfo,
-    });
+    resolve(newDoc);
   })
   .catch((error) => {
-    console.log(`Network Error while trying to validate postal code. Error = ${error}`);
-    reject(`Network Error while trying to validate postal code. Error = ${error}`);
+    console.log(`Error while trying to validate postal code: ${error}`);
+    reject(`Error while trying to validate postal code: ${error}`);
   });
 });
 

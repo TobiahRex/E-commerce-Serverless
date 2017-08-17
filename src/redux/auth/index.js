@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 import { isTokenExpired } from '../../services/utils/jwtHelper';

@@ -10,7 +10,7 @@ function TotalContent({
   taxes,
   discount,
   grandTotal,
-  // termsAgreement,
+  termsAgreement,
   handleOnChange,
 }) {
   return (
@@ -31,7 +31,21 @@ function TotalContent({
           <p><i>Free</i></p>
         </div>
 
-        <Discounts discount={discount} />
+        {
+          !!discount.qty &&
+            <Discounts
+              title="Quantity"
+              amount={discount.qtyAmount}
+            />
+        }
+
+        {
+          !!discount.register &&
+            <Discounts
+              title="Register"
+              amount={discount.registerAmount}
+            />
+        }
 
         <div className="analysis-container--taxes">
           <p>Taxes</p>
@@ -50,10 +64,15 @@ function TotalContent({
           id="policy"
           type="checkbox"
           errorClassName="is-invalid-input"
-          name="policy"
-          value="1"
+          name="termsAgreement"
+          value={termsAgreement}
           validations={['required']}
-          onChange={handleOnChange}
+          onChange={() => handleOnChange({
+            target: {
+              name: 'termsAgreement',
+              value: !termsAgreement,
+            },
+          })}
         />
         <p>I have read & agree to all <Link to="/terms_and_conditions">
           Terms & Conditions
@@ -69,7 +88,7 @@ TotalContent.propTypes = {
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
-  // termsAgreement: bool.isRequired,
+  termsAgreement: bool.isRequired,
   handleOnChange: func.isRequired,
   discount: shape({
     qty: bool.isRequired,

@@ -7,6 +7,7 @@ import NewUserDiscountOffer from './newUserDiscountOffer';
 
 function ProductReview({
   cart,
+  comments,
   loggedIn,
   routerPush,
   newsletterDecision,
@@ -18,8 +19,11 @@ function ProductReview({
         <h3>Product Review</h3>
       </div>
       <ProductTable cart={cart || []} />
-
-      <ProductReviewComment />
+      
+      <ProductReviewComment
+        comments={comments}
+        handleOnChange={handleOnChange}
+      />
 
       <NewsletterOption
         handleOnChange={handleOnChange}
@@ -30,15 +34,17 @@ function ProductReview({
     </div>
   );
 }
-const { arrayOf, object, func, bool } = PropTypes;
+const { arrayOf, object, func, bool, string } = PropTypes;
 ProductReview.propTypes = {
   cart: arrayOf(object),
+  comments: string,
   loggedIn: bool.isRequired,
   routerPush: func.isRequired,
   newsletterDecision: bool.isRequired,
   handleOnChange: func.isRequired,
 };
 ProductReview.defaultProps = {
+  comments: '',
   cart: [],
 };
 export default ProductReview;

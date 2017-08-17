@@ -15,9 +15,9 @@ const extractData = (jsonResponse) => {
   }
 
   return ({
+    verified: true,
     postalCode,
     jpAddress,
-    verified: false,
   });
 };
 
@@ -35,56 +35,33 @@ const extractData = (jsonResponse) => {
 *
 * @return {object} results - the modified axios response object.
 */
-const handlePostal = (response) => {
+const handlePostal = response =>
+new Promise((resolve, reject) => {
   const { status, data } = response;
   let problem = status !== 200;
 
   if (problem) {
     problem = 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
-    return ({
-      problem,
-      data: {
-        postalInfo: {
-          verified: false,
-          jpAddress: '',
-          postalCode: '',
-        },
-      },
-    });
+    reject(problem);
   }
 
-  return xml2js.parseString(data, (err, results) => {
+  xml2js.parseString(data, (err, results) => {
     if (err) {
       problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
-      return ({
-        problem,
-        data: {
-          postalInfo: {
-            verified: false,
-            jpAddress: '',
-            postalCode: '',
-          },
-        },
-      });
+      reject(problem);
     }
 
     const { verified, postalCode, jpAddress } = extractData(results);
+    console.log('verified: ', verified)
+    console.log('postalCode: ', postalCode)
+    console.log('jpAddress: ', jpAddress);
 
     if (!verified) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-      return ({
-        problem,
-        data: {
-          postalInfo: {
-            verified,
-            jpAddress,
-            postalCode,
-          },
-        },
-      });
+      reject(problem);
     }
 
-    return ({
+    resolve({
       problem,
       data: {
         postalInfo: {
@@ -95,7 +72,7 @@ const handlePostal = (response) => {
       },
     });
   });
-};
+});
 
 export default {
   handlePostal,

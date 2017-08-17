@@ -20,7 +20,7 @@ class FirstName extends React.PureComponent {
   render() {
     return (
       <div className="input__row--first-name">
-        <p>First Name <span className="required">*</span></p>
+        <p>Given Name <span className="required">*</span></p>
         <Validation.components.Input
           errorClassName="is-invalid-input"
           type="text"

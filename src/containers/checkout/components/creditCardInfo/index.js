@@ -46,6 +46,12 @@ class CreditCardInfo extends React.Component {
     if (!_.isEqual(nextProps, this.props)) this.setState({ ...nextPropsCopy });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!_.isEqual(nextProps, this.props)) return true;
+    if (!_.isEqual(nextState, this.state)) return true;
+    return false;
+  }
+
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
@@ -83,7 +89,7 @@ class CreditCardInfo extends React.Component {
           country={ccCountry}
           handleOnChange={this.handleOnChange}
         />
-
+        
         <NameOnCard
           show={!!ccCountry}
           ccNameOnCard={ccNameOnCard}

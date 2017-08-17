@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
@@ -7,7 +8,9 @@ import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
 
 import {
+  apiActions,
   orderActions,
+  toasterActions,
 } from './redux.imports';
 
 import {
@@ -17,11 +20,10 @@ import {
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
   squarePaymentForm as SqrPaymentForm,
+  cleanOffTypename as CleanOffTypename,
+  checkForToast as CheckForToast,
+  generateFinalForm as GenerateFinalForm,
 } from './utilities.imports';
-import {
-  propTypes,
-  defaultProps,
-} from './propTypes.imports';
 import {
   BreadCrumb,
   ShippingAddress,
@@ -38,8 +40,8 @@ import {
   AddressLine,
   Country,
   Prefecture,
-  PostalCode,
   City,
+  PostalCode,
   PhoneNumber,
 } from './component.imports';
 import {
@@ -48,13 +50,11 @@ import {
 } from '../../graphql/queries';
 
 import {
+  ValidatePostal,
   SubmitFinalOrder,
-  SubmitFinalOrderOptions,
 } from '../../graphql/mutations';
 
-class ExpressCheckout extends Component {
-  static propTypes = propTypes
-  static defaultProps = defaultProps
+class ExpressCheckout extends React.Component {
   constructor(props) {
     super(props);
 
@@ -68,16 +68,17 @@ class ExpressCheckout extends Component {
         message: '',
       },
       // --- Form Data from Nested Components ---
-      newsletterDecision: true,
+      prComments: '',
+      newsletterDecision: false,
       shippingFirstName: '',
       shippingLastName: '',
       shippingEmail: '',
+      shippingPostalCode: '',
       shippingAddressLine1: '',
       shippingAddressLine2: '',
-      shippingCountry: 'Japan',
+      shippingCountry: 'Japan - JP',
       shippingPrefecture: '',
       shippingCity: '',
-      shippingPostalCode: '',
       shippingPhoneNumber: '',
       ccNameOnCard: '',
       ccNumber: '',
@@ -104,13 +105,38 @@ class ExpressCheckout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.apiError) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!!nextProps.postalError) {
       this.form.showError('shippingPostalCode', 'postalApi');
-    } else if (!_.isEqual(nextProps, this.props) ||
-      !ArrayDeepEquality(nextProps.cart, this.state.cart)
-    ) {
-      this.setState({ ...nextProps });
+    } else if (!_.isEqual(npCopy, tpCopy)) {
+      this.setState(prevState => ({
+        ...prevState,
+        ...nextProps,
+      }));
     }
+
+    if (
+      !ArrayDeepEquality(this.state.cart, nextProps.cart) ||
+      !_.isEqual(this.state.total, nextProps.total)
+    ) {
+      this.setState(prevState => ({
+        ...prevState,
+        cart: nextProps.cart,
+      }));
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!_.isEqual(npCopy, tpCopy)) return true;
+
+    if (!_.isEqual(nextState, this.state)) return true;
+
+    return false;
   }
 
   componentWillUpdate() {
@@ -125,16 +151,36 @@ class ExpressCheckout extends Component {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
 
+  /**
+  * Function: "handleOnChange"
+  * 1. If the input that triggered the event is "ccCountry", then continue...  Otherwise, simply set the state of the event target name, with the event target value.
+  * 2. Check to see if we've created a SquarePaymentForm twice already.  If so, the count is too high, and we need to refresh the page, to re-invoke the main <scrpt> tag from Square.
+  * 3. Identify the current form type: With postal code as a required field? or not?
+  * 4. If either of the values in steps 2 or 3 are truthy, refresh the page.  Otherwise...
+  * 5. Check to see if the country the user chose, is a country that requires a postal code field to successfully validate and receive a card nonce.
+  * // ---
+  * 6.  If the country requires a postal code, then immediately check to see if there is currently an active Form.  If not, simply set the state with the new target value for the target name, and once complete, create a new form with the postal field required, and then call build once the form is finished being created.  The "build" call, is required for SPA's.
+  * 7. If there is already a form created, then check to see if the form already is built with the postal field...
+  * 8a. If the postal fields is already a part of the form that is cached, simply call "build" again which will reset the form, but not create a new one.
+  * 8b.  If the postal field is NOT already a part of the form that is cached, then call "setState" with the new target value for the target name, and once compelete "destroy" on the cached form, then "create" for a new one, and then "build" to activate it.
+  * // ---
+  * 6. If the country does NOT require a postal code, then do all the above steps but with create a form (when required) without the postal code input.
+  *
+  * @param: {object} event - the event object.
+  *
+  * @return: null
+  */
   handleOnChange = (e) => {
     if (e.target.name === 'ccCountry') {
-      const countIsTooHigh = SqrPaymentForm === 2;
+      const country = e.target.value.split('-')[1];
+      const countIsTooHigh = SqrPaymentForm.count === 2;
       const postalNotReq = SqrPaymentForm.type === 'renderWithoutZip';
 
       if (countIsTooHigh || postalNotReq) {
         window.location.reload();
       } else {
-        const countriesWithPostal = ['United States', 'Canada', 'United Kingdom'];
-        if (countriesWithPostal.includes(e.target.value)) {
+        const countriesWithPostal = ['US', 'CA', 'UK'];
+        if (countriesWithPostal.includes(country)) {
           if (!!SqrPaymentForm.options) {
             if (SqrPaymentForm.type === 'renderWithZip') {
               this.setState(prevState => ({
@@ -151,7 +197,8 @@ class ExpressCheckout extends Component {
                 ccRenderKey: 'renderWithZip',
               }), () => {
                 SqrPaymentForm.destroy();
-                SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+                SqrPaymentForm.create('renderWithZip',
+                country, this.handleNonceResponse);
                 SqrPaymentForm.build();
               });
             }
@@ -159,9 +206,9 @@ class ExpressCheckout extends Component {
             this.setState(prevState => ({
               ...prevState,
               [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithoutZip',
+              ccRenderKey: 'renderWithZip',
             }), () => {
-              SqrPaymentForm.create('renderWithZip', this.handleNonceResponse);
+              SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
               SqrPaymentForm.build();
             });
           }
@@ -181,7 +228,7 @@ class ExpressCheckout extends Component {
               ccRenderKey: 'renderWithoutZip',
             }), () => {
               SqrPaymentForm.destroy();
-              SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+              SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
               SqrPaymentForm.build();
             });
           }
@@ -191,7 +238,7 @@ class ExpressCheckout extends Component {
             [e.target.name]: e.target.value,
             ccRenderKey: 'renderWithoutZip',
           }), () => {
-            SqrPaymentForm.create('renderWithoutZip', this.handleNonceResponse);
+            SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
             SqrPaymentForm.build();
           });
         }
@@ -203,10 +250,7 @@ class ExpressCheckout extends Component {
 
   toggleModal = (e) => {
     const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
-
-    this.setState(prevState =>
-      ({ [modal]: !prevState[modal] }),
-    );
+    this.setState(prevState => ({ [modal]: !prevState[modal] }));
   }
 
   assignRefToForm = (formComp) => { this.form = formComp; }
@@ -216,7 +260,7 @@ class ExpressCheckout extends Component {
     this.setState({ error: this.form.validateAll() });
   }
 
-  handleNonceResponse = (errors, nonce, cardData) => {
+  handleNonceResponse = (errors, cardNonce, cardData) => {
     if (errors) {
       this.setState(prevState => ({
         ...prevState,
@@ -229,23 +273,71 @@ class ExpressCheckout extends Component {
           }, ''),
         },
       }));
-
-      // No errors occurred. Extract the card nonce.
     } else {
-      alert('Nonce received: ' + nonce);
+      const formData = GenerateFinalForm({
+        state: this.state,
+        props: this.props,
+        cardData: {
+          ...cardData,
+          cardNonce,
+        },
+      });
+
+      this.props.GraphQLsubmitOrder(formData)
+      .then(({ data: { SubmitFinalOrder: response } }) => {
+        const cleanResponse = CleanOffTypename(response);
+
+        console.log('%ccleanResponse', 'background:lime;', cleanResponse);
+
+        this.props.toastSuccess(true, 'Order successfully submitted!');
+        // TODO create a redux action to save response into local state.
+      })
+      .catch(this.props.GraphQLhandleError);
     }
   }
 
   validatePostal = () => {
-    this.props.SgValidatePostal(this.state.shippingPostalCode);
+    this.props.GraphQLvalidatePostal(this.state.shippingPostalCode)
+    .then((response) => {
+      const {
+        data: {
+          ValidatePostal: {
+            _id,
+            error,
+            postalInfo,
+          },
+        },
+      } = CleanOffTypename(response);
+
+      if (!!error.hard || !!error.soft) {
+        this.props.apiFail();
+        this.props.gotInvalidPostal({ error: true });
+        this.props.toastError(true, error.message);
+      } else {
+        this.setState(prevState => ({
+          ...prevState,
+          shippingPostalCode: postalInfo.postalCode,
+          shippingAddressLine1: postalInfo.jpAddress,
+        }), () => {
+          this.props.apiSuccess();
+          this.props.clearToaster();
+          this.props.gotValidPostal({
+            ...postalInfo,
+            sagawaId: _id,
+          });
+        });
+      }
+    })
+    .catch(this.props.GraphQLhandleError);
   }
 
   clearValidationError = name => this.form.hideError(name)
 
   render() {
     const {
+      userId,
       loggedIn,
-      apiError,
+      toast,
       apiFetching,
     } = this.props;
 
@@ -253,6 +345,7 @@ class ExpressCheckout extends Component {
       ccRenderKey,
       cart,
       errors,
+      prComments,
       newsletterDecision,
       // ---
       shippingFirstName,
@@ -260,9 +353,9 @@ class ExpressCheckout extends Component {
       shippingEmail,
       shippingAddressLine1,
       shippingAddressLine2,
+      shippingPostalCode,
       shippingPrefecture,
       shippingCity,
-      shippingPostalCode,
       shippingPhoneNumber,
       // ---
       ccNameOnCard,
@@ -274,6 +367,7 @@ class ExpressCheckout extends Component {
       ccZip,
       // ---
       total,
+      termsAgreement,
     } = this.state;
 
     return (
@@ -295,6 +389,7 @@ class ExpressCheckout extends Component {
             <div className="checkout__grid">
               <ProductReview
                 cart={cart}
+                comments={prComments}
                 loggedIn={loggedIn}
                 routerPush={this.routerPush}
                 newsletterDecision={newsletterDecision}
@@ -320,32 +415,6 @@ class ExpressCheckout extends Component {
                   handleOnChange={this.handleOnChange}
                 />
 
-                <AddressLine
-                  required
-                  lineNumber={1}
-                  shippingAddressLine={shippingAddressLine1}
-                  handleOnChange={this.handleOnChange}
-                />
-
-                <AddressLine
-                  required={false}
-                  lineNumber={2}
-                  shippingAddressLine={shippingAddressLine2}
-                  handleOnChange={this.handleOnChange}
-                />
-
-                <Country />
-
-                <Prefecture
-                  shippingPrefecture={shippingPrefecture}
-                  handleOnChange={this.handleOnChange}
-                />
-
-                <City
-                  shippingCity={shippingCity}
-                  handleOnChange={this.handleOnChange}
-                />
-
                 <PostalCode
                   handleOnChange={this.handleOnChange}
                   validatePostal={this.validatePostal}
@@ -353,8 +422,43 @@ class ExpressCheckout extends Component {
                   clearValidationError={this.clearValidationError}
                 />
 
+                <AddressLine
+                  line={1}
+                  type="shipping"
+                  title={'Kanji Address'}
+                  disabled
+                  required={false}
+                  placeHolder={'Generated from Postal Code...'}
+                  addressLine={shippingAddressLine1}
+                />
+
+                <AddressLine
+                  required
+                  type="shipping"
+                  line={2}
+                  placeHolder={'RM3 1-1-8 Odakicho'}
+                  title={'Room # | Street # | Street Name'}
+                  addressLine={shippingAddressLine2}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <Country disabled />
+
+                <Prefecture
+                  type="shipping"
+                  prefecture={shippingPrefecture}
+                  handleOnChange={this.handleOnChange}
+                />
+
+                <City
+                  type="shipping"
+                  city={shippingCity}
+                  handleOnChange={this.handleOnChange}
+                />
+
                 <PhoneNumber
-                  shippingPhoneNumber={shippingPhoneNumber}
+                  type="shipping"
+                  phoneNumber={shippingPhoneNumber}
                   handleOnChange={this.handleOnChange}
                 />
               </ShippingAddress>
@@ -375,13 +479,16 @@ class ExpressCheckout extends Component {
               <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
+                termsAgreement={termsAgreement}
                 handleOnChange={this.handleOnChange}
               />
 
-              <SubmitOrder enable={!!cart.length} />
+              <SubmitOrder
+                enable={(cart.length && userId) ? true : false} //eslint-disable-line
+              />
 
               <NetworkStatus
-                apiError={apiError}
+                toast={toast}
                 errors={errors}
                 loading={apiFetching}
                 success={false}
@@ -409,30 +516,155 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
     total,
     cart,
   });
-}, dispatch => ({
+}, (dispatch, ownProps) => ({
   push: location => dispatch(push(location)),
-  SgValidatePostal: postal => dispatch(orderActions.validatePostal(postal)),
+  GraphQLhandleError: (error) => {
+    let errorMsg = '';
+
+    if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
+      errorMsg = 'You must login or register to complete this transaction.';
+    } else if (/(GraphQL error: )/.test(error.message)) {
+      errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
+    }
+
+    ownProps.toastError(true, errorMsg || error.message);
+    ownProps.apiFail();
+  },
+  GraphQLvalidatePostal: (postalCode) => {
+    ownProps.apiIsFetching();
+    return ownProps.ValidatePostal({
+      variables: {
+        postalCode,
+        userId: ownProps.userId,
+      },
+    });
+  },
+  GraphQLsubmitOrder: (formData) => {
+    ownProps.apiIsFetching();
+    return ownProps.SubmitFinalOrder({
+      variables: { ...formData },
+    });
+  },
 }))(ExpressCheckout);
 
 const ExpressCheckoutWithStateAndData = compose(
+  graphql(ValidatePostal, { name: 'ValidatePostal' }),
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
     options: FetchMultipleProductsOptions,
   }),
-  graphql(SubmitFinalOrder, {
-    name: 'SubmitFinalOrder',
-    options: SubmitFinalOrderOptions,
-  }),
+  graphql(SubmitFinalOrder, { name: 'SubmitFinalOrder' }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api }) => ({
-  taxRate: orders.taxRate.totalRate,
+const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
+  toast: CheckForToast(toaster),
+  userId: !!user.profile ? user.profile._id : '',
+  sagawaId: orders.postalInfo.sagawaId,
+  taxRate: orders.taxRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
-  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+  userCart: !!auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
-  apiError: orders.postalInfo.error,
   apiFetching: api.fetching,
+  postalError: orders.postalInfo.error,
+  jpyFxRate: orders.exchangeRate.JPY,
+}), dispatch => ({
+  toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
+  toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
+  toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
+  clearToaster: () => dispatch(toasterActions.clearToaster()),
+  //
+  apiIsFetching: () => dispatch(apiActions.fetching()),
+  apiFail: () => dispatch(apiActions.apiFail()),
+  apiSuccess: () => dispatch(apiActions.apiSuccess()),
+  //
+  gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
+  gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
 }))(ExpressCheckoutWithStateAndData);
+
+const {
+  func,
+  bool,
+  any,
+  shape,
+  object,
+  string,
+  number,
+  arrayOf,
+  objectOf,
+} = PropTypes;
+
+ExpressCheckout.propTypes = {
+  push: func.isRequired,
+  // ---
+  gotValidPostal: func.isRequired,
+  gotInvalidPostal: func.isRequired,
+  postalError: bool.isRequired,
+  sagwaId: string,
+  // ---
+  toast: shape({
+    type: string,
+    message: string,
+  }).isRequired,
+  toastError: func.isRequired,
+  toastWarning: func.isRequired,
+  toastSuccess: func.isRequired,
+  clearToaster: func.isRequired,
+  // ---
+  apiFail: func.isRequired,
+  apiSuccess: func.isRequired,
+  apiFetching: bool,
+  apiIsFetching: func.isRequired,
+  // ---
+  cart: arrayOf(object),
+  userCart: arrayOf(object),
+  guestCart: arrayOf(object),
+  // ---
+  userId: string.isRequired,
+  loggedIn: bool.isRequired,
+  newUser: bool.isRequired,
+  // ---
+  taxRate: shape({
+    stateRate: number,
+    cityRate: number,
+    totalRate: number,
+  }).isRequired,
+  total: shape({
+    discount: {
+      qty: bool,
+      qtyAmount: number,
+      register: bool,
+      registerAmount: number,
+    },
+    taxes: number,
+    grandTotal: number,
+    subTotal: number,
+  }),
+  // ---
+  SubmitFinalOrder: func.isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
+  GraphQLhandleError: func.isRequired,
+  GraphQLvalidatePostal: func.isRequired,
+  GraphQLsubmitOrder: func.isRequired,
+};
+ExpressCheckout.defaultProps = {
+  cart: [],
+  userCart: [],
+  guestCart: [],
+  total: {
+    discount: {
+      qty: false,
+      qtyAmount: 0,
+      register: false,
+      registerAmount: 0,
+    },
+    taxes: 0,
+    grandTotal: 0,
+    subTotal: 0,
+  },
+  sagwaId: '',
+  apiFetching: false,
+  SubmitFinalOrder: func,
+};
 
 export default ExpressCheckoutWithStateAndData2;

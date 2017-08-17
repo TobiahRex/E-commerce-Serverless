@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 class PhoneNumber extends React.PureComponent {
-  static propTypes = {
-    shippingPhoneNumber: PropTypes.string.isRequired,
-    handleOnChange: PropTypes.func.isRequired,
-  }
-
   constructor(props) {
     super(props);
 
     this.state = {
-      shippingPhoneNumber: props.shippingPhoneNumber,
+      phoneNumber: props.phoneNumber,
     };
   }
 
@@ -27,14 +22,20 @@ class PhoneNumber extends React.PureComponent {
             errorClassName="is-invalid-input"
             type="string"
             containerClassName=""
-            name="shippingPhoneNumber"
+            name={`${this.props.type}PhoneNumber`}
             validations={['required', 'numeric', 'phone-startWithZero', 'phone-japanLength']}
             onChange={this.handleOnChange}
-            value={this.props.shippingPhoneNumber}
+            value={this.props.phoneNumber}
           />
         </div>
       </div>
     );
   }
 }
+const { string, func } = PropTypes;
+PhoneNumber.propTypes = {
+  type: string.isRequired,
+  phoneNumber: string.isRequired,
+  handleOnChange: func.isRequired,
+};
 export default PhoneNumber;

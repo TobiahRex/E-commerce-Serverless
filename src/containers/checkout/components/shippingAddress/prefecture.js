@@ -1,17 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 import { Prefectures } from './component.imports';
 
 class Prefecture extends PureComponent {
-  static propTypes = {
-    shippingPrefecture: PropTypes.string.isRequired,
-    handleOnChange: PropTypes.func.isRequired,
-  }
   constructor(props) {
     super(props);
 
     this.state = {
-      shippingPrefecture: props.shippingPrefecture,
+      prefecture: props.prefecture,
     };
   }
 
@@ -21,7 +18,7 @@ class Prefecture extends PureComponent {
   prefectures.map(({ en, kanji }) => (
     <option
       key={new Buffer(`${kanji}${en}`, 'utf8').toString('base64')}
-      value={kanji}
+      value={`${kanji}-${en}`}
     >{kanji} - {en}
     </option>
   ))
@@ -31,21 +28,28 @@ class Prefecture extends PureComponent {
       <div className="input__row">
         <div className="input__row--prefecture">
           <p>Prefecture <span className="required">*</span></p>
-          <select
-            name="shippingPrefecture"
-            className="input--select"
-            value={this.props.shippingPrefecture}
+          <Validation.components.Select
+            errorClassName="is-invalid-input"
+            name={`${this.props.type}Prefecture`}
+            containerClassName=""
+            validations={['required']}
+            value={this.props.prefecture}
             onChange={this.handleOnChange}
-            required
           >
             <option value="">Choose</option>
             {
               this.renderOptions(Prefectures)
             };
-          </select>
+          </Validation.components.Select>
         </div>
       </div>
     );
   }
 }
+const { string, func } = PropTypes;
+Prefecture.propTypes = {
+  type: string.isRequired,
+  prefecture: string.isRequired,
+  handleOnChange: func.isRequired,
+};
 export default Prefecture;

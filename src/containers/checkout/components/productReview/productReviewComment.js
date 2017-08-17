@@ -1,30 +1,32 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ProductReviewComments extends PureComponent {
-  constructor(props) {
-    super(props);
+class ProductReviewComments extends React.PureComponent {
 
-    this.state = {
-      comment: '',
-    };
-  }
-
-  handleChange = e => this.setState({ comment: e.target.value });
+  handleOnChange = e => this.props.handleOnChange(e);
 
   render() {
     return (
       <div className="checkout__comments">
         <textarea
-          name="prComment"
+          name="prComments"
           cols="40"
           rows="5"
           placeholder="Comments..."
-          value={this.state.comment}
-          onChange={this.handleChange}
+          value={this.props.comments}
+          onChange={this.handleOnChange}
         />
       </div>
     );
   }
 }
+const { string, func } = PropTypes;
 
+ProductReviewComments.propTypes = {
+  comments: string,
+  handleOnChange: func.isRequired,
+};
+ProductReviewComments.defaultProps = {
+  comments: '',
+};
 export default ProductReviewComments;

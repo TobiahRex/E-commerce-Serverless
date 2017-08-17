@@ -35,7 +35,7 @@ const createSagawaCheckZipAPI = () => {
 };
 
 const sagawaZipAPI = createSagawaCheckZipAPI();
-sagawaZipAPI.checkZip('2220033')
+sagawaZipAPI.checkZip('22200333')
 .then((response) => {
   const { problem, ok, data } = response;
   console.log('RESPONSE:\n', response, '\n\n');
