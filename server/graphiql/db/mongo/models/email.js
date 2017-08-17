@@ -221,4 +221,3 @@ new Promise((resolve, reject) => {
 });
 
 const Email = db.model('Email', emailSchema);
-return Email;

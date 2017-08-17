@@ -191,7 +191,7 @@ new Promise((resolve, reject) => {
       });
     }
     console.log('Successfully charge customer card:  Updated database.');
-    bbPromise.fromCallback(cb => Email.create({
+    return bbPromise.fromCallback(cb => Email.create({
       
     }, cb));
   })
