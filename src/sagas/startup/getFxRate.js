@@ -16,7 +16,7 @@ export default function* () {
   if (ok) {
     yield [
       put(apiActions.apiSuccess()),
-      put(orderActions.setFxRate(data.rates.JPY)),
+      put(orderActions.setFxRate(data.rates)),
     ];
   } else {
     yield [

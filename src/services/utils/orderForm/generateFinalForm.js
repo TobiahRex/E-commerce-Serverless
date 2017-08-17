@@ -22,6 +22,7 @@ export default function ComposeLocalData({
     userId,
     sagawaId,
     taxRate: taxes,
+    jpyFxRate,
   },
   cardData,
 }) {
@@ -33,6 +34,7 @@ export default function ComposeLocalData({
     cart: cart.map(({ _id, qty }) => ({ _id, qty })),
     taxes,
     total,
+    jpyFxRate,
     sagawa: {
       sagawaId,
       shippingAddress: {

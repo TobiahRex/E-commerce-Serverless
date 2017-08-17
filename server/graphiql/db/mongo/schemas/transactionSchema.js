@@ -32,6 +32,7 @@ const transactionSchema = new Schema({
   marketHero: { type: ObjectId, ref: 'MarketHero' },
   invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
+  jpyFxRate: { type: String, required: true },
   taxes: {
     cityRate: { type: String, required: true },
     stateRate: { type: String, required: true },

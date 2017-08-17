@@ -91,6 +91,10 @@ const rootType = new ObjectType({
       description: 'The Mongo _id for the invoice Email that was sent.',
       type: MongoID,
     },
+    jpyFxRate: {
+      description: 'The foreign exchange rate between USD & JPY at the time of the transaction.',
+      type: StringType,
+    },
     taxes: {
       description: 'The global tax information at the trime of executing this transaction',
       type: new ObjectType({

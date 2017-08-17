@@ -567,6 +567,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   guestCart: orders.cart,
   apiFetching: api.fetching,
   postalError: orders.postalInfo.error,
+  jpyFxRate: orders.exchangeRate.JPY,
 }), dispatch => ({
   toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
   toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),

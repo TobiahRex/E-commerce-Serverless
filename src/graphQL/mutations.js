@@ -422,6 +422,7 @@ mutation SubmitFinalOrder(
     sagawa
     marketHero
     invoiceEmail
+    jpyFxRate
     taxes {
       cityRate
       stateRate
