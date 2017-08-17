@@ -401,6 +401,7 @@ mutation SubmitFinalOrder(
     termsAgreement: $termsAgreement
     newsletterDecision: $newsletterDecision
     cart: $cart
+    jpyFxRate: $jpyFxRate
     taxes: $taxes
     total: $total
     sagawa: $sagawa
