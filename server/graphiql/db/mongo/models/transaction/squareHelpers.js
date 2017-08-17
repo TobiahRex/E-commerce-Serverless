@@ -13,6 +13,8 @@ const {
   JP_SQUARE_SANDBOX_ACCESS_TOKEN: jpSquareSandboxAccessToken,
 } = process.env;
 
+console.log('jpSquareSandboxLocation: ', jpSquareSandboxLocation)
+
 export const getSqLocation = (country) => {
   if (country === 'US') {
     if (squareEnv === 'development') return usSquareSandboxLocation;

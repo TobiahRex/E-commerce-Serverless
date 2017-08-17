@@ -189,6 +189,8 @@ new Promise((resolve, reject) => {
         },
       });
     }
+    console.log('Successfully charge customer card:  Updated database.');
+    console.log('newTransactionDoc: ', newTransactionDoc);
     resolve(newTransactionDoc);
   })
   .catch((error) => {
