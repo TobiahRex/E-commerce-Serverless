@@ -29,21 +29,18 @@ const getSqLocation = (country) => {
   } else if (country === 'JP') {
     return jpSquareLocation;
   }
-}
+};
 
-const getSqToken = (country) => {
+const getSqToken = (country) => { //eslint-disable-line
   if (country === 'US') {
     if (squareEnv === 'development') {
       return usSquareSandboxAccessToken;
-    } else {
-      return usSquareAccessToken;
     }
+    return usSquareAccessToken;
   } else if (country === 'JP') {
     if (squareEnv === 'development') {
       return jpSquareSandboxAccessToken;
-    } else {
       return jpSquareAccessToken;
-    }
   }
 }
 

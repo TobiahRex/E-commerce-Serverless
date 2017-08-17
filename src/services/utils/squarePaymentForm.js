@@ -16,10 +16,11 @@ const getSqApplicationId = (country) => {  //eslint-disable-line
   }
 };
 
-
+/* eslint-disable no-console */
 if (squareEnv === '') console.error('You need to provide a value for the SQUARE_ENV variable.');
 if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
 if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+/* eslint-enable no-console */
 
 class SqrPaymentForm {
   constructor() {
@@ -118,7 +119,6 @@ class SqrPaymentForm {
         },
 
         paymentFormLoaded: () => {
-          console.warn('FINISHED LOADING');
           // Fill in this callback to perform actions after the payment form is
           // done loading (such as setting the postal code field programmatically).
           // paymentForm.setPostalCode('94103');
