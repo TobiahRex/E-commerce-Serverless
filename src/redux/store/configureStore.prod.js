@@ -5,11 +5,14 @@ import { autoRehydrate } from 'redux-persist';
 import { browserHistory } from 'react-router';
 import RehydrationServices from '../../services/utils/rehydrationServices';
 import apolloClient from '../../graphql/';
+// BUG delete this in production
+import createLogger from 'redux-logger';
 
 export default (rootReducer, rootSaga) => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
     apolloClient.middleware(),
+    createLogger(), // BUG delete this in production
     routerMiddleware(browserHistory),
     sagaMiddleware,
   ];

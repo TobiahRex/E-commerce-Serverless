@@ -1,7 +1,5 @@
 /* eslint-disable no-lone-blocks, import/first*/
-// TODO - Need to write a function description for "addToCartHandler"
-
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
@@ -31,7 +29,7 @@ import {
   arrayDeepEquality as ArrayDeepEquality,
 } from './utilities.imports';
 
-class SingleProduct extends Component {
+class SingleProduct extends React.Component {
   static propTypes = propTypes
   static defaultProps = defaultProps
   constructor(props) {
@@ -50,7 +48,11 @@ class SingleProduct extends Component {
     };
   }
 
-  componentWillReceiveProps({ loggedIn }) {
+  componentWillReceiveProps(nextProps) {
+    const {
+      loggedIn,
+    } = nextProps;
+
     if (loggedIn !== this.props.loggedIn) this.setState(() => ({ loggedIn }));
   }
 
@@ -75,7 +77,9 @@ class SingleProduct extends Component {
     *
     * @return {boolean} true/false.
     */
+
     if (
+      !_.isEqual(nextProps.data, this.props.data) ||
       !ArrayDeepEquality(nextProps.userCart, this.props.userCart) ||
       !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
       !_.isEqual(nextProps, this.props)
@@ -374,7 +378,6 @@ class SingleProduct extends Component {
         prevCartIds,
         globalRequestQty,
       } = this.composeGlobalCartInfo();
-      console.log('%cupdatedCart', 'background:red;', updatedCart);
 
       const {
           qty,
@@ -527,6 +530,7 @@ class SingleProduct extends Component {
       taxRate,
       loggedIn,
     } = this.props;
+
     return (
       <div className="juice-page__main">
         <BreadCrumb
@@ -560,7 +564,7 @@ class SingleProduct extends Component {
             modalHandler={this.modalHandler}
             nicotineHandler={this.nicotineHandler}
             addToCartHandler={this.addToCartHandler}
-            productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : null}
+            productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : []}
           />
         }
         <ActionBtns
@@ -623,7 +627,6 @@ const SingleProductWithState = connect(null,
 )(SingleProduct);
 
 const SingleProductWithStateAndData = compose(
-  graphql(FindProductById, { skip: true, name: 'FindProductById' }),
   graphql(FindProductsByFlavor, {
     options: ({ location }) => ({
       name: 'FindProductsByFlavor',
@@ -634,6 +637,7 @@ const SingleProductWithStateAndData = compose(
   }),
   graphql(AddToMemberCart, { name: 'AddToMemberCart' }),
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
+  graphql(FindProductById, { skip: true, name: 'FindProductById' }),
 )(SingleProductWithState);
 
 const SingleProductWithStateAndData2 = connect(
