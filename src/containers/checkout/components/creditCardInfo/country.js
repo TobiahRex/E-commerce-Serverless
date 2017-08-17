@@ -40,10 +40,10 @@ class Country extends React.Component {
           >
             <option value="">Choose</option>
             <hr />
-            <option value="United States">
+            <option value="United States-US">
               United States (US)
             </option>
-            <option value="Japan">
+            <option value="Japan-JP">
               Japan (JA)
             </option>
             <hr />

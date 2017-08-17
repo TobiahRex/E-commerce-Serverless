@@ -7,24 +7,63 @@ import User from './user';
 import transactionSchema from '../schemas/transactionSchema';
 require('dotenv').load({ silent: true });
 
+const {
+  SQUARE_ENV: squareEnv,
+  SQUARE_SANDBOX_LOCATION: squareSandboxLocation,
+
+  US_SQUARE_LOCATION: usSquareLocation,
+  US_SQUARE_ACCESS_TOKEN: usSquareAccessToken,
+  US_SQUARE_SANDBOX_ACCESS_TOKEN: usSquareSandboxAccessToken,
+
+
+  JP_SQUARE_LOCATION: jpSquareLocation,
+  JP_SQUARE_ACCESS_TOKEN: jpSquareAccessToken,
+  JP_SQUARE_SANDBOX_ACCESS_TOKEN: jpSquareSandboxAccessToken,
+} = process.env;
+
+const getSqLocation = (country) => {
+  if (squareEnv === 'development') {
+    return squareSandboxLocation;
+  } else if (country === 'US') {
+    return usSquareLocation;
+  } else if (country === 'JP') {
+    return jpSquareLocation;
+  }
+}
+
+const getSqToken = (country) => {
+  if (country === 'US') {
+    if (squareEnv === 'development') {
+      return usSquareSandboxAccessToken;
+    } else {
+      return usSquareAccessToken;
+    }
+  } else if (country === 'JP') {
+    if (squareEnv === 'development') {
+      return jpSquareSandboxAccessToken;
+    } else {
+      return jpSquareAccessToken;
+    }
+  }
+}
+
 transactionSchema.statics.createTransaction = (txn, cb) => {
   Transaction.create(txn)
   .then(dbTxn => cb(null, dbTxn))
   .catch(error => cb({ problem: 'Could not create Transaction.', error }));
 };
 
-transactionSchema.statics.fetchSquareLocation = locationName =>
+transactionSchema.statics.fetchSquareLocation = (country) =>
 new Promise((resolve, reject) => {
   axios({
     method: 'get',
     url: 'https://connect.squareup.com/v2/locations',
-    headers: { Authorization: `Bearer ${process.env.SQUARE_SANDBOX_ACCESS_TOKEN}` },
+    headers: { Authorization: `Bearer ${getSqToken(country)}` },
   })
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
 
-    // locationName = 'Thomas NFriends'
-    const locations = response.data.locations.filter(({ name }) => name === locationName);
+    const locations = response.data.locations.filter(({ name }) => name === getSqLocation(country));
 
     if (locations.length) {
       const newLocation = { ...locations[0] };
@@ -94,12 +133,12 @@ new Promise((resolve, reject) => {
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
-      note: `${process.env.SQUARE_SANDBOX_LOCATION}: Online order.`,
+      note: `${getSqLocation(shippingCountry)}: Online order.`,
       delay_capture: false,
     },
     {
       headers: {
-        Authorization: `Bearer ${process.env.SQUARE_SANDBOX_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${getSqToken(shippingCountry)}`,
       },
     },
   )
@@ -151,7 +190,7 @@ new Promise((resolve, reject) => {
         },
       },
     }),
-    Transaction.fetchSquareLocation(process.env.SQUARE_SANDBOX_LOCATION),
+    Transaction.fetchSquareLocation(sagawa.shippingAddress.country),
   ])
   .then((results) => {
     // console.log('results: ', JSON.stringify(results, null, 2));

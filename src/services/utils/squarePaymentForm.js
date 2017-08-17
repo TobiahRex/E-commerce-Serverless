@@ -1,8 +1,25 @@
-/* eslint-disable no-console */
-const usApplicationId = process.env.US_SQUARE_APPLICATION_ID;
-const jpApplicationId = process.env.JP_SQUARE_APPLICATION_ID;
+const {
+  SQUARE_ENV: squareEnv,
+  US_SQUARE_APPLICATION_ID: usSquareApplicationId,
+  US_SQUARE_SANDBOX_APPLICATION_ID: usSquareSandboxApplicationId,
+  JP_SQUARE_APPLICATION_ID: jpSquareApplicationId,
+  JP_SQUARE_SANDBOX_APPLICATION_ID: jpSquareSandboxApplicationId,
+} = process.env;
 
-if (applicationId === '') console.error('You need to provide a value for the applicationId variable.');
+const getSqApplicationId = (country) => {  //eslint-disable-line
+  if (country === 'US') {
+    if (squareEnv === 'development') return usSquareSandboxApplicationId;
+    return usSquareApplicationId;
+  } else if (country === 'JP') {
+    if (squareEnv === 'development') return jpSquareSandboxApplicationId;
+    return jpSquareApplicationId;
+  }
+};
+
+
+if (squareEnv === '') console.error('You need to provide a value for the SQUARE_ENV variable.');
+if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
+if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
 
 class SqrPaymentForm {
   constructor() {
@@ -27,7 +44,7 @@ class SqrPaymentForm {
   create(type, country, handleNonceResponse) {
     let postalCode = null;
     this.type = type;
-    this.countr += 1;
+    this.count += 1;
 
     if (type === 'renderWithZip') {
       postalCode = {
@@ -37,8 +54,9 @@ class SqrPaymentForm {
     } else if (type === 'renderWithoutZip') {
       postalCode = false;
     }
+
     this.paymentForm = new SqPaymentForm({ // eslint-disable-line
-      applicationId: country === 'US' ? usApplicationId : jpApplicationId,
+      applicationId: getSqApplicationId(country),
       inputClass: 'sq-input',
       inputStyles: [
         {

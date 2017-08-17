@@ -14,7 +14,7 @@ export default function* () {
   } = yield call(() => fxApi.getRates('USD'));
 
   if (ok) {
-    yield put(apiAction.apiSuccess());
+    yield put(apiActions.apiSuccess());
     console.log('%cok', 'background:orange;', data);
   } else {
     yield [
