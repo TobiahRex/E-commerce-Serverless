@@ -2,46 +2,16 @@
 import axios from 'axios';
 import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
-import db from '../connection';
-import User from './user';
-import transactionSchema from '../schemas/transactionSchema';
+import db from '../../connection';
+import User from '../user';
+import transactionSchema from '../../schemas/transactionSchema';
+import {
+  getSqLocation,
+  getSqToken,
+  getAmount,
+} from './squareHelpers.js'
+
 require('dotenv').load({ silent: true });
-
-const {
-  SQUARE_ENV: squareEnv,
-  SQUARE_SANDBOX_LOCATION: squareSandboxLocation,
-
-  US_SQUARE_LOCATION: usSquareLocation,
-  US_SQUARE_ACCESS_TOKEN: usSquareAccessToken,
-  US_SQUARE_SANDBOX_ACCESS_TOKEN: usSquareSandboxAccessToken,
-
-
-  JP_SQUARE_LOCATION: jpSquareLocation,
-  JP_SQUARE_ACCESS_TOKEN: jpSquareAccessToken,
-  JP_SQUARE_SANDBOX_ACCESS_TOKEN: jpSquareSandboxAccessToken,
-} = process.env;
-
-const getSqLocation = (country) => {
-  if (squareEnv === 'development') return squareSandboxLocation;
-  if (country === 'US') return usSquareLocation;
-  return jpSquareLocation;
-};
-
-const getSqToken = (country) => {
-  if (country === 'US') {
-    if (squareEnv === 'development') return usSquareSandboxAccessToken;
-    return usSquareAccessToken;
-  }
-
-  if (squareEnv === 'development') return jpSquareSandboxAccessToken;
-  return jpSquareAccessToken;
-};
-
-transactionSchema.statics.createTransaction = (txn, cb) => {
-  Transaction.create(txn)
-  .then(dbTxn => cb(null, dbTxn))
-  .catch(error => cb({ problem: 'Could not create Transaction.', error }));
-};
 
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
@@ -91,19 +61,21 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.squareChargeCard = ({
-  locationId,
-  transactionId,
-  shippingEmail,
-  shippingAddressLine2,
-  shippingCity,
-  shippingPrefecture,
-  shippingPostalCode,
-  shippingCountry,
-  grandTotal,
-  cardNonce,
-}) =>
+transactionSchema.statics.squareChargeCard = chargeInfo =>
 new Promise((resolve, reject) => {
+  const {
+    locationId,
+    transactionId,
+    shippingEmail,
+    shippingAddressLine2,
+    shippingCity,
+    shippingPrefecture,
+    shippingPostalCode,
+    shippingCountry,
+    grandTotal,
+    cardNonce,
+  } = chargeInfo;
+
   axios.post(
     `https://connect.squareup.com/v2/locations/${locationId}/transactions`,
     {

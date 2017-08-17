@@ -312,6 +312,10 @@ const mutations = {
           ),
         ),
       },
+      jpyFxRate: {
+        description: 'The foreign exchange rate between USD and JPY at the time of the transction.',
+        type: new NonNull(StringType),
+      },
       taxes: {
         description: 'The global tax information at the time of executing this transaction',
         type: new NonNull(
