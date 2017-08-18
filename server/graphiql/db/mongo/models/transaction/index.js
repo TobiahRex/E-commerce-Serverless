@@ -205,14 +205,7 @@ new Promise((resolve, reject) => {
         },
       });
     }
-    console.log('Successfully charge customer card:  Updated database.');
-
-    const invoiceEmailBody = Email.generateInvoiceBody({
-      cart,
-      sagawa,
-      language,
-      transaction: newTransactionDoc,
-    });
+    console.log('Successfully charged customer card.');
 
     return Promise.all([
       User.findByIdAndUpdate(userDoc._id, {
@@ -229,7 +222,14 @@ new Promise((resolve, reject) => {
         },
       }, cb)),
       Transaction.findByIdAndUpdate(newTransactionDoc._id, {
-        $set: { ...invoiceEmailBody } }, { new: true }),
+        $set: {
+          ...Email.createInvoiceEmailBody({
+            cart,
+            sagawa,
+            language,
+            transaction: newTransactionDoc,
+          }),
+        } }, { new: true }),
       Sagawa.deepUpdate({
         cart,
         total,

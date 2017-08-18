@@ -1,4 +1,5 @@
-const x = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
     <!--[if gte mso 9]><xml>
      <o:OfficeDocumentSettings>
       <o:AllowPNG/>
@@ -238,10 +239,12 @@ a[x-apple-data-detectors=true] {
 	<div style="font-size:12px;line-height:14px;color:#555555;font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif;text-align:left;">
     <p style="margin: 0;font-size: 18px;line-height: 22px">
       <span style="font-size: 16px; line-height: 19px; color: rgb(54, 88, 153);">
-        <span style="font-size: 14px; line-height: 16px;">Order Tracking #:</span>
+        <span style="font-size: 14px; line-height: 16px;">
+          Order Tracking #:
+        </span>
         <span style="font-size: 12px; line-height: 14px;">
           <a style="color:#0068A5;text-decoration: underline; color: rgb(54, 88, 153);" href="https://nj2jp.com/tracking?token=123" target="_blank" rel="noopener noreferrer">
-            12312312123
+            ORDER_TRACKING_#_HERE
           </a>
         </span>
       </span>
@@ -258,8 +261,12 @@ a[x-apple-data-detectors=true] {
 	<div style="font-size:12px;line-height:14px;color:#555555;font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Geneva, Verdana, sans-serif;text-align:left;">
     <p style="margin: 0;font-size: 12px;line-height: 14px">
       <span style="color: rgb(54, 88, 153); font-size: 16px; line-height: 19px;">
-        <span style="font-size: 14px; line-height: 16px;">Order #:</span>
-        <span style="font-size: 12px; line-height: 14px;">123123</span>
+        <span style="font-size: 14px; line-height: 16px;">
+          Order #:
+        </span>
+        <span style="font-size: 12px; line-height: 14px;">
+          TRANSACTION_ID_HERE
+        </span>
       </span>
     </p>
   </div>
@@ -1063,6 +1070,3 @@ a[x-apple-data-detectors=true] {
 
 
 </body></html>
-`
-const y = x.replace(/(SHIPPING_STATUS_HERE)+/g, 'hi toby');
-console.log(y);

@@ -65,6 +65,7 @@ new Promise((resolve, reject) => {
 });
 
 /**
+* Function: "findEmailAndFilterLanguage"
 * 1) Find all emails with input argument "type".
 * 2) Filter any results by request language.
 *
@@ -151,8 +152,8 @@ new Promise((resolve, reject) => {
       },
     },
   };
-
   console.log('\nSending AWS ses email...');
+
   return bbPromise
   .fromCallback(cb => ses.sendEmail(emailRequest, cb))
   .then((data) => {
@@ -221,7 +222,7 @@ new Promise((resolve, reject) => {
 });
 
 /**
-* Function: "generateInvoiceBody"
+* Function: "createInvoiceEmailBody"
 * 1. Receives an input object with 4 params.  Destructures this input object and assigns individual values to Email input object.
 * 2. Email input object values are distributed by variable name throughout the HTML body taking into account, language, and date of the transaction.
 * 3. IF the date of the transaction is during off-business hours, then an Invoice email, NOT containing the Tracking information from Sagwa is generated.  ELSE invoice email, containing Tracking information is generated.
@@ -245,7 +246,7 @@ new Promise((resolve, reject) => {
 *
 * @return {string} - Template string of HTML data with dynamic values.
 */
-emailSchema.statics.generateInvoiceBody = orderInfo =>
+emailSchema.statics.createInvoiceEmailBody = orderInfo =>
 new Promise((resolve, reject) => {
   const {
     cart,
@@ -254,6 +255,29 @@ new Promise((resolve, reject) => {
     transaction,
   } = orderInfo;
 
+  const today = moment().format('dddd');
+  const nonBusinessDays = ['Saturday', 'Sunday'];
+  let emailType = '';
+
+  if (!nonBusinessDays.includes(today)) {
+    emailType = 'invoiceEmail';
+  } else {
+    emailType = 'invoiceEmailNoTracking';
+  }
+
+  Email.findEmailAndFilterLanguage(emailType, language)
+  .then((dbEmail) => {
+    dbEmail.bodyHtmlData
+    .replace(/(SHIPPING_STATUS_HERE)+/g, '')
+    .replace(/(TRANSACTION_ID_HERE)+/g, '')
+    .replace(/()+/g, '')
+    .replace(/()+/g, '')
+    .replace(/()+/g, '')
+  })
+  .catch((error) => {
+    console.log('Could not create invoice email: ', error);
+    reject(`Could not create invoice email: ${error}`);
+  });
 });
 
 const Email = db.model('Email', emailSchema);
