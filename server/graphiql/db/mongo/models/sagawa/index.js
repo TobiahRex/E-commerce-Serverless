@@ -1,11 +1,14 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import axios from 'axios';
+import moment from 'moment';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
 import cleanSagawaResponse from './cleanSagawaResponse';
 import Product from '../product';
 import ZipArrays from './zipArrays';
+import GenerateItemsXml from './generateItemsXml';
+import GenerateAddressXml from './generateAddressXml';
 /**
 * Function: "xmlOut";
 * 1. Receives standard Javascript string
@@ -84,60 +87,40 @@ new Promise((resolve, reject) => {
     transactionId,
   } = orderInfo;
 
-  Product.find({ _id: { $in: cart.map(({ _id }) => _id) } })
-  .exec()
+  Promise.all([
+    Sagawa.findByIdAndUpdate(sagawa.sagawaId, {
+      $set: {
+        userId,
+        transactionId,
+        shippingAddress: {
+          boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
+          shipdate: moment().add(3, 'days').format('YYYY/MM/DD'),
+        }
+      }
+    }, { new: true }),
+    Product.find({ _id: { $in: cart.map(({ _id }) => _id) } })
+    .exec(),
+  ])
+  .then((results) => {
+    console.log('Succcess! 1) Updated Sagawa document with Shipping Information.  2) Retrieved Product documents from cart _id\'s.');
+  })
   .then((dbProducts) => {
-    console.log('Found the following products from argument id\'s.');
+    console.log('Found the following products from argument id\'s.', dbProducts.length);
 
     const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
 
-    console.log('')
+    console.log('Zipped cart and db products together.', JSON.stringify(updatedCart, null, 2));
 
-    const gerneateOrderItems = cart =>
-    cart.map(({ qty, product }) => {
-      return (
-        `<ITEM>
-          <ITEMCD>${product.upc}</ITEMCD>
-          <ITEMNAME>${product.vender.toUppercase()} - ${product.flavor.toUpperCase()} NICOTINE ${Number(product.nicotineStrength)}mg E-JUICE 30 mil</ITEMNAME>
-          <USAGE>0</USAGE>
-          <ORIGIN>US</ORIGIN>
-          <PIECE>${qty}</PIECE>
-          <UNITPRICE>${product.price}</UNITPRICE>
-        </ITEM>`);
-      });
+    const orderAddress =
+    `<DATA>
+      ${GenerateAddressXml(sagawaDoc)}
+      ${GenerateItemsXml(cart)}
+    </DATA>`;
   })
   .catch((error) => {
-
+    console.log('Could not create Sagawa Order upload body: ', error);
+    reject(error);
   });
-
-});
-
-const orderAddress =
-`
-<DATA>
-  <ADDRESS>
-    <PRINTERNAME />
-    <BOXID>VPS201707240001</BOXID>
-    <SHIPDATE>2017/07/25</SHIPDATE>
-    <KANA>トーバーヤ　ビークリー</KANA>
-    <POSTAL>1400012</POSTAL>
-    <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
-    <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-    <CONTEL>08039188013</CONTEL>
-    <KBN>TEST1532</KBN>
-    <WGT>1.5</WGT>
-    <SHINADAI>120.00</SHINADAI>
-    <SHITEIBI>2017/07/29</SHITEIBI>
-    <SHITEIJIKAN>1200</SHITEIJIKAN>
-    <SOURYO>0</SOURYO>
-    <TESURYO>0</TESURYO>
-    <TTLAMOUNT>120.00</TTLAMOUNT>
-    <CODFLG>0</CODFLG>
-  </ADDRESS>
-  ${generateOrdeItems(cart)}
-</DATA>
-`;
-
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);

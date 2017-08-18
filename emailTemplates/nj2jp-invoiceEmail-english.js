@@ -221,7 +221,7 @@ a[x-apple-data-detectors=true] {
             <em>
               <span style="line-height: 24px; color: rgb(54, 88, 153); font-size: 20px;">
                 <span style="line-height: 24px; font-size: 20px;">﻿
-                </span>${{Status}}</span>
+                </span>SHIPPING_STATUS_HERE</span>
               </em>
             </span>
           </strong>
@@ -1064,3 +1064,5 @@ a[x-apple-data-detectors=true] {
 
 </body></html>
 `
+const y = x.replace(/(SHIPPING_STATUS_HERE)+/g, 'hi toby');
+console.log(y);
