@@ -5,6 +5,7 @@ import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../schemas/emailSchema';
 import db from '../connection';
+import { createEmailProductList } from './helpers';
 // import config from '../../../config.json';
 
 const {
@@ -250,7 +251,6 @@ emailSchema.statics.createInvoiceEmailBody = orderInfo =>
 new Promise((resolve, reject) => {
   const {
     cart,
-    square,
     sagawa,
     language,
     transaction,
@@ -268,22 +268,22 @@ new Promise((resolve, reject) => {
 
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
+    console.log('Successfully found Template Invoice Email for language: ', language);
 
-    
+    const productListHtmlString = createEmailProductList(dbEmail, cart);
 
     dbEmail.bodyHtmlData
-    .replace(/(SHIPPING_STATUS_HERE)+/g, '')
-    .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, '')
-    .replace(/(TRANSACTION_ID_HERE)+/g, '')
-    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, '')
-    .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, '')
-    .replace(/(TOTAL_PAID_HERE)+/g, '')
-    .replace(/(SHIP_FIRST_NAME_HERE)+/g, '')
-    .replace(/(SHIP_LAST_NAME_HERE)+/g, '')
-    .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, '')
-    .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, '')
-    .replace(/(SHIP_PREFECTURE_HERE)+/g, '')
-    .replace(/(SHIP_CITY_HERE)+/g, '')
+    .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
+    // .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, '')
+    .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
+    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
+    .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
+    .replace(/(TOTAL_PAID_HERE)+/g, transaction.square.charge.amount)
+    .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
+    .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
+    .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
+    .replace(/(SHIP_PREFECTURE_HERE)+/g, transaction.square.shippingAddress.shippingPrefecture)
+    .replace(/(SHIP_CITY_HERE)+/g, transaction.square.shippingAddress.shippingCity)
     .replace(/(SHIP_POSTAL_CODE_HERE)+/g, '')
     .replace(/(SHIP_COUNTRY_HERE)+/g, '')
     .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, '')
@@ -292,10 +292,11 @@ new Promise((resolve, reject) => {
     .replace(/(BILL_POSTAL_CODE_HERE)+/g, '')
     .replace(/(BILL_COUNTRY_HERE)+/g, '')
     .replace(/(BILL_LAST_4_HERE)+/g, '')
+    .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
     .replace(/(ORDER_SUBTOTAL_HERE)+/g, '')
     .replace(/(ORDER_TAX_HERE)+/g, '')
     .replace(/(ORDER_DISCOUNTS_HERE)+/g, '')
-    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, '')
+    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, '');
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);

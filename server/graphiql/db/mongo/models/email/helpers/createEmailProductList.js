@@ -1,6 +1,6 @@
-export default function generateInvoiceEmailProductList(emailDoc, cart) {
+export default function createEmailProductList(emailDoc, cart) {
   const productListHtmlString = cart.reduce((accum, next) => {
-    return accum += `
+    accum += `
     <div style="background-color:transparent;">
       <div style="Margin: 0 auto;min-width: 320px;max-width: 500px;width: 500px;width: calc(19000% - 98300px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
         <div style="border-collapse: collapse;display: table;width: 100%;">
@@ -99,11 +99,10 @@ export default function generateInvoiceEmailProductList(emailDoc, cart) {
               <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
             </div>
           </div>
-        </div>`;
+        </div>
+      `;
+    return accum;
   }, '');
 
-  const updatedBodyHtmlData = emailDoc.bodyHtmlData
-  .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString);
-
-  return updatedBodyHtmlData;
+  return productListHtmlString;
 }

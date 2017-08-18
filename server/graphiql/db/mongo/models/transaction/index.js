@@ -214,22 +214,13 @@ new Promise((resolve, reject) => {
           'shopping.cart': [],
         },
       }, { new: true }),
-      bbPromise.fromCallback(cb => MarketHero.create({
+      bbPromise.fromCallback(cb => MarketHero.createOrUpdateLead({
         lead: {
           email: sagawa.shippingAddress.email,
           givenName: sagawa.shippingAddress.givenName,
           familyName: sagawa.shippingAddress.familyName,
         },
       }, cb)),
-      Transaction.findByIdAndUpdate(newTransactionDoc._id, {
-        $set: {
-          ...Email.createInvoiceEmailBody({
-            cart,
-            sagawa,
-            language,
-            transaction: newTransactionDoc,
-          }),
-        } }, { new: true }),
       Sagawa.deepUpdate({
         cart,
         total,
@@ -240,8 +231,18 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('Success! 1) creatd Market Hero Document. 2) Updated Transaction Document with invoice Tracking email body and customers email address.  Created Email document: ', results);
+    console.log('Success! 1) Updated User cart and transactions history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
+    return Transaction.findByIdAndUpdate(newTransactionDoc._id, {
+      $set: {
+        ...Email.createInvoiceEmailBody({
+          cart,
+          square,
+          sagawa: results[2],
+          language,
+          transaction: newTransactionDoc,
+        }),
+      } }, { new: true });
   })
   .then((response) => {
     console.log('FINAL RESPONSE: ', response);
