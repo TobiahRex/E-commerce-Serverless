@@ -241,18 +241,29 @@ new Promise((resolve, reject) => {
       transaction: newTransactionDoc,
     });
   })
-  .then((updatedTransaction) => {
+  .then(({ transactionDoc, emailInfo }) => {
     console.log('Received updated Transaction Document.  Calling sagwa upload now...');
-    axios.post('http://', {
+    return axios.post('http://', {
       userId,
-      sagawaId,
-      transactionId,
-      emailId,
-    })
+      sagawaId: sagawa.sagawaId,
+      transactionId: transactionDoc._id,
+      emailInfo,
+    });
   })
   .then((response) => {
     console.log('FINAL RESPONSE: ', response);
-    resolve(newTransactionDoc);
+
+    if (response !== 200) {
+      console.log('Was not able to complete the order: ', response.data);
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: `Was not able to complete the order: ${response.data}`,
+        },
+      });
+    }
+    resolve('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
   })
   .catch((error) => {
     console.log(error.response);
