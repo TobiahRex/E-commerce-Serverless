@@ -123,8 +123,12 @@ new Promise((resolve, reject) => {
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@submitFinalOrder\n');
+
   console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
+  let userDoc = {};
+
   const {
     userId,
     comments,
@@ -146,14 +150,15 @@ new Promise((resolve, reject) => {
       user: userId,
       products: cart,
       sagawa: sagawa.sagawaId,
+      emailAddress: sagawa.shippingAddress.email,
       jpyFxRate,
       taxes,
       total,
       square,
       language,
     }, cb)),
-    User.editMemberProfile({ userId,
-      userObj: {
+    User.findByIdAndUpdate(userId, {
+      $set: {
         contactInfo: {
           email: sagawa.shippingAddress.email,
         },
@@ -161,30 +166,35 @@ new Promise((resolve, reject) => {
           newsletterDecision,
         },
       },
-    }),
+    }, { new: true }),
     Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
-    console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
+    console.log('\nSuccessfully Completed: 1) Looked up DB User from userId, 2) Created new Transaction Document. 3) Updated User profile. 4) Fetching Square Location information.\n');
 
     newTransactionDoc = results[0];
-    return Transaction.squareChargeCard({
-      locationId: results[2].id,
-      transactionId: String(results[0]._id),
-      shippingEmail: sagawa.shippingAddress.email,
-      shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
-      shippingCity: square.shippingAddress.shippingCity,
-      shippingPrefecture: square.shippingAddress.shippingPrefecture,
-      shippingPostalCode: sagawa.shippingAddress.postalCode,
-      shippingCountry: sagawa.shippingAddress.country,
-      billingCountry: square.billingCountry,
-      grandTotal: total.grandTotal,
-      cardNonce: square.cardInfo.cardNonce,
-      jpyFxRate,
-    });
+    userDoc = results[1];
+
+    return Promise.all([
+      Transaction.squareChargeCard({
+        locationId: results[2].id,
+        transactionId: String(results[0]._id),
+        shippingEmail: sagawa.shippingAddress.email,
+        shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
+        shippingCity: square.shippingAddress.shippingCity,
+        shippingPrefecture: square.shippingAddress.shippingPrefecture,
+        shippingPostalCode: sagawa.shippingAddress.postalCode,
+        shippingCountry: sagawa.shippingAddress.country,
+        billingCountry: square.billingCountry,
+        grandTotal: total.grandTotal,
+        cardNonce: square.cardInfo.cardNonce,
+        jpyFxRate,
+      }),
+    ]);
   })
   .then((response) => {
     console.log('SQUARE - RESPONSE: ', response.status);
+
     if (response.status !== 200) {
       console.log('Failed to charge customer card: ', response.data);
       resolve({
@@ -194,41 +204,44 @@ new Promise((resolve, reject) => {
           message: JSON.stringify(response.data),
         },
       });
-    }
-    console.log('Successfully charge customer card:  Updated database.');
+    } else {
+      console.log('Successfully charge customer card:  Updated database.');
 
-    const generatedInvoice = Email.generateInvoiceBody({
-      cart,
-      sagawa,
-      language,
-      transaction: newTransactionDoc,
-    });
-
-    return Promise.all([
-      bbPromise.fromCallback(cb => Email.createEmail({
-        type: 'Invoice email',
-        purpose: 'Send user their order & shipping information.',
-        language,
-        subjectData: `NJ2JP Invoice - ${moment().format('LL')}`,
-        bodyHtmlData: generatedInvoice,
-        bodyTextData: '',
-        replyToAddress: 'Do not reply <contact@nj2jp.com>',
-      }, cb)),
-      bbPromise.fromCallback(cb => MarketHero.create({
-        lead: {
-          email: sagawa.shippingAddress.email,
-        },
-      }, cb)),
-      Sagawa.createUploadBody({
+      const invoiceEmailBody = Email.generateInvoiceBody({
         cart,
-        userId,
         sagawa,
-        transactionId: newTransactionDoc._id,
-      }),
-    ]);
+        language,
+        transaction: newTransactionDoc,
+      });
+
+      return Promise.all([
+        User.findByIdAndUpdate(userDoc._id, {
+          $set: {
+            'shopping.transactions': [...userDoc.shopping.transactions, newTransactionDoc._id],
+            'shopping.cart': [],
+          },
+        }, { new: true }),
+        bbPromise.fromCallback(cb => MarketHero.create({
+          lead: {
+            email: sagawa.shippingAddress.email,
+            givenName: sagawa.shippingAddress.givenName,
+            familyName: sagawa.shippingAddress.familyName,
+          },
+        }, cb)),
+        Transaction.findByIdAndUpdate(newTransactionDoc._id, {
+          $set: { ...invoiceEmailBody } }, { new: true }),
+        Sagawa.deepUpdate({
+          cart,
+          total,
+          userId,
+          sagawa,
+          transactionId: newTransactionDoc._id,
+        }),
+      ]);
+    }
   })
   .then((results) => {
-    console.log('Success! 1) creatd Market Hero Document. 2) Created Email document.');
+    console.log('Success! 1) creatd Market Hero Document. 2) Updated Transaction Document with invoice Tracking email body and customers email address.  Created Email document: ', results);
 
   })
   .then((response) => {

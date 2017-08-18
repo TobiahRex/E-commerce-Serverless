@@ -30,8 +30,8 @@ const transactionSchema = new Schema({
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
   emailAddress: { type: String, default: '' },
-  invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
-  invoiceEmail: { type: ObjectId, ref: 'Email' },
+  invoiceEmailNoTracking: { type: String, default: '' },
+  invoiceEmail: { type: String, default: '' },
   jpyFxRate: { type: String, required: true },
   taxes: {
     cityRate: { type: String, required: true },

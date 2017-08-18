@@ -1,3 +1,4 @@
+
 const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
@@ -5,8 +6,8 @@ const marketHeroSchema = new Schema({
   lead: {
     email: { type: String, required: true },
     date: { type: Date, default: Date.now },
-    firstName: { type: String, default: 'John' },
-    lastName: { type: String, default: 'Doe' },
+    givenName: { type: String, default: 'John' },
+    familyName: { type: String, default: 'Doe' },
   },
   tags: [{
     name: { type: String },
