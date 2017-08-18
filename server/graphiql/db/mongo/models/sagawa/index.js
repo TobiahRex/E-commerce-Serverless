@@ -128,25 +128,37 @@ new Promise((resolve, reject) => {
 
     const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
 
+    console.log('Zipped cart and db products together.', JSON.stringify(updatedCart, null, 2));
+
     return Sagawa.findByIdAndUpdate(updatedSagawaDoc._id, {
       $set: {
         items: GenerateItemObjs(updatedCart),
       },
-    }, { new: true })
+    }, { new: true });
   })
-  .then((dbProducts) => {
-    console.log('Zipped cart and db products together.', JSON.stringify(updatedCart, null, 2));
+  .then((updatedSagawaDoc) => {
 
-    const orderAddress =
-    `<DATA>
-      ${GenerateAddressXml(sagawaDoc)}
-      ${GenerateItemsXml(cart)}
-    </DATA>`;
   })
   .catch((error) => {
     console.log('Could not create Sagawa Order upload body: ', error);
     reject(error);
   });
+});
+
+sagawaSchema.statics.createUploadBody = sagawaId =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.updloadOrder\n');
+
+  SagawaId
+  .findById(sagawaId)
+  .exec()
+  .then((sagawaDoc) => {
+    axios.post('',
+    `<DATA>
+      ${GenerateAddressXml(sagawaDoc)}
+      ${GenerateItemsXml(sagawaDoc)}
+    </DATA>`)
+  })
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
