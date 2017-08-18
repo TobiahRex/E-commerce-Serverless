@@ -61,6 +61,7 @@ const transactionSchema = new Schema({
       last4: { type: String, required: true },
       nameOnCard: { type: String, required: true },
       cardNonce: { type: String, default: '', required: true },
+      postalCode: { type: String, default: '' },
     },
     charge: {
       amount: { type: String, required: true },
