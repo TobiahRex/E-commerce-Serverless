@@ -13,6 +13,7 @@ import {
   GenerateItemsXml,
   GenerateAddressXml,
   GetNextBusinessDay,
+  GetOrderWeight,
 } from './helpers';
 
 /**
@@ -90,6 +91,7 @@ new Promise((resolve, reject) => {
     cart,
     userId,
     sagawa,
+    total,
     transactionId,
   } = orderInfo;
 
@@ -100,13 +102,16 @@ new Promise((resolve, reject) => {
         transactionId,
         shippingAddress: {
           boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
-          shipdate: GetNextBusinessDay(),
+          shipdate: moment().format('YYYY/MM/DD'),
           customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
           postal: sagawa.shippingAddress.postalCode,
           jpaddress1: sagawa.shippingAddress.addressLine1,
           jpaddress2: sagawa.shippingAddress.addressLine2,
           phoneNumber: sagawa.shippingAddress.phoneNumber,
-          kbn: sagawaKbn,
+          kbn: GetSagawaKbn(sagawa.shippingAddress.country),
+          wgt: GetOrderWeight(cart),
+          grandTotal: total.subTotal,
+          deliveryDate:
         },
       },
     }, { new: true }),
