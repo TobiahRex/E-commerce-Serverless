@@ -145,19 +145,36 @@ new Promise((resolve, reject) => {
   });
 });
 
-sagawaSchema.statics.createUploadBody = sagawaId =>
+sagawaSchema.statics.orderUpload = sagawaId =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
 
-  SagawaId
+  Sagawa
   .findById(sagawaId)
   .exec()
   .then((sagawaDoc) => {
-    axios.post('',
+    return axios.post('',
     `<DATA>
       ${GenerateAddressXml(sagawaDoc)}
       ${GenerateItemsXml(sagawaDoc)}
     </DATA>`)
+  })
+  .then((apiResult) => {
+    if (apiResult.status !== 200) {
+      console.log('Could not upload order to Sagawa: ', apiResult.data);
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'Could not upload order to sagawa',
+        },
+      });
+    }
+
+    resolve(apiResult.data);
+  })
+  .catch((error) => {
+    reject(error);
   })
 });
 
