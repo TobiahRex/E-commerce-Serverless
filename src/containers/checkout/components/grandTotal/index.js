@@ -6,7 +6,7 @@ import Loading from './loading';
 
 const { bool, shape, number, func } = PropTypes;
 
-class GrandTotal extends React.PureComponent {
+class GrandTotal extends React.Component {
   static propTypes = {
     handleOnChange: func.isRequired,
     termsAgreement: bool.isRequired,
@@ -23,6 +23,7 @@ class GrandTotal extends React.PureComponent {
       }),
     }).isRequired,
   }
+
   constructor(props) {
     super(props);
 
@@ -47,6 +48,14 @@ class GrandTotal extends React.PureComponent {
     const nextPropsCopy = Object.assign({}, nextProps);
     delete nextPropsCopy.handleOnChange;
     if (!_.isEqual(nextProps, this.props, true)) this.setState({ ...nextPropsCopy });
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (
+      !_.isEqual(nextProps.total, this.props.total) ||
+      !_.isEqual(nextProps, this.props)
+    ) return true;
+    return false;
   }
 
   handleOnChange = e => this.props.handleOnChange(e)

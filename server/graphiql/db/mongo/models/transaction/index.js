@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
 import db from '../../connection';
 import User from '../user';
+import Email from '../email';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   getSqLocation,
@@ -190,6 +191,12 @@ new Promise((resolve, reject) => {
       });
     }
     console.log('Successfully charge customer card:  Updated database.');
+    return bbPromise.fromCallback(cb => Email.create({
+      
+    }, cb));
+  })
+  .then((response) => {
+    console.log('FINAL RESPONSE: ', response);
     resolve(newTransactionDoc);
   })
   .catch((error) => {
