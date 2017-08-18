@@ -268,6 +268,9 @@ new Promise((resolve, reject) => {
 
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
+
+    
+
     dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, '')
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, '')
@@ -293,8 +296,6 @@ new Promise((resolve, reject) => {
     .replace(/(ORDER_TAX_HERE)+/g, '')
     .replace(/(ORDER_DISCOUNTS_HERE)+/g, '')
     .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, '')
-    .replace(/()+/g, '')
-    .replace(/()+/g, '')
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);
