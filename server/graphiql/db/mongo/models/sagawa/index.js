@@ -4,15 +4,16 @@ import axios from 'axios';
 import moment from 'moment';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
-import cleanSagawaResponse from './cleanSagawaResponse';
 import Product from '../product';
-import ZipArrays from './zipArrays';
-import GenerateItemsXml from './generateItemsXml';
-import GenerateAddressXml from './generateAddressXml';
-import GetNextBusinessDay from './GetNextBusinessDay';
-import GetNextBusinessDay from './GetNextBusinessDay';
 
-const sagawaKbn = getSagawaKbn();
+import {
+  ZipArrays,
+  GetSagawaKbn,
+  CleanSagawaResponse,
+  GenerateItemsXml,
+  GenerateAddressXml,
+  GetNextBusinessDay,
+} from './helpers';
 
 /**
 * Function: "xmlOut";
@@ -49,7 +50,7 @@ new Promise((resolve, reject) => {
   })
   .then((response) => {
     console.log('Reieved response from Sagawa.');
-    return cleanSagawaResponse.handlePostal(response);
+    return CleanSagawaResponse.handlePostal(response);
   })
   .then(({ problem, data }) => { //eslint-disable-line
     console.log('data: ', data);
