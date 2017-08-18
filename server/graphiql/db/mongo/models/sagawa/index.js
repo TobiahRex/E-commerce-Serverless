@@ -116,20 +116,25 @@ new Promise((resolve, reject) => {
           deliveryTime: '1200',
           ttlAmount: total.subTotal,
         },
-        items: GenerateItemObjs(cart),
       },
     }, { new: true }),
-    Product.find({ _id: { $in: cart.map(({ _id }) => _id) } })
-    .exec(),
+    Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec(),
   ])
   .then((results) => {
     console.log('Succcess! 1) Updated Sagawa document with Shipping Information.  2) Retrieved Product documents from cart _id\'s.');
-  })
-  .then((dbProducts) => {
-    console.log('Found the following products from argument id\'s.', dbProducts.length);
+
+    const updatedSagawaDoc = results[0];
+    const dbProducts = results[1];
 
     const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
 
+    return Sagawa.findByIdAndUpdate(updatedSagawaDoc._id, {
+      $set: {
+        items: GenerateItemObjs(updatedCart),
+      },
+    }, { new: true })
+  })
+  .then((dbProducts) => {
     console.log('Zipped cart and db products together.', JSON.stringify(updatedCart, null, 2));
 
     const orderAddress =
