@@ -4,7 +4,8 @@ import axios from 'axios';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
 import cleanSagawaResponse from './cleanSagawaResponse';
-
+import Product from '../product';
+import ZipArrays from './zipArrays';
 /**
 * Function: "xmlOut";
 * 1. Receives standard Javascript string
@@ -72,14 +73,71 @@ new Promise((resolve, reject) => {
   });
 });
 
-sagwaSchema.statics.generateUploadBody = orderInfo =>
+sagawaSchema.statics.createUploadBody = orderInfo =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.createUploadBody\n');
+
   const {
     cart,
     userId,
     sagawa,
     transactionId,
   } = orderInfo;
+
+  Product.find({ _id: { $in: cart.map(({ _id }) => _id) } })
+  .exec()
+  .then((dbProducts) => {
+    console.log('Found the following products from argument id\'s.');
+
+    const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
+
+    console.log('')
+
+    const gerneateOrderItems = cart =>
+    cart.map(({ qty, product }) => {
+      return (
+        `<ITEM>
+          <ITEMCD>${product.upc}</ITEMCD>
+          <ITEMNAME>${product.vender.toUppercase()} - ${product.flavor.toUpperCase()} NICOTINE ${Number(product.nicotineStrength)}mg E-JUICE 30 mil</ITEMNAME>
+          <USAGE>0</USAGE>
+          <ORIGIN>US</ORIGIN>
+          <PIECE>${qty}</PIECE>
+          <UNITPRICE>${product.price}</UNITPRICE>
+        </ITEM>`);
+      });
+  })
+  .catch((error) => {
+
+  });
+
+});
+
+const orderAddress =
+`
+<DATA>
+  <ADDRESS>
+    <PRINTERNAME />
+    <BOXID>VPS201707240001</BOXID>
+    <SHIPDATE>2017/07/25</SHIPDATE>
+    <KANA>トーバーヤ　ビークリー</KANA>
+    <POSTAL>1400012</POSTAL>
+    <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
+    <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
+    <CONTEL>08039188013</CONTEL>
+    <KBN>TEST1532</KBN>
+    <WGT>1.5</WGT>
+    <SHINADAI>120.00</SHINADAI>
+    <SHITEIBI>2017/07/29</SHITEIBI>
+    <SHITEIJIKAN>1200</SHITEIJIKAN>
+    <SOURYO>0</SOURYO>
+    <TESURYO>0</TESURYO>
+    <TTLAMOUNT>120.00</TTLAMOUNT>
+    <CODFLG>0</CODFLG>
+  </ADDRESS>
+  ${generateOrdeItems(cart)}
+</DATA>
+`;
+
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);

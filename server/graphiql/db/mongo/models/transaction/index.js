@@ -197,13 +197,6 @@ new Promise((resolve, reject) => {
     }
     console.log('Successfully charge customer card:  Updated database.');
 
-    const generatedSagawaBody = Sagawa.generateUploadBody({
-      sagawaId,
-      userId,
-      sagawa,
-      transactionId,
-    });
-
     const generatedInvoice = Email.generateInvoiceBody({
       cart,
       sagawa,
@@ -226,6 +219,12 @@ new Promise((resolve, reject) => {
           email: sagawa.shippingAddress.email,
         },
       }, cb)),
+      Sagawa.createUploadBody({
+        cart,
+        userId,
+        sagawa,
+        transactionId: newTransactionDoc._id,
+      }),
     ]);
   })
   .then((results) => {
