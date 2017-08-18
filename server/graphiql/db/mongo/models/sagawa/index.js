@@ -10,6 +10,10 @@ import ZipArrays from './zipArrays';
 import GenerateItemsXml from './generateItemsXml';
 import GenerateAddressXml from './generateAddressXml';
 import GetNextBusinessDay from './GetNextBusinessDay';
+import GetNextBusinessDay from './GetNextBusinessDay';
+
+const sagawaKbn = getSagawaKbn();
+
 /**
 * Function: "xmlOut";
 * 1. Receives standard Javascript string
@@ -96,6 +100,12 @@ new Promise((resolve, reject) => {
         shippingAddress: {
           boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
           shipdate: GetNextBusinessDay(),
+          customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
+          postal: sagawa.shippingAddress.postalCode,
+          jpaddress1: sagawa.shippingAddress.addressLine1,
+          jpaddress2: sagawa.shippingAddress.addressLine2,
+          phoneNumber: sagawa.shippingAddress.phoneNumber,
+          kbn: sagawaKbn,
         },
       },
     }, { new: true }),
