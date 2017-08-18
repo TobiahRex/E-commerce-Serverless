@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
+const x = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
     <!--[if gte mso 9]><xml>
      <o:OfficeDocumentSettings>
       <o:AllowPNG/>
@@ -221,7 +221,7 @@ a[x-apple-data-detectors=true] {
             <em>
               <span style="line-height: 24px; color: rgb(54, 88, 153); font-size: 20px;">
                 <span style="line-height: 24px; font-size: 20px;">﻿
-                </span>{Status}</span>
+                </span>${{Status}}</span>
               </em>
             </span>
           </strong>
@@ -1063,3 +1063,4 @@ a[x-apple-data-detectors=true] {
 
 
 </body></html>
+`

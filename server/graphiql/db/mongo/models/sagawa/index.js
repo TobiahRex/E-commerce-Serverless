@@ -72,5 +72,15 @@ new Promise((resolve, reject) => {
   });
 });
 
+sagwaSchema.statics.generateUploadBody = orderInfo =>
+new Promise((resolve, reject) => {
+  const {
+    cart,
+    userId,
+    sagawa,
+    transactionId,
+  } = orderInfo;
+});
+
 const Sagawa = db.model('Sagawa', sagawaSchema);
 export default Sagawa;

@@ -29,7 +29,6 @@ const transactionSchema = new Schema({
     qty: { type: Number, required: true },
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
-  marketHero: { type: ObjectId, ref: 'MarketHero' },
   invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
   jpyFxRate: { type: String, required: true },

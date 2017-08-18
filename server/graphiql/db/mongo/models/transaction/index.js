@@ -6,6 +6,8 @@ import { Promise as bbPromise } from 'bluebird';
 import db from '../../connection';
 import User from '../user';
 import Email from '../email';
+import MarketHero from '../marketHero';
+import Sagawa from '../sagawa';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   getSqLocation,
@@ -195,6 +197,13 @@ new Promise((resolve, reject) => {
     }
     console.log('Successfully charge customer card:  Updated database.');
 
+    const generatedSagawaBody = Sagawa.generateUploadBody({
+      sagawaId,
+      userId,
+      sagawa,
+      transactionId,
+    });
+
     const generatedInvoice = Email.generateInvoiceBody({
       cart,
       sagawa,
@@ -202,15 +211,26 @@ new Promise((resolve, reject) => {
       transaction: newTransactionDoc,
     });
 
-    return bbPromise.fromCallback(cb => Email.createEmail({
-      type: 'Invoice email',
-      purpose: 'Send user their order & shipping information.',
-      language,
-      subjectData: `NJ2JP Invoice - ${moment().format('LL')}`,
-      bodyHtmlData: generatedInvoice,
-      bodyTextData: '',
-      replyToAddress: 'Do not reply <contact@nj2jp.com>',
-    }, cb));
+    return Promise.all([
+      bbPromise.fromCallback(cb => Email.createEmail({
+        type: 'Invoice email',
+        purpose: 'Send user their order & shipping information.',
+        language,
+        subjectData: `NJ2JP Invoice - ${moment().format('LL')}`,
+        bodyHtmlData: generatedInvoice,
+        bodyTextData: '',
+        replyToAddress: 'Do not reply <contact@nj2jp.com>',
+      }, cb)),
+      bbPromise.fromCallback(cb => MarketHero.create({
+        lead: {
+          email: sagawa.shippingAddress.email,
+        },
+      }, cb)),
+    ]);
+  })
+  .then((results) => {
+    console.log('Success! 1) creatd Market Hero Document. 2) Created Email document.');
+
   })
   .then((response) => {
     console.log('FINAL RESPONSE: ', response);
