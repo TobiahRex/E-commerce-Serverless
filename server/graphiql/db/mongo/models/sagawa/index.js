@@ -14,6 +14,7 @@ import {
   GenerateAddressXml,
   GetNextBusinessDay,
   GetOrderWeight,
+  GenerateItemObjs,
 } from './helpers';
 
 /**
@@ -111,8 +112,11 @@ new Promise((resolve, reject) => {
           kbn: GetSagawaKbn(sagawa.shippingAddress.country),
           wgt: GetOrderWeight(cart),
           grandTotal: total.subTotal,
-          deliveryDate:
+          deliveryDate: GetNextBusinessDay(),
+          deliveryTime: '1200',
+          ttlAmount: total.subTotal,
         },
+        items: GenerateItemObjs(cart),
       },
     }, { new: true }),
     Product.find({ _id: { $in: cart.map(({ _id }) => _id) } })
