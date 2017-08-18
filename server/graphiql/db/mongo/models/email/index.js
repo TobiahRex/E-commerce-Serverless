@@ -287,15 +287,15 @@ new Promise((resolve, reject) => {
     .replace(/(SHIP_POSTAL_CODE_HERE)+/g, sagawa.shippingAddress.postal)
     .replace(/(SHIP_COUNTRY_HERE)+/g, 'Japan')
     .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, sagawa.shippingAddress.phoneNumber)
-    .replace(/(BILL_FIRST_NAME_HERE)+/g, transaction.square.cardInfo.nameOnCard)
+    .replace(/(BILL_FULL_NAME_HERE)+/g, transaction.square.cardInfo.nameOnCard)
     .replace(/(BILL_POSTAL_CODE_HERE)+/g, transaction.square.cardInfo.postalCode)
     .replace(/(BILL_COUNTRY_HERE)+/g, transaction.square.billingCountry)
-    .replace(/(BILL_LAST_4_HERE)+/g, trans)
+    .replace(/(BILL_LAST_4_HERE)+/g, transaction.square.cardInfo.last4)
     .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
-    .replace(/(ORDER_SUBTOTAL_HERE)+/g, '')
-    .replace(/(ORDER_TAX_HERE)+/g, '')
-    .replace(/(ORDER_DISCOUNTS_HERE)+/g, '')
-    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, '');
+    .replace(/(ORDER_SUBTOTAL_HERE)+/g, transaction.total.subTotal)
+    .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
+    .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
+    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal);
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);
