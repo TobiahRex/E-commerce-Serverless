@@ -9,6 +9,7 @@ import Product from '../product';
 import ZipArrays from './zipArrays';
 import GenerateItemsXml from './generateItemsXml';
 import GenerateAddressXml from './generateAddressXml';
+import GetNextBusinessDay from './GetNextBusinessDay';
 /**
 * Function: "xmlOut";
 * 1. Receives standard Javascript string
@@ -94,9 +95,9 @@ new Promise((resolve, reject) => {
         transactionId,
         shippingAddress: {
           boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
-          shipdate: moment().add(3, 'days').format('YYYY/MM/DD'),
-        }
-      }
+          shipdate: GetNextBusinessDay(),
+        },
+      },
     }, { new: true }),
     Product.find({ _id: { $in: cart.map(({ _id }) => _id) } })
     .exec(),

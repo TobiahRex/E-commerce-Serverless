@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export default function returnNextBusinessDay() {
+export default function getNextBusinessDay() {
   const today = moment().format('dddd');
 
   switch (today) {
