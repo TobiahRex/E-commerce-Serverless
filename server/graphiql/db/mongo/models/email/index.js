@@ -272,9 +272,8 @@ new Promise((resolve, reject) => {
 
     const productListHtmlString = createEmailProductList(dbEmail, cart);
 
-    dbEmail.bodyHtmlData
+    const updatedHtmlString = dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
-    // .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, '')
     .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
     .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
@@ -296,6 +295,17 @@ new Promise((resolve, reject) => {
     .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
     .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
     .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal);
+
+    if (emailType === 'invoiceEmail') {
+      transaction.invoiceEmail = updatedHtmlString;
+    } else {
+      transaction.invoiceEmailNoTracking = updatedHtmlString;
+    }
+    return transaction.save({ validateBeforeSave: true });
+  })
+  .then((updatedDoc) => {
+    console.log(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
+    resolve(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}"`);
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);
