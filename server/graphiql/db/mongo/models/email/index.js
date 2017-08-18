@@ -306,13 +306,7 @@ new Promise((resolve, reject) => {
   .then((updatedDoc) => {
     console.log(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
 
-    resolve({
-      transactionDoc: updatedDoc,
-      emailInfo: {
-        language,
-        type: emailType,
-      },
-    });
+    resolve(updatedDoc);
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);

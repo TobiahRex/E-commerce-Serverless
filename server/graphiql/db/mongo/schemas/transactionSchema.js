@@ -30,6 +30,11 @@ const transactionSchema = new Schema({
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
   emailAddress: { type: String, default: '' },
+  emailLanguage: {
+    type: String,
+    enum: ['english', 'japanese'],
+    default: 'english',
+  },
   invoiceEmailNoTracking: { type: String, default: '' },
   invoiceEmail: { type: String, default: '' },
   jpyFxRate: { type: String, required: true },

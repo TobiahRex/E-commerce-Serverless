@@ -241,13 +241,12 @@ new Promise((resolve, reject) => {
       transaction: newTransactionDoc,
     });
   })
-  .then(({ transactionDoc, emailInfo }) => {
+  .then((updatedTransDoc) => {
     console.log('Received updated Transaction Document.  Calling sagwa upload now...');
     return axios.post('http://', {
       userId,
       sagawaId: sagawa.sagawaId,
-      transactionId: transactionDoc._id,
-      emailInfo,
+      transactionId: updatedTransDoc._id,
     });
   })
   .then((response) => {
