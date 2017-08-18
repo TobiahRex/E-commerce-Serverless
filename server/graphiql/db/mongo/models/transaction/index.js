@@ -233,16 +233,22 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('Success! 1) Updated User cart and transactions history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
-    return Transaction.findByIdAndUpdate(newTransactionDoc._id, {
-      $set: {
-        ...Email.createInvoiceEmailBody({
-          cart,
-          square,
-          sagawa: results[2],
-          language,
-          transaction: newTransactionDoc,
-        }),
-      } }, { new: true });
+    return Email.createInvoiceEmailBody({
+      cart,
+      square,
+      sagawa: results[2],
+      language,
+      transaction: newTransactionDoc,
+    });
+  })
+  .then((updatedTransaction) => {
+    console.log('Received updated Transaction Document.  Calling sagwa upload now...');
+    axios.post('http://', {
+      userId,
+      sagawaId,
+      transactionId,
+      emailId,
+    })
   })
   .then((response) => {
     console.log('FINAL RESPONSE: ', response);
