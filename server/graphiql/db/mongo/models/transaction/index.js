@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import */
 import axios from 'axios';
 import uuid from 'uuid';
+import moment from 'moment';
 import { Promise as bbPromise } from 'bluebird';
 import db from '../../connection';
 import User from '../user';
@@ -133,6 +134,7 @@ new Promise((resolve, reject) => {
     taxes,
     total,
     square,
+    language,
   } = orderForm;
 
   Promise.all([
@@ -146,6 +148,7 @@ new Promise((resolve, reject) => {
       taxes,
       total,
       square,
+      language,
     }, cb)),
     User.editMemberProfile({ userId,
       userObj: {
@@ -191,8 +194,22 @@ new Promise((resolve, reject) => {
       });
     }
     console.log('Successfully charge customer card:  Updated database.');
-    return bbPromise.fromCallback(cb => Email.create({
-      
+
+    const generatedInvoice = Email.generateInvoiceBody({
+      cart,
+      sagawa,
+      language,
+      transaction: newTransactionDoc,
+    });
+
+    return bbPromise.fromCallback(cb => Email.createEmail({
+      type: 'Invoice email',
+      purpose: 'Send user their order & shipping information.',
+      language,
+      subjectData: `NJ2JP Invoice - ${moment().format('LL')}`,
+      bodyHtmlData: generatedInvoice,
+      bodyTextData: '',
+      replyToAddress: 'Do not reply <contact@nj2jp.com>',
     }, cb));
   })
   .then((response) => {

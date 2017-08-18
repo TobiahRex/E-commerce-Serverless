@@ -220,4 +220,40 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "generateInvoiceBody"
+* 1. Receives an input object with 4 params.  Destructures this input object and assigns individual values to Email input object.
+* 2. Email input object values are distributed by variable name throughout the HTML body taking into account, language, and date of the transaction.
+* 3. IF the date of the transaction is during off-business hours, then an Invoice email, NOT containing the Tracking information from Sagwa is generated.  ELSE invoice email, containing Tracking information is generated.
+*
+* @param {object}
+* 1. key {array} cart - { _id, qty } Details of Products purchased.
+* 2. key {object} sagawa - {
+  sagawaId,
+  shippingAddress: {
+    givenName, {string}
+    familyName, {string}
+    email, {string}
+    postalCode, {string}
+    addressLine1, {string} KANJI
+    addressLine2, {string} Romanji or Kanji
+    country, {string}
+    phoneNumber, {number}
+  },}
+  3. key {string} language - The language used by the user at purchase time.
+  4. key {object} transaction - The Mongo Transaction Doc. generated. See Transaction Schema for details.
+*
+* @return {string} - Template string of HTML data with dynamic values.
+*/
+emailSchema.statics.generateInvoiceBody = orderInfo =>
+new Promise((resolve, reject) => {
+  const {
+    cart,
+    sagawa,
+    language,
+    transaction,
+  } = orderInfo;
+
+});
+
 const Email = db.model('Email', emailSchema);
