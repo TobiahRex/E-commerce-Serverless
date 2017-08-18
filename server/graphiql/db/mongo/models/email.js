@@ -250,6 +250,7 @@ emailSchema.statics.createInvoiceEmailBody = orderInfo =>
 new Promise((resolve, reject) => {
   const {
     cart,
+    square,
     sagawa,
     language,
     transaction,
@@ -269,16 +270,29 @@ new Promise((resolve, reject) => {
   .then((dbEmail) => {
     dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, '')
+    .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, '')
     .replace(/(TRANSACTION_ID_HERE)+/g, '')
     .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, '')
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, '')
     .replace(/(TOTAL_PAID_HERE)+/g, '')
-    .replace(/(FIRST_NAME_HERE)+/g, '')
-    .replace(/(LAST_NAME_HERE)+/g, '')
-    .replace(/(ADDRESS_LINE_1_HERE)+/g, '')
-    .replace(/(ADDRESS_LINE_2_HERE)+/g, '')
-    .replace(/()+/g, '')
-    .replace(/()+/g, '')
+    .replace(/(SHIP_FIRST_NAME_HERE)+/g, '')
+    .replace(/(SHIP_LAST_NAME_HERE)+/g, '')
+    .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, '')
+    .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, '')
+    .replace(/(SHIP_PREFECTURE_HERE)+/g, '')
+    .replace(/(SHIP_CITY_HERE)+/g, '')
+    .replace(/(SHIP_POSTAL_CODE_HERE)+/g, '')
+    .replace(/(SHIP_COUNTRY_HERE)+/g, '')
+    .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, '')
+    .replace(/(BILL_FIRST_NAME_HERE)+/g, '')
+    .replace(/(BILL_LAST_NAME_HERE)+/g, '')
+    .replace(/(BILL_POSTAL_CODE_HERE)+/g, '')
+    .replace(/(BILL_COUNTRY_HERE)+/g, '')
+    .replace(/(BILL_LAST_4_HERE)+/g, '')
+    .replace(/(ORDER_SUBTOTAL_HERE)+/g, '')
+    .replace(/(ORDER_TAX_HERE)+/g, '')
+    .replace(/(ORDER_DISCOUNTS_HERE)+/g, '')
+    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, '')
     .replace(/()+/g, '')
     .replace(/()+/g, '')
   })
