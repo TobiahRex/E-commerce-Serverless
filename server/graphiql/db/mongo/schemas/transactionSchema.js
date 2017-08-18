@@ -29,6 +29,7 @@ const transactionSchema = new Schema({
     qty: { type: Number, required: true },
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
+  emailAddress: { type: String, default: '' },
   invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
   invoiceEmail: { type: ObjectId, ref: 'Email' },
   jpyFxRate: { type: String, required: true },
