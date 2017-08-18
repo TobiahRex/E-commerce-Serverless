@@ -8,8 +8,9 @@ export default function getSagawaKbn(shippingCountry) {
   } = process.env;
 
   if (sagawaEnv === 'development') {
-    if (shippingCountry = 'JP') {
-      
-    }
+    if (shippingCountry === 'JP') return sagawaKbnJpTest;
+    return sagawaKbnUsTest;
   }
-};
+  if (shippingCountry === 'JP') return sagawaKbnJp;
+  return sagawaKbnUs;
+}
