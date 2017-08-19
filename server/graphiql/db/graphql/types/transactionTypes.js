@@ -83,6 +83,10 @@ const rootType = new ObjectType({
       description: 'The reference Mongo _id for the Market Hero lead.',
       type: MongoID,
     },
+    emailAddress: {
+      description: 'The customer\'s email address.',
+      type: StringType,
+    },
     invoiceEmailNoTracking: {
       description: 'The Mongo _id for the invoice Email that was sent if the transaction was executed on off-business hours.',
       type: MongoID,

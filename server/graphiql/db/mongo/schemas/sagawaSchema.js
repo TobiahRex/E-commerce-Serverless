@@ -28,6 +28,7 @@ const sagawaSchema = new Schema({
     postalCode: { type: String, required: true },
     jpAddress: { type: String, required: true },
   },
+  uploadForm: { type: String },
   shippingAddress: {
     awbId: { type: String },
     referenceId: { type: String },

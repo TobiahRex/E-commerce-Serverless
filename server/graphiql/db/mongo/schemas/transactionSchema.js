@@ -29,9 +29,14 @@ const transactionSchema = new Schema({
     qty: { type: Number, required: true },
   }],
   sagawa: { type: ObjectId, ref: 'Sagawa' },
-  marketHero: { type: ObjectId, ref: 'MarketHero' },
-  invoiceEmailNoTracking: { type: ObjectId, ref: 'Email' },
-  invoiceEmail: { type: ObjectId, ref: 'Email' },
+  emailAddress: { type: String, default: '' },
+  emailLanguage: {
+    type: String,
+    enum: ['english', 'japanese'],
+    default: 'english',
+  },
+  invoiceEmailNoTracking: { type: String, default: '' },
+  invoiceEmail: { type: String, default: '' },
   jpyFxRate: { type: String, required: true },
   taxes: {
     cityRate: { type: String, required: true },
@@ -61,6 +66,7 @@ const transactionSchema = new Schema({
       last4: { type: String, required: true },
       nameOnCard: { type: String, required: true },
       cardNonce: { type: String, default: '', required: true },
+      postalCode: { type: String, default: '' },
     },
     charge: {
       amount: { type: String, required: true },

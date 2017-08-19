@@ -5,6 +5,8 @@ import { Promise as bbPromise } from 'bluebird';
 import db from '../../connection';
 import User from '../user';
 import Email from '../email';
+import MarketHero from '../marketHero';
+import Sagawa from '../sagawa';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   getSqLocation,
@@ -16,6 +18,8 @@ require('dotenv').load({ silent: true });
 
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
+  console.log('@fetchSquareLocation');
+
   axios({
     method: 'get',
     url: 'https://connect.squareup.com/v2/locations',
@@ -64,6 +68,8 @@ new Promise((resolve, reject) => {
 
 transactionSchema.statics.squareChargeCard = chargeInfo =>
 new Promise((resolve, reject) => {
+  console.log('@squareChargeCard');
+
   const {
     locationId,
     transactionId,
@@ -120,8 +126,12 @@ new Promise((resolve, reject) => {
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
+  console.log('@submitFinalOrder');
+
   console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
+  let userDoc = {};
+
   const {
     userId,
     comments,
@@ -133,6 +143,7 @@ new Promise((resolve, reject) => {
     taxes,
     total,
     square,
+    language,
   } = orderForm;
 
   Promise.all([
@@ -142,13 +153,15 @@ new Promise((resolve, reject) => {
       user: userId,
       products: cart,
       sagawa: sagawa.sagawaId,
+      emailAddress: sagawa.shippingAddress.email,
       jpyFxRate,
       taxes,
       total,
       square,
+      language,
     }, cb)),
-    User.editMemberProfile({ userId,
-      userObj: {
+    User.findByIdAndUpdate(userId, {
+      $set: {
         contactInfo: {
           email: sagawa.shippingAddress.email,
         },
@@ -156,13 +169,15 @@ new Promise((resolve, reject) => {
           newsletterDecision,
         },
       },
-    }),
+    }, { new: true }),
     Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
-    console.log('\n\nSuccessfully Completed: 1) Creating new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n\n');
+    console.log('\nSuccessfully Completed: 1) Created new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n');
 
     newTransactionDoc = results[0];
+    userDoc = results[1];
+
     return Transaction.squareChargeCard({
       locationId: results[2].id,
       transactionId: String(results[0]._id),
@@ -179,7 +194,7 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('SQUARE - RESPONSE: ', response.status);
+    console.log('Received response from Square API.');
     if (response.status !== 200) {
       console.log('Failed to charge customer card: ', response.data);
       resolve({
@@ -190,14 +205,64 @@ new Promise((resolve, reject) => {
         },
       });
     }
-    console.log('Successfully charge customer card:  Updated database.');
-    return bbPromise.fromCallback(cb => Email.create({
-      
-    }, cb));
+    console.log('Successfully charged customer card.');
+
+    return Promise.all([
+      User.findByIdAndUpdate(userDoc._id, {
+        $set: {
+          'shopping.transactions': [...userDoc.shopping.transactions, newTransactionDoc._id],
+          'shopping.cart': [],
+        },
+      }, { new: true }),
+      bbPromise.fromCallback(cb => MarketHero.createOrUpdateLead({
+        lead: {
+          email: sagawa.shippingAddress.email,
+          givenName: sagawa.shippingAddress.givenName,
+          familyName: sagawa.shippingAddress.familyName,
+        },
+      }, cb)),
+      Sagawa.deepUpdate({
+        cart,
+        total,
+        userId,
+        sagawa,
+        transactionId: newTransactionDoc._id,
+      }),
+    ]);
+  })
+  .then((results) => {
+    console.log('Success! 1) Updated User cart and transactions history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+
+    return Email.createInvoiceEmailBody({
+      cart,
+      square,
+      sagawa: results[2],
+      language,
+      transaction: newTransactionDoc,
+    });
+  })
+  .then((updatedTransDoc) => {
+    console.log('Received updated Transaction Document.  Calling sagwa upload now...');
+    return axios.post('http://', {
+      userId,
+      sagawaId: sagawa.sagawaId,
+      transactionId: updatedTransDoc._id,
+    });
   })
   .then((response) => {
     console.log('FINAL RESPONSE: ', response);
-    resolve(newTransactionDoc);
+
+    if (response !== 200) {
+      console.log('Was not able to complete the order: ', response.data);
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: `Was not able to complete the order: ${response.data}`,
+        },
+      });
+    }
+    resolve('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
   })
   .catch((error) => {
     console.log(error.response);

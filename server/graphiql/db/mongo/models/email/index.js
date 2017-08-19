@@ -5,6 +5,7 @@ import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../schemas/emailSchema';
 import db from '../connection';
+import { createEmailProductList } from './helpers';
 // import config from '../../../config.json';
 
 const {
@@ -65,6 +66,7 @@ new Promise((resolve, reject) => {
 });
 
 /**
+* Function: "findEmailAndFilterLanguage"
 * 1) Find all emails with input argument "type".
 * 2) Filter any results by request language.
 *
@@ -151,8 +153,8 @@ new Promise((resolve, reject) => {
       },
     },
   };
-
   console.log('\nSending AWS ses email...');
+
   return bbPromise
   .fromCallback(cb => ses.sendEmail(emailRequest, cb))
   .then((data) => {
@@ -217,6 +219,98 @@ new Promise((resolve, reject) => {
   .catch((error) => {
     console.log(`Query was unsuccessful.  ERROR = ${error}`);
     return reject(`Query was unsuccessful.  ERROR = ${error}`);
+  });
+});
+
+/**
+* Function: "createInvoiceEmailBody"
+* 1. Receives an input object with 4 params.  Destructures this input object and assigns individual values to Email input object.
+* 2. Email input object values are distributed by variable name throughout the HTML body taking into account, language, and date of the transaction.
+* 3. IF the date of the transaction is during off-business hours, then an Invoice email, NOT containing the Tracking information from Sagwa is generated.  ELSE invoice email, containing Tracking information is generated.
+*
+* @param {object}
+* 1. key {array} cart - { _id, qty } Details of Products purchased.
+* 2. key {object} sagawa - {
+  sagawaId,
+  shippingAddress: {
+    givenName, {string}
+    familyName, {string}
+    email, {string}
+    postalCode, {string}
+    addressLine1, {string} KANJI
+    addressLine2, {string} Romanji or Kanji
+    country, {string}
+    phoneNumber, {number}
+  },}
+  3. key {string} language - The language used by the user at purchase time.
+  4. key {object} transaction - The Mongo Transaction Doc. generated. See Transaction Schema for details.
+*
+* @return {string} - Template string of HTML data with dynamic values.
+*/
+emailSchema.statics.createInvoiceEmailBody = orderInfo =>
+new Promise((resolve, reject) => {
+  const {
+    cart,
+    sagawa,
+    language,
+    transaction,
+  } = orderInfo;
+
+  const today = moment().format('dddd');
+  const nonBusinessDays = ['Saturday', 'Sunday'];
+  let emailType = '';
+
+  if (!nonBusinessDays.includes(today)) {
+    emailType = 'invoiceEmail';
+  } else {
+    emailType = 'invoiceEmailNoTracking';
+  }
+
+  Email.findEmailAndFilterLanguage(emailType, language)
+  .then((dbEmail) => {
+    console.log('Successfully found Template Invoice Email for language: ', language);
+
+    const productListHtmlString = createEmailProductList(dbEmail, cart);
+
+    const updatedHtmlString = dbEmail.bodyHtmlData
+    .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
+    .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
+    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
+    .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
+    .replace(/(TOTAL_PAID_HERE)+/g, transaction.square.charge.amount)
+    .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
+    .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
+    .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
+    .replace(/(SHIP_PREFECTURE_HERE)+/g, transaction.square.shippingAddress.shippingPrefecture)
+    .replace(/(SHIP_CITY_HERE)+/g, transaction.square.shippingAddress.shippingCity)
+    .replace(/(SHIP_POSTAL_CODE_HERE)+/g, sagawa.shippingAddress.postal)
+    .replace(/(SHIP_COUNTRY_HERE)+/g, 'Japan')
+    .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, sagawa.shippingAddress.phoneNumber)
+    .replace(/(BILL_FULL_NAME_HERE)+/g, transaction.square.cardInfo.nameOnCard)
+    .replace(/(BILL_POSTAL_CODE_HERE)+/g, transaction.square.cardInfo.postalCode)
+    .replace(/(BILL_COUNTRY_HERE)+/g, transaction.square.billingCountry)
+    .replace(/(BILL_LAST_4_HERE)+/g, transaction.square.cardInfo.last4)
+    .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
+    .replace(/(ORDER_SUBTOTAL_HERE)+/g, transaction.total.subTotal)
+    .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
+    .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
+    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal);
+
+    if (emailType === 'invoiceEmail') {
+      transaction.invoiceEmail = updatedHtmlString;
+    } else {
+      transaction.invoiceEmailNoTracking = updatedHtmlString;
+    }
+    return transaction.save({ validateBeforeSave: true });
+  })
+  .then((updatedDoc) => {
+    console.log(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
+
+    resolve(updatedDoc);
+  })
+  .catch((error) => {
+    console.log('Could not create invoice email: ', error);
+    reject(`Could not create invoice email: ${error}`);
   });
 });
 

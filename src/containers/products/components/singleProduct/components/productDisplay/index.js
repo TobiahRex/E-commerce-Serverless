@@ -29,7 +29,6 @@ class ProductDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps at PRODUCT DISPLAY', 'background:pink;', nextProps);
     if (!ArrayDeepEquality(nextProps.productsArray, this.props.productsArray)) {
       this.setState(prevState => ({
         ...prevState,
