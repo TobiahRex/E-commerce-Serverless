@@ -2,6 +2,7 @@
 import { Promise as bbPromise } from 'bluebird';
 import axios from 'axios';
 import moment from 'moment';
+import xml2js from 'xml2js';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
 import Product from '../product';
@@ -172,9 +173,25 @@ new Promise((resolve, reject) => {
         'Content-Type': 'text/xml; charset=utf-8',
         SOAPAction: 'http://ws.com',
       },
-    })
+    }),
   )
-  .then((apiResult) => {
+  .then(({ data, status }) => {
+    console.log('RESPONSE:\n', data, '\n\n');
+
+    if (apiResult.status !== 200) {
+      console.log('\nERROR: ', apiResult.data);
+      xml2js.parseString(data, (err, results) => {
+        if (err) console.log('PARSE ERROR: \n', err);
+        console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+      });
+    }
+    if (ok) {
+      xml2js.parseString(data, (err, results) => {
+        if (err) console.log('PARSE ERROR: \n', err);
+        console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+      });
+    }
+
     if (apiResult.status !== 200) {
       console.log('Could not upload order to Sagawa: ', apiResult.data);
       resolve({
@@ -185,12 +202,13 @@ new Promise((resolve, reject) => {
         },
       });
     }
-
+    console.log('Successfully uploaded order to Sagawa.');
     resolve(apiResult.data);
   })
   .catch((error) => {
-    reject(error);
-  })
+    console.log('Could not upload order to Sagawa. Error = ', error);
+    reject('Could not upload order to Sagawa.');
+  });
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
