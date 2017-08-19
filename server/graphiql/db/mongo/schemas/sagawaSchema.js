@@ -50,6 +50,7 @@ const sagawaSchema = new Schema({
     codFlg: { type: Number, default: 0 },
   },
   items: [{
+    productId: { type: ObjectId, ref: 'Product' },
     itemcd: { type: Number },
     itemname: { type: String },
     usage: { type: Number, default: 0 },

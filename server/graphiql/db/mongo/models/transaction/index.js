@@ -134,8 +134,8 @@ new Promise((resolve, reject) => {
 * 4. Call the Square API again, using the LocationId fetched in the previous step, with any other required info, extracted from the input arguments.
 * 5. If successful, update the User document with the necessary transaction history updates. Create or Update the Market Hero document respective to the User document, and generate the required fields for uploading the order information to Sagawa.
 * 6. If successful, re-save the upper scope User Doc variable with the updated user information & generate the Invoice Email based on language, and when the order will be shipped to the user.  Save the result on the Transaction document.
-* 7. Call the Sagawa Upload lambda function passing the 1) User Id, 2) Sagawa Id, 3) Transaction Id.
-* 8. If order was successfully uploaded to Sagawa, then response will indicate a 200.
+* 7. Update the upper scope Transaction Doc variables with the new Transaction information & then call the Sagawa Upload lambda function passing the 1) User Id, 2) Sagawa Id, 3) Transaction Id.
+* 8. If order was successfully uploaded to Sagawa, then response status code will be a 200.  The final response will be resolved with 1) transactionId.
 */
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
@@ -282,8 +282,6 @@ new Promise((resolve, reject) => {
         },
       });
     }
-
-    trackingId = data.trackingId;
 
     console.log('Querying for all Products purchased by customer...');
     return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
