@@ -1,28 +1,23 @@
-import moment from 'moment';
-
-export default function generateAddressXml(sagawaInfo) {
-  const today = new Date();
-
-
+export default function generateAddressXml(sagwaDoc) {
   return (
     `<ADDRESS>
       <PRINTERNAME />
-      <BOXID>NJ2JP${Date.now()}</BOXID>
-      <SHIPDATE>${moment().format('YYYY/MM/DD')}</SHIPDATE>
-      <KANA>${sagawaInfo.familyName} ${sagawaInfo.givenName}</KANA>
-      <POSTAL>${sagawaInfo.postalCode}</POSTAL>
-      <JPADDRESS1>${sagawaInfo}</JPADDRESS1>
-      <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-      <CONTEL>08039188013</CONTEL>
-      <KBN>TEST1532</KBN>
-      <WGT>1.5</WGT>
-      <SHINADAI>120.00</SHINADAI>
-      <SHITEIBI>2017/07/29</SHITEIBI>
-      <SHITEIJIKAN>1200</SHITEIJIKAN>
-      <SOURYO>0</SOURYO>
-      <TESURYO>0</TESURYO>
-      <TTLAMOUNT>120.00</TTLAMOUNT>
-      <CODFLG>0</CODFLG>
+      <BOXID>${sagwaDoc.shippingAddress.boxid}</BOXID>
+      <SHIPDATE>${sagwaDoc.shippingAddress.shipdate}</SHIPDATE>
+      <KANA>${sagwaDoc.shippingAddress.customerName}</KANA>
+      <POSTAL>${sagwaDoc.shippingAddress.postal}</POSTAL>
+      <JPADDRESS1>${sagwaDoc.shippingAddress.jpAddress1}</JPADDRESS1>
+      <JPADDRESS2>${sagwaDoc.shippingAddress.jpAddress2}</JPADDRESS2>
+      <CONTEL>${sagwaDoc.shippingAddress.phoneNumber}</CONTEL>
+      <KBN>${sagwaDoc.shippingAddress.kbn}</KBN>
+      <WGT>${sagwaDoc.shippingAddress.wgt}</WGT>
+      <SHINADAI>${sagwaDoc.shippingAddress.grandTotal}</SHINADAI>
+      <SHITEIBI>${sagwaDoc.shippingAddress.deliveryDate}</SHITEIBI>
+      <SHITEIJIKAN>${sagwaDoc.shippingAddress.deliveryTime}</SHITEIJIKAN>
+      <SOURYO>${sagwaDoc.shippingAddress.souryo}</SOURYO>
+      <TESURYO>${sagwaDoc.shippingAddress.tesuryo}</TESURYO>
+      <TTLAMOUNT>${sagwaDoc.shippingAddress.ttlAmount}</TTLAMOUNT>
+      <CODFLG>${sagwaDoc.shippingAddress.codFlg}</CODFLG>
     </ADDRESS>`
-  )
+  );
 }
