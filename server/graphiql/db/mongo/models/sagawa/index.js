@@ -189,8 +189,6 @@ new Promise((resolve, reject) => {
     resolve(apiResult.data);
   })
   .catch((error) => {
-    console.log("error in sagawa");
-    console.log(error);
     reject(error);
   })
 });
