@@ -130,6 +130,10 @@ new Promise((resolve, reject) => {
 * Function: "submitFinalOrder"
 * 1. Establishes 3 variables on the highest scope within the function.  These variables will be returned to the client after final promise resolution.
 * 2. Call 3 promises in parallel: 1) Create a new Transaction document with values form the input arguments. 2) Find and Update the User document with important email information that may otherwise not already exist.  3) Call the Square API, fetching the business location based on the Billing country (US or Japan) chosen by the customer.
+* 3. If successful, assign the upper scopes variables their respective values for Transaction & User.
+* 4. Call the Square API again, using the LocationId fetched in the previous step, with any other required info, extracted from the input arguments.
+* 5. If successful, update the User document with the necessary transaction history updates. Create or Update the Market Hero document respective to the User document, and generate the required fields for uploading the order information to Sagawa.
+* 6. If successful, re-save the upper scope User Doc variable with the updated user information.  
 */
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
