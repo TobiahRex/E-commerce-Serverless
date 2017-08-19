@@ -1,14 +1,16 @@
-export default function generateItemXml(cart) {
-  cart.map(({ qty, product }) =>
-    (
+export default function generateItemsXml(sagawaDoc) {
+  return sagawaDoc.items.reduce((acc, nextItem) => {
+    acc += (
       `<ITEM>
-        <ITEMCD>${product.sku}</ITEMCD>
-        <ITEMNAME>${product.vender.toUppercase()} - ${product.flavor.toUpperCase()} NICOTINE ${Number(product.nicotineStrength)}mg E-JUICE 30 mil</ITEMNAME>
-        <USAGE>0</USAGE>
-        <ORIGIN>US</ORIGIN>
-        <PIECE>${qty}</PIECE>
-        <UNITPRICE>${product.price}</UNITPRICE>
-      </ITEM>`
-    ),
-  );
+        <ITEMCD>${nextItem.itemcd}</ITEMCD>
+        <ITEMNAME>${nextItem.itemname}</ITEMNAME>
+        <USAGE>${nextItem.usage}</USAGE>
+        <ORIGIN>${nextItem.origin}</ORIGIN>
+        <PIECE>${nextItem.piece}</PIECE>
+        <UNITPRICE>${nextItem.unitprice}</UNITPRICE>
+      </ITEM>
+      `
+    );
+    return acc;
+  }, '');
 }
