@@ -33,7 +33,7 @@ const sagawaSchema = new Schema({
     awbId: { type: String },
     referenceId: { type: String },
     boxid: { type: String },
-    shipdate: { type: Date },
+    shipdate: { type: String },
     customerName: { type: String },
     postal: { type: String },
     jpaddress1: { type: String },
