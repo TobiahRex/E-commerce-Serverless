@@ -160,10 +160,10 @@ new Promise((resolve, reject) => {
     <soap:Body>
       <uploadFile xmlns='http://ws.com'>
       <handler>
-        <DATA>
-          ${GenerateAddressXml(sagawaDoc)}
-          ${GenerateItemsXml(sagawaDoc)}
-        </DATA>
+        ${xmlOut('<DATA>')}
+          ${xmlOut(GenerateAddressXml(sagawaDoc))}
+          ${xmlOut(GenerateItemsXml(sagawaDoc))}
+        ${xmlOut('</DATA>')}
       </handler>
       </uploadFile>
     </soap:body>
