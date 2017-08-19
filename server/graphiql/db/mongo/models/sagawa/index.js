@@ -176,32 +176,42 @@ new Promise((resolve, reject) => {
     }),
   )
   .then(({ data, status }) => {
-    console.log('RESPONSE:\n', data, '\n\n');
+    console.log('Sagawa RESPONSE:\n', data, '\n\n');
+    let trackingNumber = '';
+    let refNumber = '';
 
-    if (apiResult.status !== 200) {
-      console.log('\nERROR: ', apiResult.data);
+    if (status !== 200) {
+      console.log('\nSagawa Upload ERROR: ', data);
+
       xml2js.parseString(data, (err, results) => {
-        if (err) console.log('PARSE ERROR: \n', err);
+        if (err) {
+          console.log('PARSE ERROR: \n', err);
+          resolve({
+            error: {
+              hard: true,
+              soft: false,
+              message: 'Could parse Sagawa ERROR Response',
+            },
+          });
+        }
         console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
       });
     }
-    if (ok) {
-      xml2js.parseString(data, (err, results) => {
-        if (err) console.log('PARSE ERROR: \n', err);
-        console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-      });
-    }
 
-    if (apiResult.status !== 200) {
-      console.log('Could not upload order to Sagawa: ', apiResult.data);
-      resolve({
-        error: {
-          hard: true,
-          soft: false,
-          message: 'Could not upload order to sagawa',
-        },
-      });
-    }
+    xml2js.parseString(data, (err, results) => {
+      if (err) {
+        console.log('PARSE ERROR: \n', err);
+        resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'Could parse Sagawa SUCCESS Response',
+          },
+        });
+      }
+      console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
+    });
+
     console.log('Successfully uploaded order to Sagawa.');
     resolve(apiResult.data);
   })

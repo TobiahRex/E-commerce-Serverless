@@ -2,6 +2,7 @@
 import { create } from 'apisauce';
 import xml2js from 'xml2js';
 import fs from 'fs';
+require('dotenv').load({ silent: true });
 
 const xmlOut = str => str
 .replace(/&/g, '&amp;')
@@ -41,15 +42,15 @@ sagawaUploadAPI.uploadOrder(`
 <DATA>
   <ADDRESS>
     <PRINTERNAME />
-    <BOXID>VPS201707240001</BOXID>
-    <SHIPDATE>2017/07/25</SHIPDATE>
+    <BOXID>NJ2JP201708200001</BOXID>
+    <SHIPDATE>2017/08/20</SHIPDATE>
     <KANA>トーバーヤ　ビークリー</KANA>
     <POSTAL>1400012</POSTAL>
     <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
     <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
     <CONTEL>08039188013</CONTEL>
-    <KBN>TEST1532</KBN>
-    <WGT>1.5</WGT>
+    <KBN>${process.env.SAGAWA_TEST_JAPANESE}</KBN>
+    <WGT>0.15</WGT>
     <SHINADAI>120.00</SHINADAI>
     <SHITEIBI>2017/07/29</SHITEIBI>
     <SHITEIJIKAN>1200</SHITEIJIKAN>
