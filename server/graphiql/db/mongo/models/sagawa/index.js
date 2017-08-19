@@ -178,7 +178,7 @@ new Promise((resolve, reject) => {
   .then((response) => {
     console.log('Sagawa RESPONSE:\n', response.data, '\n\n');
     const { data } = CleanSagawaResponse.handleUpload(response);
-    console.log('Successfully uploaded order to Sagawa.');
+    console.log('Successfully uploaded order to Sagawa & extracted AWB & REF numbers.');
     resolve(data);
   })
   .catch((error) => {

@@ -17,6 +17,7 @@ import {
 
 require('dotenv').load({ silent: true });
 
+
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
   console.log('@fetchSquareLocation');
@@ -125,11 +126,16 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "submitFinalOrder"
+* 1. Establishes 3 variables on the highest scope within the function.  These variables will be returned to the client after final promise resolution.
+*/
+
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
   console.log('@submitFinalOrder');
 
-  console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
+  console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
   let trackingId = '';
@@ -175,7 +181,7 @@ new Promise((resolve, reject) => {
     Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
-    console.log('\nSuccessfully Completed: 1) Created new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n');
+    console.log('\n2] Successfully Completed: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
     newTransactionDoc = results[0];
     userDoc = { ...results[1] };
@@ -196,9 +202,9 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('Received response from Square API.');
+    console.log('3] Received Square response for charging Customer CC.');
     if (response.status !== 200) {
-      console.log('Failed to charge customer card: ', response.data);
+      console.log('3a] Failed to charge customer card: ', response.data);
       resolve({
         error: {
           hard: true,
@@ -207,7 +213,7 @@ new Promise((resolve, reject) => {
         },
       });
     }
-    console.log('Successfully charged customer card.');
+    console.log('3b] Successfully charged customer card.');
 
     return Promise.all([
       User.findByIdAndUpdate(userDoc._id, {
@@ -233,7 +239,7 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('Success! 1) Updated User cart and transactions history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+    console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
     userDoc = { ...results[0] };
 
@@ -246,7 +252,7 @@ new Promise((resolve, reject) => {
     });
   })
   .then((updatedTransDoc) => {
-    console.log('Received updated Transaction Document.  Calling sagwa upload now...');
+    console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
 
     newTransactionDoc = { ...updatedTransDoc };
 
@@ -257,7 +263,7 @@ new Promise((resolve, reject) => {
     });
   })
   .then(({ status, data }) => {
-    console.log('Sagwa Upload Lambda Response: ', data);
+    console.log('6] Success! Uploaded order to Sagawa. Response: ', data);
 
     if (status !== 200) {
       console.log('Was not able to complete the order: ', data);
@@ -272,9 +278,12 @@ new Promise((resolve, reject) => {
 
     trackingId = data.trackingId;
 
+    console.log('Querying for all Products purchased by customer...');
     return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
   })
   .then((productDocs) => {
+    console.log('7] Success! Found ', productDocs.length, ' product documents.  Perfoming update on "statistics" & "quantities" available now...');
+
     productDocs.forEach((productDoc) => {
       productDoc.product.quantities.inCarts -= 1;
       productDoc.product.quantities.purchased += 1;
@@ -293,7 +302,7 @@ new Promise((resolve, reject) => {
       });
     });
 
-    console.log('Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
+    console.log('8] Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
     resolve({
       user: userDoc,
       trackingId,
@@ -301,7 +310,6 @@ new Promise((resolve, reject) => {
     });
   })
   .catch((error) => {
-    console.log(error.response);
     console.log('Failed to submit order due to error: ', error);
     reject(`Failed to submit order due to error: ${error}`);
   });
