@@ -135,9 +135,12 @@ new Promise((resolve, reject) => {
 * 5. If successful, update the User document with the necessary transaction history updates. Create or Update the Market Hero document respective to the User document, and generate the required fields for uploading the order information to Sagawa.
 * 6. If successful, re-save the upper scope User Doc variable with the updated user information & generate the Invoice Email based on language, and when the order will be shipped to the user.  Save the result on the Transaction document.
 * 7. Update the upper scope Transaction Doc variables with the new Transaction information & then call the Sagawa Upload lambda function passing the 1) User Id, 2) Sagawa Id, 3) Transaction Id.
-* 8. If order was successfully uploaded to Sagawa, then response status code will be a 200.  The final response will be resolved with 1) transactionId.
+* 8. If order was successfully uploaded to Sagawa, then response status code will be a 200.  The final response will be resolved with the final 1) Transaction document.
+*
+* @param {object} orderForm - all the inputs from the Order form.
+*
+* @return {object} Mongo Transaction Document.
 */
-
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
   console.log('@submitFinalOrder');
@@ -145,7 +148,6 @@ new Promise((resolve, reject) => {
   console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
-  let trackingId = '';
 
   const {
     userId,
@@ -308,11 +310,7 @@ new Promise((resolve, reject) => {
     });
 
     console.log('8] Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
-    resolve({
-      user: userDoc,
-      trackingId,
-      transaction: { ...newTransactionDoc },
-    });
+    resolve(newTransactionDoc);
   })
   .catch((error) => {
     console.log('Failed to submit order due to error: ', error);
