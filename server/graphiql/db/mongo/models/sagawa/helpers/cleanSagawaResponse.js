@@ -25,20 +25,20 @@ const extractTrackingData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:uploadDataResponse'][0]['ns:return'][0];
 
   const trackingNum = response.split('|')[5].replace(/(A)+/g, '');
-  const referenceNum = response.split('|')[1];
+  const refNum = response.split('|')[1];
 
-  if (!trackingNum.length || !referenceNum.length) {
+  if (!trackingNum.length || !refNum.length) {
     return ({
       verified: false,
       trackingNum,
-      referenceNum,
+      refNum,
     });
   }
 
   return ({
     verified: true,
     trackingNum,
-    referenceNum,
+    refNum,
   });
 };
 
@@ -72,7 +72,7 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, postalCode, jpAddress } = extractData(results);
+    const { verified, postalCode, jpAddress } = extractPostalData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
     console.log('postalCode: ', postalCode);
@@ -113,16 +113,15 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, postalCode, jpAddress } = extractPostalData(results);
+    const { verified, trackingNum, refNum } = extractTrackingData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
-    console.log('postalCode: ', postalCode);
-    console.log('jpAddress: ', jpAddress);
+    console.log('trackingNum: ', trackingNum);
+    console.log('refNum: ', refNum);
     /*  eslint-enable no-console */
 
     if (!verified) {
-      problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-      reject(problem);
+      reject('Unable to upload order to retrieve Tracking & Reference number from Sagawa API.');
     }
 
     resolve({
@@ -130,8 +129,8 @@ new Promise((resolve, reject) => {
       data: {
         postalInfo: {
           verified,
-          jpAddress,
-          postalCode,
+          trackingNum,
+          refNum,
         },
       },
     });
