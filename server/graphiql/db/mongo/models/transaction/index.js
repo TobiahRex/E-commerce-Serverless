@@ -133,7 +133,9 @@ new Promise((resolve, reject) => {
 * 3. If successful, assign the upper scopes variables their respective values for Transaction & User.
 * 4. Call the Square API again, using the LocationId fetched in the previous step, with any other required info, extracted from the input arguments.
 * 5. If successful, update the User document with the necessary transaction history updates. Create or Update the Market Hero document respective to the User document, and generate the required fields for uploading the order information to Sagawa.
-* 6. If successful, re-save the upper scope User Doc variable with the updated user information.  
+* 6. If successful, re-save the upper scope User Doc variable with the updated user information & generate the Invoice Email based on language, and when the order will be shipped to the user.  Save the result on the Transaction document.
+* 7. Call the Sagawa Upload lambda function passing the 1) User Id, 2) Sagawa Id, 3) Transaction Id.
+* 8. If order was successfully uploaded to Sagawa, then response will indicate a 200.
 */
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
