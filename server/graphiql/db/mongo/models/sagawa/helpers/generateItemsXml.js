@@ -1,13 +1,13 @@
-export default function generateItemXml(cart) {
-  cart.map(({ qty, product }) =>
+export default function generateItemsXml(sagawaDoc) {
+  sagawaDoc.items.map(item =>
     (
       `<ITEM>
-        <ITEMCD>${product.sku}</ITEMCD>
-        <ITEMNAME>${product.vender.toUppercase()} - ${product.flavor.toUpperCase()} NICOTINE ${Number(product.nicotineStrength)}mg E-JUICE 30 mil</ITEMNAME>
-        <USAGE>0</USAGE>
-        <ORIGIN>US</ORIGIN>
-        <PIECE>${qty}</PIECE>
-        <UNITPRICE>${product.price}</UNITPRICE>
+        <ITEMCD>${item.itemcd}</ITEMCD>
+        <ITEMNAME>${item.itemname}</ITEMNAME>
+        <USAGE>${item.usage}</USAGE>
+        <ORIGIN>${item.origin}</ORIGIN>
+        <PIECE>${item.piece}</PIECE>
+        <UNITPRICE>${item.unitprice}</UNITPRICE>
       </ITEM>`
     ),
   );
