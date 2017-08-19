@@ -90,9 +90,9 @@ new Promise((resolve, reject) => {
 
   const {
     cart,
+    total,
     userId,
     sagawa,
-    total,
     transactionId,
   } = orderInfo;
 

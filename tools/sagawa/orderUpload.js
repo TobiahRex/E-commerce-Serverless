@@ -28,8 +28,8 @@ const createUploadToSagawaAPI = () => {
     <handler>
       ${xmlOut(orderData)}
     </handler>
-  </uploadFile>
-</soap:body>
+    </uploadFile>
+  </soap:body>
 </soap:Envelope>`);
 
 return {

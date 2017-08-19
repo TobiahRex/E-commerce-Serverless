@@ -1,23 +1,23 @@
-export default function generateAddressXml(sagwaDoc) {
+export default function generateAddressXml(sagawaDoc) {
   return (
     `<ADDRESS>
       <PRINTERNAME />
-      <BOXID>${sagwaDoc.shippingAddress.boxid}</BOXID>
-      <SHIPDATE>${sagwaDoc.shippingAddress.shipdate}</SHIPDATE>
-      <KANA>${sagwaDoc.shippingAddress.customerName}</KANA>
-      <POSTAL>${sagwaDoc.shippingAddress.postal}</POSTAL>
-      <JPADDRESS1>${sagwaDoc.shippingAddress.jpAddress1}</JPADDRESS1>
-      <JPADDRESS2>${sagwaDoc.shippingAddress.jpAddress2}</JPADDRESS2>
-      <CONTEL>${sagwaDoc.shippingAddress.phoneNumber}</CONTEL>
-      <KBN>${sagwaDoc.shippingAddress.kbn}</KBN>
-      <WGT>${sagwaDoc.shippingAddress.wgt}</WGT>
-      <SHINADAI>${sagwaDoc.shippingAddress.grandTotal}</SHINADAI>
-      <SHITEIBI>${sagwaDoc.shippingAddress.deliveryDate}</SHITEIBI>
-      <SHITEIJIKAN>${sagwaDoc.shippingAddress.deliveryTime}</SHITEIJIKAN>
-      <SOURYO>${sagwaDoc.shippingAddress.souryo}</SOURYO>
-      <TESURYO>${sagwaDoc.shippingAddress.tesuryo}</TESURYO>
-      <TTLAMOUNT>${sagwaDoc.shippingAddress.ttlAmount}</TTLAMOUNT>
-      <CODFLG>${sagwaDoc.shippingAddress.codFlg}</CODFLG>
+      <BOXID>${sagawaDoc.shippingAddress.boxid}</BOXID>
+      <SHIPDATE>${sagawaDoc.shippingAddress.shipdate}</SHIPDATE>
+      <KANA>${sagawaDoc.shippingAddress.customerName}</KANA>
+      <POSTAL>${sagawaDoc.shippingAddress.postal}</POSTAL>
+      <JPADDRESS1>${sagawaDoc.shippingAddress.jpaddress1}</JPADDRESS1>
+      <JPADDRESS2>${sagawaDoc.shippingAddress.jpaddress2}</JPADDRESS2>
+      <CONTEL>${sagawaDoc.shippingAddress.phoneNumber}</CONTEL>
+      <KBN>${sagawaDoc.shippingAddress.kbn}</KBN>
+      <WGT>${sagawaDoc.shippingAddress.wgt}</WGT>
+      <SHINADAI>${sagawaDoc.shippingAddress.grandTotal}</SHINADAI>
+      <SHITEIBI>${sagawaDoc.shippingAddress.deliveryDate}</SHITEIBI>
+      <SHITEIJIKAN>${sagawaDoc.shippingAddress.deliveryTime}</SHITEIJIKAN>
+      <SOURYO>${sagawaDoc.shippingAddress.souryo}</SOURYO>
+      <TESURYO>${sagawaDoc.shippingAddress.tesuryo}</TESURYO>
+      <TTLAMOUNT>${sagawaDoc.shippingAddress.ttlAmount}</TTLAMOUNT>
+      <CODFLG>${sagawaDoc.shippingAddress.codFlg}</CODFLG>
     </ADDRESS>`
   );
 }
