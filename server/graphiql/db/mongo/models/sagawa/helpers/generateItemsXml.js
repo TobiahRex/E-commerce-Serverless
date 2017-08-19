@@ -1,14 +1,16 @@
 export default function generateItemsXml(sagawaDoc) {
-  sagawaDoc.items.map(item =>
-    (
+  return sagawaDoc.items.reduce((acc, nextItem) => {
+    acc += (
       `<ITEM>
-        <ITEMCD>${item.itemcd}</ITEMCD>
-        <ITEMNAME>${item.itemname}</ITEMNAME>
-        <USAGE>${item.usage}</USAGE>
-        <ORIGIN>${item.origin}</ORIGIN>
-        <PIECE>${item.piece}</PIECE>
-        <UNITPRICE>${item.unitprice}</UNITPRICE>
-      </ITEM>`
-    ),
-  );
+        <ITEMCD>${nextItem.itemcd}</ITEMCD>
+        <ITEMNAME>${nextItem.itemname}</ITEMNAME>
+        <USAGE>${nextItem.usage}</USAGE>
+        <ORIGIN>${nextItem.origin}</ORIGIN>
+        <PIECE>${nextItem.piece}</PIECE>
+        <UNITPRICE>${nextItem.unitprice}</UNITPRICE>
+      </ITEM>
+      `
+    );
+    return acc;
+  }, '');
 }
