@@ -3,8 +3,8 @@ import AWS from 'aws-sdk';
 import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
-import emailSchema from '../schemas/emailSchema';
-import db from '../connection';
+import emailSchema from '../../schemas/emailSchema';
+import db from '../../connection';
 import { createEmailProductList } from './helpers';
 // import config from '../../../config.json';
 

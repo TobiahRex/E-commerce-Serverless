@@ -158,14 +158,14 @@ new Promise((resolve, reject) => {
     `<?xml version='1.0' encoding='utf-8'?>
     <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
     <soap:Body>
-    <uploadFile xmlns='http://ws.com'>
+      <uploadFile xmlns='http://ws.com'>
       <handler>
         <DATA>
-          ${xmlOut(GenerateAddressXml(sagawaDoc))}
-          ${xmlOut(GenerateItemsXml(sagawaDoc))}
+          ${GenerateAddressXml(sagawaDoc)}
+          ${GenerateItemsXml(sagawaDoc)}
         </DATA>
       </handler>
-    </uploadFile>
+      </uploadFile>
     </soap:body>
     </soap:Envelope>`, {
       headers: {
@@ -173,6 +173,7 @@ new Promise((resolve, reject) => {
         SOAPAction: 'http://ws.com',
       },
     })
+  )
   .then((apiResult) => {
     if (apiResult.status !== 200) {
       console.log('Could not upload order to Sagawa: ', apiResult.data);
@@ -188,6 +189,8 @@ new Promise((resolve, reject) => {
     resolve(apiResult.data);
   })
   .catch((error) => {
+    console.log("error in sagawa");
+    console.log(error);
     reject(error);
   })
 });
