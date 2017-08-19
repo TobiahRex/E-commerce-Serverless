@@ -169,6 +169,9 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart.push({ qty, product });
+
+    Product.findByIdAndUpdate(product, { $inc: { '': 1 } })
+
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((savedUser) => {

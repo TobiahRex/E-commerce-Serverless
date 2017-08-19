@@ -7,6 +7,7 @@ import User from '../user';
 import Email from '../email';
 import MarketHero from '../marketHero';
 import Sagawa from '../sagawa';
+import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   getSqLocation,
@@ -262,6 +263,30 @@ new Promise((resolve, reject) => {
         },
       });
     }
+
+    return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
+  })
+  .then((productDocs) => {
+    productDocs.forEach((productDoc) => {
+      productDoc.product.quantities.inCarts -= 1;
+      productDoc.product.quantities.purchased += 1;
+      productDoc.statistics.completedCheckouts += 1;
+      productDoc.transactions = [...productDoc.transactions, {
+        transactionId: newTransactionDoc._id,
+        userId,
+      }];
+      productDoc.save({ validateBeforeSave: true })
+      .then((savedDoc) => {
+        console.log('Successfully updated "statistics" & "quantities" for Product ', savedDoc._id);
+      })
+      .catch((error) => {
+        console.log('Error while trying to update "statiistics" & "quantities" for Product ', productDoc._id, 'ERROR = ', error);
+        reject('Error while updating DB after successful purchase.');
+      });
+    });
+  })
+  .then(() => {
+    console.log('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
     resolve('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
   })
   .catch((error) => {
