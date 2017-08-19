@@ -129,6 +129,7 @@ new Promise((resolve, reject) => {
 /**
 * Function: "submitFinalOrder"
 * 1. Establishes 3 variables on the highest scope within the function.  These variables will be returned to the client after final promise resolution.
+* 2. Call 3 promises in parallel: 1) Create a new Transaction document with values form the input arguments. 2) Find and Update the User document with important email information that may otherwise not already exist.  3) Call the Square API, fetching the business location based on the Billing country (US or Japan) chosen by the customer.
 */
 
 transactionSchema.statics.submitFinalOrder = orderForm =>
