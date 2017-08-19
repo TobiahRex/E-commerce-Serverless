@@ -132,6 +132,7 @@ new Promise((resolve, reject) => {
   console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
+  let trackingId = '';
 
   const {
     userId,
@@ -177,7 +178,7 @@ new Promise((resolve, reject) => {
     console.log('\nSuccessfully Completed: 1) Created new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n');
 
     newTransactionDoc = results[0];
-    userDoc = results[1];
+    userDoc = { ...results[1] };
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
@@ -234,6 +235,8 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('Success! 1) Updated User cart and transactions history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
+    userDoc = { ...results[0] };
+
     return Email.createInvoiceEmailBody({
       cart,
       square,
@@ -244,25 +247,30 @@ new Promise((resolve, reject) => {
   })
   .then((updatedTransDoc) => {
     console.log('Received updated Transaction Document.  Calling sagwa upload now...');
+
+    newTransactionDoc = { ...updatedTransDoc };
+
     return axios.post('http://', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: updatedTransDoc._id,
     });
   })
-  .then((response) => {
-    console.log('FINAL RESPONSE: ', response);
+  .then(({ status, data }) => {
+    console.log('Sagwa Upload Lambda Response: ', data);
 
-    if (response !== 200) {
-      console.log('Was not able to complete the order: ', response.data);
+    if (status !== 200) {
+      console.log('Was not able to complete the order: ', data);
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: `Was not able to complete the order: ${response.data}`,
+          message: `Was not able to complete the order: ${data}`,
         },
       });
     }
+
+    trackingId = data.trackingId;
 
     return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
   })
@@ -284,10 +292,13 @@ new Promise((resolve, reject) => {
         reject('Error while updating DB after successful purchase.');
       });
     });
-  })
-  .then(() => {
-    console.log('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
-    resolve('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
+
+    console.log('Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
+    resolve({
+      user: userDoc,
+      trackingId,
+      transaction: { ...newTransactionDoc },
+    });
   })
   .catch((error) => {
     console.log(error.response);

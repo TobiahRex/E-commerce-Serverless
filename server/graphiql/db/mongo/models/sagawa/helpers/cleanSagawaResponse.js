@@ -24,21 +24,21 @@ const extractPostalData = (jsonResponse) => {
 const extractTrackingData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:uploadDataResponse'][0]['ns:return'][0];
 
-  const trackingNum = response.split('|')[5].replace(/(A)+/g, '');
-  const refNum = response.split('|')[1];
+  const awbId = response.split('|')[5].replace(/(A)+/g, '');
+  const referenceId = response.split('|')[1];
 
-  if (!trackingNum.length || !refNum.length) {
+  if (!awbId.length || !referenceId.length) {
     return ({
       verified: false,
-      trackingNum,
-      refNum,
+      awbId,
+      referenceId,
     });
   }
 
   return ({
     verified: true,
-    trackingNum,
-    refNum,
+    awbId,
+    referenceId,
   });
 };
 
@@ -113,11 +113,11 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, trackingNum, refNum } = extractTrackingData(results);
+    const { verified, awbId, referenceId } = extractTrackingData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
-    console.log('trackingNum: ', trackingNum);
-    console.log('refNum: ', refNum);
+    console.log('awbId: ', awbId);
+    console.log('referenceId: ', referenceId);
     /*  eslint-enable no-console */
 
     if (!verified) {
@@ -125,13 +125,9 @@ new Promise((resolve, reject) => {
     }
 
     resolve({
-      problem,
       data: {
-        postalInfo: {
-          verified,
-          trackingNum,
-          refNum,
-        },
+        awbId,
+        referenceId,
       },
     });
   });
