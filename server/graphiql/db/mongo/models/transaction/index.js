@@ -233,10 +233,12 @@ new Promise((resolve, reject) => {
       }, { new: true }),
       bbPromise.fromCallback(cb => MarketHero.createOrUpdateLead({
         lead: {
+          language,
           email: sagawa.shippingAddress.email,
           givenName: sagawa.shippingAddress.givenName,
           familyName: sagawa.shippingAddress.familyName,
         },
+        tags: GetMHTransactionTags({ total, cart, language }),
       }, cb)),
       Sagawa.deepUpdate({
         cart,
