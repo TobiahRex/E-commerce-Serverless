@@ -106,7 +106,7 @@ const rootType = new ObjectType({
   },
 });
 
-const queryTypes = {
+const mutationTypes = {
   ValidatePostal: new ObjectType({
     name: 'SagawaValidatePostalResponse',
     fields: () => ({
@@ -145,31 +145,12 @@ const queryTypes = {
   }),
 };
 
-const queries = {
-  ValidatePostal: {
-    type: queryTypes.ValidatePostal,
-    args: {
-      userId: {
-        description: 'The user\'s unique _id.',
-        type: new NonNull(MongoId),
-      },
-      postalCode: {
-        description: 'The postal code to validate.',
-        type: new NonNull(StringType),
-      },
-    },
-    resolve: (_, args) => Sagawa.validatePostal(args),
-  },
-};
+const queries = {};
 
 const mutations = {
   ValidatePostal: {
-    type: rootType,
+    type: mutationTypes.ValidatePostal,
     args: {
-      userId: {
-        description: 'The user\'s unique _id.',
-        type: new NonNull(MongoId),
-      },
       postalCode: {
         description: 'The postal code to validate.',
         type: new NonNull(StringType),

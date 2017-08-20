@@ -359,15 +359,8 @@ mutation EmptyMemberCart($userId: ID!) {
 `;
 
 export const ValidatePostal = gql`
-  mutation ValidatePostal(
-    $postalCode: String!
-    $userId: ID!
-  ) {
-    ValidatePostal(
-      postalCode: $postalCode
-      userId: $userId
-    ) {
-      _id
+  mutation ValidatePostal( $postalCode: String! ) {
+    ValidatePostal( postalCode: $postalCode ) {
       error {
         hard
         soft

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import uploadSagawaAndSendEmail from './onDemand';
 
@@ -11,16 +12,14 @@ const router = new express.Router();
 */
 
 router.post('/sagawa', (req, res) => {
-  console.log("inside sagawa route post");
-
   uploadSagawaAndSendEmail(req.body)
     .then((response) => {
-      console.log("printing the response: ", response);
-      res.send(response);
+      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+      res.status(200).send(response);
     })
     .catch((error) => {
-      console.log("in main error");
-      res.send(error);
+      console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      res.status(400).send(error);
     })
 });
 
