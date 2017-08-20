@@ -64,12 +64,12 @@ new Promise((resolve, reject) => {
   })
   .then((res) => {
     if (res.status !== 200) {
-      console.log('Market Hero Upload Failed: ', res.data);
-      return reject(new Error('Market Hero Upload Failed'));
+      console.log('FAILED; Market Hero Upload: ', res.data);
+      return reject(new Error('FAILE: Market Hero Upload: '));
     }
 
-    console.log('Market Hero Upload Success:', res.data);
-    return resolve('Successfully posted to Market Hero.');
+    console.log('SUCCESS: Market Hero Upload:', res.data);
+    return resolve('SUCCESS: Posted to Market Hero.');
   })
   .catch((error) => {
     console.log('MarketHero.createOrUpdateLead FAIL: ', error);
@@ -92,18 +92,18 @@ new Promise((resolve, reject) => {
   console.log('@MarketHero.createMongoLead\n\n');
 
   if (!lead || !tags) {
-    console.log('Missing Required arguments @ MarketHero.createMongoLead.');
-    reject(new Error('Missing Required arguments @ MarketHero.createMongoLead: '));
+    console.log('FAILED: Missing Required arguments @ MarketHero.createMongoLead.');
+    reject(new Error('FAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
   }
 
   bbPromise.fromCallback(cb => MarketHero.create({ lead, tags }, cb))
   .then((newLead) => {
-    console.log('Create Mongo Market Hero Document SUCCESS: ', newLead);
+    console.log('SUCCESS: Create Mongo Market Hero Document: ', newLead);
     return resolve(newLead);
   })
   .catch((error) => {
-    console.log('Create Mongo Market Hero Document FAILED: ', error);
-    return reject(new Error('Create Mongo Market Hero Document FAILED'));
+    console.log('FAILED: Create Mongo Market Hero Document: ', error);
+    return reject(new Error('FAILED: Create Mongo Market Hero Document:'));
   });
 });
 
