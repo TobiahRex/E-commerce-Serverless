@@ -189,6 +189,37 @@ new Promise((resolve, reject) => {
     reject('Could not upload order to Sagawa.');
   });
 });
+/**
+* Function: "findSagawaAndUpdate"
+* Need to update the existing sagawa document with awbId ands referenceId.
+* This method is called after sending sagawa upload to sagawa shipment endpoint.
+*
+* @param {objectId} _id - documentId of sagawa document.
+* @param {string} awbId - awbId(trackingId) of the uploaded sagawa order.
+* @param {string} referenceId - referenceId of the uploaded sagawa order.
+
+* @return {object} Promise resolved with updated Sagawa Document.
+*/
+sagawaSchema.statics.findSagawaAndUpdate = (_id, awbId, referenceId) =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.findSagawaAndUpdate\n');
+
+  Sagawa.findByIdAndUpdate(_id, {
+    $set: {
+      "shippingAddress.awbId": awbId,
+      "shippingAddress.referenceId": referenceId,
+      status: "uploaded",
+    },
+  }, { new: true })
+    .then((sagawaDoc) => {
+      console.log('Update sagawaDoc: ', 'sagawaDoc\n\n');
+      resolve(sagawaDoc);
+    })
+    .catch((error) => {
+      console.log('Could not update sagwa document with awbId and referenceId. Error = ', error);
+      reject('Could not update sagwa document with awbId and referenceId.');
+    });
+});
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
 export default Sagawa;
