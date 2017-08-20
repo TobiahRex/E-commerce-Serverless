@@ -8,6 +8,7 @@ import db from '../../connection';
 import Product from '../product';
 import Transaction from '../transaction';
 import Email from '../email';
+import User from '../user';
 
 import {
   ZipArrays,
@@ -268,7 +269,6 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.uploadSagawaAndSendEmail');
 
   const {
-    userId,
     sagawaId,
     transactionId,
   } = request;
@@ -303,11 +303,16 @@ new Promise((resolve, reject) => {
     return Email.findEmailAndFilterLanguage(emailType, transactionDoc.emailLanguage);
   })
   .then((dbEmail) => {
-    console.log('SUCCEEDED: Find email and Filter by Language: ', dbEmail.type);
+    console.log('SUCCEEDED: Find email and Filter by Language.', dbEmail);
+
     Email.sendEmail({
       to: transactionDoc.emailAddress,
       htmlBody: transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking,
     }, dbEmail);
+  })
+  .then(() => {
+    console.log('SUCCEEDED: Send Invoice Email.');
+    resolve();
   })
   .catch((error) => {
     console.log('Error in sagawa upload or transaction retrieve: ', error);

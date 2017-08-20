@@ -166,12 +166,12 @@ new Promise((resolve, reject) => {
     return emailDoc.save({ new: true });
   })
   .then((savedEmail) => {
-    console.log('\nSuccessfully saved Email record to MONGO Email collection: \n', savedEmail.sentEmails.pop().messageId);
+    console.log('SUCCEEDED: Send Email and save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
     resolve();
   })
   .catch((error) => {
-    console.log(`Error sending SES email with type: "${emailDoc.type}".  ERROR = ${error}`);
-    reject(`Error sending SES email with type: "${emailDoc.type}".  ERROR = ${error}`);
+    console.log('FAILED: Send Email and save Message Id in Email Template: ', error);
+    reject(new Error('FAILED: Send Email and save Message Id in Email Template.'));
   });
 });
 
