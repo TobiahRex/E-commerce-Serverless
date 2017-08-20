@@ -14,6 +14,9 @@ import {
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
 } from './helpers';
+import {
+  getMHTransactionTags as GetMHTransactionTags,
+} from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
 
