@@ -18,8 +18,14 @@ new Promise((resolve, reject) => {
 
   MarketHero.findOne({ 'lead.email': userEmail })
   .exec()
-  .then(resolve)
-  .catch(reject);
+  .then((mhDoc) => {
+    console.log('MarketHero.checkForLead SUCCESS: ', mhDoc);
+    resolve(mhDoc);
+  })
+  .catch((error) => {
+    console.log('MarketHero.checkForLead FAIL: ', error);
+    reject(new Error('MarketHero.checkForLead FAIL: '));
+  });
 });
 
 /**
