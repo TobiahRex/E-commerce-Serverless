@@ -20,7 +20,7 @@ router.post('/sagawa', (req, res) => {
     .catch((error) => {
       console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
       res.status(400).send(error);
-    })
+    });
 });
 
 export default router;

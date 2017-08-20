@@ -298,7 +298,7 @@ new Promise((resolve, reject) => {
 
     newTransactionDoc = { ...results[0] };
 
-    return axios.post('http://localhost:3000/api/', {
+    return axios.post('http://localhost:3000/api/sagawa', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: newTransactionDoc._id,

@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import Sagawa from '../db/mongo/models/sagawa';
+import Transaction from '../db/mongo/models/transaction';
 
 /**
 *                 CAUTION WIP
-* Function: "uploadSagawaAndSendEmail"
+* Function: 'uploadSagawaAndSendEmail'
 * This is sagawa Lambda that does the following:
 * Get transactionId, userId, sagawaId, emailTemplateId
 * Retrieve sagawa document using sagawaId
@@ -18,36 +20,39 @@ import Sagawa from '../db/mongo/models/sagawa';
 * @return {object} Promise resolved with updated Sagawa Document. [WIP]
 */
 
-const uploadSagawaAndSendEmail = (request) =>
+const uploadSagawaAndSendEmail = request =>
 new Promise((resolve, reject) => {
-  console.log("inside the uplaodSagawaAndSendEmail");
-  const transactionId = request.transactionId;
-  const userId = request.userId;
-  const sagawaId = request.sagawaId;
-  const emailTemplateId = request.emailTemplateId;
+  console.log('\n\n@Sagawa.uploadSagawaAndSendEmail');
+
+  const {
+    transactionId,
+    userId,
+    sagawaId,
+    emailTemplateId,
+  } = request;
 
   Promise.all([
+    Transaction.findById(transactionId),
     Sagawa.orderUpload(sagawaId),
-    console.log("Dummy promise. It will be transaction retrieval in production")
   ])
   .then((results) => {
-    console.log("Success 1.Sagawa uploaded the order to shipment endpoint  2.Retrieved emailWithTrackingInfo and emailID from transaction collection");
+    console.log('Success 1.Sagawa uploaded the order to shipment endpoint  2.Retrieved emailWithTrackingInfo and emailID from transaction collection');
 
     const sagawaResponse = results[0];
     const transactionResponse = results[1];
 
-    console.log("Sagawa Response:  ", sagawaResponse);
-    console.log("Transaction Response:  ", transactionResponse);
+    console.log('Sagawa Response:  ', sagawaResponse);
+    console.log('Transaction Response:  ', transactionResponse);
 
     return Sagawa.findSagawaAndUpdate(sagawaId, sagawaResponse.awbId, sagawaResponse.referenceId);
   })
   .then((sagawaUpdatedDoc) => {
-    console.log("Success!! updated sagawa document with awbId and referenceId");
-    console.log("sagawa Updated Document:  ", sagawaUpdatedDoc);
+    console.log('Success!! updated sagawa document with awbId and referenceId');
+    console.log('sagawa Updated Document:  ', sagawaUpdatedDoc);
     resolve(sagawaUpdatedDoc);
   })
   .catch((error) => {
-    console.log("Error in sagawa upload or transaction retrieve: ", error);
+    console.log('Error in sagawa upload or transaction retrieve: ', error);
     reject(error);
   })
 });
