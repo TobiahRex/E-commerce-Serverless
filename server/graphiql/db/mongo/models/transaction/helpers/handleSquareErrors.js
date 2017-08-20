@@ -14,11 +14,17 @@ export default function handleSquareErrors(response) {
         errorMsg = 'Our deepest apologies!  Our payment provider is currently doing server maintenance. Please try again later.';
       } break;
       case 'AUTHENTICATION_ERROR': {
-        errorMsg = 'Our deepest apologies!  Looks like we had a issue trying to charge your credit card.  Please try again later.  If the problem continues please contact support: support@nj2jp.com.';
+        errorMsg = 'Our deepest apologies!  Looks like we had an internal issue charging your credit card.  Please try again later.  If the problem continues please contact support: support@nj2jp.com.';
       } break;
       case 'INVALID_REQUEST_ERROR': {
-
-      }
+        errorMsg = 'Our deepest apologies!  Looks like your payment is missing some required information.  Please try again.';
+      } break;
+      case 'RATE_LIMIT_ERROR': {
+        errorMsg = 'Our deepest apologies!  Our servers are currently under heavy load.  We\'ll post a status on Twitter @NicJuice2Japan when we\'re ready to process payment again.';
+      } break;
+      case 'PAYMENT_METHOD_ERROR': {
+        errorMsg = 'The credit card details you provided appear to be invalid.  Please verify your payment information and try again.';
+      } break;
       /* eslint-enable no-lone-blocks */
     }
   });
