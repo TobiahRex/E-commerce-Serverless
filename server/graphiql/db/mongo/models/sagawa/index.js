@@ -147,6 +147,14 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "orderUpload"
+* Generates and sends customer's order details via XML HTTP reqeuest to Sagawa API.  This function call initiates the shipping fullfillment process to the customer.
+*
+* @param {string/ Mongo Object Id} sagawaId - documentId of sagawa document.
+
+* @return {object} Promise resolved with Order AWB & REF id's.
+*/
 sagawaSchema.statics.orderUpload = sagawaId =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
@@ -195,7 +203,7 @@ new Promise((resolve, reject) => {
 });
 /**
 * Function: "findSagawaAndUpdate"
-* Need to update the existing sagawa document with awbId ands referenceId.
+* Need to update the existing sagawa document with awbId and referenceId.
 * This method is called after sending sagawa upload to sagawa shipment endpoint.
 *
 * @param {objectId} _id - documentId of sagawa document.

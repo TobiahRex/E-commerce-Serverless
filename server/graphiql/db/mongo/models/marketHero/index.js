@@ -29,14 +29,14 @@ new Promise((resolve, reject) => {
 });
 
 /**
-* 1) Determines whether @param "tag" is an array or single string.
-* 2) Creates a tagInfo array, populates with "language" and "tag". (Langauge because we need to know immediately upon creating the lead for the first time, what language they speak for analytics purposes)
-* 3) create request body for MarketHero API.
-* 4) Send POST request with data.
-* 5) Resolve || Reject with MarketHero response.
+* Function: "createOrUpdateLead"
+* Sends Customer data and a list of tags to the Market Hero API.
+* 1) Verifies input arguments exist.
+* 2) Creates request body for MarketHero API.
+* 3) Send POST request with data.
+* 4) Resolve || Reject with MarketHero response.
 *
-* @param string userEmail - Email data.
-* @param string || [array] tag -  Tag data || Tags Data.
+* @param {object} transactionInfo - 1) {object} lead: lead information. 2) {array} tags: individual strings representing a tag.
 *
 * @return {object} - Promise: resolved - no data.
 */
@@ -78,6 +78,7 @@ new Promise((resolve, reject) => {
 });
 
 /**
+* Function: "createMongoLead"
 * 1) Determines whether @param "tag" is an array or single string and formats "tagInfo" accordingly.
 * 2) Creates new MarketHero document in local db.
 * 3) Resolves || Rejects result.
