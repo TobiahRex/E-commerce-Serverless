@@ -32,7 +32,7 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolved - no data.
 */
-marketHeroSchema.statics.createOrUpdateLead = (userEmail, language, tag) =>
+marketHeroSchema.statics.createOrUpdateLead = ({ lead, tags }) =>
 new Promise((resolve, reject) => {
   if (!userEmail || !language || !tag) {
     console.log('Missing required arguments at "createOrUpdateLead".');
