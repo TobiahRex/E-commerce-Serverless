@@ -13,7 +13,7 @@ const {
   JP_SQUARE_SANDBOX_ACCESS_TOKEN: jpSquareSandboxAccessToken,
 } = process.env;
 
-export const getSqLocation = (country) => {
+export const getSquareLocation = (country) => {
   if (country === 'US') {
     if (squareEnv === 'development') return usSquareSandboxLocation;
     return usSquareLocation;
@@ -23,7 +23,7 @@ export const getSqLocation = (country) => {
   return jpSquareLocation;
 };
 
-export const getSqToken = (country) => {
+export const getSquareToken = (country) => {
   if (country === 'US') {
     if (squareEnv === 'development') return usSquareSandboxAccessToken;
     return usSquareAccessToken;
@@ -33,7 +33,7 @@ export const getSqToken = (country) => {
   return jpSquareAccessToken;
 };
 
-export const getAmount = (country, grandTotal, fxRateJpy) => {
+export const composeAmount = (country, grandTotal, fxRateJpy) => {
   let grandTotalInt = Number(grandTotal);
   const jpyInt = Number(fxRateJpy) / 100;
 
