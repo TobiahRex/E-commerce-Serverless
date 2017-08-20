@@ -133,16 +133,16 @@ new Promise((resolve, reject) => {
   .then((dbLead) => {
     console.log('SUCCESS: Found lead: ', dbLead);
     dbLead.mongoTags = [dbLead.mongoTags, ...mongoTags];
-    dbLead.apiTags = [dbLead.mongoTags, ...mongoTags];
+    dbLead.apiTags = [dbLead.apiTags, ...apiTags];
     return dbLead.save({ new: true });
   })
   .then((savedLead) => {
-    console.log(`Successfully updated Lead: ${savedLead}`);
-    return resolve(`Successfully updated Lead: ${savedLead}`);
+    console.log('SUCCESS: Updated Lead: ', savedLead);
+    return resolve('SUCCESS: Updated Lead.');
   })
   .catch((error) => {
-    console.log(`Error trying to update LEAD to Mongo Database.  ERROR = ${error}`);
-    return reject(`Error trying to update LEAD to Mongo Database.  ERROR = ${error}`);
+    console.log('FAIL: Updating LEAD to Mongo Database: ', error);
+    reject(new Error('FAIL: Updating LEAD to Mongo Database: '));
   });
 });
 
