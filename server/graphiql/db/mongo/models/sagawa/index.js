@@ -181,7 +181,7 @@ new Promise((resolve, reject) => {
     return CleanSagawaResponse.handleUpload(response);
   })
   .then(({ data }) => {
-    console.log('Successfully uploaded order to Sagawa & extracted AWB & REF numbers: ', data);
+    console.log('Successfully extracted AWB & REF numbers: ', data);
     resolve(data);
   })
   .catch((error) => {
