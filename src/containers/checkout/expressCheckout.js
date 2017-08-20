@@ -304,7 +304,6 @@ class ExpressCheckout extends React.Component {
       const {
         data: {
           ValidatePostal: {
-            _id,
             error,
             postalInfo,
           },
@@ -323,10 +322,7 @@ class ExpressCheckout extends React.Component {
         }), () => {
           this.props.apiSuccess();
           this.props.clearToaster();
-          this.props.gotValidPostal({
-            ...postalInfo,
-            sagawaId: _id,
-          });
+          this.props.gotValidPostal({ ...postalInfo });
         });
       }
     })
