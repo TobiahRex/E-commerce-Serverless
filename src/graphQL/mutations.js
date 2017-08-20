@@ -367,7 +367,6 @@ export const ValidatePostal = gql`
       postalCode: $postalCode
       userId: $userId
     ) {
-      _id
       error {
         hard
         soft

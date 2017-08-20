@@ -23,11 +23,6 @@ const sagawaSchema = new Schema({
     enum: ['pending', 'uploaded'],
     default: 'pending',
   },
-  postalInfo: {
-    verified: { type: Boolean, default: false, required: true },
-    postalCode: { type: String, required: true },
-    jpAddress: { type: String, required: true },
-  },
   uploadForm: { type: String },
   shippingAddress: {
     awbId: { type: String },
