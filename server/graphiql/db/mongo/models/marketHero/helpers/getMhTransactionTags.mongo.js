@@ -26,7 +26,9 @@ export default function getMhTransactionTags({
 
   if (register) {
     tags.push({
-      '!Discount_register'
+      name: '!Discount_register',
+      description: 'The user has received a 10% New Member discount during a transaction.',
+      date: moment().format('ll'),
     });
   }
 

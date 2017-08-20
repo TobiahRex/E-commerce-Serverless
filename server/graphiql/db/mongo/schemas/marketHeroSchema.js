@@ -14,7 +14,8 @@ const marketHeroSchema = new Schema({
     givenName: { type: String, default: 'John' },
     familyName: { type: String, default: 'Doe' },
   },
-  tags: [{
+  apiTags: [{ type: String }],
+  mongoTags: [{
     name: { type: String },
     description: { type: String },
     date: { type: String },

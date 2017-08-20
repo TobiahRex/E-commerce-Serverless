@@ -15,7 +15,7 @@ import {
   getSquareLocation as GetSquareLocation,
 } from './helpers';
 import {
-  getMhTransactionTags as GetMhTransactionTags,
+  getMhTransactionTagsMongo as GetMhTransactionTagsMongo,
 } from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
@@ -257,7 +257,8 @@ new Promise((resolve, reject) => {
       familyName: sagawa.shippingAddress.familyName,
     };
 
-    const tags = GetMhTransactionTags({ total, cart, language });
+    const mongoTags = GetMhTransactionTagsMongo({ total, cart, language });
+    const apiTags = GetMhTransactionTagsMongo({ total, cart, language });
 
     return Promise.all([
       Email.createInvoiceEmailBody({
@@ -267,7 +268,7 @@ new Promise((resolve, reject) => {
         language,
         transaction: newTransactionDoc,
       }),
-      MarketHero[marketHeroOp]({ lead, tags }),
+      MarketHero[marketHeroOp]({ lead, mongoTags, apiTags }),
     ]);
   })
   .then((results) => {

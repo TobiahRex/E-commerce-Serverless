@@ -87,16 +87,16 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolved - no data.
 */
-marketHeroSchema.statics.createMongoLead = ({ lead, tags }) =>
+marketHeroSchema.statics.createMongoLead = ({ lead, mongoTags, apiTags }) =>
 new Promise((resolve, reject) => {
   console.log('@MarketHero.createMongoLead\n\n');
 
-  if (!lead || !tags) {
+  if (!lead || !mongoTags || !apiTags) {
     console.log('FAILED: Missing Required arguments @ MarketHero.createMongoLead.');
     reject(new Error('FAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
   }
 
-  bbPromise.fromCallback(cb => MarketHero.create({ lead, tags }, cb))
+  bbPromise.fromCallback(cb => MarketHero.create({ lead, mongoTags, apiTags }, cb))
   .then((newLead) => {
     console.log('SUCCESS: Create Mongo Market Hero Document: ', newLead);
     return resolve(newLead);
@@ -118,11 +118,11 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolved - no data.
 */
-marketHeroSchema.statics.updateMongoLead = ({ lead, tags }) =>
+marketHeroSchema.statics.updateMongoLead = ({ lead, mongoTags, apiTags }) =>
 new Promise((resolve, reject) => {
   console.log('@MarketHero.updateMongoLead\n\n');
 
-  if (!lead || !tags) {
+  if (!lead || !mongoTags || !apiTags) {
     console.log('FAILED: Missing Required arguments @ MarketHero.createMongoLead.');
     reject(new Error('FAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
   }
@@ -132,7 +132,8 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbLead) => {
     console.log('SUCCESS: Found lead: ', dbLead);
-    dbLead.tags = [dbLead.tags, ...tags];
+    dbLead.mongoTags = [dbLead.mongoTags, ...mongoTags];
+    dbLead.apiTags = [dbLead.mongoTags, ...mongoTags];
     return dbLead.save({ new: true });
   })
   .then((savedLead) => {
