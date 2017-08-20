@@ -34,6 +34,17 @@ const xmlOut = str => str
 .replace(/>/g, '&gt;')
 .replace(/"/g, '');
 
+/**
+* Function: "validatePostal";
+* Receives input argument object with "userId" & the "postalCode" to validate.  Sends info to Sagawa API for verification.  If verification is successful, the rsponse contains the Kanji formatted Japanese address respective to the Postal code input.  The result is then saved in a NEW Sagawa Mongo Document. The User ID responsible for the fetch, is also saved on the new document.  This method is called during the Checkout Process as soon as the user inputs a valid 7 digit Japanese postal code.
+* 1. Receives standard Javascript string
+* 2. Replaces special characters with XML compliant syntax.
+* 3. Returns the result.
+*
+* @param {string} postalCode - the postal code to validate.
+*
+* @return {string} cleaned
+*/
 sagawaSchema.statics.validatePostal = ({ userId, postalCode }) =>
 new Promise((resolve, reject) => {
   console.log('SENDING REQUEST TO SAGAWA');

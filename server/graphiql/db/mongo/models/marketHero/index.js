@@ -6,6 +6,7 @@ import db from '../../connection';
 require('dotenv').load({ silent: true });
 
 /**
+* Function: "checkForLead"
 * 1) Determines if "lead" (email) is already saved to MarketHero collection.
 *
 * @param string userEmail - Email data.
@@ -109,6 +110,7 @@ new Promise((resolve, reject) => {
 });
 
 /**
+* Function: "updateMongoLead"
 * 1) Locates MarketHero Document in local DB using input argument "userEmail".
 * 2) If found - updates Document's "tags" array with input argument "tag".
 * 3) Saves the updated Document.
