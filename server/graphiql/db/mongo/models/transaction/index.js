@@ -22,7 +22,14 @@ import {
 
 require('dotenv').load({ silent: true });
 
-
+/**
+* Function: "fetchSquareLocation":
+* Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
+*
+* @param {object} orderForm - all the inputs from the Order form.
+*
+* @return {object} Mongo Transaction Document.
+*/
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
   console.log('@fetchSquareLocation');
@@ -33,7 +40,7 @@ new Promise((resolve, reject) => {
     headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
   })
   .then((response) => {
-    console.log('Received locations from Square: ', response.data);
+    console.log('SUCCEEDED: Fetch Square Location: ', response.data);
 
     const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
@@ -46,7 +53,7 @@ new Promise((resolve, reject) => {
       };
 
       if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-        console.log('Found location object! Resolving...');
+        console.log('SUCCEEDED: Verify location CC processing.');
         resolve(newLocation);
       } else {
         newLocation.error = {
@@ -68,8 +75,8 @@ new Promise((resolve, reject) => {
     }
   })
   .catch((error) => {
-    console.log('Error while fetching location from Square.  Error = ', error);
-    reject(`Error while fetching location from Square.  Error = ${error}`);
+    console.log('FAILED: Fetch square location: ', error);
+    reject(new Error('FAILED: Fetch square location.'));
   });
 });
 
