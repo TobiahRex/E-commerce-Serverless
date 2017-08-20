@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import express from 'express';
-import uploadSagawaAndSendEmail from './onDemand';
+import Sagawa from '../db/models/sagawa';
 
 const router = new express.Router();
 
@@ -12,7 +12,7 @@ const router = new express.Router();
 */
 
 router.post('/sagawa', (req, res) => {
-  uploadSagawaAndSendEmail(req.body)
+  Sagawa.uploadSagawaAndSendEmail(req.body)
     .then((response) => {
       console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
       res.status(200).send(response);

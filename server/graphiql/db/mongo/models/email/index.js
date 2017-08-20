@@ -123,7 +123,7 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolved - updated email doc.
 */
-emailSchema.statics.sendEmail = (to, emailDoc) =>
+emailSchema.statics.sendEmail = ({ to, htmlBody }, emailDoc) =>
 new Promise((resolve, reject) => {
   if (!isEmail(to)) {
     console.log(`ERROR = "${to}" is not a valid email.  `);
@@ -139,7 +139,7 @@ new Promise((resolve, reject) => {
     Message: {
       Body: {
         Html: {
-          Data: emailDoc.bodyHtmlData,
+          Data: htmlBody,
           Charset: emailDoc.bodyHtmlCharset,
         },
         Text: {
@@ -249,6 +249,8 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.createInvoiceEmailBody = orderInfo =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.createInvoiceEmailBody\n');
+
   const {
     cart,
     sagawa,
@@ -268,7 +270,7 @@ new Promise((resolve, reject) => {
 
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
-    console.log('Successfully found Template Invoice Email for language: ', language);
+    console.log('SUCCEEDED: Find Template Invoice Email for language: ', language);
 
     const productListHtmlString = createEmailProductList(dbEmail, cart);
 

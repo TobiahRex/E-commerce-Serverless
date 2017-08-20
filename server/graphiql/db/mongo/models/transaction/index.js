@@ -189,7 +189,6 @@ new Promise((resolve, reject) => {
       termsAgreement,
       user: userId,
       products: cart,
-      sagawa: sagawa.sagawaId,
       emailAddress: sagawa.shippingAddress.email,
       jpyFxRate,
       taxes,
@@ -267,6 +266,7 @@ new Promise((resolve, reject) => {
 
     userDoc = { ...results[0] };
     const marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
+    const sagawaDoc = results[2];
 
     const lead = {
       language,
@@ -291,6 +291,11 @@ new Promise((resolve, reject) => {
         lead,
         tags: GetMhTransactionTagsApi({ total, cart, language }),
       }),
+      Transaction.findByIdAndUpdate(newTransactionDoc._id, {
+        $set: {
+          sagawa: sagawaDoc._id,
+        },
+      }, { new: true }),
     ]);
   })
   .then((results) => {
