@@ -531,10 +531,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
   GraphQLvalidatePostal: (postalCode) => {
     ownProps.apiIsFetching();
     return ownProps.ValidatePostal({
-      variables: {
-        postalCode,
-        userId: ownProps.userId,
-      },
+      variables: { postalCode },
     });
   },
   GraphQLsubmitOrder: (formData) => {

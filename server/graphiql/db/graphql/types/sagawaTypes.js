@@ -151,10 +151,6 @@ const mutations = {
   ValidatePostal: {
     type: mutationTypes.ValidatePostal,
     args: {
-      userId: {
-        description: 'The user\'s unique _id.',
-        type: new NonNull(MongoId),
-      },
       postalCode: {
         description: 'The postal code to validate.',
         type: new NonNull(StringType),

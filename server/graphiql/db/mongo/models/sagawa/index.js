@@ -45,7 +45,7 @@ const xmlOut = str => str
 *
 * @return {object} - New Sagwa Document.
 */
-sagawaSchema.statics.validatePostal = ({ userId, postalCode }) =>
+sagawaSchema.statics.validatePostal = ({ postalCode }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.validatePostal\n');
 
