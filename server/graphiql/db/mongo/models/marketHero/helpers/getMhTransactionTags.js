@@ -8,7 +8,7 @@ export default function getMhTransactionTags({
     },
   },
 }) {
-  let tags = [`!${language}`];
+  const tags = [`!${language}`];
 
   if (qty) tags.push('!Discount_qty');
   if (register) tags.push('!Discount_register');
@@ -26,5 +26,5 @@ export default function getMhTransactionTags({
     return acc;
   }, []);
 
-  tags = [...tags, ...productTags];
+  return [...tags, ...productTags];
 }
