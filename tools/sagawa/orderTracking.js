@@ -12,7 +12,7 @@ const createSagawaTrackingAPI = () => {
     },
   });
 
-  const getStatus = trackingNumber => api.get('xmltrack.asp', { REF: trackingNumber });
+  const getStatus = trackingNumber => api.get(`xmltrack.asp?AWB=${trackingNumber}`);
 
   return {
     getStatus,
@@ -20,10 +20,7 @@ const createSagawaTrackingAPI = () => {
 };
 const sagawaTrackingAPI = createSagawaTrackingAPI();
 
-sagawaTrackingAPI.getStatus({
-  AWB: 'TEST20170223001',
-  REF: 564634761902,
-})
+sagawaTrackingAPI.getStatus('200000951522')
 .then((response) => {
   const { problem, ok, data } = response;
   console.log('RESPONSE:\n', response, '\n\n');

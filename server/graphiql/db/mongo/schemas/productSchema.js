@@ -82,7 +82,8 @@ const productSchema = new Schema({
     },
     quantities: {
       available: { type: Number, default: 500 },
-      inCart: { type: Number },
+      inCarts: { type: Number, default: 0 },
+      purchased: { type: Number, default: 0 },
     },
   },
   reviews: [{

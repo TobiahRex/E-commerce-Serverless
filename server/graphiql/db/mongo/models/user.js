@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
+import Product from './product';
 import db from '../connection';
 
 /**
@@ -169,11 +170,20 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart.push({ qty, product });
-    return dbUser.save({ validateBeforeSave: true });
+    /* eslint-disable no-dupe-keys */
+    return Promise.all([
+      dbUser.save({ validateBeforeSave: true }),
+      Product.findByIdAndUpdate(product, {
+        $inc: { 'product.quantities.inCarts': 1 },
+        $inc: { 'product.quantities.available': -1 },
+        $inc: { 'product.statistics.addsToCart': 1 },
+      }),
+    ]);
+    /* eslint-enable no-dupe-keys */
   })
-  .then((savedUser) => {
-    console.log('Saved product ID & QTY to the User\'s Shopping Cart!: ', product);
-    resolve(savedUser);
+  .then((results) => {
+    console.log('Success! 1) Saved product ID & QTY to the User\'s Shopping Cart!, 2) Update Product "quantities" & "statistics": ', results);
+    resolve(results[0]);
   })
   .catch((error) => {
     console.log({

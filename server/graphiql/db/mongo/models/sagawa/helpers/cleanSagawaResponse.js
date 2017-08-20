@@ -1,6 +1,6 @@
 import xml2js from 'xml2js';
 
-const extractData = (jsonResponse) => {
+const extractPostalData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:getAddrResponse'][0]['ns:return'][0];
 
   const postalCode = response.split('|')[0];
@@ -18,6 +18,27 @@ const extractData = (jsonResponse) => {
     verified: true,
     postalCode,
     jpAddress,
+  });
+};
+
+const extractTrackingData = (jsonResponse) => {
+  const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:uploadDataResponse'][0]['ns:return'][0];
+
+  const awbId = response.split('|')[5].replace(/(A)+/g, '');
+  const referenceId = response.split('|')[1];
+
+  if (!awbId.length || !referenceId.length) {
+    return ({
+      verified: false,
+      awbId,
+      referenceId,
+    });
+  }
+
+  return ({
+    verified: true,
+    awbId,
+    referenceId,
   });
 };
 
@@ -51,10 +72,12 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, postalCode, jpAddress } = extractData(results);
-    console.log('verified: ', verified)
-    console.log('postalCode: ', postalCode)
+    const { verified, postalCode, jpAddress } = extractPostalData(results);
+    /*  eslint-disable no-console */
+    console.log('verified: ', verified);
+    console.log('postalCode: ', postalCode);
     console.log('jpAddress: ', jpAddress);
+    /*  eslint-enable no-console */
 
     if (!verified) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
@@ -74,6 +97,43 @@ new Promise((resolve, reject) => {
   });
 });
 
+const handleUpload = response =>
+new Promise((resolve, reject) => {
+  const { status, data } = response;
+  let problem = status !== 200;
+
+  if (problem) {
+    problem = 'There was a problem submitting your order.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
+    reject(problem);
+  }
+
+  xml2js.parseString(data, (err, results) => {
+    if (err) {
+      problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+      reject(problem);
+    }
+
+    const { verified, awbId, referenceId } = extractTrackingData(results);
+    /*  eslint-disable no-console */
+    console.log('verified: ', verified);
+    console.log('awbId: ', awbId);
+    console.log('referenceId: ', referenceId);
+    /*  eslint-enable no-console */
+
+    if (!verified) {
+      reject('Unable to upload order to retrieve Tracking & Reference number from Sagawa API.');
+    }
+
+    resolve({
+      data: {
+        awbId,
+        referenceId,
+      },
+    });
+  });
+});
+
 export default {
   handlePostal,
+  handleUpload,
 };

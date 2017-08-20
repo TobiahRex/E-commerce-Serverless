@@ -2,6 +2,7 @@
 import { Promise as bbPromise } from 'bluebird';
 import axios from 'axios';
 import moment from 'moment';
+import xml2js from 'xml2js';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
 import Product from '../product';
@@ -154,29 +155,36 @@ new Promise((resolve, reject) => {
   .findById(sagawaId)
   .exec()
   .then(sagawaDoc =>
-    axios.post('',
-    `<DATA>
-      ${GenerateAddressXml(sagawaDoc)}
-      ${GenerateItemsXml(sagawaDoc)}
-    </DATA>`),
+    axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
+    `<?xml version='1.0' encoding='utf-8'?>
+    <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+    <soap:Body>
+      <uploadFile xmlns='http://ws.com'>
+      <handler>
+        ${xmlOut('<DATA>')}
+          ${xmlOut(GenerateAddressXml(sagawaDoc))}
+          ${xmlOut(GenerateItemsXml(sagawaDoc))}
+        ${xmlOut('</DATA>')}
+      </handler>
+      </uploadFile>
+    </soap:body>
+    </soap:Envelope>`, {
+      headers: {
+        'Content-Type': 'text/xml; charset=utf-8',
+        SOAPAction: 'http://ws.com',
+      },
+    }),
   )
-  .then((apiResult) => {
-    if (apiResult.status !== 200) {
-      console.log('Could not upload order to Sagawa: ', apiResult.data);
-      resolve({
-        error: {
-          hard: true,
-          soft: false,
-          message: 'Could not upload order to sagawa',
-        },
-      });
-    }
-
-    resolve(apiResult.data);
+  .then((response) => {
+    console.log('Sagawa RESPONSE:\n', response.data, '\n\n');
+    const { data } = CleanSagawaResponse.handleUpload(response);
+    console.log('Successfully uploaded order to Sagawa & extracted AWB & REF numbers.');
+    resolve(data);
   })
   .catch((error) => {
-    reject(error);
-  })
+    console.log('Could not upload order to Sagawa. Error = ', error);
+    reject('Could not upload order to Sagawa.');
+  });
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);

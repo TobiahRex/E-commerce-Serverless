@@ -290,7 +290,9 @@ class ExpressCheckout extends React.Component {
         console.log('%ccleanResponse', 'background:lime;', cleanResponse);
 
         this.props.toastSuccess(true, 'Order successfully submitted!');
-        // TODO create a redux action to save response into local state.
+        // TODO create a redux action(s) to save response into local state.
+        // Receive 1) User Doc 2) Tracking Number 3) Transaction Doc.
+        // Combine with Product Cart to send the user to the Invoice Page.
       })
       .catch(this.props.GraphQLhandleError);
     }

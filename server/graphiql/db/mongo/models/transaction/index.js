@@ -7,6 +7,7 @@ import User from '../user';
 import Email from '../email';
 import MarketHero from '../marketHero';
 import Sagawa from '../sagawa';
+import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   getSqLocation,
@@ -15,6 +16,7 @@ import {
 } from './squareHelpers';
 
 require('dotenv').load({ silent: true });
+
 
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
@@ -124,11 +126,26 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "submitFinalOrder"
+* 1. Establishes 3 variables on the highest scope within the function.  These variables will be returned to the client after final promise resolution.
+* 2. Call 3 promises in parallel: 1) Create a new Transaction document with values form the input arguments. 2) Find and Update the User document with important email information that may otherwise not already exist.  3) Call the Square API, fetching the business location based on the Billing country (US or Japan) chosen by the customer.
+* 3. If successful, assign the upper scopes variables their respective values for Transaction & User.
+* 4. Call the Square API again, using the LocationId fetched in the previous step, with any other required info, extracted from the input arguments.
+* 5. If successful, update the User document with the necessary transaction history updates. Create or Update the Market Hero document respective to the User document, and generate the required fields for uploading the order information to Sagawa.
+* 6. If successful, re-save the upper scope User Doc variable with the updated user information & generate the Invoice Email based on language, and when the order will be shipped to the user.  Save the result on the Transaction document.
+* 7. Update the upper scope Transaction Doc variables with the new Transaction information & then call the Sagawa Upload lambda function passing the 1) User Id, 2) Sagawa Id, 3) Transaction Id.
+* 8. If order was successfully uploaded to Sagawa, then response status code will be a 200.  The final response will be resolved with the final 1) Transaction document.
+*
+* @param {object} orderForm - all the inputs from the Order form.
+*
+* @return {object} Mongo Transaction Document.
+*/
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
   console.log('@submitFinalOrder');
 
-  console.log('ARGS: \n', JSON.stringify(orderForm, null, 2));
+  console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
 
@@ -173,10 +190,10 @@ new Promise((resolve, reject) => {
     Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
-    console.log('\nSuccessfully Completed: 1) Created new Transaction Document. 2) Updated User profile. 3) Fetching Square Location information.\n');
+    console.log('\n2] Successfully Completed: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
     newTransactionDoc = results[0];
-    userDoc = results[1];
+    userDoc = { ...results[1] };
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
@@ -194,9 +211,9 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('Received response from Square API.');
+    console.log('3] Received Square response for charging Customer CC.');
     if (response.status !== 200) {
-      console.log('Failed to charge customer card: ', response.data);
+      console.log('3a] Failed to charge customer card: ', response.data);
       resolve({
         error: {
           hard: true,
@@ -205,7 +222,7 @@ new Promise((resolve, reject) => {
         },
       });
     }
-    console.log('Successfully charged customer card.');
+    console.log('3b] Successfully charged customer card.');
 
     return Promise.all([
       User.findByIdAndUpdate(userDoc._id, {
@@ -231,7 +248,9 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('Success! 1) Updated User cart and transactions history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+    console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+
+    userDoc = { ...results[0] };
 
     return Email.createInvoiceEmailBody({
       cart,
@@ -242,30 +261,58 @@ new Promise((resolve, reject) => {
     });
   })
   .then((updatedTransDoc) => {
-    console.log('Received updated Transaction Document.  Calling sagwa upload now...');
+    console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
+
+    newTransactionDoc = { ...updatedTransDoc };
+
     return axios.post('http://', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: updatedTransDoc._id,
     });
   })
-  .then((response) => {
-    console.log('FINAL RESPONSE: ', response);
+  .then(({ status, data }) => {
+    console.log('6] Success! Uploaded order to Sagawa. Response: ', data);
 
-    if (response !== 200) {
-      console.log('Was not able to complete the order: ', response.data);
+    if (status !== 200) {
+      console.log('Was not able to complete the order: ', data);
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: `Was not able to complete the order: ${response.data}`,
+          message: `Was not able to complete the order: ${data}`,
         },
       });
     }
-    resolve('We\'ve successfully completed your order!  Please standby while we generate your order invoice...');
+
+    console.log('Querying for all Products purchased by customer...');
+    return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
+  })
+  .then((productDocs) => {
+    console.log('7] Success! Found ', productDocs.length, ' product documents.  Perfoming update on "statistics" & "quantities" available now...');
+
+    productDocs.forEach((productDoc) => {
+      productDoc.product.quantities.inCarts -= 1;
+      productDoc.product.quantities.purchased += 1;
+      productDoc.statistics.completedCheckouts += 1;
+      productDoc.transactions = [...productDoc.transactions, {
+        transactionId: newTransactionDoc._id,
+        userId,
+      }];
+      productDoc.save({ validateBeforeSave: true })
+      .then((savedDoc) => {
+        console.log('Successfully updated "statistics" & "quantities" for Product ', savedDoc._id);
+      })
+      .catch((error) => {
+        console.log('Error while trying to update "statiistics" & "quantities" for Product ', productDoc._id, 'ERROR = ', error);
+        reject('Error while updating DB after successful purchase.');
+      });
+    });
+
+    console.log('8] Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
+    resolve(newTransactionDoc);
   })
   .catch((error) => {
-    console.log(error.response);
     console.log('Failed to submit order due to error: ', error);
     reject(`Failed to submit order due to error: ${error}`);
   });
