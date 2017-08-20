@@ -269,6 +269,7 @@ new Promise((resolve, reject) => {
         transaction: newTransactionDoc,
       }),
       MarketHero[marketHeroOp]({ lead, mongoTags, apiTags }),
+      MarketHero.createOrUpdateLead({ lead, tags: apiTags }),
     ]);
   })
   .then((results) => {

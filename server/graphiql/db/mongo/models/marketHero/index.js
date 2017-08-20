@@ -19,7 +19,7 @@ new Promise((resolve, reject) => {
   MarketHero.findOne({ 'lead.email': userEmail })
   .exec()
   .then((mhDoc) => {
-    console.log('SUCCESS: MarketHero.checkForLead: ', mhDoc);
+    console.log('SUCCEEDED: MarketHero.checkForLead: ', mhDoc);
     resolve(mhDoc);
   })
   .catch((error) => {
@@ -68,8 +68,8 @@ new Promise((resolve, reject) => {
       return reject(new Error('FAILE: Market Hero Upload: '));
     }
 
-    console.log('SUCCESS: Market Hero Upload:', res.data);
-    return resolve('SUCCESS: Posted to Market Hero.');
+    console.log('SUCCEEDED: Market Hero Upload:', res.data);
+    return resolve('SUCCEEDED: Posted to Market Hero.');
   })
   .catch((error) => {
     console.log('FAILED: MarketHero.createOrUpdateLead: ', error);
@@ -98,7 +98,7 @@ new Promise((resolve, reject) => {
 
   bbPromise.fromCallback(cb => MarketHero.create({ lead, mongoTags, apiTags }, cb))
   .then((newLead) => {
-    console.log('SUCCESS: Create Mongo Market Hero Document: ', newLead);
+    console.log('SUCCEEDED: Create Mongo Market Hero Document: ', newLead);
     return resolve(newLead);
   })
   .catch((error) => {
@@ -131,18 +131,21 @@ new Promise((resolve, reject) => {
   .findOne({ 'lead.email': lead.email })
   .exec()
   .then((dbLead) => {
-    console.log('SUCCESS: Found lead: ', dbLead);
-    dbLead.mongoTags = [dbLead.mongoTags, ...mongoTags];
-    dbLead.apiTags = [dbLead.apiTags, ...apiTags];
+    console.log('SUCCEEDED: Found lead: ', dbLead);
+    dbLead.language = lead.language;
+    dbLead.givenName = lead.givenName;
+    dbLead.familyName = lead.familyName;
+    dbLead.mongoTags = [...dbLead.mongoTags, ...mongoTags];
+    dbLead.apiTags = [...dbLead.apiTags, ...apiTags];
     return dbLead.save({ new: true });
   })
   .then((savedLead) => {
-    console.log('SUCCESS: Updated Lead: ', savedLead);
-    return resolve('SUCCESS: Updated Lead.');
+    console.log('SUCCEEDED: Updated Lead: ', savedLead);
+    return resolve('SUCCEEDED: Updated Lead.');
   })
   .catch((error) => {
-    console.log('FAIL: Updating LEAD to Mongo Database: ', error);
-    reject(new Error('FAIL: Updating LEAD to Mongo Database: '));
+    console.log('FAILED: Updating LEAD to Mongo Database: ', error);
+    reject(new Error('FAILED: Updating LEAD to Mongo Database: '));
   });
 });
 
