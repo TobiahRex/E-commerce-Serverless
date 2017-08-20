@@ -10,10 +10,10 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  getSqLocation,
-  getSqToken,
-  getAmount,
-} from './squareHelpers';
+  composeAmount as ComposeAmount,
+  getSquareToken as GetSquareToken,
+  getSquareLocation as GetSquareLocation,
+} from './helpers';
 
 require('dotenv').load({ silent: true });
 
@@ -25,12 +25,12 @@ new Promise((resolve, reject) => {
   axios({
     method: 'get',
     url: 'https://connect.squareup.com/v2/locations',
-    headers: { Authorization: `Bearer ${getSqToken(country)}` },
+    headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
   })
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
 
-    const locations = response.data.locations.filter(({ name }) => name === getSqLocation(country));
+    const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
     if (locations.length) {
       const newLocation = { ...locations[0] };
@@ -101,17 +101,17 @@ new Promise((resolve, reject) => {
         country: shippingCountry,
       },
       amount_money: {
-        amount: getAmount(billingCountry, grandTotal, jpyFxRate),
+        amount: ComposeAmount(billingCountry, grandTotal, jpyFxRate),
         currency: billingCountry === 'US' ? 'USD' : 'JPY',
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
-      note: `${getSqLocation(billingCountry)}: Online order.`,
+      note: `${GetSquareLocation(billingCountry)}: Online order.`,
       delay_capture: false,
     },
     {
       headers: {
-        Authorization: `Bearer ${getSqToken(billingCountry)}`,
+        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
       },
     },
   )
