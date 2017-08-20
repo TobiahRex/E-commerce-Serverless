@@ -42,12 +42,14 @@ const xmlOut = str => str
 * 3. Returns the result.
 *
 * @param {string} postalCode - the postal code to validate.
+* @param {string} userId - the Mongo Object Id for the user.
 *
-* @return {string} cleaned
+* @return {object} - New Sagwa Document.
 */
 sagawaSchema.statics.validatePostal = ({ userId, postalCode }) =>
 new Promise((resolve, reject) => {
-  console.log('SENDING REQUEST TO SAGAWA');
+  console.log('\n\n@Sagawa.validatePostal\n');
+
   axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/getAddr',
   `<?xml version='1.0' encoding='utf-8'?>
   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
@@ -63,14 +65,14 @@ new Promise((resolve, reject) => {
     },
   })
   .then((response) => {
-    console.log('Reieved response from Sagawa.');
+    console.log('SUCCEEDED: Sagawa validate postal');
     return CleanSagawaResponse.handlePostal(response);
   })
   .then(({ problem, data }) => { //eslint-disable-line
-    console.log('data: ', data);
-    console.log('problem: ', problem);
+    console.log('SUCCEEDED: Cleaned validate postal response.', data);
+
     if (problem) {
-      console.log('There was an error while trying to validate postal code', postalCode, '.  Error = ', problem);
+      console.log('FAILED: Error while validating postal code', problem);
       reject({
         error: {
           hard: true,
@@ -79,7 +81,6 @@ new Promise((resolve, reject) => {
         },
       });
     } else {
-      console.log('Successfully received a valid Address from postal code input.  Creating Sagawa document now.', data);
       return bbPromise.fromCallback(cb => Sagawa.create({
         userId,
         postalInfo: data.postalInfo,
@@ -87,18 +88,26 @@ new Promise((resolve, reject) => {
     }
   })
   .then((newDoc) => {
-    console.log('Successfully created new Sagawa document.', newDoc);
+    console.log('SUCCEEDED: Create new Sagawa Document.', newDoc);
     resolve(newDoc);
   })
   .catch((error) => {
-    console.log(`Error while trying to validate postal code: ${error}`);
-    reject(`Error while trying to validate postal code: ${error}`);
+    console.log('FAILED: Create new Sagawa Document: ', error);
+    reject(new Error('FAILED: Create new Sagwa Document.'));
   });
 });
 
+/**
+* Function: "deepUpdate";
+* Called by the Transaction.submitFinalOrder function as a follow-on action.  Receives the orderInfo object.  Starts by updating the Sagawa document associated with the Transaction with the Shipping Information.  Concurrently it queries for all products in the users cart at the time of purchase.  Next, it maps the product information to the cart productId's, and then generates an inidividual item object for each product that will be used in a follow on action for dynamically generating XML strings used in the Sagawa.uploadOrder process.  Function resolves with the final updated Sagawa Document.
+*
+* @param {string} postalCode - the postal code to validate.
+*
+* @return {string} cleaned
+*/
 sagawaSchema.statics.deepUpdate = orderInfo =>
 new Promise((resolve, reject) => {
-  console.log('\n\n@Sagawa.createUploadBody\n');
+  console.log('\n\n@Sagawa.deepUpdate\n');
 
   const {
     cart,
@@ -133,14 +142,12 @@ new Promise((resolve, reject) => {
     Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec(),
   ])
   .then((results) => {
-    console.log('Succcess! 1) Updated Sagawa document with Shipping Information.  2) Retrieved Product documents from cart _id\'s.');
+    console.log('SUCCEEDED: 1) Updated Sagawa document with Shipping Information.  2) Retrieved Product documents from cart _id\'s.');
 
     const updatedSagawaDoc = results[0];
     const dbProducts = results[1];
 
     const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
-
-    console.log('Zipped cart and db products together.', JSON.stringify(updatedCart, null, 2));
 
     return Sagawa.findByIdAndUpdate(updatedSagawaDoc._id, {
       $set: {
@@ -149,12 +156,12 @@ new Promise((resolve, reject) => {
     }, { new: true });
   })
   .then((updatedSagawaDoc) => {
-    console.log('Finished updating Sagawa document: ', updatedSagawaDoc);
-    resolve('Finished updating Sagawa document.');
+    console.log('SUCCEEDED: Deep update on Sagawa Document: ', updatedSagawaDoc);
+    resolve(updatedSagawaDoc);
   })
   .catch((error) => {
-    console.log('Could not update Sagawa document: ', error);
-    reject('Could not update Sagawa document.');
+    console.log('FAILED: Deep update on Sagawa Document: ', error);
+    reject(new Error('FAILED: Deep update on Sagawa Document'));
   });
 });
 
