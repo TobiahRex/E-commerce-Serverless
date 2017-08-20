@@ -18,13 +18,20 @@ export default function handleSquareErrors(response) {
       } break;
       case 'INVALID_EXPIRATION_YEAR': {
         errorMsg = 'The expiration YEAR you provided is incorrect.  Please correct it and try again.';
-      }
+      } break;
       case 'INVALID_EXPIRATION_DATE': {
         errorMsg = 'The expiration DATE you provided is incorrect.  Please correct it and try again.';
-      }
-      case 'CARD_EXPIRED': {
-        errorMsg = ''
-      }
+      } break;
+      case 'INVALID_CARD': {
+        errorMsg = 'You appear to be using an invalid card.  Please try a different Credit Card and try again.';
+      } break;
+      case 'AMOUNT_TOO_HIGH': {
+        errorMsg = 'The Total Amount for this purchase is beyond your Credit Card allowed purchase limit.  Please try a different card and try again.';
+      } break;
+      case 'CARD_DECLINED': {
+        errorMsg = 'Your card was declined. Please try a different Credit Card and try again.';
+      } break;
+      default: errorMsg = detail;
     }
 
     switch (category) {
@@ -49,7 +56,7 @@ export default function handleSquareErrors(response) {
       default: {
         errorMsg = 'We were unable to process this payment request.  Please come back in the future and try again.';
       }
-      /* eslint-enable no-lone-blocks */
+      /* eslint-enable no-lone-blocks, default-case */
     }
   });
   return errorMsg;

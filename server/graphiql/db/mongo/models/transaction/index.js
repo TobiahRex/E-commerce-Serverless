@@ -13,6 +13,7 @@ import {
   composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
+  handleSquareErrors as HandleSquareErrors,
 } from './helpers';
 import {
   getMhTransactionTagsMongo as GetMhTransactionTagsMongo,
@@ -223,7 +224,7 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Credit card is invalid. Please try again with a different card.',
+          message: HandleSquareErrors(response),
         },
       });
     }
