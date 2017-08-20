@@ -151,6 +151,11 @@ sagawaSchema.statics.orderUpload = sagawaId =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
 
+  if (!sagawaId) {
+    console.log('FAILED: Missing required arguments.');
+    reject(new Error('FAILED: Missing required arguments.'));
+  }
+
   Sagawa
   .findById(sagawaId)
   .exec()
