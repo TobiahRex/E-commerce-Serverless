@@ -28,11 +28,11 @@ export const INITIAL_STATE = Immutable({
   },
   postalInfo: {
     error: false,
-    sagawaId: '',
     jpAddress: '',
     postalCode: '',
     verified: false,
   },
+  transaction: null,
 });
 
 const setTaxRate = (state, { taxRate }) => ({

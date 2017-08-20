@@ -557,7 +557,6 @@ const ExpressCheckoutWithStateAndData = compose(
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
   toast: CheckForToast(toaster),
   userId: !!user.profile ? user.profile._id : '',
-  sagawaId: orders.postalInfo.sagawaId,
   taxRate: orders.taxRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,

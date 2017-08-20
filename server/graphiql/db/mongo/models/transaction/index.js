@@ -236,7 +236,7 @@ new Promise((resolve, reject) => {
         },
       }, { new: true }),
       MarketHero.checkForLead(sagawa.shippingAddress.email),
-      Sagawa.deepUpdate({
+      Sagawa.handleNewTransaction({
         cart,
         total,
         userId,
