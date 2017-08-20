@@ -1,10 +1,10 @@
 export default function getSagawaKbn(shippingCountry) {
   const {
     SAGAWA_ENV: sagawaEnv,
-    SAGAWA_KBN_US: sagawaKbnUs,
-    SAGAWA_KBN_JP: sagawaKbnJp,
-    SAGAWA_KBN_US_TEST: sagawaKbnUsTest,
-    SAGAWA_KBN_JP_TEST: sagawaKbnJpTest,
+    SAGAWA_JAPANESE: sagawaKbnUs,
+    SAGAWA_JAPANESE: sagawaKbnJp,
+    SAGAWA_TEST_ENGLISH: sagawaKbnUsTest,
+    SAGAWA_TEST_JAPANESE: sagawaKbnJpTest,
   } = process.env;
 
   if (sagawaEnv === 'development') {
