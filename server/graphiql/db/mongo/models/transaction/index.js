@@ -26,9 +26,9 @@ require('dotenv').load({ silent: true });
 * Function: "fetchSquareLocation":
 * Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
 *
-* @param {object} orderForm - all the inputs from the Order form.
+* @param {string} country - The country for Square account which the query will be executed..
 *
-* @return {object} Mongo Transaction Document.
+* @return {string} locationId.
 */
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
@@ -80,6 +80,14 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "squareChargeCard":
+* Charges the customers credit card using the Square API with the required request body, containing the shipping information associated with the Customer.
+*
+* @param {object} chargeInfo
+*
+* @return {object} Square API response.
+*/
 transactionSchema.statics.squareChargeCard = chargeInfo =>
 new Promise((resolve, reject) => {
   console.log('@squareChargeCard');
@@ -290,7 +298,7 @@ new Promise((resolve, reject) => {
 
     newTransactionDoc = { ...results[0] };
 
-    return axios.post('http://', {
+    return axios.post('http://localhost:3000/api/', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: newTransactionDoc._id,
