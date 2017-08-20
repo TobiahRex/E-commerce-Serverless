@@ -20,7 +20,6 @@ export default function ComposeLocalData({
   },
   props: {
     userId,
-    sagawaId,
     taxRate: taxes,
     jpyFxRate,
   },
@@ -36,7 +35,6 @@ export default function ComposeLocalData({
     total,
     jpyFxRate,
     sagawa: {
-      sagawaId,
       shippingAddress: {
         givenName: shippingFirstName,
         familyName: shippingLastName,

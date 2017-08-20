@@ -10,10 +10,14 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  getSqLocation,
-  getSqToken,
-  getAmount,
-} from './squareHelpers';
+  composeAmount as ComposeAmount,
+  getSquareToken as GetSquareToken,
+  getSquareLocation as GetSquareLocation,
+} from './helpers';
+import {
+  getMhTransactionTagsMongo as GetMhTransactionTagsMongo,
+  getMhTransactionTagsApi as GetMhTransactionTagsApi,
+} from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
 
@@ -25,12 +29,12 @@ new Promise((resolve, reject) => {
   axios({
     method: 'get',
     url: 'https://connect.squareup.com/v2/locations',
-    headers: { Authorization: `Bearer ${getSqToken(country)}` },
+    headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
   })
   .then((response) => {
     console.log('Received locations from Square: ', response.data);
 
-    const locations = response.data.locations.filter(({ name }) => name === getSqLocation(country));
+    const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
     if (locations.length) {
       const newLocation = { ...locations[0] };
@@ -101,17 +105,17 @@ new Promise((resolve, reject) => {
         country: shippingCountry,
       },
       amount_money: {
-        amount: getAmount(billingCountry, grandTotal, jpyFxRate),
+        amount: ComposeAmount(billingCountry, grandTotal, jpyFxRate),
         currency: billingCountry === 'US' ? 'USD' : 'JPY',
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
-      note: `${getSqLocation(billingCountry)}: Online order.`,
+      note: `${GetSquareLocation(billingCountry)}: Online order.`,
       delay_capture: false,
     },
     {
       headers: {
-        Authorization: `Bearer ${getSqToken(billingCountry)}`,
+        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
       },
     },
   )
@@ -231,16 +235,8 @@ new Promise((resolve, reject) => {
           'shopping.cart': [],
         },
       }, { new: true }),
-      bbPromise.fromCallback(cb => MarketHero.createOrUpdateLead({
-        lead: {
-          language,
-          email: sagawa.shippingAddress.email,
-          givenName: sagawa.shippingAddress.givenName,
-          familyName: sagawa.shippingAddress.familyName,
-        },
-        tags: GetMHTransactionTags({ total, cart, language }),
-      }, cb)),
-      Sagawa.deepUpdate({
+      MarketHero.checkForLead(sagawa.shippingAddress.email),
+      Sagawa.handleNewTransaction({
         cart,
         total,
         userId,
@@ -253,24 +249,42 @@ new Promise((resolve, reject) => {
     console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
     userDoc = { ...results[0] };
+    const marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
 
-    return Email.createInvoiceEmailBody({
-      cart,
-      square,
-      sagawa: results[2],
+    const lead = {
       language,
-      transaction: newTransactionDoc,
-    });
+      email: sagawa.shippingAddress.email,
+      givenName: sagawa.shippingAddress.givenName,
+      familyName: sagawa.shippingAddress.familyName,
+    };
+
+    return Promise.all([
+      Email.createInvoiceEmailBody({
+        cart,
+        square,
+        sagawa: results[2],
+        language,
+        transaction: newTransactionDoc,
+      }),
+      MarketHero[marketHeroOp]({
+        lead,
+        tags: GetMhTransactionTagsMongo({ total, cart, language }),
+      }),
+      MarketHero.createOrUpdateLead({
+        lead,
+        tags: GetMhTransactionTagsApi({ total, cart, language }),
+      }),
+    ]);
   })
-  .then((updatedTransDoc) => {
+  .then((results) => {
     console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
 
-    newTransactionDoc = { ...updatedTransDoc };
+    newTransactionDoc = { ...results[0] };
 
     return axios.post('http://', {
       userId,
       sagawaId: sagawa.sagawaId,
-      transactionId: updatedTransDoc._id,
+      transactionId: newTransactionDoc._id,
     });
   })
   .then(({ status, data }) => {

@@ -2,16 +2,22 @@ const Schema = require('mongoose').Schema;
 
 export const ObjectId = Schema.Types.ObjectId;
 const marketHeroSchema = new Schema({
+  date: { type: Date, default: Date.now },
   lead: {
+    language: {
+      type: String,
+      required: true,
+      default: 'english',
+      enum: ['english', 'japanese'],
+    },
     email: { type: String, required: true },
-    date: { type: Date, default: Date.now },
-    firstName: { type: String, default: 'John' },
-    lastName: { type: String, default: 'Doe' },
+    givenName: { type: String, default: 'John' },
+    familyName: { type: String, default: 'Doe' },
   },
   tags: [{
     name: { type: String },
     description: { type: String },
-    date: { type: Date },
+    date: { type: String },
   }],
 }, {
   bufferCommands: true,

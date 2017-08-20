@@ -304,7 +304,6 @@ class ExpressCheckout extends React.Component {
       const {
         data: {
           ValidatePostal: {
-            _id,
             error,
             postalInfo,
           },
@@ -323,10 +322,7 @@ class ExpressCheckout extends React.Component {
         }), () => {
           this.props.apiSuccess();
           this.props.clearToaster();
-          this.props.gotValidPostal({
-            ...postalInfo,
-            sagawaId: _id,
-          });
+          this.props.gotValidPostal({ ...postalInfo });
         });
       }
     })
@@ -561,7 +557,6 @@ const ExpressCheckoutWithStateAndData = compose(
 const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
   toast: CheckForToast(toaster),
   userId: !!user.profile ? user.profile._id : '',
-  sagawaId: orders.postalInfo.sagawaId,
   taxRate: orders.taxRate,
   newUser: CheckNewUser(user, auth.loggedIn),
   loggedIn: auth.loggedIn || false,
