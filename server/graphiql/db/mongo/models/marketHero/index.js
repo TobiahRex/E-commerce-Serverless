@@ -92,28 +92,27 @@ new Promise((resolve, reject) => {
   console.log('@MarketHero.createMongoLead\n\n');
 
   if (!userEmail || !language || !tag) {
-    console.log('Missing required arguments at "createMongoLead".');
-    reject('Missing required arguments at "createMongoLead"');
-  } else {
-    let tagInfo = null;
-
-    if (Array.isArray(tag)) tagInfo = [...tag, { name: language, description: `This user speaks ${language}.` }];
-
-    else tagInfo = [tag, { name: language, description: `This user speaks ${language}` }];
-
-    bbPromise.fromCallback(cb => MarketHero.create({
-      lead: { email: userEmail },
-      tags: Array.isArray(tagInfo) ? [...tagInfo] : [tagInfo],
-    }, cb))
-    .then((newLead) => {
-      console.log(`Created New lead in MONGO MarketHero collection. Results: ${newLead}`);
-      return resolve(newLead);
-    })
-    .catch((error) => {
-      console.log(`Error trying to save LEAD to MONGO MarketHero Collection.  ERROR = ${error}`);
-      return reject(`Error trying to save LEAD to MONGO MarketHero Collection.  ERROR = ${error}`);
-    });
+    console.log('MarketHero.createMongoLead FAIL: Missing required arguments.');
+    reject(new Error('MarketHero.createMongoLead FAIL: Missing required arguments.'));
   }
+  let tagInfo = null;
+
+  if (Array.isArray(tag)) tagInfo = [...tag, { name: language, description: `This user speaks ${language}.` }];
+
+  else tagInfo = [tag, { name: language, description: `This user speaks ${language}` }];
+
+  bbPromise.fromCallback(cb => MarketHero.create({
+    lead: { email: userEmail },
+    tags: Array.isArray(tagInfo) ? [...tagInfo] : [tagInfo],
+  }, cb))
+  .then((newLead) => {
+    console.log(`Created New lead in MONGO MarketHero collection. Results: ${newLead}`);
+    return resolve(newLead);
+  })
+  .catch((error) => {
+    console.log(`Error trying to save LEAD to MONGO MarketHero Collection.  ERROR = ${error}`);
+    return reject(`Error trying to save LEAD to MONGO MarketHero Collection.  ERROR = ${error}`);
+  });
 });
 
 /**
@@ -127,7 +126,7 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolved - no data.
 */
-marketHeroSchema.statics.updateMongoLead = (userEmail, tag) =>
+marketHeroSchema.statics.updateMongoLead = ({ lead, tags }) =>
 new Promise((resolve, reject) => {
   console.log('@MarketHero.updateMongoLead\n\n');
 

@@ -234,15 +234,7 @@ new Promise((resolve, reject) => {
           'shopping.cart': [],
         },
       }, { new: true }),
-      bbPromise.fromCallback(cb => MarketHero.createOrUpdateLead({
-        lead: {
-          language,
-          email: sagawa.shippingAddress.email,
-          givenName: sagawa.shippingAddress.givenName,
-          familyName: sagawa.shippingAddress.familyName,
-        },
-        tags: GetMHTransactionTags({ total, cart, language }),
-      }, cb)),
+      MarketHero.checkForLead(sagawa.shippingAddress.email),
       Sagawa.deepUpdate({
         cart,
         total,
@@ -256,14 +248,27 @@ new Promise((resolve, reject) => {
     console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
     userDoc = { ...results[0] };
+    const marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
 
-    return Email.createInvoiceEmailBody({
-      cart,
-      square,
-      sagawa: results[2],
+    const lead = {
       language,
-      transaction: newTransactionDoc,
-    });
+      email: sagawa.shippingAddress.email,
+      givenName: sagawa.shippingAddress.givenName,
+      familyName: sagawa.shippingAddress.familyName,
+    };
+
+    const tags = GetMHTransactionTags({ total, cart, language });
+
+    return Promise.all([
+      Email.createInvoiceEmailBody({
+        cart,
+        square,
+        sagawa: results[2],
+        language,
+        transaction: newTransactionDoc,
+      }),
+      MarketHero[marketHeroOp]({ lead, tags }),
+    ]);
   })
   .then((updatedTransDoc) => {
     console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
