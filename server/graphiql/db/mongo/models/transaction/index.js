@@ -16,6 +16,7 @@ import {
 } from './helpers';
 import {
   getMhTransactionTagsMongo as GetMhTransactionTagsMongo,
+  getMhTransactionTagsApi as GetMhTransactionTagsApi,
 } from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
@@ -257,9 +258,6 @@ new Promise((resolve, reject) => {
       familyName: sagawa.shippingAddress.familyName,
     };
 
-    const mongoTags = GetMhTransactionTagsMongo({ total, cart, language });
-    const apiTags = GetMhTransactionTagsMongo({ total, cart, language });
-
     return Promise.all([
       Email.createInvoiceEmailBody({
         cart,
@@ -268,8 +266,14 @@ new Promise((resolve, reject) => {
         language,
         transaction: newTransactionDoc,
       }),
-      MarketHero[marketHeroOp]({ lead, tags: mongoTags }),
-      MarketHero.createOrUpdateLead({ lead, tags: apiTags }),
+      MarketHero[marketHeroOp]({
+        lead,
+        tags: GetMhTransactionTagsMongo({ total, cart, language }),
+      }),
+      MarketHero.createOrUpdateLead({
+        lead,
+        tags: GetMhTransactionTagsApi({ total, cart, language }),
+      }),
     ]);
   })
   .then((results) => {

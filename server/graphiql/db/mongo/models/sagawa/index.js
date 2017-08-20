@@ -206,18 +206,18 @@ new Promise((resolve, reject) => {
 
   Sagawa.findByIdAndUpdate(_id, {
     $set: {
-      "shippingAddress.awbId": awbId,
-      "shippingAddress.referenceId": referenceId,
-      status: "uploaded",
+      'shippingAddress.awbId': awbId,
+      'shippingAddress.referenceId': referenceId,
+      status: 'uploaded',
     },
   }, { new: true })
     .then((sagawaDoc) => {
-      console.log('Update sagawaDoc: ', 'sagawaDoc\n\n');
+      console.log('SUCCEEDED: Update Sagawa Doc with AWB & REF #\'s: ', sagawaDoc);
       resolve(sagawaDoc);
     })
     .catch((error) => {
-      console.log('Could not update sagwa document with awbId and referenceId. Error = ', error);
-      reject('Could not update sagwa document with awbId and referenceId.');
+      console.log('FAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
+      reject(new Error('FAILED: Update Sagawa Doc with AWB & REF #\'s.'));
     });
 });
 
