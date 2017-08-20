@@ -98,12 +98,12 @@ new Promise((resolve, reject) => {
 
   bbPromise.fromCallback(cb => MarketHero.create({ lead, tags }, cb))
   .then((newLead) => {
-    console.log(`Created New lead in MONGO MarketHero collection. Results: ${newLead}`);
+    console.log('Create Mongo Market Hero Document SUCCESS: ', newLead);
     return resolve(newLead);
   })
   .catch((error) => {
-    console.log(`Error trying to save LEAD to MONGO MarketHero Collection.  ERROR = ${error}`);
-    return reject(`Error trying to save LEAD to MONGO MarketHero Collection.  ERROR = ${error}`);
+    console.log('Create Mongo Market Hero Document FAILED: ', error);
+    return reject(new Error('Create Mongo Market Hero Document FAILED'));
   });
 });
 
