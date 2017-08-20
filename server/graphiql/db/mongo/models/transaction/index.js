@@ -268,7 +268,7 @@ new Promise((resolve, reject) => {
         language,
         transaction: newTransactionDoc,
       }),
-      MarketHero[marketHeroOp]({ lead, mongoTags, apiTags }),
+      MarketHero[marketHeroOp]({ lead, tags: mongoTags }),
       MarketHero.createOrUpdateLead({ lead, tags: apiTags }),
     ]);
   })
