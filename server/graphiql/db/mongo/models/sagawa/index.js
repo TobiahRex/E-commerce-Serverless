@@ -181,17 +181,16 @@ new Promise((resolve, reject) => {
     }),
   )
   .then((response) => {
-    console.log('Sagawa RESPONSE:\n', response.data, '\n\n');
-    console.log('Extracing AWB & REF numbers from response...');
+    console.log('SUCCEEDED: Sagawa order Upload: ', response.data);
     return CleanSagawaResponse.handleUpload(response);
   })
   .then(({ data }) => {
-    console.log('Successfully extracted AWB & REF numbers: ', data);
+    console.log('SUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
     resolve(data);
   })
   .catch((error) => {
-    console.log('Could not upload order to Sagawa. Error = ', error);
-    reject('Could not upload order to Sagawa.');
+    console.log('FAILED: Order upload to Sagawa.', error);
+    reject(new Error('FAILED: Order upload to Sagawa.'));
   });
 });
 /**
