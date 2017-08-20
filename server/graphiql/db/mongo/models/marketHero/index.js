@@ -19,12 +19,12 @@ new Promise((resolve, reject) => {
   MarketHero.findOne({ 'lead.email': userEmail })
   .exec()
   .then((mhDoc) => {
-    console.log('MarketHero.checkForLead SUCCESS: ', mhDoc);
+    console.log('SUCCESS: MarketHero.checkForLead: ', mhDoc);
     resolve(mhDoc);
   })
   .catch((error) => {
-    console.log('MarketHero.checkForLead FAIL: ', error);
-    reject(new Error('MarketHero.checkForLead FAIL: '));
+    console.log('FAILED: MarketHero.checkForLead: ', error);
+    reject(new Error('FAILED: MarketHero.checkForLead: '));
   });
 });
 
@@ -45,8 +45,8 @@ new Promise((resolve, reject) => {
   console.log('@MarketHero.createOrUpdateLead\n\n');
 
   if (!lead || !tags) {
-    console.log('Missing required arguments at "createOrUpdateLead".');
-    reject('Missing required arguments at "createOrUpdateLead"');
+    console.log('FAILED: Missing required arguments @ "createOrUpdateLead".');
+    reject(new Error('FAILED: Missing required arguments @ "createOrUpdateLead"'));
   }
 
   const reqBody = {
@@ -72,8 +72,8 @@ new Promise((resolve, reject) => {
     return resolve('SUCCESS: Posted to Market Hero.');
   })
   .catch((error) => {
-    console.log('MarketHero.createOrUpdateLead FAIL: ', error);
-    return reject(new Error('MarketHero.createOrUpdateLead FAIL.'));
+    console.log('FAILED: MarketHero.createOrUpdateLead: ', error);
+    return reject(new Error('FAILED: MarketHero.createOrUpdateLead.'));
   });
 });
 
@@ -122,32 +122,27 @@ marketHeroSchema.statics.updateMongoLead = ({ lead, tags }) =>
 new Promise((resolve, reject) => {
   console.log('@MarketHero.updateMongoLead\n\n');
 
-  if (!userEmail || !tag) {
-    console.log('Missing required arguments at "updateMongoLead".');
-    reject('Missing required arguments at "updateMongoLead"');
-  } else {
-    let tagInfo = null;
-
-    if (Array.isArray(tag)) tagInfo = [...tag];
-    else tagInfo = [tag];
-
-    MarketHero
-    .findOne({ 'lead.email': userEmail })
-    .exec()
-    .then((dbLead) => {
-      console.log(`Found lead in MONGO MarketHero collection. Results: ${dbLead}`);
-      dbLead.tags = dbLead.tags.concat(tagInfo);
-      return dbLead.save({ new: true });
-    })
-    .then((savedLead) => {
-      console.log(`Successfully updated Lead: ${savedLead}`);
-      return resolve(`Successfully updated Lead: ${savedLead}`);
-    })
-    .catch((error) => {
-      console.log(`Error trying to update LEAD to Mongo Database.  ERROR = ${error}`);
-      return reject(`Error trying to update LEAD to Mongo Database.  ERROR = ${error}`);
-    });
+  if (!lead || !tags) {
+    console.log('FAILED: Missing Required arguments @ MarketHero.createMongoLead.');
+    reject(new Error('FAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
   }
+
+  MarketHero
+  .findOne({ 'lead.email': lead.email })
+  .exec()
+  .then((dbLead) => {
+    console.log('SUCCESS: Found lead: ', dbLead);
+    dbLead.tags = [dbLead.tags, ...tags];
+    return dbLead.save({ new: true });
+  })
+  .then((savedLead) => {
+    console.log(`Successfully updated Lead: ${savedLead}`);
+    return resolve(`Successfully updated Lead: ${savedLead}`);
+  })
+  .catch((error) => {
+    console.log(`Error trying to update LEAD to Mongo Database.  ERROR = ${error}`);
+    return reject(`Error trying to update LEAD to Mongo Database.  ERROR = ${error}`);
+  });
 });
 
 const MarketHero = db.model('MarketHero', marketHeroSchema);

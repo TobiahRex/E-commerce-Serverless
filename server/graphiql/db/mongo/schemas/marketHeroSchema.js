@@ -17,7 +17,7 @@ const marketHeroSchema = new Schema({
   tags: [{
     name: { type: String },
     description: { type: String },
-    date: { type: Date },
+    date: { type: String },
   }],
 }, {
   bufferCommands: true,

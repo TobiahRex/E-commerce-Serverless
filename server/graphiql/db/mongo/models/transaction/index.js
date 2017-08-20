@@ -15,7 +15,7 @@ import {
   getSquareLocation as GetSquareLocation,
 } from './helpers';
 import {
-  getMHTransactionTags as GetMHTransactionTags,
+  getMhTransactionTags as GetMhTransactionTags,
 } from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
@@ -257,7 +257,7 @@ new Promise((resolve, reject) => {
       familyName: sagawa.shippingAddress.familyName,
     };
 
-    const tags = GetMHTransactionTags({ total, cart, language });
+    const tags = GetMhTransactionTags({ total, cart, language });
 
     return Promise.all([
       Email.createInvoiceEmailBody({
@@ -270,15 +270,15 @@ new Promise((resolve, reject) => {
       MarketHero[marketHeroOp]({ lead, tags }),
     ]);
   })
-  .then((updatedTransDoc) => {
+  .then((results) => {
     console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
 
-    newTransactionDoc = { ...updatedTransDoc };
+    newTransactionDoc = { ...results[0] };
 
     return axios.post('http://', {
       userId,
       sagawaId: sagawa.sagawaId,
-      transactionId: updatedTransDoc._id,
+      transactionId: newTransactionDoc._id,
     });
   })
   .then(({ status, data }) => {

@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default function getMhTransactionTags({
   cart,
   language,
@@ -8,10 +10,25 @@ export default function getMhTransactionTags({
     },
   },
 }) {
-  const tags = [`!${language}`];
+  const tags = [{
+    name: `!${language}`,
+    description: 'The language the user speaks.',
+    date: moment().format('ll'),
+  }];
 
-  if (qty) tags.push('!Discount_qty');
-  if (register) tags.push('!Discount_register');
+  if (qty) {
+    tags.push({
+      name: '!Discount_qty',
+      description: 'The user has received a 25% Discount during a transaction.',
+      date: moment().format('ll'),
+    });
+  }
+
+  if (register) {
+    tags.push({
+      '!Discount_register'
+    });
+  }
 
   const productTags = cart.reduce((acc, next) => {
     let qtyCounter = next.qty;
@@ -23,7 +40,11 @@ export default function getMhTransactionTags({
         return a;
       }, '');
       const strength = `${next.product.nicotineStrength}mg`;
-      flavorTags.push(`${vendor}_${productName}_${strength}`);
+      flavorTags.push({
+        name: `${vendor}_${productName}_${strength}`,
+        description: 'The purchased product details.',
+        date: moment().format('ll'),
+      });
     }
 
     acc = [...acc, ...flavorTags];
