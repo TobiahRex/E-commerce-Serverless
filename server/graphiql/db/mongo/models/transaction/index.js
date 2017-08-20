@@ -147,7 +147,7 @@ new Promise((resolve, reject) => {
 */
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
-  console.log('@submitFinalOrder');
+  console.log('\n\n@Transaction.submitFinalOrder\n');
 
   console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
@@ -194,7 +194,7 @@ new Promise((resolve, reject) => {
     Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
-    console.log('\n2] Successfully Completed: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
+    console.log('\n2] SUCCEEDED: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
     newTransactionDoc = results[0];
     userDoc = { ...results[1] };
@@ -215,14 +215,15 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('3] Received Square response for charging Customer CC.');
+    console.log('3] SUCCEEDED: Square Charge Customer.');
+
     if (response.status !== 200) {
-      console.log('3a] Failed to charge customer card: ', response.data);
+      console.log('3a] FAILED: Square Charge Customer: ', response.data);
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: JSON.stringify(response.data),
+          message: 'Credit card is invalid. Please try again with a different card.',
         },
       });
     }
