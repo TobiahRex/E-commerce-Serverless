@@ -155,8 +155,8 @@ new Promise((resolve, reject) => {
     resolve(dbSagawa);
   })
   .catch((error) => {
-    console.log('FAILED: Deep update on Sagawa Document: ', error);
-    reject(new Error('FAILED: Deep update on Sagawa Document'));
+    console.log('FAILED: Handle new Transaction on Sagawa Document: ', error.message);
+    reject(new Error('\nFAILED: Handle new Transaction on Sagawa Document'));
   });
 });
 
