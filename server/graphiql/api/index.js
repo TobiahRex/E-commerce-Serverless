@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import express from 'express';
-import Sagawa from '../db/models/sagawa';
+import Sagawa from '../db/mongo/models/sagawa';
 
 const router = new express.Router();
 

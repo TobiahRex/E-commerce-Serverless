@@ -269,6 +269,7 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.uploadSagawaAndSendEmail');
 
   const {
+    userId,
     sagawaId,
     transactionId,
   } = request;
