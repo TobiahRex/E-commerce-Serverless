@@ -127,13 +127,13 @@ new Promise((resolve, reject) => {
   .then((dbProducts) => {
     console.log('SUCCEEDED: Retrieved Product documents from cart _id\'s.');
 
-    const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
+    const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, { _doc }) => ({ qty: cartProduct.qty, ..._doc }));
 
     return bbPromise.fromCallback(cb => Sagawa.create({
       userId,
       transactionId,
       shippingAddress: {
-        boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
+        boxid: `NJ2JP${moment().format('YYYYMMDD')}`,
         shipdate: moment().format('YYYY/MM/DD'),
         customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
         postal: sagawa.shippingAddress.postalCode,
@@ -147,7 +147,7 @@ new Promise((resolve, reject) => {
         deliveryTime: '1200',
         ttlAmount: total.subTotal,
       },
-      items: GenerateItemObjs(updatedCart),
+      items: [...GenerateItemObjs(updatedCart)],
     }, cb));
   })
   .then((dbSagawa) => {
@@ -155,8 +155,8 @@ new Promise((resolve, reject) => {
     resolve(dbSagawa);
   })
   .catch((error) => {
-    console.log('FAILED: Deep update on Sagawa Document: ', error);
-    reject(new Error('FAILED: Deep update on Sagawa Document'));
+    console.log('FAILED: Handle new Transaction on Sagawa Document: ', error);
+    reject(new Error('\nFAILED: Handle new Transaction on Sagawa Document'));
   });
 });
 
