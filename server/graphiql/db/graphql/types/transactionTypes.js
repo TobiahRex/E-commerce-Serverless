@@ -102,12 +102,12 @@ const rootType = new ObjectType({
       }),
     },
     invoiceEmailNoTracking: {
-      description: 'The Mongo _id for the invoice Email that was sent if the transaction was executed on off-business hours.',
-      type: MongoID,
+      description: 'The Html Body data for the Invoice Email that was sent if the transaction was executed on off-business hours.',
+      type: StringType,
     },
     invoiceEmail: {
-      description: 'The Mongo _id for the invoice Email that was sent.',
-      type: MongoID,
+      description: 'The Html Body data for the Invoice  Email that was sent.',
+      type: StringType,
     },
     jpyFxRate: {
       description: 'The foreign exchange rate between USD & JPY at the time of the transaction.',
@@ -172,7 +172,10 @@ const rootType = new ObjectType({
             description: 'The Square transaction ID for this transaction.',
             type: StringType,
           },
-          billingCountry: { type: StringType },
+          billingCountry: {
+            description: 'The registered country for the Credit Card that was used.',
+            type: StringType,
+          },
           shippingAddress: {
             description: 'The address information required by Square.',
             type: new ObjectType({
@@ -191,6 +194,7 @@ const rootType = new ObjectType({
                 last4: { type: IntType },
                 nameOnCard: { type: StringType },
                 cardNonce: { type: StringType },
+                postalCode: { type: StringType },
               }),
             }),
           },

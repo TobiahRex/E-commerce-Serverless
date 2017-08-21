@@ -7,9 +7,9 @@ import {
   GraphQLString as StringType,
   GraphQLInputObjectType as InputObject,
   GraphQLObjectType as ObjectType,
+  GraphQLEnumType as EnumType,
 } from 'graphql';
-
-import Transaction from '../../mongo/models/transaction';
+import { rootType as UserRootType } from './userTypes';
 
 const rootType = new ObjectType({
   name: 'Transaction',
@@ -79,21 +79,33 @@ const rootType = new ObjectType({
       description: 'The reference Mongo _id for the Sagawa document that was generated due to this transaction.',
       type: MongoID,
     },
-    marketHero: {
-      description: 'The reference Mongo _id for the Market Hero lead.',
-      type: MongoID,
-    },
     emailAddress: {
       description: 'The customer\'s email address.',
       type: StringType,
     },
+    emailLanguage: {
+      description: 'The language the customer preferred at the time of purchase.',
+      type: new EnumType({
+        name: 'ProductNicotineStrengthsEnum',
+        values: {
+          english: {
+            value: 'english',
+            description: 'The user is assumed to speak english.',
+          },
+          japanese: {
+            value: 'japanese',
+            description: 'The user is assumed to speak japanese.',
+          },
+        },
+      }),
+    },
     invoiceEmailNoTracking: {
-      description: 'The Mongo _id for the invoice Email that was sent if the transaction was executed on off-business hours.',
-      type: MongoID,
+      description: 'The Html Body data for the Invoice Email that was sent if the transaction was executed on off-business hours.',
+      type: StringType,
     },
     invoiceEmail: {
-      description: 'The Mongo _id for the invoice Email that was sent.',
-      type: MongoID,
+      description: 'The Html Body data for the Invoice  Email that was sent.',
+      type: StringType,
     },
     jpyFxRate: {
       description: 'The foreign exchange rate between USD & JPY at the time of the transaction.',
@@ -158,7 +170,10 @@ const rootType = new ObjectType({
             description: 'The Square transaction ID for this transaction.',
             type: StringType,
           },
-          billingCountry: { type: StringType },
+          billingCountry: {
+            description: 'The registered country for the Credit Card that was used.',
+            type: StringType,
+          },
           shippingAddress: {
             description: 'The address information required by Square.',
             type: new ObjectType({
@@ -177,6 +192,7 @@ const rootType = new ObjectType({
                 last4: { type: IntType },
                 nameOnCard: { type: StringType },
                 cardNonce: { type: StringType },
+                postalCode: { type: StringType },
               }),
             }),
           },
@@ -197,7 +213,7 @@ const rootType = new ObjectType({
 });
 
 const queryTypes = {
-  squareLocations: new ObjectType({
+  SquareLocations: new ObjectType({
     name: 'SquareLocations',
     fields: () => ({
       error: {
@@ -257,7 +273,7 @@ const queryTypes = {
 
 const queries = {
   FetchSquareLocations: {
-    type: queryTypes.squareLocations,
+    type: queryTypes.SquareLocations,
     args: {
       // userId: {
       //   description: 'The user\'s unique _id.',
@@ -268,13 +284,29 @@ const queries = {
       //   type: StringType,
       // },
     },
-    resolve: () => Transaction.fetchSquareLocation(),
+    resolve: (_, args, { Transaction }) => Transaction.fetchSquareLocation(),
   },
+};
+
+const mutationTypes = {
+  SubmitFinalOrder: new ObjectType({
+    name: 'TransactionSubmitFinalOrder',
+    fields: () => ({
+      user: {
+        description: 'The updated Mongo User Document.',
+        type: UserRootType,
+      },
+      transaction: {
+        description: 'The newly created Mongo Transaction Document.',
+        type: rootType,
+      },
+    }),
+  }),
 };
 
 const mutations = {
   SubmitFinalOrder: {
-    type: rootType,
+    type: mutationTypes.SubmitFinalOrder,
     args: {
       // access_token: {
       //   description: 'The Auth0 issued, JWT access_token.',
@@ -438,7 +470,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args) => Transaction.submitFinalOrder(args),
+    resolve: (_, args, { Transaction }) => Transaction.submitFinalOrder(args),
   },
 };
 
