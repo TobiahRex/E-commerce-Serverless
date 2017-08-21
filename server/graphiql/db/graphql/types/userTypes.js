@@ -11,7 +11,7 @@ import {
 
 import User from '../../mongo/models/user';
 
-const rootType = new ObjectType({
+export const rootType = new ObjectType({
   name: 'RootUserType',
   description: 'A User.',
   fields: () => ({

@@ -7,7 +7,9 @@ import {
   GraphQLString as StringType,
   GraphQLInputObjectType as InputObject,
   GraphQLObjectType as ObjectType,
+  GraphQLEnumType as EnumType,
 } from 'graphql';
+import { rootType as UserRootType } from './userTypes';
 
 import Transaction from '../../mongo/models/transaction';
 
@@ -79,13 +81,25 @@ const rootType = new ObjectType({
       description: 'The reference Mongo _id for the Sagawa document that was generated due to this transaction.',
       type: MongoID,
     },
-    marketHero: {
-      description: 'The reference Mongo _id for the Market Hero lead.',
-      type: MongoID,
-    },
     emailAddress: {
       description: 'The customer\'s email address.',
       type: StringType,
+    },
+    emailLanguage: {
+      description: 'The language the customer preferred at the time of purchase.',
+      type: new EnumType({
+        name: 'ProductNicotineStrengthsEnum',
+        values: {
+          english: {
+            value: 'english',
+            description: 'The user is assumed to speak english.',
+          },
+          japanese: {
+            value: 'japanese',
+            description: 'The user is assumed to speak japanese.',
+          },
+        },
+      }),
     },
     invoiceEmailNoTracking: {
       description: 'The Mongo _id for the invoice Email that was sent if the transaction was executed on off-business hours.',
@@ -197,7 +211,7 @@ const rootType = new ObjectType({
 });
 
 const queryTypes = {
-  squareLocations: new ObjectType({
+  SquareLocations: new ObjectType({
     name: 'SquareLocations',
     fields: () => ({
       error: {
@@ -257,7 +271,7 @@ const queryTypes = {
 
 const queries = {
   FetchSquareLocations: {
-    type: queryTypes.squareLocations,
+    type: queryTypes.SquareLocations,
     args: {
       // userId: {
       //   description: 'The user\'s unique _id.',
@@ -272,9 +286,25 @@ const queries = {
   },
 };
 
+const mutationTypes = {
+  SubmitFinalOrder: new ObjectType({
+    name: 'TransactionSubmitFinalOrder',
+    fields: () => ({
+      user: {
+        description: 'The updated Mongo User Document.',
+        type: UserRootType,
+      },
+      transaction: {
+        description: 'The newly created Mongo Transaction Document.',
+        type: rootType,
+      },
+    }),
+  }),
+};
+
 const mutations = {
   SubmitFinalOrder: {
-    type: rootType,
+    type: mutationTypes.SubmitFinalOrder,
     args: {
       // access_token: {
       //   description: 'The Auth0 issued, JWT access_token.',
