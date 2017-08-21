@@ -5,6 +5,7 @@ import {
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
@@ -272,7 +273,31 @@ export const rootType = new ObjectType({
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
-            type: StringType,
+            type: new EnumType({
+              name: 'UserPermissionsEnum',
+              values: {
+                user: {
+                  description: 'The User is a standard user with no special permissions.',
+                  value: 'user',
+                },
+                admin: {
+                  description: 'The User is an administrator with administrator permissions.',
+                  value: 'admin',
+                },
+                devAdmin: {
+                  description: 'The User is an Developer Administrator with Developer Administrator permissions.',
+                  value: 'devAdmin',
+                },
+                wholeSeller: {
+                  description: 'The User is an Whole Seller.',
+                  value: 'wholeSeller',
+                },
+                distributor: {
+                  description: 'The User is an Distributor.',
+                  value: 'distributor',
+                },
+              },
+            }),
           },
         }),
       }),
@@ -627,7 +652,33 @@ const mutations = {
             fields: () => ({
               role: {
                 description: 'The authorization role for this user.',
-                type: new NonNull(StringType),
+                type: new NonNull(
+                  new EnumType({
+                    name: 'UserPermissionsEnumInput',
+                    values: {
+                      user: {
+                        description: 'The User is a standard user with no special permissions.',
+                        value: 'user',
+                      },
+                      admin: {
+                        description: 'The User is an administrator with administrator permissions.',
+                        value: 'admin',
+                      },
+                      devAdmin: {
+                        description: 'The User is an Developer Administrator with Developer Administrator permissions.',
+                        value: 'devAdmin',
+                      },
+                      wholeSeller: {
+                        description: 'The User is an Whole Seller.',
+                        value: 'wholeSeller',
+                      },
+                      distributor: {
+                        description: 'The User is an Distributor.',
+                        value: 'distributor',
+                      },
+                    },
+                  }),
+                ),
               },
             }),
           }),

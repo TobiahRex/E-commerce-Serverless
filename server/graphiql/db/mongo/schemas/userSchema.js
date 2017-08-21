@@ -80,7 +80,7 @@ const userSchema = new Schema({
         'user',
         'admin',
         'devAdmin',
-        'wholeseller',
+        'wholeSeller',
         'distributor',
       ],
       required: true,
