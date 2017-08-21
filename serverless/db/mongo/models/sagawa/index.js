@@ -106,7 +106,7 @@ export default (db) => {
   *
   * @return {object} new Sagawa Document.
   */
-  sagawaSchema.statics.handleNewTransaction = (orderInfo) =>
+  sagawaSchema.statics.handleNewTransaction = (orderInfo, Product) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.handleNewTransaction\n');
 

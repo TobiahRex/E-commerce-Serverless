@@ -266,14 +266,14 @@ export default (db) => {
           userId,
           sagawa,
           transactionId: newTransactionDoc._id,
-        }),
+        }, Product),
       ]);
     })
     .then((results) => {
       console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
       userDoc = { ...results[0] };
-      marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
+      marketHeroOp = results[1]._id ? 'updateMongoLead' : 'createMongoLead';
       const sagawaDoc = results[2];
 
       const lead = {
@@ -289,7 +289,7 @@ export default (db) => {
           square,
           sagawa: results[2],
           language,
-          transaction: newTransactionDoc,
+          dbTransaction: newTransactionDoc,
         }),
         MarketHero[marketHeroOp]({
           lead,

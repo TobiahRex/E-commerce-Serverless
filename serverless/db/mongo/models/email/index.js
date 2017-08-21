@@ -263,7 +263,7 @@ export default (db) => {
       cart,
       sagawa,
       language,
-      transaction,
+      dbTransaction,
     } = orderInfo;
 
     const today = moment().format('dddd');
@@ -284,43 +284,43 @@ export default (db) => {
 
       const updatedHtmlString = dbEmail.bodyHtmlData
       .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
-      .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
+      .replace(/(TRANSACTION_ID_HERE)+/g, dbTransaction._id)
       .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
       .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
-      .replace(/(TOTAL_PAID_HERE)+/g, transaction.square.charge.amount)
+      .replace(/(TOTAL_PAID_HERE)+/g, dbTransaction.square.charge.amount)
       .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
       .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
       .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
-      .replace(/(SHIP_PREFECTURE_HERE)+/g, transaction.square.shippingAddress.shippingPrefecture)
-      .replace(/(SHIP_CITY_HERE)+/g, transaction.square.shippingAddress.shippingCity)
+      .replace(/(SHIP_PREFECTURE_HERE)+/g, dbTransaction.square.shippingAddress.shippingPrefecture)
+      .replace(/(SHIP_CITY_HERE)+/g, dbTransaction.square.shippingAddress.shippingCity)
       .replace(/(SHIP_POSTAL_CODE_HERE)+/g, sagawa.shippingAddress.postal)
       .replace(/(SHIP_COUNTRY_HERE)+/g, 'Japan')
       .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, sagawa.shippingAddress.phoneNumber)
-      .replace(/(BILL_FULL_NAME_HERE)+/g, transaction.square.cardInfo.nameOnCard)
-      .replace(/(BILL_POSTAL_CODE_HERE)+/g, transaction.square.cardInfo.postalCode)
-      .replace(/(BILL_COUNTRY_HERE)+/g, transaction.square.billingCountry)
-      .replace(/(BILL_LAST_4_HERE)+/g, transaction.square.cardInfo.last4)
+      .replace(/(BILL_FULL_NAME_HERE)+/g, dbTransaction.square.cardInfo.nameOnCard)
+      .replace(/(BILL_POSTAL_CODE_HERE)+/g, dbTransaction.square.cardInfo.postalCode)
+      .replace(/(BILL_COUNTRY_HERE)+/g, dbTransaction.square.billingCountry)
+      .replace(/(BILL_LAST_4_HERE)+/g, dbTransaction.square.cardInfo.last4)
       .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
-      .replace(/(ORDER_SUBTOTAL_HERE)+/g, transaction.total.subTotal)
-      .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
-      .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
-      .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal);
+      .replace(/(ORDER_SUBTOTAL_HERE)+/g, dbTransaction.total.subTotal)
+      .replace(/(ORDER_TAX_HERE)+/g, dbTransaction.total.taxes)
+      .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(dbTransaction.total.discount.qtyAmount) + Number(dbTransaction.total.discount.registerAmount)).toFixed(2))
+      .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, dbTransaction.total.grandTotal);
 
       if (emailType === 'invoiceEmail') {
-        transaction.invoiceEmail = updatedHtmlString;
+        dbTransaction.invoiceEmail = updatedHtmlString;
       } else {
-        transaction.invoiceEmailNoTracking = updatedHtmlString;
+        dbTransaction.invoiceEmailNoTracking = updatedHtmlString;
       }
-      return transaction.save({ validateBeforeSave: true });
+      return dbTransaction.save({ validateBeforeSave: true });
     })
     .then((updatedDoc) => {
-      console.log(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
+      console.log('SUCCEEDED: Create Invoice Email body and save result on Transaction Document: ', updatedDoc);
 
       resolve(updatedDoc);
     })
     .catch((error) => {
-      console.log('Could not create invoice email: ', error);
-      reject(`Could not create invoice email: ${error}`);
+      console.log('FAILED: Create Invoice Email body and save result on Transaction Document: ', error);
+      reject(new Error('FAILED: Create Invoice Email body and save result on Transaction Document'));
     });
   });
 

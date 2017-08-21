@@ -470,7 +470,21 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args, { Transaction }) => Transaction.submitFinalOrder(args),
+    resolve: (_, args, {
+      Transaction,
+      User,
+      Product,
+      Email,
+      Sagawa,
+      MarketHero,
+    }) => Transaction.submitFinalOrder(
+      args,
+      User,
+      Product,
+      Email,
+      Sagawa,
+      MarketHero,
+    ),
   },
 };
 
