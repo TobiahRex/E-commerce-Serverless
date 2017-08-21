@@ -373,8 +373,8 @@ export default (db) => {
       resolve({ transaction: newTransactionDoc, user: userDoc });
     })
     .catch((error) => {
-      console.log('Failed to submit order due to error: ', error);
-      reject(`Failed to submit order due to error: ${error}`);
+      console.log('FAILED: Create new Transaction Doc & Submit Order.', error);
+      reject(error);
     });
   });
 
