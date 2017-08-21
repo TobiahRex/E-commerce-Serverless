@@ -11,7 +11,7 @@ import { createEmailProductList } from './helpers';
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
   AWS_SECRET_ACCESS_KEY: secretAccessKey,
-  AWS_REGION: region,
+  AWS_SES_REGION: region,
 } = process.env;
 
 AWS.config.update({
@@ -123,7 +123,7 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolved - updated email doc.
 */
-emailSchema.statics.sendEmail = (to, emailDoc) =>
+emailSchema.statics.sendEmail = ({ to, htmlBody }, emailDoc) =>
 new Promise((resolve, reject) => {
   if (!isEmail(to)) {
     console.log(`ERROR = "${to}" is not a valid email.  `);
@@ -139,7 +139,7 @@ new Promise((resolve, reject) => {
     Message: {
       Body: {
         Html: {
-          Data: emailDoc.bodyHtmlData,
+          Data: htmlBody,
           Charset: emailDoc.bodyHtmlCharset,
         },
         Text: {
@@ -166,12 +166,12 @@ new Promise((resolve, reject) => {
     return emailDoc.save({ new: true });
   })
   .then((savedEmail) => {
-    console.log('\nSuccessfully saved Email record to MONGO Email collection: \n', savedEmail.sentEmails.pop().messageId);
+    console.log('SUCCEEDED: Send Email and save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
     resolve();
   })
   .catch((error) => {
-    console.log(`Error sending SES email with type: "${emailDoc.type}".  ERROR = ${error}`);
-    reject(`Error sending SES email with type: "${emailDoc.type}".  ERROR = ${error}`);
+    console.log('FAILED: Send Email and save Message Id in Email Template: ', error);
+    reject(new Error('FAILED: Send Email and save Message Id in Email Template.'));
   });
 });
 
@@ -249,6 +249,8 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.createInvoiceEmailBody = orderInfo =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.createInvoiceEmailBody\n');
+
   const {
     cart,
     sagawa,
@@ -268,7 +270,7 @@ new Promise((resolve, reject) => {
 
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
-    console.log('Successfully found Template Invoice Email for language: ', language);
+    console.log('SUCCEEDED: Find Template Invoice Email for language: ', language);
 
     const productListHtmlString = createEmailProductList(dbEmail, cart);
 
@@ -315,3 +317,4 @@ new Promise((resolve, reject) => {
 });
 
 const Email = db.model('Email', emailSchema);
+export default Email;
