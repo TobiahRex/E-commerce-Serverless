@@ -24,7 +24,7 @@ router.post('/sagawa', (req, res) => {
         res.status(400).send(error);
       });
   } else {
-    Sagawa.findSagawaByStatus('uploaded')
+    Sagawa.findSagawaByStatus('pending')
       .then((sagawaDocs) => {
         console.log('SUCCEEDED: Retrieved Sagawa documents with matching status.');
         res.status(200).send(sagawaDocs);
