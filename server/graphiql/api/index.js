@@ -12,7 +12,7 @@ const router = new express.Router();
 */
 
 router.post('/sagawa', (req, res) => {
-  Sagawa.uploadSagawaAndSendEmail(req.body)
+  Sagawa.uploadOrderAndSendEmail(req.body)
     .then((response) => {
       console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
       res.status(200).send(response);
