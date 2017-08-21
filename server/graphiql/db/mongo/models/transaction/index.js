@@ -168,6 +168,7 @@ new Promise((resolve, reject) => {
   console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
+  let marketHeroOp = '';
 
   const {
     userId,
@@ -265,7 +266,7 @@ new Promise((resolve, reject) => {
     console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
 
     userDoc = { ...results[0] };
-    const marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
+    marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
     const sagawaDoc = results[2];
 
     const lead = {
@@ -299,21 +300,36 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
+    console.log('5] Success! 1) Generate Invoice Email body and insert result into Transaction document. 2) Create or Update Mongo Market Hero document. 3) Create or Update Market Hero API lead. 4) Update Transaction Doc with Sagawa Mongo _id reference.');
 
     newTransactionDoc = { ...results[0] };
 
-    return axios.post('http://localhost:3000/api/sagawa', {
+    const promise1 = axios.post('http://localhost:3000/api/sagawa', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: newTransactionDoc._id,
     });
+    let promise2 = null;
+    let promiseArray = [promise1];
+
+    if (marketHeroOp === 'createMongoLead') {
+      promise2 = User.findByIdAndUpdate(userId, {
+        $set: { 'marketing.marketHero': results[1]._id },
+      }, { new: true });
+      promiseArray = [...promiseArray, promise2];
+    }
+
+    return Promise.all([...promiseArray]);
   })
-  .then(({ status, data }) => {
-    console.log('6] Success! Uploaded order to Sagawa. Response: ', data);
+  .then((results) => {
+    console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda. 2) Update User Document with new MarketHero Doc _id (if necessary).', results);
+
+    const { status, data } = results[0];
+
+    if (results.length === 2) userDoc = results[1];
 
     if (status !== 200) {
-      console.log('Was not able to complete the order: ', data);
+      console.log('FAILED: Upload Order to Sagawa: ', data);
       resolve({
         error: {
           hard: true,
@@ -323,11 +339,10 @@ new Promise((resolve, reject) => {
       });
     }
 
-    console.log('Querying for all Products purchased by customer...');
     return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
   })
   .then((productDocs) => {
-    console.log('7] Success! Found ', productDocs.length, ' product documents.  Perfoming update on "statistics" & "quantities" available now...');
+    console.log('7] SUCCEEDED: Query for', productDocs.length, ' Product(s) document(s)');
 
     productDocs.forEach((productDoc) => {
       productDoc.product.quantities.inCarts -= 1;
@@ -339,16 +354,16 @@ new Promise((resolve, reject) => {
       }];
       productDoc.save({ validateBeforeSave: true })
       .then((savedDoc) => {
-        console.log('Successfully updated "statistics" & "quantities" for Product ', savedDoc._id);
+        console.log('SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
       })
       .catch((error) => {
-        console.log('Error while trying to update "statiistics" & "quantities" for Product ', productDoc._id, 'ERROR = ', error);
-        reject('Error while updating DB after successful purchase.');
+        console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
+        reject(new Error('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
       });
     });
 
-    console.log('8] Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
-    resolve(newTransactionDoc);
+    console.log('8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
+    resolve({ transaction: newTransactionDoc, user: userDoc });
   })
   .catch((error) => {
     console.log('Failed to submit order due to error: ', error);

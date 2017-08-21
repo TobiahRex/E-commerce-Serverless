@@ -14,6 +14,8 @@ export default (db) => {
   */
   userSchema.statics.fetchUserProfile = userId =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.fetchUserProfile\n');
+
     User
     .findById(userId)
     .exec()
@@ -26,7 +28,6 @@ export default (db) => {
       reject(`Could Not find a user with this is: ${userId}. Mongo ERROR: ${error}`);
     });
   });
-
   /**
   * Function: "loginOrRegister"
   * Checks for previous user matching the input auth0 id.  If found, logs user in. If not found, registers user.
@@ -43,13 +44,15 @@ export default (db) => {
   */
   userSchema.statics.loginOrRegister = args =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.loginOrRegister\n');
+
     const auth0Id = args.auth0Id;
     const loginType = args.loginType;
     delete args.auth0Id;
     delete args.loginType;
 
     User
-    .findOne({ 'authentication.auth0Identities.userId': auth0Id })
+    .findOne({ 'authentication.auth0Identities.user_id': auth0Id })
     .exec()
     .then((dbUser) => {
       if (!dbUser) return User.registerUser(args);
@@ -71,6 +74,8 @@ export default (db) => {
   */
   userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
   new Promise((resolve) => {
+    console.log('\n\n@User.loginUser\n');
+
     console.log('Found Existing User.\n');
     dbUser.authentication.totalLogins += 1;
     dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
@@ -86,7 +91,7 @@ export default (db) => {
       if (newQty > 4) {
         dbUser.error.soft = true;
         dbUser.error.hard = false;
-        dbUser.error.message = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+        dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
       } else {
         dbUser.shopping.cart = [...newCart];
       }
@@ -106,6 +111,8 @@ export default (db) => {
   */
   userSchema.statics.registerUser = userObj =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.registerUser\n');
+
     const {
       name,
       pictures,
@@ -164,17 +171,28 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, product }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, product }, Product) =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.addToMemberCart\n');
+
     User.findById(userId)
     .exec()
     .then((dbUser) => {
       dbUser.shopping.cart.push({ qty, product });
-      return dbUser.save({ validateBeforeSave: true });
+      /* eslint-disable no-dupe-keys */
+      return Promise.all([
+        dbUser.save({ validateBeforeSave: true }),
+        Product.findByIdAndUpdate(product, {
+          $inc: { 'product.quantities.inCarts': 1 },
+          $inc: { 'product.quantities.available': -1 },
+          $inc: { 'product.statistics.addsToCart': 1 },
+        }),
+      ]);
+      /* eslint-enable no-dupe-keys */
     })
-    .then((savedUser) => {
-      console.log('Saved product ID & QTY to the User\'s Shopping Cart!: ', product);
-      resolve(savedUser);
+    .then((results) => {
+      console.log('Success! 1) Saved product ID & QTY to the User\'s Shopping Cart!, 2) Update Product "quantities" & "statistics": ', results);
+      resolve(results[0]);
     })
     .catch((error) => {
       console.log({
@@ -197,7 +215,6 @@ export default (db) => {
       });
     });
   });
-
   /**
   * Deletes product from users shopping cart.
   * 1) Finds user by Mongo _id.
@@ -211,6 +228,8 @@ export default (db) => {
   */
   userSchema.statics.deleteFromCart = ({ userId, productId }) =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.deleteFromCart\n');
+
     User.findById(userId)
     .exec()
     .then((dbUser) => {
@@ -242,6 +261,8 @@ export default (db) => {
   */
   userSchema.statics.emptyCart = ({ userId }) =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.emptyCart\n');
+
     User.findById(userId)
     .exec()
     .then((dbUser) => {
@@ -267,6 +288,8 @@ export default (db) => {
   */
   userSchema.statics.editToMemberCart = ({ userId, products }) =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.editToMemberCart\n');
+
     User
     .findById(userId)
     .exec()
@@ -281,6 +304,22 @@ export default (db) => {
     .catch((error) => {
       console.log(`Could not Update User: ${userId}. ERROR = ${error}`);
       reject(`Could not Update User: ${userId}. ERROR = ${error}`);
+    });
+  });
+
+  userSchema.statics.editMemberProfile = ({ userId, userObj }) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@User.editToMemberCart\n');
+
+    User.findByIdAndUpdate(userId, { $set: { ...userObj } }, { new: true })
+    .exec()
+    .then((updatedUser) => {
+      console.log(`Updated User!: ${updatedUser._id}.`);
+      resolve(updatedUser);
+    })
+    .catch((error) => {
+      console.log(`Error while tring to update User _id "${userId}": ${error}.`);
+      reject(`Error while tring to update User _id "${userId}": ${error}.`);
     });
   });
 

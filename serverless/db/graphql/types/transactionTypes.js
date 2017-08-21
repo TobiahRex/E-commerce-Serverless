@@ -11,8 +11,6 @@ import {
 } from 'graphql';
 import { rootType as UserRootType } from './userTypes';
 
-import Transaction from '../../mongo/models/transaction';
-
 const rootType = new ObjectType({
   name: 'Transaction',
   description: 'An application transaction.',
@@ -286,7 +284,7 @@ const queries = {
       //   type: StringType,
       // },
     },
-    resolve: () => Transaction.fetchSquareLocation(),
+    resolve: (_, args, { Transaction }) => Transaction.fetchSquareLocation(),
   },
 };
 
@@ -472,7 +470,21 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args) => Transaction.submitFinalOrder(args),
+    resolve: (_, args, {
+      Transaction,
+      User,
+      Product,
+      Email,
+      Sagawa,
+      MarketHero,
+    }) => Transaction.submitFinalOrder(
+      args,
+      User,
+      Product,
+      Email,
+      Sagawa,
+      MarketHero,
+    ),
   },
 };
 

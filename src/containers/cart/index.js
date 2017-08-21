@@ -1,6 +1,7 @@
 /* eslint-disable no-extra-boolean-cast */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
@@ -16,11 +17,6 @@ import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
-
-import {
-  propTypes,
-  defaultProps,
-} from './propTypes.imports';
 import {
   BreadCrumb,
   EmptyCart,
@@ -38,8 +34,6 @@ import {
 } from './utilities.imports';
 
 class ShoppingCart extends Component {
-  static propTypes = propTypes;
-  static defaultProps = defaultProps;
   constructor(props) {
     super(props);
 
@@ -544,3 +538,76 @@ const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) =
   newUser: CheckNewUser(user, auth.loggedIn),
 }), null)(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
+
+const {
+ any,
+ func,
+ bool,
+ shape,
+ string,
+ number,
+ arrayOf,
+ objectOf,
+} = PropTypes;
+
+ShoppingCart.propTypes = {
+  qty: number.isRequired,
+  push: func.isRequired,
+  userId: string,
+  newUser: bool.isRequired,
+  taxRate: shape({
+    cityRate: number,
+    stateRate: number,
+    totalRate: number,
+  }).isRequired,
+  loggedIn: bool.isRequired,
+  saveUser: func.isRequired,
+  saveGuest: func.isRequired,
+  mobileActive: bool.isRequired,
+  EmptyMemberCart: func.isRequired,
+  DeleteFromMemberCart: func.isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
+  userCart: arrayOf(
+    shape({
+      qty: number,
+      strength: number,
+      product: string,
+    }),
+  ),
+  guestCart: arrayOf(
+    shape({
+      _id: string,
+      qty: number,
+      strength: number,
+      userId: string,
+      product: objectOf(any),
+    }),
+  ),
+  total: shape({
+    discount: {
+      qty: bool,
+      qtyAmount: number,
+      register: bool,
+      registerAmount: number,
+    },
+    taxes: number,
+    grandTotal: number,
+    subTotal: number,
+  }),
+};
+ShoppingCart.defaultProps = {
+  userId: '',
+  userCart: null,
+  guestCart: null,
+  total: {
+    discount: {
+      qty: false,
+      qtyAmount: 0,
+      register: false,
+      registerAmount: 0,
+    },
+    taxes: 0,
+    grandTotal: 0,
+    subTotal: 0,
+  },
+};

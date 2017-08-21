@@ -5,11 +5,12 @@ import {
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
-const rootType = new ObjectType({
+export const rootType = new ObjectType({
   name: 'RootUserType',
   description: 'A User.',
   fields: () => ({
@@ -258,7 +259,7 @@ const rootType = new ObjectType({
           },
           transactions: {
             description: 'The date this user first signed up for newsletters - Typically coincides with users first purchase.',
-            type: new ListType(StringType),
+            type: new ListType(MongoID),
           },
         }),
       }),
@@ -270,7 +271,31 @@ const rootType = new ObjectType({
         fields: () => ({
           role: {
             description: 'The authorization role for this user.',
-            type: StringType,
+            type: new EnumType({
+              name: 'UserPermissionsEnum',
+              values: {
+                user: {
+                  description: 'The User is a standard user with no special permissions.',
+                  value: 'user',
+                },
+                admin: {
+                  description: 'The User is an administrator with administrator permissions.',
+                  value: 'admin',
+                },
+                devAdmin: {
+                  description: 'The User is an Developer Administrator with Developer Administrator permissions.',
+                  value: 'devAdmin',
+                },
+                wholeSeller: {
+                  description: 'The User is an Whole Seller.',
+                  value: 'wholeSeller',
+                },
+                distributor: {
+                  description: 'The User is an Distributor.',
+                  value: 'distributor',
+                },
+              },
+            }),
           },
         }),
       }),
@@ -299,28 +324,22 @@ const rootType = new ObjectType({
         }),
       }),
     },
-    marketHero: {
-      description: 'The User\'s Market Hero Meta-Data.',
+    marketing: {
+      description: 'The marketing data for this user.',
       type: new ObjectType({
-        name: 'UserMarketHero',
+        name: 'UserMarketing',
         fields: () => ({
-          tags: {
-            description: 'Array of objects, containing all the "Tags" that have been added to this User\'s Market Hero profile, and the respective date.',
-            type: new ListType(
-              new ObjectType({
-                name: 'UserMarketHeroTags',
-                fields: () => ({
-                  name: {
-                    description: 'The name of the "Tag".',
-                    type: StringType,
-                  },
-                  date: {
-                    description: 'The Date this "Tag" was added the User\'s Market Hero profile.',
-                    type: StringType,
-                  },
-                }),
-              }),
-            ),
+          newsletterDecision: {
+            description: 'The users newsletter optin choice.',
+            type: BoolType,
+          },
+          marketHero: {
+            description: 'The Mongo _id for the users associated Market Hero document',
+            type: MongoID,
+          },
+          emails: {
+            description: 'The list of email _id\'s that the user has been sent.',
+            type: new ListType(MongoID),
           },
         }),
       }),
@@ -357,6 +376,7 @@ const rootType = new ObjectType({
 });
 const queries = {
   FetchUserProfile: {
+    description: 'Fetches User by ID.',
     type: rootType,
     args: {
       id: {
@@ -630,7 +650,33 @@ const mutations = {
             fields: () => ({
               role: {
                 description: 'The authorization role for this user.',
-                type: new NonNull(StringType),
+                type: new NonNull(
+                  new EnumType({
+                    name: 'UserPermissionsEnumInput',
+                    values: {
+                      user: {
+                        description: 'The User is a standard user with no special permissions.',
+                        value: 'user',
+                      },
+                      admin: {
+                        description: 'The User is an administrator with administrator permissions.',
+                        value: 'admin',
+                      },
+                      devAdmin: {
+                        description: 'The User is an Developer Administrator with Developer Administrator permissions.',
+                        value: 'devAdmin',
+                      },
+                      wholeSeller: {
+                        description: 'The User is an Whole Seller.',
+                        value: 'wholeSeller',
+                      },
+                      distributor: {
+                        description: 'The User is an Distributor.',
+                        value: 'distributor',
+                      },
+                    },
+                  }),
+                ),
               },
             }),
           }),
@@ -712,7 +758,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.addToMemberCart(args),
+    resolve: (_, args, { User, Product }) => User.addToMemberCart(args, Product),
   },
   EmptyMemberCart: {
     type: rootType,

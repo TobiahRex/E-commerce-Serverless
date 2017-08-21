@@ -26,15 +26,20 @@
   },
   "homepage": "https://github.com/tobiahrex/nj2jp#readme",
   "dependencies": {
+    "aws-sdk": "^2.100.0",
     "axios": "^0.16.1",
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
     "graphql": "^0.9.6",
+    "jsonwebtoken": "^7.4.3",
+    "moment": "^2.18.1",
     "mongoose": "^4.9.7",
     "request": "^2.81.0",
-    "serverless-plugin-graphiql": "^0.3.0"
+    "serverless-plugin-graphiql": "^0.3.0",
+    "uuid": "^3.1.0",
+    "validator": "^8.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

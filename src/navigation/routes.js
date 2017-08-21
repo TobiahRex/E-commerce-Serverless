@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { replace, push } from 'react-router-redux';
 import App from '../App';
-import Homepage from '../containers/home/homePage';
 import Routes from './index';
 import AuthService from '../services/utils/authService';
 
@@ -28,7 +27,6 @@ const loadRoute = cb => module => cb(null, module.default);
 export default (
   <Route path="/" component={App} auth={auth}>
     <IndexRoute
-      component={Homepage}
       getComponent={(location, cb) => {
         System.import('../containers/home/homePage')
         .then(loadRoute(cb))
