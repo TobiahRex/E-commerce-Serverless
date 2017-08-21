@@ -758,7 +758,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.addToMemberCart(args),
+    resolve: (_, args, { User, Product }) => User.addToMemberCart(args, Product),
   },
   EmptyMemberCart: {
     type: rootType,

@@ -3,7 +3,6 @@ import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
 
 export default (db) => {
-
   /**
   * Function: "fetchUserProfile"
   * 1) Query User collection using input argument "userId".
@@ -15,6 +14,8 @@ export default (db) => {
   */
   userSchema.statics.fetchUserProfile = userId =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.fetchUserProfile\n');
+
     User
     .findById(userId)
     .exec()
@@ -43,6 +44,8 @@ export default (db) => {
   */
   userSchema.statics.loginOrRegister = args =>
   new Promise((resolve, reject) => {
+    console.log('\n\n@User.loginOrRegister\n');
+
     const auth0Id = args.auth0Id;
     const loginType = args.loginType;
     delete args.auth0Id;
@@ -168,7 +171,7 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.addToMemberCart = ({ userId, qty, product }) =>
+  userSchema.statics.addToMemberCart = ({ userId, qty, product }, Product) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@User.addToMemberCart\n');
 
