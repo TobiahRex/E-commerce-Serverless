@@ -13,6 +13,7 @@ import {
   composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
+  handleSquareErrors as HandleSquareErrors,
 } from './helpers';
 import {
   getMhTransactionTagsMongo as GetMhTransactionTagsMongo,
@@ -21,7 +22,14 @@ import {
 
 require('dotenv').load({ silent: true });
 
-
+/**
+* Function: "fetchSquareLocation":
+* Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
+*
+* @param {string} country - The country for Square account which the query will be executed..
+*
+* @return {string} locationId.
+*/
 transactionSchema.statics.fetchSquareLocation = country =>
 new Promise((resolve, reject) => {
   console.log('@fetchSquareLocation');
@@ -32,7 +40,7 @@ new Promise((resolve, reject) => {
     headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
   })
   .then((response) => {
-    console.log('Received locations from Square: ', response.data);
+    console.log('SUCCEEDED: Fetch Square Location: ', response.data);
 
     const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
@@ -45,7 +53,7 @@ new Promise((resolve, reject) => {
       };
 
       if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-        console.log('Found location object! Resolving...');
+        console.log('SUCCEEDED: Verify location CC processing.');
         resolve(newLocation);
       } else {
         newLocation.error = {
@@ -67,11 +75,19 @@ new Promise((resolve, reject) => {
     }
   })
   .catch((error) => {
-    console.log('Error while fetching location from Square.  Error = ', error);
-    reject(`Error while fetching location from Square.  Error = ${error}`);
+    console.log('FAILED: Fetch square location: ', error);
+    reject(new Error('FAILED: Fetch square location.'));
   });
 });
 
+/**
+* Function: "squareChargeCard":
+* Charges the customers credit card using the Square API with the required request body, containing the shipping information associated with the Customer.
+*
+* @param {object} chargeInfo
+*
+* @return {object} Square API response.
+*/
 transactionSchema.statics.squareChargeCard = chargeInfo =>
 new Promise((resolve, reject) => {
   console.log('@squareChargeCard');
@@ -147,7 +163,7 @@ new Promise((resolve, reject) => {
 */
 transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
-  console.log('@submitFinalOrder');
+  console.log('\n\n@Transaction.submitFinalOrder\n');
 
   console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
@@ -173,7 +189,6 @@ new Promise((resolve, reject) => {
       termsAgreement,
       user: userId,
       products: cart,
-      sagawa: sagawa.sagawaId,
       emailAddress: sagawa.shippingAddress.email,
       jpyFxRate,
       taxes,
@@ -194,7 +209,7 @@ new Promise((resolve, reject) => {
     Transaction.fetchSquareLocation(square.billingCountry),
   ])
   .then((results) => {
-    console.log('\n2] Successfully Completed: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
+    console.log('\n2] SUCCEEDED: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
     newTransactionDoc = results[0];
     userDoc = { ...results[1] };
@@ -215,14 +230,15 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('3] Received Square response for charging Customer CC.');
+    console.log('3] SUCCEEDED: Square Charge Customer.');
+
     if (response.status !== 200) {
-      console.log('3a] Failed to charge customer card: ', response.data);
+      console.log('3a] FAILED: Square Charge Customer: ', response.data);
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: JSON.stringify(response.data),
+          message: HandleSquareErrors(response),
         },
       });
     }
@@ -250,6 +266,7 @@ new Promise((resolve, reject) => {
 
     userDoc = { ...results[0] };
     const marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
+    const sagawaDoc = results[2];
 
     const lead = {
       language,
@@ -274,6 +291,11 @@ new Promise((resolve, reject) => {
         lead,
         tags: GetMhTransactionTagsApi({ total, cart, language }),
       }),
+      Transaction.findByIdAndUpdate(newTransactionDoc._id, {
+        $set: {
+          sagawa: sagawaDoc._id,
+        },
+      }, { new: true }),
     ]);
   })
   .then((results) => {
@@ -281,7 +303,7 @@ new Promise((resolve, reject) => {
 
     newTransactionDoc = { ...results[0] };
 
-    return axios.post('http://', {
+    return axios.post('http://localhost:3000/api/sagawa', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: newTransactionDoc._id,

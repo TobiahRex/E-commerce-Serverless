@@ -2,10 +2,13 @@
 import { Promise as bbPromise } from 'bluebird';
 import axios from 'axios';
 import moment from 'moment';
-import xml2js from 'xml2js';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
+
 import Product from '../product';
+import Transaction from '../transaction';
+import Email from '../email';
+import User from '../user';
 
 import {
   ZipArrays,
@@ -46,7 +49,7 @@ const xmlOut = str => str
 *
 * @return {object} - New Sagwa Document.
 */
-sagawaSchema.statics.validatePostal = ({ userId, postalCode }) =>
+sagawaSchema.statics.validatePostal = ({ postalCode }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.validatePostal\n');
 
@@ -80,16 +83,19 @@ new Promise((resolve, reject) => {
           message: problem,
         },
       });
-    } else {
-      return bbPromise.fromCallback(cb => Sagawa.create({
-        userId,
-        postalInfo: data.postalInfo,
-      }, cb));
     }
-  })
-  .then((newDoc) => {
-    console.log('SUCCEEDED: Create new Sagawa Document.', newDoc);
-    resolve(newDoc);
+      // return bbPromise.fromCallback(cb => Sagawa.create({
+      //   userId,
+      //   postalInfo: data.postalInfo,
+      // }, cb));
+    resolve({
+      error: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
+      postalInfo: { ...data.postalInfo },
+    });
   })
   .catch((error) => {
     console.log('FAILED: Create new Sagawa Document: ', error);
@@ -98,16 +104,16 @@ new Promise((resolve, reject) => {
 });
 
 /**
-* Function: "deepUpdate";
-* Called by the Transaction.submitFinalOrder function as a follow-on action.  Receives the orderInfo object.  Starts by updating the Sagawa document associated with the Transaction with the Shipping Information.  Concurrently it queries for all products in the users cart at the time of purchase.  Next, it maps the product information to the cart productId's, and then generates an inidividual item object for each product that will be used in a follow on action for dynamically generating XML strings used in the Sagawa.uploadOrder process.  Function resolves with the final updated Sagawa Document.
+* Function: "handleNewTransaction";
+* Called by the Transaction.submitFinalOrder function as a follow-on action.  Receives the orderInfo object.  Querying for all products in the users cart at the time of purchase.  Next, it maps the product information to the cart productId's, and then generates an inidividual item object for each product that will be used in a follow on action for dynamically generating XML strings used in the Sagawa.uploadOrder process.  Creates a new Sagawa document with this "udpatedCart" and all the shipping data.  Resolves with the new Sagawa document.
 *
-* @param {string} postalCode - the postal code to validate.
+* @param {objecgt} orderInfo - All shipping, cart, total, and transaction information.
 *
-* @return {string} cleaned
+* @return {object} new Sagawa Document.
 */
-sagawaSchema.statics.deepUpdate = orderInfo =>
+sagawaSchema.statics.handleNewTransaction = orderInfo =>
 new Promise((resolve, reject) => {
-  console.log('\n\n@Sagawa.deepUpdate\n');
+  console.log('\n\n@Sagawa.handleNewTransaction\n');
 
   const {
     cart,
@@ -117,47 +123,38 @@ new Promise((resolve, reject) => {
     transactionId,
   } = orderInfo;
 
-  Promise.all([
-    Sagawa.findByIdAndUpdate(sagawa.sagawaId, {
-      $set: {
-        userId,
-        transactionId,
-        shippingAddress: {
-          boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
-          shipdate: moment().format('YYYY/MM/DD'),
-          customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
-          postal: sagawa.shippingAddress.postalCode,
-          jpaddress1: sagawa.shippingAddress.addressLine1,
-          jpaddress2: sagawa.shippingAddress.addressLine2,
-          phoneNumber: sagawa.shippingAddress.phoneNumber,
-          kbn: GetSagawaKbn(sagawa.shippingAddress.country),
-          wgt: GetOrderWeight(cart),
-          grandTotal: total.subTotal,
-          deliveryDate: GetNextBusinessDay(),
-          deliveryTime: '1200',
-          ttlAmount: total.subTotal,
-        },
-      },
-    }, { new: true }),
-    Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec(),
-  ])
-  .then((results) => {
-    console.log('SUCCEEDED: 1) Updated Sagawa document with Shipping Information.  2) Retrieved Product documents from cart _id\'s.');
-
-    const updatedSagawaDoc = results[0];
-    const dbProducts = results[1];
+  Product
+  .find({ _id: { $in: cart.map(({ _id }) => _id) } })
+  .exec()
+  .then((dbProducts) => {
+    console.log('SUCCEEDED: Retrieved Product documents from cart _id\'s.');
 
     const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
 
-    return Sagawa.findByIdAndUpdate(updatedSagawaDoc._id, {
-      $set: {
-        items: GenerateItemObjs(updatedCart),
+    return bbPromise.fromCallback(cb => Sagawa.create({
+      userId,
+      transactionId,
+      shippingAddress: {
+        boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
+        shipdate: moment().format('YYYY/MM/DD'),
+        customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
+        postal: sagawa.shippingAddress.postalCode,
+        jpaddress1: sagawa.shippingAddress.addressLine1,
+        jpaddress2: sagawa.shippingAddress.addressLine2,
+        phoneNumber: sagawa.shippingAddress.phoneNumber,
+        kbn: GetSagawaKbn(sagawa.shippingAddress.country),
+        wgt: GetOrderWeight(cart),
+        grandTotal: total.subTotal,
+        deliveryDate: GetNextBusinessDay(),
+        deliveryTime: '1200',
+        ttlAmount: total.subTotal,
       },
-    }, { new: true });
+      items: GenerateItemObjs(updatedCart),
+    }, cb));
   })
-  .then((updatedSagawaDoc) => {
-    console.log('SUCCEEDED: Deep update on Sagawa Document: ', updatedSagawaDoc);
-    resolve(updatedSagawaDoc);
+  .then((dbSagawa) => {
+    console.log('SUCCEEDED: Create Sagawa Document: ', dbSagawa);
+    resolve(dbSagawa);
   })
   .catch((error) => {
     console.log('FAILED: Deep update on Sagawa Document: ', error);
@@ -230,11 +227,11 @@ new Promise((resolve, reject) => {
 
 * @return {object} Promise resolved with updated Sagawa Document.
 */
-sagawaSchema.statics.findSagawaAndUpdate = (_id, awbId, referenceId) =>
+sagawaSchema.statics.findSagawaAndUpdate = ({ sagawaId, awbId, referenceId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.findSagawaAndUpdate\n');
 
-  Sagawa.findByIdAndUpdate(_id, {
+  Sagawa.findByIdAndUpdate(sagawaId, {
     $set: {
       'shippingAddress.awbId': awbId,
       'shippingAddress.referenceId': referenceId,
@@ -249,6 +246,78 @@ new Promise((resolve, reject) => {
       console.log('FAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
       reject(new Error('FAILED: Update Sagawa Doc with AWB & REF #\'s.'));
     });
+});
+
+/*
+* Function: 'uploadSagawaAndSendEmail'
+* This is sagawa Lambda that does the following:
+* Get transactionId, userId, sagawaId, emailTemplateId
+* Retrieve sagawa document using sagawaId
+* Call the helper methods in the mongo models (helper/ directory) to construct the XML version of the request body.
+* POST the Sagawa body to sagawa endpoint (You will receive the tracking number) || Retrieve the emailWithTrackingInfo and emailID from transaction collection
+* Update the sagawa document with awbID and referenceID || replace the TRACKING_INFO string with userID + tracking number received from sagawa POST
+* Retrieve SES requirements for sending mail from emailTemplate collection
+* Send SES email
+* Update the emailTemplate document with messageID
+*
+* @param {object} request - Object conatining the transactionId, userId, sagawaId, emailTemplateId.
+*
+* @return {object} Promise resolved with updated Sagawa Document. [WIP]
+*/
+sagawaSchema.statics.uploadOrderAndSendEmail = request =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.uploadSagawaAndSendEmail');
+
+  const {
+    sagawaId,
+    transactionId,
+  } = request;
+
+  let transactionDoc = {};
+  let sagawaDoc = {};
+
+  Promise.all([
+    Sagawa.orderUpload(sagawaId),
+    Transaction.findById(transactionId),
+  ])
+  .then((results) => {
+    console.log('SUCCEEDED: 1)Upload Order to Sagawa. 2) Fetch Transaction Doc.');
+
+    sagawaDoc = results[0];
+    transactionDoc = results[1];
+
+    console.log('Sagawa Response:  ', sagawaDoc);
+    console.log('Transaction Response:  ', transactionDoc);
+
+    return Sagawa.findSagawaAndUpdate({
+      sagawaId,
+      awbId: sagawaDoc.awbId,
+      referenceId: sagawaDoc.referenceId,
+    });
+  })
+  .then((updatedDoc) => {
+    console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s: ', updatedDoc);
+
+    const emailType = transactionDoc.invoiceEmail ? 'Invoice Email' : 'Invoice Email - No Tracking';
+
+    return Email.findEmailAndFilterLanguage(emailType, transactionDoc.emailLanguage);
+  })
+  .then((dbEmail) => {
+    console.log('SUCCEEDED: Find email and Filter by Language.', dbEmail);
+
+    Email.sendEmail({
+      to: transactionDoc.emailAddress,
+      htmlBody: transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking,
+    }, dbEmail);
+  })
+  .then(() => {
+    console.log('SUCCEEDED: Send Invoice Email.');
+    resolve();
+  })
+  .catch((error) => {
+    console.log('Error in sagawa upload or transaction retrieve: ', error);
+    reject(error);
+  });
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
