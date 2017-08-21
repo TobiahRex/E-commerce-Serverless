@@ -2,6 +2,11 @@
 import mongoose from 'mongoose';
 import createProductModel from './models/product';
 import createUserModel from './models/user';
+import createTransactionModel from './models/transaction';
+import createMarketHeroModel from './models/marketHero';
+import createEmailModel from './models/email';
+import createSagawaModel from './models/sagawa';
+import createComplaintModel from './models/complaint';
 
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
@@ -42,6 +47,11 @@ new Promise((resolve) => {
       dbModels: {
         User: createUserModel(connection),
         Product: createProductModel(connection),
+        Transaction: createTransactionModel(connection),
+        Sagawa: createSagawaModel(connection),
+        Email: createEmailModel(connection),
+        Complaint: createComplaintModel(connection),
+        MarketHero: createMarketHeroModel(connection),
       },
     };
     console.log('\n\nCACHED Connection: \n\n', cachedDb.connection);

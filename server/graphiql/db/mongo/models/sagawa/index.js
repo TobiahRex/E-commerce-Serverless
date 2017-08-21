@@ -2,19 +2,12 @@
 import { Promise as bbPromise } from 'bluebird';
 import axios from 'axios';
 import moment from 'moment';
+import JWT from 'jsonwebtoken';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
-import JWT from 'jsonwebtoken';
-
 import Product from '../product';
 import Transaction from '../transaction';
 import Email from '../email';
-import User from '../user';
-
-const {
-  JWT_SECRET: jwtSecret,
-} = process.env;
-
 import {
   ZipArrays,
   GetSagawaKbn,
@@ -277,7 +270,6 @@ new Promise((resolve, reject) => {
     userId,
     sagawaId,
     transactionId,
-    userId,
   } = request;
 
   let transactionDoc = {};
@@ -313,22 +305,24 @@ new Promise((resolve, reject) => {
   .then((dbEmail) => {
     console.log('SUCCEEDED: Find email and Filter by Language.', dbEmail);
 
-    let payload = {
-      userId: userId,
+    const payload = {
+      userId,
+      sagawaId,
       exp: moment().add(1, 'w').unix(),
-      sagawaId: sagawaId,
     };
-    let token = JWT.sign(payload, jwtSecret);
     const {
+      JWT_SECRET,
       NODE_ENV,
       BASE_URL,
       PRODUCTION_URL,
     } = process.env;
-    let tokenString = `${NODE_ENV === 'production' ? PRODUCTION_URL : BASE_URL}tracking?token=${token}`;
+
+    const token = JWT.sign(payload, JWT_SECRET);
+    const tokenUrlString = `${NODE_ENV === 'production' ? PRODUCTION_URL : BASE_URL}tracking?token=${token}`;
 
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
-    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenString);
+    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString);
 
     return Email.sendEmail({
       to: transactionDoc.emailAddress,
