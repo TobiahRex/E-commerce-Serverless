@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import moment from 'moment';
 
 export default function getMhTransactionTags({
@@ -10,6 +11,8 @@ export default function getMhTransactionTags({
     },
   },
 }) {
+  console.log('@getMhTransactionTagsMongo');
+
   const tags = [{
     name: `!${language}`,
     description: 'The language the user speaks.',

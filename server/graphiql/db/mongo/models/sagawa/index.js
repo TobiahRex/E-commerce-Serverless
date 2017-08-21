@@ -121,35 +121,26 @@ new Promise((resolve, reject) => {
     transactionId,
   } = orderInfo;
 
-  Product
-  .find({ _id: { $in: cart.map(({ _id }) => _id) } })
-  .exec()
-  .then((dbProducts) => {
-    console.log('SUCCEEDED: Retrieved Product documents from cart _id\'s.');
-
-    const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, { _doc }) => ({ qty: cartProduct.qty, ..._doc }));
-
-    return bbPromise.fromCallback(cb => Sagawa.create({
-      userId,
-      transactionId,
-      shippingAddress: {
-        boxid: `NJ2JP${moment().format('YYYYMMDD')}`,
-        shipdate: moment().format('YYYY/MM/DD'),
-        customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
-        postal: sagawa.shippingAddress.postalCode,
-        jpaddress1: sagawa.shippingAddress.addressLine1,
-        jpaddress2: sagawa.shippingAddress.addressLine2,
-        phoneNumber: sagawa.shippingAddress.phoneNumber,
-        kbn: GetSagawaKbn(sagawa.shippingAddress.country),
-        wgt: GetOrderWeight(cart),
-        grandTotal: total.subTotal,
-        deliveryDate: GetNextBusinessDay(),
-        deliveryTime: '1200',
-        ttlAmount: total.subTotal,
-      },
-      items: [...GenerateItemObjs(updatedCart)],
-    }, cb));
-  })
+  bbPromise.fromCallback(cb => Sagawa.create({
+    userId,
+    transactionId,
+    shippingAddress: {
+      boxid: `NJ2JP${moment().format('YYYYMMDD')}`,
+      shipdate: moment().format('YYYY/MM/DD'),
+      customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
+      postal: sagawa.shippingAddress.postalCode,
+      jpaddress1: sagawa.shippingAddress.addressLine1,
+      jpaddress2: sagawa.shippingAddress.addressLine2,
+      phoneNumber: sagawa.shippingAddress.phoneNumber,
+      kbn: GetSagawaKbn(sagawa.shippingAddress.country),
+      wgt: GetOrderWeight(cart),
+      grandTotal: total.subTotal,
+      deliveryDate: GetNextBusinessDay(),
+      deliveryTime: '1200',
+      ttlAmount: total.subTotal,
+    },
+    items: [...GenerateItemObjs(cart)],
+  }, cb))
   .then((dbSagawa) => {
     console.log('SUCCEEDED: Create Sagawa Document: ', dbSagawa);
     resolve(dbSagawa);

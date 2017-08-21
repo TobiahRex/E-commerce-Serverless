@@ -379,6 +379,7 @@ export const SubmitFinalOrder = gql`
 mutation SubmitFinalOrder(
   $userId: ID!
   $comments: String
+  $language: String!
   $termsAgreement: Boolean!
   $newsletterDecision: Boolean!
   $cart: [TransactionCartProduct]!
@@ -391,6 +392,7 @@ mutation SubmitFinalOrder(
   SubmitFinalOrder (
     userId: $userId
     comments: $comments
+    language: $language
     termsAgreement: $termsAgreement
     newsletterDecision: $newsletterDecision
     cart: $cart

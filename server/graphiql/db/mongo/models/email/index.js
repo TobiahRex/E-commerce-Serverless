@@ -5,7 +5,7 @@ import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../../schemas/emailSchema';
 import db from '../../connection';
-import { createEmailProductList } from './helpers';
+import { createEmailProductList as CreateEmailProductList } from './helpers';
 // import config from '../../../config.json';
 
 const {
@@ -77,6 +77,8 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.findEmailAndFilterLanguage = (type, reqLanguage) =>
 new Promise((resolve, reject) => {
+console.log('\n\n@Email.findEmailAndFilterLanguage\n');
+
   if (!type || !reqLanguage) {
     console.log(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
     reject(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
@@ -257,22 +259,23 @@ new Promise((resolve, reject) => {
     language,
     transaction,
   } = orderInfo;
+  console.log('language: ', language);
 
   const today = moment().format('dddd');
   const nonBusinessDays = ['Saturday', 'Sunday'];
   let emailType = '';
 
-  if (!nonBusinessDays.includes(today)) {
-    emailType = 'invoiceEmail';
-  } else {
+  if (nonBusinessDays.includes(today)) {
     emailType = 'invoiceEmailNoTracking';
+  } else {
+    emailType = 'invoiceEmail';
   }
 
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
     console.log('SUCCEEDED: Find Template Invoice Email for language: ', language);
 
-    const productListHtmlString = createEmailProductList(dbEmail, cart);
+    const productListHtmlString = CreateEmailProductList(dbEmail, cart);
 
     const updatedHtmlString = dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
