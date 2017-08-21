@@ -9,7 +9,7 @@ const CheckoutRoutes = () => (
     <Route
       path="cart"
       getComponent={(location, cb) => {
-        System.import('../containers/cart/cart')
+        System.import('../containers/cart')
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
