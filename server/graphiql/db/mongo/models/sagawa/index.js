@@ -319,11 +319,16 @@ new Promise((resolve, reject) => {
       sagawaId: sagawaId,
     };
     let token = JWT.sign(payload, jwtSecret);
-    let tokenString = `https://nj2jp.com/tracking?trackingToken=${token}`;
+    const {
+      NODE_ENV,
+      BASE_URL,
+      PRODUCTION_URL,
+    } = process.env;
+    let tokenString = `${NODE_ENV === 'production' ? PRODUCTION_URL : BASE_URL}tracking?token=${token}`;
 
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
-    .replace(/(TRACKING_LINK_HERE)+/g, tokenString);
+    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenString);
 
     return Email.sendEmail({
       to: transactionDoc.emailAddress,
