@@ -303,17 +303,17 @@ const queries = {
         type: new NonNull(MongoId),
       },
     },
-    resolve: (_, { _id }, { Product }) => Product.findProductById(_id),
+    resolve: (_, { _id }) => Product.findProductById(_id),
   },
   PopularProducts: {
     type: new ListType(queryTypes.popularProductsType),
     args: {
       qty: {
-        type: new NonNull(IntType),
         description: 'The quantity of popular products to return.',
+        type: new NonNull(IntType),
       },
     },
-    resolve: (_, { qty }, { Product }) => Product.getPopularProducts(qty),
+    resolve: (_, { qty }) => Product.getPopularProducts(qty),
   },
 };
 
