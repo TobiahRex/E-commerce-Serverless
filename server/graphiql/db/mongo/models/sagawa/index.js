@@ -324,7 +324,7 @@ new Promise((resolve, reject) => {
     emailBody = emailBody
     .replace(/(TRACKING_LINK_HERE)+/g, tokenString);
 
-    Email.sendEmail({
+    return Email.sendEmail({
       to: transactionDoc.emailAddress,
       htmlBody: emailBody,
     }, dbEmail);
