@@ -4,9 +4,6 @@ import axios from 'axios';
 import moment from 'moment';
 import JWT from 'jsonwebtoken';
 import sagawaSchema from '../../schemas/sagawaSchema';
-import Product from '../product';
-import Transaction from '../transaction';
-import Email from '../email';
 import {
   ZipArrays,
   GetSagawaKbn,
@@ -109,7 +106,7 @@ export default (db) => {
   *
   * @return {object} new Sagawa Document.
   */
-  sagawaSchema.statics.handleNewTransaction = orderInfo =>
+  sagawaSchema.statics.handleNewTransaction = (orderInfo) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.handleNewTransaction\n');
 
