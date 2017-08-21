@@ -33,6 +33,7 @@
     "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
     "graphql": "^0.9.6",
+    "jsonwebtoken": "^7.4.3",
     "moment": "^2.18.1",
     "mongoose": "^4.9.7",
     "request": "^2.81.0",
