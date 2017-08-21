@@ -152,3 +152,4 @@ new Promise((resolve, reject) => {
 });
 
 const MarketHero = db.model('MarketHero', marketHeroSchema);
+export default MarketHero;

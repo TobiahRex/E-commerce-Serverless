@@ -21,7 +21,6 @@ import {
 } from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
-
 /**
 * Function: "fetchSquareLocation":
 * Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
@@ -212,8 +211,8 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('\n2] SUCCEEDED: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
-    newTransactionDoc = results[0];
-    userDoc = { ...results[1] };
+    newTransactionDoc = results[0]._doc;
+    userDoc = { ...results[1]._doc };
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
@@ -263,7 +262,7 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+    console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.', results[0]._doc, '  2) Created or Updated Market Hero document.', results[1]._doc, ' 3) Updated Sagawa document for this transaction.', results[2]);
 
     userDoc = { ...results[0] };
     marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
