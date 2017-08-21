@@ -88,7 +88,7 @@ const rootType = new ObjectType({
     emailLanguage: {
       description: 'The language the customer preferred at the time of purchase.',
       type: new EnumType({
-        name: 'ProductNicotineStrengthsEnum',
+        name: 'EmailLanguageEnum',
         values: {
           english: {
             value: 'english',
