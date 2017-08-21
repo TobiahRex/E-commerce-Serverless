@@ -262,7 +262,7 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+    console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.', results[0]._doc, '  2) Created or Updated Market Hero document.', results[1]._doc, ' 3) Updated Sagawa document for this transaction.', results[2]);
 
     userDoc = { ...results[0] };
     marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
