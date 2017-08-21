@@ -77,28 +77,28 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.findEmailAndFilterLanguage = (type, reqLanguage) =>
 new Promise((resolve, reject) => {
-console.log('\n\n@Email.findEmailAndFilterLanguage\n');
+  console.log('\n\n@Email.findEmailAndFilterLanguage\n');
 
   if (!type || !reqLanguage) {
     console.log(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
-    reject(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
+    reject(new Error(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `));
   } else {
     Email
     .find({ type })
     .exec()
     .then((dbEmails) => {
-      if (!dbEmails) {
-        console.log(`Did not find any emails with type: "${type}"`);
-        return reject(`Did not find any emails with type: "${type}".  `);
+      if (!dbEmails.length) {
+        console.log('FAILED: Find email with type: ', type);
+        return reject(new Error(`FAILED: Find email with type: "${type}".  `));
       }
-      console.log(`Found the following emails: ${dbEmails}`);
+      console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails);
 
       const foundEmail = dbEmails
       .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
 
       if (!foundEmail) {
-        console.log('Did not successfully filter email results array.');
-        return reject('Did not successfully filter email results array.');
+        console.log('FAILED: Filter email results array.');
+        return reject(new Error('FAILED: Filter email results array.'));
       }
 
       console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
@@ -127,6 +127,8 @@ console.log('\n\n@Email.findEmailAndFilterLanguage\n');
 */
 emailSchema.statics.sendEmail = ({ to, htmlBody }, emailDoc) =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.sendEmail\n');
+
   if (!isEmail(to)) {
     console.log(`ERROR = "${to}" is not a valid email.  `);
     return reject(`ERROR = "${to}" is not a valid email.  `);
@@ -191,6 +193,8 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.findSentEmailAndUpdate = (msgId, status) =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.findSentEmailAndUpdate\n');
+
   if (!msgId || !status) return reject(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
 
   console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
@@ -259,7 +263,6 @@ new Promise((resolve, reject) => {
     language,
     transaction,
   } = orderInfo;
-  console.log('language: ', language);
 
   const today = moment().format('dddd');
   const nonBusinessDays = ['Saturday', 'Sunday'];

@@ -219,7 +219,7 @@ new Promise((resolve, reject) => {
     newTransactionDoc = results[0]._doc;
     userDoc = { ...results[1]._doc };
     cartProducts = ZipArrays(cart, results[3], (cartProduct, dbDoc) =>
-    ({ qty: cartProduct.qty, ...dbDoc }));
+    ({ qty: cartProduct.qty, ...dbDoc._doc }));
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
@@ -284,7 +284,7 @@ new Promise((resolve, reject) => {
 
     return Promise.all([
       Email.createInvoiceEmailBody({
-        cart,
+        cart: cartProducts,
         square,
         sagawa: results[2],
         language,
@@ -292,11 +292,19 @@ new Promise((resolve, reject) => {
       }),
       MarketHero[marketHeroOp]({
         lead,
-        tags: GetMhTransactionTagsMongo({ total, cart, language }),
+        tags: GetMhTransactionTagsMongo({
+          total,
+          language,
+          cart: cartProducts,
+        }),
       }),
       MarketHero.createOrUpdateLead({
         lead,
-        tags: GetMhTransactionTagsApi({ total, cart, language }),
+        tags: GetMhTransactionTagsApi({
+          total,
+          language,
+          cart: cartProducts,
+        }),
       }),
       Transaction.findByIdAndUpdate(newTransactionDoc._id, {
         $set: {
