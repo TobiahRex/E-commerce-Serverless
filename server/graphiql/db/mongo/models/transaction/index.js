@@ -21,7 +21,6 @@ import {
 } from '../marketHero/helpers';
 
 require('dotenv').load({ silent: true });
-
 /**
 * Function: "fetchSquareLocation":
 * Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
@@ -212,9 +211,8 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('\n2] SUCCEEDED: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
-    newTransactionDoc = results[0];
+    newTransactionDoc = results[0]._doc;
     userDoc = { ...results[1]._doc };
-    console.log('"userDoc": ', userDoc);
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
