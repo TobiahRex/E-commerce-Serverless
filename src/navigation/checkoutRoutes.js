@@ -1,18 +1,43 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-// ----------------------------- Legal -------------------------------
-import Cart from '../containers/cart/cart';
-import EmptyCart from '../containers/cart/EmptyCart/emptyCart';
-import ExpressCheckout from '../containers/checkout/expressCheckout';
-import OrderSuccess from '../containers/checkout/orderSuccess';
+const errorLoading = () => { throw new Error('Dyanmic page loading failed.'); };
+const loadRoute = cb => module => cb(null, module.default);
 
 const CheckoutRoutes = () => (
   <div>
-    <Route path="cart" component={Cart} />
-    <Route path="empty" component={EmptyCart} />
-    <Route path="express_checkout" component={ExpressCheckout} />
-    <Route path="successfully_ordered" component={OrderSuccess} />
+    <Route
+      path="cart"
+      getComponent={(location, cb) => {
+        System.import('../containers/cart/cart')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
+    <Route
+      path="empty"
+      getComponent={(location, cb) => {
+        System.import('../containers/cart/EmptyCart/emptyCart')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
+    <Route
+      path="express_checkout"
+      getComponent={(location, cb) => {
+        System.import('../containers/checkout/expressCheckout')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
+    <Route
+      path="successfully_ordered"
+      getComponent={(location, cb) => {
+        System.import('../containers/checkout/orderSuccess')
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
   </div>
 );
 
