@@ -4,11 +4,16 @@ import axios from 'axios';
 import moment from 'moment';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
+import JWT from 'jsonwebtoken';
 
 import Product from '../product';
 import Transaction from '../transaction';
 import Email from '../email';
 import User from '../user';
+
+const {
+  JWT_SECRET: jwtSecret,
+} = process.env;
 
 import {
   ZipArrays,
@@ -248,7 +253,7 @@ new Promise((resolve, reject) => {
     });
 });
 
-/*
+/**
 * Function: 'uploadSagawaAndSendEmail'
 * This is sagawa Lambda that does the following:
 * Get transactionId, userId, sagawaId, emailTemplateId
@@ -271,10 +276,12 @@ new Promise((resolve, reject) => {
   const {
     sagawaId,
     transactionId,
+    userId,
   } = request;
 
   let transactionDoc = {};
   let sagawaDoc = {};
+  let emailBody = '';
 
   Promise.all([
     Sagawa.orderUpload(sagawaId),
@@ -305,9 +312,21 @@ new Promise((resolve, reject) => {
   .then((dbEmail) => {
     console.log('SUCCEEDED: Find email and Filter by Language.', dbEmail);
 
-    Email.sendEmail({
+    let payload = {
+      userId: userId,
+      exp: moment().add(1, 'w').unix(),
+      sagawaId: sagawaId,
+    };
+    let token = JWT.sign(payload, jwtSecret);
+    let tokenString = `https://nj2jp.com/tracking?trackingToken=${token}`;
+
+    emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
+    emailBody = emailBody
+    .replace(/(TRACKING_LINK_HERE)+/g, tokenString);
+
+    return Email.sendEmail({
       to: transactionDoc.emailAddress,
-      htmlBody: transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking,
+      htmlBody: emailBody,
     }, dbEmail);
   })
   .then(() => {
