@@ -213,7 +213,8 @@ new Promise((resolve, reject) => {
     console.log('\n2] SUCCEEDED: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
 
     newTransactionDoc = results[0];
-    userDoc = { ...results[1] };
+    userDoc = { ...results[1]._doc };
+    console.log('"userDoc": ', userDoc);
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
