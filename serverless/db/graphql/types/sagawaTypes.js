@@ -8,8 +8,6 @@ import {
   GraphQLObjectType as ObjectType,
 } from 'graphql';
 
-import Sagawa from '../../mongo/models/sagawa';
-
 const rootType = new ObjectType({
   name: 'Sagawa',
   description: 'The shipping details for a User\'s new transaction.',
@@ -156,7 +154,7 @@ const mutations = {
         type: new NonNull(StringType),
       },
     },
-    resolve: (_, args) => Sagawa.validatePostal(args),
+    resolve: (_, args, { Sagawa }) => Sagawa.validatePostal(args),
   },
 };
 
