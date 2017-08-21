@@ -38,6 +38,10 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
+    upc: {
+      type: String,
+      required: true,
+    },
     size: {
       type: Number,
       enum: [30, 60, 120],
@@ -45,7 +49,7 @@ const productSchema = new Schema({
     },
     nicotineStrength: {
       type: Number,
-      enum: [2, 4, 6, 8, 10, 12, 14, 16, 18],
+      enum: [0, 2, 3, 4, 6, 8, 10, 12, 14, 16, 18],
       required: true,
     },
     images: [{
@@ -78,7 +82,8 @@ const productSchema = new Schema({
     },
     quantities: {
       available: { type: Number, default: 500 },
-      inCart: { type: Number },
+      inCarts: { type: Number, default: 0 },
+      purchased: { type: Number, default: 0 },
     },
   },
   reviews: [{
