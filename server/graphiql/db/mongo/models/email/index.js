@@ -11,7 +11,7 @@ import { createEmailProductList } from './helpers';
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
   AWS_SECRET_ACCESS_KEY: secretAccessKey,
-  AWS_REGION: region,
+  AWS_SES_REGION: region,
 } = process.env;
 
 AWS.config.update({
@@ -317,3 +317,4 @@ new Promise((resolve, reject) => {
 });
 
 const Email = db.model('Email', emailSchema);
+export default Email;
