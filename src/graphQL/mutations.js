@@ -497,8 +497,8 @@ mutation SubmitFinalOrder(
         qty
       }
       sagawa
-      marketHero
       emailAddress
+      emailLanguage
       invoiceEmail
       invoiceEmailNoTracking
       jpyFxRate
@@ -530,6 +530,7 @@ mutation SubmitFinalOrder(
           last4
           nameOnCard
           cardNonce
+          postalCode
         }
         charge {
           amount
