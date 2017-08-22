@@ -226,9 +226,9 @@ new Promise((resolve, reject) => {
       status: 'uploaded',
     },
   }, { new: true })
-    .then((sagawaDoc) => {
-      console.log('SUCCEEDED: Save AWB & REF #\'s to Document: ', sagawaDoc);
-      resolve();
+    .then((updatedDoc) => {
+      console.log('SUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
+      resolve(updatedDoc);
     })
     .catch((error) => {
       console.log('FAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
@@ -276,7 +276,6 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
-    sagawaDoc = results[0];
     transactionDoc = results[1];
 
     return Sagawa.findSagawaAndUpdate({
@@ -285,8 +284,10 @@ new Promise((resolve, reject) => {
       referenceId: sagawaDoc.referenceId,
     });
   })
-  .then(() => {
-    console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.');
+  .then((dbSagawa) => {
+    console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
+
+    sagawaDoc = dbSagawa;
 
     emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
 
@@ -318,20 +319,13 @@ new Promise((resolve, reject) => {
     .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.awbId);
 
-    return Promise.all([
-      Email.sendEmail({
-        to: transactionDoc.emailAddress,
-        htmlBody: emailBody,
-      }, dbEmail),
-      Sagawa.findByIdAndUpdate(sagawaDoc._id, {
-        $set: {
-          [emailType]: emailBody,
-        },
-      }, { new: true }),
-    ]);
+    return Email.sendEmail({
+      to: transactionDoc.emailAddress,
+      htmlBody: emailBody,
+    }, dbEmail);
   })
-  .then((results) => {
-    console.log('SUCCEEDED: 1) Send Invoice Email via SES.\n', results[0], '\n2) Update Sagawa Doc with final Email Body at key "', emailType, '":\n', results[1]);
+  .then(() => {
+    console.log('SUCCEEDED: Send Invoice Email via SES.\n');
     resolve();
   })
   .catch((error) => {

@@ -111,8 +111,8 @@ const productSchema = new Schema({
     wholesalePrice: { type: Number },
   },
   statistics: {
-    addsToCart: { type: Number },
-    completedCheckouts: { type: Number },
+    addsToCart: { type: Number, default: 0 },
+    completedCheckouts: { type: Number, default: 0 },
     transactions: [{
       transactionId: { type: ObjectId, ref: 'Transaction' },
       userId: { type: ObjectId, ref: 'User' },

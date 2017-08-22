@@ -330,7 +330,7 @@ new Promise((resolve, reject) => {
     return Promise.all([...promiseArray]);
   })
   .then((results) => {
-    console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda. 2) Update User Document with new MarketHero Doc _id (if necessary).', results);
+    console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
 
     const { status, data } = results[0];
 
@@ -348,14 +348,23 @@ new Promise((resolve, reject) => {
     }
 
     cartProducts.forEach((productDoc) => {
-      productDoc.product.quantities.inCarts -= 1;
-      productDoc.product.quantities.purchased += 1;
-      productDoc.statistics.completedCheckouts += 1;
-      productDoc.transactions = [...productDoc.transactions, {
-        transactionId: newTransactionDoc._id,
-        userId,
-      }];
-      productDoc.save({ validateBeforeSave: true })
+      const {
+        _id,
+        product,
+        statistics,
+      } = productDoc;
+
+      Product.findByIdAndUpdate(_id, {
+        $set: {
+          'product.quantities.inCarts': product.quantities.inCarts -= 1,
+          'product.quantities.purchased': product.quantities.inCarts += 1,
+          'statistics.completedCheckouts': statistics.completedCheckouts += 1,
+          'statistics.transactions': [...statistics.transactions, {
+            transactionId: newTransactionDoc._id,
+            userId,
+          }],
+        },
+      }, { new: true })
       .then((savedDoc) => {
         console.log('SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
       })

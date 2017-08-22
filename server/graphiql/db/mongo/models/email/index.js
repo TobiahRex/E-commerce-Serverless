@@ -130,8 +130,8 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendEmail\n');
 
   if (!isEmail(to)) {
-    console.log(`ERROR = "${to}" is not a valid email.  `);
-    return reject(`ERROR = "${to}" is not a valid email.  `);
+    console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+    return reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
   }
 
   const emailRequest = {
@@ -162,7 +162,7 @@ new Promise((resolve, reject) => {
   return bbPromise
   .fromCallback(cb => ses.sendEmail(emailRequest, cb))
   .then((data) => {
-    console.log('\nSuccessfully sent SES email: \n', data,
+    console.log('SUCCEEDED: Send SES email: \n', data,
     '\nSaving record of email to MONGO Email collection...');
 
     emailDoc.sentEmails.push({ messageId: data.MessageId });
@@ -170,7 +170,7 @@ new Promise((resolve, reject) => {
     return emailDoc.save({ new: true });
   })
   .then((savedEmail) => {
-    console.log('SUCCEEDED: Send Email and save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
+    console.log('SUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
     resolve();
   })
   .catch((error) => {
