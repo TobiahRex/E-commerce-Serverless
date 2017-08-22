@@ -328,6 +328,35 @@ new Promise((resolve, reject) => {
     reject(error);
   });
 });
+/**
+* Function: 'findSagawaByStatus'
+* Locates all sagawa documents with matching status.
+*
+* 1) Queries Sagawa collection by input argument "status".
+* 2) Resolves || Rejects with result.
+*
+* @param {string} status - status of the sagawa upload
+*
+* @return {object} - Promise resolved with array of matching sagawa docs.
+*/
+sagawaSchema.statics.findSagawaByStatus = status =>
+new Promise((resolve, reject) => {
+  Sagawa.find({ 'status': status })
+  .exec()
+  .then((dbSagawas) => {
+    console.log(`
+      Found ${dbSagawas.length} sagawa documents with Status: "${status}"!
+    `);
+    resolve(dbSagawas);
+  })
+  .catch((error) => {
+    reject({
+      problem: `Could not find any sagawa documents with Status: ${status}.
+
+      Mongo Error = ${error}`,
+    });
+  });
+});
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
 export default Sagawa;
