@@ -314,7 +314,7 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('5] Success! 1) Generate Invoice Email body and insert result into Transaction document. 2) Create or Update Mongo Market Hero document. 3) Create or Update Market Hero API lead. 4) Update Transaction Doc with Sagawa Mongo _id reference.');
+    console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2], '\n4) Update Transaction Doc with Sagawa Mongo _id reference.\n', results[3]);
 
     newTransactionDoc = { ...results[0] };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-const errorLoading = () => { throw new Error('Dyanmic page loading failed.'); };
+const errorLoading = (error) => { throw new Error(`Code Split page loading failed: ${error.message}`); };
 const loadRoute = cb => module => cb(null, module.default);
 
 const ProductRoutes = () => (

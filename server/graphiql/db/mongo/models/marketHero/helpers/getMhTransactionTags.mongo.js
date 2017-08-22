@@ -39,14 +39,14 @@ export default function getMhTransactionTags({
     let qtyCounter = next.qty;
     const flavorTags = [];
     while (qtyCounter--) { //eslint-disable-line
-      const vendor = next.product.vendor.replace(/(\sJuice)/g, 'juice');
-      const productName = next.product.flavor.split(' ').reduce((a, n) => {
-        a += n.toUpperCase();
+      const vendor = next.product.vendor.replace(/(\sSwitch)/g, 'switch');
+      const productName = next.product.flavor.split('_').reduce((a, n) => {
+        a += n.toLowerCase();
         return a;
       }, '');
       const strength = `${next.product.nicotineStrength}mg`;
       flavorTags.push({
-        name: `${vendor}_${productName}_${strength}`,
+        name: `$${vendor}_${productName}_${strength}`,
         description: 'The purchased product details.',
         date: moment().format('ll'),
       });

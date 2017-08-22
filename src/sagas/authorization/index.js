@@ -71,8 +71,9 @@ function* preLoginActions(socialType) {
 }
 
 function* socialLogin(socialType) {
+  console.log('%cAuthService[socialType]', 'background:pink;', AuthService[socialType]);
   yield call(preLoginActions, socialType);
-  yield put(AuthService[socialType]());
+  yield call(() => AuthService[socialType]());
 }
 
 export function* watchAuthActions() {
