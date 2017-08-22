@@ -8,13 +8,14 @@ import db from '../../connection';
 import Transaction from '../transaction';
 import Email from '../email';
 import {
-  GetSagawaKbn,
-  CleanSagawaResponse,
-  GenerateItemsXml,
-  GenerateAddressXml,
-  GetNextBusinessDay,
-  GetOrderWeight,
-  GenerateItemObjs,
+  getSagawaKbn as GetSagawaKbn,
+  cleanSagawaResponse as CleanSagawaResponse,
+  generateItemsXml as GenerateItemsXml,
+  generateAddressXml as GenerateAddressXml,
+  getDeliveryDay as GetDeliveryDay,
+  getShippingDay as GetShippingDay,
+  getOrderWeight as GetOrderWeight,
+  generateItemObjs as GenerateItemObjs,
 } from './helpers';
 
 /**
@@ -123,8 +124,8 @@ new Promise((resolve, reject) => {
     userId,
     transactionId,
     shippingAddress: {
-      boxid: `NJ2JP${moment().format('YYYYMMDD')}`,
-      shipdate: moment().format('YYYY/MM/DD'),
+      boxid: `NJ${moment().format('YYYYMMDDSS')}`,
+      shipdate: moment().add(1, 'd').format('YYYY/MM/DD'),
       customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
       postal: sagawa.shippingAddress.postalCode,
       jpaddress1: sagawa.shippingAddress.addressLine1,
@@ -133,7 +134,7 @@ new Promise((resolve, reject) => {
       kbn: GetSagawaKbn(sagawa.shippingAddress.country),
       wgt: GetOrderWeight(cart),
       grandTotal: total.subTotal,
-      deliveryDate: GetNextBusinessDay(),
+      deliveryDate: GetDeliveryDay(),
       deliveryTime: '1200',
       ttlAmount: total.subTotal,
     },
