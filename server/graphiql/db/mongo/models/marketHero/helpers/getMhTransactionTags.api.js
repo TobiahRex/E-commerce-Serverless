@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export default function getMhTransactionTagsApi({
   cart,
   language,
@@ -33,6 +34,7 @@ export default function getMhTransactionTagsApi({
 
     return acc;
   }, []);
-
-  return [...tags, ...productTags];
+  const result = [...tags, ...productTags];
+  console.log('MARKET HERO TAGS: ', result);
+  return result;
 }

@@ -278,11 +278,12 @@ new Promise((resolve, reject) => {
     console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
     transactionDoc = results[1];
+    const uploadData = results[0];
 
     return Sagawa.findSagawaAndUpdate({
       sagawaId,
-      awbId: sagawaDoc.awbId,
-      referenceId: sagawaDoc.referenceId,
+      awbId: uploadData.awbId,
+      referenceId: uploadData.referenceId,
     });
   })
   .then((dbSagawa) => {

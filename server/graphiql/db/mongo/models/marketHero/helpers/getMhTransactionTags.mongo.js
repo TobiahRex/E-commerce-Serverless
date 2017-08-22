@@ -4,6 +4,7 @@ import moment from 'moment';
 export default function getMhTransactionTags({
   cart,
   language,
+  subscribed,
   total: {
     discount: {
       qty,

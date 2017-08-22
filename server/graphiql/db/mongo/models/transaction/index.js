@@ -271,7 +271,7 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
 
-    userDoc = { ...results[0] };
+    userDoc = { ...results[0]._doc };
     marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
 
     const lead = {
@@ -285,7 +285,7 @@ new Promise((resolve, reject) => {
       Email.createInvoiceEmailBody({
         cart: cartProducts,
         square,
-        sagawa: results[2],
+        sagawa: results[2]._doc,
         language,
         transaction: newTransactionDoc,
       }),
@@ -295,7 +295,7 @@ new Promise((resolve, reject) => {
           total,
           language,
           cart: cartProducts,
-          subscribed: newsletterDecision,
+          subscribed: !!newsletterDecision,
         }),
       }),
       MarketHero.createOrUpdateLead({
@@ -304,7 +304,7 @@ new Promise((resolve, reject) => {
           total,
           language,
           cart: cartProducts,
-          subscribed: newsletterDecision,
+          subscribed: !!newsletterDecision,
         }),
       }),
     ]);
@@ -368,7 +368,7 @@ new Promise((resolve, reject) => {
         },
       }, { new: true })
       .then((savedDoc) => {
-        console.log('SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
+        console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
       })
       .catch((error) => {
         console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);

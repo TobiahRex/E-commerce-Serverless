@@ -288,7 +288,7 @@ new Promise((resolve, reject) => {
     .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
     .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('YYYY/MM/DD'))
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
-    .replace(/(TOTAL_PAID_HERE)+/g, transaction.square.charge.amount.toFixed(2))
+    .replace(/(TOTAL_PAID_HERE)+/g, Number(transaction.square.charge.amount).toFixed(2))
     .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
     .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
     .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
@@ -302,10 +302,11 @@ new Promise((resolve, reject) => {
     .replace(/(BILL_COUNTRY_HERE)+/g, GetBillingCountry(transaction.square.billingCountry))
     .replace(/(BILL_LAST_4_HERE)+/g, transaction.square.cardInfo.last4)
     .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
-    .replace(/(ORDER_SUBTOTAL_HERE)+/g, transaction.total.subTotal)
+    .replace(/(ORDER_SUBTOTAL_HERE)+/g, Number(transaction.total.subTotal).toFixed(2))
     .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
     .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
-    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal);
+    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal)
+    .replace(/(INSERT_COMMENT_HERE)+/g, transaction.comments);
 
     if (emailType === 'invoiceEmail') {
       transaction.invoiceEmail = updatedHtmlString;
