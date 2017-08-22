@@ -311,7 +311,10 @@ new Promise((resolve, reject) => {
     }
 
     return Transaction.findByIdAndUpdate(transaction._id, {
-      $set: { [emailType]: updatedHtmlString },
+      $set: {
+        [emailType]: updatedHtmlString,
+        sagawa: sagawa._id,
+      },
     }, { new: true });
   })
   .then((updatedDoc) => {

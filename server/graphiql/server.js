@@ -19,6 +19,6 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
-server.use('/api', api);
+server.use('/api', bodyParser.json(), api);
 server.listen(PORT, () => console.log(`Server listening @ ${PORT}
 Graphiql Server @ http://localhost:${PORT}/graphiql`));

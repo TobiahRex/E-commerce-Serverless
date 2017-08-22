@@ -273,7 +273,6 @@ new Promise((resolve, reject) => {
 
     userDoc = { ...results[0] };
     marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
-    const sagawaDoc = results[2];
 
     const lead = {
       language,
@@ -306,21 +305,16 @@ new Promise((resolve, reject) => {
           cart: cartProducts,
         }),
       }),
-      Transaction.findByIdAndUpdate(newTransactionDoc._id, {
-        $set: {
-          sagawa: sagawaDoc._id,
-        },
-      }, { new: true }),
     ]);
   })
   .then((results) => {
-    console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2], '\n4) Update Transaction Doc with Sagawa Mongo _id reference.\n', results[3]);
+    console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
 
-    newTransactionDoc = { ...results[0] };
+    newTransactionDoc = { ...results[0]._doc };
 
-    const promise1 = axios.post('http://localhost:3000/api/sagawa', {
+    const promise1 = axios.post('http://localhost:3001/api/sagawa', {
       userId,
-      sagawaId: sagawa.sagawaId,
+      sagawaId: newTransactionDoc.sagawa,
       transactionId: newTransactionDoc._id,
     });
     let promise2 = null;
