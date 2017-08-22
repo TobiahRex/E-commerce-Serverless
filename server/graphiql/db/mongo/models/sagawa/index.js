@@ -288,7 +288,7 @@ new Promise((resolve, reject) => {
     console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
 
     sagawaDoc = dbSagawa;
-
+    console.log('Updated Sagawa Doc: ', sagawaDoc);
     emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
 
     return Email.findEmailAndFilterLanguage(

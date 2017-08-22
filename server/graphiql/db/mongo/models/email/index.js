@@ -283,7 +283,7 @@ new Promise((resolve, reject) => {
     const updatedHtmlString = dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
     .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
-    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
+    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('YYYY/MM/DD'))
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
     .replace(/(TOTAL_PAID_HERE)+/g, transaction.square.charge.amount)
     .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
