@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import moment from 'moment';
 
 export default function getMhTransactionTags({
@@ -10,6 +11,8 @@ export default function getMhTransactionTags({
     },
   },
 }) {
+  console.log('\n\n@getMhTransactionTagsMongo\n');
+
   const tags = [{
     name: `!${language}`,
     description: 'The language the user speaks.',
@@ -33,6 +36,7 @@ export default function getMhTransactionTags({
   }
 
   const productTags = cart.reduce((acc, next) => {
+    console.log('NEXT: ', next);
     let qtyCounter = next.qty;
     const flavorTags = [];
     while (qtyCounter--) { //eslint-disable-line

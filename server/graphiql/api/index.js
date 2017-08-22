@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import express from 'express';
 import Sagawa from '../db/mongo/models/sagawa';
+import Email from '../db/mongo/models/email';
 
 const router = new express.Router();
 
@@ -13,6 +14,18 @@ const router = new express.Router();
 
 router.post('/sagawa', (req, res) => {
   Sagawa.uploadOrderAndSendEmail(req.body)
+    .then((response) => {
+      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+      res.status(200).send(response);
+    })
+    .catch((error) => {
+      console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      res.status(400).send(error);
+    });
+});
+
+router.post('/email', (req, res) => {
+  Email.createEmail(req.body)
     .then((response) => {
       console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
       res.status(200).send(response);

@@ -320,6 +320,10 @@ const mutations = {
         description: 'Options comments written by the customer at the time of checkout.',
         type: StringType,
       },
+      language: {
+        description: 'The langauge the User preferred at checkout.',
+        type: new NonNull(StringType),
+      },
       termsAgreement: {
         description: 'User\'s agreement to the Terms & Agreement policy at the time of purchase.',
         type: new NonNull(BoolType),
