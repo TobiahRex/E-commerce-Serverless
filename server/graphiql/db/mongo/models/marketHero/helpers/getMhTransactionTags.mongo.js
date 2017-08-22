@@ -21,15 +21,21 @@ export default function getMhTransactionTags({
 
   if (subscribed) {
     tags.push({
-      name: '!Subscribed',
+      name: '!subscribed',
       description: 'The user explicitly subscribed to receiving Newsletters.',
+      date: moment().format('ll'),
+    });
+  } else {
+    tags.push({
+      name: '!not_subscribed',
+      description: 'The user has not explicitly subscribed to Newsletters.',
       date: moment().format('ll'),
     });
   }
 
   if (qty) {
     tags.push({
-      name: '!Discount_qty',
+      name: '!discount_qty',
       description: 'The user has received a 25% Discount during a transaction.',
       date: moment().format('ll'),
     });
@@ -37,7 +43,7 @@ export default function getMhTransactionTags({
 
   if (register) {
     tags.push({
-      name: '!Discount_register',
+      name: '!discount_register',
       description: 'The user has received a 10% New Member discount during a transaction.',
       date: moment().format('ll'),
     });
