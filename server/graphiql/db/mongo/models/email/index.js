@@ -6,7 +6,7 @@ import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../../schemas/emailSchema';
 import db from '../../connection';
 import { createEmailProductList as CreateEmailProductList } from './helpers';
-// import config from '../../../config.json';
+import Transaction from '../transaction';
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
@@ -91,7 +91,7 @@ new Promise((resolve, reject) => {
         console.log('FAILED: Find email with type: ', type);
         return reject(new Error(`FAILED: Find email with type: "${type}".  `));
       }
-      console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails);
+      console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
 
       const foundEmail = dbEmails
       .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
@@ -309,10 +309,13 @@ new Promise((resolve, reject) => {
     } else {
       transaction.invoiceEmailNoTracking = updatedHtmlString;
     }
-    return transaction.save({ validateBeforeSave: true });
+
+    return Transaction.findByIdAndUpdate(transaction._id, {
+      $set: { [emailType]: updatedHtmlString },
+    }, { new: true });
   })
   .then((updatedDoc) => {
-    console.log(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
+    console.log(`SUCCEEDED: Create Invoice Email and save results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
 
     resolve(updatedDoc);
   })

@@ -20,7 +20,7 @@ const createSagawaTrackingAPI = () => {
 };
 const sagawaTrackingAPI = createSagawaTrackingAPI();
 
-sagawaTrackingAPI.getStatus('200000951522')
+sagawaTrackingAPI.getStatus('NJ2JP201708200001')
 .then((response) => {
   const { problem, ok, data } = response;
   console.log('RESPONSE:\n', response, '\n\n');
