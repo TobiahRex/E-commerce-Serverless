@@ -23,11 +23,8 @@ export default function getMhTransactionTagsApi({
     let qtyCounter = next.qty;
     const flavorTags = [];
     while (qtyCounter--) { //eslint-disable-line
-      const vendor = next.product.vendor.replace(/(\sSwitch)/g, 'switch');
-      const productName = next.product.flavor.split('_').reduce((a, n) => {
-        a += n.toUpperCase();
-        return a;
-      }, '');
+      const vendor = next.product.vendor.replace(/(\sSwitch)/g, '-Switch');
+      const productName = next.product.flavor;
       const strength = `${next.product.nicotineStrength}mg`;
       flavorTags.push(`$${vendor}_${productName}_${strength}`);
     }
