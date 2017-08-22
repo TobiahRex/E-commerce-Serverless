@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-loop-func */
 import moment from 'moment';
 
 export default function getMhTransactionTags({
@@ -54,7 +54,7 @@ export default function getMhTransactionTags({
     let qtyCounter = next.qty;
     const flavorTags = [];
     while (qtyCounter--) { //eslint-disable-line
-      const vendor = next.product.vendor.replace(/(\sSwitch)/g, '-Switch');
+      const vendor = next.product.vendor.replace(/(Vape Switch)+/ig, 'vape-switch');
       const productName = next.product.flavor;
       const strength = `${next.product.nicotineStrength}mg`;
       flavorTags.push({
@@ -69,5 +69,7 @@ export default function getMhTransactionTags({
     return acc;
   }, []);
 
-  return [...tags, ...productTags];
+  const result = [...tags, ...productTags];
+  console.log('MARKET HERO TAGS: ', result);
+  return result;
 }

@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-loop-func */
 export default function getMhTransactionTagsApi({
   cart,
   language,
@@ -24,7 +24,7 @@ export default function getMhTransactionTagsApi({
     let qtyCounter = next.qty;
     const flavorTags = [];
     while (qtyCounter--) { //eslint-disable-line
-      const vendor = next.product.vendor.replace(/(\sSwitch)/g, '-Switch');
+      const vendor = next.product.vendor.replace(/(Vape Switch)+/ig, 'vape-switch');
       const productName = next.product.flavor;
       const strength = `${next.product.nicotineStrength}mg`;
       flavorTags.push(`$${vendor}_${productName}_${strength}`);
