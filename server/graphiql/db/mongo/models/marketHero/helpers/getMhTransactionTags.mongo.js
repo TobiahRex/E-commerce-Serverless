@@ -19,6 +19,14 @@ export default function getMhTransactionTags({
     date: moment().format('ll'),
   }];
 
+  if (subscribed) {
+    tags.push({
+      name: '!Subscribed',
+      description: 'The user explicitly subscribed to receiving Newsletters.',
+      date: moment().format('ll'),
+    });
+  }
+
   if (qty) {
     tags.push({
       name: '!Discount_qty',
