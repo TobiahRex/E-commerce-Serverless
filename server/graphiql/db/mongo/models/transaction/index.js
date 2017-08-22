@@ -295,6 +295,7 @@ new Promise((resolve, reject) => {
           total,
           language,
           cart: cartProducts,
+          subscribed: newsletterDecision,
         }),
       }),
       MarketHero.createOrUpdateLead({
@@ -303,6 +304,7 @@ new Promise((resolve, reject) => {
           total,
           language,
           cart: cartProducts,
+          subscribed: newsletterDecision,
         }),
       }),
     ]);
