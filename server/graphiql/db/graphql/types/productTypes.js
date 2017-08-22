@@ -67,7 +67,7 @@ const rootType = new ObjectType({
           },
           upc: {
             description: 'The unique product code for the product.',
-            type: new NonNull(StringType),
+            type: StringType,
           },
           size: {
             description: 'The available sizes for the product.',

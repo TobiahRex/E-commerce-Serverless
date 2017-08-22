@@ -125,8 +125,8 @@ new Promise((resolve, reject) => {
     transactionId,
     shippingAddress: {
       boxid: `NJ${moment().format('YYYYMMDDSS')}`,
-      shipdate: moment().add(1, 'd').format('YYYY/MM/DD'),
-      customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
+      shipdate: GetShippingDay(),
+      customerName: `${sagawa.shippingAddress.familyName}, ${sagawa.shippingAddress.givenName}`,
       postal: sagawa.shippingAddress.postalCode,
       jpaddress1: sagawa.shippingAddress.addressLine1,
       jpaddress2: sagawa.shippingAddress.addressLine2,
@@ -135,8 +135,8 @@ new Promise((resolve, reject) => {
       wgt: GetOrderWeight(cart),
       grandTotal: total.subTotal,
       deliveryDate: GetDeliveryDay(),
-      deliveryTime: '1200',
-      ttlAmount: total.subTotal,
+      deliveryTime: '1600',
+      ttlAmount: total.subTotal.toFixed(2),
     },
     items: [...GenerateItemObjs(cart)],
   }, cb))
