@@ -12,13 +12,13 @@ require('dotenv').load({ silent: true });
 const PORT = 3001;
 const server = express();
 server.use('*', cors({ origin: 'http://localhost:3000' }));
-server.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema,
-}));
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
-server.use('/api', bodyParser.json(), api);
+server.use(bodyParser.json({ limit: '10mb' }));
+server.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
+server.use('/graphql', graphqlExpress({ schema }));
+server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+server.use('/api', api);
+
 server.listen(PORT, () => console.log(`Server listening @ ${PORT}
 Graphiql Server @ http://localhost:${PORT}/graphiql`));

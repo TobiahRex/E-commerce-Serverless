@@ -20,7 +20,7 @@ import {
   getMhTransactionTagsApi as GetMhTransactionTagsApi,
 } from '../marketHero/helpers';
 import {
-  ZipArrays,
+  zipArrays as ZipArrays,
 } from '../sagawa/helpers';
 
 require('dotenv').load({ silent: true });

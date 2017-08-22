@@ -136,7 +136,7 @@ new Promise((resolve, reject) => {
       grandTotal: total.subTotal,
       deliveryDate: GetDeliveryDay(),
       deliveryTime: '1600',
-      ttlAmount: total.subTotal.toFixed(2),
+      ttlAmount: total.subTotal,
     },
     items: [...GenerateItemObjs(cart)],
   }, cb))
