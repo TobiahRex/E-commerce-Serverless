@@ -145,7 +145,18 @@ const mutationTypes = {
   }),
 };
 
-const queries = {};
+const queries = {
+  FetchSagawa: {
+    type: rootType,
+    args: {
+      id: {
+        description: 'The Mongo ID of the Sagawa Document to fetch.',
+        type: new NonNull(MongoId),
+      },
+    },
+    resolve: (_, { id }) => Sagawa.findById(id),
+  },
+};
 
 const mutations = {
   ValidatePostal: {

@@ -105,3 +105,29 @@ export const FetchMultipleProductsOptions = ({ loggedIn, userCart, guestCart }) 
     variables: { ids },
   });
 };
+
+export const FetchSagawa = gql`
+  query FetchSagawa($id: ID!) {
+    FetchSagawa(id: $id) {
+      _id
+      error {
+        hard
+        soft
+        message
+      }
+      userId
+      transactionId
+      status
+      uploadForm
+      shippingAddress {
+        referenceId
+        shipdate
+        customerName
+        postal
+        jpaddress1
+        jpaddress2
+        phoneNumber
+      }
+    }
+  }
+`;
