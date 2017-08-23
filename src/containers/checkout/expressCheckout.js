@@ -11,6 +11,7 @@ import {
   apiActions,
   orderActions,
   toasterActions,
+  userActions,
 } from './redux.imports';
 
 import {
@@ -582,6 +583,8 @@ const ExpressCheckoutWithStateAndData2 = connect(({
   //
   gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
   gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
+  //
+  saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
 }))(ExpressCheckoutWithStateAndData);
 
 const {
