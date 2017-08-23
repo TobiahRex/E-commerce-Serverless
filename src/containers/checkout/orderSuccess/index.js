@@ -17,25 +17,13 @@ export default function OrderSuccess() {
             <h4>The invoice shown below has been sent to your email.</h4>
           </div>
         </div>
-        <div className="ordered__header">
-          <div className="header--date">
-            <p>Date: {Date.now()}</p>
-            <p>Invoice #: {uuid()}</p>
-          </div>
-          <div className="header--status">
-            <h3>{'<Shipping Status>'}</h3>
-          </div>
-          <div className="header--info">
-            <div className="header__tracking">
-              <p>Tracking #: {uuid()}</p>
-              <p>Order #: {uuid()}</p>
-            </div>
-            <div className="header__price">
-              <p>
-                Price: <FontAwesome name="usd" />{'\u00A0'}32.14
-              </p>
-            </div>
-          </div>
+        <OrderHeader
+          date={}
+          invoice={}
+          trackingId={}
+          orderId={}
+          paidTotal={}
+        />
         </div>
         <div className="ordered__addresses">
           <div className="addresses--shipto">

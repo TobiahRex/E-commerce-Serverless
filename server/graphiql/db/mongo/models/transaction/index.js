@@ -20,7 +20,7 @@ import {
   getMhTransactionTagsApi as GetMhTransactionTagsApi,
 } from '../marketHero/helpers';
 import {
-  ZipArrays,
+  zipArrays as ZipArrays,
 } from '../sagawa/helpers';
 
 require('dotenv').load({ silent: true });
@@ -271,9 +271,8 @@ new Promise((resolve, reject) => {
   .then((results) => {
     console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
 
-    userDoc = { ...results[0] };
+    userDoc = { ...results[0]._doc };
     marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
-    const sagawaDoc = results[2];
 
     const lead = {
       language,
@@ -286,7 +285,7 @@ new Promise((resolve, reject) => {
       Email.createInvoiceEmailBody({
         cart: cartProducts,
         square,
-        sagawa: results[2],
+        sagawa: results[2]._doc,
         language,
         transaction: newTransactionDoc,
       }),
@@ -296,6 +295,7 @@ new Promise((resolve, reject) => {
           total,
           language,
           cart: cartProducts,
+          subscribed: !!newsletterDecision,
         }),
       }),
       MarketHero.createOrUpdateLead({
@@ -304,23 +304,19 @@ new Promise((resolve, reject) => {
           total,
           language,
           cart: cartProducts,
+          subscribed: !!newsletterDecision,
         }),
       }),
-      Transaction.findByIdAndUpdate(newTransactionDoc._id, {
-        $set: {
-          sagawa: sagawaDoc._id,
-        },
-      }, { new: true }),
     ]);
   })
   .then((results) => {
-    console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2], '\n4) Update Transaction Doc with Sagawa Mongo _id reference.\n', results[3]);
+    console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
 
-    newTransactionDoc = { ...results[0] };
+    newTransactionDoc = { ...results[0]._doc };
 
-    const promise1 = axios.post('http://localhost:3000/api/sagawa', {
+    const promise1 = axios.post('http://localhost:3001/api/sagawa', {
       userId,
-      sagawaId: sagawa.sagawaId,
+      sagawaId: newTransactionDoc.sagawa,
       transactionId: newTransactionDoc._id,
     });
     let promise2 = null;
@@ -336,7 +332,7 @@ new Promise((resolve, reject) => {
     return Promise.all([...promiseArray]);
   })
   .then((results) => {
-    console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda. 2) Update User Document with new MarketHero Doc _id (if necessary).', results);
+    console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
 
     const { status, data } = results[0];
 
@@ -354,16 +350,25 @@ new Promise((resolve, reject) => {
     }
 
     cartProducts.forEach((productDoc) => {
-      productDoc.product.quantities.inCarts -= 1;
-      productDoc.product.quantities.purchased += 1;
-      productDoc.statistics.completedCheckouts += 1;
-      productDoc.transactions = [...productDoc.transactions, {
-        transactionId: newTransactionDoc._id,
-        userId,
-      }];
-      productDoc.save({ validateBeforeSave: true })
+      const {
+        _id,
+        product,
+        statistics,
+      } = productDoc;
+
+      Product.findByIdAndUpdate(_id, {
+        $set: {
+          'product.quantities.inCarts': product.quantities.inCarts -= 1,
+          'product.quantities.purchased': product.quantities.inCarts += 1,
+          'statistics.completedCheckouts': statistics.completedCheckouts += 1,
+          'statistics.transactions': [...statistics.transactions, {
+            transactionId: newTransactionDoc._id,
+            userId,
+          }],
+        },
+      }, { new: true })
       .then((savedDoc) => {
-        console.log('SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
+        console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
       })
       .catch((error) => {
         console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);

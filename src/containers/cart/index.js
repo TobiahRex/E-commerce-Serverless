@@ -81,17 +81,17 @@ class ShoppingCart extends Component {
       }));
     }
   }
-    /**
-    * Function: "shouldComponentUpdate"
-    * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
-    *
-    * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
-    *
-    * @param {object} nextProps - New props.
-    * @param {object} nextState - New State.
-    *
-    * @return {boolean} true/false.
-    */
+  /**
+  * Function: "shouldComponentUpdate"
+  * a) "isArrayEqual" - Checks deeply nested array values inside "nextProps" for new values. If found - allows re-render.  If not found, stops re-render.
+  *
+  * 1) Determines if userCart & guestCart are different upon receiving new props - if so, re-render allowed. If not, re-render NOT allowed.
+  *
+  * @param {object} nextProps - New props.
+  * @param {object} nextState - New State.
+  *
+  * @return {boolean} true/false.
+  */
   shouldComponentUpdate(nextProps, nextState) {
     /**
     * Function: "isArrayEqual"
@@ -107,15 +107,15 @@ class ShoppingCart extends Component {
       FetchMultipleProducts: { FetchMultipleProducts: nextUserCart },
     } = nextProps,
 
-      { FetchMultipleProducts:
-        { FetchMultipleProducts: thisUserCart },
-      } = this.props;
+    { FetchMultipleProducts:
+      { FetchMultipleProducts: thisUserCart },
+    } = this.props;
 
     if (
-        !_.isEqual(nextProps, this.props) ||
-        !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
-        !ArrayDeepEquality(nextUserCart, thisUserCart)
-      ) return true;
+      !_.isEqual(nextProps, this.props) ||
+      !ArrayDeepEquality(nextProps.guestCart, this.props.guestCart) ||
+      !ArrayDeepEquality(nextUserCart, thisUserCart)
+    ) return true;
 
     if (
       !_.isEqual(nextState, this.state) ||
@@ -279,7 +279,7 @@ class ShoppingCart extends Component {
         error: false,
         updatedCart: [...result.newCart],
       }), () => {
-        this.props[`save${cartOwner}`]([...result.newCart]);
+        this.props[`save${cartOwner}Cart`]([...result.newCart]);
       });
     }
   }
@@ -299,7 +299,7 @@ class ShoppingCart extends Component {
       saveUser,
       loggedIn,
       guestCart,
-      saveGuest,
+      saveGuestCart,
     } = this.props;
 
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
@@ -330,7 +330,7 @@ class ShoppingCart extends Component {
       *
       * @return N/A
       */
-      saveGuest(guestCart.filter(({ _id }) => _id !== productId));
+      saveGuestCart(guestCart.filter(({ _id }) => _id !== productId));
     }
   }
 
@@ -339,7 +339,7 @@ class ShoppingCart extends Component {
       userId,
       saveUser,
       loggedIn,
-      saveGuest,
+      saveGuestCart,
     } = this.props;
 
     if (loggedIn) {
@@ -348,7 +348,7 @@ class ShoppingCart extends Component {
         saveUser(updatedUser);
       });
     } else {
-      saveGuest([]);
+      saveGuestCart([]);
     }
   }
 
@@ -504,8 +504,8 @@ const ShoppingCartWithState = connect((state, ownProps) => {
   });
 }, (dispatch, ownProps) => ({
   push: location => dispatch(push(location)),
-  saveGuest: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-  saveUser: (updatedCart) => {
+  saveGuestCart: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
+  saveUserCart: (updatedCart) => {
     const products = updatedCart.map(({ qty, _id }) => ({ qty, product: _id }));
 
     ownProps.EditToMemberCart({
@@ -515,6 +515,7 @@ const ShoppingCartWithState = connect((state, ownProps) => {
       dispatch(userActions.saveUser(updatedUser));
     });
   },
+  saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
 }))(ShoppingCart);
 
 const ShoppingCartWithStateAndData = compose(
@@ -540,14 +541,14 @@ const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) =
 export default ShoppingCartWithStateAndData2;
 
 const {
- any,
- func,
- bool,
- shape,
- string,
- number,
- arrayOf,
- objectOf,
+  any,
+  func,
+  bool,
+  shape,
+  string,
+  number,
+  arrayOf,
+  objectOf,
 } = PropTypes;
 
 ShoppingCart.propTypes = {
@@ -562,7 +563,8 @@ ShoppingCart.propTypes = {
   }).isRequired,
   loggedIn: bool.isRequired,
   saveUser: func.isRequired,
-  saveGuest: func.isRequired,
+  saveUserCart: func.isRequired,
+  saveGuestCart: func.isRequired,
   mobileActive: bool.isRequired,
   EmptyMemberCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,

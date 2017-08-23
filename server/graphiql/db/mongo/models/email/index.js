@@ -5,8 +5,11 @@ import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../../schemas/emailSchema';
 import db from '../../connection';
-import { createEmailProductList as CreateEmailProductList } from './helpers';
-// import config from '../../../config.json';
+import {
+  getBillingCountry as GetBillingCountry,
+  createEmailProductList as CreateEmailProductList,
+} from './helpers';
+import Transaction from '../transaction';
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
@@ -91,7 +94,7 @@ new Promise((resolve, reject) => {
         console.log('FAILED: Find email with type: ', type);
         return reject(new Error(`FAILED: Find email with type: "${type}".  `));
       }
-      console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails);
+      console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
 
       const foundEmail = dbEmails
       .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
@@ -130,8 +133,8 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendEmail\n');
 
   if (!isEmail(to)) {
-    console.log(`ERROR = "${to}" is not a valid email.  `);
-    return reject(`ERROR = "${to}" is not a valid email.  `);
+    console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+    return reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
   }
 
   const emailRequest = {
@@ -162,7 +165,7 @@ new Promise((resolve, reject) => {
   return bbPromise
   .fromCallback(cb => ses.sendEmail(emailRequest, cb))
   .then((data) => {
-    console.log('\nSuccessfully sent SES email: \n', data,
+    console.log('SUCCEEDED: Send SES email: \n', data,
     '\nSaving record of email to MONGO Email collection...');
 
     emailDoc.sentEmails.push({ messageId: data.MessageId });
@@ -170,7 +173,7 @@ new Promise((resolve, reject) => {
     return emailDoc.save({ new: true });
   })
   .then((savedEmail) => {
-    console.log('SUCCEEDED: Send Email and save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
+    console.log('SUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
     resolve();
   })
   .catch((error) => {
@@ -283,9 +286,9 @@ new Promise((resolve, reject) => {
     const updatedHtmlString = dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
     .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
-    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
+    .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('YYYY/MM/DD'))
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
-    .replace(/(TOTAL_PAID_HERE)+/g, transaction.square.charge.amount)
+    .replace(/(TOTAL_PAID_HERE)+/g, Number(transaction.square.charge.amount).toFixed(2))
     .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
     .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
     .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
@@ -296,23 +299,30 @@ new Promise((resolve, reject) => {
     .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, sagawa.shippingAddress.phoneNumber)
     .replace(/(BILL_FULL_NAME_HERE)+/g, transaction.square.cardInfo.nameOnCard)
     .replace(/(BILL_POSTAL_CODE_HERE)+/g, transaction.square.cardInfo.postalCode)
-    .replace(/(BILL_COUNTRY_HERE)+/g, transaction.square.billingCountry)
+    .replace(/(BILL_COUNTRY_HERE)+/g, GetBillingCountry(transaction.square.billingCountry))
     .replace(/(BILL_LAST_4_HERE)+/g, transaction.square.cardInfo.last4)
     .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
-    .replace(/(ORDER_SUBTOTAL_HERE)+/g, transaction.total.subTotal)
+    .replace(/(ORDER_SUBTOTAL_HERE)+/g, Number(transaction.total.subTotal).toFixed(2))
     .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
     .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
-    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal);
+    .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal)
+    .replace(/(INSERT_COMMENT_HERE)+/g, transaction.comments);
 
     if (emailType === 'invoiceEmail') {
       transaction.invoiceEmail = updatedHtmlString;
     } else {
       transaction.invoiceEmailNoTracking = updatedHtmlString;
     }
-    return transaction.save({ validateBeforeSave: true });
+
+    return Transaction.findByIdAndUpdate(transaction._id, {
+      $set: {
+        [emailType]: updatedHtmlString,
+        sagawa: sagawa._id,
+      },
+    }, { new: true });
   })
   .then((updatedDoc) => {
-    console.log(`Successfully finished created Invoice Email and saving results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
+    console.log(`SUCCEEDED: Create Invoice Email and save results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
 
     resolve(updatedDoc);
   })

@@ -11,6 +11,7 @@ import {
   apiActions,
   orderActions,
   toasterActions,
+  userActions,
 } from './redux.imports';
 
 import {
@@ -287,12 +288,11 @@ class ExpressCheckout extends React.Component {
       .then(({ data: { SubmitFinalOrder: response } }) => {
         const cleanResponse = CleanOffTypename(response);
 
-        console.log('%ccleanResponse', 'background:lime;', cleanResponse);
-
+        this.props.saveUser(cleanResponse.user);
+        this.props.saveTransaction(cleanResponse.transaction);
         this.props.toastSuccess(true, 'Order successfully submitted!');
-        // TODO create a redux action(s) to save response into local state.
-        // Receive 1) User Doc 2) Tracking Number 3) Transaction Doc.
-        // Combine with Product Cart to send the user to the Invoice Page.
+        this.props.apiSuccess();
+        setTimeout(() => this.props.push('/successfully_ordered'), 4000);
       })
       .catch(this.props.GraphQLhandleError);
     }
@@ -582,6 +582,9 @@ const ExpressCheckoutWithStateAndData2 = connect(({
   //
   gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
   gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
+  //
+  saveTransaction: transaction => dispatch(orderActions.saveTransaction(transaction)),
+  saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
 }))(ExpressCheckoutWithStateAndData);
 
 const {
@@ -644,6 +647,9 @@ ExpressCheckout.propTypes = {
     subTotal: number,
   }),
   // ---
+  saveUser: func.isRequired,
+  saveTransaction: func.isRequired,
+  // --- GraphQL Methods
   SubmitFinalOrder: func.isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
   GraphQLhandleError: func.isRequired,

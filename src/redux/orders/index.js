@@ -11,6 +11,7 @@ const { Types, Creators } = createActions({
   validatePostal: ['postalCode'],
   gotValidPostal: ['postalInfo'],
   gotInvalidPostal: ['error'],
+  saveTransaction: ['transaction'],
 });
 
 export const orderTypes = Types;
@@ -81,6 +82,11 @@ const gotInvalidPostal = (state, { error }) => ({
   },
 });
 
+const saveTransaction = (state, { transaction }) => ({
+  ...state,
+  transaction,
+});
+
 export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.SET_TAX_RATE]: setTaxRate,
   [Types.SET_FX_RATE]: setFxRate,
@@ -89,4 +95,5 @@ export const orderReducer = createReducer(INITIAL_STATE, {
   [Types.EMPTY_GUEST_CART]: emptyGuestCart,
   [Types.GOT_VALID_POSTAL]: gotValidPostal,
   [Types.GOT_INVALID_POSTAL]: gotInvalidPostal,
+  [Types.SAVE_TRANSACTION]: saveTransaction,
 });

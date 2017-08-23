@@ -84,7 +84,7 @@ const NetworkStatusWithHandlers = withHandlers({
 
     const loadingMsg = (
       <div className="checkout__loading-icon">
-        <FontAwesome className="spinner-icon" name="spinner" spin />
+        <FontAwesome className="spinner-icon" name="spinner" pulse />
         <p>One moment please</p>
         <p>while we process your order...</p>
       </div>

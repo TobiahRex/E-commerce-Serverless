@@ -8,13 +8,14 @@ import db from '../../connection';
 import Transaction from '../transaction';
 import Email from '../email';
 import {
-  GetSagawaKbn,
-  CleanSagawaResponse,
-  GenerateItemsXml,
-  GenerateAddressXml,
-  GetNextBusinessDay,
-  GetOrderWeight,
-  GenerateItemObjs,
+  getSagawaKbn as GetSagawaKbn,
+  cleanSagawaResponse as CleanSagawaResponse,
+  generateItemsXml as GenerateItemsXml,
+  generateAddressXml as GenerateAddressXml,
+  getDeliveryDay as GetDeliveryDay,
+  getShippingDay as GetShippingDay,
+  getOrderWeight as GetOrderWeight,
+  generateItemObjs as GenerateItemObjs,
 } from './helpers';
 
 /**
@@ -123,9 +124,9 @@ new Promise((resolve, reject) => {
     userId,
     transactionId,
     shippingAddress: {
-      boxid: `NJ2JP${moment().format('YYYYMMDD')}`,
-      shipdate: moment().format('YYYY/MM/DD'),
-      customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
+      boxid: `NJ${moment().format('YYYYMMDDSS')}`,
+      shipdate: GetShippingDay(),
+      customerName: `${sagawa.shippingAddress.familyName}, ${sagawa.shippingAddress.givenName}`,
       postal: sagawa.shippingAddress.postalCode,
       jpaddress1: sagawa.shippingAddress.addressLine1,
       jpaddress2: sagawa.shippingAddress.addressLine2,
@@ -133,8 +134,8 @@ new Promise((resolve, reject) => {
       kbn: GetSagawaKbn(sagawa.shippingAddress.country),
       wgt: GetOrderWeight(cart),
       grandTotal: total.subTotal,
-      deliveryDate: GetNextBusinessDay(),
-      deliveryTime: '1200',
+      deliveryDate: GetDeliveryDay(),
+      deliveryTime: '1600',
       ttlAmount: total.subTotal,
     },
     items: [...GenerateItemObjs(cart)],
@@ -150,17 +151,17 @@ new Promise((resolve, reject) => {
 });
 
 /**
-* Function: "orderUpload"
+* Function: "uploadOrder"
 * Generates and sends customer's order details via XML HTTP reqeuest to Sagawa API.  This function call initiates the shipping fullfillment process to the customer.
 *
 * @param {string/ Mongo Object Id} sagawaId - documentId of sagawa document.
 
 * @return {object} Promise resolved with Order AWB & REF id's.
 */
-sagawaSchema.statics.orderUpload = sagawaId =>
+sagawaSchema.statics.uploadOrder = sagawaId =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
-
+  console.log('Sagawa ID: ', sagawaId);
   if (!sagawaId) {
     console.log('FAILED: Missing required arguments.');
     reject(new Error('FAILED: Missing required arguments.'));
@@ -226,9 +227,9 @@ new Promise((resolve, reject) => {
       status: 'uploaded',
     },
   }, { new: true })
-    .then((sagawaDoc) => {
-      console.log('SUCCEEDED: Update Sagawa Doc with AWB & REF #\'s: ', sagawaDoc);
-      resolve(sagawaDoc);
+    .then((updatedDoc) => {
+      console.log('SUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
+      resolve(updatedDoc);
     })
     .catch((error) => {
       console.log('FAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
@@ -254,7 +255,9 @@ new Promise((resolve, reject) => {
 */
 sagawaSchema.statics.uploadOrderAndSendEmail = request =>
 new Promise((resolve, reject) => {
-  console.log('\n\n@Sagawa.uploadSagawaAndSendEmail');
+  console.log('\n\n@Sagawa.uploadOrderAndSendEmail');
+
+  console.log('req.body: ', request);
 
   const {
     userId,
@@ -265,35 +268,38 @@ new Promise((resolve, reject) => {
   let transactionDoc = {};
   let sagawaDoc = {};
   let emailBody = '';
+  let emailType = '';
 
   Promise.all([
-    Sagawa.orderUpload(sagawaId),
+    Sagawa.uploadOrder(sagawaId),
     Transaction.findById(transactionId),
   ])
   .then((results) => {
-    console.log('SUCCEEDED: 1)Upload Order to Sagawa. 2) Fetch Transaction Doc.');
+    console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
-    sagawaDoc = results[0];
     transactionDoc = results[1];
-
-    console.log('Sagawa Response:  ', sagawaDoc);
-    console.log('Transaction Response:  ', transactionDoc);
+    const uploadData = results[0];
 
     return Sagawa.findSagawaAndUpdate({
       sagawaId,
-      awbId: sagawaDoc.awbId,
-      referenceId: sagawaDoc.referenceId,
+      awbId: uploadData.awbId,
+      referenceId: uploadData.referenceId,
     });
   })
-  .then((updatedDoc) => {
-    console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s: ', updatedDoc);
+  .then((dbSagawa) => {
+    console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
 
-    const emailType = transactionDoc.invoiceEmail ? 'Invoice Email' : 'Invoice Email - No Tracking';
+    sagawaDoc = dbSagawa;
+    console.log('Updated Sagawa Doc: ', sagawaDoc);
+    emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
 
-    return Email.findEmailAndFilterLanguage(emailType, transactionDoc.emailLanguage);
+    return Email.findEmailAndFilterLanguage(
+      emailType,
+      transactionDoc.emailLanguage,
+    );
   })
   .then((dbEmail) => {
-    console.log('SUCCEEDED: Find email and Filter by Language.', dbEmail);
+    console.log('SUCCEEDED: Find email and Filter by Language: ', dbEmail.purpose);
 
     const payload = {
       userId,
@@ -302,17 +308,18 @@ new Promise((resolve, reject) => {
     };
     const {
       JWT_SECRET,
-      NODE_ENV,
+      LAMBDA_ENV,
       BASE_URL,
       PRODUCTION_URL,
     } = process.env;
 
     const token = JWT.sign(payload, JWT_SECRET);
-    const tokenUrlString = `${NODE_ENV === 'production' ? PRODUCTION_URL : BASE_URL}tracking?token=${token}`;
+    const tokenUrlString = `${LAMBDA_ENV === 'production' ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
 
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
-    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString);
+    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
+    .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.awbId);
 
     return Email.sendEmail({
       to: transactionDoc.emailAddress,
@@ -320,12 +327,12 @@ new Promise((resolve, reject) => {
     }, dbEmail);
   })
   .then(() => {
-    console.log('SUCCEEDED: Send Invoice Email.');
+    console.log('SUCCEEDED: Send Invoice Email via SES.\n');
     resolve();
   })
   .catch((error) => {
-    console.log('Error in sagawa upload or transaction retrieve: ', error);
-    reject(error);
+    console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
+    reject(new Error('FAILED: Upload order to Sagawa and Send Email.'));
   });
 });
 
