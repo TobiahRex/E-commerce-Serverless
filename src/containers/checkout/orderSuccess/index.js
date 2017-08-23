@@ -23,8 +23,60 @@ class OrderSuccess extends React.Component {
     console.log('this.props: ', this.props);
 
     const {
-      trackingInfo,
-      sagawaInfo,
+      transactionInfo: {
+        _id: transactionId,
+        date,
+        comments,
+        termsAgreement,
+        user,
+        emailAddress,
+        invoiceEmailNoTracking,
+        jpyFxRate,
+        total: {
+          subTotal,
+          taxes,
+          grandTotal,
+          discount: {
+            qty,
+            qtyAmount,
+            register,
+            registerAmount,
+          },
+        },
+        square: {
+          billingCountry,
+          shippingAddress: {
+            shippingPrefecture,
+            shippingCity,
+          },
+          cardInfo: {
+            last4,
+            nameOnCard,
+            postalCode,
+          },
+          charge: {
+            amount,
+          },
+        },
+      },
+      sagawaInfo: {
+        _id: sagawaId,
+        userId,
+        transactionId,
+        status,
+        uploadForm,
+        shippingAddress: {
+          referenceId,
+          shipdate,
+          customerName,
+          postal,
+          jpaddress1,
+          jpaddress2,
+          phoneNumber,
+          deliveryDate,
+        },
+        items,
+      },
     } = this.props;
 
     return (
@@ -40,34 +92,33 @@ class OrderSuccess extends React.Component {
             </div>
           </div>
           <OrderHeader
-            date={}
-            invoice={}
-            trackingId={}
-            orderId={}
-            paidTotal={}
+            date={date}
+            invoice={sagawaId}
+            trackingId={referenceId}
+            orderId={transactionId}
+            paidTotal={grandTotal}
           />
         </div>
         <div className="ordered__addresses">
           <ShipTo
-            givenName={}
-            familyName={}
-            shippingAddress={}
-            shippingCity={}
-            shippingPrefecture={}
-            shippingPostalCode={}
-            shippingCountry={}
-            shippingPhone={}
+            fullName={customerName}
+            jpAddress1={jpaddress1}
+            jpAddress2={jpaddress2}
+            city={shippingCity}
+            prefecture={shippingPrefecture}
+            postalCode={postal}
+            country={'Japan'}
+            phone={phoneNumber}
           />
           <BillTo
-            billingGivenName={}
-            billingFamilyName={}
-            billingPostalCode={}
-            billingCountry={}
-            ccLastFour={}
+            nameOnCard={nameOnCard}
+            billingPostalCode={postalCode}
+            billingCountry={billingCountry}
+            ccLastFour={last4}
           />
         </div>
         <OrderSummary
-          shippingStatus={}
+          shippingStatus={'Awaiting Next Business Day'}
           trackingId={}
           qty={}
           nicotineStrength={}
@@ -106,31 +157,13 @@ const { shape, string, bool, number, arrayOf } = PropTypes;
 OrderSuccess.propTypes = {
   transactionInfo: shape({
     _id: string,
-    error: shape({
-      hard: bool,
-      soft: bool,
-      message: string,
-    }),
     date: string,
     comments: string,
     termsAgreement: bool,
     user: string,
-    products: arrayOf(
-      shape({
-        _id: string,
-        qty: number,
-      }),
-    ),
-    sagawa: string,
     emailAddress: string,
-    emailLanguage: string,
     invoiceEmailNoTracking: string,
     jpyFxRate: string,
-    taxes: shape({
-      cityRate: string,
-      stateRate: string,
-      totalRate: string,
-    }),
     total: shape({
       subTotal: string,
       taxes: string,
@@ -143,8 +176,6 @@ OrderSuccess.propTypes = {
       }),
     }),
     square: shape({
-      locationId: string,
-      transactionId: string,
       billingCountry: string,
       shippingAddress: shape({
         shippingPrefecture: string,
@@ -153,47 +184,34 @@ OrderSuccess.propTypes = {
       cardInfo: shape({
         last4: number,
         nameOnCard: string,
-        cardNonce: string,
         postalCode: string,
       }),
       charge: shape({
         amount: string,
-        currency: string,
       }),
     }),
   }).isRequired,
   sagawaInfo: shape({
+    _id: string,
     userId: string,
     transactionId: string,
     status: string,
     uploadForm: string,
     shippingAddress: shape({
-      awbId: string,
       referenceId: string,
-      boxid: string,
       shipdate: string,
       customerName: string,
       postal: string,
       jpaddress1: string,
       jpaddress2: string,
       phoneNumber: string,
-      kbn: string,
-      wgt: number,
-      grandTotal: number,
       deliveryDate: string,
-      deliveryTime: number,
-      souryo: number,
-      tesuryo: number,
-      ttlAmount: number,
-      codFlg: number,
     }),
     items: arrayOf(
       shape({
         productId: string,
         itemcd: string,
         itemname: string,
-        usage: number,
-        origin: string,
         piece: number,
         unitprice: number,
       })
