@@ -25,6 +25,28 @@ provider:
     MONGO_URI: ${file(./config.yml):mongoURI}
     AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
     MARKET_HERO_API_KEY: ${file(./config.yml):marketHeroApiKey}
+    SQUARE_ENV: ${file(./config.yml):squareENv}
+    US_SQUARE_SANDBOX_LOCATION: ${file(./config.yml):usSquareSandboxLocation}
+    US_SQUARE_LOCATION: ${file(./config.yml):usSquareLocation}
+    US_SQUARE_ACCESS_TOKEN: ${file(./config.yml):usSquareAccessToken}
+    US_SQUARE_APPLICATION_ID: ${file(./config.yml):usSquareApplicationId}
+    US_SQUARE_SANDBOX_ACCESS_TOKEN: ${file(./config.yml):usSquareSandboxAccessToken}
+    US_SQUARE_SANDBOX_APPLICATION_ID: ${file(./config.yml):usSquareSandboxApplicationId}
+    JP_SQUARE_SANDBOX_LOCATION: ${file(./config.yml):jpSquareSandboxLocation}
+    JP_SQUARE_LOCATION: ${file(./config.yml):jpSquareLocation}
+    JP_SQUARE_ACCESS_TOKEN: ${file(./config.yml):jpSquareAccessToken}
+    JP_SQUARE_APPLICATION_ID: ${file(./config.yml):jpSquareApplicationId}
+    JP_SQUARE_SANDBOX_ACCESS_TOKEN: ${file(./config.yml):jpSquareSandboxAccessToken}
+    JP_SQUARE_SANDBOX_APPLICATION_ID: ${file(./config.yml):jpSquareSandboxApplicationId}
+    JWT_SECRET: ${file(./config.yml):jwtSecret}
+    SAGAWA_ENV: ${file(./config.yml):sagawaEnv}
+    SAGAWA_TEST_JAPANESE: ${file(./config.yml):sagawaTestJapanese}
+    SAGAWA_TEST_ENGLISH: ${file(./config.yml):sagawaTestEnglish}
+    SAGAWA_JAPANESE: ${file(./config.yml):sagawaJapanese}
+    SAGAWA_ENGLISH: ${file(./config.yml):sagawaEnglish}
+    NODE_ENV: ${file(./config.yml):nodeEnv}
+    BASE_URL: ${file(./config.yml):baseUrl}
+    PRODUCT_URL: ${file(./config.yml):productionUrl}
 
 plugins:
   - serverless-webpack

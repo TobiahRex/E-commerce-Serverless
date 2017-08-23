@@ -97,7 +97,7 @@ const NetworkStatusWithHandlers = withHandlers({
           <h2>Success!</h2>
         </div>
         <br />
-        <p>Please wait one moment while we generate your Invoice...{'\u0020'}<FontAwesome className="success-spinner-icon" name="spinner" spin /></p>
+        <p>Please wait one moment while we generate your Invoice...{'\u0020'}<FontAwesome className="success-spinner-icon" name="spinner" pulse /></p>
       </div>
     );
 

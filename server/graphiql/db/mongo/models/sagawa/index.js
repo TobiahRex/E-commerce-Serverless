@@ -5,11 +5,9 @@ import moment from 'moment';
 import JWT from 'jsonwebtoken';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
-import Product from '../product';
 import Transaction from '../transaction';
 import Email from '../email';
 import {
-  ZipArrays,
   GetSagawaKbn,
   CleanSagawaResponse,
   GenerateItemsXml,
@@ -121,42 +119,33 @@ new Promise((resolve, reject) => {
     transactionId,
   } = orderInfo;
 
-  Product
-  .find({ _id: { $in: cart.map(({ _id }) => _id) } })
-  .exec()
-  .then((dbProducts) => {
-    console.log('SUCCEEDED: Retrieved Product documents from cart _id\'s.');
-
-    const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
-
-    return bbPromise.fromCallback(cb => Sagawa.create({
-      userId,
-      transactionId,
-      shippingAddress: {
-        boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
-        shipdate: moment().format('YYYY/MM/DD'),
-        customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
-        postal: sagawa.shippingAddress.postalCode,
-        jpaddress1: sagawa.shippingAddress.addressLine1,
-        jpaddress2: sagawa.shippingAddress.addressLine2,
-        phoneNumber: sagawa.shippingAddress.phoneNumber,
-        kbn: GetSagawaKbn(sagawa.shippingAddress.country),
-        wgt: GetOrderWeight(cart),
-        grandTotal: total.subTotal,
-        deliveryDate: GetNextBusinessDay(),
-        deliveryTime: '1200',
-        ttlAmount: total.subTotal,
-      },
-      items: GenerateItemObjs(updatedCart),
-    }, cb));
-  })
+  bbPromise.fromCallback(cb => Sagawa.create({
+    userId,
+    transactionId,
+    shippingAddress: {
+      boxid: `NJ2JP${moment().format('YYYYMMDD')}`,
+      shipdate: moment().format('YYYY/MM/DD'),
+      customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
+      postal: sagawa.shippingAddress.postalCode,
+      jpaddress1: sagawa.shippingAddress.addressLine1,
+      jpaddress2: sagawa.shippingAddress.addressLine2,
+      phoneNumber: sagawa.shippingAddress.phoneNumber,
+      kbn: GetSagawaKbn(sagawa.shippingAddress.country),
+      wgt: GetOrderWeight(cart),
+      grandTotal: total.subTotal,
+      deliveryDate: GetNextBusinessDay(),
+      deliveryTime: '1200',
+      ttlAmount: total.subTotal,
+    },
+    items: [...GenerateItemObjs(cart)],
+  }, cb))
   .then((dbSagawa) => {
     console.log('SUCCEEDED: Create Sagawa Document: ', dbSagawa);
     resolve(dbSagawa);
   })
   .catch((error) => {
-    console.log('FAILED: Deep update on Sagawa Document: ', error);
-    reject(new Error('FAILED: Deep update on Sagawa Document'));
+    console.log('FAILED: Handle new Transaction on Sagawa Document: ', error);
+    reject(new Error('\nFAILED: Handle new Transaction on Sagawa Document'));
   });
 });
 
@@ -214,6 +203,7 @@ new Promise((resolve, reject) => {
     reject(new Error('FAILED: Order upload to Sagawa.'));
   });
 });
+
 /**
 * Function: "findSagawaAndUpdate"
 * Need to update the existing sagawa document with awbId and referenceId.

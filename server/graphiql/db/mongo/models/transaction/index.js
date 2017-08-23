@@ -19,9 +19,11 @@ import {
   getMhTransactionTagsMongo as GetMhTransactionTagsMongo,
   getMhTransactionTagsApi as GetMhTransactionTagsApi,
 } from '../marketHero/helpers';
+import {
+  ZipArrays,
+} from '../sagawa/helpers';
 
 require('dotenv').load({ silent: true });
-
 /**
 * Function: "fetchSquareLocation":
 * Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
@@ -168,9 +170,12 @@ new Promise((resolve, reject) => {
   console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
+  let marketHeroOp = '';
+  let cartProducts = [];
 
   const {
     userId,
+    language,
     comments,
     termsAgreement,
     newsletterDecision,
@@ -180,7 +185,6 @@ new Promise((resolve, reject) => {
     taxes,
     total,
     square,
-    language,
   } = orderForm;
 
   Promise.all([
@@ -207,12 +211,15 @@ new Promise((resolve, reject) => {
       },
     }, { new: true }),
     Transaction.fetchSquareLocation(square.billingCountry),
+    Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec(),
   ])
   .then((results) => {
-    console.log('\n2] SUCCEEDED: 1) Created new Transaction Document. 2) Updated User\'s "email" and "marketing" fields. 3) Fetched Square Location information.\n');
+    console.log('\n2] SUCCEEDED: 1) Created new Transaction Document.\n', results[0]._doc, '\n2) Updated User\'s "email" and "marketing" fields.', results[1]._doc, '\n3) Fetched Square Location information.\n', results[2], '\n4) Retrieved Product documents from cart _id\'s.\n', results[3]);
 
-    newTransactionDoc = results[0];
-    userDoc = { ...results[1] };
+    newTransactionDoc = results[0]._doc;
+    userDoc = { ...results[1]._doc };
+    cartProducts = ZipArrays(cart, results[3], (cartProduct, dbDoc) =>
+    ({ qty: cartProduct.qty, ...dbDoc._doc }));
 
     return Transaction.squareChargeCard({
       locationId: results[2].id,
@@ -230,7 +237,7 @@ new Promise((resolve, reject) => {
     });
   })
   .then((response) => {
-    console.log('3] SUCCEEDED: Square Charge Customer.');
+    console.log('3] SUCCEEDED: Square Charge Customer.\n', response.data);
 
     if (response.status !== 200) {
       console.log('3a] FAILED: Square Charge Customer: ', response.data);
@@ -253,7 +260,7 @@ new Promise((resolve, reject) => {
       }, { new: true }),
       MarketHero.checkForLead(sagawa.shippingAddress.email),
       Sagawa.handleNewTransaction({
-        cart,
+        cart: cartProducts,
         total,
         userId,
         sagawa,
@@ -262,10 +269,10 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('4] Success! 1) Updated User "cart" and "transactions" history.  2) Created or Updated Market Hero document. 3) Updated Sagawa document for this transaction.', results);
+    console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
 
     userDoc = { ...results[0] };
-    const marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
+    marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
     const sagawaDoc = results[2];
 
     const lead = {
@@ -277,7 +284,7 @@ new Promise((resolve, reject) => {
 
     return Promise.all([
       Email.createInvoiceEmailBody({
-        cart,
+        cart: cartProducts,
         square,
         sagawa: results[2],
         language,
@@ -285,11 +292,19 @@ new Promise((resolve, reject) => {
       }),
       MarketHero[marketHeroOp]({
         lead,
-        tags: GetMhTransactionTagsMongo({ total, cart, language }),
+        tags: GetMhTransactionTagsMongo({
+          total,
+          language,
+          cart: cartProducts,
+        }),
       }),
       MarketHero.createOrUpdateLead({
         lead,
-        tags: GetMhTransactionTagsApi({ total, cart, language }),
+        tags: GetMhTransactionTagsApi({
+          total,
+          language,
+          cart: cartProducts,
+        }),
       }),
       Transaction.findByIdAndUpdate(newTransactionDoc._id, {
         $set: {
@@ -299,21 +314,36 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('5] Success! Generated Invoice Email body and inserted result into Transaction document.');
+    console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2], '\n4) Update Transaction Doc with Sagawa Mongo _id reference.\n', results[3]);
 
     newTransactionDoc = { ...results[0] };
 
-    return axios.post('http://localhost:3000/api/sagawa', {
+    const promise1 = axios.post('http://localhost:3000/api/sagawa', {
       userId,
       sagawaId: sagawa.sagawaId,
       transactionId: newTransactionDoc._id,
     });
+    let promise2 = null;
+    let promiseArray = [promise1];
+
+    if (marketHeroOp === 'createMongoLead') {
+      promise2 = User.findByIdAndUpdate(userId, {
+        $set: { 'marketing.marketHero': results[1]._id },
+      }, { new: true });
+      promiseArray = [...promiseArray, promise2];
+    }
+
+    return Promise.all([...promiseArray]);
   })
-  .then(({ status, data }) => {
-    console.log('6] Success! Uploaded order to Sagawa. Response: ', data);
+  .then((results) => {
+    console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda. 2) Update User Document with new MarketHero Doc _id (if necessary).', results);
+
+    const { status, data } = results[0];
+
+    if (results.length === 2) userDoc = results[1];
 
     if (status !== 200) {
-      console.log('Was not able to complete the order: ', data);
+      console.log('FAILED: Upload Order to Sagawa: ', data);
       resolve({
         error: {
           hard: true,
@@ -323,13 +353,7 @@ new Promise((resolve, reject) => {
       });
     }
 
-    console.log('Querying for all Products purchased by customer...');
-    return Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec();
-  })
-  .then((productDocs) => {
-    console.log('7] Success! Found ', productDocs.length, ' product documents.  Perfoming update on "statistics" & "quantities" available now...');
-
-    productDocs.forEach((productDoc) => {
+    cartProducts.forEach((productDoc) => {
       productDoc.product.quantities.inCarts -= 1;
       productDoc.product.quantities.purchased += 1;
       productDoc.statistics.completedCheckouts += 1;
@@ -339,16 +363,16 @@ new Promise((resolve, reject) => {
       }];
       productDoc.save({ validateBeforeSave: true })
       .then((savedDoc) => {
-        console.log('Successfully updated "statistics" & "quantities" for Product ', savedDoc._id);
+        console.log('SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
       })
       .catch((error) => {
-        console.log('Error while trying to update "statiistics" & "quantities" for Product ', productDoc._id, 'ERROR = ', error);
-        reject('Error while updating DB after successful purchase.');
+        console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
+        reject(new Error('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
       });
     });
 
-    console.log('8] Order complete! Resolving with 1) User doc, 2) Tracking ID 3) Transaction doc.');
-    resolve(newTransactionDoc);
+    console.log('8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
+    resolve({ transaction: newTransactionDoc, user: userDoc });
   })
   .catch((error) => {
     console.log('Failed to submit order due to error: ', error);

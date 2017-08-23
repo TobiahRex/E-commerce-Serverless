@@ -22,12 +22,14 @@ export default function ComposeLocalData({
     userId,
     taxRate: taxes,
     jpyFxRate,
+    language,
   },
   cardData,
 }) {
   return ({
     userId,
     comments,
+    language,
     termsAgreement,
     newsletterDecision,
     cart: cart.map(({ _id, qty }) => ({ _id, qty })),

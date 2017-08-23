@@ -18,15 +18,19 @@ export default (db) => {
     Product.find({ 'product.flavor': flavor })
     .exec()
     .then((dbProducts) => {
-      console.log(`Found ${dbProducts.length} popular product(s) with Flavor: "${flavor}"!`);
+      console.log(`
+        Found ${dbProducts.length} popular product(s) with Flavor: "${flavor}"!
+      `);
       resolve(dbProducts);
     })
     .catch((error) => {
-      console.log(`Error trying to find products by flavor "${flavor}". ERROR = ${error}`);
-      reject(`Error trying to find products by flavor "${flavor}". ERROR = ${error}`);
+      reject({
+        problem: `Could not find any products with flavor ${flavor}.
+
+        Mongo Error = ${error}`,
+      });
     });
   });
-
   /**
   * Fetches multiple products by id.
   * 1) Finds procuts by Mongo _id.
@@ -47,13 +51,12 @@ export default (db) => {
         console.log('Found multiple Products.: ', dbProducts);
         resolve(dbProducts);
       })
-      .catch((error) => {
-        console.log(`Error qurying for multiple products with ids "${ids}". ERROR = ${error}`);
-        reject(`Error qurying for multiple products with ids "${ids}". ERROR = ${error}`);
-      });
+      .catch(error => reject(`
+        problem: Could not fetch multiple products.
+        Mongo Error = ${error}.
+      `));
     }
   });
-
   /**
   * 1) Removes product by id.
   * 2) Resolves || Rejects with result.
@@ -67,10 +70,10 @@ export default (db) => {
     Product.findByIdAndRemove(_id)
     .exec()
     .then(resolve)
-    .catch((error) => {
-      console.log(`Error trying to delete product with id "${_id}".  ERROR = ${error}.`);
-      reject(`Error trying to delete product with id "${_id}".  ERROR = ${error}.`);
-    });
+    .catch(error => reject({
+      problem: `Could not create a delete product with _id:${_id}.  Verify the id is valid.
+      Mongoose Error = ${error}`,
+    }));
   });
 
   /**
@@ -86,7 +89,7 @@ export default (db) => {
   new Promise((resolve, reject) => {
     bbPromise.fromCallback(cb => Product.create({ product, statistics }, cb))
     .then((newProduct) => {
-      console.log(`Created new Product document. DOC = ${newProduct}`);
+      console.log('\n//mongo/model/product.js\n @ createProduct RESOLVE\n', newProduct);
       resolve(newProduct);
     })
     .catch((error) => {
@@ -94,7 +97,6 @@ export default (db) => {
       reject(`Error trying to create new product.  ERROR = ${error}`);
     });
   });
-
   /**
   * 1) Finds product by Mongo _id.
   * 2) Resolves || Rejects with result.
@@ -108,7 +110,7 @@ export default (db) => {
     Product.findById(_id)
     .exec()
     .then((dbProduct) => {
-      console.log(`Found product.  DOC = ${dbProduct}`);
+      console.log('\n//mongo/model/product.js\n @ findProductById RESOLVE\n', dbProduct);
       resolve(dbProduct);
     })
     .catch((error) => {
@@ -116,7 +118,6 @@ export default (db) => {
       reject(`Error trying to find product with id "${_id}".  ERROR = ${error}`);
     });
   });
-
   /**
   * 1) Finds product by _id.
   * 2) Updates product with new productObj info.
@@ -207,7 +208,9 @@ export default (db) => {
     ])
     .exec()
     .then((dbProducts) => {
-      console.log(`Found the following products: ${JSON.stringify(dbProducts, null, 2)}`);
+      console.log(`
+        Found the following products: ${JSON.stringify(dbProducts, null, 2)}
+      `);
       resolve(dbProducts);
     })
     .catch((error) => {

@@ -551,7 +551,14 @@ const ExpressCheckoutWithStateAndData = compose(
   graphql(SubmitFinalOrder, { name: 'SubmitFinalOrder' }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toaster }) => ({
+const ExpressCheckoutWithStateAndData2 = connect(({
+  auth,
+  user,
+  orders,
+  api,
+  toaster,
+  locale,
+}) => ({
   toast: CheckForToast(toaster),
   userId: !!user.profile ? user.profile._id : '',
   taxRate: orders.taxRate,
@@ -562,6 +569,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({ auth, user, orders, api, toa
   apiFetching: api.fetching,
   postalError: orders.postalInfo.error,
   jpyFxRate: orders.exchangeRate.JPY,
+  language: locale.activeLanguage,
 }), dispatch => ({
   toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
   toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
@@ -617,6 +625,7 @@ ExpressCheckout.propTypes = {
   userId: string.isRequired,
   loggedIn: bool.isRequired,
   newUser: bool.isRequired,
+  language: string.isRequired,
   // ---
   taxRate: shape({
     stateRate: number,

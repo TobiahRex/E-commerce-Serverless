@@ -1,0 +1,1 @@
+export createEmailProductList from './createEmailProductList';

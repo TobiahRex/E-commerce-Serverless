@@ -72,7 +72,7 @@ function* preLoginActions(socialType) {
 
 function* socialLogin(socialType) {
   yield call(preLoginActions, socialType);
-  yield put(AuthService[socialType]());
+  yield call(() => AuthService[socialType]());
 }
 
 export function* watchAuthActions() {

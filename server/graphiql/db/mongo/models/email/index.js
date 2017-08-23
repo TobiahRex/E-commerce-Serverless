@@ -5,7 +5,7 @@ import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../../schemas/emailSchema';
 import db from '../../connection';
-import { createEmailProductList } from './helpers';
+import { createEmailProductList as CreateEmailProductList } from './helpers';
 // import config from '../../../config.json';
 
 const {
@@ -77,26 +77,28 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.findEmailAndFilterLanguage = (type, reqLanguage) =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.findEmailAndFilterLanguage\n');
+
   if (!type || !reqLanguage) {
     console.log(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
-    reject(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
+    reject(new Error(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `));
   } else {
     Email
     .find({ type })
     .exec()
     .then((dbEmails) => {
-      if (!dbEmails) {
-        console.log(`Did not find any emails with type: "${type}"`);
-        return reject(`Did not find any emails with type: "${type}".  `);
+      if (!dbEmails.length) {
+        console.log('FAILED: Find email with type: ', type);
+        return reject(new Error(`FAILED: Find email with type: "${type}".  `));
       }
-      console.log(`Found the following emails: ${dbEmails}`);
+      console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails);
 
       const foundEmail = dbEmails
       .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
 
       if (!foundEmail) {
-        console.log('Did not successfully filter email results array.');
-        return reject('Did not successfully filter email results array.');
+        console.log('FAILED: Filter email results array.');
+        return reject(new Error('FAILED: Filter email results array.'));
       }
 
       console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
@@ -125,6 +127,8 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.sendEmail = ({ to, htmlBody }, emailDoc) =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.sendEmail\n');
+
   if (!isEmail(to)) {
     console.log(`ERROR = "${to}" is not a valid email.  `);
     return reject(`ERROR = "${to}" is not a valid email.  `);
@@ -189,6 +193,8 @@ new Promise((resolve, reject) => {
 */
 emailSchema.statics.findSentEmailAndUpdate = (msgId, status) =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.findSentEmailAndUpdate\n');
+
   if (!msgId || !status) return reject(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
 
   console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
@@ -262,17 +268,17 @@ new Promise((resolve, reject) => {
   const nonBusinessDays = ['Saturday', 'Sunday'];
   let emailType = '';
 
-  if (!nonBusinessDays.includes(today)) {
-    emailType = 'invoiceEmail';
-  } else {
+  if (nonBusinessDays.includes(today)) {
     emailType = 'invoiceEmailNoTracking';
+  } else {
+    emailType = 'invoiceEmail';
   }
 
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
     console.log('SUCCEEDED: Find Template Invoice Email for language: ', language);
 
-    const productListHtmlString = createEmailProductList(dbEmail, cart);
+    const productListHtmlString = CreateEmailProductList(dbEmail, cart);
 
     const updatedHtmlString = dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
