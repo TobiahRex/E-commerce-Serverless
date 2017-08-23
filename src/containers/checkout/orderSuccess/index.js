@@ -83,22 +83,24 @@ class OrderSuccess extends React.Component {
         },
       },
       sagawaInfo: {
-        _id: sagawaId,
-        // userId,
-        // transactionId,
-        // status,
-        // uploadForm,
-        shippingAddress: {
-          referenceId,
-          shipdate,
-          customerName,
-          postal,
-          jpaddress1,
-          jpaddress2,
-          phoneNumber,
-          // deliveryDate,
+        FetchSagawa: {
+          _id: sagawaId,
+          // userId,
+          // transactionId,
+          // status,
+          // uploadForm,
+          shippingAddress: {
+            referenceId,
+            shipdate,
+            customerName,
+            postal,
+            jpaddress1,
+            jpaddress2,
+            phoneNumber,
+            // deliveryDate,
+          },
+          // items,
         },
-        // items,
       },
     } = props;
     return (
@@ -188,13 +190,6 @@ class OrderSuccess extends React.Component {
   }
 }
 
-// const OrderSuccessWithState = connect(({ orders }, ownProps) => ({
-//   orderProducts: ownProps.FetchMultipleProducts.products,
-//   sagawaInfo: ownProps.FetchSagawa.sagawaInfo,
-// }), dispatch => ({
-  // push: location => dispatch(push(location)),
-// }))(OrderSuccess);
-
 const OrderSuccessWithState = compose(
   graphql(FetchSagawa, {
     name: 'sagawaInfo',
@@ -215,16 +210,15 @@ const OrderSuccessWithState = compose(
 
 const OrderSuccessWithStateAndData = connect(({ orders }) => ({
   transactionInfo: orders.transaction,
-  sagawa: null,
 }), dispatch => ({
   push: location => dispatch(push(location)),
 }))(OrderSuccessWithState);
 
-const { func, shape, string, bool, number, arrayOf, object } = PropTypes;
+const { func, shape, string, bool, number, arrayOf, objectOf, any } = PropTypes;
 
 OrderSuccess.propTypes = {
   push: func.isRequired,
-  products: arrayOf(object),
+  products: objectOf(any),
   transactionInfo: shape({
     _id: string,
     date: string,
@@ -289,7 +283,7 @@ OrderSuccess.propTypes = {
   }),
 };
 OrderSuccess.defaultProps = {
-  orderProducts: [],
+  products: [],
   sagawaInfo: {},
   transactionInfo: {},
 };
