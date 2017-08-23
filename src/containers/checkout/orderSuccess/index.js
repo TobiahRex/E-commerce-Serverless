@@ -50,7 +50,9 @@ class OrderSuccess extends React.Component {
 
   renderBody = (props) => {
     const {
-      products,
+      products: {
+        FetchMultipleProducts: products,
+      },
       transactionInfo: {
         _id: transactionId,
         date,
@@ -118,7 +120,7 @@ class OrderSuccess extends React.Component {
 
           <OrderHeader
             date={date}
-            invoice={sagawaId}
+            invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
             paidTotal={chargedAmount}
