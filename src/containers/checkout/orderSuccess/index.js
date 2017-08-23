@@ -20,6 +20,7 @@ import {
 
 import {
   arrayDeepEquality as ArrayDeepEquality,
+  zipArrays as ZipArrays,
 } from '../utilities.imports';
 
 class OrderSuccess extends React.Component {
@@ -89,7 +90,7 @@ class OrderSuccess extends React.Component {
           _id: sagawaId,
           // userId,
           // transactionId,
-          // status,
+          status,
           // uploadForm,
           shippingAddress: {
             referenceId,
@@ -105,6 +106,9 @@ class OrderSuccess extends React.Component {
         },
       },
     } = props;
+
+    const zippedProducts = ZipArrays(this.props.transactionInfo.products, products, ({ qty }, dbProduct) => ({ qty, ...dbProduct }));
+
     return (
       <div className="ordered--main">
         <div className="ordered--container">
@@ -114,59 +118,59 @@ class OrderSuccess extends React.Component {
             </div>
             <div className="title--msg">
               <h1>Your order has been successfully placed!</h1>
-              <h4>The invoice shown below has been sent to your email.</h4>
+              <h4>The invoice shown below has been sent to your email:</h4>
+              <h4>{emailAddress}</h4>
             </div>
           </div>
 
           <OrderHeader
             date={date}
+            status={status}
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
             paidTotal={chargedAmount}
           />
-        </div>
-        <div className="ordered__addresses">
-          <ShipTo
-            fullName={customerName}
-            jpAddress1={jpaddress1}
-            jpAddress2={jpaddress2}
-            city={shippingCity}
-            prefecture={shippingPrefecture}
-            postalCode={postal}
-            country={'Japan'}
-            phone={phoneNumber}
+          <div className="ordered__addresses">
+            <ShipTo
+              fullName={customerName}
+              jpAddress1={jpaddress1}
+              jpAddress2={jpaddress2}
+              city={shippingCity}
+              prefecture={shippingPrefecture}
+              postalCode={postal}
+              country={'Japan'}
+              phoneNumber={phoneNumber}
+            />
+            <BillTo
+              nameOnCard={nameOnCard}
+              billingPostalCode={postalCode}
+              billingCountry={billingCountry}
+              ccLastFour={last4}
+            />
+          </div>
+          <OrderSummary
+            shippingStatus={`Shipping on ${shipdate}`}
+            trackingId={referenceId}
+            orderProducts={zippedProducts}
+            grandTotal={chargedAmount}
+            subTotal={subTotal}
+            taxes={taxes}
+            discount={discount}
+            jpyFxRate={jpyFxRate}
           />
-          <BillTo
-            nameOnCard={nameOnCard}
-            billingPostalCode={postalCode}
-            billingCountry={billingCountry}
-            ccLastFour={last4}
-          />
-        </div>
-        <OrderSummary
-          shippingStatus={`Shipping on ${shipdate}`}
-          trackingId={referenceId}
-          orderProducts={products}
-          grandTotal={chargedAmount}
-          comments={comments}
-          subTotal={subTotal}
-          taxes={taxes}
-          discount={discount}
-          emailAddress={emailAddress}
-          jpyFxRate={jpyFxRate}
-        />
-        <div className="ordered__action-btns">
-          <button
-            className="back-to-home sweep-right primary-flex-button"
-            data-slug="/"
-            onClick={this.routeChange}
-          >
-            <span className="flex-btn-parent">
-              <FontAwesome name="angle-double-left" />
-              {'\u00A0'}Back To Homepage
-            </span>
-          </button>
+          <div className="ordered__action-btns">
+            <button
+              className="back-to-home sweep-right primary-flex-button"
+              data-slug="/"
+              onClick={this.routeChange}
+            >
+              <span className="flex-btn-parent">
+                <FontAwesome name="angle-double-left" />
+                {'\u00A0'}Back To Homepage
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -211,7 +215,10 @@ const OrderSuccessWithState = compose(
 )(OrderSuccess);
 
 const OrderSuccessWithStateAndData = connect(({ orders }) => ({
-  transactionInfo: orders.transaction,
+  transactionInfo: orders.transaction || {
+    products: [{ _id: '' }],
+    sagawa: '',
+  },
 }), dispatch => ({
   push: location => dispatch(push(location)),
 }))(OrderSuccessWithState);
@@ -287,6 +294,11 @@ OrderSuccess.propTypes = {
 OrderSuccess.defaultProps = {
   products: [],
   sagawaInfo: {},
-  transactionInfo: {},
+  transactionInfo: {
+    products: [{
+      _id: '',
+    }],
+    sagawa: '',
+  },
 };
 export default OrderSuccessWithStateAndData;

@@ -3,16 +3,22 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
-function OrderHeader({
+import {
+  nicotineStrengthConverter as NicotineStrengthConverter,
+} from '../../utilities.imports';
+
+function OrderSummary({
   shippingStatus,
   trackingId,
-  qty,
-  nicotineStrength,
-  sku,
-  price,
+  orderProducts,
+  grandTotal,
   subTotal,
   taxes,
-  grandTotal,
+  discount: {
+    qtyAmount,
+    registerAmount,
+  },
+  jpyFxRate,
 }) {
   return (
     <div className="ordered__order-summary">
@@ -40,38 +46,54 @@ function OrderHeader({
                 <p>{shippingStatus} {'\u2013'} Tracking #:
                   <Link
                     className="tracking-id"
-                    to="/user:123123123/orders:123123/tracking:123123123"
+                    to={'http://localhost:30001/api/tracking?token=123123'}
                   >{'\u00A0'}{trackingId}</Link>
                 </p>
               </td>
             </tr>
-            <tr className="body--product-row">
-              <td colSpan="1">
-                <p>{qty}</p>
-              </td>
-              <td colSpan="3">
-                <ul className="product-row__list">
-                  <li className="list--title">
-                    <p>{'<Product Description>'}</p>
-                  </li>
-                  <li className="list--nic-strength">
-                    <p>{nicotineStrength}{'\u00A0'}mg</p>
-                  </li>
-                  <li className="list--sku">
-                    <p>SKU: {sku}</p>
-                  </li>
-                </ul>
-              </td>
-              <td colSpan="2">
-                <p>
-                  <FontAwesome name="usd" />{'\u00A0'}
-                  {price}.00
-                </p>
-              </td>
-            </tr>
+            {
+              orderProducts.map(({
+                _id,
+                qty,
+                product: {
+                  sku,
+                  price,
+                  title,
+                  nicotineStrength,
+                },
+              }) => (
+                <tr className="body--product-row" key={_id}>
+                  <td colSpan="1">
+                    <p>{qty}</p>
+                  </td>
+                  <td colSpan="3">
+                    <ul className="product-row__list">
+                      <li className="list--title">
+                        <p>{title}</p>
+                      </li>
+                      <li className="list--nic-strength">
+                        <p>{NicotineStrengthConverter(nicotineStrength)}</p>
+                      </li>
+                      <li className="list--sku">
+                        <p>SKU: {sku}</p>
+                      </li>
+                    </ul>
+                  </td>
+                  <td colSpan="2">
+                    <p>
+                      <FontAwesome name="usd" />{'\u00A0'}
+                      {price}.00
+                    </p>
+                  </td>
+                </tr>
+              ))
+            }
             <tr className="body--total-analysis">
               <td colSpan="4">
                 <ul className="total-analysis--list-title">
+                  <li className="list-title--subtotal">
+                    <p>USD / JPY Rate</p>
+                  </li>
                   <li className="list-title--subtotal">
                     <p>Subtotal</p>
                   </li>
@@ -81,13 +103,21 @@ function OrderHeader({
                   <li className="list-title--shipping">
                     <p>Free International Shipping</p>
                   </li>
+                  <li className="list-title--shipping">
+                    <p>Discount</p>
+                  </li>
                   <li className="list-title--order-total">
-                    <p>Order Title</p>
+                    <p>Grand Total</p>
                   </li>
                 </ul>
               </td>
               <td colSpan="2">
                 <ul className="total-analysis--list-value">
+                  <li className="list-value--subtotal">
+                    <p>
+                      <FontAwesome name="usd" />{'\u00A0'}{(jpyFxRate / 100).toFixed(3)}
+                    </p>
+                  </li>
                   <li className="list-value--subtotal">
                     <p>
                       <FontAwesome name="usd" />{'\u00A0'}{subTotal}.00
@@ -101,6 +131,12 @@ function OrderHeader({
                   <li className="list-value--shipping">
                     <p>
                       <FontAwesome name="usd" />{'\u00A0'}0.00
+                    </p>
+                  </li>
+                  <li className="list-value--shipping">
+                    <p className="required">
+                      -{'\u00A0'}<FontAwesome name="usd" />{'\u00A0'}
+                      {(Number(qtyAmount) + Number(registerAmount)).toFixed(2)}
                     </p>
                   </li>
                   <li className="list-value--order-total">
@@ -118,17 +154,16 @@ function OrderHeader({
   );
 }
 
-const { string, number } = PropTypes;
-OrderHeader.propTypes = {
+const { string, arrayOf, object, objectOf, any } = PropTypes;
+OrderSummary.propTypes = {
   shippingStatus: string.isRequired,
   trackingId: string.isRequired,
-  qty: number.isRequired,
-  nicotineStrength: number.isRequired,
-  sku: string.isRequired,
-  price: string.isRequired,
+  orderProducts: arrayOf(object).isRequired,
   subTotal: string.isRequired,
   taxes: string.isRequired,
   grandTotal: string.isRequired,
+  discount: objectOf(any).isRequired,
+  jpyFxRate: string.isRequired,
 };
 
-export default OrderHeader;
+export default OrderSummary;

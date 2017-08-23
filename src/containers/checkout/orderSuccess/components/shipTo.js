@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function OrderHeader({
+function ShipTo({
   fullName,
   jpAddress1,
   jpAddress2,
@@ -27,23 +27,25 @@ function OrderHeader({
         </div>
         <div className="shipto__city-prefecture">
           <p className="city-prefecture--city">{city}</p>
+          {'\u00A0'}
+          {'\u00A0'}
           <p className="city-prefecture--prefecture">{prefecture}</p>
-        </div>
-        <div className="shipto__postal-code">
-          <p>{postalCode}</p>
         </div>
         <div className="shipto__country">
           <p>{country}</p>
+        </div>
+        <div className="shipto__postal-code">
+          <p>{postalCode}</p>
         </div>
         <div className="shipto__telephone">
           <p className="telephone--area-code">
             {`(${phoneNumber.slice(0, 3)})`}
           </p>
           <p className="telephone--first-half">
-            {'\u00A0'}{phoneNumber.slice(3, 4)}{'\u2013'}
+            {'\u00A0'}{phoneNumber.slice(3, 7)}{'\u2013'}
           </p>
           <p className="telephone--second-half">
-            {'\u00A0'}{phoneNumber.slice(7, 4)}
+            {'\u00A0'}{phoneNumber.slice(7, 12)}
           </p>
         </div>
       </fieldset>
@@ -52,7 +54,7 @@ function OrderHeader({
 }
 
 const { string } = PropTypes;
-OrderHeader.propTypes = {
+ShipTo.propTypes = {
   fullName: string.isRequired,
   jpAddress1: string.isRequired,
   jpAddress2: string.isRequired,
@@ -63,4 +65,4 @@ OrderHeader.propTypes = {
   phoneNumber: string.isRequired,
 };
 
-export default OrderHeader;
+export default ShipTo;

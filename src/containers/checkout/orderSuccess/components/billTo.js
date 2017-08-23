@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function OrderHeader({
+function BillTo({
   nameOnCard,
   billingPostalCode,
   billingCountry,
@@ -21,7 +21,7 @@ function OrderHeader({
           <p>{billingPostalCode}</p>
         </div>
         <div className="billto__country">
-          <p>{billingCountry}</p>
+          <p>{billingCountry === 'JP' ? 'Japan' : 'United States'}</p>
         </div>
         <div className="billto__card-info">
           <p>Credit Card #: ************{ccLastFour}</p>
@@ -32,11 +32,11 @@ function OrderHeader({
 }
 
 const { string, number } = PropTypes;
-OrderHeader.propTypes = {
+BillTo.propTypes = {
   nameOnCard: string.isRequired,
   billingPostalCode: string.isRequired,
   billingCountry: string.isRequired,
   ccLastFour: number.isRequired,
 };
 
-export default OrderHeader;
+export default BillTo;
