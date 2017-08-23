@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-const errorLoading = () => { throw new Error('Dyanmic page loading failed.'); };
+const errorLoading = (e) => { throw new Error(e.message); };
 const loadRoute = cb => module => cb(null, module.default);
 
 const CheckoutRoutes = () => (
@@ -33,7 +33,7 @@ const CheckoutRoutes = () => (
     <Route
       path="successfully_ordered"
       getComponent={(location, cb) => {
-        System.import('../containers/checkout/orderSuccess')
+        System.import('../containers/checkout/orderSuccess/index')
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}

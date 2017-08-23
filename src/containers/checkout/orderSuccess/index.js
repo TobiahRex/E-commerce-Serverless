@@ -18,6 +18,12 @@ import {
 } from '../../../graphql/queries';
 
 class OrderSuccess extends React.Component {
+  constructor(props) {
+    super(props);
+
+
+  }
+
   routeChange = e => this.props.push(e.target.dataset.slug)
 
   render() {
@@ -153,10 +159,16 @@ const OrderSuccessWithState = connect(({ orders }, ownProps) => ({
 const OrderSuccessWithStateAndData = compose(
   graphql(FetchSagawa, {
     name: 'sagawaInfo',
+    options: ({ transactionInfo }) => {
+      return ({
+        variables: { id: transactionInfo.sagawa },
+      });
+    },
   }),
   graphql(FetchMultipleProducts, {
     name: 'products',
     options: ({ transaction }) => {
+      console.log('%ctransaction', 'background:lime;', transaction);
       const productIds = transaction.products.map(({ _id }) => _id);
       return ({
         variables: { ids: productIds },
