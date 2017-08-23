@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
 import { graphql, compose } from 'react-apollo';
 import { push } from 'react-router-redux';
@@ -17,14 +18,41 @@ import {
   FetchMultipleProducts,
 } from '../../../graphql/queries';
 
+import {
+  arrayDeepEquality as ArrayDeepEquality,
+} from '../utilities.imports';
+
 class OrderSuccess extends React.Component {
+
+  shouldComponentUpdate(nextProps) {
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
+
+    if (
+      !_.isEqual(nextProps, this.props) ||
+      !ArrayDeepEquality(nextProps.userCart, this.props.products) ||
+      !_.isEqual(nextProps, this.props)
+    ) return true;
+
+    // if (!_.isEqual(nextState, this.state)) return true;
+
+    return false;
+  }
+
   routeChange = e => this.props.push(e.target.dataset.slug)
 
-  render() {
-    console.log('this.props: ', this.props);
-
+  renderBody = (props) => {
     const {
-      orderProducts,
+      products: {
+        FetchMultipleProducts: products,
+      },
       transactionInfo: {
         _id: transactionId,
         date,
@@ -57,25 +85,26 @@ class OrderSuccess extends React.Component {
         },
       },
       sagawaInfo: {
-        _id: sagawaId,
-        // userId,
-        // transactionId,
-        // status,
-        // uploadForm,
-        shippingAddress: {
-          referenceId,
-          shipdate,
-          customerName,
-          postal,
-          jpaddress1,
-          jpaddress2,
-          phoneNumber,
-          // deliveryDate,
+        FetchSagawa: {
+          _id: sagawaId,
+          // userId,
+          // transactionId,
+          // status,
+          // uploadForm,
+          shippingAddress: {
+            referenceId,
+            shipdate,
+            customerName,
+            postal,
+            jpaddress1,
+            jpaddress2,
+            phoneNumber,
+            // deliveryDate,
+          },
+          // items,
         },
-        // items,
       },
-    } = this.props;
-
+    } = props;
     return (
       <div className="ordered--main">
         <div className="ordered--container">
@@ -88,9 +117,10 @@ class OrderSuccess extends React.Component {
               <h4>The invoice shown below has been sent to your email.</h4>
             </div>
           </div>
+
           <OrderHeader
             date={date}
-            invoice={sagawaId}
+            invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
             paidTotal={chargedAmount}
@@ -117,7 +147,7 @@ class OrderSuccess extends React.Component {
         <OrderSummary
           shippingStatus={`Shipping on ${shipdate}`}
           trackingId={referenceId}
-          orderProducts={orderProducts}
+          orderProducts={products}
           grandTotal={chargedAmount}
           comments={comments}
           subTotal={subTotal}
@@ -141,40 +171,56 @@ class OrderSuccess extends React.Component {
       </div>
     );
   }
+
+  render() {
+    console.log('this.props: ', this.props);
+
+    return (
+      <div>
+        {
+          this.props.sagawaInfo.loading ?
+            <h1 className="main__loading">
+              <FontAwesome name="spinner" pulse size="3x" />
+              <br />
+              Loading...
+            </h1>
+          :
+          this.renderBody(this.props)
+        }
+      </div>
+    );
+  }
 }
 
-const OrderSuccessWithState = connect(({ orders }, ownProps) => ({
-  orderProducts: ownProps.FetchMultipleProducts.products,
-  sagawaInfo: ownProps.FetchSagawa.sagawaInfo,
-}), dispatch => ({
-  push: location => dispatch(push(location)),
-}))(OrderSuccess);
-
-const OrderSuccessWithStateAndData = compose(
+const OrderSuccessWithState = compose(
   graphql(FetchSagawa, {
     name: 'sagawaInfo',
+    options: ({ transactionInfo }) => ({
+      variables: { id: transactionInfo.sagawa },
+    }),
   }),
   graphql(FetchMultipleProducts, {
     name: 'products',
-    options: ({ transaction }) => {
-      const productIds = transaction.products.map(({ _id }) => _id);
+    options: ({ transactionInfo }) => {
+      const productIds = transactionInfo.products.map(({ _id }) => _id);
       return ({
         variables: { ids: productIds },
       });
     },
   }),
-)(OrderSuccessWithState);
+)(OrderSuccess);
 
-const OrderSuccessWithStateAndData2 = connect(({ orders }) => ({
+const OrderSuccessWithStateAndData = connect(({ orders }) => ({
   transactionInfo: orders.transaction,
-  sagawa: null,
-}))(OrderSuccessWithStateAndData);
+}), dispatch => ({
+  push: location => dispatch(push(location)),
+}))(OrderSuccessWithState);
 
-const { func, shape, string, bool, number, arrayOf, object } = PropTypes;
+const { func, shape, string, bool, number, arrayOf, objectOf, any } = PropTypes;
 
 OrderSuccess.propTypes = {
   push: func.isRequired,
-  orderProducts: arrayOf(object).isRequired,
+  products: objectOf(any),
   transactionInfo: shape({
     _id: string,
     date: string,
@@ -210,7 +256,7 @@ OrderSuccess.propTypes = {
         amount: string,
       }),
     }),
-  }).isRequired,
+  }),
   sagawaInfo: shape({
     _id: string,
     userId: string,
@@ -236,7 +282,11 @@ OrderSuccess.propTypes = {
         unitprice: number,
       }),
     ),
-  }).isRequired,
+  }),
 };
-
-export default OrderSuccessWithStateAndData2;
+OrderSuccess.defaultProps = {
+  products: [],
+  sagawaInfo: {},
+  transactionInfo: {},
+};
+export default OrderSuccessWithStateAndData;

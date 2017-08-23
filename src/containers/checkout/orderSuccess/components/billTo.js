@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderHeader({
-  billingGivenName,
-  billingFamilyName,
+  nameOnCard,
   billingPostalCode,
   billingCountry,
   ccLastFour,
@@ -15,8 +14,8 @@ function OrderHeader({
           <p>Bill To</p>
         </legend>
         <div className="billto__name">
-          <p className="name--firstName">{billingGivenName}</p>
-          <p className="name--lastName">{'\u00A0'}{billingFamilyName}</p>
+          <p className="name--firstName">{nameOnCard.split(' ')[0]}</p>
+          <p className="name--lastName">{'\u00A0'}{nameOnCard.split(' ')[1]}</p>
         </div>
         <div className="billto__postal-code">
           <p>{billingPostalCode}</p>
@@ -32,10 +31,9 @@ function OrderHeader({
   );
 }
 
-const { string } = PropTypes;
+const { string, number } = PropTypes;
 OrderHeader.propTypes = {
-  billingGivenName: string.isRequired,
-  billingFamilyName: string.isRequired,
+  nameOnCard: string.isRequired,
   billingPostalCode: string.isRequired,
   billingCountry: string.isRequired,
   ccLastFour: number.isRequired,

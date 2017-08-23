@@ -23,7 +23,6 @@ const sagawaSchema = new Schema({
     enum: ['pending', 'uploaded'],
     default: 'pending',
   },
-  uploadForm: { type: String },
   shippingAddress: {
     awbId: { type: String },
     referenceId: { type: String },

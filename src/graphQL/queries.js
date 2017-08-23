@@ -118,7 +118,6 @@ export const FetchSagawa = gql`
       userId
       transactionId
       status
-      uploadForm
       shippingAddress {
         referenceId
         shipdate

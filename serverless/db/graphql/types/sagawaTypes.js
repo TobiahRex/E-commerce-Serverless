@@ -72,7 +72,7 @@ const rootType = new ObjectType({
           postal: { type: StringType },
           jpaddress1: { type: StringType },
           jpaddress2: { type: StringType },
-          phoneNumber: { type: IntType },
+          phoneNumber: { type: StringType },
           kbn: { type: StringType },
           wgt: { type: IntType },
           grandTotal: { type: IntType },

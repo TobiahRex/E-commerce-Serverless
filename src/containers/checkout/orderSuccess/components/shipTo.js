@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderHeader({
-  givenName,
-  familyName,
-  shippingAddress,
-  shippingCity,
-  shippingPrefecture,
-  shippingPostalCode,
-  shippingCountry,
-  shippingPhone,
+  fullName,
+  jpAddress1,
+  jpAddress2,
+  city,
+  prefecture,
+  postalCode,
+  country,
+  phoneNumber,
 }) {
   return (
     <div className="addresses--shipto">
@@ -18,31 +18,32 @@ function OrderHeader({
           <p>Ship To</p>
         </legend>
         <div className="shipto__name">
-          <p className="name--firstName">{givenName}</p>
-          <p className="name--lastName">{'\u00A0'}{familyName}</p>
+          <p className="name--firstName">{fullName.split(' ')[0]}</p>
+          <p className="name--lastName">{'\u00A0'}{fullName.split(' ')[1]}</p>
         </div>
         <div className="shipto__address">
-          <p>{shippingAddress}</p>
+          <p>{jpAddress1}</p>
+          <p>{jpAddress2}</p>
         </div>
         <div className="shipto__city-prefecture">
-          <p className="city-prefecture--city">{shippingCity}</p>
-          <p className="city-prefecture--prefecture">{shippingPrefecture}</p>
+          <p className="city-prefecture--city">{city}</p>
+          <p className="city-prefecture--prefecture">{prefecture}</p>
         </div>
         <div className="shipto__postal-code">
-          <p>{shippingPostalCode}</p>
+          <p>{postalCode}</p>
         </div>
         <div className="shipto__country">
-          <p>{shippingCountry}</p>
+          <p>{country}</p>
         </div>
         <div className="shipto__telephone">
           <p className="telephone--area-code">
-            {`(${shippingPhone.slice(0, 3)})`}
+            {`(${phoneNumber.slice(0, 3)})`}
           </p>
           <p className="telephone--first-half">
-            {'\u00A0'}{shippingPhone.slice(3, 4)}{'\u2013'}
+            {'\u00A0'}{phoneNumber.slice(3, 4)}{'\u2013'}
           </p>
           <p className="telephone--second-half">
-            {'\u00A0'}{shippingPhone.slice(7, 4)}
+            {'\u00A0'}{phoneNumber.slice(7, 4)}
           </p>
         </div>
       </fieldset>
@@ -52,14 +53,14 @@ function OrderHeader({
 
 const { string } = PropTypes;
 OrderHeader.propTypes = {
-  givenName: string.isRequired,
-  familyName: string.isRequired,
-  shippingAddress: string.isRequired,
-  shippingCity: string.isRequired,
-  shippingPrefecture: string.isRequired,
-  shippingPostalCode: string.isRequired,
-  shippingCountry: string.isRequired,
-  shippingPhone: string.isRequired,
+  fullName: string.isRequired,
+  jpAddress1: string.isRequired,
+  jpAddress2: string.isRequired,
+  city: string.isRequired,
+  prefecture: string.isRequired,
+  postalCode: string.isRequired,
+  country: string.isRequired,
+  phoneNumber: string.isRequired,
 };
 
 export default OrderHeader;

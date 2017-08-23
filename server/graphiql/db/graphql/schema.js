@@ -17,6 +17,7 @@ const query = new GraphQLObjectType({
     PopularProducts: ProductTypes.queries.PopularProducts,
     FetchMultipleProducts: ProductTypes.queries.FetchMultipleProducts,
     FetchSquareLocations: Transaction.queries.FetchSquareLocations,
+    FetchSagawa: Sagawa.queries.FetchSagawa,
   }),
 });
 
