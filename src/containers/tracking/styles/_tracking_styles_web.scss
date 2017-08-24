@@ -20,9 +20,13 @@
       justify-content: space-between;
       align-items: center;
       margin: 1em 2em;
-      & h5 {
-        color: $p-blue;
-        font-weight: 400;
+      & .header__detail {
+        @include prefixflex();
+        align-items: flex-end;
+        & h5 {
+          color: $p-blue;
+          font-weight: 400;
+        }
       }
     }
 
@@ -51,6 +55,15 @@
               font-weight: 200;
             }
           }
+        }
+        & .list--option.option-active {
+          background-color: $p-green;
+        }
+        & .list--option.option-future {
+          background-color: $p-blue;
+        }
+        & .list--option.option-past {
+          background-color: $p-red;
         }
         & li:nth-child(1),
         li:nth-child(2),

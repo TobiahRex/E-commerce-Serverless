@@ -72,11 +72,11 @@ class OrderTracking extends React.Component {
 
       return (
         <li
-          key={new Buffer(status, 'utf8').toString('base64')}
+          key={new Buffer(state, 'utf8').toString('base64')}
           className={`list--option option-${className}`}
         >
           <div>
-            <p>{status}</p>
+            <p>{state}</p>
           </div>
         </li>
       );
@@ -101,7 +101,7 @@ class OrderTracking extends React.Component {
       </tr>
     ));
 
-  renderHelper = (trackingInfo) => {
+  renderHelper = (data) => {
     const {
       FetchTrackingInfo: {
         shipDate,
@@ -112,19 +112,34 @@ class OrderTracking extends React.Component {
         totalPaid,
         trackingInfo,
       },
-    } = trackingInfo;
+    } = data;
     return (
       <div>
         <div className="order-tracking__header">
-          <h4>Shipped Date: {shipDate}</h4>
-          <h4>Tracking #: {trackingNumber}</h4>
+          <p className="header__detail">
+            <h5>Shipped Date:</h5>
+            {'\u00A0'}{shipDate}
+          </p>
+          <p className="header__detail">
+            <h5>Tracking #:</h5>
+            {'\u00A0'}{trackingNumber}
+          </p>
         </div>
         <div className="order-tracking__header">
-          <h4>User: {userName}</h4>
-          <h4>Order Id#: {orderId}</h4>
+          <p className="header__detail">
+            <h5>User:</h5>
+            {'\u00A0'}{userName}
+          </p>
+          <p className="header__detail">
+            <h5>Order Id#:</h5>
+            {'\u00A0'}{orderId}
+          </p>
         </div>
         <div className="order-tracking__header">
-          <h4>Total Paid: ${totalPaid}</h4>
+          <p className="header__detail">
+            <h5>Total Paid:</h5>
+            {'\u00A0'}${'\u00A0'}{totalPaid}
+          </p>
         </div>
 
         {/* NOTE: The background-colors for borders need to be dynamically created. */}
@@ -143,7 +158,6 @@ class OrderTracking extends React.Component {
                 </td>
                 <td className="header--date">
                   <h3>Date</h3>
-                  <p style={{ fontSize: '12px' }}>(YYYYMMDD)</p>
                 </td>
                 <td className="header--activity">
                   <h3>Activity</h3>
