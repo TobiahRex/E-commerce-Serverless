@@ -145,6 +145,12 @@ const mutationTypes = {
   }),
 };
 
+const queryTypes = {
+  FetchTrackingInfo: new ObjectType({
+    
+  }),
+};
+
 const queries = {
   FetchSagawa: {
     type: rootType,
@@ -155,6 +161,16 @@ const queries = {
       },
     },
     resolve: (_, { id }) => Sagawa.findById(id),
+  },
+  FetchTrackingInfo: {
+    type: queryTypes.FetchTrackingInfo,
+    args: {
+      token: {
+        description: 'The token needed for retrieving tracking information.',
+        type: new NonNull(StringType),
+      },
+    },
+    resolve: (_, { token }) => Sagawa.FetchTrackingInfo(token),
   },
 };
 
