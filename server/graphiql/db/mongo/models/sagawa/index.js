@@ -353,11 +353,12 @@ new Promise((resolve, reject) => {
     bbPromise.fromCallback(cb => JWT.verify(token, cb))
     .then((payload) => {
       console.log('SUCCEEDED: Extract payload from JWT token input.');
-      console.log('Payload: ', payload);
+      console.log('\nPayload: ', payload);
 
-      if (payload.exp < Number(String(Date.now()).slice(0, 10))) {
+      const today = Number(String(Date.now()).slice(0, 10));
+      if (today > payload.exp) {
         console.log('FAILED: Token has expired.');
-        return resolve({
+        resolve({
           error: {
             hard: false,
             soft: true,
@@ -371,11 +372,22 @@ new Promise((resolve, reject) => {
         .findById(payload.userId)
         .deepPopulate('shopping.transactions')
         .exec(),
-        Sagawa.findById(payload.sagawaId),
+        Sagawa
+        .findById(payload.sagawaId)
+        .exec(),
       ]);
     })
     .then((results) => {
-      console.log('SUCCEEDED: 1) Locate user by payload id: ', results[0]._doc, '2) Locate Sagawa document by payload id: ', results[1]._doc);
+      if (!results[0] || !results[1]) {
+        console.log('FAILED: 1) Locate user by payload id: ', results[0], '2) Locate Sagawa document by payload id: ', results[1]);
+        resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'This is an unauthorized request.  Contact support if you feel you\'ve received this message in error.',
+          },
+        });
+      }
 
       userDoc = results[0]._doc;
       sagawaDoc = results[1]._doc;
@@ -383,7 +395,7 @@ new Promise((resolve, reject) => {
 
       if (!transactionDoc) {
         console.log('FAILED: Locate transaction document from User\'s transaction history.');
-        return resolve({
+        resolve({
           error: {
             hard: true,
             soft: false,
@@ -440,7 +452,7 @@ new Promise((resolve, reject) => {
       };
 
       return Transaction.findByIdAndUpdate(transactionDoc._id, {
-        $set: { shippingStatus },
+        $set: { shippingStatus: data.phase },
       }, { new: true });
     })
     .then(() => {
