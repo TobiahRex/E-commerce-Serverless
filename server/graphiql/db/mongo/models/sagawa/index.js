@@ -1,6 +1,5 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
-import mongoose from 'mongoose';
 import axios from 'axios';
 import moment from 'moment';
 import JWT from 'jsonwebtoken';
@@ -19,8 +18,6 @@ import {
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
 } from './helpers';
-
-const ObjectId = mongoose.Types.ObjectId;
 
 /**
 * Function: "xmlOut";

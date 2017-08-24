@@ -183,19 +183,26 @@ new Promise((resolve) => {
   xml2js.parseString(data, (err, results) => {
     if (err) resolve({ error: err, data: results });
 
-    const { verified, trackingInfo } = extractTrackingData(results);
+    const { verified, trackingInfo, phase } = extractTrackingData(results);
     console.log('verified: ', verified);
     console.log('trackingInfo: ', trackingInfo);
+    console.log('phase: ', phase);
 
     if (!verified) {
       resolve({
         error: 'Could not parse tracking data.',
-        data: { trackingInfo },
+        data: {
+          phase,
+          trackingInfo,
+        },
       });
     } else {
       resolve({
         error: false,
-        data: { trackingInfo },
+        data: {
+          phase,
+          trackingInfo,
+        },
       });
     }
   });

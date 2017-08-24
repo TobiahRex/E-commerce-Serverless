@@ -23,7 +23,7 @@ const transactionSchema = new Schema({
   },
   shippingStatus: {
     type: String,
-    default: '',
+    default: 'Packaging',
   },
   comments: { type: String },
   termsAgreement: { type: Boolean },
