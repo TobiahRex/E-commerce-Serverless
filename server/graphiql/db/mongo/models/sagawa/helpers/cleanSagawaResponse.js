@@ -1,10 +1,5 @@
+/* eslint-disable no-console */
 import xml2js from 'xml2js';
-
-const parseStatus = (statusCode) => {
-  switch (statusCode) {
-
-  };
-}
 
 const extractPostalData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:getAddrResponse'][0]['ns:return'][0];
@@ -49,20 +44,36 @@ const extractUploadData = (jsonResponse) => {
 };
 
 const extractTrackingData = (jsonResponse) => {
+  const statusCodes = [];
+
   const trackingInfo = jsonResponse.TRACK.INFO.map((infoObj) => {
     const date = infoObj.LCLDATE[0];
-    const status = parseStatus(infoObj.STATUS[0]);
+    const status = infoObj.STATUS[0];
+    statusCodes.push(status);
+
     return ({
+      status,
       date: `${date.slice(0, 4)}/${date.slice(4, 6)}/${date.slice(6, 8)}`,
-      statusCode: infoObj.STATUS[0],
       activity: infoObj.DETAIL[0],
       location: infoObj.COUNTRY[0],
     });
   });
 
+  let phase = '';
+  if (!statusCodes.includes('LD')) {
+    if (!statusCodes.includes('TD')) {
+      phase = 'Packaging';
+    } else {
+      phase = 'Shipped';
+    }
+  } else {
+    phase = 'Delivered';
+  }
+
   if (!trackingInfo.length) {
     return ({
       verified: false,
+      phase,
       trackingInfo,
     });
   }
@@ -70,6 +81,7 @@ const extractTrackingData = (jsonResponse) => {
   return ({
     verified: true,
     trackingInfo,
+    phase,
   });
 };
 
@@ -165,21 +177,15 @@ new Promise((resolve, reject) => {
 });
 
 const handleTracking = response =>
-new Promise((resolve, reject) => {
+new Promise((resolve) => {
   const { data } = response;
-  let problem = '';
 
   xml2js.parseString(data, (err, results) => {
-    if (err) {
-      problem = `${err}.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
-      reject(problem);
-    }
+    if (err) resolve({ error: err, data: results });
 
     const { verified, trackingInfo } = extractTrackingData(results);
-    /*  eslint-disable no-console */
     console.log('verified: ', verified);
     console.log('trackingInfo: ', trackingInfo);
-    /*  eslint-enable no-console */
 
     if (!verified) {
       resolve({

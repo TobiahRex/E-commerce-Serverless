@@ -424,20 +424,6 @@ new Promise((resolve, reject) => {
 
       console.log('SUCCEEDED: Parse Sagawa response.');
 
-      const shippingStatus = data.trackingInfo.reduce((acc, next, i, array) => {
-        if (i === (array.length - 1)) {
-          acc = next.activity;
-          if (acc === 'ARRIVED AT DESTINATION') {
-            acc = {
-              phase: 'Delivered',
-              message: next.activity,
-            };
-          }
-          return acc;
-        }
-        return acc;
-      }, {});
-
       responseObj = {
         error: {
           hard: false,
@@ -445,10 +431,7 @@ new Promise((resolve, reject) => {
           message: '',
         },
         shipDate: sagawaDoc.shippingAddress.shipdate,
-        orderStatus: {
-          phase: 'in-transit',
-          message: shippingStatus,
-        },
+        phase: data.phase,
         trackingNumber: sagawaDoc.shippingAddress.referenceId,
         userName: `${userDoc.name.first} ${userDoc.name.last}`,
         orderId: transactionDoc._id,

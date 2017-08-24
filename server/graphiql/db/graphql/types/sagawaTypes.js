@@ -195,6 +195,10 @@ const queryTypes = {
         description: 'The total amount paid for the transaction.',
         type: StringType,
       },
+      phase: {
+        description: 'One of 3 Phases: "Packing", "Shipped", "Delivered".',
+        type: StringType,
+      },
       trackingInfo: new ListType(
         new ObjectType({
           name: 'An object containing 3 keys "Location", "Data", "Activity".',
