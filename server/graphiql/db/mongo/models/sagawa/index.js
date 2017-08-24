@@ -391,7 +391,27 @@ new Promise((resolve, reject) => {
       });
     }
 
-    return axios.post()
+    const trackingNumber = sagawaDoc.shippingAddress.referenceId;
+
+    return axios.get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
+  })
+  .then(({ status, data }) => {
+    if (status !== 200) {
+      console.log('FAILED: Request tracking info from Sagawa API: ', data);
+      return resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'The appears to be a network error from our shipping provider.  Please try your request again later.  Apologies for the inconvenience.',
+        },
+      });
+    }
+    return CleanSagawaResponse.trackingInfo(data);
+  })
+  .then(({ error, data }) => {
+    if (error) {
+      
+    }
   })
   .catch((error) => {
     console.log('FAILED: Fetch Sagawa Tracking information.', error);
