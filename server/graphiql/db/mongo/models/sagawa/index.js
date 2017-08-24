@@ -348,6 +348,8 @@ new Promise((resolve, reject) => {
 
   let sagawaDoc = {};
   let userDoc = {};
+  let transactionDoc = {};
+  let responseObj = {};
 
   bbPromise.fromCallback(cb => JWT.verify(token, cb))
   .then((payload) => {
@@ -378,7 +380,7 @@ new Promise((resolve, reject) => {
 
     userDoc = results[0]._doc;
     sagawaDoc = results[1]._doc;
-    const transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => sagawa === sagawaDoc._id)[0];
+    transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => sagawa === sagawaDoc._id)[0];
 
     if (!transactionDoc) {
       console.log('FAILED: Locate transaction document from User\'s transaction history.');
@@ -425,13 +427,37 @@ new Promise((resolve, reject) => {
 
     const shippingStatus = data.trackingInfo.reduce((acc, next, i, array) => {
       if (i === (array.length - 1)) {
-        acc = next.
+        acc = next.activity;
+        return acc;
       }
+      return acc;
     }, '');
 
-    Transaction.findByIdAndUpdate(transactionDoc._id, {
-      $set: { shippingStatus: data.trackingInfo[] }
-    })
+    responseObj = {
+      error: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
+      shipDate: sagawaDoc.shippingAddress.shipdate,
+      orderStatus: {
+        phase: 'in-transit',
+        message: shippingStatus,
+      },
+      trackingNumber: sagawaDoc.shippingAddress.referenceId,
+      userName: `${userDoc.name.first} ${userDoc.name.last}`,
+      orderId: transactionDoc._id,
+      totalPaid: '',
+      trackingInfo: [],
+    };
+
+    return Transaction.findByIdAndUpdate(transactionDoc._id, {
+      $set: { shippingStatus },
+    }, { new: true });
+  })
+  .then(() => {
+    console.log('SUCCEEDED: Updated Transaction Doc with latest data.');
+    resolve(responseObj);
   })
   .catch((error) => {
     console.log('FAILED: Fetch Sagawa Tracking information.', error);
