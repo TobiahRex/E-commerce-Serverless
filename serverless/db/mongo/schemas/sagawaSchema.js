@@ -18,7 +18,7 @@ const sagawaSchema = new Schema({
   },
   userId: { type: ObjectId, ref: 'User' },
   transactionId: { type: ObjectId, ref: 'Transaction' },
-  status: {
+  uploadStatus: {
     type: String,
     enum: ['pending', 'uploaded'],
     default: 'pending',

@@ -117,7 +117,6 @@ export const FetchSagawa = gql`
       }
       userId
       transactionId
-      status
       shippingAddress {
         referenceId
         shipdate

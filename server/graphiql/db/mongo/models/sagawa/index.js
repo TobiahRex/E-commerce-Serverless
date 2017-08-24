@@ -225,7 +225,7 @@ new Promise((resolve, reject) => {
     $set: {
       'shippingAddress.awbId': awbId,
       'shippingAddress.referenceId': referenceId,
-      status: 'uploaded',
+      uploadStatus: 'uploaded',
     },
   }, { new: true })
     .then((updatedDoc) => {
@@ -406,12 +406,23 @@ new Promise((resolve, reject) => {
         },
       });
     }
+    console.log('SUCCEEDED: Request tracking infor from Sagawa API.');
     return CleanSagawaResponse.trackingInfo(data);
   })
   .then(({ error, data }) => {
     if (error) {
-      
+      console.log('FAILED: Parse Sagawa API response.');
+      return resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'The tracking number used for your request has expired.  Please contact support if your purchase has not been delivered.',
+        },
+      });
     }
+
+    console.log('SUCCEEDED: Parse Sagawa response.');
+
   })
   .catch((error) => {
     console.log('FAILED: Fetch Sagawa Tracking information.', error);

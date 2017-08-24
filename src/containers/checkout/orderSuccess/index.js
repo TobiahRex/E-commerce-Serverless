@@ -57,7 +57,8 @@ class OrderSuccess extends React.Component {
       transactionInfo: {
         _id: transactionId,
         date,
-        comments,
+        shippingStatus,
+        // comments,
         // termsAgreement,
         // user,
         emailAddress,
@@ -90,7 +91,6 @@ class OrderSuccess extends React.Component {
           _id: sagawaId,
           // userId,
           // transactionId,
-          status,
           // uploadForm,
           shippingAddress: {
             referenceId,
@@ -125,7 +125,7 @@ class OrderSuccess extends React.Component {
 
           <OrderHeader
             date={date}
-            status={status}
+            status={shippingStatus}
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
@@ -237,6 +237,7 @@ OrderSuccess.propTypes = {
     emailAddress: string,
     invoiceEmailNoTracking: string,
     jpyFxRate: string,
+    shippingStatus: string,
     total: shape({
       subTotal: string,
       taxes: string,
@@ -268,7 +269,6 @@ OrderSuccess.propTypes = {
     _id: string,
     userId: string,
     transactionId: string,
-    status: string,
     uploadForm: string,
     shippingAddress: shape({
       referenceId: string,
