@@ -7,6 +7,7 @@ import sagawaSchema from '../../schemas/sagawaSchema';
 import db from '../../connection';
 import Transaction from '../transaction';
 import Email from '../email';
+import User from '../user';
 import {
   getSagawaKbn as GetSagawaKbn,
   cleanSagawaResponse as CleanSagawaResponse,
@@ -161,7 +162,7 @@ new Promise((resolve, reject) => {
 sagawaSchema.statics.uploadOrder = sagawaId =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
-  console.log('Sagawa ID: ', sagawaId);
+
   if (!sagawaId) {
     console.log('FAILED: Missing required arguments.');
     reject(new Error('FAILED: Missing required arguments.'));
@@ -304,7 +305,7 @@ new Promise((resolve, reject) => {
     const payload = {
       userId,
       sagawaId,
-      exp: moment().add(1, 'w').unix(),
+      exp: moment().add(10, 'd').unix(),
     };
     const {
       JWT_SECRET,
@@ -333,6 +334,61 @@ new Promise((resolve, reject) => {
   .catch((error) => {
     console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
     reject(new Error('FAILED: Upload order to Sagawa and Send Email.'));
+  });
+});
+
+sagawaSchema.statics.FetchTrackingInfo = token =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.fetchTrackingInfo\n');
+
+  if (!token) {
+    console.log('FAILED: Missing required arguments.');
+    return reject(new Error('FAILED: Missing required arguments.'));
+  }
+
+  let sagawaDoc = {};
+  let userDoc = {};
+
+  bbPromise.fromCallback(cb => JWT.verify(token, cb))
+  .then((payload) => {
+    console.log('SUCCEEDED: Extract payload from JWT token input.');
+    console.log('Payload: ', payload);
+
+    if (payload.exp < Number(String(Date.now()).slice(0,10))) {
+      console.log('FAILED: Token has expired.');
+      return reject({
+        error: {
+          hard: false,
+          soft: true,
+          message: 'This tracking link has expired.',
+        },
+      });
+    }
+
+    return Promise.all([
+      User
+      .findById(payload.userId)
+      .deepPopulate('shopping.transactions')
+      .exec(),
+      Sagawa.findById(payload.sagawaId),
+    ]);
+  })
+  .then((results) => {
+    console.log('SUCCEEDED: 1) Locate user by payload id: ', results[0]._doc, '2) Locate Sagawa document by payload id: ', results[1]._doc);
+
+    userDoc = results[0]._doc;
+    sagawaDoc = results[1]._doc;
+    const authenticReq = userDoc.shopping.transactions.reduce((acc, next) => {
+      if (next.sagawa === sagawaDoc._id) {
+        acc = true;
+        return acc;
+      }
+      return acc;
+    }, false);
+  })
+  .catch((error) => {
+    console.log('FAILED: Fetch Sagawa Tracking information.', error);
+    reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
   });
 });
 
