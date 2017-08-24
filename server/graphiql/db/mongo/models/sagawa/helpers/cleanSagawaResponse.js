@@ -21,8 +21,33 @@ const extractPostalData = (jsonResponse) => {
   });
 };
 
-const extractTrackingData = (jsonResponse) => {
+const extractUploadData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:uploadDataResponse'][0]['ns:return'][0];
+
+  const awbId = response.split('|')[5].replace(/(A)+/g, '');
+  const referenceId = response.split('|')[1];
+
+  if (!awbId.length || !referenceId.length) {
+    return ({
+      verified: false,
+      awbId,
+      referenceId,
+    });
+  }
+
+  return ({
+    verified: true,
+    awbId,
+    referenceId,
+  });
+};
+
+const extractTrackingData = (jsonResponse) => {
+  const responseArray = jsonResponse.TRACK.INFO.map((infoObj) => ({
+    date: infoObj.LCLDATE[0],
+    activity: infoObj.DETAIL[0],
+    location: infoObj.COUNTRY[0],
+  }));
 
   const awbId = response.split('|')[5].replace(/(A)+/g, '');
   const referenceId = response.split('|')[1];
@@ -113,6 +138,37 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
+    const { verified, awbId, referenceId } = extractUploadData(results);
+    /*  eslint-disable no-console */
+    console.log('verified: ', verified);
+    console.log('awbId: ', awbId);
+    console.log('referenceId: ', referenceId);
+    /*  eslint-enable no-console */
+
+    if (!verified) {
+      reject('Unable to upload order to retrieve Tracking & Reference number from Sagawa API.');
+    }
+
+    resolve({
+      data: {
+        awbId,
+        referenceId,
+      },
+    });
+  });
+});
+
+const handleTracking = response =>
+new Promise((resolve, reject) => {
+  const { data } = response;
+  let problem = '';
+
+  xml2js.parseString(data, (err, results) => {
+    if (err) {
+      problem = `${err}.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+      reject(problem);
+    }
+
     const { verified, awbId, referenceId } = extractTrackingData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
@@ -136,4 +192,5 @@ new Promise((resolve, reject) => {
 export default {
   handlePostal,
   handleUpload,
+  handleTracking,
 };

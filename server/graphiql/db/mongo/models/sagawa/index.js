@@ -396,9 +396,9 @@ new Promise((resolve, reject) => {
 
       return axios.get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
     })
-    .then(({ status, data }) => {
-      if (status !== 200) {
-        console.log('FAILED: Request tracking info from Sagawa API: ', data);
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('FAILED: Request tracking info from Sagawa API: ', response.data);
         return resolve({
           error: {
             hard: true,
@@ -408,7 +408,7 @@ new Promise((resolve, reject) => {
         });
       }
       console.log('SUCCEEDED: Request tracking infor from Sagawa API.');
-      return CleanSagawaResponse.trackingInfo(data);
+      return CleanSagawaResponse.handleTracking(response);
     })
     .then(({ error, data }) => {
       if (error) {
