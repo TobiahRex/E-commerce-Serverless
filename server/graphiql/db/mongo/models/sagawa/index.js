@@ -412,7 +412,7 @@ new Promise((resolve, reject) => {
     })
     .then(({ error, data }) => {
       if (error) {
-        console.log('FAILED: Parse Sagawa API response.');
+        console.log('FAILED: Parse Sagawa API response.', error, '\n', data);
         return resolve({
           error: {
             hard: true,
@@ -427,10 +427,16 @@ new Promise((resolve, reject) => {
       const shippingStatus = data.trackingInfo.reduce((acc, next, i, array) => {
         if (i === (array.length - 1)) {
           acc = next.activity;
+          if (acc === 'ARRIVED AT DESTINATION') {
+            acc = {
+              phase: 'Delivered',
+              message: next.activity,
+            };
+          }
           return acc;
         }
         return acc;
-      }, '');
+      }, {});
 
       responseObj = {
         error: {

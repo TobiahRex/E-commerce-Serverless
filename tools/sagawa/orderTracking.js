@@ -35,10 +35,11 @@ sagawaTrackingAPI.getStatus('NJ2017082389')
     xml2js.parseString(data, (err, results) => {
       if (err) console.log('PARSE ERROR: \n', err);
       // console.log('PARSE OK: \n', JSON.stringify(results, null, 2));
-      const responseArray = results.TRACK.INFO.map(infoObj => {
+      const responseArray = results.TRACK.INFO.map((infoObj) => {
         const date = infoObj.LCLDATE[0];
         return ({
           date: `${date.slice(0, 4)}/${date.slice(4, 6)}/${date.slice(6, 8)}`,
+          statusCode: infoObj.STATUS[0],
           activity: infoObj.DETAIL[0],
           location: infoObj.COUNTRY[0],
         });

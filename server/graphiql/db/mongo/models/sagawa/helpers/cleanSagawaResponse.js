@@ -1,5 +1,11 @@
 import xml2js from 'xml2js';
 
+const parseStatus = (statusCode) => {
+  switch (statusCode) {
+
+  };
+}
+
 const extractPostalData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:getAddrResponse'][0]['ns:return'][0];
 
@@ -45,8 +51,10 @@ const extractUploadData = (jsonResponse) => {
 const extractTrackingData = (jsonResponse) => {
   const trackingInfo = jsonResponse.TRACK.INFO.map((infoObj) => {
     const date = infoObj.LCLDATE[0];
+    const status = parseStatus(infoObj.STATUS[0]);
     return ({
       date: `${date.slice(0, 4)}/${date.slice(4, 6)}/${date.slice(6, 8)}`,
+      statusCode: infoObj.STATUS[0],
       activity: infoObj.DETAIL[0],
       location: infoObj.COUNTRY[0],
     });
@@ -174,13 +182,16 @@ new Promise((resolve, reject) => {
     /*  eslint-enable no-console */
 
     if (!verified) {
-      reject('Unable to aquire Tracking Details.');
+      resolve({
+        error: 'Could not parse tracking data.',
+        data: { trackingInfo },
+      });
+    } else {
+      resolve({
+        error: false,
+        data: { trackingInfo },
+      });
     }
-
-    resolve({
-      error: false,
-      data: { trackingInfo },
-    });
   });
 });
 
