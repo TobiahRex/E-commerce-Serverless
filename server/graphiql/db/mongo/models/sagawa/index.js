@@ -441,7 +441,7 @@ new Promise((resolve, reject) => {
           message: '',
         },
         shipDate: sagawaDoc.shippingAddress.shipdate,
-        phase: data.phase,
+        orderStatus: data.phase,
         trackingNumber: sagawaDoc.shippingAddress.referenceId,
         userName: `${userDoc.name.first} ${userDoc.name.last}`,
         orderId: transactionDoc._id,

@@ -131,31 +131,30 @@ export const FetchSagawa = gql`
 `;
 
 export const FetchTrackingInfo = gql`
-query FetchTrackingInfo($token: String!) {
-  FetchTrackingInfo(token: $token) {
-    error {
-      hard
-      soft
-      message
-    }
-    shipDate
-    orderId
-    orderStatus
-    trackingInfo {
-      location
-      date
-      activity
-    }
-    trackingNumber
-    userName
-    orderId
-    totalPaid
-    phase
-    trackingInfo {
-      location
-      date
-      activity
+  query FetchTrackingInfo($token: String!) {
+    FetchTrackingInfo(token: $token) {
+      error {
+        hard
+        soft
+        message
+      }
+      shipDate
+      orderId
+      trackingInfo {
+        location
+        date
+        activity
+      }
+      trackingNumber
+      userName
+      orderId
+      totalPaid
+      orderStatus
+      trackingInfo {
+        location
+        date
+        activity
+      }
     }
   }
-}
 `;
