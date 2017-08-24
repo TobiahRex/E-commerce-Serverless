@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import FontAwesome from 'react-fontawesome';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 
@@ -43,19 +44,13 @@ class OrderTracking extends React.Component {
 
     return false;
   }
-  render() {
-    console.log('%cthis.props', 'background:red;', this.props);
+
+  renderHelper = trackingInfo => {
+    const {
+
+    } = trackingInfo;
     return (
-      <div className="order-tracking">
-        <BreadCrumb
-          paths={['Home']}
-          classes={['home']}
-          destination={['']}
-          lastCrumb="Express Checkout"
-        />
-        <div className="tracking__title">
-          <h1>Order Tracking</h1>
-        </div>
+      <div>
         <div className="order-tracking__header">
           <h4>Shipped Date: {Date.now()}</h4>
           <h4>Tracking #: 123123123123</h4>
@@ -139,6 +134,37 @@ class OrderTracking extends React.Component {
       </div>
     );
   }
+  render() {
+    const {
+      TrackingInfo,
+    } = this.props;
+
+    return (
+      <div className="order-tracking">
+        <BreadCrumb
+          paths={['Home']}
+          classes={['home']}
+          destination={['']}
+          lastCrumb="Express Checkout"
+        />
+        <div className="tracking__title">
+          <h1>Order Tracking</h1>
+        </div>
+        {
+          TrackingInfo.loading ?
+          (
+            <h1 className="main__loading">
+              <FontAwesome name="spinner" pulse size="3x" />
+              <br />
+              Loading...
+            </h1>
+          )
+          :
+          this.renderHelper(TrackingInfo)
+        }
+      </div>
+    );
+  }
 }
 
 const OrderTrackingWithData = graphql(
@@ -157,9 +183,9 @@ const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
 }))(OrderTrackingWithData);
 
-
+const { objectOf, any } = PropTypes;
 OrderTracking.propTypes = {
-  TrackingInfo: PropTypes.objectOf(any),
-}
+  TrackingInfo: objectOf(any).isRequired,
+};
 
 export default OrderTrackingWithStateAndData;
