@@ -147,7 +147,52 @@ const mutationTypes = {
 
 const queryTypes = {
   FetchTrackingInfo: new ObjectType({
-    
+    name: 'SagawaFetchTrackingInfo',
+    fields: () => ({
+      shipDate: {
+        description: 'The day the order was first shipped.',
+        type: new NonNull(StringType),
+      },
+      orderStatus: {
+        description: 'The current status of the order.',
+        type: new NonNull(StringType),
+      },
+      trackingNumber: {
+        description: 'The tracking number.',
+        type: new NonNull(StringType),
+      },
+      userName: {
+        description: 'The name of the user who purchased the goods.',
+        type: new NonNull(StringType),
+      },
+      orderId: {
+        description: 'The Mongo ID of the transaction.',
+        type: new NonNull(StringType),
+      },
+      totalPaid: {
+        description: 'The total amount paid for the transaction.',
+        type: new NonNull(StringType),
+      },
+      trackingInfo: new ListType(
+        new ObjectType({
+          name: 'An object containing 3 keys "Location", "Data", "Activity".',
+          fields: () => ({
+            location: {
+              description: 'The location of the currenty activity.',
+              type: StringType,
+            },
+            date: {
+              description: 'The date of the activity.',
+              type: StringType,
+            },
+            activity: {
+              description: 'The description of the activity.',
+              type: StringType,
+            },
+          }),
+        }),
+      ),
+    }),
   }),
 };
 
