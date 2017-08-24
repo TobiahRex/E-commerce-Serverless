@@ -341,128 +341,128 @@ sagawaSchema.statics.FetchTrackingInfo = token =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.fetchTrackingInfo\n');
 
-  if (!token) {
-    console.log('FAILED: Missing required arguments.');
-    return reject(new Error('FAILED: Missing required arguments.'));
-  }
-
   let sagawaDoc = {};
   let userDoc = {};
   let transactionDoc = {};
   let responseObj = {};
 
-  bbPromise.fromCallback(cb => JWT.verify(token, cb))
-  .then((payload) => {
-    console.log('SUCCEEDED: Extract payload from JWT token input.');
-    console.log('Payload: ', payload);
+  if (!token) {
+    console.log('FAILED: Missing required arguments.');
+    reject(new Error('FAILED: Missing required arguments.'));
+  } else {
+    bbPromise.fromCallback(cb => JWT.verify(token, cb))
+    .then((payload) => {
+      console.log('SUCCEEDED: Extract payload from JWT token input.');
+      console.log('Payload: ', payload);
 
-    if (payload.exp < Number(String(Date.now()).slice(0, 10))) {
-      console.log('FAILED: Token has expired.');
-      return resolve({
+      if (payload.exp < Number(String(Date.now()).slice(0, 10))) {
+        console.log('FAILED: Token has expired.');
+        return resolve({
+          error: {
+            hard: false,
+            soft: true,
+            message: 'This tracking link has expired.',
+          },
+        });
+      }
+
+      return Promise.all([
+        User
+        .findById(payload.userId)
+        .deepPopulate('shopping.transactions')
+        .exec(),
+        Sagawa.findById(payload.sagawaId),
+      ]);
+    })
+    .then((results) => {
+      console.log('SUCCEEDED: 1) Locate user by payload id: ', results[0]._doc, '2) Locate Sagawa document by payload id: ', results[1]._doc);
+
+      userDoc = results[0]._doc;
+      sagawaDoc = results[1]._doc;
+      transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => sagawa === sagawaDoc._id)[0];
+
+      if (!transactionDoc) {
+        console.log('FAILED: Locate transaction document from User\'s transaction history.');
+        return resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'This is an unauthorized request.  Contact support if you feel you\'ve received this message in error.',
+          },
+        });
+      }
+
+      const trackingNumber = sagawaDoc.shippingAddress.referenceId;
+
+      return axios.get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
+    })
+    .then(({ status, data }) => {
+      if (status !== 200) {
+        console.log('FAILED: Request tracking info from Sagawa API: ', data);
+        return resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'The appears to be a network error from our shipping provider.  Please try your request again later.  Apologies for the inconvenience.',
+          },
+        });
+      }
+      console.log('SUCCEEDED: Request tracking infor from Sagawa API.');
+      return CleanSagawaResponse.trackingInfo(data);
+    })
+    .then(({ error, data }) => {
+      if (error) {
+        console.log('FAILED: Parse Sagawa API response.');
+        return resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'The tracking number used for your request has expired.  Please contact support if your purchase has not been delivered.',
+          },
+        });
+      }
+
+      console.log('SUCCEEDED: Parse Sagawa response.');
+
+      const shippingStatus = data.trackingInfo.reduce((acc, next, i, array) => {
+        if (i === (array.length - 1)) {
+          acc = next.activity;
+          return acc;
+        }
+        return acc;
+      }, '');
+
+      responseObj = {
         error: {
           hard: false,
-          soft: true,
-          message: 'This tracking link has expired.',
-        },
-      });
-    }
-
-    return Promise.all([
-      User
-      .findById(payload.userId)
-      .deepPopulate('shopping.transactions')
-      .exec(),
-      Sagawa.findById(payload.sagawaId),
-    ]);
-  })
-  .then((results) => {
-    console.log('SUCCEEDED: 1) Locate user by payload id: ', results[0]._doc, '2) Locate Sagawa document by payload id: ', results[1]._doc);
-
-    userDoc = results[0]._doc;
-    sagawaDoc = results[1]._doc;
-    transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => sagawa === sagawaDoc._id)[0];
-
-    if (!transactionDoc) {
-      console.log('FAILED: Locate transaction document from User\'s transaction history.');
-      return resolve({
-        error: {
-          hard: true,
           soft: false,
-          message: 'This is an unauthorized request.  Contact support if you feel you\'ve received this message in error.',
+          message: '',
         },
-      });
-    }
-
-    const trackingNumber = sagawaDoc.shippingAddress.referenceId;
-
-    return axios.get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
-  })
-  .then(({ status, data }) => {
-    if (status !== 200) {
-      console.log('FAILED: Request tracking info from Sagawa API: ', data);
-      return resolve({
-        error: {
-          hard: true,
-          soft: false,
-          message: 'The appears to be a network error from our shipping provider.  Please try your request again later.  Apologies for the inconvenience.',
+        shipDate: sagawaDoc.shippingAddress.shipdate,
+        orderStatus: {
+          phase: 'in-transit',
+          message: shippingStatus,
         },
-      });
-    }
-    console.log('SUCCEEDED: Request tracking infor from Sagawa API.');
-    return CleanSagawaResponse.trackingInfo(data);
-  })
-  .then(({ error, data }) => {
-    if (error) {
-      console.log('FAILED: Parse Sagawa API response.');
-      return resolve({
-        error: {
-          hard: true,
-          soft: false,
-          message: 'The tracking number used for your request has expired.  Please contact support if your purchase has not been delivered.',
-        },
-      });
-    }
+        trackingNumber: sagawaDoc.shippingAddress.referenceId,
+        userName: `${userDoc.name.first} ${userDoc.name.last}`,
+        orderId: transactionDoc._id,
+        totalPaid: transactionDoc.square.charge.amount,
+        trackingInfo: data.trackingInfo,
+      };
 
-    console.log('SUCCEEDED: Parse Sagawa response.');
-
-    const shippingStatus = data.trackingInfo.reduce((acc, next, i, array) => {
-      if (i === (array.length - 1)) {
-        acc = next.activity;
-        return acc;
-      }
-      return acc;
-    }, '');
-
-    responseObj = {
-      error: {
-        hard: false,
-        soft: false,
-        message: '',
-      },
-      shipDate: sagawaDoc.shippingAddress.shipdate,
-      orderStatus: {
-        phase: 'in-transit',
-        message: shippingStatus,
-      },
-      trackingNumber: sagawaDoc.shippingAddress.referenceId,
-      userName: `${userDoc.name.first} ${userDoc.name.last}`,
-      orderId: transactionDoc._id,
-      totalPaid: '',
-      trackingInfo: [],
-    };
-
-    return Transaction.findByIdAndUpdate(transactionDoc._id, {
-      $set: { shippingStatus },
-    }, { new: true });
-  })
-  .then(() => {
-    console.log('SUCCEEDED: Updated Transaction Doc with latest data.');
-    resolve(responseObj);
-  })
-  .catch((error) => {
-    console.log('FAILED: Fetch Sagawa Tracking information.', error);
-    reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
-  });
+      return Transaction.findByIdAndUpdate(transactionDoc._id, {
+        $set: { shippingStatus },
+      }, { new: true });
+    })
+    .then(() => {
+      console.log('SUCCEEDED: 1) Updated Transaction Doc with latest data. 2) Fetch Sagawa Tracking Info.');
+      resolve(responseObj);
+    })
+    .catch((error) => {
+      console.log('FAILED: Fetch Sagawa Tracking information.', error);
+      reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
+    });
+  }
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
