@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
+import mongoose from 'mongoose';
 import axios from 'axios';
 import moment from 'moment';
 import JWT from 'jsonwebtoken';
@@ -18,6 +19,8 @@ import {
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
 } from './helpers';
+
+const ObjectId = mongoose.Types.ObjectId;
 
 /**
 * Function: "xmlOut";
@@ -389,11 +392,12 @@ new Promise((resolve, reject) => {
 
       userDoc = results[0]._doc;
       sagawaDoc = results[1]._doc;
-      transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => sagawa === sagawaDoc._id)[0];
+      console.log('sagwaDoc: ', sagawaDoc);
+      transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => (String(sagawa) === String(sagawaDoc._id)))[0]._doc;
 
       if (!transactionDoc) {
         console.log('FAILED: Locate transaction document from User\'s transaction history.');
-        resolve({
+        return resolve({
           error: {
             hard: true,
             soft: false,
@@ -433,7 +437,6 @@ new Promise((resolve, reject) => {
       }
 
       console.log('SUCCEEDED: Parse Sagawa response.');
-
       responseObj = {
         error: {
           hard: false,
