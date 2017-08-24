@@ -10,15 +10,15 @@ function OrderTracking() {
     <div className="order-tracking">
       <BreadCrumb
         paths={['Home']}
-        classes={'home'}
+        classes={['home']}
         destination={['']}
-        lastCrumb="Order Tracking"
+        lastCrumb="Express Checkout"
       />
-      <div className="header-title">
-        <h2>Track Your Order</h2>
+      <div className="tracking__title">
+        <h1>Order Tracking</h1>
       </div>
       <div className="order-tracking__header">
-        <h4>Shipped #: {Date.now()}</h4>
+        <h4>Shipped Date: {Date.now()}</h4>
         <h4>Tracking #: 123123123123</h4>
       </div>
 

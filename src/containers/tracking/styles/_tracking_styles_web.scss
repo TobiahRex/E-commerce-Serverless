@@ -3,16 +3,16 @@
     max-width: 1086px;
     width: 100%;
     padding: 0 2em 4em 2em;
-    & .header-title {
+    & .tracking__title {
       @include prefixflex();
-      justify-content: flex-start;
-      align-items: center;
-      height: 5em;
-      border-bottom: 1px solid rgba(0,0,0,.25);
-      & h2 {
+      align-items: flex-start;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
         color: $p-blue;
-        font-weight: 400;
-        margin-left: 1em;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
     & .order-tracking__header {
