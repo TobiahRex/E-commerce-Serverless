@@ -45,6 +45,44 @@ class OrderTracking extends React.Component {
     return false;
   }
 
+  renderStatus = (orderStatus) => {
+    const states = ['Packaging', 'Shipped', 'Delivered'];
+    return states.map((state) => {
+      let className = '';
+      /*  eslint-disable no-lone-blocks */
+      switch (state) {
+        case 'Packaging': {
+          className = orderStatus === 'Packaging' ? 'active' : 'past';
+        } break;
+        case 'Shipped': {
+          if (state === orderStatus) {
+            className = 'active';
+          } else if (orderStatus === 'Packaging') {
+            className = 'future';
+          } else {
+            className = 'past';
+          }
+        } break;
+        case 'Delivered': {
+          className = orderStatus === 'Delivered' ? 'active' : 'future';
+        } break;
+        default: break;
+      }
+      /*  eslint-enable no-lone-blocks */
+
+      return (
+        <li
+          key={new Buffer(status, 'utf8').toString('base64')}
+          className={`list--option option-${className}`}
+        >
+          <div>
+            <p>{status}</p>
+          </div>
+        </li>
+      );
+    });
+  }
+
   renderActivities = trackingInfo =>
     trackingInfo.map(({ date, activity, location }) => (
       <tr className="body--row" key={new Buffer(`${location}${date}${activity}`, 'utf8').toString('base64')}>
@@ -81,25 +119,18 @@ class OrderTracking extends React.Component {
           <h4>Shipped Date: {shipDate}</h4>
           <h4>Tracking #: {trackingNumber}</h4>
         </div>
+        <div className="order-tracking__header">
+          <h4>User: {userName}</h4>
+          <h4>Order Id#: {orderId}</h4>
+        </div>
+        <div className="order-tracking__header">
+          <h4>Total Paid: ${totalPaid}</h4>
+        </div>
 
         {/* NOTE: The background-colors for borders need to be dynamically created. */}
         <div className="order-tracking__status-bar">
           <ul className="status-bar--list">
-            <li className="list--option">
-              <div>
-                <p>Packaging</p>
-              </div>
-            </li>
-            <li className="list--option">
-              <div>
-                <p>Shipped</p>
-              </div>
-            </li>
-            <li className="list--option">
-              <div>
-                <p>Delivered</p>
-              </div>
-            </li>
+            {this.renderStatus(orderStatus)}
           </ul>
         </div>
 
