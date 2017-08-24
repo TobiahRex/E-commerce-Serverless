@@ -43,27 +43,25 @@ const extractUploadData = (jsonResponse) => {
 };
 
 const extractTrackingData = (jsonResponse) => {
-  const responseArray = jsonResponse.TRACK.INFO.map((infoObj) => ({
-    date: infoObj.LCLDATE[0],
-    activity: infoObj.DETAIL[0],
-    location: infoObj.COUNTRY[0],
-  }));
+  const trackingInfo = jsonResponse.TRACK.INFO.map((infoObj) => {
+    const date = infoObj.LCLDATE[0];
+    return ({
+      date: `${date.slice(0, 4)}/${date.slice(4, 6)}/${date.slice(6, 8)}`,
+      activity: infoObj.DETAIL[0],
+      location: infoObj.COUNTRY[0],
+    });
+  });
 
-  const awbId = response.split('|')[5].replace(/(A)+/g, '');
-  const referenceId = response.split('|')[1];
-
-  if (!awbId.length || !referenceId.length) {
+  if (!trackingInfo.length) {
     return ({
       verified: false,
-      awbId,
-      referenceId,
+      trackingInfo,
     });
   }
 
   return ({
     verified: true,
-    awbId,
-    referenceId,
+    trackingInfo,
   });
 };
 
@@ -169,22 +167,19 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, awbId, referenceId } = extractTrackingData(results);
+    const { verified, trackingInfo } = extractTrackingData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
-    console.log('awbId: ', awbId);
-    console.log('referenceId: ', referenceId);
+    console.log('trackingInfo: ', trackingInfo);
     /*  eslint-enable no-console */
 
     if (!verified) {
-      reject('Unable to upload order to retrieve Tracking & Reference number from Sagawa API.');
+      reject('Unable to aquire Tracking Details.');
     }
 
     resolve({
-      data: {
-        awbId,
-        referenceId,
-      },
+      error: false,
+      data: { trackingInfo },
     });
   });
 });
