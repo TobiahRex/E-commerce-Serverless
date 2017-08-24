@@ -24,7 +24,6 @@ import {
 } from '../utilities.imports';
 
 class OrderSuccess extends React.Component {
-
   shouldComponentUpdate(nextProps) {
     /**
     * Function: "isArrayEqual"
@@ -38,8 +37,7 @@ class OrderSuccess extends React.Component {
 
     if (
       !_.isEqual(nextProps, this.props) ||
-      !ArrayDeepEquality(nextProps.userCart, this.props.products) ||
-      !_.isEqual(nextProps, this.props)
+      !ArrayDeepEquality(nextProps.userCart, this.props.products)
     ) return true;
 
     // if (!_.isEqual(nextState, this.state)) return true;

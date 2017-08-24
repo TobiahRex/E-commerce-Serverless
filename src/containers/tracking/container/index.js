@@ -1,16 +1,35 @@
 import React from 'react';
+import _ from 'lodash';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 
 import {
   FetchTrackingInfo,
 } from '../../../graphql/queries';
-
 import {
   BreadCrumb,
 } from './component.imports';
 
 class OrderTracking extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
+
+    if (
+      !_.isEqual(nextProps, this.props) ||
+    ) return true;
+
+    // if (!_.isEqual(nextState, this.state)) return true;
+
+    return false;
+  }
   render() {
     console.log('this.props: ', this.props);
     return (
