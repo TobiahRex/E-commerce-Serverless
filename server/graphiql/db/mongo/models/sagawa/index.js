@@ -423,6 +423,15 @@ new Promise((resolve, reject) => {
 
     console.log('SUCCEEDED: Parse Sagawa response.');
 
+    const shippingStatus = data.trackingInfo.reduce((acc, next, i, array) => {
+      if (i === (array.length - 1)) {
+        acc = next.
+      }
+    }, '');
+
+    Transaction.findByIdAndUpdate(transactionDoc._id, {
+      $set: { shippingStatus: data.trackingInfo[] }
+    })
   })
   .catch((error) => {
     console.log('FAILED: Fetch Sagawa Tracking information.', error);
