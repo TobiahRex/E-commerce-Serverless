@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
@@ -11,6 +12,20 @@ import {
 } from './component.imports';
 
 class OrderTracking extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: null,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) {
+      this.setState({ loading: nextProps.TrackingInfo.loading });
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
     /**
     * Function: "isArrayEqual"
@@ -22,16 +37,14 @@ class OrderTracking extends React.Component {
     * @return {boolean} true/false.
     */
 
-    if (
-      !_.isEqual(nextProps, this.props) ||
-    ) return true;
+    if (!_.isEqual(nextProps, this.props)) return true;
 
     // if (!_.isEqual(nextState, this.state)) return true;
 
     return false;
   }
   render() {
-    console.log('this.props: ', this.props);
+    console.log('%cthis.props', 'background:red;', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
@@ -144,5 +157,9 @@ const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
 }))(OrderTrackingWithData);
 
+
+OrderTracking.propTypes = {
+  TrackingInfo: PropTypes.objectOf(any),
+}
 
 export default OrderTrackingWithStateAndData;
