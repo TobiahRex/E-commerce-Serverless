@@ -10,9 +10,9 @@ import {
   BreadCrumb,
 } from './component.imports';
 
-
 class OrderTracking extends React.Component {
   render() {
+    console.log('this.props: ', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
@@ -123,7 +123,7 @@ const OrderTrackingWithData = graphql(
 
 const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
-}))(OrderTracking);
+}))(OrderTrackingWithData);
 
 
 export default OrderTrackingWithStateAndData;

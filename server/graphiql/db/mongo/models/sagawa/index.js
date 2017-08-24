@@ -350,7 +350,7 @@ new Promise((resolve, reject) => {
     console.log('FAILED: Missing required arguments.');
     reject(new Error('FAILED: Missing required arguments.'));
   } else {
-    bbPromise.fromCallback(cb => JWT.verify(token, cb))
+    bbPromise.fromCallback(cb => JWT.verify(token, process.env.JWT_SECRET, cb))
     .then((payload) => {
       console.log('SUCCEEDED: Extract payload from JWT token input.');
       console.log('\nPayload: ', payload);
@@ -366,12 +366,10 @@ new Promise((resolve, reject) => {
           },
         });
       }
-
       return Promise.all([
         User
         .findById(payload.userId)
-        .deepPopulate('shopping.transactions')
-        .exec(),
+        .deepPopulate('shopping.transactions'),
         Sagawa
         .findById(payload.sagawaId)
         .exec(),

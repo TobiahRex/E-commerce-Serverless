@@ -196,28 +196,31 @@ const queryTypes = {
         type: StringType,
       },
       phase: {
-        description: 'One of 3 Phases: "Packing", "Shipped", "Delivered".',
+        description: 'One of three phases: Packing, Shipped, Delivered.',
         type: StringType,
       },
-      trackingInfo: new ListType(
-        new ObjectType({
-          name: 'An object containing 3 keys "Location", "Data", "Activity".',
-          fields: () => ({
-            location: {
-              description: 'The location of the currenty activity.',
-              type: StringType,
-            },
-            date: {
-              description: 'The date of the activity.',
-              type: StringType,
-            },
-            activity: {
-              description: 'The description of the activity.',
-              type: StringType,
-            },
+      trackingInfo: {
+        description: 'An object of tracking information.',
+        type: new ListType(
+          new ObjectType({
+            name: 'FetchTrackingInfoEnum',
+            fields: () => ({
+              location: {
+                description: 'The location of the currenty activity.',
+                type: StringType,
+              },
+              date: {
+                description: 'The date of the activity.',
+                type: StringType,
+              },
+              activity: {
+                description: 'The description of the activity.',
+                type: StringType,
+              },
+            }),
           }),
-        }),
-      ),
+        ),
+      },
     }),
   }),
 };

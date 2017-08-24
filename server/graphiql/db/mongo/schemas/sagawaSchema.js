@@ -1,5 +1,6 @@
-import mongoose from 'mongoose'
-import deepPopulate from 'mongoose-deep-populate';
+import mongoose from 'mongoose';
+
+const deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 export const ObjectId = mongoose.Schema.Types.ObjectId;
 const sagawaSchema = new mongoose.Schema({
@@ -56,5 +57,5 @@ const sagawaSchema = new mongoose.Schema({
 }, {
   bufferCommands: true,
 });
-sagawaSchema.plugins(deepPopulate(mongoose));
+sagawaSchema.plugin(deepPopulate);
 export default sagawaSchema;
