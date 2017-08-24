@@ -149,29 +149,51 @@ const queryTypes = {
   FetchTrackingInfo: new ObjectType({
     name: 'SagawaFetchTrackingInfo',
     fields: () => ({
+      error: {
+        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+        type: new NonNull(
+          new ObjectType({
+            name: 'SagawaFetchTrackingInfoError',
+            fields: () => ({
+              hard: {
+                description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+                type: BoolType,
+              },
+              soft: {
+                description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+                type: BoolType,
+              },
+              message: {
+                description: 'Amplifying information about error.  Should be written for user readibility.',
+                type: StringType,
+              },
+            }),
+          }),
+        ),
+      },
       shipDate: {
         description: 'The day the order was first shipped.',
-        type: new NonNull(StringType),
+        type: StringType,
       },
       orderStatus: {
         description: 'The current status of the order.',
-        type: new NonNull(StringType),
+        type: StringType,
       },
       trackingNumber: {
         description: 'The tracking number.',
-        type: new NonNull(StringType),
+        type: StringType,
       },
       userName: {
         description: 'The name of the user who purchased the goods.',
-        type: new NonNull(StringType),
+        type: StringType,
       },
       orderId: {
         description: 'The Mongo ID of the transaction.',
-        type: new NonNull(StringType),
+        type: StringType,
       },
       totalPaid: {
         description: 'The total amount paid for the transaction.',
-        type: new NonNull(StringType),
+        type: StringType,
       },
       trackingInfo: new ListType(
         new ObjectType({

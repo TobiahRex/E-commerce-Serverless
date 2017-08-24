@@ -354,9 +354,9 @@ new Promise((resolve, reject) => {
     console.log('SUCCEEDED: Extract payload from JWT token input.');
     console.log('Payload: ', payload);
 
-    if (payload.exp < Number(String(Date.now()).slice(0,10))) {
+    if (payload.exp < Number(String(Date.now()).slice(0, 10))) {
       console.log('FAILED: Token has expired.');
-      return reject({
+      return resolve({
         error: {
           hard: false,
           soft: true,
@@ -378,13 +378,20 @@ new Promise((resolve, reject) => {
 
     userDoc = results[0]._doc;
     sagawaDoc = results[1]._doc;
-    const authenticReq = userDoc.shopping.transactions.reduce((acc, next) => {
-      if (next.sagawa === sagawaDoc._id) {
-        acc = true;
-        return acc;
-      }
-      return acc;
-    }, false);
+    const transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => sagawa === sagawaDoc._id)[0];
+
+    if (!transactionDoc) {
+      console.log('FAILED: Locate transaction document from User\'s transaction history.');
+      return resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'This is an unauthorized request.  Contact support if you feel you\'ve received this message in error.',
+        },
+      });
+    }
+
+    return axios.post()
   })
   .catch((error) => {
     console.log('FAILED: Fetch Sagawa Tracking information.', error);
