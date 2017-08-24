@@ -45,15 +45,41 @@ class OrderTracking extends React.Component {
     return false;
   }
 
-  renderHelper = trackingInfo => {
-    const {
+  renderActivities = trackingInfo =>
+    trackingInfo.map(({ date, activity, location }) => (
+      <tr className="body--row" key={new Buffer(`${location}${date}${activity}`, 'utf8').toString('base64')}>
 
+        <td className="body--location">
+          <p>{location}</p>
+        </td>
+
+        <td className="body--date">
+          <p>{date}</p>
+        </td>
+
+        <td className="body--activity">
+          <p>{activity}</p>
+        </td>
+      </tr>
+    ));
+
+  renderHelper = (trackingInfo) => {
+    const {
+      FetchTrackingInfo: {
+        shipDate,
+        orderStatus,
+        trackingNumber,
+        userName,
+        orderId,
+        totalPaid,
+        trackingInfo,
+      },
     } = trackingInfo;
     return (
       <div>
         <div className="order-tracking__header">
-          <h4>Shipped Date: {Date.now()}</h4>
-          <h4>Tracking #: 123123123123</h4>
+          <h4>Shipped Date: {shipDate}</h4>
+          <h4>Tracking #: {trackingNumber}</h4>
         </div>
 
         {/* NOTE: The background-colors for borders need to be dynamically created. */}
@@ -86,7 +112,7 @@ class OrderTracking extends React.Component {
                 </td>
                 <td className="header--date">
                   <h3>Date</h3>
-                  <p>(YYYYMMDD)</p>
+                  <p style={{ fontSize: '12px' }}>(YYYYMMDD)</p>
                 </td>
                 <td className="header--activity">
                   <h3>Activity</h3>
@@ -95,39 +121,8 @@ class OrderTracking extends React.Component {
             </thead>
             <tbody className="table__body">
               {/* NOTE: Table row needs to be dynamically generated. */}
-              <tr className="body--row">
-                <td className="body--location">
-                  <p>Los Angeles, CA</p>
-                </td>
-                <td className="body--date">
-                  <p>20171017</p>
-                </td>
-                <td className="body--activity">
-                  <p>Arrived at Transit Point</p>
-                </td>
-              </tr>
-              <tr className="body--row">
-                <td className="body--location">
-                  <p>Tokyo, Japan</p>
-                </td>
-                <td className="body--date">
-                  <p>20171017</p>
-                </td>
-                <td className="body--activity">
-                  <p>Arrived</p>
-                </td>
-              </tr>
-              <tr className="body--row">
-                <td className="body--location">
-                  <p>Kansai, Japan</p>
-                </td>
-                <td className="body--date">
-                  <p>20171017</p>
-                </td>
-                <td className="body--activity">
-                  <p>Arrived At Destination</p>
-                </td>
-              </tr>
+
+              {this.renderActivities(trackingInfo)}
             </tbody>
           </table>
         </div>
