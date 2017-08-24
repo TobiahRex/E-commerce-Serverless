@@ -1,4 +1,5 @@
 export zipUserCart from '../../services/utils/zipUserCart';
+export zipArrays from '../../services/utils/zipArrays';
 export determineCartType from '../../services/utils/determineCartType';
 export nicotineStrengthConverter from '../../services/utils/nicotineStrengthConverter';
 export checkNewUser from '../../services/utils/checkNewUser';
