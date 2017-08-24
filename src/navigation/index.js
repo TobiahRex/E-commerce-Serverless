@@ -6,6 +6,7 @@ import MediaRoutes from './mediaRoutes';
 import ProductRoutes from './productRoutes';
 import AdminDashboardRoutes from './adminDashboardRoutes';
 import NotFoundRoute from './notFoundRoutes';
+import TrackingRoute from './trackingRoutes';
 
 export default {
   LegalRoutes,
@@ -16,4 +17,5 @@ export default {
   ProductRoutes,
   AdminDashboardRoutes,
   NotFoundRoute,
+  TrackingRoute,
 };

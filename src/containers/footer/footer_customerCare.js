@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+
 export default function FooterMemberships() {
   return (
     <li className="footer-main-sections-list-customercare">
@@ -9,7 +11,7 @@ export default function FooterMemberships() {
       </h3>
       <ul className="footer-main-sections-customercare-list">
         <li className="footer-main-sections-customercare-shop hover-bob">
-          <Link to="/juices">Shop</Link>
+          <Link to={`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`}>Shop</Link>
         </li>
         <li className="footer-main-sections-customercare-shipping hover-bob">
           <Link to="/shipping_policy">Shipping Policy</Link>

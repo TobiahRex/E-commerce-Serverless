@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
+const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+
 function HomepageFastestDelivery({ height, mobile }) {
   let display;
   if (mobile) {
@@ -44,7 +46,7 @@ function HomepageFastestDelivery({ height, mobile }) {
             </div>
             <button
               className="message-container__btn--buy sweep-right"
-              onClick={() => browserHistory.push('/juices')}
+              onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}
             >Buy Now</button>
           </div>
         </div>

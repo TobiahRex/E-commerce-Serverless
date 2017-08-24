@@ -37,4 +37,11 @@ router.post('/email', (req, res) => {
     });
 });
 
+router.get('/tracking', (req, res) => {
+  Sagawa.getTracking(req.body)
+  .then((response) => {
+    console.log((''));
+  })
+})
+
 export default router;
