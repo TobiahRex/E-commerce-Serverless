@@ -10,6 +10,7 @@ import Validation from 'react-validation';
 import {
   apiActions,
   orderActions,
+  checkoutActions,
   toasterActions,
   userActions,
 } from './redux.imports';
@@ -583,7 +584,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({
   gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
   gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
   //
-  saveTransaction: transaction => dispatch(orderActions.saveTransaction(transaction)),
+  saveTransaction: transaction => dispatch(checkoutActions.saveTransaction(transaction)),
   saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
 }))(ExpressCheckoutWithStateAndData);
 

@@ -28,7 +28,7 @@ class OrderSuccess extends React.Component {
     super(props);
 
     this.state = {
-      loading: null,
+      loading: props.sagawaInfo.loading,
     };
   }
 
@@ -191,12 +191,12 @@ class OrderSuccess extends React.Component {
   }
 
   render() {
-    console.log('this.props: ', this.props);
-
+    console.log('%cthis.props', 'background:lime;', this.props);
+    console.log('%cthis.state.loading', 'background:red;', this.state.loading);
     return (
       <div>
         {
-          this.props.sagawaInfo.loading ?
+          this.state.loading ?
             <h1 className="main__loading">
               <FontAwesome name="spinner" pulse size="3x" />
               <br />

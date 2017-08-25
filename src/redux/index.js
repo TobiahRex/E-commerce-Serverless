@@ -9,6 +9,7 @@ import apolloClient from '../graphql/';
 import { userReducer as user } from './user';
 import { productsReducer as products } from './products';
 import { orderReducer as orders } from './orders';
+import { checkoutReducer as checkout } from './checkout';
 import { apiReducer as api } from './api';
 import { geoReducer as geo } from './geo';
 import { mobileReducer as mobile } from './mobile';
@@ -24,6 +25,7 @@ export default () => {
     user,
     products,
     orders,
+    checkout,
     api,
     geo,
     mobile,
