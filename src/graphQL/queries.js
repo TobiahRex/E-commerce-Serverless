@@ -117,7 +117,6 @@ export const FetchSagawa = gql`
       }
       userId
       transactionId
-      status
       shippingAddress {
         referenceId
         shipdate
@@ -126,6 +125,35 @@ export const FetchSagawa = gql`
         jpaddress1
         jpaddress2
         phoneNumber
+      }
+    }
+  }
+`;
+
+export const FetchTrackingInfo = gql`
+  query FetchTrackingInfo($token: String!) {
+    FetchTrackingInfo(token: $token) {
+      error {
+        hard
+        soft
+        message
+      }
+      shipDate
+      orderId
+      trackingInfo {
+        location
+        date
+        activity
+      }
+      trackingNumber
+      userName
+      orderId
+      totalPaid
+      orderStatus
+      trackingInfo {
+        location
+        date
+        activity
       }
     }
   }

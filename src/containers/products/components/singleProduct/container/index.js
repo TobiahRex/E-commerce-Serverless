@@ -108,6 +108,8 @@ class SingleProduct extends React.Component {
     if (!parentEl) parentEl = e.target.parentNode.dataset.parent;
     if (!tagEl) tagEl = e.target.parentNode.dataset.tag;
 
+    const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+
     switch (parentEl) {
       case 'success': {
         switch (tagEl) {
@@ -121,7 +123,7 @@ class SingleProduct extends React.Component {
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-            this.toggleModalAndGo('showBulkModal', '/juices'); break;
+            this.toggleModalAndGo('showBulkModal', `/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;

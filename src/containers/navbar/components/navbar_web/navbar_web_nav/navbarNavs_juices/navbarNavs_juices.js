@@ -8,6 +8,7 @@ import NavbarNavsJuicesDropdnContent from './navbarNavs_juices_dropdn_content';
 
 const { arrayOf, shape, func, string } = PropTypes;
 
+
 class NavbarNavsShop extends Component {
   static styles = {
     hide: 'hide',
@@ -52,10 +53,11 @@ class NavbarNavsShop extends Component {
   }
 
   render() {
+    const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
     return (
       <div className="navbar-actionSection-lower-shop" >
         <Link
-          to="/juices"
+          to={`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`}
           className="shop-main-button"
         >
           <div className="shop-main-button-title">

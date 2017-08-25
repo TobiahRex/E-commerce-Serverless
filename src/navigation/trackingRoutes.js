@@ -7,21 +7,13 @@ const loadRoute = cb => module => cb(null, module.default);
 const ProductRoutes = () => (
   <div>
     <Route
-      path="juice/:product"
+      path="/tracking"
       getComponent={(location, cb) => {
-        System.import('../containers/products/components/singleProduct/container')
+        System.import('../containers/tracking/container/index')
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
     />
-    {/* <Route
-      path="juices"
-      getComponent={(location, cb) => {
-        System.import('../containers/products/components/allProducts')
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
-    /> */}
   </div>
 );
 

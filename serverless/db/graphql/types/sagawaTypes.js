@@ -44,7 +44,7 @@ const rootType = new ObjectType({
       description: 'A reference ID to the Transaction Document that is mapped to this information.',
       type: MongoId,
     },
-    status: {
+    uploadStatus: {
       description: 'A status identifying if the order has been uploaded to Sagawa.',
       type: StringType,
     },

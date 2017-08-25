@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import xml2js from 'xml2js';
 
 const extractPostalData = (jsonResponse) => {
@@ -21,7 +22,7 @@ const extractPostalData = (jsonResponse) => {
   });
 };
 
-const extractTrackingData = (jsonResponse) => {
+const extractUploadData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:uploadDataResponse'][0]['ns:return'][0];
 
   const awbId = response.split('|')[5].replace(/(A)+/g, '');
@@ -39,6 +40,48 @@ const extractTrackingData = (jsonResponse) => {
     verified: true,
     awbId,
     referenceId,
+  });
+};
+
+const extractTrackingData = (jsonResponse) => {
+  const statusCodes = [];
+
+  const trackingInfo = jsonResponse.TRACK.INFO.map((infoObj) => {
+    const date = infoObj.LCLDATE[0];
+    const status = infoObj.STATUS[0];
+    statusCodes.push(status);
+
+    return ({
+      status,
+      date: `${date.slice(0, 4)}/${date.slice(4, 6)}/${date.slice(6, 8)}`,
+      activity: infoObj.DETAIL[0],
+      location: infoObj.COUNTRY[0],
+    });
+  });
+
+  let phase = '';
+  if (!statusCodes.includes('LD')) {
+    if (!statusCodes.includes('TD')) {
+      phase = 'Packaging';
+    } else {
+      phase = 'Shipped';
+    }
+  } else {
+    phase = 'Delivered';
+  }
+
+  if (!trackingInfo.length) {
+    return ({
+      verified: false,
+      phase,
+      trackingInfo,
+    });
+  }
+
+  return ({
+    verified: true,
+    trackingInfo,
+    phase,
   });
 };
 
@@ -113,7 +156,7 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, awbId, referenceId } = extractTrackingData(results);
+    const { verified, awbId, referenceId } = extractUploadData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
     console.log('awbId: ', awbId);
@@ -133,7 +176,40 @@ new Promise((resolve, reject) => {
   });
 });
 
+const handleTracking = response =>
+new Promise((resolve) => {
+  const { data } = response;
+
+  xml2js.parseString(data, (err, results) => {
+    if (err) resolve({ error: err, data: results });
+
+    const { verified, trackingInfo, phase } = extractTrackingData(results);
+    console.log('verified: ', verified);
+    console.log('trackingInfo: ', trackingInfo);
+    console.log('phase: ', phase);
+
+    if (!verified) {
+      resolve({
+        error: 'Could not parse tracking data.',
+        data: {
+          phase,
+          trackingInfo,
+        },
+      });
+    } else {
+      resolve({
+        error: false,
+        data: {
+          phase,
+          trackingInfo,
+        },
+      });
+    }
+  });
+});
+
 export default {
   handlePostal,
   handleUpload,
+  handleTracking,
 };
