@@ -402,6 +402,11 @@ mutation SubmitFinalOrder(
     sagawa: $sagawa
     square: $square
 ) {
+    error {
+      soft
+      hard
+      message
+    }
     user {
       _id
       error {

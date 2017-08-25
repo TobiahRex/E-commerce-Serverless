@@ -137,7 +137,7 @@ new Promise((resolve, reject) => {
       },
     },
   )
-  .then((response) => {
+  .then((response) => { //eslint-disable-line
     if (response.status !== 200) {
       resolve({ status: response.status });
     } else {
@@ -149,7 +149,7 @@ new Promise((resolve, reject) => {
             locationId: response.data.transaction.locationId,
           },
         },
-      });
+      }, { new: true });
     }
   })
   .then((result) => {
@@ -354,7 +354,7 @@ new Promise((resolve, reject) => {
         },
       });
     } else {
-      console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0], '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
+      console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
 
       newTransactionDoc = { ...results[0]._doc };
 
@@ -377,7 +377,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    if (!results[0] || !results[1]) {
+    if (!results[0].status !== 200) {
       resolve({
         error: {
           hard: true,
