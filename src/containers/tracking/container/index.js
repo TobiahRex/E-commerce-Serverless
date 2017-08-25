@@ -17,13 +17,33 @@ class OrderTracking extends React.Component {
     super(props);
 
     this.state = {
-      loading: null,
+      loading: props.TrackingInfo.loading,
+      error: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(nextProps, this.props)) {
-      this.setState({ loading: nextProps.TrackingInfo.loading });
+      const {
+        TrackingInfo: {
+          FetchTrackingInfo: {
+            error,
+          },
+          loading,
+        },
+      } = nextProps;
+      this.setState({
+        loading,
+        error: {
+          hard: error.hard,
+          soft: error.soft,
+          message: error.message,
+        },
+      });
     }
   }
 
@@ -103,41 +123,39 @@ class OrderTracking extends React.Component {
 
   renderHelper = (data) => {
     const {
-      FetchTrackingInfo: {
-        shipDate,
-        orderStatus,
-        trackingNumber,
-        userName,
-        orderId,
-        totalPaid,
-        trackingInfo,
-      },
+      shipDate,
+      orderStatus,
+      trackingNumber,
+      userName,
+      orderId,
+      totalPaid,
+      trackingInfo,
     } = data;
     return (
       <div>
         <div className="order-tracking__header">
           <p className="header__detail">
-            <h5>Shipped Date:</h5>
+            <span style={{ fontSize: 20 }}>Ship Date:</span>
             {'\u00A0'}{shipDate}
           </p>
           <p className="header__detail">
-            <h5>Tracking #:</h5>
+            <span style={{ fontSize: 20 }}>Tracking #:</span>
             {'\u00A0'}{trackingNumber}
           </p>
         </div>
         <div className="order-tracking__header">
           <p className="header__detail">
-            <h5>User:</h5>
+            <span style={{ fontSize: 20 }}>User Name:</span>
             {'\u00A0'}{userName}
           </p>
           <p className="header__detail">
-            <h5>Order Id#:</h5>
+            <span style={{ fontSize: 20 }}>Order Id#:</span>
             {'\u00A0'}{orderId}
           </p>
         </div>
         <div className="order-tracking__header">
           <p className="header__detail">
-            <h5>Total Paid:</h5>
+            <span style={{ fontSize: 20 }}>Total Paid:</span>
             {'\u00A0'}${'\u00A0'}{totalPaid}
           </p>
         </div>
@@ -174,11 +192,26 @@ class OrderTracking extends React.Component {
       </div>
     );
   }
-  render() {
-    const {
-      TrackingInfo,
-    } = this.props;
 
+  handleRender = ({ error }, props) => {
+    if (error.hard || error.soft) {
+      return (
+        <h1 className="tracking__error">
+          <FontAwesome name="close" pulse size="3x" />
+          <br />
+          {error.message}
+        </h1>
+      );
+    }
+    return (
+
+    );
+  }
+
+  render() {
+    const { TrackingInfo } = this.props;
+    console.log('%cthis.state', 'background:lime;', this.state);
+    console.log('%cthis.props', 'background:lime;', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
@@ -191,16 +224,16 @@ class OrderTracking extends React.Component {
           <h1>Order Tracking</h1>
         </div>
         {
-          TrackingInfo.loading ?
+          this.state.loading ?
           (
-            <h1 className="main__loading">
+            <h1 className="tracking__loading">
               <FontAwesome name="spinner" pulse size="3x" />
               <br />
               Loading...
             </h1>
           )
           :
-          this.renderHelper(TrackingInfo)
+          this.renderHelper(TrackingInfo.FetchTrackingInfo)
         }
       </div>
     );
@@ -223,9 +256,14 @@ const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
 }))(OrderTrackingWithData);
 
-const { objectOf, any } = PropTypes;
+const { objectOf, any, shape, bool, string } = PropTypes;
 OrderTracking.propTypes = {
   TrackingInfo: objectOf(any).isRequired,
+  error: shape({
+    hard: bool,
+    soft: bool,
+    message: string,
+  }).isRequired,
 };
 
 export default OrderTrackingWithStateAndData;
