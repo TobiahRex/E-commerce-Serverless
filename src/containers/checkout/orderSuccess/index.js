@@ -24,6 +24,20 @@ import {
 } from '../utilities.imports';
 
 class OrderSuccess extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: null,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) {
+      this.setState({ loading: nextProps.sagawaInfo.loading });
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
     /**
     * Function: "isArrayEqual"
