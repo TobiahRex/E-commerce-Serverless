@@ -4,8 +4,10 @@ import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../../schemas/emailSchema';
-import { createEmailProductList as CreateEmailProductList } from './helpers';
-// import config from '../../../config.json';
+import {
+  getBillingCountry as GetBillingCountry,
+  createEmailProductList as CreateEmailProductList,
+} from './helpers';
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
@@ -17,9 +19,6 @@ AWS.config.update({
   accessKeyId,
   secretAccessKey,
   region,
-  // accessKeyId: config.aws.accessKeyId,
-  // secretAccessKey: config.aws.secretAccessKey,
-  // region: config.aws.sesEmailRegion,
 });
 
 const ses = new AWS.SES();
@@ -83,35 +82,37 @@ export default (db) => {
 
     if (!type || !reqLanguage) {
       console.log(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
-      reject(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
+      reject(new Error(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `));
+    } else {
+      Email
+      .find({ type })
+      .exec()
+      .then((dbEmails) => {
+        if (!dbEmails.length) {
+          console.log('FAILED: Find email with type: ', type);
+          return reject(new Error(`FAILED: Find email with type: "${type}".  `));
+        }
+        console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
+
+        const foundEmail = dbEmails
+        .filter(dbEmail =>
+          (dbEmail.type === type) && (dbEmail.language === reqLanguage),
+        )[0];
+
+        if (!foundEmail) {
+          console.log('FAILED: Filter email results array.');
+          return reject(new Error('FAILED: Filter email results array.'));
+        }
+
+        console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
+
+        return resolve(foundEmail);
+      })
+      .catch((error) => {
+        console.log(`Error while trying to find any emails with "type" = ${type}.  ERROR = ${error}`);
+        return reject(new Error(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `));
+      });
     }
-
-    Email
-    .find({ type })
-    .exec()
-    .then((dbEmails) => {
-      if (!dbEmails) {
-        console.log(`Did not find any emails with type: "${type}"`);
-        return reject(`Did not find any emails with type: "${type}".  `);
-      }
-      console.log(`Found the following emails: ${dbEmails}`);
-
-      const foundEmail = dbEmails
-      .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
-
-      if (!foundEmail) {
-        console.log('Did not successfully filter email results array.');
-        return reject('Did not successfully filter email results array.');
-      }
-
-      console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
-
-      return resolve(foundEmail);
-    })
-    .catch((error) => {
-      console.log(`Error while trying to find any emails with "type" = ${type}.  ERROR = ${error}`);
-      return reject(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `);
-    });
   });
 
   /**

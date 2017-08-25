@@ -196,22 +196,28 @@ class OrderTracking extends React.Component {
   handleRender = ({ error }, props) => {
     if (error.hard || error.soft) {
       return (
-        <h1 className="tracking__error">
-          <FontAwesome name="close" pulse size="3x" />
+        <h2 className="tracking__error">
+          <FontAwesome name="exclamation" size="3x" />
+          <br />
+          {error.message}
+        </h2>
+      );
+    }
+
+    if (props.TrackingInfo.loading) {
+      return (
+        <h1 className="tracking__loading">
+          <FontAwesome name="spinner" pulse size="3x" />
           <br />
           {error.message}
         </h1>
       );
     }
-    return (
 
-    );
+    return this.renderHelper(this.props.TrackingInfo.FetchTrackingInfo);
   }
 
   render() {
-    const { TrackingInfo } = this.props;
-    console.log('%cthis.state', 'background:lime;', this.state);
-    console.log('%cthis.props', 'background:lime;', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
@@ -223,18 +229,7 @@ class OrderTracking extends React.Component {
         <div className="tracking__title">
           <h1>Order Tracking</h1>
         </div>
-        {
-          this.state.loading ?
-          (
-            <h1 className="tracking__loading">
-              <FontAwesome name="spinner" pulse size="3x" />
-              <br />
-              Loading...
-            </h1>
-          )
-          :
-          this.renderHelper(TrackingInfo.FetchTrackingInfo)
-        }
+        { this.handleRender(this.state, this.props) }
       </div>
     );
   }
