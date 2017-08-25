@@ -39,12 +39,18 @@ new Promise((resolve, reject) => {
   Email.sendRawEmail(emailRequest)
   .then((response) => {
     console.log('SUCCEEDED: Email has been sent to NJ2JP support:', response);
-
     contactDocument.messageId = response.messageId;
+
+    slackWebhook = process.env.SLACK_CUSTOMER_WEBHOOK;
+    slackMessage = 'We have got a customer support from ' + emailRequest.replyToAddresses[0] + ' Log into <https://privateemail.com/appsuite/> to answer their query.'
+    return Email.notifySlack(slackWebhook, slackMessage);
+  })
+  .then((slackResponse) => {
+    console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
+
     contactDocument.name = emailRequest.name;
     contactDocument.emailAddress = emailRequest.replyToAddresses[0];
     contactDocument.message = emailRequest.bodyTextData;
-    contactDocument.messageId = response.messageId;
     if (emailRequest.userId) {
       contactDocument.user = emailRequest.userId;
     }
@@ -53,14 +59,7 @@ new Promise((resolve, reject) => {
   })
   .then((contactDoc) => {
     console.log('SUCCEEDED: Contact document has been successfully saved:', contactDoc);
-
-    slackWebhook = process.env.SLACK_CUSTOMER_WEBHOOK;
-    slackMessage = 'We have got a customer support from ' + emailRequest.replyToAddresses[0] + ' Log into <https://privateemail.com/appsuite/> to answer their query.'
-    return Email.notifySlack(slackWebhook, slackMessage);
-  })
-  .then((slackResponse) => {
-    console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
-    resolve(slackResponse);
+    resolve(contactDoc);
   })
   .catch((error) => {
     console.log('FAILED: Send Support Mail and Notify Slack ', error);
