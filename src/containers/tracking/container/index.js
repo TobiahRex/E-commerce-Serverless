@@ -102,7 +102,6 @@ class OrderTracking extends React.Component {
     ));
 
   renderHelper = (data) => {
-    console.log('%cdata', 'background:lime;', data);
     const {
       shipDate,
       orderStatus,

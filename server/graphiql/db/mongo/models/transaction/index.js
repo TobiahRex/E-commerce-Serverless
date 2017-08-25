@@ -214,27 +214,37 @@ new Promise((resolve, reject) => {
     Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec(),
   ])
   .then((results) => {
-    console.log('\n2] SUCCEEDED: 1) Created new Transaction Document.\n', results[0]._doc, '\n2) Updated User\'s "email" and "marketing" fields.', results[1]._doc, '\n3) Fetched Square Location information.\n', results[2], '\n4) Retrieved Product documents from cart _id\'s.\n', results[3]);
+    if (!results[0] || !results[1]) {
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'There was a network error and we\'re unable to process your order at this time.',
+        },
+      });
+    } else {
+      console.log('\n2] SUCCEEDED: 1) Created new Transaction Document.\n', results[0]._doc, '\n2) Updated User\'s "email" and "marketing" fields.', results[1]._doc, '\n3) Fetched Square Location information.\n', results[2], '\n4) Retrieved Product documents from cart _id\'s.\n', results[3]);
 
-    newTransactionDoc = results[0]._doc;
-    userDoc = { ...results[1]._doc };
-    cartProducts = ZipArrays(cart, results[3], (cartProduct, dbDoc) =>
-    ({ qty: cartProduct.qty, ...dbDoc._doc }));
+      newTransactionDoc = results[0]._doc;
+      userDoc = { ...results[1]._doc };
+      cartProducts = ZipArrays(cart, results[3], (cartProduct, dbDoc) =>
+      ({ qty: cartProduct.qty, ...dbDoc._doc }));
 
-    return Transaction.squareChargeCard({
-      locationId: results[2].id,
-      transactionId: String(results[0]._id),
-      shippingEmail: sagawa.shippingAddress.email,
-      shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
-      shippingCity: square.shippingAddress.shippingCity,
-      shippingPrefecture: square.shippingAddress.shippingPrefecture,
-      shippingPostalCode: sagawa.shippingAddress.postalCode,
-      shippingCountry: sagawa.shippingAddress.country,
-      billingCountry: square.billingCountry,
-      grandTotal: total.grandTotal,
-      cardNonce: square.cardInfo.cardNonce,
-      jpyFxRate,
-    });
+      return Transaction.squareChargeCard({
+        locationId: results[2].id,
+        transactionId: String(results[0]._id),
+        shippingEmail: sagawa.shippingAddress.email,
+        shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
+        shippingCity: square.shippingAddress.shippingCity,
+        shippingPrefecture: square.shippingAddress.shippingPrefecture,
+        shippingPostalCode: sagawa.shippingAddress.postalCode,
+        shippingCountry: sagawa.shippingAddress.country,
+        billingCountry: square.billingCountry,
+        grandTotal: total.grandTotal,
+        cardNonce: square.cardInfo.cardNonce,
+        jpyFxRate,
+      });
+    }
   })
   .then((response) => {
     console.log('3] SUCCEEDED: Square Charge Customer.\n', response.data);

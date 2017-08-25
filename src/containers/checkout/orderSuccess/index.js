@@ -228,8 +228,8 @@ const OrderSuccessWithState = compose(
   }),
 )(OrderSuccess);
 
-const OrderSuccessWithStateAndData = connect(({ orders }) => ({
-  transactionInfo: orders.transaction || {
+const OrderSuccessWithStateAndData = connect(({ checkout }) => ({
+  transactionInfo: checkout.transaction || {
     products: [{ _id: '' }],
     sagawa: '',
   },

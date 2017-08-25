@@ -50,7 +50,7 @@ const extractTrackingData = (jsonResponse) => {
     const date = infoObj.LCLDATE[0];
     const status = infoObj.STATUS[0];
     statusCodes.push(status);
-
+    console.log('infoObj: ', infoObj);
     return ({
       status,
       date: `${date.slice(0, 4)}/${date.slice(4, 6)}/${date.slice(6, 8)}`,
