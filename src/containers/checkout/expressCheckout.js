@@ -287,13 +287,17 @@ class ExpressCheckout extends React.Component {
 
       this.props.GraphQLsubmitOrder(formData)
       .then(({ data: { SubmitFinalOrder: response } }) => {
-        const cleanResponse = CleanOffTypename(response);
-
-        this.props.saveUser(cleanResponse.user);
-        this.props.saveTransaction(cleanResponse.transaction);
-        this.props.toastSuccess(true, 'Order successfully submitted!');
-        this.props.apiSuccess();
-        setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+        const { error, user, transaction } = CleanOffTypename(response);
+        if (error.hard || error.soft) {
+          this.props.GraphQLhandleError(error);
+          this.props.apiFail();
+        } else {
+          this.props.saveUser(cleanResponse.user);
+          this.props.saveTransaction(cleanResponse.transaction);
+          this.props.toastSuccess(true, 'Order successfully submitted!');
+          this.props.apiSuccess();
+          setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+        }
       })
       .catch(this.props.GraphQLhandleError);
     }
@@ -527,7 +531,13 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
       errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
     }
 
-    ownProps.toastError(true, errorMsg || error.message);
+    if (error.soft) {
+      ownProps.toastWarning(true, error.message);
+    } else if (error.hard) {
+      ownProps.toastError(true, error.message);
+    } else {
+      ownProps.toastError(true, errorMsg || error.message);
+    }
     ownProps.apiFail();
   },
   GraphQLvalidatePostal: (postalCode) => {
