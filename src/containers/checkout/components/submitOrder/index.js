@@ -8,10 +8,10 @@ import {
   squarePaymentForm as SqrPaymentForm,
 } from './utilities.imports';
 
-function SubmitOrder({ enable, requestCardNonce }) {
+function SubmitOrder({ enable, requestCardNonce, loading }) {
   if (enable) {
     return (
-      <div className="checkout__purchase-btn" >
+      <div className="checkout__purchase-btn" style={{ display: loading ? 'none' : '' }} >
         <Validation.components.Button
           className="button"
           errorClassName="asd"
@@ -40,12 +40,13 @@ function SubmitOrder({ enable, requestCardNonce }) {
 }
 SubmitOrder.propTypes = {
   enable: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   requestCardNonce: PropTypes.func.isRequired,
 };
 const SubmitOrderWithHandlers = withHandlers({
   requestCardNonce: () => (event) => { //eslint-disable-line
     SqrPaymentForm.get().requestCardNonce();
-  }
+  },
 })(SubmitOrder);
 
 export default SubmitOrderWithHandlers;

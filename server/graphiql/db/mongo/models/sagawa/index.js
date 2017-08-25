@@ -320,7 +320,7 @@ new Promise((resolve, reject) => {
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
     .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
-    .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.awbId);
+    .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
 
     return Email.sendEmail({
       to: transactionDoc.emailAddress,

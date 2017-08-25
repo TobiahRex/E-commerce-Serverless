@@ -156,7 +156,7 @@ new Promise((resolve, reject) => {
         },
       },
       Subject: {
-        Data: `${moment().format('LL')} | ${emailDoc.subjectData}`,
+        Data: emailDoc.subjectData,
         Charset: emailDoc.subjectCharset,
       },
     },

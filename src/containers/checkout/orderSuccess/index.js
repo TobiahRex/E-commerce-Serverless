@@ -24,6 +24,20 @@ import {
 } from '../utilities.imports';
 
 class OrderSuccess extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: props.sagawaInfo.loading,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) {
+      this.setState({ loading: nextProps.sagawaInfo.loading });
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
     /**
     * Function: "isArrayEqual"
@@ -48,6 +62,8 @@ class OrderSuccess extends React.Component {
   routeChange = e => this.props.push(e.target.dataset.slug)
 
   renderBody = (props) => {
+    console.log('%cprops', 'background:cyan;', props);
+
     const {
       products: {
         FetchMultipleProducts: products,
@@ -175,12 +191,12 @@ class OrderSuccess extends React.Component {
   }
 
   render() {
-    console.log('this.props: ', this.props);
-
+    console.log('%cthis.props', 'background:lime;', this.props);
+    console.log('%cthis.state.loading', 'background:red;', this.state.loading);
     return (
       <div>
         {
-          this.props.sagawaInfo.loading ?
+          this.state.loading ?
             <h1 className="main__loading">
               <FontAwesome name="spinner" pulse size="3x" />
               <br />
@@ -212,8 +228,8 @@ const OrderSuccessWithState = compose(
   }),
 )(OrderSuccess);
 
-const OrderSuccessWithStateAndData = connect(({ orders }) => ({
-  transactionInfo: orders.transaction || {
+const OrderSuccessWithStateAndData = connect(({ checkout }) => ({
+  transactionInfo: checkout.transaction || {
     products: [{ _id: '' }],
     sagawa: '',
   },

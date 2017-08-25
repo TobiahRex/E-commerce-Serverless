@@ -294,6 +294,26 @@ const mutationTypes = {
   SubmitFinalOrder: new ObjectType({
     name: 'TransactionSubmitFinalOrder',
     fields: () => ({
+      error: {
+        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+        type: new ObjectType({
+          name: 'SubmitFinalOrderTransactionError',
+          fields: () => ({
+            hard: {
+              description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+              type: BoolType,
+            },
+            soft: {
+              description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+              type: BoolType,
+            },
+            message: {
+              description: 'Amplifying information about error.  Should be written for user readibility.',
+              type: StringType,
+            },
+          }),
+        }),
+      },
       user: {
         description: 'The updated Mongo User Document.',
         type: UserRootType,

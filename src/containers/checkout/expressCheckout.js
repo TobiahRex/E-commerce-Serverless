@@ -10,6 +10,7 @@ import Validation from 'react-validation';
 import {
   apiActions,
   orderActions,
+  checkoutActions,
   toasterActions,
   userActions,
 } from './redux.imports';
@@ -286,13 +287,21 @@ class ExpressCheckout extends React.Component {
 
       this.props.GraphQLsubmitOrder(formData)
       .then(({ data: { SubmitFinalOrder: response } }) => {
-        const cleanResponse = CleanOffTypename(response);
-
-        this.props.saveUser(cleanResponse.user);
-        this.props.saveTransaction(cleanResponse.transaction);
-        this.props.toastSuccess(true, 'Order successfully submitted!');
-        this.props.apiSuccess();
-        setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+        if (!response) {
+          this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
+        } else {
+          const { error, user, transaction } = CleanOffTypename(response);
+          if (error.hard || error.soft) {
+            this.props.GraphQLhandleError(error);
+            this.props.apiFail();
+          } else {
+            this.props.saveUser(user);
+            this.props.saveTransaction(transaction);
+            this.props.toastSuccess(true, 'Order successfully submitted!');
+            this.props.apiSuccess();
+            setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+          }
+        }
       })
       .catch(this.props.GraphQLhandleError);
     }
@@ -482,6 +491,7 @@ class ExpressCheckout extends React.Component {
               />
 
               <SubmitOrder
+                loading={apiFetching}
                 enable={(cart.length && userId) ? true : false} //eslint-disable-line
               />
 
@@ -525,7 +535,13 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
       errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
     }
 
-    ownProps.toastError(true, errorMsg || error.message);
+    if (error.soft) {
+      ownProps.toastWarning(true, error.message);
+    } else if (error.hard) {
+      ownProps.toastError(true, error.message);
+    } else {
+      ownProps.toastError(true, errorMsg || error.message);
+    }
     ownProps.apiFail();
   },
   GraphQLvalidatePostal: (postalCode) => {
@@ -583,7 +599,7 @@ const ExpressCheckoutWithStateAndData2 = connect(({
   gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
   gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
   //
-  saveTransaction: transaction => dispatch(orderActions.saveTransaction(transaction)),
+  saveTransaction: transaction => dispatch(checkoutActions.saveTransaction(transaction)),
   saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
 }))(ExpressCheckoutWithStateAndData);
 
