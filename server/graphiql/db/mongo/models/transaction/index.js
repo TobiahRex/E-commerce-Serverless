@@ -138,6 +138,8 @@ new Promise((resolve, reject) => {
     },
   )
   .then((response) => { //eslint-disable-line
+    console.log('SQUARE STATUS: ', response.status);
+    console.log('response.status === 200: ', response.status === 200);
     if (response.status !== 200) {
       resolve({ status: response.status });
     } else {
@@ -146,7 +148,7 @@ new Promise((resolve, reject) => {
         $set: {
           square: {
             transactionId: response.data.transaction.id,
-            locationId: response.data.transaction.locationId,
+            locationId: response.data.transaction.location_id,
           },
         },
       }, { new: true });
@@ -239,6 +241,8 @@ new Promise((resolve, reject) => {
           soft: false,
           message: 'Oops! Looks like there\'s a network error.  Please try your order again later.',
         },
+        user: null,
+        transaction: null,
       });
     } else {
       console.log('\n2] SUCCEEDED: 1) Created new Transaction Document.\n', results[0]._doc, '\n2) Updated User\'s "email" and "marketing" fields.', results[1]._doc, '\n3) Fetched Square Location information.\n', results[2], '\n4) Retrieved Product documents from cart _id\'s.\n', results[3]);
@@ -265,6 +269,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((response) => { //eslint-disable-line
+    console.log('SQUARE CHARGE RESPONSE: ', response);
     if (response.status !== 200) {
       resolve({
         error: {
@@ -272,6 +277,8 @@ new Promise((resolve, reject) => {
           soft: false,
           message: HandleSquareErrors(response),
         },
+        user: null,
+        transaction: null,
       });
     } else {
       console.log('3] SUCCEEDED: Square Charge Customer.\n', response.data);
@@ -301,6 +308,8 @@ new Promise((resolve, reject) => {
           soft: false,
           message: 'Oops! Looks like something went wrong.  Please try your order again later.',
         },
+        user: null,
+        transaction: null,
       });
     } else {
       console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
@@ -352,6 +361,8 @@ new Promise((resolve, reject) => {
           soft: false,
           message: 'Oops! Looks like something went wrong.  Please try your order again later.',
         },
+        user: null,
+        transaction: null,
       });
     } else {
       console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
@@ -377,13 +388,15 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    if (!results[0].status !== 200) {
+    if (results[0].status !== 200) {
       resolve({
         error: {
           hard: true,
           soft: false,
           message: 'Oops! Looks like something went wrong.  Please try your order again later.',
         },
+        user: null,
+        transaction: null,
       });
     } else {
       console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
@@ -431,7 +444,11 @@ new Promise((resolve, reject) => {
       });
 
       console.log('8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
-      resolve({ transaction: newTransactionDoc, user: userDoc });
+      resolve({
+        error: { hard: false, soft: false, message: '' },
+        user: userDoc,
+        transaction: newTransactionDoc,
+      });
     }
   })
   .catch((error) => {

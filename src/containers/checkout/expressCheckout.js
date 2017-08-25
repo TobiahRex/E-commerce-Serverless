@@ -287,16 +287,20 @@ class ExpressCheckout extends React.Component {
 
       this.props.GraphQLsubmitOrder(formData)
       .then(({ data: { SubmitFinalOrder: response } }) => {
-        const { error, user, transaction } = CleanOffTypename(response);
-        if (error.hard || error.soft) {
-          this.props.GraphQLhandleError(error);
-          this.props.apiFail();
+        if (!response) {
+          this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
         } else {
-          this.props.saveUser(user);
-          this.props.saveTransaction(transaction);
-          this.props.toastSuccess(true, 'Order successfully submitted!');
-          this.props.apiSuccess();
-          setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+          const { error, user, transaction } = CleanOffTypename(response);
+          if (error.hard || error.soft) {
+            this.props.GraphQLhandleError(error);
+            this.props.apiFail();
+          } else {
+            this.props.saveUser(user);
+            this.props.saveTransaction(transaction);
+            this.props.toastSuccess(true, 'Order successfully submitted!');
+            this.props.apiSuccess();
+            setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+          }
         }
       })
       .catch(this.props.GraphQLhandleError);
