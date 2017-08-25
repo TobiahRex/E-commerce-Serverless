@@ -37,4 +37,9 @@ router.post('/email', (req, res) => {
     });
 });
 
+router.post('/support', (req, res) => {
+  console.log("inside support");
+  res.status(200).send({});
+});
+
 export default router;
