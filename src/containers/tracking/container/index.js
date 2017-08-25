@@ -192,6 +192,22 @@ class OrderTracking extends React.Component {
       </div>
     );
   }
+
+  handleRender = ({ error }, props) => {
+    if (error.hard || error.soft) {
+      return (
+        <h1 className="tracking__error">
+          <FontAwesome name="close" pulse size="3x" />
+          <br />
+          {error.message}
+        </h1>
+      );
+    }
+    return (
+
+    );
+  }
+
   render() {
     const { TrackingInfo } = this.props;
     console.log('%cthis.state', 'background:lime;', this.state);
@@ -210,7 +226,7 @@ class OrderTracking extends React.Component {
         {
           this.state.loading ?
           (
-            <h1 className="main__loading">
+            <h1 className="tracking__loading">
               <FontAwesome name="spinner" pulse size="3x" />
               <br />
               Loading...

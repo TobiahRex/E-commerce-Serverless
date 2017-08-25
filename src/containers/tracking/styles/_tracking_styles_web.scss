@@ -15,6 +15,34 @@
         @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
       }
     }
+    & .tracking__loading {
+      @include prefixflex();
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-blue;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
+    & .tracking__error {
+      @include prefixflex();
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 8em;
+      h1 {
+        font-size: 5em;
+        font-weight: 200;
+        letter-spacing: 0.01em;
+        color: $p-red;
+        @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.25));
+      }
+    }
     & .order-tracking__header {
       @include prefixflex();
       justify-content: space-between;
