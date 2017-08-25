@@ -48,6 +48,8 @@ class OrderSuccess extends React.Component {
   routeChange = e => this.props.push(e.target.dataset.slug)
 
   renderBody = (props) => {
+    console.log('%cprops', 'background:cyan;', props);
+
     const {
       products: {
         FetchMultipleProducts: products,
