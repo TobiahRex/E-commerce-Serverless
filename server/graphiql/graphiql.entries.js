@@ -538,3 +538,26 @@ const users = {
     },
   },
 };
+
+const contact = {
+  SubmitSupport: `
+  mutation SubmitSupport {
+    SubmitSupport(
+      bccEmailAddresses: [],
+      ccEmailAddresses: [],
+      toEmailAddresses: ["diwaakartg@gmail.com"],
+      sourceEmail: "support@nj2jp.com",
+      replyToAddresses: ["ganesh.diwaakar@fujixerox.co.jp"],
+      bodyTextData: "summa",
+      bodyTextCharset: "utf8",
+      subjectData: "subject-u",
+      subjectCharset: "utf8",
+      name: "lakshman"
+    ) {
+      _id
+      name
+      message
+    }
+  }
+  `
+}
