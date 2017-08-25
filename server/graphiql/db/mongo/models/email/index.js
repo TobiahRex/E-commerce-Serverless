@@ -21,9 +21,6 @@ AWS.config.update({
   accessKeyId,
   secretAccessKey,
   region,
-  // accessKeyId: config.aws.accessKeyId,
-  // secretAccessKey: config.aws.secretAccessKey,
-  // region: config.aws.sesEmailRegion,
 });
 
 const ses = new AWS.SES();
@@ -38,6 +35,8 @@ const ses = new AWS.SES();
 */
 emailSchema.statics.createEmail = fields =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.createEmail\n');
+
   const {
     type,
     purpose,
@@ -97,7 +96,9 @@ new Promise((resolve, reject) => {
       console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
 
       const foundEmail = dbEmails
-      .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
+      .filter(dbEmail =>
+        (dbEmail.type === type) && (dbEmail.language === reqLanguage),
+      )[0];
 
       if (!foundEmail) {
         console.log('FAILED: Filter email results array.');
@@ -110,7 +111,7 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log(`Error while trying to find any emails with "type" = ${type}.  ERROR = ${error}`);
-      return reject(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `);
+      return reject(new Error(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `));
     });
   }
 });
@@ -134,7 +135,7 @@ new Promise((resolve, reject) => {
 
   if (!isEmail(to)) {
     console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-    return reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+    return reject(new Error(`FAILED: Send SES Email:"${to}" is not a valid email.  `));
   }
 
   const emailRequest = {
