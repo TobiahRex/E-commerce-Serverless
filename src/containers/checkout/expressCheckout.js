@@ -483,6 +483,7 @@ class ExpressCheckout extends React.Component {
               />
 
               <SubmitOrder
+                loading={apiFetching}
                 enable={(cart.length && userId) ? true : false} //eslint-disable-line
               />
 
