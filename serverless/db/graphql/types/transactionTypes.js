@@ -211,7 +211,6 @@ const rootType = new ObjectType({
     },
   },
 });
-
 const queryTypes = {
   SquareLocations: new ObjectType({
     name: 'SquareLocations',
@@ -270,7 +269,6 @@ const queryTypes = {
     }),
   }),
 };
-
 const queries = {
   FetchSquareLocations: {
     type: queryTypes.SquareLocations,
@@ -284,14 +282,33 @@ const queries = {
       //   type: StringType,
       // },
     },
-    resolve: (_, args, { Transaction }) => Transaction.fetchSquareLocation(),
+    resolve: (_, args, Transaction) => Transaction.fetchSquareLocation(),
   },
 };
-
 const mutationTypes = {
   SubmitFinalOrder: new ObjectType({
     name: 'TransactionSubmitFinalOrder',
     fields: () => ({
+      error: {
+        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+        type: new ObjectType({
+          name: 'SubmitFinalOrderTransactionError',
+          fields: () => ({
+            hard: {
+              description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+              type: BoolType,
+            },
+            soft: {
+              description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+              type: BoolType,
+            },
+            message: {
+              description: 'Amplifying information about error.  Should be written for user readibility.',
+              type: StringType,
+            },
+          }),
+        }),
+      },
       user: {
         description: 'The updated Mongo User Document.',
         type: UserRootType,
@@ -303,7 +320,6 @@ const mutationTypes = {
     }),
   }),
 };
-
 const mutations = {
   SubmitFinalOrder: {
     type: mutationTypes.SubmitFinalOrder,
@@ -321,7 +337,7 @@ const mutations = {
         type: StringType,
       },
       language: {
-        description: 'The langauge the User preferred at checkout.',
+        description: 'The language the User preferred at checkout.',
         type: new NonNull(StringType),
       },
       termsAgreement: {
@@ -474,21 +490,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args, {
-      Transaction,
-      User,
-      Product,
-      Email,
-      Sagawa,
-      MarketHero,
-    }) => Transaction.submitFinalOrder(
-      args,
-      User,
-      Product,
-      Email,
-      Sagawa,
-      MarketHero,
-    ),
+    resolve: (_, args, { Transaction }) => Transaction.submitFinalOrder(args),
   },
 };
 
