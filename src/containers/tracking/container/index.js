@@ -18,12 +18,23 @@ class OrderTracking extends React.Component {
 
     this.state = {
       loading: props.TrackingInfo.loading,
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEqual(nextProps, this.props)) {
-      this.setState({ loading: nextProps.TrackingInfo.loading });
+      const {
+        TrackingInfo: {
+          loading,
+        },
+        error,
+      } = nextProps;
+      this.setState({ loading, error });
     }
   }
 
@@ -174,6 +185,7 @@ class OrderTracking extends React.Component {
   }
   render() {
     const { TrackingInfo } = this.props;
+    console.log('%cTrackingInfo', 'background:lime;', TrackingInfo);
     return (
       <div className="order-tracking">
         <BreadCrumb
@@ -218,9 +230,14 @@ const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
 }))(OrderTrackingWithData);
 
-const { objectOf, any } = PropTypes;
+const { objectOf, any, shape, bool, string } = PropTypes;
 OrderTracking.propTypes = {
   TrackingInfo: objectOf(any).isRequired,
+  error: shape({
+    hard: bool,
+    soft: bool,
+    message: string,
+  }).isRequired,
 };
 
 export default OrderTrackingWithStateAndData;

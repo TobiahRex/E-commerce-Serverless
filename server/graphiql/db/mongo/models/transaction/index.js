@@ -146,10 +146,8 @@ new Promise((resolve, reject) => {
       console.log('Successfully charged customer. ', response.data);
       return Transaction.findByIdAndUpdate(transactionId, {
         $set: {
-          square: {
-            transactionId: response.data.transaction.id,
-            locationId: response.data.transaction.location_id,
-          },
+          'square.transactionId': response.data.transaction.id,
+          'square.locationId': response.data.transaction.location_id,
         },
       }, { new: true });
     }
@@ -269,7 +267,6 @@ new Promise((resolve, reject) => {
     }
   })
   .then((response) => { //eslint-disable-line
-    console.log('SQUARE CHARGE RESPONSE: ', response);
     if (response.status !== 200) {
       resolve({
         error: {
@@ -301,7 +298,8 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    if (!results[0] || !results[1] || !results[2]) {
+    console.log('USER RESULTS: ', results);
+    if (!results[0] || !results[2]) {
       resolve({
         error: {
           hard: true,
