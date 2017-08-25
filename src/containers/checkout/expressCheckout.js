@@ -292,8 +292,8 @@ class ExpressCheckout extends React.Component {
           this.props.GraphQLhandleError(error);
           this.props.apiFail();
         } else {
-          this.props.saveUser(cleanResponse.user);
-          this.props.saveTransaction(cleanResponse.transaction);
+          this.props.saveUser(user);
+          this.props.saveTransaction(transaction);
           this.props.toastSuccess(true, 'Order successfully submitted!');
           this.props.apiSuccess();
           setTimeout(() => this.props.push('/successfully_ordered'), 4000);
