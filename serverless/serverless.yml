@@ -21,6 +21,9 @@ provider:
         - logs:CreateLogGroup
         - logs:CreateLogStream
         - logs:PutLogEvents
+        - ses:SendEmail
+        - ses:SendRawEmail
+        - lambda:InvokeFunction
   environment:
     MONGO_URI: ${file(./config.yml):mongoURI}
     AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
@@ -77,6 +80,9 @@ functions:
           - logs:CreateLogGroup
           - logs:CreateLogStream
           - logs:PutLogEvents
+          - ses:SendEmail
+          - ses:SendRawEmail
+          - lambda:InvokeFunction
     events:
       - http:
           path: graphql

@@ -196,40 +196,42 @@ new Promise((resolve, reject) => {
 * @return {object} - Promise: resolved - updated email.
 */
 emailSchema.statics.findSentEmailAndUpdate = (msgId, status) =>
-new Promise((resolve, reject) => {
+new Promise((resolve, reject) => { //eslint-disable-line
   console.log('\n\n@Email.findSentEmailAndUpdate\n');
 
-  if (!msgId || !status) return reject(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
+  if (!msgId || !status) {
+    reject(new Error(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `));
+  } else {
+    console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
 
-  console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
+    return Email.findOne({ 'sentEmails.messageId': msgId })
+    .exec()
+    .then((dbEmail) => {
+      if (!dbEmail) {
+        console.log('Could not find any Sent emails with MessageId: ', msgId);
+        return reject(new Error(`Could not find sent email with id# ${msgId}.`));
+      }
+      console.log('\nFound Email with MessageID: ', msgId);
 
-  return Email.findOne({ 'sentEmails.messageId': msgId })
-  .exec()
-  .then((dbEmail) => {
-    if (!dbEmail) {
-      console.log('Could not find any Sent emails with MessageId: ', msgId);
-      return reject(`Could not find sent email with id# ${msgId}.  `);
-    }
-    console.log('\nFound Email with MessageID: ', msgId);
+      const emailsToSave = dbEmail.sentEmails
+      .filter(sent => sent.messageId !== msgId);
 
-    const emailsToSave = dbEmail.sentEmails
-    .filter(sent => sent.messageId !== msgId);
-
-    dbEmail.sentEmails = [...emailsToSave, {
-      messageId: msgId,
-      sesStatus: status,
-    }];
-    console.log('\nSaving updated Email status...  ');
-    return dbEmail.save({ new: true });
-  })
-  .then((updatedEmail) => {
-    console.log('Updated sent emails for Email _id: ', updatedEmail._id);
-    return resolve(updatedEmail);
-  })
-  .catch((error) => {
-    console.log(`Query was unsuccessful.  ERROR = ${error}`);
-    return reject(`Query was unsuccessful.  ERROR = ${error}`);
-  });
+      dbEmail.sentEmails = [...emailsToSave, {
+        messageId: msgId,
+        sesStatus: status,
+      }];
+      console.log('\nSaving updated Email status...  ');
+      return dbEmail.save({ new: true });
+    })
+    .then((updatedEmail) => {
+      console.log('Updated sent emails for Email _id: ', updatedEmail._id);
+      return resolve(updatedEmail);
+    })
+    .catch((error) => {
+      console.log(`Query was unsuccessful.  ERROR = ${error}`);
+      return reject(new Error(`Query was unsuccessful.  ERROR = ${error}`));
+    });
+  }
 });
 
 /**
@@ -329,7 +331,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);
-    reject(`Could not create invoice email: ${error}`);
+    reject(new Error(`Could not create invoice email: ${error}`));
   });
 });
 

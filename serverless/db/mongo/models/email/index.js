@@ -10,8 +10,6 @@ import {
 } from './helpers';
 
 const {
-  AWS_ACCESS_KEY_ID: accessKeyId,
-  AWS_SECRET_ACCESS_KEY: secretAccessKey,
   AWS_SES_REGION: region,
 } = process.env;
 
@@ -133,8 +131,8 @@ export default (db) => {
     console.log('\n\n@Email.sendEmail\n');
 
     if (!isEmail(to)) {
-      console.log(`ERROR = "${to}" is not a valid email.  `);
-      return reject(`ERROR = "${to}" is not a valid email.  `);
+      console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+      return reject(new Error(`FAILED: Send SES Email:"${to}" is not a valid email.  `));
     }
 
     const emailRequest = {
@@ -155,7 +153,7 @@ export default (db) => {
           },
         },
         Subject: {
-          Data: `${moment().format('LL')} | ${emailDoc.subjectData}`,
+          Data: emailDoc.subjectData,
           Charset: emailDoc.subjectCharset,
         },
       },
@@ -165,7 +163,7 @@ export default (db) => {
     return bbPromise
     .fromCallback(cb => ses.sendEmail(emailRequest, cb))
     .then((data) => {
-      console.log('\nSuccessfully sent SES email: \n', data,
+      console.log('SUCCEEDED: Send SES email: \n', data,
       '\nSaving record of email to MONGO Email collection...');
 
       emailDoc.sentEmails.push({ messageId: data.MessageId });
@@ -173,7 +171,7 @@ export default (db) => {
       return emailDoc.save({ new: true });
     })
     .then((savedEmail) => {
-      console.log('SUCCEEDED: Send Email and save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
+      console.log('SUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
       resolve();
     })
     .catch((error) => {
@@ -195,40 +193,42 @@ export default (db) => {
   * @return {object} - Promise: resolved - updated email.
   */
   emailSchema.statics.findSentEmailAndUpdate = (msgId, status) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve, reject) => { //eslint-disable-line
     console.log('\n\n@Email.findSentEmailAndUpdate\n');
 
-    if (!msgId || !status) return reject(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
+    if (!msgId || !status) {
+      reject(new Error(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `));
+    } else {
+      console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
 
-    console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
+      return Email.findOne({ 'sentEmails.messageId': msgId })
+      .exec()
+      .then((dbEmail) => {
+        if (!dbEmail) {
+          console.log('Could not find any Sent emails with MessageId: ', msgId);
+          return reject(new Error(`Could not find sent email with id# ${msgId}.`));
+        }
+        console.log('\nFound Email with MessageID: ', msgId);
 
-    return Email.findOne({ 'sentEmails.messageId': msgId })
-    .exec()
-    .then((dbEmail) => {
-      if (!dbEmail) {
-        console.log('Could not find any Sent emails with MessageId: ', msgId);
-        return reject(`Could not find sent email with id# ${msgId}.  `);
-      }
-      console.log('\nFound Email with MessageID: ', msgId);
+        const emailsToSave = dbEmail.sentEmails
+        .filter(sent => sent.messageId !== msgId);
 
-      const emailsToSave = dbEmail.sentEmails
-      .filter(sent => sent.messageId !== msgId);
-
-      dbEmail.sentEmails = [...emailsToSave, {
-        messageId: msgId,
-        sesStatus: status,
-      }];
-      console.log('\nSaving updated Email status...  ');
-      return dbEmail.save({ new: true });
-    })
-    .then((updatedEmail) => {
-      console.log('Updated sent emails for Email _id: ', updatedEmail._id);
-      return resolve(updatedEmail);
-    })
-    .catch((error) => {
-      console.log(`Query was unsuccessful.  ERROR = ${error}`);
-      return reject(`Query was unsuccessful.  ERROR = ${error}`);
-    });
+        dbEmail.sentEmails = [...emailsToSave, {
+          messageId: msgId,
+          sesStatus: status,
+        }];
+        console.log('\nSaving updated Email status...  ');
+        return dbEmail.save({ new: true });
+      })
+      .then((updatedEmail) => {
+        console.log('Updated sent emails for Email _id: ', updatedEmail._id);
+        return resolve(updatedEmail);
+      })
+      .catch((error) => {
+        console.log(`Query was unsuccessful.  ERROR = ${error}`);
+        return reject(new Error(`Query was unsuccessful.  ERROR = ${error}`));
+      });
+    }
   });
 
   /**
@@ -256,7 +256,7 @@ export default (db) => {
   *
   * @return {string} - Template string of HTML data with dynamic values.
   */
-  emailSchema.statics.createInvoiceEmailBody = orderInfo =>
+  emailSchema.statics.createInvoiceEmailBody = (orderInfo, Transaction) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Email.createInvoiceEmailBody\n');
 
@@ -264,17 +264,17 @@ export default (db) => {
       cart,
       sagawa,
       language,
-      dbTransaction,
+      transaction,
     } = orderInfo;
 
     const today = moment().format('dddd');
     const nonBusinessDays = ['Saturday', 'Sunday'];
     let emailType = '';
 
-    if (!nonBusinessDays.includes(today)) {
-      emailType = 'invoiceEmail';
-    } else {
+    if (nonBusinessDays.includes(today)) {
       emailType = 'invoiceEmailNoTracking';
+    } else {
+      emailType = 'invoiceEmail';
     }
 
     Email.findEmailAndFilterLanguage(emailType, language)
@@ -285,43 +285,50 @@ export default (db) => {
 
       const updatedHtmlString = dbEmail.bodyHtmlData
       .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')
-      .replace(/(TRANSACTION_ID_HERE)+/g, dbTransaction._id)
-      .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('lll'))
+      .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
+      .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('YYYY/MM/DD'))
       .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
-      .replace(/(TOTAL_PAID_HERE)+/g, dbTransaction.square.charge.amount)
+      .replace(/(TOTAL_PAID_HERE)+/g, Number(transaction.square.charge.amount).toFixed(2))
       .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
       .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
       .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
-      .replace(/(SHIP_PREFECTURE_HERE)+/g, dbTransaction.square.shippingAddress.shippingPrefecture)
-      .replace(/(SHIP_CITY_HERE)+/g, dbTransaction.square.shippingAddress.shippingCity)
+      .replace(/(SHIP_PREFECTURE_HERE)+/g, transaction.square.shippingAddress.shippingPrefecture)
+      .replace(/(SHIP_CITY_HERE)+/g, transaction.square.shippingAddress.shippingCity)
       .replace(/(SHIP_POSTAL_CODE_HERE)+/g, sagawa.shippingAddress.postal)
       .replace(/(SHIP_COUNTRY_HERE)+/g, 'Japan')
       .replace(/(SHIP_PHONE_NUMBER_HERE)+/g, sagawa.shippingAddress.phoneNumber)
-      .replace(/(BILL_FULL_NAME_HERE)+/g, dbTransaction.square.cardInfo.nameOnCard)
-      .replace(/(BILL_POSTAL_CODE_HERE)+/g, dbTransaction.square.cardInfo.postalCode)
-      .replace(/(BILL_COUNTRY_HERE)+/g, dbTransaction.square.billingCountry)
-      .replace(/(BILL_LAST_4_HERE)+/g, dbTransaction.square.cardInfo.last4)
+      .replace(/(BILL_FULL_NAME_HERE)+/g, transaction.square.cardInfo.nameOnCard)
+      .replace(/(BILL_POSTAL_CODE_HERE)+/g, transaction.square.cardInfo.postalCode)
+      .replace(/(BILL_COUNTRY_HERE)+/g, GetBillingCountry(transaction.square.billingCountry))
+      .replace(/(BILL_LAST_4_HERE)+/g, transaction.square.cardInfo.last4)
       .replace(/(INSERT_PRODUCT_LIST_HERE)+/g, productListHtmlString)
-      .replace(/(ORDER_SUBTOTAL_HERE)+/g, dbTransaction.total.subTotal)
-      .replace(/(ORDER_TAX_HERE)+/g, dbTransaction.total.taxes)
-      .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(dbTransaction.total.discount.qtyAmount) + Number(dbTransaction.total.discount.registerAmount)).toFixed(2))
-      .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, dbTransaction.total.grandTotal);
+      .replace(/(ORDER_SUBTOTAL_HERE)+/g, Number(transaction.total.subTotal).toFixed(2))
+      .replace(/(ORDER_TAX_HERE)+/g, transaction.total.taxes)
+      .replace(/(ORDER_DISCOUNTS_HERE)+/g, (Number(transaction.total.discount.qtyAmount) + Number(transaction.total.discount.registerAmount)).toFixed(2))
+      .replace(/(ORDER_GRAND_TOTAL_HERE)+/g, transaction.total.grandTotal)
+      .replace(/(INSERT_COMMENT_HERE)+/g, transaction.comments);
 
       if (emailType === 'invoiceEmail') {
-        dbTransaction.invoiceEmail = updatedHtmlString;
+        transaction.invoiceEmail = updatedHtmlString;
       } else {
-        dbTransaction.invoiceEmailNoTracking = updatedHtmlString;
+        transaction.invoiceEmailNoTracking = updatedHtmlString;
       }
-      return dbTransaction.save({ validateBeforeSave: true });
+
+      return Transaction.findByIdAndUpdate(transaction._id, {
+        $set: {
+          [emailType]: updatedHtmlString,
+          sagawa: sagawa._id,
+        },
+      }, { new: true });
     })
     .then((updatedDoc) => {
-      console.log('SUCCEEDED: Create Invoice Email body and save result on Transaction Document: ', updatedDoc);
+      console.log(`SUCCEEDED: Create Invoice Email and save results on Transaction document @ key: "${emailType}".  Updated Doc: `, updatedDoc);
 
       resolve(updatedDoc);
     })
     .catch((error) => {
-      console.log('FAILED: Create Invoice Email body and save result on Transaction Document: ', error);
-      reject(new Error('FAILED: Create Invoice Email body and save result on Transaction Document'));
+      console.log('Could not create invoice email: ', error);
+      reject(new Error(`Could not create invoice email: ${error}`));
     });
   });
 
