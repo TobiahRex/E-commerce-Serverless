@@ -94,3 +94,27 @@ functions:
           response:
             headers:
               Access-Control-Allow-Origin: "'*'"
+
+  sagawa:
+    handler: handler.sagawa
+    vpc:
+      securityGroupIds:
+        - ${file(./config.yml):securityGroupId}
+      subnetIds:
+        - ${file(./config.yml):subnetId}
+    iamRoleStatements:
+      - Effect: Allow
+        Resource: "*"
+        Action:
+          - ec2:CreateNetworkInterface
+          - ec2:DescribeNetworkInterfaces
+          - ec2:DetachNetworkInterface
+          - ec2:DeleteNetworkInterface
+          - logs:CreateLogGroup
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+          - ses:SendEmail
+          - ses:SendRawEmail
+          - lambda:InvokeFunction
+    events:
+      - schedule: cron(0 7 * * 1)
