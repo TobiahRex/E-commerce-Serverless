@@ -18,7 +18,7 @@ class OrderTracking extends React.Component {
 
     this.state = {
       loading: props.TrackingInfo.loading,
-      errors: {
+      error: {
         hard: false,
         soft: false,
         message: '',
@@ -30,11 +30,20 @@ class OrderTracking extends React.Component {
     if (!_.isEqual(nextProps, this.props)) {
       const {
         TrackingInfo: {
+          FetchTrackingInfo: {
+            error,
+          },
           loading,
         },
-        error,
       } = nextProps;
-      this.setState({ loading, error });
+      this.setState({
+        loading,
+        error: {
+          hard: error.hard,
+          soft: error.soft,
+          message: error.message,
+        },
+      });
     }
   }
 
@@ -185,7 +194,8 @@ class OrderTracking extends React.Component {
   }
   render() {
     const { TrackingInfo } = this.props;
-    console.log('%cTrackingInfo', 'background:lime;', TrackingInfo);
+    console.log('%cthis.state', 'background:lime;', this.state);
+    console.log('%cthis.props', 'background:lime;', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
