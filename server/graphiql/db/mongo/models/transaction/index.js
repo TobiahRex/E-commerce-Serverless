@@ -138,8 +138,26 @@ new Promise((resolve, reject) => {
     },
   )
   .then((response) => {
-    console.log('Successfully charged customer. ', response.data);
-    resolve(response);
+    if (response.status !== 200) {
+      resolve({ status: response.status });
+    } else {
+      console.log('Successfully charged customer. ', response.data);
+      return Transaction.findByIdAndUpdate(transactionId, {
+        $set: {
+          square: {
+            transactionId: response.data.transaction.id,
+            locationId: response.data.transaction.locationId,
+          },
+        },
+      });
+    }
+  })
+  .then((result) => {
+    if (!result) {
+      reject('FAILED: Update Transaction with Square information.');
+    } else {
+      resolve({ status: 200 });
+    }
   })
   .catch((error) => {
     console.log('%cerror', 'background:red;', error);
@@ -247,7 +265,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((response) => { //eslint-disable-line
-    if (response.status !== 2) {
+    if (response.status !== 200) {
       resolve({
         error: {
           hard: true,
