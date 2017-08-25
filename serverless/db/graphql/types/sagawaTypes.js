@@ -238,7 +238,7 @@ const queries = {
         type: new NonNull(StringType),
       },
     },
-    resolve: (_, { token }, { Sagawa }) => Sagawa.FetchTrackingInfo(token),
+    resolve: (_, { token }, { Sagawa, User, Transaction }) => Sagawa.FetchTrackingInfo(token, User, Transaction),
   },
 };
 

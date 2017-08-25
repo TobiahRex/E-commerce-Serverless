@@ -138,8 +138,6 @@ new Promise((resolve, reject) => {
     },
   )
   .then((response) => { //eslint-disable-line
-    console.log('SQUARE STATUS: ', response.status);
-    console.log('response.status === 200: ', response.status === 200);
     if (response.status !== 200) {
       resolve({ status: response.status });
     } else {
@@ -329,7 +327,7 @@ new Promise((resolve, reject) => {
           sagawa: results[2]._doc,
           language,
           transaction: newTransactionDoc,
-        }),
+        }, Transaction),
         MarketHero[marketHeroOp]({
           lead,
           tags: GetMhTransactionTagsMongo({

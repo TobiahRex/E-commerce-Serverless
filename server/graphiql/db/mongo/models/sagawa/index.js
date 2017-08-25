@@ -82,10 +82,7 @@ new Promise((resolve, reject) => {
         },
       });
     }
-      // return bbPromise.fromCallback(cb => Sagawa.create({
-      //   userId,
-      //   postalInfo: data.postalInfo,
-      // }, cb));
+
     resolve({
       error: {
         hard: false,

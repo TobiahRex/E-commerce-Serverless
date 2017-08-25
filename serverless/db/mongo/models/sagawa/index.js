@@ -5,14 +5,14 @@ import moment from 'moment';
 import JWT from 'jsonwebtoken';
 import sagawaSchema from '../../schemas/sagawaSchema';
 import {
-  ZipArrays,
-  GetSagawaKbn,
-  CleanSagawaResponse,
-  GenerateItemsXml,
-  GenerateAddressXml,
-  GetNextBusinessDay,
-  GetOrderWeight,
-  GenerateItemObjs,
+  getSagawaKbn as GetSagawaKbn,
+  cleanSagawaResponse as CleanSagawaResponse,
+  generateItemsXml as GenerateItemsXml,
+  generateAddressXml as GenerateAddressXml,
+  getDeliveryDay as GetDeliveryDay,
+  getShippingDay as GetShippingDay,
+  getOrderWeight as GetOrderWeight,
+  generateItemObjs as GenerateItemObjs,
 } from './helpers';
 
 export default (db) => {
@@ -79,10 +79,7 @@ export default (db) => {
           },
         });
       }
-        // return bbPromise.fromCallback(cb => Sagawa.create({
-        //   userId,
-        //   postalInfo: data.postalInfo,
-        // }, cb));
+
       resolve({
         error: {
           hard: false,
@@ -118,42 +115,33 @@ export default (db) => {
       transactionId,
     } = orderInfo;
 
-    Product
-    .find({ _id: { $in: cart.map(({ _id }) => _id) } })
-    .exec()
-    .then((dbProducts) => {
-      console.log('SUCCEEDED: Retrieved Product documents from cart _id\'s.');
-
-      const updatedCart = ZipArrays(cart, dbProducts, (cartProduct, dbProduct) => ({ qty: cartProduct.qty, ...dbProduct }));
-
-      return bbPromise.fromCallback(cb => Sagawa.create({
-        userId,
-        transactionId,
-        shippingAddress: {
-          boxid: `NJ2JP${moment().format('YYYYMMDDSS')}`,
-          shipdate: moment().format('YYYY/MM/DD'),
-          customerName: `${sagawa.shippingAddress.familyName} ${sagawa.shippingAddress.givenName}`,
-          postal: sagawa.shippingAddress.postalCode,
-          jpaddress1: sagawa.shippingAddress.addressLine1,
-          jpaddress2: sagawa.shippingAddress.addressLine2,
-          phoneNumber: sagawa.shippingAddress.phoneNumber,
-          kbn: GetSagawaKbn(sagawa.shippingAddress.country),
-          wgt: GetOrderWeight(cart),
-          grandTotal: total.subTotal,
-          deliveryDate: GetNextBusinessDay(),
-          deliveryTime: '1200',
-          ttlAmount: total.subTotal,
-        },
-        items: GenerateItemObjs(updatedCart),
-      }, cb));
-    })
+    bbPromise.fromCallback(cb => Sagawa.create({
+      userId,
+      transactionId,
+      shippingAddress: {
+        boxid: `NJ${moment().format('YYYYMMDDSS')}`,
+        shipdate: GetShippingDay(),
+        customerName: `${sagawa.shippingAddress.familyName}, ${sagawa.shippingAddress.givenName}`,
+        postal: sagawa.shippingAddress.postalCode,
+        jpaddress1: sagawa.shippingAddress.addressLine1,
+        jpaddress2: sagawa.shippingAddress.addressLine2,
+        phoneNumber: sagawa.shippingAddress.phoneNumber,
+        kbn: GetSagawaKbn(sagawa.shippingAddress.country),
+        wgt: GetOrderWeight(cart),
+        grandTotal: total.subTotal,
+        deliveryDate: GetDeliveryDay(),
+        deliveryTime: '1600',
+        ttlAmount: total.subTotal,
+      },
+      items: [...GenerateItemObjs(cart)],
+    }, cb))
     .then((dbSagawa) => {
       console.log('SUCCEEDED: Create Sagawa Document: ', dbSagawa);
       resolve(dbSagawa);
     })
     .catch((error) => {
-      console.log('FAILED: Deep update on Sagawa Document: ', error);
-      reject(new Error('FAILED: Deep update on Sagawa Document'));
+      console.log('FAILED: Handle new Transaction on Sagawa Document: ', error);
+      reject(new Error('\nFAILED: Handle new Transaction on Sagawa Document'));
     });
   });
 
@@ -259,9 +247,11 @@ export default (db) => {
   *
   * @return {object} Promise resolved with updated Sagawa Document. [WIP]
   */
-  sagawaSchema.statics.uploadOrderAndSendEmail = request =>
+  sagawaSchema.statics.uploadOrderAndSendEmail = (request, Email, Transaction) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@Sagawa.uploadSagawaAndSendEmail');
+    console.log('\n\n@Sagawa.uploadOrderAndSendEmail');
+
+    console.log('req.body: ', request);
 
     const {
       userId,
@@ -272,54 +262,58 @@ export default (db) => {
     let transactionDoc = {};
     let sagawaDoc = {};
     let emailBody = '';
+    let emailType = '';
 
     Promise.all([
-      Sagawa.orderUpload(sagawaId),
+      Sagawa.uploadOrder(sagawaId),
       Transaction.findById(transactionId),
     ])
     .then((results) => {
-      console.log('SUCCEEDED: 1)Upload Order to Sagawa. 2) Fetch Transaction Doc.');
+      console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
-      sagawaDoc = results[0];
       transactionDoc = results[1];
-
-      console.log('Sagawa Response:  ', sagawaDoc);
-      console.log('Transaction Response:  ', transactionDoc);
+      const uploadData = results[0];
 
       return Sagawa.findSagawaAndUpdate({
         sagawaId,
-        awbId: sagawaDoc.awbId,
-        referenceId: sagawaDoc.referenceId,
+        awbId: uploadData.awbId,
+        referenceId: uploadData.referenceId,
       });
     })
-    .then((updatedDoc) => {
-      console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s: ', updatedDoc);
+    .then((dbSagawa) => {
+      console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
 
-      const emailType = transactionDoc.invoiceEmail ? 'Invoice Email' : 'Invoice Email - No Tracking';
+      sagawaDoc = dbSagawa;
+      console.log('Updated Sagawa Doc: ', sagawaDoc);
+      emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
 
-      return Email.findEmailAndFilterLanguage(emailType, transactionDoc.emailLanguage);
+      return Email.findEmailAndFilterLanguage(
+        emailType,
+        transactionDoc.emailLanguage,
+      );
     })
     .then((dbEmail) => {
-      console.log('SUCCEEDED: Find email and Filter by Language.', dbEmail);
+      console.log('SUCCEEDED: Find email and Filter by Language: ', dbEmail.purpose);
 
       const payload = {
         userId,
         sagawaId,
-        exp: moment().add(1, 'w').unix(),
+        exp: moment().add(10, 'd').unix(),
       };
       const {
         JWT_SECRET,
-        NODE_ENV,
+        LAMBDA_ENV,
         BASE_URL,
         PRODUCTION_URL,
       } = process.env;
 
       const token = JWT.sign(payload, JWT_SECRET);
-      const tokenUrlString = `${NODE_ENV === 'production' ? PRODUCTION_URL : BASE_URL}tracking?token=${token}`;
+      const tokenUrlString = `${LAMBDA_ENV === 'production' ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
 
       emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
       emailBody = emailBody
-      .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString);
+      .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
+      .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
 
       return Email.sendEmail({
         to: transactionDoc.emailAddress,
@@ -327,13 +321,140 @@ export default (db) => {
       }, dbEmail);
     })
     .then(() => {
-      console.log('SUCCEEDED: Send Invoice Email.');
+      console.log('SUCCEEDED: Send Invoice Email via SES.\n');
       resolve();
     })
     .catch((error) => {
-      console.log('Error in sagawa upload or transaction retrieve: ', error);
-      reject(error);
+      console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
+      reject(new Error('FAILED: Upload order to Sagawa and Send Email.'));
     });
+  });
+
+  sagawaSchema.statics.FetchTrackingInfo = (token, User, Transaction) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Sagawa.fetchTrackingInfo\n');
+
+    let sagawaDoc = {};
+    let userDoc = {};
+    let transactionDoc = {};
+    let responseObj = {};
+
+    if (!token) {
+      console.log('FAILED: Missing required arguments.');
+      reject(new Error('FAILED: Missing required arguments.'));
+    } else {
+      bbPromise.fromCallback(cb => JWT.verify(token, process.env.JWT_SECRET, cb))
+      .then((payload) => {
+        console.log('SUCCEEDED: Extract payload from JWT token input.');
+        console.log('\nPayload: ', payload);
+
+        const today = Number(String(Date.now()).slice(0, 10));
+        if (today > payload.exp) {
+          console.log('FAILED: Token has expired.');
+          resolve({
+            error: {
+              hard: false,
+              soft: true,
+              message: 'This tracking link has expired.',
+            },
+          });
+        }
+        return Promise.all([
+          User
+          .findById(payload.userId)
+          .deepPopulate('shopping.transactions'),
+          Sagawa
+          .findById(payload.sagawaId)
+          .exec(),
+        ]);
+      })
+      .then((results) => {
+        if (!results[0] || !results[1]) {
+          console.log('FAILED: 1) Locate user by payload id: ', results[0], '2) Locate Sagawa document by payload id: ', results[1]);
+          resolve({
+            error: {
+              hard: true,
+              soft: false,
+              message: 'This is an unauthorized request.  Contact support if you feel you\'ve received this message in error.',
+            },
+          });
+        }
+
+        userDoc = results[0]._doc;
+        sagawaDoc = results[1]._doc;
+        console.log('sagwaDoc: ', sagawaDoc);
+        transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => (String(sagawa) === String(sagawaDoc._id)))[0]._doc;
+
+        if (!transactionDoc) {
+          console.log('FAILED: Locate transaction document from User\'s transaction history.');
+          return resolve({
+            error: {
+              hard: true,
+              soft: false,
+              message: 'This is an unauthorized request.  Contact support if you feel you\'ve received this message in error.',
+            },
+          });
+        }
+
+        const trackingNumber = sagawaDoc.shippingAddress.referenceId;
+
+        return axios.get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
+      })
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log('FAILED: Request tracking info from Sagawa API: ', response.data);
+          return resolve({
+            error: {
+              hard: true,
+              soft: false,
+              message: 'The appears to be a network error from our shipping provider.  Please try your request again later.  Apologies for the inconvenience.',
+            },
+          });
+        }
+        console.log('SUCCEEDED: Request tracking infor from Sagawa API.');
+        return CleanSagawaResponse.handleTracking(response);
+      })
+      .then(({ error, data }) => {
+        if (error) {
+          console.log('FAILED: Parse Sagawa API response.', error, '\n', data);
+          return resolve({
+            error: {
+              hard: true,
+              soft: false,
+              message: 'The tracking number used for your request has expired.  Please contact support if your purchase has not been delivered.',
+            },
+          });
+        }
+
+        console.log('SUCCEEDED: Parse Sagawa response.');
+        responseObj = {
+          error: {
+            hard: false,
+            soft: false,
+            message: '',
+          },
+          shipDate: sagawaDoc.shippingAddress.shipdate,
+          orderStatus: data.phase,
+          trackingNumber: sagawaDoc.shippingAddress.referenceId,
+          userName: `${userDoc.name.first} ${userDoc.name.last}`,
+          orderId: transactionDoc._id,
+          totalPaid: transactionDoc.square.charge.amount,
+          trackingInfo: data.trackingInfo,
+        };
+
+        return Transaction.findByIdAndUpdate(transactionDoc._id, {
+          $set: { shippingStatus: data.phase },
+        }, { new: true });
+      })
+      .then(() => {
+        console.log('SUCCEEDED: 1) Updated Transaction Doc with latest data. 2) Fetch Sagawa Tracking Info.');
+        resolve(responseObj);
+      })
+      .catch((error) => {
+        console.log('FAILED: Fetch Sagawa Tracking information.', error);
+        reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
+      });
+    }
   });
 
   const Sagawa = db.model('Sagawa', sagawaSchema);
