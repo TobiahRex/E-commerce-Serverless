@@ -335,7 +335,8 @@ new Promise((resolve, reject) => {
 /**
 * Function: sendRawEmail
 * 1) Validate input email - "to" is in proper email format.
-* 2) create emailRequest object per Ses requirements.
+* 2) Check whether the body contains html or text and act according to that.
+* 2) create emailRequest object as per SES requirements.
 * 3) Send email.
 * 4) Resolve with email response.
 *
@@ -358,31 +359,43 @@ new Promise((resolve, reject) => {
 emailSchema.statics.sendRawEmail = (emailRequest) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRawEmail\n');
+  let messageBody = {};
 
   if (!isEmail(emailRequest.toEmailAddresses[0])) {
     console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
     return reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
   }
 
+  if (!emailRequest.bodyHtmlData) {
+    messageBody = {
+      Text: {
+        Data: emailRequest.bodyTextData || '',
+        Charset: emailRequest.bodyTextCharset || 'utf8',
+      }
+    }
+  } else {
+    messageBody = {
+      Html: {
+        Data: emailRequest.bodyHtmlData || '',
+        Charset: emailRequest.bodyHtmlCharset || 'utf8',
+      },
+      Text: {
+        Data: emailRequest.bodyTextData || '',
+        Charset: emailRequest.bodyTextCharset || 'utf8',
+      },
+    }
+  }
+
   const sesEmailRequest = {
     Destination: {
-      BccAddresses: emailRequest.bccEmailAddresses,
-      CcAddresses: emailRequest.ccEmailAddresses,
+      BccAddresses: emailRequest.bccEmailAddresses || [],
+      CcAddresses: emailRequest.ccEmailAddresses || [],
       ToAddresses: emailRequest.toEmailAddresses,
     },
     Source: emailRequest.sourceEmail,
-    ReplyToAddresses: emailRequest.replyToAddresses,
+    ReplyToAddresses: emailRequest.replyToAddresses || [],
     Message: {
-      Body: {
-        Html: {
-          Data: emailRequest.bodyHtmlData || '',
-          Charset: emailRequest.bodyHtmlCharset || 'utf8',
-        },
-        Text: {
-          Data: emailRequest.bodyTextData || '',
-          Charset: emailRequest.bodyTextCharset || 'utf8',
-        },
-      },
+      Body: messageBody,
       Subject: {
         Data: emailRequest.subjectData || '',
         Charset: emailRequest.subjectCharset || 'utf8',
@@ -423,9 +436,9 @@ new Promise((resolve, reject) => {
   };
 
   axios.post(slackWebhook, JSON.stringify(options))
-  .then((data) => {
-    console.log('SUCCEEDED: Sent slack webhook: \n', data);
-    resolve(data);
+  .then((response) => {
+    console.log('SUCCEEDED: Sent slack webhook: \n', response.data);
+    resolve(response.data);
   })
   .catch((error) => {
     console.log('FAILED: Send slack webhook', error);
