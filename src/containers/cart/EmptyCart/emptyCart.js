@@ -2,6 +2,8 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { browserHistory } from 'react-router';
 
+const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+
 export default function EmptyCart() {
   return (
     <div className="empty-cart-main">
@@ -13,7 +15,7 @@ export default function EmptyCart() {
       </div>
       <div className="empty-cart-oops-msg" />
       <div className="empty-cart-shopping-btn">
-        <button className="sweep-right" onClick={() => browserHistory.push('/juices')}>Start Shopping</button>
+        <button className="sweep-right" onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}>Start Shopping</button>
       </div>
     </div>
   );

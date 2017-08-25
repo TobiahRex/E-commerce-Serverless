@@ -18,6 +18,7 @@ const query = new GraphQLObjectType({
     FetchMultipleProducts: ProductTypes.queries.FetchMultipleProducts,
     FetchSquareLocations: Transaction.queries.FetchSquareLocations,
     FetchSagawa: Sagawa.queries.FetchSagawa,
+    FetchTrackingInfo: Sagawa.queries.FetchTrackingInfo,
   }),
 });
 

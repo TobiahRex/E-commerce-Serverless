@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import NavBob from './navBob';
 
+const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+
 function HomepageHeader({ height, mobile }) {
   let navBob;
   if (mobile) {
@@ -19,7 +21,7 @@ function HomepageHeader({ height, mobile }) {
             <h1 className="msg__title">Fastest Nicotine e-Juice Delivery In Japan</h1>
             <h1 className="msg__subtitle">Guaranteed!</h1>
           </div>
-          <button className="header__cta primary-button shutter-out-horizontal" onClick={() => browserHistory.push('/juices')}>
+          <button className="header__cta primary-button shutter-out-horizontal" onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}>
             Buy Now
           </button>
         </div>

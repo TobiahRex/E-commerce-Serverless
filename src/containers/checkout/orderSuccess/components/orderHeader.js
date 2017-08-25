@@ -16,17 +16,17 @@ function OrderHeader({
         <p>Invoice #: {invoiceId}</p>
       </div>
       <div className="header--status">
-        <h3>{'<Shipping Status>'}</h3>
+        <h3>{status}</h3>
       </div>
       <div className="header--info">
+        <div className="header__price">
+          <p>
+            Total Paid: <FontAwesome name="usd" />{'\u00A0'}{paidTotal}
+          </p>
+        </div>
         <div className="header__tracking">
           <p>Tracking #: {trackingId}</p>
           <p>Order #: {orderId}</p>
-        </div>
-        <div className="header__price">
-          <p>
-            Price: <FontAwesome name="usd" />{'\u00A0'}{paidTotal}
-          </p>
         </div>
       </div>
     </div>

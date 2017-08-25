@@ -20,9 +20,23 @@ import {
 
 import {
   arrayDeepEquality as ArrayDeepEquality,
+  zipArrays as ZipArrays,
 } from '../utilities.imports';
 
 class OrderSuccess extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: props.sagawaInfo.loading,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) {
+      this.setState({ loading: nextProps.sagawaInfo.loading });
+    }
+  }
 
   shouldComponentUpdate(nextProps) {
     /**
@@ -37,8 +51,7 @@ class OrderSuccess extends React.Component {
 
     if (
       !_.isEqual(nextProps, this.props) ||
-      !ArrayDeepEquality(nextProps.userCart, this.props.products) ||
-      !_.isEqual(nextProps, this.props)
+      !ArrayDeepEquality(nextProps.userCart, this.props.products)
     ) return true;
 
     // if (!_.isEqual(nextState, this.state)) return true;
@@ -49,6 +62,8 @@ class OrderSuccess extends React.Component {
   routeChange = e => this.props.push(e.target.dataset.slug)
 
   renderBody = (props) => {
+    console.log('%cprops', 'background:cyan;', props);
+
     const {
       products: {
         FetchMultipleProducts: products,
@@ -56,7 +71,8 @@ class OrderSuccess extends React.Component {
       transactionInfo: {
         _id: transactionId,
         date,
-        comments,
+        shippingStatus,
+        // comments,
         // termsAgreement,
         // user,
         emailAddress,
@@ -89,7 +105,6 @@ class OrderSuccess extends React.Component {
           _id: sagawaId,
           // userId,
           // transactionId,
-          // status,
           // uploadForm,
           shippingAddress: {
             referenceId,
@@ -105,6 +120,9 @@ class OrderSuccess extends React.Component {
         },
       },
     } = props;
+
+    const zippedProducts = ZipArrays(this.props.transactionInfo.products, products, ({ qty }, dbProduct) => ({ qty, ...dbProduct }));
+
     return (
       <div className="ordered--main">
         <div className="ordered--container">
@@ -114,71 +132,71 @@ class OrderSuccess extends React.Component {
             </div>
             <div className="title--msg">
               <h1>Your order has been successfully placed!</h1>
-              <h4>The invoice shown below has been sent to your email.</h4>
+              <h4>The invoice shown below has been sent to your email:</h4>
+              <h4>{emailAddress}</h4>
             </div>
           </div>
 
           <OrderHeader
             date={date}
+            status={shippingStatus}
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
             paidTotal={chargedAmount}
           />
-        </div>
-        <div className="ordered__addresses">
-          <ShipTo
-            fullName={customerName}
-            jpAddress1={jpaddress1}
-            jpAddress2={jpaddress2}
-            city={shippingCity}
-            prefecture={shippingPrefecture}
-            postalCode={postal}
-            country={'Japan'}
-            phone={phoneNumber}
+          <div className="ordered__addresses">
+            <ShipTo
+              fullName={customerName}
+              jpAddress1={jpaddress1}
+              jpAddress2={jpaddress2}
+              city={shippingCity}
+              prefecture={shippingPrefecture}
+              postalCode={postal}
+              country={'Japan'}
+              phoneNumber={phoneNumber}
+            />
+            <BillTo
+              nameOnCard={nameOnCard}
+              billingPostalCode={postalCode}
+              billingCountry={billingCountry}
+              ccLastFour={last4}
+            />
+          </div>
+          <OrderSummary
+            shippingStatus={`Shipping on ${shipdate}`}
+            trackingId={referenceId}
+            orderProducts={zippedProducts}
+            grandTotal={chargedAmount}
+            subTotal={subTotal}
+            taxes={taxes}
+            discount={discount}
+            jpyFxRate={jpyFxRate}
           />
-          <BillTo
-            nameOnCard={nameOnCard}
-            billingPostalCode={postalCode}
-            billingCountry={billingCountry}
-            ccLastFour={last4}
-          />
-        </div>
-        <OrderSummary
-          shippingStatus={`Shipping on ${shipdate}`}
-          trackingId={referenceId}
-          orderProducts={products}
-          grandTotal={chargedAmount}
-          comments={comments}
-          subTotal={subTotal}
-          taxes={taxes}
-          discount={discount}
-          emailAddress={emailAddress}
-          jpyFxRate={jpyFxRate}
-        />
-        <div className="ordered__action-btns">
-          <button
-            className="back-to-home sweep-right primary-flex-button"
-            data-slug="/"
-            onClick={this.routeChange}
-          >
-            <span className="flex-btn-parent">
-              <FontAwesome name="angle-double-left" />
-              {'\u00A0'}Back To Homepage
-            </span>
-          </button>
+          <div className="ordered__action-btns">
+            <button
+              className="back-to-home sweep-right primary-flex-button"
+              data-slug="/"
+              onClick={this.routeChange}
+            >
+              <span className="flex-btn-parent">
+                <FontAwesome name="angle-double-left" />
+                {'\u00A0'}Back To Homepage
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   render() {
-    console.log('this.props: ', this.props);
-
+    console.log('%cthis.props', 'background:lime;', this.props);
+    console.log('%cthis.state.loading', 'background:red;', this.state.loading);
     return (
       <div>
         {
-          this.props.sagawaInfo.loading ?
+          this.state.loading ?
             <h1 className="main__loading">
               <FontAwesome name="spinner" pulse size="3x" />
               <br />
@@ -210,8 +228,11 @@ const OrderSuccessWithState = compose(
   }),
 )(OrderSuccess);
 
-const OrderSuccessWithStateAndData = connect(({ orders }) => ({
-  transactionInfo: orders.transaction,
+const OrderSuccessWithStateAndData = connect(({ checkout }) => ({
+  transactionInfo: checkout.transaction || {
+    products: [{ _id: '' }],
+    sagawa: '',
+  },
 }), dispatch => ({
   push: location => dispatch(push(location)),
 }))(OrderSuccessWithState);
@@ -230,6 +251,7 @@ OrderSuccess.propTypes = {
     emailAddress: string,
     invoiceEmailNoTracking: string,
     jpyFxRate: string,
+    shippingStatus: string,
     total: shape({
       subTotal: string,
       taxes: string,
@@ -261,7 +283,6 @@ OrderSuccess.propTypes = {
     _id: string,
     userId: string,
     transactionId: string,
-    status: string,
     uploadForm: string,
     shippingAddress: shape({
       referenceId: string,
@@ -287,6 +308,11 @@ OrderSuccess.propTypes = {
 OrderSuccess.defaultProps = {
   products: [],
   sagawaInfo: {},
-  transactionInfo: {},
+  transactionInfo: {
+    products: [{
+      _id: '',
+    }],
+    sagawa: '',
+  },
 };
 export default OrderSuccessWithStateAndData;

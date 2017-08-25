@@ -20,7 +20,7 @@ const parseAuthHash = (nextState) => {
 };
 const errorLoading = (error) => {
   throw new Error(`Dynamic page loading failed.
-  ERROR: ${error}`);
+  ERROR: ${error.message}`);
 };
 const loadRoute = cb => module => cb(null, module.default);
 
@@ -41,5 +41,6 @@ export default (
     {Routes.UserDashboardRoutes(requireAuth)}
     {Routes.AdminDashboardRoutes(requireAuth)}
     {Routes.NotFoundRoute()}
+    {Routes.TrackingRoute()}
   </Route>
 );

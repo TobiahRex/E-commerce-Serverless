@@ -32,7 +32,7 @@ class NavbarNavsJuicesDropdnMidthird extends Component {
       <div className="shop-dropdown-content-midThird">
         <div className="shop-dropdown-content-midThird-title">
           <h2>
-            <i>Switch Juice</i>
+            <i className="required">Choose A Flavor!</i>
           </h2>
         </div>
         <div className="shop-dropdown-content-midThird-juices">
