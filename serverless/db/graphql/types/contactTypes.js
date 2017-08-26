@@ -75,7 +75,7 @@ const mutations = {
         type: StringType
       },
     },
-    resolve: (_, args, { Contact }) => Contact.sendSupportMailAndNotifySlack(args),
+    resolve: (_, args, { Contact, Email }) => Contact.sendSupportMailAndNotifySlack(args, Email),
   },
 }
 
