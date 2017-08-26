@@ -43,6 +43,8 @@ new Promise((resolve, reject) => {
 */
 userSchema.statics.loginOrRegister = args =>
 new Promise((resolve, reject) => {
+  console.log('\n\nUser.loginOrRegister\n');
+
   const auth0Id = args.auth0Id;
   const loginType = args.loginType;
   delete args.auth0Id;
@@ -377,16 +379,38 @@ new Promise((resolve, reject) => {
 */
 userSchema.statics.editToMemberCart = ({ userId, products }) =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@User.editToMemberCart\n');
+
   User
   .findById(userId)
   .exec()
   .then((dbUser) => {
+    const promiseArray = [];
+    [...products, ...dbUser.shopping.cart]
+    .map(({ productId }) => productId)
+    .map((productId, i, array) => {
+      if (array.slice(i).includes(productId)) return productId;
+      return '';
+    })
+    .forEach((productId) => {
+      promiseArray.push(
+        Product.findByIdAndUpdate(productId, {
+          $inc: {
+            'product.quantities.inCarts': -1,
+            'product.quantities.available': 1,
+          },
+        }, { new: true }).exec());
+    });
+
     dbUser.shopping.cart = products;
-    return dbUser.save({ validateBeforeSave: true });
+    return Promise.all([
+      dbUser.save({ validateBeforeSave: true }),
+      ...promiseArray,
+    ]);
   })
-  .then((updatedUser) => {
-    console.log('Updated user shopping cart!: ', updatedUser.shopping.cart);
-    resolve(updatedUser);
+  .then((results) => {
+    console.log('SUCCEEDED: Updated user shopping cart!: ', results[0].shopping.cart);
+    resolve(results[0]);
   })
   .catch((error) => {
     console.log(`Could not Update User: ${userId}. ERROR = ${error}`);
