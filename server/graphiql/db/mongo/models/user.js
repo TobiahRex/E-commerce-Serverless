@@ -174,9 +174,13 @@ new Promise((resolve, reject) => {
     return Promise.all([
       dbUser.save({ validateBeforeSave: true }),
       Product.findByIdAndUpdate(product, {
-        $inc: { 'product.quantities.inCarts': 1 },
-        $inc: { 'product.quantities.available': -1 },
-        $inc: { 'product.statistics.addsToCart': 1 },
+        $set: {
+          $inc: {
+            'product.quantities.inCarts': 1,
+            'product.quantities.available': -1,
+            'product.statistics.addsToCart': 1,
+          },
+        },
       }),
     ]);
     /* eslint-enable no-dupe-keys */

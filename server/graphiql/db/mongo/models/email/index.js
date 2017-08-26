@@ -22,9 +22,6 @@ AWS.config.update({
   accessKeyId,
   secretAccessKey,
   region,
-  // accessKeyId: config.aws.accessKeyId,
-  // secretAccessKey: config.aws.secretAccessKey,
-  // region: config.aws.sesEmailRegion,
 });
 
 const ses = new AWS.SES();
@@ -39,6 +36,8 @@ const ses = new AWS.SES();
 */
 emailSchema.statics.createEmail = fields =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Email.createEmail\n');
+
   const {
     type,
     purpose,
@@ -98,7 +97,9 @@ new Promise((resolve, reject) => {
       console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
 
       const foundEmail = dbEmails
-      .filter(dbEmail => (dbEmail.type === type) && (dbEmail.language === reqLanguage))[0];
+      .filter(dbEmail =>
+        (dbEmail.type === type) && (dbEmail.language === reqLanguage),
+      )[0];
 
       if (!foundEmail) {
         console.log('FAILED: Filter email results array.');
@@ -111,7 +112,7 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log(`Error while trying to find any emails with "type" = ${type}.  ERROR = ${error}`);
-      return reject(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `);
+      return reject(new Error(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `));
     });
   }
 });
@@ -135,7 +136,7 @@ new Promise((resolve, reject) => {
 
   if (!isEmail(to)) {
     console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-    return reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+    return reject(new Error(`FAILED: Send SES Email:"${to}" is not a valid email.  `));
   }
 
   const emailRequest = {
@@ -196,40 +197,42 @@ new Promise((resolve, reject) => {
 * @return {object} - Promise: resolved - updated email.
 */
 emailSchema.statics.findSentEmailAndUpdate = (msgId, status) =>
-new Promise((resolve, reject) => {
+new Promise((resolve, reject) => { //eslint-disable-line
   console.log('\n\n@Email.findSentEmailAndUpdate\n');
 
-  if (!msgId || !status) return reject(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
+  if (!msgId || !status) {
+    reject(new Error(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `));
+  } else {
+    console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
 
-  console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
+    return Email.findOne({ 'sentEmails.messageId': msgId })
+    .exec()
+    .then((dbEmail) => {
+      if (!dbEmail) {
+        console.log('Could not find any Sent emails with MessageId: ', msgId);
+        return reject(new Error(`Could not find sent email with id# ${msgId}.`));
+      }
+      console.log('\nFound Email with MessageID: ', msgId);
 
-  return Email.findOne({ 'sentEmails.messageId': msgId })
-  .exec()
-  .then((dbEmail) => {
-    if (!dbEmail) {
-      console.log('Could not find any Sent emails with MessageId: ', msgId);
-      return reject(`Could not find sent email with id# ${msgId}.  `);
-    }
-    console.log('\nFound Email with MessageID: ', msgId);
+      const emailsToSave = dbEmail.sentEmails
+      .filter(sent => sent.messageId !== msgId);
 
-    const emailsToSave = dbEmail.sentEmails
-    .filter(sent => sent.messageId !== msgId);
-
-    dbEmail.sentEmails = [...emailsToSave, {
-      messageId: msgId,
-      sesStatus: status,
-    }];
-    console.log('\nSaving updated Email status...  ');
-    return dbEmail.save({ new: true });
-  })
-  .then((updatedEmail) => {
-    console.log('Updated sent emails for Email _id: ', updatedEmail._id);
-    return resolve(updatedEmail);
-  })
-  .catch((error) => {
-    console.log(`Query was unsuccessful.  ERROR = ${error}`);
-    return reject(`Query was unsuccessful.  ERROR = ${error}`);
-  });
+      dbEmail.sentEmails = [...emailsToSave, {
+        messageId: msgId,
+        sesStatus: status,
+      }];
+      console.log('\nSaving updated Email status...  ');
+      return dbEmail.save({ new: true });
+    })
+    .then((updatedEmail) => {
+      console.log('Updated sent emails for Email _id: ', updatedEmail._id);
+      return resolve(updatedEmail);
+    })
+    .catch((error) => {
+      console.log(`Query was unsuccessful.  ERROR = ${error}`);
+      return reject(new Error(`Query was unsuccessful.  ERROR = ${error}`));
+    });
+  }
 });
 
 /**
@@ -329,7 +332,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('Could not create invoice email: ', error);
-    reject(`Could not create invoice email: ${error}`);
+    reject(new Error(`Could not create invoice email: ${error}`));
   });
 });
 /**

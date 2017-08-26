@@ -44,7 +44,7 @@ const rootType = new ObjectType({
       description: 'A reference ID to the Transaction Document that is mapped to this information.',
       type: MongoId,
     },
-    uploadStatus: {
+    status: {
       description: 'A status identifying if the order has been uploaded to Sagawa.',
       type: StringType,
     },
@@ -143,7 +143,104 @@ const mutationTypes = {
   }),
 };
 
-const queries = {};
+const queryTypes = {
+  FetchTrackingInfo: new ObjectType({
+    name: 'SagawaFetchTrackingInfo',
+    fields: () => ({
+      error: {
+        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+        type: new NonNull(
+          new ObjectType({
+            name: 'SagawaFetchTrackingInfoError',
+            fields: () => ({
+              hard: {
+                description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+                type: BoolType,
+              },
+              soft: {
+                description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+                type: BoolType,
+              },
+              message: {
+                description: 'Amplifying information about error.  Should be written for user readibility.',
+                type: StringType,
+              },
+            }),
+          }),
+        ),
+      },
+      shipDate: {
+        description: 'The day the order was first shipped.',
+        type: StringType,
+      },
+      orderStatus: {
+        description: 'The current status of the order.',
+        type: StringType,
+      },
+      trackingNumber: {
+        description: 'The tracking number.',
+        type: StringType,
+      },
+      userName: {
+        description: 'The name of the user who purchased the goods.',
+        type: StringType,
+      },
+      orderId: {
+        description: 'The Mongo ID of the transaction.',
+        type: StringType,
+      },
+      totalPaid: {
+        description: 'The total amount paid for the transaction.',
+        type: StringType,
+      },
+      trackingInfo: {
+        description: 'An object of tracking information.',
+        type: new ListType(
+          new ObjectType({
+            name: 'FetchTrackingInfoEnum',
+            fields: () => ({
+              location: {
+                description: 'The location of the currenty activity.',
+                type: StringType,
+              },
+              date: {
+                description: 'The date of the activity.',
+                type: StringType,
+              },
+              activity: {
+                description: 'The description of the activity.',
+                type: StringType,
+              },
+            }),
+          }),
+        ),
+      },
+    }),
+  }),
+};
+
+const queries = {
+  FetchSagawa: {
+    type: rootType,
+    args: {
+      id: {
+        description: 'The Mongo ID of the Sagawa Document to fetch.',
+        type: new NonNull(MongoId),
+      },
+    },
+    resolve: (_, { id }, { Sagawa }) => Sagawa.findById(id),
+  },
+  FetchTrackingInfo: {
+    type: queryTypes.FetchTrackingInfo,
+    args: {
+      token: {
+        description: 'The token needed for retrieving tracking information.',
+        type: new NonNull(StringType),
+      },
+    },
+    resolve: (_, { token }, { Sagawa, User, Transaction }) => Sagawa.FetchTrackingInfo(token, User, Transaction),
+  },
+};
 
 const mutations = {
   ValidatePostal: {

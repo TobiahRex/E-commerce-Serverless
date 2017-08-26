@@ -1,6 +1,8 @@
+/* eslint-disable no-console, no-loop-func */
 export default function getMhTransactionTagsApi({
   cart,
   language,
+  subscribed,
   total: {
     discount: {
       qty,
@@ -10,26 +12,29 @@ export default function getMhTransactionTagsApi({
 }) {
   const tags = [`!${language}`];
 
-  if (qty) tags.push('!Discount_qty');
-  if (register) tags.push('!Discount_register');
+  if (subscribed) {
+    tags.push('!subscribed');
+  } else {
+    tags.push('!not_subscribed');
+  }
+  if (qty) tags.push('!discount_qty');
+  if (register) tags.push('!discount_register');
 
   const productTags = cart.reduce((acc, next) => {
     let qtyCounter = next.qty;
     const flavorTags = [];
     while (qtyCounter--) { //eslint-disable-line
-      const vendor = next.product.vendor.replace(/(\sJuice)/g, 'juice');
-      const productName = next.product.flavor.split(' ').reduce((a, n) => {
-        a += n.toUpperCase();
-        return a;
-      }, '');
+      const vendor = next.product.vendor.replace(/(Vape Switch)+/ig, 'vape-switch');
+      const productName = next.product.flavor;
       const strength = `${next.product.nicotineStrength}mg`;
-      flavorTags.push(`${vendor}_${productName}_${strength}`);
+      flavorTags.push(`$${vendor}_${productName}_${strength}`);
     }
 
     acc = [...acc, ...flavorTags];
 
     return acc;
   }, []);
-
-  return [...tags, ...productTags];
+  const result = [...tags, ...productTags];
+  console.log('MARKET HERO TAGS: ', result);
+  return result;
 }

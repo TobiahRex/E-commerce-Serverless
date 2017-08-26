@@ -138,8 +138,6 @@ new Promise((resolve, reject) => {
     },
   )
   .then((response) => { //eslint-disable-line
-    console.log('SQUARE STATUS: ', response.status);
-    console.log('response.status === 200: ', response.status === 200);
     if (response.status !== 200) {
       resolve({ status: response.status });
     } else {
@@ -329,7 +327,7 @@ new Promise((resolve, reject) => {
           sagawa: results[2]._doc,
           language,
           transaction: newTransactionDoc,
-        }),
+        }, Transaction),
         MarketHero[marketHeroOp]({
           lead,
           tags: GetMhTransactionTagsMongo({
@@ -417,15 +415,16 @@ new Promise((resolve, reject) => {
       cartProducts.forEach((productDoc) => {
         const {
           _id,
-          product,
           statistics,
         } = productDoc;
 
         Product.findByIdAndUpdate(_id, {
           $set: {
-            'product.quantities.inCarts': product.quantities.inCarts -= 1,
-            'product.quantities.purchased': product.quantities.inCarts += 1,
-            'statistics.completedCheckouts': statistics.completedCheckouts += 1,
+            $inc: {
+              'product.quantities.inCarts': -1,
+              'product.quantities.purchased': 1,
+              'statistics.completedCheckouts': 1,
+            },
             'statistics.transactions': [...statistics.transactions, {
               transactionId: newTransactionDoc._id,
               userId,

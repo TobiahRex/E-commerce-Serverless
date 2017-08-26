@@ -2,10 +2,10 @@ import {
   GraphQLID as MongoId,
   GraphQLInt as IntType,
   GraphQLList as ListType,
-  GraphQLEnumType as EnumType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
+  GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
   GraphQLInputObjectType as InputObject,
 } from 'graphql';
@@ -63,6 +63,10 @@ const rootType = new ObjectType({
             description: 'The unique code for the product.',
             type: StringType,
           },
+          upc: {
+            description: 'The unique product code for the product.',
+            type: StringType,
+          },
           size: {
             description: 'The available sizes for the product.',
             type: new EnumType({
@@ -89,9 +93,17 @@ const rootType = new ObjectType({
             type: new EnumType({
               name: 'ProductNicotineStrengthsEnum',
               values: {
+                zero: {
+                  value: 0,
+                  description: '0mg of Nicotine.',
+                },
                 two: {
                   value: 2,
                   description: '2mg of Nicotine.',
+                },
+                three: {
+                  value: 3,
+                  description: '3mg of Nicotine.',
                 },
                 four: {
                   value: 4,
@@ -316,7 +328,6 @@ const queries = {
     resolve: (_, { qty }, { Product }) => Product.getPopularProducts(qty),
   },
 };
-
 export const inputTypes = {
   product: {
     fields: uniqueName => ({
@@ -473,7 +484,6 @@ export const inputTypes = {
     }),
   },
 };
-
 const mutations = {
   CreateProduct: { // This is only used from GraphiQL to seed database.
     type: rootType,
