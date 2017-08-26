@@ -70,15 +70,20 @@ new Promise((resolve, reject) => {
 * @return {object} - Promise resolved with updates User Document.
 */
 userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
-new Promise((resolve) => {
+new Promise((resolve, reject) => {
   console.log('Found Existing User.\n');
+
+  let userDoc = {};
+
   dbUser.authentication.totalLogins += 1;
   dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
   dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
   dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
 
-  const savedOldCart = [...dbUser.shopping.cart];
-  const newCart = [...savedOldCart, ...userObj.shoppingCart];
+  const oldProducts = [...dbUser.shopping.cart];
+  const newProducts = [...userObj.shoppingCart];
+  const newCart = [...oldProducts, ...newProducts];
+  let updateNewProducts = false;
 
   if (!!newCart.length) {
     const newQty = newCart.reduce((accum, next) => (accum += next.qty), 0);
@@ -88,12 +93,54 @@ new Promise((resolve) => {
       dbUser.error.hard = false;
       dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
     } else {
+      updateNewProducts = true;
       dbUser.shopping.cart = [...newCart];
     }
   }
-
   dbUser.save({ validateBeforeSave: true })
-  .then(resolve);
+  .then((updatedUser) => {  //eslint-disable-line
+    if (!updatedUser) {
+      console.log('FAILED: Login User and Save.');
+
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'Unable to login at this time.',
+        },
+      });
+    } else {
+      console.log('SUCCEEDED: Login User and Save.');
+      userDoc = updatedUser;
+
+      const promiseArray = [];
+
+      if (!updateNewProducts) {
+        resolve(userDoc);
+      } else {
+        newProducts.forEach(({ productId }) => {
+          promiseArray.push(
+            Product.findByIdAndUpdate(productId, {
+              $inc: {
+                'product.quantities.inCarts': 1,
+                'product.quantities.available': -1,
+                'product.statistics.addsToCart': 1,
+              },
+            }, { new: true }),
+          );
+        });
+        return Promise.all([...promiseArray]);
+      }
+    }
+  })
+  .then(() => {
+    console.log('SUCCEEDED: Update stats of new Products in Users cart.');
+    resolve(userDoc);
+  })
+  .catch((error) => {
+    console.log('FAILED: Login User.', error);
+    reject(new Error('FAILED: Login User'));
+  });
 });
 
 /**
@@ -174,12 +221,10 @@ new Promise((resolve, reject) => {
     return Promise.all([
       dbUser.save({ validateBeforeSave: true }),
       Product.findByIdAndUpdate(product, {
-        $set: {
-          $inc: {
-            'product.quantities.inCarts': 1,
-            'product.quantities.available': -1,
-            'product.statistics.addsToCart': 1,
-          },
+        $inc: {
+          'product.quantities.inCarts': 1,
+          'product.quantities.available': -1,
+          'product.statistics.addsToCart': 1,
         },
       }),
     ]);
