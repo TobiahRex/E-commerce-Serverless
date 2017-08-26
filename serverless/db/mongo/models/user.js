@@ -1,6 +1,9 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
+import {
+  zipArrays as ZipArrays,
+} from './helpers';
 
 export default (db) => {
   /**
@@ -42,7 +45,7 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User document.
   */
-  userSchema.statics.loginOrRegister = args =>
+  userSchema.statics.loginOrRegister = (args, Product) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@User.loginOrRegister\n');
 
@@ -55,8 +58,8 @@ export default (db) => {
     .findOne({ 'authentication.auth0Identities.user_id': auth0Id })
     .exec()
     .then((dbUser) => {
-      if (!dbUser) return User.registerUser(args);
-      return User.loginUser(loginType, dbUser, args);
+      if (!dbUser) return User.registerUser(args, Product);
+      return User.loginUser(loginType, dbUser, args, Product);
     })
     .then(resolve)
     .catch(error => reject({ problem: error }));
@@ -72,33 +75,80 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updates User Document.
   */
-  userSchema.statics.loginUser = (loginType, dbUser, userObj) =>
-  new Promise((resolve) => {
+  userSchema.statics.loginUser = (loginType, dbUser, userObj, Product) =>
+  new Promise((resolve, reject) => {
     console.log('\n\n@User.loginUser\n');
 
-    console.log('Found Existing User.\n');
+    let userDoc = {};
+
     dbUser.authentication.totalLogins += 1;
     dbUser.authentication.logins.push(userObj.authenticationLogins.pop());
     dbUser.contactInfo.location = { ...userObj.contactInfoLocation };
     dbUser.socialProfileBlob[loginType] = userObj.socialProfileBlob[loginType];
 
-    const savedOldCart = [...dbUser.shopping.cart];
-    const newCart = [...savedOldCart, ...userObj.shoppingCart];
+    const oldProducts = [...dbUser.shopping.cart];
+    const newProducts = [...userObj.shoppingCart];
+    const newCart = [...oldProducts, ...newProducts];
+    let updateNewProducts = false;
 
     if (!!newCart.length) {
       const newQty = newCart.reduce((accum, next) => (accum += next.qty), 0);
 
       if (newQty > 4) {
-        dbUser.error.soft = true;
-        dbUser.error.hard = false;
-        dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+        dbUser.error = {
+          hard: false,
+          soft: true,
+          message: 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂',
+        };
       } else {
+        updateNewProducts = true;
         dbUser.shopping.cart = [...newCart];
       }
     }
-
     dbUser.save({ validateBeforeSave: true })
-    .then(resolve);
+    .then((updatedUser) => {  //eslint-disable-line
+      if (!updatedUser) {
+        console.log('FAILED: Login User and Save.');
+
+        resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'Unable to login at this time.',
+          },
+        });
+      } else {
+        console.log('SUCCEEDED: Login User and Save.');
+        userDoc = updatedUser;
+
+        const promiseArray = [];
+
+        if (!updateNewProducts) {
+          resolve(userDoc);
+        } else {
+          newProducts.forEach(({ productId }) => {
+            promiseArray.push(
+              Product.findByIdAndUpdate(productId, {
+                $inc: {
+                  'product.quantities.inCarts': 1,
+                  'product.quantities.available': -1,
+                  'product.statistics.addsToCart': 1,
+                },
+              }, { new: true }).exec(),
+            );
+          });
+          return Promise.all([...promiseArray]);
+        }
+      }
+    })
+    .then((results) => {
+      console.log('SUCCEEDED: Update stats of new Products in Users cart: \n', results);
+      resolve(userDoc);
+    })
+    .catch((error) => {
+      console.log('FAILED: Login User.', error);
+      reject(new Error('FAILED: Login User'));
+    });
   });
 
   /**
@@ -109,9 +159,11 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with new User Document.
   */
-  userSchema.statics.registerUser = userObj =>
+  userSchema.statics.registerUser = (userObj, Product) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@User.registerUser\n');
+    console.log('\n\nUser.registerUser');
+
+    let userDoc = {};
 
     const {
       name,
@@ -155,7 +207,26 @@ export default (db) => {
     }, cb))
     .then((newUser) => {
       console.log('\nNew User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
-      resolve(newUser);
+
+      userDoc = newUser;
+
+      const promiseArray = [];
+      shoppingCart.forEach(({ productId }) => {
+        promiseArray.push(
+          Product.findByIdAndUpdate(productId, {
+            $inc: {
+              'product.quantities.inCarts': 1,
+              'product.quantities.available': -1,
+              'product.statistics.addsToCart': 1,
+            },
+          }, { new: true }).exec(),
+        );
+      });
+      return Promise.all([...promiseArray]);
+    })
+    .then((results) => {
+      console.log('SUCCEEDED: Updated Product in the users cart: ', results);
+      resolve(userDoc);
     })
     .catch(reject);
   });
@@ -183,9 +254,11 @@ export default (db) => {
       return Promise.all([
         dbUser.save({ validateBeforeSave: true }),
         Product.findByIdAndUpdate(product, {
-          $inc: { 'product.quantities.inCarts': 1 },
-          $inc: { 'product.quantities.available': -1 },
-          $inc: { 'product.statistics.addsToCart': 1 },
+          $inc: {
+            'product.quantities.inCarts': 1,
+            'product.quantities.available': -1,
+            'product.statistics.addsToCart': 1,
+          },
         }),
       ]);
       /* eslint-enable no-dupe-keys */
@@ -226,21 +299,30 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updated User Document.
   */
-  userSchema.statics.deleteFromCart = ({ userId, productId }) =>
+  userSchema.statics.deleteFromCart = ({ userId, productId }, Product) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@User.deleteFromCart\n');
+    console.log('\n\nUser.deleteFromCart\n');
 
     User.findById(userId)
     .exec()
     .then((dbUser) => {
       dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.product) !== String(productId));
-      return dbUser.save({ validateBeforeSave: true });
+
+      return Promise.all([
+        dbUser.save({ validateBeforeSave: true }),
+        Product.findByIdAndUpdate(productId, {
+          $inc: {
+            'product.quantities.inCarts': -1,
+            'product.quantities.available': 1,
+          },
+        }, { new: true }).exec(),
+      ]);
     })
-    .then((savedUser) => {
+    .then((results) => {
       console.log(`
-        Deleted Product: ${productId} from User: ${savedUser._id}.
+        Deleted Product: ${productId} from User: ${results[0]._id}.
       `);
-      resolve(savedUser);
+      resolve(results[0]);
     })
     .catch((error) => {
       console.log(`Could not Delete Product: ${productId} from User: ${userId}. ERROR = ${error}`);
@@ -259,15 +341,28 @@ export default (db) => {
   *
   * @return {object} userDocument - Promise resolved with updates to User Document.
   */
-  userSchema.statics.emptyCart = ({ userId }) =>
+  userSchema.statics.emptyCart = ({ userId }, Product) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@User.emptyCart\n');
 
     User.findById(userId)
     .exec()
     .then((dbUser) => {
+      const promiseArray = [];
+      dbUser.shopping.Cart.forEach(({ productId }) => {
+        promiseArray.push(Product.findByIdAndUpdate(productId, {
+          $inc: {
+            'product.quantities.inCarts': -1,
+            'product.quantities.available': 1,
+          },
+        }, { new: true }).exec());
+      });
       dbUser.shopping.cart = [];
-      return dbUser.save({ validateBeforeSave: true });
+
+      return Promise.all([
+        dbUser.save({ validateBeforeSave: true }),
+        ...promiseArray,
+      ]);
     })
     .then((updatedUser) => {
       console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
@@ -286,7 +381,7 @@ export default (db) => {
   *
   * @return {object} - Promise resolved with updates User Document.
   */
-  userSchema.statics.editToMemberCart = ({ userId, products }) =>
+  userSchema.statics.editToMemberCart = ({ userId, products }, Product) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@User.editToMemberCart\n');
 
