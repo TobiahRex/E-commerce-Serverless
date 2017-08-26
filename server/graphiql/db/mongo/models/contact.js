@@ -27,12 +27,12 @@ contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
   let emailRequest = {
-    sourceEmail: 'support@nj2jp.com',
+    sourceEmail: 'NJ2JP Contact Us <contact@nj2jp.com>',
     toEmailAddresses: ['support@nj2jp.com'],
     replyToAddresses: [contactForm.emailAddress],
     bodyTextData: contactForm.message,
     bodyTextCharset: 'utf8',
-    subjectData: 'Customer Name: ' + contactForm.name + ' - Support Required!!',
+    subjectData: `Customer "${contactForm.name}" requires Support.`,
     subjectCharset: 'utf8'
   };
 
@@ -54,7 +54,7 @@ new Promise((resolve, reject) => {
     contactDocument.messageId = response.MessageId;
 
     slackWebhook = process.env.SLACK_CUSTOMER_WEBHOOK;
-    slackMessage = 'We have got a customer support from ' + contactForm.emailAddress + '. Log into <https://privateemail.com/appsuite/> to answer their query.'
+    slackMessage = `SUPPORT REQUESTED: from ${contactForm.emailAddress}. Log into <https://privateemail.com/appsuite/> to answer their query.`
     return Email.notifySlack(slackWebhook, slackMessage);
   })
   .then((slackResponse) => {
