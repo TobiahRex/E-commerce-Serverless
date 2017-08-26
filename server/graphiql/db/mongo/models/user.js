@@ -89,9 +89,11 @@ new Promise((resolve, reject) => {
     const newQty = newCart.reduce((accum, next) => (accum += next.qty), 0);
 
     if (newQty > 4) {
-      dbUser.error.soft = true;
-      dbUser.error.hard = false;
-      dbUser.error.msg = 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂';
+      dbUser.error = {
+        hard: false,
+        soft: true,
+        message: 'You have old items still saved in your cart from your last login.  Please purchase or delete these items before adding new ones.  Thanks for visiting us again. 🙂',
+      };
     } else {
       updateNewProducts = true;
       dbUser.shopping.cart = [...newCart];
@@ -126,15 +128,15 @@ new Promise((resolve, reject) => {
                 'product.quantities.available': -1,
                 'product.statistics.addsToCart': 1,
               },
-            }, { new: true }),
+            }, { new: true }).exec(),
           );
         });
         return Promise.all([...promiseArray]);
       }
     }
   })
-  .then(() => {
-    console.log('SUCCEEDED: Update stats of new Products in Users cart.');
+  .then((results) => {
+    console.log('SUCCEEDED: Update stats of new Products in Users cart: \n', results);
     resolve(userDoc);
   })
   .catch((error) => {
