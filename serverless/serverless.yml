@@ -118,4 +118,4 @@ functions:
           - ses:SendRawEmail
           - lambda:InvokeFunction
     events:
-      - schedule: cron(0 7 * * 1)
+      - schedule: cron(0 7 ? * MON *)

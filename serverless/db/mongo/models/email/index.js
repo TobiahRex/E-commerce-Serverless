@@ -11,6 +11,8 @@ import {
 } from './helpers';
 
 const {
+  AWS_ACCESS_KEY_ID: accessKeyId,
+  AWS_SECRET_ACCESS_KEY: secretAccessKey,
   AWS_SES_REGION: region,
 } = process.env;
 

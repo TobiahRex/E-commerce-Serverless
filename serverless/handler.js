@@ -25,9 +25,14 @@ module.exports.sagawa = (event, context) => {
   verifyDb()
   .then((dbResults) => {
     console.log('\n//MongoDb Connection Response: ', dbResults);
-    const Sagawa = dbResults.connection.models.Sagawa;
-    const Transaction = dbResults.connection.models.Transaction;
-    const Email = dbResults.connection.models.Email;
+    const {
+      Sagawa,
+      Email,
+      Transaction,
+    } = dbResults.dbModels;
+    // const Sagawa = dbResults.connection.models.Sagawa;
+    // const Transaction = dbResults.connection.models.Transaction;
+    // const Email = dbResults.connection.models.Email;
 
     return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction);
   })
