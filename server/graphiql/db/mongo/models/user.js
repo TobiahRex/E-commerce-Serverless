@@ -304,9 +304,9 @@ new Promise((resolve, reject) => {
       dbUser.save({ validateBeforeSave: true }),
       Product.findByIdAndUpdate(productId, {
         $inc: {
-          'product.quantities.inCarts': 1,
-          'product.quantities.available': -1,
-          'product.statistics.addsToCart': 1,
+          'product.quantities.inCarts': -1,
+          'product.quantities.available': 1,
+          'product.statistics.addsToCart': -1,
         },
       }, { new: true }).exec(),
     ]);
