@@ -415,15 +415,16 @@ new Promise((resolve, reject) => {
       cartProducts.forEach((productDoc) => {
         const {
           _id,
-          product,
           statistics,
         } = productDoc;
 
         Product.findByIdAndUpdate(_id, {
           $set: {
-            'product.quantities.inCarts': product.quantities.inCarts -= 1,
-            'product.quantities.purchased': product.quantities.inCarts += 1,
-            'statistics.completedCheckouts': statistics.completedCheckouts += 1,
+            $inc: {
+              'product.quantities.inCarts': -1,
+              'product.quantities.purchased': 1,
+              'statistics.completedCheckouts': 1,
+            },
             'statistics.transactions': [...statistics.transactions, {
               transactionId: newTransactionDoc._id,
               userId,
