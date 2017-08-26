@@ -349,25 +349,23 @@ new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
   .then((dbUser) => {
-    const promiseArray = [];
-    dbUser.shopping.cart.forEach(({ product: id }) => {
-      console.log('ID: ', id);
-      promiseArray.push(
-        Product.findByIdAndUpdate(id, {
-          $inc: {
-            'product.quantities.inCarts': -1,
-            'product.quantities.available': 1,
-          },
-        }, { new: true }).exec(),
-      );
+    dbUser.shopping.cart.forEach(({ product: id, qty }) => {
+      Product.findByIdAndUpdate(id, {
+        $inc: {
+          'product.quantities.inCarts': (qty * -1),
+          'product.quantities.available': (qty * 1),
+        },
+      }, { new: true })
+      .then((updatedProduct) => {
+        console.log('SUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
+      })
+      .catch((error) => {
+        console.log('FAILED: Add Old Products to Available: ', error);
+        reject(new Error('Update product quantities.'));
+      });
     });
-    console.log('PROMISE ARRAY: ', promiseArray);
-    dbUser.shopping.cart = [];
 
-    return Promise.all([
-      dbUser.save({ validateBeforeSave: true }),
-      ...promiseArray,
-    ]);
+    return dbUser.save({ validateBeforeSave: true });
   })
   .then((results) => {
     console.log(`SUCCEEDED: 1) Empty User Cart: "${results[0]._id}". 2) Update statistics for products remove from User Cart.`);

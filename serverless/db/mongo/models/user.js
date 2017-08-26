@@ -74,7 +74,7 @@ export default (db) => {
   */
   userSchema.statics.loginUser = (loginType, dbUser, userObj, Product) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@User.loginUser\n');
+    console.log('Found Existing User.\n');
 
     let userDoc = {};
 
@@ -118,29 +118,28 @@ export default (db) => {
         console.log('SUCCEEDED: Login User and Save.');
         userDoc = updatedUser;
 
-        const promiseArray = [];
-
         if (!updateNewProducts) {
           resolve(userDoc);
         } else {
-          newProducts.forEach(({ productId }) => {
-            promiseArray.push(
-              Product.findByIdAndUpdate(productId, {
-                $inc: {
-                  'product.quantities.inCarts': 1,
-                  'product.quantities.available': -1,
-                  'product.statistics.addsToCart': 1,
-                },
-              }, { new: true }).exec(),
-            );
+          newProducts.forEach(({ product: id, qty }) => {
+            Product.findByIdAndUpdate(id, {
+              $inc: {
+                'product.quantities.inCarts': (qty * 1),
+                'product.quantities.available': (qty * -1),
+                'product.statistics.addsToCart': (qty * 1),
+              },
+            }, { new: true })
+            .then((updatedProduct) => {
+              console.log('SUCCEEDED: Remove New Product from Available: ', updatedProduct.product.quantities);
+            })
+            .catch((error) => {
+              console.log('FAILED: Add Old Products to Available: ', error);
+              reject(new Error('Update product quantities.'));
+            });
           });
-          return Promise.all([...promiseArray]);
+          resolve(userDoc);
         }
       }
-    })
-    .then((results) => {
-      console.log('SUCCEEDED: Update stats of new Products in Users cart: \n', results);
-      resolve(userDoc);
     })
     .catch((error) => {
       console.log('FAILED: Login User.', error);
