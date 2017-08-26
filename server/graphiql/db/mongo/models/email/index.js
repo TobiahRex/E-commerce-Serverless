@@ -344,9 +344,9 @@ new Promise((resolve, reject) => {
 * 4) Resolve with email response.
 *
 * @param {Object} emailRequest - {
-    BccAddresses - {array} of mailIds
-    CcAddresses - {array} of mailIds
-    ToAddresses - {array} of mailIds
+    bccEmailAddresses - {array} of mailIds
+    ccEmailAddresses - {array} of mailIds
+    toEmailAddresses - {array} of mailIds
     sourceEmail - {string} from mailId (SES verified mailId)
     replyToAddresses - {array} of mailIds
     bodyHtmlData - {string} mail body html
@@ -366,57 +366,57 @@ new Promise((resolve, reject) => {
 
   if (!isEmail(emailRequest.toEmailAddresses[0])) {
     console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-    return reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-  }
-
-  if (!emailRequest.bodyHtmlData) {
-    messageBody = {
-      Text: {
-        Data: emailRequest.bodyTextData || '',
-        Charset: emailRequest.bodyTextCharset || 'utf8',
+    reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+  } else {
+    if (!emailRequest.bodyHtmlData) {
+      messageBody = {
+        Text: {
+          Data: emailRequest.bodyTextData || '',
+          Charset: emailRequest.bodyTextCharset || 'utf8',
+        }
+      }
+    } else {
+      messageBody = {
+        Html: {
+          Data: emailRequest.bodyHtmlData || '',
+          Charset: emailRequest.bodyHtmlCharset || 'utf8',
+        },
+        Text: {
+          Data: emailRequest.bodyTextData || '',
+          Charset: emailRequest.bodyTextCharset || 'utf8',
+        },
       }
     }
-  } else {
-    messageBody = {
-      Html: {
-        Data: emailRequest.bodyHtmlData || '',
-        Charset: emailRequest.bodyHtmlCharset || 'utf8',
+
+    const sesEmailRequest = {
+      Destination: {
+        BccAddresses: emailRequest.bccEmailAddresses || [],
+        CcAddresses: emailRequest.ccEmailAddresses || [],
+        ToAddresses: emailRequest.toEmailAddresses,
       },
-      Text: {
-        Data: emailRequest.bodyTextData || '',
-        Charset: emailRequest.bodyTextCharset || 'utf8',
+      Source: emailRequest.sourceEmail,
+      ReplyToAddresses: emailRequest.replyToAddresses || [],
+      Message: {
+        Body: messageBody,
+        Subject: {
+          Data: emailRequest.subjectData || '',
+          Charset: emailRequest.subjectCharset || 'utf8',
+        },
       },
-    }
+    };
+    console.log('\nSending AWS ses email...');
+
+    return bbPromise
+    .fromCallback(cb => ses.sendEmail(sesEmailRequest, cb))
+    .then((data) => {
+      console.log('SUCCEEDED: Send SES email: \n', data);
+      resolve(data);
+    })
+    .catch((error) => {
+      console.log('FAILED: Send SES Email', error);
+      reject(new Error('FAILED: Send SES Email'));
+    });
   }
-
-  const sesEmailRequest = {
-    Destination: {
-      BccAddresses: emailRequest.bccEmailAddresses || [],
-      CcAddresses: emailRequest.ccEmailAddresses || [],
-      ToAddresses: emailRequest.toEmailAddresses,
-    },
-    Source: emailRequest.sourceEmail,
-    ReplyToAddresses: emailRequest.replyToAddresses || [],
-    Message: {
-      Body: messageBody,
-      Subject: {
-        Data: emailRequest.subjectData || '',
-        Charset: emailRequest.subjectCharset || 'utf8',
-      },
-    },
-  };
-  console.log('\nSending AWS ses email...');
-
-  return bbPromise
-  .fromCallback(cb => ses.sendEmail(sesEmailRequest, cb))
-  .then((data) => {
-    console.log('SUCCEEDED: Send SES email: \n', data);
-    resolve(data);
-  })
-  .catch((error) => {
-    console.log('FAILED: Send SES Email', error);
-    reject(new Error('FAILED: Send SES Email'));
-  });
 });
 /**
 * Function: notifySlack
