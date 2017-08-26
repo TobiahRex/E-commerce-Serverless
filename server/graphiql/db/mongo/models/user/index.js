@@ -60,7 +60,6 @@ new Promise((resolve, reject) => {
   .then(resolve)
   .catch(error => reject({ problem: error }));
 });
-
 /**
 * 1) Modifies dbUser document values based on new successful login and saves result.
 * 2) Resolves || Rejects with result.
@@ -367,9 +366,9 @@ new Promise((resolve, reject) => {
 
     return dbUser.save({ validateBeforeSave: true });
   })
-  .then((results) => {
-    console.log(`SUCCEEDED: 1) Empty User Cart: "${results[0]._id}". 2) Update statistics for products remove from User Cart.`);
-    resolve(results[0]);
+  .then((updatedUser) => {
+    console.log(`SUCCEEDED: 1) Empty User Cart: "${updatedUser._id}".`);
+    resolve(updatedUser);
   })
   .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
 });
