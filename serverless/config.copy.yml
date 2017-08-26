@@ -28,6 +28,8 @@ sagawaTestEnglish: <SAGAWA_TEST_ENGLISH>
 sagawaJapanese: <SAGAWA_JAPANESE>
 sagawaEnglish: <SAGAWA_ENGLISH>
 
+slackCustomerWebhook: <SLACK_CUSTOMER_WEBHOOK>
+
 nodeEnv: <NODE_ENV>
 baseUrl: <BASE_URL>
 productionUrl: <PRODUCTION_URL>
