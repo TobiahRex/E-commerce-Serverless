@@ -2,6 +2,7 @@
 import AWS from 'aws-sdk';
 import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
+import axios from 'axios';
 import isEmail from 'validator/lib/isEmail';
 import emailSchema from '../../schemas/emailSchema';
 import {
@@ -329,6 +330,119 @@ export default (db) => {
     .catch((error) => {
       console.log('Could not create invoice email: ', error);
       reject(new Error(`Could not create invoice email: ${error}`));
+    });
+  });
+  /**
+  * Function: sendRawEmail
+  * 1) Validate input email - "to" is in proper email format.
+  * 2) Check whether the body contains html or text and act according to that.
+  * 2) create emailRequest object as per SES requirements.
+  * 3) Send email.
+  * 4) Resolve with email response.
+  *
+  * @param {Object} emailRequest - {
+      bccEmailAddresses - {array} of mailIds
+      ccEmailAddresses - {array} of mailIds
+      toEmailAddresses - {array} of mailIds
+      sourceEmail - {string} from mailId (SES verified mailId)
+      replyToAddresses - {array} of mailIds
+      bodyHtmlData - {string} mail body html
+      bodyHtmlCharset - {string} mail body html's charset
+      bodyTextData - {string} mail body text
+      bodyTextCharset - {string} mail body text's charset
+      subjectData - {string} subject data
+      subjectCharset - {string} subject data's charset
+    } - Email JSON containing all the required SES parameters.
+  *
+  * @return {object} - Promise: resolve or reject response.
+  */
+  emailSchema.statics.sendRawEmail = (emailRequest) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Email.sendRawEmail\n');
+    let messageBody = {};
+
+    if (!isEmail(emailRequest.toEmailAddresses[0])) {
+      console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+      reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+    } else {
+      if (!emailRequest.bodyHtmlData) {
+        messageBody = {
+          Text: {
+            Data: emailRequest.bodyTextData || '',
+            Charset: emailRequest.bodyTextCharset || 'utf8',
+          }
+        }
+      } else {
+        messageBody = {
+          Html: {
+            Data: emailRequest.bodyHtmlData || '',
+            Charset: emailRequest.bodyHtmlCharset || 'utf8',
+          },
+          Text: {
+            Data: emailRequest.bodyTextData || '',
+            Charset: emailRequest.bodyTextCharset || 'utf8',
+          },
+        }
+      }
+
+      const sesEmailRequest = {
+        Destination: {
+          BccAddresses: emailRequest.bccEmailAddresses || [],
+          CcAddresses: emailRequest.ccEmailAddresses || [],
+          ToAddresses: emailRequest.toEmailAddresses,
+        },
+        Source: emailRequest.sourceEmail,
+        ReplyToAddresses: emailRequest.replyToAddresses || [],
+        Message: {
+          Body: messageBody,
+          Subject: {
+            Data: emailRequest.subjectData || '',
+            Charset: emailRequest.subjectCharset || 'utf8',
+          },
+        },
+      };
+      console.log('\nSending AWS ses email...');
+
+      return bbPromise
+      .fromCallback(cb => ses.sendEmail(sesEmailRequest, cb))
+      .then((data) => {
+        console.log('SUCCEEDED: Send SES email: \n', data);
+        resolve(data);
+      })
+      .catch((error) => {
+        console.log('FAILED: Send SES Email', error);
+        reject(new Error('FAILED: Send SES Email'));
+      });
+    }
+  });
+  /**
+  * Function: notifySlack
+  * 1) Form the slackRequest by using the input message
+  * 2) Post to slack Webhook.
+  * 3) Resolve or reject with slack response.
+  *
+  * @param {string} slackWebhook - URL of the slack webhook.
+  * @param {string} message - Message for the slack channel.
+  *
+  * @return {object} - Promise: resolve or reject response.
+  */
+  emailSchema.statics.notifySlack = (slackWebhook, message) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Email.notifySlack\n');
+
+    // const slackWebhook = process.env.SLACK_WEBHOOK;
+    const options = {
+      text: message,
+    };
+
+    axios.post(slackWebhook, JSON.stringify(options))
+    .then((response) => {
+      console.log('SUCCEEDED: Sent slack webhook: \n', response.data);
+      resolve(response.data);
+    })
+    .catch((error) => {
+      console.log('FAILED: Send slack webhook', error);
+      reject(new Error('FAILED: Send slack webhook'));
     });
   });
 
