@@ -4,7 +4,7 @@ export const ObjectId = Schema.Types.ObjectId;
 
 const contactSchema = new Schema({
   created: { type: Date, default: Date.now },
-  user: { type: ObjectId, ref: 'User' },
+  userId: { type: ObjectId, ref: 'User' },
   name: { type: String, required: true },
   emailAddress: { type: String, required: true },
   message: { type: String, required: true },
