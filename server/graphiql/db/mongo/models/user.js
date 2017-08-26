@@ -155,6 +155,10 @@ new Promise((resolve, reject) => {
 */
 userSchema.statics.registerUser = userObj =>
 new Promise((resolve, reject) => {
+  console.log('\n\nUser.registerUser');
+
+  let userDoc = {};
+
   const {
     name,
     pictures,
@@ -197,7 +201,26 @@ new Promise((resolve, reject) => {
   }, cb))
   .then((newUser) => {
     console.log('\nNew User created!: ', newUser._id, '\nName: ', newUser.name.display, '\n');
-    resolve(newUser);
+
+    userDoc = newUser;
+
+    const promiseArray = [];
+    shoppingCart.forEach(({ productId }) => {
+      promiseArray.push(
+        Product.findByIdAndUpdate(productId, {
+          $inc: {
+            'product.quantities.inCarts': 1,
+            'product.quantities.available': -1,
+            'product.statistics.addsToCart': 1,
+          },
+        }, { new: true }).exec(),
+      );
+    });
+    return Promise.all([...promiseArray]);
+  })
+  .then((results) => {
+    console.log('SUCCEEDED: Updated Product in the users cart: ', results);
+    resolve(userDoc);
   })
   .catch(reject);
 });
@@ -228,7 +251,7 @@ new Promise((resolve, reject) => {
           'product.quantities.available': -1,
           'product.statistics.addsToCart': 1,
         },
-      }),
+      }, { new: true }),
     ]);
     /* eslint-enable no-dupe-keys */
   })
@@ -270,11 +293,23 @@ new Promise((resolve, reject) => {
 */
 userSchema.statics.deleteFromCart = ({ userId, productId }) =>
 new Promise((resolve, reject) => {
+  console.log('\n\nUser.deleteFromCart\n');
+
   User.findById(userId)
   .exec()
   .then((dbUser) => {
     dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.product) !== String(productId));
-    return dbUser.save({ validateBeforeSave: true });
+
+    return Promise.all([
+      dbUser.save({ validateBeforeSave: true }),
+      Product.findByIdAndUpdate(productId, {
+        $inc: {
+          'product.quantities.inCarts': 1,
+          'product.quantities.available': -1,
+          'product.statistics.addsToCart': 1,
+        },
+      }, { new: true }).exec(),
+    ]);
   })
   .then((savedUser) => {
     console.log(`
@@ -345,6 +380,7 @@ new Promise((resolve, reject) => {
 
 userSchema.statics.editMemberProfile = ({ userId, userObj }) =>
 new Promise((resolve, reject) => {
+  console.log('\n\nUser.editMemberProfile\n');
 
   User.findByIdAndUpdate(userId, { $set: { ...userObj } }, { new: true })
   .exec()
