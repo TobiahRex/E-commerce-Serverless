@@ -423,15 +423,16 @@ export default (db) => {
         cartProducts.forEach((productDoc) => {
           const {
             _id,
-            product,
             statistics,
           } = productDoc;
 
           Product.findByIdAndUpdate(_id, {
+            $inc: {
+              'product.quantities.inCarts': -1,
+              'product.quantities.purchased': 1,
+              'statistics.completedCheckouts': 1,
+            },
             $set: {
-              'product.quantities.inCarts': product.quantities.inCarts -= 1,
-              'product.quantities.purchased': product.quantities.inCarts += 1,
-              'statistics.completedCheckouts': statistics.completedCheckouts += 1,
               'statistics.transactions': [...statistics.transactions, {
                 transactionId: newTransactionDoc._id,
                 userId,

@@ -419,12 +419,12 @@ new Promise((resolve, reject) => {
         } = productDoc;
 
         Product.findByIdAndUpdate(_id, {
+          $inc: {
+            'product.quantities.inCarts': -1,
+            'product.quantities.purchased': 1,
+            'statistics.completedCheckouts': 1,
+          },
           $set: {
-            $inc: {
-              'product.quantities.inCarts': -1,
-              'product.quantities.purchased': 1,
-              'statistics.completedCheckouts': 1,
-            },
             'statistics.transactions': [...statistics.transactions, {
               transactionId: newTransactionDoc._id,
               userId,
