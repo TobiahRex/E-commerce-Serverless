@@ -543,20 +543,19 @@ const contact = {
   SubmitSupport: `
   mutation SubmitSupport {
     SubmitSupport(
-      bccEmailAddresses: [],
-      ccEmailAddresses: [],
-      toEmailAddresses: ["diwaakartg@gmail.com"],
-      sourceEmail: "support@nj2jp.com",
-      replyToAddresses: ["ganesh.diwaakar@fujixerox.co.jp"],
-      bodyTextData: "summa",
-      bodyTextCharset: "utf8",
-      subjectData: "subject-u",
-      subjectCharset: "utf8",
-      name: "lakshman"
+      name: 'lakshman',
+      emailAddress: 'diwaakartg@gmail.com',
+      message: 'Which juice is best one for summer?',
+      ccUser: true,
+      userId: '001'
     ) {
       _id
       name
       message
+      emailAddress
+      created
+      userId
+      messageId
     }
   }
   `
