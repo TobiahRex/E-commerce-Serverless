@@ -39,7 +39,6 @@ router.post('/email', (req, res) => {
 });
 
 router.post('/contact', (req, res) => {
-
   console.log(req.body);
 
   Contact.sendSupportMailAndNotifySlack(req.body)
