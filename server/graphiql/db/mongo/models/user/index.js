@@ -385,19 +385,23 @@ new Promise((resolve, reject) => {
   .findById(userId)
   .exec()
   .then((dbUser) => {
-    const promiseArray = [];
-    [...products, ...dbUser.shopping.cart]
-    .map(({ productId }) => productId)
-    .map((productId, i, array) => {
-      if (array.slice(i).includes(productId)) return productId;
-      return '';
-    })
-    .forEach((productId) => {
-      promiseArray.push(
+    const removePromiseArray = [];
+    dbUser.shopping.cart.forEach(({ productId, qty }) => {
+      removePromiseArray.push(
         Product.findByIdAndUpdate(productId, {
           $inc: {
-            'product.quantities.inCarts': -1,
-            'product.quantities.available': 1,
+            'product.quantities.inCarts': (qty * -1),
+            'product.quantities.available': (qty * 1),
+          },
+        }, { new: true }).exec());
+    });
+    const addPromiseArray = [];
+    products.forEach(({ productId, qty }) => {
+      addPromiseArray.push(
+        Product.findByIdAndUpdate(productId, {
+          $inc: {
+            'product.quantities.inCarts': (qty * 1),
+            'product.quantities.available': (qty * -1),
           },
         }, { new: true }).exec());
     });
@@ -405,11 +409,12 @@ new Promise((resolve, reject) => {
     dbUser.shopping.cart = products;
     return Promise.all([
       dbUser.save({ validateBeforeSave: true }),
-      ...promiseArray,
+      ...removePromiseArray,
+      ...addPromiseArray,
     ]);
   })
   .then((results) => {
-    console.log('SUCCEEDED: Updated user shopping cart!: ', results[0].shopping.cart);
+    console.log('SUCCEEDED: 1) Updated user shopping cart!: ', results[0].shopping.cart, '2) Update any products that have been removed from the cart.');
     resolve(results[0]);
   })
   .catch((error) => {

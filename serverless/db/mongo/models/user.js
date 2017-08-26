@@ -1,9 +1,6 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
 import userSchema from '../schemas/userSchema';
-import {
-  zipArrays as ZipArrays,
-} from './helpers';
 
 export default (db) => {
   /**
