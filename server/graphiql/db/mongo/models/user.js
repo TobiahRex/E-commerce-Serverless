@@ -306,7 +306,6 @@ new Promise((resolve, reject) => {
         $inc: {
           'product.quantities.inCarts': -1,
           'product.quantities.available': 1,
-          'product.statistics.addsToCart': -1,
         },
       }, { new: true }).exec(),
     ]);
@@ -336,15 +335,32 @@ new Promise((resolve, reject) => {
 */
 userSchema.statics.emptyCart = ({ userId }) =>
 new Promise((resolve, reject) => {
+  console.log('\n\nUser.emptyCart\n');
+
   User.findById(userId)
   .exec()
   .then((dbUser) => {
+    const promiseArray = [];
+    dbUser.shopping.cart.forEach(({ productId }) => {
+      promiseArray.push(
+        Product.findByIdAndUpdate(productId, {
+          $inc: {
+            'product.quantities.inCarts': -1,
+            'product.quantities.available': 1,
+          },
+        }, { new: true }).exec(),
+      );
+    });
     dbUser.shopping.cart = [];
-    return dbUser.save({ validateBeforeSave: true });
+
+    return Promise.all([
+      dbUser.save({ validateBeforeSave: true }),
+      ...promiseArray,
+    ]);
   })
-  .then((updatedUser) => {
-    console.log(`Successfully emptied cart for user: "${updatedUser._id}".`);
-    resolve(updatedUser);
+  .then((results) => {
+    console.log(`SUCCEEDED: 1) Empty User Cart: "${results[0]._id}". 2) Update statistics for products remove from User Cart.`);
+    resolve(results[0]);
   })
   .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
 });
