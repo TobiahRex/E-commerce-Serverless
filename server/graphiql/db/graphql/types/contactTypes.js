@@ -18,31 +18,31 @@ const rootType = new ObjectType({
   fields: {
     _id: {
       description: 'The ID of the Contact.',
-      type: new NonNull(MongoId),
+      type: MongoId,
     },
-    user: {
+    userId: {
       description: 'The ID of the User.',
       type: MongoId,
     },
     name: {
       description: 'name of the customer, enquiring for support.',
-      type: new NonNull(StringType),
+      type: StringType,
     },
     emailAddress: {
       description: 'email address of the enquiring customer.',
-      type: new NonNull(StringType),
+      type: StringType,
     },
     message: {
       description: 'Enquiry message submiited by the customer.',
-      type: new NonNull(StringType),
+      type: StringType,
     },
     messageId: {
       description: 'messageId of the SES email sent to support@nj2jp.com from the customer',
-      type: new NonNull(MongoId),
+      type: MongoId,
     },
     created: {
       description: 'Date and Time of contact document creation',
-      type: new NonNull(StringType),
+      type: StringType,
     }
   },
 });
@@ -56,45 +56,25 @@ const mutations = {
     type: rootType,
     description: 'submit support message from user',
     args: {
-      bccEmailAddresses: {
-        description: 'Array: blind carbon copy recipients.',
-        type: new ListType(StringType)
-      },
-      ccEmailAddresses: {
-        description: 'Array: carbon copy recipients.',
-        type: new ListType(StringType)
-      },
-      toEmailAddresses: {
-        description: 'Array: mail recipients.',
-        type: new NonNull(new ListType(StringType))
-      },
-      sourceEmail: {
-        description: 'source mailId of the customer. In this case, it will be customer@nj2jp.com. SES requires a verified mailId from which we can send mail',
+      message: {
+        description: 'the message, the customer gives for the support',
         type: new NonNull(StringType)
       },
-      replyToAddresses: {
-        description: 'Array: customer mailId, which allows the received support mail to reply back',
-        type: new NonNull(new ListType(StringType))
-      },
-      bodyTextData: {
-        description: 'the message the customer gives for the support',
+      emailAddress: {
+        description: 'The email Address of the customer',
         type: new NonNull(StringType)
       },
-      bodyTextCharset: {
-        description: 'The charset of the customer message',
-        type: new NonNull(StringType)
-      },
-      subjectData: {
-        description: 'Subject of the support message',
-        type: new NonNull(StringType)
-      },
-      subjectCharset: {
-        description: 'charset of the message',
-        type: new NonNull(StringType)
+      ccUser: {
+        description: 'Whether to CC the customer message',
+        type: new NonNull(BoolType)
       },
       name: {
         description: 'Name of the customer',
         type: new NonNull(StringType)
+      },
+      userId: {
+        description: 'userId of the customer',
+        type: StringType
       },
     },
     resolve: (_, args) => Contact.sendSupportMailAndNotifySlack(args),
