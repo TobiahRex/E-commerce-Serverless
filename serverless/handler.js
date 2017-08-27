@@ -18,3 +18,30 @@ module.exports.graphql = (event, context) => {
     context.error && context.error(error);
   });
 };
+
+module.exports.sagawa = (event, context) => {
+  console.log('\nPayload: ', event);
+
+  verifyDb()
+  .then((dbResults) => {
+    console.log('\n//MongoDb Connection Response: ', dbResults);
+    const {
+      Sagawa,
+      Email,
+      Transaction,
+    } = dbResults.dbModels;
+    // const Sagawa = dbResults.connection.models.Sagawa;
+    // const Transaction = dbResults.connection.models.Transaction;
+    // const Email = dbResults.connection.models.Email;
+
+    return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction);
+  })
+  .then((response) => {
+    console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.', response);
+    context.succeed(response) && context.done();
+  })
+  .catch((error) => {
+    console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);
+    context.fail(error) && context.done();
+  });
+};

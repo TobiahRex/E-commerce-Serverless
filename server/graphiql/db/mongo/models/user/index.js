@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define, no-console */
 import { Promise as bbPromise } from 'bluebird';
-import userSchema from '../schemas/userSchema';
-import Product from './product';
-import db from '../connection';
+import userSchema from '../../schemas/userSchema';
+import Product from '../product';
+import db from '../../connection';
 
 /**
 * Function: "fetchUserProfile"
@@ -60,7 +60,6 @@ new Promise((resolve, reject) => {
   .then(resolve)
   .catch(error => reject({ problem: error }));
 });
-
 /**
 * 1) Modifies dbUser document values based on new successful login and saves result.
 * 2) Resolves || Rejects with result.
@@ -117,29 +116,28 @@ new Promise((resolve, reject) => {
       console.log('SUCCEEDED: Login User and Save.');
       userDoc = updatedUser;
 
-      const promiseArray = [];
-
       if (!updateNewProducts) {
         resolve(userDoc);
       } else {
-        newProducts.forEach(({ productId }) => {
-          promiseArray.push(
-            Product.findByIdAndUpdate(productId, {
-              $inc: {
-                'product.quantities.inCarts': 1,
-                'product.quantities.available': -1,
-                'product.statistics.addsToCart': 1,
-              },
-            }, { new: true }).exec(),
-          );
+        newProducts.forEach(({ product: id, qty }) => {
+          Product.findByIdAndUpdate(id, {
+            $inc: {
+              'product.quantities.inCarts': (qty * 1),
+              'product.quantities.available': (qty * -1),
+              'product.statistics.addsToCart': (qty * 1),
+            },
+          }, { new: true })
+          .then((updatedProduct) => {
+            console.log('SUCCEEDED: Remove New Product from Available: ', updatedProduct.product.quantities);
+          })
+          .catch((error) => {
+            console.log('FAILED: Add Old Products to Available: ', error);
+            reject(new Error('Update product quantities.'));
+          });
         });
-        return Promise.all([...promiseArray]);
+        resolve(userDoc);
       }
     }
-  })
-  .then((results) => {
-    console.log('SUCCEEDED: Update stats of new Products in Users cart: \n', results);
-    resolve(userDoc);
   })
   .catch((error) => {
     console.log('FAILED: Login User.', error);
@@ -206,23 +204,27 @@ new Promise((resolve, reject) => {
 
     userDoc = newUser;
 
-    const promiseArray = [];
-    shoppingCart.forEach(({ productId }) => {
-      promiseArray.push(
-        Product.findByIdAndUpdate(productId, {
+    if (shoppingCart.length) {
+      shoppingCart.forEach(({ product: id, qty }) => {
+        Product.findByIdAndUpdate(id, {
           $inc: {
-            'product.quantities.inCarts': 1,
-            'product.quantities.available': -1,
-            'product.statistics.addsToCart': 1,
+            'product.quantities.inCarts': (qty * 1),
+            'product.quantities.available': (qty * -1),
+            'product.statistics.addsToCart': (qty * 1),
           },
-        }, { new: true }).exec(),
-      );
-    });
-    return Promise.all([...promiseArray]);
-  })
-  .then((results) => {
-    console.log('SUCCEEDED: Updated Product in the users cart: ', results);
-    resolve(userDoc);
+        }, { new: true })
+        .then((updatedProduct) => {
+          console.log('SUCCEEDED: Remove New Users Products from total Available: ', updatedProduct.product.quantities);
+        })
+        .catch((error) => {
+          console.log('FAILED: Remove New Users Products from total Available: ', error);
+          reject(new Error('Remove New Users Products from total Available: '));
+        });
+      });
+      resolve(userDoc);
+    } else { //eslint-disable-line
+      resolve(userDoc);
+    }
   })
   .catch(reject);
 });
@@ -249,16 +251,16 @@ new Promise((resolve, reject) => {
       dbUser.save({ validateBeforeSave: true }),
       Product.findByIdAndUpdate(product, {
         $inc: {
-          'product.quantities.inCarts': 1,
-          'product.quantities.available': -1,
-          'product.statistics.addsToCart': 1,
+          'product.quantities.inCarts': (qty * 1),
+          'product.quantities.available': (qty * -1),
+          'product.statistics.addsToCart': (qty * 1),
         },
       }, { new: true }),
     ]);
     /* eslint-enable no-dupe-keys */
   })
   .then((results) => {
-    console.log('Success! 1) Saved product ID & QTY to the User\'s Shopping Cart!, 2) Update Product "quantities" & "statistics": ', results);
+    console.log('SUCCEEDED: 1) Save product ID & QTY to the User\'s Shopping Cart!, 2) Update Product "quantities" & "statistics": ', results[1].product.quantities);
     resolve(results[0]);
   })
   .catch((error) => {
@@ -300,23 +302,27 @@ new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
   .then((dbUser) => {
-    dbUser.shopping.cart = dbUser.shopping.cart.filter(cartObj => String(cartObj.product) !== String(productId));
+    let qty = 0;
+    dbUser.shopping.cart = dbUser.shopping.cart.filter((cartObj) => {
+      if (String(cartObj.product) !== String(productId)) return true;
+
+      qty += cartObj.qty;
+      return false;
+    });
 
     return Promise.all([
       dbUser.save({ validateBeforeSave: true }),
       Product.findByIdAndUpdate(productId, {
         $inc: {
-          'product.quantities.inCarts': -1,
-          'product.quantities.available': 1,
+          'product.quantities.inCarts': (qty * -1),
+          'product.quantities.available': (qty * 1),
         },
       }, { new: true }).exec(),
     ]);
   })
-  .then((savedUser) => {
-    console.log(`
-      Deleted Product: ${productId} from User: ${savedUser._id}.
-    `);
-    resolve(savedUser);
+  .then((results) => {
+    console.log(`Deleted Product: ${productId} from User: ${results[0]._id}.`);
+    resolve(results[0]);
   })
   .catch((error) => {
     console.log(`Could not Delete Product: ${productId} from User: ${userId}. ERROR = ${error}`);
@@ -342,30 +348,31 @@ new Promise((resolve, reject) => {
   User.findById(userId)
   .exec()
   .then((dbUser) => {
-    const promiseArray = [];
-    dbUser.shopping.cart.forEach(({ productId }) => {
-      promiseArray.push(
-        Product.findByIdAndUpdate(productId, {
-          $inc: {
-            'product.quantities.inCarts': -1,
-            'product.quantities.available': 1,
-          },
-        }, { new: true }).exec(),
-      );
+    dbUser.shopping.cart.forEach(({ product: id, qty }) => {
+      Product.findByIdAndUpdate(id, {
+        $inc: {
+          'product.quantities.inCarts': (qty * -1),
+          'product.quantities.available': (qty * 1),
+        },
+      }, { new: true })
+      .then((updatedProduct) => {
+        console.log('SUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
+      })
+      .catch((error) => {
+        console.log('FAILED: Add Old Products to Available: ', error);
+        reject(new Error('Update product quantities.'));
+      });
     });
-    dbUser.shopping.cart = [];
 
-    return Promise.all([
-      dbUser.save({ validateBeforeSave: true }),
-      ...promiseArray,
-    ]);
+    return dbUser.save({ validateBeforeSave: true });
   })
-  .then((results) => {
-    console.log(`SUCCEEDED: 1) Empty User Cart: "${results[0]._id}". 2) Update statistics for products remove from User Cart.`);
-    resolve(results[0]);
+  .then((updatedUser) => {
+    console.log(`SUCCEEDED: 1) Empty User Cart: "${updatedUser._id}".`);
+    resolve(updatedUser);
   })
   .catch((error => reject(`Failed to empty cart for user: "${userId}".  Error = ${error}`)));
 });
+
 /**
 * Modifies product(s) in user's shopping cart.
 * 1) Finds user by Mongo _id.
@@ -385,31 +392,46 @@ new Promise((resolve, reject) => {
   .findById(userId)
   .exec()
   .then((dbUser) => {
-    const promiseArray = [];
-    [...products, ...dbUser.shopping.cart]
-    .map(({ productId }) => productId)
-    .map((productId, i, array) => {
-      if (array.slice(i).includes(productId)) return productId;
-      return '';
-    })
-    .forEach((productId) => {
-      promiseArray.push(
-        Product.findByIdAndUpdate(productId, {
-          $inc: {
-            'product.quantities.inCarts': -1,
-            'product.quantities.available': 1,
-          },
-        }, { new: true }).exec());
+    console.log('dbUser.shopping.cart: ', dbUser.shopping.cart);
+    console.log('products: ', products);
+    dbUser.shopping.cart.forEach(({ product: id, qty }) => {
+      Product.findByIdAndUpdate(id, {
+        $inc: {
+          'product.quantities.inCarts': (qty * -1),
+          'product.quantities.available': (qty * 1),
+        },
+      }, { new: true })
+      .then((updatedProduct) => {
+        console.log('SUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
+      })
+      .catch((error) => {
+        console.log('FAILED: Add Old Products to Available: ', error);
+        reject(new Error('Update product quantities.'));
+      });
+    });
+    products.forEach(({ product: id, qty }) => {
+      Product.findByIdAndUpdate(id, {
+        $inc: {
+          'product.quantities.inCarts': (qty * 1),
+          'product.quantities.available': (qty * -1),
+        },
+      }, { new: true })
+      .then((updatedProduct) => {
+        console.log('SUCEEDED: Remove Product from Available: ', updatedProduct.product.quantities);
+      })
+      .catch((error) => {
+        console.log('FAILED:  Remove Product from Available:', error);
+        reject(new Error('Update product quantities.'));
+      });
     });
 
     dbUser.shopping.cart = products;
     return Promise.all([
       dbUser.save({ validateBeforeSave: true }),
-      ...promiseArray,
     ]);
   })
   .then((results) => {
-    console.log('SUCCEEDED: Updated user shopping cart!: ', results[0].shopping.cart);
+    console.log('SUCCEEDED: 1) Updated user shopping cart!: ', results[0].shopping.cart, '2) Update any products that have been removed from the cart: ', results[1]);
     resolve(results[0]);
   })
   .catch((error) => {

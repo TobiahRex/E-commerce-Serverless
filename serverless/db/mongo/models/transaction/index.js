@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import */
 import axios from 'axios';
+import AWS from 'aws-sdk';
 import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
 // import User from '../user';
@@ -373,11 +374,24 @@ export default (db) => {
 
         newTransactionDoc = { ...results[0]._doc };
 
-        const promise1 = axios.post(process.env.UPLOAD_ORDER_LAMBDA_URL, {
-          userId,
-          sagawaId: newTransactionDoc.sagawa,
-          transactionId: newTransactionDoc._id,
+        /* eslint-disable global-require, import/first, no-unused-expressions, no-console */
+        const lambda = new AWS.Lambda({
+          region: process.env.AWS_REGION,
         });
+        const promise1 = bbPromise.fromCallback(cb => lambda.invoke({
+          FunctionName: 'lakshman-dev-sagawa',
+          InvocationType: 'RequestResponse',
+          Payload: `{
+            "userId": ${userId}
+            "sagawaId": ${newTransactionDoc.sagawa},
+            "transactionId" : ${newTransactionDoc._id},
+          }`,
+        }, cb));
+        // const promise1 = axios.post(process.env.UPLOAD_ORDER_LAMBDA_URL, {
+        //   userId,
+        //   sagawaId: newTransactionDoc.sagawa,
+        //   transactionId: newTransactionDoc._id,
+        // });
         let promise2 = null;
         let promiseArray = [promise1];
 
@@ -392,7 +406,8 @@ export default (db) => {
       }
     })
     .then((results) => { //eslint-disable-line
-      if (results[0].status !== 200) {
+      console.log('SAGAWA LAMBDA: ', results[0]);
+      if (results[0].data.StatusCode !== 200) {
         resolve({
           error: {
             hard: true,

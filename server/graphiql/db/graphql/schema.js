@@ -6,6 +6,7 @@ import ProductTypes from './types/productTypes';
 import UserTypes from './types/userTypes';
 import Transaction from './types/transactionTypes';
 import Sagawa from './types/sagawaTypes';
+import Contact from './types/contactTypes';
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -36,6 +37,7 @@ const mutation = new GraphQLObjectType({
     FindProductByIdAndDelete: ProductTypes.mutations.FindProductByIdAndDelete,
     ValidatePostal: Sagawa.mutations.ValidatePostal,
     SubmitFinalOrder: Transaction.mutations.SubmitFinalOrder,
+    SubmitSupport: Contact.mutations.SubmitSupport,
   }),
 });
 
