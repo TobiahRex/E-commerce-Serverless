@@ -515,7 +515,9 @@ new Promise((resolve, reject) => {
 
     while (true) { //eslint-disable-line
       if (resultsArray.length === promiseArrayLength) {
-        return Sagawa.handleUploadError(resultsArray);
+        Sagawa.handleUploadError(resultsArray)
+        .then(resolve)
+        .catch(reject);
         break; //eslint-disable-line
       }
     }
