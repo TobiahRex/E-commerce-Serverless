@@ -487,13 +487,19 @@ new Promise((resolve, reject) => {
     }
   })
   .then((Promises) => {
-    Promises.forEach((promise) => {
+    let promiseArrayLength = 0;
+    const resultsArray = [];
+    Promises.forEach((promise, i, array) => {
+      promiseArrayLength = array.length;
+
       promise
       .then(({ verified, sagawaId }) => { //eslint-disable-line
         console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
         if (verified) {
+          resultsArray.push({ success: true, sagawaId });
           resolve();
         } else {
+          resultsArray.push({ success: false, sagawaId });
           return Sagawa.handleUploadError(sagawaId);
         }
       })
@@ -506,6 +512,17 @@ new Promise((resolve, reject) => {
         reject(new Error('FAILED: Upload order to Sagawa via Cron Job:'));
       });
     });
+
+    while (true) { //eslint-disable-line
+      if (resultsArray.length === promiseArrayLength) {
+        return Sagawa.handleUploadError(resultsArray);
+        break; //eslint-disable-line
+      }
+    }
+  })
+  .then(() => {
+    console.log('SUCCEEDED: Handle Sagawa Upload Error.');
+    resolve();
   })
   .catch((error) => {
     console.log('FAILED: Perform Cron Job sagawa upload: ', error);
@@ -513,9 +530,53 @@ new Promise((resolve, reject) => {
   });
 });
 
-sagawaSchema.statics.handleUploadError = (sagawaId) =>
+sagawaSchema.statics.handleUploadError = responseArray =>
 new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.handleUploadError\n');
 
+  const results = responseArray.reduce((a, n) => {
+    if (n.success) {
+      a.successful.push(n.sagawaId);
+      a.total += 1;
+      return a;
+    }
+    a.failures.push(n.sagawaId);
+    a.total += 1;
+    return a;
+  }, {
+    successful: [],
+    failures: [],
+    total: 0,
+  });
+
+  const {
+    CTO_EMAIL: cto,
+    CEO_EMAIL: ceo,
+    DISTRO_EMAIL: distro,
+  } = process.env;
+
+  const message = `SAGAWA UPLOAD REPORT - ${moment().format('LL')}:
+    // ---------------------------------------------
+    TOTAL ORDERS: ${results.total.length}
+
+    SUCCESSFUL UPLOADS: ${results.successful.length}
+
+    FAILED UPLOADS: ${results.failures.length}
+
+    // ---------------------------------------------
+    ${results.failures.length ? 'FAILED SAGAWA ID\'s: ' : ''}
+    ${!results.failures.length ? '' : results.failures.reduce((a, n, i) => ('\n' + (i + 1) + ') ' + n.sagawaId), '')}
+    `;
+
+  const emailRequest = {
+    sourceEmail: 'NJ2JP Admin <admin@nj2jp.com>',
+    toEmailAddresses: [cto, ceo, distro],
+    replyToAddresses: ['admin@nj2jp.com'],
+    bodyTextData: contactForm.message,
+    bodyTextCharset: 'utf8',
+    subjectData: `Customer "${contactForm.name}" requires Support.`,
+    subjectCharset: 'utf8',
+  };
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
