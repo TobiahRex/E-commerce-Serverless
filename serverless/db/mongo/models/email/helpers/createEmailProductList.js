@@ -17,7 +17,7 @@ export default function createEmailProductList(emailDoc, cart) {
                       <span style="font-size: 14px; line-height: 16px; color: rgb(54, 88, 153);">
                         <strong>
                           <span style="line-height: 16px; font-size: 14px;">
-                            ${next.product.flavor}
+                            ${next.product.title}
                           </span>
                         </strong>
                       </span>
