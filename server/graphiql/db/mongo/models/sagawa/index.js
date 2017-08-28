@@ -513,5 +513,10 @@ new Promise((resolve, reject) => {
   });
 });
 
+sagawaSchema.statics.handleUploadError = (sagawaId) =>
+new Promise((resolve, reject) => {
+
+});
+
 const Sagawa = db.model('Sagawa', sagawaSchema);
 export default Sagawa;
