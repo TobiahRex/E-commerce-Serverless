@@ -5,7 +5,10 @@ import { Link } from 'react-router';
 export default function ContactUs() {
   return (
     <div className="contact-us__main">
-      <div className="main__breadcrumb--container">
+      <div style={{ padding: '4em', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <h1>This page is under construction.  It'll be finished soon.</h1>
+      </div>
+      {/* <div className="main__breadcrumb--container">
         <ul className="breadcrumb--list">
           <li className="list--home">
             <Link to="/">
@@ -17,11 +20,11 @@ export default function ContactUs() {
             Contact Us
           </li>
         </ul>
-      </div>
-      <div className="main__title">
+        </div>
+        <div className="main__title">
         <h1>Contact Us</h1>
-      </div>
-      <div className="main__body">
+        </div>
+        <div className="main__body">
         <form
           action="submit"
           onSubmit={(e) => {
@@ -76,7 +79,7 @@ export default function ContactUs() {
             </button>
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 }

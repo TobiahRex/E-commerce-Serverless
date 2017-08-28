@@ -538,3 +538,25 @@ const users = {
     },
   },
 };
+
+const contact = {
+  SubmitSupport: `
+  mutation SubmitSupport {
+    SubmitSupport(
+      name: 'lakshman',
+      emailAddress: 'diwaakartg@gmail.com',
+      message: 'Which juice is best one for summer?',
+      ccUser: true,
+      userId: '001'
+    ) {
+      _id
+      name
+      message
+      emailAddress
+      created
+      userId
+      messageId
+    }
+  }
+  `
+}

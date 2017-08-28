@@ -739,7 +739,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args, { User }) => User.loginOrRegister(args),
+    resolve: (_, args, { User, Product }) => User.loginOrRegister(args, Product),
   },
   AddToMemberCart: {
     type: rootType,
@@ -758,7 +758,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.addToMemberCart(args),
+    resolve: (_, args, { User, Product }) => User.addToMemberCart(args, Product),
   },
   EmptyMemberCart: {
     type: rootType,
@@ -769,7 +769,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.emptyCart(args),
+    resolve: (_, args, { User, Product }) => User.emptyCart(args, Product),
   },
   DeleteFromMemberCart: {
     type: rootType,
@@ -784,7 +784,7 @@ const mutations = {
         type: new NonNull(MongoID),
       },
     },
-    resolve: (_, args, { User }) => User.deleteFromCart(args),
+    resolve: (_, args, { User, Product }) => User.deleteFromCart(args, Product),
   },
   EditToMemberCart: {
     type: rootType,
@@ -815,7 +815,7 @@ const mutations = {
         ),
       },
     },
-    resolve: (_, args, { User }) => User.editToMemberCart(args),
+    resolve: (_, args, { User, Product }) => User.editToMemberCart(args, Product),
   },
 };
 const UserTypes = {

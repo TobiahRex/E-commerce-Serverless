@@ -2,6 +2,7 @@
 import express from 'express';
 import Sagawa from '../db/mongo/models/sagawa';
 import Email from '../db/mongo/models/email';
+import Contact from '../db/mongo/models/contact';
 
 const router = new express.Router();
 
@@ -33,6 +34,20 @@ router.post('/email', (req, res) => {
     })
     .catch((error) => {
       console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      res.status(400).send(error);
+    });
+});
+
+router.post('/contact', (req, res) => {
+  console.log(req.body);
+
+  Contact.sendSupportMailAndNotifySlack(req.body)
+    .then((response) => {
+      console.log('SUCCEEDED: MOCK Send SES email.');
+      res.status(200).send(response);
+    })
+    .catch((error) => {
+      console.log('FAILED: Mock Send SES Email: ', error);
       res.status(400).send(error);
     });
 });

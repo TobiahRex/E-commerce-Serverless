@@ -47,6 +47,7 @@ provider:
     SAGAWA_TEST_ENGLISH: ${file(./config.yml):sagawaTestEnglish}
     SAGAWA_JAPANESE: ${file(./config.yml):sagawaJapanese}
     SAGAWA_ENGLISH: ${file(./config.yml):sagawaEnglish}
+    SLACK_CUSTOMER_WEBHOOK: ${file(./config.yml):slackCustomerWebhook}
     LAMBDA_ENV: ${file(./config.yml):lambdaEnv}
     BASE_URL: ${file(./config.yml):baseUrl}
     PRODUCT_URL: ${file(./config.yml):productionUrl}
@@ -94,3 +95,27 @@ functions:
           response:
             headers:
               Access-Control-Allow-Origin: "'*'"
+
+  sagawa:
+    handler: handler.sagawa
+    vpc:
+      securityGroupIds:
+        - ${file(./config.yml):securityGroupId}
+      subnetIds:
+        - ${file(./config.yml):subnetId}
+    iamRoleStatements:
+      - Effect: Allow
+        Resource: "*"
+        Action:
+          - ec2:CreateNetworkInterface
+          - ec2:DescribeNetworkInterfaces
+          - ec2:DetachNetworkInterface
+          - ec2:DeleteNetworkInterface
+          - logs:CreateLogGroup
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+          - ses:SendEmail
+          - ses:SendRawEmail
+          - lambda:InvokeFunction
+    events:
+      - schedule: cron(0 7 ? * MON *)
