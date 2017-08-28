@@ -552,6 +552,7 @@ new Promise((resolve, reject) => {
   const {
     CTO_EMAIL: cto,
     CEO_EMAIL: ceo,
+    CDO_EMAIL: cdo,
     DISTRO_EMAIL: distro,
   } = process.env;
 
@@ -578,7 +579,7 @@ new Promise((resolve, reject) => {
 
   const emailRequest = {
     sourceEmail: 'NJ2JP Admin <admin@nj2jp.com>',
-    toEmailAddresses: [cto, ceo, distro],
+    toEmailAddresses: [ceo, cto, cdo, distro],
     replyToAddresses: ['admin@nj2jp.com'],
     bodyTextData: message,
     bodyTextCharset: 'utf8',

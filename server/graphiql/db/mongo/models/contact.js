@@ -72,7 +72,5 @@ new Promise((resolve, reject) => {
   });
 });
 
-Contact
-
 const Contact = db.model('Contact', contactSchema);
 export default Contact;
