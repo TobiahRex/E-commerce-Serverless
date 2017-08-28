@@ -497,10 +497,8 @@ new Promise((resolve, reject) => {
         console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
         if (verified) {
           resultsArray.push({ success: true, sagawaId });
-          resolve();
         } else {
           resultsArray.push({ success: false, sagawaId });
-          return Sagawa.handleUploadError(sagawaId);
         }
       })
       .then(() => {
@@ -515,7 +513,7 @@ new Promise((resolve, reject) => {
 
     while (true) { //eslint-disable-line
       if (resultsArray.length === promiseArrayLength) {
-        Sagawa.handleUploadError(resultsArray)
+        Sagawa.handleUploadResults(resultsArray)
         .then(resolve)
         .catch(reject);
         break; //eslint-disable-line
@@ -532,7 +530,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-sagawaSchema.statics.handleUploadError = responseArray =>
+sagawaSchema.statics.handleUploadResults = responseArray =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.handleUploadError\n');
 
@@ -561,8 +559,8 @@ new Promise((resolve, reject) => {
   /* eslint-disable prefer-template */
 
   const message = `
-    SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}:
-    You are receiving this email because there was a problem while trying to upload orders to Sagawa that were cached during the off-business hours.
+    SAGAWA UPLOAD REPORT - ${moment().format('LL')}:
+    This is a report of any & all automatic order uploads.  These orders were accumulated over the weekend (off-business hours).
 
     // ---------------------- SUMMARY ---------------------- //
 
@@ -585,7 +583,7 @@ new Promise((resolve, reject) => {
     replyToAddresses: ['admin@nj2jp.com'],
     bodyTextData: message,
     bodyTextCharset: 'utf8',
-    subjectData: `SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}`,
+    subjectData: `SAGAWA UPLOAD REPORT - ${moment().format('LL')}`,
     subjectCharset: 'utf8',
   };
 
