@@ -26,35 +26,28 @@ import Email from './email';
 contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
-  let emailRequest = {
+  const emailRequest = {
     sourceEmail: 'NJ2JP Contact Us <contact@nj2jp.com>',
     toEmailAddresses: ['support@nj2jp.com'],
     replyToAddresses: [contactForm.emailAddress],
     bodyTextData: contactForm.message,
     bodyTextCharset: 'utf8',
     subjectData: `Customer "${contactForm.name}" requires Support.`,
-    subjectCharset: 'utf8'
+    subjectCharset: 'utf8',
   };
 
-  if (contactForm.ccUser) {
-    emailRequest.ccEmailAddresses = [contactForm.emailAddress];
-  }
+  if (contactForm.ccUser) emailRequest.ccEmailAddresses = [contactForm.emailAddress];
+  if (contactForm.userId) emailRequest.userId = contactForm.userId;
 
-  if (contactForm.userId) {
-    emailRequest.userId = contactForm.userId;
-  }
-
-  let contactDocument = {};
-  let slackWebhook = '';
-  let slackMessage = '';
+  const contactDocument = {};
 
   Email.sendRawEmail(emailRequest)
   .then((response) => {
     console.log('SUCCEEDED: Email has been sent to NJ2JP support:', response);
     contactDocument.messageId = response.MessageId;
 
-    slackWebhook = process.env.SLACK_CUSTOMER_WEBHOOK;
-    slackMessage = `SUPPORT REQUESTED: from ${contactForm.emailAddress}. Log into <https://privateemail.com/appsuite/> to answer their query.`
+    const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
+    const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Log into as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their query.`;
     return Email.notifySlack(slackWebhook, slackMessage);
   })
   .then((slackResponse) => {

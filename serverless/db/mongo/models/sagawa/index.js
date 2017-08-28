@@ -13,6 +13,7 @@ import {
   getShippingDay as GetShippingDay,
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
+  uploadGenerator as UploadGenerator,
 } from './helpers';
 
 export default (db) => {
@@ -103,7 +104,7 @@ export default (db) => {
   *
   * @return {object} new Sagawa Document.
   */
-  sagawaSchema.statics.handleNewTransaction = (orderInfo, Product) =>
+  sagawaSchema.statics.handleNewTransaction = orderInfo =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.handleNewTransaction\n');
 
@@ -192,7 +193,7 @@ export default (db) => {
     })
     .then(({ data }) => {
       console.log('SUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-      resolve(data);
+      resolve({ data, sagawaId });
     })
     .catch((error) => {
       console.log('FAILED: Order upload to Sagawa.', error);

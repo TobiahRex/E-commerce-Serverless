@@ -276,7 +276,7 @@ new Promise((resolve, reject) => {
   .then((results) => {  //eslint-disable-line
     if (!results[0].data.verified) {
       console.log('FAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
-      resolve({ verified: false });
+      resolve({ verified: false, sagawaId });
     } else {
       console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
@@ -332,7 +332,7 @@ new Promise((resolve, reject) => {
   })
   .then(() => {
     console.log('SUCCEEDED: Send Invoice Email via SES.\n');
-    resolve({ verified: true });
+    resolve({ verified: true, sagawaId });
   })
   .catch((error) => {
     console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
@@ -478,30 +478,131 @@ new Promise((resolve, reject) => {
       resolve({ status: 200 });
     } else {
       console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
-      return UploadGenerator(dbResults, Sagawa);
+      const reqObjs = dbResults.map(dbDoc => ({
+        sagawaId: dbDoc._id,
+        userId: dbDoc.userId,
+        transactionId: dbDoc.transactionId,
+      }));
+      return UploadGenerator(reqObjs, Sagawa);
     }
   })
   .then((Promises) => {
-    Promises.forEach((promise) => {
-      promise
-      .then(({ data, sagawaId }) => {
-        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
-        if (!data.verified) {
+    let promiseArrayLength = 0;
+    const resultsArray = [];
+    Promises.forEach((promise, i, array) => {
+      promiseArrayLength = array.length;
 
+      promise
+      .then(({ verified, sagawaId }) => { //eslint-disable-line
+        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
+        if (verified) {
+          resultsArray.push({ success: true, sagawaId });
+          resolve();
         } else {
-          delete data.verified;
-          Sagawa.findSagawaAndUpdate({ ...data, sagawaId });
+          resultsArray.push({ success: false, sagawaId });
+          return Sagawa.handleUploadError(sagawaId);
         }
+      })
+      .then(() => {
+        console.log('SUCCEEDED: Hanlde Sagawa upload error.');
+        resolve();
       })
       .catch((error) => {
         console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
         reject(new Error('FAILED: Upload order to Sagawa via Cron Job:'));
       });
     });
+
+    while (true) { //eslint-disable-line
+      if (resultsArray.length === promiseArrayLength) {
+        Sagawa.handleUploadError(resultsArray)
+        .then(resolve)
+        .catch(reject);
+        break; //eslint-disable-line
+      }
+    }
+  })
+  .then(() => {
+    console.log('SUCCEEDED: Handle Sagawa Upload Error.');
+    resolve();
   })
   .catch((error) => {
     console.log('FAILED: Perform Cron Job sagawa upload: ', error);
     reject(new Error('FAILED: Perform cron job sagawa upload.'));
+  });
+});
+
+sagawaSchema.statics.handleUploadError = responseArray =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.handleUploadError\n');
+
+  const results = responseArray.reduce((a, n) => {
+    if (n.success) {
+      a.successful.push(n.sagawaId);
+      a.total += 1;
+      return a;
+    }
+    a.failures.push(n.sagawaId);
+    a.total += 1;
+    return a;
+  }, {
+    successful: [],
+    failures: [],
+    total: 0,
+  });
+
+  const {
+    CTO_EMAIL: cto,
+    CEO_EMAIL: ceo,
+    CDO_EMAIL: cdo,
+    DISTRO_EMAIL: distro,
+  } = process.env;
+
+  /* eslint-disable prefer-template */
+
+  const message = `
+    SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}:
+    You are receiving this email because there was a problem while trying to upload orders to Sagawa that were cached during the off-business hours.
+
+    // ---------------------- SUMMARY ---------------------- //
+
+    TOTAL UPLOADS: ${results.total.length}
+
+    SUCCESSFUL: ${results.successful.length}
+
+    FAILED: ${results.failures.length}
+
+    // ---------------- FAILED SAGAWA ID's ----------------- //
+
+    ${!results.failures.length ? '' : results.failures.reduce((a, n, i) => ('\n' + (i + 1) + ') ' + n.sagawaId) + '\n', '')}
+
+    // ---------------------------------------------------- //`;
+  /* eslint-enable prefer-template */
+
+  const emailRequest = {
+    sourceEmail: 'NJ2JP Admin <admin@nj2jp.com>',
+    toEmailAddresses: [ceo, cto, cdo, distro],
+    replyToAddresses: ['admin@nj2jp.com'],
+    bodyTextData: message,
+    bodyTextCharset: 'utf8',
+    subjectData: `SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}`,
+    subjectCharset: 'utf8',
+  };
+
+  Email.sendRawEmail(emailRequest)
+  .then((response) => {
+    console.log('SUCCEEDED: Email has been sent to NJ2JP leadership:', response);
+    const slackWebhook = process.env.SLACK_SAGAWA_ERROR_WEBHOOK;
+    const slackMessage = message;
+    return Email.notifySlack(slackWebhook, slackMessage);
+  })
+  .then((slackResponse) => {
+    console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
+    resolve();
+  })
+  .catch((error) => {
+    console.log('FAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);
+    reject(new Error('FAILED: Send Sagawa Upload Error eMail and Notify Slack'));
   });
 });
 

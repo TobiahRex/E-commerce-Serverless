@@ -359,22 +359,22 @@ new Promise((resolve, reject) => {
 *
 * @return {object} - Promise: resolve or reject response.
 */
-emailSchema.statics.sendRawEmail = (emailRequest) =>
+emailSchema.statics.sendRawEmail = emailRequest =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRawEmail\n');
   let messageBody = {};
 
   if (!isEmail(emailRequest.toEmailAddresses[0])) {
-    console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-    reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+    console.log(`FAILED: Send SES Email:"${emailRequest.toEmailAddresses[0]}" is not a valid email.  `);
+    reject(new Error(`FAILED: Send SES Email:"${emailRequest.toEmailAddresses[0]}" is not a valid email.`));
   } else {
     if (!emailRequest.bodyHtmlData) {
       messageBody = {
         Text: {
           Data: emailRequest.bodyTextData || '',
           Charset: emailRequest.bodyTextCharset || 'utf8',
-        }
-      }
+        },
+      };
     } else {
       messageBody = {
         Html: {
@@ -385,7 +385,7 @@ new Promise((resolve, reject) => {
           Data: emailRequest.bodyTextData || '',
           Charset: emailRequest.bodyTextCharset || 'utf8',
         },
-      }
+      };
     }
 
     const sesEmailRequest = {
@@ -406,14 +406,14 @@ new Promise((resolve, reject) => {
     };
     console.log('\nSending AWS ses email...');
 
-    return bbPromise
-    .fromCallback(cb => ses.sendEmail(sesEmailRequest, cb))
+    bbPromise.fromCallback(cb =>
+      ses.sendEmail(sesEmailRequest, cb))
     .then((data) => {
       console.log('SUCCEEDED: Send SES email: \n', data);
       resolve(data);
     })
     .catch((error) => {
-      console.log('FAILED: Send SES Email', error);
+      console.log('FAILED: Send SES Email: ', error);
       reject(new Error('FAILED: Send SES Email'));
     });
   }
