@@ -3,11 +3,6 @@ import axios from 'axios';
 import AWS from 'aws-sdk';
 import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
-// import User from '../user';
-// import Email from '../email';
-// import MarketHero from '../marketHero';
-// import Sagawa from '../sagawa';
-// import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   composeAmount as ComposeAmount,
