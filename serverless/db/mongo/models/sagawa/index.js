@@ -248,7 +248,12 @@ export default (db) => {
   *
   * @return {object} Promise resolved with updated Sagawa Document. [WIP]
   */
-  sagawaSchema.statics.uploadOrderAndSendEmail = (request, Email, Transaction) =>
+  sagawaSchema.statics.uploadOrderAndSendEmail = (
+    request,
+    Email,
+    Transaction,
+    Sagawa,
+  ) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.uploadOrderAndSendEmail');
 
@@ -467,7 +472,7 @@ export default (db) => {
   *
   * @return none
   */
-  sagawaSchema.statics.cronJob = () =>
+  sagawaSchema.statics.cronJob = Sagawa =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.cronJob');
 

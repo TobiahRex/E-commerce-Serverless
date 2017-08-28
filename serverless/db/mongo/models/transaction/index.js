@@ -373,15 +373,15 @@ export default (db) => {
 
         const {
           AWS_REGION: region,
-          AWS_ACCESS_KEY_ID: accessKeyId,
-          AWS_SECRET_ACCESS_KEY: secretAccessKey,
+          LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
+          LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
           LAMBDA_ENV: lambdaEnv,
         } = process.env;
-        console.log('region: ', region, '\nawsAccessKeyId: ', accessKeyId, '\nawsSecretAccessKey: ', secretAccessKey);
+
         const lambda = new AWS.Lambda({
           region,
-          accessKeyId,
-          secretAccessKey,
+          accessKeyId: lambdaAccessKeyId,
+          secretAccessKey: lambdaSecretAccessKey,
         });
 
         const promiseArray = [];
@@ -396,9 +396,9 @@ export default (db) => {
             FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
             InvocationType: 'RequestResponse',
             Payload: `{
-              "userId": ${userId}
-              "sagawaId": ${newTransactionDoc.sagawa},
-              "transactionId" : ${newTransactionDoc._id},
+              "userId": "${userId}",
+              "sagawaId": "${newTransactionDoc.sagawa}",
+              "transactionId" : "${newTransactionDoc._id}"
             }`,
           }, cb)),
           ...promiseArray,
@@ -406,6 +406,7 @@ export default (db) => {
       }
     })
     .then((results) => { //eslint-disable-line
+      console.log('results: ', results);
       if ((results[0].status !== 200) && (results[0].status !== 204)) {
         resolve({
           error: {
