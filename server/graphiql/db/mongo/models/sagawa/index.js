@@ -478,25 +478,28 @@ new Promise((resolve, reject) => {
       resolve({ status: 200 });
     } else {
       console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
-      dbResults.map((dbDoc) => ({
-        userId: 
-        transactionId,
-        sagawaId,
-      }))
-      return UploadGenerator(dbResults, Sagawa);
+      const reqObjs = dbResults.map(dbDoc => ({
+        sagawaId: dbDoc._id,
+        userId: dbDoc.userId,
+        transactionId: dbDoc.transactionId,
+      }));
+      return UploadGenerator(reqObjs, Sagawa);
     }
   })
   .then((Promises) => {
     Promises.forEach((promise) => {
       promise
-      .then(({ data, sagawaId }) => {
+      .then(({ verified, sagawaId }) => { //eslint-disable-line
         console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
-        if (!data.verified) {
-          Sagawa.handleUploadError(sagawaId);
+        if (verified) {
+          resolve();
         } else {
-          delete data.verified;
-          Sagawa.findSagawaAndUpdate({ ...data, sagawaId });
+          return Sagawa.handleUploadError(sagawaId);
         }
+      })
+      .then(() => {
+        console.log('SUCCEEDED: Hanlde Sagawa upload error.');
+        resolve();
       })
       .catch((error) => {
         console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
