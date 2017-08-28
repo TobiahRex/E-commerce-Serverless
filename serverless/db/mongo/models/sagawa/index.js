@@ -154,7 +154,7 @@ export default (db) => {
 
   * @return {object} Promise resolved with Order AWB & REF id's.
   */
-  sagawaSchema.statics.orderUpload = sagawaId =>
+  sagawaSchema.statics.uploadOrder = sagawaId =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.updloadOrder\n');
 
@@ -252,7 +252,6 @@ export default (db) => {
     request,
     Email,
     Transaction,
-    Sagawa,
   ) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.uploadOrderAndSendEmail');
@@ -472,7 +471,7 @@ export default (db) => {
   *
   * @return none
   */
-  sagawaSchema.statics.cronJob = Sagawa =>
+  sagawaSchema.statics.cronJob = () =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.cronJob');
 
@@ -498,12 +497,21 @@ export default (db) => {
         promiseArrayLength = array.length;
 
         promise
-        .then(({ verified, sagawaId }) => { //eslint-disable-line
+        .then(({ StatusCode, Payload }) => { //eslint-disable-line
           console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
-          if (verified) {
-            resultsArray.push({ success: true, sagawaId });
+          let resSagawaId;
+          try {
+            const { sagawaId } = JSON.parse(Payload);
+            resSagawaId = sagawaId;
+          } catch (e) {
+            console.log('JSON.parse Error: ', e);
+            reject('JSON parse error.');
+          }
+
+          if (StatusCode === 200) {
+            resultsArray.push({ success: true, sagawaId: resSagawaId });
           } else {
-            resultsArray.push({ success: false, sagawaId });
+            resultsArray.push({ success: false, sagawaId: resSagawaId });
           }
         })
         .catch((error) => {

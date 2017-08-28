@@ -11,14 +11,14 @@ import {
 } from './helpers';
 
 const {
-  AWS_ACCESS_KEY_ID: accessKeyId,
-  AWS_SECRET_ACCESS_KEY: secretAccessKey,
+  LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
+  LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
   AWS_SES_REGION: region,
 } = process.env;
 
 AWS.config.update({
-  accessKeyId,
-  secretAccessKey,
+  accessKeyId: lambdaAccessKeyId,
+  secretAccessKey: lambdaSecretAccessKey,
   region,
 });
 
