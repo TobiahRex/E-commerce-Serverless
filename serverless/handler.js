@@ -35,7 +35,7 @@ module.exports.sagawa = (event, context) => {
       return Sagawa.cronJob();
     })
     .then(() => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email.');
+      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
       context.succeed() && context.done();
     })
     .catch((error) => {
