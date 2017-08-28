@@ -555,28 +555,42 @@ new Promise((resolve, reject) => {
     DISTRO_EMAIL: distro,
   } = process.env;
 
-  const message = `SAGAWA UPLOAD REPORT - ${moment().format('LL')}:
-    // ---------------------------------------------
-    TOTAL ORDERS: ${results.total.length}
+  const message = `
+    SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}:
+    You are receiving this email because there was a problem while trying to upload orders to Sagawa that were cached during the off-business hours.
 
-    SUCCESSFUL UPLOADS: ${results.successful.length}
+    // ---------------------- SUMMARY ---------------------- //
 
-    FAILED UPLOADS: ${results.failures.length}
+    TOTAL UPLOADS: ${results.total.length}
 
-    // ---------------------------------------------
-    ${results.failures.length ? 'FAILED SAGAWA ID\'s: ' : ''}
-    ${!results.failures.length ? '' : results.failures.reduce((a, n, i) => ('\n' + (i + 1) + ') ' + n.sagawaId), '')}
-    `;
+    SUCCESSFUL: ${results.successful.length}
+
+    FAILED: ${results.failures.length}
+
+    // ---------------- FAILED SAGAWA ID's ----------------- //
+
+    ${!results.failures.length ? '' : results.failures.reduce((a, n, i) => ('\n' + (i + 1) + ') ' + n.sagawaId) + '\n', '')}
+
+    // ---------------------------------------------------- //`;
 
   const emailRequest = {
     sourceEmail: 'NJ2JP Admin <admin@nj2jp.com>',
     toEmailAddresses: [cto, ceo, distro],
     replyToAddresses: ['admin@nj2jp.com'],
-    bodyTextData: contactForm.message,
+    bodyTextData: message,
     bodyTextCharset: 'utf8',
-    subjectData: `Customer "${contactForm.name}" requires Support.`,
+    subjectData: `SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}`,
     subjectCharset: 'utf8',
   };
+
+  Email.sendRawEmail(emailRequest)
+  .then((response) => {
+
+  })
+  .catch((error) => {
+    console.log('FAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);
+    reject(new Error('FAILED: Send Sagawa Upload Error eMail and Notify Slack'));
+  });
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
