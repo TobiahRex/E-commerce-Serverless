@@ -555,6 +555,8 @@ new Promise((resolve, reject) => {
     DISTRO_EMAIL: distro,
   } = process.env;
 
+  /* eslint-disable prefer-template */
+
   const message = `
     SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}:
     You are receiving this email because there was a problem while trying to upload orders to Sagawa that were cached during the off-business hours.
@@ -572,6 +574,7 @@ new Promise((resolve, reject) => {
     ${!results.failures.length ? '' : results.failures.reduce((a, n, i) => ('\n' + (i + 1) + ') ' + n.sagawaId) + '\n', '')}
 
     // ---------------------------------------------------- //`;
+  /* eslint-enable prefer-template */
 
   const emailRequest = {
     sourceEmail: 'NJ2JP Admin <admin@nj2jp.com>',
@@ -585,7 +588,14 @@ new Promise((resolve, reject) => {
 
   Email.sendRawEmail(emailRequest)
   .then((response) => {
-
+    console.log('SUCCEEDED: Email has been sent to NJ2JP leadership:', response);
+    const slackWebhook = process.env.SLACK_SAGAWA_ERROR_WEBHOOK;
+    const slackMessage = message;
+    return Email.notifySlack(slackWebhook, slackMessage);
+  })
+  .then((slackResponse) => {
+    console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
+    resolve();
   })
   .catch((error) => {
     console.log('FAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);

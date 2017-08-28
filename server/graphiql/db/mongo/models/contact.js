@@ -36,16 +36,9 @@ new Promise((resolve, reject) => {
     subjectCharset: 'utf8',
   };
 
-  if (contactForm.ccUser) {
-    emailRequest.ccEmailAddresses = [contactForm.emailAddress];
-  }
+  if (contactForm.ccUser) emailRequest.ccEmailAddresses = [contactForm.emailAddress];
+  if (contactForm.userId) emailRequest.userId = contactForm.userId;
 
-  if (contactForm.userId) {
-    emailRequest.userId = contactForm.userId;
-  }
-
-  let slackWebhook = '';
-  let slackMessage = '';
   const contactDocument = {};
 
   Email.sendRawEmail(emailRequest)
@@ -53,8 +46,8 @@ new Promise((resolve, reject) => {
     console.log('SUCCEEDED: Email has been sent to NJ2JP support:', response);
     contactDocument.messageId = response.MessageId;
 
-    slackWebhook = process.env.SLACK_CUSTOMER_WEBHOOK;
-    slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Log into as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their query.`;
+    const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
+    const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Log into as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their query.`;
     return Email.notifySlack(slackWebhook, slackMessage);
   })
   .then((slackResponse) => {
