@@ -373,36 +373,36 @@ export default (db) => {
 
         const {
           AWS_REGION: region,
+          AWS_ACCESS_KEY_ID: accessKeyId,
+          AWS_SECRET_ACCESS_KEY: secretAccessKey,
           LAMBDA_ENV: lambdaEnv,
         } = process.env;
-        console.log('region: ', region, '\nlambdaEnv: ', lambdaEnv);
-        const lambda = new AWS.Lambda({ region });
-        console.log('lambda: ', lambda);
-        const promise1 = bbPromise.fromCallback(cb => lambda.invoke({
-          FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
-          InvocationType: 'RequestResponse',
-          Payload: `{
-            "userId": ${userId}
-            "sagawaId": ${newTransactionDoc.sagawa},
-            "transactionId" : ${newTransactionDoc._id},
-          }`,
-        }, cb));
-        // const promise1 = axios.post(process.env.UPLOAD_ORDER_LAMBDA_URL, {
-        //   userId,
-        //   sagawaId: newTransactionDoc.sagawa,
-        //   transactionId: newTransactionDoc._id,
-        // });
-        let promise2 = null;
-        let promiseArray = [promise1];
+        console.log('region: ', region, '\nawsAccessKeyId: ', accessKeyId, '\nawsSecretAccessKey: ', secretAccessKey);
+        const lambda = new AWS.Lambda({
+          region,
+          accessKeyId,
+          secretAccessKey,
+        });
 
+        const promiseArray = [];
         if (marketHeroOp === 'createMongoLead') {
-          promise2 = User.findByIdAndUpdate(userId, {
+          promiseArray.push(User.findByIdAndUpdate(userId, {
             $set: { 'marketing.marketHero': results[1]._id },
-          }, { new: true });
-          promiseArray = [...promiseArray, promise2];
+          }, { new: true }));
         }
 
-        return Promise.all([...promiseArray]);
+        return Promise.all([
+          bbPromise.fromCallback(cb => lambda.invoke({
+            FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
+            InvocationType: 'RequestResponse',
+            Payload: `{
+              "userId": ${userId}
+              "sagawaId": ${newTransactionDoc.sagawa},
+              "transactionId" : ${newTransactionDoc._id},
+            }`,
+          }, cb)),
+          ...promiseArray,
+        ]);
       }
     })
     .then((results) => { //eslint-disable-line

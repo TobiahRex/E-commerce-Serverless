@@ -511,7 +511,7 @@ new Promise((resolve, reject) => {
         }
       })
       .then(() => {
-        console.log('SUCCEEDED: Hanlde Sagawa upload error.');
+        console.log('SUCCEEDED: Handle Sagawa upload error.');
         resolve();
       })
       .catch((error) => {
