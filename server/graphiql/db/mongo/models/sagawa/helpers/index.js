@@ -7,3 +7,4 @@ export getDeliveryDay from './getDeliveryDay';
 export getShippingDay from './getShippingDay';
 export getOrderWeight from './getOrderWeight';
 export generateItemObjs from './generateItemObjs';
+export uploadGenerator from './uploadGenerator';
