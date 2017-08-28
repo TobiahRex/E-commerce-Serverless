@@ -467,6 +467,15 @@ new Promise((resolve, reject) => {
   }
 });
 
+/**
+* Function: "cronJob"
+* This function will be called using AWS Lambda CRON scheduling.  It will query for all Sagawa documents that have a status of "pending".  Create argument objects containing the necessary data to call "UploadGenerator".
+The UploadGenerator instantiates a generator function, and asynchronously calls the Sagawa.uploadOrderAndSendEmail function in parallel with each argument object.  The array of pending promises is then yielded back to the generator and resolved.  The promise collection is iterated over, and for each one, evaluated as successful or faulty.  The result is saved in a new collection.  A while loop listens for the results array length, and once it matches the promises array length, calls Sagawa.handleUploadResults.  If the call was successful, the final cronJob resolve is called.
+*
+* @param none
+*
+* @return none
+*/
 sagawaSchema.statics.cronJob = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.cronJob');
@@ -497,10 +506,8 @@ new Promise((resolve, reject) => {
         console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
         if (verified) {
           resultsArray.push({ success: true, sagawaId });
-          resolve();
         } else {
           resultsArray.push({ success: false, sagawaId });
-          return Sagawa.handleUploadError(sagawaId);
         }
       })
       .then(() => {
@@ -515,7 +522,7 @@ new Promise((resolve, reject) => {
 
     while (true) { //eslint-disable-line
       if (resultsArray.length === promiseArrayLength) {
-        Sagawa.handleUploadError(resultsArray)
+        Sagawa.handleUploadResults(resultsArray)
         .then(resolve)
         .catch(reject);
         break; //eslint-disable-line
@@ -532,7 +539,16 @@ new Promise((resolve, reject) => {
   });
 });
 
-sagawaSchema.statics.handleUploadError = responseArray =>
+/**
+* Function: "handleUploadResults"
+* This function receives an array of result objects from uploading to Sagawa.  Each object has a success key, with a boolean value.  A dynamic email is created and sent with the results from the upload. The same message is added to a slack message, and sent to the NJ2JP slack channel.
+*
+* @param {array} responseArray - array of objects
+* @param {class} Email - A Mongo Model
+*
+* @return none -
+*/
+sagawaSchema.statics.handleUploadResults = responseArray =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.handleUploadError\n');
 
@@ -561,8 +577,8 @@ new Promise((resolve, reject) => {
   /* eslint-disable prefer-template */
 
   const message = `
-    SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}:
-    You are receiving this email because there was a problem while trying to upload orders to Sagawa that were cached during the off-business hours.
+    SAGAWA UPLOAD REPORT - ${moment().format('LL')}:
+    This is a report of any & all automatic order uploads.  These orders were accumulated over the weekend (off-business hours).
 
     // ---------------------- SUMMARY ---------------------- //
 
@@ -585,7 +601,7 @@ new Promise((resolve, reject) => {
     replyToAddresses: ['admin@nj2jp.com'],
     bodyTextData: message,
     bodyTextCharset: 'utf8',
-    subjectData: `SAGAWA UPLOAD ERROR REPORT - ${moment().format('LL')}`,
+    subjectData: `SAGAWA UPLOAD REPORT - ${moment().format('LL')}`,
     subjectCharset: 'utf8',
   };
 
