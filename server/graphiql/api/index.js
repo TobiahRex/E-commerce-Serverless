@@ -17,8 +17,13 @@ router.post('/sagawa', (req, res) => {
   console.log('req.body: ', req.body);
   Sagawa.uploadOrderAndSendEmail(req.body)
     .then((response) => {
-      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
-      res.status(200).send(response);
+      if (response.verified) {
+        console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+        res.status(200).send(response);
+      } else {
+        console.log('FAILED: Order successfully uploaded but did not receive required tracking data.');
+        res.status(204).send(response);
+      }
     })
     .catch((error) => {
       console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);

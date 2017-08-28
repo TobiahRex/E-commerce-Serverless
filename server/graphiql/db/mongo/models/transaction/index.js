@@ -384,7 +384,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    if (results[0].status !== 200) {
+    if ((results[0].status !== 200) && (results[0].status !== 204)) {
       resolve({
         error: {
           hard: true,

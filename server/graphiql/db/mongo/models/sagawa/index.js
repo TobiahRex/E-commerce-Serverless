@@ -17,6 +17,7 @@ import {
   getShippingDay as GetShippingDay,
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
+  uploadGenerator as UploadGenerator,
 } from './helpers';
 
 /**
@@ -195,7 +196,7 @@ new Promise((resolve, reject) => {
   })
   .then(({ data }) => {
     console.log('SUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-    resolve(data);
+    resolve({ data, sagawaId });
   })
   .catch((error) => {
     console.log('FAILED: Order upload to Sagawa.', error);
@@ -272,17 +273,22 @@ new Promise((resolve, reject) => {
     Sagawa.uploadOrder(sagawaId),
     Transaction.findById(transactionId),
   ])
-  .then((results) => {
-    console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
+  .then((results) => {  //eslint-disable-line
+    if (!results[0].data.verified) {
+      console.log('FAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
+      resolve({ verified: false });
+    } else {
+      console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
-    transactionDoc = results[1];
-    const uploadData = results[0];
+      transactionDoc = results[1];
+      const uploadData = results[0];
 
-    return Sagawa.findSagawaAndUpdate({
-      sagawaId,
-      awbId: uploadData.awbId,
-      referenceId: uploadData.referenceId,
-    });
+      return Sagawa.findSagawaAndUpdate({
+        sagawaId,
+        awbId: uploadData.awbId,
+        referenceId: uploadData.referenceId,
+      });
+    }
   })
   .then((dbSagawa) => {
     console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
@@ -326,7 +332,7 @@ new Promise((resolve, reject) => {
   })
   .then(() => {
     console.log('SUCCEEDED: Send Invoice Email via SES.\n');
-    resolve();
+    resolve({ verified: true });
   })
   .catch((error) => {
     console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
@@ -459,6 +465,44 @@ new Promise((resolve, reject) => {
       reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
     });
   }
+});
+
+sagawaSchema.statics.cronJob = () =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.cronJob');
+
+  bbPromise.fromCallback(cb =>
+    Sagawa.find({ uploadStatus: 'pending' }, cb))
+  .then((dbResults) => {  //eslint-disable-line
+    if (!dbResults.length) {
+      resolve({ status: 200 });
+    } else {
+      console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
+      return UploadGenerator(dbResults, Sagawa);
+    }
+  })
+  .then((Promises) => {
+    Promises.forEach((promise) => {
+      promise
+      .then(({ data, sagawaId }) => {
+        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
+        if (!data.verified) {
+
+        } else {
+          delete data.verified;
+          Sagawa.findSagawaAndUpdate({ ...data, sagawaId });
+        }
+      })
+      .catch((error) => {
+        console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
+        reject(new Error('FAILED: Upload order to Sagawa via Cron Job:'));
+      });
+    });
+  })
+  .catch((error) => {
+    console.log('FAILED: Perform Cron Job sagawa upload: ', error);
+    reject(new Error('FAILED: Perform cron job sagawa upload.'));
+  });
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
