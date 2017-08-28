@@ -41,8 +41,13 @@ module.exports.sagawa = (event, context) => {
       return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction);
     })
     .then((response) => {
-      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.', response);
-      context.succeed(response) && context.done();
+      if (response.verified) {
+        console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.', response.verified);
+        context.succeed(response) && context.done();
+      } else {
+        console.log('FAILED: Upload Sagawa and Send Invoice Email.', response.verified);
+        context.fail(response) && context.done();
+      }
     })
     .catch((error) => {
       console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);

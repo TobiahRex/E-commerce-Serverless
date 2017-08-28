@@ -47,7 +47,8 @@ provider:
     SAGAWA_TEST_ENGLISH: ${file(./config.yml):sagawaTestEnglish}
     SAGAWA_JAPANESE: ${file(./config.yml):sagawaJapanese}
     SAGAWA_ENGLISH: ${file(./config.yml):sagawaEnglish}
-    SLACK_CUSTOMER_WEBHOOK: ${file(./config.yml):slackCustomerWebhook}
+    SLACK_SUPPORT_WEBHOOK: ${file(./config.yml):slackSupportWebhook}
+    SLACK_SAGAWA_UPLOAD_WEBHOOK: ${file(./config.yml):slackSagawaUploadWebhook}
     LAMBDA_ENV: ${file(./config.yml):lambdaEnv}
     BASE_URL: ${file(./config.yml):baseUrl}
     PRODUCT_URL: ${file(./config.yml):productionUrl}
