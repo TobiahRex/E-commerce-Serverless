@@ -528,7 +528,7 @@ export default (db) => {
 
   /**
   * Function: "handleUploadResults"
-  * This function receives an array of result objects from uploading to Sagawa.  Each object has a success key, with a boolean value.
+  * This function receives an array of result objects from uploading to Sagawa.  Each object has a success key, with a boolean value.  A dynamic email is created and sent with the results from the upload. The same message is added to a slack message, and sent to the NJ2JP slack channel.
   *
   * @param {array} responseArray - array of objects
   * @param {class} Email - A Mongo Model

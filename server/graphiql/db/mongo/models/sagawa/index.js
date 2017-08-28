@@ -467,6 +467,15 @@ new Promise((resolve, reject) => {
   }
 });
 
+/**
+* Function: "cronJob"
+* This function will be called using AWS Lambda CRON scheduling.  It will query for all Sagawa documents that have a status of "pending".  Create argument objects containing the necessary data to call "UploadGenerator".
+The UploadGenerator instantiates a generator function, and asynchronously calls the Sagawa.uploadOrderAndSendEmail function in parallel with each argument object.  The array of pending promises is then yielded back to the generator and resolved.  The promise collection is iterated over, and for each one, evaluated as successful or faulty.  The result is saved in a new collection.  A while loop listens for the results array length, and once it matches the promises array length, calls Sagawa.handleUploadResults.  If the call was successful, the final cronJob resolve is called.
+*
+* @param none
+*
+* @return none
+*/
 sagawaSchema.statics.cronJob = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.cronJob');
@@ -530,6 +539,15 @@ new Promise((resolve, reject) => {
   });
 });
 
+/**
+* Function: "handleUploadResults"
+* This function receives an array of result objects from uploading to Sagawa.  Each object has a success key, with a boolean value.  A dynamic email is created and sent with the results from the upload. The same message is added to a slack message, and sent to the NJ2JP slack channel.
+*
+* @param {array} responseArray - array of objects
+* @param {class} Email - A Mongo Model
+*
+* @return none -
+*/
 sagawaSchema.statics.handleUploadResults = responseArray =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.handleUploadError\n');
