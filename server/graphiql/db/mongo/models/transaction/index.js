@@ -384,7 +384,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    if (results[0].status !== 200) {
+    if ((results[0].status !== 200) && (results[0].status !== 204)) {
       resolve({
         error: {
           hard: true,
@@ -393,6 +393,20 @@ new Promise((resolve, reject) => {
         },
         user: null,
         transaction: null,
+      });
+    } else if (results[0].status === 204) {
+      Sagawa.handleBadUpload(results[0].data)
+      .then(() => {
+        console.log('SUCCEEDED: Handle bad Sagawa upload.');
+        resolve({
+          error: { hard: false, soft: false, message: '' },
+          user: userDoc,
+          transaction: newTransactionDoc,
+        });
+      })
+      .catch((error) => {
+        console.log('FAILED: Handle Bad SagawaUpload: ', error);
+        reject(new Error('FAILED: Handle Bad SagawaUpload.'));
       });
     } else {
       console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);

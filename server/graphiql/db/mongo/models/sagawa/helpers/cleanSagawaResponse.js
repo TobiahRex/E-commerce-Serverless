@@ -164,11 +164,18 @@ new Promise((resolve, reject) => {
     /*  eslint-enable no-console */
 
     if (!verified) {
-      reject('Unable to upload order to retrieve Tracking & Reference number from Sagawa API.');
+      resolve({
+        data: {
+          verified: false,
+          awbId,
+          referenceId,
+        },
+      });
     }
 
     resolve({
       data: {
+        verified: true,
         awbId,
         referenceId,
       },

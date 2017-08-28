@@ -375,11 +375,15 @@ export default (db) => {
         newTransactionDoc = { ...results[0]._doc };
 
         /* eslint-disable global-require, import/first, no-unused-expressions, no-console */
-        const lambda = new AWS.Lambda({
-          region: process.env.AWS_REGION,
-        });
+
+        const {
+          AWS_REGION: region,
+          LAMBDA_ENV: lambdaEnv,
+        } = process.env;
+
+        const lambda = new AWS.Lambda({ region });
         const promise1 = bbPromise.fromCallback(cb => lambda.invoke({
-          FunctionName: 'lakshman-dev-sagawa',
+          FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
           InvocationType: 'RequestResponse',
           Payload: `{
             "userId": ${userId}
