@@ -1,16 +1,15 @@
-function* uploadGenerator(dbSagawas, sagawaModel) {
-  yield dbSagawas
-  .map(({ _id }) => _id)
-  .map(async (id) => {
-    const result = await sagawaModel.uploadOrder(id);
+function* uploadGenerator(reqBodyArray, sagawaModel) {
+  yield reqBodyArray
+  .map(async (reqBody) => {
+    const result = await sagawaModel.uploadOrderAndSendEmail(reqBody);
     return result;
   });
 }
 
-export default function sagawaGenerator(dbSagawas, sagawaModel) {
+export default function sagawaGenerator(reqBodyArray, sagawaModel) {
   return new Promise((resolve, reject) => {
     try {
-      const generator = uploadGenerator(dbSagawas, sagawaModel);
+      const generator = uploadGenerator(reqBodyArray, sagawaModel);
       const { value } = generator.next();
       resolve(value);
     } catch (e) {

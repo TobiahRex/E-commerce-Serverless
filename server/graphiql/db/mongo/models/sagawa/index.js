@@ -276,7 +276,7 @@ new Promise((resolve, reject) => {
   .then((results) => {  //eslint-disable-line
     if (!results[0].data.verified) {
       console.log('FAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
-      resolve({ verified: false });
+      resolve({ verified: false, sagawaId });
     } else {
       console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
@@ -332,7 +332,7 @@ new Promise((resolve, reject) => {
   })
   .then(() => {
     console.log('SUCCEEDED: Send Invoice Email via SES.\n');
-    resolve({ verified: true });
+    resolve({ verified: true, sagawaId });
   })
   .catch((error) => {
     console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
@@ -478,6 +478,11 @@ new Promise((resolve, reject) => {
       resolve({ status: 200 });
     } else {
       console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
+      dbResults.map((dbDoc) => ({
+        userId: 
+        transactionId,
+        sagawaId,
+      }))
       return UploadGenerator(dbResults, Sagawa);
     }
   })
@@ -487,7 +492,7 @@ new Promise((resolve, reject) => {
       .then(({ data, sagawaId }) => {
         console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
         if (!data.verified) {
-
+          Sagawa.handleUploadError(sagawaId);
         } else {
           delete data.verified;
           Sagawa.findSagawaAndUpdate({ ...data, sagawaId });
