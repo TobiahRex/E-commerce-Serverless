@@ -10,7 +10,7 @@ new Promise((resolve, reject) => {
   graphql(schema, query, null, dbModels, variables)
   .then((dbResponse) => {
     console.log(`
-    (runGraphQL.js @ graphql.catch)
+    (runGraphQL.js @ graphql.then)
     Results = ${JSON.stringify(dbResponse, null, 2)}
     `);
     // return closeDB(db, dbResponse);

@@ -323,7 +323,7 @@ export default (db) => {
     })
     .then(() => {
       console.log('SUCCEEDED: Send Invoice Email via SES.\n');
-      resolve();
+      resolve({ verified: true, sagawaId });
     })
     .catch((error) => {
       console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
@@ -456,6 +456,157 @@ export default (db) => {
         reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
       });
     }
+  });
+
+  /**
+  * Function: "cronJob"
+  * This function will be called using AWS Lambda CRON scheduling.  It will query for all Sagawa documents that have a status of "pending".  Create argument objects containing the necessary data to call "UploadGenerator".
+  The UploadGenerator instantiates a generator function, and asynchronously calls the Sagawa.uploadOrderAndSendEmail function in parallel with each argument object.  The array of pending promises is then yielded back to the generator and resolved.  The promise collection is iterated over, and for each one, evaluated as successful or faulty.  The result is saved in a new collection.  A while loop listens for the results array length, and once it matches the promises array length, calls Sagawa.handleUploadResults.  If the call was successful, the final cronJob resolve is called.
+  *
+  * @param none
+  *
+  * @return none
+  */
+  sagawaSchema.statics.cronJob = () =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Sagawa.cronJob');
+
+    bbPromise.fromCallback(cb =>
+      Sagawa.find({ uploadStatus: 'pending' }, cb))
+    .then((dbResults) => {  //eslint-disable-line
+      if (!dbResults.length) {
+        resolve({ status: 200 });
+      } else {
+        console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
+        const reqObjs = dbResults.map(dbDoc => ({
+          sagawaId: dbDoc._id,
+          userId: dbDoc.userId,
+          transactionId: dbDoc.transactionId,
+        }));
+        return UploadGenerator(reqObjs, Sagawa);
+      }
+    })
+    .then((Promises) => {
+      let promiseArrayLength = 0;
+      const resultsArray = [];
+      Promises.forEach((promise, i, array) => {
+        promiseArrayLength = array.length;
+
+        promise
+        .then(({ verified, sagawaId }) => { //eslint-disable-line
+          console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
+          if (verified) {
+            resultsArray.push({ success: true, sagawaId });
+          } else {
+            resultsArray.push({ success: false, sagawaId });
+          }
+        })
+        .catch((error) => {
+          console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
+          reject(new Error('FAILED: Upload order to Sagawa via Cron Job:'));
+        });
+      });
+
+      while (true) { //eslint-disable-line
+        if (resultsArray.length === promiseArrayLength) {
+          Sagawa.handleUploadResults(resultsArray)
+          .then(resolve)
+          .catch(reject);
+          break; //eslint-disable-line
+        }
+      }
+    })
+    .then(() => {
+      console.log('SUCCEEDED: Handle Sagawa Upload Error.');
+      resolve();
+    })
+    .catch((error) => {
+      console.log('FAILED: Perform Cron Job sagawa upload: ', error);
+      reject(new Error('FAILED: Perform cron job sagawa upload.'));
+    });
+  });
+
+  /**
+  * Function: "handleUploadResults"
+  * This function receives an array of result objects from uploading to Sagawa.  Each object has a success key, with a boolean value.  A dynamic email is created and sent with the results from the upload. The same message is added to a slack message, and sent to the NJ2JP slack channel.
+  *
+  * @param {array} responseArray - array of objects
+  * @param {class} Email - A Mongo Model
+  *
+  * @return none -
+  */
+  sagawaSchema.statics.handleUploadResults = (responseArray, Email) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Sagawa.handleUploadError\n');
+
+    const results = responseArray.reduce((a, n) => {
+      if (n.success) {
+        a.successful.push(n.sagawaId);
+        a.total += 1;
+        return a;
+      }
+      a.failures.push(n.sagawaId);
+      a.total += 1;
+      return a;
+    }, {
+      successful: [],
+      failures: [],
+      total: 0,
+    });
+
+    const {
+      CTO_EMAIL: cto,
+      CEO_EMAIL: ceo,
+      CDO_EMAIL: cdo,
+      DISTRO_EMAIL: distro,
+    } = process.env;
+
+    /* eslint-disable prefer-template */
+
+    const message = `
+      SAGAWA UPLOAD REPORT - ${moment().format('LL')}:
+      This is a report of any & all automatic order uploads.  These orders were accumulated over the weekend (off-business hours).
+
+      // ---------------------- SUMMARY ---------------------- //
+
+      TOTAL UPLOADS: ${results.total.length}
+
+      SUCCESSFUL: ${results.successful.length}
+
+      FAILED: ${results.failures.length}
+
+      // ---------------- FAILED SAGAWA ID's ----------------- //
+
+      ${!results.failures.length ? '' : results.failures.reduce((a, n, i) => ('\n' + (i + 1) + ') ' + n.sagawaId) + '\n', '')}
+
+      // ---------------------------------------------------- //`;
+    /* eslint-enable prefer-template */
+
+    const emailRequest = {
+      sourceEmail: 'NJ2JP Admin <admin@nj2jp.com>',
+      toEmailAddresses: [ceo, cto, cdo, distro],
+      replyToAddresses: ['admin@nj2jp.com'],
+      bodyTextData: message,
+      bodyTextCharset: 'utf8',
+      subjectData: `SAGAWA UPLOAD REPORT - ${moment().format('LL')}`,
+      subjectCharset: 'utf8',
+    };
+
+    Email.sendRawEmail(emailRequest)
+    .then((response) => {
+      console.log('SUCCEEDED: Email has been sent to NJ2JP leadership:', response);
+      const slackWebhook = process.env.SLACK_SAGAWA_UPLOAD_WEBHOOK;
+      const slackMessage = message;
+      return Email.notifySlack(slackWebhook, slackMessage);
+    })
+    .then((slackResponse) => {
+      console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
+      resolve();
+    })
+    .catch((error) => {
+      console.log('FAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);
+      reject(new Error('FAILED: Send Sagawa Upload Error eMail and Notify Slack'));
+    });
   });
 
   const Sagawa = db.model('Sagawa', sagawaSchema);
