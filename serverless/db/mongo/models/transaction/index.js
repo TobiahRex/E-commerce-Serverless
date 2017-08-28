@@ -375,8 +375,9 @@ export default (db) => {
           AWS_REGION: region,
           LAMBDA_ENV: lambdaEnv,
         } = process.env;
-
+        console.log('region: ', region, '\nlambdaEnv: ', lambdaEnv);
         const lambda = new AWS.Lambda({ region });
+        console.log('lambda: ', lambda);
         const promise1 = bbPromise.fromCallback(cb => lambda.invoke({
           FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
           InvocationType: 'RequestResponse',
