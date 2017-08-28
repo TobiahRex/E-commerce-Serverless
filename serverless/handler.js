@@ -24,16 +24,29 @@ module.exports.sagawa = (event, context) => {
 
   if (event['detail-type'] === 'Scheduled Event') {
     console.log('Cron Job');
-    // cron-job source code here
+    verifyDb()
+    .then((dbResults) => {
+      console.log('\n//MongoDb Connection Response: ', dbResults);
+      const { Sagawa } = dbResults.dbModels;
+      // const Sagawa = dbResults.connection.models.Sagawa;
+      // const Transaction = dbResults.connection.models.Transaction;
+      // const Email = dbResults.connection.models.Email;
+
+      return Sagawa.cronJob();
+    })
+    .then(() => {
+      console.log('FAILED: Upload Sagawa and Send Invoice Email.');
+      context.succeed() && context.done();
+    })
+    .catch((error) => {
+      console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);
+      context.fail(error) && context.done();
+    });
   } else {
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
-      const {
-        Sagawa,
-        Email,
-        Transaction,
-      } = dbResults.dbModels;
+      const { Sagawa, Email, Transaction } = dbResults.dbModels;
       // const Sagawa = dbResults.connection.models.Sagawa;
       // const Transaction = dbResults.connection.models.Transaction;
       // const Email = dbResults.connection.models.Email;
