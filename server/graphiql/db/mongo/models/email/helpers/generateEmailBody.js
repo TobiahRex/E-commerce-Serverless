@@ -17,24 +17,27 @@ const generateEmailBody = {
     | `}
     *====================== DETAILS ======================*
 
-    ${reportDoc.reportType !== 'cronJobError' ? reportDoc.data.reduce((a, n, i) => {
-      a += `
-    ${i + 1})----------------
-    |${JSON.stringify(n)}
-    *-------------------------
-    `;
-      return a;
-    }, '')
-  : this.cronJobErrorBody(reportDoc.data)}
+    ${reportDoc.reportType !== 'cronJobError' ? this.genericBody(reportDoc.data) : this.cronJobError_body(reportDoc.data)}
     `;
     return bodyTextData;
   },
-  cronJobErrorBody: (reportData) => {
+  genericBody: (reportData) => {
+    const message = reportData.reduce((a, n, i) => {
+    a += `
+    ${i + 1})----------------
+    ${JSON.stringify(n)}
+    *-------------------------
+    `;
+    return a;
+    }, '');
+    return message;
+  },
+  cronJobError_body: (reportData) => {
     const message = `
     *--------------------- FAILURES ---------------------*
     ${reportData.failed.reduce((a, n, i) => {
     a += `
-    ${i + 1})-------------------------
+    (${i + 1})------------------------
     | DATE: ${n.date}
     | SAGAWA ID: ${n.sagawaId}
     | USER ID: ${n.userId}
@@ -47,7 +50,7 @@ const generateEmailBody = {
     *--------------------- SUCCESSFULL ---------------------*
     ${reportData.successful.reduce((a, n, i) => {
     a += `
-    ${i + 1})----------------------------
+    (${i + 1})---------------------------
     | DATE: ${n.date}
     | SAGAWA ID: ${n.sagawaId}
     | USER ID: ${n.userId}
