@@ -218,7 +218,7 @@ new Promise((resolve, reject) => {
 sagawaSchema.statics.findSagawaAndUpdate = ({ sagawaId, awbId, referenceId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.findSagawaAndUpdate\n');
-
+  console.log('sagawaId: ', sagawaId, '\nawbId: ', awbId, '\nreferenceId: ', referenceId);
   Sagawa.findByIdAndUpdate(sagawaId, {
     $set: {
       'shippingAddress.awbId': awbId,
@@ -281,7 +281,7 @@ new Promise((resolve, reject) => {
       console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
       transactionDoc = results[1];
-      const uploadData = results[0];
+      const uploadData = results[0].data;
 
       return Sagawa.findSagawaAndUpdate({
         sagawaId,
@@ -324,6 +324,7 @@ new Promise((resolve, reject) => {
     emailBody = emailBody
     .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
+    console.log('NEW email body: ', emailBody);
 
     return Email.sendEmail({
       to: transactionDoc.emailAddress,

@@ -500,6 +500,7 @@ export default (db) => {
         .then(({ StatusCode, Payload }) => { //eslint-disable-line
           console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
           let resSagawaId;
+
           try {
             const { sagawaId } = JSON.parse(Payload);
             resSagawaId = sagawaId;
