@@ -475,28 +475,35 @@ new Promise((resolve, reject) => {
     } = process.env;
 
     const emailRequest = {
-      sourceEmail: '',
+      sourceEmail: 'admin@nj2jp.com',
       toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: ['NJ2JP Error Report ⚠️ <admin@nj2jp.com>'],
       bodyTextData: GenerateEmailBody.staffErrorReport(reportDoc),
       bodyTextCharset: 'utf8',
-      subjectData: 'IMPORTANT! - An error has occured that requires your immediate attention.',
+      subjectData: 'IMPORTANT! - An error has occured that requires immediate attention.',
       subjectCharset: 'utf8',
     };
 
     Email.sendRawEmail(emailRequest)
     .then((response) => {
       console.log('\nSUCCEEDED: Send Error Email to Staff: ', response);
+
+      resolve();
     })
     .catch((error) => {
       console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
 
-      Email.notifySlack(
+      return Email.notifySlack(
         process.env.SLACK_ERROR_NOTIFICATION_WEBHOOOK,
         GenerateSlackMsg.staffErrorReport(reportDoc),
       );
-      reject();
-    });
+    })
+    .then(() => {
+      console.log('\nSUCCEEDED: @Email.notifiySlack');
+
+      reject(new Error('\nFAILED @Email.sendRawEmail'));
+    })
+    .catch(reject);
   }
 });
 
