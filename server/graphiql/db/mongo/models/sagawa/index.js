@@ -8,6 +8,7 @@ import db from '../../connection';
 import Transaction from '../transaction';
 import Email from '../email';
 import User from '../user';
+import Report from '../report';
 import {
   getSagawaKbn as GetSagawaKbn,
   cleanSagawaResponse as CleanSagawaResponse,
@@ -502,7 +503,7 @@ new Promise((resolve, reject) => {
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
       resolve({ status: 200 });
-      Contact.sendCronjobReport(date);
+      Report.sendCronJobReport({ date, report: [] });
     } else {
       console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
       const reqObjs = dbResults.map(dbDoc => ({
