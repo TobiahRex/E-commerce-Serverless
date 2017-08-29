@@ -3,19 +3,20 @@ const generateSlackMsg = {
   staffErrorReport: (reportDoc) => {
     const message = `
     ----------------------------------------------------
-              ⚠️ ERROR - EXTREMELY IMPORTANT 🛑
+            ${reportDoc.mainTitle} - ${reportDoc.subTitle}
     ----------------------------------------------------
-        An error has occured that requires immediate
-            attention from the development team.
+        ${reportDoc.headerBlurb}
     ======================= INFO =======================
+
     TYPE: "${reportDoc.reportType}"
     DATE: ${reportDoc.created}
-
+    ${reportDoc.reportType !== 'cronJobError' ? '' : `
+    TOTAL UPLOADS: ${reportDoc.data.total}
+    SUCCESSFUL UPLOADS: ${reportDoc.data.successful}
+    FAILED UPLOADS: ${reportDoc.data.failed}
+    `}
     ====================== DETAILS ======================
-    ${reportDoc.mainTitle}
-    ${reportDoc.subTitle}
-    -----------------------------------------------------
-    ${reportDoc.headerBlurb}
+
     ${reportDoc.data.reduce((a, n, i) => {
       a += `
     /${i + 1})----------------

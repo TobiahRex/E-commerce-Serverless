@@ -543,13 +543,13 @@ new Promise((resolve, reject) => {
 
 
   let successfulReqs = 0,
-      failedReqs = 0,
-      nextBatch = [];
+    failedReqs = 0,
+    nextBatch = [];
 
   const totalReqs = reqObjs.length,
-        reports = [],
-        date = moment().format('YYYY/MM/DD'),
-        savedArray = reqObjs;
+    reports = [],
+    date = moment().format('YYYY/MM/DD'),
+    savedArray = reqObjs;
 
   if (reqObjs.length) {
     nextBatch = [...savedArray.splice(0, 5)];
@@ -573,7 +573,21 @@ new Promise((resolve, reject) => {
             success: verified,
             error: false,
           });
-          if (i === (array.length - 1)) resolve();
+          if (i === (array.length - 1)) {
+            Report.createAndSendCronJobReport({
+              reportType: 'cronJobSummary',
+              mainTitle: 'REPORT ✉️',
+              subTitle: 'Cron Job Upload Summary 💵',
+              headerBlurb: 'Congratulations! We\'ve successfully uploaded all weekend orders to Sagawa.',
+              data: {
+                total: totalReqs,
+                successful: successfulReqs,
+                failed: failedReqs,
+                reports,
+              },
+            });
+            resolve();
+          }
         } else {
           failedReqs += 1;
 
@@ -586,19 +600,21 @@ new Promise((resolve, reject) => {
             error: true,
           });
 
-          Report.createAndSendErrorReportToStaff({
-            reportType: 'cronJobError',
-            mainTitle: 'ERROR ⚠️',
-            subTitle: 'Cron Job Upload Failure 🛑',
-            headerBlurb: 'There was an error while trying to upload an order to Sagawa.  Immediate attention form the development team is REQUIRED!',
-            data: {
-              total: totalReqs,
-              successful: successfulReqs,
-              failed: failedReqs,
-              reports,
-            },
-          });
-          if (i === (array.length - 1)) resolve();
+          if (i === (array.length - 1)) {
+            Report.createAndSendErrorReportToStaff({
+              reportType: 'cronJobError',
+              mainTitle: 'ERROR ⚠️',
+              subTitle: 'Cron Job Upload Failure 🛑',
+              headerBlurb: 'There was an error while trying to upload an order to Sagawa.  Immediate attention from the development team is REQUIRED!',
+              data: {
+                total: totalReqs,
+                successful: successfulReqs,
+                failed: failedReqs,
+                reports,
+              },
+            });
+            resolve();
+          }
         }
       })
       .catch((error) => {
