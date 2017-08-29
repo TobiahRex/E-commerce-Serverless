@@ -277,7 +277,7 @@ export default (db) => {
       console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
       transactionDoc = results[1];
-      const uploadData = results[0];
+      const uploadData = results[0].data;
 
       return Sagawa.findSagawaAndUpdate({
         sagawaId,

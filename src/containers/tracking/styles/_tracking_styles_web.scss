@@ -81,7 +81,7 @@
             height: 5em;
             width: 22em;
             margin-right: 2.5em;
-            background-color: $p-red;
+            background-color: $p-blue;
             & p {
               color: $p-white;
               font-weight: 200;
@@ -90,7 +90,7 @@
         }
         & .list--option.option-past {
           & div {
-            background-color: $p-red;
+            background-color: $p-blue;
           }
         }
         & .list--option.option-active {
@@ -114,10 +114,10 @@
               width: 0;
               height: 0;
               left: 100%;
-              border: 0px solid $p-red;
+              border: 0px solid $p-blue;
               border-color: transparent;
               border-width: 2.5em 1.4em;
-              border-left-color: $p-red;
+              border-left-color: $p-blue;
             }
           }
         }
@@ -162,7 +162,6 @@
               border-left-color: transparent;
             }
             &:after {
-              left: -2em;
               border-left-color: $p-blue;
             }
           }
@@ -175,7 +174,6 @@
               border-left-color: transparent;
             }
             &:after {
-              left: -2em;
               border-left-color: $p-green;
             }
           }
@@ -244,7 +242,7 @@
           & div {
             &:before {
               left: -2em;
-              border-color: $p-red;
+              border-color: $p-blue;
               border-left-color: transparent;
             }
           }

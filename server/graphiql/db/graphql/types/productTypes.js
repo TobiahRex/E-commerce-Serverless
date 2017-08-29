@@ -191,8 +191,12 @@ const rootType = new ObjectType({
                   description: 'The available quanitty for this product.',
                   type: IntType,
                 },
-                inCart: {
+                inCarts: {
                   description: 'The quantity for products currently in customers\' carts.',
+                  type: IntType,
+                },
+                purchased: {
+                  description: 'The quantity for products purchased by customers.',
                   type: IntType,
                 },
               }),
@@ -477,8 +481,12 @@ export const inputTypes = {
               description: 'The available quanitty for this product.',
               type: IntType,
             },
-            inCart: {
+            inCarts: {
               description: 'The quantity for products currently in customers\' carts.',
+              type: IntType,
+            },
+            purchased: {
+              description: 'The quantity for products purchased by customers.',
               type: IntType,
             },
           }),

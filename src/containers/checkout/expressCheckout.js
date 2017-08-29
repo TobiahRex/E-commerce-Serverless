@@ -71,7 +71,7 @@ class ExpressCheckout extends React.Component {
       },
       // --- Form Data from Nested Components ---
       prComments: '',
-      newsletterDecision: false,
+      newsletterDecision: true,
       shippingFirstName: '',
       shippingLastName: '',
       shippingEmail: '',
@@ -276,6 +276,14 @@ class ExpressCheckout extends React.Component {
         },
       }));
     } else {
+      this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          hard: false,
+          soft: false,
+          message: '',
+        },
+      }));
       const formData = GenerateFinalForm({
         state: this.state,
         props: this.props,

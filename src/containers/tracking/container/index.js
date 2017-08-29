@@ -75,7 +75,7 @@ class OrderTracking extends React.Component {
           className = orderStatus === 'Packaging' ? 'active' : 'past';
         } break;
         case 'Shipped': {
-          if (state === orderStatus) {
+          if (orderStatus === 'Shipped') {
             className = 'active';
           } else if (orderStatus === 'Packaging') {
             className = 'future';
@@ -108,9 +108,13 @@ class OrderTracking extends React.Component {
       return (
         <tr className="body--row" key={new Buffer('no activity to report', 'utf8').toString('base64')}>
 
-          <td className="body--location">
-            <p>You order has been submitted. You will see your shipment status here once your order has been shipped.</p>
+          <td className="body--location" />
+
+          <td className="body--date">
+            <p>No Activity To Report</p>
           </td>
+
+          <td className="body--activity" />
         </tr>
       );
     }
@@ -160,7 +164,7 @@ class OrderTracking extends React.Component {
             {'\u00A0'}{userName}
           </p>
           <p className="header__detail">
-            <span style={{ fontSize: 20 }}>Order Id#:</span>
+            <span style={{ fontSize: 20 }}>Order #:</span>
             {'\u00A0'}{orderId}
           </p>
         </div>
