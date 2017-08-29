@@ -468,7 +468,6 @@ new Promise((resolve, reject) => {
     console.log('Missing required arguments.');
     reject(new Error('Missing required arguments'));
   } else {
-
     const {
       CEO_EMAIL: ceo,
       CTO_EMAIL: cto,
