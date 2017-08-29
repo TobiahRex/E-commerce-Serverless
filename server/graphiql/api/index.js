@@ -31,6 +31,15 @@ router.post('/sagawa', (req, res) => {
     });
 });
 
+router.post('/cronjob', (req, res) => {
+  Sagawa.cronJob()
+    .then(() => res.status(200).send())
+    .catch((error) => {
+      console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      res.status(400).send(error);
+    });
+});
+
 router.post('/email', (req, res) => {
   Email.createEmail(req.body)
     .then((response) => {

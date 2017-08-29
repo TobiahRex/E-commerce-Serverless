@@ -483,8 +483,9 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.cronJob');
 
   bbPromise.fromCallback(cb =>
-    Sagawa.find({ uploadStatus: 'pending' }, cb))
+    Sagawa.find({ uploadStatus: 'upload' }, cb).exec())
   .then((dbResults) => {  //eslint-disable-line
+    console.log('dbResults: ', dbResults);
     if (!dbResults.length) {
       resolve({ status: 200 });
     } else {

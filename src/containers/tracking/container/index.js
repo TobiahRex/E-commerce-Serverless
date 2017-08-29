@@ -234,7 +234,6 @@ class OrderTracking extends React.Component {
   }
 
   render() {
-    console.log('%cthis.props', 'background:lime;', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
