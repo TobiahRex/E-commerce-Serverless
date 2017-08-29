@@ -224,6 +224,7 @@ class OrderTracking extends React.Component {
         <h1 className="tracking__loading">
           <FontAwesome name="spinner" pulse size="3x" />
           <br />
+          Loading...
           {error.message}
         </h1>
       );
