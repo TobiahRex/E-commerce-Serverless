@@ -373,40 +373,41 @@ export default (db) => {
 
         const {
           AWS_REGION: region,
+          LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
+          LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
           LAMBDA_ENV: lambdaEnv,
         } = process.env;
-        console.log('region: ', region, '\nlambdaEnv: ', lambdaEnv);
-        const lambda = new AWS.Lambda({ region });
-        console.log('lambda: ', lambda);
-        const promise1 = bbPromise.fromCallback(cb => lambda.invoke({
-          FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
-          InvocationType: 'RequestResponse',
-          Payload: `{
-            "userId": ${userId}
-            "sagawaId": ${newTransactionDoc.sagawa},
-            "transactionId" : ${newTransactionDoc._id},
-          }`,
-        }, cb));
-        // const promise1 = axios.post(process.env.UPLOAD_ORDER_LAMBDA_URL, {
-        //   userId,
-        //   sagawaId: newTransactionDoc.sagawa,
-        //   transactionId: newTransactionDoc._id,
-        // });
-        let promise2 = null;
-        let promiseArray = [promise1];
 
+        const lambda = new AWS.Lambda({
+          region,
+          accessKeyId: lambdaAccessKeyId,
+          secretAccessKey: lambdaSecretAccessKey,
+        });
+
+        const promiseArray = [];
         if (marketHeroOp === 'createMongoLead') {
-          promise2 = User.findByIdAndUpdate(userId, {
+          promiseArray.push(User.findByIdAndUpdate(userId, {
             $set: { 'marketing.marketHero': results[1]._id },
-          }, { new: true });
-          promiseArray = [...promiseArray, promise2];
+          }, { new: true }));
         }
 
-        return Promise.all([...promiseArray]);
+        return Promise.all([
+          bbPromise.fromCallback(cb => lambda.invoke({
+            FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
+            InvocationType: 'RequestResponse',
+            Payload: `{
+              "userId": "${userId}",
+              "sagawaId": "${newTransactionDoc.sagawa}",
+              "transactionId" : "${newTransactionDoc._id}"
+            }`,
+          }, cb)),
+          ...promiseArray,
+        ]);
       }
     })
     .then((results) => { //eslint-disable-line
-      if ((results[0].status !== 200) && (results[0].status !== 204)) {
+      console.log('results: ', results);
+      if (results[0].StatusCode !== 200) {
         resolve({
           error: {
             hard: true,
@@ -416,37 +417,10 @@ export default (db) => {
           user: null,
           transaction: null,
         });
-      } else if (results[0].status === 204) {
-        Sagawa.handleBadUpload(results[0].data)
-        .then(() => {
-          console.log('SUCCEEDED: Handle bad Sagawa upload.');
-          resolve({
-            error: { hard: false, soft: false, message: '' },
-            user: userDoc,
-            transaction: newTransactionDoc,
-          });
-        })
-        .catch((error) => {
-          console.log('FAILED: Handle Bad SagawaUpload: ', error);
-          reject(new Error('FAILED: Handle Bad SagawaUpload.'));
-        });
       } else {
-        console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
+        console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].Payload, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
 
-        const { status, data } = results[0];
-
-        if (results.length === 2) userDoc = results[1];
-
-        if (status !== 200) {
-          console.log('FAILED: Upload Order to Sagawa: ', data);
-          resolve({
-            error: {
-              hard: true,
-              soft: false,
-              message: `Was not able to complete the order: ${data}`,
-            },
-          });
-        }
+        if (results.length === 2) userDoc = results[1]._doc;
 
         cartProducts.forEach((productDoc) => {
           const {

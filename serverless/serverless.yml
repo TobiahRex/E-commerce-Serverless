@@ -55,6 +55,9 @@ provider:
     CEO_EMAIL: ${file(./config.yml):ceoEmail}
     CTO_EMAIL: ${file(./config.yml):ctoEmail}
     CDO_EMAIL: ${file(./config.yml):cdoEmail}
+    AWS_SES_REGION: ${file(./config.yml):awsSesRegion}
+    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.yml):lambdaSecretAccessKey}
+    LAMBDA_ACCESS_KEY_ID: ${file(./config.yml):lambdaAccessKeyId}
 
 plugins:
   - serverless-webpack

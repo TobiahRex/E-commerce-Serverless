@@ -28,14 +28,10 @@ module.exports.sagawa = (event, context) => {
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
       const { Sagawa } = dbResults.dbModels;
-      // const Sagawa = dbResults.connection.models.Sagawa;
-      // const Transaction = dbResults.connection.models.Transaction;
-      // const Email = dbResults.connection.models.Email;
-
       return Sagawa.cronJob();
     })
     .then(() => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email.');
+      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
       context.succeed() && context.done();
     })
     .catch((error) => {
@@ -47,10 +43,6 @@ module.exports.sagawa = (event, context) => {
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
       const { Sagawa, Email, Transaction } = dbResults.dbModels;
-      // const Sagawa = dbResults.connection.models.Sagawa;
-      // const Transaction = dbResults.connection.models.Transaction;
-      // const Email = dbResults.connection.models.Email;
-
       return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction);
     })
     .then((response) => {
