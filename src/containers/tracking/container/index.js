@@ -103,8 +103,18 @@ class OrderTracking extends React.Component {
     });
   }
 
-  renderActivities = trackingInfo =>
-    trackingInfo.map(({ date, activity, location }) => (
+  renderActivities = (trackingInfo) => {
+    if (!trackingInfo[0].activity) {
+      return (
+        <tr className="body--row" key={new Buffer('no activity to report', 'utf8').toString('base64')}>
+
+          <td className="body--location">
+            <p>You order has been submitted. You will see your shipment status here once your order has been shipped.</p>
+          </td>
+        </tr>
+      );
+    }
+    return trackingInfo.map(({ date, activity, location }) => (
       <tr className="body--row" key={new Buffer(`${location}${date}${activity}`, 'utf8').toString('base64')}>
 
         <td className="body--location">
@@ -120,6 +130,7 @@ class OrderTracking extends React.Component {
         </td>
       </tr>
     ));
+  }
 
   renderHelper = (data) => {
     const {
@@ -218,6 +229,7 @@ class OrderTracking extends React.Component {
   }
 
   render() {
+    console.log('%cthis.props', 'background:lime;', this.props);
     return (
       <div className="order-tracking">
         <BreadCrumb
@@ -251,14 +263,9 @@ const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
 }))(OrderTrackingWithData);
 
-const { objectOf, any, shape, bool, string } = PropTypes;
+const { objectOf, any } = PropTypes;
 OrderTracking.propTypes = {
   TrackingInfo: objectOf(any).isRequired,
-  error: shape({
-    hard: bool,
-    soft: bool,
-    message: string,
-  }).isRequired,
 };
 
 export default OrderTrackingWithStateAndData;
