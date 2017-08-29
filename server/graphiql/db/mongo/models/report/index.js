@@ -10,7 +10,7 @@ import Email from '../email';
 * Purpose is to inform the development staff that an error has occured.  If there is an issue with sending the email report, then as a backup: notify the staff via Slac's error-notifications channel.
 */
 
-reportSchema.statics.sendErrorReport = reportInfo =>
+reportSchema.statics.createAndSendErrorReport = reportInfo =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Report.sendError\n');
 
@@ -20,7 +20,7 @@ new Promise((resolve, reject) => {
   .then((dbReport) => {
     console.log('\nSUCCEEDED: Create new Report document: ', dbReport._id);
 
-    return Email.sendErrorToStaff(dbReport);
+    return Email.sendErrorReportToStaff(dbReport);
   })
   .then(() => {
     console.log('SUCCEEDED: Sent error report to Staff.');

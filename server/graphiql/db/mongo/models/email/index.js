@@ -9,6 +9,7 @@ import db from '../../connection';
 import {
   getBillingCountry as GetBillingCountry,
   createEmailProductList as CreateEmailProductList,
+  generateEmailBody as GenerateEmailBody,
 } from './helpers';
 import Transaction from '../transaction';
 
@@ -447,6 +448,43 @@ new Promise((resolve, reject) => {
     console.log('FAILED: Send slack webhook', error);
     reject(new Error('FAILED: Send slack webhook'));
   });
+});
+
+/**
+* Function: 'sendEmailReportTostaff'
+* Notifiy staff that an important error has occured.
+* If there is a failure to send - send a slack notification as a backup.
+*
+* @param {object} reportInfo - an instance of the Report document.
+*
+* @return {na}
+*/
+emailSchema.statics.sendErrorReportToStaff = reportDoc =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Email.sendErrorReportToStaff\n');
+
+  if (!reportDoc) {
+    console.log('Missing required arguments.');
+    reject(new Error('Missing required arguments'));
+  } else {
+
+    const {
+      CEO_EMAIL: ceo,
+      CTO_EMAIL: cto,
+      CDO_EMAIL: cdo,
+    } = process.env;
+
+    const emailRequest = {
+      sourceEmail: '',
+      toEmailAddresses: [cto, ceo, cdo],
+      replyToAddress: ['NJ2JP Error Report ⚠️ <admin@nj2jp.com>'],
+      bodyTextData: GenerateEmailBody.staffErrorReport(reportDoc),
+      bodyTextCharset: 'utf8',
+      subjectData: 'IMPORTANT! - An error has occured that requires your immediate attention.',
+      subjectCharset: 'utf8',
+    };
+
+  }
 });
 
 const Email = db.model('Email', emailSchema);
