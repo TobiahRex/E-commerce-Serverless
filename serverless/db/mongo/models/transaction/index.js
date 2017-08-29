@@ -39,7 +39,7 @@ export default (db) => {
       headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
     })
     .then((response) => {
-      console.log('SUCCEEDED: Fetch Square Location: ', response.data);
+      console.log('\nSUCCEEDED: Fetch Square Location: ', response.data);
 
       const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
@@ -52,7 +52,7 @@ export default (db) => {
         };
 
         if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-          console.log('SUCCEEDED: Verify location CC processing.');
+          console.log('\nSUCCEEDED: Verify location CC processing.');
           resolve(newLocation);
         } else {
           newLocation.error = {
@@ -74,8 +74,8 @@ export default (db) => {
       }
     })
     .catch((error) => {
-      console.log('FAILED: Fetch square location: ', error);
-      reject(new Error('FAILED: Fetch square location.'));
+      console.log('\nFAILED: Fetch square location: ', error);
+      reject(new Error('\nFAILED: Fetch square location.'));
     });
   });
 
@@ -149,7 +149,7 @@ export default (db) => {
     })
     .then((result) => {
       if (!result) {
-        reject('FAILED: Update Transaction with Square information.');
+        reject('\nFAILED: Update Transaction with Square information.');
       } else {
         resolve({ status: 200 });
       }
@@ -445,8 +445,8 @@ export default (db) => {
             console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
           })
           .catch((error) => {
-            console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
-            reject(new Error('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
+            console.log('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
+            reject(new Error('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
           });
         });
 
@@ -459,7 +459,7 @@ export default (db) => {
       }
     })
     .catch((error) => {
-      console.log('FAILED: Create new Transaction Doc & Submit Order.', error);
+      console.log('\nFAILED: Create new Transaction Doc & Submit Order.', error);
       reject(error);
     });
   });

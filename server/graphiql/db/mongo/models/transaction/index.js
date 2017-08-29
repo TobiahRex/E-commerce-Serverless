@@ -42,7 +42,7 @@ new Promise((resolve, reject) => {
     headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
   })
   .then((response) => {
-    console.log('SUCCEEDED: Fetch Square Location: ', response.data);
+    console.log('\nSUCCEEDED: Fetch Square Location: ', response.data);
 
     const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
@@ -55,7 +55,7 @@ new Promise((resolve, reject) => {
       };
 
       if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-        console.log('SUCCEEDED: Verify location CC processing.');
+        console.log('\nSUCCEEDED: Verify location CC processing.');
         resolve(newLocation);
       } else {
         newLocation.error = {
@@ -77,8 +77,8 @@ new Promise((resolve, reject) => {
     }
   })
   .catch((error) => {
-    console.log('FAILED: Fetch square location: ', error);
-    reject(new Error('FAILED: Fetch square location.'));
+    console.log('\nFAILED: Fetch square location: ', error);
+    reject(new Error('\nFAILED: Fetch square location.'));
   });
 });
 
@@ -152,7 +152,7 @@ new Promise((resolve, reject) => {
   })
   .then((result) => {
     if (!result) {
-      reject('FAILED: Update Transaction with Square information.');
+      reject('\nFAILED: Update Transaction with Square information.');
     } else {
       resolve({ status: 200 });
     }
@@ -397,7 +397,7 @@ new Promise((resolve, reject) => {
     } else if (results[0].status === 204) {
       Sagawa.handleBadUpload(results[0].data)
       .then(() => {
-        console.log('SUCCEEDED: Handle bad Sagawa upload.');
+        console.log('\nSUCCEEDED: Handle bad Sagawa upload.');
         resolve({
           error: { hard: false, soft: false, message: '' },
           user: userDoc,
@@ -405,8 +405,8 @@ new Promise((resolve, reject) => {
         });
       })
       .catch((error) => {
-        console.log('FAILED: Handle Bad SagawaUpload: ', error);
-        reject(new Error('FAILED: Handle Bad SagawaUpload.'));
+        console.log('\nFAILED: Handle Bad SagawaUpload: ', error);
+        reject(new Error('\nFAILED: Handle Bad SagawaUpload.'));
       });
     } else {
       console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
@@ -416,7 +416,7 @@ new Promise((resolve, reject) => {
       if (results.length === 2) userDoc = results[1];
 
       if (status !== 200) {
-        console.log('FAILED: Upload Order to Sagawa: ', data);
+        console.log('\nFAILED: Upload Order to Sagawa: ', data);
         resolve({
           error: {
             hard: true,
@@ -449,8 +449,8 @@ new Promise((resolve, reject) => {
           console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
         })
         .catch((error) => {
-          console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
-          reject(new Error('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
+          console.log('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
+          reject(new Error('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
         });
       });
 
@@ -463,7 +463,7 @@ new Promise((resolve, reject) => {
     }
   })
   .catch((error) => {
-    console.log('Failed to submit order due to error: ', error);
+    console.log('\nFAILED to submit order due to error: ', error);
     reject(`Failed to submit order due to error: ${error}`);
   });
 });

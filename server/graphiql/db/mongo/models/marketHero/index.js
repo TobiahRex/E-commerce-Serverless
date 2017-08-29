@@ -20,12 +20,12 @@ new Promise((resolve, reject) => {
   MarketHero.findOne({ 'lead.email': userEmail })
   .exec()
   .then((mhDoc) => {
-    console.log('SUCCEEDED: MarketHero.checkForLead: ', mhDoc);
+    console.log('\nSUCCEEDED: MarketHero.checkForLead: ', mhDoc);
     resolve(mhDoc);
   })
   .catch((error) => {
-    console.log('FAILED: MarketHero.checkForLead: ', error);
-    reject(new Error('FAILED: MarketHero.checkForLead: '));
+    console.log('\nFAILED: MarketHero.checkForLead: ', error);
+    reject(new Error('\nFAILED: MarketHero.checkForLead: '));
   });
 });
 
@@ -46,8 +46,8 @@ new Promise((resolve, reject) => {
   console.log('@MarketHero.createOrUpdateLead\n\n');
 
   if (!lead || !tags) {
-    console.log('FAILED: Missing required arguments @ "createOrUpdateLead".');
-    reject(new Error('FAILED: Missing required arguments @ "createOrUpdateLead"'));
+    console.log('\nFAILED: Missing required arguments @ "createOrUpdateLead".');
+    reject(new Error('\nFAILED: Missing required arguments @ "createOrUpdateLead"'));
   }
 
   const reqBody = {
@@ -65,16 +65,16 @@ new Promise((resolve, reject) => {
   })
   .then((res) => {
     if (res.status !== 200) {
-      console.log('FAILED; Market Hero Upload: ', res.data);
+      console.log('\nFAILED; Market Hero Upload: ', res.data);
       return reject(new Error('FAILE: Market Hero Upload: '));
     }
 
-    console.log('SUCCEEDED: Market Hero Upload:', res.data);
-    return resolve('SUCCEEDED: Posted to Market Hero.');
+    console.log('\nSUCCEEDED: Market Hero Upload:', res.data);
+    return resolve('\nSUCCEEDED: Posted to Market Hero.');
   })
   .catch((error) => {
-    console.log('FAILED: MarketHero.createOrUpdateLead: ', error);
-    return reject(new Error('FAILED: MarketHero.createOrUpdateLead.'));
+    console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
+    return reject(new Error('\nFAILED: MarketHero.createOrUpdateLead.'));
   });
 });
 
@@ -94,18 +94,18 @@ new Promise((resolve, reject) => {
   console.log('@MarketHero.createMongoLead\n\n');
 
   if (!lead || !tags) {
-    console.log('FAILED: Missing Required arguments @ MarketHero.createMongoLead.');
-    reject(new Error('FAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
+    console.log('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead.');
+    reject(new Error('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
   }
 
   bbPromise.fromCallback(cb => MarketHero.create({ lead, tags }, cb))
   .then((newLead) => {
-    console.log('SUCCEEDED: Create Mongo Market Hero Document: ', newLead);
+    console.log('\nSUCCEEDED: Create Mongo Market Hero Document: ', newLead);
     return resolve(newLead);
   })
   .catch((error) => {
-    console.log('FAILED: Create Mongo Market Hero Document: ', error);
-    return reject(new Error('FAILED: Create Mongo Market Hero Document:'));
+    console.log('\nFAILED: Create Mongo Market Hero Document: ', error);
+    return reject(new Error('\nFAILED: Create Mongo Market Hero Document:'));
   });
 });
 
@@ -126,15 +126,15 @@ new Promise((resolve, reject) => {
   console.log('@MarketHero.updateMongoLead\n\n');
 
   if (!lead || !tags) {
-    console.log('FAILED: Missing Required arguments @ MarketHero.createMongoLead.');
-    reject(new Error('FAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
+    console.log('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead.');
+    reject(new Error('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
   }
 
   MarketHero
   .findOne({ 'lead.email': lead.email })
   .exec()
   .then((dbLead) => {
-    console.log('SUCCEEDED: Found lead: ', dbLead);
+    console.log('\nSUCCEEDED: Found lead: ', dbLead);
     dbLead.language = lead.language;
     dbLead.givenName = lead.givenName;
     dbLead.familyName = lead.familyName;
@@ -142,12 +142,12 @@ new Promise((resolve, reject) => {
     return dbLead.save({ new: true });
   })
   .then((savedLead) => {
-    console.log('SUCCEEDED: Updated Lead: ', savedLead);
-    return resolve('SUCCEEDED: Updated Lead.');
+    console.log('\nSUCCEEDED: Updated Lead: ', savedLead);
+    return resolve('\nSUCCEEDED: Updated Lead.');
   })
   .catch((error) => {
-    console.log('FAILED: Updating LEAD to Mongo Database: ', error);
-    reject(new Error('FAILED: Updating LEAD to Mongo Database: '));
+    console.log('\nFAILED: Updating LEAD to Mongo Database: ', error);
+    reject(new Error('\nFAILED: Updating LEAD to Mongo Database: '));
   });
 });
 

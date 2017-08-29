@@ -18,15 +18,15 @@ router.post('/sagawa', (req, res) => {
   Sagawa.uploadOrderAndSendEmail(req.body)
     .then((response) => {
       if (response.verified) {
-        console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+        console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.');
         res.status(200).send(response);
       } else {
-        console.log('FAILED: Order successfully uploaded but did not receive required tracking data.');
+        console.log('\nFAILED: Order successfully uploaded but did not receive required tracking data.');
         res.status(204).send(response);
       }
     })
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email: ', error);
       res.status(400).send(error);
     });
 });
@@ -35,7 +35,7 @@ router.post('/cronjob', (req, res) => {
   Sagawa.cronJob()
     .then(() => res.status(200).send())
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email: ', error);
       res.status(400).send(error);
     });
 });
@@ -43,11 +43,11 @@ router.post('/cronjob', (req, res) => {
 router.post('/email', (req, res) => {
   Email.createEmail(req.body)
     .then((response) => {
-      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+      console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.');
       res.status(200).send(response);
     })
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email: ', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email: ', error);
       res.status(400).send(error);
     });
 });
@@ -57,11 +57,11 @@ router.post('/contact', (req, res) => {
 
   Contact.sendSupportMailAndNotifySlack(req.body)
     .then((response) => {
-      console.log('SUCCEEDED: MOCK Send SES email.');
+      console.log('\nSUCCEEDED: MOCK Send SES email.');
       res.status(200).send(response);
     })
     .catch((error) => {
-      console.log('FAILED: Mock Send SES Email: ', error);
+      console.log('\nFAILED: Mock Send SES Email: ', error);
       res.status(400).send(error);
     });
 });

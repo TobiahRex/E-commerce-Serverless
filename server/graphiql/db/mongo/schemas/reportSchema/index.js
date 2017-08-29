@@ -19,7 +19,7 @@ const reportSchema = new Schema({
   mainTitle: { type: String, default: '', required: true },
   subTitle: { type: String, default: '', required: true },
   headerBlurb: { type: String, default: '' },
-  data: [],
+  data: {},
 }, {
   bufferCommands: true,
 });

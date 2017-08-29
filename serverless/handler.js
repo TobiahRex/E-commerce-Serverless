@@ -31,11 +31,11 @@ module.exports.sagawa = (event, context) => {
       return Sagawa.cronJob();
     })
     .then(() => {
-      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+      console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.');
       context.succeed() && context.done();
     })
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', error);
       context.fail(error) && context.done();
     });
   } else {
@@ -47,15 +47,15 @@ module.exports.sagawa = (event, context) => {
     })
     .then((response) => {
       if (response.verified) {
-        console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.', response.verified);
+        console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.', response.verified);
         context.succeed(response) && context.done();
       } else {
-        console.log('FAILED: Upload Sagawa and Send Invoice Email.', response.verified);
+        console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', response.verified);
         context.fail(response) && context.done();
       }
     })
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', error);
       context.fail(error) && context.done();
     });
   }

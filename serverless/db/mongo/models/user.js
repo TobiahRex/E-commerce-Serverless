@@ -104,7 +104,7 @@ export default (db) => {
     dbUser.save({ validateBeforeSave: true })
     .then((updatedUser) => {  //eslint-disable-line
       if (!updatedUser) {
-        console.log('FAILED: Login User and Save.');
+        console.log('\nFAILED: Login User and Save.');
 
         resolve({
           error: {
@@ -114,7 +114,7 @@ export default (db) => {
           },
         });
       } else {
-        console.log('SUCCEEDED: Login User and Save.');
+        console.log('\nSUCCEEDED: Login User and Save.');
         userDoc = updatedUser;
 
         if (!updateNewProducts) {
@@ -129,10 +129,10 @@ export default (db) => {
               },
             }, { new: true })
             .then((updatedProduct) => {
-              console.log('SUCCEEDED: Remove New Product from Available: ', updatedProduct.product.quantities);
+              console.log('\nSUCCEEDED: Remove New Product from Available: ', updatedProduct.product.quantities);
             })
             .catch((error) => {
-              console.log('FAILED: Add Old Products to Available: ', error);
+              console.log('\nFAILED: Add Old Products to Available: ', error);
               reject(new Error('Update product quantities.'));
             });
           });
@@ -141,8 +141,8 @@ export default (db) => {
       }
     })
     .catch((error) => {
-      console.log('FAILED: Login User.', error);
-      reject(new Error('FAILED: Login User'));
+      console.log('\nFAILED: Login User.', error);
+      reject(new Error('\nFAILED: Login User'));
     });
   });
   /**
@@ -214,10 +214,10 @@ export default (db) => {
             },
           }, { new: true })
           .then((updatedProduct) => {
-            console.log('SUCCEEDED: Remove New Users Products from total Available: ', updatedProduct.product.quantities);
+            console.log('\nSUCCEEDED: Remove New Users Products from total Available: ', updatedProduct.product.quantities);
           })
           .catch((error) => {
-            console.log('FAILED: Remove New Users Products from total Available: ', error);
+            console.log('\nFAILED: Remove New Users Products from total Available: ', error);
             reject(new Error('Remove New Users Products from total Available: '));
           });
         });
@@ -260,7 +260,7 @@ export default (db) => {
       /* eslint-enable no-dupe-keys */
     })
     .then((results) => {
-      console.log('SUCCEEDED: 1) Save product ID & QTY to the User\'s Shopping Cart!, 2) Update Product "quantities" & "statistics": ', results[1].product.quantities);
+      console.log('\nSUCCEEDED: 1) Save product ID & QTY to the User\'s Shopping Cart!, 2) Update Product "quantities" & "statistics": ', results[1].product.quantities);
       resolve(results[0]);
     })
     .catch((error) => {
@@ -355,10 +355,10 @@ export default (db) => {
           },
         }, { new: true })
         .then((updatedProduct) => {
-          console.log('SUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
+          console.log('\nSUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
         })
         .catch((error) => {
-          console.log('FAILED: Add Old Products to Available: ', error);
+          console.log('\nFAILED: Add Old Products to Available: ', error);
           reject(new Error('Update product quantities.'));
         });
       });
@@ -400,10 +400,10 @@ export default (db) => {
           },
         }, { new: true })
         .then((updatedProduct) => {
-          console.log('SUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
+          console.log('\nSUCCEEDED: Add Old Products to Available: ', updatedProduct.product.quantities);
         })
         .catch((error) => {
-          console.log('FAILED: Add Old Products to Available: ', error);
+          console.log('\nFAILED: Add Old Products to Available: ', error);
           reject(new Error('Update product quantities.'));
         });
       });
@@ -418,7 +418,7 @@ export default (db) => {
           console.log('SUCEEDED: Remove Product from Available: ', updatedProduct.product.quantities);
         })
         .catch((error) => {
-          console.log('FAILED:  Remove Product from Available:', error);
+          console.log('\nFAILED:  Remove Product from Available:', error);
           reject(new Error('Update product quantities.'));
         });
       });
@@ -429,7 +429,7 @@ export default (db) => {
       ]);
     })
     .then((results) => {
-      console.log('SUCCEEDED: 1) Updated user shopping cart!: ', results[0].shopping.cart, '2) Update any products that have been removed from the cart: ', results[1]);
+      console.log('\nSUCCEEDED: 1) Updated user shopping cart!: ', results[0].shopping.cart, '2) Update any products that have been removed from the cart: ', results[1]);
       resolve(results[0]);
     })
     .catch((error) => {

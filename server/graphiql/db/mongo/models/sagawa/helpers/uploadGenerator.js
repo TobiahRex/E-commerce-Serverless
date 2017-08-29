@@ -6,7 +6,7 @@ function* uploadGenerator(reqObjs, sagawaModel) {
   yield reqObjs
   .map(async (reqBody) => {
     const result = await sagawaModel.uploadOrderAndSendEmail(reqBody);
-    console.log('SUCCEEDED: Call Sagawa.uploadOrderAndSendEmail. Result = ', result);
+    console.log('\nSUCCEEDED: Call Sagawa.uploadOrderAndSendEmail. Result = ', result);
     return result;
   });
 }

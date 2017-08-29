@@ -41,7 +41,7 @@ export default (db) => {
 
     Email.sendRawEmail(emailRequest)
     .then((response) => {
-      console.log('SUCCEEDED: Email has been sent to NJ2JP support:', response);
+      console.log('\nSUCCEEDED: Email has been sent to NJ2JP support:', response);
       contactDocument.messageId = response.MessageId;
 
       const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
@@ -49,7 +49,7 @@ export default (db) => {
       return Email.notifySlack(slackWebhook, slackMessage);
     })
     .then((slackResponse) => {
-      console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
+      console.log('\nSUCCEEDED: Notification to Slack Customer channel:', slackResponse);
 
       contactDocument.name = contactForm.name;
       contactDocument.emailAddress = contactForm.emailAddress;
@@ -61,12 +61,12 @@ export default (db) => {
       return bbPromise.fromCallback(cb => Contact.create(contactDocument, cb));
     })
     .then((contactDoc) => {
-      console.log('SUCCEEDED: Contact document has been successfully saved:', contactDoc);
+      console.log('\nSUCCEEDED: Contact document has been successfully saved:', contactDoc);
       resolve(contactDoc);
     })
     .catch((error) => {
-      console.log('FAILED: Send Support Mail and Notify Slack ', error);
-      reject(new Error('FAILED: Send Support Mail and Notify Slack'));
+      console.log('\nFAILED: Send Support Mail and Notify Slack ', error);
+      reject(new Error('\nFAILED: Send Support Mail and Notify Slack'));
     });
   });
 
