@@ -12,22 +12,22 @@ import Email from '../email';
 
 reportSchema.statics.createAndSendErrorReport = reportInfo =>
 new Promise((resolve, reject) => {
-  console.log('\n\n@Report.sendError\n');
+  console.log('\n\n@Report.createAndSendErrorReport\n');
 
   console.log('arg) reportInfo: ', reportInfo);
 
   bbPromise.fromCallback(cb => Report.create(reportInfo, cb))
   .then((dbReport) => {
-    console.log('\nSUCCEEDED: Create new Report document: ', dbReport._id);
+    console.log('\nSUCCEEDED: @Report.createAndSendErrorReport >>> Report.create: ', dbReport._id);
 
     return Email.sendErrorReportToStaff(dbReport);
   })
   .then(() => {
-    console.log('SUCCEEDED: Sent error report to Staff.');
+    console.log('\nSUCCEEDED: @Report.createAndSendErrorReport >>> Email.sendErrorReportToStaff.');
     resolve();
   })
   .catch((error) => {
-    console.log('FAILED: Create new Report and Send Email notification.');
+    console.log('\nFAILED: @Report.createAndSendErrorReport: ', error);
     reject(new Error(error));
   });
 });

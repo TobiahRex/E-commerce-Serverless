@@ -503,7 +503,7 @@ new Promise((resolve, reject) => {
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
       resolve({ status: 200 });
-      Report.sendCronJobReport({ date, report: [] });
+      Report.createAndSendCronJobReport({ date, reports: [] });
     } else {
       console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
       const reqObjs = dbResults.map(dbDoc => ({
@@ -511,12 +511,20 @@ new Promise((resolve, reject) => {
         userId: dbDoc.userId,
         transactionId: dbDoc.transactionId,
       }));
-      return UploadGenerator(reqObjs, Sagawa);
+      return Sagawa.batchUploadOrders(reqObjs);
     }
   })
+  .then(() => {
+    console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Sagawa.batchUploadOrders.');
+    Report.createAndSendCronJobReport({ date });
+  })
+  .then(() => {
+    console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.createAndSendCronJobReport:');
+    resolve();
+  })
   .catch((error) => {
-    console.log('FAILED: Perform Cron Job sagawa upload: ', error);
-    reject(new Error('FAILED: Perform cron job sagawa upload.'));
+    console.log('\nFAILED: @Sagawa.cronJob: ', error);
+    reject(new Error('\nFAILED: @Sagawa.cronJob'));
   });
 });
 
