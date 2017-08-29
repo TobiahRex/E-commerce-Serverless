@@ -3,11 +3,6 @@ import axios from 'axios';
 import AWS from 'aws-sdk';
 import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
-// import User from '../user';
-// import Email from '../email';
-// import MarketHero from '../marketHero';
-// import Sagawa from '../sagawa';
-// import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
   composeAmount as ComposeAmount,
@@ -380,8 +375,9 @@ export default (db) => {
           AWS_REGION: region,
           LAMBDA_ENV: lambdaEnv,
         } = process.env;
-
+        console.log('region: ', region, '\nlambdaEnv: ', lambdaEnv);
         const lambda = new AWS.Lambda({ region });
+        console.log('lambda: ', lambda);
         const promise1 = bbPromise.fromCallback(cb => lambda.invoke({
           FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
           InvocationType: 'RequestResponse',

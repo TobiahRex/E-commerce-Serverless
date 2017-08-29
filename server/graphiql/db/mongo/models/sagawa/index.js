@@ -608,7 +608,7 @@ new Promise((resolve, reject) => {
   Email.sendRawEmail(emailRequest)
   .then((response) => {
     console.log('SUCCEEDED: Email has been sent to NJ2JP leadership:', response);
-    const slackWebhook = process.env.SLACK_SAGAWA_ERROR_WEBHOOK;
+    const slackWebhook = process.env.SLACK_SAGAWA_UPLOAD_WEBHOOK;
     const slackMessage = message;
     return Email.notifySlack(slackWebhook, slackMessage);
   })
