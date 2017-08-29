@@ -123,7 +123,7 @@ new Promise((resolve, reject) => {
     userId,
     transactionId,
     shippingAddress: {
-      boxid: `NJ${moment().format('YYYYMMDDSS')}`,
+      boxid: `NJ${moment().format('YYMMDDHHSSSS')}`,
       shipdate: GetShippingDay(),
       customerName: `${sagawa.shippingAddress.familyName}, ${sagawa.shippingAddress.givenName}`,
       postal: sagawa.shippingAddress.postalCode,
@@ -165,42 +165,55 @@ new Promise((resolve, reject) => {
     console.log('FAILED: Missing required arguments.');
     reject(new Error('FAILED: Missing required arguments.'));
   }
+  console.log(`Find Sagawa doc by id: "${sagawaId}"`);
 
   Sagawa
   .findById(sagawaId)
-  .exec()
-  .then(sagawaDoc =>
-    axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
-    `<?xml version='1.0' encoding='utf-8'?>
-    <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-    <soap:Body>
-      <uploadFile xmlns='http://ws.com'>
-      <handler>
-        ${xmlOut('<DATA>')}
-          ${xmlOut(GenerateAddressXml(sagawaDoc))}
-          ${xmlOut(GenerateItemsXml(sagawaDoc))}
-        ${xmlOut('</DATA>')}
-      </handler>
-      </uploadFile>
-    </soap:body>
+  .then(sagawaDoc => { //eslint-disable-line
+    if (!sagawaDoc) {
+      console.log('FAILED: Find Sagawa document by id: ', sagawaId);
+      reject(new Error('FAILED: Find Sagawa document by id'));
+    } else {
+      console.log('SUCCEEDED: Find Sagawa document by id: ', sagawaDoc._id);
+      console.log('\nSending upload to Sagawa...\n');
+      return axios.post(
+        'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
+      `<?xml version='1.0' encoding='utf-8'?>
+      <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+      <soap:Body>
+        <uploadFile xmlns='http://ws.com'>
+        <handler>
+          ${xmlOut('<DATA>')}
+            ${xmlOut(GenerateAddressXml(sagawaDoc))}
+            ${xmlOut(GenerateItemsXml(sagawaDoc))}
+            ${xmlOut('</DATA>')}
+          </handler>
+        </uploadFile>
+      </soap:body>
     </soap:Envelope>`, {
       headers: {
         'Content-Type': 'text/xml; charset=utf-8',
         SOAPAction: 'http://ws.com',
       },
-    }),
-  )
+    });
+    }
+  })
   .then((response) => {
     console.log('SUCCEEDED: Sagawa order Upload: ', response.data);
     return CleanSagawaResponse.handleUpload(response);
   })
   .then(({ data }) => {
-    console.log('SUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-    resolve({ data, sagawaId });
+    if (!data.verified) {
+      console.log('FAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
+      reject(new Error(data.msg));
+    } else {
+      console.log('SUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
+      resolve({ data, sagawaId });
+    }
   })
   .catch((error) => {
-    console.log('FAILED: Order upload to Sagawa.', error);
-    reject(new Error('FAILED: Order upload to Sagawa.'));
+    console.log('FAILED: Upload Order to Sagawa.', error);
+    reject(new Error('FAILED: Upload Order to Sagawa.'));
   });
 });
 
@@ -482,14 +495,16 @@ sagawaSchema.statics.cronJob = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.cronJob');
 
+  const date = moment().format('YYYY/MM/DD');
+
   bbPromise.fromCallback(cb =>
-    Sagawa.find({ uploadStatus: 'upload' }, cb).exec())
+    Sagawa.find({ status: 'pending' }, cb).exec())
   .then((dbResults) => {  //eslint-disable-line
-    console.log('dbResults: ', dbResults);
     if (!dbResults.length) {
       resolve({ status: 200 });
+      Contact.sendCronjobReport(date);
     } else {
-      console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
+      console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
       const reqObjs = dbResults.map(dbDoc => ({
         sagawaId: dbDoc._id,
         userId: dbDoc.userId,
@@ -497,44 +512,6 @@ new Promise((resolve, reject) => {
       }));
       return UploadGenerator(reqObjs, Sagawa);
     }
-  })
-  .then((Promises) => {
-    let promiseArrayLength = 0;
-    const resultsArray = [];
-    Promises.forEach((promise, i, array) => {
-      promiseArrayLength = array.length;
-
-      promise
-      .then(({ verified, sagawaId }) => { //eslint-disable-line
-        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
-        if (verified) {
-          resultsArray.push({ success: true, sagawaId });
-        } else {
-          resultsArray.push({ success: false, sagawaId });
-        }
-      })
-      .then(() => {
-        console.log('SUCCEEDED: Handle Sagawa upload error.');
-        resolve();
-      })
-      .catch((error) => {
-        console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
-        reject(new Error('FAILED: Upload order to Sagawa via Cron Job:'));
-      });
-    });
-
-    while (true) { //eslint-disable-line
-      if (resultsArray.length === promiseArrayLength) {
-        Sagawa.handleUploadResults(resultsArray)
-        .then(resolve)
-        .catch(reject);
-        break; //eslint-disable-line
-      }
-    }
-  })
-  .then(() => {
-    console.log('SUCCEEDED: Handle Sagawa Upload Error.');
-    resolve();
   })
   .catch((error) => {
     console.log('FAILED: Perform Cron Job sagawa upload: ', error);
@@ -622,6 +599,64 @@ new Promise((resolve, reject) => {
   .catch((error) => {
     console.log('FAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);
     reject(new Error('FAILED: Send Sagawa Upload Error eMail and Notify Slack'));
+  });
+});
+
+sagawaSchema.statics.cronJob2 = () =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.cronJob');
+
+  bbPromise.fromCallback(cb =>
+    Sagawa.find({ status: 'pending' }, cb).exec())
+  .then((dbResults) => {  //eslint-disable-line
+    if (!dbResults.length) {
+      resolve({ status: 200 });
+    } else {
+      console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
+      const reqObjs = dbResults.map(dbDoc => ({
+        sagawaId: dbDoc._id,
+        userId: dbDoc.userId,
+        transactionId: dbDoc.transactionId,
+      }));
+      return UploadGenerator(reqObjs, Sagawa);
+    }
+  })
+  .then((Promises) => {
+    console.log('Promises: ', Promises);
+    let promiseArrayLength = 0;
+    const resultsArray = [];
+
+    Promises.forEach((promise, i, array) => {
+      promiseArrayLength = array.length;
+      promise
+      .then(({ verified, sagawaId }) => { //eslint-disable-line
+        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
+        if (verified) {
+          resultsArray.push({ success: true, sagawaId });
+        } else {
+          resultsArray.push({ success: false, sagawaId });
+        }
+      })
+      .catch((error) => {
+        console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
+        reject(new Error(error));
+      });
+    });
+
+    // while (true) { //eslint-disable-line
+    //   if (resultsArray.length === promiseArrayLength) {
+    //     console.log('hello.');
+    //     Sagawa.handleUploadResults(resultsArray)
+    //     .then(resolve)
+    //     .catch(reject);
+    //     break; //eslint-disable-line
+    //   }
+    //   console.log('nothing...');
+    // }
+  })
+  .catch((error) => {
+    console.log('FAILED: Perform Cron Job sagawa upload: ', error);
+    reject(new Error('FAILED: Perform cron job sagawa upload.'));
   });
 });
 

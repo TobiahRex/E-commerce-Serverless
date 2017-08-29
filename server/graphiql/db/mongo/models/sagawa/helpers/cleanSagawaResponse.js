@@ -25,6 +25,18 @@ const extractPostalData = (jsonResponse) => {
 const extractUploadData = (jsonResponse) => {
   const response = jsonResponse['soapenv:Envelope']['soapenv:Body'][0]['ns:uploadDataResponse'][0]['ns:return'][0];
 
+  console.log('\nParsed Reponse: ', response);
+  if (/SQLException|maximum\sconnection|error/g.test(response)) {
+    return ({
+      error: true,
+      errorMsg: response,
+      msg: 'Sagawa cannot upload the order at this time.',
+      verified: false,
+      awbId: '',
+      referenceId: '',
+    });
+  }
+
   const awbId = response.split('|')[5].replace(/(A)+/g, '');
   const referenceId = response.split('|')[1];
 
@@ -156,7 +168,14 @@ new Promise((resolve, reject) => {
       reject(problem);
     }
 
-    const { verified, awbId, referenceId } = extractUploadData(results);
+    const {
+      error,
+      errorMsg,
+      msg,
+      verified,
+      awbId,
+      referenceId,
+    } = extractUploadData(results);
     /*  eslint-disable no-console */
     console.log('verified: ', verified);
     console.log('awbId: ', awbId);
@@ -167,6 +186,9 @@ new Promise((resolve, reject) => {
       resolve({
         data: {
           verified: false,
+          error,
+          errorMsg,
+          msg,
           awbId,
           referenceId,
         },

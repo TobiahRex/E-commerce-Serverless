@@ -31,7 +31,7 @@ export default function ShippingPolicy() {
           <br />
           <h4>QUANTITY RESTRICTIONS</h4>
           <br />
-          Japanese Ministry of Health, Labour & Wellfare have passed regulations on Nicotine e-juice imports.  A person(s) can import up to a maximum of 120 milliliters into the country at any one time, per person, per address, per month.  You can find more information at their website here: <a target="_blank" className="required" href="http://www.mhlw.go.jp/" rel="noopener noreferrer">Japanese Ministry of Health, Labour & Wellfare</a>.
+          Japanese Ministry of Health, Labour & Wellfare have passed regulations on Nicotine e-juice imports.  A person(s) can import up to a maximum of 120 milliliters into the country at any one time, per person, per address, per month.  You can find more information at their website here: <a target="_blank" className="required" href="http://www.mhlw.go.jp/seisakunitsuite/bunya/kenkou_iryou/iyakuhin/kojinyunyu/dl/kojinyunyu151130-04.pdf" rel="noopener noreferrer">Japanese Ministry of Health, Labour & Wellfare</a>.
           <br />
           <br />
           <h4>CODs</h4>

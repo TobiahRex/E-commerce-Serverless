@@ -1,7 +1,12 @@
+/* eslint-disable no-console */
 function* uploadGenerator(reqObjs, sagawaModel) {
+  console.log('\n@Sagawa.uploadGenerator\n');
+
+  console.log('Request Objs: ', reqObjs);
   yield reqObjs
   .map(async (reqBody) => {
     const result = await sagawaModel.uploadOrderAndSendEmail(reqBody);
+    console.log('SUCCEEDED: Call Sagawa.uploadOrderAndSendEmail. Result = ', result);
     return result;
   });
 }
