@@ -10,6 +10,7 @@ import {
   getBillingCountry as GetBillingCountry,
   createEmailProductList as CreateEmailProductList,
   generateEmailBody as GenerateEmailBody,
+  generateSlackMsg as GenerateSlackMsg,
 } from './helpers';
 import Transaction from '../transaction';
 
@@ -484,6 +485,19 @@ new Promise((resolve, reject) => {
       subjectCharset: 'utf8',
     };
 
+    Email.sendRawEmail(emailRequest)
+    .then((response) => {
+      console.log('\nSUCCEEDED: Send Error Email to Staff: ', response);
+    })
+    .catch((error) => {
+      console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
+
+      Email.notifySlack(
+        process.env.SLACK_ERROR_NOTIFICATION_WEBHOOOK,
+        GenerateSlackMsg.staffErrorReport(reportDoc),
+      );
+      reject();
+    });
   }
 });
 
