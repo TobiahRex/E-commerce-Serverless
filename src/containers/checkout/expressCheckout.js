@@ -112,8 +112,6 @@ class ExpressCheckout extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('%cnextProps', 'background:lime;', nextProps);
-
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
 
@@ -121,14 +119,10 @@ class ExpressCheckout extends React.Component {
       this.form.showError('shippingPostalCode', 'postalApi');
     }
 
-    if (
-      !_.isEqual(npCopy.toast, tpCopy.toast) ||
-      !_.isEqual(npCopy, tpCopy)
-    ) {
+    if (!_.isEqual(npCopy, tpCopy)) {
       this.setState(prevState => ({
         ...prevState,
         ...nextProps,
-        toast: { ...npCopy.toast },
       }));
     }
 
@@ -296,10 +290,6 @@ class ExpressCheckout extends React.Component {
           soft: false,
           message: '',
         },
-        toast: {
-          type: '',
-          message: '',
-        },
       }), () => this.props.clearToaster());
       const formData = GenerateFinalForm({
         state: this.state,
@@ -368,15 +358,14 @@ class ExpressCheckout extends React.Component {
   render() {
     const {
       userId,
+      toast,
       loggedIn,
-      // toast,
       apiFetching,
     } = this.props;
 
     const {
       ccRenderKey,
       cart,
-      toast,
       errors,
       prComments,
       newsletterDecision,
@@ -402,6 +391,8 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
+    console.log('%ctermsAgreement', 'background:red;', termsAgreement);
+
 
     return (
       <div className="checkout__container">

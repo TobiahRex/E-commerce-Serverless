@@ -68,7 +68,7 @@ new Promise((resolve, reject) => {
     },
   })
   .then((response) => {
-    console.log('\nSUCCEEDED: Sagawa validate postal');
+    console.log('\nSUCCEEDED: @Sagawa.validatePostal >>> axios.post');
     return CleanSagawaResponse.handlePostal(response);
   })
   .then(({ problem, data }) => { //eslint-disable-line

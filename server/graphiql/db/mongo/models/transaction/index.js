@@ -465,7 +465,15 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED to submit order due to error: ', error);
-    reject(`Failed to submit order due to error: ${error}`);
+    resolve({
+      error: {
+        hard: true,
+        soft: false,
+        message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
+      },
+      user: null,
+      transaction: null,
+    });
   });
 });
 
