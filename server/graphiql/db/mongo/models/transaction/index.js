@@ -92,7 +92,7 @@ new Promise((resolve, reject) => {
 */
 transactionSchema.statics.squareChargeCard = chargeInfo =>
 new Promise((resolve, reject) => {
-  console.log('@squareChargeCard');
+  console.log('\n\n@Transaction.squareChargeCard\n');
 
   const {
     locationId,
@@ -180,7 +180,7 @@ transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.submitFinalOrder\n');
 
-  console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
+  console.log('\n1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
   let marketHeroOp = '';
@@ -232,7 +232,7 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like there\'s a network error.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
         },
         user: null,
         transaction: null,
@@ -273,7 +273,7 @@ new Promise((resolve, reject) => {
         transaction: null,
       });
     } else {
-      console.log('3] SUCCEEDED: Square Charge Customer.\n', response.data);
+      console.log('\n3] SUCCEEDED: Square Charge Customer.\n', response.data);
       return Promise.all([
         User.findByIdAndUpdate(userDoc._id, {
           $set: {
@@ -293,19 +293,18 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    console.log('USER RESULTS: ', results);
     if (!results[0] || !results[2]) {
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
         },
         user: null,
         transaction: null,
       });
     } else {
-      console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
+      console.log('\n4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
 
       userDoc = { ...results[0]._doc };
       marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
@@ -352,13 +351,13 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
         },
         user: null,
         transaction: null,
       });
     } else {
-      console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
+      console.log('\n5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
 
       newTransactionDoc = { ...results[0]._doc };
 
@@ -386,42 +385,15 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
         },
         user: null,
         transaction: null,
       });
-    } else if (results[0].status === 204) {
-      Sagawa.handleBadUpload(results[0].data)
-      .then(() => {
-        console.log('\nSUCCEEDED: Handle bad Sagawa upload.');
-        resolve({
-          error: { hard: false, soft: false, message: '' },
-          user: userDoc,
-          transaction: newTransactionDoc,
-        });
-      })
-      .catch((error) => {
-        console.log('\nFAILED: Handle Bad SagawaUpload: ', error);
-        reject(new Error('\nFAILED: Handle Bad SagawaUpload.'));
-      });
     } else {
-      console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
-
-      const { status, data } = results[0];
+      console.log('\n6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
 
       if (results.length === 2) userDoc = results[1];
-
-      if (status !== 200) {
-        console.log('\nFAILED: Upload Order to Sagawa: ', data);
-        resolve({
-          error: {
-            hard: true,
-            soft: false,
-            message: `Was not able to complete the order: ${data}`,
-          },
-        });
-      }
 
       cartProducts.forEach((productDoc) => {
         const {
@@ -443,7 +415,7 @@ new Promise((resolve, reject) => {
           },
         }, { new: true })
         .then((savedDoc) => {
-          console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
+          console.log('\n7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
         })
         .catch((error) => {
           console.log('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
@@ -451,7 +423,7 @@ new Promise((resolve, reject) => {
         });
       });
 
-      console.log('8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
+      console.log('\n8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
       resolve({
         error: { hard: false, soft: false, message: '' },
         user: userDoc,
