@@ -3,6 +3,7 @@ import express from 'express';
 import Sagawa from '../db/mongo/models/sagawa';
 import Email from '../db/mongo/models/email';
 import Contact from '../db/mongo/models/contact';
+import MarketHero from '../db/mongo/models/marketHero';
 
 const router = new express.Router();
 
@@ -38,6 +39,16 @@ router.post('/cronjob', (req, res) => {
       console.log('\nFAILED: Upload Sagawa and Send Invoice Email: ', error);
       res.status(400).send(error);
     });
+});
+
+router.post('/marketHero', (req, res) => {
+  console.log('req.body: ', req.body);
+  MarketHero.createOrUpdateLead(req.body)
+  .then(() => res.status(200).send())
+  .catch((error) => {
+    console.log('\nFAILED: Upload Sagawa and Send Invoice Email: ', error);
+    res.status(400).send(error);
+  });
 });
 
 router.post('/email', (req, res) => {

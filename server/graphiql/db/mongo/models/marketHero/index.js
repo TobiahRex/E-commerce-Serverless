@@ -37,7 +37,7 @@ new Promise((resolve, reject) => {
   let nextTag = [];
 
   if (savedTags.length) {
-    nextTag = [...savedTags.pop()];
+    nextTag = [savedTags.pop()];
 
     const reqBody = {
       apiKey: process.env.MARKET_HERO_API_KEY,
@@ -118,41 +118,42 @@ new Promise((resolve, reject) => {
 
   if (!lead || !userTags) {
     console.log('\nFAILED: Missing required arguments @ "createOrUpdateLead".');
-    reject(new Error('\nFAILED: Missing required arguments @ "createOrUpdateLead"'));
+    reject('Missing required arguments @ "createOrUpdateLead"');
+  } else {
+    const reqBody = {
+      apiKey: process.env.MARKET_HERO_API_KEY,
+      tags: userTags,
+      email: lead.email,
+      lastName: lead.familyName,
+      firstName: lead.givenName,
+    };
+
+    MarketHero.updateUserTags(reqBody)
+    .then(() => { //eslint-disable-line
+      console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.udpateUserTags');
+
+      if (!productTags.length) {
+        resolve();
+      } else {
+        return MarketHero.updateLeadProductTags({
+          lead: {
+            email: lead.email,
+            lastName: lead.familyName,
+            firstName: lead.givenName,
+          },
+          productTags,
+        });
+      }
+    })
+    .then(() => {
+      console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.updateLeadProductTags');
+      return resolve();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
+      return reject(error.message);
+    });
   }
-  const reqBody = {
-    apiKey: process.env.MARKET_HERO_API_KEY,
-    tags: userTags,
-    email: lead.email,
-    lastName: lead.familyName,
-    firstName: lead.givenName,
-  };
-
-  MarketHero.updateUserTags(reqBody)
-  .then(() => { //eslint-disable-line
-    console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.udpateUserTags');
-
-    if (!productTags.length) {
-      resolve();
-    } else {
-      return MarketHero.updateLeadProductTags({
-        lead: {
-          email: lead.email,
-          lastName: lead.familyName,
-          firstName: lead.givenName,
-        },
-        productTags,
-      });
-    }
-  })
-  .then(() => {
-    console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.updateLeadProductTags');
-    return resolve();
-  })
-  .catch((error) => {
-    console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
-    return reject(new Error(error.message));
-  });
 });
 
 /**
