@@ -136,7 +136,6 @@ new Promise((resolve, reject) => {
 
     if (!verified) {
       problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
-      reject(problem);
     }
 
     resolve({

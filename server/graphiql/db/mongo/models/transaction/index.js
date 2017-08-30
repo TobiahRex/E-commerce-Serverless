@@ -133,7 +133,8 @@ new Promise((resolve, reject) => {
     },
     {
       headers: {
-        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
+        // Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
+        Authorization: `Bearer sandbox-sq0atb-v0kc0TRPfGqNcgMCf5C-Fw`,
       },
     },
   )

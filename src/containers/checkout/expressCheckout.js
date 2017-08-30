@@ -63,6 +63,11 @@ class ExpressCheckout extends React.Component {
     this.state = {
       ccRenderKey: 'renderWithZip',
       showCvnModal: false,
+      // --- Error handling ---
+      toast: {
+        type: '',
+        message: '',
+      },
       error: null,
       errors: {
         hard: false,
@@ -112,10 +117,16 @@ class ExpressCheckout extends React.Component {
 
     if (!!nextProps.postalError) {
       this.form.showError('shippingPostalCode', 'postalApi');
-    } else if (!_.isEqual(npCopy, tpCopy)) {
+    }
+
+    if (
+      !_.isEqual(npCopy.toast, tpCopy.toast) ||
+      !_.isEqual(npCopy, tpCopy)
+    ) {
       this.setState(prevState => ({
         ...prevState,
         ...nextProps,
+        toast: { ...npCopy.toast },
       }));
     }
 
@@ -283,6 +294,10 @@ class ExpressCheckout extends React.Component {
           soft: false,
           message: '',
         },
+        toast: {
+          type: '',
+          message: '',
+        },
       }));
       const formData = GenerateFinalForm({
         state: this.state,
@@ -352,13 +367,14 @@ class ExpressCheckout extends React.Component {
     const {
       userId,
       loggedIn,
-      toast,
+      // toast,
       apiFetching,
     } = this.props;
 
     const {
       ccRenderKey,
       cart,
+      toast,
       errors,
       prComments,
       newsletterDecision,
@@ -384,6 +400,8 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
+    console.log('%ctoast', 'background:pink;', toast);
+    console.log('%cerrors', 'background:pink;', errors);
 
     return (
       <div className="checkout__container">
