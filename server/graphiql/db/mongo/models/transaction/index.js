@@ -316,6 +316,13 @@ new Promise((resolve, reject) => {
         familyName: sagawa.shippingAddress.familyName,
       };
 
+      const mhApiTags = GetMhTransactionTagsApi({
+        total,
+        language,
+        cart: cartProducts,
+        subscribed: !!newsletterDecision,
+      });
+
       return Promise.all([
         Email.createInvoiceEmailBody({
           cart: cartProducts,
@@ -335,12 +342,8 @@ new Promise((resolve, reject) => {
         }),
         MarketHero.createOrUpdateLead({
           lead,
-          tags: GetMhTransactionTagsApi({
-            total,
-            language,
-            cart: cartProducts,
-            subscribed: !!newsletterDecision,
-          }),
+          userTags: mhApiTags.userTags,
+          productTags: mhApiTags.productTags,
         }),
       ]);
     }
@@ -361,26 +364,26 @@ new Promise((resolve, reject) => {
 
       newTransactionDoc = { ...results[0]._doc };
 
-      const promise1 = axios.post('http://localhost:3001/api/sagawa', {
-        userId,
-        sagawaId: newTransactionDoc.sagawa,
-        transactionId: newTransactionDoc._id,
-      });
-      let promise2 = null;
-      let promiseArray = [promise1];
-
+      const promiseArray = [];
       if (marketHeroOp === 'createMongoLead') {
-        promise2 = User.findByIdAndUpdate(userId, {
+        promiseArray.push(User.findByIdAndUpdate(userId, {
           $set: { 'marketing.marketHero': results[1]._id },
-        }, { new: true });
-        promiseArray = [...promiseArray, promise2];
+        }, { new: true }));
       }
 
-      return Promise.all([...promiseArray]);
+      return Promise.all([
+        axios.post('http://localhost:3001/api/sagawa', {
+          userId,
+          sagawaId: newTransactionDoc.sagawa,
+          transactionId: newTransactionDoc._id,
+        }),
+        ...promiseArray,
+      ]);
     }
   })
   .then((results) => { //eslint-disable-line
-    if ((results[0].status !== 200) && (results[0].status !== 204)) {
+    console.log('\nSAGAWA UPLOAD results: ', results);
+    if (results[0].status !== 200) {
       resolve({
         error: {
           hard: true,

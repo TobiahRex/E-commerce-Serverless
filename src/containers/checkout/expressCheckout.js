@@ -253,7 +253,14 @@ class ExpressCheckout extends React.Component {
         }
       }
     } else {
-      this.setState({ [e.target.name]: e.target.value });
+      this.setState({
+        [e.target.name]: e.target.value,
+        errors: {
+          hard: false,
+          soft: false,
+          message: '',
+        },
+      }, () => this.props.clearToaster());
     }
   };
 
