@@ -112,6 +112,8 @@ class ExpressCheckout extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('%cnextProps', 'background:lime;', nextProps);
+
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
 
@@ -298,7 +300,7 @@ class ExpressCheckout extends React.Component {
           type: '',
           message: '',
         },
-      }));
+      }), () => this.props.clearToaster());
       const formData = GenerateFinalForm({
         state: this.state,
         props: this.props,
@@ -400,8 +402,6 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
-    console.log('%ctoast', 'background:pink;', toast);
-    console.log('%cerrors', 'background:pink;', errors);
 
     return (
       <div className="checkout__container">
