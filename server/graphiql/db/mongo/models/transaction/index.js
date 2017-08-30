@@ -349,7 +349,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    if (!results[0] || !results[1] || !results[2]) {
+    if (!results[0] || !results[1]) {
       resolve({
         error: {
           hard: true,
@@ -360,7 +360,7 @@ new Promise((resolve, reject) => {
         transaction: null,
       });
     } else {
-      console.log('\n5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
+      console.log('\n5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n');
 
       newTransactionDoc = { ...results[0]._doc };
 

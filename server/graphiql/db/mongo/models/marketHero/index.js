@@ -25,7 +25,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: MarketHero.checkForLead: ', error);
-    reject(new Error('\nFAILED: MarketHero.checkForLead: '));
+    reject(new Error(error.message));
   });
 });
 
@@ -60,7 +60,8 @@ new Promise((resolve, reject) => {
         console.log('\nSUCCEEDED: @Markethero.updateUserTags >>> axios.post: ', response.data);
 
         if (savedTags.length) {
-          console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> axios.post - calling recursively - remaining tags: ', savedTags);
+          console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> axios.post - calling recursively with remaining tags: ', savedTags);
+          MarketHero.updateLeadProductTags({ lead, productTags: savedTags });
         } else {
           console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> recursive update - Finished all product tag updates.');
           resolve();
@@ -69,7 +70,7 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
-      reject();
+      reject(new Error(error.message));
     });
   }
 });
@@ -95,7 +96,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
-    reject();
+    reject(new Error(error.message));
   });
 });
 
@@ -150,7 +151,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
-    return reject(new Error('\nFAILED: MarketHero.createOrUpdateLead.'));
+    return reject(new Error(error.message));
   });
 });
 
