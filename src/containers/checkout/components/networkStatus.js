@@ -14,6 +14,8 @@ function NetworkStatus({ routerPush, renderHelper }) {
           type="button"
           onClick={routerPush}
         >
+          <FontAwesome name="angle-double-left" />
+          {'\u00A0'}
           Back To Homepage
         </button>
       </div>

@@ -355,6 +355,16 @@ class ExpressCheckout extends React.Component {
 
   clearValidationError = name => this.form.hideError(name)
 
+  enableSubmitButton = ({ userId, cartLength, toast, errors }) => {
+    const userLoggedIn = !!userId;
+    const userHasProducts = !!cartLength;
+    const networkErrors = /(Network Error)|(Server Error)g/.test(toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
+
+    if (networkErrors) return false;
+    if (userLoggedIn && userHasProducts) return true;
+    return false;
+  }
+
   render() {
     const {
       userId,
@@ -391,8 +401,6 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
-    console.log('%ctermsAgreement', 'background:red;', termsAgreement);
-
 
     return (
       <div className="checkout__container">
@@ -509,7 +517,12 @@ class ExpressCheckout extends React.Component {
 
               <SubmitOrder
                 loading={apiFetching}
-                enable={(cart.length && userId) ? true : false} //eslint-disable-line
+                enable={this.enableSubmitButton({
+                  userId,
+                  toast,
+                  errors,
+                  cartLength: !!cart.length,
+                })} //eslint-disable-line
               />
 
               <NetworkStatus
