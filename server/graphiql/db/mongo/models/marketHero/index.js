@@ -29,17 +29,49 @@ new Promise((resolve, reject) => {
   });
 });
 
-marketHeroSchema.statics.updateProductTags = productTags =>
+marketHeroSchema.statics.updateLeadProductTags = ({ lead, productTags }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@MarketHero.updateProductTags\n');
 
   const savedTags = productTags;
-  const nextBatch = [];
+  let nextTag = [];
 
   if (savedTags.length) {
-    nextBatch = [...savedTags.pop()],
-  }
+    nextTag = [...savedTags.pop()];
 
+    const reqBody = {
+      apiKey: process.env.MARKET_HERO_API_KEY,
+      tags: nextTag,
+      email: lead.email,
+      lastName: lead.familyName,
+      firstName: lead.givenName,
+    };
+
+    axios.post('https://api.markethero.io/v1/api/tag-lead', reqBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('\nFAILED: @Markethero.updateUserTags >>> axios.post: ', response.data);
+        reject(response.data.error);
+      } else {
+        console.log('\nSUCCEEDED: @Markethero.updateUserTags >>> axios.post: ', response.data);
+
+        if (savedTags.length) {
+          console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> axios.post - calling recursively - remaining tags: ', savedTags);
+        } else {
+          console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> recursive update - Finished all product tag updates.');
+          resolve();
+        }
+      }
+    })
+    .catch((error) => {
+      console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
+      reject();
+    });
+  }
 });
 
 
@@ -61,6 +93,10 @@ new Promise((resolve, reject) => {
       resolve();
     }
   })
+  .catch((error) => {
+    console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
+    reject();
+  });
 });
 
 /**
@@ -91,14 +127,21 @@ new Promise((resolve, reject) => {
     firstName: lead.givenName,
   };
 
-  MarketHero.updateUserTags(reqBody);
-  .then(() => {
+  MarketHero.updateUserTags(reqBody)
+  .then(() => { //eslint-disable-line
     console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.udpateUserTags');
 
     if (!productTags.length) {
       resolve();
     } else {
-      return MarketHero.updateLeadProductTags(productTags);
+      return MarketHero.updateLeadProductTags({
+        lead: {
+          email: lead.email,
+          lastName: lead.familyName,
+          firstName: lead.givenName,
+        },
+        productTags,
+      });
     }
   })
   .then(() => {
