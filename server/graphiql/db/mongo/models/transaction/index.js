@@ -133,16 +133,16 @@ new Promise((resolve, reject) => {
     },
     {
       headers: {
-        // Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
-        Authorization: `Bearer sandbox-sq0atb-v0kc0TRPfGqNcgMCf5C-Fw`,
+        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
       },
     },
   )
   .then((response) => { //eslint-disable-line
     if (response.status !== 200) {
+      console.log('\nFAILED: @Transaction.chargeCard >>> axios.post');
       resolve({ status: response.status });
     } else {
-      console.log('Successfully charged customer. ', response.data);
+      console.log('\nSUCCESS: @Transaction.chargeCard >>> axios.post: ', response.data);
       return Transaction.findByIdAndUpdate(transactionId, {
         $set: {
           'square.transactionId': response.data.transaction.id,
@@ -152,16 +152,12 @@ new Promise((resolve, reject) => {
     }
   })
   .then((result) => {
-    if (!result) {
-      reject('\nFAILED: Update Transaction with Square information.');
-    } else {
-      resolve({ status: 200 });
-    }
+    console.log('\nSUCCEEDED: @Square.chargeCard >>> Transaction.findByIdAndUpdate: ', result);
+    resolve({ status: 200 });
   })
   .catch((error) => {
-    console.log('%cerror', 'background:red;', error);
-    console.log('Error while trying to Authorize Square payment: ', error.response.data.errors);
-    reject(`Error while trying to Authorize Square payment:  ${error.response.data.errors[0].detail}`);
+    console.log('\nFAILED: @Transaction.squareChargeCard: ', error.response.data.errors);
+    reject(`Square Message: ${error.response.data.errors[0].detail}`);
   });
 });
 
