@@ -351,13 +351,13 @@ new Promise((resolve, reject) => {
         to: transactionDoc.emailAddress,
         htmlBody: emailBody,
       }, dbEmail),
-      Sagawa.findByIdAndUpdate(sagawaId, {
+      Transaction.findByIdAndUpdate(transactionDoc._id, {
         $set: { [emailType]: emailBody },
       }, { new: true }),
     ]);
   })
   .then((results) => {
-    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> Email.sendEmail & Sagawa.findByIdAndUpdate');
+    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> Email.sendEmail & Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]._id);
     resolve({ verified: true, ...request });
   })
   .catch((error) => {
@@ -535,6 +535,7 @@ new Promise((resolve, reject) => {
       });
     } else {
       console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
+
       const reqObjs = dbResults.map(dbDoc => ({
         sagawaId: dbDoc._id,
         userId: dbDoc.userId,
