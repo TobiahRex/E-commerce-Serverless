@@ -223,6 +223,22 @@ const rootType = new ObjectType({
                     }),
                   }),
                 },
+                type: {
+                  description: 'The type of square transaction that was executed.',
+                  type: StringType,
+                },
+                card_details: {
+                  description: 'A collection of info about the credit card that was used',
+                  type: new ObjectType({
+                    name: 'TrransactionSquareTenderCardDetails',
+                    fields: () => ({
+                      status: {
+                        description: 'The current status of the charge.',
+                        type: StringType,
+                      },
+                    }),
+                  }),
+                },
               }),
             }),
           },
