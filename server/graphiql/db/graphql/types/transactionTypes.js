@@ -164,12 +164,8 @@ const rootType = new ObjectType({
       type: new ObjectType({
         name: 'TransactionSqaureInformation',
         fields: () => ({
-          locationId: {
-            description: 'The Square location ID that this transaction was added to.',
-            type: StringType,
-          },
-          transactionId: {
-            description: 'The Square transaction ID for this transaction.',
+          idempotency_key: {
+            description: 'The unique id randomly generated at the time of Credit Card charge.',
             type: StringType,
           },
           billingCountry: {
@@ -183,6 +179,22 @@ const rootType = new ObjectType({
               fields: () => ({
                 shippingPrefecture: { type: StringType },
                 shippingCity: { type: StringType },
+              }),
+            }),
+          },
+          tender: {
+            description: 'The return object from Square at the time of charging the customers card.',
+            type: new ObjectType({
+              name: 'TransactionSquareTender',
+              field: () => ({
+                location_id: {
+                  description: 'The Square location ID that this transaction was added to.',
+                  type: StringType,
+                },
+                transaction_id: {
+                  description: 'The Square transaction ID for this transaction.',
+                  type: StringType,
+                },
               }),
             }),
           },
