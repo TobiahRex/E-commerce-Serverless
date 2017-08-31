@@ -230,10 +230,30 @@ const rootType = new ObjectType({
                 card_details: {
                   description: 'A collection of info about the credit card that was used',
                   type: new ObjectType({
-                    name: 'TrransactionSquareTenderCardDetails',
+                    name: 'TrransactionSquareTenderCard',
                     fields: () => ({
                       status: {
                         description: 'The current status of the charge.',
+                        type: StringType,
+                      },
+                      card: {
+                        description: 'The non-sensitie card specific details.',
+                        type: new ObjectType({
+                          name: 'TranscationSquareTenderCardDetails',
+                          fields: () => ({
+                            card_brand: { type: StringType },
+                            last_4: { type: StringType },
+                            nameOnCard: { type: StringType },
+                            cardNonce: { type: StringType },
+                            postalCode: {
+                              description: 'The postal code for US | UK | CA cards.',
+                              type: StringType,
+                            },
+                          }),
+                        }),
+                      },
+                      entry_method: {
+                        description: 'Whether the charge as "Point of Sale" or "API Charge".',
                         type: StringType,
                       },
                     }),
@@ -242,25 +262,25 @@ const rootType = new ObjectType({
               }),
             }),
           },
-          cardInfo: {
-            description: 'The non-sensitive credit card information provided by Square.',
+          refund: {
+            description: 'The refund details (if any) for the any transactions made on this document.',
             type: new ObjectType({
-              name: 'TransactionSquareCCInfo',
+              name: 'TransactionSquareRefund',
               fields: () => ({
-                last4: { type: IntType },
-                nameOnCard: { type: StringType },
-                cardNonce: { type: StringType },
-                postalCode: { type: StringType },
-              }),
-            }),
-          },
-          charge: {
-            description: 'The total charges made to the customers credit card for this transaction.',
-            type: new ObjectType({
-              name: 'TransactionSquareChargeInfo',
-              fields: () => ({
-                amount: { type: StringType },
-                currency: { type: StringType },
+                id: {
+                  description: 'The square refund id.',
+                  type: StringType,
+                },
+                location_id: { type: String, default: '' },
+                transaction_id: { type: String, default: '' },
+                tender_id: { type: String, default: '' },
+                created_at: { type: String, default: '' },
+                reason: { type: String, default: '' },
+                amount_money: {
+                  amount: { type: Number },
+                  currency: { type: String },
+                },
+                status: { type: String, default: '' },
               }),
             }),
           },
