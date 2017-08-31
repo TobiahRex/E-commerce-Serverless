@@ -301,21 +301,28 @@ new Promise((resolve, reject) => {
       transactionDoc = results[1];
       const uploadData = results[0].data;
 
-      return Sagawa.findByIdAndUpdate(sagawaId, {
-        $set: {
-          'shippingAddress.awbId': uploadData.awbId,
-          'shippingAddress.referenceId': uploadData.referenceId,
-          uploadStatus: 'uploaded',
-        },
-      }, { new: true });
+      emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
+
+      return Promise.all([
+        Sagawa.findByIdAndUpdate(sagawaId, {
+          $set: {
+            'shippingAddress.awbId': uploadData.awbId,
+            'shippingAddress.referenceId': uploadData.referenceId,
+            uploadStatus: 'uploaded',
+          },
+        }, { new: true }),
+        Email.findEmailAndFilterLanguage(
+          emailType,
+          transactionDoc.emailLanguage,
+        ),
+      ]);
     }
   })
-  .then((dbSagawa) => {
-    console.log('\nSUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
+  .then((results) => {
+    console.log('\nSUCCEEDED: Sagawa.uploadOrderAndSendEmail >>> 1) Sagawa.findByIdAndUpdate & 2) Email.findEmailAndFilterLanguage: ', results[0]._id, '\n', results[1]._id);
 
-    sagawaDoc = dbSagawa;
-    console.log('Updated Sagawa Doc: ', sagawaDoc);
-    emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
+    sagawaDoc = results[0];
+    console.log('\nUpdated Sagawa Doc ID: ', sagawaDoc._id);
 
     return Email.findEmailAndFilterLanguage(
       emailType,
