@@ -610,7 +610,7 @@ export default (db) => {
     Email.sendRawEmail(emailRequest)
     .then((response) => {
       console.log('\nSUCCEEDED: Email has been sent to NJ2JP leadership:', response);
-      const slackWebhook = process.env.SLACK_SAGAWA_UPLOAD_WEBHOOK;
+      const slackWebhook = process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOK;
       const slackMessage = message;
       return Email.notifySlack(slackWebhook, slackMessage);
     })

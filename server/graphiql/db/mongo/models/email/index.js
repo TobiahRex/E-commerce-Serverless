@@ -543,14 +543,12 @@ new Promise((resolve, reject) => {
     Email.sendRawEmail(emailRequest)
     .then((response) => {
       console.log('\nSUCCEEDED: Send Error Email to Staff: ', response);
-
       resolve();
     })
     .catch((error) => {
       console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
-
       return Email.notifySlack(
-        process.env.SLACK_ERROR_NOTIFICATION_WEBHOOOK,
+        process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOOK,
         GenerateSlackMsg.staffErrorReport(dbReport),
       );
     })
