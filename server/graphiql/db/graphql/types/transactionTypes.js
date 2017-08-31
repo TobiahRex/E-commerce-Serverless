@@ -187,12 +187,28 @@ const rootType = new ObjectType({
             type: new ObjectType({
               name: 'TransactionSquareTender',
               field: () => ({
+                id: {
+                  description: 'The tender id - Required for issuing refunds.',
+                  type: StringType,
+                },
                 location_id: {
                   description: 'The Square location ID that this transaction was added to.',
                   type: StringType,
                 },
                 transaction_id: {
                   description: 'The Square transaction ID for this transaction.',
+                  type: StringType,
+                },
+                created_at: {
+                  description: 'JS date object.',
+                  type: StringType,
+                },
+                note: {
+                  description: 'Note given at the time of charging the customers card',
+                  type: StringType,
+                },
+                amount_money: {
+                  description: 'The Fiat Amount details.',
                   type: StringType,
                 },
               }),
