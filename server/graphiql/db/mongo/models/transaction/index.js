@@ -104,15 +104,17 @@ new Promise((resolve, reject) => {
     shippingPostalCode,
     shippingCountry,
     billingCountry,
-    grandTotal,
+    amount,
+    currency,
     cardNonce,
-    jpyFxRate,
   } = chargeInfo;
+
+  const idempotency_key = uuid(); //eslint-disable-line
 
   axios.post(
     `https://connect.squareup.com/v2/locations/${locationId}/transactions`,
     {
-      idempotency_key: uuid(),
+      idempotency_key,
       buyer_email_address: shippingEmail,
       shipping_address: {
         address_line_1: shippingAddressLine2,
@@ -123,8 +125,8 @@ new Promise((resolve, reject) => {
         country: shippingCountry,
       },
       amount_money: {
-        amount: ComposeAmount(billingCountry, grandTotal, jpyFxRate),
-        currency: billingCountry === 'US' ? 'USD' : 'JPY',
+        amount,
+        currency,
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
@@ -143,10 +145,22 @@ new Promise((resolve, reject) => {
       resolve({ status: response.status });
     } else {
       console.log('\nSUCCESS: @Transaction.chargeCard >>> axios.post: ', response.data);
+
+      console.log('amount_money: ', response.data.transaction.tenders[0].amount_money);
+
+      const tender = response.data.transaction.tenders[0];
       return Transaction.findByIdAndUpdate(transactionId, {
         $set: {
-          'square.transactionId': response.data.transaction.id,
-          'square.locationId': response.data.transaction.location_id,
+          'square.idempotency_key': idempotency_key,
+          'square.tender.location_id': tender.location_id,
+          'square.tender.transaction_id': tender.transaction_id,
+          'square.tender.created_at': tender.created_at,
+          'square.tender.note': tender.note,
+          'square.tender.amount_money': tender.amount_money,
+          'square.tender.type': tender.type,
+          'square.tender.card_details.status': tender.card_details.status,
+          'square.tender.card_details.card.card_brand': tender.card_details.card.card_brand,
+          'square.tender.card_details.entry_method': tender.card_details.entry_method,
         },
       }, { new: true });
     }
@@ -255,8 +269,9 @@ new Promise((resolve, reject) => {
         shippingPostalCode: sagawa.shippingAddress.postalCode,
         shippingCountry: sagawa.shippingAddress.country,
         billingCountry: square.billingCountry,
-        grandTotal: total.grandTotal,
-        cardNonce: square.cardInfo.cardNonce,
+        amount: square.tender.amount_money.amount,
+        currency: square.tender.amount_money.currency,
+        cardNonce: square.tender.card_details.card.cardNonce,
         jpyFxRate,
       });
     }
@@ -448,11 +463,38 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.issueSquareRefund = () =>
+transactionSchema.statics.issueUserRefund = (transactionId) =>
 new Promise((resolve, reject) => {
   console.log('\n\nTransaction.issueSquareRefund');
 
-  
+  Transaction.findById(transactionId).exec()
+  .then((dbTransaction) => {
+
+    axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.locationId}/transactions/${dbTransaction.square.transactionId}/refund`, {
+
+    }, {
+      headers: {
+        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
+      },
+    });
+  })
+  .then((response) => {
+    if (response.status !== 200) {
+      console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
+      reject(response.data);
+    } else {
+      console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
+      Transaction.findByIdAndUpdate(transactionId, {
+        $set: {
+
+        }
+      })
+    }
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Transaction.issueUserRefund');
+    reject(error.message);
+  });
 });
 
 const Transaction = db.model('Transaction', transactionSchema);
