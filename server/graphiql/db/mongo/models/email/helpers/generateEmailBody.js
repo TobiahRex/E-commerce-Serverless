@@ -17,11 +17,11 @@ const generateEmailBody = {
     | `}
     *====================== DETAILS ======================*
 
-    ${reportDoc.reportType !== 'cronJobError' ? this.genericBody(reportDoc.data) : this.cronJobError_body(reportDoc.data)}
+    ${reportDoc.reportType !== 'cronJobError' ? this.genericReportBody(reportDoc.data) : this.cronJobError_body(reportDoc.data)}
     `;
     return bodyTextData;
   },
-  genericBody: (reportData) => {
+  genericReportBody: (reportData) => {
     const message = reportData.reduce((a, n, i) => {
     a += `
     ${i + 1})----------------
