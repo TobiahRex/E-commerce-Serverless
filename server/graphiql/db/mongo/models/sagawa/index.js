@@ -319,18 +319,11 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => {
-    console.log('\nSUCCEEDED: Sagawa.uploadOrderAndSendEmail >>> 1) Sagawa.findByIdAndUpdate & 2) Email.findEmailAndFilterLanguage: ', results[0]._id, '\n', results[1]._id);
+    console.log('\nSUCCEEDED: Sagawa.uploadOrderAndSendEmail >>> 1) Sagawa.findByIdAndUpdate & 2) Email.findEmailAndFilterLanguage: ', results[0]._id, '\nEmail Purpose: ', results[1].purpose);
 
     sagawaDoc = results[0];
+    const dbEmail = results[1];
     console.log('\nUpdated Sagawa Doc ID: ', sagawaDoc._id);
-
-    return Email.findEmailAndFilterLanguage(
-      emailType,
-      transactionDoc.emailLanguage,
-    );
-  })
-  .then((dbEmail) => {
-    console.log('\nSUCCEEDED: Find email and Filter by Language: ', dbEmail.purpose);
 
     const payload = {
       userId,
@@ -364,7 +357,7 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> Email.sendEmail & Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]._id);
+    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> 1) Email.sendEmail & 2) Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]._id);
     resolve({ verified: true, ...request });
   })
   .catch((error) => {

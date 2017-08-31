@@ -448,5 +448,12 @@ new Promise((resolve, reject) => {
   });
 });
 
+transactionSchema.statics.issueSquareRefund = () =>
+new Promise((resolve, reject) => {
+  console.log('\n\nTransaction.issueSquareRefund');
+
+  
+});
+
 const Transaction = db.model('Transaction', transactionSchema);
 export default Transaction;
