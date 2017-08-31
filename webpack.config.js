@@ -35,7 +35,8 @@ const devConfig = {
   output: {
     path: path.resolve(__dirname, 'src'),
     publicPath: '/',
-    filename: 'bundle.[name].js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   devtool: 'eval-source-map',
   target: 'web',
@@ -43,12 +44,12 @@ const devConfig = {
     new ProgressBarPlugin(),
     new CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'bundle.[name].js',
+      filename: '[name].bundle.js',
       minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
     }),
     new CommonsChunkPlugin({
       name: 'common',
-      filename: 'bundle.[name].js',
+      filename: '[name].bundle.js',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -109,7 +110,8 @@ const prodConfig = {
   output: {
     path: path.resolve('dist'),
     publicPath: '/',
-    filename: 'bundle.[name].js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   devtool: false,
   target: 'web',
@@ -117,12 +119,12 @@ const prodConfig = {
     new ProgressBarPlugin(),
     new CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'bundle.[name].js',
+      filename: '[name].bundle.js',
       minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
     }),
     new CommonsChunkPlugin({
       name: 'common',
-      filename: 'bundle.[name].js',
+      filename: '[name].bundle.js',
     }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),

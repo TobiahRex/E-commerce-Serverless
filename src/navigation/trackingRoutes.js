@@ -9,7 +9,7 @@ const ProductRoutes = () => (
     <Route
       path="/tracking"
       getComponent={(location, cb) => {
-        System.import('../containers/tracking/container/index')
+        import('../containers/tracking/container/index'/* webpackChunkName: "tracking" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}

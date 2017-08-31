@@ -26,14 +26,14 @@ function AdminDashboardRoutes(requireAuth) {
       path="/admin_:id"
       onEnter={requireAuth}
       getComponent={(location, cb) => {
-        System.import('../containers/adminDashboard/adminDashComponents/adminDashboard')
+        System.import('../containers/adminDashboard/adminDashComponents/adminDashboard' /* webpackChunkName: "adminDashboard" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
     >
       <IndexRoute
         getComponent={(location, cb) => {
-          System.import('../containers/adminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash')
+          System.import('../containers/adminDashboard/adminDashComponents/adminDashboard_home/adminHomeDash' /* webpackChunkName: "adminDashboard.home" */)
           .then(loadRoute(cb))
           .catch(errorLoading);
         }}
