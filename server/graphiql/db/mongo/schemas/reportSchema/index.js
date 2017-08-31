@@ -10,6 +10,7 @@ const reportSchema = new Schema({
     enum: [
       'cronJobError',
       'cronJobSummary',
+      'cronJobEmpty',
     ],
     default: '',
     required: true,

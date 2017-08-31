@@ -502,11 +502,11 @@ new Promise((resolve, reject) => {
     Sagawa.find({ status: 'pending' }, cb).exec())
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
-      reportType = 'cronJobSummary';
+      reportType = 'cronJobEmpty';
       Report.createAndSendCronJobReportToStaff({
         reportType: 'cronJobSummary',
-        mainTitle: 'REPORT ✉️',
-        subTitle: 'Cron Job Upload Summary 💵',
+        mainTitle: 'NJ2JP CronJob REPORT 📠 ',
+        subTitle: `Order Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
         headerBlurb: 'There was no orders to upload.',
         data: {
           total: 0,
@@ -561,14 +561,13 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: @Sagawa.cronJob: ', error);
-    reject(new Error('\nFAILED: @Sagawa.cronJob'));
+    reject('\nFAILED: @Sagawa.cronJob');
   });
 });
 
 sagawaSchema.statics.batchUploadOrders = reqObjs =>
 new Promise((resolve) => {
   console.log('\n\n@Sagawa.batchUploadOrders\n');
-
 
   let successfulReqs = 0,
     failedReqs = 0,
@@ -579,6 +578,9 @@ new Promise((resolve) => {
     date = moment().format('YYYY/MM/DD'),
     savedArray = reqObjs;
 
+  function recursiveUpload() {
+
+  }
   if (reqObjs.length) {
     nextBatch = [...savedArray.splice(0, 5)];
 

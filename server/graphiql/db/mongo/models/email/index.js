@@ -533,10 +533,10 @@ new Promise((resolve, reject) => {
     const emailRequest = {
       sourceEmail: 'admin@nj2jp.com',
       toEmailAddresses: [cto, ceo, cdo],
-      replyToAddress: ['NJ2JP CronJob Report 📠 <admin@nj2jp.com>'],
+      replyToAddress: [`${dbReport.mainTitle} <admin@nj2jp.com>`],
       bodyTextData: GenerateEmailBody.staffGeneralReport(dbReport),
       bodyTextCharset: 'utf8',
-      subjectData: `Order Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
+      subjectData: dbReport.subTitle,
       subjectCharset: 'utf8',
     };
 
@@ -554,8 +554,7 @@ new Promise((resolve, reject) => {
     })
     .then(() => {
       console.log('\nSUCCEEDED: @Email.notifiySlack');
-
-      reject(new Error('\nFAILED @Email.sendRawEmail'));
+      reject('\nFAILED @Email.sendRawEmail');
     })
     .catch(reject);
   }

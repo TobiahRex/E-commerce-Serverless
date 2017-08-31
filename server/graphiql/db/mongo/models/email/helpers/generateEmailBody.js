@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+/* eslint-disable indent, no-multi-spaces */
 const generateEmailBody = {
   staffErrorReport: (reportDoc) => {
     const bodyTextData = `
@@ -17,7 +17,7 @@ const generateEmailBody = {
     | `}
     *====================== DETAILS ======================*
 
-    ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.staffErrorReport_body(reportDoc.data)}
+    ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.cronJob_body(reportDoc.data)}
     `;
     return bodyTextData;
   },
@@ -31,19 +31,19 @@ const generateEmailBody = {
     |
     | TYPE: "${reportDoc.reportType}"
     | DATE: ${reportDoc.created}
-    | ${reportDoc.reportType !== 'cronJobSummary' ? '' : `
-    | TOTAL UPLOADS: ${reportDoc.data.total || 0}
+    | ${reportDoc.reportType === 'cronJobEmpty' ? '' : `
+    | TOTAL UPLOADS: ${reportDoc.data.total}
     | SUCCESSFUL UPLOADS: ${reportDoc.data.successful}
     | FAILED UPLOADS: ${reportDoc.data.failed}
     | `}
     *====================== DETAILS ======================*
 
-    ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data.reports) : this.staffErrorReport_body(reportDoc.data.reports)}
+    ${reportDoc.reportType === 'cronJobEmpty' ? 'There are no upload details to show.' : this.cronJob_body(reportDoc.data)}
     `;
     return bodyTextData;
   },
-  genericReport_body: (reportsArr) => {
-    const message = reportsArr.reduce((a, n, i) => {
+  genericReport_body: (reportData) => {
+    const message = reportData.reports.reduce((a, n, i) => {
     a += `
     ${i + 1})----------------
     ${JSON.stringify(n)}
@@ -53,12 +53,12 @@ const generateEmailBody = {
     }, '');
     return message;
   },
-  staffErrorReport_Body: (reportsArr) => {
+  cronJob_body: (reportData) => {
     const message = `
-    *--------------------- FAILURES ---------------------*
-    ${reportsArr.failed.reduce((a, n, i) => {
+    ${reportData.reports.reduce((a, n, i) => {
     a += `
     (${i + 1})------------------------
+    |           ${n.error ? 'FAILED' : 'SUCCESS'}
     | DATE: ${n.date}
     | SAGAWA ID: ${n.sagawaId}
     | USER ID: ${n.userId}
@@ -67,21 +67,7 @@ const generateEmailBody = {
     *----------------------------
     `;
     return a;
-    })}
-    *--------------------- SUCCESSFULL ---------------------*
-    ${reportsArr.successful.reduce((a, n, i) => {
-    a += `
-    (${i + 1})---------------------------
-    | DATE: ${n.date}
-    | SAGAWA ID: ${n.sagawaId}
-    | USER ID: ${n.userId}
-    | TRANSACTION ID: ${n.transactionId}
-    | VERIFIED: ${n.success}
-    *----------------------------
-    `;
-    return a;
-    })}
-    `;
+    })}`;
     return message;
   },
 };
