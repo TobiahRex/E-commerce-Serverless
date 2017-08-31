@@ -205,7 +205,7 @@ new Promise((resolve, reject) => {
   .then(({ data }) => {
     if (!data.verified) {
       console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
-      reject(new Error(data.msg));
+      resolve({ verified: data.verified, sagawaId });
     } else {
       console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
       resolve({ data, sagawaId });
@@ -213,7 +213,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Upload Order to Sagawa.', error);
-    reject(new Error('\nFAILED: Upload Order to Sagawa.'));
+    reject(error.message);
   });
 });
 
@@ -239,14 +239,14 @@ new Promise((resolve, reject) => {
       uploadStatus: 'uploaded',
     },
   }, { new: true })
-    .then((updatedDoc) => {
-      console.log('\nSUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
-      resolve(updatedDoc);
-    })
-    .catch((error) => {
-      console.log('\nFAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
-      reject(new Error('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.'));
-    });
+  .then((updatedDoc) => {
+    console.log('\nSUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
+    resolve(updatedDoc);
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
+    reject(new Error('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.'));
+  });
 });
 
 /**
@@ -289,18 +289,25 @@ new Promise((resolve, reject) => {
   .then((results) => {  //eslint-disable-line
     if (!results[0].data.verified) {
       console.log('\nFAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
-      resolve({ verified: false, sagawaId });
+      resolve({
+        userId,
+        sagawaId,
+        transactionId,
+        verified: false,
+      });
     } else {
       console.log('\nSUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
       transactionDoc = results[1];
       const uploadData = results[0].data;
 
-      return Sagawa.findSagawaAndUpdate({
-        sagawaId,
-        awbId: uploadData.awbId,
-        referenceId: uploadData.referenceId,
-      });
+      return Sagawa.findByIdAndUpdate(sagawaId, {
+        $set: {
+          'shippingAddress.awbId': uploadData.awbId,
+          'shippingAddress.referenceId': uploadData.referenceId,
+          uploadStatus: 'uploaded',
+        },
+      }, { new: true });
     }
   })
   .then((dbSagawa) => {
@@ -338,21 +345,24 @@ new Promise((resolve, reject) => {
     emailBody = emailBody
     .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
-    console.log('NEW email body: ', emailBody);
 
-    return Email.sendEmail({
-      to: transactionDoc.emailAddress,
-      htmlBody: emailBody,
-    }, dbEmail);
+    return Promise.all([
+      Email.sendEmail({
+        to: transactionDoc.emailAddress,
+        htmlBody: emailBody,
+      }, dbEmail),
+      Sagawa.findByIdAndUpdate(sagawaId, {
+        $set: { [emailType]: emailBody },
+      }, { new: true }),
+    ]);
   })
-  .then(() => {
-    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> Email.sendEmail');
-
+  .then((results) => {
+    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> Email.sendEmail & Sagawa.findByIdAndUpdate');
     resolve({ verified: true, ...request });
   })
   .catch((error) => {
     console.log('\nFAILED: @Sagawa.uploadOrderAndSendEmail: ', error);
-    reject(new Error('\nFAILED: @Sagawa.uploadOrderAndSendEmail.'));
+    reject(error.message);
   });
 });
 
@@ -575,67 +585,66 @@ new Promise((resolve) => {
 
   const totalReqs = reqObjs.length,
     reports = [],
-    date = moment().format('YYYY/MM/DD'),
-    savedArray = reqObjs;
+    date = moment().format('YYYY/MM/DD');
 
-  function recursiveUpload() {
+  function recursiveUpload(orders) {
+    const savedArray = orders;
 
-  }
-  if (reqObjs.length) {
-    nextBatch = [...savedArray.splice(0, 5)];
+    if (savedArray.length) {
+      nextBatch = [...savedArray.splice(0, 5)];
 
-    nextBatch
-    .map(async (reqObj) => {
-      const result = await Sagawa.uploadOrderAndSendEmail(reqObj);
-      return result;
-    })
-    .forEach((promise, i, array) => {
-      promise
-      .then(({ verified, sagawaId, userId, transactionId }) => {
-        if (verified) {
-          successfulReqs += 1;
-
-          reports.push({
-            date,
-            sagawaId,
-            userId,
-            transactionId,
-            success: verified,
-            error: false,
-          });
-        } else {
-          failedReqs += 1;
-
-          reports.push({
-            date,
-            sagawaId,
-            userId,
-            transactionId,
-            success: verified,
-            error: true,
-          });
-        }
-
-        if (reports.length === reqObjs.length) {
-          resolve({
-            reports,
-            total: totalReqs,
-            failed: failedReqs,
-            successful: successfulReqs,
-          });
-        } else if (i === (array.length - 1)) {
-          Sagawa.batchUploadOrders(savedArray);
-        }
+      nextBatch
+      .map(async (reqObj) => {
+        const result = await Sagawa.uploadOrderAndSendEmail(reqObj);
+        return result;
       })
-      .catch((error) => {
-        console.log('\nFAILED: @Sagawa.batchUploadOrders >>> Sagawa.uploadOrderAndSendEmail: ', error);
+      .forEach((promise, i, array) => {
+        promise
+        .then(({ verified, sagawaId, userId, transactionId }) => {
+          if (verified) {
+            successfulReqs += 1;
+
+            reports.push({
+              date,
+              sagawaId,
+              userId,
+              transactionId,
+              success: verified,
+              error: false,
+            });
+          } else {
+            failedReqs += 1;
+
+            reports.push({
+              date,
+              sagawaId,
+              userId,
+              transactionId,
+              success: verified,
+              error: true,
+            });
+          }
+
+          if (i === (array.length - 1)) recursiveUpload(savedArray);
+        })
+        .catch((error) => {
+          console.log('\nFAILED: @Sagawa.batchUploadOrders >>> Sagawa.uploadOrderAndSendEmail: ', error);
+        });
       });
-    });
-    console.log('\n\n*------------- CALLING NEXT BATCH -------------*\n\n');
-    console.log('savedArray: ', savedArray);
-  } else {
-    console.log('No more orders');
+      console.log('\n\n*------------- CALLING NEXT BATCH -------------*\n\n');
+      console.log('savedArray: ', savedArray);
+    } else {
+      console.log('No more orders');
+      resolve({
+        reports,
+        total: totalReqs,
+        failed: failedReqs,
+        successful: successfulReqs,
+      });
+    }
   }
+
+  recursiveUpload(reqObjs);
 });
 
 /**
