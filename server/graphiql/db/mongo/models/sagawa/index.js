@@ -503,15 +503,25 @@ new Promise((resolve, reject) => {
     Sagawa.find({ status: 'pending' }, cb).exec())
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
-      Report.createAndSendCronJobReport({ date, reports: [] })
+      Report.createAndSendCronJobReportToStaff({
+        reportType: 'cronJobSummary',
+        mainTitle: 'REPORT ✉️',
+        subTitle: 'Cron Job Upload Summary 💵',
+        headerBlurb: 'There was no orders to upload.',
+        data: {
+          total: null,
+          successful: null,
+          failed: null,
+          report: null,
+        },
+      })
       .then(() => {
-        console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.createAndSendCronJobReport:');
-        // resolve({ status: 200 });
+        console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.createAndSendCronJobReportToStaff:');
         resolve('No orders to upload.');
       })
       .catch((error) => {
-        console.log('\nFAILED: @Sagawa.cronJob: ', error);
-        reject(new Error('\nFAILED: @Sagawa.cronJob'));
+        console.log('\nFAILED: @Sagawa.cronJob >>> Report.createAndSendCronJobReportToStaff: ', error);
+        reject(error.message);
       });
     } else {
       console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);

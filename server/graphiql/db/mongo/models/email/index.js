@@ -460,13 +460,13 @@ new Promise((resolve, reject) => {
 *
 * @return {na}
 */
-emailSchema.statics.sendErrorReportToStaff = reportDoc =>
+emailSchema.statics.sendErrorReportToStaff = dbReport =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendErrorReportToStaff\n');
 
-  if (!reportDoc) {
+  if (!dbReport) {
     console.log('Missing required arguments.');
-    reject(new Error('Missing required arguments'));
+    reject('Missing required arguments');
   } else {
     const {
       CEO_EMAIL: ceo,
@@ -478,7 +478,7 @@ new Promise((resolve, reject) => {
       sourceEmail: 'admin@nj2jp.com',
       toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: ['NJ2JP Error Report ⚠️ <admin@nj2jp.com>'],
-      bodyTextData: GenerateEmailBody.staffErrorReport(reportDoc),
+      bodyTextData: GenerateEmailBody.staffErrorReport(dbReport),
       bodyTextCharset: 'utf8',
       subjectData: 'IMPORTANT! - An error has occured that requires immediate attention.',
       subjectCharset: 'utf8',
@@ -495,7 +495,63 @@ new Promise((resolve, reject) => {
 
       return Email.notifySlack(
         process.env.SLACK_ERROR_NOTIFICATION_WEBHOOOK,
-        GenerateSlackMsg.staffErrorReport(reportDoc),
+        GenerateSlackMsg.staffErrorReport(dbReport),
+      );
+    })
+    .then(() => {
+      console.log('\nSUCCEEDED: @Email.notifiySlack');
+
+      reject(new Error('\nFAILED @Email.sendRawEmail'));
+    })
+    .catch(reject);
+  }
+});
+
+/**
+* Function: 'sendEmailReportTostaff'
+* Notifiy staff that an important error has occured.
+* If there is a failure to send - send a slack notification as a backup.
+*
+* @param {object} reportInfo - an instance of the Report document.
+*
+* @return {na}
+*/
+emailSchema.statics.sendReportToStaff = dbReport =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Email.sendReportToStaff\n');
+
+  if (!dbReport) {
+    console.log('Missing required arguments.');
+    reject('Missing required arguments');
+  } else {
+    const {
+      CEO_EMAIL: ceo,
+      CTO_EMAIL: cto,
+      CDO_EMAIL: cdo,
+    } = process.env;
+
+    const emailRequest = {
+      sourceEmail: 'admin@nj2jp.com',
+      toEmailAddresses: [cto, ceo, cdo],
+      replyToAddress: ['NJ2JP CronJob Report 📠 <admin@nj2jp.com>'],
+      bodyTextData: GenerateEmailBody.staffCronJobReport(dbReport),
+      bodyTextCharset: 'utf8',
+      subjectData: `Order Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
+      subjectCharset: 'utf8',
+    };
+
+    Email.sendRawEmail(emailRequest)
+    .then((response) => {
+      console.log('\nSUCCEEDED: Send Error Email to Staff: ', response);
+
+      resolve();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
+
+      return Email.notifySlack(
+        process.env.SLACK_ERROR_NOTIFICATION_WEBHOOOK,
+        GenerateSlackMsg.staffErrorReport(dbReport),
       );
     })
     .then(() => {

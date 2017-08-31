@@ -5,11 +5,23 @@ import db from '../../connection';
 
 import Email from '../email';
 
-reportSchema.statics.createAndSendCronJobReport = ({ date, reports }) =>
+reportSchema.statics.createAndSendCronJobReportToStaff = reportBody =>
 new Promise((resolve, reject) => {
-  console.log('\n\nReport.createAndSendCronJobReport\n');
+  console.log('\n\nReport.createAndSendCronJobReportToStafff\n');
+  bbPromise.fromCallback(cb => Report.create(reportBody, cb))
+  .then((dbReport) => {
+    console.log('\nSUCCEEDED: Report.createAndSendCronJobReportToStafff >>> Report.create: ', dbReport._id);
 
-  
+    return Email.sendReportToStaff(dbReport);
+  })
+  .then(() => {
+    console.log('\nSUCCEEDED: Report.createAndSendCronJobReportToStafff >>> Email.sendReportToStaff');
+    resolve();
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Report.createAndSendCronJobReportToStafff: ', error);
+    reject(error.message);
+  });
 });
 
 /**
