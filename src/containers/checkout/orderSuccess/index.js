@@ -85,18 +85,30 @@ class OrderSuccess extends React.Component {
           discount,
         },
         square: {
+          // idempotency_key,
           billingCountry,
           shippingAddress: {
             shippingPrefecture,
             shippingCity,
           },
-          cardInfo: {
-            last4,
-            nameOnCard,
-            postalCode,
-          },
-          charge: {
-            amount: chargedAmount,
+          tender: {
+            // id,
+            // location_id,
+            // transaction_id,
+            // created_at,
+            // note,
+            amount_money: amountMoney,
+            // type,
+            card_details: { //eslint-disable-line
+              card: {
+                // card_brand,
+                last_4,
+                nameOnCard,
+                // cardNonce,
+                postalCode,
+              },
+              // entry_method,
+            },
           },
         },
       },
@@ -143,7 +155,7 @@ class OrderSuccess extends React.Component {
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
-            paidTotal={chargedAmount}
+            paidTotal={amountMoney}
           />
           <div className="ordered__addresses">
             <ShipTo
@@ -264,19 +276,47 @@ OrderSuccess.propTypes = {
       }),
     }),
     square: shape({
+      idempotency_key: string,
       billingCountry: string,
       shippingAddress: shape({
         shippingPrefecture: string,
         shippingCity: string,
       }),
-      cardInfo: shape({
-        last4: number,
-        nameOnCard: string,
-        postalCode: string,
+      tender: shape({
+        id: string,
+        location_id: string,
+        transaction_id: string,
+        created_at: string,
+        note: string,
+        amount_money: shape({
+          amount: number,
+          currency: string,
+        }),
+        type: string,
+        card_details: shape({
+          card: shape({
+            card_brand: string,
+            last_4: string,
+            nameOnCard: string,
+            cardNonce: string,
+            postalCode: string,
+          }),
+          entry_method: string,
+        }),
       }),
-      charge: shape({
-        amount: string,
-      }),
+      refund: {
+        id: string,
+        location_id: string,
+        transaction_id: string,
+        tender_id: string,
+        created_at: string,
+        reason: string,
+        amount_money: {
+          amount: number,
+          currency: string,
+        },
+        status: string,
+      },
     }),
   }),
   sagawaInfo: shape({

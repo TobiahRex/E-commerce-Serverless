@@ -21,7 +21,7 @@ function OrderHeader({
       <div className="header--info">
         <div className="header__price">
           <p>
-            Total Paid: <FontAwesome name="usd" />{'\u00A0'}{paidTotal}
+            Total Paid: <FontAwesome name="usd" />{'\u00A0'}{paidTotal.amount}
           </p>
         </div>
         <div className="header__tracking">
@@ -33,13 +33,16 @@ function OrderHeader({
   );
 }
 
-const { string } = PropTypes;
+const { string, shape, number } = PropTypes;
 OrderHeader.propTypes = {
   date: string.isRequired,
   invoiceId: string.isRequired,
   trackingId: string.isRequired,
   orderId: string.isRequired,
-  paidTotal: string.isRequired,
+  paidTotal: shape({
+    amount: number,
+    currency: string,
+  }).isRequired,
 };
 
 export default OrderHeader;

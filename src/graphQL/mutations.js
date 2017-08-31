@@ -526,25 +526,48 @@ mutation SubmitFinalOrder(
         }
       }
       square {
-        locationId
-        transactionId
+        idempotency_key
         billingCountry
         shippingAddress {
           shippingPrefecture
           shippingCity
         }
-        cardInfo {
-          last4
-          nameOnCard
-          cardNonce
-          postalCode
+        tender {
+          id
+          location_id
+          transaction_id
+          created_at
+          note
+          amount_money {
+            amount
+            currency
+          }
+          type
+          card_details {
+            card {
+              card_brand
+              last_4
+              nameOnCard
+              cardNonce
+              postalCode
+            }
+            entry_method
+          }
         }
-        charge {
-          amount
-          currency
+        refund {
+          id
+          location_id
+          transaction_id
+          tender_id
+          created_at
+          reason
+          amount_money {
+            amount
+            currency
+          }
+          status
         }
       }
-
     }
   }
 }
