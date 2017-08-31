@@ -339,11 +339,11 @@ new Promise((resolve, reject) => {
 
     const token = JWT.sign(payload, JWT_SECRET);
     const prodEnv = LAMBDA_ENV === 'production';
-    const tokenUrlString = `${prodEnv ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
+    const trackingLink = `${prodEnv ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
 
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
-    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
+    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, trackingLink)
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
 
     return Promise.all([
@@ -352,7 +352,10 @@ new Promise((resolve, reject) => {
         htmlBody: emailBody,
       }, dbEmail),
       Transaction.findByIdAndUpdate(transactionDoc._id, {
-        $set: { [emailType]: emailBody },
+        $set: {
+          trackingLink,
+          [emailType]: emailBody,
+        },
       }, { new: true }),
     ]);
   })

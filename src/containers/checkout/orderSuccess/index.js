@@ -62,8 +62,6 @@ class OrderSuccess extends React.Component {
   routeChange = e => this.props.push(e.target.dataset.slug)
 
   renderBody = (props) => {
-    console.log('%cprops', 'background:cyan;', props);
-
     const {
       products: {
         FetchMultipleProducts: products,
@@ -102,7 +100,7 @@ class OrderSuccess extends React.Component {
             card_details: { //eslint-disable-line
               card: {
                 // card_brand,
-                last_4,
+                last_4: last4,
                 nameOnCard,
                 // cardNonce,
                 postalCode,
@@ -179,7 +177,7 @@ class OrderSuccess extends React.Component {
             shippingStatus={`Shipping on ${shipdate}`}
             trackingId={referenceId}
             orderProducts={zippedProducts}
-            grandTotal={chargedAmount}
+            grandTotal={amountMoney.amount}
             subTotal={subTotal}
             taxes={taxes}
             discount={discount}
@@ -203,8 +201,6 @@ class OrderSuccess extends React.Component {
   }
 
   render() {
-    console.log('%cthis.props', 'background:lime;', this.props);
-    console.log('%cthis.state.loading', 'background:red;', this.state.loading);
     return (
       <div>
         {
@@ -261,7 +257,7 @@ OrderSuccess.propTypes = {
     termsAgreement: bool,
     user: string,
     emailAddress: string,
-    invoiceEmailNoTracking: string,
+    // invoiceEmailNoTracking: string,
     jpyFxRate: string,
     shippingStatus: string,
     total: shape({

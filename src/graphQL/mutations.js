@@ -508,6 +508,7 @@ mutation SubmitFinalOrder(
       emailLanguage
       invoiceEmail
       invoiceEmailNoTracking
+      trackingLink
       jpyFxRate
       taxes {
         cityRate

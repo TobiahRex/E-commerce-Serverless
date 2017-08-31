@@ -109,6 +109,10 @@ const rootType = new ObjectType({
       description: 'The Html Body data for the Invoice  Email that was sent.',
       type: StringType,
     },
+    trackingLink: {
+      description: 'The tracking url containing the user\'s tracking token.',
+      type: StringType,
+    },
     jpyFxRate: {
       description: 'The foreign exchange rate between USD & JPY at the time of the transaction.',
       type: StringType,
