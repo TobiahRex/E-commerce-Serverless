@@ -8,6 +8,7 @@ function OrderHeader({
   trackingId,
   orderId,
   paidTotal,
+  deliveryDate,
 }) {
   return (
     <div className="ordered__header">
@@ -23,6 +24,7 @@ function OrderHeader({
           <p>
             Total Paid: <FontAwesome name="usd" />{'\u00A0'}{paidTotal.amount}
           </p>
+          <p>Estimated Delivery:{deliveryDate}</p>
         </div>
         <div className="header__tracking">
           <p>Tracking #: {trackingId}</p>
@@ -39,6 +41,7 @@ OrderHeader.propTypes = {
   invoiceId: string.isRequired,
   trackingId: string.isRequired,
   orderId: string.isRequired,
+  deliveryDate: string.isRequired,
   paidTotal: shape({
     amount: number,
     currency: string,

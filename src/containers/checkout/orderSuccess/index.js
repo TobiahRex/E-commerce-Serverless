@@ -71,41 +71,30 @@ class OrderSuccess extends React.Component {
         date,
         shippingStatus,
         // comments,
-        // termsAgreement,
         // user,
         emailAddress,
-        // invoiceEmailNoTracking,
+        trackingLink,
         jpyFxRate,
         total: {
           subTotal,
           taxes,
-          // grandTotal,
           discount,
         },
         square: {
-          // idempotency_key,
           billingCountry,
           shippingAddress: {
             shippingPrefecture,
             shippingCity,
           },
           tender: {
-            // id,
-            // location_id,
-            // transaction_id,
-            // created_at,
-            // note,
             amount_money: amountMoney,
-            // type,
             card_details: { //eslint-disable-line
               card: {
-                // card_brand,
+                card_brand: cardBrand,
                 last_4: last4,
                 nameOnCard,
-                // cardNonce,
                 postalCode,
               },
-              // entry_method,
             },
           },
         },
@@ -113,9 +102,6 @@ class OrderSuccess extends React.Component {
       sagawaInfo: {
         FetchSagawa: {
           _id: sagawaId,
-          // userId,
-          // transactionId,
-          // uploadForm,
           shippingAddress: {
             referenceId,
             shipdate,
@@ -124,9 +110,8 @@ class OrderSuccess extends React.Component {
             jpaddress1,
             jpaddress2,
             phoneNumber,
-            // deliveryDate,
+            deliveryDate,
           },
-          // items,
         },
       },
     } = props;
@@ -154,6 +139,7 @@ class OrderSuccess extends React.Component {
             trackingId={referenceId}
             orderId={transactionId}
             paidTotal={amountMoney}
+            deliveryDate={deliveryDate}
           />
           <div className="ordered__addresses">
             <ShipTo
@@ -171,11 +157,13 @@ class OrderSuccess extends React.Component {
               billingPostalCode={postalCode}
               billingCountry={billingCountry}
               ccLastFour={last4}
+              cardBrand={cardBrand}
             />
           </div>
           <OrderSummary
             shippingStatus={`Shipping on ${shipdate}`}
-            trackingId={referenceId}
+            trackingLink={trackingLink}
+            trackingNumber={referenceId}
             orderProducts={zippedProducts}
             grandTotal={amountMoney.amount}
             subTotal={subTotal}
@@ -257,7 +245,7 @@ OrderSuccess.propTypes = {
     termsAgreement: bool,
     user: string,
     emailAddress: string,
-    // invoiceEmailNoTracking: string,
+    trackingLink: string,
     jpyFxRate: string,
     shippingStatus: string,
     total: shape({

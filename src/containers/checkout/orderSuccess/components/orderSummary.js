@@ -9,7 +9,8 @@ import {
 
 function OrderSummary({
   shippingStatus,
-  trackingId,
+  trackingLink,
+  trackingNumber,
   orderProducts,
   grandTotal,
   subTotal,
@@ -46,8 +47,8 @@ function OrderSummary({
                 <p>{shippingStatus} {'\u2013'} Tracking #:
                   <Link
                     className="tracking-id"
-                    to={'http://localhost:30001/api/tracking?token=123123'}
-                  >{'\u00A0'}{trackingId}</Link>
+                    to={trackingLink}
+                  >{'\u00A0'}{trackingNumber}</Link>
                 </p>
               </td>
             </tr>
@@ -157,7 +158,8 @@ function OrderSummary({
 const { string, arrayOf, object, objectOf, any } = PropTypes;
 OrderSummary.propTypes = {
   shippingStatus: string.isRequired,
-  trackingId: string.isRequired,
+  trackingLink: string.isRequired,
+  trackingNumber: string.isRequired,
   orderProducts: arrayOf(object).isRequired,
   subTotal: string.isRequired,
   taxes: string.isRequired,
