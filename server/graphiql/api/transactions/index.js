@@ -11,4 +11,9 @@ router.post('/squareChargeCard', (req, res) => {
   .catch(error => res.status(400).send(error));
 });
 
+router.post('/issueUserRefund', (req, res) => {
+  Transaction.issueUserRefund(req.body)
+  .then(() => res.status(200).send('Refund has been issued.'))
+  .catch(error => res.status(400).send(error.message));
+});
 export default router;

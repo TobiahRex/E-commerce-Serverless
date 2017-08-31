@@ -463,18 +463,23 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.issueUserRefund = (transactionId) =>
+transactionSchema.statics.issueUserRefund = transactionId =>
 new Promise((resolve, reject) => {
   console.log('\n\nTransaction.issueSquareRefund');
 
   Transaction.findById(transactionId).exec()
   .then((dbTransaction) => {
-
     axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.locationId}/transactions/${dbTransaction.square.transactionId}/refund`, {
-
+      idempotency_key: dbTransaction.square.idempotency_key,
+      tender_id: dbTransaction.square.tender.id,
+      reason: 'There was an issue during checkout after your card was charged.',
+      amount_money: {
+        amount: dbTransaction.square.tender.amount_money.amount,
+        currency: dbTransaction.square.tener.amount_money.currency,
+      },
     }, {
       headers: {
-        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
+        Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
       },
     });
   })
@@ -486,9 +491,9 @@ new Promise((resolve, reject) => {
       console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
       Transaction.findByIdAndUpdate(transactionId, {
         $set: {
-
-        }
-      })
+          'tender.refund': response.data.refund,
+        },
+      });
     }
   })
   .catch((error) => {
