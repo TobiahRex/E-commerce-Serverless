@@ -447,7 +447,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Send slack webhook', error);
-    reject(new Error('\nFAILED: Send slack webhook'));
+    reject('\nFAILED: Send slack webhook');
   });
 });
 
@@ -547,14 +547,7 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
-      return Email.notifySlack(
-        process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOK,
-        GenerateSlackMsg.staffGeneralReport(dbReport),
-      );
-    })
-    .then(() => {
-      console.log('\nSUCCEEDED: @Email.notifiySlack');
-      reject('\nFAILED @Email.sendRawEmail');
+      reject(error.message);
     })
     .catch(reject);
   }

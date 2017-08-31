@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+/* eslint-disable indent, no-multi-spaces */
 const generateSlackMsg = {
   staffErrorReport: (reportDoc) => {
     const message = `
@@ -17,12 +17,33 @@ const generateSlackMsg = {
     | `}
     *====================== DETAILS ======================*
 
-    ${reportDoc.reportType !== 'cronJobError' ? this.genericBody(reportDoc.data) : this.cronJobError_body(reportDoc.data)}
+    ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.cronJob_body(reportDoc.data)}
     `;
     return message;
   },
-  genericBody: (reportData) => {
-    const message = reportData.reduce((a, n, i) => {
+  staffGeneralReport: (reportDoc) => {
+    const message = `
+    *----------------------------------------------------*
+            ${reportDoc.mainTitle} - ${reportDoc.subTitle}
+    *----------------------------------------------------*
+        ${reportDoc.headerBlurb}
+    *======================= INFO =======================*
+    |
+    | TYPE: "${reportDoc.reportType}"
+    | DATE: ${reportDoc.created}
+    | ${reportDoc.reportType === 'cronJobEmpty' ? '' : `
+    | TOTAL UPLOADS: ${reportDoc.data.total}
+    | SUCCESSFUL UPLOADS: ${reportDoc.data.successful}
+    | FAILED UPLOADS: ${reportDoc.data.failed}
+    | `}
+    *====================== DETAILS ======================*
+
+    ${reportDoc.reportType === 'cronJobEmpty' ? 'There are no upload details to show.' : this.cronJob_body(reportDoc.data)}
+    `;
+    return message;
+  },
+  genericReport_body: (reportData) => {
+    const message = reportData.reports.reduce((a, n, i) => {
     a += `
     ${i + 1})----------------
     ${JSON.stringify(n)}
@@ -32,12 +53,12 @@ const generateSlackMsg = {
     }, '');
     return message;
   },
-  cronJobError_body: (reportData) => {
+  cronJob_body: (reportData) => {
     const message = `
-    *--------------------- FAILURES ---------------------*
-    ${reportData.failed.reduce((a, n, i) => {
+    ${reportData.reports.reduce((a, n, i) => {
     a += `
     (${i + 1})------------------------
+    |           ${n.error ? 'FAILED' : 'SUCCESS'}
     | DATE: ${n.date}
     | SAGAWA ID: ${n.sagawaId}
     | USER ID: ${n.userId}
@@ -46,21 +67,7 @@ const generateSlackMsg = {
     *----------------------------
     `;
     return a;
-    })}
-    *--------------------- SUCCESSFULL ---------------------*
-    ${reportData.successful.reduce((a, n, i) => {
-    a += `
-    (${i + 1})---------------------------
-    | DATE: ${n.date}
-    | SAGAWA ID: ${n.sagawaId}
-    | USER ID: ${n.userId}
-    | TRANSACTION ID: ${n.transactionId}
-    | VERIFIED: ${n.success}
-    *----------------------------
-    `;
-    return a;
-    })}
-    `;
+    })}`;
     return message;
   },
 };

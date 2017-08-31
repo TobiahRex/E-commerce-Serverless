@@ -2,8 +2,10 @@
 import { Promise as bbPromise } from 'bluebird';
 import reportSchema from '../../schemas/reportSchema';
 import db from '../../connection';
-
 import Email from '../email';
+import {
+  generateSlackMsg as GenerateSlackMsg,
+} from '../email/helpers';
 
 reportSchema.statics.createAndSendCronJobReportToStaff = reportBody =>
 new Promise((resolve, reject) => {
@@ -13,10 +15,16 @@ new Promise((resolve, reject) => {
   .then((dbReport) => {
     console.log('\nSUCCEEDED: Report.createAndSendCronJobReportToStafff >>> Report.create: ', dbReport._id);
 
-    return Email.sendReportToStaff(dbReport);
+    return Promise.all([
+      Email.sendReportToStaff(dbReport),
+      Email.notifySlack(
+        process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOK,
+        GenerateSlackMsg.staffGeneralReport(reportBody),
+      ),
+    ]);
   })
-  .then(() => {
-    console.log('\nSUCCEEDED: Report.createAndSendCronJobReportToStafff >>> Email.sendReportToStaff');
+  .then((results) => {
+    console.log('\nSUCCEEDED: Report.createAndSendCronJobReportToStafff >>> 1) Email.sendReportToStaff & 2) Email.notifySlack: n', results);
     resolve();
   })
   .catch((error) => {
