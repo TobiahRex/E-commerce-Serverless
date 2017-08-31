@@ -17,12 +17,33 @@ const generateEmailBody = {
     | `}
     *====================== DETAILS ======================*
 
-    ${reportDoc.reportType !== 'cronJobError' ? this.genericReportBody(reportDoc.data) : this.cronJobError_body(reportDoc.data)}
+    ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.staffErrorReport_body(reportDoc.data)}
     `;
     return bodyTextData;
   },
-  genericReportBody: (reportData) => {
-    const message = reportData.reduce((a, n, i) => {
+  staffGeneralReport: (reportDoc) => {
+    const bodyTextData = `
+    *----------------------------------------------------*
+            ${reportDoc.mainTitle} - ${reportDoc.subTitle}
+    *----------------------------------------------------*
+        ${reportDoc.headerBlurb}
+    *======================= INFO =======================*
+    |
+    | TYPE: "${reportDoc.reportType}"
+    | DATE: ${reportDoc.created}
+    | ${reportDoc.reportType !== 'cronJobSummary' ? '' : `
+    | TOTAL UPLOADS: ${reportDoc.data.total || 0}
+    | SUCCESSFUL UPLOADS: ${reportDoc.data.successful}
+    | FAILED UPLOADS: ${reportDoc.data.failed}
+    | `}
+    *====================== DETAILS ======================*
+
+    ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data.reports) : this.staffErrorReport_body(reportDoc.data.reports)}
+    `;
+    return bodyTextData;
+  },
+  genericReport_body: (reportsArr) => {
+    const message = reportsArr.reduce((a, n, i) => {
     a += `
     ${i + 1})----------------
     ${JSON.stringify(n)}
@@ -32,10 +53,10 @@ const generateEmailBody = {
     }, '');
     return message;
   },
-  cronJobError_body: (reportData) => {
+  staffErrorReport_Body: (reportsArr) => {
     const message = `
     *--------------------- FAILURES ---------------------*
-    ${reportData.failed.reduce((a, n, i) => {
+    ${reportsArr.failed.reduce((a, n, i) => {
     a += `
     (${i + 1})------------------------
     | DATE: ${n.date}
@@ -48,7 +69,7 @@ const generateEmailBody = {
     return a;
     })}
     *--------------------- SUCCESSFULL ---------------------*
-    ${reportData.successful.reduce((a, n, i) => {
+    ${reportsArr.successful.reduce((a, n, i) => {
     a += `
     (${i + 1})---------------------------
     | DATE: ${n.date}

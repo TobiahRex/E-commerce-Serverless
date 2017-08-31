@@ -496,23 +496,23 @@ sagawaSchema.statics.cronJob = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.cronJob');
 
-  const date = moment().format('YYYY/MM/DD');
   let reportType = '';
 
   bbPromise.fromCallback(cb =>
     Sagawa.find({ status: 'pending' }, cb).exec())
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
+      reportType = 'cronJobSummary';
       Report.createAndSendCronJobReportToStaff({
         reportType: 'cronJobSummary',
         mainTitle: 'REPORT ✉️',
         subTitle: 'Cron Job Upload Summary 💵',
         headerBlurb: 'There was no orders to upload.',
         data: {
-          total: null,
-          successful: null,
-          failed: null,
-          report: null,
+          total: 0,
+          successful: 0,
+          failed: 0,
+          reports: [],
         },
       })
       .then(() => {

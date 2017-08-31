@@ -494,7 +494,7 @@ new Promise((resolve, reject) => {
       console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
 
       return Email.notifySlack(
-        process.env.SLACK_ERROR_NOTIFICATION_WEBHOOOK,
+        process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
         GenerateSlackMsg.staffErrorReport(dbReport),
       );
     })
@@ -534,7 +534,7 @@ new Promise((resolve, reject) => {
       sourceEmail: 'admin@nj2jp.com',
       toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: ['NJ2JP CronJob Report 📠 <admin@nj2jp.com>'],
-      bodyTextData: GenerateEmailBody.staffCronJobReport(dbReport),
+      bodyTextData: GenerateEmailBody.staffGeneralReport(dbReport),
       bodyTextCharset: 'utf8',
       subjectData: `Order Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
       subjectCharset: 'utf8',
@@ -548,8 +548,8 @@ new Promise((resolve, reject) => {
     .catch((error) => {
       console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
       return Email.notifySlack(
-        process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOOK,
-        GenerateSlackMsg.staffErrorReport(dbReport),
+        process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOK,
+        GenerateSlackMsg.staffGeneralReport(dbReport),
       );
     })
     .then(() => {
