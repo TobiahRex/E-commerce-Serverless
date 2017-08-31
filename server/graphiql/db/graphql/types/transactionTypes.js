@@ -209,7 +209,19 @@ const rootType = new ObjectType({
                 },
                 amount_money: {
                   description: 'The Fiat Amount details.',
-                  type: StringType,
+                  type: new ObjectType({
+                    name: 'TransactionSquareTenderAmount',
+                    fields: () => ({
+                      amount: {
+                        description: 'The units of money that was charged as a non-float integer (i.e. 2400 = $24.00)',
+                        type: IntType,
+                      },
+                      currency: {
+                        description: 'The 2 digit currency of the charge.',
+                        type: StringType,
+                      },
+                    }),
+                  }),
                 },
               }),
             }),
