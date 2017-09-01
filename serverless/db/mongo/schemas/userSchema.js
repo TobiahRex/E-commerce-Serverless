@@ -1,7 +1,9 @@
-const Schema = require('mongoose').Schema;
+import mongoose from 'mongoose';
 
-export const ObjectId = Schema.Types.ObjectId;
-const userSchema = new Schema({
+const deepPopulate = require('mongoose-deep-populate')(mongoose);
+
+export const ObjectId = mongoose.Schema.Types.ObjectId;
+const userSchema = new mongoose.Schema({
   error: {
     hard: {
       type: Boolean,
@@ -107,4 +109,5 @@ const userSchema = new Schema({
 }, {
   bufferCommands: true,
 });
+userSchema.plugin(deepPopulate);
 export default userSchema;

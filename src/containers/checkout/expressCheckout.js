@@ -63,6 +63,11 @@ class ExpressCheckout extends React.Component {
     this.state = {
       ccRenderKey: 'renderWithZip',
       showCvnModal: false,
+      // --- Error handling ---
+      toast: {
+        type: '',
+        message: '',
+      },
       error: null,
       errors: {
         hard: false,
@@ -71,7 +76,7 @@ class ExpressCheckout extends React.Component {
       },
       // --- Form Data from Nested Components ---
       prComments: '',
-      newsletterDecision: false,
+      newsletterDecision: true,
       shippingFirstName: '',
       shippingLastName: '',
       shippingEmail: '',
@@ -112,7 +117,9 @@ class ExpressCheckout extends React.Component {
 
     if (!!nextProps.postalError) {
       this.form.showError('shippingPostalCode', 'postalApi');
-    } else if (!_.isEqual(npCopy, tpCopy)) {
+    }
+
+    if (!_.isEqual(npCopy, tpCopy)) {
       this.setState(prevState => ({
         ...prevState,
         ...nextProps,
@@ -246,7 +253,14 @@ class ExpressCheckout extends React.Component {
         }
       }
     } else {
-      this.setState({ [e.target.name]: e.target.value });
+      this.setState({
+        [e.target.name]: e.target.value,
+        errors: {
+          hard: false,
+          soft: false,
+          message: '',
+        },
+      }, () => this.props.clearToaster());
     }
   };
 
@@ -276,6 +290,14 @@ class ExpressCheckout extends React.Component {
         },
       }));
     } else {
+      this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          hard: false,
+          soft: false,
+          message: '',
+        },
+      }), () => this.props.clearToaster());
       const formData = GenerateFinalForm({
         state: this.state,
         props: this.props,
@@ -340,11 +362,21 @@ class ExpressCheckout extends React.Component {
 
   clearValidationError = name => this.form.hideError(name)
 
+  enableSubmitButton = ({ userId, cartLength, toast, errors }) => {
+    const userLoggedIn = !!userId;
+    const userHasProducts = !!cartLength;
+    const networkErrors = /(Network Error)|(Server Error)g/.test(toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
+
+    if (networkErrors) return false;
+    if (userLoggedIn && userHasProducts) return true;
+    return false;
+  }
+
   render() {
     const {
       userId,
-      loggedIn,
       toast,
+      loggedIn,
       apiFetching,
     } = this.props;
 
@@ -492,7 +524,12 @@ class ExpressCheckout extends React.Component {
 
               <SubmitOrder
                 loading={apiFetching}
-                enable={(cart.length && userId) ? true : false} //eslint-disable-line
+                enable={this.enableSubmitButton({
+                  userId,
+                  toast,
+                  errors,
+                  cartLength: !!cart.length,
+                })} //eslint-disable-line
               />
 
               <NetworkStatus

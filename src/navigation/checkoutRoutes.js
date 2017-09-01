@@ -9,7 +9,7 @@ const CheckoutRoutes = () => (
     <Route
       path="cart"
       getComponent={(location, cb) => {
-        System.import('../containers/cart')
+        import('../containers/cart' /* webpackChunkName: "cart" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -17,7 +17,7 @@ const CheckoutRoutes = () => (
     <Route
       path="empty"
       getComponent={(location, cb) => {
-        System.import('../containers/cart/EmptyCart/emptyCart')
+        import('../containers/cart/EmptyCart/emptyCart' /* webpackChunkName: "emptyCart" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -25,7 +25,7 @@ const CheckoutRoutes = () => (
     <Route
       path="express_checkout"
       getComponent={(location, cb) => {
-        System.import('../containers/checkout/expressCheckout')
+        import('../containers/checkout/expressCheckout' /* webpackChunkName: "expressCheckout" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -33,7 +33,7 @@ const CheckoutRoutes = () => (
     <Route
       path="successfully_ordered"
       getComponent={(location, cb) => {
-        System.import('../containers/checkout/orderSuccess/index')
+        import('../containers/checkout/orderSuccess/index' /* webpackChunkName: "orderSuccess" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}

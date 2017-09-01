@@ -42,7 +42,7 @@ new Promise((resolve, reject) => {
     headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
   })
   .then((response) => {
-    console.log('SUCCEEDED: Fetch Square Location: ', response.data);
+    console.log('\nSUCCEEDED: Fetch Square Location: ', response.data);
 
     const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
@@ -55,7 +55,7 @@ new Promise((resolve, reject) => {
       };
 
       if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-        console.log('SUCCEEDED: Verify location CC processing.');
+        console.log('\nSUCCEEDED: Verify location CC processing.');
         resolve(newLocation);
       } else {
         newLocation.error = {
@@ -77,8 +77,8 @@ new Promise((resolve, reject) => {
     }
   })
   .catch((error) => {
-    console.log('FAILED: Fetch square location: ', error);
-    reject(new Error('FAILED: Fetch square location.'));
+    console.log('\nFAILED: Fetch square location: ', error);
+    reject(new Error('\nFAILED: Fetch square location.'));
   });
 });
 
@@ -92,7 +92,7 @@ new Promise((resolve, reject) => {
 */
 transactionSchema.statics.squareChargeCard = chargeInfo =>
 new Promise((resolve, reject) => {
-  console.log('@squareChargeCard');
+  console.log('\n\n@Transaction.squareChargeCard\n');
 
   const {
     locationId,
@@ -104,15 +104,17 @@ new Promise((resolve, reject) => {
     shippingPostalCode,
     shippingCountry,
     billingCountry,
-    grandTotal,
+    amount,
+    currency,
     cardNonce,
-    jpyFxRate,
   } = chargeInfo;
+
+  const idempotency_key = uuid(); //eslint-disable-line
 
   axios.post(
     `https://connect.squareup.com/v2/locations/${locationId}/transactions`,
     {
-      idempotency_key: uuid(),
+      idempotency_key,
       buyer_email_address: shippingEmail,
       shipping_address: {
         address_line_1: shippingAddressLine2,
@@ -123,8 +125,8 @@ new Promise((resolve, reject) => {
         country: shippingCountry,
       },
       amount_money: {
-        amount: ComposeAmount(billingCountry, grandTotal, jpyFxRate),
-        currency: billingCountry === 'US' ? 'USD' : 'JPY',
+        amount,
+        currency,
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
@@ -139,28 +141,37 @@ new Promise((resolve, reject) => {
   )
   .then((response) => { //eslint-disable-line
     if (response.status !== 200) {
+      console.log('\nFAILED: @Transaction.chargeCard >>> axios.post');
       resolve({ status: response.status });
     } else {
-      console.log('Successfully charged customer. ', response.data);
+      console.log('\nSUCCESS: @Transaction.chargeCard >>> axios.post: ', response.data);
+
+      console.log('amount_money: ', response.data.transaction.tenders[0].amount_money);
+
+      const tender = response.data.transaction.tenders[0];
       return Transaction.findByIdAndUpdate(transactionId, {
         $set: {
-          'square.transactionId': response.data.transaction.id,
-          'square.locationId': response.data.transaction.location_id,
+          'square.idempotency_key': idempotency_key,
+          'square.tender.location_id': tender.location_id,
+          'square.tender.transaction_id': tender.transaction_id,
+          'square.tender.created_at': tender.created_at,
+          'square.tender.note': tender.note,
+          'square.tender.amount_money': tender.amount_money,
+          'square.tender.type': tender.type,
+          'square.tender.card_details.status': tender.card_details.status,
+          'square.tender.card_details.card.card_brand': tender.card_details.card.card_brand,
+          'square.tender.card_details.entry_method': tender.card_details.entry_method,
         },
       }, { new: true });
     }
   })
   .then((result) => {
-    if (!result) {
-      reject('FAILED: Update Transaction with Square information.');
-    } else {
-      resolve({ status: 200 });
-    }
+    console.log('\nSUCCEEDED: @Square.chargeCard >>> Transaction.findByIdAndUpdate: ', result);
+    resolve({ status: 200 });
   })
   .catch((error) => {
-    console.log('%cerror', 'background:red;', error);
-    console.log('Error while trying to Authorize Square payment: ', error.response.data.errors);
-    reject(`Error while trying to Authorize Square payment:  ${error.response.data.errors[0].detail}`);
+    console.log('\nFAILED: @Transaction.squareChargeCard: ', error.response.data.errors);
+    reject(`Square Message: ${error.response.data.errors[0].detail}`);
   });
 });
 
@@ -183,7 +194,7 @@ transactionSchema.statics.submitFinalOrder = orderForm =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.submitFinalOrder\n');
 
-  console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
+  console.log('\n1] ARGS: \n', JSON.stringify(orderForm, null, 2));
   let newTransactionDoc = {};
   let userDoc = {};
   let marketHeroOp = '';
@@ -235,7 +246,7 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like there\'s a network error.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
         },
         user: null,
         transaction: null,
@@ -258,8 +269,9 @@ new Promise((resolve, reject) => {
         shippingPostalCode: sagawa.shippingAddress.postalCode,
         shippingCountry: sagawa.shippingAddress.country,
         billingCountry: square.billingCountry,
-        grandTotal: total.grandTotal,
-        cardNonce: square.cardInfo.cardNonce,
+        amount: square.tender.amount_money.amount,
+        currency: square.tender.amount_money.currency,
+        cardNonce: square.tender.card_details.card.cardNonce,
         jpyFxRate,
       });
     }
@@ -276,7 +288,7 @@ new Promise((resolve, reject) => {
         transaction: null,
       });
     } else {
-      console.log('3] SUCCEEDED: Square Charge Customer.\n', response.data);
+      console.log('\n3] SUCCEEDED: Square Charge Customer.\n', response.data);
       return Promise.all([
         User.findByIdAndUpdate(userDoc._id, {
           $set: {
@@ -296,19 +308,18 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => { //eslint-disable-line
-    console.log('USER RESULTS: ', results);
     if (!results[0] || !results[2]) {
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
         },
         user: null,
         transaction: null,
       });
     } else {
-      console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
+      console.log('\n4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
 
       userDoc = { ...results[0]._doc };
       marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
@@ -319,6 +330,13 @@ new Promise((resolve, reject) => {
         givenName: sagawa.shippingAddress.givenName,
         familyName: sagawa.shippingAddress.familyName,
       };
+
+      const mhApiTags = GetMhTransactionTagsApi({
+        total,
+        language,
+        cart: cartProducts,
+        subscribed: !!newsletterDecision,
+      });
 
       return Promise.all([
         Email.createInvoiceEmailBody({
@@ -339,92 +357,61 @@ new Promise((resolve, reject) => {
         }),
         MarketHero.createOrUpdateLead({
           lead,
-          tags: GetMhTransactionTagsApi({
-            total,
-            language,
-            cart: cartProducts,
-            subscribed: !!newsletterDecision,
-          }),
+          userTags: mhApiTags.userTags,
+          productTags: mhApiTags.productTags,
         }),
       ]);
     }
   })
   .then((results) => { //eslint-disable-line
-    if (!results[0] || !results[1] || !results[2]) {
+    if (!results[0] || !results[1]) {
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
         },
         user: null,
         transaction: null,
       });
     } else {
-      console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
+      console.log('\n5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n');
 
       newTransactionDoc = { ...results[0]._doc };
 
-      const promise1 = axios.post('http://localhost:3001/api/sagawa', {
-        userId,
-        sagawaId: newTransactionDoc.sagawa,
-        transactionId: newTransactionDoc._id,
-      });
-      let promise2 = null;
-      let promiseArray = [promise1];
-
+      const promiseArray = [];
       if (marketHeroOp === 'createMongoLead') {
-        promise2 = User.findByIdAndUpdate(userId, {
+        promiseArray.push(User.findByIdAndUpdate(userId, {
           $set: { 'marketing.marketHero': results[1]._id },
-        }, { new: true });
-        promiseArray = [...promiseArray, promise2];
+        }, { new: true }));
       }
 
-      return Promise.all([...promiseArray]);
+      return Promise.all([
+        axios.post('http://localhost:3001/api/sagawa', {
+          userId,
+          sagawaId: newTransactionDoc.sagawa,
+          transactionId: newTransactionDoc._id,
+        }),
+        ...promiseArray,
+      ]);
     }
   })
   .then((results) => { //eslint-disable-line
-    if ((results[0].status !== 200) && (results[0].status !== 204)) {
+    console.log('\nSAGAWA UPLOAD results: ', results);
+    if (results[0].status !== 200) {
       resolve({
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
         },
         user: null,
         transaction: null,
       });
-    } else if (results[0].status === 204) {
-      Sagawa.handleBadUpload(results[0].data)
-      .then(() => {
-        console.log('SUCCEEDED: Handle bad Sagawa upload.');
-        resolve({
-          error: { hard: false, soft: false, message: '' },
-          user: userDoc,
-          transaction: newTransactionDoc,
-        });
-      })
-      .catch((error) => {
-        console.log('FAILED: Handle Bad SagawaUpload: ', error);
-        reject(new Error('FAILED: Handle Bad SagawaUpload.'));
-      });
     } else {
-      console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
-
-      const { status, data } = results[0];
+      console.log('\n6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
 
       if (results.length === 2) userDoc = results[1];
-
-      if (status !== 200) {
-        console.log('FAILED: Upload Order to Sagawa: ', data);
-        resolve({
-          error: {
-            hard: true,
-            soft: false,
-            message: `Was not able to complete the order: ${data}`,
-          },
-        });
-      }
 
       cartProducts.forEach((productDoc) => {
         const {
@@ -446,15 +433,15 @@ new Promise((resolve, reject) => {
           },
         }, { new: true })
         .then((savedDoc) => {
-          console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
+          console.log('\n7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
         })
         .catch((error) => {
-          console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
-          reject(new Error('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
+          console.log('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
+          reject(new Error('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
         });
       });
 
-      console.log('8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
+      console.log('\n8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
       resolve({
         error: { hard: false, soft: false, message: '' },
         user: userDoc,
@@ -463,8 +450,55 @@ new Promise((resolve, reject) => {
     }
   })
   .catch((error) => {
-    console.log('Failed to submit order due to error: ', error);
-    reject(`Failed to submit order due to error: ${error}`);
+    console.log('\nFAILED to submit order due to error: ', error);
+    resolve({
+      error: {
+        hard: true,
+        soft: false,
+        message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
+      },
+      user: null,
+      transaction: null,
+    });
+  });
+});
+
+transactionSchema.statics.issueUserRefund = transactionId =>
+new Promise((resolve, reject) => {
+  console.log('\n\nTransaction.issueSquareRefund');
+
+  Transaction.findById(transactionId).exec()
+  .then((dbTransaction) => {
+    axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.locationId}/transactions/${dbTransaction.square.transactionId}/refund`, {
+      idempotency_key: dbTransaction.square.idempotency_key,
+      tender_id: dbTransaction.square.tender.id,
+      reason: 'There was an issue during checkout after your card was charged.',
+      amount_money: {
+        amount: dbTransaction.square.tender.amount_money.amount,
+        currency: dbTransaction.square.tener.amount_money.currency,
+      },
+    }, {
+      headers: {
+        Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
+      },
+    });
+  })
+  .then((response) => {
+    if (response.status !== 200) {
+      console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
+      reject(response.data);
+    } else {
+      console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
+      Transaction.findByIdAndUpdate(transactionId, {
+        $set: {
+          'tender.refund': response.data.refund,
+        },
+      });
+    }
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Transaction.issueUserRefund');
+    reject(error.message);
   });
 });
 

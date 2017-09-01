@@ -65,7 +65,7 @@ function TotalContent({
           type="checkbox"
           errorClassName="is-invalid-input"
           name="termsAgreement"
-          value={termsAgreement}
+          value={!!termsAgreement ? termsAgreement : ''}
           validations={['required']}
           onChange={() => handleOnChange({
             target: {

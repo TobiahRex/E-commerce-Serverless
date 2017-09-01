@@ -1,3 +1,5 @@
+import ComposeAmount from './composeAmount';
+
 export default function ComposeLocalData({
   state: {
     prComments: comments,
@@ -26,6 +28,8 @@ export default function ComposeLocalData({
   },
   cardData,
 }) {
+  const billingCountry = ccCountry.split('-')[1];
+
   return ({
     userId,
     comments,
@@ -49,20 +53,24 @@ export default function ComposeLocalData({
       },
     },
     square: {
-      billingCountry: ccCountry.split('-')[1],
+      tender: {
+        amount_money: {
+          amount: ComposeAmount(billingCountry, total.grandTotal, jpyFxRate),
+          currency: billingCountry === 'US' ? 'USD' : 'JPY',
+        },
+        card_details: {
+          card: {
+            last_4: cardData.last_4,
+            nameOnCard: ccNameOnCard,
+            cardNonce: cardData.cardNonce,
+            postalCode: !!cardData.billing_postal_code ? cardData.billing_postal_code : '',
+          },
+        },
+      },
+      billingCountry,
       shippingAddress: {
         shippingCity,
         shippingPrefecture: shippingPrefecture.split('-')[1],
-      },
-      cardInfo: {
-        last4: cardData.last_4,
-        nameOnCard: ccNameOnCard,
-        cardNonce: cardData.cardNonce,
-        postalCode: !!cardData.billing_postal_code ? cardData.billing_postal_code : '',
-      },
-      charge: {
-        amount: total.grandTotal,
-        currency: 'USD',
       },
     },
   });

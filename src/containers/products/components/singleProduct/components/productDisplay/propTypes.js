@@ -18,7 +18,8 @@ const ProductShape = shape({
     })),
     quantities: shape({
       available: number,
-      inCart: number,
+      inCarts: number,
+      purchased: number,
     }),
   }),
 });

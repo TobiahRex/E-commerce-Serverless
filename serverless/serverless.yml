@@ -48,16 +48,16 @@ provider:
     SAGAWA_JAPANESE: ${file(./config.yml):sagawaJapanese}
     SAGAWA_ENGLISH: ${file(./config.yml):sagawaEnglish}
     SLACK_SUPPORT_WEBHOOK: ${file(./config.yml):slackSupportWebhook}
-    SLACK_SAGAWA_UPLOAD_WEBHOOK: ${file(./config.yml):slackSagawaUploadWebhook}
+    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.yml):slackSagawaUploadWebhook}
     LAMBDA_ENV: ${file(./config.yml):lambdaEnv}
+    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.yml):lambdaSecretAccessKey}
+    LAMBDA_ACCESS_KEY_ID: ${file(./config.yml):lambdaAccessKeyId}
     BASE_URL: ${file(./config.yml):baseUrl}
     PRODUCT_URL: ${file(./config.yml):productionUrl}
     CEO_EMAIL: ${file(./config.yml):ceoEmail}
     CTO_EMAIL: ${file(./config.yml):ctoEmail}
     CDO_EMAIL: ${file(./config.yml):cdoEmail}
     AWS_SES_REGION: ${file(./config.yml):awsSesRegion}
-    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.yml):lambdaSecretAccessKey}
-    LAMBDA_ACCESS_KEY_ID: ${file(./config.yml):lambdaAccessKeyId}
 
 plugins:
   - serverless-webpack

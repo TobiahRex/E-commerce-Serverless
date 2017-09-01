@@ -25,14 +25,14 @@ function UserDashboardRoutes(requireAuth) {
       path="/user_dashboard"
       // onEnter={requireAuth}
       getComponet={(location, cb) => {
-        System.import('../containers/userDashboard/userDashComponents/userDashboard')
+        import('../containers/userDashboard/userDashComponents/userDashboard'/* webpackChunkName: "userDashboard" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
     >
       <IndexRoute
         getComponet={(location, cb) => {
-          System.import('../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash')
+          import('../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash' /* webpackChunkName: "userDashboard.home" */)
           .then(loadRoute(cb))
           .catch(errorLoading);
         }}

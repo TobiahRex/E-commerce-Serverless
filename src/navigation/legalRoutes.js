@@ -11,7 +11,7 @@ const LegalRoutes = () => (
     <Route
       path="/return_policy"
       getComponent={(location, cb) => {
-        System.import('../containers/legal/components/returnsPolicy')
+        import('../containers/legal/components/returnsPolicy' /* webpackChunkName: "returnPolicy" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -19,7 +19,7 @@ const LegalRoutes = () => (
     <Route
       path="/shipping_policy"
       getComponent={(location, cb) => {
-        System.import('../containers/legal/components/shippingPolicy')
+        import('../containers/legal/components/shippingPolicy' /* webpackChunkName: "shippingPolicy" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -27,7 +27,7 @@ const LegalRoutes = () => (
     <Route
       path="/privacy_policy"
       getComponent={(location, cb) => {
-        System.import('../containers/legal/components/privacyPolicy')
+        import('../containers/legal/components/privacyPolicy' /* webpackChunkName: "privacyPolicy" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -35,7 +35,7 @@ const LegalRoutes = () => (
     <Route
       path="/terms_and_conditions"
       getComponent={(location, cb) => {
-        System.import('../containers/legal/components/termsAndConditions')
+        import('../containers/legal/components/termsAndConditions' /* webpackChunkName: "termsAndConditions" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -43,7 +43,7 @@ const LegalRoutes = () => (
     <Route
       path="/nicotine_disclaimer"
       getComponent={(location, cb) => {
-        System.import('../containers/legal/components/nicotineDisclaimer')
+        import('../containers/legal/components/nicotineDisclaimer' /* webpackChunkName: "nicotineDisclaimer" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
