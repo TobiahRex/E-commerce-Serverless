@@ -556,6 +556,7 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRefundIssued\n');
 
   const {
+    type,
     userId,
     message,
   } = reqBody;
@@ -571,43 +572,44 @@ new Promise((resolve, reject) => {
         console.log('\nFAILED: Email.sendRefundIssued > Unable to find User.');
         reject('\nFAILED: Email.sendRefundIssued > Unable to find User.');
       } else {
-        const promises = Object.keys(message).map((key) => {
-          const {
-            CEO_EMAIL: ceo,
-            CTO_EMAIL: cto,
-            CDO_EMAIL: cdo,
-          } = process.env;
+        let promises = [];
+        if (type === 'RefundIssued') {
+          promises = Object.keys(message).map((key) => {
+            const {
+              CEO_EMAIL: ceo,
+              CTO_EMAIL: cto,
+              CDO_EMAIL: cdo,
+            } = process.env;
 
-          let toEmailAddresses;
+            let toEmailAddresses;
 
-          if (key === 'staff') toEmailAddresses = [cto, ceo, cdo];
-          if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
+            if (key === 'staff') toEmailAddresses = [cto, ceo, cdo];
+            if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
 
-          const {
-            body,
-            subject,
-            replyTo,
-          } = message[key];
-          const promise = Email.sendRawEmail({
-            sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
-            toEmailAddresses,
-            replyToAddress: [replyTo],
-            bodyTextData: body,
-            bodyTextCharset: 'utf8',
-            subjectData: subject,
-            subjectCharset: 'utf8',
-          });
-          return promise;
-        });
-
-
-        return Promise.all([
-          ...promises,
-          Email.notifySlack(
-            process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
-            // TODO GenerateSlackMsg.sendRefundIssued(userId),
-          ),
-        ]);
+            const {
+              body,
+              subject,
+              replyTo,
+            } = message[key];
+            const promise = Email.sendRawEmail({
+              sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
+                toEmailAddresses,
+                replyToAddress: [replyTo],
+                bodyTextData: body,
+                bodyTextCharset: 'utf8',
+                subjectData: subject,
+                subjectCharset: 'utf8',
+              });
+              return promise;
+            });
+            return Promise.all([
+              ...promises,
+              Email.notifySlack(
+                process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
+                // TODO GenerateSlackMsg.sendRefundIssued(userId),
+              ),
+            ]);
+        }
       }
     })
     .then((results) => {
