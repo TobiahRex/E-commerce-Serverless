@@ -246,12 +246,15 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Upload Order to Sagawa.', error);
-      return Transaction.handeRefund({ transactionId, userId })
-      .then()
-      .catch();
-    })
-    .then((result) => {
-      reject(error.message);
+      Transaction.handleRefund({ transactionId, userId })
+      .then(() => {
+        console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> .catch >>>> Transaction.handleRefund');
+        resolve({ sagawaId, verified: false });
+      })
+      .catch((error2) => {
+        console.log('\nFAILED: Sagawa.uploadOrder >>> .catch >>> Transaction.handleRefund >>> .catch ', error2);
+        resolve({ sagawaId, verified: false });
+      });
     });
   }
 });

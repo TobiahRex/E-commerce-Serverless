@@ -28,7 +28,7 @@ provider:
     MONGO_URI: ${file(./config.yml):mongoURI}
     AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
     MARKET_HERO_API_KEY: ${file(./config.yml):marketHeroApiKey}
-    SQUARE_ENV: ${file(./config.yml):squareENv}
+    SQUARE_ENV: ${file(./config.yml):squareEnv}
     US_SQUARE_SANDBOX_LOCATION: ${file(./config.yml):usSquareSandboxLocation}
     US_SQUARE_LOCATION: ${file(./config.yml):usSquareLocation}
     US_SQUARE_ACCESS_TOKEN: ${file(./config.yml):usSquareAccessToken}
