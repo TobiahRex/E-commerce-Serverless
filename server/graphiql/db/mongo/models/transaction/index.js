@@ -503,15 +503,22 @@ new Promise((resolve, reject) => {
     } else {
       console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
 
-      return Transaction.findByIdAndUpdate(transactionId, {
-        $set: {
-          'square.refund': response.data.refund,
-        },
-      }, { new: true });
+      return Promise.all([
+        Transaction.findByIdAndUpdate(transactionId, {
+          $set: {
+            'square.refund': response.data.refund,
+          },
+        }, { new: true }),
+        Email.sendEmailAndSlackRefundNotifiction({
+          staff: true,
+          user: true,
+          userId,
+        }),
+      ]);
     }
   })
-  .then((savedDoc) => {
-    console.log('savedDoc: ', savedDoc);
+  .then((results) => {
+    console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack');
     resolve(savedDoc);
   })
   .catch((error) => {
@@ -542,7 +549,7 @@ new Promise((resolve, reject) => {
       if (!!error.type) {
         if (error.type === 'RefundNotSent') {
           console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
-          return Email.sendPendingRefundEmailAndSlack({
+          return Email.sendEmailAndSlackPendingRefundNotification({
             staff: true,
             user: true,
             userId,
