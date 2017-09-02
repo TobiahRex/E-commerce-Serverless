@@ -195,18 +195,33 @@ new Promise((resolve, reject) => {
                 ${xmlOut('</DATA>')}
               </handler>
             </uploadFile>
-          </soap:body>
-        </soap:Envelope>`, {
-          headers: {
-            'Content-Type': 'text/xml; charset=utf-8',
-            SOAPAction: 'http://ws.com',
+            </soap:body>
+          </soap:Envelope>`,
+          {
+            headers: {
+              'Content-Type': 'text/xml; charset=utf-8',
+              SOAPAction: 'http://ws.com',
+            },
           },
-        });
+        );
       }
     })
     .then((response) => {
-      console.log('\nSUCCEEDED: Sagawa order Upload: ', response.data);
-      return CleanSagawaResponse.handleUpload(response);
+      if (response.status !== 200) {
+        console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post: ', response.data);
+        Transaction.handleRefund({ transactionId, userId })
+        .then(() => {
+          console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = FAILED >>> Transaction.handleRefund.');
+          resolve({ verified: false, sagawaId });
+        })
+        .catch((error) => {
+          console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post = FAILED Transaction.handleRefund: ', error);
+          resolve({ sagawaId, verified: false });
+        });
+      } else {
+        console.log('\nSUCCEEDED: Sagawa order Upload: ', response.data);
+        return CleanSagawaResponse.handleUpload(response);
+      }
     })
     .then(({ data }) => {
       if (!data.verified) {
