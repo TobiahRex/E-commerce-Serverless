@@ -28,18 +28,14 @@ module.exports.sagawa = (event, context) => {
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
       const { Sagawa } = dbResults.dbModels;
-      // const Sagawa = dbResults.connection.models.Sagawa;
-      // const Transaction = dbResults.connection.models.Transaction;
-      // const Email = dbResults.connection.models.Email;
-
       return Sagawa.cronJob();
     })
     .then(() => {
-      console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.');
+      console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.');
       context.succeed() && context.done();
     })
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', error);
       context.fail(error) && context.done();
     });
   } else {
@@ -47,23 +43,19 @@ module.exports.sagawa = (event, context) => {
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
       const { Sagawa, Email, Transaction } = dbResults.dbModels;
-      // const Sagawa = dbResults.connection.models.Sagawa;
-      // const Transaction = dbResults.connection.models.Transaction;
-      // const Email = dbResults.connection.models.Email;
-
       return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction);
     })
     .then((response) => {
       if (response.verified) {
-        console.log('SUCCEEDED: Upload Sagawa and Send Invoice Email.', response.verified);
+        console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.', response.verified);
         context.succeed(response) && context.done();
       } else {
-        console.log('FAILED: Upload Sagawa and Send Invoice Email.', response.verified);
+        console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', response.verified);
         context.fail(response) && context.done();
       }
     })
     .catch((error) => {
-      console.log('FAILED: Upload Sagawa and Send Invoice Email.', error);
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', error);
       context.fail(error) && context.done();
     });
   }

@@ -18,9 +18,9 @@ function SubmitOrder({ enable, requestCardNonce, loading }) {
           onClick={requestCardNonce}
         >
           <span className="btn-flex-parent">
-            <FontAwesome name="barcode" />
-            {'\u00A0'}
             <p>Place Order Now</p>
+            {'\u00A0'}
+            <FontAwesome name="opencart" />
           </span>
         </Validation.components.Button>
       </div>
@@ -30,9 +30,9 @@ function SubmitOrder({ enable, requestCardNonce, loading }) {
     <div className="checkout__purchase-btn">
       <button className="button" disabled>
         <span className="btn-flex-parent">
-          <FontAwesome name="barcode" />
-          {'\u00A0'}
           <p>Place Order Now</p>
+          {'\u00A0'}
+          <FontAwesome name="opencart" />
         </span>
       </button>
     </div>

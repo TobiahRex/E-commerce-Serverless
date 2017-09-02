@@ -8,6 +8,7 @@ import db from '../../connection';
 import Transaction from '../transaction';
 import Email from '../email';
 import User from '../user';
+import Report from '../report';
 import {
   getSagawaKbn as GetSagawaKbn,
   cleanSagawaResponse as CleanSagawaResponse,
@@ -67,35 +68,34 @@ new Promise((resolve, reject) => {
     },
   })
   .then((response) => {
-    console.log('SUCCEEDED: Sagawa validate postal');
+    console.log('\nSUCCEEDED: @Sagawa.validatePostal >>> axios.post');
     return CleanSagawaResponse.handlePostal(response);
   })
   .then(({ problem, data }) => { //eslint-disable-line
-    console.log('SUCCEEDED: Cleaned validate postal response.', data);
-
     if (problem) {
-      console.log('FAILED: Error while validating postal code', problem);
-      reject({
+      console.log('\nFAILED: @Sagawa.validatePostal >>> CleanSagawaResponse.handlePostal', problem);
+      resolve({
         error: {
           hard: true,
           soft: false,
           message: problem,
         },
       });
+    } else {
+      console.log('\nSUCCEEDED: @Sagawa.validatePostal >>> CleanSagawaResponse.handlePostal');
+      resolve({
+        error: {
+          hard: false,
+          soft: false,
+          message: '',
+        },
+        postalInfo: { ...data.postalInfo },
+      });
     }
-
-    resolve({
-      error: {
-        hard: false,
-        soft: false,
-        message: '',
-      },
-      postalInfo: { ...data.postalInfo },
-    });
   })
   .catch((error) => {
-    console.log('FAILED: Create new Sagawa Document: ', error);
-    reject(new Error('FAILED: Create new Sagwa Document.'));
+    console.log('\nFAILED: Create new Sagawa Document: ', error);
+    reject(new Error('\nFAILED: Create new Sagwa Document.'));
   });
 });
 
@@ -123,7 +123,7 @@ new Promise((resolve, reject) => {
     userId,
     transactionId,
     shippingAddress: {
-      boxid: `NJ${moment().format('YYYYMMDDSS')}`,
+      boxid: `NJ${moment().format('YYMMDDHHSSSS')}`,
       shipdate: GetShippingDay(),
       customerName: `${sagawa.shippingAddress.familyName}, ${sagawa.shippingAddress.givenName}`,
       postal: sagawa.shippingAddress.postalCode,
@@ -140,11 +140,11 @@ new Promise((resolve, reject) => {
     items: [...GenerateItemObjs(cart)],
   }, cb))
   .then((dbSagawa) => {
-    console.log('SUCCEEDED: Create Sagawa Document: ', dbSagawa);
+    console.log('\nSUCCEEDED: Create Sagawa Document: ', dbSagawa);
     resolve(dbSagawa);
   })
   .catch((error) => {
-    console.log('FAILED: Handle new Transaction on Sagawa Document: ', error);
+    console.log('\nFAILED: Handle new Transaction on Sagawa Document: ', error);
     reject(new Error('\nFAILED: Handle new Transaction on Sagawa Document'));
   });
 });
@@ -162,45 +162,58 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
 
   if (!sagawaId) {
-    console.log('FAILED: Missing required arguments.');
-    reject(new Error('FAILED: Missing required arguments.'));
+    console.log('\nFAILED: Missing required arguments.');
+    reject(new Error('\nFAILED: Missing required arguments.'));
   }
+  console.log(`Find Sagawa doc by id: "${sagawaId}"`);
 
   Sagawa
   .findById(sagawaId)
-  .exec()
-  .then(sagawaDoc =>
-    axios.post('http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
-    `<?xml version='1.0' encoding='utf-8'?>
-    <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-    <soap:Body>
-      <uploadFile xmlns='http://ws.com'>
-      <handler>
-        ${xmlOut('<DATA>')}
-          ${xmlOut(GenerateAddressXml(sagawaDoc))}
-          ${xmlOut(GenerateItemsXml(sagawaDoc))}
-        ${xmlOut('</DATA>')}
-      </handler>
-      </uploadFile>
-    </soap:body>
+  .then(sagawaDoc => { //eslint-disable-line
+    if (!sagawaDoc) {
+      console.log('\nFAILED: Find Sagawa document by id: ', sagawaId);
+      reject(new Error('\nFAILED: Find Sagawa document by id'));
+    } else {
+      console.log('\nSUCCEEDED: Find Sagawa document by id: ', sagawaDoc._id);
+      console.log('\nSending upload to Sagawa...\n');
+      return axios.post(
+        'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
+      `<?xml version='1.0' encoding='utf-8'?>
+      <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+      <soap:Body>
+        <uploadFile xmlns='http://ws.com'>
+        <handler>
+          ${xmlOut('<DATA>')}
+            ${xmlOut(GenerateAddressXml(sagawaDoc))}
+            ${xmlOut(GenerateItemsXml(sagawaDoc))}
+            ${xmlOut('</DATA>')}
+          </handler>
+        </uploadFile>
+      </soap:body>
     </soap:Envelope>`, {
       headers: {
         'Content-Type': 'text/xml; charset=utf-8',
         SOAPAction: 'http://ws.com',
       },
-    }),
-  )
+    });
+    }
+  })
   .then((response) => {
-    console.log('SUCCEEDED: Sagawa order Upload: ', response.data);
+    console.log('\nSUCCEEDED: Sagawa order Upload: ', response.data);
     return CleanSagawaResponse.handleUpload(response);
   })
   .then(({ data }) => {
-    console.log('SUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-    resolve({ data, sagawaId });
+    if (!data.verified) {
+      console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
+      resolve({ verified: data.verified, sagawaId });
+    } else {
+      console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
+      resolve({ data, sagawaId });
+    }
   })
   .catch((error) => {
-    console.log('FAILED: Order upload to Sagawa.', error);
-    reject(new Error('FAILED: Order upload to Sagawa.'));
+    console.log('\nFAILED: Upload Order to Sagawa.', error);
+    reject(error.message);
   });
 });
 
@@ -218,7 +231,7 @@ new Promise((resolve, reject) => {
 sagawaSchema.statics.findSagawaAndUpdate = ({ sagawaId, awbId, referenceId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.findSagawaAndUpdate\n');
-
+  console.log('sagawaId: ', sagawaId, '\nawbId: ', awbId, '\nreferenceId: ', referenceId);
   Sagawa.findByIdAndUpdate(sagawaId, {
     $set: {
       'shippingAddress.awbId': awbId,
@@ -226,14 +239,14 @@ new Promise((resolve, reject) => {
       uploadStatus: 'uploaded',
     },
   }, { new: true })
-    .then((updatedDoc) => {
-      console.log('SUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
-      resolve(updatedDoc);
-    })
-    .catch((error) => {
-      console.log('FAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
-      reject(new Error('FAILED: Update Sagawa Doc with AWB & REF #\'s.'));
-    });
+  .then((updatedDoc) => {
+    console.log('\nSUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
+    resolve(updatedDoc);
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
+    reject(new Error('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.'));
+  });
 });
 
 /**
@@ -275,35 +288,42 @@ new Promise((resolve, reject) => {
   ])
   .then((results) => {  //eslint-disable-line
     if (!results[0].data.verified) {
-      console.log('FAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
-      resolve({ verified: false, sagawaId });
+      console.log('\nFAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
+      resolve({
+        userId,
+        sagawaId,
+        transactionId,
+        verified: false,
+      });
     } else {
-      console.log('SUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
+      console.log('\nSUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
       transactionDoc = results[1];
-      const uploadData = results[0];
+      const uploadData = results[0].data;
 
-      return Sagawa.findSagawaAndUpdate({
-        sagawaId,
-        awbId: uploadData.awbId,
-        referenceId: uploadData.referenceId,
-      });
+      emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
+
+      return Promise.all([
+        Sagawa.findByIdAndUpdate(sagawaId, {
+          $set: {
+            'shippingAddress.awbId': uploadData.awbId,
+            'shippingAddress.referenceId': uploadData.referenceId,
+            uploadStatus: 'uploaded',
+          },
+        }, { new: true }),
+        Email.findEmailAndFilterLanguage(
+          emailType,
+          transactionDoc.emailLanguage,
+        ),
+      ]);
     }
   })
-  .then((dbSagawa) => {
-    console.log('SUCCEEDED: Update Sagawa Doc with AWB and REF #\'s.', dbSagawa.shippingAddress);
+  .then((results) => {
+    console.log('\nSUCCEEDED: Sagawa.uploadOrderAndSendEmail >>> 1) Sagawa.findByIdAndUpdate & 2) Email.findEmailAndFilterLanguage: ', results[0]._id, '\nEmail Purpose: ', results[1].purpose);
 
-    sagawaDoc = dbSagawa;
-    console.log('Updated Sagawa Doc: ', sagawaDoc);
-    emailType = transactionDoc.invoiceEmail ? 'invoiceEmail' : 'invoiceEmailNoTracking';
-
-    return Email.findEmailAndFilterLanguage(
-      emailType,
-      transactionDoc.emailLanguage,
-    );
-  })
-  .then((dbEmail) => {
-    console.log('SUCCEEDED: Find email and Filter by Language: ', dbEmail.purpose);
+    sagawaDoc = results[0];
+    const dbEmail = results[1];
+    console.log('\nUpdated Sagawa Doc ID: ', sagawaDoc._id);
 
     const payload = {
       userId,
@@ -318,25 +338,34 @@ new Promise((resolve, reject) => {
     } = process.env;
 
     const token = JWT.sign(payload, JWT_SECRET);
-    const tokenUrlString = `${LAMBDA_ENV === 'production' ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
+    const prodEnv = LAMBDA_ENV === 'production';
+    const trackingLink = `${prodEnv ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
 
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
-    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, tokenUrlString)
+    .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, trackingLink)
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
 
-    return Email.sendEmail({
-      to: transactionDoc.emailAddress,
-      htmlBody: emailBody,
-    }, dbEmail);
+    return Promise.all([
+      Email.sendEmail({
+        to: transactionDoc.emailAddress,
+        htmlBody: emailBody,
+      }, dbEmail),
+      Transaction.findByIdAndUpdate(transactionDoc._id, {
+        $set: {
+          trackingLink,
+          [emailType]: emailBody,
+        },
+      }, { new: true }),
+    ]);
   })
-  .then(() => {
-    console.log('SUCCEEDED: Send Invoice Email via SES.\n');
-    resolve({ verified: true, sagawaId });
+  .then((results) => {
+    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> 1) Email.sendEmail & 2) Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]._id);
+    resolve({ verified: true, ...request });
   })
   .catch((error) => {
-    console.log('FAILED: Upload order to Sagawa and Send Email: ', error);
-    reject(new Error('FAILED: Upload order to Sagawa and Send Email.'));
+    console.log('\nFAILED: @Sagawa.uploadOrderAndSendEmail: ', error);
+    reject(error.message);
   });
 });
 
@@ -350,17 +379,17 @@ new Promise((resolve, reject) => {
   let responseObj = {};
 
   if (!token) {
-    console.log('FAILED: Missing required arguments.');
-    reject(new Error('FAILED: Missing required arguments.'));
+    console.log('\nFAILED: Missing required arguments.');
+    reject(new Error('\nFAILED: Missing required arguments.'));
   } else {
     bbPromise.fromCallback(cb => JWT.verify(token, process.env.JWT_SECRET, cb))
     .then((payload) => {
-      console.log('SUCCEEDED: Extract payload from JWT token input.');
+      console.log('\nSUCCEEDED: Extract payload from JWT token input.');
       console.log('\nPayload: ', payload);
 
       const today = Number(String(Date.now()).slice(0, 10));
       if (today > payload.exp) {
-        console.log('FAILED: Token has expired.');
+        console.log('\nFAILED: Token has expired.');
         resolve({
           error: {
             hard: false,
@@ -380,7 +409,7 @@ new Promise((resolve, reject) => {
     })
     .then((results) => {
       if (!results[0] || !results[1]) {
-        console.log('FAILED: 1) Locate user by payload id: ', results[0], '2) Locate Sagawa document by payload id: ', results[1]);
+        console.log('\nFAILED: 1) Locate user by payload id: ', results[0], '2) Locate Sagawa document by payload id: ', results[1]);
         resolve({
           error: {
             hard: true,
@@ -396,7 +425,7 @@ new Promise((resolve, reject) => {
       transactionDoc = userDoc.shopping.transactions.filter(({ sagawa }) => (String(sagawa) === String(sagawaDoc._id)))[0]._doc;
 
       if (!transactionDoc) {
-        console.log('FAILED: Locate transaction document from User\'s transaction history.');
+        console.log('\nFAILED: Locate transaction document from User\'s transaction history.');
         return resolve({
           error: {
             hard: true,
@@ -412,7 +441,7 @@ new Promise((resolve, reject) => {
     })
     .then((response) => {
       if (response.status !== 200) {
-        console.log('FAILED: Request tracking info from Sagawa API: ', response.data);
+        console.log('\nFAILED: Request tracking info from Sagawa API: ', response.data);
         return resolve({
           error: {
             hard: true,
@@ -421,12 +450,12 @@ new Promise((resolve, reject) => {
           },
         });
       }
-      console.log('SUCCEEDED: Request tracking infor from Sagawa API.');
+      console.log('\nSUCCEEDED: Request tracking infor from Sagawa API.');
       return CleanSagawaResponse.handleTracking(response);
     })
     .then(({ error, data }) => {
       if (error) {
-        console.log('FAILED: Parse Sagawa API response.', error, '\n', data);
+        console.log('\nFAILED: Parse Sagawa API response.', error, '\n', data);
         return resolve({
           error: {
             hard: true,
@@ -436,7 +465,7 @@ new Promise((resolve, reject) => {
         });
       }
 
-      console.log('SUCCEEDED: Parse Sagawa response.');
+      console.log('\nSUCCEEDED: Parse Sagawa response.');
       responseObj = {
         error: {
           hard: false,
@@ -457,12 +486,12 @@ new Promise((resolve, reject) => {
       }, { new: true });
     })
     .then(() => {
-      console.log('SUCCEEDED: 1) Updated Transaction Doc with latest data. 2) Fetch Sagawa Tracking Info.');
+      console.log('\nSUCCEEDED: 1) Updated Transaction Doc with latest data. 2) Fetch Sagawa Tracking Info.');
       resolve(responseObj);
     })
     .catch((error) => {
-      console.log('FAILED: Fetch Sagawa Tracking information.', error);
-      reject(new Error('FAILED: Fetch Sagawa Tracking information.'));
+      console.log('\nFAILED: Fetch Sagawa Tracking information.', error);
+      reject(new Error('\nFAILED: Fetch Sagawa Tracking information.'));
     });
   }
 });
@@ -480,63 +509,146 @@ sagawaSchema.statics.cronJob = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.cronJob');
 
+  let reportType = '';
+
   bbPromise.fromCallback(cb =>
-    Sagawa.find({ uploadStatus: 'pending' }, cb))
+    Sagawa.find({ status: 'pending' }, cb).exec())
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
-      resolve({ status: 200 });
+      reportType = 'cronJobEmpty';
+      Report.createAndSendCronJobReportToStaff({
+        reportType: 'cronJobSummary',
+        mainTitle: 'NJ2JP CronJob REPORT 📠 ',
+        subTitle: `Order Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
+        headerBlurb: 'There was no orders to upload.',
+        data: {
+          total: 0,
+          successful: 0,
+          failed: 0,
+          reports: [],
+        },
+      })
+      .then(() => {
+        console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.createAndSendCronJobReportToStaff:');
+        resolve('No orders to upload.');
+      })
+      .catch((error) => {
+        console.log('\nFAILED: @Sagawa.cronJob >>> Report.createAndSendCronJobReportToStaff: ', error);
+        reject(error.message);
+      });
     } else {
-      console.log(`Found ${dbResults.length} docs waiting to be uploaded.`);
+      console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
+
       const reqObjs = dbResults.map(dbDoc => ({
         sagawaId: dbDoc._id,
         userId: dbDoc.userId,
         transactionId: dbDoc.transactionId,
       }));
-      return UploadGenerator(reqObjs, Sagawa);
+      return Sagawa.batchUploadOrders(reqObjs);
     }
   })
-  .then((Promises) => {
-    let promiseArrayLength = 0;
-    const resultsArray = [];
-    Promises.forEach((promise, i, array) => {
-      promiseArrayLength = array.length;
-
-      promise
-      .then(({ verified, sagawaId }) => { //eslint-disable-line
-        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
-        if (verified) {
-          resultsArray.push({ success: true, sagawaId });
-        } else {
-          resultsArray.push({ success: false, sagawaId });
-        }
-      })
-      .then(() => {
-        console.log('SUCCEEDED: Handle Sagawa upload error.');
-        resolve();
-      })
-      .catch((error) => {
-        console.log('FAILED: Upload order to Sagawa via Cron Job: ', error);
-        reject(new Error('FAILED: Upload order to Sagawa via Cron Job:'));
+  .then(({ total, successful, failed, reports }) => {
+    if (failed.length) {
+      reportType = 'createAndSendErrorReportToStaff';
+      return Report.createAndSendErrorReportToStaff({
+        reportType: 'cronJobError',
+        mainTitle: 'ERROR ⚠️',
+        subTitle: 'Cron Job Upload Failure 🛑',
+        headerBlurb: 'There was an error while trying to upload an order to Sagawa.  Immediate attention from the development team is REQUIRED!',
+        data: { total, successful, failed, reports },
       });
-    });
-
-    while (true) { //eslint-disable-line
-      if (resultsArray.length === promiseArrayLength) {
-        Sagawa.handleUploadResults(resultsArray)
-        .then(resolve)
-        .catch(reject);
-        break; //eslint-disable-line
-      }
     }
+    reportType = 'createAndSendCronJobReportToStaff';
+    console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Sagawa.batchUploadOrders.');
+
+    return Report.createAndSendCronJobReportToStaff({
+      reportType: 'cronJobSummary',
+      mainTitle: 'REPORT ✉️',
+      subTitle: 'Cron Job Upload Summary 💵',
+      headerBlurb: 'Congratulations! We\'ve successfully uploaded all weekend orders to Sagawa.',
+      data: { total, successful, failed, reports },
+    });
   })
   .then(() => {
-    console.log('SUCCEEDED: Handle Sagawa Upload Error.');
-    resolve();
+    console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.', reportType);
+    resolve('Cron Job has finished.');
   })
   .catch((error) => {
-    console.log('FAILED: Perform Cron Job sagawa upload: ', error);
-    reject(new Error('FAILED: Perform cron job sagawa upload.'));
+    console.log('\nFAILED: @Sagawa.cronJob: ', error);
+    reject('\nFAILED: @Sagawa.cronJob');
   });
+});
+
+sagawaSchema.statics.batchUploadOrders = reqObjs =>
+new Promise((resolve) => {
+  console.log('\n\n@Sagawa.batchUploadOrders\n');
+
+  let successfulReqs = 0,
+    failedReqs = 0,
+    nextBatch = [];
+
+  const totalReqs = reqObjs.length,
+    reports = [],
+    date = moment().format('YYYY/MM/DD');
+
+  function recursiveUpload(orders) {
+    const savedArray = orders;
+
+    if (savedArray.length) {
+      nextBatch = [...savedArray.splice(0, 5)];
+
+      nextBatch
+      .map(async (reqObj) => {
+        const result = await Sagawa.uploadOrderAndSendEmail(reqObj);
+        return result;
+      })
+      .forEach((promise, i, array) => {
+        promise
+        .then(({ verified, sagawaId, userId, transactionId }) => {
+          if (verified) {
+            successfulReqs += 1;
+
+            reports.push({
+              date,
+              sagawaId,
+              userId,
+              transactionId,
+              success: verified,
+              error: false,
+            });
+          } else {
+            failedReqs += 1;
+
+            reports.push({
+              date,
+              sagawaId,
+              userId,
+              transactionId,
+              success: verified,
+              error: true,
+            });
+          }
+
+          if (i === (array.length - 1)) recursiveUpload(savedArray);
+        })
+        .catch((error) => {
+          console.log('\nFAILED: @Sagawa.batchUploadOrders >>> Sagawa.uploadOrderAndSendEmail: ', error);
+        });
+      });
+      console.log('\n\n*------------- CALLING NEXT BATCH -------------*\n\n');
+      console.log('savedArray: ', savedArray);
+    } else {
+      console.log('No more orders');
+      resolve({
+        reports,
+        total: totalReqs,
+        failed: failedReqs,
+        successful: successfulReqs,
+      });
+    }
+  }
+
+  recursiveUpload(reqObjs);
 });
 
 /**
@@ -607,18 +719,76 @@ new Promise((resolve, reject) => {
 
   Email.sendRawEmail(emailRequest)
   .then((response) => {
-    console.log('SUCCEEDED: Email has been sent to NJ2JP leadership:', response);
-    const slackWebhook = process.env.SLACK_SAGAWA_UPLOAD_WEBHOOK;
+    console.log('\nSUCCEEDED: Email has been sent to NJ2JP leadership:', response);
+    const slackWebhook = process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOK;
     const slackMessage = message;
     return Email.notifySlack(slackWebhook, slackMessage);
   })
   .then((slackResponse) => {
-    console.log('SUCCEEDED: Notification to Slack Customer channel:', slackResponse);
+    console.log('\nSUCCEEDED: Notification to Slack Customer channel:', slackResponse);
     resolve();
   })
   .catch((error) => {
-    console.log('FAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);
-    reject(new Error('FAILED: Send Sagawa Upload Error eMail and Notify Slack'));
+    console.log('\nFAILED: Send Sagawa Upload Error eMail and Notify Slack ', error);
+    reject(new Error('\nFAILED: Send Sagawa Upload Error eMail and Notify Slack'));
+  });
+});
+
+sagawaSchema.statics.cronJob2 = () =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.cronJob');
+
+  bbPromise.fromCallback(cb =>
+    Sagawa.find({ status: 'pending' }, cb).exec())
+  .then((dbResults) => {  //eslint-disable-line
+    if (!dbResults.length) {
+      resolve({ status: 200 });
+    } else {
+      console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
+      const reqObjs = dbResults.map(dbDoc => ({
+        sagawaId: dbDoc._id,
+        userId: dbDoc.userId,
+        transactionId: dbDoc.transactionId,
+      }));
+      return UploadGenerator(reqObjs, Sagawa);
+    }
+  })
+  .then((Promises) => {
+    console.log('Promises: ', Promises);
+    let promiseArrayLength = 0;
+    const resultsArray = [];
+
+    Promises.forEach((promise, i, array) => {
+      promiseArrayLength = array.length;
+      promise
+      .then(({ verified, sagawaId }) => { //eslint-disable-line
+        console.log('SUCCESS: Upload order to Sagawa via Cron Job.');
+        if (verified) {
+          resultsArray.push({ success: true, sagawaId });
+        } else {
+          resultsArray.push({ success: false, sagawaId });
+        }
+      })
+      .catch((error) => {
+        console.log('\nFAILED: Upload order to Sagawa via Cron Job: ', error);
+        reject(new Error(error));
+      });
+    });
+
+    // while (true) { //eslint-disable-line
+    //   if (resultsArray.length === promiseArrayLength) {
+    //     console.log('hello.');
+    //     Sagawa.handleUploadResults(resultsArray)
+    //     .then(resolve)
+    //     .catch(reject);
+    //     break; //eslint-disable-line
+    //   }
+    //   console.log('nothing...');
+    // }
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Perform Cron Job sagawa upload: ', error);
+    reject(new Error('\nFAILED: Perform cron job sagawa upload.'));
   });
 });
 

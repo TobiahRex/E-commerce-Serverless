@@ -11,14 +11,14 @@ import {
 } from './helpers';
 
 const {
-  AWS_ACCESS_KEY_ID: accessKeyId,
-  AWS_SECRET_ACCESS_KEY: secretAccessKey,
+  LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
+  LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
   AWS_SES_REGION: region,
 } = process.env;
 
 AWS.config.update({
-  accessKeyId,
-  secretAccessKey,
+  accessKeyId: lambdaAccessKeyId,
+  secretAccessKey: lambdaSecretAccessKey,
   region,
 });
 
@@ -90,10 +90,10 @@ export default (db) => {
       .exec()
       .then((dbEmails) => {
         if (!dbEmails.length) {
-          console.log('FAILED: Find email with type: ', type);
+          console.log('\nFAILED: Find email with type: ', type);
           return reject(new Error(`FAILED: Find email with type: "${type}".  `));
         }
-        console.log('SUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
+        console.log('\nSUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
 
         const foundEmail = dbEmails
         .filter(dbEmail =>
@@ -101,8 +101,8 @@ export default (db) => {
         )[0];
 
         if (!foundEmail) {
-          console.log('FAILED: Filter email results array.');
-          return reject(new Error('FAILED: Filter email results array.'));
+          console.log('\nFAILED: Filter email results array.');
+          return reject(new Error('\nFAILED: Filter email results array.'));
         }
 
         console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
@@ -166,7 +166,7 @@ export default (db) => {
     return bbPromise
     .fromCallback(cb => ses.sendEmail(emailRequest, cb))
     .then((data) => {
-      console.log('SUCCEEDED: Send SES email: \n', data,
+      console.log('\nSUCCEEDED: Send SES email: \n', data,
       '\nSaving record of email to MONGO Email collection...');
 
       emailDoc.sentEmails.push({ messageId: data.MessageId });
@@ -174,12 +174,12 @@ export default (db) => {
       return emailDoc.save({ new: true });
     })
     .then((savedEmail) => {
-      console.log('SUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
+      console.log('\nSUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
       resolve();
     })
     .catch((error) => {
-      console.log('FAILED: Send Email and save Message Id in Email Template: ', error);
-      reject(new Error('FAILED: Send Email and save Message Id in Email Template.'));
+      console.log('\nFAILED: Send Email and save Message Id in Email Template: ', error);
+      reject(new Error('\nFAILED: Send Email and save Message Id in Email Template.'));
     });
   });
 
@@ -282,7 +282,7 @@ export default (db) => {
 
     Email.findEmailAndFilterLanguage(emailType, language)
     .then((dbEmail) => {
-      console.log('SUCCEEDED: Find Template Invoice Email for language: ', language);
+      console.log('\nSUCCEEDED: Find Template Invoice Email for language: ', language);
 
       const productListHtmlString = CreateEmailProductList(dbEmail, cart);
 
@@ -408,12 +408,12 @@ export default (db) => {
       return bbPromise
       .fromCallback(cb => ses.sendEmail(sesEmailRequest, cb))
       .then((data) => {
-        console.log('SUCCEEDED: Send SES email: \n', data);
+        console.log('\nSUCCEEDED: Send SES email: \n', data);
         resolve(data);
       })
       .catch((error) => {
-        console.log('FAILED: Send SES Email', error);
-        reject(new Error('FAILED: Send SES Email'));
+        console.log('\nFAILED: Send SES Email', error);
+        reject(new Error('\nFAILED: Send SES Email'));
       });
     }
   });
@@ -439,12 +439,12 @@ export default (db) => {
 
     axios.post(slackWebhook, JSON.stringify(options))
     .then((response) => {
-      console.log('SUCCEEDED: Sent slack webhook: \n', response.data);
+      console.log('\nSUCCEEDED: Sent slack webhook: \n', response.data);
       resolve(response.data);
     })
     .catch((error) => {
-      console.log('FAILED: Send slack webhook', error);
-      reject(new Error('FAILED: Send slack webhook'));
+      console.log('\nFAILED: Send slack webhook', error);
+      reject(new Error('\nFAILED: Send slack webhook'));
     });
   });
 

@@ -6,6 +6,7 @@ function BillTo({
   billingPostalCode,
   billingCountry,
   ccLastFour,
+  cardBrand,
 }) {
   return (
     <div className="addresses--billto">
@@ -26,17 +27,21 @@ function BillTo({
         <div className="billto__card-info">
           <p>Credit Card #: ************{ccLastFour}</p>
         </div>
+        <div className="billto__card-info">
+          <p>Credit Card Brand: {cardBrand}</p>
+        </div>
       </fieldset>
     </div>
   );
 }
 
-const { string, number } = PropTypes;
+const { string } = PropTypes;
 BillTo.propTypes = {
   nameOnCard: string.isRequired,
   billingPostalCode: string.isRequired,
   billingCountry: string.isRequired,
-  ccLastFour: number.isRequired,
+  ccLastFour: string.isRequired,
+  cardBrand: string.isRequired,
 };
 
 export default BillTo;

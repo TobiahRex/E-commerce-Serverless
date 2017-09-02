@@ -62,8 +62,6 @@ class OrderSuccess extends React.Component {
   routeChange = e => this.props.push(e.target.dataset.slug)
 
   renderBody = (props) => {
-    console.log('%cprops', 'background:cyan;', props);
-
     const {
       products: {
         FetchMultipleProducts: products,
@@ -73,15 +71,13 @@ class OrderSuccess extends React.Component {
         date,
         shippingStatus,
         // comments,
-        // termsAgreement,
         // user,
         emailAddress,
-        // invoiceEmailNoTracking,
+        trackingLink,
         jpyFxRate,
         total: {
           subTotal,
           taxes,
-          // grandTotal,
           discount,
         },
         square: {
@@ -90,22 +86,22 @@ class OrderSuccess extends React.Component {
             shippingPrefecture,
             shippingCity,
           },
-          cardInfo: {
-            last4,
-            nameOnCard,
-            postalCode,
-          },
-          charge: {
-            amount: chargedAmount,
+          tender: {
+            amount_money: amountMoney,
+            card_details: { //eslint-disable-line
+              card: {
+                card_brand: cardBrand,
+                last_4: last4,
+                nameOnCard,
+                postalCode,
+              },
+            },
           },
         },
       },
       sagawaInfo: {
         FetchSagawa: {
           _id: sagawaId,
-          // userId,
-          // transactionId,
-          // uploadForm,
           shippingAddress: {
             referenceId,
             shipdate,
@@ -114,9 +110,8 @@ class OrderSuccess extends React.Component {
             jpaddress1,
             jpaddress2,
             phoneNumber,
-            // deliveryDate,
+            deliveryDate,
           },
-          // items,
         },
       },
     } = props;
@@ -143,7 +138,8 @@ class OrderSuccess extends React.Component {
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
-            paidTotal={chargedAmount}
+            paidTotal={amountMoney}
+            deliveryDate={deliveryDate}
           />
           <div className="ordered__addresses">
             <ShipTo
@@ -161,13 +157,15 @@ class OrderSuccess extends React.Component {
               billingPostalCode={postalCode}
               billingCountry={billingCountry}
               ccLastFour={last4}
+              cardBrand={cardBrand}
             />
           </div>
           <OrderSummary
             shippingStatus={`Shipping on ${shipdate}`}
-            trackingId={referenceId}
+            trackingLink={trackingLink}
+            trackingNumber={referenceId}
             orderProducts={zippedProducts}
-            grandTotal={chargedAmount}
+            grandTotal={amountMoney.amount}
             subTotal={subTotal}
             taxes={taxes}
             discount={discount}
@@ -191,8 +189,6 @@ class OrderSuccess extends React.Component {
   }
 
   render() {
-    console.log('%cthis.props', 'background:lime;', this.props);
-    console.log('%cthis.state.loading', 'background:red;', this.state.loading);
     return (
       <div>
         {
@@ -249,7 +245,7 @@ OrderSuccess.propTypes = {
     termsAgreement: bool,
     user: string,
     emailAddress: string,
-    invoiceEmailNoTracking: string,
+    trackingLink: string,
     jpyFxRate: string,
     shippingStatus: string,
     total: shape({
@@ -264,19 +260,47 @@ OrderSuccess.propTypes = {
       }),
     }),
     square: shape({
+      idempotency_key: string,
       billingCountry: string,
       shippingAddress: shape({
         shippingPrefecture: string,
         shippingCity: string,
       }),
-      cardInfo: shape({
-        last4: number,
-        nameOnCard: string,
-        postalCode: string,
+      tender: shape({
+        id: string,
+        location_id: string,
+        transaction_id: string,
+        created_at: string,
+        note: string,
+        amount_money: shape({
+          amount: number,
+          currency: string,
+        }),
+        type: string,
+        card_details: shape({
+          card: shape({
+            card_brand: string,
+            last_4: string,
+            nameOnCard: string,
+            cardNonce: string,
+            postalCode: string,
+          }),
+          entry_method: string,
+        }),
       }),
-      charge: shape({
-        amount: string,
-      }),
+      refund: {
+        id: string,
+        location_id: string,
+        transaction_id: string,
+        tender_id: string,
+        created_at: string,
+        reason: string,
+        amount_money: {
+          amount: number,
+          currency: string,
+        },
+        status: string,
+      },
     }),
   }),
   sagawaInfo: shape({

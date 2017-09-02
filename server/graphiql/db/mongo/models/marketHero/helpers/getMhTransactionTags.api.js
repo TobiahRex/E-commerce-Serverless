@@ -34,7 +34,10 @@ export default function getMhTransactionTagsApi({
 
     return acc;
   }, []);
-  const result = [...tags, ...productTags];
+  const result = {
+    userTags: [...tags],
+    productTags: [...productTags],
+  };
   console.log('MARKET HERO TAGS: ', result);
   return result;
 }

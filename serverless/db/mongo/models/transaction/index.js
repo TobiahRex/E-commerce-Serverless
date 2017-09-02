@@ -39,7 +39,7 @@ export default (db) => {
       headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
     })
     .then((response) => {
-      console.log('SUCCEEDED: Fetch Square Location: ', response.data);
+      console.log('\nSUCCEEDED: Fetch Square Location: ', response.data);
 
       const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
 
@@ -52,7 +52,7 @@ export default (db) => {
         };
 
         if (newLocation.capabilities.includes('CREDIT_CARD_PROCESSING')) {
-          console.log('SUCCEEDED: Verify location CC processing.');
+          console.log('\nSUCCEEDED: Verify location CC processing.');
           resolve(newLocation);
         } else {
           newLocation.error = {
@@ -74,8 +74,8 @@ export default (db) => {
       }
     })
     .catch((error) => {
-      console.log('FAILED: Fetch square location: ', error);
-      reject(new Error('FAILED: Fetch square location.'));
+      console.log('\nFAILED: Fetch square location: ', error);
+      reject(new Error('\nFAILED: Fetch square location.'));
     });
   });
 
@@ -136,9 +136,10 @@ export default (db) => {
     )
     .then((response) => { //eslint-disable-line
       if (response.status !== 200) {
+        console.log('\nFAILED: @Transaction.chargeCard >>> axios.post');
         resolve({ status: response.status });
       } else {
-        console.log('Successfully charged customer. ', response.data);
+        console.log('\nSUCCESS: @Transaction.chargeCard >>> axios.post: ', response.data);
         return Transaction.findByIdAndUpdate(transactionId, {
           $set: {
             'square.transactionId': response.data.transaction.id,
@@ -148,16 +149,12 @@ export default (db) => {
       }
     })
     .then((result) => {
-      if (!result) {
-        reject('FAILED: Update Transaction with Square information.');
-      } else {
-        resolve({ status: 200 });
-      }
+      console.log('\nSUCCEEDED: @Square.chargeCard >>> Transaction.findByIdAndUpdate: ', result);
+      resolve({ status: 200 });
     })
     .catch((error) => {
-      console.log('%cerror', 'background:red;', error);
-      console.log('Error while trying to Authorize Square payment: ', error.response.data.errors);
-      reject(`Error while trying to Authorize Square payment:  ${error.response.data.errors[0].detail}`);
+      console.log('\nFAILED: @Transaction.squareChargeCard: ', error.response.data.errors);
+      reject(`Square Message: ${error.response.data.errors[0].detail}`);
     });
   });
 
@@ -187,7 +184,7 @@ export default (db) => {
   new Promise((resolve, reject) => {
     console.log('\n\n@Transaction.submitFinalOrder\n');
 
-    console.log('1] ARGS: \n', JSON.stringify(orderForm, null, 2));
+    console.log('\n1] ARGS: \n', JSON.stringify(orderForm, null, 2));
     let newTransactionDoc = {};
     let userDoc = {};
     let marketHeroOp = '';
@@ -239,7 +236,7 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like there\'s a network error.  Please try your order again later.',
+            message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
           },
           user: null,
           transaction: null,
@@ -280,7 +277,7 @@ export default (db) => {
           transaction: null,
         });
       } else {
-        console.log('3] SUCCEEDED: Square Charge Customer.\n', response.data);
+        console.log('\n3] SUCCEEDED: Square Charge Customer.\n', response.data);
         return Promise.all([
           User.findByIdAndUpdate(userDoc._id, {
             $set: {
@@ -300,19 +297,18 @@ export default (db) => {
       }
     })
     .then((results) => { //eslint-disable-line
-      console.log('USER RESULTS: ', results);
       if (!results[0] || !results[2]) {
         resolve({
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+            message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
           },
           user: null,
           transaction: null,
         });
       } else {
-        console.log('4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
+        console.log('\n4] SUCCEEDED: 1) Updated User "cart" and "transactions" history.\n', results[0]._doc, '\n 2) Checked for existing Market Hero document.\n', results[1], '\n3) Created Sagawa document for this transaction.\n', results[2]._doc);
 
         userDoc = { ...results[0]._doc };
         marketHeroOp = results[1] ? 'updateMongoLead' : 'createMongoLead';
@@ -359,13 +355,13 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+            message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
           },
           user: null,
           transaction: null,
         });
       } else {
-        console.log('5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
+        console.log('\n5] SUCCEEDED: 1) Generate Invoice Email body and insert result into Transaction document.\n', results[0]._id, '\n 2) Create or Update Mongo Market Hero document.\n', results[1], '\n 3) Create or Update Market Hero API lead.\n', results[2]);
 
         newTransactionDoc = { ...results[0]._doc };
 
@@ -373,15 +369,15 @@ export default (db) => {
 
         const {
           AWS_REGION: region,
-          AWS_ACCESS_KEY_ID: accessKeyId,
-          AWS_SECRET_ACCESS_KEY: secretAccessKey,
+          LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
+          LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
           LAMBDA_ENV: lambdaEnv,
         } = process.env;
-        console.log('region: ', region, '\nawsAccessKeyId: ', accessKeyId, '\nawsSecretAccessKey: ', secretAccessKey);
+
         const lambda = new AWS.Lambda({
           region,
-          accessKeyId,
-          secretAccessKey,
+          accessKeyId: lambdaAccessKeyId,
+          secretAccessKey: lambdaSecretAccessKey,
         });
 
         const promiseArray = [];
@@ -396,9 +392,9 @@ export default (db) => {
             FunctionName: `nj2jp-${lambdaEnv}-sagawa`,
             InvocationType: 'RequestResponse',
             Payload: `{
-              "userId": ${userId}
-              "sagawaId": ${newTransactionDoc.sagawa},
-              "transactionId" : ${newTransactionDoc._id},
+              "userId": "${userId}",
+              "sagawaId": "${newTransactionDoc.sagawa}",
+              "transactionId" : "${newTransactionDoc._id}"
             }`,
           }, cb)),
           ...promiseArray,
@@ -406,47 +402,38 @@ export default (db) => {
       }
     })
     .then((results) => { //eslint-disable-line
-      if ((results[0].status !== 200) && (results[0].status !== 204)) {
+      console.log('\nSAGAWA UPLOAD results: ', results);
+
+      try {
+        const { verified, sagawaId } = JSON.parse(results[0].Payload);
+        console.log('\nSUCCEEDED: Transaction.submitFinalOrder >>> JSON.parse: \nverified: ', verified, '\nsagawaId: ', sagawaId);
+      } catch (e) {
+        console.log('\nFAILED: Transaction.submitFinalOrder >>> JSON.parse: ', e);
         resolve({
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like something went wrong.  Please try your order again later.',
+            message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
           },
           user: null,
           transaction: null,
         });
-      } else if (results[0].status === 204) {
-        Sagawa.handleBadUpload(results[0].data)
-        .then(() => {
-          console.log('SUCCEEDED: Handle bad Sagawa upload.');
-          resolve({
-            error: { hard: false, soft: false, message: '' },
-            user: userDoc,
-            transaction: newTransactionDoc,
-          });
-        })
-        .catch((error) => {
-          console.log('FAILED: Handle Bad SagawaUpload: ', error);
-          reject(new Error('FAILED: Handle Bad SagawaUpload.'));
+      }
+
+      if (results[0].StatusCode !== 200) {
+        resolve({
+          error: {
+            hard: true,
+            soft: false,
+            message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+          },
+          user: null,
+          transaction: null,
         });
       } else {
-        console.log('6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0].status, '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
-
-        const { status, data } = results[0];
+        console.log('\n6] SUCCEEDED: 1) Call Sagawa Order Upload lambda.', results[0], '\n2) Update User Document with new MarketHero Doc _id (if necessary).', results[1]);
 
         if (results.length === 2) userDoc = results[1];
-
-        if (status !== 200) {
-          console.log('FAILED: Upload Order to Sagawa: ', data);
-          resolve({
-            error: {
-              hard: true,
-              soft: false,
-              message: `Was not able to complete the order: ${data}`,
-            },
-          });
-        }
 
         cartProducts.forEach((productDoc) => {
           const {
@@ -468,15 +455,15 @@ export default (db) => {
             },
           }, { new: true })
           .then((savedDoc) => {
-            console.log('7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
+            console.log('\n7] SUCCEEDED: Update "statistics" & "quantities" keys for product: ', `${savedDoc.product.flavor}_${savedDoc.product.nicotineStrength}mg`);
           })
           .catch((error) => {
-            console.log('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
-            reject(new Error('FAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
+            console.log('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`, '. Error: ', error);
+            reject(new Error('\nFAILED: Update "statistics" & "quantities" keys for product: ', `${productDoc.product.flavor}_${productDoc.product.nicotineStrength}mg`));
           });
         });
 
-        console.log('8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
+        console.log('\n8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
         resolve({
           error: { hard: false, soft: false, message: '' },
           user: userDoc,
@@ -485,8 +472,16 @@ export default (db) => {
       }
     })
     .catch((error) => {
-      console.log('FAILED: Create new Transaction Doc & Submit Order.', error);
-      reject(error);
+      console.log('\nFAILED to submit order due to error: ', error);
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
+        },
+        user: null,
+        transaction: null,
+      });
     });
   });
 

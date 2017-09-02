@@ -1,13 +1,13 @@
 import {
   GraphQLID as MongoId,
-  GraphQLInt as IntType,
-  GraphQLList as ListType,
+  // GraphQLInt as IntType,
+  // GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
-  GraphQLEnumType as EnumType,
+  // GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
-  GraphQLInputObjectType as InputObject,
+  // GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
 import Contact from '../../mongo/models/contact';
@@ -43,7 +43,7 @@ const rootType = new ObjectType({
     created: {
       description: 'Date and Time of contact document creation',
       type: StringType,
-    }
+    },
   },
 });
 

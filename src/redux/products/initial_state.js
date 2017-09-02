@@ -18,7 +18,8 @@ export const productType = {
     blurb: '',
     quantities: {
       available: 0,
-      inCart: 0,
+      inCarts: 0,
+      purchased: 0,
     },
   },
   reviews: [{

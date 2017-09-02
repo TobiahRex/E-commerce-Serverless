@@ -28,7 +28,7 @@ export default (
   <Route path="/" component={App} auth={auth}>
     <IndexRoute
       getComponent={(location, cb) => {
-        System.import('../containers/home/homePage')
+        import('../containers/home/homePage' /* webpackChunkName: "homePage" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}

@@ -75,7 +75,7 @@ class OrderTracking extends React.Component {
           className = orderStatus === 'Packaging' ? 'active' : 'past';
         } break;
         case 'Shipped': {
-          if (state === orderStatus) {
+          if (orderStatus === 'Shipped') {
             className = 'active';
           } else if (orderStatus === 'Packaging') {
             className = 'future';
@@ -103,8 +103,22 @@ class OrderTracking extends React.Component {
     });
   }
 
-  renderActivities = trackingInfo =>
-    trackingInfo.map(({ date, activity, location }) => (
+  renderActivities = (trackingInfo) => {
+    if (!trackingInfo[0].activity) {
+      return (
+        <tr className="body--row" key={new Buffer('no activity to report', 'utf8').toString('base64')}>
+
+          <td className="body--location" />
+
+          <td className="body--date">
+            <p>No Activity To Report</p>
+          </td>
+
+          <td className="body--activity" />
+        </tr>
+      );
+    }
+    return trackingInfo.map(({ date, activity, location }) => (
       <tr className="body--row" key={new Buffer(`${location}${date}${activity}`, 'utf8').toString('base64')}>
 
         <td className="body--location">
@@ -120,6 +134,7 @@ class OrderTracking extends React.Component {
         </td>
       </tr>
     ));
+  }
 
   renderHelper = (data) => {
     const {
@@ -149,7 +164,7 @@ class OrderTracking extends React.Component {
             {'\u00A0'}{userName}
           </p>
           <p className="header__detail">
-            <span style={{ fontSize: 20 }}>Order Id#:</span>
+            <span style={{ fontSize: 20 }}>Order #:</span>
             {'\u00A0'}{orderId}
           </p>
         </div>
@@ -209,6 +224,7 @@ class OrderTracking extends React.Component {
         <h1 className="tracking__loading">
           <FontAwesome name="spinner" pulse size="3x" />
           <br />
+          Loading...
           {error.message}
         </h1>
       );
@@ -251,14 +267,9 @@ const OrderTrackingWithStateAndData = connect(({ routing }) => ({
   queryParams: routing.locationBeforeTransitions.query,
 }))(OrderTrackingWithData);
 
-const { objectOf, any, shape, bool, string } = PropTypes;
+const { objectOf, any } = PropTypes;
 OrderTracking.propTypes = {
   TrackingInfo: objectOf(any).isRequired,
-  error: shape({
-    hard: bool,
-    soft: bool,
-    message: string,
-  }).isRequired,
 };
 
 export default OrderTrackingWithStateAndData;
