@@ -161,71 +161,76 @@ sagawaSchema.statics.uploadOrder = ({ sagawaId, userId, transactionId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
 
-  if (!sagawaId) {
+  if (!sagawaId || !userId || !transactionId) {
     console.log('\nFAILED: Missing required arguments.');
-    reject(new Error('\nFAILED: Missing required arguments.'));
-  }
-  console.log(`Find Sagawa doc by id: "${sagawaId}"`);
-
-  Sagawa
-  .findById(sagawaId)
-  .then(sagawaDoc => { //eslint-disable-line
-    if (!sagawaDoc) {
-      console.log('\nFAILED: Find Sagawa document by id: ', sagawaId);
-      Transaction.handeRefund({ transactionId, userId })
+    reject('\nFAILED: Missing required arguments.');
+  } else {
+    Sagawa
+    .findById(sagawaId)
+    .then(sagawaDoc => { //eslint-disable-line
+      if (!sagawaDoc) {
+        console.log('\nFAILED: Find Sagawa document by id: ', sagawaId);
+        Transaction.handeRefund({ transactionId, userId })
+        .then(() => {
+          console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> Transaction.handleRefund.');
+          resolve({ verified: false, sagawaId });
+        })
+        .catch((error) => {
+          console.log('\nFAILED: Sagawa.uploadOrder >>> Transaction.handleRefund: ', error);
+          resolve({ verified: false, sagawaId });
+        });
+      } else {
+        console.log('\nSUCCEEDED: Find Sagawa document by id: ', sagawaDoc._id);
+        console.log('\nSending upload to Sagawa...\n');
+        return axios.post(
+          'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
+          `<?xml version='1.0' encoding='utf-8'?>
+          <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+          <soap:Body>
+            <uploadFile xmlns='http://ws.com'>
+            <handler>
+              ${xmlOut('<DATA>')}
+                ${xmlOut(GenerateAddressXml(sagawaDoc))}
+                ${xmlOut(GenerateItemsXml(sagawaDoc))}
+                ${xmlOut('</DATA>')}
+              </handler>
+            </uploadFile>
+          </soap:body>
+        </soap:Envelope>`, {
+          headers: {
+            'Content-Type': 'text/xml; charset=utf-8',
+            SOAPAction: 'http://ws.com',
+          },
+        });
+      }
+    })
+    .then((response) => {
+      console.log('\nSUCCEEDED: Sagawa order Upload: ', response.data);
+      return CleanSagawaResponse.handleUpload(response);
+    })
+    .then(({ data }) => {
+      if (!data.verified) {
+        console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
+        Transaction.handeRefund({ transactionId, userId })
+        .then(() => {
+          resolve({ verified: data.verified, sagawaId });
+        })
+        .catch();
+      } else {
+        console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
+        resolve({ data, sagawaId });
+      }
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Upload Order to Sagawa.', error);
+      return Transaction.handeRefund({ transactionId, userId })
       .then()
       .catch();
-    } else {
-      console.log('\nSUCCEEDED: Find Sagawa document by id: ', sagawaDoc._id);
-      console.log('\nSending upload to Sagawa...\n');
-      return axios.post(
-        'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService/uploadData',
-      `<?xml version='1.0' encoding='utf-8'?>
-      <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-      <soap:Body>
-        <uploadFile xmlns='http://ws.com'>
-        <handler>
-          ${xmlOut('<DATA>')}
-            ${xmlOut(GenerateAddressXml(sagawaDoc))}
-            ${xmlOut(GenerateItemsXml(sagawaDoc))}
-            ${xmlOut('</DATA>')}
-          </handler>
-        </uploadFile>
-      </soap:body>
-    </soap:Envelope>`, {
-      headers: {
-        'Content-Type': 'text/xml; charset=utf-8',
-        SOAPAction: 'http://ws.com',
-      },
+    })
+    .then((result) => {
+      reject(error.message);
     });
-    }
-  })
-  .then((response) => {
-    console.log('\nSUCCEEDED: Sagawa order Upload: ', response.data);
-    return CleanSagawaResponse.handleUpload(response);
-  })
-  .then(({ data }) => {
-    if (!data.verified) {
-      console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
-      Transaction.handeRefund({ transactionId, userId })
-      .then(() => {
-        resolve({ verified: data.verified, sagawaId });
-      })
-      .catch();
-    } else {
-      console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-      resolve({ data, sagawaId });
-    }
-  })
-  .catch((error) => {
-    console.log('\nFAILED: Upload Order to Sagawa.', error);
-    return Transaction.handeRefund({ transactionId, userId })
-    .then()
-    .catch();
-  })
-  .then((result) => {
-    reject(error.message);
-  });
+  }
 });
 
 /**
@@ -294,7 +299,7 @@ new Promise((resolve, reject) => {
   let emailType = '';
 
   Promise.all([
-    Sagawa.uploadOrder(sagawaId),
+    Sagawa.uploadOrder(request),
     Transaction.findById(transactionId),
   ])
   .then((results) => {  //eslint-disable-line
