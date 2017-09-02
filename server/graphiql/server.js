@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 app.use('/graphql', graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-app.use('/api', authCheck, api);
+app.use(authCheck);
+app.use('/api', api);
 
 app.listen(PORT, () => console.log(`Server listening @ ${PORT}
 Graphiql Server @ http://localhost:${PORT}/graphiql`));
