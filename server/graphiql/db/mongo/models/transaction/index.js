@@ -468,7 +468,8 @@ transactionSchema.statics.issueUserRefund = ({ transactionId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.issueUserRefund');
 
-  Transaction.findById(transactionId)
+  Transaction
+  .findById(transactionId)
   .then((dbTransaction) => {
     if (!dbTransaction) {
       console.log('FAILED: @Transaction.issueUserRefund >>> Transaction.findById: ', transactionId);
@@ -533,12 +534,15 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     if (!!error.type) {
-      console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
-      return Email.sendPendingRefundEmailAndSlack({
-        staff: true,
-        user: true,
-        userId,
-      });
+
+      if (error.type === 'RefundNotSent') {
+        console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
+        return Email.sendPendingRefundEmailAndSlack({
+          staff: true,
+          user: true,
+          userId,
+        });
+      }
     } else {
       console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
       reject(error);
