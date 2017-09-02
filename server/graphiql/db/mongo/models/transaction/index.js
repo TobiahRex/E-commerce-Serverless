@@ -495,17 +495,9 @@ new Promise((resolve, reject) => {
 
       return Transaction.findByIdAndUpdate(transactionId, {
         $set: {
-          'square.refund.id': response.data.refund.id,
-          'square.refund.location_id': response.data.refund.location_id,
-          'square.refund.transaction_id': response.data.refund.transaction_id,
-          'square.refund.tender_id': response.data.refund.tender_id,
-          'square.refund.created_at': response.data.refund.created_at,
-          'square.refund.reason': response.data.refund.reason,
-          'square.refund.amount_money.amount': response.data.refund.amount_money.amount,
-          'square.refund.amount_money.currency': response.data.refund.amount_money.currency,
-          'square.refund.status': response.data.refund.status,
+          'square.refund': response.data.refund,
         },
-      });
+      }, { new: true });
     }
   })
   .then((savedDoc) => {
