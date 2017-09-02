@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-console, import/newline-after-import */
+/* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
 import axios from 'axios';
 import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
@@ -10,7 +10,7 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  composeAmount as ComposeAmount,
+  // composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
@@ -470,23 +470,26 @@ new Promise((resolve, reject) => {
 
   Transaction.findById(transactionId)
   .then((dbTransaction) => {
-    console.log('dbTransaction: ', dbTransaction);
-    return axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.tender.location_id}/transactions/${dbTransaction.square.tender.transaction_id}/refund`, {
-      idempotency_key: dbTransaction.square.idempotency_key,
-      tender_id: dbTransaction.square.tender.id,
-      reason: 'There was an issue during checkout after your card was charged.',
-      amount_money: {
-        amount: dbTransaction.square.tender.amount_money.amount,
-        currency: dbTransaction.square.tender.amount_money.currency,
-      },
-    }, {
-      headers: {
-        Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
-      },
-    });
+    if (!dbTransaction) {
+      console.log('FAILED: @Transaction.issueUserRefund >>> Transaction.findById: ', transactionId);
+      reject('Unable to issue refund - transactionId was not found in database.');
+    } else {
+      return axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.tender.location_id}/transactions/${dbTransaction.square.tender.transaction_id}/refund`, {
+        idempotency_key: dbTransaction.square.idempotency_key,
+        tender_id: dbTransaction.square.tender.id,
+        reason: 'There was an issue during checkout after your card was charged.',
+        amount_money: {
+          amount: dbTransaction.square.tender.amount_money.amount,
+          currency: dbTransaction.square.tender.amount_money.currency,
+        },
+      }, {
+        headers: {
+          Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
+        },
+      });
+    }
   })
-  .then((response) => {
-    console.log('response: ', response.data);
+  .then((response) => { //eslint-disable-line
     if (response.status !== 200) {
       console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
       reject(response.data);
