@@ -566,54 +566,41 @@ new Promise((resolve, reject) => {
     console.log('\nFAILED: Email.sendRefundIssued > missing required argument');
     reject('\nFAILED: Email.sendRefundIssued > missing required argument');
   } else {
-    const {
-      CEO_EMAIL: ceo,
-      CTO_EMAIL: cto,
-      CDO_EMAIL: cdo,
-    } = process.env;
-
-    let staffEmail, userEmail;
-
-    if (staff) {
-      const {
-        body,
-        title,
-        replyTo,
-      } = message;
-      staffEmail = {
-        sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
-        toEmailAddresses: [cto, cdo, ceo],
-        replyToAddress: [replyTo],
-        bodyTextData: body,
-        bodyTextCharset: 'utf8',
-        subjectData: title,
-        subjectCharset: 'utf8',
-      };
-    }
-
-    if (user) {
-      const {
-        body,
-        title,
-        replyTo,
-      } = message;
-      userEmail = {
-        sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
-        toEmailAddresses: [cto, cdo, ceo],
-        replyToAddress: [replyTo],
-        bodyTextData: body,
-        bodyTextCharset: 'utf8',
-        subjectData: title,
-        subjectCharset: 'utf8',
-      };
-    }
-
     User.findById(userId)
     .then((dbUser) => {
       if (!dbUser) {
         console.log('\nFAILED: Email.sendRefundIssued > Unable to find User.');
         reject('\nFAILED: Email.sendRefundIssued > Unable to find User.');
       } else {
+        const promises = Object.keys(message).map((key) => {
+          const {
+            CEO_EMAIL: ceo,
+            CTO_EMAIL: cto,
+            CDO_EMAIL: cdo,
+          } = process.env;
+
+          let toEmailAddresses;
+
+          if (key === 'staff') toEmailAddresses = [dbUser.contactInfo.email];
+          if (key === 'user') toEmailAddresses = [cto, ceo, cdo];
+
+          const {
+            body,
+            title,
+            replyTo,
+          } = message[key];
+          return Email.sendRawEmail({
+            sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
+            toEmailAddresses,
+            replyToAddress: [replyTo],
+            bodyTextData: body,
+            bodyTextCharset: 'utf8',
+            subjectData: title,
+            subjectCharset: 'utf8',
+          });
+        });
+
+
         return Promise.all([
           Email.sendRawEmail(
 
