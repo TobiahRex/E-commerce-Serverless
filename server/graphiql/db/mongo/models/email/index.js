@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-console, import/newline-after-import */
+/* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
 import AWS from 'aws-sdk';
 import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
@@ -86,35 +86,34 @@ new Promise((resolve, reject) => {
 
   if (!type || !reqLanguage) {
     console.log(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
-    reject(new Error(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `));
+    reject(`Missing required arguments. "type": ${type || 'undefined'}. "reqLanguage": ${reqLanguage || 'undefined'}.  `);
   } else {
     Email
     .find({ type })
     .exec()
     .then((dbEmails) => {
       if (!dbEmails.length) {
-        console.log('\nFAILED: Find email with type: ', type);
-        return reject(new Error(`FAILED: Find email with type: "${type}".  `));
+        console.log('\nFAILED: Email.findEmailAndFilterLanguage: ', type);
+        reject('\nFAILED: Email.findEmailAndFilterLanguage');
+      } else {
+        console.log('\nSUCCEEDED: Email.findEmailAndFilterLanguage');
+
+        const foundEmail = dbEmails.filter(dbEmail =>
+          (dbEmail.type === type) && (dbEmail.language === reqLanguage),
+        )[0];
+
+        if (!foundEmail) {
+          console.log('\nFAILED: Email.findEmailAndFilterLanguage >>> Email.find.');
+          reject('\nFAILED: Email.findEmailAndFilterLanguage >>> Email.find.');
+        } else {
+          console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
+          resolve(foundEmail);
+        }
       }
-      console.log('\nSUCCEEDED: Find email with type: ', type, '\nEmails: ', dbEmails.length);
-
-      const foundEmail = dbEmails
-      .filter(dbEmail =>
-        (dbEmail.type === type) && (dbEmail.language === reqLanguage),
-      )[0];
-
-      if (!foundEmail) {
-        console.log('\nFAILED: Filter email results array.');
-        return reject(new Error('\nFAILED: Filter email results array.'));
-      }
-
-      console.log(`Filtered email results: Found "type" = ${foundEmail.type}.  Requested "type" = ${type}.  Found "language" = ${reqLanguage}.  Requested "language" = ${reqLanguage}.  `);
-
-      return resolve(foundEmail);
     })
     .catch((error) => {
-      console.log(`Error while trying to find any emails with "type" = ${type}.  ERROR = ${error}`);
-      return reject(new Error(`Error while trying to find emails with "type" = ${type}.  ERROR = ${error}.  `));
+      console.log('\nFAILED: Email.findEmailAndFilterLanguage: ', error);
+      reject('\nFAILED: Email.findEmailAndFilterLanguage');
     });
   }
 });
