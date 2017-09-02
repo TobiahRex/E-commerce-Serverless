@@ -213,12 +213,19 @@ new Promise((resolve, reject) => {
         console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
         Transaction.handeRefund({ transactionId, userId })
         .then(() => {
-          resolve({ verified: data.verified, sagawaId });
+          resolve({
+            sagawaId,
+            verified: data.verified,
+          });
         })
         .catch();
       } else {
         console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-        resolve({ data, sagawaId });
+        resolve({
+          data,
+          sagawaId,
+          verified: true,
+        });
       }
     })
     .catch((error) => {

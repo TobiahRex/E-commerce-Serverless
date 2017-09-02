@@ -464,7 +464,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.issueUserRefund = ({ transactionId }) =>
+transactionSchema.statics.issueUserRefund = ({ transactionId, userId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.issueUserRefund');
 
@@ -498,7 +498,7 @@ new Promise((resolve, reject) => {
       console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
       reject({
         type: 'RefundNotSent',
-        message: response.data.errors,
+        message: `axios.post to Sagawa API responded with status code "${response.status}"`,
       });
     } else {
       console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
@@ -509,7 +509,7 @@ new Promise((resolve, reject) => {
             'square.refund': response.data.refund,
           },
         }, { new: true }),
-        Email.sendEmailAndSlackRefundNotifiction({
+        Email.sendRefundIssued({
           staff: true,
           user: true,
           userId,
@@ -518,11 +518,10 @@ new Promise((resolve, reject) => {
     }
   })
   .then((results) => {
-    console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack');
-    resolve(savedDoc);
+    console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack: ', results[1]);
+    resolve();
   })
   .catch((error) => {
-    console.log('error: ', error);
     console.log('\nFAILED: Transaction.issueUserRefund: ', error);
     reject(error);
   });
@@ -537,7 +536,7 @@ new Promise((resolve, reject) => {
     reject('\nFAILED: Missing required arguments.');
   } else {
     Transaction
-    .issueUserRefund(transactionId)
+    .issueUserRefund({ transactionId, userId })
     .then(() => {
       resolve({
         userId,
@@ -549,7 +548,7 @@ new Promise((resolve, reject) => {
       if (!!error.type) {
         if (error.type === 'RefundNotSent') {
           console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
-          return Email.sendEmailAndSlackPendingRefundNotification({
+          return Email.sendRefundRequired({
             staff: true,
             user: true,
             userId,
@@ -560,14 +559,12 @@ new Promise((resolve, reject) => {
         reject(error);
       }
     })
-    .then((emailResult) => {
-      console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', emailResult);
+    .then(() => {
+      console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack');
       resolve({
-        error: {
-          hard: false,
-          soft: true,
-          message: 'Was unable to issue Square Refund.  Staff has been notified via Email and Slack.  User has been notified via Email.',
-        },
+        userId,
+        transactionId,
+        verified: false,
       });
     })
     .catch((error) => {
