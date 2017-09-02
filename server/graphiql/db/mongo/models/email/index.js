@@ -551,14 +551,63 @@ new Promise((resolve, reject) => {
   }
 });
 
-emailSchema.statics.sendRefundIssued = ({ staff, user, userId }) =>
+emailSchema.statics.sendRefundIssued = reqBody =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRefundIssued\n');
+
+  const {
+    staff,
+    user,
+    userId,
+    message,
+  } = reqBody;
 
   if (!userId) {
     console.log('\nFAILED: Email.sendRefundIssued > missing required argument');
     reject('\nFAILED: Email.sendRefundIssued > missing required argument');
   } else {
+    const {
+      CEO_EMAIL: ceo,
+      CTO_EMAIL: cto,
+      CDO_EMAIL: cdo,
+    } = process.env;
+
+    let staffEmail, userEmail;
+
+    if (staff) {
+      const {
+        body,
+        title,
+        replyTo,
+      } = message;
+      staffEmail = {
+        sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
+        toEmailAddresses: [cto, cdo, ceo],
+        replyToAddress: [replyTo],
+        bodyTextData: body,
+        bodyTextCharset: 'utf8',
+        subjectData: title,
+        subjectCharset: 'utf8',
+      };
+    }
+
+    if (user) {
+      const {
+        body,
+        title,
+        replyTo,
+      } = message;
+      userEmail = {
+        sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
+        toEmailAddresses: [cto, cdo, ceo],
+        replyToAddress: [replyTo],
+        bodyTextData: body,
+        bodyTextCharset: 'utf8',
+        subjectData: title,
+        subjectCharset: 'utf8',
+      };
+    }
+
     User.findById(userId)
     .then((dbUser) => {
       if (!dbUser) {
@@ -566,6 +615,12 @@ new Promise((resolve, reject) => {
         reject('\nFAILED: Email.sendRefundIssued > Unable to find User.');
       } else {
         return Promise.all([
+          Email.sendRawEmail(
+
+          ),
+          Email.sendRawEmail(
+
+          ),
           Email.notifySlack(
             process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
             // TODO GenerateSlackMsg.sendRefundIssued(userId),
