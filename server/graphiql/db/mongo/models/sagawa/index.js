@@ -157,7 +157,7 @@ new Promise((resolve, reject) => {
 
 * @return {object} Promise resolved with Order AWB & REF id's.
 */
-sagawaSchema.statics.uploadOrder = sagawaId =>
+sagawaSchema.statics.uploadOrder = ({ sagawaId, userId, transactionId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.updloadOrder\n');
 
@@ -172,7 +172,9 @@ new Promise((resolve, reject) => {
   .then(sagawaDoc => { //eslint-disable-line
     if (!sagawaDoc) {
       console.log('\nFAILED: Find Sagawa document by id: ', sagawaId);
-      reject(new Error('\nFAILED: Find Sagawa document by id'));
+      Transaction.handeRefund({ transactionId, userId })
+      .then()
+      .catch();
     } else {
       console.log('\nSUCCEEDED: Find Sagawa document by id: ', sagawaDoc._id);
       console.log('\nSending upload to Sagawa...\n');
@@ -205,7 +207,11 @@ new Promise((resolve, reject) => {
   .then(({ data }) => {
     if (!data.verified) {
       console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
-      resolve({ verified: data.verified, sagawaId });
+      Transaction.handeRefund({ transactionId, userId })
+      .then(() => {
+        resolve({ verified: data.verified, sagawaId });
+      })
+      .catch();
     } else {
       console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
       resolve({ data, sagawaId });
@@ -213,6 +219,11 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Upload Order to Sagawa.', error);
+    return Transaction.handeRefund({ transactionId, userId })
+    .then()
+    .catch();
+  })
+  .then((result) => {
     reject(error.message);
   });
 });
@@ -289,9 +300,12 @@ new Promise((resolve, reject) => {
   .then((results) => {  //eslint-disable-line
     if (!results[0].data.verified) {
       console.log('\nFAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
-      Transaction.handeRefund({ transactionId, userId })
-      .then()
-      .catch();
+      resolve({
+        verified: false,
+        userId,
+        sagawaId,
+        transactionId,
+      });
     } else {
       console.log('\nSUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 
