@@ -227,7 +227,7 @@ new Promise((resolve, reject) => { //eslint-disable-line
     })
     .then((updatedEmail) => {
       console.log('Updated sent emails for Email _id: ', updatedEmail._id);
-      return resolve(updatedEmail);
+      resolve(updatedEmail);
     })
     .catch((error) => {
       console.log(`Query was unsuccessful.  ERROR = ${error}`);
@@ -366,8 +366,8 @@ new Promise((resolve, reject) => {
   let messageBody = {};
 
   if (!isEmail(emailRequest.toEmailAddresses[0])) {
-    console.log(`FAILED: Send SES Email:"${emailRequest.toEmailAddresses[0]}" is not a valid email.  `);
-    reject(new Error(`FAILED: Send SES Email:"${emailRequest.toEmailAddresses[0]}" is not a valid email.`));
+    console.log(`FAILED: @Email.sendRawEmail: Send SES Email:"${emailRequest.toEmailAddresses[0]}" is not a valid email.  `);
+    reject(`FAILED: @Email.sendRawEmail: Send SES Email:"${emailRequest.toEmailAddresses[0]}" is not a valid email.`);
   } else {
     if (!emailRequest.bodyHtmlData) {
       messageBody = {
@@ -405,17 +405,15 @@ new Promise((resolve, reject) => {
         },
       },
     };
-    console.log('\nSending AWS ses email...');
-
     bbPromise.fromCallback(cb =>
       ses.sendEmail(sesEmailRequest, cb))
     .then((data) => {
-      console.log('\nSUCCEEDED: Send SES email: \n', data);
+      console.log('\nSUCCEEDED: @Email.sendRawEmail >>> ses.SendEmail: \n', data);
       resolve(data);
     })
     .catch((error) => {
-      console.log('\nFAILED: Send SES Email: ', error);
-      reject(new Error('\nFAILED: Send SES Email'));
+      console.log('\nFAILED: @Email.sendRawEmail: ', error);
+      reject('\nFAILED: @Email.sendRawEmail:');
     });
   }
 });
@@ -500,7 +498,7 @@ new Promise((resolve, reject) => {
     .then(() => {
       console.log('\nSUCCEEDED: @Email.notifiySlack');
 
-      reject(new Error('\nFAILED @Email.sendRawEmail'));
+      reject('\nFAILED @Email.sendRawEmail');
     })
     .catch(reject);
   }
