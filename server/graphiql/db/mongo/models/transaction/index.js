@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-console, import/newline-after-import */
+/* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
 import axios from 'axios';
 import uuid from 'uuid';
 import { Promise as bbPromise } from 'bluebird';
@@ -10,7 +10,7 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  composeAmount as ComposeAmount,
+  // composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
@@ -470,23 +470,29 @@ new Promise((resolve, reject) => {
 
   Transaction.findById(transactionId)
   .then((dbTransaction) => {
-    console.log('dbTransaction: ', dbTransaction);
-    return axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.tender.location_id}/transactions/${dbTransaction.square.tender.transaction_id}/refund`, {
-      idempotency_key: dbTransaction.square.idempotency_key,
-      tender_id: dbTransaction.square.tender.id,
-      reason: 'There was an issue during checkout after your card was charged.',
-      amount_money: {
-        amount: dbTransaction.square.tender.amount_money.amount,
-        currency: dbTransaction.square.tender.amount_money.currency,
-      },
-    }, {
-      headers: {
-        Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
-      },
-    });
+    if (!dbTransaction) {
+      console.log('FAILED: @Transaction.issueUserRefund >>> Transaction.findById: ', transactionId);
+      reject({
+        type: 'RefundNotSent',
+        message: 'The transaction id provided was not found in DB.',
+      });
+    } else {
+      return axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.tender.location_id}/transactions/${dbTransaction.square.tender.transaction_id}/refund`, {
+        idempotency_key: dbTransaction.square.idempotency_key,
+        tender_id: dbTransaction.square.tender.id,
+        reason: 'There was an issue during checkout after your card was charged.',
+        amount_money: {
+          amount: dbTransaction.square.tender.amount_money.amount,
+          currency: dbTransaction.square.tender.amount_money.currency,
+        },
+      }, {
+        headers: {
+          Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
+        },
+      });
+    }
   })
-  .then((response) => {
-    console.log('response: ', response.data);
+  .then((response) => { //eslint-disable-line
     if (response.status !== 200) {
       console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
       reject(response.data);
@@ -495,17 +501,9 @@ new Promise((resolve, reject) => {
 
       return Transaction.findByIdAndUpdate(transactionId, {
         $set: {
-          'square.refund.id': response.data.refund.id,
-          'square.refund.location_id': response.data.refund.location_id,
-          'square.refund.transaction_id': response.data.refund.transaction_id,
-          'square.refund.tender_id': response.data.refund.tender_id,
-          'square.refund.created_at': response.data.refund.created_at,
-          'square.refund.reason': response.data.refund.reason,
-          'square.refund.amount_money.amount': response.data.refund.amount_money.amount,
-          'square.refund.amount_money.currency': response.data.refund.amount_money.currency,
-          'square.refund.status': response.data.refund.status,
+          'square.refund': response.data.refund,
         },
-      });
+      }, { new: true });
     }
   })
   .then((savedDoc) => {
@@ -515,6 +513,49 @@ new Promise((resolve, reject) => {
   .catch((error) => {
     console.log('error: ', error);
     console.log('\nFAILED: Transaction.issueUserRefund: ', error);
+    reject(error);
+  });
+});
+
+transactionSchema.statics.handleRefund = ({ transactionId, userId }) =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Transaction.handleRefund');
+
+  Transaction.issueUserRefund(transactionId)
+  .then(() => {
+
+    resolve({
+      userId,
+      sagawaId,
+      transactionId,
+      verified: false,
+    });
+  })
+  .catch((error) => {
+    if (!!error.type) {
+      console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
+      return Email.sendPendingRefundEmailAndSlack({
+        staff: true,
+        user: true,
+        userId,
+      });
+    } else {
+      console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
+      reject(error);
+    }
+  })
+  .then((emailResult) => {
+    console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', emailResult);
+    resolve({
+      error: {
+        hard: false,
+        soft: true,
+        message: 'Was unable to issue Square Refund.  Staff has been notified via Email and Slack.  User has been notified via Email.',
+      },
+    });
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Transaction.handleRefund: ', error);
     reject(error);
   });
 });
