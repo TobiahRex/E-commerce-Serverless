@@ -13,6 +13,7 @@ import {
   generateSlackMsg as GenerateSlackMsg,
 } from './helpers';
 import Transaction from '../transaction';
+import User from '../user';
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
@@ -558,7 +559,28 @@ new Promise((resolve, reject) => {
     console.log('\nFAILED: Email.sendRefundIssued > missing required argument');
     reject('\nFAILED: Email.sendRefundIssued > missing required argument');
   } else {
-    
+    User.findById(userId)
+    .then((dbUser) => {
+      if (!dbUser) {
+        console.log('\nFAILED: Email.sendRefundIssued > Unable to find User.');
+        reject('\nFAILED: Email.sendRefundIssued > Unable to find User.');
+      } else {
+        return Promise.all([
+          Email.notifySlack(
+            process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
+            // TODO GenerateSlackMsg.sendRefundIssued(userId),
+          ),
+        ]);
+      }
+    })
+    .then((results) => {
+      console.log('\nSUCCEEDED: Email.sendRefundIssued >>> \n1)', results[0], '\n2)', results[1]);
+      resolve();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Email.sendRefundIssued: ', error);
+      reject('\nFAILED: Email.sendRefundIssued: ', error);
+    });
   }
 });
 
