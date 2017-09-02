@@ -47,7 +47,7 @@ new Promise((resolve, reject) => {
     contactDocument.messageId = response.MessageId;
 
     const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
-    const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Login as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their query.`;
+    const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Login as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their question.`;
     return Email.notifySlack(slackWebhook, slackMessage);
   })
   .then((slackResponse) => {

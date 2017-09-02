@@ -496,19 +496,29 @@ new Promise((resolve, reject) => {
   .then((response) => { //eslint-disable-line
     if (response.status !== 200) {
       console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
-      reject(response.data);
+      reject({
+        type: 'RefundNotSent',
+        message: response.data.errors,
+      });
     } else {
       console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
 
-      return Transaction.findByIdAndUpdate(transactionId, {
-        $set: {
-          'square.refund': response.data.refund,
-        },
-      }, { new: true });
+      return Promise.all([
+        Transaction.findByIdAndUpdate(transactionId, {
+          $set: {
+            'square.refund': response.data.refund,
+          },
+        }, { new: true }),
+        Email.sendEmailAndSlackRefundNotifiction({
+          staff: true,
+          user: true,
+          userId,
+        }),
+      ]);
     }
   })
-  .then((savedDoc) => {
-    console.log('savedDoc: ', savedDoc);
+  .then((results) => {
+    console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack');
     resolve(savedDoc);
   })
   .catch((error) => {
@@ -522,46 +532,49 @@ transactionSchema.statics.handleRefund = ({ transactionId, userId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.handleRefund');
 
-  Transaction.issueUserRefund(transactionId)
-  .then(() => {
-
-    resolve({
-      userId,
-      sagawaId,
-      transactionId,
-      verified: false,
-    });
-  })
-  .catch((error) => {
-    if (!!error.type) {
-
-      if (error.type === 'RefundNotSent') {
-        console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
-        return Email.sendPendingRefundEmailAndSlack({
-          staff: true,
-          user: true,
-          userId,
-        });
+  if (!userId || !transactionId) {
+    console.log('\nFAILED: Missing required arguments.');
+    reject('\nFAILED: Missing required arguments.');
+  } else {
+    Transaction
+    .issueUserRefund(transactionId)
+    .then(() => {
+      resolve({
+        userId,
+        transactionId,
+        verified: false,
+      });
+    })
+    .catch((error) => {
+      if (!!error.type) {
+        if (error.type === 'RefundNotSent') {
+          console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
+          return Email.sendEmailAndSlackPendingRefundNotification({
+            staff: true,
+            user: true,
+            userId,
+          });
+        }
+      } else {
+        console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
+        reject(error);
       }
-    } else {
-      console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
+    })
+    .then((emailResult) => {
+      console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', emailResult);
+      resolve({
+        error: {
+          hard: false,
+          soft: true,
+          message: 'Was unable to issue Square Refund.  Staff has been notified via Email and Slack.  User has been notified via Email.',
+        },
+      });
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Transaction.handleRefund: ', error);
       reject(error);
-    }
-  })
-  .then((emailResult) => {
-    console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', emailResult);
-    resolve({
-      error: {
-        hard: false,
-        soft: true,
-        message: 'Was unable to issue Square Refund.  Staff has been notified via Email and Slack.  User has been notified via Email.',
-      },
     });
-  })
-  .catch((error) => {
-    console.log('\nFAILED: Transaction.handleRefund: ', error);
-    reject(error);
-  });
+  }
 });
 
 const Transaction = db.model('Transaction', transactionSchema);
