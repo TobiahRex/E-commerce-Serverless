@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-console */
+/* eslint-disable no-use-before-define, no-console, consistent-return */
 import { Promise as bbPromise } from 'bluebird';
 import axios from 'axios';
 import moment from 'moment';
@@ -145,7 +145,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Handle new Transaction on Sagawa Document: ', error);
-    reject(new Error('\nFAILED: Handle new Transaction on Sagawa Document'));
+    reject('\nFAILED: Handle new Transaction on Sagawa Document');
   });
 });
 
@@ -228,12 +228,13 @@ new Promise((resolve, reject) => {
         console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
         Transaction.handeRefund({ transactionId, userId })
         .then(() => {
-          resolve({
-            sagawaId,
-            verified: data.verified,
-          });
+          console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = SUCCEEEDED >>> !data.verified >>> Transaction.handleRefund');
+          resolve({ sagawaId, verified: false });
         })
-        .catch();
+        .catch((error) => {
+          console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post = FAILED >>> !data.verified >>> Transaction.handleRefund: ', error);
+          resolve({ sagawaId, verified: false });
+        });
       } else {
         console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
         resolve({
