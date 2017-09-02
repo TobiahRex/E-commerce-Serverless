@@ -439,12 +439,12 @@ new Promise((resolve, reject) => {
 
   axios.post(slackWebhook, JSON.stringify(options))
   .then((response) => {
-    console.log('\nSUCCEEDED: Sent slack webhook: \n', response.data);
+    console.log('\nSUCCEEDED: Email.notifySlack: \n', response.data);
     resolve(response.data);
   })
   .catch((error) => {
-    console.log('\nFAILED: Send slack webhook', error);
-    reject('\nFAILED: Send slack webhook');
+    console.log('\nFAILED: Email.notifySlack', error);
+    reject('\nFAILED: Email.notifySlack');
   });
 });
 
@@ -547,6 +547,18 @@ new Promise((resolve, reject) => {
       reject(error.message);
     })
     .catch(reject);
+  }
+});
+
+emailSchema.statics.sendRefundIssued = ({ staff, user, userId }) =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Email.sendRefundIssued\n');
+
+  if (!userId) {
+    console.log('\nFAILED: Email.sendRefundIssued > missing required argument');
+    reject('\nFAILED: Email.sendRefundIssued > missing required argument');
+  } else {
+    
   }
 });
 
