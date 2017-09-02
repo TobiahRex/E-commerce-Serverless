@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
 import axios from 'axios';
 import uuid from 'uuid';
+import moment from 'moment';
 import { Promise as bbPromise } from 'bluebird';
 import db from '../../connection';
 import User from '../user';
@@ -509,14 +510,19 @@ new Promise((resolve, reject) => {
             'square.refund': response.data.refund,
           },
         }, { new: true }),
-        Email.sendRefundIssued({
+        Email.refundNotification({
           userId,
+          type: 'RefundIssued',
           message: {
             user: {
-
+              subject: 'Shipping Problem - You have been issued a refund.',
+              replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
+              body: `${moment().format('ll')} - While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.  Due to this fact, we have refunded you the total amount of the order while our Developers investigate the issue and find a solution.  We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact once we\'re confident the issue has been resolved.  If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  We will provide updates here regularly as we learn more.`,
             },
             staff: {
-
+              subject: `ERROR 🛑 - User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+              replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
+              body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.  Please investigate ASAP:  You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
             },
           },
         }),
@@ -554,10 +560,21 @@ new Promise((resolve, reject) => {
       if (!!error.type) {
         if (error.type === 'RefundNotSent') {
           console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
-          return Email.sendRefundRequired({
-            staff: true,
-            user: true,
+          return Email.refundNotification({
             userId,
+            type: 'RefundRequired',
+            message: {
+              user: {
+                subject: 'Shipping Problem.',
+                replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
+                body: `${moment().format('ll')} - While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.  Due to this fact, we have refunded you the total amount of the order while our Developers investigate the issue and find a solution.  We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact once we\'re confident the issue has been resolved.  If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  We will provide updates here regularly as we learn more.`,
+              },
+              staff: {
+                subject: `ERROR 🛑 - User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+                replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
+                body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.  Please investigate ASAP:  You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
+              },
+            },
           });
         }
       } else {

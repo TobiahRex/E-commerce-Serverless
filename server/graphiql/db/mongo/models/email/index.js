@@ -551,7 +551,7 @@ new Promise((resolve, reject) => {
   }
 });
 
-emailSchema.statics.sendRefundIssued = reqBody =>
+emailSchema.statics.refundNotification = reqBody =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRefundIssued\n');
 
@@ -585,7 +585,7 @@ new Promise((resolve, reject) => {
 
           const {
             body,
-            title,
+            subject,
             replyTo,
           } = message[key];
           const promise = Email.sendRawEmail({
@@ -594,7 +594,7 @@ new Promise((resolve, reject) => {
             replyToAddress: [replyTo],
             bodyTextData: body,
             bodyTextCharset: 'utf8',
-            subjectData: title,
+            subjectData: subject,
             subjectCharset: 'utf8',
           });
           return promise;
@@ -620,6 +620,7 @@ new Promise((resolve, reject) => {
     });
   }
 });
+
 
 const Email = db.model('Email', emailSchema);
 export default Email;
