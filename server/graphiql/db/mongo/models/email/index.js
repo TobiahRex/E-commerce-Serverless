@@ -204,28 +204,26 @@ new Promise((resolve, reject) => { //eslint-disable-line
   console.log('\n\n@Email.findSentEmailAndUpdate\n');
 
   if (!msgId || !status) {
-    reject(new Error(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `));
+    console.log(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
+    reject(`Missing required arguments. "msgId": ${msgId || 'undefined'}. "status": ${status || 'undefined'}. `);
   } else {
-    console.log(`Querying Mongo for Email to update.  "messageId": ${msgId}.  `);
-
-    return Email.findOne({ 'sentEmails.messageId': msgId })
+    Email.findOne({ 'sentEmails.messageId': msgId })
     .exec()
     .then((dbEmail) => {
       if (!dbEmail) {
         console.log('Could not find any Sent emails with MessageId: ', msgId);
-        return reject(new Error(`Could not find sent email with id# ${msgId}.`));
+        reject(`Could not find sent email with id# ${msgId}.`);
+      } else {
+        console.log('\nFound Email with MessageID: ', msgId);
+
+        const emailsToSave = dbEmail.sentEmails.filter(sent => sent.messageId !== msgId);
+
+        dbEmail.sentEmails = [...emailsToSave, {
+          messageId: msgId,
+          sesStatus: status,
+        }];
+        return dbEmail.save({ validateBeforeSave: true });
       }
-      console.log('\nFound Email with MessageID: ', msgId);
-
-      const emailsToSave = dbEmail.sentEmails
-      .filter(sent => sent.messageId !== msgId);
-
-      dbEmail.sentEmails = [...emailsToSave, {
-        messageId: msgId,
-        sesStatus: status,
-      }];
-      console.log('\nSaving updated Email status...  ');
-      return dbEmail.save({ new: true });
     })
     .then((updatedEmail) => {
       console.log('Updated sent emails for Email _id: ', updatedEmail._id);
@@ -233,7 +231,7 @@ new Promise((resolve, reject) => { //eslint-disable-line
     })
     .catch((error) => {
       console.log(`Query was unsuccessful.  ERROR = ${error}`);
-      return reject(new Error(`Query was unsuccessful.  ERROR = ${error}`));
+      reject(`Query was unsuccessful.  ERROR = ${error}`);
     });
   }
 });
