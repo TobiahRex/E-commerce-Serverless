@@ -510,9 +510,15 @@ new Promise((resolve, reject) => {
           },
         }, { new: true }),
         Email.sendRefundIssued({
-          staff: true,
-          user: true,
           userId,
+          message: {
+            user: {
+
+            },
+            staff: {
+
+            },
+          },
         }),
       ]);
     }

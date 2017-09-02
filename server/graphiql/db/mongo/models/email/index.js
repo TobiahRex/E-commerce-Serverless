@@ -556,8 +556,6 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRefundIssued\n');
 
   const {
-    staff,
-    user,
     userId,
     message,
   } = reqBody;
@@ -566,7 +564,8 @@ new Promise((resolve, reject) => {
     console.log('\nFAILED: Email.sendRefundIssued > missing required argument');
     reject('\nFAILED: Email.sendRefundIssued > missing required argument');
   } else {
-    User.findById(userId)
+    User
+    .findById(userId)
     .then((dbUser) => {
       if (!dbUser) {
         console.log('\nFAILED: Email.sendRefundIssued > Unable to find User.');
@@ -612,7 +611,7 @@ new Promise((resolve, reject) => {
       }
     })
     .then((results) => {
-      console.log('\nSUCCEEDED: Email.sendRefundIssued >>> \n1)', results[0], '\n2)', results[1]);
+      console.log('\nSUCCEEDED: Email.sendRefundIssued >>> \n1)Send emails to respective party(ies): ', results[0], '\n2)Send Slack notification - "error_notifications": ', results[1]);
       resolve();
     })
     .catch((error) => {
