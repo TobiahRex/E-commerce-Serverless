@@ -137,52 +137,54 @@ new Promise((resolve, reject) => {
 
   if (!isEmail(to)) {
     console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-    return reject(new Error(`FAILED: Send SES Email:"${to}" is not a valid email.  `));
+    reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+  } else {
+    let ToAddresses;
+    if (Array.isArray(to)) ToAddresses = [...to];
+    else ToAddresses = to;
+
+    const emailRequest = {
+      Destination: {
+        ToAddresses,
+      },
+      Source: emailDoc.replyToAddress,
+      ReplyToAddresses: [emailDoc.replyToAddress],
+      Message: {
+        Body: {
+          Html: {
+            Data: htmlBody,
+            Charset: emailDoc.bodyHtmlCharset,
+          },
+          Text: {
+            Data: emailDoc.bodyTextData,
+            Charset: emailDoc.bodyTextCharset,
+          },
+        },
+        Subject: {
+          Data: emailDoc.subjectData,
+          Charset: emailDoc.subjectCharset,
+        },
+      },
+    };
+    return bbPromise
+    .fromCallback(cb => ses.sendEmail(emailRequest, cb))
+    .then((data) => {
+      console.log('\nSUCCEEDED: Send SES email: \n', data,
+      '\nSaving record of email to MONGO Email collection...');
+
+      emailDoc.sentEmails.push({ messageId: data.MessageId });
+
+      return emailDoc.save({ new: true });
+    })
+    .then((savedEmail) => {
+      console.log('\nSUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
+      resolve();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Send Email and save Message Id in Email Template: ', error);
+      reject('\nFAILED: Send Email and save Message Id in Email Template.');
+    });
   }
-
-  const emailRequest = {
-    Destination: {
-      ToAddresses: [to],
-    },
-    Source: emailDoc.replyToAddress,
-    ReplyToAddresses: [emailDoc.replyToAddress],
-    Message: {
-      Body: {
-        Html: {
-          Data: htmlBody,
-          Charset: emailDoc.bodyHtmlCharset,
-        },
-        Text: {
-          Data: emailDoc.bodyTextData,
-          Charset: emailDoc.bodyTextCharset,
-        },
-      },
-      Subject: {
-        Data: emailDoc.subjectData,
-        Charset: emailDoc.subjectCharset,
-      },
-    },
-  };
-  console.log('\nSending AWS ses email...');
-
-  return bbPromise
-  .fromCallback(cb => ses.sendEmail(emailRequest, cb))
-  .then((data) => {
-    console.log('\nSUCCEEDED: Send SES email: \n', data,
-    '\nSaving record of email to MONGO Email collection...');
-
-    emailDoc.sentEmails.push({ messageId: data.MessageId });
-
-    return emailDoc.save({ new: true });
-  })
-  .then((savedEmail) => {
-    console.log('\nSUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
-    resolve();
-  })
-  .catch((error) => {
-    console.log('\nFAILED: Send Email and save Message Id in Email Template: ', error);
-    reject(new Error('\nFAILED: Send Email and save Message Id in Email Template.'));
-  });
 });
 
 /**
