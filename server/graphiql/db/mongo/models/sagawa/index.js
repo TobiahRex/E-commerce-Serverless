@@ -289,19 +289,9 @@ new Promise((resolve, reject) => {
   .then((results) => {  //eslint-disable-line
     if (!results[0].data.verified) {
       console.log('\nFAILED: Order was uploaded, but was not given required tracking information receipt: ', results[0].data);
-      Transaction.issueUserRefund(transactionId)
-      .then(() => {
-
-        resolve({
-          userId,
-          sagawaId,
-          transactionId,
-          verified: false,
-        });
-      })
-      .catch((error) => {
-
-      });
+      Transaction.handeRefund({ transactionId, userId })
+      .then()
+      .catch();
     } else {
       console.log('\nSUCCEEDED: 1)Upload Order to Sagawa.\n', results[0], '\n 2) Fetch Transaction Doc.\n', results[1]);
 

@@ -472,7 +472,10 @@ new Promise((resolve, reject) => {
   .then((dbTransaction) => {
     if (!dbTransaction) {
       console.log('FAILED: @Transaction.issueUserRefund >>> Transaction.findById: ', transactionId);
-      reject('Unable to issue refund - transactionId was not found in database.');
+      reject({
+        type: 'RefundNotSent',
+        message: 'The transaction id provided was not found in DB.',
+      });
     } else {
       return axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.tender.location_id}/transactions/${dbTransaction.square.tender.transaction_id}/refund`, {
         idempotency_key: dbTransaction.square.idempotency_key,
@@ -510,6 +513,49 @@ new Promise((resolve, reject) => {
   .catch((error) => {
     console.log('error: ', error);
     console.log('\nFAILED: Transaction.issueUserRefund: ', error);
+    reject(error);
+  });
+});
+
+transactionSchema.statics.handleRefund = ({ transactionId, userId }) =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Transaction.handleRefund');
+
+  Transaction.issueUserRefund(transactionId)
+  .then(() => {
+
+    resolve({
+      userId,
+      sagawaId,
+      transactionId,
+      verified: false,
+    });
+  })
+  .catch((error) => {
+    if (!!error.type) {
+      console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
+      return Email.sendPendingRefundEmailAndSlack({
+        staff: true,
+        user: true,
+        userId,
+      });
+    } else {
+      console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
+      reject(error);
+    }
+  })
+  .then((emailResult) => {
+    console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', emailResult);
+    resolve({
+      error: {
+        hard: false,
+        soft: true,
+        message: 'Was unable to issue Square Refund.  Staff has been notified via Email and Slack.  User has been notified via Email.',
+      },
+    });
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Transaction.handleRefund: ', error);
     reject(error);
   });
 });
