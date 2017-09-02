@@ -581,15 +581,15 @@ new Promise((resolve, reject) => {
 
           let toEmailAddresses;
 
-          if (key === 'staff') toEmailAddresses = [dbUser.contactInfo.email];
-          if (key === 'user') toEmailAddresses = [cto, ceo, cdo];
+          if (key === 'staff') toEmailAddresses = [cto, ceo, cdo];
+          if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
 
           const {
             body,
             title,
             replyTo,
           } = message[key];
-          return Email.sendRawEmail({
+          const promise = Email.sendRawEmail({
             sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
             toEmailAddresses,
             replyToAddress: [replyTo],
@@ -598,16 +598,12 @@ new Promise((resolve, reject) => {
             subjectData: title,
             subjectCharset: 'utf8',
           });
+          return promise;
         });
 
 
         return Promise.all([
-          Email.sendRawEmail(
-
-          ),
-          Email.sendRawEmail(
-
-          ),
+          ...promises,
           Email.notifySlack(
             process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
             // TODO GenerateSlackMsg.sendRefundIssued(userId),
