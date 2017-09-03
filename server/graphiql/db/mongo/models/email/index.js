@@ -11,6 +11,7 @@ import {
   createEmailProductList as CreateEmailProductList,
   generateEmailBody as GenerateEmailBody,
   generateSlackMsg as GenerateSlackMsg,
+  getCurrencyType as GetCurrencyType,
 } from './helpers';
 import Transaction from '../transaction';
 import User from '../user';
@@ -294,7 +295,8 @@ new Promise((resolve, reject) => {
     .replace(/(TRANSACTION_ID_HERE)+/g, transaction._id)
     .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('YYYY/MM/DD'))
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
-    .replace(/(TOTAL_PAID_HERE)+/g, Number(transaction.square.charge.amount).toFixed(2))
+    .replace(/(CURRENCY_TYPE_HERE)+/g, GetCurrencyType(transaction.square.tender.amount_money.currency))
+    .replace(/(TOTAL_PAID_HERE)+/g, `${transaction.square.tender.amount_money.amount.slice(0, 2)}.${transaction.square.tender.amount_money.amount.slice(2, 4)}`)
     .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
     .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
     .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
