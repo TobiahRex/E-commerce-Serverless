@@ -296,7 +296,7 @@ new Promise((resolve, reject) => {
     .replace(/(ORDER_PURCHASE_DATE_HERE)+/g, moment().format('YYYY/MM/DD'))
     .replace(/(ORDER_SHIPMENT_DATE_HERE)+/g, sagawa.shippingAddress.shipdate)
     .replace(/(CURRENCY_TYPE_HERE)+/g, GetCurrencyType(transaction.square.tender.amount_money.currency))
-    .replace(/(TOTAL_PAID_HERE)+/g, `${transaction.square.tender.amount_money.amount.slice(0, 2)}.${transaction.square.tender.amount_money.amount.slice(2, 4)}`)
+    .replace(/(TOTAL_PAID_HERE)+/g, `${String(transaction.square.tender.amount_money.amount).slice(0, 2)}.${String(transaction.square.tender.amount_money.amount).slice(2, 4)}`)
     .replace(/(SHIP_FULL_NAME_HERE)+/g, sagawa.shippingAddress.customerName)
     .replace(/(SHIP_ADDRESS_LINE_1_HERE)+/g, sagawa.shippingAddress.jpaddress1)
     .replace(/(SHIP_ADDRESS_LINE_2_HERE)+/g, sagawa.shippingAddress.jpaddress2)
