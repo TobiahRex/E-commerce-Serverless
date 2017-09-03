@@ -142,7 +142,9 @@ function OrderSummary({
                   </li>
                   <li className="list-value--order-total">
                     <p>
-                      <FontAwesome name="usd" />{'\u00A0'}{grandTotal}
+                      <FontAwesome name="usd" />
+                      {'\u00A0'}
+                      {`${String(grandTotal).splice(0, 2)}.${String(grandTotal).splice(2, 4)}`}
                     </p>
                   </li>
                 </ul>
@@ -155,7 +157,7 @@ function OrderSummary({
   );
 }
 
-const { string, arrayOf, object, objectOf, any } = PropTypes;
+const { string, arrayOf, object, objectOf, any, number } = PropTypes;
 OrderSummary.propTypes = {
   shippingStatus: string.isRequired,
   trackingLink: string.isRequired,
@@ -163,7 +165,7 @@ OrderSummary.propTypes = {
   orderProducts: arrayOf(object).isRequired,
   subTotal: string.isRequired,
   taxes: string.isRequired,
-  grandTotal: string.isRequired,
+  grandTotal: number.isRequired,
   discount: objectOf(any).isRequired,
   jpyFxRate: string.isRequired,
 };
