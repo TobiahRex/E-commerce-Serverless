@@ -22,13 +22,16 @@ function OrderHeader({
       <div className="header--info">
         <div className="header__price">
           <p>
-            Total Paid: <FontAwesome name="usd" />{'\u00A0'}{paidTotal.amount}
+            Total Paid:
+            <FontAwesome name={paidTotal.currency} />
+            {'\u00A0'}
+            {`${String(paidTotal.amount).splice(0, 2)}.${String(paidTotal.amount).splice(2, 4)}`}
           </p>
-          <p>Estimated Delivery:{deliveryDate}</p>
         </div>
         <div className="header__tracking">
           <p>Tracking #: {trackingId}</p>
           <p>Order #: {orderId}</p>
+          <p>Estimated Delivery:{deliveryDate}</p>
         </div>
       </div>
     </div>
