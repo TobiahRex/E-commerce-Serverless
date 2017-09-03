@@ -532,7 +532,7 @@ new Promise((resolve, reject) => {
     } = process.env;
 
     const emailRequest = {
-      sourceEmail: 'admin@nj2jp.com',
+      sourceEmail: 'NJ2JP <admin@nj2jp.com>',
       toEmailAddresses: [cto],
       // toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: [`${dbReport.mainTitle} <admin@nj2jp.com>`],

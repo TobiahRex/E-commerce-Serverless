@@ -70,7 +70,7 @@ function cronJob_body(reportData) {
   *----------------------------
   `;
   return a;
-  })}`;
+  }, '')}`;
   return message;
 }
 

@@ -9,7 +9,7 @@ import {
 
 reportSchema.statics.createAndSendCronJobReportToStaff = reportBody =>
 new Promise((resolve, reject) => {
-  console.log('\n\nReport.createAndSendCronJobReportToStafff\n');
+  console.log('\n\n@Report.createAndSendCronJobReportToStafff\n');
 
   bbPromise.fromCallback(cb => Report.create(reportBody, cb))
   .then((dbReport) => {
@@ -19,7 +19,7 @@ new Promise((resolve, reject) => {
       Email.sendReportToStaff(dbReport),
       Email.notifySlack(
         process.env.SLACK_GENERAL_NOTIFICATION_WEBHOOK,
-        GenerateSlackMsg.staffGeneralReport(reportBody),
+        GenerateSlackMsg.staffGeneralReport(dbReport),
       ),
     ]);
   })

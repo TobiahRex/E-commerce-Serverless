@@ -558,19 +558,22 @@ new Promise((resolve, reject) => {
   let reportType = '';
 
   bbPromise.fromCallback(cb =>
-    Sagawa.find({ status: 'pending' }, cb).exec())
+    Sagawa
+    .find({ status: 'pending' }, cb)
+    .exec(),
+  )
   .then((dbResults) => {  //eslint-disable-line
     if (!dbResults.length) {
       reportType = 'cronJobEmpty';
       Report.createAndSendCronJobReportToStaff({
-        reportType: 'cronJobSummary',
+        reportType,
         mainTitle: 'NJ2JP CronJob REPORT 📠 ',
-        subTitle: `Order Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
+        subTitle: `Cron Job Upload Summary | ${moment().subtract(3, 'd').format('ll')} to ${moment().format('ll')}`,
         headerBlurb: 'There was no orders to upload.',
         data: {
-          total: 0,
-          successful: 0,
-          failed: 0,
+          total: '',
+          successful: '',
+          failed: '',
           reports: [],
         },
       })
@@ -584,7 +587,6 @@ new Promise((resolve, reject) => {
       });
     } else {
       console.log(`\nFound ${dbResults.length} docs waiting to be uploaded.\n`);
-
       const reqObjs = dbResults.map(dbDoc => ({
         sagawaId: dbDoc._id,
         userId: dbDoc.userId,
@@ -593,27 +595,30 @@ new Promise((resolve, reject) => {
       return Sagawa.batchUploadOrders(reqObjs);
     }
   })
-  .then(({ total, successful, failed, reports }) => {
-    if (failed.length) {
-      reportType = 'createAndSendErrorReportToStaff';
-      return Report.createAndSendErrorReportToStaff({
-        reportType: 'cronJobError',
-        mainTitle: 'ERROR ⚠️',
-        subTitle: 'Cron Job Upload Failure 🛑',
-        headerBlurb: 'There was an error while trying to upload an order to Sagawa.  Immediate attention from the development team is REQUIRED!',
-        data: { total, successful, failed, reports },
-      });
-    }
-    reportType = 'createAndSendCronJobReportToStaff';
-    console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Sagawa.batchUploadOrders.');
+  .then((results) => {
+    if (results) {
+      if (results.failed.length) {
+        reportType = 'createAndSendErrorReportToStaff';
+        return Report.createAndSendErrorReportToStaff({
+          reportType: 'cronJobError',
+          mainTitle: 'ERROR ⚠️',
+          subTitle: 'Cron Job Upload Failure 🛑',
+          headerBlurb: 'There was an error while trying to upload an order to Sagawa.  Immediate attention from the development team is REQUIRED!',
+          data: { ...results },
+        });
+      } else { // eslint-disable-line
+        reportType = 'createAndSendCronJobReportToStaff';
+        console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Sagawa.batchUploadOrders.');
 
-    return Report.createAndSendCronJobReportToStaff({
-      reportType: 'cronJobSummary',
-      mainTitle: 'REPORT ✉️',
-      subTitle: 'Cron Job Upload Summary 💵',
-      headerBlurb: 'Congratulations! We\'ve successfully uploaded all weekend orders to Sagawa.',
-      data: { total, successful, failed, reports },
-    });
+        return Report.createAndSendCronJobReportToStaff({
+          reportType: 'cronJobSummary',
+          mainTitle: 'REPORT ✉️',
+          subTitle: 'Cron Job Upload Summary 💵',
+          headerBlurb: 'Congratulations! We\'ve successfully uploaded all weekend orders to Sagawa.',
+          data: { ...results },
+        });
+      }
+    }
   })
   .then(() => {
     console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.', reportType);
