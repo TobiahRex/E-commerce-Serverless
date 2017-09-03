@@ -399,7 +399,7 @@ new Promise((resolve, reject) => {
       }, dbEmail),
       Transaction.findByIdAndUpdate(transactionDoc._id, {
         $set: {
-          trackingLink: `'${trackingLink}'`,
+          trackingLink,
           [emailType]: emailBody,
         },
       }, { new: true }),

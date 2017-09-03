@@ -144,7 +144,7 @@ function OrderSummary({
                     <p>
                       <FontAwesome name="usd" />
                       {'\u00A0'}
-                      {`${String(grandTotal).splice(0, 2)}.${String(grandTotal).splice(2, 4)}`}
+                      {`${String(grandTotal).slice(0, 2)}.${String(grandTotal).slice(2, 4)}`}
                     </p>
                   </li>
                 </ul>

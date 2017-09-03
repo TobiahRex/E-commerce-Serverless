@@ -555,7 +555,7 @@ new Promise((resolve, reject) => {
 
 emailSchema.statics.refundNotification = reqBody =>
 new Promise((resolve, reject) => {
-  console.log('\n\n@Email.sendRefundIssued\n');
+  console.log('\n\n@Email.refundNotification\n');
 
   const {
     userId,
@@ -576,7 +576,7 @@ new Promise((resolve, reject) => {
         console.log('\nFAILED: Email.sendRefundIssued > Unable to find User.');
         reject('\nFAILED: Email.sendRefundIssued > Unable to find User.');
       } else {
-        const dbTransaction = dbUser.shopping.transactions.filter(({ sagawa }) => sagawaId !== sagawa);
+        const dbTransaction = dbUser.shopping.transactions.filter(({ sagawa }) => sagawaId !== sagawa)[0];
 
         let promises = [],
           slackMsg = '';
@@ -630,12 +630,12 @@ new Promise((resolve, reject) => {
       }
     })
     .then((results) => {
-      console.log('\nSUCCEEDED: Email.sendRefundIssued >>> \n1)Send emails to respective party(ies): ', results[0], '\n2)Send Slack notification - "error_notifications": ', results[1]);
+      console.log('\nSUCCEEDED: Email.refundNotification >>> \n1)Send emails to respective party(ies): ', results[0], '\n2)Send Slack notification - "error_notifications": ', results[1]);
       resolve();
     })
     .catch((error) => {
-      console.log('\nFAILED: Email.sendRefundIssued: ', error);
-      reject('\nFAILED: Email.sendRefundIssued: ', error);
+      console.log('\nFAILED: Email.refundNotification: ', error);
+      reject('\nFAILED: Email.refundNotification: ', error);
     });
   }
 });
