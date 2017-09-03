@@ -520,7 +520,7 @@ new Promise((resolve, reject) => {
 emailSchema.statics.sendReportToStaff = dbReport =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendReportToStaff\n');
-
+  console.log('dbReport: ', dbReport);
   if (!dbReport) {
     console.log('Missing required arguments.');
     reject('Missing required arguments');
@@ -533,7 +533,8 @@ new Promise((resolve, reject) => {
 
     const emailRequest = {
       sourceEmail: 'admin@nj2jp.com',
-      toEmailAddresses: [cto, ceo, cdo],
+      toEmailAddresses: [cto],
+      // toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: [`${dbReport.mainTitle} <admin@nj2jp.com>`],
       bodyTextData: GenerateEmailBody.staffGeneralReport(dbReport),
       bodyTextCharset: 'utf8',

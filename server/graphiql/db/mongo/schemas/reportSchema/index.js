@@ -15,7 +15,7 @@ const reportSchema = new Schema({
     default: '',
     required: true,
   },
-  created: { type: Date, default: GetDate },
+  created: { type: String, default: GetDate },
   messageId: { type: String, default: '' },
   mainTitle: { type: String, default: '', required: true },
   subTitle: { type: String, default: '', required: true },

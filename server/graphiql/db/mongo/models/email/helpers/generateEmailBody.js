@@ -1,6 +1,6 @@
 /* eslint-disable indent, no-multi-spaces */
-const generateEmailBody = {
-  staffErrorReport: (reportDoc) => {
+export default class GenerateEmailBody {
+  staffErrorReport = (reportDoc) => {
     const bodyTextData = `
     *----------------------------------------------------*
             ${reportDoc.mainTitle} - ${reportDoc.subTitle}
@@ -20,8 +20,9 @@ const generateEmailBody = {
     ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.cronJob_body(reportDoc.data)}
     `;
     return bodyTextData;
-  },
-  staffGeneralReport: (reportDoc) => {
+  }
+
+  staffGeneralReport = (reportDoc) => {
     const bodyTextData = `
     *----------------------------------------------------*
             ${reportDoc.mainTitle} - ${reportDoc.subTitle}
@@ -41,8 +42,9 @@ const generateEmailBody = {
     ${reportDoc.reportType === 'cronJobEmpty' ? 'There are no upload details to show.' : this.cronJob_body(reportDoc.data)}
     `;
     return bodyTextData;
-  },
-  genericReport_body: (reportData) => {
+  }
+
+  genericReport_body = (reportData) => {
     const message = reportData.reports.reduce((a, n, i) => {
     a += `
     ${i + 1})----------------
@@ -52,8 +54,9 @@ const generateEmailBody = {
     return a;
     }, '');
     return message;
-  },
-  cronJob_body: (reportData) => {
+  }
+
+  cronJob_body = (reportData) => {
     const message = `
     ${reportData.reports.reduce((a, n, i) => {
     a += `
@@ -69,7 +72,5 @@ const generateEmailBody = {
     return a;
     })}`;
     return message;
-  },
-};
-
-export default generateEmailBody;
+  }
+}

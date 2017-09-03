@@ -10,16 +10,12 @@ function OrderHeader({
   paidTotal,
   deliveryDate,
 }) {
-  let amount,
-    currency;
-
+  let amount;
   if (paidTotal.currency === 'JPY') {
     amount = paidTotal.amount;
-    currency = '¥';
   }
   if (paidTotal.currency === 'USD') {
     amount = `${String(paidTotal.amount).slice(0, 2)}.${String(paidTotal.amount).slice(2, 4)}`;
-    currency = '$';
   }
 
   return (
@@ -37,7 +33,7 @@ function OrderHeader({
             Total Paid:
             <FontAwesome name={paidTotal.currency.toLowerCase()} />
             {'\u00A0'}
-            {`${String(paidTotal.amount).slice(0, 2)}.${String(paidTotal.amount).slice(2, 4)}`}
+            {amount}
           </p>
         </div>
         <div className="header__tracking">
