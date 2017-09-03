@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-console, import/newline-after-import */
+/* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return */
 import AWS from 'aws-sdk';
 import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
@@ -358,22 +358,22 @@ export default (db) => {
   *
   * @return {object} - Promise: resolve or reject response.
   */
-  emailSchema.statics.sendRawEmail = (emailRequest) =>
+  emailSchema.statics.sendRawEmail = emailRequest =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Email.sendRawEmail\n');
     let messageBody = {};
 
     if (!isEmail(emailRequest.toEmailAddresses[0])) {
-      console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
-      reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+      console.log('\nFAILED: Missing required arguments');
+      reject('\nFAILED: Missing required arguments');
     } else {
       if (!emailRequest.bodyHtmlData) {
         messageBody = {
           Text: {
             Data: emailRequest.bodyTextData || '',
             Charset: emailRequest.bodyTextCharset || 'utf8',
-          }
-        }
+          },
+        };
       } else {
         messageBody = {
           Html: {
@@ -384,7 +384,7 @@ export default (db) => {
             Data: emailRequest.bodyTextData || '',
             Charset: emailRequest.bodyTextCharset || 'utf8',
           },
-        }
+        };
       }
 
       const sesEmailRequest = {

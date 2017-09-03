@@ -170,7 +170,7 @@ new Promise((resolve, reject) => {
   })
   .then((result) => {
     console.log('\nSUCCEEDED: @Square.chargeCard >>> Transaction.findByIdAndUpdate: ', result);
-    // resolve({ status: 200 });
+    resolve({ status: 200 });
   })
   .catch((error) => {
     console.log('\nFAILED: @Transaction.squareChargeCard: ', error.response.data.errors);

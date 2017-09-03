@@ -16,5 +16,17 @@ router.post('/createEmail', (req, res) => {
     });
 });
 
+router.post('/refundNotification', (req, res) => {
+  Email.refundNotification(req.body)
+  .then((response) => {
+    console.log('\nSUCCEEDED: Upload Email and Send Invoice Email.');
+    res.status(200).send(response);
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Upload Email and Send Invoice Email: ', error);
+    res.status(400).send(error);
+  });
+});
+
 
 export default router;

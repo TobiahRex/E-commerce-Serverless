@@ -98,7 +98,6 @@ new Promise((resolve, reject) => {
     reject(new Error('\nFAILED: Create new Sagwa Document.'));
   });
 });
-
 /**
 * Function: "handleNewTransaction";
 * Called by the Transaction.submitFinalOrder function as a follow-on action.  Receives the orderInfo object.  Querying for all products in the users cart at the time of purchase.  Next, it maps the product information to the cart productId's, and then generates an inidividual item object for each product that will be used in a follow on action for dynamically generating XML strings used in the Sagawa.uploadOrder process.  Creates a new Sagawa document with this "udpatedCart" and all the shipping data.  Resolves with the new Sagawa document.
@@ -148,7 +147,37 @@ new Promise((resolve, reject) => {
     reject('\nFAILED: Handle new Transaction on Sagawa Document');
   });
 });
+/**
+* Function: "findSagawaAndUpdate"
+* Need to update the existing sagawa document with awbId and referenceId.
+* This method is called after sending sagawa upload to sagawa shipment endpoint.
+*
+* @param {objectId} _id - documentId of sagawa document.
+* @param {string} awbId - awbId(trackingId) of the uploaded sagawa order.
+* @param {string} referenceId - referenceId of the uploaded sagawa order.
 
+* @return {object} Promise resolved with updated Sagawa Document.
+*/
+sagawaSchema.statics.findSagawaAndUpdate = ({ sagawaId, awbId, referenceId }) =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.findSagawaAndUpdate\n');
+  console.log('sagawaId: ', sagawaId, '\nawbId: ', awbId, '\nreferenceId: ', referenceId);
+  Sagawa.findByIdAndUpdate(sagawaId, {
+    $set: {
+      'shippingAddress.awbId': awbId,
+      'shippingAddress.referenceId': referenceId,
+      uploadStatus: 'uploaded',
+    },
+  }, { new: true })
+  .then((updatedDoc) => {
+    console.log('\nSUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
+    resolve(updatedDoc);
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
+    reject(new Error('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.'));
+  });
+});
 /**
 * Function: "uploadOrder"
 * Generates and sends customer's order details via XML HTTP reqeuest to Sagawa API.  This function call initiates the shipping fullfillment process to the customer.
@@ -266,39 +295,6 @@ new Promise((resolve, reject) => {
     });
   }
 });
-
-/**
-* Function: "findSagawaAndUpdate"
-* Need to update the existing sagawa document with awbId and referenceId.
-* This method is called after sending sagawa upload to sagawa shipment endpoint.
-*
-* @param {objectId} _id - documentId of sagawa document.
-* @param {string} awbId - awbId(trackingId) of the uploaded sagawa order.
-* @param {string} referenceId - referenceId of the uploaded sagawa order.
-
-* @return {object} Promise resolved with updated Sagawa Document.
-*/
-sagawaSchema.statics.findSagawaAndUpdate = ({ sagawaId, awbId, referenceId }) =>
-new Promise((resolve, reject) => {
-  console.log('\n\n@Sagawa.findSagawaAndUpdate\n');
-  console.log('sagawaId: ', sagawaId, '\nawbId: ', awbId, '\nreferenceId: ', referenceId);
-  Sagawa.findByIdAndUpdate(sagawaId, {
-    $set: {
-      'shippingAddress.awbId': awbId,
-      'shippingAddress.referenceId': referenceId,
-      uploadStatus: 'uploaded',
-    },
-  }, { new: true })
-  .then((updatedDoc) => {
-    console.log('\nSUCCEEDED: Save AWB & REF #\'s to Document: ', updatedDoc);
-    resolve(updatedDoc);
-  })
-  .catch((error) => {
-    console.log('\nFAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
-    reject(new Error('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.'));
-  });
-});
-
 /**
 * Function: 'uploadSagawaAndSendEmail'
 * This is sagawa Lambda that does the following:
