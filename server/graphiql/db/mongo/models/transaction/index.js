@@ -516,7 +516,6 @@ new Promise((resolve, reject) => {
           userId,
           sagawaId,
           transactionId,
-          type: 'RefundIssued',
           message: {
             user: {
               subject: 'Shipping Problem - You have been issued a refund.',
@@ -574,7 +573,6 @@ new Promise((resolve, reject) => {
             userId,
             sagawaId,
             transactionId,
-            type: 'RefundRequired',
             message: {
               user: {
                 subject: 'Shippping Problem',

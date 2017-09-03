@@ -170,7 +170,9 @@ new Promise((resolve, reject) => {
     .then(sagawaDoc => { //eslint-disable-line
       if (!sagawaDoc) {
         console.log('\nFAILED: Find Sagawa document by id: ', sagawaId);
-        Transaction.handeRefund({ transactionId, userId })
+
+        Transaction
+        .handleRefund({ sagawaId, transactionId, userId })
         .then(() => {
           console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> Transaction.handleRefund.');
           resolve({ verified: false, sagawaId });
@@ -209,11 +211,9 @@ new Promise((resolve, reject) => {
     .then((response) => {
       if (response.status !== 200) {
         console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post: ', response.data);
-        Transaction.handleRefund({
-          userId,
-          sagawaId,
-          transactionId,
-        })
+
+        Transaction
+        .handleRefund({ userId, sagawaId, transactionId })
         .then(() => {
           console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = FAILED >>> Transaction.handleRefund.');
           resolve({ verified: false, sagawaId });
@@ -230,7 +230,9 @@ new Promise((resolve, reject) => {
     .then(({ data }) => {
       if (!data.verified) {
         console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
-        Transaction.handeRefund({ transactionId, userId })
+
+        Transaction
+        .handleRefund({ sagawaId, transactionId, userId })
         .then(() => {
           console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = SUCCEEEDED >>> !data.verified >>> Transaction.handleRefund');
           resolve({ sagawaId, verified: false });
@@ -250,7 +252,9 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Upload Order to Sagawa.', error);
-      Transaction.handleRefund({ transactionId, userId })
+
+      Transaction
+      .handleRefund({ sagawaId, transactionId, userId })
       .then(() => {
         console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> .catch >>>> Transaction.handleRefund');
         resolve({ sagawaId, verified: false });

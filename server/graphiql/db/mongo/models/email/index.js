@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
+/* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return */
 import AWS from 'aws-sdk';
 import { Promise as bbPromise } from 'bluebird';
 import moment from 'moment';
@@ -556,7 +556,6 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendRefundIssued\n');
 
   const {
-    type,
     userId,
     message,
     sagawaId,
@@ -577,7 +576,8 @@ new Promise((resolve, reject) => {
       } else {
         const dbTransaction = dbUser.shopping.transactions.filter(({ sagawa }) => sagawaId !== sagawa);
 
-        let promises = [];
+        let promises = [],
+          slackMsg = '';
         const {
           CEO_EMAIL: ceo,
           CTO_EMAIL: cto,
@@ -586,22 +586,26 @@ new Promise((resolve, reject) => {
 
         promises = Object.keys(message).map((key) => {
           let toEmailAddresses;
-          if (key === 'staff') toEmailAddresses = [cto, ceo, cdo];
-          if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
-
-          const {
+          /* eslint-disable prefer-const */
+          let {
             body,
             subject,
             replyTo,
           } = message[key];
+          /* eslint-enable prefer-const */
 
-          if (type === 'RefundRequired') {
-            body
-            .replace(/LAST_4_HERE/g, dbTransaction.square.tender.card_details.card.last_4)
-            .replace(/USER_EMAIL_HERE/g, dbUser.contactInfo.email)
-            .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.first}`)
-            .replace(/REFERENCE_ID_HERE/g, transactionId);
+          body = body
+          .replace(/LAST_4_HERE/g, dbTransaction.square.tender.card_details.card.last_4)
+          .replace(/USER_EMAIL_HERE/g, dbUser.contactInfo.email)
+          .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.first}`)
+          .replace(/REFERENCE_ID_HERE/g, transactionId);
+
+          if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
+          if (key === 'staff') {
+            slackMsg = body;
+            toEmailAddresses = [cto, ceo, cdo];
           }
+
           const promise = Email.sendRawEmail({
             sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
             toEmailAddresses,
@@ -618,7 +622,7 @@ new Promise((resolve, reject) => {
           ...promises,
           Email.notifySlack(
             process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
-            // TODO GenerateSlackMsg.sendRefundIssued(userId),
+            slackMsg,
           ),
         ]);
       }
