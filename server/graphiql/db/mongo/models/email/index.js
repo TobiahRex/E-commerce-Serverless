@@ -12,6 +12,7 @@ import {
   generateEmailBody as GenerateEmailBody,
   generateSlackMsg as GenerateSlackMsg,
   getCurrencyType as GetCurrencyType,
+  getRefundAmount as GetRefundAmount,
 } from './helpers';
 import Transaction from '../transaction';
 import User from '../user';
@@ -596,10 +597,14 @@ new Promise((resolve, reject) => {
           } = message[key];
           /* eslint-enable prefer-const */
 
+          const { amount, currency } = GetRefundAmount(dbTransaction);
+
           body = body
+          .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.last}`)
+          .replace(/CURRENCY_TYPE_HERE/g, currencyType)
+          .replace(/REFUND_AMOUNT_HERE/g, dbTransaction.square.tender.amount_money.amount)
           .replace(/LAST_4_HERE/g, dbTransaction.square.tender.card_details.card.last_4)
           .replace(/USER_EMAIL_HERE/g, dbUser.contactInfo.email)
-          .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.last}`)
           .replace(/REFERENCE_ID_HERE/g, transactionId);
 
           if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];

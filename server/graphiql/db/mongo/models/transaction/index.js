@@ -521,14 +521,23 @@ new Promise((resolve, reject) => {
             user: {
               subject: 'Shipping Problem - You have been issued a refund.',
               replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
-              body: `${moment().format('ll')} -
+              body: `${moment().format('ll')}
+
               Dear USER_NAME_HERE,
 
               While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
 
-              We have refunded you the total amount of the order while our Developers investigate the issue and find a solution.  We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.
+              Due to this fact, we've issued you a refund for the total amount of the order:
 
-              We will be in contact once we\'re confident the issue has been resolved.  If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  We will provide updates here regularly as we learn more.
+              CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+
+              The refund has been credited to your credit card:
+
+              XXXX - XXXX - XXXX - LAST_4_HERE
+
+              We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+
+              If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  Our developers will provide updates here regularly as we learn more.
 
               Sincerely,
 
@@ -599,7 +608,13 @@ new Promise((resolve, reject) => {
 
                 While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
 
-                Due to this fact, we will be issuing a refund for the total amount of the order: CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+                Due to this fact, we will be issuing a refund for the total amount of the order:
+
+                CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+
+                The refund will be credited to your credit card:
+
+                XXXX - XXXX - XXXX - LAST_4_HERE
 
                 We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
 
