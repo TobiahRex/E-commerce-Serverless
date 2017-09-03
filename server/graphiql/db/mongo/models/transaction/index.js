@@ -391,7 +391,8 @@ new Promise((resolve, reject) => {
       }
 
       return Promise.all([
-        axios.post('http://localhost:3001/api/sagawa', {
+        axios.post('http://localhost:3001/api/sagawa/uploadOrderAndSendEmail', {
+          password: process.env.TEST_API_PASSWORD,
           userId,
           sagawaId: newTransactionDoc.sagawa,
           transactionId: newTransactionDoc._id,

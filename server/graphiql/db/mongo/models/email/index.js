@@ -143,7 +143,7 @@ new Promise((resolve, reject) => {
   } else {
     let ToAddresses;
     if (Array.isArray(to)) ToAddresses = [...to];
-    else ToAddresses = to;
+    else ToAddresses = [to];
 
     const emailRequest = {
       Destination: {

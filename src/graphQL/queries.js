@@ -120,6 +120,7 @@ export const FetchSagawa = gql`
       shippingAddress {
         referenceId
         shipdate
+        deliveryDate
         customerName
         postal
         jpaddress1

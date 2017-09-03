@@ -406,7 +406,7 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((results) => {
-    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> 1) Email.sendEmail & 2) Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]._id);
+    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> 1) Email.sendEmail & 2) Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]);
     resolve({ verified: true, ...request });
   })
   .catch((error) => {
