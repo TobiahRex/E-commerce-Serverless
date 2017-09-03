@@ -386,7 +386,7 @@ new Promise((resolve, reject) => {
     const token = JWT.sign(payload, JWT_SECRET);
     const prodEnv = LAMBDA_ENV === 'production';
     const trackingLink = `${prodEnv ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
-
+    console.log('TRACKING LINK: ', trackingLink);
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
     emailBody = emailBody
     .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, trackingLink)
@@ -399,14 +399,14 @@ new Promise((resolve, reject) => {
       }, dbEmail),
       Transaction.findByIdAndUpdate(transactionDoc._id, {
         $set: {
-          trackingLink,
+          trackingLink: `'${trackingLink}'`,
           [emailType]: emailBody,
         },
       }, { new: true }),
     ]);
   })
   .then((results) => {
-    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> 1) Email.sendEmail & 2) Transaction.findByIdAndUpdate: \n', results[0], '\n', results[1]);
+    console.log('\nSUCCEEDED: @Sagawa.uploadOrderAndSendEmail >>> 1) Email.sendEmail & 2) Transaction.findByIdAndUpdate: \n', results[1]);
     resolve({ verified: true, ...request });
   })
   .catch((error) => {
