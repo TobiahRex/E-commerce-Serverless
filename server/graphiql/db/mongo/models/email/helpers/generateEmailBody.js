@@ -1,4 +1,4 @@
-/* eslint-disable indent, no-multi-spaces */
+/* eslint-disable indent, no-multi-spaces, camelcase */
 export default class GenerateEmailBody {
   staffErrorReport = (reportDoc) => {
     const bodyTextData = `
