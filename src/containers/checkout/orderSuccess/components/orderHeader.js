@@ -23,9 +23,9 @@ function OrderHeader({
         <div className="header__price">
           <p>
             Total Paid:
-            <FontAwesome name={paidTotal.currency} />
+            <FontAwesome name={paidTotal.currency.toLowerCase()} />
             {'\u00A0'}
-            {`${String(paidTotal.amount).splice(0, 2)}.${String(paidTotal.amount).splice(2, 4)}`}
+            {`${String(paidTotal.amount).slice(0, 2)}.${String(paidTotal.amount).slice(2, 4)}`}
           </p>
         </div>
         <div className="header__tracking">

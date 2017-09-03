@@ -141,11 +141,6 @@ export const FetchTrackingInfo = gql`
       }
       shipDate
       orderId
-      trackingInfo {
-        location
-        date
-        activity
-      }
       trackingNumber
       userName
       orderId
