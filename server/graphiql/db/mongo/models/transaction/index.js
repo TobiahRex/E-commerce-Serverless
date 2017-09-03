@@ -528,18 +528,27 @@ new Promise((resolve, reject) => {
 
               We have refunded you the total amount of the order while our Developers investigate the issue and find a solution.  We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.
 
-              We will be in contact once we\'re confident the issue has been resolved.  If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  We will provide updates here regularly as we learn more.`,
+              We will be in contact once we\'re confident the issue has been resolved.  If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  We will provide updates here regularly as we learn more.
+
+              Sincerely,
+
+              NJ2JP Team
+
+              `,
             },
             staff: {
-              subject: `ERROR 🛑 - User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+              subject: `ERROR 🛑 User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
               replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
-              body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.\n\n
+              body: `${moment().format('llll')} - There has been a critical error while trying to upload an order to Sagawa for User #: ${userId}.  The user has successfully been issued a full refund.
+
               1) The user has been issued a refund:
               - Last 4: LAST_4_HERE
               - User Email: USER_EMAIL_HERE
               - User Name: USER_NAME_HERE
               - Reference #: REFERENCE_ID_HERE
-              2) You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
+
+              2) You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .
+              `,
             },
           },
         }),
@@ -590,14 +599,26 @@ new Promise((resolve, reject) => {
 
                 While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
 
-                Due to this fact, we will be issuing a refund for the total amount of the order while our Developers investigate the issue and find a solution.  We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+                Due to this fact, we will be issuing a refund for the total amount of the order: CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
 
-                If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  We will provide updates here regularly as we learn more.`,
+                We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+
+                If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  Our developers will provide updates here regularly as we learn more.
+
+                Sincerely,
+
+                NJ2JP Team
+
+                `,
               },
               staff: {
                 subject: `ERROR 🛑  User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
                 replyTo: 'NJ2JP Cron Job <admin@nj2jp.com>',
-                body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.  The user upload was not successful and the attempt to issue the user an automatic refund was also NOT sucessful.  You must login to Square and use the transaction information shown below to issue the customer and IMMEDIATE REFUND.
+                body: `${moment().format('llll')} - There has been a critical error while trying to upload an order to Saga for User #: ${userId}.
+
+                The Users's upload was not successful and the attempt to issue the User an automatic refund was also NOT sucessful.
+
+                You must login to Square and use the transaction information shown below to issue the customer and IMMEDIATE REFUND.
 
                 1) The User must be issued a manual refund ASAP.
                 - Last 4: LAST_4_HERE

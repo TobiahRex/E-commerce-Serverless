@@ -599,13 +599,14 @@ new Promise((resolve, reject) => {
           body = body
           .replace(/LAST_4_HERE/g, dbTransaction.square.tender.card_details.card.last_4)
           .replace(/USER_EMAIL_HERE/g, dbUser.contactInfo.email)
-          .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.first}`)
+          .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.last}`)
           .replace(/REFERENCE_ID_HERE/g, transactionId);
 
           if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
           if (key === 'staff') {
             slackMsg = body;
-            toEmailAddresses = [cto, ceo, cdo];
+            toEmailAddresses = [cto];
+            // toEmailAddresses = [cto, ceo, cdo];
           }
 
           const promise = Email.sendRawEmail({
