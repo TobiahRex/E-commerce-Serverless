@@ -596,13 +596,12 @@ new Promise((resolve, reject) => {
             replyTo,
           } = message[key];
           /* eslint-enable prefer-const */
-
           const { amount, currency } = GetRefundAmount(dbTransaction);
 
           body = body
           .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.last}`)
-          .replace(/CURRENCY_TYPE_HERE/g, currencyType)
-          .replace(/REFUND_AMOUNT_HERE/g, dbTransaction.square.tender.amount_money.amount)
+          .replace(/CURRENCY_TYPE_HERE/g, currency)
+          .replace(/REFUND_AMOUNT_HERE/g, amount)
           .replace(/LAST_4_HERE/g, dbTransaction.square.tender.card_details.card.last_4)
           .replace(/USER_EMAIL_HERE/g, dbUser.contactInfo.email)
           .replace(/REFERENCE_ID_HERE/g, transactionId);
@@ -610,8 +609,7 @@ new Promise((resolve, reject) => {
           if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
           if (key === 'staff') {
             slackMsg = body;
-            toEmailAddresses = [cto];
-            // toEmailAddresses = [cto, ceo, cdo];
+            toEmailAddresses = [cto, ceo, cdo];
           }
 
           const promise = Email.sendRawEmail({

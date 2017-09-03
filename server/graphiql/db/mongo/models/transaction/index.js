@@ -521,7 +521,8 @@ new Promise((resolve, reject) => {
             user: {
               subject: 'Shipping Problem - You have been issued a refund.',
               replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
-              body: `${moment().format('ll')}
+              body: `
+              ${moment().format('ll')}
 
               Dear USER_NAME_HERE,
 
@@ -548,7 +549,10 @@ new Promise((resolve, reject) => {
             staff: {
               subject: `ERROR 🛑 User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
               replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
-              body: `${moment().format('llll')} - There has been a critical error while trying to upload an order to Sagawa for User #: ${userId}.  The user has successfully been issued a full refund.
+              body: `
+              ${moment().format('llll')}
+
+              There has been a critical error while trying to upload an order to Sagawa for User #: ${userId}.  The user has successfully been issued a full refund.
 
               1) The user has been issued a refund:
               - Last 4: LAST_4_HERE
@@ -603,7 +607,8 @@ new Promise((resolve, reject) => {
               user: {
                 subject: 'Shippping Problem',
                 replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
-                body: `${moment().format('ll')} -
+                body: `
+                ${moment().format('ll')} -
                 Dear USER_NAME_HERE,
 
                 While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
@@ -629,7 +634,10 @@ new Promise((resolve, reject) => {
               staff: {
                 subject: `ERROR 🛑  User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
                 replyTo: 'NJ2JP Cron Job <admin@nj2jp.com>',
-                body: `${moment().format('llll')} - There has been a critical error while trying to upload an order to Saga for User #: ${userId}.
+                body: `
+                ${moment().format('llll')}
+
+                There has been a CRITICAL error while trying to upload an order to Sagawa for User #: ${userId}.
 
                 The Users's upload was not successful and the attempt to issue the User an automatic refund was also NOT sucessful.
 

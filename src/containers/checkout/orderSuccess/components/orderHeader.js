@@ -10,6 +10,18 @@ function OrderHeader({
   paidTotal,
   deliveryDate,
 }) {
+  let amount,
+    currency;
+
+  if (paidTotal.currency === 'JPY') {
+    amount = paidTotal.amount;
+    currency = '¥';
+  }
+  if (paidTotal.currency === 'USD') {
+    amount = `${String(paidTotal.amount).slice(0, 2)}.${String(paidTotal.amount).slice(2, 4)}`;
+    currency = '$';
+  }
+
   return (
     <div className="ordered__header">
       <div className="header--date">

@@ -553,7 +553,7 @@ The UploadGenerator instantiates a generator function, and asynchronously calls 
 */
 sagawaSchema.statics.cronJob = () =>
 new Promise((resolve, reject) => {
-  console.log('\n\n@Sagawa.cronJob');
+  console.log('\n\n@Sagawa.cronJob\n');
 
   let reportType = '';
 
