@@ -209,7 +209,11 @@ new Promise((resolve, reject) => {
     .then((response) => {
       if (response.status !== 200) {
         console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post: ', response.data);
-        Transaction.handleRefund({ transactionId, userId })
+        Transaction.handleRefund({
+          userId,
+          sagawaId,
+          transactionId,
+        })
         .then(() => {
           console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = FAILED >>> Transaction.handleRefund.');
           resolve({ verified: false, sagawaId });

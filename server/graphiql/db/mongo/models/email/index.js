@@ -559,6 +559,8 @@ new Promise((resolve, reject) => {
     type,
     userId,
     message,
+    sagawaId,
+    transactionId,
   } = reqBody;
 
   if (!userId) {
@@ -567,11 +569,14 @@ new Promise((resolve, reject) => {
   } else {
     User
     .findById(userId)
+    .deepPopulate('shopping.transactions')
     .then((dbUser) => {
       if (!dbUser) {
         console.log('\nFAILED: Email.sendRefundIssued > Unable to find User.');
         reject('\nFAILED: Email.sendRefundIssued > Unable to find User.');
       } else {
+        const dbTransaction = dbUser.shopping.transactions.filter(({ sagawa }) => sagawaId !== sagawa);
+
         let promises = [];
         const {
           CEO_EMAIL: ceo,
@@ -589,6 +594,14 @@ new Promise((resolve, reject) => {
             subject,
             replyTo,
           } = message[key];
+
+          if (type === 'RefundRequired') {
+            body
+            .replace(/LAST_4_HERE/g, dbTransaction.square.tender.card_details.card.last_4)
+            .replace(/USER_EMAIL_HERE/g, dbUser.contactInfo.email)
+            .replace(/USER_NAME_HERE/g, `${dbUser.name.first} ${dbUser.name.first}`)
+            .replace(/REFERENCE_ID_HERE/g, transactionId);
+          }
           const promise = Email.sendRawEmail({
             sourceEmail: 'NJ2JP Error <admin@nj2jp.com>',
             toEmailAddresses,

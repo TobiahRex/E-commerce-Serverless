@@ -96,6 +96,7 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.squareChargeCard\n');
 
   const {
+    userEmail,
     locationId,
     transactionId,
     shippingEmail,
@@ -131,7 +132,7 @@ new Promise((resolve, reject) => {
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
-      note: `${GetSquareLocation(billingCountry)}: Online order.`,
+      note: `${userEmail} | Reference #:${transactionId}`,
       delay_capture: false,
     },
     {
@@ -263,6 +264,7 @@ new Promise((resolve, reject) => {
 
       return Transaction.squareChargeCard({
         locationId: results[2].id,
+        userEmail: userDoc.contactInfo.email,
         transactionId: String(results[0]._id),
         shippingEmail: sagawa.shippingAddress.email,
         shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
@@ -465,7 +467,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.issueUserRefund = ({ transactionId, userId }) =>
+transactionSchema.statics.issueUserRefund = ({ sagawaId, transactionId, userId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.issueUserRefund');
 
@@ -512,6 +514,8 @@ new Promise((resolve, reject) => {
         }, { new: true }),
         Email.refundNotification({
           userId,
+          sagawaId,
+          transactionId,
           type: 'RefundIssued',
           message: {
             user: {
@@ -522,7 +526,13 @@ new Promise((resolve, reject) => {
             staff: {
               subject: `ERROR 🛑 - User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
               replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
-              body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.  Please investigate ASAP:  You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
+              body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.\n\n
+              1) The user has been issued a refund:
+              - Last 4: LAST_4_HERE
+              - User Email: USER_EMAIL_HERE
+              - User Name: USER_NAME_HERE
+              - Reference #: REFERENCE_ID_HERE
+              2) You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
             },
           },
         }),
@@ -539,7 +549,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.handleRefund = ({ transactionId, userId }) =>
+transactionSchema.statics.handleRefund = ({ sagawaId, transactionId, userId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.handleRefund');
 
@@ -548,7 +558,7 @@ new Promise((resolve, reject) => {
     reject('\nFAILED: Missing required arguments.');
   } else {
     Transaction
-    .issueUserRefund({ transactionId, userId })
+    .issueUserRefund({ sagawaId, transactionId, userId })
     .then(() => {
       resolve({
         userId,
@@ -562,6 +572,8 @@ new Promise((resolve, reject) => {
           console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
           return Email.refundNotification({
             userId,
+            sagawaId,
+            transactionId,
             type: 'RefundRequired',
             message: {
               user: {
@@ -571,12 +583,13 @@ new Promise((resolve, reject) => {
               },
               staff: {
                 subject: `ERROR 🛑 - User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
-                replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
+                replyTo: 'NJ2JP Cron Job <admin@nj2jp.com>',
                 body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.  The user upload was not successful and the attempt to issue the user an automatic refund was also NOT sucessful.\n\n
                 1) The User must be issued a manual refund ASAP.
-                - Square Transaction #: SQUARE_TRANSACTION_ID_HERE
-                - User Name: USER_NAME_HERE
+                - Last 4: LAST_4_HERE
                 - User Email: USER_EMAIL_HERE
+                - User Name: USER_NAME_HERE
+                - Reference #: REFERENCE_ID_HERE
                 \n2) Review Cloud watch report here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
               },
             },
