@@ -574,7 +574,10 @@ new Promise((resolve, reject) => {
                 replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
                 body: `${moment().format('llll')} - There has been a critical error while trying to upload User #: ${userId} - order to Sagawa.  The user upload was not successful and the attempt to issue the user an automatic refund was also NOT sucessful.\n\n
                 1) The User must be issued a manual refund ASAP.
-                2) Please investigate ASAP:  You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
+                - Square Transaction #: SQUARE_TRANSACTION_ID_HERE
+                - User Name: USER_NAME_HERE
+                - User Email: USER_EMAIL_HERE
+                \n2) Review Cloud watch report here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .  Customer has been issued a full refund.`,
               },
             },
           });
