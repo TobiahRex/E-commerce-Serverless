@@ -39,7 +39,7 @@ function OrderHeader({
         <div className="header__tracking">
           <p>Tracking #: {trackingId}</p>
           <p>Order #: {orderId}</p>
-          <p>Estimated Delivery:{deliveryDate}</p>
+          <p>Estimated Delivery: {deliveryDate}</p>
         </div>
       </div>
     </div>

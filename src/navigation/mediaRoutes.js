@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
 // import About from '../containers/legal/components/about/';
-import ContactUs from '../containers/legal/components/contactUs';
+import ContactUs from '../containers/contactUs';
 import Phone from '../containers/legal/components/phone';
 import UserStories from '../containers/media/userStories';
 import VapeNews from '../containers/media/vapeNews';

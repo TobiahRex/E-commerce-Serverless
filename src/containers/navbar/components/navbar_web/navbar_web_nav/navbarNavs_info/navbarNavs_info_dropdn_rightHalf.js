@@ -13,8 +13,13 @@ export default function NavbarNavsInfoDropdnRighthalf() {
           </Link>
         </li>
         <li className="sweep-right">
-          <Link to={'/shipping_and_return_policy'}>
-            <p>Shipping & Returns Policy</p>
+          <Link to={'/shipping_policy'}>
+            <p>Shipping Policy</p>
+          </Link>
+        </li>
+        <li className="sweep-right">
+          <Link to={'/return_policy'}>
+            <p>Return Policy</p>
           </Link>
         </li>
         <li className="sweep-right">
@@ -23,13 +28,13 @@ export default function NavbarNavsInfoDropdnRighthalf() {
           </Link>
         </li>
         <li className="sweep-right">
-          <Link to={'/nicotine_disclaimer'}>
-            <p>Nicotine Disclaimer</p>
+          <Link to={'/terms_and_conditions'}>
+            <p>Terms & Conditions</p>
           </Link>
         </li>
         <li className="sweep-right">
-          <Link to={'/terms_and_conditions'}>
-            <p>Terms & Conditions</p>
+          <Link to={'/nicotine_disclaimer'}>
+            <p>Nicotine Disclaimer</p>
           </Link>
         </li>
       </ul>
