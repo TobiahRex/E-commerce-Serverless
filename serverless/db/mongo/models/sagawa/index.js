@@ -652,7 +652,7 @@ export default (db) => {
             failed: '',
             reports: [],
           },
-        })
+        }, Email)
         .then(() => {
           console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Report.createAndSendCronJobReportToStaff:');
           resolve('No orders to upload.');
@@ -678,7 +678,7 @@ export default (db) => {
               subTitle: 'Cron Job Upload Failure 🛑',
               headerBlurb: 'There was an error while trying to upload an order to Sagawa.  Immediate attention from the development team is REQUIRED!',
               data: { ...results },
-            });
+            }, Email);
           } else { // eslint-disable-line
             reportType = 'createAndSendCronJobReportToStaff';
             console.log('\nSUCCEEDED: @Sagawa.cronJob >>> Sagawa.batchUploadOrders.');
@@ -689,7 +689,7 @@ export default (db) => {
               subTitle: 'Cron Job Upload Summary 💵',
               headerBlurb: 'Congratulations! We\'ve successfully uploaded all weekend orders to Sagawa.',
               data: { ...results },
-            });
+            }, Email);
           }
         })
         .then(() => {

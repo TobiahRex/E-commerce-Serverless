@@ -6,7 +6,7 @@ import {
 } from '../email/helpers';
 
 export default (db) => {
-  reportSchema.statics.createAndSendCronJobReportToStaff = reportBody =>
+  reportSchema.statics.createAndSendCronJobReportToStaff = (reportBody, Email) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Report.createAndSendCronJobReportToStafff\n');
 
@@ -36,7 +36,7 @@ export default (db) => {
   * Function: 'sendErrorReport'
   * Purpose is to inform the development staff that an error has occured.  If there is an issue with sending the email report, then as a backup: notify the staff via Slac's error-notifications channel.
   */
-  reportSchema.statics.createAndSendErrorReportToStaff = reportInfo =>
+  reportSchema.statics.createAndSendErrorReportToStaff = (reportInfo, Email) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Report.createAndSendErrorReportToStaff\n');
 
