@@ -74,16 +74,34 @@ class ContactUs extends React.Component {
     this.props.GraphQLsubmitContactMsg({ ...this.state })
     .then(({ data: { SubmitContactMsg: response } }) => {
       if (!response) {
-        // this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
+        this.setState({
+          name: '',
+          emailAddress: '',
+          message: '',
+          userId: '',
+          ccUser: true,
+        }, () => {
+          this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
+        });
       } else {
         const result = CleanOffTypename(response);
-        if (result.error.hard || result.error.soft) {
-          this.props.GraphQLhandleError(result.error);
-          this.props.apiFail();
-        } else {
-          this.props.toastSuccess(true, 'Email successfully sent!');
-          this.props.apiSuccess();
-        }
+
+        this.setState({
+          name: '',
+          emailAddress: '',
+          message: '',
+          userId: '',
+          ccUser: true,
+        }, () => {
+          if (result.error.hard || result.error.soft) {
+            this.props.GraphQLhandleError(result.error);
+            this.props.apiFail();
+          } else {
+            this.props.apiSuccess();
+            this.props.toastSuccess(true, 'Email successfully sent!');
+            setTimeout(() => this.props.clearToaster(), 3000);
+          }
+        });
       }
     })
     .catch((error) => {
