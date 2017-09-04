@@ -16,6 +16,7 @@ const MdSendButton = ({
           className="contact-us__submit--button w-button"
           onClick={submitMsg}
           type="button"
+          disabled
         >
           <FontAwesome name="spinner" pulse />
           {'\u00A0'}

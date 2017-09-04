@@ -10,6 +10,7 @@ import {
   apiActions,
   toasterActions,
   CheckForToast,
+  CleanOffTypename,
 } from './assets/utils';
 import {
   BreadCrumb,
@@ -72,11 +73,24 @@ class ContactUs extends React.Component {
 
   submitMsg = () => {
     this.props.GraphQLsubmitContactMsg({ ...this.state })
-    .then((result) => {
-      console.log('%cresult', 'background:lime;', result);
+    .then(({ data: { SubmitContactMsg: response } }) => {
+      console.log('%cresult', 'background:lime;', response);
+      if (!response) {
+        this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
+      } else {
+        const { error } = CleanOffTypename(response);
+        if (error.hard || error.soft) {
+          this.props.GraphQLhandleError(error);
+          this.props.apiFail();
+        } else {
+          this.props.toastSuccess(true, 'Email successfully sent!');
+          this.props.apiSuccess();
+        }
+      }
     })
     .catch((error) => {
       console.log('%cerror', 'background:red;', error);
+      this.props.GraphQLhandleError(error);
     });
   }
 
@@ -130,7 +144,7 @@ class ContactUs extends React.Component {
   }
 }
 
-const ContactUsWithState = connect(({ user, api }) => ({
+const ContactUsWithState = connect(({ user, api, toaster }) => ({
   userId: user.profile ? user.profile._id : '',
   apiFetching: api.fetching,
   toast: CheckForToast(toaster),

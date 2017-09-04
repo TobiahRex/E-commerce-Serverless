@@ -16,6 +16,11 @@ const GraphQLsubmitMessage = gql`
       userId: $userId
     ) {
       _id
+      error {
+        hard
+        soft
+        message
+      }
       userId
       name
       name
