@@ -29,6 +29,7 @@ new Promise((resolve, reject) => {
   });
 });
 
+
 marketHeroSchema.statics.updateLeadProductTags = ({ lead, productTags }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@MarketHero.updateProductTags\n');

@@ -7,6 +7,7 @@ import createMarketHeroModel from './models/marketHero';
 import createEmailModel from './models/email';
 import createSagawaModel from './models/sagawa';
 import createComplaintModel from './models/complaint';
+import createReportModel from './models/report';
 
 mongoose.Promise = Promise;
 const dotenv = require('dotenv').config({ silent: true }); //eslint-disable-line
@@ -52,6 +53,7 @@ new Promise((resolve) => {
         Email: createEmailModel(connection),
         Complaint: createComplaintModel(connection),
         MarketHero: createMarketHeroModel(connection),
+        Report: createReportModel(connection),
       },
     };
     console.log('\n\nCACHED Connection: \n\n', cachedDb.connection);
