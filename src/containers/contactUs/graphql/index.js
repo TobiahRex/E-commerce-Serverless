@@ -1,0 +1,1 @@
+export GraphQLsubmitMessage from './mutations';

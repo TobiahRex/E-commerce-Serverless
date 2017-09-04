@@ -1,11 +1,10 @@
 import React from 'react';
 import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
-import inputsData from './assets/inputsData';
 import {
   WebflowJs,
+  inputsData,
 } from './assets/utils';
-
 import {
   BreadCrumb,
   HdrPage,
@@ -15,6 +14,9 @@ import {
   CheckBoxWithLabel,
   MdSendButton,
 } from './components';
+import {
+  SubmitMessage,
+} from './graphql';
 
 class ContactUs extends React.Component {
   static propTypes = propTypes
@@ -23,7 +25,10 @@ class ContactUs extends React.Component {
     super(props);
 
     this.state = {
-      x: '',
+      name: '',
+      email: '',
+      message: '',
+      sendCopy: true,
     };
   }
 
@@ -31,18 +36,19 @@ class ContactUs extends React.Component {
     WebflowJs(); // eslint-disable-line
   }
 
-  renderHelper = data =>
-  data.map((dataObj) => {
-    if (dataObj.component === 'InputWithLabel') {
-      return (
-        <InputWithLabel
-          {...dataObj.props}
-          key={new Buffer(`${dataObj.props.type + Date.now()}`, 'utf8').toString('base64')}
-        />
-      );
-    }
-    return ('');
-  })
+  handleOnChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  submitMsg = () => {
+    this.props.SubmitMsg({ ...this.state })
+    .then((result) => {
+      console.log('%cresult', 'background:lime;', result);
+    })
+    .catch((error) => {
+      console.log('%cerror', 'background:red;', error);
+    });
+  }
 
   render() {
     return (
@@ -56,10 +62,33 @@ class ContactUs extends React.Component {
           />
           <HdrPage />
           <ContactForm>
-            {this.renderHelper(inputsData)}
-            <TextAreaWithLabel />
-            <CheckBoxWithLabel />
-            <MdSendButton />
+
+            <InputWithLabel
+              key={new Buffer('name', 'utf8').toString('base64')}
+              {...inputsData[0]}
+              value={this.state.name}
+              handleOnChange={this.handleOnChange}
+            />
+
+            <InputWithLabel
+              key={new Buffer('email', 'utf8').toString('base64')}
+              {...inputsData[1]}
+              value={this.state.name}
+              handleOnChange={this.handleOnChange}
+            />
+
+            <TextAreaWithLabel
+              handleOnChange={this.handleOnChange}
+              value={this.state.message}
+            />
+
+            <CheckBoxWithLabel
+              handleOnChange={this.handleOnChange}
+              value={this.state.sendCopy}
+            />
+
+            <MdSendButton submitMsg={this.submitMsg} />
+
           </ContactForm>
         </div>
       </div>
