@@ -62,6 +62,17 @@ function staffGeneralReport(reportDoc) {
   return bodyTextData;
 }
 
+/**
+* Name: 'genericReport_body'
+* Generates strings for each individual data object that is nested inside the Report doc.
+* Renders them as standard objects via JSON.stringify.
+* Used only for instances where the data structure is not uniform.
+* Currently written here as a reference for more advanced use cases.
+*
+* @param {array} reportData - The data nested in the db Report document.
+*
+* @return {string} message
+*/
 function genericReport_body(reportData) {
   const message = reportData.reports.reduce((a, n, i) => {
   a += `
@@ -74,6 +85,14 @@ function genericReport_body(reportData) {
   return message;
 }
 
+/**
+* Name: 'cronJob_body'
+* Generates a unique string for each data object for the Cron Job summary report.
+*
+* @param {array} reportDatq - The array of objects inside the db Report document.
+*
+* @return {string} message - The final string to be inserted in the email body.
+*/
 function cronJob_body(reportData) {
   const message = `${reportData.reports.reduce((a, n, i) => {
   a += `
