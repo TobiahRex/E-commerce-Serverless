@@ -515,7 +515,7 @@ export default (db) => {
 
       const token = JWT.sign(payload, jwtSecret);
       const prodEnv = lambdaEnv === 'production';
-      const trackingLink = `${prodEnv ? productionUrl : baseUrl}/tracking?token=${token}`;
+      const trackingLink = `${prodEnv ? `${productionUrl}/#!` : `${baseUrl}/#!`}/tracking?token=${token}`;
 
       emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
 
