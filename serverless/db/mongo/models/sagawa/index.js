@@ -583,6 +583,7 @@ export default (db) => {
                 success: verified,
                 error: false,
               });
+              console.log('@batchUpload >>> .then >>> reports: ', reports);
             } else {
               failedReqs += 1;
 
@@ -594,6 +595,7 @@ export default (db) => {
                 success: verified,
                 error: true,
               });
+              console.log('@batchUpload >>> .catch >>> reports: ', reports);
             }
 
             if (i === (array.length - 1)) recursiveUpload(savedArray);
@@ -605,13 +607,17 @@ export default (db) => {
         console.log('\n\n*------------- CALLING NEXT BATCH -------------*\n\n');
         console.log('savedArray: ', savedArray);
       } else {
-        console.log('No more orders');
-        resolve({
-          reports,
-          total: totalReqs,
-          failed: failedReqs,
-          successful: successfulReqs,
-        });
+        console.log('\nNo more orders');
+
+        setTimeout(() => {
+          console.log('\nReports Object: ', { reports, total: totalReqs });
+          resolve({
+            reports,
+            total: totalReqs,
+            failed: failedReqs,
+            successful: successfulReqs,
+          });
+        }, 3000);
       }
     }
 

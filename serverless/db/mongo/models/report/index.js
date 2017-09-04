@@ -10,6 +10,8 @@ export default (db) => {
   new Promise((resolve, reject) => {
     console.log('\n\n@Report.createAndSendCronJobReportToStafff\n');
 
+    console.log('arg) reportBody: ', reportBody);
+
     bbPromise.fromCallback(cb => Report.create(reportBody, cb))
     .then((dbReport) => {
       console.log('\nSUCCEEDED: Report.createAndSendCronJobReportToStafff >>> Report.create: ', dbReport._id);
@@ -28,7 +30,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Report.createAndSendCronJobReportToStafff: ', error);
-      reject(error.message);
+      reject(error);
     });
   });
 
@@ -60,7 +62,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: @Report.createAndSendErrorReportToStaff: ', error);
-      reject(new Error(error));
+      reject(error);
     });
   });
   const Report = db.model('Report', reportSchema);
