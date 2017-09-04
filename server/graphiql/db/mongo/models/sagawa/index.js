@@ -238,7 +238,7 @@ new Promise((resolve, reject) => {
       }
     })
     .then((response) => {
-      if (response.status === 200) {
+      if (response.status !== 200) {
         console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post: ', response.data);
 
         Transaction
@@ -253,30 +253,34 @@ new Promise((resolve, reject) => {
         });
       } else {
         console.log('\nSUCCEEDED: Sagawa order Upload: ', response.data);
-        return CleanSagawaResponse.handleUpload(response);
-      }
-    })
-    .then((results) => {
-      console.log('RESULTS: ', results);
-      if (!data.verified) {
-        console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
 
-        Transaction
-        .handleRefund({ sagawaId, transactionId, userId })
-        .then(() => {
-          console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = SUCCEEEDED >>> !data.verified >>> Transaction.handleRefund');
-          resolve({ sagawaId, verified: false });
+        CleanSagawaResponse.handleUpload(response)
+        .then(({ data }) => {
+          if (!data.verified) {
+            console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
+
+            Transaction
+            .handleRefund({ sagawaId, transactionId, userId })
+            .then(() => {
+              console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = SUCCEEEDED >>> !data.verified >>> Transaction.handleRefund');
+              resolve({ sagawaId, verified: false });
+            })
+            .catch((error) => {
+              console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post = FAILED >>> !data.verified >>> Transaction.handleRefund: ', error);
+              resolve({ sagawaId, verified: false });
+            });
+          } else {
+            console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
+            resolve({
+              data,
+              sagawaId,
+              verified: true,
+            });
+          }
         })
         .catch((error) => {
-          console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post = FAILED >>> !data.verified >>> Transaction.handleRefund: ', error);
+          console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post = FAILED Transaction.handleRefund: ', error);
           resolve({ sagawaId, verified: false });
-        });
-      } else {
-        console.log('\nSUCCEEDED: Extracted AWB & REF #\'s from Sagawa resposne: ', data);
-        resolve({
-          data,
-          sagawaId,
-          verified: true,
         });
       }
     })
@@ -525,7 +529,8 @@ new Promise((resolve, reject) => {
         trackingNumber: sagawaDoc.shippingAddress.referenceId,
         userName: `${userDoc.name.first} ${userDoc.name.last}`,
         orderId: transactionDoc._id,
-        totalPaid: transactionDoc.square.charge.amount,
+        totalPaid: transactionDoc.square.tender.amount_money.amount,
+        totalCurrency: transactionDoc.square.tender.amount_money.currency,
         trackingInfo: data.trackingInfo,
       };
 

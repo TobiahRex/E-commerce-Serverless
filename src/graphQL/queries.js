@@ -145,6 +145,7 @@ export const FetchTrackingInfo = gql`
       userName
       orderId
       totalPaid
+      totalCurrency
       orderStatus
       trackingInfo {
         location
