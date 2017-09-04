@@ -417,7 +417,7 @@ export default (db) => {
     });
   });
 
-  sagawaSchema.statics.FetchTrackingInfo = token =>
+  sagawaSchema.statics.fetchTrackingInfo = (token, User, Transaction) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.fetchTrackingInfo\n');
 
