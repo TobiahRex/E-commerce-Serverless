@@ -58,28 +58,28 @@ const mutations = {
     args: {
       message: {
         description: 'the message, the customer gives for the support',
-        type: new NonNull(StringType)
+        type: new NonNull(StringType),
       },
       emailAddress: {
         description: 'The email Address of the customer',
-        type: new NonNull(StringType)
+        type: new NonNull(StringType),
       },
       ccUser: {
         description: 'Whether to CC the customer message',
-        type: new NonNull(BoolType)
+        type: new NonNull(BoolType),
       },
       name: {
         description: 'Name of the customer',
-        type: new NonNull(StringType)
+        type: new NonNull(StringType),
       },
       userId: {
         description: 'userId of the customer',
-        type: StringType
+        type: StringType,
       },
     },
     resolve: (_, args) => Contact.sendSupportMailAndNotifySlack(args),
   },
-}
+};
 
 export default {
   rootType,
