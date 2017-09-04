@@ -47,7 +47,13 @@ new Promise((resolve, reject) => {
   .then((dbReport) => {
     console.log('\nSUCCEEDED: @Report.createAndSendErrorReportToStaff >>> Report.create: ', dbReport._id);
 
-    return Email.sendErrorReportToStaff(dbReport);
+    return Promise.all([
+      Email.sendErrorReportToStaff(dbReport),
+      Email.notifySlack(
+        process.env.SLACK_ERROR_NOTIFICATION_WEBHOOK,
+        GenerateSlackMsg.staffErrorReport(dbReport),
+      ),
+    ]);
   })
   .then(() => {
     console.log('\nSUCCEEDED: @Report.createAndSendErrorReportToStaff >>> Email.sendErrorReportToStaff.');

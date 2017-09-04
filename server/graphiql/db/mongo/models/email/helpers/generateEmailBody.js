@@ -2,7 +2,7 @@
 
 function staffErrorReport(reportDoc) {
   const bodyTextData = `
-  *--------------------------------------------------------------------------*
+  *****************************************************************************
           ${reportDoc.mainTitle} - ${reportDoc.subTitle}
   *--------------------------------------------------------------------------*
       ${reportDoc.headerBlurb}
@@ -18,13 +18,14 @@ function staffErrorReport(reportDoc) {
   *================================= DETAILS =================================*
 
   ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.cronJob_body(reportDoc.data)}
+  *****************************************************************************
   `;
   return bodyTextData;
 }
 
 function staffGeneralReport(reportDoc) {
   const bodyTextData = `
-  *--------------------------------------------------------------------------*
+  *****************************************************************************
           ${reportDoc.mainTitle} - ${reportDoc.subTitle}
   *--------------------------------------------------------------------------*
       ${reportDoc.headerBlurb}
@@ -40,6 +41,7 @@ function staffGeneralReport(reportDoc) {
   *================================= DETAILS =================================*
 
   ${reportDoc.reportType === 'cronJobEmpty' ? 'There are no upload details to show.' : this.cronJob_body(reportDoc.data)}
+  *****************************************************************************
   `;
   return bodyTextData;
 }

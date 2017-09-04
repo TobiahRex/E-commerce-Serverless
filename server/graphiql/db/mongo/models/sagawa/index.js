@@ -595,7 +595,8 @@ new Promise((resolve, reject) => {
       }));
       Sagawa.batchUploadOrders(reqObjs)
       .then((results) => {
-        if (results.failed.length) {
+        if (1 === 1) {
+        // if (results.failed.length) {
           reportType = 'createAndSendErrorReportToStaff';
           return Report.createAndSendErrorReportToStaff({
             reportType: 'cronJobError',
