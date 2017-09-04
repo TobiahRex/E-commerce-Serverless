@@ -173,11 +173,15 @@ class OrderTracking extends React.Component {
           <p className="header__detail">
             <span style={{ fontSize: 20 }}>Total Paid:</span>
             {'\u00A0'}
-            {totalCurrency}
-            {'\u00A0'}
-            {
-              totalCurrency === 'JPY' ? totalPaid : `${String(totalPaid).slice(0, 2)}.${String(totalPaid).slice(2, 4)}`
-            }
+            <div className="header__detail-total">
+              <FontAwesome name={totalCurrency.toLowerCase()} />
+              {'\u00A0'}
+              <p>
+                {
+                  totalCurrency === 'JPY' ? totalPaid : `${String(totalPaid).slice(0, 2)}.${String(totalPaid).slice(2, 4)}`
+                }
+              </p>
+            </div>
           </p>
         </div>
 
