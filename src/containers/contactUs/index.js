@@ -7,6 +7,9 @@ import './assets/css/contact-us.css';
 import {
   WebflowJs,
   inputsData,
+  apiActions,
+  toasterActions,
+  CheckForToast,
 } from './assets/utils';
 import {
   BreadCrumb,
@@ -78,6 +81,7 @@ class ContactUs extends React.Component {
   }
 
   render() {
+    console.log('%capiFetching', 'background:cyan;', this.props.apiFetching);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -114,7 +118,10 @@ class ContactUs extends React.Component {
               handleOnChange={this.handleOnChange}
             />
 
-            <MdSendButton submitMsg={this.submitMsg} />
+            <MdSendButton
+              apiFetching={this.props.apiFetching}
+              submitMsg={this.submitMsg}
+            />
 
           </ContactForm>
         </div>
@@ -123,9 +130,19 @@ class ContactUs extends React.Component {
   }
 }
 
-const ContactUsWithState = connect(({ user }) => ({
+const ContactUsWithState = connect(({ user, api }) => ({
   userId: user.profile ? user.profile._id : '',
+  apiFetching: api.fetching,
+  toast: CheckForToast(toaster),
 }), (dispatch, ownProps) => ({
+  toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
+  toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
+  toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
+  clearToaster: () => dispatch(toasterActions.clearToaster()),
+  //
+  apiIsFetching: () => dispatch(apiActions.fetching()),
+  apiFail: () => dispatch(apiActions.apiFail()),
+  apiSuccess: () => dispatch(apiActions.apiSuccess()),
   GraphQLsubmitContactMsg: args => ownProps.SubmitContactMsg({
     variables: { ...args },
   }),
