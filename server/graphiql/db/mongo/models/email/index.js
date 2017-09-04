@@ -340,6 +340,7 @@ new Promise((resolve, reject) => {
     reject(new Error(`Could not create invoice email: ${error}`));
   });
 });
+
 /**
 * Function: sendRawEmail
 * 1) Validate input email - "to" is in proper email format.
@@ -421,6 +422,7 @@ new Promise((resolve, reject) => {
     });
   }
 });
+
 /**
 * Function: notifySlack
 * 1) Form the slackRequest by using the input message
@@ -477,8 +479,7 @@ new Promise((resolve, reject) => {
 
     const emailRequest = {
       sourceEmail: 'admin@nj2jp.com',
-      toEmailAddresses: [cto],
-      // toEmailAddresses: [cto, ceo, cdo],
+      toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: ['NJ2JP Error Report ⚠️ <admin@nj2jp.com>'],
       bodyTextData: GenerateEmailBody.staffErrorReport(dbReport),
       bodyTextCharset: 'utf8',
@@ -534,8 +535,7 @@ new Promise((resolve, reject) => {
 
     const emailRequest = {
       sourceEmail: 'NJ2JP <admin@nj2jp.com>',
-      toEmailAddresses: [cto],
-      // toEmailAddresses: [cto, ceo, cdo],
+      toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: [`${dbReport.mainTitle} <admin@nj2jp.com>`],
       bodyTextData: GenerateEmailBody.staffGeneralReport(dbReport),
       bodyTextCharset: 'utf8',
@@ -553,6 +553,15 @@ new Promise((resolve, reject) => {
   }
 });
 
+/**
+* Function: 'refundNotification'
+* Notify staff that a refund has taken place either autmocatically or on demand.
+* Notify customer that they have been issued a refund.
+*
+* @param {object} reqBody - 1) email message, 2) userId, 3) sagawaId, 4) transactionId
+*
+* @return {na}
+*/
 emailSchema.statics.refundNotification = reqBody =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.refundNotification\n');
@@ -608,8 +617,7 @@ new Promise((resolve, reject) => {
           if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
           if (key === 'staff') {
             slackMsg = body;
-            toEmailAddresses = [cto];
-            // toEmailAddresses = [cto, ceo, cdo];
+            toEmailAddresses = [cto, ceo, cdo];
           }
 
           const promise = Email.sendRawEmail({
