@@ -14,7 +14,7 @@ import Wholesale from '../containers/legal/wholesale';
 import Affiliates from '../containers/legal/affiliateProgram';
 
 const errorLoading = (error) => {
-  throw new Error(`Dyanmic pag loading failed   ${error}`);
+  throw new Error(`Dynamic page loading failed ${error}`);
 };
 const loadRoute = cb => module => cb(null, module.default);
 

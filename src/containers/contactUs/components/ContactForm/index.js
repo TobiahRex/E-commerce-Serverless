@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
-import {
-  InputWithLabel,
-  TextAreaWithLabel,
-  CheckBoxWithLabel,
-  MdSendButton,
-} from '../../components';
-
 const ContactForm = (props) => {
   WebflowJs(); //eslint-disable-line
 
