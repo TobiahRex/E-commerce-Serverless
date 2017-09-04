@@ -68,7 +68,13 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Contact.sendSupportMailAndNotifySlack: ', error);
-    reject('\nFAILED: Contact.sendSupportMailAndNotifySlack');
+    resolve({
+      error: {
+        hard: true,
+        soft: false,
+        message: error.message,
+      },
+    });
   });
 });
 
