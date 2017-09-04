@@ -1,8 +1,11 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
-const CheckBoxWithLabel = () => {
+const CheckBoxWithLabel = ({
+  value,
+  handleOnChange,
+}) => {
   WebflowJs(); //eslint-disable-line
 
   return (
@@ -12,8 +15,17 @@ const CheckBoxWithLabel = () => {
         className="w-checkbox-input"
         data-name="Checkbox"
         id="checkbox"
-        name="checkbox"
+        name="ccCopy"
         type="checkbox"
+        value={value}
+        onChange={() => {
+          handleOnChange({
+            target: {
+              value: !value,
+              name: 'ccCopy',
+            },
+          });
+        }}
       />
 
       <label
@@ -24,6 +36,11 @@ const CheckBoxWithLabel = () => {
     </div>
   );
 };
+const { bool, func } = PropTypes;
 
+CheckBoxWithLabel.propTypes = {
+  value: bool.isRequired,
+  handleOnChange: func.isRequired,
+};
 
 export default CheckBoxWithLabel;

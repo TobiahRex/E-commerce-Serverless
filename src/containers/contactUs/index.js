@@ -78,6 +78,7 @@ class ContactUs extends React.Component {
   }
 
   render() {
+    console.log('inputsData: ', inputsData[0].props);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -92,26 +93,26 @@ class ContactUs extends React.Component {
 
             <InputWithLabel
               key={new Buffer('name', 'utf8').toString('base64')}
-              {...inputsData[0]}
+              {...inputsData[0].props}
               value={this.state.name}
               handleOnChange={this.handleOnChange}
             />
 
             <InputWithLabel
               key={new Buffer('email', 'utf8').toString('base64')}
-              {...inputsData[1]}
+              {...inputsData[1].props}
               value={this.state.name}
               handleOnChange={this.handleOnChange}
             />
 
             <TextAreaWithLabel
-              handleOnChange={this.handleOnChange}
               value={this.state.message}
+              handleOnChange={this.handleOnChange}
             />
 
             <CheckBoxWithLabel
-              handleOnChange={this.handleOnChange}
               value={this.state.sendCopy}
+              handleOnChange={this.handleOnChange}
             />
 
             <MdSendButton submitMsg={this.submitMsg} />

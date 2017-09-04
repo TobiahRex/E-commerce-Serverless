@@ -1,5 +1,5 @@
 export WebflowJs from '../../../webflow/webflow.javascript.js';
-export const inputData = [{
+export const inputsData = [{
   component: 'InputWithLabel',
   props: {
     type: 'name',
