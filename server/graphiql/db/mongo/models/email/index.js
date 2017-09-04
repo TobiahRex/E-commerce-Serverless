@@ -14,8 +14,8 @@ import {
   getCurrencyType as GetCurrencyType,
   getRefundAmount as GetRefundAmount,
 } from './helpers';
-import Transaction from '../transaction';
-import User from '../user';
+// import Transaction from '../transaction';
+// import User from '../user';
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
