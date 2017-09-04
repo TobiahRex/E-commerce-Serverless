@@ -390,9 +390,9 @@ export default (db) => {
 
         const {
           AWS_REGION: region,
+          LAMBDA_ENV: lambdaEnv,
           LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
           LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
-          LAMBDA_ENV: lambdaEnv,
         } = process.env;
 
         const lambda = new AWS.Lambda({

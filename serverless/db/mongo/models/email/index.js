@@ -17,9 +17,9 @@ import {
 // import User from '../user';
 
 const {
-  AWS_ACCESS_KEY_ID: accessKeyId,
-  AWS_SECRET_ACCESS_KEY: secretAccessKey,
   AWS_SES_REGION: region,
+  LAMBDA_ACCESS_KEY_ID: accessKeyId,
+  LAMBDA_SECRET_ACCESS_KEY: secretAccessKey,
 } = process.env;
 
 AWS.config.update({
