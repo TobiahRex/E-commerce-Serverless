@@ -455,9 +455,8 @@ new Promise((resolve, reject) => {
 });
 
 /**
-* Function: 'sendEmailReportTostaff'
-* Notifiy staff that an important error has occured.
-* If there is a failure to send - send a slack notification as a backup.
+* Function: 'sendErrorReportToStaff'
+* Notify the staff of an error via a Report template.  Currently this is only being invoked for a failure detected in the Cron Job upload.
 *
 * @param {object} reportInfo - an instance of the Report document.
 *
@@ -511,11 +510,10 @@ new Promise((resolve, reject) => {
 });
 
 /**
-* Function: 'sendEmailReportTostaff'
-* Notifiy staff that an important error has occured.
-* If there is a failure to send - send a slack notification as a backup.
+* Function: 'sendReportToStaff'
+* Notify all the staff of a report - Currently the only report being generated and distributed is the Cron Job report.
 *
-* @param {object} reportInfo - an instance of the Report document.
+* @param {object} dbReport - the saved Report doc containing the report details.
 *
 * @return {na}
 */
