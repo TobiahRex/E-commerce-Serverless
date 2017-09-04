@@ -543,12 +543,9 @@ new Promise((resolve, reject) => {
     };
 
     Email.sendRawEmail(emailRequest)
-    .then((response) => {
-      console.log('\nSUCCEEDED: Send Error Email to Staff: ', response);
-      resolve();
-    })
+    .then(resolve)
     .catch((error) => {
-      console.log('\nFAILED: @Email.sendErrorReportToStaff: ', error);
+      console.log('\nFAILED: @Email.sendReportToStaff: ', error);
       reject(error.message);
     })
     .catch(reject);
