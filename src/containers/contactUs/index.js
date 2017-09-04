@@ -1,7 +1,8 @@
 import React from 'react';
-import { propTypes } from './assets/propValidation';
 import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
+import _ from 'lodash';
+import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
 import {
   WebflowJs,
@@ -11,10 +12,10 @@ import {
   BreadCrumb,
   HdrPage,
   ContactForm,
+  MdSendButton,
   InputWithLabel,
   TextAreaWithLabel,
   CheckBoxWithLabel,
-  MdSendButton,
 } from './components';
 import {
   GraphQLsubmitMessage,
@@ -39,12 +40,35 @@ class ContactUs extends React.Component {
     WebflowJs(); // eslint-disable-line
   }
 
+  componentWillReceiveProps(nextProps) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!_.isEqual(npCopy, tpCopy)) {
+      this.setState(prevState => ({
+        ...prevState,
+        ...nextProps,
+      }));
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!_.isEqual(npCopy, tpCopy)) return true;
+
+    if (!_.isEqual(nextState, this.state)) return true;
+
+    return false;
+  }
+
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   submitMsg = () => {
-    this.props.SubmitMsg({ ...this.state })
+    this.props.GraphQLsubmitContactMsg({ ...this.state })
     .then((result) => {
       console.log('%cresult', 'background:lime;', result);
     })
