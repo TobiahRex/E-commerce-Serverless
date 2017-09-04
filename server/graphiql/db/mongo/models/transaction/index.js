@@ -11,7 +11,6 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  // composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
@@ -79,7 +78,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Fetch square location: ', error);
-    reject(new Error('\nFAILED: Fetch square location.'));
+    reject('\nFAILED: Fetch square location.');
   });
 });
 
