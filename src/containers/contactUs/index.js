@@ -1,5 +1,7 @@
 import React from 'react';
 import { propTypes } from './assets/propValidation';
+import { connect } from 'react-redux';
+import { graphql } from 'react-apollo';
 import './assets/css/contact-us.css';
 import {
   WebflowJs,
@@ -15,7 +17,7 @@ import {
   MdSendButton,
 } from './components';
 import {
-  SubmitMessage,
+  GraphQLsubmitMessage,
 } from './graphql';
 
 class ContactUs extends React.Component {
@@ -26,9 +28,10 @@ class ContactUs extends React.Component {
 
     this.state = {
       name: '',
-      email: '',
+      emailAddress: '',
       message: '',
-      sendCopy: true,
+      userId: '',
+      ccUser: true,
     };
   }
 
@@ -96,4 +99,16 @@ class ContactUs extends React.Component {
   }
 }
 
-export default ContactUs;
+const ContactUsWithState = connect(({ user }) => ({
+  userId: user.profile ? user.profile._id : '',
+}), (dispatch, ownProps) => ({
+  GraphQLsubmitContactMsg: args => ownProps.SubmitContactMsg({
+    variables: { ...args },
+  }),
+}))(ContactUs);
+
+const ContactUsWithStateAndData = graphql(GraphQLsubmitMessage, {
+  name: 'SubmitContactMsg',
+})(ContactUsWithState);
+
+export default ContactUsWithStateAndData;
