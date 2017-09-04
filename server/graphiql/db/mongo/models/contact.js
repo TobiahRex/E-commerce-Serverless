@@ -24,7 +24,7 @@ import Email from './email';
 * @return {object} - Promise: resolve or reject the response.
 */
 contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
-new Promise((resolve, reject) => {
+new Promise((resolve) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
   const emailRequest = {
     sourceEmail: 'NJ2JP Contact Us <contact@nj2jp.com>',
@@ -64,7 +64,14 @@ new Promise((resolve, reject) => {
   })
   .then((contactDoc) => {
     console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Contact.create:', contactDoc);
-    resolve(contactDoc);
+    resolve({
+      error: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
+      ...contactDoc,
+    });
   })
   .catch((error) => {
     console.log('\nFAILED: Contact.sendSupportMailAndNotifySlack: ', error);

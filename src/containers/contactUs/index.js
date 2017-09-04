@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
@@ -57,12 +57,9 @@ class ContactUs extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const npCopy = _.cloneDeep(nextProps);
-    const tpCopy = _.cloneDeep(this.props);
+    if (!_.isEqual(this.props.apiFetching, nextProps.apiFetching)) return true;
 
-    if (!_.isEqual(npCopy, tpCopy)) return true;
-
-    if (!_.isEqual(nextState, this.state)) return true;
+    if (!_.isEqual(this.state, nextState)) return true;
 
     return false;
   }
@@ -74,16 +71,16 @@ class ContactUs extends React.Component {
   submitMsg = () => {
     this.props.clearToaster();
     this.props.apiIsFetching();
-    this.props.GraphQLsubmitContactMsg({ ...this.state })
+    this.props.GraphQLsubmitMessage({ ...this.state })
     .then(({ data: { SubmitContactMsg: response } }) => {
       if (!response) {
-        this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
+        // this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
       } else {
         const result = CleanOffTypename(response);
         console.log('%cresult', 'background:lime;', result);
 
         if (result.error.hard || result.error.soft) {
-          this.props.GraphQLhandleError(result.error);
+          // this.props.GraphQLhandleError(result.error);
           this.props.apiFail();
         } else {
           this.props.toastSuccess(true, 'Email successfully sent!');
@@ -98,7 +95,7 @@ class ContactUs extends React.Component {
   }
 
   render() {
-    console.log('%capiFetching', 'background:cyan;', this.props.apiFetching);
+    console.log('%cthis.state', 'background:red;', this.state);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -152,9 +149,11 @@ const ContactUsWithState = connect(({ user, api, toaster }) => ({
   apiFetching: api.fetching,
   toast: CheckForToast(toaster),
 }), (dispatch, ownProps) => ({
-  GraphQLsubmitContactMsg: args => ownProps.SubmitContactMsg({
-    variables: { ...args },
-  }),
+  GraphQLsubmitContactMsg: (args) => {
+    ownProps.SubmitContactMsg({
+      variables: { ...args },
+    });
+  },
   GraphQLhandleError: (error) => {
     let errorMsg = '';
 
@@ -175,16 +174,19 @@ const ContactUsWithState = connect(({ user, api, toaster }) => ({
   },
 }))(ContactUs);
 
-const ContactUsWithStateAndData = graphql(GraphQLsubmitMessage, {
-  name: 'SubmitContactMsg',
-})(ContactUsWithState);
+const ContactUsWithStateAndData = compose(
+graphql(
+  GraphQLsubmitMessage, { name: 'SubmitContactMsg' }),
+)(ContactUsWithState);
 
 const ContactUsWithStateAndData2 = connect(null, dispatch => ({
-  toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
-  toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
-  toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
+  toastError: (toast, msg) =>
+    dispatch(toasterActions.toastError(toast, msg)),
+  toastSuccess: (toast, msg) =>
+    dispatch(toasterActions.toastSuccess(toast, msg)),
+  toastWarning: (toast, msg) =>
+    dispatch(toasterActions.toastWarning(toast, msg)),
   clearToaster: () => dispatch(toasterActions.clearToaster()),
-  //
   apiIsFetching: () => dispatch(apiActions.fetching()),
   apiFail: () => dispatch(apiActions.apiFail()),
   apiSuccess: () => dispatch(apiActions.apiSuccess()),
