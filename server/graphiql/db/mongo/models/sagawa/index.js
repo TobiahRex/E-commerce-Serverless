@@ -238,7 +238,7 @@ new Promise((resolve, reject) => {
       }
     })
     .then((response) => {
-      if (response.status !== 200) {
+      if (response.status === 200) {
         console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post: ', response.data);
 
         Transaction
@@ -256,7 +256,8 @@ new Promise((resolve, reject) => {
         return CleanSagawaResponse.handleUpload(response);
       }
     })
-    .then(({ data }) => {
+    .then((results) => {
+      console.log('RESULTS: ', results);
       if (!data.verified) {
         console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
 
@@ -595,8 +596,7 @@ new Promise((resolve, reject) => {
       }));
       Sagawa.batchUploadOrders(reqObjs)
       .then((results) => {
-        if (1 === 1) {
-        // if (results.failed.length) {
+        if (results.failed.length) {
           reportType = 'createAndSendErrorReportToStaff';
           return Report.createAndSendErrorReportToStaff({
             reportType: 'cronJobError',

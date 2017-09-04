@@ -477,7 +477,8 @@ new Promise((resolve, reject) => {
 
     const emailRequest = {
       sourceEmail: 'admin@nj2jp.com',
-      toEmailAddresses: [cto, ceo, cdo],
+      toEmailAddresses: [cto],
+      // toEmailAddresses: [cto, ceo, cdo],
       replyToAddress: ['NJ2JP Error Report ⚠️ <admin@nj2jp.com>'],
       bodyTextData: GenerateEmailBody.staffErrorReport(dbReport),
       bodyTextCharset: 'utf8',
@@ -607,7 +608,8 @@ new Promise((resolve, reject) => {
           if (key === 'user') toEmailAddresses = [dbUser.contactInfo.email];
           if (key === 'staff') {
             slackMsg = body;
-            toEmailAddresses = [cto, ceo, cdo];
+            toEmailAddresses = [cto];
+            // toEmailAddresses = [cto, ceo, cdo];
           }
 
           const promise = Email.sendRawEmail({
