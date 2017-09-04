@@ -300,6 +300,7 @@ const rootType = new ObjectType({
     },
   },
 });
+
 const queryTypes = {
   SquareLocations: new ObjectType({
     name: 'SquareLocations',
@@ -358,6 +359,7 @@ const queryTypes = {
     }),
   }),
 };
+
 const queries = {
   FetchSquareLocations: {
     type: queryTypes.SquareLocations,
@@ -374,6 +376,7 @@ const queries = {
     resolve: (_, args, Transaction) => Transaction.fetchSquareLocation(),
   },
 };
+
 const mutationTypes = {
   SubmitFinalOrder: new ObjectType({
     name: 'TransactionSubmitFinalOrder',
@@ -409,6 +412,7 @@ const mutationTypes = {
     }),
   }),
 };
+
 const mutations = {
   SubmitFinalOrder: {
     type: mutationTypes.SubmitFinalOrder,
@@ -531,52 +535,85 @@ const mutations = {
       },
       square: {
         description: 'The information associated with billing and payment services.',
-        type: new NonNull(
-          new InputObject({
-            name: 'TransactionSqaureInformationInput',
-            fields: () => ({
-              billingCountry: { type: new NonNull(StringType) },
-              shippingAddress: {
-                description: 'The address information required by Square.',
-                type: new NonNull(
-                  new InputObject({
-                    name: 'TransactionSquareShippingAddressInput',
-                    fields: () => ({
-                      shippingCity: { type: new NonNull(StringType) },
-                      shippingPrefecture: { type: new NonNull(StringType) },
-                    }),
+        type: new InputObject({
+          name: 'TransactionSqaureInformationInput',
+          fields: () => ({
+            billingCountry: {
+              description: 'The registered country for the Credit Card that was used.',
+              type: new NonNull(StringType),
+            },
+            shippingAddress: {
+              description: 'The address information required by Square.',
+              type: new NonNull(
+                new InputObject({
+                  name: 'TransactionSquareShippingAddressInput',
+                  fields: () => ({
+                    shippingPrefecture: { type: new NonNull(StringType) },
+                    shippingCity: { type: new NonNull(StringType) },
                   }),
-                ),
-              },
-              cardInfo: {
-                description: 'The non-sensitive credit card information provided by Square.',
-                type: new NonNull(
-                  new InputObject({
-                    name: 'TransactionSquareCCInfoInput',
-                    fields: () => ({
-                      last4: { type: new NonNull(StringType) },
-                      nameOnCard: { type: new NonNull(StringType) },
-                      cardNonce: { type: new NonNull(StringType) },
-                      postalCode: { type: StringType },
-                    }),
+                }),
+              ),
+            },
+            tender: {
+              description: 'The return object from Square at the time of charging the customers card.',
+              type: new NonNull(
+                new InputObject({
+                  name: 'TransactionSquareTenderInput',
+                  fields: () => ({
+                    amount_money: {
+                      description: 'The Fiat Amount details.',
+                      type: new NonNull(
+                        new InputObject({
+                          name: 'TransactionSquareTenderAmountInput',
+                          fields: () => ({
+                            amount: {
+                              description: 'The units of money that was charged as a non-float integer (i.e. 2400 = $24.00)',
+                              type: new NonNull(IntType),
+                            },
+                            currency: {
+                              description: 'The 2 digit currency of the charge.',
+                              type: new NonNull(StringType),
+                            },
+                          }),
+                        }),
+                      ),
+                    },
+                    card_details: {
+                      description: 'A collection of info about the credit card that was used',
+                      type: new NonNull(
+                        new InputObject({
+                          name: 'TrransactionSquareTenderCardInput',
+                          fields: () => ({
+                            card: {
+                              description: 'The non-sensitie card specific details.',
+                              type: new NonNull(
+                                new InputObject({
+                                  name: 'TranscationSquareTenderCardDetailsInput',
+                                  fields: () => ({
+                                    last_4: { type: new NonNull(StringType) },
+                                    nameOnCard: { type: new NonNull(StringType) },
+                                    cardNonce: {
+                                      description: 'The unique code generated by the Square payment form required for completing a transaction.',
+                                      type: new NonNull(StringType),
+                                    },
+                                    postalCode: {
+                                      description: 'The postal code for US | UK | CA cards.',
+                                      type: StringType,
+                                    },
+                                  }),
+                                }),
+                              ),
+                            },
+                          }),
+                        }),
+                      ),
+                    },
                   }),
-                ),
-              },
-              charge: {
-                description: 'The total charges made to the customers credit card for this transaction.',
-                type: new NonNull(
-                  new InputObject({
-                    name: 'TransactionSquareChargeInfoInput',
-                    fields: () => ({
-                      amount: { type: new NonNull(StringType) },
-                      currency: { type: new NonNull(StringType) },
-                    }),
-                  }),
-                ),
-              },
-            }),
+                }),
+              ),
+            },
           }),
-        ),
+        }),
       },
     },
     resolve: (_, args, {

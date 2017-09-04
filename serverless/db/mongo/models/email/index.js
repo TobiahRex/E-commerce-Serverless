@@ -264,7 +264,7 @@ export default (db) => {
   *
   * @return {string} - Template string of HTML data with dynamic values.
   */
-  emailSchema.statics.createInvoiceEmailBody = orderInfo =>
+  emailSchema.statics.createInvoiceEmailBody = (orderInfo, Transaction) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Email.createInvoiceEmailBody\n');
 
@@ -337,7 +337,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('Could not create invoice email: ', error);
-      reject(new Error(`Could not create invoice email: ${error}`));
+      reject(`Could not create invoice email: ${error}`);
     });
   });
 
@@ -560,7 +560,7 @@ export default (db) => {
   *
   * @return {na}
   */
-  emailSchema.statics.refundNotification = reqBody =>
+  emailSchema.statics.refundNotification = (reqBody, User) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Email.refundNotification\n');
 

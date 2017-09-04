@@ -181,7 +181,7 @@ export default (db) => {
 
   * @return {object} Promise resolved with Order AWB & REF id's.
   */
-  sagawaSchema.statics.uploadOrder = ({ sagawaId, userId, transactionId }) =>
+  sagawaSchema.statics.uploadOrder = ({ sagawaId, userId, transactionId }, Transaction, Email, User) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.updloadOrder\n');
 
@@ -196,7 +196,7 @@ export default (db) => {
           console.log('\nFAILED: Find Sagawa document by id: ', sagawaId);
 
           Transaction
-          .handleRefund({ sagawaId, transactionId, userId })
+          .handleRefund({ sagawaId, transactionId, userId }, Email, User)
           .then(() => {
             console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> Transaction.handleRefund.');
             resolve({ verified: false, sagawaId });
@@ -237,7 +237,7 @@ export default (db) => {
           console.log('\nFAILED: Sagawa.uploadOrder >>> axios.post: ', response.data);
 
           Transaction
-          .handleRefund({ userId, sagawaId, transactionId })
+          .handleRefund({ userId, sagawaId, transactionId }, Email, User)
           .then(() => {
             console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = FAILED >>> Transaction.handleRefund.');
             resolve({ verified: false, sagawaId });
@@ -255,7 +255,7 @@ export default (db) => {
               console.log('\nFAILED: Clean Successful Sagawa Response: \n', data.errorMsg, '\n', data.msg);
 
               Transaction
-              .handleRefund({ sagawaId, transactionId, userId })
+              .handleRefund({ sagawaId, transactionId, userId }, Email, User)
               .then(() => {
                 console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> axios.post = SUCCEEEDED >>> !data.verified >>> Transaction.handleRefund');
                 resolve({ sagawaId, verified: false });
@@ -283,7 +283,7 @@ export default (db) => {
         console.log('\nFAILED: Upload Order to Sagawa.', error);
 
         Transaction
-        .handleRefund({ sagawaId, transactionId, userId })
+        .handleRefund({ sagawaId, transactionId, userId }, Email, User)
         .then(() => {
           console.log('\nSUCCEEDED: Sagawa.uploadOrder >>> .catch >>>> Transaction.handleRefund');
           resolve({ sagawaId, verified: false });
@@ -311,7 +311,7 @@ export default (db) => {
   *
   * @return {object} Promise resolved with updated Sagawa Document. [WIP]
   */
-  sagawaSchema.statics.uploadOrderAndSendEmail = request =>
+  sagawaSchema.statics.uploadOrderAndSendEmail = (request, Email, Transaction, User) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.uploadOrderAndSendEmail');
 
@@ -329,7 +329,7 @@ export default (db) => {
     let emailType = '';
 
     Promise.all([
-      Sagawa.uploadOrder(request),
+      Sagawa.uploadOrder(request, Transaction, Email, User),
       Transaction.findById(transactionId),
     ])
     .then((results) => {  //eslint-disable-line
@@ -555,7 +555,7 @@ export default (db) => {
   *
   * @return none
   */
-  sagawaSchema.statics.cronJob = () =>
+  sagawaSchema.statics.cronJob = (Report, Email, Transaction, User) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Sagawa.cronJob\n');
 
@@ -596,7 +596,7 @@ export default (db) => {
           userId: dbDoc.userId,
           transactionId: dbDoc.transactionId,
         }));
-        Sagawa.batchUploadOrders(reqObjs)
+        Sagawa.batchUploadOrders(reqObjs, Email, Transaction, User)
         .then((results) => {
           if (results.failed.length) {
             reportType = 'createAndSendErrorReportToStaff';
@@ -632,7 +632,7 @@ export default (db) => {
     });
   });
 
-  sagawaSchema.statics.batchUploadOrders = reqObjs =>
+  sagawaSchema.statics.batchUploadOrders = (reqObjs, Email, Transaction, User) =>
   new Promise((resolve) => {
     console.log('\n\n@Sagawa.batchUploadOrders\n');
 
@@ -652,7 +652,7 @@ export default (db) => {
 
         nextBatch
         .map(async (reqObj) => {
-          const result = await Sagawa.uploadOrderAndSendEmail(reqObj);
+          const result = await Sagawa.uploadOrderAndSendEmail(reqObj, Email, Transaction, User);
           return result;
         })
         .forEach((promise, i, array) => {

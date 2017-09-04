@@ -506,13 +506,13 @@ export default (db) => {
     });
   });
 
-  transactionSchema.statics.issueUserRefund = ({ sagawaId, transactionId, userId }) =>
+  transactionSchema.statics.issueUserRefund = ({ sagawaId, transactionId, userId }, Email, User) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Transaction.issueUserRefund');
 
     Transaction
     .findById(transactionId)
-    .then((dbTransaction) => {
+    .then((dbTransaction) => { //eslint-disable-line
       if (!dbTransaction) {
         console.log('FAILED: @Transaction.issueUserRefund >>> Transaction.findById: ', transactionId);
         reject({
@@ -602,7 +602,7 @@ export default (db) => {
                 `,
               },
             },
-          }),
+          }, User),
         ]);
       }
     })
@@ -616,7 +616,7 @@ export default (db) => {
     });
   });
 
-  transactionSchema.statics.handleRefund = ({ sagawaId, transactionId, userId }) =>
+  transactionSchema.statics.handleRefund = ({ sagawaId, transactionId, userId }, Email, User) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@Transaction.handleRefund');
 
@@ -625,7 +625,7 @@ export default (db) => {
       reject('\nFAILED: Missing required arguments.');
     } else {
       Transaction
-      .issueUserRefund({ sagawaId, transactionId, userId })
+      .issueUserRefund({ sagawaId, transactionId, userId }, Email)
       .then(() => {
         resolve({
           userId,
@@ -633,7 +633,7 @@ export default (db) => {
           verified: false,
         });
       })
-      .catch((error) => {
+      .catch((error) => { //eslint-disable-line
         if (!!error.type) {
           if (error.type === 'RefundNotSent') {
             console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
@@ -692,7 +692,7 @@ export default (db) => {
                   Customer has been issued a full refund.`,
                 },
               },
-            });
+            }, User);
           }
         } else {
           console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
