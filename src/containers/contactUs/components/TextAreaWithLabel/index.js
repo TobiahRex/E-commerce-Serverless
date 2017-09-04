@@ -1,15 +1,21 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
-const TextAreaWithLabel = () => {
+const TextAreaWithLabel = ({
+  value,
+  handleOnChange,
+}) => {
   WebflowJs(); //eslint-disable-line
 
   return (
     <div className="message__container">
-      <label className="message__label" htmlFor="message-field">
-        Message
-      </label>
+
+      <label
+        className="message__label"
+        htmlFor="message-field"
+      >Message</label>
+
       <textarea
         className="message__input w-input"
         data-name="message field"
@@ -18,10 +24,19 @@ const TextAreaWithLabel = () => {
         name="message-field"
         placeholder="What would you like to say to us?"
         required="required"
+        value={value}
+        onChange={handleOnChange}
       />
+
     </div>
   );
 };
 
+const { string, func } = PropTypes;
+
+TextAreaWithLabel.propTypes = {
+  value: string.isRequired,
+  handleOnChange: func.isRequired,
+};
 
 export default TextAreaWithLabel;

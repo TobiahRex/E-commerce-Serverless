@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 const InputWithLabel = ({
-  containerInfo,
+  value,
   labelInfo,
   inputInfo,
+  containerInfo,
+  handleOnChange,
 }) => {
   WebflowJs(); //eslint-disable-line
 
@@ -25,16 +27,19 @@ const InputWithLabel = ({
         name={inputInfo.name}
         placeholder={inputInfo.placeholder}
         type={inputInfo.type}
-        value={inputInfo.value}
+        value={value}
+        onChange={handleOnChange}
       />
 
     </div>
   );
 };
 
-const { shape, string } = PropTypes;
+const { shape, string, func } = PropTypes;
 
 InputWithLabel.propTypes = {
+  handleOnChange: func.isRequired,
+  value: string.isRequired,
   containerInfo: shape({
     className: string,
   }).isRequired,

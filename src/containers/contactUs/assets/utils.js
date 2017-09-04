@@ -36,7 +36,7 @@ export const inputData = [{
       className: 'email__input w-input',
       dataName: 'Email',
       id: 'email',
-      name: 'email',
+      name: 'emailAddress',
       placeholder: 'Enter your Email address',
       type: 'email',
     },
