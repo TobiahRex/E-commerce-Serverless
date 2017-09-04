@@ -1,5 +1,13 @@
 /* eslint-disable indent, no-multi-spaces, camelcase */
 
+/**
+* Name: 'staffErrorReport'
+* Creates a single string that dynamically generates the cron job report data.
+*
+* @param {object} reportDoc - The db Report document.
+*
+* @return {string} bodyTextData - The final string to be inserted in the email body.
+*/
 function staffErrorReport(reportDoc) {
   const bodyTextData = `
   *****************************************************************************
@@ -23,6 +31,14 @@ function staffErrorReport(reportDoc) {
   return bodyTextData;
 }
 
+/**
+* Name: 'staffGeneralReport'
+* Creates a single string that dynamically generates a generalized report data. * Currently used as just a template reference.
+*
+* @param {object} reportDoc - The db Report document.
+*
+* @return {string} bodyTextData - The final string to be inserted in the email body.
+*/
 function staffGeneralReport(reportDoc) {
   const bodyTextData = `
   *****************************************************************************

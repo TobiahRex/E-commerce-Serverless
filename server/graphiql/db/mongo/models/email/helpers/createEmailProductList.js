@@ -4,6 +4,8 @@
 *
 * @param {string} emailDoc - A long HTML string.
 * @param {array} cart - And array of products.
+*
+* @return {string} productListHtmlString - The final resulting html string with the dynamically generated product rows.
 */
 export default function createEmailProductList(emailDoc, cart) {
   const productListHtmlString = cart.reduce((accum, next) => {
