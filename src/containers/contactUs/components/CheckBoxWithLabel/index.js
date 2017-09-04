@@ -15,14 +15,14 @@ const CheckBoxWithLabel = ({
         className="w-checkbox-input"
         data-name="Checkbox"
         id="checkbox"
-        name="ccCopy"
+        name="ccUser"
         type="checkbox"
-        value={value}
+        checked={!!value}
         onChange={() => {
           handleOnChange({
             target: {
               value: !value,
-              name: 'ccCopy',
+              name: 'ccUser',
             },
           });
         }}

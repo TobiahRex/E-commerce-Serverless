@@ -4,7 +4,7 @@ const GraphQLsubmitMessage = gql`
   mutation SubmitContactMsg(
     $message: String!
     $emailAddress: String!
-    $ccUser: Bool!
+    $ccUser: Boolean!
     $name: String!
     $userId: String
   ) {
@@ -14,15 +14,16 @@ const GraphQLsubmitMessage = gql`
       ccUser: $ccUser
       name: $name
       userId: $userId
-    )
-    _id
-    userId
-    name
-    name
-    emailAddress
-    message
-    messageId
-    created
+    ) {
+      _id
+      userId
+      name
+      name
+      emailAddress
+      message
+      messageId
+      created
+    }
   }
 `;
 

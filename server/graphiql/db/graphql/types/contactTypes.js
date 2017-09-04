@@ -48,7 +48,7 @@ const queries = {
 };
 
 const mutations = {
-  SubmitSupport: {
+  SubmitContactMsg: {
     type: rootType,
     description: 'submit support message from user',
     args: {

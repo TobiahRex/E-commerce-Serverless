@@ -21,9 +21,8 @@ const TextAreaWithLabel = ({
         data-name="message field"
         id="message-field"
         maxLength="5000"
-        name="message-field"
+        name="message"
         placeholder="What would you like to say to us?"
-        required="required"
         value={value}
         onChange={handleOnChange}
       />
