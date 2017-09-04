@@ -133,7 +133,7 @@ export default (db) => {
             })
             .catch((error) => {
               console.log('\nFAILED: Add Old Products to Available: ', error);
-              reject(new Error('Update product quantities.'));
+              reject('Update product quantities.');
             });
           });
           resolve(userDoc);
@@ -142,7 +142,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Login User.', error);
-      reject(new Error('\nFAILED: Login User'));
+      reject('\nFAILED: Login User');
     });
   });
   /**
