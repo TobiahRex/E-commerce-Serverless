@@ -1,4 +1,10 @@
+.contact-us {
+  max-width: 1086px;
+  width: 100%;
+}
+
 .contact-us.contact-us__container {
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26,8 +32,22 @@
 }
 
 .main__title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  height: 8em;
+}
+.main__title.tittle--header {
+  font-size: 5em;
+  font-weight: 200;
+  letter-spacing: 0.01em;
   color: #365899;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
 }
 
 .main__contact-us {
@@ -60,7 +80,7 @@
   align-items: center;
   background-image: -webkit-linear-gradient(270deg, rgba(252, 10, 29, .99), rgba(252, 10, 29, .99));
   background-image: linear-gradient(180deg, rgba(252, 10, 29, .99), rgba(252, 10, 29, .99));
-  box-shadow: 0 0 6px 0 #fff, 2px 2px 20px 0 rgba(0, 0, 0, .5);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
   font-family: Ubuntu, Helvetica, sans-serif;
   font-size: 18px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
@@ -110,6 +130,7 @@
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #365899;
   font-size: 16px;
+  resize: vertical;
 }
 
 .email__input {

@@ -7,6 +7,7 @@ import {
 } from './assets/utils';
 
 import {
+  BreadCrumb,
   HdrPage,
   ContactForm,
   InputWithLabel,
@@ -44,13 +45,18 @@ class ContactUs extends React.Component {
   })
 
   render() {
-
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
+          <BreadCrumb
+            paths={['Home']}
+            classes={['home']}
+            destination={['']}
+            lastCrumb="Contact Us"
+          />
           <HdrPage />
           <ContactForm>
-            {this.renderHelper(inputData)}
+            {this.renderHelper(inputsData)}
             <TextAreaWithLabel />
             <CheckBoxWithLabel />
             <MdSendButton />

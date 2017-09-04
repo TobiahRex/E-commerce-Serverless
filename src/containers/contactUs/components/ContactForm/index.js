@@ -21,9 +21,9 @@ const ContactForm = (props) => {
   );
 };
 
-const { arrayOf, object } = PropTypes;
+const { arrayOf, any } = PropTypes;
 ContactForm.propTypes = {
-  children: arrayOf(object).isRequired,
+  children: arrayOf(any).isRequired,
 };
 
 export default ContactForm;

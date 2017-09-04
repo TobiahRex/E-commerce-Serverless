@@ -1,3 +1,4 @@
+export BreadCrumb from '../../../components/breadcrumbs';
 export HdrPage from './HdrPage';
 export ContactForm from './ContactForm';
 export InputWithLabel from './InputWithLabel';
