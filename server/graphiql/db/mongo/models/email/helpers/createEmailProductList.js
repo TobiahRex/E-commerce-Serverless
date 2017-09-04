@@ -1,3 +1,10 @@
+/**
+* Name: 'createEmailProductList'
+* Dynamically generate a list of Products for the customers invoice email.
+*
+* @param {string} emailDoc - A long HTML string.
+* @param {array} cart - And array of products.
+*/
 export default function createEmailProductList(emailDoc, cart) {
   const productListHtmlString = cart.reduce((accum, next) => {
     accum += `
