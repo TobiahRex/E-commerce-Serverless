@@ -29,7 +29,6 @@ export default (db) => {
     });
   });
 
-
   marketHeroSchema.statics.updateLeadProductTags = ({ lead, productTags }) =>
   new Promise((resolve, reject) => {
     console.log('\n\n@MarketHero.updateProductTags\n');
@@ -67,7 +66,7 @@ export default (db) => {
         })
         .catch((error) => {
           console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
-          reject(new Error(error.message));
+          reject(error);
         });
       } else {
         console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> recursive update - Finished all product tag updates.');
@@ -76,7 +75,6 @@ export default (db) => {
     }
     recursiveUpload(productTags);
   });
-
 
   marketHeroSchema.statics.updateUserTags = reqBody =>
   new Promise((resolve, reject) => {
@@ -98,7 +96,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
-      reject(new Error(error.message));
+      reject(error);
     });
   });
 
@@ -154,7 +152,7 @@ export default (db) => {
       })
       .catch((error) => {
         console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
-        return reject(error.message);
+        return reject(error);
       });
     }
   });
@@ -176,7 +174,7 @@ export default (db) => {
 
     if (!lead || !tags) {
       console.log('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead.');
-      reject(new Error('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
+      reject('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: ');
     }
 
     bbPromise.fromCallback(cb => MarketHero.create({ lead, tags }, cb))
@@ -186,7 +184,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Create Mongo Market Hero Document: ', error);
-      return reject(new Error('\nFAILED: Create Mongo Market Hero Document:'));
+      return reject('\nFAILED: Create Mongo Market Hero Document:');
     });
   });
 
@@ -208,7 +206,7 @@ export default (db) => {
 
     if (!lead || !tags) {
       console.log('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead.');
-      reject(new Error('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
+      reject('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: ');
     }
 
     MarketHero
@@ -228,7 +226,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Updating LEAD to Mongo Database: ', error);
-      reject(new Error('\nFAILED: Updating LEAD to Mongo Database: '));
+      reject('\nFAILED: Updating LEAD to Mongo Database: ');
     });
   });
 

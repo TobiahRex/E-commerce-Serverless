@@ -636,7 +636,7 @@ export default (db) => {
       .catch((error) => { //eslint-disable-line
         if (!!error.type) {
           if (error.type === 'RefundNotSent') {
-            console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
+            console.log('\nFAILED: Transaction.handleRefund >>> Transaction.issueUserRefund: ', error.message);
             return Email.refundNotification({
               userId,
               sagawaId,
