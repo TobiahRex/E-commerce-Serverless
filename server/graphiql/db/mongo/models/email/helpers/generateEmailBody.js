@@ -2,11 +2,11 @@
 
 function staffErrorReport(reportDoc) {
   const bodyTextData = `
-  *----------------------------------------------------*
+  *--------------------------------------------------------------------------*
           ${reportDoc.mainTitle} - ${reportDoc.subTitle}
-  *----------------------------------------------------*
+  *--------------------------------------------------------------------------*
       ${reportDoc.headerBlurb}
-  *======================= INFO =======================*
+  *================================== INFO ==================================*
   |
   | TYPE: "${reportDoc.reportType}"
   | DATE: ${reportDoc.created}
@@ -15,7 +15,7 @@ function staffErrorReport(reportDoc) {
   | SUCCESSFUL UPLOADS: ${reportDoc.data.successful}
   | FAILED UPLOADS: ${reportDoc.data.failed}
   | `}
-  *====================== DETAILS ======================*
+  *================================= DETAILS =================================*
 
   ${reportDoc.reportType !== 'cronJobError' ? this.genericReport_body(reportDoc.data) : this.cronJob_body(reportDoc.data)}
   `;
@@ -24,11 +24,11 @@ function staffErrorReport(reportDoc) {
 
 function staffGeneralReport(reportDoc) {
   const bodyTextData = `
-  *----------------------------------------------------*
+  *--------------------------------------------------------------------------*
           ${reportDoc.mainTitle} - ${reportDoc.subTitle}
-  *----------------------------------------------------*
+  *--------------------------------------------------------------------------*
       ${reportDoc.headerBlurb}
-  *======================= INFO =======================*
+  *================================== INFO ==================================*
   |
   | TYPE: "${reportDoc.reportType}"
   | DATE: ${reportDoc.created}
@@ -37,7 +37,7 @@ function staffGeneralReport(reportDoc) {
   | SUCCESSFUL UPLOADS: ${reportDoc.data.successful}
   | FAILED UPLOADS: ${reportDoc.data.failed}
   | `}
-  *====================== DETAILS ======================*
+  *================================= DETAILS =================================*
 
   ${reportDoc.reportType === 'cronJobEmpty' ? 'There are no upload details to show.' : this.cronJob_body(reportDoc.data)}
   `;
@@ -47,9 +47,9 @@ function staffGeneralReport(reportDoc) {
 function genericReport_body(reportData) {
   const message = reportData.reports.reduce((a, n, i) => {
   a += `
-  ${i + 1})----------------
+  ${i + 1})--------------------------------
   ${JSON.stringify(n)}
-  *-------------------------
+  *----------------------------------------
   `;
   return a;
   }, '');
@@ -57,17 +57,16 @@ function genericReport_body(reportData) {
 }
 
 function cronJob_body(reportData) {
-  const message = `
-  ${reportData.reports.reduce((a, n, i) => {
+  const message = `${reportData.reports.reduce((a, n, i) => {
   a += `
-  (${i + 1})------------------------
+  (${i + 1})------------------------------------------------
   |           ${n.error ? 'FAILED' : 'SUCCESS'}
   | DATE: ${n.date}
-  | SAGAWA ID: ${n.sagawaId}
-  | USER ID: ${n.userId}
-  | TRANSACTION ID: ${n.transactionId}
   | VERIFIED: ${n.success}
-  *----------------------------
+  | USER ID: ${n.userId}
+  | SAGAWA ID: ${n.sagawaId}
+  | TRANSACTION ID: ${n.transactionId}
+  *----------------------------------------------------
   `;
   return a;
   }, '')}`;
