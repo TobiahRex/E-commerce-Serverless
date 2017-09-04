@@ -18,7 +18,6 @@ import {
   getShippingDay as GetShippingDay,
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
-  uploadGenerator as UploadGenerator,
 } from './helpers';
 
 /**
@@ -95,7 +94,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Create new Sagawa Document: ', error);
-    reject(new Error('\nFAILED: Create new Sagwa Document.'));
+    reject('\nFAILED: Create new Sagwa Document.');
   });
 });
 /**
@@ -175,7 +174,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Update Sagawa Doc with AWB & REF #\'s:', error);
-    reject(new Error('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.'));
+    reject('\nFAILED: Update Sagawa Doc with AWB & REF #\'s.');
   });
 });
 /**
@@ -383,17 +382,18 @@ new Promise((resolve, reject) => {
       exp: moment().add(10, 'd').unix(),
     };
     const {
-      JWT_SECRET,
-      LAMBDA_ENV,
-      BASE_URL,
-      PRODUCTION_URL,
+      JWT_SECRET: jwtSecret,
+      LAMBDA_ENV: lambdaEnv,
+      BASE_URL: baseUrl,
+      PRODUCTION_URL: productionUrl,
     } = process.env;
 
-    const token = JWT.sign(payload, JWT_SECRET);
-    const prodEnv = LAMBDA_ENV === 'production';
-    const trackingLink = `${prodEnv ? PRODUCTION_URL : BASE_URL}/tracking?token=${token}`;
-    console.log('TRACKING LINK: ', trackingLink);
+    const token = JWT.sign(payload, jwtSecret);
+    const prodEnv = lambdaEnv === 'production';
+    const trackingLink = `${prodEnv ? productionUrl : baseUrl}/tracking?token=${token}`;
+
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
+
     emailBody = emailBody
     .replace(/(TRACKING_TOKEN_LINK_HERE)+/g, trackingLink)
     .replace(/(ORDER_TRACKING_NUMBER_HERE)+/g, sagawaDoc.shippingAddress.referenceId);
@@ -436,7 +436,7 @@ new Promise((resolve, reject) => {
   } else {
     bbPromise.fromCallback(cb => JWT.verify(token, process.env.JWT_SECRET, cb))
     .then((payload) => {
-      console.log('\nSUCCEEDED: Extract payload from JWT token input.');
+      console.log('\nSUCCEEDED: Sagawa.fetchTrackingInfo >>> JWT.verify');
       console.log('\nPayload: ', payload);
 
       const today = Number(String(Date.now()).slice(0, 10));
@@ -461,7 +461,7 @@ new Promise((resolve, reject) => {
     })
     .then((results) => {
       if (!results[0] || !results[1]) {
-        console.log('\nFAILED: 1) Locate user by payload id: ', results[0], '2) Locate Sagawa document by payload id: ', results[1]);
+        console.log('\nFAILED: Sagawa.fetchTrackingInfo >>> 1) User.findById: ', results[0], '2) Sagawa.findById: ', results[1]);
         resolve({
           error: {
             hard: true,
@@ -489,7 +489,8 @@ new Promise((resolve, reject) => {
 
       const trackingNumber = sagawaDoc.shippingAddress.referenceId;
 
-      return axios.get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
+      return axios
+      .get(`https://tracking.sagawa-sgx.com/sgx/xmltrack.asp?AWB=${trackingNumber}`);
     })
     .then((response) => {
       if (response.status !== 200) {
@@ -544,7 +545,7 @@ new Promise((resolve, reject) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Fetch Sagawa Tracking information.', error);
-      reject(new Error('\nFAILED: Fetch Sagawa Tracking information.'));
+      reject('\nFAILED: Fetch Sagawa Tracking information.');
     });
   }
 });
