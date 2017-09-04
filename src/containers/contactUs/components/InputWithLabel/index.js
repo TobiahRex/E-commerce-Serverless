@@ -42,7 +42,7 @@ InputWithLabel.propTypes = {
     className: string,
     htmlFor: string,
     label: string,
-  }),
+  }).isRequired,
   inputInfo: shape({
     className: string,
     dataName: string,
@@ -50,7 +50,7 @@ InputWithLabel.propTypes = {
     name: string,
     placeholder: string,
     type: string,
-  }),
+  }).isRequired,
 };
 
 export default InputWithLabel;

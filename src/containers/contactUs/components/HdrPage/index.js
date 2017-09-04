@@ -7,7 +7,8 @@ const HdrPage = () => {
 
   return (
     <div className="main__title">
-      <h1 className="main__title tittle--header">Contact Us
+      <h1 className="main__title tittle--header">
+        Contact Us
       </h1>
     </div>
   );
