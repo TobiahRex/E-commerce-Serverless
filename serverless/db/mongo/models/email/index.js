@@ -477,8 +477,7 @@ export default (db) => {
 
       const emailRequest = {
         sourceEmail: 'admin@nj2jp.com',
-        toEmailAddresses: [cto],
-        // toEmailAddresses: [cto, ceo, cdo],
+        toEmailAddresses: [cto, ceo, cdo],
         replyToAddress: ['NJ2JP Error Report ⚠️ <admin@nj2jp.com>'],
         bodyTextData: GenerateEmailBody.staffErrorReport(dbReport),
         bodyTextCharset: 'utf8',
@@ -533,8 +532,7 @@ export default (db) => {
 
       const emailRequest = {
         sourceEmail: 'NJ2JP <admin@nj2jp.com>',
-        toEmailAddresses: [cto],
-        // toEmailAddresses: [cto, ceo, cdo],
+        toEmailAddresses: [cto, ceo, cdo],
         replyToAddress: [`${dbReport.mainTitle} <admin@nj2jp.com>`],
         bodyTextData: GenerateEmailBody.staffGeneralReport(dbReport),
         bodyTextCharset: 'utf8',

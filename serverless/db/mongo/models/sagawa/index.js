@@ -483,8 +483,7 @@ export default (db) => {
             $set: {
               'shippingAddress.awbId': uploadData.awbId,
               'shippingAddress.referenceId': uploadData.referenceId,
-              uploadStatus: 'pending',
-              // uploadStatus: 'upload',
+              uploadStatus: 'upload',
             },
           }, { new: true }),
           Email.findEmailAndFilterLanguage(
