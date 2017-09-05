@@ -38,7 +38,7 @@ class ContactUs extends React.Component {
         soft: false,
         message: '',
       },
-      formError: '',
+      formError: null,
       name: '',
       emailAddress: '',
       message: '',
@@ -50,6 +50,10 @@ class ContactUs extends React.Component {
 
   componentDidMount() {
     WebflowJs(); // eslint-disable-line
+  }
+
+  componentWillUnmount() {
+    this.props.clearToaster();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -89,7 +93,10 @@ class ContactUs extends React.Component {
 
   recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
-  recaptchaExpiredCb = () => this.setState({ recaptchaToken: '' }, () => {
+  recaptchaExpiredCb = () => this.setState(prevState => ({
+    ...prevState,
+    recaptchaToken: '',
+  }), () => {
     this.recaptcha.reset();
   });
 
@@ -102,53 +109,37 @@ class ContactUs extends React.Component {
   }
 
   submitMsg = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      errors: {
-        hard: false,
-        soft: false,
-        message: '',
-      },
-    }), () => {
-      this.props.clearToaster();
-      this.props.apiIsFetching();
-    });
-
+    this.props.clearToaster();
+    this.props.apiIsFetching();
     this.props.GraphQLsubmitContactMsg({
       name: this.state.name,
       userId: this.state.userId,
       ccUser: this.state.ccUser,
       message: this.state.message,
       emailAddress: this.state.emailAddress,
+      recaptchaToken: this.state.recaptchaToken,
     })
     .then(({ data: { SubmitContactMsg: response } }) => {
       if (!response) {
-        this.setState({
-          name: '',
-          emailAddress: '',
-          message: '',
-          userId: '',
-          ccUser: true,
-        }, () => {
-          this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
-        });
+        this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
       } else {
         const result = CleanOffTypename(response);
 
-        this.setState({
+        this.setState(prevState => ({
+          ...prevState,
           name: '',
-          emailAddress: '',
-          message: '',
           userId: '',
           ccUser: true,
-        }, () => {
+          message: '',
+          emailAddress: '',
+        }), () => {
           if (result.error.hard || result.error.soft) {
             this.props.GraphQLhandleError(result.error);
             this.props.apiFail();
           } else {
             this.props.apiSuccess();
             this.props.toastSuccess(true, 'Successfully sent!');
-            setTimeout(() => this.props.clearToaster(), 3000);
+            setTimeout(() => this.props.clearToaster(), 4000);
           }
         });
       }

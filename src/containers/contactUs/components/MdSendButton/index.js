@@ -76,7 +76,7 @@ const MdSendButton = ({
     return (
       <div className="contact-us__submit--container">
         <button
-          className="contact-us__loading--button w-button"
+          className="contact-us__submit--button w-button"
           type="button"
           disabled
         >

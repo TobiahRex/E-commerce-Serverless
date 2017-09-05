@@ -19,7 +19,7 @@ function RecaptchaWidget({ verifyCb, onLoadCb, expiredCb, assignRefToRecaptcha }
         render="explicit"
         verifyCallback={verifyCb}
         onloadCallback={onLoadCb}
-        expiredCb={expiredCb}
+        expiredCallback={expiredCb}
       />
     </div>
   );

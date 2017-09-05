@@ -322,6 +322,7 @@ span.form-error.is-visible {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  align-items: center;
 }
 .error-hard__title h2 {
   margin-left: .25em;
@@ -335,7 +336,8 @@ span.form-error.is-visible {
   line-height: 1.25em;
   text-shadow: 0 1px 1px rgba(0,0,0,.25);
 }
-.contact-us__error p {
+.contact-us__error--message {
+  padding: 5px;
   text-align: center;
   color: #FF0000;
   font-size: 1.6em;
@@ -347,7 +349,7 @@ span.form-error.is-visible {
 
 .main__contact-us-form {
   display: block;
-  padding: 15px;
+  padding: 30px;
   background-image: -webkit-linear-gradient(270deg, #d8d8d8, #d8d8d8);
   background-image: linear-gradient(180deg, #d8d8d8, #d8d8d8);
 }

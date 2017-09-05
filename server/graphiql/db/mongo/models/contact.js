@@ -25,7 +25,7 @@ import Email from './email';
 * @return {object} - Promise: resolve or reject the response.
 */
 contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
-new Promise((resolve) => {
+new Promise((resolve, reject) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
 
   const contactDocument = {};
@@ -47,22 +47,13 @@ new Promise((resolve) => {
     emailRequest.ccEmailAddresses = [contactForm.emailAddress];
   }
 
-  axios.post('https://www.google.com/recaptcha/api/siteverify', {
-    response: contactForm.recaptchaToken,
-    secret: process.env.RECAPTCHA_SECRET_KEY,
-  })
+  axios.post(`https://www.google.com/recaptcha/api/siteverify?response=${contactForm.recaptchaToken}&secret=${process.env.RECAPTCHA_SECRET_KEY}`)
   .then((response) => {
-    if (response.status !== 200) {
+    console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> axios.post: \n1) Status: ', response.status, '\n2) Data: ', response.data);
+
+    if (!response.data.success) {
       resolve({
-        errors: {
-          hard: true,
-          soft: false,
-          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
-        },
-      });
-    } else if (!response.data.success) {
-      resolve({
-        errors: {
+        error: {
           hard: true,
           soft: false,
           message: '🤔 Wierd. We were not able to validate the Recaptcha. Either you are a bot 🤖  or there was a glitch and we ask you to please try again.  Thanks.',
@@ -73,23 +64,25 @@ new Promise((resolve) => {
     }
   })
   .then((response) => {
-    console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Email.sendRawEmail:', response);
-    contactDocument.messageId = response.MessageId;
+    if (response.MessageId) {
+      console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Email.sendRawEmail:', response);
+      contactDocument.messageId = response.MessageId;
 
-    const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
-    const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Login as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their question.`;
+      const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
+      const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Login as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their question.`;
 
-    contactDocument.name = contactForm.name;
-    contactDocument.emailAddress = contactForm.emailAddress;
-    contactDocument.message = contactForm.message;
-    if (contactForm.userId) {
-      contactDocument.userId = contactForm.userId;
+      contactDocument.name = contactForm.name;
+      contactDocument.emailAddress = contactForm.emailAddress;
+      contactDocument.message = contactForm.message;
+      if (contactForm.userId) {
+        contactDocument.userId = contactForm.userId;
+      }
+
+      return Promise.all([
+        Email.notifySlack(slackWebhook, slackMessage),
+        bbPromise.fromCallback(cb => Contact.create(contactDocument, cb)),
+      ]);
     }
-
-    Promise.all([
-      Email.notifySlack(slackWebhook, slackMessage),
-      bbPromise.fromCallback(cb => Contact.create(contactDocument, cb)),
-    ]);
   })
   .then((results) => {
     console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> \n1) Email.notifySlack:', results[0], '\n2) Contact.create: ', results[1]);

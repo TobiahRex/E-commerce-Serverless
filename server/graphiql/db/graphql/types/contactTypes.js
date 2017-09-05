@@ -88,6 +88,10 @@ const mutations = {
         description: 'Name of the customer',
         type: new NonNull(StringType),
       },
+      recaptchaToken: {
+        description: 'The recaptcha token for sending a contact us message.',
+        type: new NonNull(StringType),
+      },
       userId: {
         description: 'userId of the customer',
         type: StringType,
