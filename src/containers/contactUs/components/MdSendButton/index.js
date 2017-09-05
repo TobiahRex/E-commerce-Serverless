@@ -6,10 +6,12 @@ import { WebflowJs } from './assets/utils';
 
 const MdSendButton = ({
   toast,
+  enable,
   submitMsg,
   apiFetching,
 }) => {
   WebflowJs(); //eslint-disable-line
+
   if (toast.type === 'success') {
     return (
       <div className="contact-us__send-copy--container">
@@ -23,6 +25,18 @@ const MdSendButton = ({
           {'\u00A0'}
           <FontAwesome name="check" className="hover-dropin" />
         </button>
+      </div>
+    );
+  }
+
+  if (toast.type === 'error') {
+    return (
+      <div className="contact-us__send-copy--container">
+        <div className="contact-us__error">
+          <p className="conatct-us__error--message ">
+            {toast.message}
+          </p>
+        </div>
       </div>
     );
   }
@@ -43,19 +57,21 @@ const MdSendButton = ({
       </div>
     );
   }
-  return (
-    <div className="contact-us__send-copy--container">
-      <Validation.components.Button
-        className="contact-us__submit--button w-button"
-        errorClassName=""
-        onClick={submitMsg}
-      >
-        <FontAwesome name="send" />
-        {'\u00A0'}
-        Send
-      </Validation.components.Button>
-    </div>
-  );
+  if (enable) {
+    return (
+      <div className="contact-us__send-copy--container">
+        <Validation.components.Button
+          className="contact-us__submit--button w-button"
+          errorClassName=""
+          onClick={submitMsg}
+        >
+          <FontAwesome name="send" />
+          {'\u00A0'}
+          Send
+        </Validation.components.Button>
+      </div>
+    );
+  }
 };
 
 const { func, bool, shape, string } = PropTypes;

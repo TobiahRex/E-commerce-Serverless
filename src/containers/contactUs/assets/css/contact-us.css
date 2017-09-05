@@ -275,6 +275,17 @@ span.form-error.is-visible {
   justify-content: center;
 }
 
+.contact-us__send-copy--container .contact-us__error {
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 0px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 .main__contact-us-form {
   display: block;
   padding: 15px;
