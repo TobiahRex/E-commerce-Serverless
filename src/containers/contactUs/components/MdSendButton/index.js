@@ -15,7 +15,7 @@ const MdSendButton = ({
 
   if (toast.type === 'success') {
     return (
-      <div className="contact-us__send-copy--container">
+      <div className="contact-us__submit--container">
         <button
           className="contact-us__success--button w-button"
           onClick={submitMsg}
@@ -32,7 +32,7 @@ const MdSendButton = ({
 
   if (toast.type === 'error') {
     return (
-      <div className="contact-us__send-copy--container">
+      <div className="contact-us__submit--container">
         <Validation.components.Button
           className="contact-us__submit--button w-button"
           errorClassName=""
@@ -44,13 +44,12 @@ const MdSendButton = ({
         </Validation.components.Button>
         <div className="contact-us__error">
           <div className="error-hard__title">
-            <FontAwesome className="error-icon" name="" />
+            <FontAwesome className="error-icon" name="exclamation-circle" />
             {'\u00A0'}
-            <h2>Error!</h2>
+            <h2>Error</h2>
           </div>
           <p className="contact-us__error--message ">
-            {/* {toast.message} */}
-            The Recaptcha confirmation was not approved.  Please try again.
+            {toast.message}
           </p>
         </div>
       </div>
@@ -59,7 +58,7 @@ const MdSendButton = ({
 
   if (apiFetching) {
     return (
-      <div className="contact-us__send-copy--container">
+      <div className="contact-us__submit--container">
         <button
           className="contact-us__loading--button w-button"
           onClick={submitMsg}
@@ -73,9 +72,10 @@ const MdSendButton = ({
       </div>
     );
   }
+
   if (enable) {
     return (
-      <div className="contact-us__send-copy--container">
+      <div className="contact-us__submit--container">
         <Validation.components.Button
           className="contact-us__submit--button w-button"
           errorClassName=""

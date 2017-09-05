@@ -93,13 +93,12 @@ class ContactUs extends React.Component {
     this.recaptcha.reset();
   });
 
-  enableSubmitButton = ({ toast, formError, recaptchaToken, errors }) => {
+  enableSubmitButton = ({ formError, recaptchaToken, errors }) => {
     const noFormErrors = !formError;
-    const networkErrors = /(Network Error)|(Server Error)g/.test(toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
+    const networkErrors = /(Network Error)|(Server Error)g/.test(this.props.toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
 
-    if (networkErrors) return false;
-    if (!!recaptchaToken && noFormErrors) return true;
-    return false;
+    if (networkErrors || !noFormErrors || !!recaptchaToken) return false;
+    return true;
   }
 
   submitMsg = () => {
@@ -191,15 +190,15 @@ class ContactUs extends React.Component {
             <RecaptchaWidget
               verifyCb={this.recaptchaVerifyCb}
               onLoadCb={this.recaptchaOnLoadCb}
-              expiredCb={this.expiredCb}
+              expiredCb={this.recaptchaExpiredCb}
               assignRefToRecaptcha={this.assignRefToRecaptcha}
             />
 
             <MdSendButton
-              apiFetching={this.props.apiFetching}
-              submitMsg={this.submitMsg}
               toast={this.props.toast}
               enable={this.enableSubmitButton(this.state)}
+              submitMsg={this.submitMsg}
+              apiFetching={this.props.apiFetching}
             />
 
           </ContactForm>

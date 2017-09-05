@@ -6,10 +6,11 @@ const { func } = PropTypes;
 const propTypes = {
   verifyCb: func.isRequired,
   onLoadCb: func.isRequired,
+  expiredCb: func.isRequired,
   assignRefToRecaptcha: func.isRequired,
 };
 
-function RecaptchaWidget({ verifyCb, onLoadCb, assignRefToRecaptcha }) {
+function RecaptchaWidget({ verifyCb, onLoadCb, expiredCb, assignRefToRecaptcha }) {
   return (
     <div className="contact-us__recaptcha--container">
       <Recaptcha
@@ -18,6 +19,7 @@ function RecaptchaWidget({ verifyCb, onLoadCb, assignRefToRecaptcha }) {
         render="explicit"
         verifyCallback={verifyCb}
         onloadCallback={onLoadCb}
+        expiredCb={expiredCb}
       />
     </div>
   );
