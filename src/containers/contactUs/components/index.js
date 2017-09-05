@@ -5,3 +5,4 @@ export InputWithLabel from './InputWithLabel';
 export TextAreaWithLabel from './TextAreaWithLabel';
 export CheckBoxWithLabel from './CheckBoxWithLabel';
 export MdSendButton from './MdSendButton';
+export RecaptchaWidget from './RecaptchaWidget';

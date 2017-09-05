@@ -20,6 +20,7 @@ import {
   InputWithLabel,
   TextAreaWithLabel,
   CheckBoxWithLabel,
+  RecaptchaWidget,
 } from './components';
 import {
   GraphQLsubmitMessage,
@@ -38,6 +39,7 @@ class ContactUs extends React.Component {
       message: '',
       userId: '',
       ccUser: true,
+      recaptchaToken: '',
     };
   }
 
@@ -75,6 +77,12 @@ class ContactUs extends React.Component {
   }
 
   assignRefToForm = (formComp) => { this.form = formComp; }
+
+  assignRefToRecpatch = (recaptchaComp) => { this.recaptcha = recaptchaComp; }
+
+  recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
+
+  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
   submitMsg = () => {
     this.props.clearToaster();
@@ -166,6 +174,12 @@ class ContactUs extends React.Component {
               apiFetching={this.props.apiFetching}
               submitMsg={this.submitMsg}
               toast={this.props.toast}
+            />
+
+            <RecaptchaWidget
+              recaptchaVerifyCb={this.recaptchaVerifyCb}
+              recaptchaOnLoadCb={this.recaptchaOnLoadCb}
+              assignRefToRecaptcha={this.assignRefToRecaptcha}
             />
 
           </ContactForm>

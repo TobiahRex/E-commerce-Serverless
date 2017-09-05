@@ -63,6 +63,17 @@
   justify-content: center;
 }
 
+.contact-us__submit--button:disabled {
+  background-image: -webkit-linear-gradient(270deg, #9E9EAD, #9E9EAD);
+  background-image: linear-gradient(180deg, #9E9EAD, #9E9EAD);
+  cursor: not-allowed;
+}
+.contact-us__submit--button:hover:disabled {
+  background-image: -webkit-linear-gradient(270deg, #9E9EAD, #9E9EAD);
+  background-image: linear-gradient(180deg, #9E9EAD, #9E9EAD);
+  cursor: not-allowed;
+}
+
 .contact-us__submit--button {
   display: -webkit-box;
   display: -webkit-flex;

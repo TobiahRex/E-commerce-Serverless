@@ -47,7 +47,7 @@ const MdSendButton = ({
     <div className="contact-us__send-copy--container">
       <Validation.components.Button
         className="contact-us__submit--button w-button"
-        errorClassname=""
+        errorClassName=""
         onClick={submitMsg}
       >
         <FontAwesome name="send" />
