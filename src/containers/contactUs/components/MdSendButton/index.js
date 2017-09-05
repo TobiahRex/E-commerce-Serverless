@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import Validation from 'react-validation';
 import { WebflowJs } from './assets/utils';
 
 const MdSendButton = ({
@@ -44,15 +45,15 @@ const MdSendButton = ({
   }
   return (
     <div className="contact-us__send-copy--container">
-      <button
+      <Validation.components.Button
         className="contact-us__submit--button w-button"
+        errorClassname=""
         onClick={submitMsg}
-        type="button"
       >
         <FontAwesome name="send" />
         {'\u00A0'}
         Send
-      </button>
+      </Validation.components.Button>
     </div>
   );
 };

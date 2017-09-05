@@ -18,7 +18,8 @@ const CheckBoxWithLabel = ({
         id="checkbox"
         type="checkbox"
         className="w-checkbox-input"
-        value={!!value ? 'truthy' : ''}
+        checked={value}
+        value={value ? 'truthy' : ''}
         name="ccUser"
         onChange={() => {
           handleOnChange({
@@ -29,22 +30,6 @@ const CheckBoxWithLabel = ({
           });
         }}
         validations={['required']}
-      />
-      <input
-        className="w-checkbox-input"
-        data-name="Checkbox"
-        id="checkbox"
-        name="ccUser"
-        type="checkbox"
-        checked={!!value}
-        onChange={() => {
-          handleOnChange({
-            target: {
-              value: !value,
-              name: 'ccUser',
-            },
-          });
-        }}
       />
 
       <label

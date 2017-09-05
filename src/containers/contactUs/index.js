@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import _ from 'lodash';
 import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
