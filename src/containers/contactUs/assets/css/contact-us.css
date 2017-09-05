@@ -140,13 +140,6 @@
   background-image: linear-gradient(180deg, #365899, #365899), linear-gradient(180deg, rgba(252, 10, 29, .99), rgba(252, 10, 29, .99));
 }
 
-.name__input {
-  border: 1px solid #9e9ea5;
-  border-radius: 4px;
-  font-family: Ubuntu, Helvetica, sans-serif;
-  color: #365899;
-  font-size: 16px;
-}
 
 .email__label {
   font-family: Ubuntu, Helvetica, sans-serif;
@@ -172,6 +165,13 @@
   color: #365899;
   font-size: 16px;
 }
+.name__input {
+  border: 1px solid #9e9ea5;
+  border-radius: 4px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 16px;
+}
 
 .message__input {
   border: 1px solid #9e9ea5;
@@ -188,6 +188,22 @@
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #365899;
   font-size: 16px;
+}
+
+span.form-error.is-visible {
+  color: #FC2525;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.2em;
+  padding: 1em 0;
+}
+
+.name__input.is-invalid-input:not(:focus) {
+  background-color: rgba(236, 88, 64, 0.1);
+  border: 1px solid #ec5840;
+}
+.email__input.is-invalid-input:not(:focus) {
+  background-color: rgba(236, 88, 64, 0.1);
+  border: 1px solid #ec5840;
 }
 
 .name__label {

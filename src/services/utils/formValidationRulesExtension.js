@@ -121,6 +121,15 @@ Object.assign(Validation.rules, {
     ),
   },
 
+  contactUsTextArea: {
+    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        That message uses invalid characters. Please try again.
+      </span>
+    ),
+  },
+
   'contactUs-firstLast': {
     rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
     hint: () => (

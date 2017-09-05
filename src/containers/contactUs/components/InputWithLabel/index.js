@@ -12,10 +12,10 @@ const InputWithLabel = ({
 }) => {
   WebflowJs(); //eslint-disable-line
 
-  let validations;
+  let validations = [];
 
-  if (inputInfo.type === 'email') validations = ['required', 'email'];
-  if (inputInfo.type === 'name') validations = ['required', 'alpha', 'ccName', 'ccName-firstLast'];
+  if (inputInfo.name === 'emailAddress') validations = ['required', 'email'];
+  if (inputInfo.name === 'name') validations = ['required', 'contactUsName', 'contactUs-firstLast'];
 
   return (
     <div className={containerInfo.className}>
@@ -32,20 +32,9 @@ const InputWithLabel = ({
         value={value}
         name={inputInfo.name}
         onChange={handleOnChange}
-        validations={validations}
+        validations={[...validations]}
         placeholder={inputInfo.placeholder}
       />
-      {/* <input
-        className={inputInfo.className}
-        data-name={inputInfo.dataName}
-        id={inputInfo.id}
-        maxLength="256"
-        name={inputInfo.name}
-        placeholder={inputInfo.placeholder}
-        type={inputInfo.type}
-        value={value}
-        onChange={handleOnChange}
-      /> */}
 
     </div>
   );
