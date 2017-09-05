@@ -67,7 +67,10 @@ class Footer extends React.Component {
                   </li>
 
                   <li className="contact__list--item contact__list-item--landscape contact__list-item--tablet">
-                    <FontAwesome name="mail" className="font-awesome--email" /><a className="general__list--link general__list--link--tablet" data-ix="new-interaction" href="/about"rel="noopener noreferrer" target="_blank">contact@nj2jp.com</a></li>
+                    <FontAwesome name="envelope" className="font-awesome--envelope" />
+
+                    <a className="general__list--link general__list--link--tablet" data-ix="new-interaction" href="/about"rel="noopener noreferrer" target="_blank">contact@nj2jp.com</a>
+                  </li>
                 </ul>
               </div>
               <div className="grid__social-column w-col w-col-3">
@@ -86,8 +89,8 @@ class Footer extends React.Component {
                   <div className="facebook-icon">
                     <FontAwesome name="twitter" className="fa-twitter" />
                   </div>
-                  <div className="instagram-icon">
-                    <FontAwesome name="instagram" className="fa-instagram" />
+                  <div className="linkedin-icon">
+                    <FontAwesome name="linkedin" className="fa-linkedin" />
                   </div>
                 </div>
               </div>
