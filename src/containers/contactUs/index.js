@@ -33,7 +33,7 @@ class ContactUs extends React.Component {
     super(props);
 
     this.state = {
-      errors: {
+      error: {
         hard: false,
         soft: false,
         message: '',
@@ -45,6 +45,7 @@ class ContactUs extends React.Component {
       userId: '',
       ccUser: true,
       recaptchaToken: '',
+      formKey: String(Date.now(), 'utf8').toString('base64'),
     };
   }
 
@@ -100,9 +101,9 @@ class ContactUs extends React.Component {
     this.recaptcha.reset();
   });
 
-  enableSubmitButton = ({ formError, recaptchaToken, errors }) => {
+  enableSubmitButton = ({ formError, recaptchaToken, error }) => {
     const noFormErrors = !formError;
-    const networkErrors = /(Network Error)|(Server Error)g/.test(this.props.toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
+    const networkErrors = /(Network Error)|(Server Error)g/.test(this.props.toast.message) || /(Network Error)|(Server Error)g/.test(error.message);
 
     if (networkErrors || !noFormErrors || !recaptchaToken) return false;
     return true;
@@ -127,16 +128,24 @@ class ContactUs extends React.Component {
 
         this.setState(prevState => ({
           ...prevState,
+          error: {
+            hard: false,
+            soft: false,
+            message: '',
+          },
           name: '',
           userId: '',
           ccUser: true,
           message: '',
           emailAddress: '',
+          formError: null,
+          formKey: String(Date.now(), 'utf8').toString('base64'),
         }), () => {
           if (result.error.hard || result.error.soft) {
             this.props.GraphQLhandleError(result.error);
             this.props.apiFail();
           } else {
+            this.recaptcha.reset();
             this.props.apiSuccess();
             this.props.toastSuccess(true, 'Successfully sent!');
             setTimeout(() => this.props.clearToaster(), 4000);
@@ -162,6 +171,7 @@ class ContactUs extends React.Component {
           <HdrPage />
 
           <ContactForm
+            key={this.state.formKey}
             handleOnSubmit={this.handleOnSubmit}
             assignRefToForm={this.assignRefToForm}
           >

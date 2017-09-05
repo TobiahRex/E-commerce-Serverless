@@ -25,7 +25,7 @@ import Email from './email';
 * @return {object} - Promise: resolve or reject the response.
 */
 contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
-new Promise((resolve, reject) => {
+new Promise((resolve) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
 
   const contactDocument = {};
