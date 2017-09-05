@@ -112,7 +112,12 @@
 
 .font-awesome--phone {
   margin-right: 10px;
-  font-family: 'Fontawesome (3)', sans-serif;
+  color: #fff;
+  font-size: 30px;
+}
+
+.font-awesome--email {
+  margin-right: 10px;
   color: #fff;
   font-size: 30px;
 }
@@ -150,7 +155,6 @@
 }
 
 .fa-facebook {
-  font-family: 'Fontawesome (3)', sans-serif;
   color: #385a97;
   font-size: 50px;
 }
@@ -176,7 +180,6 @@
 }
 
 .fa-instagram {
-  font-family: 'Fontawesome (3)', sans-serif;
   color: #385a97;
   font-size: 50px;
 }
@@ -215,7 +218,6 @@
 .footer__heart {
   margin-right: 3px;
   margin-left: 3px;
-  font-family: 'Fontawesome (3)', sans-serif;
   color: #ce102f;
   font-size: 18px;
 }
@@ -250,7 +252,6 @@
 .footer__copyright {
   margin-right: 4px;
   margin-left: 4px;
-  font-family: 'Fontawesome (3)', sans-serif;
   color: #b1abab;
   font-size: 20px;
 }
@@ -279,13 +280,16 @@
 }
 
 .fa-twitter {
-  font-family: 'Fontawesome (3)', sans-serif;
+  color: #385a97;
+  font-size: 50px;
+}
+
+.fa-instagram {
   color: #385a97;
   font-size: 50px;
 }
 
 .text-block {
-  font-family: 'Fontawesome (3)', sans-serif;
   color: #385a97;
   font-size: 50px;
 }

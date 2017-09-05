@@ -1,8 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { propTypes } from './assets/propValidation';
-
-import './assets/css/footer.css';
+import './assets/css/styles.css';
 
 import {
   WebflowJs,
@@ -61,10 +60,14 @@ class Footer extends React.Component {
                   <h3 className="footer-column__header footer-column__header--tablet">GET IN TOUCH</h3>
                 </div>
                 <ul className="contact-column__list contact-column__list--landscape w-list-unstyled">
+
                   <li className="contact__list--item contact__list-item--landscape contact__list-item--tablet">
-                    <div className="font-awesome--phone"></div><a className="general__list--link general__list--link--tablet" data-ix="new-interaction" href="/about"rel="noopener noreferrer" target="_blank">080-4053-8791</a></li>
+                    <FontAwesome name="phone" className="font-awesome--phone" />
+                    <a className="general__list--link general__list--link--tablet" data-ix="new-interaction" href="/about"rel="noopener noreferrer" target="_blank">080-4053-8791</a>
+                  </li>
+
                   <li className="contact__list--item contact__list-item--landscape contact__list-item--tablet">
-                    <div className="font-awesome--phone"></div><a className="general__list--link general__list--link--tablet" data-ix="new-interaction" href="/about"rel="noopener noreferrer" target="_blank">contact@nj2jp.com</a></li>
+                    <FontAwesome name="mail" className="font-awesome--email" /><a className="general__list--link general__list--link--tablet" data-ix="new-interaction" href="/about"rel="noopener noreferrer" target="_blank">contact@nj2jp.com</a></li>
                 </ul>
               </div>
               <div className="grid__social-column w-col w-col-3">
@@ -76,15 +79,15 @@ class Footer extends React.Component {
                     <FontAwesome name="facebook" className="fa-facebook" />
                   </div>
                   <div className="instagram-icon">
-                    <div className="fa-instagram"></div>
+                    <FontAwesome name="instagram" className="fa-instagram" />
                   </div>
                 </div>
                 <div className="social__icon-container">
                   <div className="facebook-icon">
-                    <div className="fa-twitter"></div>
+                    <FontAwesome name="twitter" className="fa-twitter" />
                   </div>
                   <div className="instagram-icon">
-                    <div className="text-block"></div>
+                    <FontAwesome name="instagram" className="fa-instagram" />
                   </div>
                 </div>
               </div>
@@ -96,12 +99,12 @@ class Footer extends React.Component {
             <div className="footer__lower-content footer__lower-content--landscape">
               <div className="copyright-company copyright-company--landscape copyright-company--tablet">
                 <div className="footer__lower-copyright">Copyright</div>
-                <div className="footer__copyright"></div>
+                <FontAwesome name="copyright" className="footer__copyright" />
                 <div className="footer__lower--company">2017</div>
               </div>
               <div className="footer_company footer_company--landscape footer_company--tablet">
                 <div className="footer__lower-copyright">Made with</div>
-                <div className="footer__heart"></div>
+                <FontAwesome name="heart" className="footer__heart" />
                 <div className="footer__lower--company">&nbsp;by Stackinet LLC.</div>
               </div>
               <div className="payment-method payment-method--portrait payment-method--tablet">
