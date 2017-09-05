@@ -9,7 +9,6 @@ const MdSendButton = ({
   apiFetching,
 }) => {
   WebflowJs(); //eslint-disable-line
-
   if (toast.type === 'success') {
     return (
       <div className="contact-us__send-copy--container">
@@ -58,9 +57,13 @@ const MdSendButton = ({
   );
 };
 
-const { func, bool } = PropTypes;
+const { func, bool, shape, string } = PropTypes;
 
 MdSendButton.propTypes = {
+  toast: shape({
+    type: string,
+    message: string,
+  }).isRequired,
   submitMsg: func.isRequired,
   apiFetching: bool.isRequired,
 };

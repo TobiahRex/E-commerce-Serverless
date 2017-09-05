@@ -112,6 +112,24 @@ Object.assign(Validation.rules, {
     ),
   },
 
+  contactUsName: {
+    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        That name uses invalid characters. Please try again.
+      </span>
+    ),
+  },
+
+  'contactUs-firstLast': {
+    rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
+    hint: () => (
+      <span className="form-error is-visible">
+        You must include a First name & a Last name.
+      </span>
+    ),
+  },
+
   ccNumber: {
     rule: value => /(^\d{16}$)|(^\d{4}-\d{4}-\d{4}-\d{4}$)/.test(value),
     hint: () => (

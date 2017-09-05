@@ -32,6 +32,7 @@ class ContactUs extends React.Component {
     super(props);
 
     this.state = {
+      formError: '',
       name: '',
       emailAddress: '',
       message: '',
@@ -67,6 +68,13 @@ class ContactUs extends React.Component {
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+  handleOnSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ formError: this.form.validateAll() });
+  }
+
+  assignRefToForm = (formComp) => { this.form = formComp; }
 
   submitMsg = () => {
     this.props.clearToaster();
@@ -116,7 +124,6 @@ class ContactUs extends React.Component {
   }
 
   render() {
-    console.log('%cthis.props', 'background:red;', this.props);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -127,7 +134,11 @@ class ContactUs extends React.Component {
             lastCrumb="Contact Us"
           />
           <HdrPage />
-          <ContactForm>
+
+          <ContactForm
+            handleOnSubmit={this.handleOnSubmit}
+            assignRefToForm={this.assignRefToForm}
+          >
 
             <InputWithLabel
               {...inputsData[0].props}
