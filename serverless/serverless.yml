@@ -59,6 +59,7 @@ provider:
     CTO_EMAIL: ${file(./config.yml):ctoEmail}
     CDO_EMAIL: ${file(./config.yml):cdoEmail}
     AWS_SES_REGION: ${file(./config.yml):awsSesRegion}
+    RECAPTCHA_SECRET_KEY: ${file(./config.yml):recaptchaSecretKey}
 
 plugins:
   - serverless-webpack
