@@ -70,11 +70,11 @@
   -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  transition: all .8s ease-in-out;
 }
 
 .general__list-item:hover > a {
   color: #FFFFFF;
+  transition: all .5s ease-in-out;
   /*cursor: pointer;*/
 }
 
@@ -100,6 +100,11 @@
   justify-content: flex-start;
 }
 
+.customer__list-item:hover > a {
+  color: #FFFFFF;
+  transition: all .5s ease-in-out;
+}
+
 .contact-column__list {
   margin-top: 20px;
 }
@@ -116,6 +121,11 @@
   -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+}
+
+.contact__list--item:hover > a {
+  color: #FFFFFF;
+  transition: all .5s ease-in-out;
 }
 
 .font-awesome--phone {
@@ -142,7 +152,7 @@
   justify-content: center;
 }
 
-.facebook-icon {
+.facebook-icon, .twitter-icon, .instagram-icon, .linkedin-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -160,22 +170,21 @@
   -ms-flex-align: center;
   align-items: center;
   background-color: #fff;
-}
-
-.fa-facebook {
-  color: #385a97;
+  transition: all .9s ease-in-out;
+  cursor: pointer;
   font-size: 50px;
+  color: #365899;
 }
 
-.instagram-icon {
+.fa-facebook, .fa-instagram, .fa-twitter, .fa-linkedin {
+  /*transition: all .9s ease-in-out;*/
+}
+
+.facebook-icon:hover > .fa-facebook {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-  margin-left: 10px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -184,17 +193,20 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #fff;
+  width: 80px;
+  height: 80px;
+  color: #FFFFFF;
+  background-color: #365899;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  font-size: 50px;
 }
-.linkedin-icon {
+
+.instagram-icon:hover > .fa-instagram {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-  margin-left: 10px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -203,17 +215,53 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #fff;
-}
-
-.fa-instagram {
-  color: #385a97;
+  color: #FFFFFF;
+  width: 80px;
+  height: 80px;
+  transition: all .2s ease-in-out;
+  background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  cursor: pointer;
   font-size: 50px;
 }
-
-.fa-linkedin {
-  color: #385a97;
-  font-size: 50px;
+.linkedin-icon:hover > .fa-linkedin {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  color: #FFFFFF;
+  transition: all .2s ease-in-out;
+  background-color: #0077B5;
+  cursor: pointer;
+}
+.twitter-icon:hover > .fa-twitter {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  color: #FFFFFF;
+  transition: all .2s ease-in-out;
+  background-color: #4990E2;
+  cursor: pointer;
 }
 
 .div-block {

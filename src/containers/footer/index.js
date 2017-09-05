@@ -78,18 +78,18 @@ class Footer extends React.Component {
                   <h3 className="footer-column__header footer-column__header--tablet">CONNECT WITH US</h3>
                 </div>
                 <div className="social__icon-container">
-                  <div className="facebook-icon">
+                  <div className="facebook-icon sweep-right">
                     <FontAwesome name="facebook" className="fa-facebook" />
                   </div>
-                  <div className="instagram-icon">
+                  <div className="instagram-icon sweep-right">
                     <FontAwesome name="instagram" className="fa-instagram" />
                   </div>
                 </div>
                 <div className="social__icon-container">
-                  <div className="facebook-icon">
+                  <div className="twitter-icon sweep-right">
                     <FontAwesome name="twitter" className="fa-twitter" />
                   </div>
-                  <div className="linkedin-icon">
+                  <div className="linkedin-icon sweep-right">
                     <FontAwesome name="linkedin" className="fa-linkedin" />
                   </div>
                 </div>
