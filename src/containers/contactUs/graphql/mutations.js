@@ -6,6 +6,7 @@ const GraphQLsubmitMessage = gql`
     $emailAddress: String!
     $ccUser: Boolean!
     $name: String!
+    $recaptchaToken: String!
     $userId: String
   ) {
     SubmitContactMsg(
@@ -13,6 +14,7 @@ const GraphQLsubmitMessage = gql`
       emailAddress: $emailAddress
       ccUser: $ccUser
       name: $name
+      recaptchaToken: $recaptchaToken
       userId: $userId
     ) {
       _id

@@ -66,6 +66,10 @@ const mutations = {
         description: 'Name of the customer',
         type: new NonNull(StringType),
       },
+      recaptchaToken: {
+        description: 'The Token received by Recaptcha API for human request detection.',
+        type: new NonNull(StringType),
+      },
       userId: {
         description: 'userId of the customer',
         type: StringType,

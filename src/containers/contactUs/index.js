@@ -33,6 +33,11 @@ class ContactUs extends React.Component {
     super(props);
 
     this.state = {
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
       formError: '',
       name: '',
       emailAddress: '',
@@ -145,7 +150,6 @@ class ContactUs extends React.Component {
   }
 
   render() {
-    console.warn('this.state.recaptchaToken: ', this.state.recaptchaToken);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -195,8 +199,8 @@ class ContactUs extends React.Component {
               apiFetching={this.props.apiFetching}
               submitMsg={this.submitMsg}
               toast={this.props.toast}
+              enable={this.enableSubmitButton(this.state)}
             />
-
 
           </ContactForm>
         </div>
