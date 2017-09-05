@@ -84,6 +84,10 @@ class ContactUs extends React.Component {
 
   recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
 
+  recaptchaExpiredCb = () => this.setState({ recaptchaToken: '' }, () => {
+    this.recaptcha.reset();
+  });
+
   submitMsg = () => {
     this.props.clearToaster();
     this.props.apiIsFetching();
@@ -132,6 +136,7 @@ class ContactUs extends React.Component {
   }
 
   render() {
+    console.warn('this.state.recaptchaToken: ', this.state.recaptchaToken);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -173,6 +178,7 @@ class ContactUs extends React.Component {
             <RecaptchaWidget
               verifyCb={this.recaptchaVerifyCb}
               onLoadCb={this.recaptchaOnLoadCb}
+              expiredCb={this.expiredCb}
               assignRefToRecaptcha={this.assignRefToRecaptcha}
             />
 
