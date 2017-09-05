@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Validation from 'react-validation';
 import { WebflowJs } from './assets/utils';
 
 const CheckBoxWithLabel = ({
@@ -11,6 +12,24 @@ const CheckBoxWithLabel = ({
   return (
     <div className="contact-us__send-copy--container container--checkbox w-checkbox">
 
+      <Validation.components.Input
+        errorClassName="is-invalid-input"
+        data-name="Checkbox"
+        id="checkbox"
+        type="checkbox"
+        className="w-checkbox-input"
+        value={!!value ? 'truthy' : ''}
+        name="ccUser"
+        onChange={() => {
+          handleOnChange({
+            target: {
+              name: 'ccUser',
+              value: !value,
+            },
+          });
+        }}
+        validations={['required']}
+      />
       <input
         className="w-checkbox-input"
         data-name="Checkbox"
