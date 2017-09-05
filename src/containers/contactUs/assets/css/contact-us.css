@@ -205,6 +205,10 @@ span.form-error.is-visible {
   background-color: rgba(236, 88, 64, 0.1);
   border: 1px solid #ec5840;
 }
+.message__input.is-invalid-input:not(:focus) {
+  background-color: rgba(236, 88, 64, 0.1);
+  border: 1px solid #ec5840;
+}
 
 .name__label {
   font-family: Ubuntu, Helvetica, sans-serif;

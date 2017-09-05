@@ -14,17 +14,7 @@ const ContactForm = (props) => {
           ref={props.assignRefToForm}
           onSubmit={props.handleOnSubmit}
           className="contact-us__container"
-          // data-name="Email Form"
-          // id="wf-form-Email-Form"
-          // name="wf-form-Email-Form"
         >{props.children}</Validation.components.Form>
-
-        {/* <form
-          className="contact-us__container"
-          data-name="Email Form"
-          id="wf-form-Email-Form"
-          name="wf-form-Email-Form"
-        >{props.children}</form> */}
 
       </div>
     </div>

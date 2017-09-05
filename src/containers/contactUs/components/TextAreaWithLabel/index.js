@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
 import Validation from 'react-validation';
+import { WebflowJs } from './assets/utils';
 
 const TextAreaWithLabel = ({
   value,
@@ -17,7 +17,7 @@ const TextAreaWithLabel = ({
         htmlFor="message-field"
       >Message</label>
 
-      <Validation.components.textarea
+      <Validation.components.Textarea
         errorClassName="is-invalid-input"
         type="text"
         className="message__input w-input"
@@ -27,16 +27,6 @@ const TextAreaWithLabel = ({
         validations={['required', 'contactUsTextArea']}
         placeholder="What would you like to say to us?"
       />
-      {/* <textarea
-        className="message__input w-input"
-        data-name="message field"
-        id="message-field"
-        maxLength="5000"
-        name="message"
-        placeholder="What would you like to say to us?"
-        value={value}
-        onChange={handleOnChange}
-      /> */}
 
     </div>
   );
