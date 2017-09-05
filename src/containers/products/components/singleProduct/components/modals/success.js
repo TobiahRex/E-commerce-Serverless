@@ -54,7 +54,7 @@ function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
             className="action-btn__continue sweep-right"
             onClick={modalHandler}
           >Continue Shopping</button>
-          
+
           <button
             data-parent="success"
             data-tag="view-checkout"

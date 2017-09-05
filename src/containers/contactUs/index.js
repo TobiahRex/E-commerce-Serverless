@@ -104,7 +104,7 @@ class ContactUs extends React.Component {
             this.props.apiFail();
           } else {
             this.props.apiSuccess();
-            this.props.toastSuccess(true, 'Email successfully sent!');
+            this.props.toastSuccess(true, 'Successfully sent!');
             setTimeout(() => this.props.clearToaster(), 3000);
           }
         });
@@ -116,6 +116,7 @@ class ContactUs extends React.Component {
   }
 
   render() {
+    console.log('%cthis.props', 'background:red;', this.props);
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
@@ -129,14 +130,12 @@ class ContactUs extends React.Component {
           <ContactForm>
 
             <InputWithLabel
-              key={new Buffer('name', 'utf8').toString('base64')}
               {...inputsData[0].props}
               value={this.state.name}
               handleOnChange={this.handleOnChange}
             />
 
             <InputWithLabel
-              key={new Buffer('email', 'utf8').toString('base64')}
               {...inputsData[1].props}
               value={this.state.emailAddress}
               handleOnChange={this.handleOnChange}
@@ -155,6 +154,7 @@ class ContactUs extends React.Component {
             <MdSendButton
               apiFetching={this.props.apiFetching}
               submitMsg={this.submitMsg}
+              toast={this.props.toast}
             />
 
           </ContactForm>

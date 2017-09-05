@@ -14,19 +14,19 @@ function AddToCartButton({ added, addToCart }) {
           added ?
           [
             <span key="add-to-cart-success" >Success </span>,
-            <FontAwesome
-              key="add-to-cart-success-icon"
-              className="success-cart-icon hover-dropin"
-              name="check"
-            />,
+          <FontAwesome
+            key="add-to-cart-success-icon"
+            className="success-cart-icon hover-dropin"
+            name="check"
+          />,
           ]
           :
           [
-            <FontAwesome
-              key="add-to-cart-idle"
-              className="sp-cart-icon"
-              name="shopping-cart"
-            />,
+          <FontAwesome
+            key="add-to-cart-idle"
+            className="sp-cart-icon"
+            name="shopping-cart"
+          />,
             'Add To Cart',
           ]
         }
