@@ -88,6 +88,15 @@ class ContactUs extends React.Component {
     this.recaptcha.reset();
   });
 
+  enableSubmitButton = ({ toast, formError, recaptchaToken, errors }) => {
+    const noFormErrors = !formError;
+    const networkErrors = /(Network Error)|(Server Error)g/.test(toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
+
+    if (networkErrors) return false;
+    if (!!recaptchaToken && noFormErrors) return true;
+    return false;
+  }
+
   submitMsg = () => {
     this.props.clearToaster();
     this.props.apiIsFetching();
