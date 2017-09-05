@@ -33,7 +33,12 @@ const MdSendButton = ({
     return (
       <div className="contact-us__send-copy--container">
         <div className="contact-us__error">
-          <p className="conatct-us__error--message ">
+          <div className="error-hard__title">
+            <FontAwesome className="error-icon" name="" />
+            {'\u00A0'}
+            <h2>Error!</h2>
+          </div>
+          <p className="contact-us__error--message ">
             {toast.message}
           </p>
         </div>
