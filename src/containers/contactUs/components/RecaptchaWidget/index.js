@@ -11,13 +11,15 @@ const propTypes = {
 
 function RecaptchaWidget({ verifyCb, onLoadCb, assignRefToRecaptcha }) {
   return (
-    <Recaptcha
-      ref={assignRefToRecaptcha}
-      sitekey={process.env.RECAPTCHA_KEY}
-      render="explicit"
-      verifyCallback={verifyCb}
-      onloadCallback={onLoadCb}
-    />
+    <div className="contact-us__recaptcha--container">
+      <Recaptcha
+        ref={assignRefToRecaptcha}
+        sitekey={process.env.RECAPTCHA_KEY}
+        render="explicit"
+        verifyCallback={verifyCb}
+        onloadCallback={onLoadCb}
+      />
+    </div>
   );
 }
 RecaptchaWidget.propTypes = propTypes;

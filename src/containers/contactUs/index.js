@@ -78,7 +78,7 @@ class ContactUs extends React.Component {
 
   assignRefToForm = (formComp) => { this.form = formComp; }
 
-  assignRefToRecpatch = (recaptchaComp) => { this.recaptcha = recaptchaComp; }
+  assignRefToRecaptcha = (recaptchaComp) => { this.recaptcha = recaptchaComp; }
 
   recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
 
@@ -170,17 +170,18 @@ class ContactUs extends React.Component {
               handleOnChange={this.handleOnChange}
             />
 
+            <RecaptchaWidget
+              verifyCb={this.recaptchaVerifyCb}
+              onLoadCb={this.recaptchaOnLoadCb}
+              assignRefToRecaptcha={this.assignRefToRecaptcha}
+            />
+
             <MdSendButton
               apiFetching={this.props.apiFetching}
               submitMsg={this.submitMsg}
               toast={this.props.toast}
             />
 
-            <RecaptchaWidget
-              recaptchaVerifyCb={this.recaptchaVerifyCb}
-              recaptchaOnLoadCb={this.recaptchaOnLoadCb}
-              assignRefToRecaptcha={this.assignRefToRecaptcha}
-            />
 
           </ContactForm>
         </div>
