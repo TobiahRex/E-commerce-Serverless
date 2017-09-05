@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import AgeVerification from './containers/ageVerification/ageVerification';
 import NavbarWeb from './containers/navbar/components/navbar_web/navbar_web';
 import NavbarMobile from './containers/navbar/components/navbar_mobile/navbar_mobile';
-import Footer from './containers/footer/footer';
+import Footer from './containers/footer';
+// import Footer from './containers/footerNew';
 import userActions from './redux/user';
 
 const { any, bool, func, objectOf } = PropTypes;
