@@ -27,6 +27,9 @@ import Email from './email';
 contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
 new Promise((resolve) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
+
+  const contactDocument = {};
+
   const emailRequest = {
     sourceEmail: 'NJ2JP Contact Us <contact@nj2jp.com>',
     toEmailAddresses: ['support@nj2jp.com'],
@@ -37,10 +40,12 @@ new Promise((resolve) => {
     subjectCharset: 'utf8',
   };
 
-  if (contactForm.ccUser) emailRequest.ccEmailAddresses = [contactForm.emailAddress];
-  if (contactForm.userId) emailRequest.userId = contactForm.userId;
-
-  const contactDocument = {};
+  if (contactForm.userId) {
+    emailRequest.userId = contactForm.userId;
+  }
+  if (contactForm.ccUser) {
+    emailRequest.ccEmailAddresses = [contactForm.emailAddress];
+  }
 
   axios.post('https://www.google.com/recaptcha/api/siteverify', {
     response: contactForm.recaptchaToken,
