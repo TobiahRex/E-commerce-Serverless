@@ -82,6 +82,7 @@
   width: 248.391px;
   height: 59.9375px;
   margin-top: 5px;
+  margin-bottom: 30px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -262,6 +263,7 @@ span.form-error.is-visible {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .contact-us__send-copy--container.container--checkbox {
@@ -275,7 +277,7 @@ span.form-error.is-visible {
   justify-content: center;
 }
 
-.contact-us__send-copy--container .contact-us__error {
+.contact-us__error {
   margin-bottom: 0px;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -285,10 +287,16 @@ span.form-error.is-visible {
   -ms-flex-pack: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
+  max-width: 32em;
   background-color: rgb(218, 203, 201);
   border: 2px solid #EC5840;
 }
-.contact-us__error .error-hard__title {
+.error-hard__title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   margin-bottom: 0px;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -300,23 +308,23 @@ span.form-error.is-visible {
 }
 .error-hard__title h2 {
   margin-left: .25em;
-  color: $p-red;
-  text-shadow, 0 1px 1px rgba(0,0,0,.25);
+  color: #FF0000;
+  text-shadow: 0 1px 1px rgba(0,0,0,.25);
 }
 .error-hard__title .error-icon {
-  color: $p-red;
+  color: #FF0000;
   font-size: 5em;
   font-weight: 200;
   line-height: 1.25em;
-  text-shadow, 0 1px 1px rgba(0,0,0,.25);
+  text-shadow: 0 1px 1px rgba(0,0,0,.25);
 }
 .contact-us__error p {
   text-align: center;
-  color: $p-red;
+  color: #FF0000;
   font-size: 1.6em;
   line-height: 1.21em;
   font-weight: 200;
-  @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.1));
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 
 

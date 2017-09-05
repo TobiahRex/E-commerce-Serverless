@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
@@ -9,8 +10,8 @@ const MdSendButton = ({
   enable,
   submitMsg,
   apiFetching,
-}) => {
-  WebflowJs(); //eslint-disable-line
+}) => { //eslint-disable-line
+  WebflowJs();
 
   if (toast.type === 'success') {
     return (
@@ -32,6 +33,15 @@ const MdSendButton = ({
   if (toast.type === 'error') {
     return (
       <div className="contact-us__send-copy--container">
+        <Validation.components.Button
+          className="contact-us__submit--button w-button"
+          errorClassName=""
+          onClick={submitMsg}
+        >
+          <FontAwesome name="send" />
+          {'\u00A0'}
+          Send
+        </Validation.components.Button>
         <div className="contact-us__error">
           <div className="error-hard__title">
             <FontAwesome className="error-icon" name="" />
@@ -39,7 +49,8 @@ const MdSendButton = ({
             <h2>Error!</h2>
           </div>
           <p className="contact-us__error--message ">
-            {toast.message}
+            {/* {toast.message} */}
+            The Recaptcha confirmation was not approved.  Please try again.
           </p>
         </div>
       </div>
@@ -88,6 +99,7 @@ MdSendButton.propTypes = {
   }).isRequired,
   submitMsg: func.isRequired,
   apiFetching: bool.isRequired,
+  enable: bool.isRequired,
 };
 
 export default MdSendButton;
