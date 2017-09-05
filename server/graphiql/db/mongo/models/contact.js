@@ -41,7 +41,41 @@ new Promise((resolve) => {
 
   const contactDocument = {};
 
-  Email.sendRawEmail(emailRequest)
+  axios.post('https://www.google.com/recaptcha/api/siteverify', {
+    response: contactForm.recaptchaToken,
+    secret: process.env.RECAPTCHA_SECRET_KEY,
+  })
+  .then((response) => {
+    if (resposne.status !== 200) {
+      resolve({
+        errors: {
+          hard: true,
+          soft: false,
+          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+        },
+      });
+    } else if(!response.data.success) {
+      resolve({
+        errors: {
+          hard: true,
+          soft: false,
+          message: '🤔 Wierd. We were not able to validate the Recaptcha. Either you are a bot 🤖  or there was a glitch and we ask you to please try again.  Thanks.',
+        },
+      });
+    } else {
+      return Email.sendRawEmail(emailRequest);
+    }
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Contact.sendSupportMailAndNotifySlack: ', error);
+    resolve({
+      error: {
+        hard: true,
+        soft: false,
+        message: error.message,
+      },
+    });
+  });
   .then((response) => {
     console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Email.sendRawEmail:', response);
     contactDocument.messageId = response.MessageId;
@@ -66,16 +100,6 @@ new Promise((resolve) => {
     console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Contact.create:', contactDoc);
     resolve(contactDoc);
   })
-  .catch((error) => {
-    console.log('\nFAILED: Contact.sendSupportMailAndNotifySlack: ', error);
-    resolve({
-      error: {
-        hard: true,
-        soft: false,
-        message: error.message,
-      },
-    });
-  });
 });
 
 const Contact = db.model('Contact', contactSchema);
