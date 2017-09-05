@@ -92,7 +92,7 @@ class ContactUs extends React.Component {
 
   recaptchaVerifyCb = response => this.setState({ recaptchaToken: response });
 
-  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!');
+  recaptchaOnLoadCb = () => console.info('Recaptcha DONE!'); //eslint-disable-line
 
   recaptchaExpiredCb = () => this.setState(prevState => ({
     ...prevState,
