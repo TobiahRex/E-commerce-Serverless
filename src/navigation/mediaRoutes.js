@@ -11,7 +11,7 @@ import Faqs from '../containers/legal/faqs';
 import MissionStatement from '../containers/legal/missionStatement';
 import SocialMedia from '../containers/legal/socialMedia';
 import Wholesale from '../containers/legal/wholesale';
-import Affiliates from '../containers/legal/affiliateProgram';``
+import Affiliates from '../containers/legal/affiliateProgram';
 
 const errorLoading = (error) => {
   throw new Error(`Dynamic page loading failed ${error}`);
