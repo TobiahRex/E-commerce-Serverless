@@ -61,7 +61,6 @@ const MdSendButton = ({
       <div className="contact-us__submit--container">
         <button
           className="contact-us__loading--button w-button"
-          onClick={submitMsg}
           type="button"
           disabled
         >
@@ -73,6 +72,21 @@ const MdSendButton = ({
     );
   }
 
+  if (!enable) {
+    return (
+      <div className="contact-us__submit--container">
+        <button
+          className="contact-us__loading--button w-button"
+          type="button"
+          disabled
+        >
+          <FontAwesome name="send" />
+          {'\u00A0'}
+          Send
+        </button>
+      </div>
+    );
+  }
   if (enable) {
     return (
       <div className="contact-us__submit--container">
@@ -88,6 +102,7 @@ const MdSendButton = ({
       </div>
     );
   }
+
 };
 
 const { func, bool, shape, string } = PropTypes;

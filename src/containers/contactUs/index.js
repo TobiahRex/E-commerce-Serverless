@@ -97,13 +97,23 @@ class ContactUs extends React.Component {
     const noFormErrors = !formError;
     const networkErrors = /(Network Error)|(Server Error)g/.test(this.props.toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
 
-    if (networkErrors || !noFormErrors || !!recaptchaToken) return false;
+    if (networkErrors || !noFormErrors || !recaptchaToken) return false;
     return true;
   }
 
   submitMsg = () => {
-    this.props.clearToaster();
-    this.props.apiIsFetching();
+    this.setState(prevState => ({
+      ...prevState,
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
+      },
+    }), () => {
+      this.props.clearToaster();
+      this.props.apiIsFetching();
+    });
+
     this.props.GraphQLsubmitContactMsg({
       name: this.state.name,
       userId: this.state.userId,
