@@ -71,7 +71,13 @@ class ContactUs extends React.Component {
   submitMsg = () => {
     this.props.clearToaster();
     this.props.apiIsFetching();
-    this.props.GraphQLsubmitContactMsg({ ...this.state })
+    this.props.GraphQLsubmitContactMsg({
+      name: this.state.name,
+      userId: this.state.userId,
+      ccUser: this.state.ccUser,
+      message: this.state.message,
+      emailAddress: this.state.emailAddress,
+    })
     .then(({ data: { SubmitContactMsg: response } }) => {
       if (!response) {
         this.setState({
@@ -158,10 +164,8 @@ class ContactUs extends React.Component {
   }
 }
 
-const ContactUsWithState = connect(({ user, api, toaster }) => ({
+const ContactUsWithState = connect(({ user }) => ({
   userId: user.profile ? user.profile._id : '',
-  apiFetching: api.fetching,
-  toast: CheckForToast(toaster),
 }), (dispatch, ownProps) => ({
   GraphQLsubmitContactMsg: args => ownProps.SubmitContactMsg({
     variables: { ...args },
@@ -186,12 +190,14 @@ const ContactUsWithState = connect(({ user, api, toaster }) => ({
   },
 }))(ContactUs);
 
-const ContactUsWithStateAndData = compose(
-graphql(
-  GraphQLsubmitMessage, { name: 'SubmitContactMsg' }),
+const ContactUsWithStateAndData = graphql(
+  GraphQLsubmitMessage, { name: 'SubmitContactMsg' },
 )(ContactUsWithState);
 
-const ContactUsWithStateAndData2 = connect(null, dispatch => ({
+const ContactUsWithStateAndData2 = connect(({ toaster, api }) => ({
+  apiFetching: api.fetching,
+  toast: CheckForToast(toaster),
+}), dispatch => ({
   toastError: (toast, msg) =>
     dispatch(toasterActions.toastError(toast, msg)),
   toastSuccess: (toast, msg) =>

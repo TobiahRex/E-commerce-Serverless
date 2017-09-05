@@ -64,14 +64,7 @@ new Promise((resolve) => {
   })
   .then((contactDoc) => {
     console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Contact.create:', contactDoc);
-    resolve({
-      error: {
-        hard: false,
-        soft: false,
-        message: '',
-      },
-      ...contactDoc,
-    });
+    resolve(contactDoc);
   })
   .catch((error) => {
     console.log('\nFAILED: Contact.sendSupportMailAndNotifySlack: ', error);
