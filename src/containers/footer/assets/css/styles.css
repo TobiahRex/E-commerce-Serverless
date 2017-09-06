@@ -65,11 +65,10 @@
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 40%;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .general__list-item:hover > a {
@@ -93,11 +92,10 @@
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 30%;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .customer__list-item:hover > a {
@@ -116,11 +114,10 @@
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 125px;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .contact__list--item:hover > a {
@@ -396,15 +393,6 @@
   .general__list--link.general__list--link--tablet {
     font-size: 16px;
   }
-  .general__list-item.general__list-item--tablet {
-    padding-left: 25px;
-  }
-  .customer__list-item.customer__list-item--tablet {
-    padding-left: 12px;
-  }
-  .contact__list--item.contact__list-item--tablet {
-    padding-left: 0px;
-  }
   .copyright-company.copyright-company--tablet {
     padding-right: 5px;
     padding-left: 5px;
@@ -466,31 +454,6 @@
   }
   .grid__contact-column.grid__contact-column--landscape {
     height: 770px;
-  }
-  .general__list-item.general__list-item--tablet.general__list-item--landscape {
-    padding-left: 0px;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-  .customer__list-item.customer__list-item--tablet.customer__list-item--landscape {
-    padding-left: 0px;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-  .contact__list--item.contact__list-item--tablet.contact__list-item--landscape {
-    padding-left: 0px;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
   }
   .footer__lower--container.footer__lower--container--landscape {
     display: -webkit-box;
