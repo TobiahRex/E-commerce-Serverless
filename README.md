@@ -11,7 +11,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
 <img src="http://i.imgur.com/00So8Ua.png" />
 
 ## Site Address
- [Nic Juice 2 Japan](http://nj2jp-react.s3-website-ap-northeast-1.amazonaws.com/).
+ [Nic Juice 2 Japan](https://d2ezb8t4pwbclo.cloudfront.net).
   - ☝🏼 That site is under **Heavy Development** and may at times, not be working.  Will update here once availability is 100%.
 
 ## Splash Preview
