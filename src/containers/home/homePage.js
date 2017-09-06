@@ -63,7 +63,7 @@ class HomePage extends Component {
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
-
+        <MasonryNews />
       </div>
     );
   }
