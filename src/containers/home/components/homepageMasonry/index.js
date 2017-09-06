@@ -37,7 +37,11 @@ class HomepageMasonry extends React.Component {
     });
   }
 
-  renderHelper = data =>
+  renderHelper = (data) => {
+    const length = data.length;
+    const groupLength = Math.ceil(length / 3);
+    
+
     data.map((dataObj) => {
       if (dataObj.component === 'CardReview') {
         return (
@@ -57,6 +61,7 @@ class HomepageMasonry extends React.Component {
       }
       return '';
     });
+  }
 
   render() {
     return (
