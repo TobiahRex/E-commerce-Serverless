@@ -84,10 +84,10 @@
           cursor: pointer;
           text-decoration: none;
           transition: .5s;
+          box-shadow: 0px 3px 10px rgba(1,1,1,.25);
           &:hover,
           &:focus,
           &:active {
-            box-shadow: 0px 3px 10px rgba(1,1,1,.25);
             & .juices-card__title h4 {
               color: $p-red;
             }

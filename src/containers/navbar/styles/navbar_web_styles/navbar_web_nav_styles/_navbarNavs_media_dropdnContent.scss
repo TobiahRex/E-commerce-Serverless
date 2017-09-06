@@ -19,6 +19,7 @@
       width: 104em;
       background-color: #EEE;
       margin-top: 1.5em;
+      border-bottom: 1px solid rgba(1,1,1,.25);
       & .media-dropdown-content-topThird-images {
         @extend .flex-center;
         height: 16em;
@@ -52,7 +53,6 @@
       height: 8.5em;
       width: 104em;
       background-color: #EEE;
-      border-bottom: 1px solid rgba(1,1,1,.25);
       & .media-dropdown-content-midThird-links {
         text-decoration: none;
         cursor: pointer;

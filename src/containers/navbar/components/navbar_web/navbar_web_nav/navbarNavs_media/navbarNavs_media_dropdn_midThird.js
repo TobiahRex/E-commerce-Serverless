@@ -1,41 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router';
 
-function NavbarNavsMediaDropdnMidthird() {
+function NavbarNavsMediaDropdnTopthird() {
   return (
-    <div className="media-dropdown-content-midThird">
-      <Link
-        to={'/contact_us'} className="media-dropdown-content-midThird-links"
-      >
-        <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>Contact Us</h4>
-        </div>
-      </Link>
-      <Link
-        to={'/reviews'}
-        className="media-dropdown-content-midThird-links"
-      >
-        <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>Juice Reviews</h4>
-        </div>
-      </Link>
-      <Link
-        to={'/vape_news'}
-        className="media-dropdown-content-midThird-links"
-      >
-        <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>Vape News</h4>
-        </div>
-      </Link>
-      <Link
-        to={'/stories'}
-        className="media-dropdown-content-midThird-links"
-      >
-        <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>User Stories</h4>
-        </div>
-      </Link>
+    <div className="media-dropdown-content-topThird">
+      <div className="media-dropdown-content-topThird-images">
+        <img
+          className="media-dropdown-content-topThird-images-contactUs"
+          alt="Contact Us"
+        />
+      </div>
+      <div className="media-dropdown-content-topThird-images">
+        <img
+          className="media-dropdown-content-topThird-images-juiceReviews"
+          alt="Juice Review"
+        />
+      </div>
+      <div className="media-dropdown-content-topThird-images">
+        <img
+          className="media-dropdown-content-topThird-images-vapeNews"
+          alt="Vape News"
+        />
+      </div>
+      <div className="media-dropdown-content-topThird-images">
+        <img
+          className="media-dropdown-content-topThird-images-userStories"
+          alt="User Stories"
+        />
+      </div>
     </div>
   );
 }
-export default NavbarNavsMediaDropdnMidthird;
+
+export default NavbarNavsMediaDropdnTopthird;
