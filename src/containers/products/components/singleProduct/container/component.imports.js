@@ -4,7 +4,7 @@ export PriceInfo from '../components/priceInfo';
 export JuiceTitle from '../components/juiceTitle';
 export ActionBtns from '../components/actionBtns';
 export ImageGroup from '../components/imageGroup';
-export BreadCrumb from '../../../../../components/breadcrumbs';
+export BreadCrumb from '../components/BreadCrumb';
 export NicotineBtns from '../components/nicotineBtns';
 export ProductBlurb from '../components/productBlurb';
 export SuccessModal from '../components/modals/success';

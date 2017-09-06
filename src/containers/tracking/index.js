@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 
 import {
   FetchTrackingInfo,
-} from '../../../graphql/queries';
+} from '../../graphql/queries';
 import {
   BreadCrumb,
-} from './component.imports';
+} from './components';
 
 class OrderTracking extends React.Component {
   constructor(props) {
