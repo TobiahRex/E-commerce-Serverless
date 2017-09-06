@@ -54,7 +54,7 @@ class HomepageMasonry extends React.Component {
     const groupLength = Math.floor(contentArray.length / 3);
     return (
       <div>
-        <h1>Product Reviews & News</h1>
+        <h1 className="masonry-header">News & Reviews</h1>
         <div className="masonry-column grid">
           <div className="masonry__grid">
             {this.renderHelper(contentArray.slice(0, groupLength))}
