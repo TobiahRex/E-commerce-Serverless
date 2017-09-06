@@ -1,3 +1,13 @@
+.about__container-main {
+  max-width: 1086px;
+  width: 100%;
+  padding-bottom: 100px;
+}
+.about__container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .about-container.about-continer__body-text {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -30,11 +40,6 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.about__container {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .about__container.about-container__body-text {
@@ -103,7 +108,8 @@
 }
 
 .staff__content.content--heading {
-  font-family: Ubuntu, Helvetica, sans-serif;
+  text-align: left;
+  font-family: 'Ubuntu', Helvetica, sans-serif;
   color: #365899;
   font-size: 22px;
   font-weight: 400;
@@ -111,7 +117,8 @@
 }
 
 .staff__content.content--sub-heading {
-  font-family: Ubuntu, Helvetica, sans-serif;
+  text-align: left;
+  font-family: 'Ubuntu', Helvetica, sans-serif;
   color: #365899;
   font-weight: 400;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .3);

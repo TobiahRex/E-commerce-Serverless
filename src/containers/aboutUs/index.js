@@ -31,7 +31,7 @@ class AboutUs extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="about__container-main">
         <PageHdr header="About Us" />
         <AboutBlurb />
         <SubHdr header="NJ2JP Team" />

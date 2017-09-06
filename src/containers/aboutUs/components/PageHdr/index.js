@@ -6,11 +6,9 @@ const PageHdr = () => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <div>
-      <div className="about-container about-container__heading w-container">
-        <h1 className="about-container__heading">About
-        </h1>
-      </div>
+    <div className="about-container about-container__heading">
+      <h1 className="about-container__heading">About
+      </h1>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import {
   MemberSocialFacebook,
   MemberSocialLinkedin,
   MemberSocialTwitter,
-  MemberCardSocialInstagram,
+  MemberSocialInstagram,
 } from '../../components';
 
 const MemberCardSocial = (props) => {
@@ -24,7 +24,7 @@ const MemberCardSocial = (props) => {
       {facebook && <MemberSocialFacebook />}
       {linkedin && <MemberSocialLinkedin />}
       {twitter && <MemberSocialTwitter />}
-      {instagram && <MemberCardSocialInstagram />}
+      {instagram && <MemberSocialInstagram />}
     </div>
   );
 };

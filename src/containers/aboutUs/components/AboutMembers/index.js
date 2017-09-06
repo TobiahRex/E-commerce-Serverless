@@ -25,10 +25,8 @@ const AboutMembers = (props) => {
   });
 
   return (
-    <div>
-      <div className="about-container about-container__staff w-container">
-        {renderHelper(props.members)}
-      </div>
+    <div className="about-container about-container__staff">
+      {renderHelper(props.members)}
     </div>
   );
 };

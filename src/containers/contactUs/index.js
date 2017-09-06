@@ -6,7 +6,7 @@ import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
 import {
   WebflowJs,
-  inputsData,
+  contentData,
   apiActions,
   toasterActions,
   CheckForToast,
@@ -177,13 +177,13 @@ class ContactUs extends React.Component {
           >
 
             <InputWithLabel
-              {...inputsData[0].props}
+              {...contentData.english[0].props}
               value={this.state.name}
               handleOnChange={this.handleOnChange}
             />
 
             <InputWithLabel
-              {...inputsData[1].props}
+              {...contentData.english[1].props}
               value={this.state.emailAddress}
               handleOnChange={this.handleOnChange}
             />
