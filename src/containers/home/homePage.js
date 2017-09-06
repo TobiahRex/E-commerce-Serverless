@@ -8,8 +8,9 @@ import {
   HomepageFastestDelivery,
   HomepageHowCarousel,
   HomepageReviewsCarousel,
-  // MasonryNews,
+  MasonryNews,
   MasonryReviews,
+  HomeMasonry,
 } from './components';
 
 const { bool } = PropTypes;
@@ -55,8 +56,10 @@ class HomePage extends Component {
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
+        <HomeMasonry />
+        <div style={{ height: 20, width: '100%', borderBottom: '5px solid red' }} />
+        <MasonryNews />
         <MasonryReviews />
-        {/* <MasonryNews /> */}
       </div>
     );
   }

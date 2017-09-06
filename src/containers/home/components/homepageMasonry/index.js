@@ -1,15 +1,19 @@
 import React from 'react';
+
 import './assets/styles/style.css';
+
 import { propTypes } from './assets/propValidation';
 import {
   WebflowJs,
   contentData,
 } from './assets/utils';
+
 import {
+  CardReview,
   CardArticle,
 } from './components';
 
-class MasonryNews extends React.Component {
+class MasonryReviews extends React.Component {
   static propTypes = propTypes;
 
   constructor(props) {
@@ -23,13 +27,22 @@ class MasonryNews extends React.Component {
   componentDidMount() {
     WebflowJs(); // eslint-disable-line
   }
+
   renderHelper = data =>
-    data.map((dataObj) => {
+    data.map((dataObj, i) => {
+      if (dataObj.component === 'CardReview') {
+        return (
+          <CardReview
+            {...dataObj.props}
+            key={new Buffer(`${dataObj.props.CardImg.src + i + Date.now()}`, 'utf8').toString('base64')}
+          />
+        );
+      }
       if (dataObj.component === 'CardArticle') {
         return (
           <CardArticle
             {...dataObj.props}
-            key={new Buffer(`${dataObj.props.CardImg.src + Date.now()}`, 'utf8').toString('base64')}
+            key={new Buffer(`${dataObj.props.CardImg.src + i + Date.now()}`, 'utf8').toString('base64')}
           />
         );
       }
@@ -45,4 +58,4 @@ class MasonryNews extends React.Component {
   }
 }
 
-export default MasonryNews;
+export default MasonryReviews;
