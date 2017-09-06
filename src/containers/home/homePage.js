@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
@@ -9,7 +8,8 @@ import {
   HomepageFastestDelivery,
   HomepageHowCarousel,
   HomepageReviewsCarousel,
-  MasonryNews,
+  // MasonryNews,
+  MasonryReviews,
 } from './components';
 
 const { bool } = PropTypes;
@@ -36,14 +36,6 @@ class HomePage extends Component {
     return (window.innerHeight - 60);
   }
 
-  componentWillUpdate() {
-    const msnry = new Masonry('.grid', { //eslint-disable-line
-      itemSelector: '.checkout__grid',
-      columnWidth: 340,
-      gutter: 22,
-    });
-  }
-
   render() {
     return (
       <div className="homepage">
@@ -63,7 +55,8 @@ class HomePage extends Component {
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
-        <MasonryNews />
+        <MasonryReviews />
+        {/* <MasonryNews /> */}
       </div>
     );
   }

@@ -13,7 +13,7 @@ class NavbarUserActionsSignedin extends PureComponent {
     activeUser: {
       pictures: {
         small: '',
-        default: '/images/default-user.png',
+        default: '/images/default-avatar.png',
       },
     },
   }

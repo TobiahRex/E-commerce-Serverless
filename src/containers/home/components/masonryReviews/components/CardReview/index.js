@@ -30,6 +30,7 @@ const {
   string,
   shape,
 } = PropTypes;
+
 CardReview.propTypes = {
   CardImg: shape({
     src: string,

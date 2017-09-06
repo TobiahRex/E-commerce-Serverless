@@ -14,7 +14,7 @@ const CardHeader = (props) => {
 
 const { string } = PropTypes;
 CardHeader.propTypes = {
-  header: string,
+  header: string.isRequired,
 };
 
 export default CardHeader;

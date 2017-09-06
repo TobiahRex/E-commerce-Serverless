@@ -23,9 +23,9 @@ const CardBody = (props) => {
 
 const { string } = PropTypes;
 CardBody.propTypes = {
-  header: string,
-  subHeader: string,
-  content: string,
+  header: string.isRequired,
+  subHeader: string.isRequired,
+  content: string.isRequired,
 };
 
 export default CardBody;

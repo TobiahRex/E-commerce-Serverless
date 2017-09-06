@@ -14,7 +14,7 @@ const CardBlurb = (props) => {
 
 const { string } = PropTypes;
 CardBlurb.propTypes = {
-  blurb: string,
+  blurb: string.isRequired,
 };
 
 export default CardBlurb;

@@ -35,7 +35,7 @@ NavbarMobileUserActionsSignedIn.defaultProps = {
   profile: {
     pictures: {
       small: '',
-      default: '/images/default-user.png',
+      default: '/images/default-avatar.png',
     },
   },
 };

@@ -14,7 +14,7 @@ const CardSubHeader = (props) => {
 
 const { string } = PropTypes;
 CardSubHeader.propTypes = {
-  subHeader: string,
+  subHeader: string.isRequired,
 };
 
 export default CardSubHeader;
