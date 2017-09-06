@@ -4,6 +4,7 @@ import { WebflowJs } from './assets/utils';
 
 import {
   MemberSocialFacebook,
+  MemberSocialGithub,
   MemberSocialLinkedin,
   MemberSocialTwitter,
   MemberSocialInstagram,
@@ -14,6 +15,7 @@ const MemberCardSocial = (props) => {
 
   const {
     facebook,
+    github,
     twitter,
     linkedin,
     instagram,
@@ -22,19 +24,21 @@ const MemberCardSocial = (props) => {
   return (
     <div className="about-container__staff staff--social-media">
       {facebook && <MemberSocialFacebook />}
+      {github && <MemberSocialGithub />}
       {linkedin && <MemberSocialLinkedin />}
       {twitter && <MemberSocialTwitter />}
       {instagram && <MemberSocialInstagram />}
     </div>
   );
 };
-const { shape, bool } = PropTypes;
+const { shape, string } = PropTypes;
 MemberCardSocial.propTypes = {
   socials: shape({
-    facebook: bool.isRequired,
-    instagram: bool.isRequired,
-    twitter: bool.isRequired,
-    linkedin: bool.isRequired,
+    facebook: string.isRequired,
+    github: string.isRequired,
+    instagram: string.isRequired,
+    twitter: string.isRequired,
+    linkedin: string.isRequired,
   }).isRequired,
 };
 
