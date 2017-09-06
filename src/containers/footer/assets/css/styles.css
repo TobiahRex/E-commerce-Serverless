@@ -390,6 +390,9 @@
   .general-column__list.general-column__list--tablet {
     padding-left: 0px;
   }
+  .general__list--link {
+    text-align: left;
+  }
   .general__list--link.general__list--link--tablet {
     font-size: 16px;
   }
@@ -413,6 +416,16 @@
   .footer_company.footer_company--tablet {
     padding-right: 5px;
     padding-left: 5px;
+  }
+  .facebook-icon, .instagram-icon, .twitter-icon, .linkedin-icon {
+    height: 60px;
+    width: 60px;
+  }
+  .facebook-icon > span,
+  .instagram-icon > span, 
+  .twitter-icon > span,
+  .linkedin-icon > span {
+    font-size: 30px;
   }
 }
 
