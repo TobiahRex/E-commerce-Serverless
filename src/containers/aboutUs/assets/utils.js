@@ -4,12 +4,14 @@ export const contentData = {
     {
       component: 'MemberCard',
       props: {
-        CardImg: {
+        MemberCardPhoto: {
           src: 'images/brian-wilson-264x200.png',
         },
-        CardBody: {
+        MemberCardTitle: {
           header: 'Brian Wilson',
           subHeader: 'CEO, CMO, Co-founder',
+        },
+        MemberCardBlurb: {
           blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
         },
         Socials: {
@@ -23,12 +25,14 @@ export const contentData = {
     {
       component: 'MemberCard',
       props: {
-        CardImg: {
+        MemberCardPhoto: {
           src: 'images/toby-2-264x200.png',
         },
-        CardBody: {
+        MemberCardTitle: {
           header: 'Tobiah Rex',
           subHeader: 'CTO, COO, Co-founder',
+        },
+        MemberCardBlurb: {
           blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
         },
         Socials: {
@@ -42,12 +46,14 @@ export const contentData = {
     {
       component: 'MemberCard',
       props: {
-        CardImg: {
+        MemberCardPhoto: {
           src: 'images/ID3-264x200.png',
         },
-        CardBody: {
+        MemberCardTitle: {
           header: 'Lakshman Diwaakar',
           subHeader: 'CDE',
+        },
+        MemberCardBlurb: {
           blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
         },
         Socials: {
@@ -61,12 +67,14 @@ export const contentData = {
     {
       component: 'MemberCard',
       props: {
-        CardImg: {
+        MemberCardPhoto: {
           src: 'images/phil-264x200.png',
         },
-        CardBody: {
+        MemberCardTitle: {
           header: 'Phil Moore',
           subHeader: 'Head of Design',
+        },
+        MemberCardBlurb: {
           blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
         },
         Socials: {
