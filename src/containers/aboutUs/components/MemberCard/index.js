@@ -1,5 +1,5 @@
 import React from 'react';
-import P
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 import {
@@ -29,5 +29,23 @@ const MemberCard = (props) => {
   );
 };
 
-
+const { shape, string } = PropTypes;
+MemberCard.propTypes = {
+  MemberCardPhoto: shape({
+    src: string,
+  }).isRequired,
+  MemberCardTitle: shape({
+    header: string,
+    subHeader: string,
+  }).isRequired,
+  MemberCardBlurb: shape({
+    blurb: string,
+  }).isRequired,
+  Socials: shape({
+    facebook: true,
+    instragram: true,
+    twitter: true,
+    linkedin: true,
+  }).isRequired,
+};
 export default MemberCard;
