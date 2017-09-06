@@ -79,18 +79,18 @@ class Footer extends React.Component {
                 </div>
                 <div className="social__icon-container">
                   <div className="facebook-icon sweep-right">
-                    <FontAwesome name="facebook" className="fa-facebook" />
+                    <FontAwesome name="facebook" className="facebook-fa-icon" />
                   </div>
                   <div className="instagram-icon sweep-right">
-                    <FontAwesome name="instagram" className="fa-instagram" />
+                    <FontAwesome name="instagram" className="instagram-fa-icon" />
                   </div>
                 </div>
                 <div className="social__icon-container">
                   <div className="twitter-icon sweep-right">
-                    <FontAwesome name="twitter" className="fa-twitter" />
+                    <FontAwesome name="twitter" className="twitter-fa-icon" />
                   </div>
                   <div className="linkedin-icon sweep-right">
-                    <FontAwesome name="linkedin" className="fa-linkedin" />
+                    <FontAwesome name="linkedin" className="linkedin-fa-icon" />
                   </div>
                 </div>
               </div>

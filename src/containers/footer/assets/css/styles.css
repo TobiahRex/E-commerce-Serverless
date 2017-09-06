@@ -176,11 +176,11 @@
   color: #365899;
 }
 
-.fa-facebook, .fa-instagram, .fa-twitter, .fa-linkedin {
+.facebook-fa-icon, .instagram-fa-icon, .twitter-fa-icon, .linkedin-fa-icon {
   /*transition: all .9s ease-in-out;*/
 }
 
-.facebook-icon:hover > .fa-facebook {
+.facebook-icon:hover > .facebook-fa-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -202,7 +202,7 @@
   font-size: 50px;
 }
 
-.instagram-icon:hover > .fa-instagram {
+.instagram-icon:hover > .instagram-fa-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -223,7 +223,7 @@
   cursor: pointer;
   font-size: 50px;
 }
-.linkedin-icon:hover > .fa-linkedin {
+.linkedin-icon:hover > .linkedin-fa-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -243,7 +243,7 @@
   background-color: #0077B5;
   cursor: pointer;
 }
-.twitter-icon:hover > .fa-twitter {
+.twitter-icon:hover > .twitter-fa-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -364,12 +364,12 @@
   border-right: 2px solid #416ab3;
 }
 
-.fa-twitter {
+.twitter-fa-icon {
   color: #385a97;
   font-size: 50px;
 }
 
-.fa-instagram {
+.instagram-fa-icon {
   color: #385a97;
   font-size: 50px;
 }
@@ -422,7 +422,7 @@
     width: 60px;
   }
   .facebook-icon > span,
-  .instagram-icon > span, 
+  .instagram-icon > span,
   .twitter-icon > span,
   .linkedin-icon > span {
     font-size: 30px;
