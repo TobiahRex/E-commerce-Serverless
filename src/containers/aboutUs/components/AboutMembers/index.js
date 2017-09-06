@@ -1,7 +1,10 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import { WebflowJs } from './assets/utils';
+import {
+  WebflowJs,
+  contentData,
+} from './assets/utils';
 
 import {
   MemberCard,
@@ -14,7 +17,7 @@ const AboutMembers = () => {
   data.map((dataObj) => {
     if (dataObj.component === 'MemberCard') {
       return (
-        <CardArticle
+        <MemberCard
           {...dataObj.props}
           key={new Buffer(`${dataObj.props.CardImg.src + Date.now()}`, 'utf8').toString('base64')}
         />
