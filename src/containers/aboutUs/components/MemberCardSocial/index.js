@@ -23,11 +23,11 @@ const MemberCardSocial = (props) => {
 
   return (
     <div className="about-container__staff staff--social-media">
-      {facebook && <MemberSocialFacebook />}
-      {github && <MemberSocialGithub />}
-      {linkedin && <MemberSocialLinkedin />}
-      {twitter && <MemberSocialTwitter />}
-      {instagram && <MemberSocialInstagram />}
+      {facebook && <MemberSocialFacebook link={facebook} />}
+      {github && <MemberSocialGithub link={github} />}
+      {linkedin && <MemberSocialLinkedin link={linkedin} />}
+      {twitter && <MemberSocialTwitter link={twitter} />}
+      {instagram && <MemberSocialInstagram link={instagram} />}
     </div>
   );
 };
