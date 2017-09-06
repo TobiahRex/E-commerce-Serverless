@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 import {
-  CardImg,
-  CardBody,
+  CardImgReview,
+  CardBodyReview,
 } from '../../components';
 
 const CardReview = (props) => {
@@ -14,8 +14,8 @@ const CardReview = (props) => {
     <div className="masonry-container masonry-container__reviews">
       <div className="reviews__content">
         <div className="reviews-content">
-          <CardImg src={props.CardImg.src} />
-          <CardBody
+          <CardImgReview src={props.CardImg.src} />
+          <CardBodyReview
             header={props.CardBody.header}
             subHeader={props.CardBody.subHeader}
             content={props.CardBody.content}

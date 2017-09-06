@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Masonry from 'masonry-layout';
 import './assets/styles/style.css';
 
 import { propTypes } from './assets/propValidation';
@@ -13,7 +13,7 @@ import {
   CardArticle,
 } from './components';
 
-class MasonryReviews extends React.Component {
+class HomepageMasonry extends React.Component {
   static propTypes = propTypes;
 
   constructor(props) {
@@ -26,6 +26,14 @@ class MasonryReviews extends React.Component {
 
   componentDidMount() {
     WebflowJs(); // eslint-disable-line
+  }
+
+  componentWillUpdate() {
+    const msnry = new Masonry('.grid', { // eslint-disable-line
+      itemSelector: '.checkout__grid',
+      columnWidth: 340,
+      gutter: 22,
+    });
   }
 
   renderHelper = data =>
@@ -58,4 +66,4 @@ class MasonryReviews extends React.Component {
   }
 }
 
-export default MasonryReviews;
+export default HomepageMasonry;

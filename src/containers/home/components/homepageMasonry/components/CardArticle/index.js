@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 import {
-  CardImg,
-  CardBody,
+  CardImgArticle,
+  CardBodyArticle,
 
 } from '../../components';
 
@@ -13,8 +13,8 @@ const CardArticle = (props) => {
 
   return (
     <div className="masonry-column masonry-column__news">
-      <CardImg src={props.CardImg.src} />
-      <CardBody
+      <CardImgArticle src={props.CardImg.src} />
+      <CardBodyArticle
         header={props.CardBody.header}
         content={props.CardBody.content}
         link={props.CardBody.link}
