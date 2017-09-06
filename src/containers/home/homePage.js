@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import HomepageHeader from './homeComponents/homepage_header';
-import HomepageFastestDelivery from './homeComponents/homepage_fastestDelivery';
-import HomepageHowCarousel from './homeComponents/homepage_howCarousel';
-import HomepageReviewsCarousel from './homeComponents/homepage_reviewsCarousel';
-import HomepagePopJuices from './homeComponents/homepage_popularProducts';
+import {
+  HomepageHeader,
+  HomepageFastestDelivery,
+  HomepageHowCarousel,
+  HomepageReviewsCarousel,
+  MasonryNews,
+} from './components';
 
 const { bool } = PropTypes;
 
@@ -33,6 +36,14 @@ class HomePage extends Component {
     return (window.innerHeight - 60);
   }
 
+  componentWillUpdate() {
+    const msnry = new Masonry('.grid', { //eslint-disable-line
+      itemSelector: '.checkout__grid',
+      columnWidth: 340,
+      gutter: 22,
+    });
+  }
+
   render() {
     return (
       <div className="homepage">
@@ -52,7 +63,7 @@ class HomePage extends Component {
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
-        <HomepagePopJuices />
+
       </div>
     );
   }
