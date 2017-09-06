@@ -168,7 +168,7 @@ class ContactUs extends React.Component {
             destination={['']}
             lastCrumb="Contact Us"
           />
-          <HdrPage />
+          <HdrPage header="Contact Us" />
 
           <ContactForm
             key={this.state.formKey}

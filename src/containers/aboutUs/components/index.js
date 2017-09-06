@@ -1,4 +1,5 @@
-export PageHdr from './PageHdr';
+export HdrPage from './HdrPage';
+export BreadCrumb from './BreadCrumb';
 export AboutBlurb from './AboutBlurb';
 export SubHdr from './SubHdr';
 export AboutMembers from './AboutMembers';

@@ -8,7 +8,8 @@ import {
 } from './assets/utils';
 
 import {
-  PageHdr,
+  BreadCrumb,
+  HdrPage,
   SubHdr,
   AboutBlurb,
   AboutMembers,
@@ -32,7 +33,13 @@ class AboutUs extends React.Component {
   render() {
     return (
       <div className="about__container-main">
-        <PageHdr header="About Us" />
+        <BreadCrumb
+          paths={['Home']}
+          classes={['home']}
+          destination={['']}
+          lastCrumb="About Us"
+        />
+        <HdrPage header="About Us" />
         <AboutBlurb />
         <SubHdr header="NJ2JP Team" />
         <AboutMembers members={contentData.english} />
