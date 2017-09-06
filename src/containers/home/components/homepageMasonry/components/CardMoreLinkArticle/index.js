@@ -1,9 +1,9 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 const CardMoreLink = (props) => {
-  WebflowJs(); //eslint-disable-line
+  WebflowJs();
   const {
     link,
   } = props;
@@ -19,6 +19,8 @@ const CardMoreLink = (props) => {
     </a>
   );
 };
-
+CardMoreLink.propTypes = {
+  link: PropTypes.string.isRequired,
+};
 
 export default CardMoreLink;

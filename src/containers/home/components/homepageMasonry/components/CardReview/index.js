@@ -5,10 +5,10 @@ import { WebflowJs } from './assets/utils';
 import {
   CardImgReview,
   CardBodyReview,
-} from '../../components';
+} from '../';
 
 const CardReview = (props) => {
-  WebflowJs(); //eslint-disable-line
+  WebflowJs();
 
   return (
     <div className="masonry-container masonry-container__reviews">

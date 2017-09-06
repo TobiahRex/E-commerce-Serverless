@@ -8,8 +8,6 @@ import {
   HomepageFastestDelivery,
   HomepageHowCarousel,
   HomepageReviewsCarousel,
-  MasonryNews,
-  MasonryReviews,
   HomepageMasonry,
 } from './components';
 
@@ -57,9 +55,6 @@ class HomePage extends Component {
           mobile={this.props.mobile}
         />
         <HomepageMasonry />
-        <div style={{ height: 20, width: '100%', borderBottom: '5px solid red' }} />
-        <MasonryNews />
-        <MasonryReviews />
       </div>
     );
   }

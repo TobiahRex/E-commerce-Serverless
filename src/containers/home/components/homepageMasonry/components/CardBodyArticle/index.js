@@ -6,7 +6,7 @@ import {
   CardBlurbArticle,
   CardMoreLinkArticle,
   CardTitleArticle,
-} from '../../components';
+} from '../';
 
 
 const CardBody = (props) => {
@@ -28,14 +28,10 @@ const CardBody = (props) => {
 };
 
 const {
-  arrayOf,
-  any,
   string,
-  // shape,
 } = PropTypes;
 
 CardBody.propTypes = {
-  children: arrayOf(any).isRequired,
   header: string.isRequired,
   content: string.isRequired,
   link: string.isRequired,

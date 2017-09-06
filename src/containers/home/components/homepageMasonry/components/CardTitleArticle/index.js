@@ -1,9 +1,9 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 const CardTitle = (props) => {
-  WebflowJs(); //eslint-disable-line
+  WebflowJs();
   const {
     header,
   } = props;
@@ -23,6 +23,8 @@ const CardTitle = (props) => {
     </a>
   );
 };
-
+CardTitle.propTypes = {
+  header: PropTypes.string.isRequired,
+};
 
 export default CardTitle;

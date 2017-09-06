@@ -5,8 +5,7 @@ import { WebflowJs } from './assets/utils';
 import {
   CardImgArticle,
   CardBodyArticle,
-
-} from '../../components';
+} from '../';
 
 const CardArticle = (props) => {
   WebflowJs(); //eslint-disable-line

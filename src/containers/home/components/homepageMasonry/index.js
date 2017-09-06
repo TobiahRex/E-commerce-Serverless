@@ -1,6 +1,7 @@
 import React from 'react';
 import Masonry from 'masonry-layout';
-import './assets/styles/style.css';
+import './assets/styles/reviews.css';
+import './assets/styles/news.css';
 
 import { propTypes } from './assets/propValidation';
 import {
@@ -37,12 +38,12 @@ class HomepageMasonry extends React.Component {
   }
 
   renderHelper = data =>
-    data.map((dataObj, i) => {
+    data.map((dataObj) => {
       if (dataObj.component === 'CardReview') {
         return (
           <CardReview
             {...dataObj.props}
-            key={new Buffer(`${dataObj.props.CardImg.src + i + Date.now()}`, 'utf8').toString('base64')}
+            key={new Buffer(`${dataObj.props.CardBody.header + Date.now()}`, 'utf8').toString('base64')}
           />
         );
       }
@@ -50,7 +51,7 @@ class HomepageMasonry extends React.Component {
         return (
           <CardArticle
             {...dataObj.props}
-            key={new Buffer(`${dataObj.props.CardImg.src + i + Date.now()}`, 'utf8').toString('base64')}
+            key={new Buffer(`${dataObj.props.CardImg.src + Date.now()}`, 'utf8').toString('base64')}
           />
         );
       }

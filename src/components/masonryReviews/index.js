@@ -1,8 +1,5 @@
 import React from 'react';
-
 import './assets/styles/style.css';
-
-import { propTypes } from './assets/propValidation';
 import {
   WebflowJs,
   contentData,
@@ -13,8 +10,6 @@ import {
 } from './components';
 
 class MasonryReviews extends React.Component {
-  static propTypes = propTypes;
-
   constructor(props) {
     super(props);
 
