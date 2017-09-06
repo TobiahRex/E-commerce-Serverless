@@ -5,3 +5,4 @@ export HomepageReviewsCarousel from './homepage_reviewsCarousel';
 export HomepagePopJuices from './homepage_popularProducts';
 export MasonryNews from './masonryNews';
 export MasonryReviews from './masonryReviews';
+export HomepageMasonry from './homepageMasonry';
