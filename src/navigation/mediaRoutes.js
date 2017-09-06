@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
 // import About from '../containers/legal/components/about/';
-import ContactUs from '../containers/legal/components/contactUs';
+// import ContactUs from '../containers/contactUs';
 import Phone from '../containers/legal/components/phone';
 import UserStories from '../containers/media/userStories';
 import VapeNews from '../containers/media/vapeNews';
@@ -14,7 +14,7 @@ import Wholesale from '../containers/legal/wholesale';
 import Affiliates from '../containers/legal/affiliateProgram';
 
 const errorLoading = (error) => {
-  throw new Error(`Dyanmic pag loading failed   ${error}`);
+  throw new Error(`Dynamic page loading failed ${error}`);
 };
 const loadRoute = cb => module => cb(null, module.default);
 
@@ -22,14 +22,21 @@ const MediaRoutes = () => (
   <div>
     <Route
       path="/about"
-      getComponent={(location, cb) => {
-        import('../containers/legal/components/about/' /* webpackChunkName: "about" */)
+      getComponent={(_, cb) => {
+        import('../containers/aboutUs' /* webpackChunkName: "about" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
     />
     {/* <Route path="/about" component={About} /> */}
-    <Route path="/contact_us" component={ContactUs} />
+    <Route
+      path="/contact_us"
+      getComponent={(_, cb) => {
+        import('../containers/contactUs' /* webpackChunkName: "contact-us" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     <Route path="/phone" component={Phone} />
     <Route path="/vape_news" component={VapeNews} />
     <Route path="/stories" component={UserStories} />

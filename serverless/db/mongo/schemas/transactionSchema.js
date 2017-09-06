@@ -21,10 +21,6 @@ const transactionSchema = new Schema({
     default: Date.now,
     required: true,
   },
-  shippingStatus: {
-    type: String,
-    default: 'Packaging',
-  },
   comments: { type: String },
   termsAgreement: { type: Boolean },
   user: { type: ObjectId, ref: 'User' },
@@ -60,22 +56,47 @@ const transactionSchema = new Schema({
     },
   },
   square: {
-    locationId: { type: String, default: '' },
-    transactionId: { type: String, default: '' },
+    idempotency_key: { type: String, default: '' },
+    tender: {
+      id: { type: String, default: '' },
+      location_id: { type: String, default: '' },
+      transaction_id: { type: String, default: '' },
+      created_at: { type: String, default: '' },
+      note: { type: String, default: '' },
+      amount_money: {
+        amount: { type: Number, default: 0 },
+        currency: { type: String, default: '' },
+      },
+      type: { type: String, default: '' },
+      card_details: {
+        status: { type: String, default: '' },
+        card: {
+          card_brand: { type: String, default: '' },
+          last_4: { type: String, default: '' },
+          nameOnCard: { type: String, default: '' },
+          cardNonce: { type: String, default: '' },
+          postalCode: { type: String, default: '' },
+        },
+        entry_method: { type: String },
+      },
+    },
     billingCountry: { type: String, required: true },
     shippingAddress: {
       shippingPrefecture: { type: String, required: true },
       shippingCity: { type: String, required: true },
     },
-    cardInfo: {
-      last4: { type: String, required: true },
-      nameOnCard: { type: String, required: true },
-      cardNonce: { type: String, default: '', required: true },
-      postalCode: { type: String, default: '' },
-    },
-    charge: {
-      amount: { type: String, required: true },
-      currency: { type: String, required: true },
+    refund: {
+      id: { type: String, default: '' },
+      location_id: { type: String, default: '' },
+      transaction_id: { type: String, default: '' },
+      tender_id: { type: String, default: '' },
+      created_at: { type: String, default: '' },
+      reason: { type: String, default: '' },
+      amount_money: {
+        amount: { type: Number },
+        currency: { type: String },
+      },
+      status: { type: String, default: '' },
     },
   },
 });

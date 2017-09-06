@@ -2,10 +2,10 @@
 import axios from 'axios';
 import AWS from 'aws-sdk';
 import uuid from 'uuid';
+import moment from 'moment';
 import { Promise as bbPromise } from 'bluebird';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
@@ -31,7 +31,7 @@ export default (db) => {
   */
   transactionSchema.statics.fetchSquareLocation = country =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@Transaction.fetchSquareLocation\n');
+    console.log('@fetchSquareLocation');
 
     axios({
       method: 'get',
@@ -92,6 +92,7 @@ export default (db) => {
     console.log('\n\n@Transaction.squareChargeCard\n');
 
     const {
+      userEmail,
       locationId,
       transactionId,
       shippingEmail,
@@ -101,15 +102,17 @@ export default (db) => {
       shippingPostalCode,
       shippingCountry,
       billingCountry,
-      grandTotal,
+      amount,
+      currency,
       cardNonce,
-      jpyFxRate,
     } = chargeInfo;
+
+    const idempotency_key = uuid(); //eslint-disable-line
 
     axios.post(
       `https://connect.squareup.com/v2/locations/${locationId}/transactions`,
       {
-        idempotency_key: uuid(),
+        idempotency_key,
         buyer_email_address: shippingEmail,
         shipping_address: {
           address_line_1: shippingAddressLine2,
@@ -120,12 +123,12 @@ export default (db) => {
           country: shippingCountry,
         },
         amount_money: {
-          amount: ComposeAmount(billingCountry, grandTotal, jpyFxRate),
-          currency: billingCountry === 'US' ? 'USD' : 'JPY',
+          amount,
+          currency,
         },
         card_nonce: cardNonce,
         reference_id: transactionId,
-        note: `${GetSquareLocation(billingCountry)}: Online order.`,
+        note: `${userEmail} | Reference #:${transactionId}`,
         delay_capture: false,
       },
       {
@@ -140,10 +143,23 @@ export default (db) => {
         resolve({ status: response.status });
       } else {
         console.log('\nSUCCESS: @Transaction.chargeCard >>> axios.post: ', response.data);
+
+        console.log('amount_money: ', response.data.transaction.tenders[0].amount_money);
+
+        const tender = response.data.transaction.tenders[0];
         return Transaction.findByIdAndUpdate(transactionId, {
           $set: {
-            'square.transactionId': response.data.transaction.id,
-            'square.locationId': response.data.transaction.location_id,
+            'square.idempotency_key': idempotency_key,
+            'square.tender.id': tender.id,
+            'square.tender.location_id': tender.location_id,
+            'square.tender.transaction_id': tender.transaction_id,
+            'square.tender.created_at': tender.created_at,
+            'square.tender.note': tender.note,
+            'square.tender.amount_money': tender.amount_money,
+            'square.tender.type': tender.type,
+            'square.tender.card_details.status': tender.card_details.status,
+            'square.tender.card_details.card.card_brand': tender.card_details.card.card_brand,
+            'square.tender.card_details.entry_method': tender.card_details.entry_method,
           },
         }, { new: true });
       }
@@ -251,6 +267,7 @@ export default (db) => {
 
         return Transaction.squareChargeCard({
           locationId: results[2].id,
+          userEmail: userDoc.contactInfo.email,
           transactionId: String(results[0]._id),
           shippingEmail: sagawa.shippingAddress.email,
           shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
@@ -259,8 +276,9 @@ export default (db) => {
           shippingPostalCode: sagawa.shippingAddress.postalCode,
           shippingCountry: sagawa.shippingAddress.country,
           billingCountry: square.billingCountry,
-          grandTotal: total.grandTotal,
-          cardNonce: square.cardInfo.cardNonce,
+          amount: square.tender.amount_money.amount,
+          currency: square.tender.amount_money.currency,
+          cardNonce: square.tender.card_details.card.cardNonce,
           jpyFxRate,
         });
       }
@@ -320,6 +338,13 @@ export default (db) => {
           familyName: sagawa.shippingAddress.familyName,
         };
 
+        const mhApiTags = GetMhTransactionTagsApi({
+          total,
+          language,
+          cart: cartProducts,
+          subscribed: !!newsletterDecision,
+        });
+
         return Promise.all([
           Email.createInvoiceEmailBody({
             cart: cartProducts,
@@ -339,12 +364,8 @@ export default (db) => {
           }),
           MarketHero.createOrUpdateLead({
             lead,
-            tags: GetMhTransactionTagsApi({
-              total,
-              language,
-              cart: cartProducts,
-              subscribed: !!newsletterDecision,
-            }),
+            userTags: mhApiTags.userTags,
+            productTags: mhApiTags.productTags,
           }),
         ]);
       }
@@ -369,9 +390,9 @@ export default (db) => {
 
         const {
           AWS_REGION: region,
+          LAMBDA_ENV: lambdaEnv,
           LAMBDA_ACCESS_KEY_ID: lambdaAccessKeyId,
           LAMBDA_SECRET_ACCESS_KEY: lambdaSecretAccessKey,
-          LAMBDA_ENV: lambdaEnv,
         } = process.env;
 
         const lambda = new AWS.Lambda({
@@ -483,6 +504,214 @@ export default (db) => {
         transaction: null,
       });
     });
+  });
+
+  transactionSchema.statics.issueUserRefund = ({ sagawaId, transactionId, userId }, Email, User) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Transaction.issueUserRefund');
+
+    Transaction
+    .findById(transactionId)
+    .then((dbTransaction) => { //eslint-disable-line
+      if (!dbTransaction) {
+        console.log('FAILED: @Transaction.issueUserRefund >>> Transaction.findById: ', transactionId);
+        reject({
+          type: 'RefundNotSent',
+          message: 'The transaction id provided was not found in DB.',
+        });
+      } else {
+        return axios.post(`https://connect.squareup.com/v2/locations/${dbTransaction.square.tender.location_id}/transactions/${dbTransaction.square.tender.transaction_id}/refund`, {
+          idempotency_key: dbTransaction.square.idempotency_key,
+          tender_id: dbTransaction.square.tender.id,
+          reason: 'There was an issue during checkout after your card was charged.',
+          amount_money: {
+            amount: dbTransaction.square.tender.amount_money.amount,
+            currency: dbTransaction.square.tender.amount_money.currency,
+          },
+        }, {
+          headers: {
+            Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
+          },
+        });
+      }
+    })
+    .then((response) => { //eslint-disable-line
+      if (response.status !== 200) {
+        console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
+        reject({
+          type: 'RefundNotSent',
+          message: `axios.post to Sagawa API responded with status code "${response.status}"`,
+        });
+      } else {
+        console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
+
+        return Promise.all([
+          Transaction.findByIdAndUpdate(transactionId, {
+            $set: {
+              'square.refund': response.data.refund,
+            },
+          }, { new: true }),
+          Email.refundNotification({
+            userId,
+            sagawaId,
+            transactionId,
+            message: {
+              user: {
+                subject: 'Shipping Problem - You have been issued a refund.',
+                replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
+                body: `
+                ${moment().format('ll')}
+
+                Dear USER_NAME_HERE,
+
+                While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
+
+                Due to this fact, we've issued you a refund for the total amount of the order:
+
+                CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+
+                The refund has been credited to your credit card:
+
+                XXXX - XXXX - XXXX - LAST_4_HERE
+
+                We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+
+                If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  Our developers will provide updates here regularly as we learn more.
+
+                Sincerely,
+
+                NJ2JP Team
+
+                `,
+              },
+              staff: {
+                subject: `ERROR 🛑 User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+                replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
+                body: `
+                ${moment().format('llll')}
+
+                There has been a critical error while trying to upload an order to Sagawa for User #: ${userId}.  The user has successfully been issued a full refund.
+
+                1) The user has been issued a refund:
+                - Last 4: LAST_4_HERE
+                - User Email: USER_EMAIL_HERE
+                - User Name: USER_NAME_HERE
+                - Reference #: REFERENCE_ID_HERE
+
+                2) You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .
+                `,
+              },
+            },
+          }, User),
+        ]);
+      }
+    })
+    .then((results) => {
+      console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack: ', results[1]);
+      resolve();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Transaction.issueUserRefund: ', error);
+      reject(error);
+    });
+  });
+
+  transactionSchema.statics.handleRefund = ({ sagawaId, transactionId, userId }, Email, User) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Transaction.handleRefund');
+
+    if (!userId || !transactionId) {
+      console.log('\nFAILED: Missing required arguments.');
+      reject('\nFAILED: Missing required arguments.');
+    } else {
+      Transaction
+      .issueUserRefund({ sagawaId, transactionId, userId }, Email)
+      .then(() => {
+        resolve({
+          userId,
+          transactionId,
+          verified: false,
+        });
+      })
+      .catch((error) => { //eslint-disable-line
+        if (!!error.type) {
+          if (error.type === 'RefundNotSent') {
+            console.log('\nFAILED: Transaction.handleRefund >>> Transaction.issueUserRefund: ', error.message);
+            return Email.refundNotification({
+              userId,
+              sagawaId,
+              transactionId,
+              message: {
+                user: {
+                  subject: 'Shippping Problem',
+                  replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
+                  body: `
+                  ${moment().format('ll')} -
+                  Dear USER_NAME_HERE,
+
+                  While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
+
+                  Due to this fact, we will be issuing a refund for the total amount of the order:
+
+                  CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+
+                  The refund will be credited to your credit card:
+
+                  XXXX - XXXX - XXXX - LAST_4_HERE
+
+                  We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+
+                  If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  Our developers will provide updates here regularly as we learn more.
+
+                  Sincerely,
+
+                  NJ2JP Team
+
+                  `,
+                },
+                staff: {
+                  subject: `ERROR 🛑  User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+                  replyTo: 'NJ2JP Cron Job <admin@nj2jp.com>',
+                  body: `
+                  ${moment().format('llll')}
+
+                  There has been a CRITICAL error while trying to upload an order to Sagawa for User #: ${userId}.
+
+                  The Users's upload was not successful and the attempt to issue the User an automatic refund was also NOT sucessful.
+
+                  You must login to Square and use the transaction information shown below to issue the customer and IMMEDIATE REFUND.
+
+                  1) The User must be issued a manual refund ASAP.
+                  - Last 4: LAST_4_HERE
+                  - User Email: USER_EMAIL_HERE
+                  - User Name: USER_NAME_HERE
+                  - Reference #: REFERENCE_ID_HERE
+
+                  2) Review Cloud watch report here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa.
+
+                  Customer has been issued a full refund.`,
+                },
+              },
+            }, User);
+          }
+        } else {
+          console.log('\nFAILED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', error);
+          reject(error);
+        }
+      })
+      .then(() => {
+        console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack');
+        resolve({
+          userId,
+          transactionId,
+          verified: false,
+        });
+      })
+      .catch((error) => {
+        console.log('\nFAILED: Transaction.handleRefund: ', error);
+        reject(error);
+      });
+    }
   });
 
   const Transaction = db.model('Transaction', transactionSchema);

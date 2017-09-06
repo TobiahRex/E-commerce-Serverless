@@ -20,7 +20,7 @@ export default class Root extends Component {
           routes={routes}
           onUpdate={() => saveLocation(store.dispatch)}
         />
-      </ApolloProvider >
+        </ApolloProvider >
     );
   }
 }

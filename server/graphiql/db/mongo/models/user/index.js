@@ -132,7 +132,7 @@ new Promise((resolve, reject) => {
           })
           .catch((error) => {
             console.log('\nFAILED: Add Old Products to Available: ', error);
-            reject(new Error('Update product quantities.'));
+            reject('Update product quantities.');
           });
         });
         resolve(userDoc);
@@ -141,7 +141,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Login User.', error);
-    reject(new Error('\nFAILED: Login User'));
+    reject('\nFAILED: Login User');
   });
 });
 

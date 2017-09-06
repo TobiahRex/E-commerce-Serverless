@@ -15,7 +15,7 @@ export default (db) => {
   */
   marketHeroSchema.statics.checkForLead = userEmail =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@MarketHero.checkForLead\n');
+    console.log('@MarketHero.checkForLead\n\n');
 
     MarketHero.findOne({ 'lead.email': userEmail })
     .exec()
@@ -25,7 +25,78 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: MarketHero.checkForLead: ', error);
-      reject(new Error('\nFAILED: MarketHero.checkForLead: '));
+      reject(new Error(error.message));
+    });
+  });
+
+  marketHeroSchema.statics.updateLeadProductTags = ({ lead, productTags }) =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@MarketHero.updateProductTags\n');
+
+    function recursiveUpload(tags) {
+      const savedTags = tags;
+      let nextTag = [];
+
+      if (savedTags.length) {
+        nextTag = [savedTags.pop()];
+
+        const reqBody = {
+          apiKey: process.env.MARKET_HERO_API_KEY,
+          tags: nextTag,
+          email: lead.email,
+          lastName: lead.familyName,
+          firstName: lead.givenName,
+        };
+
+        axios.post('https://api.markethero.io/v1/api/tag-lead', reqBody, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((response) => {
+          if (response.status !== 200) {
+            console.log('\nFAILED: @Markethero.updateUserTags >>> axios.post: ', response.data);
+            reject(response.data.error);
+          } else {
+            console.log('\nSUCCEEDED: @Markethero.updateUserTags >>> axios.post: ', response.data);
+
+            console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> axios.post - calling recursively with remaining tags: ', savedTags);
+            recursiveUpload(savedTags);
+          }
+        })
+        .catch((error) => {
+          console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
+          reject(error);
+        });
+      } else {
+        console.log('\nSUCCEEDED: @MarketHero.updateLeadProductTags >>> recursive update - Finished all product tag updates.');
+        resolve();
+      }
+    }
+    recursiveUpload(productTags);
+  });
+
+  marketHeroSchema.statics.updateUserTags = reqBody =>
+  new Promise((resolve, reject) => {
+    console.log('\n@Markethero.updateLeadTags');
+
+    axios.post('https://api.markethero.io/v1/api/tag-lead', reqBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        console.log('\nFAILED: @Markethero.updateUserTags >>> axios.post: ', response.data);
+        reject(response.data.error);
+      } else {
+        console.log('\nSUCCEEDED: @Markethero.updateUserTags >>> axios.post: ', response.data);
+        resolve();
+      }
+    })
+    .catch((error) => {
+      console.log('\nFAILED: @MarketHero.udateUserTags >>> axios.post: ', error);
+      reject(error);
     });
   });
 
@@ -41,41 +112,49 @@ export default (db) => {
   *
   * @return {object} - Promise: resolved - no data.
   */
-  marketHeroSchema.statics.createOrUpdateLead = ({ lead, tags }) =>
+  marketHeroSchema.statics.createOrUpdateLead = ({ lead, userTags, productTags }) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@MarketHero.createOrUpdateLead\n');
+    console.log('@MarketHero.createOrUpdateLead\n\n');
 
-    if (!lead || !tags) {
+    if (!lead || !userTags) {
       console.log('\nFAILED: Missing required arguments @ "createOrUpdateLead".');
-      reject(new Error('\nFAILED: Missing required arguments @ "createOrUpdateLead"'));
+      reject('Missing required arguments @ "createOrUpdateLead"');
+    } else {
+      const reqBody = {
+        apiKey: process.env.MARKET_HERO_API_KEY,
+        tags: userTags,
+        email: lead.email,
+        lastName: lead.familyName,
+        firstName: lead.givenName,
+      };
+
+      MarketHero.updateUserTags(reqBody)
+      .then(() => { //eslint-disable-line
+        console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.udpateUserTags');
+
+        if (!productTags.length) {
+          resolve();
+        } else {
+          return MarketHero.updateLeadProductTags({
+            lead: {
+              email: lead.email,
+              lastName: lead.familyName,
+              firstName: lead.givenName,
+            },
+            productTags,
+          })
+          .then(() => {
+            console.log('\nSUCCEEDED: @MarketHero.createOrUpdateLead >>> MarketHero.updateLeadProductTags');
+            return resolve('Success!');
+          })
+          .catch(console.log);
+        }
+      })
+      .catch((error) => {
+        console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
+        return reject(error);
+      });
     }
-
-    const reqBody = {
-      apiKey: process.env.MARKET_HERO_API_KEY,
-      tags,
-      email: lead.email,
-      lastName: lead.familyName,
-      firstName: lead.givenName,
-    };
-
-    axios.post('https://api.markethero.io/v1/api/tag-lead', reqBody, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((res) => {
-      if (res.status !== 200) {
-        console.log('\nFAILED; Market Hero Upload: ', res.data);
-        return reject(new Error('FAILE: Market Hero Upload: '));
-      }
-
-      console.log('\nSUCCEEDED: Market Hero Upload:', res.data);
-      return resolve('\nSUCCEEDED: Posted to Market Hero.');
-    })
-    .catch((error) => {
-      console.log('\nFAILED: MarketHero.createOrUpdateLead: ', error);
-      return reject(new Error('\nFAILED: MarketHero.createOrUpdateLead.'));
-    });
   });
 
   /**
@@ -91,11 +170,11 @@ export default (db) => {
   */
   marketHeroSchema.statics.createMongoLead = ({ lead, tags }) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@MarketHero.createMongoLead\n');
+    console.log('@MarketHero.createMongoLead\n\n');
 
     if (!lead || !tags) {
       console.log('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead.');
-      reject(new Error('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
+      reject('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: ');
     }
 
     bbPromise.fromCallback(cb => MarketHero.create({ lead, tags }, cb))
@@ -105,7 +184,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Create Mongo Market Hero Document: ', error);
-      return reject(new Error('\nFAILED: Create Mongo Market Hero Document:'));
+      return reject('\nFAILED: Create Mongo Market Hero Document:');
     });
   });
 
@@ -123,11 +202,11 @@ export default (db) => {
   */
   marketHeroSchema.statics.updateMongoLead = ({ lead, tags }) =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@MarketHero.updateMongoLead\n');
+    console.log('@MarketHero.updateMongoLead\n\n');
 
     if (!lead || !tags) {
       console.log('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead.');
-      reject(new Error('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: '));
+      reject('\nFAILED: Missing Required arguments @ MarketHero.createMongoLead: ');
     }
 
     MarketHero
@@ -147,7 +226,7 @@ export default (db) => {
     })
     .catch((error) => {
       console.log('\nFAILED: Updating LEAD to Mongo Database: ', error);
-      reject(new Error('\nFAILED: Updating LEAD to Mongo Database: '));
+      reject('\nFAILED: Updating LEAD to Mongo Database: ');
     });
   });
 

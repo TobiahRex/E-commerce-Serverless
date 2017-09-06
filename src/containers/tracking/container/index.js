@@ -144,6 +144,7 @@ class OrderTracking extends React.Component {
       userName,
       orderId,
       totalPaid,
+      totalCurrency,
       trackingInfo,
     } = data;
     return (
@@ -171,7 +172,16 @@ class OrderTracking extends React.Component {
         <div className="order-tracking__header">
           <p className="header__detail">
             <span style={{ fontSize: 20 }}>Total Paid:</span>
-            {'\u00A0'}${'\u00A0'}{totalPaid}
+            {'\u00A0'}
+            <div className="header__detail-total">
+              <FontAwesome name={totalCurrency.toLowerCase()} />
+              {'\u00A0'}
+              <p>
+                {
+                  totalCurrency === 'JPY' ? totalPaid : `${String(totalPaid).slice(0, 2)}.${String(totalPaid).slice(2, 4)}`
+                }
+              </p>
+            </div>
           </p>
         </div>
 

@@ -1,7 +1,9 @@
-const Schema = require('mongoose').Schema;
+import mongoose from 'mongoose';
 
-export const ObjectId = Schema.Types.ObjectId;
-const sagawaSchema = new Schema({
+const deepPopulate = require('mongoose-deep-populate')(mongoose);
+
+export const ObjectId = mongoose.Schema.Types.ObjectId;
+const sagawaSchema = new mongoose.Schema({
   error: {
     hard: {
       type: Boolean,
@@ -23,7 +25,6 @@ const sagawaSchema = new Schema({
     enum: ['pending', 'uploaded'],
     default: 'pending',
   },
-  uploadForm: { type: String },
   shippingAddress: {
     awbId: { type: String },
     referenceId: { type: String },
@@ -56,4 +57,5 @@ const sagawaSchema = new Schema({
 }, {
   bufferCommands: true,
 });
+sagawaSchema.plugin(deepPopulate);
 export default sagawaSchema;

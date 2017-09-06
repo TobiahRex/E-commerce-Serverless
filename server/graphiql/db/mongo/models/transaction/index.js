@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
 import axios from 'axios';
 import uuid from 'uuid';
+import moment from 'moment';
 import { Promise as bbPromise } from 'bluebird';
 import db from '../../connection';
 import User from '../user';
@@ -10,7 +11,6 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  // composeAmount as ComposeAmount,
   getSquareToken as GetSquareToken,
   getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
@@ -78,7 +78,7 @@ new Promise((resolve, reject) => {
   })
   .catch((error) => {
     console.log('\nFAILED: Fetch square location: ', error);
-    reject(new Error('\nFAILED: Fetch square location.'));
+    reject('\nFAILED: Fetch square location.');
   });
 });
 
@@ -95,6 +95,7 @@ new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.squareChargeCard\n');
 
   const {
+    userEmail,
     locationId,
     transactionId,
     shippingEmail,
@@ -130,7 +131,7 @@ new Promise((resolve, reject) => {
       },
       card_nonce: cardNonce,
       reference_id: transactionId,
-      note: `${GetSquareLocation(billingCountry)}: Online order.`,
+      note: `${userEmail} | Reference #:${transactionId}`,
       delay_capture: false,
     },
     {
@@ -168,7 +169,7 @@ new Promise((resolve, reject) => {
   })
   .then((result) => {
     console.log('\nSUCCEEDED: @Square.chargeCard >>> Transaction.findByIdAndUpdate: ', result);
-    // resolve({ status: 200 });
+    resolve({ status: 200 });
   })
   .catch((error) => {
     console.log('\nFAILED: @Transaction.squareChargeCard: ', error.response.data.errors);
@@ -262,6 +263,7 @@ new Promise((resolve, reject) => {
 
       return Transaction.squareChargeCard({
         locationId: results[2].id,
+        userEmail: userDoc.contactInfo.email,
         transactionId: String(results[0]._id),
         shippingEmail: sagawa.shippingAddress.email,
         shippingAddressLine2: sagawa.shippingAddress.shippingAddressLine2,
@@ -388,7 +390,8 @@ new Promise((resolve, reject) => {
       }
 
       return Promise.all([
-        axios.post('http://localhost:3001/api/sagawa', {
+        axios.post('http://localhost:3001/api/sagawa/uploadOrderAndSendEmail', {
+          password: process.env.TEST_API_PASSWORD,
           userId,
           sagawaId: newTransactionDoc.sagawa,
           transactionId: newTransactionDoc._id,
@@ -464,7 +467,7 @@ new Promise((resolve, reject) => {
   });
 });
 
-transactionSchema.statics.issueUserRefund = ({ transactionId }) =>
+transactionSchema.statics.issueUserRefund = ({ sagawaId, transactionId, userId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.issueUserRefund');
 
@@ -498,7 +501,7 @@ new Promise((resolve, reject) => {
       console.log('\nFAILED: Transaction.issueUserRefund >>> axios.post: ', response.data);
       reject({
         type: 'RefundNotSent',
-        message: response.data.errors,
+        message: `axios.post to Sagawa API responded with status code "${response.status}"`,
       });
     } else {
       console.log('\nSUCCEEDED: Transaction.issueUserRefund >>> axios.post: ', response.data.refund);
@@ -509,26 +512,72 @@ new Promise((resolve, reject) => {
             'square.refund': response.data.refund,
           },
         }, { new: true }),
-        Email.sendEmailAndSlackRefundNotifiction({
-          staff: true,
-          user: true,
+        Email.refundNotification({
           userId,
+          sagawaId,
+          transactionId,
+          message: {
+            user: {
+              subject: 'Shipping Problem - You have been issued a refund.',
+              replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
+              body: `
+              ${moment().format('ll')}
+
+              Dear USER_NAME_HERE,
+
+              While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
+
+              Due to this fact, we've issued you a refund for the total amount of the order:
+
+              CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+
+              The refund has been credited to your credit card:
+
+              XXXX - XXXX - XXXX - LAST_4_HERE
+
+              We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+
+              If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  Our developers will provide updates here regularly as we learn more.
+
+              Sincerely,
+
+              NJ2JP Team
+
+              `,
+            },
+            staff: {
+              subject: `ERROR 🛑 User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+              replyTo: 'NJ2JP Cron Job - No Reply <admin@nj2jp.com>',
+              body: `
+              ${moment().format('llll')}
+
+              There has been a critical error while trying to upload an order to Sagawa for User #: ${userId}.  The user has successfully been issued a full refund.
+
+              1) The user has been issued a refund:
+              - Last 4: LAST_4_HERE
+              - User Email: USER_EMAIL_HERE
+              - User Name: USER_NAME_HERE
+              - Reference #: REFERENCE_ID_HERE
+
+              2) You can view the Cloud Watch logs here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa .
+              `,
+            },
+          },
         }),
       ]);
     }
   })
   .then((results) => {
-    console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack');
-    resolve(savedDoc);
+    console.log('\nTransaction.issueUserRefund >>> 1) Transaction.findByIdAndUpdate', results[0].square.refund, '\n2) Email.sendRefundEmailAndSlack: ', results[1]);
+    resolve();
   })
   .catch((error) => {
-    console.log('error: ', error);
     console.log('\nFAILED: Transaction.issueUserRefund: ', error);
     reject(error);
   });
 });
 
-transactionSchema.statics.handleRefund = ({ transactionId, userId }) =>
+transactionSchema.statics.handleRefund = ({ sagawaId, transactionId, userId }) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Transaction.handleRefund');
 
@@ -537,7 +586,7 @@ new Promise((resolve, reject) => {
     reject('\nFAILED: Missing required arguments.');
   } else {
     Transaction
-    .issueUserRefund(transactionId)
+    .issueUserRefund({ sagawaId, transactionId, userId })
     .then(() => {
       resolve({
         userId,
@@ -549,10 +598,61 @@ new Promise((resolve, reject) => {
       if (!!error.type) {
         if (error.type === 'RefundNotSent') {
           console.log('\nFAILED: Sagawa.uploadOrderAndSendEmail >>> Transaction.issueUserRefund: ', error.message);
-          return Email.sendEmailAndSlackPendingRefundNotification({
-            staff: true,
-            user: true,
+          return Email.refundNotification({
             userId,
+            sagawaId,
+            transactionId,
+            message: {
+              user: {
+                subject: 'Shippping Problem',
+                replyTo: 'NJ2JP Sales <sales@nj2jp.com>',
+                body: `
+                ${moment().format('ll')} -
+                Dear USER_NAME_HERE,
+
+                While we were submitting your most recent order for shipment we had a network error.  This network error occured after you had already been charged for your order.
+
+                Due to this fact, we will be issuing a refund for the total amount of the order:
+
+                CURRENCY_TYPE_HERE REFUND_AMOUNT_HERE
+
+                The refund will be credited to your credit card:
+
+                XXXX - XXXX - XXXX - LAST_4_HERE
+
+                We understand this is a major inconvenience and a waste of your valuable shopping time and we apologize.  We will be in contact with you about placing a re-order once we're confident the issue has been resolved.
+
+                If you would like to stay current with our troubleshooting efforts you can follow us on twitter @NicJuice2Japan.  Our developers will provide updates here regularly as we learn more.
+
+                Sincerely,
+
+                NJ2JP Team
+
+                `,
+              },
+              staff: {
+                subject: `ERROR 🛑  User: "${userId}" - Order failed to upload to sagawa during Cron Job.`,
+                replyTo: 'NJ2JP Cron Job <admin@nj2jp.com>',
+                body: `
+                ${moment().format('llll')}
+
+                There has been a CRITICAL error while trying to upload an order to Sagawa for User #: ${userId}.
+
+                The Users's upload was not successful and the attempt to issue the User an automatic refund was also NOT sucessful.
+
+                You must login to Square and use the transaction information shown below to issue the customer and IMMEDIATE REFUND.
+
+                1) The User must be issued a manual refund ASAP.
+                - Last 4: LAST_4_HERE
+                - User Email: USER_EMAIL_HERE
+                - User Name: USER_NAME_HERE
+                - Reference #: REFERENCE_ID_HERE
+
+                2) Review Cloud watch report here: https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logStream:group=%252Faws%252Flambda%252Fnj2jp-development-sagawa.
+
+                Customer has been issued a full refund.`,
+              },
+            },
           });
         }
       } else {
@@ -560,14 +660,12 @@ new Promise((resolve, reject) => {
         reject(error);
       }
     })
-    .then((emailResult) => {
-      console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack: ', emailResult);
+    .then(() => {
+      console.log('\nSUCCEEDED: Transaction.handleRefund >>> Email.sendPendingRefundEmailAndSlack');
       resolve({
-        error: {
-          hard: false,
-          soft: true,
-          message: 'Was unable to issue Square Refund.  Staff has been notified via Email and Slack.  User has been notified via Email.',
-        },
+        userId,
+        transactionId,
+        verified: false,
       });
     })
     .catch((error) => {

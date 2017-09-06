@@ -120,6 +120,7 @@ export const FetchSagawa = gql`
       shippingAddress {
         referenceId
         shipdate
+        deliveryDate
         customerName
         postal
         jpaddress1
@@ -140,15 +141,11 @@ export const FetchTrackingInfo = gql`
       }
       shipDate
       orderId
-      trackingInfo {
-        location
-        date
-        activity
-      }
       trackingNumber
       userName
       orderId
       totalPaid
+      totalCurrency
       orderStatus
       trackingInfo {
         location

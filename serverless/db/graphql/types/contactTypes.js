@@ -1,13 +1,9 @@
 import {
   GraphQLID as MongoId,
-  GraphQLInt as IntType,
-  GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLBoolean as BoolType,
   GraphQLString as StringType,
-  GraphQLEnumType as EnumType,
   GraphQLObjectType as ObjectType,
-  GraphQLInputObjectType as InputObject,
 } from 'graphql';
 
 const rootType = new ObjectType({
@@ -41,7 +37,7 @@ const rootType = new ObjectType({
     created: {
       description: 'Date and Time of contact document creation',
       type: StringType,
-    }
+    },
   },
 });
 
@@ -56,28 +52,32 @@ const mutations = {
     args: {
       message: {
         description: 'the message, the customer gives for the support',
-        type: new NonNull(StringType)
+        type: new NonNull(StringType),
       },
       emailAddress: {
         description: 'The email Address of the customer',
-        type: new NonNull(StringType)
+        type: new NonNull(StringType),
       },
       ccUser: {
         description: 'Whether to CC the customer message',
-        type: new NonNull(BoolType)
+        type: new NonNull(BoolType),
       },
       name: {
         description: 'Name of the customer',
-        type: new NonNull(StringType)
+        type: new NonNull(StringType),
+      },
+      recaptchaToken: {
+        description: 'The Token received by Recaptcha API for human request detection.',
+        type: new NonNull(StringType),
       },
       userId: {
         description: 'userId of the customer',
-        type: StringType
+        type: StringType,
       },
     },
     resolve: (_, args, { Contact, Email }) => Contact.sendSupportMailAndNotifySlack(args, Email),
   },
-}
+};
 
 export default {
   rootType,

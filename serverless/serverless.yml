@@ -28,7 +28,7 @@ provider:
     MONGO_URI: ${file(./config.yml):mongoURI}
     AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
     MARKET_HERO_API_KEY: ${file(./config.yml):marketHeroApiKey}
-    SQUARE_ENV: ${file(./config.yml):squareENv}
+    SQUARE_ENV: ${file(./config.yml):squareEnv}
     US_SQUARE_SANDBOX_LOCATION: ${file(./config.yml):usSquareSandboxLocation}
     US_SQUARE_LOCATION: ${file(./config.yml):usSquareLocation}
     US_SQUARE_ACCESS_TOKEN: ${file(./config.yml):usSquareAccessToken}
@@ -48,7 +48,8 @@ provider:
     SAGAWA_JAPANESE: ${file(./config.yml):sagawaJapanese}
     SAGAWA_ENGLISH: ${file(./config.yml):sagawaEnglish}
     SLACK_SUPPORT_WEBHOOK: ${file(./config.yml):slackSupportWebhook}
-    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.yml):slackSagawaUploadWebhook}
+    SLACK_ERROR_NOTIFICATION_WEBHOOK: ${file(./config.yml):slackErrorNotificationWebhook}
+    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.yml):slackGeneralNotificationWebhook}
     LAMBDA_ENV: ${file(./config.yml):lambdaEnv}
     LAMBDA_SECRET_ACCESS_KEY: ${file(./config.yml):lambdaSecretAccessKey}
     LAMBDA_ACCESS_KEY_ID: ${file(./config.yml):lambdaAccessKeyId}
@@ -58,6 +59,7 @@ provider:
     CTO_EMAIL: ${file(./config.yml):ctoEmail}
     CDO_EMAIL: ${file(./config.yml):cdoEmail}
     AWS_SES_REGION: ${file(./config.yml):awsSesRegion}
+    RECAPTCHA_SECRET_KEY: ${file(./config.yml):recaptchaSecretKey}
 
 plugins:
   - serverless-webpack

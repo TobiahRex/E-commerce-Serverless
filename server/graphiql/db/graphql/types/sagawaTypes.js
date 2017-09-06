@@ -195,6 +195,10 @@ const queryTypes = {
         description: 'The total amount paid for the transaction.',
         type: StringType,
       },
+      totalCurrency: {
+        description: 'The currency for the amount paid.',
+        type: StringType,
+      },
       trackingInfo: {
         description: 'An object of tracking information.',
         type: new ListType(

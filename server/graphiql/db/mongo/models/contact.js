@@ -1,5 +1,6 @@
-/* eslint-disable no-use-before-define, no-console */
+/* eslint-disable no-use-before-define, no-console, consistent-return */
 import { Promise as bbPromise } from 'bluebird';
+import axios from 'axios';
 import contactSchema from '../schemas/contactSchema';
 import db from '../connection';
 import Email from './email';
@@ -24,8 +25,11 @@ import Email from './email';
 * @return {object} - Promise: resolve or reject the response.
 */
 contactSchema.statics.sendSupportMailAndNotifySlack = contactForm =>
-new Promise((resolve, reject) => {
+new Promise((resolve) => {
   console.log('\n\n@Contact.sendSupportMailAndNotifySlack\n');
+
+  const contactDocument = {};
+
   const emailRequest = {
     sourceEmail: 'NJ2JP Contact Us <contact@nj2jp.com>',
     toEmailAddresses: ['support@nj2jp.com'],
@@ -36,39 +40,63 @@ new Promise((resolve, reject) => {
     subjectCharset: 'utf8',
   };
 
-  if (contactForm.ccUser) emailRequest.ccEmailAddresses = [contactForm.emailAddress];
-  if (contactForm.userId) emailRequest.userId = contactForm.userId;
+  if (contactForm.userId) {
+    emailRequest.userId = contactForm.userId;
+  }
+  if (contactForm.ccUser) {
+    emailRequest.ccEmailAddresses = [contactForm.emailAddress];
+  }
 
-  const contactDocument = {};
-
-  Email.sendRawEmail(emailRequest)
+  axios.post(`https://www.google.com/recaptcha/api/siteverify?response=${contactForm.recaptchaToken}&secret=${process.env.RECAPTCHA_SECRET_KEY}`)
   .then((response) => {
-    console.log('\nSUCCEEDED: Email has been sent to NJ2JP support:', response);
-    contactDocument.messageId = response.MessageId;
+    console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> axios.post: \n1) Status: ', response.status, '\n2) Data: ', response.data);
 
-    const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
-    const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Login as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their question.`;
-    return Email.notifySlack(slackWebhook, slackMessage);
-  })
-  .then((slackResponse) => {
-    console.log('\nSUCCEEDED: Notification to Slack Customer channel:', slackResponse);
-
-    contactDocument.name = contactForm.name;
-    contactDocument.emailAddress = contactForm.emailAddress;
-    contactDocument.message = contactForm.message;
-    if (contactForm.userId) {
-      contactDocument.userId = contactForm.userId;
+    if (!response.data.success) {
+      resolve({
+        error: {
+          hard: true,
+          soft: false,
+          message: '🤔 Wierd. We were not able to validate the Recaptcha. Either you are a bot 🤖  or there was a glitch and we ask you to please try again.  Thanks.',
+        },
+      });
+    } else {
+      return Email.sendRawEmail(emailRequest);
     }
-
-    return bbPromise.fromCallback(cb => Contact.create(contactDocument, cb));
   })
-  .then((contactDoc) => {
-    console.log('\nSUCCEEDED: Contact document has been successfully saved:', contactDoc);
-    resolve(contactDoc);
+  .then((response) => {
+    if (response.MessageId) {
+      console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> Email.sendRawEmail:', response);
+      contactDocument.messageId = response.MessageId;
+
+      const slackWebhook = process.env.SLACK_SUPPORT_WEBHOOK;
+      const slackMessage = `SUPPORT REQUEST: from ${contactForm.emailAddress}. Login as "support@nj2jp.com" @ <https://privateemail.com/appsuite/> to answer their question.`;
+
+      contactDocument.name = contactForm.name;
+      contactDocument.emailAddress = contactForm.emailAddress;
+      contactDocument.message = contactForm.message;
+      if (contactForm.userId) {
+        contactDocument.userId = contactForm.userId;
+      }
+
+      return Promise.all([
+        Email.notifySlack(slackWebhook, slackMessage),
+        bbPromise.fromCallback(cb => Contact.create(contactDocument, cb)),
+      ]);
+    }
+  })
+  .then((results) => {
+    console.log('\nSUCCEEDED: Contact.sendSupportMailAndNotifySlack >>> \n1) Email.notifySlack:', results[0], '\n2) Contact.create: ', results[1]);
+    resolve(results[1]);
   })
   .catch((error) => {
-    console.log('\nFAILED: Send Support Mail and Notify Slack ', error);
-    reject(new Error('\nFAILED: Send Support Mail and Notify Slack'));
+    console.log('\nFAILED: Contact.sendSupportMailAndNotifySlack: ', error);
+    resolve({
+      error: {
+        hard: true,
+        soft: false,
+        message: error.message,
+      },
+    });
   });
 });
 

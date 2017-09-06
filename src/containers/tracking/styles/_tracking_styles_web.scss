@@ -59,6 +59,16 @@
           color: $p-blue;
           font-weight: 400;
         }
+        & .header__detail-total {
+          @include prefixflex();
+          align-items: center;
+          span {
+            font-size: 20px;
+          }
+          p {
+            line-height: 1em;
+          }
+        }
       }
     }
 

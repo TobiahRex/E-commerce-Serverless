@@ -27,8 +27,14 @@ module.exports.sagawa = (event, context) => {
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
-      const { Sagawa } = dbResults.dbModels;
-      return Sagawa.cronJob();
+      const {
+        User,
+        Email,
+        Report,
+        Sagawa,
+        Transaction,
+      } = dbResults.dbModels;
+      return Sagawa.cronJob(Report, Email, Transaction, User);
     })
     .then(() => {
       console.log('\nSUCCEEDED: Upload Sagawa and Send Invoice Email.');
@@ -42,8 +48,13 @@ module.exports.sagawa = (event, context) => {
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
-      const { Sagawa, Email, Transaction } = dbResults.dbModels;
-      return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction);
+      const {
+        User,
+        Email,
+        Sagawa,
+        Transaction,
+      } = dbResults.dbModels;
+      return Sagawa.uploadOrderAndSendEmail(event, Email, Transaction, User);
     })
     .then((response) => {
       if (response.verified) {

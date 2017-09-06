@@ -21,8 +21,8 @@
 
 // ------------------------------------------------------------
 // "Footer" Master Stylesheets
-@import "containers/footer/footerStyles/footer_styles_web";
-@import "containers/footer/footerStyles/footer_styles_mobile";
+// @import "containers/footer/footerStyles/footer_styles_web";
+// @import "containers/footer/footerStyles/footer_styles_mobile";
 
 // ------------------------------------------------------------
 // "404" Master Stylesheets
@@ -131,7 +131,7 @@ a {
     @include prefixflex();
     justify-content: center;
     padding-top: 12rem;
-    min-height: 52rem;
+    min-height: 55rem;
   }
 }
 

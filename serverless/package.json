@@ -36,6 +36,7 @@
     "jsonwebtoken": "^7.4.3",
     "moment": "^2.18.1",
     "mongoose": "^4.9.7",
+    "mongoose-deep-populate": "^3.0.0",
     "request": "^2.81.0",
     "serverless-plugin-graphiql": "^0.3.0",
     "uuid": "^3.1.0",
