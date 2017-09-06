@@ -74,6 +74,8 @@ custom:
 functions:
   graphql:
     handler: handler.graphql
+    memorySize: 1024
+    timeout: 10
     vpc:
       securityGroupIds:
         - ${file(./config.yml):securityGroupId}
@@ -98,8 +100,6 @@ functions:
           path: graphql
           method: post
           integration: lambda
-          memorySize: 256
-          timeout: 10
           cors: true
           response:
             headers:
@@ -107,6 +107,8 @@ functions:
 
   sagawa:
     handler: handler.sagawa
+    memorySize: 1024
+    timeout: 10
     vpc:
       securityGroupIds:
         - ${file(./config.yml):securityGroupId}
