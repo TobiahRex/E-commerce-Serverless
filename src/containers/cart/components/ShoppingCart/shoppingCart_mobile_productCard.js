@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import ErrorMsg from './errorMsgCart';
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
-} from '../utilities.imports';
+} from '../../utilities.imports';
 
 
 function ShoppingCartMobileProductCard({

@@ -24,7 +24,7 @@ import {
   ShoppingCartMobile,
   ShoppingCartWebProductRow,
   ShoppingCartMobileProductCard,
-} from './component.imports';
+} from './components';
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,

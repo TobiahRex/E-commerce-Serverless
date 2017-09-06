@@ -17,7 +17,7 @@ const CheckoutRoutes = () => (
     <Route
       path="empty"
       getComponent={(location, cb) => {
-        import('../containers/cart/EmptyCart/emptyCart' /* webpackChunkName: "emptyCart" */)
+        import('../containers/cart/components/EmptyCart/emptyCart' /* webpackChunkName: "emptyCart" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
