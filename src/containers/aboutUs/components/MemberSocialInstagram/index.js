@@ -8,13 +8,17 @@ const MemberSocialInstagram = (props) => {
 
   return (
     <div className="staff__social-media">
-      <a className="social-media--link staff__social-media" href={props.link}>
+      <a
+        rel="noopener noreferrer"
+        target="_blank"
+        className="social-media--link staff__social-media"
+        href={props.link}
+      >
         <FontAwesome name="instagram" />
       </a>
     </div>
   );
 };
-
 
 MemberSocialInstagram.propTypes = {
   link: PropTypes.string.isRequired,

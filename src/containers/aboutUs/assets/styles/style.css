@@ -108,10 +108,17 @@
 }
 
 .about-container__staff.staff--bio-text {
-  height: 150%;
+  height: 300px;
+  text-indent: 30px;
+  line-height: 1.8em;
+  max-width: 260px;
   padding-right: 5px;
   padding-left: 5px;
   font-family: 'Open Sans', sans-serif;
+  overflow: auto;
+  max-height: 300px;
+  border: 5px solid lightgrey;
+  margin-bottom: 10px;
 }
 
 .about-container__staff.staff--social-media {
@@ -147,7 +154,7 @@
   text-align: left;
   font-family: 'Ubuntu', Helvetica, sans-serif;
   color: #365899;
-  font-weight: 400;
+  font-weight: 200;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
 }
 

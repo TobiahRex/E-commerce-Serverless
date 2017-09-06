@@ -8,11 +8,6 @@ export default function NavbarNavsInfoDropdnRighthalf() {
         className="info-dropdown-content-innerContainer-right-list"
       >
         <li className="sweep-right">
-          <Link to={'/contact_us'}>
-            <p>Contact Us</p>
-          </Link>
-        </li>
-        <li className="sweep-right">
           <Link to={'/shipping_policy'}>
             <p>Shipping Policy</p>
           </Link>

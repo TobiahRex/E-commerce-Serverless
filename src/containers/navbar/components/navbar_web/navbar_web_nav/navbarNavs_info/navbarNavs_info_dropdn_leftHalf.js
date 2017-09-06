@@ -18,20 +18,25 @@ export default function NavbarNavsInfoDropdnLefthalf() {
           </Link>
         </li>
         <li className="sweep-right">
+          <Link to={'/contact_us'}>
+            <p>Contact Us</p>
+          </Link>
+        </li>
+        {/* <li className="sweep-right">
           <Link to={'/wholesale'}>
             <p>Wholesale</p>
           </Link>
-        </li>
-        <li className="sweep-right">
+          </li>
+          <li className="sweep-right">
           <Link to={'/mission_statement'}>
             <p>Mission Statement</p>
           </Link>
-        </li>
-        <li className="sweep-right">
+          </li>
+          <li className="sweep-right">
           <Link to={'/affiliate_program'}>
             <p>Affiliate Program</p>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

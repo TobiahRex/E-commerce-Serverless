@@ -9,6 +9,7 @@ export MemberCardTitle from './MemberCardTitle';
 export MemberCardBlurb from './MemberCardBlurb';
 export MemberCardSocial from './MemberCardSocial';
 export MemberSocialFacebook from './MemberSocialFacebook';
+export MemberSocialGithub from './MemberSocialGithub';
 export MemberSocialLinkedin from './MemberSocialLinkedin';
 export MemberSocialTwitter from './MemberSocialTwitter';
 export MemberSocialInstagram from './MemberSocialInstagram';

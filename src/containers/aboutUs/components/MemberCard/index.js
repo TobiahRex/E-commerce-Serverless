@@ -29,7 +29,7 @@ const MemberCard = (props) => {
   );
 };
 
-const { shape, string, bool } = PropTypes;
+const { shape, string } = PropTypes;
 MemberCard.propTypes = {
   MemberCardPhoto: shape({
     src: string,
@@ -42,10 +42,11 @@ MemberCard.propTypes = {
     blurb: string,
   }).isRequired,
   Socials: shape({
-    facebook: bool,
-    instragram: bool,
-    twitter: bool,
-    linkedin: bool,
+    facebook: string,
+    github: string,
+    instragram: string,
+    twitter: string,
+    linkedin: string,
   }).isRequired,
 };
 export default MemberCard;

@@ -105,17 +105,6 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Shop
-                    </a>
-                  </li>
-                  <li className="customer__list-item customer__list-item--landscape customer__list-item--tablet">
-                    <a
-                      className="general__list--link hover-bob"
-                      data-ix="new-interaction"
-                      href="/about"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
                       Privacy Policy
                     </a>
                   </li>

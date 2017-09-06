@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { WebflowJs } from './assets/utils';
 
-const MemberSocialFacebook = (props) => {
+const MemberSocialFacebook = props => {
   WebflowJs(); //eslint-disable-line
 
   return (
     <div className="staff__social-media">
-      <a className="social-media--link staff__social-media" href={props.link}>
+      <a
+        rel="noopener noreferrer"
+        target="_blank"
+        className="social-media--link staff__social-media"
+        href={props.link}
+      >
         <FontAwesome name="facebook" />
       </a>
     </div>
