@@ -149,7 +149,7 @@ class ExpressCheckout extends React.Component {
   }
 
   componentWillUpdate() {
-    const msnry = new Masonry('.grid', { // eslint-disable-line
+    const masonry = new Masonry('.grid', { // eslint-disable-line
       itemSelector: '.checkout__grid',
       columnWidth: 340,
       gutter: 22,
