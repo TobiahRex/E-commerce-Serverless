@@ -84,7 +84,8 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
   5. ### Data Model Documentation:
     * [Product Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/productSchema.md)
     * [User Model](https://github.com/lakshmantgld/nj2jp/blob/master/readmeFiles/userSchema.md)
-
+  6. ### MongoDB Atlas
+    * [Atlas Best Practices](https://github.com/lakshmantgld/mongoDB-Atlas)
 # Important Launch Notes:
   1. Modifiy LAMBDA_GRAPHQL env variable throughout `src/` application to point to the `production` database & lambda endpoint.
   2. Modify the serverless MONGO_URI env variable inside the AWS console dashboard.
