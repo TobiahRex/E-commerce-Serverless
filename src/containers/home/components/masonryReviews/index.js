@@ -8,7 +8,9 @@ import {
   contentData,
 } from './assets/utils';
 
-import { CardReview } from './components';
+import {
+  CardReview,
+} from './components';
 
 class MasonryReviews extends React.Component {
   static propTypes = propTypes;
