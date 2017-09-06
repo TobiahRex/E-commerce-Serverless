@@ -23,7 +23,7 @@ const MediaRoutes = () => (
     <Route
       path="/about"
       getComponent={(_, cb) => {
-        import('../containers/legal/components/about/' /* webpackChunkName: "about" */)
+        import('../containers/aboutUs' /* webpackChunkName: "about" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
