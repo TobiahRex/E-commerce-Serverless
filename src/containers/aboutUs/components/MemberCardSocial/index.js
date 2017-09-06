@@ -17,7 +17,7 @@ const MemberCardSocial = (props) => {
     twitter,
     linkedin,
     instagram,
-  } = props;
+  } = props.socials;
 
   return (
     <div className="about-container__staff staff--social-media">
@@ -28,11 +28,14 @@ const MemberCardSocial = (props) => {
     </div>
   );
 };
+const { shape, bool } = PropTypes;
 MemberCardSocial.propTypes = {
-  facebook: PropTypes.bool.isRequired,
-  instagram: PropTypes.bool.isRequired,
-  twitter: PropTypes.bool.isRequired,
-  linkedin: PropTypes.bool.isRequired,
+  socials: shape({
+    facebook: bool.isRequired,
+    instagram: bool.isRequired,
+    twitter: bool.isRequired,
+    linkedin: bool.isRequired,
+  }).isRequired,
 };
 
 export default MemberCardSocial;
