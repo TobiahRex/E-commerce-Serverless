@@ -107,6 +107,10 @@
   padding-left: 0px;
 }
 
+.content--heading__container {
+  padding: 10px 0px;
+}
+
 .staff__content.content--heading {
   text-align: left;
   font-family: 'Ubuntu', Helvetica, sans-serif;

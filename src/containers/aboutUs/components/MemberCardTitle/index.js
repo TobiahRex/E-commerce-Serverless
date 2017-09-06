@@ -7,7 +7,7 @@ const MemberCardTitle = (props) => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <div>
+    <div className="content--heading__container">
       <h3 className="content--heading staff__content">
         {props.header}
       </h3>
