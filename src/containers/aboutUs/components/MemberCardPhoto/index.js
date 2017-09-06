@@ -1,14 +1,22 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
-const MemberCardPhoto = () => {
+const MemberCardPhoto = (props) => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <img className="about-container__staff staff--image" role="presentation" src="images/brian-wilson-264x200.png" />
+    <img
+      alt="member"
+      className="about-container__staff staff--image"
+      role="presentation"
+      src={props.src}
+    />
   );
 };
 
+MemberCardPhoto.propTypes = {
+  src: PropTypes.string.isRequired,
+};
 
 export default MemberCardPhoto;

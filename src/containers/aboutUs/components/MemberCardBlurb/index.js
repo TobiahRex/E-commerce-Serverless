@@ -1,15 +1,18 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
-const MemberCardBlurb = () => {
+const MemberCardBlurb = (props) => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <p className="about-container__staff staff--bio-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+    <p className="about-container__staff staff--bio-text">
+      {props.blurb}
     </p>
   );
 };
-
+MemberCardBlurb.propTypes = {
+  blurb: PropTypes.string.isRequired,
+};
 
 export default MemberCardBlurb;
