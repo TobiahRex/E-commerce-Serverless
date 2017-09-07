@@ -4,3 +4,4 @@ export CardImg from './CardImg';
 export CardDate from './CardDate';
 export CardHdr from './CardHdr';
 export CardBlurb from './CardBlurb';
+export UserCard from './UserCard';

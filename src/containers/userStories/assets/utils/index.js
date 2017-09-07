@@ -1,8 +1,10 @@
-export WebflowJs from './webflow.js';
+export const WebflowJs = () => {
+  require('./webflow');
+}
 export const contentData = {
   english: [
     {
-      component: '',
+      component: 'UserCard',
       props: {
         CardImg: {
           link: '/images/default-avatar.png',
@@ -14,7 +16,7 @@ export const contentData = {
           date: 'Sep 8, 2017',
         },
         CardBlurb: {
-          date: 'The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.',
+          blurb: 'The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.',
         },
       },
     },

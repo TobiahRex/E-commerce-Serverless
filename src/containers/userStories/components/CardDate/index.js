@@ -3,22 +3,18 @@ import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 import './assets/styles/style.scss';
 
-const CardImg = (props) => {
+const CardDae = (props) => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <div className="user-story-card__image user-story-card__image--landscape">
-      <img
-        alt="avatar"
-        className="image image--landscape"
-        src={props.link}
-      />
+    <div className="content-date__container content-date__container--portrait">
+      <div className="content-date content-date--landscape">{props.date}</div>
     </div>
   );
 };
 
-CardImg.propTypes = {
-  link: PropTypes.string.isRequired,
+CardDae.propTypes = {
+  date: PropTypes.string.isRequired,
 };
 
-export default CardImg;
+export default CardDae;

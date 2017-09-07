@@ -6,7 +6,6 @@ import {
   WebflowJs,
   contentData,
 } from './assets/utils/index';
-
 import {
   HdrPage,
   BreadCrumb,
@@ -33,7 +32,8 @@ class UserStories extends React.Component {
       if (dataObj.component === 'UserCard') {
         return (
           <UserCard
-            key={new Buffer(dataObj.CardHdr.header + Date.now(), 'utf8').toString('base64')}
+            {...dataObj.props}
+            key={new Buffer(dataObj.props.CardHdr.header + Date.now(), 'utf8').toString('base64')}
           />
         );
       }
