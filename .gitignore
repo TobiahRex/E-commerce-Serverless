@@ -8,6 +8,9 @@ public
 # serverless
 .serverless
 config.yml
+config.dev.yml
+config.tsh.yml
+config.prod.yml
 config.json
 
 # miscellaneous
