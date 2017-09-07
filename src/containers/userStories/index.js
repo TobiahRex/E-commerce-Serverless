@@ -25,6 +25,18 @@ class UserStories extends React.Component {
   }
 
   render() {
+    const contentData = {
+      english: [
+        {
+          component: '',
+          props: {
+            CardImg: {
+              link: '/imgaes/default-avatar.png',
+            },
+          },
+        },
+      ],
+    };
     return (
       <div className="japanese vape-news__container">
         <BreadCrumb
@@ -41,13 +53,7 @@ class UserStories extends React.Component {
             className="user-story-card__container user-story-card__container--landscape"
             data-ix="user-story-fade-in"
           >
-            <div className="user-story-card__image user-story-card__image--landscape">
-              <img
-                alt="avatar"
-                className="image image--landscape"
-                src="/images/default-avatar.png"
-              />
-            </div>
+            <CardImg link={contentData.CardImg.link} />
             <div className="user-story-card__content">
               <div className="content-hdr__container content-hdr__container--portrait">
                 <h2 className="content-hdr content-hdr--landscape">User Story Number 1</h2>
