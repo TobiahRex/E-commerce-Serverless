@@ -108,8 +108,8 @@ const devConfig = {
   },
 };
 // -----------------------------------------------------------------------------
-const extractCSS = new ExtractTextPlugin('[name]-one.css');
-const extractSCSS = new ExtractTextPlugin('[name]-two.css');
+const extractCSS = new ExtractTextPlugin('[contenthash]-css.css');
+const extractSCSS = new ExtractTextPlugin('[contenthash]-scss.css');
 
 const prodConfig = {
   resolve: {
@@ -168,7 +168,6 @@ const prodConfig = {
     }),
     extractCSS,
     extractSCSS,
-    // new ExtractTextPlugin('style.css'),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       comments: false,
