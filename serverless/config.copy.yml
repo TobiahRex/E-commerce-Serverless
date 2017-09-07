@@ -9,7 +9,6 @@ securityGroupId: sg-xxxxxxx
 mongoURI: mongodb://<DB>:<PASSWORD>@<MONGO_ATLAST_CLUSTER_NAME>.mongodb.net:27017,<MONGO_ATLAST_CLUSTER_NAME_OTHER>.mongodb.net:27017,<MONGO_ATLAST_CLUSTER_NAME_OTHER>.mongodb.net:27017/<MONGO_ATLAST_CLUSTER_NAME_OTHER>?ssl=true&replicaSet=<MONGO_ATLAST_CLUSTER_NAME_OTHER>&authSource=admin
 #--------------- DOMAINS ---------------#
 baseUrl: <BASE_URL>
-productionUrl: <PRODUCTION_URL>
 
 #--------------- EMAIL ADDRESSES ---------------#
 ctoEmail: <CTO_MAILID>
@@ -28,24 +27,16 @@ lambdaSecretAccessKey: <SECRET_ACCESS_KEY>
 lambdaAccessKeyId: <ACCESS_KEY_ID>
 #--------------- SQUARE ---------------#
 # USA
-usSquareSandboxLocation: <US_SQUARE_SANDBOX_LOCATION>
 usSquareLocation: <US_SQUARE_LOCATION>
 usSquareAccessToken: <US_SQUARE_ACCESS_TOKEN>
 usSquareApplicationId: <US_SQUARE_APPLICATION_ID>
-usSquareSandboxAccessToken: <US_SQUARE_SANDBOX_ACCESS_TOKEN>
-usSquareSandboxApplicationId: <US_SQUARE_SANDBOX_APPLICATION_ID>
 # JAPAN
-jpSquareSandboxLocation: <JP_SQUARE_SANDBOX_LOCATION>
 jpSquareLocation: <JP_SQUARE_LOCATION>
 jpSquareAccessToken: <JP_SQUARE_ACCESS_TOKEN>
 jpSquareApplicationId: <JP_SQUARE_APPLICATION_ID>
-jpSquareSandboxAccessToken: <JP_SQUARE_SANDBOX_ACCESS_TOKEN>
-jpSquareSandboxApplicationId: <JP_SQUARE_SANDBOX_APPLICATION_ID>
 #--------------- JWT TRACKING TOKEN ---------------#
 jwtSecret: <JWT_TRACKING_SECRET>
 #--------------- SAGAWA ---------------#
-sagawaTestJapanese: <SAGAWA_TEST_JAPANESE>
-sagawaTestEnglish: <SAGAWA_TEST_ENGLISH>
 sagawaJapanese: <SAGAWA_JAPANESE>
 sagawaEnglish: <SAGAWA_ENGLISH>
 #--------------- SLACK ---------------#
