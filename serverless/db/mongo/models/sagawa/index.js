@@ -512,7 +512,7 @@ export default (db) => {
       } = process.env;
 
       const token = JWT.sign(payload, jwtSecret);
-      const trackingLink = `${baseUrl}/tracking?token=${token}`;
+      const trackingLink = `${baseUrl}/#!/tracking?token=${token}`;
 
       emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
 
