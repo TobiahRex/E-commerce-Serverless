@@ -25,41 +25,32 @@ provider:
         - ses:SendRawEmail
         - lambda:InvokeFunction
   environment:
-    MONGO_URI: ${file(./config.yml):mongoURI}
-    AUTH0_JWT_SECRET: ${file(./config.yml):auth0JwtSecret}
-    MARKET_HERO_API_KEY: ${file(./config.yml):marketHeroApiKey}
-    SQUARE_ENV: ${file(./config.yml):squareEnv}
-    US_SQUARE_SANDBOX_LOCATION: ${file(./config.yml):usSquareSandboxLocation}
-    US_SQUARE_LOCATION: ${file(./config.yml):usSquareLocation}
-    US_SQUARE_ACCESS_TOKEN: ${file(./config.yml):usSquareAccessToken}
-    US_SQUARE_APPLICATION_ID: ${file(./config.yml):usSquareApplicationId}
-    US_SQUARE_SANDBOX_ACCESS_TOKEN: ${file(./config.yml):usSquareSandboxAccessToken}
-    US_SQUARE_SANDBOX_APPLICATION_ID: ${file(./config.yml):usSquareSandboxApplicationId}
-    JP_SQUARE_SANDBOX_LOCATION: ${file(./config.yml):jpSquareSandboxLocation}
-    JP_SQUARE_LOCATION: ${file(./config.yml):jpSquareLocation}
-    JP_SQUARE_ACCESS_TOKEN: ${file(./config.yml):jpSquareAccessToken}
-    JP_SQUARE_APPLICATION_ID: ${file(./config.yml):jpSquareApplicationId}
-    JP_SQUARE_SANDBOX_ACCESS_TOKEN: ${file(./config.yml):jpSquareSandboxAccessToken}
-    JP_SQUARE_SANDBOX_APPLICATION_ID: ${file(./config.yml):jpSquareSandboxApplicationId}
-    JWT_SECRET: ${file(./config.yml):jwtSecret}
-    SAGAWA_ENV: ${file(./config.yml):sagawaEnv}
-    SAGAWA_TEST_JAPANESE: ${file(./config.yml):sagawaTestJapanese}
-    SAGAWA_TEST_ENGLISH: ${file(./config.yml):sagawaTestEnglish}
-    SAGAWA_JAPANESE: ${file(./config.yml):sagawaJapanese}
-    SAGAWA_ENGLISH: ${file(./config.yml):sagawaEnglish}
-    SLACK_SUPPORT_WEBHOOK: ${file(./config.yml):slackSupportWebhook}
-    SLACK_ERROR_NOTIFICATION_WEBHOOK: ${file(./config.yml):slackErrorNotificationWebhook}
-    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.yml):slackGeneralNotificationWebhook}
-    LAMBDA_ENV: ${file(./config.yml):lambdaEnv}
-    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.yml):lambdaSecretAccessKey}
-    LAMBDA_ACCESS_KEY_ID: ${file(./config.yml):lambdaAccessKeyId}
-    BASE_URL: ${file(./config.yml):baseUrl}
-    PRODUCT_URL: ${file(./config.yml):productionUrl}
-    CEO_EMAIL: ${file(./config.yml):ceoEmail}
-    CTO_EMAIL: ${file(./config.yml):ctoEmail}
-    CDO_EMAIL: ${file(./config.yml):cdoEmail}
-    AWS_SES_REGION: ${file(./config.yml):awsSesRegion}
-    RECAPTCHA_SECRET_KEY: ${file(./config.yml):recaptchaSecretKey}
+    MONGO_URI: ${file(./config.prod.yml):mongoURI}
+    AUTH0_JWT_SECRET: ${file(./config.prod.yml):auth0JwtSecret}
+    MARKET_HERO_API_KEY: ${file(./config.prod.yml):marketHeroApiKey}
+    SQUARE_ENV: ${file(./config.prod.yml):squareEnv}
+    US_SQUARE_LOCATION: ${file(./config.prod.yml):usSquareLocation}
+    US_SQUARE_ACCESS_TOKEN: ${file(./config.prod.yml):usSquareAccessToken}
+    US_SQUARE_APPLICATION_ID: ${file(./config.prod.yml):usSquareApplicationId}
+    JP_SQUARE_LOCATION: ${file(./config.prod.yml):jpSquareLocation}
+    JP_SQUARE_ACCESS_TOKEN: ${file(./config.prod.yml):jpSquareAccessToken}
+    JP_SQUARE_APPLICATION_ID: ${file(./config.prod.yml):jpSquareApplicationId}
+    JWT_SECRET: ${file(./config.prod.yml):jwtSecret}
+    SAGAWA_ENV: ${file(./config.prod.yml):sagawaEnv}
+    SAGAWA_JAPANESE: ${file(./config.prod.yml):sagawaJapanese}
+    SAGAWA_ENGLISH: ${file(./config.prod.yml):sagawaEnglish}
+    SLACK_SUPPORT_WEBHOOK: ${file(./config.prod.yml):slackSupportWebhook}
+    SLACK_ERROR_NOTIFICATION_WEBHOOK: ${file(./config.prod.yml):slackErrorNotificationWebhook}
+    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.prod.yml):slackGeneralNotificationWebhook}
+    LAMBDA_ENV: ${file(./config.prod.yml):lambdaEnv}
+    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.prod.yml):lambdaSecretAccessKey}
+    LAMBDA_ACCESS_KEY_ID: ${file(./config.prod.yml):lambdaAccessKeyId}
+    BASE_URL: ${file(./config.prod.yml):baseUrl}
+    CEO_EMAIL: ${file(./config.prod.yml):ceoEmail}
+    CTO_EMAIL: ${file(./config.prod.yml):ctoEmail}
+    CDO_EMAIL: ${file(./config.prod.yml):cdoEmail}
+    AWS_SES_REGION: ${file(./config.prod.yml):awsSesRegion}
+    RECAPTCHA_SECRET_KEY: ${file(./config.prod.yml):recaptchaSecretKey}
 
 plugins:
   - serverless-webpack
@@ -78,9 +69,9 @@ functions:
     timeout: 10
     vpc:
       securityGroupIds:
-        - ${file(./config.yml):securityGroupId}
+        - ${file(./config.prod.yml):securityGroupId}
       subnetIds:
-        - ${file(./config.yml):subnetId}
+        - ${file(./config.prod.yml):subnetId}
     iamRoleStatements:
       - Effect: Allow
         Resource: "*"
@@ -111,9 +102,9 @@ functions:
     timeout: 10
     vpc:
       securityGroupIds:
-        - ${file(./config.yml):securityGroupId}
+        - ${file(./config.prod.yml):securityGroupId}
       subnetIds:
-        - ${file(./config.yml):subnetId}
+        - ${file(./config.prod.yml):subnetId}
     iamRoleStatements:
       - Effect: Allow
         Resource: "*"
