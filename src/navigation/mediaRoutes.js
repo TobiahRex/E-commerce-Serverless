@@ -40,7 +40,7 @@ const MediaRoutes = () => (
     <Route
       path="/stories"
       getComponent={(_, cb) => {
-        import('../containers/userStories' /* webpackChunkName: "contact-us" */)
+        import('../containers/userStories' /* webpackChunkName: "user-stories" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
