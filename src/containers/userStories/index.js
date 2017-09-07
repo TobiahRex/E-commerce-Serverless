@@ -2,11 +2,12 @@ import React from 'react';
 
 import './assets/styles';
 import { propTypes } from './assets/propValidation';
-import { WebflowJs } from './assets/utils/index.js';
+import { WebflowJs } from './assets/utils/index';
 
 import {
   HdrPage,
   BreadCrumb,
+  CardImg,
 } from './components';
 
 class UserStories extends React.Component {
@@ -31,7 +32,7 @@ class UserStories extends React.Component {
           component: '',
           props: {
             CardImg: {
-              link: '/imgaes/default-avatar.png',
+              link: '/images/default-avatar.png',
             },
           },
         },
@@ -53,14 +54,12 @@ class UserStories extends React.Component {
             className="user-story-card__container user-story-card__container--landscape"
             data-ix="user-story-fade-in"
           >
-            <CardImg link={contentData.CardImg.link} />
+            <CardImg link={contentData.english[0].props.CardImg.link} />
             <div className="user-story-card__content">
               <div className="content-hdr__container content-hdr__container--portrait">
                 <h2 className="content-hdr content-hdr--landscape">User Story Number 1</h2>
               </div>
-              <div className="content-date__container content-date__container--portrait">
-                <p className="content-date content-date--landscape">Sep 8, 2017</p>
-              </div>
+              <CardDate date={contentData.english[0].props.CardDate.date} />
               <div className="content-blurb__container content-blurb__container--portrait">
                 <p className="content-blurb content-blurb--portrait">
                   The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
