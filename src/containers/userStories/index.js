@@ -45,7 +45,7 @@ class UserStories extends React.Component {
               <img
                 alt="avatar"
                 className="image image--landscape"
-                src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg"
+                src="/images/default-avatar.png"
               />
             </div>
             <div className="user-story-card__content">
