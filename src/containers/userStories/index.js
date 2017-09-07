@@ -2,15 +2,15 @@ import React from 'react';
 
 import './assets/styles';
 import { propTypes } from './assets/propValidation';
-import { WebflowJs } from './assets/utils/index';
+import {
+  WebflowJs,
+  contentData,
+} from './assets/utils/index';
 
 import {
   HdrPage,
   BreadCrumb,
-  CardImg,
-  CardDate,
-  CardHdr,
-  CardBlurb,
+  UserCard,
 } from './components';
 
 class UserStories extends React.Component {
@@ -28,28 +28,18 @@ class UserStories extends React.Component {
     WebflowJs(); // eslint-disable-line
   }
 
+  renderHelper = data =>
+    data.map((dataObj) => { // eslint-disable-line
+      if (dataObj.component === 'UserCard') {
+        return (
+          <UserCard
+            key={new Buffer(dataObj.CardHdr.header + Date.now(), 'utf8').toString('base64')}
+          />
+        );
+      }
+    })
+
   render() {
-    const contentData = {
-      english: [
-        {
-          component: '',
-          props: {
-            CardImg: {
-              link: '/images/default-avatar.png',
-            },
-            CardHdr: {
-              header: 'User Story 1',
-            },
-            CardDate: {
-              date: 'Sep 8, 2017',
-            },
-            CardBlurb: {
-              date: 'The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.',
-            },
-          },
-        },
-      ],
-    };
     return (
       <div className="japanese vape-news__container">
         <BreadCrumb
@@ -61,7 +51,7 @@ class UserStories extends React.Component {
 
         <HdrPage header="User Stories" />
 
-        <UserCard />
+        {this.renderHelper(contentData.english)}
       </div>
     );
   }
