@@ -79,18 +79,38 @@ const devConfig = {
   module: {
     rules: [
       { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /(\.css|\.s[ac]ss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap'] },
+      {
+        test: /(\.css|\.s[ac]ss)$/,
+        loaders: [
+          'style-loader',
+          'css-loader?sourceMap',
+          'postcss-loader',
+          'sass-loader?sourceMap',
+        ],
+      },
       { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader' },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
-      { test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
+      },
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+      },
       { test: require.resolve('react-addons-perf'), loader: 'expose-loader?Perf' },
     ],
   },
 };
 // -----------------------------------------------------------------------------
+const extractCSS = new ExtractTextPlugin('[name]-one.css');
+const extractSCSS = new ExtractTextPlugin('[name]-two.css');
+
 const prodConfig = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
@@ -146,7 +166,9 @@ const prodConfig = {
       title: 'Nic Juice 2 Japan',
       filename: './index.html',
     }),
-    new ExtractTextPlugin('style.css'),
+    extractCSS,
+    extractSCSS,
+    // new ExtractTextPlugin('style.css'),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       comments: false,
@@ -158,6 +180,9 @@ const prodConfig = {
       options: {
         sassLoader: {
           includePaths: [path.resolve(__dirname, 'src', 'scss')],
+        },
+        cssLoader: {
+          includePaths: [path.resolve(__dirname, 'src', 'css')],
         },
         context: '/',
         postcss: () => [autoprefixer],
@@ -171,14 +196,36 @@ const prodConfig = {
   module: {
     rules: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /(\.css|\.s[ac]ss)$/, loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader!sass-loader') },
+      {
+        test: /(\.css)$/,
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }),
+      },
+      {
+        test: /(\.s[ac]ss)$/,
+        use: extractSCSS.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
+        }),
+      },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?name=[name].[ext]' },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]' },
-      { test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]' },
-      { test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]' },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[name].[ext]',
+      },
+      {
+        test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream&name=[name].[ext]',
+      },
+      {
+        test: /\.svg(\?v=\d+.\d+.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]',
+      },
       { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]' },
       { test: require.resolve('react-addons-perf'), loader: 'expose-loader?Perf' },
     ],
   },
 };
-export default (process.env.NODE_ENV === 'production') ? prodConfig : devConfig;
+export default (process.env.NODE_ENV === 'production' ? prodConfig : devConfig);
