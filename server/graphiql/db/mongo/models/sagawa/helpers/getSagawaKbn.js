@@ -1,7 +1,7 @@
 export default function getSagawaKbn(shippingCountry) {
   const {
     SAGAWA_ENV: sagawaEnv,
-    SAGAWA_JAPANESE: sagawaKbnUs,
+    SAGAWA_ENGLISH: sagawaKbnUs,
     SAGAWA_JAPANESE: sagawaKbnJp,
     SAGAWA_TEST_ENGLISH: sagawaKbnUsTest,
     SAGAWA_TEST_JAPANESE: sagawaKbnJpTest,
