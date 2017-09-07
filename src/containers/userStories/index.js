@@ -8,6 +8,8 @@ import {
   HdrPage,
   BreadCrumb,
   CardImg,
+  CardDate,
+  CardHdr,
 } from './components';
 
 class UserStories extends React.Component {
@@ -34,6 +36,12 @@ class UserStories extends React.Component {
             CardImg: {
               link: '/images/default-avatar.png',
             },
+            CardHdr: {
+              header: 'User Story 1',
+            },
+            CardDate: {
+              date: 'Sep 8, 2017',
+            },
           },
         },
       ],
@@ -56,9 +64,7 @@ class UserStories extends React.Component {
           >
             <CardImg link={contentData.english[0].props.CardImg.link} />
             <div className="user-story-card__content">
-              <div className="content-hdr__container content-hdr__container--portrait">
-                <h2 className="content-hdr content-hdr--landscape">User Story Number 1</h2>
-              </div>
+              <CardHdr header={contentData.english[0].props.CardHdr.header} />
               <CardDate date={contentData.english[0].props.CardDate.date} />
               <div className="content-blurb__container content-blurb__container--portrait">
                 <p className="content-blurb content-blurb--portrait">
