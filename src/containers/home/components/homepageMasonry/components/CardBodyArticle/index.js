@@ -16,6 +16,7 @@ const CardBody = (props) => {
     <div className="masonry-column__news news--content">
       <CardTitleArticle
         header={props.header}
+        link={props.link}
       />
       <CardBlurbArticle
         content={props.content}
