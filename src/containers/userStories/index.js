@@ -1,7 +1,8 @@
 import React from 'react';
+
+import './assets/styles';
 import { propTypes } from './assets/propValidation';
 import { WebflowJs } from './assets/utils/index.js';
-import './assets/styles';
 
 import {
   HdrPage,
@@ -49,15 +50,15 @@ class UserStories extends React.Component {
             </div>
             <div className="user-story-card__content">
               <div className="content-hdr__container content-hdr__container--portrait">
-                <h3 className="content-hdr content-hdr--landscape">User Story Number 1</h3>
+                <h2 className="content-hdr content-hdr--landscape">User Story Number 1</h2>
               </div>
               <div className="content-date__container content-date__container--portrait">
-                <div className="content-date content-date--landscape">Sep 8, 2017</div>
+                <p className="content-date content-date--landscape">Sep 8, 2017</p>
               </div>
               <div className="content-blurb__container content-blurb__container--portrait">
-                <div className="content-blurb content-blurb--portrait">
+                <p className="content-blurb content-blurb--portrait">
                   The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-                </div>
+                </p>
               </div>
             </div>
           </div>
