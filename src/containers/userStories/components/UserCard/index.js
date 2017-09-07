@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { WebflowJs } from './assets/utils';
+import { WebflowJs } from '../../assets/utils/index';
 import './assets/styles/style.scss';
 
 import {
@@ -11,8 +11,7 @@ import {
 } from '../';
 
 const UserCard = (props) => {
-  console.log('%cprops', 'background:red;', props);
-  // WebflowJs(); //eslint-disable-line
+  WebflowJs(); //eslint-disable-line
 
   return (
     <div className="animation--first user-stories__container user-stories__container--tablet">

@@ -1,9 +1,10 @@
 import React from 'react';
-
+import moment from 'moment';
 import './assets/styles';
 import { propTypes } from './assets/propValidation';
 import {
   WebflowJs,
+  WebflowAnimations,
   contentData,
 } from './assets/utils/index';
 import {
@@ -23,8 +24,9 @@ class UserStories extends React.Component {
     };
   }
 
-  componentDidMount() {
-    WebflowJs(); // eslint-disable-line
+  componentDidUpdate() {
+    WebflowJs();
+    WebflowAnimations();
   }
 
   renderHelper = data =>
@@ -41,7 +43,7 @@ class UserStories extends React.Component {
 
   render() {
     return (
-      <div className="japanese vape-news__container">
+      <div className="japanese vape-news__container" key={moment().format('YYMMDDSSSS')} >
         <BreadCrumb
           paths={['Home']}
           classes={['home']}
