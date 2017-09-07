@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { propTypes } from './assets/propValidation';
-import { WebflowJs } from './assets/utils';
+import { WebflowJs } from './assets/utils/index.js';
+import './assets/styles';
 
 import {
   HdrPage,

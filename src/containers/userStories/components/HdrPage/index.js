@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
+import './assets/styles/style.scss';
 
 const HdrPage = (props) => {
   WebflowJs(); //eslint-disable-line
