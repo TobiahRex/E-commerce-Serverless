@@ -1,29 +1,41 @@
 /* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import saveLocation from './services/utils/saveLocation';
 
-export default class Root extends Component {
+class Root extends React.Component {
   render() {
     const {
       store,
+      locale,
       routes,
       history,
+      messages,
       apolloClient,
     } = this.props;
     return (
       <ApolloProvider client={apolloClient} store={store}>
-        <Router
-          history={history}
-          routes={routes}
-          onUpdate={() => saveLocation(store.dispatch)}
-        />
-        </ApolloProvider >
+        <IntlProvider locale={locale} messages={messages}>
+          <Router
+            history={history}
+            routes={routes}
+            onUpdate={() => saveLocation(store.dispatch)}
+          />
+        </IntlProvider>
+      </ApolloProvider >
     );
   }
 }
+
+export default connect(({ locale: activeLanguage }) => ({
+  locale: activeLanguage,
+  messages: locale.translations[activeLanguage],
+}))(Root);
+
 const { any, objectOf } = PropTypes;
 Root.propTypes = {
   store: objectOf(any).isRequired,
