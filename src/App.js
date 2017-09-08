@@ -57,7 +57,7 @@ class App extends Component {
     const { avStyle } = this.preRender();
 
     return (
-      <div id="yo">
+      <div id="app-container">
         <AgeVerification
           avStyle={avStyle}
           verifyAge={this.verifyAge}

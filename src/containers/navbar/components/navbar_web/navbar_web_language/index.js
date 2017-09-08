@@ -46,8 +46,7 @@ class NavbarLanguage extends React.Component {
 
   onLanguageChange = (language) => {
     this.setState(() => ({ activeLanguage: language }),
-      this.props.saveLanguage(language),
-    );
+    () => this.props.saveLanguage(language));
   }
 
   render() {
