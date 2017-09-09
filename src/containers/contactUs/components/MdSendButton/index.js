@@ -6,6 +6,7 @@ import Validation from 'react-validation';
 import { WebflowJs } from './assets/utils';
 
 const MdSendButton = ({
+  label,
   toast,
   enable,
   submitMsg,
@@ -40,7 +41,7 @@ const MdSendButton = ({
         >
           <FontAwesome name="send" />
           {'\u00A0'}
-          Send
+          {label}
         </Validation.components.Button>
         <div className="contact-us__error">
           <div className="error-hard__title">
@@ -102,12 +103,17 @@ const MdSendButton = ({
       </div>
     );
   }
-
 };
 
-const { func, bool, shape, string } = PropTypes;
+const {
+  func,
+  bool,
+  shape,
+  string,
+} = PropTypes;
 
 MdSendButton.propTypes = {
+  label: string.isRequired,
   toast: shape({
     type: string,
     message: string,
