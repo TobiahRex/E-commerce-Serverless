@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
+import { injectIntl } from 'react-intl';
 import _ from 'lodash';
 import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
@@ -218,10 +219,9 @@ class ContactUs extends React.Component {
     );
   }
 }
+const ContactUsIntl = injectIntl(ContactUs);
 
-const ContactUsWithState = connect(({ user }) => ({
-  userId: user.profile ? user.profile._id : '',
-}), (dispatch, ownProps) => ({
+const ContactUsWithState = connect(null, (dispatch, ownProps) => ({
   GraphQLsubmitContactMsg: args => ownProps.SubmitContactMsg({
     variables: { ...args },
   }),
@@ -243,15 +243,16 @@ const ContactUsWithState = connect(({ user }) => ({
     }
     ownProps.apiFail();
   },
-}))(ContactUs);
+}))(ContactUsIntl);
 
 const ContactUsWithStateAndData = graphql(
   GraphQLsubmitMessage, { name: 'SubmitContactMsg' },
 )(ContactUsWithState);
 
-const ContactUsWithStateAndData2 = connect(({ toaster, api }) => ({
-  apiFetching: api.fetching,
+const ContactUsWithStateAndData2 = connect(({ toaster, api, user }) => ({
   toast: CheckForToast(toaster),
+  userId: user.profile ? user.profile._id : '',
+  apiFetching: api.fetching,
 }), dispatch => ({
   toastError: (toast, msg) =>
     dispatch(toasterActions.toastError(toast, msg)),
