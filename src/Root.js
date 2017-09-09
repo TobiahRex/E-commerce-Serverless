@@ -1,4 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
+import 'intl/index';
+import ja from 'react-intl/locale-data/ja';
+import en from 'react-intl/locale-data/en';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,6 +9,8 @@ import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import saveLocation from './services/utils/saveLocation';
+
+addLocaleData([...ja, ...en]);
 
 class Root extends React.Component {
   render() {
@@ -17,17 +22,15 @@ class Root extends React.Component {
       messages,
       apolloClient,
     } = this.props;
-    console.log('%clocale', 'background:pink;', locale);
-    console.log('%cmessages', 'background:cyan;', messages);
     return (
       <ApolloProvider client={apolloClient} store={store}>
-        {/* <IntlProvider locale={locale} messages={messages}> */}
-        <Router
-          history={history}
-          routes={routes}
-          onUpdate={() => saveLocation(store.dispatch)}
-        />
-        {/* </IntlProvider> */}
+        <IntlProvider key={locale} locale={locale} messages={messages}>
+          <Router
+            history={history}
+            routes={routes}
+            onUpdate={() => saveLocation(store.dispatch)}
+          />
+        </IntlProvider>
       </ApolloProvider >
     );
   }
@@ -41,7 +44,6 @@ export default connect(({ locale }) => ({
 const {
   any,
   string,
-  object,
   objectOf,
 } = PropTypes;
 Root.propTypes = {
@@ -49,6 +51,6 @@ Root.propTypes = {
   locale: string.isRequired,
   routes: objectOf(any).isRequired,
   history: objectOf(any).isRequired,
-  messages: objectOf(object).isRequired,
+  messages: objectOf(any).isRequired,
   apolloClient: objectOf(any).isRequired,
 };

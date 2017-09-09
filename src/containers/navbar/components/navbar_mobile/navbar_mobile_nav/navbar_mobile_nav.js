@@ -52,7 +52,9 @@ class NavbarMobileNav extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll');
+    window.removeEventListener('scroll', (e) => {
+      this.handleScroll(e);
+    });
   }
 
   // TODO refactor handle Scroll to only dispatch action if the current screenSize is different than the screenSize in state.
