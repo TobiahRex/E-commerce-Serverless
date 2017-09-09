@@ -4,7 +4,9 @@ import Validation from 'react-validation';
 import { WebflowJs } from './assets/utils';
 
 const TextAreaWithLabel = ({
+  label,
   value,
+  placeholder,
   handleOnChange,
 }) => {
   WebflowJs(); //eslint-disable-line
@@ -15,7 +17,7 @@ const TextAreaWithLabel = ({
       <label
         className="message__label"
         htmlFor="message-field"
-      >Message</label>
+      >{label}</label>
 
       <Validation.components.Textarea
         errorClassName="is-invalid-input"
@@ -25,7 +27,7 @@ const TextAreaWithLabel = ({
         name="message"
         onChange={handleOnChange}
         validations={['required', 'contactUsTextArea']}
-        placeholder="What would you like to say to us?"
+        placeholder={placeholder}
       />
 
     </div>
@@ -35,7 +37,9 @@ const TextAreaWithLabel = ({
 const { string, func } = PropTypes;
 
 TextAreaWithLabel.propTypes = {
+  label: string.isRequired,
   value: string.isRequired,
+  placeholder: string.isRequired,
   handleOnChange: func.isRequired,
 };
 

@@ -55,9 +55,15 @@ class ContactUs extends React.Component {
     const {
       intl: {
         messages: {
-          contactUsHeader: header,
-          contactUsBreadCrumbPaths1: bcPaths1,
-          contactUsBreadCrumbLastCrumb: bcLastCrumb,
+          'contactus.header': header,
+          'contactus.breadcrumb.paths1': bcPaths1,
+          'contactus.breadcrumb.lastcrumb': bcLastCrumb,
+          'contactus.label.name': labelName,
+          'contactus.label.email': labelEmail,
+          'contactus.label.message': labelMessage,
+          'contactus.input.placeholder.name': placeholderName,
+          'contactus.input.placeholder.email': placeholderEmail,
+          'contactus.input.placeholder.message': placeholderMessage,
         },
       },
     } = props;
@@ -66,6 +72,12 @@ class ContactUs extends React.Component {
       header,
       bcPaths1,
       bcLastCrumb,
+      labelName,
+      labelEmail,
+      labelMessage,
+      placeholderName,
+      placeholderEmail,
+      placeholderMessage,
     };
 
     this.state = {
@@ -211,6 +223,7 @@ class ContactUs extends React.Component {
             <InputWithLabel
               {...contentData[0].props}
               label={this.intl.labelName}
+              placeholder={this.intl.placeholderName}
               value={this.state.name}
               handleOnChange={this.handleOnChange}
             />
@@ -218,11 +231,14 @@ class ContactUs extends React.Component {
             <InputWithLabel
               {...contentData[1].props}
               label={this.intl.labelEmail}
+              placeholder={this.intl.placeholderEmail}
               value={this.state.emailAddress}
               handleOnChange={this.handleOnChange}
             />
 
             <TextAreaWithLabel
+              label={this.intl.labelMessage}
+              placeholder={this.intl.placeholderMessage}
               value={this.state.message}
               handleOnChange={this.handleOnChange}
             />

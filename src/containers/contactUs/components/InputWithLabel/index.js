@@ -7,6 +7,7 @@ const InputWithLabel = ({
   value,
   labelInfo,
   inputInfo,
+  placeholder,
   containerInfo,
   handleOnChange,
 }) => {
@@ -31,7 +32,7 @@ const InputWithLabel = ({
         name={inputInfo.name}
         onChange={handleOnChange}
         validations={[...validations]}
-        placeholder={inputInfo.placeholder}
+        placeholder={placeholder}
       />
 
     </div>
@@ -41,6 +42,7 @@ const InputWithLabel = ({
 const { shape, string, func } = PropTypes;
 
 InputWithLabel.propTypes = {
+  label: string.isRequired,
   handleOnChange: func.isRequired,
   value: string.isRequired,
   containerInfo: shape({
