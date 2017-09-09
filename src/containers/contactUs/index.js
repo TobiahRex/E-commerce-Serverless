@@ -64,6 +64,9 @@ class ContactUs extends React.Component {
           'contactus.input.placeholder.name': placeholderName,
           'contactus.input.placeholder.email': placeholderEmail,
           'contactus.input.placeholder.message': placeholderMessage,
+          'contactus.button.label.send': send,
+          'contactus.button.label.submitting': submitting,
+          'contactus.button.label.success': success,
         },
       },
     } = props;
@@ -78,6 +81,11 @@ class ContactUs extends React.Component {
       placeholderName,
       placeholderEmail,
       placeholderMessage,
+      labels: {
+        send,
+        submitting,
+        success,
+      },
     };
 
     this.state = {
@@ -255,7 +263,7 @@ class ContactUs extends React.Component {
               expiredCb={this.recaptchaExpiredCb}
               assignRefToRecaptcha={this.assignRefToRecaptcha}
             />
-            
+
             <MdSendButton
               labels={this.intl.labels}
               toast={this.props.toast}
