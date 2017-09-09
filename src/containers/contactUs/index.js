@@ -50,10 +50,6 @@ class ContactUs extends React.Component {
     };
   }
 
-  componentDidMount() {
-    WebflowJs(); // eslint-disable-line
-  }
-
   componentWillUnmount() {
     this.props.clearToaster();
   }
@@ -160,16 +156,19 @@ class ContactUs extends React.Component {
   }
 
   render() {
+    const {
+      intl: { messages },
+    } = this.props;
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
           <BreadCrumb
-            paths={['Home']}
+            paths={[messages['contactUs-BreadCrumb-Paths1']]}
             classes={['home']}
             destination={['']}
-            lastCrumb="Contact Us"
+            lastCrumb={messages['contactUs-BreadCrumb-LastCrumb']}
           />
-          <HdrPage header="Contact Us" />
+          <HdrPage header={messages['contactUs-Header']} />
 
           <ContactForm
             key={this.state.formKey}
