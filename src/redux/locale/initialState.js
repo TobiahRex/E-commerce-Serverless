@@ -1,5 +1,5 @@
 export default {
-  activeLanguage: 'en',
+  activeLanguage: navigator.language.slice(0, 2),
   country: null,
   translations: {
     en: {
