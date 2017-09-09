@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function NavbarOptionsLanguageDropdnNihongo({ onLanguageChange }) {
-  function preventDefault(e) {
+  function handleChange(e) {
     e.preventDefault();
-    onLanguageChange('nihongo');
+    onLanguageChange('ja');
   }
   return (
     <a
       href=""
-      onClick={preventDefault}
+      onClick={handleChange}
       className="language-dropdown-content-japanese"
     >
       <img src="/images/nihongo-flag-border.png" alt="Japanese Flag" className="language-dropdown-content-japanese-image" />
