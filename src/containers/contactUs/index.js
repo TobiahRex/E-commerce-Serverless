@@ -244,6 +244,7 @@ class ContactUs extends React.Component {
             />
 
             <CheckBoxWithLabel
+              label={this.intl.checkboxLabel}
               value={this.state.ccUser}
               handleOnChange={this.handleOnChange}
             />
@@ -256,6 +257,7 @@ class ContactUs extends React.Component {
             />
 
             <MdSendButton
+              label={this.intl.button}
               toast={this.props.toast}
               enable={this.enableSubmitButton(this.state)}
               submitMsg={this.submitMsg}

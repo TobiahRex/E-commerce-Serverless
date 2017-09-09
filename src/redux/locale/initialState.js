@@ -13,6 +13,8 @@ export default {
         'contactus.input.placeholder.name': 'Enter your name',
         'contactus.input.placeholder.email': 'Enter your email',
         'contactus.input.placeholder.message': 'What would you like to say?',
+        'contactus.checkbox.desc': 'Send a copy of this email to yourself',
+        'contactus.button.desc': 'Send',
       },
     },
     ja: {
@@ -26,6 +28,8 @@ export default {
         'contactus.input.placeholder.name': 'あなたの名前を入力してください',
         'contactus.input.placeholder.email': 'メールアドレスを入力してください',
         'contactus.input.placeholder.message': 'あなたは何を言いたいのですか？',
+        'contactus.checkbox.desc': 'あなたにこのメールのコピーを送ってください',
+        'contactus.button.desc': '送る',
       },
     },
   },

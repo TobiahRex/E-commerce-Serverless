@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { WebflowJs } from './assets/utils';
 
 const CheckBoxWithLabel = ({
+  label,
   value,
   handleOnChange,
 }) => {
@@ -31,14 +32,15 @@ const CheckBoxWithLabel = ({
       <label
         className="contact-us__send-copy w-form-label"
         htmlFor="checkbox"
-      >Send a copy of this email to yourself</label>
+      >{label}</label>
 
     </div>
   );
 };
-const { bool, func } = PropTypes;
+const { string, bool, func } = PropTypes;
 
 CheckBoxWithLabel.propTypes = {
+  label: string.isRequired,
   value: bool.isRequired,
   handleOnChange: func.isRequired,
 };
