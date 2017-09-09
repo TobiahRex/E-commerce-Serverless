@@ -1,5 +1,4 @@
 /* eslint-disable react/prefer-stateless-function */
-import 'intl/index';
 import ja from 'react-intl/locale-data/ja';
 import en from 'react-intl/locale-data/en';
 import React from 'react';
@@ -9,8 +8,6 @@ import { Router } from 'react-router';
 import { ApolloProvider } from 'react-apollo';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import saveLocation from './services/utils/saveLocation';
-
-addLocaleData([...ja, ...en]);
 
 class Root extends React.Component {
   render() {
@@ -31,11 +28,11 @@ class Root extends React.Component {
             onUpdate={() => saveLocation(store.dispatch)}
           />
         </IntlProvider>
-        </ApolloProvider >
+      </ApolloProvider >
     );
   }
 }
-
+addLocaleData([...ja, ...en]);
 export default connect(({ locale }) => ({
   locale: locale.activeLanguage,
   messages: locale.translations[locale.activeLanguage].messages,
