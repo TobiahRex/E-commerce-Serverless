@@ -68,6 +68,7 @@ class ContactUs extends React.Component {
           'contactus.button.label.send': send,
           'contactus.button.label.submitting': submitting,
           'contactus.button.label.success': success,
+          'contactus.button.error.label': errorHdr,
         },
       },
     } = props;
@@ -87,6 +88,7 @@ class ContactUs extends React.Component {
         send,
         submitting,
         success,
+        errorHdr,
       },
     };
 

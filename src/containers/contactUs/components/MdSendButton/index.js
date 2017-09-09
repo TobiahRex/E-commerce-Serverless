@@ -46,7 +46,7 @@ const MdSendButton = ({
           <div className="error-hard__title">
             <FontAwesome className="error-icon" name="exclamation-circle" />
             {'\u00A0'}
-            <h2>Error</h2>
+            <h2>{labels.errorHdr}</h2>
           </div>
           <p className="contact-us__error--message ">
             {toast.message}
