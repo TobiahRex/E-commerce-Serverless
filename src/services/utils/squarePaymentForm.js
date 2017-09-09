@@ -1,4 +1,5 @@
 const {
+  NODE_ENV: nodeEnv,
   US_SQUARE_APPLICATION_ID: usSquareApplicationId,
   JP_SQUARE_APPLICATION_ID: jpSquareApplicationId,
 } = process.env;
@@ -9,8 +10,10 @@ export const getSqAppId = (country) => {
 };
 
 /* eslint-disable no-console */
-if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
-if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+if (nodeEnv !== 'production') {
+  if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
+  if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+}
 /* eslint-enable no-console */
 
 class SqrPaymentForm {
