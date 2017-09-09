@@ -1,5 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
+import initialState from './initialState';
 
 const { Types, Creators } = createActions({
   setLanguage: ['language'],
@@ -9,10 +10,7 @@ const { Types, Creators } = createActions({
 export const localeTypes = Types;
 export default Creators;
 
-export const INITIAL_STATE = Immutable({
-  activeLanguage: 'english',
-  country: null,
-});
+export const INITIAL_STATE = Immutable(initialState);
 
 const setLanguage = (state, { language }) => ({
   ...state,

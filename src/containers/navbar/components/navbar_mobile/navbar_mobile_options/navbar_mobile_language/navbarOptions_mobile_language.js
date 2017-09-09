@@ -47,15 +47,15 @@ class NavbarMobileOptionsLanguage extends Component {
 
   renderLanguageTitle = () => {
     const Language = this.state.activeLanguage;
-    if (Language === 'english') return <NavbarMobileOptionsLanguageButtonEnglish />;
-    if (Language === 'nihongo') return <NavbarMobileOptionsLanguageButtonNihongo />;
+    if (Language === 'en') return <NavbarMobileOptionsLanguageButtonEnglish />;
+    if (Language === 'ja') return <NavbarMobileOptionsLanguageButtonNihongo />;
     throw new Error('Cannot render the Active Language - Check NavbarMobileOptionsLanguageButton component.');
   }
 
   renderLanguageDropdown = () => {
     const Language = this.state.activeLanguage;
-    if (Language === 'english') return <NavbarMobileOptionsLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
-    if (Language === 'nihongo') return <NavbarMobileOptionsLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
+    if (Language === 'en') return <NavbarMobileOptionsLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
+    if (Language === 'ja') return <NavbarMobileOptionsLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
     throw new Error('Cannot render the Active Language - Check NavbarMobileOptionsLanguageButton component.');
   }
 
