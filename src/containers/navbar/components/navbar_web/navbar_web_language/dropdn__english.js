@@ -6,14 +6,14 @@ const propTypes = {
   onLanguageChange: func.isRequired,
 };
 function NavbarOptionsLanguageDropdnEnglish({ onLanguageChange }) {
-  function preventDefault(e) {
+  function handleChange(e) {
     e.preventDefault();
-    onLanguageChange('english');
+    onLanguageChange('en');
   }
   return (
     <a
       href=""
-      onClick={preventDefault}
+      onClick={handleChange}
       className="language-dropdown-content-us"
     >
       <img src="/images/english-flag.png" alt="US Flag" className="language-dropdown-content-us-image" />
