@@ -10,8 +10,8 @@ import envCheck from './envCheck';
 
 require('dotenv').config({ path: path.resolve('.env-dev') });
 
-envCheck(process.env.NODE_ENV);
-const PORT = process.env.PORT;
+const { PORT, NODE_ENV: nodeEnv } = process.env;
+envCheck(nodeEnv, PORT);
 const app = express();
 // ---------------------- Webpack Middleware -----------------------------------
 const compiler = webpack(webpackConfig);
