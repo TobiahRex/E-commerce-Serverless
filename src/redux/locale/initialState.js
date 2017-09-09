@@ -7,6 +7,9 @@ export default {
         contactUsHeader: 'Contact Us',
         contactUsBreadCrumbPaths1: 'Home',
         contactUsBreadCrumbLastCrumb: 'Contact Us',
+        contactUsLabelName: 'Name',
+        contactUsLabelEmail: 'Email',
+        contactUsLabelMessage: 'Message',
       },
     },
     ja: {

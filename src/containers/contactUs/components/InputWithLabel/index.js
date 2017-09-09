@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
-import { WebflowJs } from './assets/utils';
 
 const InputWithLabel = ({
+  label,
   value,
   labelInfo,
   inputInfo,
   containerInfo,
   handleOnChange,
 }) => {
-  WebflowJs(); //eslint-disable-line
-
   let validations = [];
 
   if (inputInfo.name === 'emailAddress') validations = ['required', 'email'];
@@ -23,7 +21,7 @@ const InputWithLabel = ({
       <label
         className={labelInfo.className}
         htmlFor={labelInfo.htmlFor}
-      >{labelInfo.label}</label>
+      >{label}</label>
 
       <Validation.components.Input
         errorClassName="is-invalid-input"

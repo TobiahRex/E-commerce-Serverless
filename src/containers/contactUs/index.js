@@ -209,13 +209,15 @@ class ContactUs extends React.Component {
           >
 
             <InputWithLabel
-              {...contentData.english[0].props}
+              {...contentData[0].props}
+              label={this.intl.labelName}
               value={this.state.name}
               handleOnChange={this.handleOnChange}
             />
 
             <InputWithLabel
-              {...contentData.english[1].props}
+              {...contentData[1].props}
+              label={this.intl.labelEmail}
               value={this.state.emailAddress}
               handleOnChange={this.handleOnChange}
             />
