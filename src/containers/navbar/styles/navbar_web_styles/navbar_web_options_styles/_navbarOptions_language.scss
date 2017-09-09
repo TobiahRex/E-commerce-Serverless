@@ -15,7 +15,7 @@
     background-color: $p-red;
     color: $p-white;
     & .language-dropdown-content {
-      height: 2.9em;
+      height: 4em;
       opacity: 1;
     }
   }
@@ -121,7 +121,7 @@
     & .language-dropdown-content-japanese {
       @extend .flex-center;
       height: 2.5em;
-      width: 9em;
+      width: 10em;
       text-decoration: none;
       padding: 0 .5em;
       &:hover,
@@ -148,7 +148,7 @@
     & .language-dropdown-content-us {
       @extend .flex-center;
       height: 2.5em;
-      width: 9em;
+      width: 10em;
       text-decoration: none;
       padding: 0 .5em;
       &:hover,
@@ -162,7 +162,7 @@
       }
       & .language-dropdown-content-us-image {
         height: 1.4em;
-        width: 2.8em;
+        width: 2.5em;
         margin: 0;
       }
       & .language-dropdown-content-us-english {
