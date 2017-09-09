@@ -255,9 +255,9 @@ class ContactUs extends React.Component {
               expiredCb={this.recaptchaExpiredCb}
               assignRefToRecaptcha={this.assignRefToRecaptcha}
             />
-
+            
             <MdSendButton
-              label={this.intl.button}
+              labels={this.intl.labels}
               toast={this.props.toast}
               enable={this.enableSubmitButton(this.state)}
               submitMsg={this.submitMsg}
