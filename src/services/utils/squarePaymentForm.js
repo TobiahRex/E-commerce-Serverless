@@ -4,7 +4,7 @@ const {
 } = process.env;
 
 export const getSqAppId = (country) => {
-  console.log('%ccountry', 'background:pink;', country);
+  console.log('%cCountry', 'background:pink;', country);
   if (country === 'JP') return jpSquareApplicationId;
   return usSquareApplicationId;
 };
