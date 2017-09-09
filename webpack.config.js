@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define, max-len, import/first */
-dotenv.load({ silent: true }).config({ path: path.resolve('.env.prod') });
+dotenv.config({ path: path.resolve('.env.prod'), silent: true });
 
 import path from 'path';
 import dotenv from 'dotenv';
