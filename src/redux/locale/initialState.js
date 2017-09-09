@@ -4,6 +4,11 @@ export default {
   translations: {
     en: {
       messages: {
+        'global.forms.error.require': 'Required',
+        'global.forms.error.contactus.name': 'That name uses invalid characters. Please try again.',
+        'global.forms.error.contactus.textarea': 'That message uses invalid characters. Please try again.',
+        'global.forms.error.contactus.firstLast': 'You must include a First name & a Last name.',
+
         'contactus.header': 'Contact Us',
         'contactus.breadcrumb.paths1': 'Home',
         'contactus.breadcrumb.lastcrumb': 'Contact Us',
