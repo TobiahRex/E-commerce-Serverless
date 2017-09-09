@@ -30,7 +30,7 @@ class UserStories extends React.Component {
   }
 
   renderHelper = data =>
-    data.map((dataObj) => { // eslint-disable-line
+    data.map.content((dataObj) => { // eslint-disable-line
       if (dataObj.component === 'UserCard') {
         return (
           <UserCard
