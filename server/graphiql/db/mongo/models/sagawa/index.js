@@ -385,12 +385,10 @@ new Promise((resolve, reject) => {
       JWT_SECRET: jwtSecret,
       LAMBDA_ENV: lambdaEnv,
       BASE_URL: baseUrl,
-      PRODUCTION_URL: productionUrl,
     } = process.env;
 
     const token = JWT.sign(payload, jwtSecret);
-    const prodEnv = lambdaEnv === 'production';
-    const trackingLink = `${prodEnv ? productionUrl : baseUrl}/tracking?token=${token}`;
+    const trackingLink = `${baseUrl}/#!/tracking?token=${token}`;
 
     emailBody = transactionDoc.invoiceEmail || transactionDoc.invoiceEmailNoTracking;
 
