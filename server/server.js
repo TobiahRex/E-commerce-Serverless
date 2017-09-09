@@ -8,7 +8,7 @@ import devMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
 import envCheck from './envCheck';
 
-require('dotenv').config({ path: path.resolve('.env-prod') });
+require('dotenv').config({ path: path.resolve('.env-dev') });
 
 envCheck(process.env.NODE_ENV);
 const PORT = process.env.PORT;
