@@ -29,6 +29,13 @@ export default {
     },
     ja: {
       messages: {
+        'form.validation.error.api': 'フォームの入力が無効です。',
+        'form.validation.error.require': '必須',
+        'form.validation.error.email': 'EMAIL_VALUEは有効なメールではありません。',
+        'form.validation.error.contactus.name': 'That name uses invalid characters. Please try again.',
+        'form.validation.error.contactus.textarea': 'That message uses invalid characters. Please try again.',
+        'form.validation.error.contactus.firstLast': 'You must include a First name & a Last name.',
+
         'contactus.header': 'お問い合わせ',
         'contactus.breadcrumb.paths1': '自宅',
         'contactus.breadcrumb.lastcrumb': 'お問い合わせ',

@@ -1,6 +1,16 @@
 import React from 'react';
 import validator from 'validator';
 import Validation from 'react-validation';
+import {
+  FormattedMessage,
+  FormattedHtmlMessage,
+} from 'react-intl';
+
+/* eslint-disable no-undef */
+const {
+  'form.validation.error.email': errorEmail,
+} = IntlMessages;
+/* eslint-enable no-undef */
 
 Object.assign(Validation.rules, {
   api: {
@@ -13,7 +23,7 @@ Object.assign(Validation.rules, {
 
   required: {
     rule: value => value.toString().trim(),
-    hint: () => <span className="form-error is-visible">Required</span>,
+    hint: () => <FormattedMessage id="form.validation.error.require" className="form-error is-visible" />,
   },
 
   boolRequired: {
@@ -23,8 +33,11 @@ Object.assign(Validation.rules, {
 
   email: {
     rule: value => validator.isEmail(value),
-    hint: (value) => {
-      return <span className="form-error is-visible">{value} is not an Email.</span>;
+    hint: (value) => (
+      <span className="form-error is-visible">
+        {errorEmail.replace(/EMAIL_VALUE/g, value)}
+      </span>
+      )
     },
   },
 
