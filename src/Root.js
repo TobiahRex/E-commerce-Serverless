@@ -17,7 +17,8 @@ class Root extends React.Component {
       messages,
       apolloClient,
     } = this.props;
-    console.log('%cmessages', 'background:red;', messages);
+    console.log('%clocale', 'background:pink;', locale);
+    console.log('%cmessages', 'background:cyan;', messages);
     return (
       <ApolloProvider client={apolloClient} store={store}>
         {/* <IntlProvider locale={locale} messages={messages}> */}
@@ -34,7 +35,7 @@ class Root extends React.Component {
 
 export default connect(({ locale }) => ({
   locale: locale.activeLanguage,
-  messages: locale.translations[locale.activeLanguage],
+  messages: locale.translations[locale.activeLanguage].messages,
 }))(Root);
 
 const {
