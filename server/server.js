@@ -7,8 +7,9 @@ import hotMiddleware from 'webpack-hot-middleware';
 import devMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
 
-require('dotenv').config({ silent: true }); //eslint-disable-line
-const PORT = process.env.PORT || 3000;
+require('dotenv').config({ path: path.resolve('.env-prod') });
+
+const PORT = process.env.PORT;
 const app = express();
 // ---------------------- Webpack Middleware -----------------------------------
 const compiler = webpack(webpackConfig);
