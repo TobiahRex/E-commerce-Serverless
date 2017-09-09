@@ -18,5 +18,7 @@ config.json
 .sass-cache
 .env
 .env.dev
+.env.prod
+.env.tsh
 npm-debug.log
 _syntax_tests.js
