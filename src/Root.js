@@ -17,29 +17,37 @@ class Root extends React.Component {
       messages,
       apolloClient,
     } = this.props;
+    console.log('%cmessages', 'background:red;', messages);
     return (
       <ApolloProvider client={apolloClient} store={store}>
-        <IntlProvider locale={locale} messages={messages}>
-          <Router
-            history={history}
-            routes={routes}
-            onUpdate={() => saveLocation(store.dispatch)}
-          />
-        </IntlProvider>
+        {/* <IntlProvider locale={locale} messages={messages}> */}
+        <Router
+          history={history}
+          routes={routes}
+          onUpdate={() => saveLocation(store.dispatch)}
+        />
+        {/* </IntlProvider> */}
       </ApolloProvider >
     );
   }
 }
 
-export default connect(({ locale: activeLanguage }) => ({
-  locale: activeLanguage,
-  messages: locale.translations[activeLanguage],
+export default connect(({ locale }) => ({
+  locale: locale.activeLanguage,
+  messages: locale.translations[locale.activeLanguage],
 }))(Root);
 
-const { any, objectOf } = PropTypes;
+const {
+  any,
+  string,
+  object,
+  objectOf,
+} = PropTypes;
 Root.propTypes = {
   store: objectOf(any).isRequired,
+  locale: string.isRequired,
   routes: objectOf(any).isRequired,
   history: objectOf(any).isRequired,
+  messages: objectOf(object).isRequired,
   apolloClient: objectOf(any).isRequired,
 };

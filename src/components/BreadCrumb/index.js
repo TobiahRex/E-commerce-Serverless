@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
-const { arrayOf, string } = PropTypes;
-
-const propTypes = {
-  paths: arrayOf(string).isRequired,
-  classes: arrayOf(string).isRequired,
-  destination: arrayOf(string).isRequired,
-  lastCrumb: string.isRequired,
-};
 function BreadCrumb({ paths, classes, destination, lastCrumb }) {
   const breadcrumbs = paths.map((path, i) => (
     <li
@@ -38,8 +30,13 @@ function BreadCrumb({ paths, classes, destination, lastCrumb }) {
     </div>
   );
 }
-
-BreadCrumb.propTypes = propTypes;
+const { arrayOf, string } = PropTypes;
+BreadCrumb.propTypes = {
+  paths: arrayOf(string).isRequired,
+  classes: arrayOf(string).isRequired,
+  destination: arrayOf(string).isRequired,
+  lastCrumb: string.isRequired,
+};
 export default BreadCrumb;
 
 /* Description:
