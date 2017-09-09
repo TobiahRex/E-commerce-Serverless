@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.load({ silent: true });
+dotenv.load({ path: path.resolve('.env-dev') });
 
 export default {
   development: {

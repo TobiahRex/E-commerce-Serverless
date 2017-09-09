@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define, max-len, import/first */
-dotenv.load({ silent: true }).config({ path: path.resolve('.env.dev') });
+dotenv.load({ path: path.resolve('.env-dev') });
 
 import path from 'path';
 import dotenv from 'dotenv';
