@@ -1,12 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import _ from 'lodash';
-import { propTypes } from './assets/propValidation';
 import './assets/css/contact-us.css';
 import {
-  WebflowJs,
   contentData,
   apiActions,
   toasterActions,
@@ -27,9 +26,29 @@ import {
   GraphQLsubmitMessage,
 } from './graphql';
 
-class ContactUs extends React.Component {
-  static propTypes = propTypes
+const {
+  bool,
+  func,
+  shape,
+  string,
+} = PropTypes;
 
+class ContactUs extends React.Component {
+  static propTypes = {
+    intl: intlShape.isRequired,
+    clearToaster: func.isRequired,
+    apiFetching: bool.isRequired,
+    apiIsFetching: func.isRequired,
+    GraphQLsubmitContactMsg: func.isRequired,
+    GraphQLhandleError: func.isRequired,
+    apiFail: func.isRequired,
+    apiSuccess: func.isRequired,
+    toastSuccess: func.isRequired,
+    toast: shape({
+      type: string,
+      message: string,
+    }).isRequired,
+  }
   constructor(props) {
     super(props);
 
