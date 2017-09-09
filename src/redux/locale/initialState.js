@@ -17,6 +17,7 @@ export default {
         'contactus.button.label.send': 'Send',
         'contactus.button.label.submitting': 'Submitting...',
         'contactus.button.label.success': 'Success',
+        'contactus.button.error.label': 'Error',
       },
     },
     ja: {
@@ -34,6 +35,7 @@ export default {
         'contactus.button.label.send': '送る',
         'contactus.button.label.submitting': 'プロセッシング。。。',
         'contactus.button.label.success': 'サクセス',
+        'contactus.button.error.label': 'エラー',
       },
     },
   },

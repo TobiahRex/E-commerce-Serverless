@@ -12,7 +12,6 @@ const MdSendButton = ({
   submitMsg,
   apiFetching,
 }) => { //eslint-disable-line
-  WebflowJs();
 
   if (toast.type === 'success') {
     return (
@@ -41,7 +40,7 @@ const MdSendButton = ({
         >
           <FontAwesome name="send" />
           {'\u00A0'}
-          {labels.submit}
+          {labels.send}
         </Validation.components.Button>
         <div className="contact-us__error">
           <div className="error-hard__title">
