@@ -23,7 +23,9 @@ Object.assign(Validation.rules, {
 
   email: {
     rule: value => validator.isEmail(value),
-    hint: value => <span className="form-error is-visible">{value} is not an Email.</span>,
+    hint: (value) => {
+      return <span className="form-error is-visible">{value} is not an Email.</span>;
+    },
   },
 
   alpha: {

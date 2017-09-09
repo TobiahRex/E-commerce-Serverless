@@ -4,10 +4,12 @@ export default {
   translations: {
     en: {
       messages: {
-        'global.forms.error.require': 'Required',
-        'global.forms.error.contactus.name': 'That name uses invalid characters. Please try again.',
-        'global.forms.error.contactus.textarea': 'That message uses invalid characters. Please try again.',
-        'global.forms.error.contactus.firstLast': 'You must include a First name & a Last name.',
+        'form.validation.error.api': 'Invalid entry on form.',
+        'form.validation.error.require': 'Required',
+        'form.validation.error.email': 'EMAIL_VALUE is not an email.',
+        'form.validation.error.contactus.name': 'That name uses invalid characters. Please try again.',
+        'form.validation.error.contactus.textarea': 'That message uses invalid characters. Please try again.',
+        'form.validation.error.contactus.firstLast': 'You must include a First name & a Last name.',
 
         'contactus.header': 'Contact Us',
         'contactus.breadcrumb.paths1': 'Home',
