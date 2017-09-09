@@ -4,16 +4,16 @@ export default {
   translations: {
     en: {
       messages: {
-        'contactUs-Header': 'Contact Us',
-        'contactUs-BreadCrumb-Paths1': 'Home',
-        'contactUs-BreadCrumb-LastCrumb': 'Contact Us',
+        contactUsHeader: 'Contact Us',
+        contactUsBreadCrumbPaths1: 'Home',
+        contactUsBreadCrumbLastCrumb: 'Contact Us',
       },
     },
     ja: {
       messages: {
-        'contactUs-Header': 'お問い合わせ',
-        'contactUs-BreadCrumb-Paths1': '自宅',
-        'contactUs-BreadCrumb-LastCrumb': 'お問い合わせ',
+        contactUsHeader: 'お問い合わせ',
+        contactUsBreadCrumbPaths1: '自宅',
+        contactUsBreadCrumbLastCrumb: 'お問い合わせ',
       },
     },
   },

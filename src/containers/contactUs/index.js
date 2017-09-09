@@ -157,18 +157,24 @@ class ContactUs extends React.Component {
 
   render() {
     const {
-      intl: { messages },
+      intl: {
+        messages: {
+          contactUsHeader: header,
+          contactUsBreadCrumbPaths1: bcPaths1,
+          contactUsBreadCrumbLastCrumb: bcLastCrumb,
+        },
+      },
     } = this.props;
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
           <BreadCrumb
-            paths={[messages['contactUs-BreadCrumb-Paths1']]}
+            paths={[bcPaths1]}
             classes={['home']}
             destination={['']}
-            lastCrumb={messages['contactUs-BreadCrumb-LastCrumb']}
+            lastCrumb={bcLastCrumb}
           />
-          <HdrPage header={messages['contactUs-Header']} />
+          <HdrPage header={header} />
 
           <ContactForm
             key={this.state.formKey}
