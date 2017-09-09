@@ -52,8 +52,8 @@ class NavbarMobileNav extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', (e) => {
-      this.handleScroll(e);
+    window.removeEventListener('scroll', () => {
+      console.log('removing scroll listener.'); // eslint-disable-line no-console
     });
   }
 
@@ -61,16 +61,18 @@ class NavbarMobileNav extends Component {
   handleScroll = (e) => {
     const position = e.srcElement.body.scrollTop;
     const windowSize = window.screen.width;
-    if (position > 205) {
-      if (this.props.screenSize !== windowSize) {
-        this.props.refreshMobileSize(String(windowSize));
-      }
-      this.setState({ navbarFixed: true });
-    } else if (position < 205) {
-      if (this.props.screenSize !== windowSize) {
-        this.props.refreshMobileSize(String(windowSize));
-      }
-      this.setState({ navbarFixed: false });
+    if (position > 205 && !this.state.navbarFixed) {
+      this.setState({ navbarFixed: true }, () => {
+        if (this.props.screenSize !== windowSize) {
+          this.props.refreshMobileSize(String(windowSize));
+        }
+      });
+    } else if (position < 205 && !!this.state.navbarFixed) {
+      this.setState({ navbarFixed: false }, () => {
+        if (this.props.screenSize !== windowSize) {
+          this.props.refreshMobileSize(String(windowSize));
+        }
+      });
     }
   }
 
