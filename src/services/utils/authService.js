@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
 import { isTokenExpired } from './jwtHelper';
 
-const redirectUri = process.env.NODE_ENV === 'production' ? process.env.AUTH0_REDIRECT : 'http://localhost:3000/login';
+const redirectUri = process.env.AUTH0_REDIRECT;
 
 export default class AuthService extends EventEmitter {
   constructor() {
