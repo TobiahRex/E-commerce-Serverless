@@ -1,29 +1,22 @@
 import React from 'react';
 import validator from 'validator';
 import Validation from 'react-validation';
-import {
-  FormattedMessage,
-  FormattedHtmlMessage,
-} from 'react-intl';
-
-/* eslint-disable no-undef */
-const {
-  'form.validation.error.email': errorEmail,
-} = IntlMessages;
-/* eslint-enable no-undef */
+import { FormattedMessage } from 'react-intl';
 
 Object.assign(Validation.rules, {
   api: {
-    hint: value => (
+    hint: () => (
       <button className="form-error is-visible">
-        API Error on {`"${value}"`} value. Focus to hide.
+        <FormattedMessage id="form.validation.error.api" />
       </button>
     ),
   },
 
   required: {
     rule: value => value.toString().trim(),
-    hint: () => <FormattedMessage id="form.validation.error.require" className="form-error is-visible" />,
+    hint: () => <span className="form-error is-visible">
+      <FormattedMessage id="form.validation.error.require" />
+    </span>,
   },
 
   boolRequired: {
@@ -33,12 +26,13 @@ Object.assign(Validation.rules, {
 
   email: {
     rule: value => validator.isEmail(value),
-    hint: (value) => (
+    /* eslint-disable no-undef */
+    hint: value => (
       <span className="form-error is-visible">
-        {errorEmail.replace(/EMAIL_VALUE/g, value)}
+        {!!IntlMessages ? IntlMessages.form.validation.error.email.replace(/EMAIL_VALUE/g, value) : ''}
       </span>
-      )
-    },
+    ),
+    /* eslint-enable no-undef */
   },
 
   alpha: {
