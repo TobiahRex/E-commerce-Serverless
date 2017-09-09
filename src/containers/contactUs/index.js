@@ -33,6 +33,22 @@ class ContactUs extends React.Component {
   constructor(props) {
     super(props);
 
+    const {
+      intl: {
+        messages: {
+          contactUsHeader: header,
+          contactUsBreadCrumbPaths1: bcPaths1,
+          contactUsBreadCrumbLastCrumb: bcLastCrumb,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      header,
+      bcPaths1,
+      bcLastCrumb,
+    };
+
     this.state = {
       error: {
         hard: false,
@@ -156,25 +172,16 @@ class ContactUs extends React.Component {
   }
 
   render() {
-    const {
-      intl: {
-        messages: {
-          contactUsHeader: header,
-          contactUsBreadCrumbPaths1: bcPaths1,
-          contactUsBreadCrumbLastCrumb: bcLastCrumb,
-        },
-      },
-    } = this.props;
     return (
       <div className="contact-us">
         <div className="contact-us contact-us__container w-container">
           <BreadCrumb
-            paths={[bcPaths1]}
+            paths={[this.intl.bcPaths1]}
             classes={['home']}
             destination={['']}
-            lastCrumb={bcLastCrumb}
+            lastCrumb={this.intl.bcLastCrumb}
           />
-          <HdrPage header={header} />
+          <HdrPage header={this.intl.header} />
 
           <ContactForm
             key={this.state.formKey}
