@@ -55,7 +55,7 @@ class NavbarLanguage extends React.Component {
       <div className="navbar-options-language">
         <NavbarLanguageButton activeLanguage={activeLanguage}>
           {
-            activeLanguage === 'english' ?
+            activeLanguage === 'en' ?
               <NavbarLanguageButtonEnglish />
             : <NavbarLanguageButtonNihongo />
           }
@@ -63,7 +63,7 @@ class NavbarLanguage extends React.Component {
 
         <NavbarLanguageDropdnContent>
           {
-            activeLanguage === 'english' ?
+            activeLanguage === 'en' ?
               <NavbarLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />
             : <NavbarLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />
           }
