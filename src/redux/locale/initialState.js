@@ -6,7 +6,7 @@ export default {
       messages: {
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
-        'home.header.button.buyNow': 'Guaranteed!',
+        'home.header.button.buyNow': 'Buy Now!',
         'home.how.title': 'How?',
         'home.how.buying.desc': 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
         'home.how.buying.desc.alt': 'Buy NJ2JP Juices',
@@ -64,6 +64,24 @@ export default {
     },
     ja: {
       messages: {
+        'home.header.title': '日本で最速のニコチン電子ジュース納品',
+        'home.header.subtitle': '保証付き!',
+        'home.header.button.buyNow': '今買う!',
+        'home.how.title': 'どうやって？',
+        'home.how.buying.desc': '4種類のニコチンの強さを持つ美味しいジュースフレーバーを選んで注文してください。',
+        'home.how.buying.desc.alt': 'NJ2JPジュースを購入する',
+        'home.how.distro.desc': 'その後、カリフォルニア州の流通センターで注文を受け取ります。',
+        'home.how.distro.desc.alt': '流通センター',
+        'home.how.warehouse.desc': '私たちの流通センターはすぐにあなたのパッケージを準備します。',
+        'home.how.warehouse.desc.alt': '倉庫',
+        'home.how.flight.desc': '数時間後、あなたのパッケージはカリフォルニアから日本への直行便に乗せられます。',
+        'home.how.flight.desc.alt': '一晩のフライト',
+        'home.how.truck.desc': '着陸後すぐに、あなたのパッケージはあなたの日本の住所に向かう途中で配送トラックに乗っています。',
+        'home.how.truck.desc.alt': '配送トラック',
+        'home.how.delivery.desc': '数日後、Nic Juice 2 Japanからパッケージを受け取ります。 😁 ',
+        'home.how.delivery.desc.alt': '届いた',
+        'home.how.delivery.desc.buyNow': '今買う!',
+
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',
         'form.validation.error.bool.required': '必須',
