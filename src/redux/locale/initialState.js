@@ -40,7 +40,55 @@ export default {
         'home.reviews.slide4.blurb': 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
         'home.reviews.slide4.author': 'Justin Arians, Yokosuka',
 
-        'home.news.title': 'News & Reviews',
+        'home.news.article.title': 'News & Reviews',
+        'home.news.article.card1.header': 'Air Sampling confirms secondhand vapor is harmless',
+        'home.news.article.card1.content': 'The California Department of Public Health (CDPH), has been carrying out air sampling in vape shops throughout the state, as part of its initiative to determine the health effects of second-hand vapor exposure.',
+
+        'home.news.article.card2.header': 'Japan Tobacco playing catchup as nation takes to vaping in big way',
+        'home.news.article.card2.content': 'Competition to sate Japanese nicotine addicts is heating up. Philip Morris International Inc. and Japan Tobacco Inc. have rolled out products that are heated — not burned — in battery-charged devices, seeking to appeal to smokers who want their nicotine fix without the usual smell and smoke. The move, part of the rapidly growing global vaping trend, has created a bright spot on Japan’s otherwise bleak tobacco market.',
+
+        'home.news.review.card3.header': 'Vaping shouldn\'t taste this good!?',
+        'home.news.review.card3.subHeader': 'By Clark Kent on March 17, 2017',
+        'home.news.review.card3.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.news.article.card4.header': 'Philip Morris, Japan Tobacco to open more vape stores nationwide',
+        'home.news.article.card4.content': 'Philip Morris Japan Ltd. said Thursday that it will open a store in Tokyo’s Ginza district on Friday to sell its smokeless tobacco device iQOS. Also on Thursday, Japan Tobacco Inc. opened to the media a special shop in Fukuoka that will sell its smokeless tobacco device Ploom Tech, starting on Friday.',
+
+        'home.news.article.card5.header': 'PMI CEO talks about phasing out cigarettes in Japan   S. Korea',
+        'home.news.article.card5.content': 'The CEO of Philip Morris International (PMI), said that due to the popularity of their electronic device, iQOS, in Japan and South Korea, the tobacco company should be able to phase out combustible cigarettes in these countries within five years.  PMI’s iQOS device, is a smokeless alternative to combustible cigarettes and works by heating tobacco leaves known as Heets in Korea and HeatSticks in Japan.',
+
+        'home.news.review.card6.header': 'Saved my Marriage',
+        'home.news.review.card6.subheader': 'By Clark Kent on March 17, 2017',
+        'home.news.review.card6.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.news.article.card7.header': 'More data confirms that vaping is a safer alternative to smoking',
+        'home.news.article.card7.content': 'The study, Comparative tumor promotion assessment of e-cigarette and cigarettes using the in vitro Bhas 42 cell transformation assay, was conducted by BioReliance, funded by British American Tobacco (BAT) and published on Environmental and Molecular Mutagenesis.',
+
+        'home.news.article.card8.header': 'Michigan US : Smoking on decline partly thanks to e-cigs',
+        'home.news.article.card8.content': 'Michigan’s number of new cases of lung cancer peaked in 2007 at 8,161. It was down to 7,538 by 2013, which is the most recent data.” read an article on Michigan News. Since the 80’s, cigarette sales in the state have dropped by two thirds, however the rates of lung cancer are slower in catching up with these figures, as the people who were fervent smokers at that time, are now aging, hence still manifesting cancers.',
+
+        'home.news.article.card9.header': '3 facts smokers should know about vaping',
+        'home.news.article.card9.content': 'Smokers don’t seem to be much better informed about vaping than anyone else, which is unfortunate – after all they’re the ones who potentially have most to gain. It isn’t really a surprise though because smokers read the same newspapers, complete with the same alarming stories. Just to help set the record straight here are three facts every smoker should know about e-cigs.',
+
+        'home.news.article.card10.header': 'Absurdity at its Finest, the New War Against Vaping Goes Against Science',
+        'home.news.article.card10.content': 'Reminiscent of the days of prohibition, special interest groups are forcing personal beliefs against science, yet again. The ability to enjoy vaping is under attack with restrictive legislation from groups that are ignorant and believe the propaganda they are being fed. How can reason be interjected into this conversation, when popular belief isn’t always accurate?',
+
+        'home.news.article.card11.header': 'Study from Spain confirms effectivity of e-cigarettes',
+        'home.news.article.card11.content': 'A Spanish vapers association, Anesvap has released data which confirms what other countless studies have shown. The three main findings were that contrary to what many sources, such as the previous US Surgeon General, have claimed, vaping does not act as a gateway to smoking in young adults, that vaping is not as addictive as smoking, and also that it dramatically reduces smoking rates.',
+
+        'home.news.review.card12.header': 'It wasn\'t hard. It was just different',
+        'home.news.review.card12.subHeader': 'By Clark Kent on March 17, 2017',
+        'home.news.review.card12.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.news.article.card13.header': 'Shocking Penn State Study on Vaping and Cigarettes',
+        'home.news.article.card13.content': 'A new study out shows that people who use vape devices are less addicted to vaping than traditional smokers. The study, which was reported by Newswise, was conducted by the Penn State College of Medicine, a school that has an estimated $110 million in funded research, most notably in advancements in cancer treatments as well as the understanding of the fundamental causes of disease. It was led by Guodong Liu, an assistant professor of public health sciences at the college; Liu was joined by Emily Wasserman, a biostatistician, and Jonathan Foulds, a professor. Both work in the Department of Public Health Services at the Penn Tobacco Center of Regulatory Science. The study itself was funded by the National Institutes of Health and the Center for Tobacco Products.',
+
+        'home.news.article.card14.header': 'New Study Shows Vaping Less Harmful Again',
+        'home.news.article.card14.content': 'A study done by a Big Tobacco company has proven yet again that vaping is less harmful than smoking traditional cigarettes. The Sun is reporting that British American Tobacco, which produces brands like Benson and Hedges, Dunhill and Lucky Strike, funded the new study. The company has also entered into the vape market; it launched their first product in that market in 2013 under the name Vype. The company is also allocating resources to learning more about “alternative tobacco and nicotine products,” signaling that British American Tobacco may be ready to take on a role in the industry.',
+
+        'home.news.article.card15.header': 'I cant belive it was that easy!',
+        'home.news.article.card15.subHeader': 'By Clark Kent on March 17, 2017',
+        'home.news.article.card15.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
 
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
@@ -120,7 +168,55 @@ export default {
         'home.reviews.slide4.blurb': '私は月曜日に注文しました。木曜日の朝までに、私はニコチン電子ジュースを食べていました。 Nj2jpはすごく速いです！',
         'home.reviews.slide4.author': 'ジャスティン・アリアンズ、横須賀',
 
-        'home.news.title': '',
+        'home.news.article.title': 'ニュース＆レビュー',
+        'home.news.article.card1.header': '空気サンプリングは、間接蒸気が無害であることを確認する',
+        'home.news.article.card1.content': 'カリフォルニア州公衆衛生局（CDPH）は、間接蒸気曝露の健康影響を決定するイニシアチブの一環として、州全体の倉庫で空気サンプリングを実施しています.',
+
+        'home.news.article.card2.header': '日本がタバコを食い止め、大国になっていく',
+        'home.news.article.card2.content': '日本人のニコチン中毒者の競争が激化している。 Philip Morris International Inc.とJapan Tobacco Inc.は、通常の匂いや煙のないニコチンを欲しがる喫煙者にアピールするために、電池を充電した機器で加熱されたもの（燃えていないもの）を出しました。 急速に拡大している世界的な穀物流通の一環であるこの動きは、日本の荒廃したたばこ市場.',
+
+        'home.news.review.card3.header': 'ワイピングはこの味を味わってはいけません！',
+        'home.news.review.card3.subHeader': '2017年3月17日のCarl Stephanapolous',
+        'home.news.review.card3.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.news.article.card4.header': 'フィリップモリス、日本全国のたばこ店を開店',
+        'home.news.article.card4.content': 'フィリップ・モリス・ジャパンは、金曜日に東京の銀座地区に無煙たばこのiQOSを販売する店舗をオープンすると発表した。 また、木曜日に、日本のたばこ会社は福岡に無煙たばこ機「Ploom Tech」を販売する特別店をメディアにオープンした。',
+
+        'home.news.article.card5.header': 'PMIのCEO、日本のタバコの段階的廃止について語る',
+        'home.news.article.card5.content': 'フィリップ・モリス・インターナショナル（PMI）の最高経営責任者（CEO）は、電子機器iQOSの日本と韓国での人気のため、タバコ会社は5年以内にこれらの国々で可燃性紙巻きタバコを廃止できるはずだと述べた。 PMIのiQOS装置は、可燃性のたばこの無煙代替品であり、韓国のヒートと日本のヒート・スティックと呼ばれるタバコの葉を加熱することで動作します。',
+
+        'home.news.review.card6.header': '私の結婚を救った',
+        'home.news.review.card6.subheader': 'By Clark Kent on March 17, 2017',
+        'home.news.review.card6.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.news.article.card7.header': 'より多くのデータは、授乳が喫煙のより安全な選択肢であることを確認している',
+        'home.news.article.card7.content': 'インビトロBhas 42細胞形質転換アッセイを用いた電子タバコおよびタバコの比較腫瘍促進評価は、BioReliance（British American Tobacco（BAT）による資金提供を受け、Environmental and Molecular Mutagenesisに掲載）により実施された。',
+
+        'home.news.article.card8.header': 'ミシガン州米国：e-cigsのおかげで部分的に喫煙喫煙',
+        'home.news.article.card8.content': 'ミシガン州の肺癌の新たな症例数は2007年に8,161にピークに達した。 最新のデータである2013年までに7,538人になった」とミシガン・ニュースの記事を読んだ。 80年代以来、州のタバコ販売は3分の2に減少しましたが、熱い喫煙者であった人々が現在老化しており、それゆえ癌を発症しているため、これらの数字に追いつくのに肺がん率は遅くなります。',
+
+        'home.news.article.card9.header': '喫煙者は栄養について知っておくべき3つの事実',
+        'home.news.article.card9.content': '喫煙者は、他の誰よりも飢えを知っているようには思えません。不幸なことですが、結局のところ、彼らは潜在的に最も得意とする人です。 喫煙者が同じ新聞を読んで、同じ驚くべき物語を完成させたので、それは本当に驚きではありません。 レコードを真っ直ぐにするのを助けるのは、喫煙者が電子cigについて知っておくべき3つの事実です。',
+
+        'home.news.article.card10.header': '最悪の不条理、科学的に暴行する新戦争',
+        'home.news.article.card10.content': '禁断の時代を思い起こさせる特別な利益団体は、科学に対する個人的な信念を強要しています。 vapingを楽しむ能力は無知であり、彼らが養子になっている宣伝を信じているグループからの制限的な法律によって攻撃を受けている。 普遍的な信念が必ずしも正確ではないときに、この会話にどのようにして理由を入れることができますか？',
+
+        'home.news.article.card11.header': 'スペインからの研究が電子タバコの有効性を確認',
+        'home.news.article.card11.content': 'スペインの弁当協会、Anesvapは他の無数の研究が示していることを確認するデータを発表しました。 3つの主な所見は、前回の米国外科医のような多くの情報源が主張してきたこととは対照的に、若い成人の喫煙の玄関口ではなく、喫煙は喫煙ほど中毒ではなく、 喫煙率を低下させる。',
+
+        'home.news.review.card12.header': 'それは難しくありませんでした。 それはただ違っていた',
+        'home.news.review.card12.subHeader': 'By Clark Kent on March 17, 2017',
+        'home.news.review.card12.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.news.article.card13.header': 'ビーピングとたばこに関するショッキングペンの国家研究',
+        'home.news.article.card13.content': '新しい研究では、vapeデバイスを使用する人々が伝統的な喫煙者に比べて野菜の摂取量に殆ど依存していないことが示されています。 Newswiseによって報告されたこの研究は、ペンストン州立医科大学（Penn State College of Medicine）によって行われました。この学校は、資金療法の研究で1億1000万ドル、特に癌治療の進歩と病気の根本的原因の理解が最も顕著です。 それは、大学の公衆衛生科学の助教授、Guodong Liuによって率いられた。 劉氏は、生物統計学者のエミリー・ワッサーマンと、教授のジョナサン・フォルズが参加しました。 両者は、ペン・タバコ規制科学センターの公衆衛生サービス局で働いています。 研究自体は、国立衛生研究所とタバコ製品センターが資金提供していました。',
+
+        'home.news.article.card14.header': '新たな研究では、',
+        'home.news.article.card14.content': 'ビッグ・タバコ社が行った調査によると、タバコは伝統的なタバコを吸うよりも有害ではないことがもう一度証明されています。 Sunは、BensonやHedges、Dunhill、Lucky Strikeなどのブランドを生産するBritish American Tobaccoが新しい研究に資金を提供したと報告しています。 同社はまた、vape市場に参入した。 Vypeという名前で2013年にその市場に最初の製品を投入しました。 同社は、「代替タバコとニコチン製品」の詳細を学ぶためのリソースを配分しており、British American Tobaccoが業界での役割を果たす準備ができている可能性があることを示しています。',
+
+        'home.news.article.card15.header': '私はそれが簡単だったとは信じられない！',
+        'home.news.article.card15.subHeader': 'By Clark Kent on March 17, 2017',
+        'home.news.article.card15.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
 
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',

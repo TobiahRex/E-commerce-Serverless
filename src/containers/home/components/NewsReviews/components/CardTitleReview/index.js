@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
-const CardTitle = (props) => {
-  WebflowJs();
+const CardTitleReview = (props) => {
   const {
     header,
   } = props;
@@ -15,16 +14,14 @@ const CardTitle = (props) => {
       rel="noopener noreferrer"
       target="_blank"
     >
-      <h3
-        className="content--header news__content"
-      >
-        {header}
+      <h3 className="content--header news__content">
+        <IntlMsg id={header} />
       </h3>
     </a>
   );
 };
-CardTitle.propTypes = {
+CardTitleReview.propTypes = {
   header: PropTypes.string.isRequired,
 };
 
-export default CardTitle;
+export default CardTitleReview;
