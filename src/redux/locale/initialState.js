@@ -7,14 +7,12 @@ export default {
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
         'home.header.button.buyNow': 'Buy Now!',
-
         'home.fastest.title': 'Fastest Delivery',
         'home.fastest.subtitle': 'Nobody is faster in Japan',
         'home.fastest.desc1': 'No one can deliver Nicotine E-Juice to Japan faster than us.',
         'home.fastest.desc2': 'Once you shop with us and see how fast we are, we\'re confident you won\'t want to buy Nicotine vape juice from anywhere else.',
         'home.fastest.desc3': 'Hard to believe? Try us now! You’ll be happy you did.',
         'home.fastest.buyNow': 'Buy Now!',
-
         'home.how.title': 'How?',
         'home.how.buying.desc': 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
         'home.how.buying.desc.alt': 'Buy NJ2JP Juices',
@@ -29,7 +27,6 @@ export default {
         'home.how.delivery.desc': 'A few days later, you receive your package from Nic Juice 2 Japan. 😁 ',
         'home.how.delivery.desc.alt': 'Delivered',
         'home.how.delivery.desc.buyNow': 'Buy Now!',
-
         'home.reviews.title': 'Reviews',
         'home.reviews.slide1.blurb': 'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.',
         'home.reviews.slide1.author': 'Matt Shipmen',
@@ -39,57 +36,60 @@ export default {
         'home.reviews.slide3.author': 'Robert McNair, Sasebo',
         'home.reviews.slide4.blurb': 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
         'home.reviews.slide4.author': 'Justin Arians, Yokosuka',
-
         'home.news.title': 'News & Reviews',
         'home.news.article.readMore': 'Read More...',
         'home.news.article.card1.header': 'Air Sampling confirms secondhand vapor is harmless',
         'home.news.article.card1.content': 'The California Department of Public Health (CDPH), has been carrying out air sampling in vape shops throughout the state, as part of its initiative to determine the health effects of second-hand vapor exposure.',
-
         'home.news.article.card2.header': 'Japan Tobacco playing catchup as nation takes to vaping in big way',
         'home.news.article.card2.content': 'Competition to sate Japanese nicotine addicts is heating up. Philip Morris International Inc. and Japan Tobacco Inc. have rolled out products that are heated — not burned — in battery-charged devices, seeking to appeal to smokers who want their nicotine fix without the usual smell and smoke. The move, part of the rapidly growing global vaping trend, has created a bright spot on Japan’s otherwise bleak tobacco market.',
-
         'home.news.review.card3.header': 'Vaping shouldn\'t taste this good!?',
         'home.news.review.card3.subHeader': 'By Clark Kent on March 17, 2017',
         'home.news.review.card3.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.news.article.card4.header': 'Philip Morris, Japan Tobacco to open more vape stores nationwide',
         'home.news.article.card4.content': 'Philip Morris Japan Ltd. said Thursday that it will open a store in Tokyo’s Ginza district on Friday to sell its smokeless tobacco device iQOS. Also on Thursday, Japan Tobacco Inc. opened to the media a special shop in Fukuoka that will sell its smokeless tobacco device Ploom Tech, starting on Friday.',
-
         'home.news.article.card5.header': 'PMI CEO talks about phasing out cigarettes in Japan   S. Korea',
         'home.news.article.card5.content': 'The CEO of Philip Morris International (PMI), said that due to the popularity of their electronic device, iQOS, in Japan and South Korea, the tobacco company should be able to phase out combustible cigarettes in these countries within five years.  PMI’s iQOS device, is a smokeless alternative to combustible cigarettes and works by heating tobacco leaves known as Heets in Korea and HeatSticks in Japan.',
-
         'home.news.review.card6.header': 'Saved my Marriage',
         'home.news.review.card6.subheader': 'By Clark Kent on March 17, 2017',
         'home.news.review.card6.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.news.article.card7.header': 'More data confirms that vaping is a safer alternative to smoking',
         'home.news.article.card7.content': 'The study, Comparative tumor promotion assessment of e-cigarette and cigarettes using the in vitro Bhas 42 cell transformation assay, was conducted by BioReliance, funded by British American Tobacco (BAT) and published on Environmental and Molecular Mutagenesis.',
-
         'home.news.article.card8.header': 'Michigan US : Smoking on decline partly thanks to e-cigs',
         'home.news.article.card8.content': 'Michigan’s number of new cases of lung cancer peaked in 2007 at 8,161. It was down to 7,538 by 2013, which is the most recent data.” read an article on Michigan News. Since the 80’s, cigarette sales in the state have dropped by two thirds, however the rates of lung cancer are slower in catching up with these figures, as the people who were fervent smokers at that time, are now aging, hence still manifesting cancers.',
-
         'home.news.article.card9.header': '3 facts smokers should know about vaping',
         'home.news.article.card9.content': 'Smokers don’t seem to be much better informed about vaping than anyone else, which is unfortunate – after all they’re the ones who potentially have most to gain. It isn’t really a surprise though because smokers read the same newspapers, complete with the same alarming stories. Just to help set the record straight here are three facts every smoker should know about e-cigs.',
-
         'home.news.article.card10.header': 'Absurdity at its Finest, the New War Against Vaping Goes Against Science',
         'home.news.article.card10.content': 'Reminiscent of the days of prohibition, special interest groups are forcing personal beliefs against science, yet again. The ability to enjoy vaping is under attack with restrictive legislation from groups that are ignorant and believe the propaganda they are being fed. How can reason be interjected into this conversation, when popular belief isn’t always accurate?',
-
         'home.news.article.card11.header': 'Study from Spain confirms effectivity of e-cigarettes',
         'home.news.article.card11.content': 'A Spanish vapers association, Anesvap has released data which confirms what other countless studies have shown. The three main findings were that contrary to what many sources, such as the previous US Surgeon General, have claimed, vaping does not act as a gateway to smoking in young adults, that vaping is not as addictive as smoking, and also that it dramatically reduces smoking rates.',
-
         'home.news.review.card12.header': 'It wasn\'t hard. It was just different',
         'home.news.review.card12.subHeader': 'By Clark Kent on March 17, 2017',
         'home.news.review.card12.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.news.article.card13.header': 'Shocking Penn State Study on Vaping and Cigarettes',
         'home.news.article.card13.content': 'A new study out shows that people who use vape devices are less addicted to vaping than traditional smokers. The study, which was reported by Newswise, was conducted by the Penn State College of Medicine, a school that has an estimated $110 million in funded research, most notably in advancements in cancer treatments as well as the understanding of the fundamental causes of disease. It was led by Guodong Liu, an assistant professor of public health sciences at the college; Liu was joined by Emily Wasserman, a biostatistician, and Jonathan Foulds, a professor. Both work in the Department of Public Health Services at the Penn Tobacco Center of Regulatory Science. The study itself was funded by the National Institutes of Health and the Center for Tobacco Products.',
-
         'home.news.article.card14.header': 'New Study Shows Vaping Less Harmful Again',
         'home.news.article.card14.content': 'A study done by a Big Tobacco company has proven yet again that vaping is less harmful than smoking traditional cigarettes. The Sun is reporting that British American Tobacco, which produces brands like Benson and Hedges, Dunhill and Lucky Strike, funded the new study. The company has also entered into the vape market; it launched their first product in that market in 2013 under the name Vype. The company is also allocating resources to learning more about “alternative tobacco and nicotine products,” signaling that British American Tobacco may be ready to take on a role in the industry.',
-
         'home.news.article.card15.header': 'I cant belive it was that easy!',
         'home.news.article.card15.subHeader': 'By Clark Kent on March 17, 2017',
         'home.news.article.card15.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.footer.general.title': 'NJ2JP',
+        'home.footer.general.aboutUs': 'About Us',
+        'home.footer.general.contactUs': 'Contact Us',
+        'home.footer.general.vapeNews': 'Vape News',
+        'home.footer.general.productReviews': 'Product Reviews',
+        'home.footer.general.userStories': 'User Stories',
+
+        'home.footer.customer.title': 'Customer Care',
+        'home.footer.customer.privacyPolicy': 'Privacy Policy',
+        'home.footer.customer.shippingPolicy': 'Shipping Policy',
+        'home.footer.customer.returnPolicy': 'Return Policy',
+        'home.footer.customer.nicotineDisclaimer': 'Nicotine Disclaimer',
+        'home.footer.customer.termsConditions': 'Terms & Conditions',
+
+        'home.footer.contact.title': 'Get In Touch',
+
+        'home.footer.connect.title': 'Connect With Us',
 
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
