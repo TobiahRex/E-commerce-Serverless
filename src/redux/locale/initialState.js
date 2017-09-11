@@ -4,9 +4,16 @@ export default {
   translations: {
     en: {
       messages: {
-        'home.splash.title': 'Fastest Nicotine e-Juice Delivery In Japan',
-        'home.splash.subtitle': 'Guaranteed!',
-        'home.splash.button.buyNow': 'Guaranteed!',
+        'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
+        'home.header.subtitle': 'Guaranteed!',
+        'home.header.button.buyNow': 'Guaranteed!',
+        'home.how.title': 'How?',
+        'home.how.buying.desc': 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
+        'home.how.buying.desc.alt': 'Buy NJ2JP Juices',
+        'home.how.distro.desc': 'Moments later, we receive your order at our Distribution Center in California.',
+        'home.how.distro.alt': 'Distribution Center',
+        'home.how.warehouse.desc': 'Our distribution center then quickly prepares your package.',
+        'home.how.warehouse.alt': 'Warehouse',
 
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',

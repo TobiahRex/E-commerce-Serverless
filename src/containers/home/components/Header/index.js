@@ -49,15 +49,9 @@ export default HomepageHeader;
 
 /*
 TODO
-1. Add "Shutter Out Horizontal" CTA to Splash Header.
-
-2. Add arrow down pulse to Home pages.
-
 3. Rename Homepage style sheets classes to BEM syntax.
 
 4. Add sectional scrolling to Homepage.
-
-5. Create Mockups & Wireframes for Homepage bottom section.
 
 6. Add single parallax for Homepage image.
 http://jsfiddle.net/X7UwG/

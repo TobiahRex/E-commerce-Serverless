@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import NavBob from '../NavBob';
 
 import CarouselImageSlide from '../../../../components/CarouselImageSlide/carouselImageSlide';
@@ -49,16 +50,16 @@ class HomepageHowCarousel extends Component {
   renderCarouselSlides = (maxWidth) => {
     const slideDescs = [{
       name: 'couple',
-      desc: 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
+      desc: 'home.how.buying.desc',
       alt: 'Buy NJ2JP Juices',
     }, {
       name: 'distro',
-      desc: 'Moments later, we receive your order at our Distribution Center in California.',
-      alt: 'Distribution Center',
+      desc: 'home.how.distro.desc',
+      alt: 'home.how.distro.desc.alt',
     }, {
       name: 'warehouse',
-      desc: 'Our distribution center then quickly prepares your package.',
-      alt: 'Warehouse',
+      desc: 'home.how.warehouse.desc',
+      alt: 'home.how.warehouse.desc.alt',
     }, {
       name: 'flight',
       desc: 'A few hours later, your package is put on a direct flight from California to Japan.',
@@ -114,7 +115,9 @@ class HomepageHowCarousel extends Component {
     return (
       <div className="homepage__how" style={{ height }}>
         <div className="how__content--container">
-          <h1 className="content__title">How?</h1>
+          <h1 className="content__title">
+            <IntlMsg id="home.how.title" />
+          </h1>
           <div className="content__carousel--container">
             <div
               style={stylesObj.slides}
