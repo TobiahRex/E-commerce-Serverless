@@ -41,6 +41,7 @@ export default {
         'home.reviews.slide4.author': 'Justin Arians, Yokosuka',
 
         'home.news.article.title': 'News & Reviews',
+        'home.news.article.readMore': 'Read More...',
         'home.news.article.card1.header': 'Air Sampling confirms secondhand vapor is harmless',
         'home.news.article.card1.content': 'The California Department of Public Health (CDPH), has been carrying out air sampling in vape shops throughout the state, as part of its initiative to determine the health effects of second-hand vapor exposure.',
 
@@ -169,6 +170,7 @@ export default {
         'home.reviews.slide4.author': 'ジャスティン・アリアンズ、横須賀',
 
         'home.news.article.title': 'ニュース＆レビュー',
+        'home.news.article.readMore': '続きを読む...',
         'home.news.article.card1.header': '空気サンプリングは、間接蒸気が無害であることを確認する',
         'home.news.article.card1.content': 'カリフォルニア州公衆衛生局（CDPH）は、間接蒸気曝露の健康影響を決定するイニシアチブの一環として、州全体の倉庫で空気サンプリングを実施しています.',
 

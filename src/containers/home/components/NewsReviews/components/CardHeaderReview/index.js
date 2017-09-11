@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMsg as IntlMsg } from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const CardHeader = ({ header }) => (
   <h3 className="reviews-content__text text--heading">

@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
-
 import {
   CardBlurbArticle,
   CardMoreLinkArticle,
@@ -9,24 +7,20 @@ import {
 } from '../';
 
 
-const CardBody = (props) => {
-  WebflowJs(); //eslint-disable-line
-
-  return (
-    <div className="masonry-column__news news--content">
-      <CardTitleArticle
-        header={props.header}
-        link={props.link}
-      />
-      <CardBlurbArticle
-        content={props.content}
-      />
-      <CardMoreLinkArticle
-        link={props.link}
-      />
-    </div>
-  );
-};
+const CardBody = ({ link, content, header }) => (
+  <div className="masonry-column__news news--content">
+    <CardTitleArticle
+      header={header}
+      link={link}
+    />
+    <CardBlurbArticle
+      content={content}
+    />
+    <CardMoreLinkArticle
+      link={link}
+    />
+  </div>
+);
 
 const {
   string,
