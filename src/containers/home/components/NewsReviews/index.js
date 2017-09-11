@@ -1,10 +1,9 @@
 import React from 'react';
-import Masonry from 'masonry-layout';
 import './assets/styles/style.css';
 import './assets/styles/reviews.css';
 import './assets/styles/news.css';
 import { propTypes } from './assets/propValidation';
-import { WebflowJs, contentData } from './assets/utils';
+import { contentData } from './assets/utils';
 import { CardReview, CardArticle } from './components';
 
 class HomepageMasonry extends React.Component {
@@ -15,18 +14,6 @@ class HomepageMasonry extends React.Component {
     this.state = {
       x: '',
     };
-  }
-
-  componentDidMount() {
-    WebflowJs(); // eslint-disable-line
-  }
-
-  componentWillUpdate() {
-    const msnry = new Masonry('.grid', { // eslint-disable-line
-      itemSelector: '.masonry__grid',
-      columnWidth: 340,
-      gutter: 22,
-    });
   }
 
   renderHelper = data => data.map((dataObj) => {

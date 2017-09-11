@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import NavBob from './navBob';
+import NavBob from '../NavBob';
 
-import CarouselImageSlide from '../../../components/CarouselImageSlide/carouselImageSlide';
-import CarouselNav from '../../../components/carouselNav';
+import CarouselImageSlide from '../../../../components/CarouselImageSlide/carouselImageSlide';
+import CarouselNav from '../../../../components/carouselNav';
 
 const { number } = PropTypes;
 class HomepageHowCarousel extends Component {

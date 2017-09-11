@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import NavBob from './navBob';
-import HomepageReviewsSlide from '../../../components/CarouselTextSlide/carouselTextSlide';
-import HomepageReviewsCarourselDots from '../../../components/CarouselDots/carouselDots';
+import NavBob from '../NavBob';
+import HomepageReviewsSlide from '../../../../components/CarouselTextSlide/carouselTextSlide';
+import HomepageReviewsCarourselDots from '../../../../components/CarouselDots/carouselDots';
 
 let globalTimer;
 const { string, number } = PropTypes;

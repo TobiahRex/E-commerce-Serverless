@@ -28,7 +28,7 @@ export default (
   <Route path="/" component={App} auth={auth}>
     <IndexRoute
       getComponent={(location, cb) => {
-        import('../containers/home/homePage' /* webpackChunkName: "homePage" */)
+        import('../containers/home' /* webpackChunkName: "homePage" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -38,9 +38,9 @@ export default (
     {Routes.LegalRoutes()}
     {Routes.AuthRoutes(auth, parseAuthHash)}
     {Routes.CheckoutRoutes()}
-    {/* {Routes.UserDashboardRoutes(requireAuth)} */}
-    {/* {Routes.AdminDashboardRoutes(requireAuth)} */}
     {Routes.NotFoundRoute()}
     {Routes.TrackingRoute()}
+    {/* {Routes.UserDashboardRoutes(requireAuth)} */}
+    {/* {Routes.AdminDashboardRoutes(requireAuth)} */}
   </Route>
 );

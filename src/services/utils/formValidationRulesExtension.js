@@ -1,13 +1,13 @@
 import React from 'react';
 import validator from 'validator';
 import Validation from 'react-validation';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 Object.assign(Validation.rules, {
   api: {
     hint: () => (
       <button className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.api" />
+        <IntlMsg id="form.validation.error.api" />
       </button>
     ),
   },
@@ -15,14 +15,14 @@ Object.assign(Validation.rules, {
   required: {
     rule: value => value.toString().trim(),
     hint: () => <span className="form-error is-visible">
-      <FormattedMessage id="form.validation.error.required" />
+      <IntlMsg id="form.validation.error.required" />
     </span>,
   },
 
   boolRequired: {
     rule: value => Boolean(value),
     hint: () => <span className="form-error is-visible">
-      <FormattedMessage id="form.validation.error.bool.required" />
+      <IntlMsg id="form.validation.error.bool.required" />
     </span>,
   },
 
@@ -41,7 +41,7 @@ Object.assign(Validation.rules, {
     rule: value => validator.isAlpha(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.alpha" />
+        <IntlMsg id="form.validation.error.alpha" />
       </span>
     ),
   },
@@ -50,7 +50,7 @@ Object.assign(Validation.rules, {
     rule: value => validator.isNumeric(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.numeric" />
+        <IntlMsg id="form.validation.error.numeric" />
       </span>
     ),
   },
@@ -59,7 +59,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.us-zip" />
+        <IntlMsg id="form.validation.error.us-zip" />
       </span>
     ),
   },
@@ -68,7 +68,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{7}$)|(^\d{3}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.japan-postal" />
+        <IntlMsg id="form.validation.error.japan-postal" />
       </span>
     ),
   },
@@ -81,7 +81,7 @@ Object.assign(Validation.rules, {
     },
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.phone-japanLength" />
+        <IntlMsg id="form.validation.error.phone-japanLength" />
       </span>
     ),
   },
@@ -90,7 +90,7 @@ Object.assign(Validation.rules, {
     rule: value => (value[0] === '0'),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.phone-startWithZero" />
+        <IntlMsg id="form.validation.error.phone-startWithZero" />
       </span>
     ),
   },
@@ -99,7 +99,7 @@ Object.assign(Validation.rules, {
     rule: value => validator.isLength(value, { min: 3, max: 20 }),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.city" />
+        <IntlMsg id="form.validation.error.city" />
       </span>
     ),
   },
@@ -108,7 +108,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.ccName" />
+        <IntlMsg id="form.validation.error.ccName" />
       </span>
     ),
   },
@@ -117,7 +117,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.ccName-firstLast" />
+        <IntlMsg id="form.validation.error.ccName-firstLast" />
       </span>
     ),
   },
@@ -126,7 +126,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.contactUsName" />
+        <IntlMsg id="form.validation.error.contactUsName" />
       </span>
     ),
   },
@@ -135,7 +135,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.contactUsTextArea" />
+        <IntlMsg id="form.validation.error.contactUsTextArea" />
       </span>
     ),
   },
@@ -144,7 +144,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="" />
+        <IntlMsg id="" />
       </span>
     ),
   },
@@ -153,7 +153,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{16}$)|(^\d{4}-\d{4}-\d{4}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.ccNumber" />
+        <IntlMsg id="form.validation.error.ccNumber" />
       </span>
     ),
   },
@@ -162,7 +162,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{3}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.ccCvn" />
+        <IntlMsg id="form.validation.error.ccCvn" />
       </span>
     ),
   },
@@ -185,7 +185,7 @@ Object.assign(Validation.rules, {
     },
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.validation.error.password" />
+        <IntlMsg id="form.validation.error.password" />
       </span>
     ),
   },
@@ -193,7 +193,7 @@ Object.assign(Validation.rules, {
   postalApi: {
     hint: () => (
       <span className="form-error is-visible">
-        <FormattedMessage id="form.valdation.error.postalApi" />
+        <IntlMsg id="form.valdation.error.postalApi" />
       </span>
     ),
   },

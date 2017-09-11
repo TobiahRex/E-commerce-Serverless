@@ -1,14 +1,15 @@
+import Masonry from 'masonry-layout';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
 import {
-  HomepageHeader,
-  HomepageFastestDelivery,
-  HomepageHowCarousel,
-  HomepageReviewsCarousel,
-  HomepageMasonry,
+  Header,
+  FastestDelivery,
+  HowCarousel,
+  ReviewsCarousel,
+  NewsReviews,
 } from './components';
 
 const { bool } = PropTypes;
@@ -35,26 +36,34 @@ class HomePage extends Component {
     return (window.innerHeight - 60);
   }
 
+  componentWillUpdate() {
+    const msnry = new Masonry('.grid', { // eslint-disable-line
+      itemSelector: '.masonry__grid',
+      columnWidth: 340,
+      gutter: 22,
+    });
+  }
+
   render() {
     return (
       <div className="homepage">
-        <HomepageHeader
+        <Header
           height={this.calculateHeight(true)}
           mobile={this.props.mobile}
         />
-        <HomepageFastestDelivery
+        <FastestDelivery
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
-        <HomepageHowCarousel
+        <HowCarousel
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
-        <HomepageReviewsCarousel
+        <ReviewsCarousel
           height={this.calculateHeight()}
           mobile={this.props.mobile}
         />
-        <HomepageMasonry />
+        <NewsReviews />
       </div>
     );
   }
