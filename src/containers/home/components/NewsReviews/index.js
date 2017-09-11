@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import './assets/styles/style.css';
 import './assets/styles/reviews.css';
 import './assets/styles/news.css';
@@ -42,7 +43,7 @@ class NewsReviews extends React.Component {
     return (
       <div>
         <h1 className="masonry-header">
-          News & Reviews
+          <IntlMsg id="home.news.title" />
         </h1>
         <div className="masonry-column grid">
           <div className="masonry__grid">

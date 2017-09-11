@@ -40,6 +40,8 @@ export default {
         'home.reviews.slide4.blurb': 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
         'home.reviews.slide4.author': 'Justin Arians, Yokosuka',
 
+        'home.news.title': 'News & Reviews',
+
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
         'form.validation.error.bool.required': 'Required',
@@ -117,6 +119,8 @@ export default {
         'home.reviews.slide3.author': 'ロバート・マクネア、佐世保',
         'home.reviews.slide4.blurb': '私は月曜日に注文しました。木曜日の朝までに、私はニコチン電子ジュースを食べていました。 Nj2jpはすごく速いです！',
         'home.reviews.slide4.author': 'ジャスティン・アリアンズ、横須賀',
+
+        'home.news.title': '',
 
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',
