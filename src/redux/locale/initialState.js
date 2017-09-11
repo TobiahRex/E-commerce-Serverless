@@ -31,6 +31,14 @@ export default {
         'home.how.delivery.desc.buyNow': 'Buy Now!',
 
         'home.reviews.title': 'Reviews',
+        'home.reviews.slide1.blurb': 'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.',
+        'home.reviews.slide1.author': 'Matt Shipmen',
+        'home.reviews.slide2.blurb': 'Wow! Fruity Bamm-Bamm = Delicious.  4 Day Delivery = Fast. My New Juice Source = NJ2JP.',
+        'home.reviews.slide2.author': 'Gene Smith, Okinawa',
+        'home.reviews.slide3.blurb': 'NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to more juices flavors.',
+        'home.reviews.slide3.author': 'Robert McNair, Sasebo',
+        'home.reviews.slide4.blurb': 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
+        'home.reviews.slide4.author': 'Justin Arians, Yokosuka',
 
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',

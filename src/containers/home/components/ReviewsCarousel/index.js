@@ -21,23 +21,23 @@ class ReviewsCarousel extends Component {
   static reviews = [
     {
       className: 'slides--slide',
-      review: 'Well, NJ2JP wasn’t lying. 5 days to Fukuoka. Way faster than all of my previous online choices. I’m sold.',
-      author: 'Matt Shipmen',
+      review: 'home.reviews.slide1.blurb',
+      author: 'home.reviews.slide1.author',
     },
     {
       className: 'slides--slide',
-      review: 'Wow! Fruity Bamm-Bamm = Delicious.  4 Day Delivery = Fast. My New Juice Source = NJ2JP.',
-      author: 'Gene Smith, Okinawa',
+      review: 'home.reviews.slide2.blurb',
+      author: 'home.reviews.slide2.author',
     },
     {
       className: 'slides--slide',
-      review: 'NicJuice2Japan (NJ2JP) are killing it with these delivery speeds. Not to mention the juice line is delicious.  Looking forward to more juices flavors.',
-      author: 'Robert McNair, Sasebo',
+      review: 'home.reviews.slide3.blurb',
+      author: 'home.reviews.slide3.author',
     },
     {
       className: 'slides--slide',
-      review: 'I placed my order on Monday, by Thursday morning, I was vaping Nicotine e-juice. Nj2jp is blazing fast!',
-      author: 'Justin Arians, Yokosuka',
+      review: 'home.reviews.slide4.blurb',
+      author: 'home.reviews.slide4.author',
     },
   ]
   constructor(props) {
