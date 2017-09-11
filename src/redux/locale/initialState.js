@@ -4,6 +4,10 @@ export default {
   translations: {
     en: {
       messages: {
+        'home.splash.title': 'Fastest Nicotine e-Juice Delivery In Japan',
+        'home.splash.subtitle': 'Guaranteed!',
+        'home.splash.button.buyNow': 'Guaranteed!',
+
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
         'form.validation.error.bool.required': 'Required',

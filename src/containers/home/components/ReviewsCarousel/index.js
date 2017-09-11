@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NavBob from '../NavBob';
-import HomepageReviewsSlide from '../../../../components/CarouselTextSlide/carouselTextSlide';
-import HomepageReviewsCarourselDots from '../../../../components/CarouselDots/carouselDots';
+import ReviewsSlide from '../../../../components/CarouselTextSlide/carouselTextSlide';
+import ReviewsCarourselDots from '../../../../components/CarouselDots/carouselDots';
 
 let globalTimer;
 const { string, number } = PropTypes;
 
-class HomepageReviewsCarousel extends Component {
+class ReviewsCarousel extends Component {
   static defaultProps = {
     screenSize: window.screen.availWidth,
   }
@@ -135,8 +135,8 @@ class HomepageReviewsCarousel extends Component {
           <div className="content__carousel--parent">
             <div className="carousel--container">
               <div style={leftAdjust} className="carousel__slides">
-                { HomepageReviewsCarousel.reviews.map(({ className, review, author }) =>
-                  <HomepageReviewsSlide
+                { ReviewsCarousel.reviews.map(({ className, review, author }) =>
+                  <ReviewsSlide
                     key={new Buffer(author, 'utf8').toString('base64')}
                     maxWidth={newMaxWidth}
                     className={className}
@@ -147,7 +147,7 @@ class HomepageReviewsCarousel extends Component {
               </div>
             </div>
           </div>
-          <HomepageReviewsCarourselDots
+          <ReviewsCarourselDots
             show={showIndex}
             handleClick={this.handleClick}
           />
@@ -163,4 +163,4 @@ class HomepageReviewsCarousel extends Component {
 const mapStateToProps = ({ mobile }) => ({
   screenSize: mobile.screenWidth,
 });
-export default connect(mapStateToProps, null)(HomepageReviewsCarousel);
+export default connect(mapStateToProps, null)(ReviewsCarousel);
