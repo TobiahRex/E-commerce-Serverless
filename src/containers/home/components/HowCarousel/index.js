@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import NavBob from '../NavBob';
 
-import CarouselImageSlide from '../../../../components/CarouselImageSlide/carouselImageSlide';
+import CarouselImageSlide from '../';
 import CarouselNav from '../../../../components/carouselNav';
 
 const { number } = PropTypes;

@@ -20,6 +20,7 @@ export default {
         'home.how.truck.desc.alt': 'Delivery Truck',
         'home.how.delivery.desc': 'A few days later, you receive your package from Nic Juice 2 Japan. 😁 ',
         'home.how.delivery.desc.alt': 'Delivered',
+        'home.how.delivery.desc.buyNow': 'Buy Now!',
 
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
