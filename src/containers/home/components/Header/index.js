@@ -20,14 +20,14 @@ function HomepageHeader({ height, mobile }) {
           <img src="/images/nj2jp_oneLine_2.png" alt="NicJuice2Japan" className="header__img-src" />
           <div className="header__msg--container">
             <h1 className="msg__title">
-              <IntlMsg id="home.splash.title" />
+              <IntlMsg id="home.header.title" />
             </h1>
             <h1 className="msg__subtitle">
-              <IntlMsg id="home.splash.subtitle" />
+              <IntlMsg id="home.header.subtitle" />
             </h1>
           </div>
           <button className="header__cta primary-button shutter-out-horizontal" onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}>
-            <IntlMsg id="home.splash.button.buyNow" />
+            <IntlMsg id="home.header.button.buyNow" />
           </button>
         </div>
       </div>

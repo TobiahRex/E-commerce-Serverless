@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import NavBob from '../NavBob';
-
-import CarouselImageSlide from '../';
-import CarouselNav from '../../../../components/carouselNav';
+import {
+  NavBob,
+  CarouselNav,
+  CarouselImgSlide,
+} from '../';
 
 const { number } = PropTypes;
-class HomepageHowCarousel extends Component {
+class HowCarousel extends Component {
   static defaultProps = {
     screenSize: window.screen.availWidth,
   }
@@ -74,7 +75,7 @@ class HomepageHowCarousel extends Component {
       alt: 'home.how.delivery.desc.alt',
     }];
     return slideDescs.map(({ name, desc, alt }) => (
-      <CarouselImageSlide
+      <CarouselImgSlide
         maxWidth={maxWidth}
         key={`homepage-how-carousel-${name}`}
         className="carousel__slides--slide"
@@ -155,4 +156,4 @@ class HomepageHowCarousel extends Component {
 const mapStateToProps = ({ mobile }) => ({
   screenSize: Number(mobile.screenWidth),
 });
-export default connect(mapStateToProps, null)(HomepageHowCarousel);
+export default connect(mapStateToProps, null)(HowCarousel);
