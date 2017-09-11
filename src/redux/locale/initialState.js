@@ -30,6 +30,8 @@ export default {
         'home.how.delivery.desc.alt': 'Delivered',
         'home.how.delivery.desc.buyNow': 'Buy Now!',
 
+        'home.reviews.title': 'Reviews',
+
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
         'form.validation.error.bool.required': 'Required',

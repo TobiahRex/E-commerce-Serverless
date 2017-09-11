@@ -6,7 +6,7 @@ import { propTypes } from './assets/propValidation';
 import { contentData } from './assets/utils';
 import { CardReview, CardArticle } from './components';
 
-class HomepageMasonry extends React.Component {
+class NewsReviews extends React.Component {
   static propTypes = propTypes;
 
   constructor(props) {
@@ -41,7 +41,9 @@ class HomepageMasonry extends React.Component {
     const groupLength = Math.floor(contentArray.length / 3);
     return (
       <div>
-        <h1 className="masonry-header">News & Reviews</h1>
+        <h1 className="masonry-header">
+          News & Reviews
+        </h1>
         <div className="masonry-column grid">
           <div className="masonry__grid">
             {this.renderHelper(contentArray.slice(0, groupLength))}
@@ -58,4 +60,4 @@ class HomepageMasonry extends React.Component {
   }
 }
 
-export default HomepageMasonry;
+export default NewsReviews;

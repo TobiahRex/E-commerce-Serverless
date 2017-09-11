@@ -6,7 +6,7 @@ import NavBob from '../NavBob';
 
 const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 
-function HomepageFastestDelivery({ height, mobile }) {
+function FastestDelivery({ height, mobile }) {
   let display;
   if (mobile) {
     display = {
@@ -63,8 +63,8 @@ function HomepageFastestDelivery({ height, mobile }) {
   );
 }
 const { number, bool } = PropTypes;
-HomepageFastestDelivery.propTypes = {
+FastestDelivery.propTypes = {
   height: number.isRequired,
   mobile: bool.isRequired,
 };
-export default HomepageFastestDelivery;
+export default FastestDelivery;

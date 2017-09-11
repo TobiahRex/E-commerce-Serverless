@@ -6,7 +6,7 @@ import NavBob from '../NavBob';
 
 const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 
-function HomepageHeader({ height, mobile }) {
+function Header({ height, mobile }) {
   let navBob;
   if (mobile) {
     height = '';
@@ -43,9 +43,9 @@ const propTypes = {
 const defaultProps = {
   mobile: false,
 };
-HomepageHeader.defaultProps = defaultProps;
-HomepageHeader.propTypes = propTypes;
-export default HomepageHeader;
+Header.defaultProps = defaultProps;
+Header.propTypes = propTypes;
+export default Header;
 
 /*
 TODO

@@ -15,7 +15,7 @@ const propTypes = {
 
 const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 
-function CarouselSlide({ maxWidth, className, name, description, alt }) {
+function CarouselImageSlide({ maxWidth, className, name, description, alt }) {
   return (
     <div className={`${className}__${name}`}>
       <div
@@ -41,8 +41,8 @@ function CarouselSlide({ maxWidth, className, name, description, alt }) {
   );
 }
 
-CarouselSlide.propTypes = propTypes;
-export default CarouselSlide;
+CarouselImageSlide.propTypes = propTypes;
+export default CarouselImageSlide;
 
 /* NOTE
 1. className example = "homepage-how-carousel"

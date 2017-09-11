@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import NavBob from '../NavBob';
 import ReviewsSlide from '../../../../components/CarouselTextSlide/carouselTextSlide';
 import ReviewsCarourselDots from '../../../../components/CarouselDots/carouselDots';
@@ -131,7 +132,9 @@ class ReviewsCarousel extends Component {
     return (
       <div className="homepage__reviews" style={{ height }} >
         <div className="reviews__content--container">
-          <h1 className="content__title">Reviews</h1>
+          <h1 className="content__title">
+            <IntlMsg id="home.reviews.title" />
+          </h1>
           <div className="content__carousel--parent">
             <div className="carousel--container">
               <div style={leftAdjust} className="carousel__slides">
