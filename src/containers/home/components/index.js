@@ -6,3 +6,4 @@ export ReviewsCarousel from './ReviewsCarousel';
 export NewsReviews from './NewsReviews';
 export CarouselImgSlide from './CarouselImgSlide';
 export CarouselNav from './CarouselNav';
+export ReviewsSlide from './ReviewsSlide';

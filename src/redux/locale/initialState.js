@@ -108,6 +108,16 @@ export default {
         'home.how.delivery.desc.alt': '届いた',
         'home.how.delivery.desc.buyNow': '今買う!',
 
+        'home.reviews.title': 'レビュー',
+        'home.reviews.slide1.blurb': 'さて、NJ2JPは横たわっていませんでした。 福岡まで5日間。 これまでのオンラインの選択肢よりもずっと速い。 私は確信しています。',
+        'home.reviews.slide1.author': 'マットシップメン',
+        'home.reviews.slide2.blurb': 'うわー！ 果肉Bamm-Bamm =おいしい。 4日の配達=速い。 私の新しいジュースソース= NJ2JP。',
+        'home.reviews.slide2.author': 'ジーンスミス、沖縄',
+        'home.reviews.slide3.blurb': 'NicJuice2Japanは、これらの配信速度でそれを殺しています。 ジュースラインはもちろん、おいしいです。 もっとジュースの風味を楽しみにしています。',
+        'home.reviews.slide3.author': 'ロバート・マクネア、佐世保',
+        'home.reviews.slide4.blurb': '私は月曜日に注文しました。木曜日の朝までに、私はニコチン電子ジュースを食べていました。 Nj2jpはすごく速いです！',
+        'home.reviews.slide4.author': 'ジャスティン・アリアンズ、横須賀',
+
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',
         'form.validation.error.bool.required': '必須',

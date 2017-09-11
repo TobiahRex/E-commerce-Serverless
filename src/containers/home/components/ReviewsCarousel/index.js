@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import NavBob from '../NavBob';
-import ReviewsSlide from '../../../../components/CarouselTextSlide/carouselTextSlide';
+import {
+  ReviewsSlide,
+} from '../';
 import ReviewsCarourselDots from '../../../../components/CarouselDots/carouselDots';
 
 let globalTimer;
