@@ -11,7 +11,7 @@ export default () => (
     </div>
     <div className="mobile-language-main-button-us-chevron">
       <FontAwesome
-        name="angle-down" className="mobile-language-main-button-us-chevron-icon"
+        name="angle-down" className="mobile-language-main-button-us-chevron-icon bob"
       />
     </div>
   </span>

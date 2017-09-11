@@ -146,12 +146,30 @@
 		@include prefixed(transform, translateY(-8px));
 	}
 }
+@include keyframes(bob) {
+	0% {
+		@include prefixed(transform, translateY(-5px));
+	}
+	50% {
+		@include prefixed(transform, translateY(2px));
+	}
+	100% {
+		@include prefixed(transform, translateY(-5px));
+	}
+}
 
 @include keyframes(#{$nameSpace}-bob-float) {
 	100% {
 		@include prefixed(transform, translateY(-8px));
 	}
 }
+
+@include keyframes(bob-float) {
+	100% {
+		@include prefixed(transform, translateY(-5px));
+	}
+}
+
 @include keyframes(pulse) {
   0%, 70% {
     box-shadow: 0px 0px 0px 0px rgb(252, 37, 37);
@@ -232,4 +250,25 @@
 }
 .ping-nav {
   animation: pulse 3s ease-in-out infinite;
+}
+
+.bob {
+  @include hacks();
+  @include prefixed(animation-name, "bob-float, bob");
+  @include prefixed(animation-duration, ".3s, 1.5s");
+  @include prefixed(animation-delay, "0s, .3s");
+  @include prefixed(animation-timing-function, "ease-out, ease-in-out");
+  @include prefixed(animation-iteration-count, "1, infinite");
+  @include prefixed(animation-fill-mode, "forwards");
+  @include prefixed(animation-direction, "normal, alternate");
+	&:focus,
+	&:active {
+		@include prefixed(animation-name, "bob-float, bob");
+		@include prefixed(animation-duration, ".3s, 1.5s");
+		@include prefixed(animation-delay, "0s, .3s");
+		@include prefixed(animation-timing-function, "ease-out, ease-in-out");
+		@include prefixed(animation-iteration-count, "1, infinite");
+		@include prefixed(animation-fill-mode, "forwards");
+		@include prefixed(animation-direction, "normal, alternate");
+	}
 }
