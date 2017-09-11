@@ -62,16 +62,16 @@ class HomepageHowCarousel extends Component {
       alt: 'home.how.warehouse.desc.alt',
     }, {
       name: 'flight',
-      desc: 'A few hours later, your package is put on a direct flight from California to Japan.',
-      alt: 'Overnight Flight',
+      desc: 'home.how.flight.desc',
+      alt: 'home.how.flight.desc.alt',
     }, {
       name: 'truck',
-      desc: 'Soon after landing, your package is on a delivery truck, on its way to your Japanese address.',
-      alt: 'Delivery Truck',
+      desc: 'home.how.truck.desc',
+      alt: 'home.how.truck.desc.alt',
     }, {
       name: 'delivery',
-      desc: 'A few days later, you receive your package from Nic Juice 2 Japan. 😁 ',
-      alt: 'Delivered',
+      desc: 'home.how.delivery.desc',
+      alt: 'home.how.delivery.desc.alt',
     }];
     return slideDescs.map(({ name, desc, alt }) => (
       <CarouselImageSlide
