@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
+import { FormattedMsg as IntlMsg } from 'react-intl';
 
 const CardBlurb = (props) => {
-  WebflowJs(); //eslint-disable-line
   const {
     content,
   } = props;
 
   return (
-    <p
-      className="content-article news__content"
-    >
-      {content}
+    <p className="content-article news__content">
+      <IntlMsg id={content} />
     </p>
   );
 };

@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
+import { FormattedMsg as IntlMsg } from 'react-intl';
 
-const CardBlurb = (props) => {
-  WebflowJs(); //eslint-disable-line
-
-  return (
-    <p className="reviews-content__text text--review">
-      {props.blurb}
-    </p>
-  );
-};
+const CardBlurb = ({ blurb }) => (
+  <p className="reviews-content__text text--review">
+    <IntlMsg id={blurb} />
+  </p>
+);
 
 const { string } = PropTypes;
 CardBlurb.propTypes = {
