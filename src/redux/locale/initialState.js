@@ -7,6 +7,14 @@ export default {
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
         'home.header.button.buyNow': 'Buy Now!',
+
+        'home.fastest.title': 'Fastest Delivery',
+        'home.fastest.subtitle': 'Nobody is faster in Japan',
+        'home.fastest.desc1': 'No one can deliver Nicotine E-Juice to Japan faster than us.',
+        'home.fastest.desc2': 'Once you shop with us and see how fast we are, we\'re confident you won\'t want to buy Nicotine vape juice from anywhere else.',
+        'home.fastest.desc3': 'Hard to believe? Try us now! You’ll be happy you did.',
+        'home.fastest.buyNow': 'Buy Now!',
+
         'home.how.title': 'How?',
         'home.how.buying.desc': 'Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.',
         'home.how.buying.desc.alt': 'Buy NJ2JP Juices',
@@ -67,6 +75,14 @@ export default {
         'home.header.title': '日本で最速のニコチン電子ジュース納品',
         'home.header.subtitle': '保証付き!',
         'home.header.button.buyNow': '今買う!',
+
+        'home.fastest.title': '最も速い配達',
+        'home.fastest.subtitle': '誰も日本ではもっと速い',
+        'home.fastest.desc1': '誰も私たちよりも早く日本にニコチンEジュースを届けられません。',
+        'home.fastest.desc2': 'あなたが私たちと一緒に買い物をしてどれくらいの速さを見たら、どこからでもニコチンワックスジュースを購入したくないと確信しています。',
+        'home.fastest.desc3': '信じがたい？ 今すぐお試しください！ あなたはあなたが幸せになるでしょう。',
+        'home.fastest.buyNow': '今買う!',
+
         'home.how.title': 'どうやって？',
         'home.how.buying.desc': '4種類のニコチンの強さを持つ美味しいジュースフレーバーを選んで注文してください。',
         'home.how.buying.desc.alt': 'NJ2JPジュースを購入する',
