@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import {
   NavbarLogo,
   NavbarNavs,
-  NavbarUserActions,
   NavbarOptions,
+  NavbarUserActions,
 } from './components';
 
 const { objectOf, any } = PropTypes;

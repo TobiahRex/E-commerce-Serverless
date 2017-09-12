@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import localeActions from './assets/utils';
 import {
   NavbarLanguageBtn,
-  NavbarLanguageDropdnContent,
+  NavbarLanguageDropdown,
   NavbarLanguageBtnEnglish,
-  NavbarLanguageBtnNihongo,
-  NavbarLanguageDropdnEnglish,
-  NavbarLanguageDropdnNihongo,
+  NavbarLanguageBtnJapanese,
+  NavbarLanguageDropdownEnglish,
+  NavbarLanguageDropdownJapanese,
 } from './components';
 
 
@@ -48,26 +48,26 @@ class NavbarLanguage extends Component {
   renderLanguageTitle = () => {
     const Language = this.state.activeLanguage;
     if (Language === 'en') return <NavbarLanguageBtnEnglish />;
-    if (Language === 'ja') return <NavbarLanguageBtnNihongo />;
+    if (Language === 'ja') return <NavbarLanguageBtnJapanese />;
     throw new Error('Cannot render the Active Language - Check NavbarLanguageBtn component.');
   }
 
   renderLanguageDropdown = () => {
     const Language = this.state.activeLanguage;
-    if (Language === 'en') return <NavbarLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
-    if (Language === 'ja') return <NavbarLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
+    if (Language === 'en') return <NavbarLanguageDropdownJapanese onLanguageChange={this.onLanguageChange} />;
+    if (Language === 'ja') return <NavbarLanguageDropdownEnglish onLanguageChange={this.onLanguageChange} />;
     throw new Error('Cannot render the Active Language - Check NavbarLanguageButton component.');
   }
 
   render() {
     return (
-      <div className="navbar__mobile--">
+      <div className="navbar__mobile--options">
         <div className="navbar-mobile--language">
           <NavbarLanguageBtn
             activeLanguage={this.state.activeLanguage}
             renderLanguageTitle={this.renderLanguageTitle}
           />
-          <NavbarLanguageDropdnContent
+          <NavbarLanguageDropdown
             activeLanguage={this.state.activeLanguage}
             renderLanguageDropdown={this.renderLanguageDropdown}
           />
