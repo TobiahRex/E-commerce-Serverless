@@ -9,6 +9,7 @@ import {
   FooterLower,
   FooterSocialGrid,
 } from './components';
+import { contentData } from './assets/utils';
 
 class Footer extends React.Component {
   static propTypes = propTypes;
@@ -20,6 +21,19 @@ class Footer extends React.Component {
       x: '',
     };
   }
+
+  renderHelper = data =>
+    data.map((dataObj) => {  // eslint-disable-line
+      if (dataObj.component === 'FooterList') {
+        return (
+          <FooterList
+            key={new Buffer(dataObj.props.section, 'utf8').toString('base64')}
+            section={dataObj.props.section}
+            items={dataObj.props.items}
+          />
+        );
+      }
+    });
 
   render() {
     return (
@@ -36,6 +50,7 @@ class Footer extends React.Component {
                   section="general"
                   titles={['home.footer.general.contactUs', 'home.footer.general.vapeNews', 'home.footer.general.productReviews', 'home.footer.general.userStories']}
                 />
+                {this.renderHelper(contentData)}
               </div>
               <div className="grid__customer-column grid__customer-column--landscape w-col w-col-3">
                 <FooterHdr
