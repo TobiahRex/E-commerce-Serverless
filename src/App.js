@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AgeVerification from './containers/ageVerification/ageVerification';
-import NavbarWeb from './containers/navbar/components/navbar_web/navbar_web';
-import NavbarMobile from './containers/navbar/components/navbar_mobile/navbar_mobile';
+
+import AgeVerification from './containers/ageVerification';
+import Navbar from './containers/navbar';
 import Footer from './containers/footer';
-// import Footer from './containers/footerNew';
 import userActions from './redux/user';
 
 const { any, bool, func, objectOf } = PropTypes;
-
 class App extends Component {
-  static defaultProps = {
-    ageVerified: false,
-    screenWidth: '1080',
-  }
   static propTypes = {
     children: objectOf(any).isRequired,
     ageVerified: bool,
     verifyAge: func.isRequired,
+  }
+  static defaultProps = {
+    ageVerified: false,
+    screenWidth: '1080',
   }
   static styles = {
     hide: {
@@ -62,10 +60,7 @@ class App extends Component {
           avStyle={avStyle}
           verifyAge={this.verifyAge}
         />
-        <header className="navbar-comp-container">
-          <NavbarWeb />
-          <NavbarMobile />
-        </header>
+        <Navbar />
         <section id="main-section">
           {this.props.children}
         </section>
