@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 */
 const { func } = PropTypes;
 
-class NavbarLanguageButton extends React.PureComponent {
+class NavbarLanguageBtn extends React.PureComponent {
   static propTypes = { renderLanguageTitle: func.isRequired }
 
   renderLanguageTitle = () => this.props.renderLanguageTitle();
@@ -19,4 +19,4 @@ class NavbarLanguageButton extends React.PureComponent {
   }
 }
 
-export default NavbarLanguageButton;
+export default NavbarLanguageBtn;

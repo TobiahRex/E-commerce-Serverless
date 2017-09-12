@@ -1,12 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const { func } = PropTypes;
-const propTypes = {
-  onLanguageChange: func.isRequired,
-};
-
-function NavbarMobileOptionsLanguageDropdnNihongo({ onLanguageChange }) {
+const NavbarLanguageDropdownJapanese = ({ onLanguageChange }) => {
   function preventDefault(e) {
     e.preventDefault();
     onLanguageChange('nihongo');
@@ -23,7 +18,8 @@ function NavbarMobileOptionsLanguageDropdnNihongo({ onLanguageChange }) {
       </div>
     </a>
   );
-}
-
-NavbarMobileOptionsLanguageDropdnNihongo.propTypes = propTypes;
-export default NavbarMobileOptionsLanguageDropdnNihongo;
+};
+NavbarLanguageDropdownJapanese.propTypes = {
+  onLanguageChange: PropTypes.func.isRequired,
+};
+export default NavbarLanguageDropdownJapanese;

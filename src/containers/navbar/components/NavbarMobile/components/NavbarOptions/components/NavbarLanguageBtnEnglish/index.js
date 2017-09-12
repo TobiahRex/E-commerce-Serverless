@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default () => (
+const NavbarLanguageBtnEnglish = () => (
   <span className="mobile-language-main-button-us-parent">
     <div className="mobile-language-main-button-us">
       <div className="mobile-language-main-button-us-flag" />
@@ -16,3 +16,5 @@ export default () => (
     </div>
   </span>
 );
+
+export default NavbarLanguageBtnEnglish;
