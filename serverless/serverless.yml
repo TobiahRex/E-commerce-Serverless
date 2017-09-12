@@ -120,4 +120,4 @@ functions:
           - ses:SendRawEmail
           - lambda:InvokeFunction
     events:
-      - schedule: cron(0 7 ? * MON *)
+      - schedule: cron(0 13 ? * MON *)
