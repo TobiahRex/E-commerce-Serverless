@@ -7,6 +7,7 @@ import {
   FooterHdr,
   FooterList,
   FooterLower,
+  FooterSocialGrid,
 } from './components';
 
 class Footer extends React.Component {

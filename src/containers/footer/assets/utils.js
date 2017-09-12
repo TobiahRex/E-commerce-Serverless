@@ -59,24 +59,12 @@ export const inputsData = [{
         section: 'contact',
         list: [
           {
-            link: '/privacy_policy',
-            title: 'home.footer.customer.privacyPolicy',
+            link: 'tel:080-4053-8791',
+            title: 'home.footer.contact.phone',
           },
           {
-            link: '/shipping_policy',
-            title: 'home.footer.customer.shippingPolicy',
-          },
-          {
-            link: '/return_policy',
-            title: 'home.footer.customer.returnPolicy',
-          },
-          {
-            link: '/nicotine_disclaimer',
-            title: 'home.footer.customer.nicotineDisclaimer',
-          },
-          {
-            link: '/terms_conditions',
-            title: 'home.footer.customer.termsConditions',
+            link: 'mailto:contact@nj2jp.com',
+            title: 'home.footer.contact.email',
           },
         ],
       },

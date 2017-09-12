@@ -2,22 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-const FooterListItem = ({ title }) => (
-  <li className="general__list-item general__list-item--landscape general__list-item--tablet">
+const FooterListItem = ({ section, link, intlId }) => (
+  <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
     <a
-      className="general__list--link hover-bob"
+      className={`${section}__list--link hover-bob`}
       data-ix="new-interaction"
-      href="/about"
+      href={link}
       rel="noopener noreferrer"
       target="_blank"
     >
-      <IntlMsg id={title} />
+      <IntlMsg id={intlId} />
     </a>
   </li>
 );
 
 FooterListItem.propTypes = {
-  title: PropTypes.string.isRequired,
+  section: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  intlId: PropTypes.string.isRequired,
 };
 
 export default FooterListItem;

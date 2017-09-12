@@ -1,71 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import { withHandlers } from 'recompose';
 
 import {
   FooterListItem,
 } from '../';
 
-const FooterList = ({ section, FooterListItem }) => (
+const FooterList = ({ renderHelper, section }) => (
   <ul className={`${section}-column__list ${section}-column__list--landscape ${section}-column__list--tablet w-list-unstyled`}>
-
-    <FooterListItem
-      section={section}
-      link={''}
-      title="home.footer.general.aboutUs"
-    />
-
-    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
-      <a
-        className={`${section}__list--link hover-bob`}
-        data-ix="new-interaction"
-        href="/about"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <IntlMsg id="home.footer.general.contactUs" />
-      </a>
-    </li>
-    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
-      <a
-        className={`${section}__list--link hover-bob`}
-        data-ix="new-interaction"
-        href="/about"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <IntlMsg id="home.footer.general.vapeNews" />
-      </a>
-    </li>
-    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
-      <a
-        className={`${section}__list--link hover-bob`}
-        data-ix="new-interaction"
-        href="/about"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <IntlMsg id="home.footer.general.productReviews" />
-      </a>
-    </li>
-    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
-      <a
-        className={`${section}__list--link hover-bob`}
-        data-ix="new-interaction"
-        href="/about"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <IntlMsg id="home.footer.general.userStories" />
-      </a>
-    </li>
+    {renderHelper()}
   </ul>
 );
-
+const { func, string } = PropTypes;
 FooterList.propTypes = {
-  section: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  section: string.isRequired,
+  title: string.isRequired,
+  renderHelper: func.isRequired,
 };
 
 const FooterListWithHandler = withHandlers({
@@ -74,7 +24,7 @@ const FooterListWithHandler = withHandlers({
       <FooterListItem
         key={new Buffer(title, 'utf8').toString('base64')}
         section={section}
-        title={title}
+        intlId={title}
       />
     )),
 })(FooterList);
