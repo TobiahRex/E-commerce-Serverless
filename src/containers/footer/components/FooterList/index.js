@@ -7,10 +7,14 @@ import {
   FooterListItem,
 } from '../';
 
-const FooterList = ({ section, titles }) => (
+const FooterList = ({ section, FooterListItem }) => (
   <ul className={`${section}-column__list ${section}-column__list--landscape ${section}-column__list--tablet w-list-unstyled`}>
 
-    <FooterListItem section={section} title="home.footer.general.aboutUs" />
+    <FooterListItem
+      section={section}
+      link={''}
+      title="home.footer.general.aboutUs"
+    />
 
     <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
       <a
