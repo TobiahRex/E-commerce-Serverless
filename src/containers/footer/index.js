@@ -1,10 +1,12 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { propTypes } from './assets/propValidation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import { propTypes } from './assets/propValidation';
 import './assets/css/styles.css';
-
-import { WebflowJs } from './assets/utils';
+import {
+  FooterHdr,
+  FooterListItem,
+} from './components';
 
 class Footer extends React.Component {
   static propTypes = propTypes;
@@ -17,10 +19,6 @@ class Footer extends React.Component {
     };
   }
 
-  componentDidMount() {
-    WebflowJs(); // eslint-disable-line
-  }
-
   render() {
     return (
       <div className="footer__container footer__container--landscape">
@@ -28,19 +26,16 @@ class Footer extends React.Component {
           <div className="footer__upper--container footer__upper--container--landscape">
             <div className="footer__upper--grid footer__upper--grid--landscape w-row">
               <div className="grid__general-column w-col w-col-3">
-                <FooterHdr title="home.footer.general.title" />
+
+                <FooterHdr
+                  section="general"
+                  title="home.footer.general.title"
+                />
+
                 <ul className="general-column__list general-column__list--landscape general-column__list--tablet w-list-unstyled">
-                  <li className="general__list-item general__list-item--landscape general__list-item--tablet">
-                    <a
-                      className="general__list--link hover-bob"
-                      data-ix="new-interaction"
-                      href="/about"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <IntlMsg id="home.footer.general.aboutUs" />
-                    </a>
-                  </li>
+
+                  <FooterListItem title="home.footer.general.aboutUs" />
+
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
                     <a
                       className="general__list--link hover-bob"
@@ -88,13 +83,11 @@ class Footer extends React.Component {
                 </ul>
               </div>
               <div className="grid__customer-column grid__customer-column--landscape w-col w-col-3">
-                <div className="customer-column--container">
-                  <div>
-                    <h3 className="footer-column__header footer-column__header--tablet">
-                      <IntlMsg id="home.footer.customer.title" />
-                    </h3>
-                  </div>
-                </div>
+                <FooterHdr
+                  section="customer"
+                  title="home.footer.customer.title"
+                />
+
                 <ul className="customer-column__list customer-column__list--landscape customer-column__list--tablet w-list-unstyled">
                   <li className="customer__list-item customer__list-item--landscape customer__list-item--tablet">
                     <a
@@ -154,11 +147,9 @@ class Footer extends React.Component {
                 </ul>
               </div>
               <div className="grid__contact-column grid__contact-column--landscape w-col w-col-3">
-                <div className="contact-column--container">
-                  <h3 className="footer-column__header footer-column__header--tablet">
-                    <IntlMsg id="home.footer.contact.title" />
-                  </h3>
-                </div>
+
+                <FooterHdr section="contact" title="home.footer.contact.title" />
+
                 <ul className="contact-column__list contact-column__list--landscape w-list-unstyled">
 
                   <li className="contact__list--item contact__list-item--landscape contact__list-item--tablet">
@@ -189,12 +180,10 @@ class Footer extends React.Component {
                   </li>
                 </ul>
               </div>
+
               <div className="grid__social-column w-col w-col-3">
-                <div className="social-column--container">
-                  <h3 className="footer-column__header footer-column__header--tablet">
-                    <IntlMsg id="home.footer.follow.title" />
-                  </h3>
-                </div>
+                <FooterHdr section="social" title="home.footer.follow.title" />
+
                 <div className="social__icon-container">
                   <div className="facebook-icon sweep-right">
                     <FontAwesome name="facebook" className="facebook-fa-icon" />
