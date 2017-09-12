@@ -79,20 +79,15 @@ export default {
         'home.footer.general.vapeNews': 'Vape News',
         'home.footer.general.productReviews': 'Product Reviews',
         'home.footer.general.userStories': 'User Stories',
-
         'home.footer.customer.title': 'CUSTOMER CARE',
         'home.footer.customer.privacyPolicy': 'Privacy Policy',
         'home.footer.customer.shippingPolicy': 'Shipping Policy',
         'home.footer.customer.returnPolicy': 'Return Policy',
         'home.footer.customer.nicotineDisclaimer': 'Nicotine Disclaimer',
         'home.footer.customer.termsConditions': 'Terms & Conditions',
-
         'home.footer.contact.title': 'GET IN TOUCH',
-
-        'home.footer.connect.title': 'CONNECT WITH US',
-
+        'home.footer.follow.title': 'FOLLOW US',
         'home.footer.madeWith.title': 'Made with',
-
         'home.footer.madeWith.subTitle': 'by',
 
         'form.validation.error.api': 'Invalid entry on form.',
@@ -140,14 +135,12 @@ export default {
         'home.header.title': '日本で最速のニコチン電子ジュース納品',
         'home.header.subtitle': '保証付き!',
         'home.header.button.buyNow': '今買う!',
-
         'home.fastest.title': '最も速い配達',
         'home.fastest.subtitle': '誰も日本ではもっと速い',
         'home.fastest.desc1': '誰も私たちよりも早く日本にニコチンEジュースを届けられません。',
         'home.fastest.desc2': 'あなたが私たちと一緒に買い物をしてどれくらいの速さを見たら、どこからでもニコチンワックスジュースを購入したくないと確信しています。',
         'home.fastest.desc3': '信じがたい？ 今すぐお試しください！ あなたはあなたが幸せになるでしょう。',
         'home.fastest.buyNow': '今買う!',
-
         'home.how.title': 'どうやって？',
         'home.how.buying.desc': '4種類のニコチンの強さを持つ美味しいジュースフレーバーを選んで注文してください。',
         'home.how.buying.desc.alt': 'NJ2JPジュースを購入する',
@@ -162,7 +155,6 @@ export default {
         'home.how.delivery.desc': '数日後、Nic Juice 2 Japanからパッケージを受け取ります。 😁 ',
         'home.how.delivery.desc.alt': '届いた',
         'home.how.delivery.desc.buyNow': '今買う!',
-
         'home.reviews.title': 'レビュー',
         'home.reviews.slide1.blurb': 'さて、NJ2JPは横たわっていませんでした。 福岡まで5日間。 これまでのオンラインの選択肢よりもずっと速い。 私は確信しています。',
         'home.reviews.slide1.author': 'マットシップメン',
@@ -172,57 +164,59 @@ export default {
         'home.reviews.slide3.author': 'ロバート・マクネア、佐世保',
         'home.reviews.slide4.blurb': '私は月曜日に注文しました。木曜日の朝までに、私はニコチン電子ジュースを食べていました。 Nj2jpはすごく速いです！',
         'home.reviews.slide4.author': 'ジャスティン・アリアンズ、横須賀',
-
         'home.news.title': 'ニュース＆レビュー',
         'home.news.article.readMore': '続きを読む...',
         'home.news.article.card1.header': '空気サンプリングは、間接蒸気が無害であることを確認する',
         'home.news.article.card1.content': 'カリフォルニア州公衆衛生局（CDPH）は、間接蒸気曝露の健康影響を決定するイニシアチブの一環として、州全体の倉庫で空気サンプリングを実施しています.',
-
         'home.news.article.card2.header': '日本がタバコを食い止め、大国になっていく',
         'home.news.article.card2.content': '日本人のニコチン中毒者の競争が激化している。 Philip Morris International Inc.とJapan Tobacco Inc.は、通常の匂いや煙のないニコチンを欲しがる喫煙者にアピールするために、電池を充電した機器で加熱されたもの（燃えていないもの）を出しました。 急速に拡大している世界的な穀物流通の一環であるこの動きは、日本の荒廃したたばこ市場.',
-
         'home.news.review.card3.header': 'ワイピングはこの味を味わってはいけません！',
         'home.news.review.card3.subHeader': '2017年3月17日のCarl Stephanapolous',
         'home.news.review.card3.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.news.article.card4.header': 'フィリップモリス、日本全国のたばこ店を開店',
         'home.news.article.card4.content': 'フィリップ・モリス・ジャパンは、金曜日に東京の銀座地区に無煙たばこのiQOSを販売する店舗をオープンすると発表した。 また、木曜日に、日本のたばこ会社は福岡に無煙たばこ機「Ploom Tech」を販売する特別店をメディアにオープンした。',
-
         'home.news.article.card5.header': 'PMIのCEO、日本のタバコの段階的廃止について語る',
         'home.news.article.card5.content': 'フィリップ・モリス・インターナショナル（PMI）の最高経営責任者（CEO）は、電子機器iQOSの日本と韓国での人気のため、タバコ会社は5年以内にこれらの国々で可燃性紙巻きタバコを廃止できるはずだと述べた。 PMIのiQOS装置は、可燃性のたばこの無煙代替品であり、韓国のヒートと日本のヒート・スティックと呼ばれるタバコの葉を加熱することで動作します。',
-
         'home.news.review.card6.header': '私の結婚を救った',
         'home.news.review.card6.subheader': 'By Clark Kent on March 17, 2017',
         'home.news.review.card6.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.news.article.card7.header': 'より多くのデータは、授乳が喫煙のより安全な選択肢であることを確認している',
         'home.news.article.card7.content': 'インビトロBhas 42細胞形質転換アッセイを用いた電子タバコおよびタバコの比較腫瘍促進評価は、BioReliance（British American Tobacco（BAT）による資金提供を受け、Environmental and Molecular Mutagenesisに掲載）により実施された。',
-
         'home.news.article.card8.header': 'ミシガン州米国：e-cigsのおかげで部分的に喫煙喫煙',
         'home.news.article.card8.content': 'ミシガン州の肺癌の新たな症例数は2007年に8,161にピークに達した。 最新のデータである2013年までに7,538人になった」とミシガン・ニュースの記事を読んだ。 80年代以来、州のタバコ販売は3分の2に減少しましたが、熱い喫煙者であった人々が現在老化しており、それゆえ癌を発症しているため、これらの数字に追いつくのに肺がん率は遅くなります。',
-
         'home.news.article.card9.header': '喫煙者は栄養について知っておくべき3つの事実',
         'home.news.article.card9.content': '喫煙者は、他の誰よりも飢えを知っているようには思えません。不幸なことですが、結局のところ、彼らは潜在的に最も得意とする人です。 喫煙者が同じ新聞を読んで、同じ驚くべき物語を完成させたので、それは本当に驚きではありません。 レコードを真っ直ぐにするのを助けるのは、喫煙者が電子cigについて知っておくべき3つの事実です。',
-
         'home.news.article.card10.header': '最悪の不条理、科学的に暴行する新戦争',
         'home.news.article.card10.content': '禁断の時代を思い起こさせる特別な利益団体は、科学に対する個人的な信念を強要しています。 vapingを楽しむ能力は無知であり、彼らが養子になっている宣伝を信じているグループからの制限的な法律によって攻撃を受けている。 普遍的な信念が必ずしも正確ではないときに、この会話にどのようにして理由を入れることができますか？',
-
         'home.news.article.card11.header': 'スペインからの研究が電子タバコの有効性を確認',
         'home.news.article.card11.content': 'スペインの弁当協会、Anesvapは他の無数の研究が示していることを確認するデータを発表しました。 3つの主な所見は、前回の米国外科医のような多くの情報源が主張してきたこととは対照的に、若い成人の喫煙の玄関口ではなく、喫煙は喫煙ほど中毒ではなく、 喫煙率を低下させる。',
-
         'home.news.review.card12.header': 'それは難しくありませんでした。 それはただ違っていた',
         'home.news.review.card12.subHeader': 'By Clark Kent on March 17, 2017',
         'home.news.review.card12.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.news.article.card13.header': 'ビーピングとたばこに関するショッキングペンの国家研究',
         'home.news.article.card13.content': '新しい研究では、vapeデバイスを使用する人々が伝統的な喫煙者に比べて野菜の摂取量に殆ど依存していないことが示されています。 Newswiseによって報告されたこの研究は、ペンストン州立医科大学（Penn State College of Medicine）によって行われました。この学校は、資金療法の研究で1億1000万ドル、特に癌治療の進歩と病気の根本的原因の理解が最も顕著です。 それは、大学の公衆衛生科学の助教授、Guodong Liuによって率いられた。 劉氏は、生物統計学者のエミリー・ワッサーマンと、教授のジョナサン・フォルズが参加しました。 両者は、ペン・タバコ規制科学センターの公衆衛生サービス局で働いています。 研究自体は、国立衛生研究所とタバコ製品センターが資金提供していました。',
-
         'home.news.article.card14.header': '新たな研究では、',
         'home.news.article.card14.content': 'ビッグ・タバコ社が行った調査によると、タバコは伝統的なタバコを吸うよりも有害ではないことがもう一度証明されています。 Sunは、BensonやHedges、Dunhill、Lucky Strikeなどのブランドを生産するBritish American Tobaccoが新しい研究に資金を提供したと報告しています。 同社はまた、vape市場に参入した。 Vypeという名前で2013年にその市場に最初の製品を投入しました。 同社は、「代替タバコとニコチン製品」の詳細を学ぶためのリソースを配分しており、British American Tobaccoが業界での役割を果たす準備ができている可能性があることを示しています。',
-
         'home.news.article.card15.header': '私はそれが簡単だったとは信じられない！',
         'home.news.article.card15.subHeader': 'By Clark Kent on March 17, 2017',
         'home.news.article.card15.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
+
+        'home.footer.general.title': 'NJ2JP',
+        'home.footer.general.aboutUs': '私たちに関しては',
+        'home.footer.general.contactUs': 'お問い合わせ',
+        'home.footer.general.vapeNews': 'ヴェブ・ニュース',
+        'home.footer.general.productReviews': '商品レビュー',
+        'home.footer.general.userStories': 'ユーザーストーリー',
+        'home.footer.customer.title': 'カスタマーケア',
+        'home.footer.customer.privacyPolicy': '個人情報保護方針',
+        'home.footer.customer.shippingPolicy': '配送ポリシー',
+        'home.footer.customer.returnPolicy': '返品規則',
+        'home.footer.customer.nicotineDisclaimer': 'ニコチンの免責事項',
+        'home.footer.customer.termsConditions': '利用規約',
+        'home.footer.contact.title': '連絡を取り合う',
+        'home.footer.follow.title': 'フォローする',
+        'home.footer.madeWith.title': '作られ',
+        'home.footer.madeWith.subTitle': 'による',
 
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',

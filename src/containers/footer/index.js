@@ -196,7 +196,7 @@ class Footer extends React.Component {
               <div className="grid__social-column w-col w-col-3">
                 <div className="social-column--container">
                   <h3 className="footer-column__header footer-column__header--tablet">
-                    <IntlMsg id="home.footer.connect.title" />
+                    <IntlMsg id="home.footer.follow.title" />
                   </h3>
                 </div>
                 <div className="social__icon-container">
