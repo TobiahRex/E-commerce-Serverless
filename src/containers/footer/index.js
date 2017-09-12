@@ -5,7 +5,7 @@ import { propTypes } from './assets/propValidation';
 import './assets/css/styles.css';
 import {
   FooterHdr,
-  FooterListItem,
+  FooterList,
 } from './components';
 
 class Footer extends React.Component {
@@ -26,61 +26,14 @@ class Footer extends React.Component {
           <div className="footer__upper--container footer__upper--container--landscape">
             <div className="footer__upper--grid footer__upper--grid--landscape w-row">
               <div className="grid__general-column w-col w-col-3">
-
                 <FooterHdr
                   section="general"
                   title="home.footer.general.title"
                 />
-
-                <ul className="general-column__list general-column__list--landscape general-column__list--tablet w-list-unstyled">
-
-                  <FooterListItem title="home.footer.general.aboutUs" />
-
-                  <li className="general__list-item general__list-item--landscape general__list-item--tablet">
-                    <a
-                      className="general__list--link hover-bob"
-                      data-ix="new-interaction"
-                      href="/about"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <IntlMsg id="home.footer.general.contactUs" />
-                    </a>
-                  </li>
-                  <li className="general__list-item general__list-item--landscape general__list-item--tablet">
-                    <a
-                      className="general__list--link hover-bob"
-                      data-ix="new-interaction"
-                      href="/about"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <IntlMsg id="home.footer.general.vapeNews" />
-                    </a>
-                  </li>
-                  <li className="general__list-item general__list-item--landscape general__list-item--tablet">
-                    <a
-                      className="general__list--link hover-bob"
-                      data-ix="new-interaction"
-                      href="/about"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <IntlMsg id="home.footer.general.productReviews" />
-                    </a>
-                  </li>
-                  <li className="general__list-item general__list-item--landscape general__list-item--tablet">
-                    <a
-                      className="general__list--link hover-bob"
-                      data-ix="new-interaction"
-                      href="/about"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <IntlMsg id="home.footer.general.userStories" />
-                    </a>
-                  </li>
-                </ul>
+                <FooterList
+                  section="general"
+                  titles={['home.footer.general.contactUs', 'home.footer.general.vapeNews', 'home.footer.general.productReviews', 'home.footer.general.userStories']}
+                />
               </div>
               <div className="grid__customer-column grid__customer-column--landscape w-col w-col-3">
                 <FooterHdr
