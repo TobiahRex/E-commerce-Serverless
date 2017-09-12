@@ -1,0 +1,183 @@
+.shop__ddn-content {
+  display: none;
+  width: 108em;
+  height: 63em;
+  background-color: #EEE;
+  position: absolute;
+  z-index: 1;
+  top: 5em;
+  margin-left: -24.5em;
+  box-shadow: 3px 3px 3px rgba(1,1,1,.5);
+  transition: all .6s ease-in-out;
+  & .ddn-content__parent {
+    @extend .flex-center;
+    flex-direction: column;
+    & .shop-dropdown-content-topThird {
+      @include prefixflex();
+      justify-content: center;
+      align-items: flex-end;
+      height: 18em;
+      width: 104em;
+      background-color: #EEE;
+      margin-top: 1.5em;
+      border-bottom: 1px solid rgba(1,1,1,.2);
+      & .shop-dropdown-content-topThird-parent {
+        @extend .flex-center;
+        flex-direction: column;
+        height: 16em;
+        width: 71em;
+        background-color: #EEE;
+        margin: 1em .5em 1em 1em;
+        & .shop-dropdown-content-topThird-parent-title {
+          height: 5em;
+          width: 70em;
+          padding-left: .5em;
+          background-color: #EEE;
+        }
+        & .shop-dropdown-content-topThird-parent-desc {
+          height: 11em;
+          width: 70em;
+          padding-left: .5em;
+          background-color: #EEE;
+        }
+      }
+      & .shop-dropdown-content-topThird-video {
+        height: 16em;
+        width: 30em;
+        background-color: $p-white;
+        margin: 1em 1em 1em .5em;
+        box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+        cursor: pointer;
+      }
+    }
+    & .shop-dropdown-content-midThird {
+      @extend .flex-center;
+      flex-direction: column;
+      height: 31.5em;
+      width: 104em;
+      background-color: #EEE;
+      border-bottom: 1px solid rgba(1,1,1,.2);
+      & .shop-dropdown-content-midThird-title {
+        @extend .flex-center;
+        padding: 0;
+        margin: 0;
+        border: none;
+        width: 104em;
+        height: 7.5em;
+        background-color: #EEE;
+      }
+      & .shop-dropdown-content-midThird-juices {
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        height: 24em;
+        width: 104em;
+        background-color: #EEE;
+        & .midThird__juices-card {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          height: 22.5em;
+          width: 16em;
+          background-color: #FFF;
+          cursor: pointer;
+          text-decoration: none;
+          transition: .5s;
+          box-shadow: 0px 3px 10px rgba(1,1,1,.25);
+          &:hover,
+          &:focus,
+          &:active {
+            & .juices-card__title h4 {
+              color: $p-red;
+            }
+            & .juices-card__image {
+              & .image__src {
+                width: 15.5em;
+              }
+            }
+          }
+          & .juices-card__title {
+            @extend .flex-center;
+            height: 4em;
+            width: 100%;
+            transition: all .5s ease-in-out;
+            padding: .5em 0 .5em 0;
+            margin: 0;
+            border: none;
+            background-color: inherit;
+            cursor: pointer;
+            &:active,
+            &:focus {
+              outline: none;
+            }
+          }
+          & .juices-card__image {
+            @extend .flex-center;
+            height: 18em;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background-color: inherit;
+            cursor: pointer;
+            & .image__src {
+              font-size: 10px;
+              width: 12.5em;
+              transition: all .5s ease-in-out;
+            }
+            &:active,
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+    & .shop-dropdown-content-bottomThird {
+      @include prefixflex();
+      justify-content: space-around;
+      align-items: center;
+      height: 9.7em;
+      width: 104em;
+      background-color: #EEE;
+      margin-bottom: 1.5em;
+      & .shop-dropdown-content-bottomThird-leftSide {
+        @extend .flex-left;
+        width: 50%;
+        & button.shop-dropdown-content-bottomThird-leftSide-recommend {
+          height: 3.05em;
+          width: 16.38em;
+          border: none;
+          background-color: $p-red;
+          color: $p-white;
+          font-family: $p-font;
+          font-size: 1.8em;
+          font-weight: 200;
+          box-shadow: 3px 3px 2px rgba(1,1,1,.2);
+          cursor: pointer;
+          &:hover,
+          &:focus,
+          &:active {
+            transition: .5s;
+            background-color: $p-blue;
+          }
+        }
+      }
+      & .shop-dropdown-content-bottomThird-rightSide {
+        @extend .flex-right;
+        & h4.shop-dropdown-content-bottomThird-rightSide-promoSoft {
+          font-size: 2em;
+          text-transform: uppercase;
+          font-weight: 200;
+        }
+        & h4.shop-dropdown-content-bottomThird-rightSide-promoHard {
+          font-size: 2em;
+          text-transform: uppercase;
+          font-weight: 800;
+          padding-left: .2em;
+        }
+      }
+    }
+  }
+}

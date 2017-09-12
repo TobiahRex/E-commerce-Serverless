@@ -1,0 +1,22 @@
+@import "./navbar_web_logo_styles/navbarLogo";
+@import "./navbar_web_options_styles/navbarOptions";
+@import "./navbar_web_userActions_styles/navbarUserActions";
+@import "./navbar_web_cart_styles/navbarCart";
+
+.navbar-actionSection-upper {
+  @include prefixflex();
+  align-items: baseline;
+  height: 6em;
+  width: 83.5em;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 1080px) {
+  .navbar-actionSection-upper {
+    @include prefixflex();
+    align-items: baseline;
+    height: 6em;
+    width: auto;
+    margin-bottom: 1em;
+  }
+}

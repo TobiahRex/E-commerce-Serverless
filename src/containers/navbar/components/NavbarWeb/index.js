@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-  NavbarWebLogo,
+  NavbarLogo,
   NavbarUpper,
   NavbarLower,
-} from '../';
+} from './components';
 
 function NavbarWeb() {
   return (
     <nav className="navbar navbar-web navbar-default">
       <div className="container">
         <div className="navbar navbar-header">
-          <NavbarWebLogo />
+          <NavbarLogo />
           <div className="navbar-actionSection">
             <NavbarUpper />
             <NavbarLower />

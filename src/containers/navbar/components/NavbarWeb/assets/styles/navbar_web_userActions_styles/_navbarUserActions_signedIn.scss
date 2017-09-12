@@ -1,0 +1,131 @@
+.upper-actions__signedIn {
+  @include prefixflex();
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0em;
+  list-style-type: none;
+  padding: 0em 1em 0em 3em;
+  & .signedIn__logout--title {
+    @extend .flex-center;
+    @extend .white-bg;
+    @extend .ua-font-opts;
+    width: 5.33em;
+    height: 2em;
+    line-height: 1.33em;
+    cursor: pointer;
+    transition: all .8s ease-in-out;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: .1rem;
+      height: 2rem;
+      margin-bottom: -.3rem;
+      margin-left: 4.5rem;
+      position: absolute;
+      background-color: rgba(255, 255, 255, .5);
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $p-red;
+      & a {
+        color: $p-white;
+      }
+    }
+    &:hover {
+      transition: none;
+    }
+    & .logout__button {
+      height: 100%;
+      width: 100%;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 200;
+      color: $p-white;
+      background-color: transparent;
+      cursor: pointer;
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  & .signedIn__checkout--title {
+    @extend .flex-center;
+    @extend .white-bg;
+    @extend .ua-font-opts;
+    width: 5.33em;
+    height: 2em;
+    margin-left: .66em;
+    line-height: 1.33em;
+    cursor: pointer;
+    transition: all .8s ease-in-out;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: .1rem;
+      height: 2rem;
+      margin-bottom: -.3rem;
+      margin-left: 4.5rem;
+      position: absolute;
+      background-color: rgba(255, 255, 255, .5);
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $p-red;
+      & a {
+        color: $p-white;
+      }
+    }
+    &:hover {
+      transition: none;
+    }
+    & .checkout__link {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      color: $p-white;
+      text-decoration: none;
+    }
+  }
+  & .signedIn__myAccount--title {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    width: 6.33em;
+    height: 6em;
+    margin-left: 2em;
+    // cursor: pointer;
+    & .myAccount__link {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      color: $p-white;
+      text-decoration: none;
+      & .myAccount__link--picture {
+        height: 4.8em;
+        width: 4.8em;
+        border-radius: 50%;
+        // TODO - activiate this for MVP 2
+        // transition: all .3s ease-in-out;
+        // &:hover {
+        //   height: 5.2em;
+        //   width: 5.2em;
+        //   box-shadow: 0 3px 10px rgba(0,0,0,.25);
+        // }
+        // &:active,
+        // &:focus {
+        //   height: 4.8em;
+        //   width: 4.8em;
+        // }
+      }
+    }
+  }
+}
