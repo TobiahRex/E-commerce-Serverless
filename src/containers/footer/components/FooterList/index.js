@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import { withHandlers } from 'recompose';
+
 import {
   FooterListItem,
 } from '../';
 
 const FooterList = ({ section, titles }) => (
   <ul className={`${section}-column__list ${section}-column__list--landscape ${section}-column__list--tablet w-list-unstyled`}>
-    
-    <FooterListItem title="home.footer.general.aboutUs" />
 
-    <li className="general__list-item general__list-item--landscape general__list-item--tablet">
+    <FooterListItem section={section} title="home.footer.general.aboutUs" />
+
+    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
       <a
-        className="general__list--link hover-bob"
+        className={`${section}__list--link hover-bob`}
         data-ix="new-interaction"
         href="/about"
         rel="noopener noreferrer"
@@ -21,9 +23,9 @@ const FooterList = ({ section, titles }) => (
         <IntlMsg id="home.footer.general.contactUs" />
       </a>
     </li>
-    <li className="general__list-item general__list-item--landscape general__list-item--tablet">
+    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
       <a
-        className="general__list--link hover-bob"
+        className={`${section}__list--link hover-bob`}
         data-ix="new-interaction"
         href="/about"
         rel="noopener noreferrer"
@@ -32,9 +34,9 @@ const FooterList = ({ section, titles }) => (
         <IntlMsg id="home.footer.general.vapeNews" />
       </a>
     </li>
-    <li className="general__list-item general__list-item--landscape general__list-item--tablet">
+    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
       <a
-        className="general__list--link hover-bob"
+        className={`${section}__list--link hover-bob`}
         data-ix="new-interaction"
         href="/about"
         rel="noopener noreferrer"
@@ -43,9 +45,9 @@ const FooterList = ({ section, titles }) => (
         <IntlMsg id="home.footer.general.productReviews" />
       </a>
     </li>
-    <li className="general__list-item general__list-item--landscape general__list-item--tablet">
+    <li className={`${section}__list-item ${section}__list-item--landscape ${section}__list-item--tablet`}>
       <a
-        className="general__list--link hover-bob"
+        className={`${section}__list--link hover-bob`}
         data-ix="new-interaction"
         href="/about"
         rel="noopener noreferrer"
@@ -62,4 +64,15 @@ FooterList.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default FooterList;
+const FooterListWithHandler = withHandlers({
+  renderHelper: ({ section, titles }) => () =>
+    titles.map(title => (
+      <FooterListItem
+        key={new Buffer(title, 'utf8').toString('base64')}
+        section={section}
+        title={title}
+      />
+    )),
+})(FooterList);
+
+export default FooterListWithHandler;
