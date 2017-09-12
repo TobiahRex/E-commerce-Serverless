@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 // import About from '../containers/legal/components/about/';
 // import ContactUs from '../containers/contactUs';
 import Phone from '../containers/legal/components/phone';
-import UserStories from '../containers/media/userStories';
+// import UserStories from '../containers/media/userStories';
 import VapeNews from '../containers/media/vapeNews';
 import Faqs from '../containers/legal/faqs';
 import MissionStatement from '../containers/legal/missionStatement';
@@ -37,9 +37,16 @@ const MediaRoutes = () => (
         .catch(errorLoading);
       }}
     />
+    <Route
+      path="/stories"
+      getComponent={(_, cb) => {
+        import('../containers/userStories' /* webpackChunkName: "user-stories" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     <Route path="/phone" component={Phone} />
     <Route path="/vape_news" component={VapeNews} />
-    <Route path="/stories" component={UserStories} />
     <Route path="/social_media" component={SocialMedia} />
     <Route path="/mission_statement" component={MissionStatement} />
     <Route path="/faqs" component={Faqs} />

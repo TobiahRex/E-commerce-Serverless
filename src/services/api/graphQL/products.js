@@ -1,19 +1,12 @@
 import { create } from 'apisauce';
 
-const {
-  LAMBDA_ENV,
-  GRAPHQL_PORT,
-  CLIENT_GRAPHQL_URL,
-} = process.env;
-
-const graphqlURL = CLIENT_GRAPHQL_URL;
-
-if (!graphqlURL) throw new Error(`Cannot create API: "graphqlURL" = ${graphqlURL}.`);
-console.info('PRODUCTS Graphql API: ', graphqlURL); // eslint-disable-line
+const { CLIENT_GRAPHQL_URL: graphqlUrl } = process.env;
+if (!graphqlUrl) throw new Error(`Cannot create API: "graphqlURL" = ${graphqlUrl}.`);
+console.info('PRODUCTS Graphql API: ', graphqlUrl); // eslint-disable-line
 
 const createAPI = () => {
   const api = create({
-    baseURL: graphqlURL,
+    baseURL: graphqlUrl,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
