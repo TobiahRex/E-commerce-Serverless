@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 */
 const { func } = PropTypes;
 
-class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
+class NavbarLanguageDropdown extends PureComponent {
   static propTypes = {
     renderLanguageDropdown: func.isRequired,
   }
@@ -24,4 +24,4 @@ class NavbarMobileOptionsLanguageDropdnContent extends PureComponent {
   }
 }
 
-export default NavbarMobileOptionsLanguageDropdnContent;
+export default NavbarLanguageDropdown;

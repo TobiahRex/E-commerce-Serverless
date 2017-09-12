@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-export default () => (
+const NavbarLanguageBtnJapanese = () => (
   <span className="mobile-language-main-button-japanese-parent">
     <div className="mobile-language-main-button-japanese">
       <div className="mobile-language-main-button-japanese-flag" />
@@ -16,3 +16,4 @@ export default () => (
     </div>
   </span>
 );
+export default NavbarLanguageBtnJapanese;
