@@ -1,12 +1,6 @@
 export WebflowJs from '../../../webflow/webflow.javascript.js';
 export const inputsData = [
   {
-    component: 'FooterHdr',
-    props: {
-      section: 'name',
-      title: 'home.footer.general.title',
-    },
-  }, {
     component: 'FooterList',
     props: {
       section: 'general',
@@ -60,20 +54,18 @@ export const inputsData = [
   },
   {
     component: 'FooterList',
-    props: {
-      section: 'contact',
-      items: [
-        {
-          link: 'tel:080-4053-8791',
-          title: 'home.footer.contact.phone',
-        },
-        {
-          link: 'mailto:contact@nj2jp.com',
-          title: 'home.footer.contact.email',
-        },
-      ],
-    },
-  },
+    section: 'contact',
+    items: [
+      {
+        link: 'tel:080-4053-8791',
+        title: 'home.footer.contact.phone',
+      },
+      {
+        link: 'mailto:contact@nj2jp.com',
+        title: 'home.footer.contact.email',
+      },
+    ],
+  }
 ];
 export apiActions from '../../../redux/api';
 export toasterActions from '../../../redux/toaster';
