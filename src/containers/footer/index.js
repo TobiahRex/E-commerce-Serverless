@@ -28,11 +28,7 @@ class Footer extends React.Component {
           <div className="footer__upper--container footer__upper--container--landscape">
             <div className="footer__upper--grid footer__upper--grid--landscape w-row">
               <div className="grid__general-column w-col w-col-3">
-                <div className="general-column--container">
-                  <h3 className="footer-column__header footer-column__header--tablet">
-                    <IntlMsg id="home.footer.general.title" />
-                  </h3>
-                </div>
+                <FooterHdr title="home.footer.general.title" />
                 <ul className="general-column__list general-column__list--landscape general-column__list--tablet w-list-unstyled">
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
                     <a
