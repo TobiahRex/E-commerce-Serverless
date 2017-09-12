@@ -2,26 +2,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  NavbarMobileUserActionsSignedIn,
-  NavbarMobileUserActionsNotSignedIn,
+  NavbarSignedIn,
+  NavbarNotSignedIn,
 } from './components';
 
-function NavbarMobileUserActions({ activeUser }) {
+function Navbar({ activeUser }) {
   return (
     <div className="navbar__mobile--actions">
       {
         activeUser && !!activeUser._id ?
-          <NavbarMobileUserActionsSignedIn profile={activeUser} /> :
-          <NavbarMobileUserActionsNotSignedIn />
+          <NavbarSignedIn profile={activeUser} /> :
+          <NavbarNotSignedIn />
       }
     </div>
   );
 }
 const { objectOf, any } = PropTypes;
-NavbarMobileUserActions.propTypes = {
+Navbar.propTypes = {
   activeUser: objectOf(any),
 };
-NavbarMobileUserActions.defaultProps = {
+Navbar.defaultProps = {
   activeUser: {},
 };
-export default NavbarMobileUserActions;
+export default Navbar;
