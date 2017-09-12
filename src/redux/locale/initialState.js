@@ -4,6 +4,8 @@ export default {
   translations: {
     en: {
       messages: {
+        'navbar.web.login': 'Login',
+
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
         'home.header.button.buyNow': 'Buy Now!',
