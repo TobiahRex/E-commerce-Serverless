@@ -1,5 +1,6 @@
 export NavbarWebLogo from './NavbarWebLogo';
 export NavbarMobile from './NavbarMobile';
+export NavbarMobileLogo from './NavbarMobileLogo';
 export NavbarWeb from './NavbarWeb';
 export NavbarLower from './NavbarLower';
 export NavbarUpper from './NavbarUpper';
