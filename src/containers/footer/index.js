@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { propTypes } from './assets/propValidation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import './assets/css/styles.css';
 
 import { WebflowJs } from './assets/utils';
@@ -28,7 +29,9 @@ class Footer extends React.Component {
             <div className="footer__upper--grid footer__upper--grid--landscape w-row">
               <div className="grid__general-column w-col w-col-3">
                 <div className="general-column--container">
-                  <h3 className="footer-column__header footer-column__header--tablet">NJ2JP</h3>
+                  <h3 className="footer-column__header footer-column__header--tablet">
+                    <IntlMsg id="home.footer.general.title" />
+                  </h3>
                 </div>
                 <ul className="general-column__list general-column__list--landscape general-column__list--tablet w-list-unstyled">
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
@@ -39,7 +42,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      About Us
+                      <IntlMsg id="home.footer.general.aboutUs" />
                     </a>
                   </li>
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
@@ -50,7 +53,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Contact Us
+                      <IntlMsg id="home.footer.general.contactUs" />
                     </a>
                   </li>
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
@@ -61,7 +64,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Vape News
+                      <IntlMsg id="home.footer.general.vapeNews" />
                     </a>
                   </li>
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
@@ -72,7 +75,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Product Reviews
+                      <IntlMsg id="home.footer.general.productReviews" />
                     </a>
                   </li>
                   <li className="general__list-item general__list-item--landscape general__list-item--tablet">
@@ -83,7 +86,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      User Stories
+                      <IntlMsg id="home.footer.general.userStories" />
                     </a>
                   </li>
                 </ul>
@@ -92,7 +95,7 @@ class Footer extends React.Component {
                 <div className="customer-column--container">
                   <div>
                     <h3 className="footer-column__header footer-column__header--tablet">
-                      CUSTOMER CARE
+                      <IntlMsg id="home.footer.customer.title" />
                     </h3>
                   </div>
                 </div>
@@ -105,7 +108,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Privacy Policy
+                      <IntlMsg id="home.footer.customer.privacyPolicy" />
                     </a>
                   </li>
                   <li className="customer__list-item customer__list-item--landscape customer__list-item--tablet">
@@ -116,7 +119,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Shipping Policy
+                      <IntlMsg id="home.footer.customer.shippingPolicy" />
                     </a>
                   </li>
                   <li className="customer__list-item customer__list-item--landscape customer__list-item--tablet">
@@ -127,7 +130,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Return Policy
+                      <IntlMsg id="home.footer.customer.returnPolicy" />
                     </a>
                   </li>
                   <li className="customer__list-item customer__list-item--landscape customer__list-item--tablet">
@@ -138,7 +141,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Nicotine Disclaimer
+                      <IntlMsg id="home.footer.customer.nicotineDisclaimer" />
                     </a>
                   </li>
                   <li className="customer__list-item customer__list-item--landscape customer__list-item--tablet">
@@ -149,7 +152,7 @@ class Footer extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Terms & Conditions
+                      <IntlMsg id="home.footer.customer.termsConditions" />
                     </a>
                   </li>
                 </ul>
@@ -157,7 +160,7 @@ class Footer extends React.Component {
               <div className="grid__contact-column grid__contact-column--landscape w-col w-col-3">
                 <div className="contact-column--container">
                   <h3 className="footer-column__header footer-column__header--tablet">
-                    GET IN TOUCH
+                    <IntlMsg id="home.footer.contact.title" />
                   </h3>
                 </div>
                 <ul className="contact-column__list contact-column__list--landscape w-list-unstyled">
@@ -193,7 +196,7 @@ class Footer extends React.Component {
               <div className="grid__social-column w-col w-col-3">
                 <div className="social-column--container">
                   <h3 className="footer-column__header footer-column__header--tablet">
-                    CONNECT WITH US
+                    <IntlMsg id="home.footer.connect.title" />
                   </h3>
                 </div>
                 <div className="social__icon-container">
@@ -225,9 +228,16 @@ class Footer extends React.Component {
                 <div className="footer__lower--company">2017</div>
               </div>
               <div className="footer_company footer_company--landscape footer_company--tablet">
-                <div className="footer__lower-copyright">Made with</div>
+                <div className="footer__lower-copyright">
+                  <IntlMsg id="home.footer.madeWith.title" />
+                </div>
                 <FontAwesome name="heart" className="footer__heart" />
-                <div className="footer__lower--company">&nbsp;by Stackinet LLC.</div>
+                <div className="footer__lower--company">
+                  &nbsp;
+                  <IntlMsg id="home.footer.madeWith.subTitle" />
+                  &nbsp;
+                  Stackinet LLC.
+                </div>
               </div>
               <div className="payment-method payment-method--portrait payment-method--tablet">
                 <img

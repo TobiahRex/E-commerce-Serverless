@@ -80,16 +80,20 @@ export default {
         'home.footer.general.productReviews': 'Product Reviews',
         'home.footer.general.userStories': 'User Stories',
 
-        'home.footer.customer.title': 'Customer Care',
+        'home.footer.customer.title': 'CUSTOMER CARE',
         'home.footer.customer.privacyPolicy': 'Privacy Policy',
         'home.footer.customer.shippingPolicy': 'Shipping Policy',
         'home.footer.customer.returnPolicy': 'Return Policy',
         'home.footer.customer.nicotineDisclaimer': 'Nicotine Disclaimer',
         'home.footer.customer.termsConditions': 'Terms & Conditions',
 
-        'home.footer.contact.title': 'Get In Touch',
+        'home.footer.contact.title': 'GET IN TOUCH',
 
-        'home.footer.connect.title': 'Connect With Us',
+        'home.footer.connect.title': 'CONNECT WITH US',
+
+        'home.footer.madeWith.title': 'Made with',
+
+        'home.footer.madeWith.subTitle': 'by',
 
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
