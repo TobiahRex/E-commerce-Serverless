@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
-import { WebflowJs } from './assets/utils';
 
 const InputWithLabel = ({
+  label,
   value,
   labelInfo,
   inputInfo,
+  placeholder,
   containerInfo,
   handleOnChange,
 }) => {
-  WebflowJs(); //eslint-disable-line
-
   let validations = [];
 
   if (inputInfo.name === 'emailAddress') validations = ['required', 'email'];
@@ -23,7 +22,7 @@ const InputWithLabel = ({
       <label
         className={labelInfo.className}
         htmlFor={labelInfo.htmlFor}
-      >{labelInfo.label}</label>
+      >{label}</label>
 
       <Validation.components.Input
         errorClassName="is-invalid-input"
@@ -33,7 +32,7 @@ const InputWithLabel = ({
         name={inputInfo.name}
         onChange={handleOnChange}
         validations={[...validations]}
-        placeholder={inputInfo.placeholder}
+        placeholder={placeholder}
       />
 
     </div>
@@ -43,6 +42,7 @@ const InputWithLabel = ({
 const { shape, string, func } = PropTypes;
 
 InputWithLabel.propTypes = {
+  label: string.isRequired,
   handleOnChange: func.isRequired,
   value: string.isRequired,
   containerInfo: shape({

@@ -12,7 +12,7 @@ export default function NavbarLanguageMainButtonNihongo() {
       </div>
       <div className="language-main-button-japanese-chevron">
         <FontAwesome
-          name="angle-down" className="language-main-button-japanese-chevron-icon"
+          name="angle-down" className="language-main-button-japanese-chevron-icon bob"
         />
       </div>
     </span>

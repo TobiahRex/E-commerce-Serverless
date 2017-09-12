@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-dotenv.config({ path: path.resolve('.env-prod') });
+dotenv.load({ path: path.resolve('.env-dev') });
+
 export default {
   development: {
     SQUARE_ENV: JSON.stringify(process.env.SQUARE_ENV),

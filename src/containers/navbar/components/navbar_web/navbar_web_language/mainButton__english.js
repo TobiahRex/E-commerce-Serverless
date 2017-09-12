@@ -12,7 +12,7 @@ export default function NavbarLanguageMainButtonEnglish() {
       </div>
       <div className="language-main-button-us-chevron">
         <FontAwesome
-          name="angle-down" className="language-main-button-us-chevron-icon"
+          name="angle-down" className="language-main-button-us-chevron-icon bob"
         />
       </div>
     </span>

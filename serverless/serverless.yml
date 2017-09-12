@@ -8,7 +8,7 @@ provider:
   runtime: nodejs6.10
   cfLogs: true
   timeout: 20
-  stage: ${file(./config.prod.yml):lambdaEnv}
+  stage: ${file(./config.dev.yml):lambdaEnv}
   region: ap-northeast-1
   iamRoleStatements:
     - Effect: Allow
@@ -25,32 +25,32 @@ provider:
         - ses:SendRawEmail
         - lambda:InvokeFunction
   environment:
-    MONGO_URI: ${file(./config.prod.yml):mongoURI}
-    AUTH0_JWT_SECRET: ${file(./config.prod.yml):auth0JwtSecret}
-    MARKET_HERO_API_KEY: ${file(./config.prod.yml):marketHeroApiKey}
-    SQUARE_ENV: ${file(./config.prod.yml):squareEnv}
-    US_SQUARE_LOCATION: ${file(./config.prod.yml):usSquareLocation}
-    US_SQUARE_ACCESS_TOKEN: ${file(./config.prod.yml):usSquareAccessToken}
-    US_SQUARE_APPLICATION_ID: ${file(./config.prod.yml):usSquareApplicationId}
-    JP_SQUARE_LOCATION: ${file(./config.prod.yml):jpSquareLocation}
-    JP_SQUARE_ACCESS_TOKEN: ${file(./config.prod.yml):jpSquareAccessToken}
-    JP_SQUARE_APPLICATION_ID: ${file(./config.prod.yml):jpSquareApplicationId}
-    JWT_SECRET: ${file(./config.prod.yml):jwtSecret}
-    SAGAWA_ENV: ${file(./config.prod.yml):sagawaEnv}
-    SAGAWA_JAPANESE: ${file(./config.prod.yml):sagawaJapanese}
-    SAGAWA_ENGLISH: ${file(./config.prod.yml):sagawaEnglish}
-    SLACK_SUPPORT_WEBHOOK: ${file(./config.prod.yml):slackSupportWebhook}
-    SLACK_ERROR_NOTIFICATION_WEBHOOK: ${file(./config.prod.yml):slackErrorNotificationWebhook}
-    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.prod.yml):slackGeneralNotificationWebhook}
-    LAMBDA_ENV: ${file(./config.prod.yml):lambdaEnv}
-    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.prod.yml):lambdaSecretAccessKey}
-    LAMBDA_ACCESS_KEY_ID: ${file(./config.prod.yml):lambdaAccessKeyId}
-    BASE_URL: ${file(./config.prod.yml):baseUrl}
-    CEO_EMAIL: ${file(./config.prod.yml):ceoEmail}
-    CTO_EMAIL: ${file(./config.prod.yml):ctoEmail}
-    CDO_EMAIL: ${file(./config.prod.yml):cdoEmail}
-    AWS_SES_REGION: ${file(./config.prod.yml):awsSesRegion}
-    RECAPTCHA_SECRET_KEY: ${file(./config.prod.yml):recaptchaSecretKey}
+    MONGO_URI: ${file(./config.dev.yml):mongoURI}
+    AUTH0_JWT_SECRET: ${file(./config.dev.yml):auth0JwtSecret}
+    MARKET_HERO_API_KEY: ${file(./config.dev.yml):marketHeroApiKey}
+    SQUARE_ENV: ${file(./config.dev.yml):squareEnv}
+    US_SQUARE_LOCATION: ${file(./config.dev.yml):usSquareLocation}
+    US_SQUARE_ACCESS_TOKEN: ${file(./config.dev.yml):usSquareAccessToken}
+    US_SQUARE_APPLICATION_ID: ${file(./config.dev.yml):usSquareApplicationId}
+    JP_SQUARE_LOCATION: ${file(./config.dev.yml):jpSquareLocation}
+    JP_SQUARE_ACCESS_TOKEN: ${file(./config.dev.yml):jpSquareAccessToken}
+    JP_SQUARE_APPLICATION_ID: ${file(./config.dev.yml):jpSquareApplicationId}
+    JWT_SECRET: ${file(./config.dev.yml):jwtSecret}
+    SAGAWA_ENV: ${file(./config.dev.yml):sagawaEnv}
+    SAGAWA_JAPANESE: ${file(./config.dev.yml):sagawaJapanese}
+    SAGAWA_ENGLISH: ${file(./config.dev.yml):sagawaEnglish}
+    SLACK_SUPPORT_WEBHOOK: ${file(./config.dev.yml):slackSupportWebhook}
+    SLACK_ERROR_NOTIFICATION_WEBHOOK: ${file(./config.dev.yml):slackErrorNotificationWebhook}
+    SLACK_GENERAL_NOTIFICATION_WEBHOOK: ${file(./config.dev.yml):slackGeneralNotificationWebhook}
+    LAMBDA_ENV: ${file(./config.dev.yml):lambdaEnv}
+    LAMBDA_SECRET_ACCESS_KEY: ${file(./config.dev.yml):lambdaSecretAccessKey}
+    LAMBDA_ACCESS_KEY_ID: ${file(./config.dev.yml):lambdaAccessKeyId}
+    BASE_URL: ${file(./config.dev.yml):baseUrl}
+    CEO_EMAIL: ${file(./config.dev.yml):ceoEmail}
+    CTO_EMAIL: ${file(./config.dev.yml):ctoEmail}
+    CDO_EMAIL: ${file(./config.dev.yml):cdoEmail}
+    AWS_SES_REGION: ${file(./config.dev.yml):awsSesRegion}
+    RECAPTCHA_SECRET_KEY: ${file(./config.dev.yml):recaptchaSecretKey}
 
 plugins:
   - serverless-webpack
@@ -69,9 +69,9 @@ functions:
     timeout: 10
     vpc:
       securityGroupIds:
-        - ${file(./config.prod.yml):securityGroupId}
+        - ${file(./config.dev.yml):securityGroupId}
       subnetIds:
-        - ${file(./config.prod.yml):subnetId}
+        - ${file(./config.dev.yml):subnetId}
     iamRoleStatements:
       - Effect: Allow
         Resource: "*"
@@ -102,9 +102,9 @@ functions:
     timeout: 10
     vpc:
       securityGroupIds:
-        - ${file(./config.prod.yml):securityGroupId}
+        - ${file(./config.dev.yml):securityGroupId}
       subnetIds:
-        - ${file(./config.prod.yml):subnetId}
+        - ${file(./config.dev.yml):subnetId}
     iamRoleStatements:
       - Effect: Allow
         Resource: "*"
@@ -120,4 +120,4 @@ functions:
           - ses:SendRawEmail
           - lambda:InvokeFunction
     events:
-      - schedule: cron(0 7 ? * MON *)
+      - schedule: cron(0 13 ? * MON *)

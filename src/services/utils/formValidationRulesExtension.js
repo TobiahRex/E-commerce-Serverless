@@ -1,36 +1,47 @@
 import React from 'react';
 import validator from 'validator';
 import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 Object.assign(Validation.rules, {
   api: {
-    hint: value => (
+    hint: () => (
       <button className="form-error is-visible">
-        API Error on {`"${value}"`} value. Focus to hide.
+        <IntlMsg id="form.validation.error.api" />
       </button>
     ),
   },
 
   required: {
     rule: value => value.toString().trim(),
-    hint: () => <span className="form-error is-visible">Required</span>,
+    hint: () => <span className="form-error is-visible">
+      <IntlMsg id="form.validation.error.required" />
+    </span>,
   },
 
   boolRequired: {
     rule: value => Boolean(value),
-    hint: () => <span className="form-error is-visible">Required</span>,
+    hint: () => <span className="form-error is-visible">
+      <IntlMsg id="form.validation.error.bool.required" />
+    </span>,
   },
 
   email: {
     rule: value => validator.isEmail(value),
-    hint: value => <span className="form-error is-visible">{value} is not an Email.</span>,
+    /* eslint-disable no-undef */
+    hint: value => (
+      <span className="form-error is-visible">
+        {!!IntlMessages ? IntlMessages['form.validation.error.email'].replace(/EMAIL_VALUE/g, value) : ''}
+      </span>
+    ),
+    /* eslint-enable no-undef */
   },
 
   alpha: {
     rule: value => validator.isAlpha(value),
     hint: () => (
       <span className="form-error is-visible">
-        String should contain only letters (a-zA-Z).
+        <IntlMsg id="form.validation.error.alpha" />
       </span>
     ),
   },
@@ -39,7 +50,7 @@ Object.assign(Validation.rules, {
     rule: value => validator.isNumeric(value),
     hint: () => (
       <span className="form-error is-visible">
-        Postal code should only contain numbers (0-9).
+        <IntlMsg id="form.validation.error.numeric" />
       </span>
     ),
   },
@@ -48,7 +59,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        U.S. Zip Codes must be in (12345) or (12345-6789) format.
+        <IntlMsg id="form.validation.error.us-zip" />
       </span>
     ),
   },
@@ -57,7 +68,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{7}$)|(^\d{3}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        Japanese postal codes must be in format (123-4567) or (1234567) and 7 digits long.
+        <IntlMsg id="form.validation.error.japan-postal" />
       </span>
     ),
   },
@@ -70,8 +81,7 @@ Object.assign(Validation.rules, {
     },
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid phone number. Acceptable Format: {'\"01234567890\"'}.
-        Either 10 digits (Landline) or 11 digits (Cell).
+        <IntlMsg id="form.validation.error.phone-japanLength" />
       </span>
     ),
   },
@@ -80,7 +90,7 @@ Object.assign(Validation.rules, {
     rule: value => (value[0] === '0'),
     hint: () => (
       <span className="form-error is-visible">
-        Phone number should start with {'\"0\"'}.
+        <IntlMsg id="form.validation.error.phone-startWithZero" />
       </span>
     ),
   },
@@ -89,7 +99,7 @@ Object.assign(Validation.rules, {
     rule: value => validator.isLength(value, { min: 3, max: 20 }),
     hint: () => (
       <span className="form-error is-visible">
-        Not a valid city name.
+        <IntlMsg id="form.validation.error.city" />
       </span>
     ),
   },
@@ -98,7 +108,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        That name uses invalid characters. Please try again.
+        <IntlMsg id="form.validation.error.ccName" />
       </span>
     ),
   },
@@ -107,7 +117,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        You must include a First name & a Last name.
+        <IntlMsg id="form.validation.error.ccName-firstLast" />
       </span>
     ),
   },
@@ -116,7 +126,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        That name uses invalid characters. Please try again.
+        <IntlMsg id="form.validation.error.contactUsName" />
       </span>
     ),
   },
@@ -125,7 +135,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        That message uses invalid characters. Please try again.
+        <IntlMsg id="form.validation.error.contactUsTextArea" />
       </span>
     ),
   },
@@ -134,7 +144,7 @@ Object.assign(Validation.rules, {
     rule: value => /^[a-zA-Z]+\s[a-zA-Z]+$/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        You must include a First name & a Last name.
+        <IntlMsg id="" />
       </span>
     ),
   },
@@ -143,7 +153,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{16}$)|(^\d{4}-\d{4}-\d{4}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        Credit Card numbers must be 16 digits & can only have format (1234567891234567) or (1234-5678-9123-4567).
+        <IntlMsg id="form.validation.error.ccNumber" />
       </span>
     ),
   },
@@ -152,7 +162,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{3}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        Credit Card CVN numbers should only be 3 digits.
+        <IntlMsg id="form.validation.error.ccCvn" />
       </span>
     ),
   },
@@ -174,14 +184,16 @@ Object.assign(Validation.rules, {
       return password.value === passwordConfirm.value;
     },
     hint: () => (
-      <span className="form-error is-visible">Passwords should be equal.</span>
+      <span className="form-error is-visible">
+        <IntlMsg id="form.validation.error.password" />
+      </span>
     ),
   },
 
   postalApi: {
     hint: () => (
       <span className="form-error is-visible">
-        Postal code is invalid. See error message for details. Focus to clear.
+        <IntlMsg id="form.valdation.error.postalApi" />
       </span>
     ),
   },

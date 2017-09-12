@@ -6,12 +6,12 @@ import Validation from 'react-validation';
 import { WebflowJs } from './assets/utils';
 
 const MdSendButton = ({
+  labels,
   toast,
   enable,
   submitMsg,
   apiFetching,
 }) => { //eslint-disable-line
-  WebflowJs();
 
   if (toast.type === 'success') {
     return (
@@ -40,13 +40,13 @@ const MdSendButton = ({
         >
           <FontAwesome name="send" />
           {'\u00A0'}
-          Send
+          {labels.send}
         </Validation.components.Button>
         <div className="contact-us__error">
           <div className="error-hard__title">
             <FontAwesome className="error-icon" name="exclamation-circle" />
             {'\u00A0'}
-            <h2>Error</h2>
+            <h2>{labels.errorHdr}</h2>
           </div>
           <p className="contact-us__error--message ">
             {toast.message}
@@ -66,7 +66,7 @@ const MdSendButton = ({
         >
           <FontAwesome name="spinner" pulse />
           {'\u00A0'}
-          Submitting...
+          {labels.submitting}
         </button>
       </div>
     );
@@ -82,7 +82,7 @@ const MdSendButton = ({
         >
           <FontAwesome name="send" />
           {'\u00A0'}
-          Send
+          {labels.send}
         </button>
       </div>
     );
@@ -97,17 +97,26 @@ const MdSendButton = ({
         >
           <FontAwesome name="send" />
           {'\u00A0'}
-          Send
+          {labels.send}
         </Validation.components.Button>
       </div>
     );
   }
-
 };
 
-const { func, bool, shape, string } = PropTypes;
+const {
+  func,
+  bool,
+  shape,
+  string,
+} = PropTypes;
 
 MdSendButton.propTypes = {
+  labels: shape({
+    send: string,
+    submitting: string,
+    success: string,
+  }).isRequired,
   toast: shape({
     type: string,
     message: string,

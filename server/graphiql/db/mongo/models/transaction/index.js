@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define, no-console, import/newline-after-import, consistent-return*/
 import axios from 'axios';
+import path from 'path';
 import uuid from 'uuid';
 import moment from 'moment';
 import { Promise as bbPromise } from 'bluebird';
@@ -23,7 +24,7 @@ import {
   zipArrays as ZipArrays,
 } from '../sagawa/helpers';
 
-require('dotenv').load({ silent: true });
+require('dotenv').config({ path: path.resolve('.env-dev'), silent: true });
 /**
 * Function: "fetchSquareLocation":
 * Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.

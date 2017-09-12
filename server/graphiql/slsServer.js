@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'babel-polyfill';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
@@ -5,7 +6,7 @@ import schema from './db/graphql/schema';
 import { startDB } from './db/mongo/connection';
 import runGraphQL from './db/graphql/runGraphQL';
 
-require('dotenv').load({ silent: true }); //eslint-disable-line
+require('dotenv').config({ path: path.resolve('.env-dev'), silent: true }); //eslint-disable-line
 
 const PORT = process.env.GRAPHIQL_PORT || 3002;
 const server = express();
