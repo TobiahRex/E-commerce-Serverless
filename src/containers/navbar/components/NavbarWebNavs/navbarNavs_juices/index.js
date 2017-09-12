@@ -7,8 +7,6 @@ import _ from 'lodash';
 import NavbarNavsJuicesDropdnContent from './navbarNavs_juices_dropdn_content';
 
 const { arrayOf, shape, func, string } = PropTypes;
-
-
 class NavbarNavsShop extends Component {
   static styles = {
     hide: 'hide',

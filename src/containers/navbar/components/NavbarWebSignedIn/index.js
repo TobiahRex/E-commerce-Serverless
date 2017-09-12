@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import { auth as AuthService } from '../../../../../navigation/routes';
+import { auth as AuthService } from '../../../../navigation/routes';
 
 const { objectOf, any } = PropTypes;
 

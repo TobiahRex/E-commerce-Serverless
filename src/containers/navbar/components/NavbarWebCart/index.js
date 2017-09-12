@@ -4,16 +4,13 @@ import _ from 'lodash';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
-
-import orderActions from '../../../../../../redux/orders/';
-import userActions from '../../../../../../redux/user/';
-
-import { DeleteFromMemberCart } from '../../../../../../graphql/mutations';
+import orderActions from '../../../../redux/orders/';
+import userActions from '../../../../redux/user/';
+import { DeleteFromMemberCart } from '../../../../graphql/mutations';
 import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
-} from '../../../../../../graphql/queries';
-
+} from '../../../../graphql/queries';
 import {
   NavbarCartMainButton,
   NavbarCartDropdnContent,

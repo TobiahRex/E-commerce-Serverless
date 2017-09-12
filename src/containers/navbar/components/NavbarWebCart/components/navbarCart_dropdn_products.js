@@ -6,7 +6,7 @@ import {
   NavbarCartProductsCardImage,
   NavbarCartProductsCardInfo,
   NavbarCartProductsCardActions,
-} from '../container/imports';
+} from '../imports';
 
 const { bool, func, object, number, arrayOf } = PropTypes;
 
