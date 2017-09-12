@@ -6,6 +6,7 @@ import './assets/css/styles.css';
 import {
   FooterHdr,
   FooterList,
+  FooterLower,
 } from './components';
 
 class Footer extends React.Component {
@@ -134,30 +135,11 @@ class Footer extends React.Component {
                 </ul>
               </div>
 
-              <div className="grid__social-column w-col w-col-3">
-                <FooterHdr section="social" title="home.footer.follow.title" />
-
-                <div className="social__icon-container">
-                  <div className="facebook-icon sweep-right">
-                    <FontAwesome name="facebook" className="facebook-fa-icon" />
-                  </div>
-                  <div className="instagram-icon sweep-right">
-                    <FontAwesome name="instagram" className="instagram-fa-icon" />
-                  </div>
-                </div>
-                <div className="social__icon-container">
-                  <div className="twitter-icon sweep-right">
-                    <FontAwesome name="twitter" className="twitter-fa-icon" />
-                  </div>
-                  <div className="linkedin-icon sweep-right">
-                    <FontAwesome name="linkedin" className="linkedin-fa-icon" />
-                  </div>
-                </div>
-              </div>
+              <FooterSocialGrid />
             </div>
           </div>
         </div>
-        <FooterLower />  
+        <FooterLower />
       </div>
     );
   }
