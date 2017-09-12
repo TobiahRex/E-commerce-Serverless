@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import localeActions from './assets/utils';
 import {
-  NavbarOptionsLanguageButton,
-  NavbarOptionsLanguageDropdnContent,
-  NavbarOptionsLanguageButtonEnglish,
-  NavbarOptionsLanguageButtonNihongo,
-  NavbarOptionsLanguageDropdnEnglish,
-  NavbarOptionsLanguageDropdnNihongo,
+  NavbarLanguageBtn,
+  NavbarLanguageDropdnContent,
+  NavbarLanguageBtnEnglish,
+  NavbarLanguageBtnNihongo,
+  NavbarLanguageDropdnEnglish,
+  NavbarLanguageDropdnNihongo,
 } from './components';
 
 
 const { string, func } = PropTypes;
 
-class NavbarOptionsLanguage extends Component {
+class NavbarLanguage extends Component {
   static propTypes = {
     saveLanguage: func.isRequired,
     activeLanguage: string.isRequired,
@@ -47,27 +47,27 @@ class NavbarOptionsLanguage extends Component {
 
   renderLanguageTitle = () => {
     const Language = this.state.activeLanguage;
-    if (Language === 'en') return <NavbarOptionsLanguageButtonEnglish />;
-    if (Language === 'ja') return <NavbarOptionsLanguageButtonNihongo />;
-    throw new Error('Cannot render the Active Language - Check NavbarOptionsLanguageButton component.');
+    if (Language === 'en') return <NavbarLanguageBtnEnglish />;
+    if (Language === 'ja') return <NavbarLanguageBtnNihongo />;
+    throw new Error('Cannot render the Active Language - Check NavbarLanguageBtn component.');
   }
 
   renderLanguageDropdown = () => {
     const Language = this.state.activeLanguage;
-    if (Language === 'en') return <NavbarOptionsLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
-    if (Language === 'ja') return <NavbarOptionsLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
-    throw new Error('Cannot render the Active Language - Check NavbarOptionsLanguageButton component.');
+    if (Language === 'en') return <NavbarLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />;
+    if (Language === 'ja') return <NavbarLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />;
+    throw new Error('Cannot render the Active Language - Check NavbarLanguageButton component.');
   }
 
   render() {
     return (
-      <div className="navbar__mobile--options">
-        <div className="navbar-mobile-options-language">
-          <NavbarOptionsLanguageButton
+      <div className="navbar__mobile--">
+        <div className="navbar-mobile--language">
+          <NavbarLanguageBtn
             activeLanguage={this.state.activeLanguage}
             renderLanguageTitle={this.renderLanguageTitle}
           />
-          <NavbarOptionsLanguageDropdnContent
+          <NavbarLanguageDropdnContent
             activeLanguage={this.state.activeLanguage}
             renderLanguageDropdown={this.renderLanguageDropdown}
           />
@@ -84,4 +84,4 @@ export default connect(
 dispatch => ({
   saveLanguage: language => dispatch(localeActions.setLanguage(language)),
 }),
-)(NavbarOptionsLanguage);
+)(NavbarLanguage);
