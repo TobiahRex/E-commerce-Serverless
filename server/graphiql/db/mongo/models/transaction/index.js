@@ -24,7 +24,7 @@ import {
   zipArrays as ZipArrays,
 } from '../sagawa/helpers';
 
-require('dotenv').config({ path: path.resolve('.env-dev'), silent: true });
+require('dotenv').config({ path: path.resolve('.env-prod'), silent: true });
 /**
 * Function: "fetchSquareLocation":
 * Queries the Square API for the location respective to this application. Once successfully fetched, verifies the location can handle CC processing.  If verified, returns the locationId to the invoking function.
