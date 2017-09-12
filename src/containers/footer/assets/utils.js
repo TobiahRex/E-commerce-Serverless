@@ -8,23 +8,77 @@ export const inputsData = [{
 }, {
   component: 'FooterList',
   props: {
-    section: 'general',
-    list: [
+    sections: [
       {
-        link: '/contact_us',
-        title: 'home.footer.general.contactUs',
+        section: 'general',
+        list: [
+          {
+            link: '/contact_us',
+            title: 'home.footer.general.contactUs',
+          },
+          {
+            link: '/vape_news',
+            title: 'home.footer.general.vapeNews',
+          },
+          {
+            link: '/product_reviews',
+            title: 'home.footer.general.productReviews',
+          },
+          {
+            link: '/user_stories',
+            title: 'home.footer.general.userStories',
+          },
+        ],
       },
       {
-        link: '/vape_news',
-        title: 'home.footer.general.vapeNews',
+        section: 'customer',
+        list: [
+          {
+            link: '/privacy_policy',
+            title: 'home.footer.customer.privacyPolicy',
+          },
+          {
+            link: '/shipping_policy',
+            title: 'home.footer.customer.shippingPolicy',
+          },
+          {
+            link: '/return_policy',
+            title: 'home.footer.customer.returnPolicy',
+          },
+          {
+            link: '/nicotine_disclaimer',
+            title: 'home.footer.customer.nicotineDisclaimer',
+          },
+          {
+            link: '/terms_conditions',
+            title: 'home.footer.customer.termsConditions',
+          },
+        ],
       },
       {
-        link: '/product_reviews',
-        title: 'home.footer.general.productReviews',
-      },
-      {
-        link: '/user_stories',
-        title: 'home.footer.general.userStories',
+        section: 'contact',
+        list: [
+          {
+            link: '/privacy_policy',
+            title: 'home.footer.customer.privacyPolicy',
+          },
+          {
+            link: '/shipping_policy',
+            title: 'home.footer.customer.shippingPolicy',
+          },
+          {
+            link: '/return_policy',
+            title: 'home.footer.customer.returnPolicy',
+          },
+          {
+            link: '/nicotine_disclaimer',
+            title: 'home.footer.customer.nicotineDisclaimer',
+          },
+          {
+            link: '/terms_conditions',
+            title: 'home.footer.customer.termsConditions',
+          },
+        ],
       },
     ],
   },
