@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  NavbarMobileLogo,
-  NavbarMobileNavs,
-  NavbarMobileUserActions,
-  NavbarMobileOptionsLanguage,
-} from '../';
+  NavbarLogo,
+  NavbarNavs,
+  NavbarUserActions,
+  NavbarOptions,
+} from './components';
 
 const { objectOf, any } = PropTypes;
 
@@ -21,10 +21,10 @@ class NavbarMobile extends React.PureComponent {
     return (
       <nav className="navbar navbar__mobile">
         <div className="navbar__mobile--container">
-          <NavbarMobileLogo />
-          <NavbarMobileOptionsLanguage />
-          <NavbarMobileUserActions activeUser={this.props.activeUser} />
-          <NavbarMobileNavs />
+          <NavbarLogo />
+          <NavbarOptions />
+          <NavbarUserActions activeUser={this.props.activeUser} />
+          <NavbarNavs />
         </div>
       </nav>
     );

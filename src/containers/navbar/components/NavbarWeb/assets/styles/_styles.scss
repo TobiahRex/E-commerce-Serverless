@@ -1,0 +1,68 @@
+@media only screen and (min-width: 931px) {
+  @import "./navbar_upper";
+  @import "./navbar_lower";
+  .hidden {
+    display: none;
+  }
+  /* Parent Styles - Navbar */
+  .flex-center {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-right {
+    @include prefixflex();
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .flex-left {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .flex-align-left {
+    @include prefixflex();
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .ua-font-opts {
+    font-family: $p-font;
+    font-weight: 200;
+    font-size: 1.5em;
+    color: $p-white;
+  }
+
+  .white-bg {
+    background-color: $p-blue;
+  }
+
+  .navbar-comp-container {
+    font-size: 10px;
+  }
+
+  nav {
+    width: 100%;
+    @extend .white-bg;
+  }
+  nav.navbar-web {
+    @include prefixflex();
+    justify-content: center;
+    position: fixed;
+    z-index: 20;
+    @include prefixed(box-shadow, 3px 4px 3px rgba(1,1,1,.25));
+  }
+  nav.navbar__mobile {
+    display: none;
+  }
+  .navbar.navbar-header {
+    @include prefixflex();
+    justify-content: center;
+  }
+  .navbar-actionSection {
+    height: 12em;
+  }
+}
