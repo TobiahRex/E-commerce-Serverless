@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   FooterHdr,
   FooterList,
@@ -48,23 +47,23 @@ const FooterUpper = () => (
             items={[
               {
                 link: '/privacy_policy',
-                title: 'home.footer.customer.privacyPolicy',
+                intlId: 'home.footer.customer.privacyPolicy',
               },
               {
                 link: '/shipping_policy',
-                title: 'home.footer.customer.shippingPolicy',
+                intlId: 'home.footer.customer.shippingPolicy',
               },
               {
                 link: '/return_policy',
-                title: 'home.footer.customer.returnPolicy',
+                intlId: 'home.footer.customer.returnPolicy',
               },
               {
                 link: '/nicotine_disclaimer',
-                title: 'home.footer.customer.nicotineDisclaimer',
+                intlId: 'home.footer.customer.nicotineDisclaimer',
               },
               {
                 link: '/terms_conditions',
-                title: 'home.footer.customer.termsConditions',
+                intlId: 'home.footer.customer.termsConditions',
               },
             ]}
           />
@@ -79,11 +78,11 @@ const FooterUpper = () => (
             items={[
               {
                 link: 'tel:080-4053-8791',
-                title: 'home.footer.contact.phone',
+                intlId: 'home.footer.contact.phone',
               },
               {
                 link: 'mailto:contact@nj2jp.com',
-                title: 'home.footer.contact.email',
+                intlId: 'home.footer.contact.email',
               },
             ]}
           />
@@ -93,10 +92,4 @@ const FooterUpper = () => (
     </div>
   </div>
 );
-
-FooterUpper.propTypes = {
-  section: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
 export default FooterUpper;

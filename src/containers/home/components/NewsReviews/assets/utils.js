@@ -153,7 +153,7 @@ export const contentData = {
         CardBody: {
           header: 'home.news.review.card12.header',
           subHeader: 'home.news.review.card12.subHeader',
-          content: 'home.news.creview.card12.content',
+          content: 'home.news.review.card12.content',
         },
       },
     },

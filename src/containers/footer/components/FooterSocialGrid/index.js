@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import {
-  FooterHdr,
-} from '../';
+import { FooterHdr } from '../';
 
 const FooterSocialGrid = () => (
   <div className="grid__social-column w-col w-col-3">
@@ -27,10 +24,4 @@ const FooterSocialGrid = () => (
     </div>
   </div>
 );
-
-FooterSocialGrid.propTypes = {
-  section: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
 export default FooterSocialGrid;

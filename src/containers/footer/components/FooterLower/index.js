@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
@@ -39,10 +38,5 @@ const FooterLower = () => (
     </div>
   </div>
 );
-
-FooterLower.propTypes = {
-  section: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default FooterLower;
