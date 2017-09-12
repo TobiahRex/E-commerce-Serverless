@@ -16,13 +16,8 @@
 @import "containers/ageVerification/ageVerification_mobile";
 
 // // "Navbar" Master Stylesheets
-@import "containers/navbar/styles/navbar_styles_web";
-@import "containers/navbar/styles/navbar_styles_mobile";
-
-// ------------------------------------------------------------
-// "Footer" Master Stylesheets
-// @import "containers/footer/footerStyles/footer_styles_web";
-// @import "containers/footer/footerStyles/footer_styles_mobile";
+@import "containers/navbar/assets/styles/web-styles";
+@import "containers/navbar/assets/styles/mobile-styles";
 
 // ------------------------------------------------------------
 // "404" Master Stylesheets

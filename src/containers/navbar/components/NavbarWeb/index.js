@@ -1,7 +1,9 @@
 import React from 'react';
-import NavbarLogo from './navbarLogo';
-import NavbarUpper from './navbarUpper';
-import NavbarLower from './navbarLower';
+import {
+  NavbarLogo,
+  NavbarUpper,
+  NavbarLower,
+} from '../';
 
 function NavbarWeb() {
   return (

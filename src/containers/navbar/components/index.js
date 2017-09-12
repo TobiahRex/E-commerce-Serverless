@@ -1,2 +1,3 @@
-export NavbarMobile from './navbar_mobile';
-export NavbarWeb from './navbar_web';
+export NavbarLogo from './NavbarLogo';
+export NavbarMobile from './NavbarMobile';
+export NavbarWeb from './NavbarWeb';
