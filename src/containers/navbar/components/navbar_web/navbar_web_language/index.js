@@ -52,22 +52,24 @@ class NavbarLanguage extends React.Component {
   render() {
     const { activeLanguage } = this.props;
     return (
-      <div className="navbar-options-language">
-        <NavbarLanguageButton activeLanguage={activeLanguage}>
-          {
-            activeLanguage === 'en' ?
-              <NavbarLanguageButtonEnglish />
-            : <NavbarLanguageButtonNihongo />
-          }
-        </NavbarLanguageButton>
+      <div className="navbar-actionSection-upper-options">
+        <div className="navbar-options-language">
+          <NavbarLanguageButton activeLanguage={activeLanguage}>
+            {
+              activeLanguage === 'en' ?
+                <NavbarLanguageButtonEnglish />
+              : <NavbarLanguageButtonNihongo />
+            }
+          </NavbarLanguageButton>
 
-        <NavbarLanguageDropdnContent>
-          {
-            activeLanguage === 'en' ?
-              <NavbarLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />
-            : <NavbarLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />
-          }
-        </NavbarLanguageDropdnContent>
+          <NavbarLanguageDropdnContent>
+            {
+              activeLanguage === 'en' ?
+                <NavbarLanguageDropdnNihongo onLanguageChange={this.onLanguageChange} />
+              : <NavbarLanguageDropdnEnglish onLanguageChange={this.onLanguageChange} />
+            }
+          </NavbarLanguageDropdnContent>
+        </div>
       </div>
     );
   }

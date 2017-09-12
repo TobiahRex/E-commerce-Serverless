@@ -137,21 +137,23 @@ class NavbarCart extends Component {
     }
 
     return (
-      <div className="mycart-main">
-        <NavbarCartMainButton qty={qty} />
+      <div className="navbar actionSection upper mycart-container">
+        <div className="mycart-main">
+          <NavbarCartMainButton qty={qty} />
 
-        <NavbarCartDropdnContent
-          loading={!!fetchProductsResult && fetchProductsResult.loading}
-          cartItems={cartItems}
-          editCartItem={this.editCartItem}
-          deleteFromCart={this.deleteFromCart}
-          cartTotal={
-            cartItems.length ?
-            cartItems.reduce((acc, next) =>
-              acc + (Number(next.product.price) * next.qty)
-            , 0) : 0
-          }
-        />
+          <NavbarCartDropdnContent
+            loading={!!fetchProductsResult && fetchProductsResult.loading}
+            cartItems={cartItems}
+            editCartItem={this.editCartItem}
+            deleteFromCart={this.deleteFromCart}
+            cartTotal={
+              cartItems.length ?
+              cartItems.reduce((acc, next) =>
+                acc + (Number(next.product.price) * next.qty)
+              , 0) : 0
+            }
+          />
+        </div>
       </div>
     );
   }

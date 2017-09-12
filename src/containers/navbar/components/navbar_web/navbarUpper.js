@@ -6,15 +6,9 @@ import NavbarCart from './navbar_web_cart/container/';
 export default function NavbarUpper() {
   return (
     <div className="navbar-actionSection-upper">
-      <div className="navbar-actionSection-upper-options">
-        <NavbarLanguage />
-      </div>
-      
+      <NavbarLanguage />
       <NavbarUserActions />
-
-      <div className="navbar actionSection upper mycart-container">
-        <NavbarCart />
-      </div>
+      <NavbarCart />
     </div>
   );
 }
