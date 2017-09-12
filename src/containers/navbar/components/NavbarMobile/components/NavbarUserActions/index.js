@@ -1,10 +1,10 @@
 /* eslint react/no-unused-prop-types: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import NavbarMobileUserActionsNotSignedIn from './navbar_mobile_userActions_notSignedIn';
-import NavbarMobileUserActionsSignedIn from './navbar_mobile_userActions_signedIn';
-
+import {
+  NavbarMobileUserActionsSignedIn,
+  NavbarMobileUserActionsNotSignedIn,
+} from './components';
 
 function NavbarMobileUserActions({ activeUser }) {
   return (

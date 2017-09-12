@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import mobileActions from '../../../../redux/mobile';
+import { mobileActions } from './assets/utils';
 
-import NavbarMobileNavMainBar from './navbar_mobile_nav_mainBar/navbar_mobile_nav_mainBar';
-import NavbarMobileNavDropdnContent from './navbar_mobile_nav_dropdnContent/navbar_mobile_nav_dropdnContent';
+import {
+  NavbarMainbar,
+  NavbarDropdown,
+} from './components';
 
 const { number, func } = PropTypes;
 class NavbarMobileNav extends Component {
@@ -97,12 +99,12 @@ class NavbarMobileNav extends Component {
 
     return (
       <div className="navbar__mobile--nav" style={style}>
-        <NavbarMobileNavMainBar
+        <NavbarMainbar
           cartQty={cartQty}
           toggleDropdown={this.toggleDropdown}
           ddOpen={this.state.ddOpen}
         />
-        <NavbarMobileNavDropdnContent
+        <NavbarDropdown
           scrolling={this.state.navbarFixed}
           screenSize={navbarSize}
           ddOpen={this.state.ddOpen}
