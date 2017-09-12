@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import convertStrengthToNumber from '../../../../../../services/utils/convertStrengthToNumber';
+import convertStrengthToNumber from '../../../../../services/utils/convertStrengthToNumber';
 
 function NavbarCartProductsCardInfo({
   title,

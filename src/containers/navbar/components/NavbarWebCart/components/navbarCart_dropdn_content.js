@@ -5,7 +5,7 @@ import {
   NavbarCartRecentlyAdded,
   NavbarCartActionLinks,
   NavbarCartProducts,
-} from '../container/imports';
+} from '../imports';
 
 function NavbarCartDropdnContent({
   loading,

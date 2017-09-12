@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import localeActions from '../../../../../redux/locale';
+import localeActions from '../../../../redux/locale';
 
 import {
   NavbarLanguageButton,
