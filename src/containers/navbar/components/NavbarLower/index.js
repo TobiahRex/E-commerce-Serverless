@@ -3,7 +3,7 @@ import {
   NavbarNavsJuices,
   NavbarNavsMedia,
   NavbarNavsInfo,
-} from '../imports';
+} from '../NavbarWebNavs';
 
 function NavbarLower() {
   return (
