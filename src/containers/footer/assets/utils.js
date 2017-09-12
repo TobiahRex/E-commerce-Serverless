@@ -65,7 +65,7 @@ export const inputsData = [
         title: 'home.footer.contact.email',
       },
     ],
-  }
+  },
 ];
 export apiActions from '../../../redux/api';
 export toasterActions from '../../../redux/toaster';
