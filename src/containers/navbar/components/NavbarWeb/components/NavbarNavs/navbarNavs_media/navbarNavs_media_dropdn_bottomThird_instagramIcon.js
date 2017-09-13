@@ -3,8 +3,7 @@ import FontAwesome from 'react-fontawesome';
 
 export default () => (
   <a
-    onClick={() => console.warn('Need to create and add Instagram link here')}
-    href="/"
+    href="http://instragram.com/nicjuice2japan"
     id="media-dropdown-instagram-icon"
     className="media-dropdown-content-bottomThird-innerContainer-smedia"
   >

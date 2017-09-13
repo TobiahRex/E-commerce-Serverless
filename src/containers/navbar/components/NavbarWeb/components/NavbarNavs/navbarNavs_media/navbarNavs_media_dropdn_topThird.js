@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function NavbarNavsMediaDropdnMidthird() {
   return (
@@ -8,7 +9,9 @@ function NavbarNavsMediaDropdnMidthird() {
         to={'/contact_us'} className="media-dropdown-content-midThird-links"
       >
         <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>Contact Us</h4>
+          <h4>
+            <IntlMsg id="navbar.nav.contact-us.title" />
+          </h4>
         </div>
       </Link>
       <Link
@@ -16,7 +19,9 @@ function NavbarNavsMediaDropdnMidthird() {
         className="media-dropdown-content-midThird-links"
       >
         <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>Juice Reviews</h4>
+          <h4>
+            <IntlMsg id="navbar.nav.juice-reviews.title" />
+          </h4>
         </div>
       </Link>
       <Link
@@ -24,7 +29,9 @@ function NavbarNavsMediaDropdnMidthird() {
         className="media-dropdown-content-midThird-links"
       >
         <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>Vape News</h4>
+          <h4>
+            <IntlMsg id="navbar.nav.vape-news.title" />
+          </h4>
         </div>
       </Link>
       <Link
@@ -32,7 +39,9 @@ function NavbarNavsMediaDropdnMidthird() {
         className="media-dropdown-content-midThird-links"
       >
         <div className="media-dropdown-content-midThird-title sweep-right">
-          <h4>User Stories</h4>
+          <h4>
+            <IntlMsg id="navbar.nav.user-stories.title" />
+          </h4>
         </div>
       </Link>
     </div>

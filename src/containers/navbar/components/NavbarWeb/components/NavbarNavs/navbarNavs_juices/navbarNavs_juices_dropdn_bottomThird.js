@@ -1,11 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
-/* TODO
-1. Recommend Another juice buton sends user to "/contact us";
-
-*/
 const { func } = PropTypes;
 class NavbarNavsJuicesDropdnBottomthird extends PureComponent {
   static propTypes = {
@@ -28,15 +25,15 @@ class NavbarNavsJuicesDropdnBottomthird extends PureComponent {
             className="shop-dropdown-content-bottomThird-leftSide-recommend sweep-right"
             onClick={e => this.recommendClick(e.target.getAttribute('id'))}
           >
-            <span>Recommend Another Juice Line</span>
+            <IntlMsg id="navbar.nav.juices.recommend" />
           </button>
         </span>
         <span className="shop-dropdown-content-bottomThird-rightSide">
           <h4 className="shop-dropdown-content-bottomThird-rightSide-promoSoft">
-            <span>Get 10% OFF</span>
+            <IntlMsg id="navbar.nav.juices.discount.percentage" />
           </h4>
           <h4 className="shop-dropdown-content-bottomThird-rightSide-promoHard">
-            <span>When You Become A Member</span>
+            <IntlMsg id="navbar.nav.juices.discount.reason" />
           </h4>
         </span>
       </div>

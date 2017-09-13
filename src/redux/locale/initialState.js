@@ -15,6 +15,26 @@ export default {
         'navbar.cart.promotion.line2': 'Get 25% Off',
         'navbar.cart.recently-added': 'Recently Added Item(s)',
 
+        'navbar.nav.juices.title': 'JUICES',
+        'navbar.nav.juices.recommend': 'Recommend Another Juices Line',
+        'navbar.nav.juices.discount.percentage': 'Get 10% OFF',
+        'navbar.nav.juices.discount.reason': 'When You Become A Member',
+        'navbar.nav.juices.choose-flavor.title': 'Choose A Flavor!',
+        'navbar.nav.juices.description.title': 'Nicotine Juices:',
+        'navbar.nav.juices.description': 'N2JP prides itself on offering our customers top quality products and service.  We want your experiences doing business with us to be so good, that we become your #1 choice for all your vape juice needs.  Our customers love us, and we plan on making sure you do to.  You’ll find all our juice offers below.  If you have any questions, don’t hesitate to ask us.  Enjoy your experience “making the switch.”',
+
+        'navbar.nav.media.title': 'MEDIA',
+        'navbar.nav.contact-us.title': 'Contact Us',
+        'navbar.nav.juice-reviews.title': 'Juice Reviews',
+        'navbar.nav.vape-news.title': 'Vape News',
+        'navbar.nav.user-stories.title': 'User Stories',
+
+        'navbar.nav.info.title': 'INFO',
+        'navbar.nav.info.links.about': 'About',
+        'navbar.nav.info.links.faqs': 'FAQs',
+        'navbar.nav.info.links.contact-us': 'Contact Us',
+
+
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
         'home.header.button.buyNow': 'Buy Now!',
@@ -155,6 +175,20 @@ export default {
         'navbar.cart.promotion.line1': '4ボトルを購入する',
         'navbar.cart.promotion.line2': '25％割引を受ける',
         'navbar.cart.recently-added': '最近追加されたアイテム',
+
+        'navbar.nav.juices.title': 'ジュース',
+        'navbar.nav.juices.recommend': '別のジュースブランドを推薦する',
+        'navbar.nav.juices.discount.percentage': '10％OFFを受け取る',
+        'navbar.nav.juices.discount.reason': 'メンバーになると',
+        'navbar.nav.juices.choose-flavor.title': 'フレーバーを選ぶ!',
+        'navbar.nav.juices.description.title': 'ニコチンジュース:',
+        'navbar.nav.juices.description': 'N2JPはお客様に最高品質の製品とサービスを提供することを誇りにしています。 私たちはあなたとあなたとのビジネス経験がとても良いことを願っています。私たちはあなたのすべてのあなたのvape juice needsのためにあなたの＃1の選択肢になります。 私たちの顧客は私たちを愛しています。 あなたは以下のすべてのジュースのオファーを見つけるでしょう。 ご不明な点がございましたら、お気軽にお問い合わせください。 経験をお楽しみください "スイッチを作る。',
+
+        'navbar.nav.media.title': 'メディア',
+        'navbar.nav.contact-us.title': 'お問い合わせ',
+        'navbar.nav.juice-reviews.title': 'ジュースレビュー',
+        'navbar.nav.vape-news.title': 'ヴェイプニュース',
+        'navbar.nav.user-stories.title': 'ユーザーストーリー',
 
         'home.header.title': '日本で最速のニコチン電子ジュース納品',
         'home.header.subtitle': '保証付き!',

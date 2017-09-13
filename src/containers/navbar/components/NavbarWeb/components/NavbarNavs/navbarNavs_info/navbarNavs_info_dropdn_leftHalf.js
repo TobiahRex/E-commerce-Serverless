@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function NavbarNavsInfoDropdnLefthalf() {
   return (
@@ -9,17 +10,23 @@ export default function NavbarNavsInfoDropdnLefthalf() {
       >
         <li className="sweep-right">
           <Link to={'/about'}>
-            <p>About</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.about" />
+            </p>
           </Link>
         </li>
         <li className="sweep-right">
           <Link to={'/faqs'}>
-            <p>FAQs</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.faqs" />
+            </p>
           </Link>
         </li>
         <li className="sweep-right">
           <Link to={'/contact_us'}>
-            <p>Contact Us</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.contact-us" />
+            </p>
           </Link>
         </li>
         {/* <li className="sweep-right">

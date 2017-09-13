@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 import NavbarNavsMediaDropdnContent from './navbarNavs_media_dropdnContent';
 
@@ -10,7 +11,7 @@ const NavbarNavsMedia = () => (
       className="media-main-button"
     >
       <div className="media-main-button-title">
-        <span>MEDIA</span>
+        <IntlMsg id="navbar.nav.media.title" />
       </div>
     </Link>
     <NavbarNavsMediaDropdnContent />

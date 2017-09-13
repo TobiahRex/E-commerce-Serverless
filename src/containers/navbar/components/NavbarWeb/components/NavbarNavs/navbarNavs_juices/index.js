@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import NavbarNavsJuicesDropdnContent from './navbarNavs_juices_dropdn_content';
 
 const { arrayOf, shape, func, string } = PropTypes;
@@ -59,7 +60,7 @@ class NavbarNavsShop extends Component {
           className="shop-main-button"
         >
           <div className="shop-main-button-title">
-            <span>JUICES</span>
+            <IntlMsg id="navbar.nav.juices.title" />
           </div>
         </Link>
         {
