@@ -72,6 +72,11 @@ export default {
         'product.modal.register.discount-whoah': 'Whoah! That\'s',
         'product.modal.register.discount-example': 'Example: ',
         'product.modal.register.header.qty': 'QTY',
+        'product.modal.register.header.description': 'Juice Description',
+        'product.modal.register.header.price': 'Price',
+        'product.modal.register.row.flavor': 'Fruity Bamm-Bamm',
+        'product.modal.register.row.strength': 'Nicotine Strength: ',
+
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',

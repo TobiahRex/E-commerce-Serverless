@@ -85,10 +85,14 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
                 </h4>
               </th>
               <th className="header--description">
-                <h4>Juice Description</h4>
+                <h4>
+                  <IntlMsg id="product.modal.register.header.description" />
+                </h4>
               </th>
               <th className="header--price">
-                <h4>Price</h4>
+                <h4>
+                  <IntlMsg id="product.modal.register.header.price" />
+                </h4>
               </th>
             </tr>
           </thead>
@@ -98,10 +102,13 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
                 <p>4</p>
               </td>
               <td className="body--description">
-                <p className="description__title">Fruity Bamm-Bamm</p>
+                <p className="description__title">
+                  <IntlMsg id="product.modal.register.row.flavor" />
+                </p>
                 <br />
                 <p className="description__nicotine-strength">
-                  Nicotine Strenght: <i>6mg</i>
+                  <IntlMsg id="product.modal.register.row.strength" />&nbsp;
+                  <i>6mg</i>
                 </p>
                 <br />
                 <p className="description__sku">
