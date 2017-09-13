@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function NavbarCartPromotion() {
+export default function NavbarPromotion() {
   return (
     <div className="promotion">
       <span className="promotion-top-line">

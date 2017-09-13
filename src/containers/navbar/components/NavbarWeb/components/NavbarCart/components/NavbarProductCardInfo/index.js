@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { convertStrengthToNumber } from '../assets/utils';
+import { convertStrengthToNumber } from '../../assets/utils';
 
-function NavbarCartProductsCardInfo({
+function NavbarProductsCardInfo({
   title,
   qty,
   price,
@@ -29,17 +29,17 @@ function NavbarCartProductsCardInfo({
   );
 }
 const { string, number } = PropTypes;
-NavbarCartProductsCardInfo.defaultProps = {
+NavbarProductsCardInfo.defaultProps = {
   price: '',
   qty: 0,
   title: '',
   nicotineStrength: '',
 };
-NavbarCartProductsCardInfo.propTypes = {
+NavbarProductsCardInfo.propTypes = {
   price: string,
   qty: number,
   title: string,
   nicotineStrength: string,
 };
 
-export default NavbarCartProductsCardInfo;
+export default NavbarProductsCardInfo;

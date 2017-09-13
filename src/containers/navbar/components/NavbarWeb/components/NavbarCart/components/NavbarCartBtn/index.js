@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-function NavbarCartMainButton({ qty }) {
+function NavbarCartBtn({ qty }) {
   return (
     <span className="mainbtn">
       <Link to="/cart" className="mainbtn-mycart-link">
@@ -20,7 +20,7 @@ function NavbarCartMainButton({ qty }) {
     </span>
   );
 }
-NavbarCartMainButton.propTypes = {
+NavbarCartBtn.propTypes = {
   qty: PropTypes.number.isRequired,
 };
-export default NavbarCartMainButton;
+export default NavbarCartBtn;

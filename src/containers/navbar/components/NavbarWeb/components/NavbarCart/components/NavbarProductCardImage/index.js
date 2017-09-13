@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NavbarCartProductsCardImage({ imageUrl, title }) {
+function NavbarProductsCardImage({ imageUrl, title }) {
   return (
     <div className="products-list-card-image">
       <img
@@ -13,8 +13,8 @@ function NavbarCartProductsCardImage({ imageUrl, title }) {
   );
 }
 const { string } = PropTypes;
-NavbarCartProductsCardImage.propTypes = {
+NavbarProductsCardImage.propTypes = {
   imageUrl: string.isRequired,
   title: string.isRequired,
 };
-export default NavbarCartProductsCardImage;
+export default NavbarProductsCardImage;

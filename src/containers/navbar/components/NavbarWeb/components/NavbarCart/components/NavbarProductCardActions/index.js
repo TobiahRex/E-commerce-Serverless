@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-function NavbarCartProductsCardActions({
+function NavbarProductCardActions({
   slug,
   productId,
   editCartItem,
@@ -37,14 +37,14 @@ function NavbarCartProductsCardActions({
   );
 }
 const { string, func } = PropTypes;
-NavbarCartProductsCardActions.propTypes = {
+NavbarProductCardActions.propTypes = {
   slug: string,
   productId: string,
   editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
 };
-NavbarCartProductsCardActions.defaultProps = {
+NavbarProductCardActions.defaultProps = {
   slug: '',
   productId: '',
 };
-export default NavbarCartProductsCardActions;
+export default NavbarProductCardActions;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function NavbarCartRecentlyAdded() {
+export default function NavbarRecentAdd() {
   return (
     <div className="recently-added">
       <span>Recently Added Item(s)</span>

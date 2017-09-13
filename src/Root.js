@@ -20,6 +20,7 @@ class Root extends React.Component {
       apolloClient,
     } = this.props;
     IntlMessages = Object.assign({}, messages); // eslint-disable-line no-undef
+    IntlLocale = locale; // eslint-disable-line no-undef
     return (
       <ApolloProvider client={apolloClient} store={store}>
         <IntlProvider key={locale} locale={locale} messages={messages}>
