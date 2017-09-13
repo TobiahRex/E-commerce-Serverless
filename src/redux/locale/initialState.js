@@ -76,6 +76,13 @@ export default {
         'product.modal.register.header.price': 'Price',
         'product.modal.register.row.flavor': 'Fruity Bamm-Bamm',
         'product.modal.register.row.strength': 'Nicotine Strength: ',
+        'product.modal.register.row.subtotal': 'Subtotal',
+        'product.modal.register.row.tax': 'Tax',
+        'product.modal.register.row.discount': 'Discount',
+        'product.modal.register.row.shipping': 'Free International Shipping',
+        'product.modal.register.row.total': 'Grand Total',
+        'product.modal.register.btns.close': 'Close',
+        'product.modal.register.btns.sign-up': 'Sign Me Up',
 
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',

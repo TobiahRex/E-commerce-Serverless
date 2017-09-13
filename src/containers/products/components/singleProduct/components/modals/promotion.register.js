@@ -123,15 +123,25 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
             </tr>
             <tr className="body__row--totals">
               <td className="body__totals--categories" colSpan="2">
-                <p className="category__subtotal">Subtotal</p>
+                <p className="category__subtotal">
+                  <IntlMsg id="product.modal.register.row.subtotal" />
+                </p>
                 <br />
-                <p className="category__tax">Tax</p>
+                <p className="category__tax">
+                  <IntlMsg id="product.modal.register.row.tax" />
+                </p>
                 <br />
-                <p className="category__discount required">Discount</p>
+                <p className="category__discount required">
+                  <IntlMsg id="product.modal.register.row.discount" />
+                </p>
                 <br />
-                <p className="category__shipping">Free International Shipping</p>
+                <p className="category__shipping">
+                  <IntlMsg id="product.modal.register.row.shipping" />
+                </p>
                 <br />
-                <p className="category__order-total">Order Total</p>
+                <p className="category__order-total">
+                  <IntlMsg id="product.modal.register.row.total" />
+                </p>
               </td>
               <td className="body__totals--prices">
                 <p className="price__subtotal">$ 120.00</p>
@@ -155,14 +165,18 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
             data-tag=""
             className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
-          >Close</button>
+          >
+            <IntlMsg id="product.modal.register.btns.close" />
+          </button>
 
           <button
             data-parent="promotion-register"
             data-tag="view-signup"
             className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
-          >Sign Me Up</button>
+          >
+            <IntlMsg id="product.modal.register.btns.sign-up" />
+          </button>
         </div>
       </div>
     </div>
