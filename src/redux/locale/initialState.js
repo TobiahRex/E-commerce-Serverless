@@ -14,7 +14,6 @@ export default {
         'navbar.cart.promotion.line1': 'Buy 4 Bottles',
         'navbar.cart.promotion.line2': 'Get 25% Off',
         'navbar.cart.recently-added': 'Recently Added Item(s)',
-
         'navbar.nav.juices.title': 'JUICES',
         'navbar.nav.juices.recommend': 'Recommend Another Juices Line',
         'navbar.nav.juices.discount.percentage': 'Get 10% OFF',
@@ -22,13 +21,11 @@ export default {
         'navbar.nav.juices.choose-flavor.title': 'Choose A Flavor!',
         'navbar.nav.juices.description.title': 'Nicotine Juices:',
         'navbar.nav.juices.description': 'N2JP prides itself on offering our customers top quality products and service.  We want your experiences doing business with us to be so good, that we become your #1 choice for all your vape juice needs.  Our customers love us, and we plan on making sure you do to.  You’ll find all our juice offers below.  If you have any questions, don’t hesitate to ask us.  Enjoy your experience “making the switch.”',
-
         'navbar.nav.media.title': 'MEDIA',
         'navbar.nav.contact-us.title': 'Contact Us',
         'navbar.nav.juice-reviews.title': 'Juice Reviews',
         'navbar.nav.vape-news.title': 'Vape News',
         'navbar.nav.user-stories.title': 'User Stories',
-
         'navbar.nav.info.title': 'INFO',
         'navbar.nav.info.links.about': 'About',
         'navbar.nav.info.links.faqs': 'FAQs',
@@ -39,6 +36,11 @@ export default {
         'navbar.nav.info.links.terms-and-conditions': 'Terms & Conditions',
         'navbar.nav.info.links.nicotine-disclaimer': 'Nicotine Disclaimer',
 
+        'product.single.loading': 'Loading...',
+        'product.breadcrumb.paths1': 'Home',
+        'product.breadcrumb.lastCrumb': 'Juice Page',
+        'product.title.main': 'Switch Juice',
+        'product.title.vendor': 'Vape Switch',
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',

@@ -1,12 +1,12 @@
 /* eslint-disable no-lone-blocks, import/first*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
+import { FormattedMessage as IntlMsg, injectIntl, intlShape } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
-
-import { propTypes, defaultProps } from './propTypes';
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import {
@@ -30,10 +30,26 @@ import {
 } from './utilities.imports';
 
 class SingleProduct extends React.Component {
-  static propTypes = propTypes
-  static defaultProps = defaultProps
   constructor(props) {
     super(props);
+
+    const {
+      intl: {
+        messages: {
+          'product.breadcrumb.paths1': bcPaths1,
+          'product.breadcrumb.lastCrumb': lastCrumb,
+          'product.title.main': mainTitle,
+          'product.title.vendor': vendorTitle,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
+      mainTitle,
+      vendorTitle,
+    };
 
     this.state = {
       qty: 0,
@@ -536,16 +552,16 @@ class SingleProduct extends React.Component {
     return (
       <div className="juice-page__main">
         <BreadCrumb
-          paths={['Home', 'Juices']}
+          paths={[this.intl.bcPaths1]}
           classes={['home', 'home']}
-          destination={['', 'juices']}
-          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title : 'Juice Page'}
+          destination={['/', 'juices']}
+          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title : this.intl.lastCrumb}
         />
         {
           data.FindProductsByFlavor ?
             <MainTitle
-              vendor={data.FindProductsByFlavor[0].product.vendor}
-              mainTitle={data.FindProductsByFlavor[0].product.mainTitle}
+              vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
+              mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''
         }
         {
@@ -553,7 +569,7 @@ class SingleProduct extends React.Component {
           (<h1 className="main__loading">
             <FontAwesome name="spinner" pulse size="3x" />
             <br />
-            Loading...
+            <IntlMsg id="product.single.loading" />
           </h1>) :
           <ProductDisplay
             qty={qty}
@@ -598,6 +614,7 @@ class SingleProduct extends React.Component {
   }
 }
 
+const SingleProductIntl = injectIntl(SingleProduct);
 /**
 * NOTE: This component calls GraphQL compose function first, and provides the results to the react-redux-connect function as props.
 *
@@ -626,7 +643,7 @@ const SingleProductWithState = connect(null,
 
     updateToReduxMemberCart: products => dispatch(orderActions.updateToReduxMemberCart(products)),
   }),
-)(SingleProduct);
+)(SingleProductIntl);
 
 const SingleProductWithStateAndData = compose(
   graphql(FindProductsByFlavor, {
@@ -651,5 +668,82 @@ const SingleProductWithStateAndData2 = connect(
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
 }))(SingleProductWithStateAndData);
+
+const {
+  any,
+  func,
+  number,
+  bool,
+  string,
+  shape,
+  arrayOf,
+  objectOf,
+} = PropTypes;
+
+const ProductShape = shape({
+  _id: string,
+  product: shape({
+    qty: number,
+    price: string,
+    title: string,
+    slug: string,
+    strength: number,
+    mainTitle: string,
+    nicotineStrength: string,
+    images: arrayOf(shape({
+      purpose: string,
+      url: string,
+    })),
+    quantities: shape({
+      available: number,
+      inCarts: number,
+      purchased: number,
+    }),
+  }),
+});
+
+SingleProduct.propTypes = {
+  intl: intlShape.isRequired,
+  push: func.isRequired,
+  goBack: func.isRequired,
+  userId: string,
+  flavor: string,
+  taxRate: number.isRequired,
+  loggedIn: bool.isRequired,
+  saveUser: func.isRequired,
+  addToGuestCart: func.isRequired,
+  AddToMemberCart: func.isRequired,
+  saveGuestCart: func.isRequired,
+  EditToMemberCart: func.isRequired,
+  addToReduxMemberCart: func.isRequired,
+  addToReduxProfileCart: func.isRequired,
+  updateToReduxMemberCart: func.isRequired,
+  userCart: arrayOf(
+    shape({
+      qty: number,
+      strength: number,
+      product: string,
+    }),
+  ),
+  guestCart: arrayOf(
+    shape({
+      _id: string,
+      qty: number,
+      strength: number,
+      userId: string,
+      product: objectOf(any),
+    }),
+  ),
+  data: shape({
+    FindProductById: ProductShape,
+    FindProductsByFlavor: arrayOf(ProductShape),
+  }).isRequired,
+};
+SingleProduct.defaultProps = {
+  userId: '',
+  flavor: '',
+  userCart: null,
+  guestCart: null,
+};
 
 export default SingleProductWithStateAndData2;

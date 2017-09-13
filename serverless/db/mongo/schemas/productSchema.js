@@ -18,16 +18,34 @@ const productSchema = new Schema({
   },
   product: {
     mainTitle: {
-      type: String,
-      required: true,
+      en: {
+        type: String,
+        required: true,
+      },
+      ja: {
+        type: String,
+        required: true,
+      },
     },
     title: {
-      type: String,
-      required: true,
+      en: {
+        type: String,
+        required: true,
+      },
+      ja: {
+        type: String,
+        required: true,
+      },
     },
     flavor: {
-      type: String,
-      required: true,
+      en: {
+        type: String,
+        required: true,
+      },
+      ja: {
+        type: String,
+        required: true,
+      },
     },
     price: {
       type: String,
@@ -66,10 +84,25 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
-    vendor: { type: String },
+    vendor: {
+      en: {
+        type: String,
+        required: true,
+      },
+      ja: {
+        type: String,
+        required: true,
+      },
+    },
     blurb: {
-      type: String,
-      required: true,
+      en: {
+        type: String,
+        required: true,
+      },
+      ja: {
+        type: String,
+        required: true,
+      },
     },
     dates: {
       addedToStore: {
