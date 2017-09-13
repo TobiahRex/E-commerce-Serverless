@@ -560,8 +560,8 @@ class SingleProduct extends React.Component {
         {
           data.FindProductsByFlavor ?
             <MainTitle
-              vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
-              mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
+              vendor={data.FindProductsByFlavor[0].product.vendor}
+              mainTitle={data.FindProductsByFlavor[0].product.mainTitle}
             /> : ''
         }
         {

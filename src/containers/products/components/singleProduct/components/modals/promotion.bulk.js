@@ -46,9 +46,9 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             </span>
             <IntlMsg id="product.modal.bulk.subtitle2" />&nbsp;
             <span className="required sub-title__bold">
-              <IntlMsg id="product.modal.bulk.subtitle3" />&nbsp;
+              25% OFF&nbsp;
             </span>
-            <IntlMsg id="product.modal.bulk.subtitle4" />&nbsp;
+            <IntlMsg id="product.modal.bulk.subtitle3" />&nbsp;
           </p>
           <br />
           <p className="product-title__example">

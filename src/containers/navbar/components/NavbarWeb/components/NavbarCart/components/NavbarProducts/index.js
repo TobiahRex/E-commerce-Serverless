@@ -103,13 +103,6 @@ class NavbarProducts extends Component {
   });
 
   render() {
-    let currency = '';
-    switch (IntlLocale) {
-      case 'en': currency = 'usd'; break;
-      case 'ja': currency = 'jpy'; break;
-      default: currency = 'usd';
-    }
-    /* eslint-disable react/style-prop-object */
     return (
       <div>
         <div className="products">
@@ -122,13 +115,8 @@ class NavbarProducts extends Component {
             <IntlMsg id="navbar.cart.total-price" />
           </span>
           <span className="total-price-amount">
-            <IntlInt
-              style="currency"
-              currency={currency}
-              value={this.props.cartTotal}
-              minimumFractionDigits={2}
-              maximumFractionDigits={2}
-            />
+            <FontAwesome name="usd" />&nbsp;
+            {this.props.cartTotal}.00
           </span>
         </div>
       </div>

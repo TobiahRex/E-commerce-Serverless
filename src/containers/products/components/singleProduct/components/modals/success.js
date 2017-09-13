@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
   let style;
@@ -35,9 +36,11 @@ function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
           <br />
           <p>
             {
-              qty > 1 ? 'juices have ' : 'juice has '
+              qty > 1 ?
+                <IntlMsg id="product.modal.success.juices-have" />
+              : <IntlMsg id="product.modal.success.juice-has" />
             }
-            been successfully added to your cart.
+            &nbsp;<IntlMsg id="product.modal.success.added-msg" />
           </p>
         </div>
         <div className="dialogue__action-btns">
@@ -46,21 +49,27 @@ function SuccessModal({ qty, productTitle, showModal, modalHandler }) {
             data-tag="view-cart"
             className="action-btn__cart sweep-right"
             onClick={modalHandler}
-          >View Cart</button>
+          >
+            <IntlMsg id="product.modal.success.view-cart" />
+          </button>
 
           <button
             data-parent="success"
             data-tag="view-juice"
             className="action-btn__continue sweep-right"
             onClick={modalHandler}
-          >Continue Shopping</button>
+          >
+            <IntlMsg id="product.modal.success.continue-shopping" />
+          </button>
 
           <button
             data-parent="success"
             data-tag="view-checkout"
             className="action-btn__checkout sweep-right"
             onClick={modalHandler}
-          >Express Checkout</button>
+          >
+            <IntlMsg id="product.modal.success.express-checkout" />
+          </button>
         </div>
       </div>
     </div>
