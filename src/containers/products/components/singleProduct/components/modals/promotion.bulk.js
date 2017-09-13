@@ -38,30 +38,42 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
         </div>
         <div className="dialogue__product-title">
           <h1 className="product-title__title">
-            <IntlMsg id="product.modal.bulk.title" />
+            <IntlMsg id="product.modal.bulk.title" />&nbsp;
           </h1>
           <p className="product-title__sub-title">
-            <span className="required sub-title__bold"> BUY 4 BOTTLES </span>
-            and we’ll slice
-            <span className="required sub-title__bold"> 25% OFF </span>
-            the price.
+            <span className="required sub-title__bold">
+              <IntlMsg id="product.modal.bulk.subtitle1" />&nbsp;
+            </span>
+            <IntlMsg id="product.modal.bulk.subtitle2" />&nbsp;
+            <span className="required sub-title__bold">
+              <IntlMsg id="product.modal.bulk.subtitle3" />&nbsp;
+            </span>
+            <IntlMsg id="product.modal.bulk.subtitle4" />&nbsp;
           </p>
           <br />
           <p className="product-title__example">
-            <i>Example:</i>
+            <i>
+              <IntlMsg id="product.modal.bulk.title.example" />
+            </i>
           </p>
         </div>
         <table className="dialogue__table">
           <thead className="table__header">
             <tr className="header__row">
               <th className="header--qty">
-                <h4>QTY</h4>
+                <h4>
+                  <IntlMsg id="product.modal.bulk.header.qty" />
+                </h4>
               </th>
               <th className="header--description">
-                <h4>Description</h4>
+                <h4>
+                  <IntlMsg id="product.modal.bulk.header.description" />
+                </h4>
               </th>
               <th className="header--price">
-                <h4>Price</h4>
+                <h4>
+                  <IntlMsg id="product.modal.bulk.header.price" />
+                </h4>
               </th>
             </tr>
           </thead>
