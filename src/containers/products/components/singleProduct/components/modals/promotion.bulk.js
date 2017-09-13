@@ -80,13 +80,18 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
           <tbody className="table__body">
             <tr className="body__row--main">
               <td className="body--qty">
-                <p>4</p>
+                <p>
+                  <IntlMsg id="product.modal.bulk.row.qty" />
+                </p>
               </td>
               <td className="body--description">
-                <p className="description__title">Fruity Bamm-Bamm</p>
+                <p className="description__title">
+                  <IntlMsg id="product.modal.bulk.row.flavor" />
+                </p>
                 <br />
                 <p className="description__nicotine-strength">
-                  Nicotine Strenght: <i>6mg</i>
+                  <IntlMsg id="product.modal.bulk.row.strength" />&nbsp;
+                  <i>6mg</i>
                 </p>
                 <br />
                 <p className="description__sku">
@@ -101,11 +106,17 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             </tr>
             <tr className="body__row--totals">
               <td className="body__totals--categories" colSpan="2">
-                <p className="category__subtotal">Subtotal</p>
+                <p className="category__subtotal">
+                  <IntlMsg id="product.modal.bulk.row.subtotal" />
+                </p>
                 <br />
-                <p className="category__tax">Tax</p>
+                <p className="category__tax">
+                  <IntlMsg id="product.modal.bulk.row.tax" />
+                </p>
                 <br />
-                <p className="category__discount required">Discount</p>
+                <p className="category__discount required">
+                  <IntlMsg id="product.modal.bulk.row.discount" />
+                </p>
                 <br />
                 <p className="category__shipping">Free International Shipping</p>
                 <br />

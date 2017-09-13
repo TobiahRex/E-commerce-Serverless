@@ -48,6 +48,12 @@ export default {
         'product.modal.bullk.header.qty': 'QTY',
         'product.modal.bullk.header.description': 'Description',
         'product.modal.bullk.header.price': 'Price',
+        'product.modal.bullk.row.qty': '4',
+        'product.modal.bullk.row.flavor': 'Fruity Bamm-Bamm',
+        'product.modal.bullk.row.strength': 'Nicotine Strength:',
+        'product.modal.bullk.row.subtotal': 'Subtotal',
+        'product.modal.bullk.row.tax': 'Tax',
+        'product.modal.bullk.row.discount': 'Discount',
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
