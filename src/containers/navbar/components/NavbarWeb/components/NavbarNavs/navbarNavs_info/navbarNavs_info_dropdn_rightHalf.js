@@ -39,7 +39,7 @@ export default function NavbarNavsInfoDropdnRighthalf() {
         <li className="sweep-right">
           <Link to={'/nicotine_disclaimer'}>
             <p>
-              <IntlMsg id="navbar.nav.info.nicotine-disclaimer" />
+              <IntlMsg id="navbar.nav.info.links.nicotine-disclaimer" />
             </p>
           </Link>
         </li>

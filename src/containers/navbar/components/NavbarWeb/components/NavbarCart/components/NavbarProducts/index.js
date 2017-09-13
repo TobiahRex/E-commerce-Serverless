@@ -7,14 +7,14 @@ import {
 } from 'react-intl';
 import _ from 'lodash';
 import {
-  NavbarCartProductsCardImage,
-  NavbarCartProductsCardInfo,
-  NavbarCartProductsCardActions,
-} from './';
+  NavbarProductsCardImage,
+  NavbarProductsCardInfo,
+  NavbarProductsCardActions,
+} from '../';
 
 const { bool, func, object, number, arrayOf } = PropTypes;
 
-class NavbarCartProducts extends Component {
+class NavbarProducts extends Component {
   static propTypes = {
     loading: bool.isRequired,
     cartItems: arrayOf(object),
@@ -81,19 +81,19 @@ class NavbarCartProducts extends Component {
         className="products-list-card"
         key={_id}
       >
-        <NavbarCartProductsCardImage
+        <NavbarProductsCardImage
           imageUrl={this.filterImages(images)}
           title={title}
         />
 
-        <NavbarCartProductsCardInfo
+        <NavbarProductsCardInfo
           qty={qty}
           title={title}
           price={price}
           nicotineStrength={nicotineStrength}
         />
 
-        <NavbarCartProductsCardActions
+        <NavbarProductsCardActions
           productId={_id}
           slug={slug}
           editCartItem={this.props.editCartItem}
@@ -126,8 +126,8 @@ class NavbarCartProducts extends Component {
               style="currency"
               currency={currency}
               value={this.props.cartTotal}
-              minimumFractionDigits="2"
-              maximumFractionDigits="2"
+              minimumFractionDigits={2}
+              maximumFractionDigits={2}
             />
           </span>
         </div>
@@ -135,4 +135,4 @@ class NavbarCartProducts extends Component {
     );
   }
 }
-export default NavbarCartProducts;
+export default NavbarProducts;

@@ -172,8 +172,8 @@ export default {
       messages: {
         'navbar.login.title': 'ログイン',
         'navbar.cart.total-price': '小計',
-        'navbar.cart.cart-button': 'マイカート',
-        'navbar.cart.link.view-cart': 'かごの中身を見る',
+        'navbar.cart.cart-button': 'あなたのカート',
+        'navbar.cart.link.view-cart': 'カート',
         'navbar.cart.link.checkout': 'チェックアウト',
         'navbar.cart.empty': 'あなたのカートは現在空です',
         'navbar.cart.loading': 'あなたのカートはロード中です...',
@@ -194,6 +194,16 @@ export default {
         'navbar.nav.juice-reviews.title': 'ジュースレビュー',
         'navbar.nav.vape-news.title': 'ヴェイプニュース',
         'navbar.nav.user-stories.title': 'ユーザーストーリー',
+
+        'navbar.nav.info.title': '情報',
+        'navbar.nav.info.links.about': '私たちに関しては',
+        'navbar.nav.info.links.faqs': 'FAQs',
+        'navbar.nav.info.links.contact-us': 'お問い合わせ',
+        'navbar.nav.info.links.shipping-policy': '配送ポリシー',
+        'navbar.nav.info.links.return-policy': '返品規則',
+        'navbar.nav.info.links.privacy-policy': '個人情報保護方針',
+        'navbar.nav.info.links.terms-and-conditions': '利用規約',
+        'navbar.nav.info.links.nicotine-disclaimer': 'ニコチンの免責事項',
 
         'home.header.title': '日本で最速のニコチン電子ジュース納品',
         'home.header.subtitle': '保証付き!',
