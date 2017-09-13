@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
   let style;
@@ -37,44 +38,51 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
         </div>
         <div className="dialogue__product-title">
           <h1 className="product-title__title">
-            Not A Member Yet?
+            <IntlMsg id="product.modal.register.title" />
           </h1>
           <br />
           <p className="product-title__sub-title">
-            Become a member and get
+
+            <IntlMsg id="product.modal.register.become" />&nbsp;
             <span className="required sub-title__bold">
               {'\u00A0'}10% OFF{'\u00A0'}
             </span>
-            your first order!
+            <IntlMsg id="product.modal.register.first-order" />
           </p>
           <br />
           <p className="product-title__sub-title">
-            Also,
+            <IntlMsg id="product.modal.register.discount-also" />&nbsp;
             <span className="required sub-title__bold">
-              {'\u00A0'}Buy 4 Bottles{'\u00A0'}
+              {'\u00A0'}
+              <IntlMsg id="product.modal.register.discount-bottles" />
+              {'\u00A0'}
             </span>
-            and get an additional
+            <IntlMsg id="product.modal.register.discount-additional" />
             <span className="required sub-title__bold">
               {'\u00A0'}25% OFF!{'\u00A0'}
             </span>
           </p>
           <br />
           <p className="product-title__sub-title">
-            Whoah! {'That\'s'}
+            <IntlMsg id="product.modal.register.discount-whoah" />
             <span className="required sub-title__bold">
               {'\u00A0'}35% OFF!{'\u00A0'}
             </span>
           </p>
           <br />
           <p className="product-title__example">
-            <i>Example:</i>
+            <i>
+              <IntlMsg id="product.modal.register.discount-example" />
+            </i>
           </p>
         </div>
         <table className="dialogue__table">
           <thead className="table__header">
             <tr className="header__row">
               <th className="header--qty">
-                <h4>QTY</h4>
+                <h4>
+                  <IntlMsg id="product.modal.register.header.qty" />
+                </h4>
               </th>
               <th className="header--description">
                 <h4>Juice Description</h4>

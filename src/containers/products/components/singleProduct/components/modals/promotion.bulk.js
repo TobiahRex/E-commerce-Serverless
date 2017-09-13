@@ -149,20 +149,20 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
           >
-            <IntlMsg id="product.modal.bullk.btns.close" />
+            <IntlMsg id="product.modal.bulk.btns.close" />
           </button>
           <div className="action-btn__msg">
             <div className="msg__title">
               <p>
-                <IntlMsg id="product.modal.bullk.btns.oh" />
+                <IntlMsg id="product.modal.bulk.msg.oh" />
               </p>
             </div>
             <p className="msg__sub-title">
-              <IntlMsg id="product.modal.bullk.btns.mention" />&nbsp;
+              <IntlMsg id="product.modal.bulk.msg.mention" />&nbsp;
               <span className="sub-title__free required">
                 {'\u00A0'}FREE{'\u00A0'}
               </span>
-              International Shipping?!
+              <IntlMsg id="product.modal.bulk.msg.intl-shipping" />
             </p>
           </div>
           <button
@@ -170,7 +170,9 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             data-tag="view-juices"
             className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
-          >{'Let\'s Do It!'}</button>
+          >
+            <IntlMsg id="product.modal.bulk.msg.lets-do-it" />
+          </button>
         </div>
       </div>
     </div>
