@@ -6,6 +6,14 @@ export default {
       messages: {
         'navbar.login.title': 'Login',
         'navbar.cart.total-price': 'Total Price',
+        'navbar.cart.cart-button': 'My Cart',
+        'navbar.cart.link.view-cart': 'View Cart',
+        'navbar.cart.link.checkout': 'Checkout',
+        'navbar.cart.empty': 'Your Cart Is Currently Empty',
+        'navbar.cart.loading': 'Your Cart Is Loading...',
+        'navbar.cart.promotion.line1': 'Buy 4 Bottles',
+        'navbar.cart.promotion.line2': 'Get 25% Off',
+        'navbar.cart.recently-added': 'Recently Added Item(s)',
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
@@ -137,6 +145,17 @@ export default {
     },
     ja: {
       messages: {
+        'navbar.login.title': 'ログイン',
+        'navbar.cart.total-price': '小計',
+        'navbar.cart.cart-button': 'マイカート',
+        'navbar.cart.link.view-cart': 'かごの中身を見る',
+        'navbar.cart.link.checkout': 'チェックアウト',
+        'navbar.cart.empty': 'あなたのカートは現在空です',
+        'navbar.cart.loading': 'あなたのカートはロード中です...',
+        'navbar.cart.promotion.line1': '4ボトルを購入する',
+        'navbar.cart.promotion.line2': '25％割引を受ける',
+        'navbar.cart.recently-added': '最近追加されたアイテム',
+
         'home.header.title': '日本で最速のニコチン電子ジュース納品',
         'home.header.subtitle': '保証付き!',
         'home.header.button.buyNow': '今買う!',

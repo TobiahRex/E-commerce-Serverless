@@ -1,9 +1,10 @@
 import React from 'react';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function NavbarRecentAdd() {
   return (
     <div className="recently-added">
-      <span>Recently Added Item(s)</span>
+      <IntlMsg id="navbar.cart.recently-added" />
     </div>
   );
 }

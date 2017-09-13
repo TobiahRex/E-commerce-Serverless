@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import {
+  FormattedMessage as IntlMsg,
+  FormattedNumber as IntlInt,
+} from 'react-intl';
 import _ from 'lodash';
 import {
   NavbarCartProductsCardImage,
@@ -46,13 +50,13 @@ class NavbarCartProducts extends Component {
           <FontAwesome name="spinner" size="3x" pulse />
           <br />
           <br />
-          Your Cart Is Loading...
+          <IntlMsg id="navbar.cart.loading" />
         </div>
       );
     } else if (!cartItems.length && !loading) {
       return (
         <div className="products-list-empty">
-          Your Cart Is Currently Empty
+          <IntlMsg id="navbar.cart.empty" />
         </div>
       );
     }
@@ -99,6 +103,13 @@ class NavbarCartProducts extends Component {
   });
 
   render() {
+    let currency = '';
+    switch (IntlLocale) {
+      case 'en': currency = 'usd'; break;
+      case 'ja': currency = 'jpy'; break;
+      default: currency = 'usd';
+    }
+    /* eslint-disable react/style-prop-object */
     return (
       <div>
         <div className="products">
@@ -107,10 +118,17 @@ class NavbarCartProducts extends Component {
           </ul>
         </div>
         <div className="total-price">
-          <span className="total-price-title">Total Price</span>
+          <span className="total-price-title">
+            <IntlMsg id="navbar.cart.total-price" />
+          </span>
           <span className="total-price-amount">
-            <FontAwesome name="usd" />&nbsp;
-            {this.props.cartTotal || '00'}.00
+            <IntlInt
+              style="currency"
+              currency={currency}
+              value={this.props.cartTotal}
+              minimumFractionDigits="2"
+              maximumFractionDigits="2"
+            />
           </span>
         </div>
       </div>
