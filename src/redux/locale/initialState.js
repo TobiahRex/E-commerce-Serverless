@@ -39,8 +39,7 @@ export default {
         'product.single.loading': 'Loading...',
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',
-        'product.title.main': 'Switch Juice',
-        'product.title.vendor': 'Vape Switch',
+        'product.modal.bulk.title': 'Lets make a Deal!',
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',

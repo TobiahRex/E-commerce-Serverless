@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl'
 
 function BulkSaleModal({ taxRate, showModal, modalHandler }) {
   let style;
@@ -37,7 +38,7 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
         </div>
         <div className="dialogue__product-title">
           <h1 className="product-title__title">
-            {'Let\'s Make a Deal'}!
+            <IntlMsg id="product.modal.bulk.title" />
           </h1>
           <p className="product-title__sub-title">
             <span className="required sub-title__bold"> BUY 4 BOTTLES </span>
