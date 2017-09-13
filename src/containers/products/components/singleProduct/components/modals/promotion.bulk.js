@@ -118,9 +118,13 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
                   <IntlMsg id="product.modal.bulk.row.discount" />
                 </p>
                 <br />
-                <p className="category__shipping">Free International Shipping</p>
+                <p className="category__shipping">
+                  <IntlMsg id="product.modal.bulk.row.shipping" />
+                </p>
                 <br />
-                <p className="category__order-total">Order Total</p>
+                <p className="category__order-total">
+                  <IntlMsg id="product.modal.bulk.row.total" />
+                </p>
               </td>
               <td className="body__totals--prices">
                 <p className="price__subtotal">$ 120.00</p>
@@ -144,13 +148,17 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             data-tag=""
             className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
-          >Close</button>
+          >
+            <IntlMsg id="product.modal.bullk.btns.close" />
+          </button>
           <div className="action-btn__msg">
             <div className="msg__title">
-              <p>Oh!</p>
+              <p>
+                <IntlMsg id="product.modal.bullk.btns.oh" />
+              </p>
             </div>
             <p className="msg__sub-title">
-              Did we mention you get
+              <IntlMsg id="product.modal.bullk.btns.mention" />&nbsp;
               <span className="sub-title__free required">
                 {'\u00A0'}FREE{'\u00A0'}
               </span>
