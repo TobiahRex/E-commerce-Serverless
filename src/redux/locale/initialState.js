@@ -33,6 +33,11 @@ export default {
         'navbar.nav.info.links.about': 'About',
         'navbar.nav.info.links.faqs': 'FAQs',
         'navbar.nav.info.links.contact-us': 'Contact Us',
+        'navbar.nav.info.links.shipping-policy': 'Shipping Policy',
+        'navbar.nav.info.links.return-policy': 'Return Policy',
+        'navbar.nav.info.links.privacy-policy': 'Privacy Policy',
+        'navbar.nav.info.links.terms-and-conditions': 'Terms & Conditions',
+        'navbar.nav.info.links.nicotine-disclaimer': 'Nicotine Disclaimer',
 
 
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',

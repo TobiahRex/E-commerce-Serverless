@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function NavbarNavsInfoDropdnRighthalf() {
   return (
@@ -9,27 +10,37 @@ export default function NavbarNavsInfoDropdnRighthalf() {
       >
         <li className="sweep-right">
           <Link to={'/shipping_policy'}>
-            <p>Shipping Policy</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.shipping-policy" />
+            </p>
           </Link>
         </li>
         <li className="sweep-right">
           <Link to={'/return_policy'}>
-            <p>Return Policy</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.return-policy" />
+            </p>
           </Link>
         </li>
         <li className="sweep-right">
           <Link to={'/privacy_policy'}>
-            <p>Privacy Policy</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.privacy-policy" />
+            </p>
           </Link>
         </li>
         <li className="sweep-right">
           <Link to={'/terms_and_conditions'}>
-            <p>Terms & Conditions</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.links.terms-and-conditions" />
+            </p>
           </Link>
         </li>
         <li className="sweep-right">
           <Link to={'/nicotine_disclaimer'}>
-            <p>Nicotine Disclaimer</p>
+            <p>
+              <IntlMsg id="navbar.nav.info.nicotine-disclaimer" />
+            </p>
           </Link>
         </li>
       </ul>
