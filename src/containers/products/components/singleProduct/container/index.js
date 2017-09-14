@@ -555,13 +555,13 @@ class SingleProduct extends React.Component {
           paths={[this.intl.bcPaths1]}
           classes={['home', 'home']}
           destination={['/', 'juices']}
-          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title : this.intl.lastCrumb}
+          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title[IntlLocale] : this.intl.lastCrumb}
         />
         {
           data.FindProductsByFlavor ?
             <MainTitle
-              vendor={data.FindProductsByFlavor[0].product.vendor}
-              mainTitle={data.FindProductsByFlavor[0].product.mainTitle}
+              vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
+              mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''
         }
         {
@@ -592,7 +592,7 @@ class SingleProduct extends React.Component {
 
         <SuccessModal
           qty={qty}
-          productTitle={data.FindProductById ? data.FindProductById.product.title : ''}
+          productTitle={data.FindProductById ? data.FindProductById.product.title[IntlLocale] : ''}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
@@ -685,10 +685,16 @@ const ProductShape = shape({
   product: shape({
     qty: number,
     price: string,
-    title: string,
+    title: shape({
+      en: string,
+      ja: string,
+    }).isRequired,
     slug: string,
     strength: number,
-    mainTitle: string,
+    mainTitle: shape({
+      en: string,
+      ja: string,
+    }).isRequired,
     nicotineStrength: string,
     images: arrayOf(shape({
       purpose: string,
