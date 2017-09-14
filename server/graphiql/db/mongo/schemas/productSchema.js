@@ -38,14 +38,8 @@ const productSchema = new Schema({
       },
     },
     flavor: {
-      en: {
-        type: String,
-        required: true,
-      },
-      ja: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
     },
     price: {
       type: String,
