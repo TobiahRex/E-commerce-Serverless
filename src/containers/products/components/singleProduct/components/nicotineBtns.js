@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import convertStrengthToNumber from '../../../../../services/utils/convertStrengthToNumber';
 
 function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
@@ -15,7 +16,9 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
 
   return (
     <div className="desc__nicotine">
-      <h3>Nicotine Strength</h3>
+      <h3>
+        <IntlMsg id="product.single.nicotine.title" />
+      </h3>
       <ul className="nicotine__list">
         {
           nicotineStrengths.map(({ _id, nicotineStrength }) => (

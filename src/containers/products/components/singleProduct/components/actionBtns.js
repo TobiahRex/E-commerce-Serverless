@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ActionBtns({ routerBack, routerPush }) {
   return (
@@ -8,14 +9,16 @@ function ActionBtns({ routerBack, routerPush }) {
       <button className="back-btn sweep-right" onClick={routerBack} >
         <span className="flex-btn-parent">
           <FontAwesome name="angle-double-left" />
-          {'\u00A0'}Back
+          {'\u00A0'}
+          <IntlMsg id="product.single.actions.back-btn" />
         </span>
       </button>
       <button
         className="juices-btn sweep-right"
         data-slug="juices"
         onClick={routerPush}
-      >Shop All Juices
+      >
+        <IntlMsg id="product.single.actions.juices" />
       </button>
     </div>
   );

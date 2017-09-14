@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function AddToCartButton({ added, addToCart }) {
   return (
@@ -13,7 +14,9 @@ function AddToCartButton({ added, addToCart }) {
         {
           added ?
           [
-            <span key="add-to-cart-success" >Success </span>,
+            <span key="add-to-cart-success" >
+              <IntlMsg id="product.single.actions.add-success" />
+            </span>,
           <FontAwesome
             key="add-to-cart-success-icon"
             className="success-cart-icon hover-dropin"
