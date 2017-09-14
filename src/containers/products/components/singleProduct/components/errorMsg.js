@@ -60,7 +60,7 @@ function ErrorMsg({ error, errorMsg }) {
       case 'Out of stock': {
         showErrorMsg = () => ([
           <p key={new Buffer('out-of-stock', 'utf8').toString('base64')}>
-            We apologize, but this item is currently OUT OF STOCK. 😕
+            <IntlMsg id="product.single.errors.out-of-stock" />
           </p>,
         ]);
       } break;

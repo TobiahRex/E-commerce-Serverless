@@ -35,6 +35,7 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
                 data-product={_id}
                 className="strength__btn" onClick={nicotineHandler}
               >{`${nicotineStrength}mg`}</button>
+
             </li>
           ))
         }

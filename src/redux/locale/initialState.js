@@ -35,8 +35,8 @@ export default {
         'navbar.nav.info.links.privacy-policy': 'Privacy Policy',
         'navbar.nav.info.links.terms-and-conditions': 'Terms & Conditions',
         'navbar.nav.info.links.nicotine-disclaimer': 'Nicotine Disclaimer',
-
         'product.single.loading': 'Loading...',
+
         'product.single.nicotine.title': 'Nicotine Strength',
         'product.single.actions.back-btn': 'Back',
         'product.single.actions.juices': 'Juices',
@@ -49,6 +49,15 @@ export default {
         'product.single.errors.max-items.help1': 'Click',
         'product.single.errors.max-items.help2': 'here',
         'product.single.errors.max-items.help3': 'to remove some items.',
+        'product.single.errors.out-of-stock': 'We apologize, but this item is currently OUT OF STOCK. 😕',
+        'product.single.image.promotion1': 'Buy 4 Bottles',
+        'product.single.image.promotion2': 'Get 25% OFF Your Order',
+        'product.single.register.promotion': 'New members get 10% off their first order',
+        'product.single.price-info.tax': 'Tax',
+        'product.single.price-info.free-shipping': 'Free Shipping',
+        'product.single.price-info.in-stock': 'IN STOCK',
+        'product.single.price-info.out-of-stock': 'OUT OF STOCK',
+
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',
         'product.modal.bulk.title': 'Lets make a Deal!',
@@ -349,6 +358,7 @@ export default {
         'home.footer.madeWith.subTitle': 'による',
 
         'product.single.loading': '読み込み。。。',
+
         'product.breadcrumb.paths1': '自宅',
         'product.breadcrumb.lastCrumb': 'ジュースページ',
         'product.modal.bulk.title': 'お取引をしよう!',
@@ -398,7 +408,6 @@ export default {
         'product.modal.success.view-cart': 'かごの中身を見る',
         'product.modal.success.continue-shopping': 'ショッピングを続ける',
         'product.modal.success.express-checkout': 'エクスプレスチェックアウト',
-
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',
         'form.validation.error.bool.required': '必須',
