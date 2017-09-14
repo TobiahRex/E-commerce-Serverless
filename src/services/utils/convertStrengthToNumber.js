@@ -3,6 +3,7 @@ export default (nicotine) => {
   if (Array.isArray(nicotine)) {
     result = nicotine.map(({ _id, nicotineStrength }) => {
       switch (nicotineStrength) {
+        case 'zero': return ({ nicotineStrength: 0, _id });
         case 'two': return ({ nicotineStrength: 2, _id });
         case 'four': return ({ nicotineStrength: 4, _id });
         case 'six': return ({ nicotineStrength: 6, _id });
@@ -17,6 +18,7 @@ export default (nicotine) => {
     });
   } else if (typeof nicotine === 'string') {
     switch (nicotine) {
+      case 'zero': return 0;
       case 'two': return 2;
       case 'four': return 4;
       case 'six': return 6;

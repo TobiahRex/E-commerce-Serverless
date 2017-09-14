@@ -11,7 +11,7 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
       backgroundColor: '#FC2525',
     },
   };
-  nicotineStrengths = convertStrengthToNumber(nicotineStrengths);
+  numberStrengths = convertStrengthToNumber(nicotineStrengths);
 
   return (
     <div className="desc__nicotine">
