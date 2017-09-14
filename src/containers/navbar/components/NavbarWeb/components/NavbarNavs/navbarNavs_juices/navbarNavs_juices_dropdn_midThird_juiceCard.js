@@ -22,7 +22,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
         className="juices-card__title"
         onClick={push}
       >
-        <h4>{product.title}</h4>
+        <h4>{product.title[IntlLocale]}</h4>
       </button>
 
       <button
@@ -33,7 +33,7 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
         <img
           className="image__src"
           src={imageUrl}
-          alt={`${product.title} Juice`}
+          alt={`${product.title[IntlLocale]} Juice`}
         />
 
       </button>
@@ -43,7 +43,10 @@ function NavbarNavsJuicesDropdnJuiceCards(props) {
 const { arrayOf, shape, string, func } = PropTypes;
 NavbarNavsJuicesDropdnJuiceCards.propTypes = {
   product: shape({
-    title: string,
+    title: shape({
+      en: string,
+      ja: string,
+    }),
     price: string,
     nicotineStrength: string,
     images: arrayOf(
