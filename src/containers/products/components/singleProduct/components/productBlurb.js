@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ProductBlurb({ description }) {
   return (
     <div className="desc__blurb">
-      <p>{description}</p>
+      <p>{description[IntlLocale]}</p>
     </div>
   );
 }

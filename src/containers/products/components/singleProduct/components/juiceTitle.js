@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function JuiceTitle({ title }) {
   return (
     <div className="desc__title">
-      <h1>{title}</h1>
+      <h1>{title[IntlLocale]}</h1>
     </div>
   );
 }
