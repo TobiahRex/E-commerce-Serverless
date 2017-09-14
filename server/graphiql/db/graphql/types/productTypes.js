@@ -47,7 +47,7 @@ const rootType = new ObjectType({
         fields: () => ({
           mainTitle: {
             description: 'The title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
-            type: ObjectType({
+            type: new ObjectType({
               name: 'ProductMainTitle',
               fields: () => ({
                 en: {
@@ -63,7 +63,7 @@ const rootType = new ObjectType({
           },
           title: {
             description: 'The flavor title of the product',
-            type: ObjectType({
+            type: new ObjectType({
               name: 'ProductTitle',
               fields: () => ({
                 en: {
@@ -184,7 +184,7 @@ const rootType = new ObjectType({
           },
           vendor: {
             description: 'The product vendor title.',
-            type: ObjectType({
+            type: new ObjectType({
               name: 'ProductVendorTitle',
               fields: () => ({
                 en: {
@@ -200,7 +200,7 @@ const rootType = new ObjectType({
           },
           blurb: {
             description: 'A description of the product.',
-            type: ObjectType({
+            type: new ObjectType({
               name: 'ProductBlurb',
               fields: () => ({
                 en: {
@@ -289,7 +289,6 @@ const rootType = new ObjectType({
     },
   },
 });
-
 const queryTypes = {
   popularProductsType: new ObjectType({
     name: 'PopularProductType',
@@ -382,14 +381,13 @@ const queries = {
     resolve: (_, { qty }) => Product.getPopularProducts(qty),
   },
 };
-
 export const inputTypes = {
   product: {
     fields: uniqueName => ({
       mainTitle: {
         description: 'The main title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
-        type: ObjectType({
-          name: 'ProductMainTitleInput',
+        type: new InputObject({
+          name: `${uniqueName}MainTitleInput`,
           fields: () => ({
             en: {
               description: 'English main title.',
@@ -404,8 +402,8 @@ export const inputTypes = {
       },
       title: {
         description: 'The flavor title of the product',
-        type: ObjectType({
-          name: 'ProductTitleInput',
+        type: new InputObject({
+          name: `${uniqueName}TitleInput`,
           fields: () => ({
             en: {
               description: 'English title.',
@@ -537,12 +535,36 @@ export const inputTypes = {
         type: new NonNull(StringType),
       },
       vendor: {
-        description: 'The name of manufacturer of the new product.',
-        type: StringType,
+        description: 'The name of the manufacturer of the product.',
+        type: new InputObject({
+          name: `${uniqueName}VendorTitleInput`,
+          fields: () => ({
+            en: {
+              description: 'English vendor title.',
+              type: new NonNull(StringType),
+            },
+            ja: {
+              description: 'Japanese vendor title.',
+              type: new NonNull(StringType),
+            },
+          }),
+        }),
       },
       blurb: {
         description: 'A description of the new product.',
-        type: new NonNull(StringType),
+        type: new InputObject({
+          name: `${uniqueName}BlurbInput`,
+          fields: () => ({
+            en: {
+              description: 'English blurb.',
+              type: new NonNull(StringType),
+            },
+            ja: {
+              description: 'Japanese blurb.',
+              type: new NonNull(StringType),
+            },
+          }),
+        }),
       },
       quantities: {
         description: 'Availability stats for this new product.',
@@ -567,7 +589,6 @@ export const inputTypes = {
     }),
   },
 };
-
 const mutations = {
   CreateProduct: { // This is only used from GraphiQL to seed database.
     type: rootType,

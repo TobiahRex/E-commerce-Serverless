@@ -45,14 +45,38 @@ const rootType = new ObjectType({
         fields: () => ({
           mainTitle: {
             description: 'The title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
-            type: StringType,
+            type: new ObjectType({
+              name: 'ProductMainTitle',
+              fields: () => ({
+                en: {
+                  description: 'English main title.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'Japanese main title.',
+                  type: StringType,
+                },
+              }),
+            }),
           },
           title: {
-            description: 'The title of the product.',
-            type: StringType,
+            description: 'The flavor title of the product',
+            type: new ObjectType({
+              name: 'ProductTitle',
+              fields: () => ({
+                en: {
+                  description: 'English title.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'Japanese title.',
+                  type: StringType,
+                },
+              }),
+            }),
           },
           flavor: {
-            description: 'The flavor of the product.',
+            description: 'The programmatic flavor name of the product',
             type: StringType,
           },
           price: {
@@ -65,7 +89,7 @@ const rootType = new ObjectType({
           },
           upc: {
             description: 'The unique product code for the product.',
-            type: StringType,
+            type: IntType,
           },
           size: {
             description: 'The available sizes for the product.',
@@ -157,12 +181,36 @@ const rootType = new ObjectType({
             type: StringType,
           },
           vendor: {
-            description: 'The name of manufacturer of the new product.',
-            type: StringType,
+            description: 'The product vendor title.',
+            type: new ObjectType({
+              name: 'ProductVendorTitle',
+              fields: () => ({
+                en: {
+                  description: 'English vendor title.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'Japanese vendor title.',
+                  type: StringType,
+                },
+              }),
+            }),
           },
           blurb: {
             description: 'A description of the product.',
-            type: StringType,
+            type: new ObjectType({
+              name: 'ProductBlurb',
+              fields: () => ({
+                en: {
+                  description: 'English blurb.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'Japanese blurb.',
+                  type: StringType,
+                },
+              }),
+            }),
           },
           dates: {
             description: 'Important clerical dates regarding the product.',
@@ -239,7 +287,6 @@ const rootType = new ObjectType({
     },
   },
 });
-
 const queryTypes = {
   popularProductsType: new ObjectType({
     name: 'PopularProductType',
@@ -336,12 +383,36 @@ export const inputTypes = {
   product: {
     fields: uniqueName => ({
       mainTitle: {
-        description: 'The main title for the Single Product page for the new product - e.g. The "Cateogry" of the new product.',
-        type: new NonNull(StringType),
+        description: 'The main title for the Single Product page - e.g. You may not want it to be the name of the product but a "Category" of products.',
+        type: new InputObject({
+          name: `${uniqueName}MainTitleInput`,
+          fields: () => ({
+            en: {
+              description: 'English main title.',
+              type: new NonNull(StringType),
+            },
+            ja: {
+              description: 'Japanese main title.',
+              type: new NonNull(StringType),
+            },
+          }),
+        }),
       },
       title: {
-        description: 'The title of the new product.',
-        type: new NonNull(StringType),
+        description: 'The flavor title of the product',
+        type: new InputObject({
+          name: `${uniqueName}TitleInput`,
+          fields: () => ({
+            en: {
+              description: 'English title.',
+              type: new NonNull(StringType),
+            },
+            ja: {
+              description: 'Japanese title.',
+              type: new NonNull(StringType),
+            },
+          }),
+        }),
       },
       flavor: {
         description: 'The flavor of the new product.',
@@ -357,7 +428,7 @@ export const inputTypes = {
       },
       upc: {
         description: 'The unique product code for the product.',
-        type: new NonNull(StringType),
+        type: new NonNull(IntType),
       },
       size: {
         description: 'The available sizes for the product.',
@@ -462,12 +533,36 @@ export const inputTypes = {
         type: new NonNull(StringType),
       },
       vendor: {
-        description: 'The name of manufacturer of the new product.',
-        type: StringType,
+        description: 'The name of the manufacturer of the product.',
+        type: new InputObject({
+          name: `${uniqueName}VendorTitleInput`,
+          fields: () => ({
+            en: {
+              description: 'English vendor title.',
+              type: new NonNull(StringType),
+            },
+            ja: {
+              description: 'Japanese vendor title.',
+              type: new NonNull(StringType),
+            },
+          }),
+        }),
       },
       blurb: {
         description: 'A description of the new product.',
-        type: new NonNull(StringType),
+        type: new InputObject({
+          name: `${uniqueName}BlurbInput`,
+          fields: () => ({
+            en: {
+              description: 'English blurb.',
+              type: new NonNull(StringType),
+            },
+            ja: {
+              description: 'Japanese blurb.',
+              type: new NonNull(StringType),
+            },
+          }),
+        }),
       },
       quantities: {
         description: 'Availability stats for this new product.',
