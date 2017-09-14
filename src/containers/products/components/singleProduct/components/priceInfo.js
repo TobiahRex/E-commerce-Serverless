@@ -9,7 +9,7 @@ function PriceInfo({ price, sku, inStock }) {
       <ul className="price-row__list">
         <li className="list--price">
           <h1>
-            <FontAwesome name="usd" className="price__fa" />{'\u00A0'}{price}.00
+            <FontAwesome name="usd" className="price__fa" />&nbsp;{price}.00
           </h1>
         </li>
         <li className="list--tax">
