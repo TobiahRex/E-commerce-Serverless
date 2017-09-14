@@ -84,6 +84,7 @@ export default {
         'product.modal.success.juice-has': 'juices have',
         'product.modal.success.added-msg': 'been successfully added to your cart',
         'product.modal.success.continue-shopping': 'Continue Shopping',
+        'product.modal.success.view-cart': 'View Cart',
         'product.modal.success.express-checkout': 'Express Checkout',
 
 
@@ -382,6 +383,7 @@ export default {
         'product.modal.success.juices-have': 'ジュースがカートに',
         'product.modal.success.juice-has': 'ジュースがカートに',
         'product.modal.success.added-msg': '追加されました',
+        'product.modal.success.view-cart': 'かごの中身を見る',
         'product.modal.success.continue-shopping': 'ショッピングを続ける',
         'product.modal.success.express-checkout': 'エクスプレスチェックアウト',
 

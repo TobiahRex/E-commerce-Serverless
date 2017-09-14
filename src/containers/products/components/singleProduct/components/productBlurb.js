@@ -8,8 +8,11 @@ function ProductBlurb({ description }) {
     </div>
   );
 }
-const { string } = PropTypes;
+const { string, shape } = PropTypes;
 ProductBlurb.propTypes = {
-  description: string.isRequired,
+  description: shape({
+    en: string,
+    ja: string,
+  }).isRequired,
 };
 export default ProductBlurb;

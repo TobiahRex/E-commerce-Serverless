@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { propTypes, defaultProps } from './propTypes';
 import {
   ImageGroup,
   JuiceTitle,
@@ -17,9 +17,6 @@ import {
 } from '../../container/utilities.imports';
 
 class ProductDisplay extends React.Component {
-  static propTypes = propTypes
-  static defaultProps = defaultProps;
-
   constructor(props) {
     super(props);
 
@@ -155,4 +152,54 @@ class ProductDisplay extends React.Component {
     );
   }
 }
+const { arrayOf, shape, bool, func, string, number } = PropTypes;
+
+const ProductShape = shape({
+  _id: string,
+  product: shape({
+    qty: number,
+    price: string,
+    mainTitle: shape({
+      en: string,
+      ja: string,
+    }).isRequired,
+    title: shape({
+      en: string,
+      ja: string,
+    }).isRequired,
+    slug: string,
+    strength: number,
+    nicotineStrength: string,
+    images: arrayOf(shape({
+      purpose: string,
+      url: string,
+    })),
+    quantities: shape({
+      available: number,
+      inCarts: number,
+      purchased: number,
+    }),
+  }),
+});
+
+ProductDisplay.propTypes = {
+  qty: number.isRequired,
+  // fbLike: func.isRequired,
+  added: bool,
+  error: bool,
+  errorMsg: string,
+  loggedIn: bool.isRequired,
+  qtyHandler: func.isRequired,
+  modalHandler: func.isRequired,
+  productsArray: arrayOf(ProductShape).isRequired,
+  chosenStrength: number.isRequired,
+  nicotineHandler: func.isRequired,
+  addToCartHandler: func.isRequired,
+};
+ProductDisplay.defaultProps = {
+  added: false,
+  error: false,
+  errorMsg: '',
+};
+
 export default ProductDisplay;

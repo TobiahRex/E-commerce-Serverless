@@ -8,8 +8,11 @@ function JuiceTitle({ title }) {
     </div>
   );
 }
-const { string } = PropTypes;
+const { string, shape } = PropTypes;
 JuiceTitle.propTypes = {
-  title: string.isRequired,
+  title: shape({
+    en: string,
+    ja: string,
+  }).isRequired,
 };
 export default JuiceTitle;
