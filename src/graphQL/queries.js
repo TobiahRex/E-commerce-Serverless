@@ -13,15 +13,24 @@ export const FindProductsByFlavor = gql`
       }
       product {
         mainTitle
-        title
+        title {
+          en
+          ja
+        }
         flavor
         price
         sku
         size
         nicotineStrength
         slug
-        vendor
-        blurb
+        vendor {
+          en
+          ja
+        }
+        blurb {
+          en
+          ja
+        }
         images {
           purpose
           url
@@ -46,15 +55,24 @@ export const FindProductById = gql`
       }
       product {
         mainTitle
-        title
+        title {
+          en
+          ja
+        }
         flavor
         price
         sku
         size
         nicotineStrength
         slug
-        vendor
-        blurb
+        vendor {
+          en
+          ja
+        }
+        blurb {
+          en
+          ja
+        }
         images {
           purpose
           url
@@ -78,16 +96,32 @@ export const FetchMultipleProducts = gql`
         message
       }
       product {
-        title
+        mainTitle
+        title {
+          en
+          ja
+        }
         flavor
         price
         sku
-        slug
-        vendor
+        size
         nicotineStrength
+        slug
+        vendor {
+          en
+          ja
+        }
+        blurb {
+          en
+          ja
+        }
         images {
           purpose
           url
+        }
+        quantities {
+          available
+          inCarts
         }
       }
     }

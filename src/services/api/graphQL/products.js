@@ -20,16 +20,31 @@ const createAPI = () => {
         _id
         product {
           mainTitle
-          title
+          title {
+            en
+            ja
+          }
+          flavor
           price
+          sku
+          size
+          nicotineStrength
+          slug
+          vendor {
+            en
+            ja
+          }
+          blurb {
+            en
+            ja
+          }
           images {
             purpose
             url
           }
-          nicotineStrength
-          slug
           quantities {
             available
+            inCarts
           }
         }
       }
@@ -48,7 +63,10 @@ const createAPI = () => {
           purpose
           url
         }
-        title
+        title {
+          en
+          ja
+        }
         completedCheckouts
       }
     }`,
@@ -63,15 +81,32 @@ const createAPI = () => {
       FetchMultipleProducts(ids: $ids){
         _id
         product {
-          title
+          mainTitle
+          title {
+            en
+            ja
+          }
           flavor
           price
           sku
+          size
+          nicotineStrength
           slug
-          vendor
-          images{
+          vendor {
+            en
+            ja
+          }
+          blurb {
+            en
+            ja
+          }
+          images {
             purpose
             url
+          }
+          quantities {
+            available
+            inCarts
           }
         }
       }
