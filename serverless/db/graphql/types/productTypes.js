@@ -89,7 +89,7 @@ const rootType = new ObjectType({
           },
           upc: {
             description: 'The unique product code for the product.',
-            type: IntType,
+            type: StringType,
           },
           size: {
             description: 'The available sizes for the product.',
@@ -428,7 +428,7 @@ export const inputTypes = {
       },
       upc: {
         description: 'The unique product code for the product.',
-        type: new NonNull(IntType),
+        type: new NonNull(StringType),
       },
       size: {
         description: 'The available sizes for the product.',

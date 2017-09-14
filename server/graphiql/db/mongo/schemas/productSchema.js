@@ -57,7 +57,7 @@ const productSchema = new Schema({
       required: true,
     },
     upc: {
-      type: Number,
+      type: String,
       required: true,
     },
     size: {
