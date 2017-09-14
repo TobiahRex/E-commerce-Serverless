@@ -301,8 +301,20 @@ const queryTypes = {
         type: new NonNull(StringType),
       },
       title: {
-        description: 'The main Title for this Product.',
-        type: new NonNull(StringType),
+        description: 'The flavor title of the product',
+        type: new ObjectType({
+          name: 'PopularProductTitle',
+          fields: () => ({
+            en: {
+              description: 'English title.',
+              type: StringType,
+            },
+            ja: {
+              description: 'Japanese title.',
+              type: StringType,
+            },
+          }),
+        }),
       },
       slug: {
         description: 'The route tag (slug) for this product.',

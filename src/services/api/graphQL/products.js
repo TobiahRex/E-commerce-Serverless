@@ -19,7 +19,10 @@ const createAPI = () => {
       FetchProductById(_id: $_id) {
         _id
         product {
-          mainTitle
+          mainTitle {
+            en
+            ja
+          }
           title {
             en
             ja
@@ -81,7 +84,10 @@ const createAPI = () => {
       FetchMultipleProducts(ids: $ids){
         _id
         product {
-          mainTitle
+          mainTitle {
+            en
+            ja
+          }
           title {
             en
             ja

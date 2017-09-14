@@ -197,10 +197,13 @@ new Promise((resolve, reject) => {
     { $group: {
       _id: '$product.flavor',
       docId: { $first: '$_id' },
-      title: { $first: '$product.title' },
+      title: {
+        en: { $first: '$product.title.en' },
+        ja: { $first: '$product.title.ja' },
+      },
       slug: { $first: '$product.slug' },
       images: { $first: '$product.images' },
-      completedCheckouts: { $first: '$statistics.completed_checkouts' },
+      completedCheckouts: { $first: '$statistics.completedCheckouts' },
     } },
     { $sort: { completedCheckouts: -1 } },
     { $limit: qty },

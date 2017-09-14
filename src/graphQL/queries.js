@@ -12,7 +12,10 @@ export const FindProductsByFlavor = gql`
         message
       }
       product {
-        mainTitle
+        mainTitle {
+          en
+          ja
+        }
         title {
           en
           ja
@@ -54,7 +57,10 @@ export const FindProductById = gql`
         message
       }
       product {
-        mainTitle
+        mainTitle {
+          en
+          ja
+        }
         title {
           en
           ja
@@ -96,7 +102,10 @@ export const FetchMultipleProducts = gql`
         message
       }
       product {
-        mainTitle
+        mainTitle {
+          en
+          ja
+        }
         title {
           en
           ja
