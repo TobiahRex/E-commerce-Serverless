@@ -33,14 +33,16 @@ const rootType = new ObjectType({
             description: 'Amplifying information about error.  Should be written for user readibility.',
             type: new ObjectType({
               name: 'SagawaErrorMessage',
-              en: {
-                description: 'English translation.',
-                type: StringType,
-              },
-              ja: {
-                description: 'Japanese translation.',
-                type: StringType,
-              },
+              fields: () => ({
+                en: {
+                  description: 'English translation.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'Japanese translation.',
+                  type: StringType,
+                },
+              }),
             }),
           },
         }),
@@ -57,14 +59,17 @@ const rootType = new ObjectType({
     status: {
       description: 'A status identifying if the order has been uploaded to Sagawa.',
       type: new ObjectType({
-        en: {
-          description: 'The English status of the order.',
-          type: StringType,
-        },
-      }),
-      ja: new ObjectType({
-        description: 'The Japanese status of the order.',
-        type: StringType,
+        name: 'SagawaStatus',
+        fields: () => ({
+          en: {
+            description: 'The English status of the order.',
+            type: StringType,
+          },
+          ja: {
+            description: 'The Japanese status of the order.',
+            type: StringType,
+          },
+        }),
       }),
     },
     postalInfo: {
@@ -182,7 +187,19 @@ const queryTypes = {
               },
               message: {
                 description: 'Amplifying information about error.  Should be written for user readibility.',
-                type: StringType,
+                type: new ObjectType({
+                  name: 'SagawaTrackingErrorMessage',
+                  fields: () => ({
+                    en: {
+                      description: 'English translation.',
+                      type: StringType,
+                    },
+                    ja: {
+                      description: 'Japanese translation.',
+                      type: StringType,
+                    },
+                  }),
+                }),
               },
             }),
           }),
@@ -195,14 +212,17 @@ const queryTypes = {
       orderStatus: {
         description: 'The current status of the order.',
         type: new ObjectType({
-          en: {
-            description: 'The English status of the order.',
-            type: StringType,
-          },
-          ja: {
-            description: 'The Japanese status of the order.',
-            type: StringType,
-          },
+          name: 'SagawaTrackingOrderStatus',
+          fields: () => ({
+            en: {
+              description: 'The English status of the order.',
+              type: StringType,
+            },
+            ja: {
+              description: 'The Japanese status of the order.',
+              type: StringType,
+            },
+          }),
         }),
       },
       trackingNumber: {

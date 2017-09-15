@@ -37,14 +37,16 @@ const rootType = new ObjectType({
               description: 'Amplifying information about error.  Should be written for user readibility.',
               type: new ObjectType({
                 name: 'TransactionErrorMessage',
-                en: {
-                  description: 'English translation.',
-                  type: StringType,
-                },
-                ja: {
-                  description: 'Japanese translation.',
-                  type: StringType,
-                },
+                fields: () => ({
+                  en: {
+                    description: 'English translation.',
+                    type: StringType,
+                  },
+                  ja: {
+                    description: 'Japanese translation.',
+                    type: StringType,
+                  },
+                }),
               }),
             },
           }),
@@ -129,14 +131,16 @@ const rootType = new ObjectType({
       description: 'The shipping status of the order',
       type: new ObjectType({
         name: 'TransactionShippingStatus',
-        en: {
-          description: 'English translation.',
-          type: StringType,
-        },
-        ja: {
-          description: 'Japanese translation.',
-          type: StringType,
-        },
+        fields: () => ({
+          en: {
+            description: 'English translation.',
+            type: StringType,
+          },
+          ja: {
+            description: 'Japanese translation.',
+            type: StringType,
+          },
+        }),
       }),
     },
     taxes: {
@@ -422,14 +426,16 @@ const mutationTypes = {
               description: 'Amplifying information about error.  Should be written for user readibility.',
               type: new ObjectType({
                 name: 'SubmitOrderErrorMessage',
-                en: {
-                  description: 'English translation.',
-                  type: StringType,
-                },
-                ja: {
-                  description: 'Japanese translation.',
-                  type: StringType,
-                },
+                fields: () => ({
+                  en: {
+                    description: 'English translation.',
+                    type: StringType,
+                  },
+                  ja: {
+                    description: 'Japanese translation.',
+                    type: StringType,
+                  },
+                }),
               }),
             },
           }),
