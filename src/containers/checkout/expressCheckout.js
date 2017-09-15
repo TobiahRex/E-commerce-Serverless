@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
-
+import {
+  injectIntl,
+  intlShape,
+  FormattedMessage as IntlMsg,
+} from 'react-intl';
 import {
   apiActions,
   orderActions,
@@ -14,7 +18,6 @@ import {
   toasterActions,
   userActions,
 } from './redux.imports';
-
 import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
@@ -50,7 +53,6 @@ import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from '../../graphql/queries';
-
 import {
   ValidatePostal,
   SubmitFinalOrder,
@@ -59,6 +61,20 @@ import {
 class ExpressCheckout extends React.Component {
   constructor(props) {
     super(props);
+
+    const {
+      intl: {
+        messages: {
+          'checkout.breadCrumb.paths1': bcPaths1,
+          'checkout.breadCrumb.lastCrumb': lastCrumb,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
+    };
 
     this.state = {
       ccRenderKey: 'renderWithZip',
@@ -412,13 +428,15 @@ class ExpressCheckout extends React.Component {
     return (
       <div className="checkout__container">
         <BreadCrumb
-          paths={['Home']}
+          paths={[this.intl.bcPaths1]}
           classes={['home']}
           destination={['']}
-          lastCrumb="Express Checkout"
+          lastCrumb={this.intl.lastCrumb}
         />
         <div className="checkout__title">
-          <h1>Express Checkout</h1>
+          <h1>
+            <IntlMsg id="checkout.title" />
+          </h1>
         </div>
         <Validation.components.Form
           ref={this.assignRefToForm}
@@ -552,6 +570,7 @@ class ExpressCheckout extends React.Component {
     );
   }
 }
+const ExpressCheckoutWithIntl = injectIntl(ExpressCheckout);
 
 const ExpressCheckoutWithState = connect((state, ownProps) => {
   const total = ComposeFinalTotal(ownProps);
@@ -593,7 +612,7 @@ const ExpressCheckoutWithState = connect((state, ownProps) => {
       variables: { ...formData },
     });
   },
-}))(ExpressCheckout);
+}))(ExpressCheckoutWithIntl);
 
 const ExpressCheckoutWithStateAndData = compose(
   graphql(ValidatePostal, { name: 'ValidatePostal' }),
@@ -653,6 +672,7 @@ const {
 } = PropTypes;
 
 ExpressCheckout.propTypes = {
+  intl: intlShape.isRequired,
   push: func.isRequired,
   // ---
   gotValidPostal: func.isRequired,
@@ -689,12 +709,12 @@ ExpressCheckout.propTypes = {
     totalRate: number,
   }).isRequired,
   total: shape({
-    discount: {
+    discount: shape({
       qty: bool,
       qtyAmount: number,
       register: bool,
       registerAmount: number,
-    },
+    }),
     taxes: number,
     grandTotal: number,
     subTotal: number,

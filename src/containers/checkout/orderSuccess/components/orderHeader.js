@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function OrderHeader({
   date,
@@ -17,12 +18,12 @@ function OrderHeader({
   if (paidTotal.currency === 'USD') {
     amount = `${String(paidTotal.amount).slice(0, 2)}.${String(paidTotal.amount).slice(2, 4)}`;
   }
-
+  // TODO: Add en & ja variations to all dynamic text fields on Transation & Sagawa documents
   return (
     <div className="ordered__header">
       <div className="header--date">
-        <p>Date: {date}</p>
-        <p>Invoice #: {invoiceId}</p>
+        <p><IntlMsg id="checkout.success.header.date" />{date}</p>
+        <p><IntlMsg id="checkout.success.header.invoice" />{invoiceId}</p>
       </div>
       <div className="header--status">
         <h3>{status}</h3>
@@ -30,16 +31,25 @@ function OrderHeader({
       <div className="header--info">
         <div className="header__price">
           <p>
-            Total Paid:
-            <FontAwesome name={paidTotal.currency.toLowerCase()} />
-            {'\u00A0'}
+            <IntlMsg id="checkout.success.header.total-paid" />
+            <FontAwesome name={paidTotal.currency.toLowerCase()} />&nbsp;
             {amount}
           </p>
         </div>
         <div className="header__tracking">
-          <p>Tracking #: {trackingId}</p>
-          <p>Order #: {orderId}</p>
-          <p>Estimated Delivery: {deliveryDate}</p>
+          <p>
+            <IntlMsg id="checkout.success.header.tracking" />
+            {
+              trackingId ?
+                `${trackingId}` : <IntlMsg id="checkout.success.header.tracking.delay" />
+            }
+          </p>
+          <p>
+            <IntlMsg id="checkout.success.header.order" />{orderId}
+          </p>
+          <p>
+            <IntlMsg id="checkout.success.header.delivery" />{deliveryDate}
+          </p>
         </div>
       </div>
     </div>

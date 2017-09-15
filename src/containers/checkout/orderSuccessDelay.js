@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import uuid from 'uuid';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 
 export default function OrderSuccess() {
@@ -13,28 +14,40 @@ export default function OrderSuccess() {
             <FontAwesome name="check-circle" />
           </div>
           <div className="title--msg">
-            <h1>Your order has been successfully placed!</h1>
-            <h4>The invoice shown below has been sent to your email.</h4>
+            <h1><IntlMsg id="checkout.success.delay.title" /></h1>
+            <h4><IntlMsg id="checkout.success.delay.sub-title" /></h4>
             <br />
-            <h4>Your order will be shipping on the next business day.  At that time, you will receive another email that contains your Tracking Number.  To track your shipment, simply click on the {'"Tracking #:"'} link in the email.</h4>
+            <h4><IntlMsg id="checkout.success.delay.sub-title2" /></h4>
           </div>
         </div>
         <div className="ordered__header">
           <div className="header--date">
-            <p>Date: {Date.now()}</p>
-            <p>Invoice #: {uuid()}</p>
+            <p>
+              <IntlMsg id="checkout.success.delay.date" />{Date.now()}
+            </p>
+            <p><IntlMsg id="checkout.success.delay.invoice" />{uuid()}</p>
           </div>
           <div className="header--status">
-            <h3>{'<Shipping Status>'}</h3>
+            <h3>
+              {'<Shipping Status>'}
+            </h3>
           </div>
           <div className="header--info">
             <div className="header__tracking">
-              <p>Tracking #: <i>Stand by for email...</i></p>
-              <p>Order #: {uuid()}</p>
+              <p>
+                <IntlMsg id="checkout.success.delay.tracking" />
+                <i>
+                  <IntlMsg id="Stand by for email..." />
+                </i>
+              </p>
+              <p>
+                <IntlMsg id="checkout.success.delay.order" />{uuid()}
+              </p>
             </div>
             <div className="header__price">
               <p>
-                Price: <FontAwesome name="usd" />{'\u00A0'}32.14
+                <IntlMsg id="checkout.success.delay.price" /><FontAwesome name="usd" />&nbsp;
+                XX.XX
               </p>
             </div>
           </div>
@@ -43,11 +56,17 @@ export default function OrderSuccess() {
           <div className="addresses--shipto">
             <fieldset className="shipto--fieldset">
               <legend className="shipto__legend">
-                <p>Ship To</p>
+                <p>
+                  <IntlMsg id="checkout.success.delay.ship-to" />
+                </p>
               </legend>
               <div className="shipto__name">
-                <p className="name--firstName">Bruce</p>
-                <p className="name--lastName">{'\u00A0'}Wayne</p>
+                <p className="name--firstName">
+                  Bruce
+                </p>
+                <p className="name--lastName">&nbsp;
+                  Wayne
+                </p>
               </div>
               <div className="shipto__address">
                 <p>{'<Address>'}</p>

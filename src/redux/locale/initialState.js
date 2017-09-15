@@ -36,7 +36,6 @@ export default {
         'navbar.nav.info.links.terms-and-conditions': 'Terms & Conditions',
         'navbar.nav.info.links.nicotine-disclaimer': 'Nicotine Disclaimer',
         'product.single.loading': 'Loading...',
-
         'product.single.nicotine.title': 'Nicotine Strength',
         'product.single.actions.back-btn': 'Back',
         'product.single.actions.juices': 'Juices',
@@ -58,6 +57,44 @@ export default {
         'product.single.price-info.free-shipping': 'Free Shipping',
         'product.single.price-info.in-stock': 'IN STOCK',
         'product.single.price-info.out-of-stock': 'OUT OF STOCK',
+
+        'cart.breadCrumb.paths1': 'Home',
+        'cart.breadCrumb.lastCrumb': 'Shopping Cart',
+        'cart.title': 'Shopping Cart',
+        'cart.empty.header': 'Your shopping cart is empty 😕',
+        'cart.empty.action-btn': 'Start Shopping',
+
+        'checkout.breadCrumb.paths1': 'Home',
+        'checkout.breadCrumb.lastCrumb': 'Express Checkout',
+        'checkout.title': 'Express Checkout',
+        'checkout.subtitle.loading': 'Express Checkout',
+        'checkout.success.title': 'Your order has been successfully placed',
+        'checkout.success.sub-title': 'The invoice shown below has been sent to your email.',
+        'checkout.success.delay.sub-title2': 'Your order will be shipping on the next business day.  At that time, you will receive another email that contains your Tracking Number.  To track your shipment, simply click on the "Tracking #" link in the email.',
+        'checkout.success.header.date': 'Date: ',
+        'checkout.success.header.invoice': 'Invoice #: ',
+        'checkout.success.header.total-paid': 'Total Paid: ',
+        'checkout.success.header.tracking': 'Tracking #: ',
+        'checkout.success.header.tracking.delay': 'Tracking # will be in follow-up email.',
+        'checkout.success.header.order': 'Order #: ',
+        'checkout.success.header.delivery': 'Estimated Delivery: ',
+
+        'checkout.success.ship-to': 'Ship To',
+
+        'checkout.success.summary.title': 'Order Summary',
+        'checkout.success.summary.header.qty': 'Qty',
+        'checkout.success.summary.header.description': 'Juice Description',
+        'checkout.success.summary.header.price': 'Juice Description',
+        'checkout.success.summary.row.tracking': 'Tracking #: ',
+        'checkout.success.summary.total.rate': 'USD / JPY Rate',
+        'checkout.success.summary.total.subtotal': 'Subtotal',
+        'checkout.success.summary.total.tax': 'Tax',
+        'checkout.success.summary.total.shipping': 'Free International Shipping',
+        'checkout.success.summary.total.discount': 'Discount',
+        'checkout.success.summary.total.grand-total': 'Grand Total',
+
+        'checkout.success.actions.back-to-home': 'Back To Homepage',
+
 
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',
@@ -357,7 +394,6 @@ export default {
         'home.footer.follow.title': 'フォローする',
         'home.footer.madeWith.title': '作られ',
         'home.footer.madeWith.subTitle': 'による',
-
         'product.single.loading': '読み込み。。。',
         'product.single.nicotine.title': 'ニコチンの強さ',
         'product.single.actions.back-btn': 'バック',
@@ -380,7 +416,6 @@ export default {
         'product.single.price-info.free-shipping': '送料無料',
         'product.single.price-info.in-stock': '在庫あり',
         'product.single.price-info.out-of-stock': '在庫切れ',
-
         'product.breadcrumb.paths1': '自宅',
         'product.breadcrumb.lastCrumb': 'ジュースページ',
         'product.modal.bulk.title': 'お取引をしよう!',
@@ -430,6 +465,13 @@ export default {
         'product.modal.success.view-cart': 'かごの中身を見る',
         'product.modal.success.continue-shopping': 'ショッピングを続ける',
         'product.modal.success.express-checkout': 'エクスプレスチェックアウト',
+
+        'cart.breadcrumb.paths1': '自宅',
+        'cart.breadcrumb.lastCrumb': 'Shopping Cart',
+        'cart.title': 'Shopping Cart',
+        'cart.empty.header': 'Your shopping cart is empty 😕',
+        'cart.empty.action-btn': 'Start Shopping',
+
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',
         'form.validation.error.bool.required': '必須',

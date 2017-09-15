@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
+import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import userActions from '../../redux/user';
 import orderActions from '../../redux/orders';
@@ -36,6 +37,20 @@ import {
 class ShoppingCart extends Component {
   constructor(props) {
     super(props);
+
+    const {
+      intl: {
+        messages: {
+          'cart.breadCrumb.paths1': bcPaths1,
+          'cart.breadCrumb.lastCrumb': lastCrumb,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
+    };
 
     this.state = {
       qty: props.qty,
@@ -104,11 +119,15 @@ class ShoppingCart extends Component {
     */
 
     const {
-      FetchMultipleProducts: { FetchMultipleProducts: nextUserCart },
-    } = nextProps,
+      FetchMultipleProducts: {
+        FetchMultipleProducts: nextUserCart,
+      },
+    } = nextProps;
 
-    { FetchMultipleProducts:
-      { FetchMultipleProducts: thisUserCart },
+    const {
+      FetchMultipleProducts: {
+        FetchMultipleProducts: thisUserCart,
+      },
     } = this.props;
 
     if (
@@ -451,13 +470,15 @@ class ShoppingCart extends Component {
     return (
       <div className="shopping-cart-main">
         <BreadCrumb
-          paths={['Home']}
+          paths={[this.intl.bcPaths1]}
           classes={['home']}
           destination={['']}
-          lastCrumb="Shopping Cart"
+          lastCrumb={this.intl.lastCrumb}
         />
         <div className="shopping-cart-main-title">
-          <h1>Shopping Cart</h1>
+          <h1>
+            <IntlMsg id="cart.title" />
+          </h1>
         </div>
         { !cartHasProducts ?
 
@@ -486,6 +507,7 @@ class ShoppingCart extends Component {
 */
 const calculateCartQty = (auth, userObj, ordersObj) => {
   const cart = auth.loggedIn ? userObj.profile.shopping.cart : ordersObj.cart;
+
   return cart.reduce((accum, next) => {
     if (!!next.qty) {
       accum += next.qty;
@@ -495,28 +517,35 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
   }, 0);
 };
 
-const ShoppingCartWithState = connect((state, ownProps) => {
-  const total = ComposeFinalTotal(ownProps);
-  const cart = DetermineCartType(ownProps, ZipUserCart);
-  return ({
-    total,
-    updatedCart: cart,
-  });
-}, (dispatch, ownProps) => ({
-  push: location => dispatch(push(location)),
-  saveGuestCart: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
-  saveUserCart: (updatedCart) => {
-    const products = updatedCart.map(({ qty, _id }) => ({ qty, product: _id }));
+const ShoppingCartWithIntl = injectIntl(ShoppingCart);
 
-    ownProps.EditToMemberCart({
-      variables: { userId: ownProps.userId, products },
-    })
-    .then(({ data: { EditToMemberCart: updatedUser } }) => {
-      dispatch(userActions.saveUser(updatedUser));
+const ShoppingCartWithState = connect(
+  (state, ownProps) => {
+    const total = ComposeFinalTotal(ownProps);
+    const cart = DetermineCartType(ownProps, ZipUserCart);
+    return ({
+      total,
+      updatedCart: cart,
     });
-  },
-  saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
-}))(ShoppingCart);
+  }, (dispatch, ownProps) => ({
+    push: location => dispatch(push(location)),
+    saveGuestCart: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
+    saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
+    saveUserCart: (updatedCart) => {
+      const products = updatedCart.map(({ qty, _id }) => ({
+        qty,
+        product: _id,
+      }));
+
+      ownProps.EditToMemberCart({
+        variables: { userId: ownProps.userId, products },
+      })
+      .then(({ data: { EditToMemberCart: updatedUser } }) => {
+        dispatch(userActions.saveUser(updatedUser));
+      });
+    },
+  }),
+)(ShoppingCartWithIntl);
 
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
@@ -524,20 +553,22 @@ const ShoppingCartWithStateAndData = compose(
     options: FetchMultipleProductsOptions,
   }),
   graphql(EmptyMemberCart, { name: 'EmptyMemberCart' }),
-  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
+  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCartWithState);
 
-const ShoppingCartWithStateAndData2 = connect(({ mobile, orders, auth, user }) => ({
-  qty: calculateCartQty(auth, user, orders),
-  mobileActive: !!mobile.mobileType || false,
-  taxRate: orders.taxRate,
-  loggedIn: auth.loggedIn || false,
-  userId: user.profile ? user.profile._id : '',
-  userCart: auth.loggedIn ? user.profile.shopping.cart : [],
-  guestCart: orders.cart,
-  newUser: CheckNewUser(user, auth.loggedIn),
-}), null)(ShoppingCartWithStateAndData);
+const ShoppingCartWithStateAndData2 = connect(
+  ({ mobile, orders, auth, user }) => ({
+    qty: calculateCartQty(auth, user, orders),
+    userId: user.profile ? user.profile._id : '',
+    taxRate: orders.taxRate,
+    newUser: CheckNewUser(user, auth.loggedIn),
+    loggedIn: auth.loggedIn || false,
+    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+    guestCart: orders.cart,
+    mobileActive: !!mobile.mobileType || false,
+  }),
+)(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
 
 const {
@@ -545,6 +576,7 @@ const {
   func,
   bool,
   shape,
+  object,
   string,
   number,
   arrayOf,
@@ -552,10 +584,12 @@ const {
 } = PropTypes;
 
 ShoppingCart.propTypes = {
+  intl: intlShape.isRequired,
   qty: number.isRequired,
   push: func.isRequired,
   userId: string,
   newUser: bool.isRequired,
+  updatedCart: arrayOf(object),
   taxRate: shape({
     cityRate: number,
     stateRate: number,
@@ -586,12 +620,12 @@ ShoppingCart.propTypes = {
     }),
   ),
   total: shape({
-    discount: {
+    discount: shape({
       qty: bool,
       qtyAmount: number,
       register: bool,
       registerAmount: number,
-    },
+    }),
     taxes: number,
     grandTotal: number,
     subTotal: number,
@@ -599,8 +633,9 @@ ShoppingCart.propTypes = {
 };
 ShoppingCart.defaultProps = {
   userId: '',
-  userCart: null,
-  guestCart: null,
+  userCart: [],
+  guestCart: [],
+  updatedCart: [],
   total: {
     discount: {
       qty: false,
