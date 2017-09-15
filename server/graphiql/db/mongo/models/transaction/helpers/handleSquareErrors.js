@@ -94,8 +94,8 @@ export default function handleSquareErrors(response) {
       } break;
       default: {
         errorMsg = {
-          en: 'We were unable to process this payment request.  Please come back in the future and try again.',
-          ja: 'この支払い要求を処理できませんでした。 将来に戻ってもう一度やり直してください。',
+          en: 'We were unable to process this payment request.  Please try a different credit card or try again later.',
+          ja: 'この支払いリクエストを処理できませんでした。 別のクレジットカードをお試しになるか、後でやり直してください',
         };
       }
       /* eslint-enable no-lone-blocks, default-case */
