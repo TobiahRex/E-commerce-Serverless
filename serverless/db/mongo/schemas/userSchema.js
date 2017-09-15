@@ -14,8 +14,14 @@ const userSchema = new mongoose.Schema({
       default: false,
     },
     message: {
-      type: String,
-      default: '',
+      en: {
+        type: String,
+        default: '',
+      },
+      ja: {
+        type: String,
+        default: '',
+      },
     },
   },
   name: {

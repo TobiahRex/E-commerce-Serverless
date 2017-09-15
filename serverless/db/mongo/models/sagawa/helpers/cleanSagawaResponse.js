@@ -30,7 +30,10 @@ const extractUploadData = (jsonResponse) => {
     return ({
       error: true,
       errorMsg: response,
-      msg: 'Sagawa cannot upload the order at this time.',
+      msg: {
+        en: 'Sagawa cannot upload the order at this time.',
+        ja: 'この時点で佐川は注文をアップロードできません。',
+      },
       verified: false,
       awbId: '',
       referenceId: '',
@@ -74,12 +77,21 @@ const extractTrackingData = (jsonResponse) => {
   let phase = '';
   if (!statusCodes.includes('LD')) {
     if (!statusCodes.includes('TD')) {
-      phase = 'Packaging';
+      phase = {
+        en: 'Packaging',
+        ja: '処理',
+      };
     } else {
-      phase = 'Shipped';
+      phase = {
+        en: 'Shipped',
+        ja: '出荷された',
+      };
     }
   } else {
-    phase = 'Delivered';
+    phase = {
+      en: 'Delivered',
+      ja: '配信された',
+    };
   }
 
   if (!trackingInfo.length) {
@@ -117,13 +129,19 @@ new Promise((resolve, reject) => {
   let problem = status !== 200;
 
   if (problem) {
-    problem = 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
+    problem = {
+      en: 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.',
+      ja: 'ネットワークエラーが発生しました。 もう一度お試しください。 問題が解決しない場合は、サポートに連絡してください。 ご不便をおかけして申し訳ございません。',
+    };
     reject(problem);
   }
 
   xml2js.parseString(data, (err, results) => {
     if (err) {
-      problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+      problem = {
+        en: 'There was a server error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.',
+        ja: 'サーバーエラーが発生しました。 もう一度お試しください。 問題が解決しない場合は、サポートに連絡してください。 ご不便をおかけして申し訳ございません。',
+      };
       reject(problem);
     }
 
@@ -135,7 +153,10 @@ new Promise((resolve, reject) => {
     /*  eslint-enable no-console */
 
     if (!verified) {
-      problem = 'That postal code is invalid.  Verify you\'ve entered the correct postal code and please try again.';
+      problem = {
+        en: 'That postal code is invalid.  Verify you have entered the correct postal code and please try again.',
+        ja: 'その郵便番号は無効です。 正しい郵便番号を入力したことを確認してから、もう一度お試しください。',
+      };
     }
 
     resolve({
@@ -157,13 +178,19 @@ new Promise((resolve, reject) => {
   let problem = status !== 200;
 
   if (problem) {
-    problem = 'There was a problem submitting your order.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
+    problem = {
+      en: 'There was a problem submitting your order.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.',
+      ja: '注文を送信する際に問題が発生しました。 もう一度お試しください。 問題が解決しない場合は、サポートに連絡してください。 ご不便をおかけして申し訳ございません。',
+    };
     reject(problem);
   }
 
   xml2js.parseString(data, (err, results) => {
     if (err) {
-      problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+      problem = {
+        en: 'There was a server error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.',
+        ja: 'サーバーエラーが発生しました。 もう一度お試しください。 問題が解決しない場合は、サポートに連絡してください。 ご不便をおかけして申し訳ございません。',
+      };
       reject(problem);
     }
 
@@ -218,7 +245,10 @@ new Promise((resolve) => {
 
     if (!verified) {
       resolve({
-        error: 'Could not parse tracking data.',
+        error: {
+          en: 'Could not parse tracking data.',
+          ja: 'トラッキングデータを解析できませんでした。',
+        },
         data: {
           phase,
           trackingInfo,

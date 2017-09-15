@@ -31,7 +31,16 @@ const rootType = new ObjectType({
           },
           message: {
             description: 'Amplifying information about error.  Should be written for user readibility.',
-            type: StringType,
+            type: new ObjectType({
+              en: {
+                description: 'English translation.',
+                type: StringType,
+              },
+              ja: {
+                description: 'Japanese translation.',
+                type: StringType,
+              },
+            }),
           },
         }),
       }),
@@ -46,7 +55,16 @@ const rootType = new ObjectType({
     },
     status: {
       description: 'A status identifying if the order has been uploaded to Sagawa.',
-      type: StringType,
+      type: new ObjectType({
+        en: {
+          description: 'The English status of the order.',
+          type: StringType,
+        },
+      }),
+      ja: new ObjectType({
+        description: 'The Japanese status of the order.',
+        type: StringType,
+      }),
     },
     postalInfo: {
       description: 'The postal code validation response from Sagawa.',
@@ -175,7 +193,16 @@ const queryTypes = {
       },
       orderStatus: {
         description: 'The current status of the order.',
-        type: StringType,
+        type: new ObjectType({
+          en: {
+            description: 'The English status of the order.',
+            type: StringType,
+          },
+          ja: {
+            description: 'The Japanese status of the order.',
+            type: StringType,
+          },
+        }),
       },
       trackingNumber: {
         description: 'The tracking number.',

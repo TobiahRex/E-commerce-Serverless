@@ -14,16 +14,29 @@ const sagawaSchema = new mongoose.Schema({
       default: false,
     },
     message: {
-      type: String,
-      default: '',
+      en: {
+        type: String,
+        default: '',
+      },
+      ja: {
+        type: String,
+        default: '',
+      },
     },
   },
   userId: { type: ObjectId, ref: 'User' },
   transactionId: { type: ObjectId, ref: 'Transaction' },
   uploadStatus: {
-    type: String,
-    enum: ['pending', 'uploaded'],
-    default: 'pending',
+    en: {
+      type: String,
+      enum: ['pending', 'uploaded'],
+      default: 'pending',
+    },
+    ja: {
+      type: String,
+      enum: ['保留中', '提出済み'],
+      default: '保留中',
+    },
   },
   shippingAddress: {
     awbId: { type: String },
