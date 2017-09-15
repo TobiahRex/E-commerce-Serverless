@@ -48,7 +48,16 @@ const rootType = new ObjectType({
     },
     status: {
       description: 'A status identifying if the order has been uploaded to Sagawa.',
-      type: StringType,
+      type: new ObjectType({
+        en: {
+          description: 'The english status of the order.',
+          type: StringType,
+        },
+      }),
+      ja: new ObjectType({
+        description: 'The english status of the order.',
+        type: StringType,
+      }),
     },
     postalInfo: {
       description: 'The postal code validation response from Sagawa.',
