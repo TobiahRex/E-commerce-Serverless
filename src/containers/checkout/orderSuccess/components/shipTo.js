@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ShipTo({
   fullName,
@@ -15,7 +16,9 @@ function ShipTo({
     <div className="addresses--shipto">
       <fieldset className="shipto--fieldset">
         <legend className="shipto__legend">
-          <p>Ship To</p>
+          <p>
+            <IntlMsg id="checkout.success.ship-to" />
+          </p>
         </legend>
         <div className="shipto__name">
           <p className="name--firstName">{fullName.split(' ')[0]}</p>
