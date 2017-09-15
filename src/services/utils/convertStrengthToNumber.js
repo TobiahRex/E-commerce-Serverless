@@ -5,6 +5,7 @@ export default (nicotine) => {
       switch (nicotineStrength) {
         case 'zero': return ({ nicotineStrength: 0, _id });
         case 'two': return ({ nicotineStrength: 2, _id });
+        case 'three': return ({ nicotineStrength: 3, _id });
         case 'four': return ({ nicotineStrength: 4, _id });
         case 'six': return ({ nicotineStrength: 6, _id });
         case 'eight': return ({ nicotineStrength: 8, _id });
@@ -20,6 +21,7 @@ export default (nicotine) => {
     switch (nicotine) {
       case 'zero': return 0;
       case 'two': return 2;
+      case 'three': return 3;
       case 'four': return 4;
       case 'six': return 6;
       case 'eight': return 8;

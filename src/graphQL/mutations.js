@@ -15,7 +15,10 @@ mutation AddToMemberCart(
     error {
       hard
       soft
-      message
+      message {
+        en
+        ja
+      }
     }
     name {
       first
@@ -106,7 +109,10 @@ mutation EditToMemberCart(
     error {
       hard
       soft
-      message
+      message {
+        en
+        ja
+      }
     }
     name {
       first
@@ -194,7 +200,10 @@ mutation DeleteFromMemberCart(
     error {
       hard
       soft
-      message
+      message {
+        en
+        ja
+      }
     }
     name {
       first
@@ -279,7 +288,10 @@ mutation EmptyMemberCart($userId: ID!) {
     error {
       hard
       soft
-      message
+      message {
+        en
+        ja
+      }
     }
     name {
       first
@@ -405,14 +417,20 @@ mutation SubmitFinalOrder(
     error {
       soft
       hard
-      message
+      message {
+        en
+        ja
+      }
     }
     user {
       _id
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       name {
         first
@@ -493,7 +511,10 @@ mutation SubmitFinalOrder(
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       date
       comments
@@ -510,6 +531,10 @@ mutation SubmitFinalOrder(
       invoiceEmailNoTracking
       trackingLink
       jpyFxRate
+      shippingStatus {
+        en
+        ja
+      }
       taxes {
         cityRate
         stateRate

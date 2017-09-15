@@ -18,6 +18,14 @@ const createAPI = () => {
     query: `query FetchProductById($_id: String!) {
       FetchProductById(_id: $_id) {
         _id
+        error {
+          hard
+          soft
+          message {
+            en
+            ja
+          }
+        }
         product {
           mainTitle {
             en
@@ -83,6 +91,14 @@ const createAPI = () => {
     query FetchMultipleProducts($ids: [ID]!){
       FetchMultipleProducts(ids: $ids){
         _id
+        error {
+          hard
+          soft
+          message {
+            en
+            ja
+          }
+        }
         product {
           mainTitle {
             en

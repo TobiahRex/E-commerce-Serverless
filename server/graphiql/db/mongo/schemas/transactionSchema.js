@@ -44,6 +44,16 @@ const transactionSchema = new Schema({
   invoiceEmailNoTracking: { type: String, default: '' },
   invoiceEmail: { type: String, default: '' },
   trackingLink: { type: String, default: '' },
+  shippingStatus: {
+    en: {
+      type: String,
+      default: 'Packaging',
+    },
+    ja: {
+      type: String,
+      default: '処理',
+    },
+  },
   jpyFxRate: { type: String, required: true },
   taxes: {
     cityRate: { type: String, required: true },

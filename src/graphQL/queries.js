@@ -9,7 +9,10 @@ export const FindProductsByFlavor = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       product {
         mainTitle {
@@ -54,7 +57,10 @@ export const FindProductById = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       product {
         mainTitle {
@@ -99,7 +105,10 @@ export const FetchMultipleProducts = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       product {
         mainTitle {
@@ -156,7 +165,10 @@ export const FetchSagawa = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       userId
       transactionId
@@ -180,7 +192,10 @@ export const FetchTrackingInfo = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       shipDate
       orderId
@@ -190,7 +205,8 @@ export const FetchTrackingInfo = gql`
       totalPaid
       totalCurrency
       orderStatus {
-        
+        en
+        ja
       }
       trackingInfo {
         location

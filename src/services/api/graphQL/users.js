@@ -74,7 +74,10 @@ const createAPI = () => {
         error {
           hard
           soft
-          message
+          message {
+            en
+            ja
+          }
         }
         name {
           first
@@ -180,7 +183,10 @@ const createAPI = () => {
           error {
             hard
             soft
-            message
+            message {
+              en
+              ja
+            }
           }
           name {
             first

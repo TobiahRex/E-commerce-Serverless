@@ -160,7 +160,7 @@ class OrderSuccess extends React.Component {
 
           <OrderHeader
             date={date}
-            status={shippingStatus}
+            status={shippingStatus[IntlLocale]}
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}

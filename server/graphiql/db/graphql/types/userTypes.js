@@ -36,14 +36,17 @@ export const rootType = new ObjectType({
           message: {
             description: 'Amplifying information about error.  Should be written for user readibility.',
             type: new ObjectType({
-              en: {
-                description: 'English translation.',
-                type: StringType,
-              },
-              ja: {
-                description: 'English translation.',
-                type: StringType,
-              },
+              name: 'UserErrorMessage',
+              fields: () => ({
+                en: {
+                  description: 'English translation.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'English translation.',
+                  type: StringType,
+                },
+              }),
             }),
           },
         }),
