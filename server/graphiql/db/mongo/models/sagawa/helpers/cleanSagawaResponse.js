@@ -74,12 +74,21 @@ const extractTrackingData = (jsonResponse) => {
   let phase = '';
   if (!statusCodes.includes('LD')) {
     if (!statusCodes.includes('TD')) {
-      phase = 'Packaging';
+      phase = {
+        en: 'Packaging',
+        ja: '処理',
+      };
     } else {
-      phase = 'Shipped';
+      phase = {
+        en: 'Shipped',
+        ja: '出荷された',
+      };
     }
   } else {
-    phase = 'Delivered';
+    phase = {
+      en: 'Delivered',
+      ja: '配信された',
+    };
   }
 
   if (!trackingInfo.length) {

@@ -186,7 +186,16 @@ const queryTypes = {
       },
       orderStatus: {
         description: 'The current status of the order.',
-        type: StringType,
+        type: new ObjectType({
+          en: {
+            description: 'The english status of the order.',
+            type: StringType,
+          },
+          ja: {
+            description: 'The english status of the order.',
+            type: StringType,
+          },
+        }),
       },
       trackingNumber: {
         description: 'The tracking number.',

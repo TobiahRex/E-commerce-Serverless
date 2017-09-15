@@ -566,7 +566,10 @@ mutation SubmitFinalOrder(
             amount
             currency
           }
-          status
+          status {
+            en
+            ja
+          }
         }
       }
     }
