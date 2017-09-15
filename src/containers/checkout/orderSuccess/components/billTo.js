@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function BillTo({
   nameOnCard,
@@ -12,7 +13,9 @@ function BillTo({
     <div className="addresses--billto">
       <fieldset className="billto--fieldset">
         <legend className="billto__legend">
-          <p>Bill To</p>
+          <p>
+            <IntlMsg id="checkout.success.bill-to" />
+          </p>
         </legend>
         <div className="billto__name">
           <p className="name--firstName">{nameOnCard.split(' ')[0]}</p>
@@ -22,13 +25,19 @@ function BillTo({
           <p>{billingPostalCode}</p>
         </div>
         <div className="billto__country">
-          <p>{billingCountry === 'JP' ? 'Japan' : 'United States'}</p>
+          <p>{billingCountry === 'JP' ? '日本' : 'United States'}</p>
         </div>
         <div className="billto__card-info">
-          <p>Credit Card #: ************{ccLastFour}</p>
+          <p>
+            <IntlMsg id="checkout.success.bill-to.cc" />
+            {ccLastFour}
+          </p>
         </div>
         <div className="billto__card-info">
-          <p>Credit Card Brand: {cardBrand}</p>
+          <p>
+            <IntlMsg id="checkout.success.bill-to.cc-brand" />
+            {cardBrand}
+          </p>
         </div>
       </fieldset>
     </div>

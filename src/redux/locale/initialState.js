@@ -80,6 +80,9 @@ export default {
         'checkout.success.header.delivery': 'Estimated Delivery: ',
 
         'checkout.success.ship-to': 'Ship To',
+        'checkout.success.bill-to.title': 'Bill To',
+        'checkout.success.bill-to.cc': 'Credit Card #: ************',
+        'checkout.success.bill-to.cc-brand': 'Credit Card Brand: ',
 
         'checkout.success.summary.title': 'Order Summary',
         'checkout.success.summary.header.qty': 'Qty',
