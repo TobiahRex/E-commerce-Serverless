@@ -30,7 +30,10 @@ const extractUploadData = (jsonResponse) => {
     return ({
       error: true,
       errorMsg: response,
-      msg: 'Sagawa cannot upload the order at this time.',
+      msg: {
+        en: 'Sagawa cannot upload the order at this time.',
+        ja: 'この時点で佐川は注文をアップロードできません。',
+      },
       verified: false,
       awbId: '',
       referenceId: '',
@@ -126,13 +129,19 @@ new Promise((resolve, reject) => {
   let problem = status !== 200;
 
   if (problem) {
-    problem = 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.';
+    problem = {
+      en: 'There was a network error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.',
+      ja: 'ネットワークエラーが発生しました。 もう一度お試しください。 問題が解決しない場合は、サポートに連絡してください。 ご不便をおかけして申し訳ございません。',
+    };
     reject(problem);
   }
 
   xml2js.parseString(data, (err, results) => {
     if (err) {
-      problem = `There was an internal Error:  ${err}.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.`;
+      problem = {
+        en: 'There was a server error.  Please try again.  If the problem persists, please contact support.  We apologize for the inconvenience.',
+        ja: 'サーバーエラーが発生しました。 もう一度お試しください。 問題が解決しない場合は、サポートに連絡してください。 ご不便をおかけして申し訳ございません。',
+      };
       reject(problem);
     }
 
