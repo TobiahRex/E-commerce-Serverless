@@ -11,13 +11,22 @@ export default function handleSquareErrors(response) {
     /* eslint-disable no-lone-blocks */
     switch (code) {
       case 'CARD_EXPIRED': {
-        errorMsg = 'Your credit card has expired.';
+        errorMsg = {
+          en: 'Your credit card has expired.',
+          ja: 'クレジットカードの有効期限が切れています。',
+        };
       } break;
       case 'INVALID_EXPIRATION': {
-        errorMsg = 'The expiration dates you provided is invalid.  Please correct it and try again.';
+        errorMsg = {
+          en: 'The expiration dates you provided is invalid.  Please correct it and try again.',
+          ja: '指定した有効期限は無効です。 それを修正して、もう一度やり直してください。',
+        };
       } break;
       case 'INVALID_EXPIRATION_YEAR': {
-        errorMsg = 'The expiration YEAR you provided is incorrect.  Please correct it and try again.';
+        errorMsg = {
+          en: 'The expiration YEAR you provided is incorrect.  Please correct it and try again.',
+          ja: 'あなたが指定した年月が間違っています。 それを修正して、もう一度やり直してください。',
+        };
       } break;
       case 'INVALID_EXPIRATION_DATE': {
         errorMsg = 'The expiration DATE you provided is incorrect.  Please correct it and try again.';
