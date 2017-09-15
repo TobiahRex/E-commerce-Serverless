@@ -32,6 +32,7 @@ const rootType = new ObjectType({
           message: {
             description: 'Amplifying information about error.  Should be written for user readibility.',
             type: new ObjectType({
+              name: 'SagawaErrorMessage',
               en: {
                 description: 'English translation.',
                 type: StringType,

@@ -36,12 +36,13 @@ const rootType = new ObjectType({
             message: {
               description: 'Amplifying information about error.  Should be written for user readibility.',
               type: new ObjectType({
+                name: 'TransactionErrorMessage',
                 en: {
                   description: 'English translation.',
                   type: StringType,
                 },
                 ja: {
-                  description: 'English translation.',
+                  description: 'Japanese translation.',
                   type: StringType,
                 },
               }),
@@ -123,6 +124,20 @@ const rootType = new ObjectType({
     jpyFxRate: {
       description: 'The foreign exchange rate between USD & JPY at the time of the transaction.',
       type: StringType,
+    },
+    shippingStatus: {
+      description: 'The shipping status of the order',
+      type: new ObjectType({
+        name: 'TransactionShippingStatus',
+        en: {
+          description: 'English translation.',
+          type: StringType,
+        },
+        ja: {
+          description: 'Japanese translation.',
+          type: StringType,
+        },
+      }),
     },
     taxes: {
       description: 'The global tax information at the trime of executing this transaction',
@@ -405,7 +420,17 @@ const mutationTypes = {
             },
             message: {
               description: 'Amplifying information about error.  Should be written for user readibility.',
-              type: StringType,
+              type: new ObjectType({
+                name: 'SubmitOrderErrorMessage',
+                en: {
+                  description: 'English translation.',
+                  type: StringType,
+                },
+                ja: {
+                  description: 'Japanese translation.',
+                  type: StringType,
+                },
+              }),
             },
           }),
         }),
