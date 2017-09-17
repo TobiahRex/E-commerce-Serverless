@@ -11,7 +11,6 @@ export default function* fetchPopularProducts() {
   yield put(apiActions.fetching());
 
   const response = yield call(() => api.FetchPopularProducts(6));
-  console.log('response: ', response);
   const { ok, problem, data: { data: { PopularProducts } } } = cleanGQLresponse(response);
 
   const popularProducts = PopularProducts.map(productObj => ({
