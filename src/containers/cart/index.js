@@ -210,7 +210,7 @@ class ShoppingCart extends Component {
               const newError = Object.assign({}, productObj.error);
               productWithError.error = newError;
               productWithError.error.soft = true;
-              productWithError.error.message = 'Too much';
+              productWithError.error.message = { en: 'Too much' };
               productWithError.qty -= 1;
               return productWithError;
             }

@@ -58,7 +58,7 @@ class SingleProduct extends React.Component {
       product: null,
       errorMsg: '',
       showBulkModal: false,
-      chosenStrength: 0,
+      chosenStrength: -1,
       showSuccessModal: false,
       showRegisterModal: false,
     };
@@ -298,10 +298,8 @@ class SingleProduct extends React.Component {
       updated = true;
       const updatedUserCart = userCart
       .map((userCartProduct) => {
-        // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
-        if (!!userCartProduct.__typename) {
-          delete userCartProduct.__typename;
-        }
+        // Apollo & GraphQL add "__typename" property for cache purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
+        if (!!userCartProduct.__typename) delete userCartProduct.__typename;
 
         if (
           !!userCartProduct.product &&
@@ -385,7 +383,7 @@ class SingleProduct extends React.Component {
         error: true,
         errorMsg: 'You must choose a quantity of at least 1.',
       }));
-    } else if (!this.state.chosenStrength) {
+    } else if (this.state.chosenStrength <= -1) {
       this.setState(() => ({
         error: true,
         errorMsg: 'No strength',

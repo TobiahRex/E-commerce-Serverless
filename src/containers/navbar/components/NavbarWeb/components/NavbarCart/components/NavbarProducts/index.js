@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import {
-  FormattedMessage as IntlMsg,
-  FormattedNumber as IntlInt,
-} from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import {
   NavbarProductsCardImage,
@@ -83,12 +80,12 @@ class NavbarProducts extends Component {
       >
         <NavbarProductsCardImage
           imageUrl={this.filterImages(images)}
-          title={title}
+          title={title[IntlLocale]}
         />
 
         <NavbarProductsCardInfo
           qty={qty}
-          title={title}
+          title={title[IntlLocale]}
           price={price}
           nicotineStrength={nicotineStrength}
         />

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import convertStrengthToNumber from '../../../../../services/utils/convertStrengthToNumber';
 
-function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
+function NicotineBtns({
+  chosenStrength,
+  nicotineStrengths,
+  nicotineHandler,
+}) {
   const style = {
     active: {
       backgroundColor: '#063A7A',
@@ -33,7 +37,8 @@ function NicotineBtns({ chosenStrength, nicotineStrengths, nicotineHandler }) {
               <button
                 data-nicotinestrength={nicotineStrength}
                 data-product={_id}
-                className="strength__btn" onClick={nicotineHandler}
+                className="strength__btn"
+                onClick={nicotineHandler}
               >{`${nicotineStrength}mg`}</button>
 
             </li>
