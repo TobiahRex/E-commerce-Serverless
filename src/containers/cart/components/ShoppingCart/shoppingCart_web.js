@@ -7,12 +7,12 @@ import ShoppingCartTotal from './ShoppingCartTotal';
 function ShoppingCartWeb({
   cart,
   taxes,
+  total,
+  emptyCart,
   grandTotal,
   routerPush,
   mobileActive,
   showProductRow,
-  emptyCart,
-  total,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -34,12 +34,7 @@ function ShoppingCartWeb({
           </tr>
         </thead>
         <tbody className="shopping-cart-table-body-container">
-          {showProductRow(
-            cart,
-            taxes,
-            grandTotal,
-            mobileActive,
-          )}
+          {showProductRow(cart, taxes, grandTotal, mobileActive)}
         </tbody>
       </table>
 
@@ -57,10 +52,7 @@ function ShoppingCartWeb({
               <IntlMsg id="cart.action-btn.express-checkout" />
             </span>
           </button>
-          <button
-            className="shopping-cart-action-btn-clear sweep-right"
-            onClick={emptyCart}
-          >
+          <button className="shopping-cart-action-btn-clear sweep-right" onClick={emptyCart}>
             <span className="btn-flex-parent">
               <IntlMsg id="cart.action-btn.clear-cart" />
             </span>
@@ -68,11 +60,7 @@ function ShoppingCartWeb({
         </div>
       </div>
       <div className="shopping-cart-back-parent">
-        <button
-          data-slug="/"
-          className="shopping-cart-back sweep-right"
-          onClick={routerPush}
-        >
+        <button data-slug="/" className="shopping-cart-back sweep-right" onClick={routerPush}>
           <IntlMsg id="cart.action-btn.back-home" />
         </button>
       </div>
