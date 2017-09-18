@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import { Prefectures } from './component.imports';
 
 class Prefecture extends PureComponent {
@@ -27,7 +28,10 @@ class Prefecture extends PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--prefecture">
-          <p>Prefecture <span className="required">*</span></p>
+          <p>
+            <IntlMsg id="checkout.shipping-address.prefecture" />&nbsp;
+            <span className="required">*</span>
+          </p>
           <Validation.components.Select
             errorClassName="is-invalid-input"
             name={`${this.props.type}Prefecture`}
@@ -36,7 +40,9 @@ class Prefecture extends PureComponent {
             value={this.props.prefecture}
             onChange={this.handleOnChange}
           >
-            <option value="">Choose</option>
+            <option value="">
+              <IntlMsg id="checkout.shipping-address.prefecture.choose" />
+            </option>
             {
               this.renderOptions(Prefectures)
             };

@@ -22,7 +22,7 @@ class AddressLine extends React.PureComponent {
     return (
       <div className="input__row">
         <div className={`input__row--address-line${disabled ? '-disabled' : ''}`}>
-          <p>{title} {'\u0020'}
+          <p>{title}&nbsp;
             {required && <span className="required">*</span>}
           </p>
           <Validation.components.Input

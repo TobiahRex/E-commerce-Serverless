@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 class City extends React.PureComponent {
   constructor(props) {
@@ -17,7 +18,10 @@ class City extends React.PureComponent {
     return (
       <div className="input__row">
         <div className="input__row--city">
-          <p>City <span className="required">*</span></p>
+          <p>
+            <IntlMsg id="checkout.shipping-address.city" />&nbsp;
+            <span className="required">*</span>
+          </p>
           <Validation.components.Input
             errorClassName="is-invalid-input"
             type="text"
