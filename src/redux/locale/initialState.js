@@ -114,7 +114,6 @@ export default {
         'checkout.product-review.table.header.qty': 'Qty',
         'checkout.product-review.table.header.subtotal': 'Subtotal',
         'checkout.product-review.table.comments.placeholder': 'Comments...',
-
         'checkout.product-review.new-user.discount.warning.title': 'Warning: ',
         'checkout.product-review.new-user.discount.warning.description': 'You are currently trying to checkout out as a “Guest”. You will need to login or register to complete this transaction.  If it is your first purchase with us you will receive 10% off your first order!',
         'checkout.product-review.new-user.discount.register': 'Register & Save 10%',
@@ -132,6 +131,11 @@ export default {
         'checkout.shipping-address.city': 'City',
         'checkout.shipping-address.prefecture': 'Prefecture',
         'checkout.shipping-address.prefecture.choose': 'Choose',
+        'checkout.credit-card.title': 'Credit Card Information',
+        'checkout.credit-card.accepted': 'Credit Card Information',
+        'checkout.credit-card.billing-country': 'Billing Country',
+        'checkout.credit-card.billing-country.choose': 'Billing Country',
+        'checkout.credit-card.number': 'Credit Card Number',
 
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',

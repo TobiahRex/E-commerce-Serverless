@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import {
   Country,
@@ -69,12 +70,16 @@ class CreditCardInfo extends React.Component {
     return (
       <div className="checkout__credit-card">
         <div className="title">
-          <h3>Credit Card Information</h3>
+          <h3>
+            <IntlMsg id="checkout.credit-card.title" />
+          </h3>
         </div>
 
         <div className="input__row">
           <div className="input__row--cc-type">
-            <p>Accepted Credit Card Types</p>
+            <p>
+              <IntlMsg id="checkout.credit-card.accepted" />
+            </p>
             <div className="types">
               <FontAwesome name="cc-visa" />
               <FontAwesome name="cc-mastercard" />
@@ -89,7 +94,7 @@ class CreditCardInfo extends React.Component {
           country={ccCountry}
           handleOnChange={this.handleOnChange}
         />
-        
+
         <NameOnCard
           show={!!ccCountry}
           ccNameOnCard={ccNameOnCard}

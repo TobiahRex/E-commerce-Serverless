@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 // import { Countries } from './component.imports';
 
 class Country extends React.Component {
@@ -30,7 +31,10 @@ class Country extends React.Component {
     return (
       <div className="input__row">
         <div className="input__row--country">
-          <p>Billing Country <span className="required">*</span></p>
+          <p>
+            <IntlMsg id="checkout.credit-card.billing-country" />&nbsp;
+            <span className="required">*</span>
+          </p>
           <Validation.components.Select
             errorClassName="is-invalid-input"
             name="ccCountry"
@@ -38,7 +42,9 @@ class Country extends React.Component {
             value={this.props.country}
             onChange={this.handleOnChange}
           >
-            <option value="">Choose</option>
+            <option value="">
+              <IntlMsg id="checkout.credit-card.billing-country.choose" />
+            </option>
             <hr />
             <option value="United States-US">
               United States (US)
