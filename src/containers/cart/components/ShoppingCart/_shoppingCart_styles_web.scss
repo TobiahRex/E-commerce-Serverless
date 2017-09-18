@@ -264,17 +264,24 @@
         width: 100%;
         & .total-analysis__title-container {
           @include prefixflex();
-          justify-content: center;
           align-items: center;
-          padding: 2em;
-          width: 100%;
-          background-color: $p-blue;
+          padding: 2em 2em 0em 2em;
+          width: 30em;
+          height: 7.5em;
+          margin-top: 2em;
+          border-top: 1px solid $s-grey;
+          border-left: 1px solid $s-grey;
+          border-right: 1px solid $s-grey;
+          background-color: $p-grey;
           & .total-analysis__title-frame {
+            @include prefixflex();
+            align-items: center;
             background-color: $p-blue;
-            & p {
-              font-size: 2em;
+            height: 100%;
+            width: 29em;
+            padding-left: 1em;
+            & h3 {
               color: $p-white;
-              font-weight: 200;
             }
           }
         }
@@ -352,13 +359,15 @@
             border-bottom: none;
           }
         }
+        & .total-analysis__title-container {
+          margin-top: 3em;
+        }
         & .total-analysis__grand-total {
           margin: 0 0 1em 0;
           border-bottom: 1px solid $s-grey;
         }
         & .total-analysis__subtotal {
-          margin-top: 2em;
-          border-top: 1px solid $s-grey;
+          // border-top: 1px solid $s-grey;
         }
       }
       & .shopping-cart-action-btns-parent {

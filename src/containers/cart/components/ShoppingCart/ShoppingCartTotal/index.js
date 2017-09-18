@@ -10,9 +10,7 @@ function ShoppingCartTotal({ total }) {
     <div className="shopping-cart__total-analysis">
       <div className="total-analysis__title-container">
         <div className="total-analysis__title-frame">
-          <p>
-            Total
-          </p>
+          <h3>Total</h3>
         </div>
       </div>
       <div className="total-analysis__subtotal">

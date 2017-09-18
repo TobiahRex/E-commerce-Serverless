@@ -41,7 +41,7 @@ function ShoppingCartWeb({
           )}
         </tbody>
       </table>
-      
+
       <ShoppingCartTotal total={total} />
 
       <div className="shopping-cart-action-btns-parent">
