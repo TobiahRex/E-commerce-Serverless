@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl, intlShape } from 'react-intl';
 
 class ProductReviewComments extends React.PureComponent {
 
@@ -12,7 +13,11 @@ class ProductReviewComments extends React.PureComponent {
           name="prComments"
           cols="40"
           rows="5"
-          placeholder="Comments..."
+          placeholder={
+            this.props.intl.messages[
+              'checkout.product-review.table.comments.placeholder'
+            ]
+          }
           value={this.props.comments}
           onChange={this.handleOnChange}
         />
@@ -23,10 +28,12 @@ class ProductReviewComments extends React.PureComponent {
 const { string, func } = PropTypes;
 
 ProductReviewComments.propTypes = {
+  intl: intlShape.isRequired,
   comments: string,
   handleOnChange: func.isRequired,
 };
 ProductReviewComments.defaultProps = {
   comments: '',
 };
-export default ProductReviewComments;
+const ProductReviewCommentsWithIntl = injectIntl(ProductReviewComments);
+export default ProductReviewCommentsWithIntl;

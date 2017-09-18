@@ -106,13 +106,20 @@ export default {
         'checkout.success.summary.total.shipping': 'Free International Shipping',
         'checkout.success.summary.total.discount': 'Discount',
         'checkout.success.summary.total.grand-total': 'Grand Total',
-        'checkout.success.actions.back-to-home': 'Back To Homepage',
 
+        'checkout.success.actions.back-to-home': 'Back To Homepage',
         'checkout.product-review.title': 'Product Review',
         'checkout.product-review.table.strength': 'Nicotine Strength',
         'checkout.product-review.table.header.product': 'Product',
         'checkout.product-review.table.header.qty': 'Qty',
         'checkout.product-review.table.header.subtotal': 'Subtotal',
+        'checkout.product-review.table.comments.placeholder': 'Comments...',
+
+        'checkout.product-review.new-user.discount.warning.title': 'Warning: ',
+        'checkout.product-review.new-user.discount.warning.description': 'You are currently trying to checkout out as a “Guest”. You will need to login or register to complete this transaction.  If it is your first purchase with us you will receive 10% off your first order!',
+        'checkout.product-review.new-user.discount.register': 'Register & Save 10%',
+        'checkout.product-review.new-user.discount.credit-card': 'Your credit card information is extremely sensitive and we respect that.  We will never save your credit card information.',
+        'checkout.newsletter.sign-up.title': 'Sign Up for Newsletters',
 
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',
