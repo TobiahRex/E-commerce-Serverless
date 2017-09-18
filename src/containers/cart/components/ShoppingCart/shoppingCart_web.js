@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import ShoppingCartTotal from './ShoppingCartTotal';
 
 function ShoppingCartWeb({
   cart,
   taxes,
-  total,
-  emptyCart,
   grandTotal,
   routerPush,
   mobileActive,
   showProductRow,
+  emptyCart,
+  total,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -20,24 +19,16 @@ function ShoppingCartWeb({
         <thead className="shopping-cart-table-header-container">
           <tr className="shopping-cart-table-header-titles">
             <th className="shopping-cart-table-header-juice">
-              <h3>
-                <IntlMsg id="cart.table.header.juice" />
-              </h3>
+              <h3>Juice</h3>
             </th>
             <th className="shopping-cart-table-header-price">
-              <h3>
-                <IntlMsg id="cart.table.header.price" />
-              </h3>
+              <h3>Price</h3>
             </th>
             <th className="shopping-cart-table-header-qty">
-              <h3>
-                <IntlMsg id="cart.table.header.qty" />
-              </h3>
+              <h3>Quantity</h3>
             </th>
             <th className="shopping-cart-table-header-total">
-              <h3>
-                <IntlMsg id="cart.table.header.total" />
-              </h3>
+              <h3>Total</h3>
             </th>
           </tr>
         </thead>
@@ -60,8 +51,8 @@ function ShoppingCartWeb({
           onClick={routerPush}
         >
           <span className="btn-flex-parent">
-            <FontAwesome name="credit-card-alt" />&nbsp;
-            <IntlMsg id="cart.action-btn.express-checkout" />
+            <FontAwesome name="credit-card-alt" />
+            {'\u0020'}Express Checkout
           </span>
         </button>
         <button
@@ -69,7 +60,7 @@ function ShoppingCartWeb({
           onClick={emptyCart}
         >
           <span className="btn-flex-parent">
-            <IntlMsg id="cart.action-btn.clear-cart" />
+            Clear Shopping Cart
           </span>
         </button>
       </div>
@@ -79,30 +70,21 @@ function ShoppingCartWeb({
           className="shopping-cart-back sweep-right"
           onClick={routerPush}
         >
-          <IntlMsg id="cart.action-btn.back-home" />
+          Back To Homepage
         </button>
       </div>
     </div>
   );
 }
-
-const {
-  func,
-  bool,
-  shape,
-  number,
-  object,
-  arrayOf,
-} = PropTypes;
-
+const { func, number, arrayOf, object, bool, shape } = PropTypes;
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
   taxes: number,
   grandTotal: number,
-  emptyCart: func.isRequired,
   routerPush: func.isRequired,
-  mobileActive: bool.isRequired,
   showProductRow: func.isRequired,
+  mobileActive: bool.isRequired,
+  emptyCart: func.isRequired,
   total: shape({
     discount: shape({
       qty: bool.isRequired,
