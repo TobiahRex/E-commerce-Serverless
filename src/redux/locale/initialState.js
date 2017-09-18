@@ -57,13 +57,11 @@ export default {
         'product.single.price-info.free-shipping': 'Free Shipping',
         'product.single.price-info.in-stock': 'IN STOCK',
         'product.single.price-info.out-of-stock': 'OUT OF STOCK',
-
         'cart.breadCrumb.paths1': 'Home',
         'cart.breadCrumb.lastCrumb': 'Shopping Cart',
         'cart.title': 'Shopping Cart',
         'cart.empty.header': 'Your shopping cart is empty 😕',
         'cart.empty.action-btn': 'Start Shopping',
-
         'cart.table.header.juice': 'Juice',
         'cart.table.header.price': 'Price',
         'cart.table.header.qty': 'Quantity',
@@ -93,12 +91,10 @@ export default {
         'checkout.success.header.tracking.delay': 'Tracking # will be in follow-up email.',
         'checkout.success.header.order': 'Order #: ',
         'checkout.success.header.delivery': 'Estimated Delivery: ',
-
         'checkout.success.ship-to': 'Ship To',
         'checkout.success.bill-to.title': 'Bill To',
         'checkout.success.bill-to.cc': 'Credit Card #: ************',
         'checkout.success.bill-to.cc-brand': 'Credit Card Brand: ',
-
         'checkout.success.summary.title': 'Order Summary',
         'checkout.success.summary.header.qty': 'Qty',
         'checkout.success.summary.header.description': 'Juice Description',
