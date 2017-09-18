@@ -16,7 +16,7 @@ function ShoppingCartTotal({ total }) {
       <div className="shopping-cart-analysis-subtotal">
         <div className="shopping-cart-analysis-subtotal-title">
           <h4 className="title">
-            Subtotal
+            <IntlMsg id="cart.total.subtotal" />
           </h4>
         </div>
         <div className="shopping-cart-analysis-subtotal-cost">
@@ -28,7 +28,7 @@ function ShoppingCartTotal({ total }) {
       <div className="shopping-cart-analysis-taxes">
         <div className="shopping-cart-analysis-taxes-title">
           <h4 className="title">
-            Taxes
+            <IntlMsg id="cart.total.taxes" />
           </h4>
         </div>
         <div className="shopping-cart-analysis-taxes-cost">
@@ -40,13 +40,13 @@ function ShoppingCartTotal({ total }) {
       <div className="shopping-cart-analysis-shipping">
         <div className="shopping-cart-analysis-shipping-title">
           <h4 className="title" style={{ textAlign: 'left' }}>
-            International Shipping
+            <IntlMsg id="cart.total.shipping" />
           </h4>
         </div>
         <div className="shopping-cart-analysis-shipping-cost">
           <FontAwesome name="usd" />&nbsp;
           <h4>
-            Free
+            <IntlMsg id="cart.total.free" />
           </h4>
         </div>
       </div>
@@ -55,7 +55,7 @@ function ShoppingCartTotal({ total }) {
           <div className="shopping-cart-analysis-qty-discount">
             <div className="shopping-cart-analysis-qty-discount-title">
               <h4 className="title required" style={{ textAlign: 'left' }}>
-                Quantity Discount
+                <IntlMsg id="cart.total.quantity-discount" />
               </h4>
             </div>
             <div className="shopping-cart-analysis-qty-discount-cost required">
@@ -72,7 +72,9 @@ function ShoppingCartTotal({ total }) {
         discount.register &&
           <div className="shopping-cart-analysis-register-discount">
             <div className="shopping-cart-analysis-register-discount-title">
-              <h4 className="title required">Register Discount</h4>
+              <h4 className="title required">
+                <IntlMsg id="cart.total.register-discount" />
+              </h4>
             </div>
             <div className="shopping-cart-analysis-register-discount-cost required">
               <h4 style={{ color: '#FC2525' }}>
@@ -90,11 +92,13 @@ function ShoppingCartTotal({ total }) {
 
       <div className="shopping-cart-analysis-grand-total">
         <div className="shopping-cart-analysis-grand-total-title">
-          <h4 className="title">Grand Total</h4>
+          <h4 className="title">
+            <IntlMsg id="cart.total.grand-total" />
+          </h4>
         </div>
         <div className="shopping-cart-analysis-grand-total-cost">
-          <FontAwesome name="usd" />
-          <h4>{'\u00A0'}{`${grandTotal.toFixed(2)}`}</h4>
+          <FontAwesome name="usd" />&nbsp;
+          <h4>{`${grandTotal.toFixed(2)}`}</h4>
         </div>
       </div>
     </div>
@@ -147,7 +151,11 @@ onClick={() => console.info('PLACE ORDER')}
 </div>
 </div> */}
 
-const { bool, number, shape } = PropTypes;
+const {
+  bool,
+  shape,
+  number,
+} = PropTypes;
 ShoppingCartTotal.propTypes = {
   total: shape({
     discount: shape({
