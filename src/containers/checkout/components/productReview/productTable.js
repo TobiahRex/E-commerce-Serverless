@@ -31,7 +31,7 @@ class ProductReviewTable extends PureComponent {
             <img alt="Juice" className="image--source" />
           </div>
           <div className="description__container">
-            <p>{product.title}</p>
+            <p>{product.title[IntlLocale]}</p>
             <p>Nicotine Strength: <i>{NicotineStrengthConverter(product.nicotineStrength)}</i></p>
           </div>
         </td>
