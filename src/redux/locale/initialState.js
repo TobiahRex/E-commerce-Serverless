@@ -64,6 +64,12 @@ export default {
         'cart.empty.header': 'Your shopping cart is empty 😕',
         'cart.empty.action-btn': 'Start Shopping',
 
+        'cart.table.header.juice': 'Juice',
+        'cart.table.header.price': 'Price',
+        'cart.table.header.qty': 'Quantity',
+        'cart.table.header.total': 'Total',
+        'cart.action-btn.express-checkout': 'Express Checkout',
+
         'checkout.breadCrumb.paths1': 'Home',
         'checkout.breadCrumb.lastCrumb': 'Express Checkout',
         'checkout.title': 'Express Checkout',

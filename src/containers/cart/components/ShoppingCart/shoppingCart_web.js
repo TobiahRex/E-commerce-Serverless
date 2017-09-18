@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import ShoppingCartTotal from './ShoppingCartTotal';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import ShoppingCartTotal from './ShoppingCartTotal';
 
 function ShoppingCartWeb({
   cart,
@@ -21,17 +21,23 @@ function ShoppingCartWeb({
           <tr className="shopping-cart-table-header-titles">
             <th className="shopping-cart-table-header-juice">
               <h3>
-                Juice
+                <IntlMsg id="cart.table.header.juice" />
               </h3>
             </th>
             <th className="shopping-cart-table-header-price">
-              <h3>Price</h3>
+              <h3>
+                <IntlMsg id="cart.table.header.price" />
+              </h3>
             </th>
             <th className="shopping-cart-table-header-qty">
-              <h3>Quantity</h3>
+              <h3>
+                <IntlMsg id="cart.table.header.qty" />
+              </h3>
             </th>
             <th className="shopping-cart-table-header-total">
-              <h3>Total</h3>
+              <h3>
+                <IntlMsg id="cart.table.header.total" />
+              </h3>
             </th>
           </tr>
         </thead>
@@ -54,8 +60,8 @@ function ShoppingCartWeb({
           onClick={routerPush}
         >
           <span className="btn-flex-parent">
-            <FontAwesome name="credit-card-alt" />
-            {'\u0020'}Express Checkout
+            <FontAwesome name="credit-card-alt" />&nbsp;
+            <IntlMsg id="cart.action-btn.express-checkout" />
           </span>
         </button>
         <button
