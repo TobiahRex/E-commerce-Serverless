@@ -136,6 +136,12 @@ export default {
         'checkout.credit-card.billing-country': 'Billing Country',
         'checkout.credit-card.billing-country.choose': 'Billing Country',
         'checkout.credit-card.number': 'Credit Card Number',
+        'checkout.credit-card.cvn.whats-this': 'What\'s this?',
+        'checkout.credit-card.postal-code': 'Postal Code',
+        'checkout.credit-card.cvn.modal.description': 'It is a 3 digit number, usually located on the back of your credit card.',
+        'checkout.credit-card.cvn.modal.what-is': 'What\'s a CVN / CVV?',
+        'checkout.credit-card.cvn.modal.is-a': 'is a',
+        'checkout.credit-card.cvn.modal.close-btn': 'Close',
 
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',
