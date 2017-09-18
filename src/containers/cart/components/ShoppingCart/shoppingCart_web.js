@@ -7,12 +7,12 @@ import ShoppingCartTotal from './ShoppingCartTotal';
 function ShoppingCartWeb({
   cart,
   taxes,
+  total,
+  emptyCart,
   grandTotal,
   routerPush,
   mobileActive,
   showProductRow,
-  emptyCart,
-  total,
 }) {
   return (
     <div className="shopping-cart-web-parent">
@@ -50,7 +50,7 @@ function ShoppingCartWeb({
           )}
         </tbody>
       </table>
-
+      
       <ShoppingCartTotal total={total} />
 
       <div className="shopping-cart-action-btns-parent">
@@ -69,7 +69,7 @@ function ShoppingCartWeb({
           onClick={emptyCart}
         >
           <span className="btn-flex-parent">
-            Clear Shopping Cart
+            <IntlMsg id="cart.action-btn.clear-cart" />
           </span>
         </button>
       </div>
@@ -79,21 +79,30 @@ function ShoppingCartWeb({
           className="shopping-cart-back sweep-right"
           onClick={routerPush}
         >
-          Back To Homepage
+          <IntlMsg id="cart.action-btn.back-home" />
         </button>
       </div>
     </div>
   );
 }
-const { func, number, arrayOf, object, bool, shape } = PropTypes;
+
+const {
+  func,
+  bool,
+  shape,
+  number,
+  object,
+  arrayOf,
+} = PropTypes;
+
 ShoppingCartWeb.propTypes = {
   cart: arrayOf(object),
   taxes: number,
   grandTotal: number,
-  routerPush: func.isRequired,
-  showProductRow: func.isRequired,
-  mobileActive: bool.isRequired,
   emptyCart: func.isRequired,
+  routerPush: func.isRequired,
+  mobileActive: bool.isRequired,
+  showProductRow: func.isRequired,
   total: shape({
     discount: shape({
       qty: bool.isRequired,

@@ -69,6 +69,8 @@ export default {
         'cart.table.header.qty': 'Quantity',
         'cart.table.header.total': 'Total',
         'cart.action-btn.express-checkout': 'Express Checkout',
+        'cart.action-btn.clear-cart': 'Clear Shopping Cart',
+        'cart.action-btn.back-home': 'Back To Homepage',
 
         'checkout.breadCrumb.paths1': 'Home',
         'checkout.breadCrumb.lastCrumb': 'Express Checkout',

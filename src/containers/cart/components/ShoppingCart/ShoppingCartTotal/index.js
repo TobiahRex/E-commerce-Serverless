@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ShoppingCartTotal({ total }) {
   const {
@@ -14,44 +15,54 @@ function ShoppingCartTotal({ total }) {
     <div className="shopping-cart-analysis-main">
       <div className="shopping-cart-analysis-subtotal">
         <div className="shopping-cart-analysis-subtotal-title">
-          <h4 className="title">Subtotal</h4>
+          <h4 className="title">
+            Subtotal
+          </h4>
         </div>
         <div className="shopping-cart-analysis-subtotal-cost">
-          <FontAwesome name="usd" />
-          <h4>{'\u00A0'}{`${subTotal.toFixed(2)}`}</h4>
+          <FontAwesome name="usd" />&nbsp;
+          <h4>{`${subTotal.toFixed(2)}`}</h4>
         </div>
       </div>
 
       <div className="shopping-cart-analysis-taxes">
         <div className="shopping-cart-analysis-taxes-title">
-          <h4 className="title">Taxes</h4>
+          <h4 className="title">
+            Taxes
+          </h4>
         </div>
         <div className="shopping-cart-analysis-taxes-cost">
-          <FontAwesome name="usd" />
-          <h4>{'\u00A0'}{`${taxes.toFixed(2)}`}</h4>
+          <FontAwesome name="usd" />&nbsp;
+          <h4>{`${taxes.toFixed(2)}`}</h4>
         </div>
       </div>
 
       <div className="shopping-cart-analysis-shipping">
         <div className="shopping-cart-analysis-shipping-title">
-          <h4 className="title" style={{ textAlign: 'left' }}>International Shipping</h4>
+          <h4 className="title" style={{ textAlign: 'left' }}>
+            International Shipping
+          </h4>
         </div>
         <div className="shopping-cart-analysis-shipping-cost">
-          <FontAwesome name="usd" />
-          <h4 >{'\u00A0'}Free</h4>
+          <FontAwesome name="usd" />&nbsp;
+          <h4>
+            Free
+          </h4>
         </div>
       </div>
       {
         discount.qty &&
           <div className="shopping-cart-analysis-qty-discount">
             <div className="shopping-cart-analysis-qty-discount-title">
-              <h4 className="title required" style={{ textAlign: 'left' }}>Quantity Discount</h4>
+              <h4 className="title required" style={{ textAlign: 'left' }}>
+                Quantity Discount
+              </h4>
             </div>
             <div className="shopping-cart-analysis-qty-discount-cost required">
               <h4 style={{ color: '#FC2525' }}> 25%{'\u00A0'}</h4>
               <FontAwesome name="usd" style={{ color: '#FC2525' }} />
-              <h4 style={{ color: '#FC2525' }}>
-                {'\u00A0'}-{discount.qtyAmount.toFixed(2)}
+              <h4 style={{ color: '#FC2525' }}>&nbsp;
+                -{discount.qtyAmount.toFixed(2)}
               </h4>
             </div>
           </div>
@@ -59,18 +70,21 @@ function ShoppingCartTotal({ total }) {
 
       {
         discount.register &&
-        <div className="shopping-cart-analysis-register-discount">
-          <div className="shopping-cart-analysis-register-discount-title">
-            <h4 className="title required">Register Discount</h4>
+          <div className="shopping-cart-analysis-register-discount">
+            <div className="shopping-cart-analysis-register-discount-title">
+              <h4 className="title required">Register Discount</h4>
+            </div>
+            <div className="shopping-cart-analysis-register-discount-cost required">
+              <h4 style={{ color: '#FC2525' }}>
+                10%
+              </h4>
+              &nbsp;<FontAwesome name="usd" style={{ color: '#FC2525' }} />
+
+              <h4 style={{ color: '#FC2525' }}>&nbsp;
+                -{discount.registerAmount.toFixed(2)}
+              </h4>
+            </div>
           </div>
-          <div className="shopping-cart-analysis-register-discount-cost required">
-            <h4 style={{ color: '#FC2525' }}> 10%{'\u00A0'}</h4>
-            <FontAwesome name="usd" style={{ color: '#FC2525' }} />
-            <h4 style={{ color: '#FC2525' }}>
-              {'\u00A0'}-{discount.registerAmount.toFixed(2)}
-            </h4>
-          </div>
-        </div>
 
       }
 
