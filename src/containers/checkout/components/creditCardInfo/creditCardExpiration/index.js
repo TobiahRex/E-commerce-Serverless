@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { string, func, bool } = PropTypes;
 
@@ -58,7 +59,10 @@ class CreditCardExpiration extends React.Component {
         <div className="input__row--exp-date">
 
           <div className="input__container--exp-month">
-            <p>Expiration Date <span className="required">*</span></p>
+            <p>
+              <IntlMsg id="checkout.credit-card.expiration" />&nbsp;
+              <span className="required">*</span>
+            </p>
 
             <div id="sq-expiration-date" />
           </div>

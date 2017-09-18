@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import Validation from 'react-validation';
 import { Link } from 'react-router';
+import {
+  intlShape,
+  injectIntl,
+  FormattedMessage as IntlMsg,
+} from 'react-intl';
 import Discounts from './discounts';
 
 function TotalContent({
@@ -16,25 +21,36 @@ function TotalContent({
   return (
     <div>
       <div className="title">
-        <h3>Total</h3>
+        <h3><IntlMsg id="checkout.total.title" /></h3>
       </div>
 
       <div className="analysis-container">
 
         <div className="analysis-container--subtotal">
-          <p>Subtotal</p>
-          <p><FontAwesome name="usd" />{'\u00A0'}{subTotal}</p>
+          <p>
+            <IntlMsg id="checkout.total.subtotal.title" />
+          </p>
+          <p>
+            <FontAwesome name="usd" />&nbsp;
+            {subTotal}
+          </p>
         </div>
 
         <div className="analysis-container--shipping">
-          <p>Shipping & Handling</p>
-          <p><i>Free</i></p>
+          <p>
+            <IntlMsg id="checkout.total.subtotal.shipping" />
+          </p>
+          <p>
+            <i><IntlMsg id="checkout.total.subtotal.shipping.free" /></i>
+          </p>
         </div>
 
         {
           !!discount.qty &&
             <Discounts
-              title="Quantity"
+              title={this.props.intl.messages[
+                'checkout.total.subtotal.quantity.title'
+              ]}
               amount={discount.qtyAmount}
             />
         }
@@ -42,24 +58,34 @@ function TotalContent({
         {
           !!discount.register &&
             <Discounts
-              title="Register"
+              title={this.props.intl.messages[
+                'checkout.total.subtotal.register.title'
+              ]}
               amount={discount.registerAmount}
             />
         }
 
         <div className="analysis-container--taxes">
-          <p>Taxes</p>
-          <p><FontAwesome name="usd" />{'\u00A0'}{taxes.toFixed(2)}</p>
+          <p>
+            <IntlMsg id="checkout.total.taxes.title" />
+          </p>
+          <p>
+            <FontAwesome name="usd" />&nbsp;
+            {taxes.toFixed(2)}
+          </p>
         </div>
 
         <div className="analysis-container--grand-total">
-          <h3>Grand Total</h3>
-          <h3><FontAwesome name="usd" />{'\u00A0'}{grandTotal.toFixed(2)}</h3>
+          <h3>
+            <IntlMsg id="checkout.total.grand-total.title" />
+          </h3>
+          <h3>
+            <FontAwesome name="usd" />&nbsp;
+            {grandTotal.toFixed(2)}
+          </h3>
         </div>
-
       </div>
       <div className="terms-agreement">
-
         <Validation.components.Input
           id="policy"
           type="checkbox"
@@ -74,9 +100,12 @@ function TotalContent({
             },
           })}
         />
-        <p>I have read & agree to all <Link to="/terms_and_conditions">
-          Terms & Conditions
-        </Link></p>
+        <p>
+          <IntlMsg id="checkout.total.grand-total.terms-agreements1" />
+          <Link to="/terms_and_conditions">
+            <IntlMsg id="checkout.total.grand-total.terms-agreements2" />
+          </Link>
+        </p>
       </div>
     </div>
   );
@@ -85,6 +114,7 @@ function TotalContent({
 const { number, bool, shape, func } = PropTypes;
 
 TotalContent.propTypes = {
+  intl: intlShape.isRequired,
   subTotal: number.isRequired,
   taxes: number.isRequired,
   grandTotal: number.isRequired,
@@ -97,4 +127,5 @@ TotalContent.propTypes = {
     registerAmount: number.isRequired,
   }).isRequired,
 };
-export default TotalContent;
+const TotalContentWithIntl = injectIntl(TotalContent);
+export default TotalContentWithIntl;

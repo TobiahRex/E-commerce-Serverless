@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import TotalContent from './totalContent';
 import Loading from './loading';
 
@@ -89,7 +90,7 @@ class GrandTotal extends React.Component {
       <div>
         <h4 style={{ color: '#365899', padding: '2em 0em 1em 0em' }}>
           <span className="required">
-            Your cart is currently Empty.
+            <IntlMsg id="checkout.total.empty-cart" />
           </span>
         </h4>
       </div>

@@ -64,7 +64,7 @@ class CvnModal extends PureComponent {
               <IntlMsg id="checkout.credit-card.cvn.modal.is-a" />
               &nbps;
               <i>
-                {'\"Card Verification Number\"'}
+                <IntlMsg id="checkout.credit-card.cvn.modal.cvn-title" />
               </i>
             </p>
             <br />
