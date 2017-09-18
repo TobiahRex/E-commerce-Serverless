@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
-import {
-  injectIntl,
-  intlShape,
-  FormattedMessage as IntlMsg,
-} from 'react-intl';
+import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
 import {
   apiActions,
   orderActions,
@@ -49,14 +45,8 @@ import {
   PostalCode,
   PhoneNumber,
 } from './component.imports';
-import {
-  FetchMultipleProducts,
-  FetchMultipleProductsOptions,
-} from '../../graphql/queries';
-import {
-  ValidatePostal,
-  SubmitFinalOrder,
-} from '../../graphql/mutations';
+import { FetchMultipleProducts, FetchMultipleProductsOptions } from '../../graphql/queries';
+import { ValidatePostal, SubmitFinalOrder } from '../../graphql/mutations';
 
 class ExpressCheckout extends React.Component {
   constructor(props) {
@@ -174,7 +164,7 @@ class ExpressCheckout extends React.Component {
 
   routerPush = (e) => {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
-  }
+  };
 
   /**
   * Function: "handleOnChange"
@@ -208,89 +198,111 @@ class ExpressCheckout extends React.Component {
         if (countriesWithPostal.includes(country)) {
           if (!!SqrPaymentForm.options) {
             if (SqrPaymentForm.type === 'renderWithZip') {
-              this.setState(prevState => ({
-                ...prevState,
-                [e.target.name]: e.target.value,
-                ccRenderKey: 'renderWithZip',
-              }), () => {
-                SqrPaymentForm.build();
-              });
+              this.setState(
+                prevState => ({
+                  ...prevState,
+                  [e.target.name]: e.target.value,
+                  ccRenderKey: 'renderWithZip',
+                }),
+                () => {
+                  SqrPaymentForm.build();
+                },
+              );
             } else {
-              this.setState(prevState => ({
-                ...prevState,
-                [e.target.name]: e.target.value,
-                ccRenderKey: 'renderWithZip',
-              }), () => {
-                SqrPaymentForm.destroy();
-                SqrPaymentForm.create('renderWithZip',
-                country, this.handleNonceResponse);
-                SqrPaymentForm.build();
-              });
+              this.setState(
+                prevState => ({
+                  ...prevState,
+                  [e.target.name]: e.target.value,
+                  ccRenderKey: 'renderWithZip',
+                }),
+                () => {
+                  SqrPaymentForm.destroy();
+                  SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
+                  SqrPaymentForm.build();
+                },
+              );
             }
           } else {
-            this.setState(prevState => ({
-              ...prevState,
-              [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithZip',
-            }), () => {
-              SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
-              SqrPaymentForm.build();
-            });
+            this.setState(
+              prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithZip',
+              }),
+              () => {
+                SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
+                SqrPaymentForm.build();
+              },
+            );
           }
         } else if (!!SqrPaymentForm.options) {
           if (SqrPaymentForm.type === 'renderWithoutZip') {
-            this.setState(prevState => ({
-              ...prevState,
-              [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithoutZip',
-            }), () => {
-              SqrPaymentForm.build();
-            });
+            this.setState(
+              prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithoutZip',
+              }),
+              () => {
+                SqrPaymentForm.build();
+              },
+            );
           } else {
-            this.setState(prevState => ({
-              ...prevState,
-              [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithoutZip',
-            }), () => {
-              SqrPaymentForm.destroy();
-              SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
-              SqrPaymentForm.build();
-            });
+            this.setState(
+              prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+                ccRenderKey: 'renderWithoutZip',
+              }),
+              () => {
+                SqrPaymentForm.destroy();
+                SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
+                SqrPaymentForm.build();
+              },
+            );
           }
         } else {
-          this.setState(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-            ccRenderKey: 'renderWithoutZip',
-          }), () => {
-            SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
-            SqrPaymentForm.build();
-          });
+          this.setState(
+            prevState => ({
+              ...prevState,
+              [e.target.name]: e.target.value,
+              ccRenderKey: 'renderWithoutZip',
+            }),
+            () => {
+              SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
+              SqrPaymentForm.build();
+            },
+          );
         }
       }
     } else {
-      this.setState({
-        [e.target.name]: e.target.value,
-        errors: {
-          hard: false,
-          soft: false,
-          message: '',
+      this.setState(
+        {
+          [e.target.name]: e.target.value,
+          errors: {
+            hard: false,
+            soft: false,
+            message: '',
+          },
         },
-      }, () => this.props.clearToaster());
+        () => this.props.clearToaster(),
+      );
     }
   };
 
   toggleModal = (e) => {
     const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
     this.setState(prevState => ({ [modal]: !prevState[modal] }));
-  }
+  };
 
-  assignRefToForm = (formComp) => { this.form = formComp; }
+  assignRefToForm = (formComp) => {
+    this.form = formComp;
+  };
 
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.setState({ error: this.form.validateAll() });
-  }
+  };
 
   handleNonceResponse = (errors, cardNonce, cardData) => {
     if (errors) {
@@ -306,14 +318,17 @@ class ExpressCheckout extends React.Component {
         },
       }));
     } else {
-      this.setState(prevState => ({
-        ...prevState,
-        errors: {
-          hard: false,
-          soft: false,
-          message: '',
-        },
-      }), () => this.props.clearToaster());
+      this.setState(
+        prevState => ({
+          ...prevState,
+          errors: {
+            hard: false,
+            soft: false,
+            message: '',
+          },
+        }),
+        () => this.props.clearToaster(),
+      );
       const formData = GenerateFinalForm({
         state: this.state,
         props: this.props,
@@ -323,78 +338,75 @@ class ExpressCheckout extends React.Component {
         },
       });
 
-      this.props.GraphQLsubmitOrder(formData)
-      .then(({ data: { SubmitFinalOrder: response } }) => {
-        if (!response) {
-          this.props.GraphQLhandleError({ message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.' });
-        } else {
-          const { error, user, transaction } = CleanOffTypename(response);
-          if (error.hard || error.soft) {
-            this.props.GraphQLhandleError(error);
-            this.props.apiFail();
+      this.props
+        .GraphQLsubmitOrder(formData)
+        .then(({ data: { SubmitFinalOrder: response } }) => {
+          if (!response) {
+            this.props.GraphQLhandleError({
+              message: 'Oops! Looks like there was a problem.  Please try your order again later.  If the problem continues please contact us.',
+            });
           } else {
-            this.props.saveUser(user);
-            this.props.saveTransaction(transaction);
-            this.props.toastSuccess(true, 'Order successfully submitted!');
-            this.props.apiSuccess();
-            setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+            const { error, user, transaction } = CleanOffTypename(response);
+            if (error.hard || error.soft) {
+              this.props.GraphQLhandleError(error);
+              this.props.apiFail();
+            } else {
+              this.props.saveUser(user);
+              this.props.saveTransaction(transaction);
+              this.props.toastSuccess(true, 'Order successfully submitted!');
+              this.props.apiSuccess();
+              setTimeout(() => this.props.push('/successfully_ordered'), 4000);
+            }
           }
+        })
+        .catch(this.props.GraphQLhandleError);
+    }
+  };
+
+  validatePostal = () => {
+    this.props
+      .GraphQLvalidatePostal(this.state.shippingPostalCode)
+      .then((response) => {
+        const { data: { ValidatePostal: { error, postalInfo } } } = CleanOffTypename(response);
+
+        if (!!error.hard || !!error.soft) {
+          this.props.apiFail();
+          this.props.gotInvalidPostal({ error: true });
+          this.props.toastError(true, error.message);
+        } else {
+          this.setState(
+            prevState => ({
+              ...prevState,
+              shippingPostalCode: postalInfo.postalCode,
+              shippingAddressLine1: postalInfo.jpAddress,
+            }),
+            () => {
+              this.props.apiSuccess();
+              this.props.clearToaster();
+              this.props.gotValidPostal({ ...postalInfo });
+            },
+          );
         }
       })
       .catch(this.props.GraphQLhandleError);
-    }
-  }
+  };
 
-  validatePostal = () => {
-    this.props.GraphQLvalidatePostal(this.state.shippingPostalCode)
-    .then((response) => {
-      const {
-        data: {
-          ValidatePostal: {
-            error,
-            postalInfo,
-          },
-        },
-      } = CleanOffTypename(response);
-
-      if (!!error.hard || !!error.soft) {
-        this.props.apiFail();
-        this.props.gotInvalidPostal({ error: true });
-        this.props.toastError(true, error.message);
-      } else {
-        this.setState(prevState => ({
-          ...prevState,
-          shippingPostalCode: postalInfo.postalCode,
-          shippingAddressLine1: postalInfo.jpAddress,
-        }), () => {
-          this.props.apiSuccess();
-          this.props.clearToaster();
-          this.props.gotValidPostal({ ...postalInfo });
-        });
-      }
-    })
-    .catch(this.props.GraphQLhandleError);
-  }
-
-  clearValidationError = name => this.form.hideError(name)
+  clearValidationError = name => this.form.hideError(name);
 
   enableSubmitButton = ({ userId, cartLength, toast, errors }) => {
     const userLoggedIn = !!userId;
     const userHasProducts = !!cartLength;
-    const networkErrors = /(Network Error)|(Server Error)g/.test(toast.message) || /(Network Error)|(Server Error)g/.test(errors.message);
+    const networkErrors =
+      /(Network Error)|(Server Error)g/.test(toast.message) ||
+      /(Network Error)|(Server Error)g/.test(errors.message);
 
     if (networkErrors) return false;
     if (userLoggedIn && userHasProducts) return true;
     return false;
-  }
+  };
 
   render() {
-    const {
-      userId,
-      toast,
-      loggedIn,
-      apiFetching,
-    } = this.props;
+    const { userId, toast, loggedIn, apiFetching } = this.props;
 
     const {
       ccRenderKey,
@@ -438,10 +450,7 @@ class ExpressCheckout extends React.Component {
             <IntlMsg id="checkout.title" />
           </h1>
         </div>
-        <Validation.components.Form
-          ref={this.assignRefToForm}
-          onSubmit={this.handleOnSubmit}
-        >
+        <Validation.components.Form ref={this.assignRefToForm} onSubmit={this.handleOnSubmit}>
           <div className="checkout__body grid">
             <div className="checkout__grid">
               <ProductReview
@@ -467,10 +476,7 @@ class ExpressCheckout extends React.Component {
                   />
                 </div>
 
-                <Email
-                  shippingEmail={shippingEmail}
-                  handleOnChange={this.handleOnChange}
-                />
+                <Email shippingEmail={shippingEmail} handleOnChange={this.handleOnChange} />
 
                 <PostalCode
                   handleOnChange={this.handleOnChange}
@@ -507,11 +513,7 @@ class ExpressCheckout extends React.Component {
                   handleOnChange={this.handleOnChange}
                 />
 
-                <City
-                  type="shipping"
-                  city={shippingCity}
-                  handleOnChange={this.handleOnChange}
-                />
+                <City type="shipping" city={shippingCity} handleOnChange={this.handleOnChange} />
 
                 <PhoneNumber
                   type="shipping"
@@ -561,10 +563,7 @@ class ExpressCheckout extends React.Component {
           </div>
         </Validation.components.Form>
 
-        <CvnModal
-          showModal={this.state.showCvnModal}
-          toggleModal={this.toggleModal}
-        />
+        <CvnModal showModal={this.state.showCvnModal} toggleModal={this.toggleModal} />
 
       </div>
     );
@@ -572,47 +571,50 @@ class ExpressCheckout extends React.Component {
 }
 const ExpressCheckoutWithIntl = injectIntl(ExpressCheckout);
 
-const ExpressCheckoutWithState = connect((state, ownProps) => {
-  const total = ComposeFinalTotal(ownProps);
-  const cart = DetermineCartType(ownProps, ZipUserCart);
+const ExpressCheckoutWithState = connect(
+  (state, ownProps) => {
+    const total = ComposeFinalTotal(ownProps);
+    const cart = DetermineCartType(ownProps, ZipUserCart);
 
-  return ({
-    total,
-    cart,
-  });
-}, (dispatch, ownProps) => ({
-  push: location => dispatch(push(location)),
-  GraphQLhandleError: (error) => {
-    let errorMsg = '';
+    return {
+      total,
+      cart,
+    };
+  },
+  (dispatch, ownProps) => ({
+    push: location => dispatch(push(location)),
+    GraphQLhandleError: (error) => {
+      let errorMsg = '';
 
-    if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
-      errorMsg = 'You must login or register to complete this transaction.';
-    } else if (/(GraphQL error: )/.test(error.message)) {
-      errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
-    }
+      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
+        errorMsg = 'You must login or register to complete this transaction.';
+      } else if (/(GraphQL error: )/.test(error.message)) {
+        errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
+      }
 
-    if (error.soft) {
-      ownProps.toastWarning(true, error.message);
-    } else if (error.hard) {
-      ownProps.toastError(true, error.message);
-    } else {
-      ownProps.toastError(true, errorMsg || error.message);
-    }
-    ownProps.apiFail();
-  },
-  GraphQLvalidatePostal: (postalCode) => {
-    ownProps.apiIsFetching();
-    return ownProps.ValidatePostal({
-      variables: { postalCode },
-    });
-  },
-  GraphQLsubmitOrder: (formData) => {
-    ownProps.apiIsFetching();
-    return ownProps.SubmitFinalOrder({
-      variables: { ...formData },
-    });
-  },
-}))(ExpressCheckoutWithIntl);
+      if (error.soft) {
+        ownProps.toastWarning(true, error.message);
+      } else if (error.hard) {
+        ownProps.toastError(true, error.message);
+      } else {
+        ownProps.toastError(true, errorMsg || error.message);
+      }
+      ownProps.apiFail();
+    },
+    GraphQLvalidatePostal: (postalCode) => {
+      ownProps.apiIsFetching();
+      return ownProps.ValidatePostal({
+        variables: { postalCode },
+      });
+    },
+    GraphQLsubmitOrder: (formData) => {
+      ownProps.apiIsFetching();
+      return ownProps.SubmitFinalOrder({
+        variables: { ...formData },
+      });
+    },
+  }),
+)(ExpressCheckoutWithIntl);
 
 const ExpressCheckoutWithStateAndData = compose(
   graphql(ValidatePostal, { name: 'ValidatePostal' }),
@@ -623,53 +625,39 @@ const ExpressCheckoutWithStateAndData = compose(
   graphql(SubmitFinalOrder, { name: 'SubmitFinalOrder' }),
 )(ExpressCheckoutWithState);
 
-const ExpressCheckoutWithStateAndData2 = connect(({
-  auth,
-  user,
-  orders,
-  api,
-  toaster,
-  locale,
-}) => ({
-  toast: CheckForToast(toaster),
-  userId: !!user.profile ? user.profile._id : '',
-  taxRate: orders.taxRate,
-  newUser: CheckNewUser(user, auth.loggedIn),
-  loggedIn: auth.loggedIn || false,
-  userCart: !!auth.loggedIn ? user.profile.shopping.cart : [],
-  guestCart: orders.cart,
-  apiFetching: api.fetching,
-  postalError: orders.postalInfo.error,
-  jpyFxRate: orders.exchangeRate.JPY,
-  language: locale.activeLanguage,
-}), dispatch => ({
-  toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
-  toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
-  toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
-  clearToaster: () => dispatch(toasterActions.clearToaster()),
-  //
-  apiIsFetching: () => dispatch(apiActions.fetching()),
-  apiFail: () => dispatch(apiActions.apiFail()),
-  apiSuccess: () => dispatch(apiActions.apiSuccess()),
-  //
-  gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
-  gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
-  //
-  saveTransaction: transaction => dispatch(checkoutActions.saveTransaction(transaction)),
-  saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
-}))(ExpressCheckoutWithStateAndData);
+const ExpressCheckoutWithStateAndData2 = connect(
+  ({ auth, user, orders, api, toaster, locale }) => ({
+    toast: CheckForToast(toaster),
+    userId: !!user.profile ? user.profile._id : '',
+    taxRate: orders.taxRate,
+    newUser: CheckNewUser(user, auth.loggedIn),
+    loggedIn: auth.loggedIn || false,
+    userCart: !!auth.loggedIn ? user.profile.shopping.cart : [],
+    guestCart: orders.cart,
+    apiFetching: api.fetching,
+    postalError: orders.postalInfo.error,
+    jpyFxRate: orders.exchangeRate.JPY,
+    language: locale.activeLanguage,
+  }),
+  dispatch => ({
+    toastError: (toast, msg) => dispatch(toasterActions.toastError(toast, msg)),
+    toastSuccess: (toast, msg) => dispatch(toasterActions.toastSuccess(toast, msg)),
+    toastWarning: (toast, msg) => dispatch(toasterActions.toastWarning(toast, msg)),
+    clearToaster: () => dispatch(toasterActions.clearToaster()),
+    //
+    apiIsFetching: () => dispatch(apiActions.fetching()),
+    apiFail: () => dispatch(apiActions.apiFail()),
+    apiSuccess: () => dispatch(apiActions.apiSuccess()),
+    //
+    gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
+    gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
+    //
+    saveTransaction: transaction => dispatch(checkoutActions.saveTransaction(transaction)),
+    saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
+  }),
+)(ExpressCheckoutWithStateAndData);
 
-const {
-  func,
-  bool,
-  any,
-  shape,
-  object,
-  string,
-  number,
-  arrayOf,
-  objectOf,
-} = PropTypes;
+const { func, bool, any, shape, object, string, number, arrayOf, objectOf } = PropTypes;
 
 ExpressCheckout.propTypes = {
   intl: intlShape.isRequired,

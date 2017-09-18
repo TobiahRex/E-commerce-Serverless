@@ -106,9 +106,13 @@ export default {
         'checkout.success.summary.total.shipping': 'Free International Shipping',
         'checkout.success.summary.total.discount': 'Discount',
         'checkout.success.summary.total.grand-total': 'Grand Total',
-
         'checkout.success.actions.back-to-home': 'Back To Homepage',
 
+        'checkout.product-review.title': 'Product Review',
+        'checkout.product-review.table.strength': 'Nicotine Strength',
+        'checkout.product-review.table.header.product': 'Product',
+        'checkout.product-review.table.header.qty': 'Qty',
+        'checkout.product-review.table.header.subtotal': 'Subtotal',
 
         'product.breadcrumb.paths1': 'Home',
         'product.breadcrumb.lastCrumb': 'Juice Page',
@@ -159,8 +163,6 @@ export default {
         'product.modal.success.continue-shopping': 'Continue Shopping',
         'product.modal.success.view-cart': 'View Cart',
         'product.modal.success.express-checkout': 'Express Checkout',
-
-
         'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
         'home.header.subtitle': 'Guaranteed!',
         'home.header.button.buyNow': 'Buy Now!',
@@ -229,7 +231,6 @@ export default {
         'home.news.article.card15.header': 'I cant belive it was that easy!',
         'home.news.article.card15.subHeader': 'By Clark Kent on March 17, 2017',
         'home.news.article.card15.content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.',
-
         'home.footer.general.title': 'NJ2JP',
         'home.footer.general.aboutUs': 'About Us',
         'home.footer.general.contactUs': 'Contact Us',
@@ -248,7 +249,6 @@ export default {
         'home.footer.follow.title': 'FOLLOW US',
         'home.footer.madeWith.title': 'Made with',
         'home.footer.madeWith.subTitle': 'by',
-
         'form.validation.error.api': 'Invalid entry on form.',
         'form.validation.error.required': 'Required',
         'form.validation.error.bool.required': 'Required',
@@ -272,7 +272,6 @@ export default {
         'form.validation.error.ccCvn': 'Credit Card CVN numbers should only be 3 digits.',
         'form.validation.error.password': 'Passwords should be equal.',
         'form.validation.error.postalApi': 'Postal code is invalid. See error message for details. Focus to clear.',
-
         'contactus.header': 'Contact Us',
         'contactus.breadcrumb.paths1': 'Home',
         'contactus.breadcrumb.lastcrumb': 'Contact Us',
@@ -479,13 +478,11 @@ export default {
         'product.modal.success.view-cart': 'かごの中身を見る',
         'product.modal.success.continue-shopping': 'ショッピングを続ける',
         'product.modal.success.express-checkout': 'エクスプレスチェックアウト',
-
         'cart.title': 'ショッピングカート',
         'cart.empty.header': 'ショッピングカートは空です 😕',
         'cart.empty.action-btn': 'ショッピングを開始する',
         'cart.breadCrumb.paths1': '自宅',
         'cart.breadCrumb.lastCrumb': 'ショッピングカート',
-
         'cart.table.header.juice': 'ジュース',
         'cart.table.header.price': '価格',
         'cart.table.header.qty': '量',
@@ -515,12 +512,10 @@ export default {
         'checkout.success.header.tracking.delay': '追跡番号はフォローアップメールに記載されています。',
         'checkout.success.header.order': '注文番号： ',
         'checkout.success.header.delivery': 'お届け予定日： ',
-
         'checkout.success.ship-to': '送り先',
         'checkout.success.bill-to.title': '請求書送付先',
         'checkout.success.bill-to.cc': 'クレジットカード ＃： ************',
         'checkout.success.bill-to.cc-brand': 'クレジットカードブランド： ',
-
         'checkout.success.summary.title': '注文の概要',
         'checkout.success.summary.header.qty': '量',
         'checkout.success.summary.header.description': 'ジュースの説明',
@@ -532,7 +527,6 @@ export default {
         'checkout.success.summary.total.shipping': '無料国際配送',
         'checkout.success.summary.total.discount': 'ディスカウント',
         'checkout.success.summary.total.grand-total': '総計',
-
         'checkout.success.actions.back-to-home': 'ホームページに戻る',
 
         'form.validation.error.api': 'フォームの入力が無効です。',
@@ -558,8 +552,6 @@ export default {
         'form.validation.error.ccCvn': 'クレジットカードのCVN番号は3桁でなければなりません。',
         'form.validation.error.password': 'パスワードは等しくなければなりません。',
         'form.validation.error.postalApi': '郵便番号が無効です。 詳細については、エラーメッセージを参照してください。 焦点を明確にする。',
-
-
         'contactus.header': 'お問い合わせ',
         'contactus.breadcrumb.paths1': '自宅',
         'contactus.breadcrumb.lastcrumb': 'お問い合わせ',
