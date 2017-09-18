@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import ShoppingCartTotal from './ShoppingCartTotal';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ShoppingCartWeb({
   cart,
@@ -19,7 +20,9 @@ function ShoppingCartWeb({
         <thead className="shopping-cart-table-header-container">
           <tr className="shopping-cart-table-header-titles">
             <th className="shopping-cart-table-header-juice">
-              <h3>Juice</h3>
+              <h3>
+                Juice
+              </h3>
             </th>
             <th className="shopping-cart-table-header-price">
               <h3>Price</h3>
