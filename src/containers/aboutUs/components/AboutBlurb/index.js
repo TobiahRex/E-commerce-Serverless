@@ -9,7 +9,7 @@ const AboutBlurb = () => {
     <div className="about-container__body-text about__container">
       <div className="about-container about-continer__body-text">
         <p className="about-container__body-text">
-          <IntlMsg id="" />
+          <IntlMsg id="aboutus.header.blurb" />
         </p>
       </div>
     </div>
