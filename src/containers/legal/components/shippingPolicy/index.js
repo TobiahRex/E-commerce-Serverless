@@ -1,27 +1,26 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
 import {
-  HdrPage
+  HdrPage,
+  BreadCrumb,
 } from './components';
 
-export default function ShippingPolicy() {
+export default function ShippingPolicy({ intl }) {
+  const {
+    messages: {
+      'legal.breadCrumb.paths1': bcPaths1,
+      'legal.breadCrumb.lastCrumb': lastCrumb,
+      'legal.policy.shipping.title': header,
+    },
+  } = intl;
   return (
     <div className="shipping-policy__main">
-      <div className="main__breadcrumb--container">
-        <ul className="breadcrumb--list">
-          <li className="list--home">
-            <Link to="/">
-              Home
-              <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
-            </Link>
-          </li>
-          <li className="list--path last">
-            Shipping Policy
-          </li>
-        </ul>
-      </div>
-      <HdrPage header="Shipping Policy" />
+      <BreadCrumb
+        paths={[bcPaths1]}
+        classes={['home']}
+        destination={['']}
+        lastCrumb={lastCrumb}
+      />
+      <HdrPage header={header} />
       <br />
       <div className="main__body">
         <p>
