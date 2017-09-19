@@ -379,6 +379,10 @@ export default {
         'legal.policy.shipping.cods.desc': 'We do not accept COD\'s (Cash On Delivery).',
         'legal.policy.shipping.hurry.title': 'IN A HURRY?',
         'legal.policy.shipping.hurry.desc': 'We offer priority handling and delivery on most items upon request. For special instructions, PLEASE ORDER BY PHONE.',
+        'legal.policy.shipping.tax.title': 'SALES TAX',
+        'legal.policy.shipping.tax.desc': 'We collect an exclusive sales tax when you place your order in compliance with tax requirements for the state of Washington. All shipments to Japan are subject to Washington State Sales Tax.',
+        'legal.policy.shipping.customer-service.title': 'SALES TAX',
+        'legal.policy.shipping.customer-service.desc': 'Our helpful customer service department is committed to assist you in every way. If you have a question or problem with your order, please call 1-855-587-8888 for Customer Service, Monday–Friday, 8am – 5pm (UTC +9). Or email us at support@vapeswitch.com 24 hours a day, 7 days a week. Special requests or adjustments need to be arranged with our Customer Service department before your order has shipped.',
       },
     },
     ja: {

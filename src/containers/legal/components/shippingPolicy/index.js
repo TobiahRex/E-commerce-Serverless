@@ -64,25 +64,29 @@ function ShippingPolicy({ intl }) {
         <br />
         <br />
         <h4>
-          IN A HURRY?
+          <IntlMsg id="legal.policy.shipping.hurry.title" />
         </h4>
         <br />
         <p>
-          We offer priority handling and delivery on most items upon request. For special instructions, PLEASE ORDER BY PHONE.
+          <IntlMsg id="legal.policy.shipping.hurry.desc" />
         </p>
         <br />
         <br />
-        <h4>SALES TAX</h4>
+        <h4>
+          <IntlMsg id="legal.policy.shipping.tax.title" />
+        </h4>
         <br />
         <p>
-          We collect an exclusive sales tax when you place your order in compliance with tax requirements for the state of Washington. All shipments to Japan are subject to Washington State Sales Tax.
+          <IntlMsg id="legal.policy.shipping.tax.desc" />
         </p>
         <br />
         <br />
-        <h4>CUSTOMER SERVICE</h4>
+        <h4>
+          <IntlMsg id="legal.policy.shipping.customer-service.title" />
+        </h4>
         <br />
         <p>
-          Our helpful customer service department is committed to assist you in every way. If you have a question or problem with your order, please call 1-855-587-8888 for Customer Service, Monday–Friday, 8am – 5pm (UTC +9). Or email us at support@vapeswitch.com 24 hours a day, 7 days a week. Special requests or adjustments need to be arranged with our Customer Service department before your order has shipped.
+          <IntlMsg id="legal.policy.shipping.customer-service.desc" />
         </p>
       </div>
     </div>
