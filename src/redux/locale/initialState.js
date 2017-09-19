@@ -359,6 +359,13 @@ export default {
         'aboutus.phil.name': 'Phil Moore',
         'aboutus.phil.title': 'Head of Design',
         'aboutus.phil.blurb': 'Phil is passionate about design, technology, and has a strong thirst for knowledge. Since his mid twenties, he has been keen to build a location independent lifestyle that he does not need a vacation from. He loves tackling new challenges and in his spare time, Phil strives to keep up to date with design guidelines as well as the tech industry. After getting married in 2016, Phil and his wife packed up their life and have been travelling throughout South East Asia with just bicycles and backpacks, while working online.',
+
+        'user-stories.breadCrumb.paths1': 'Home',
+        'user-stories.breadCrumb.lastCrumb': 'User Stories',
+        'user-stories.header.title': 'User Stories',
+        'user-stories.card1.header': 'User Story 1',
+        'user-stories.card1.date': 'Sep 8, 2017',
+        'user-stories.card1.blurb': 'The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.',
       },
     },
     ja: {

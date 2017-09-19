@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import { WebflowJs } from './assets/utils';
 import './assets/styles/style.scss';
 
@@ -8,7 +9,9 @@ const CardDae = (props) => {
 
   return (
     <div className="content-date__container content-date__container--portrait">
-      <div className="content-date content-date--landscape">{props.date}</div>
+      <div className="content-date content-date--landscape">
+        <IntlMsg id={props.date} />
+      </div>
     </div>
   );
 };

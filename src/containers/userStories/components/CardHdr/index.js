@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import { WebflowJs } from './assets/utils';
 import './assets/styles/style.scss';
 
@@ -9,7 +10,7 @@ const CardHdr = (props) => {
   return (
     <div className="content-hdr__container content-hdr__container--portrait">
       <h2 className="content-hdr content-hdr--landscape">
-        {props.header}
+        <IntlMsg id={props.header} />
       </h2>
     </div>
   );
