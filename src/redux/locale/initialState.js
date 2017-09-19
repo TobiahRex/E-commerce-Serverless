@@ -724,6 +724,13 @@ export default {
         'aboutus.phil.name': 'フィルムーア',
         'aboutus.phil.title': '設計責任者',
         'aboutus.phil.blurb': 'フィルはデザイン、テクノロジーに情熱を持ち、知識に対する強い渇きを持っています。 20代半ば以来、彼は休暇を必要としない、場所に依存しないライフスタイルを構築したいと考えています。 彼は新しい課題に取り組むのが大好きで、暇な時にPhilは技術ガイドラインだけでなくデザインガイドラインも最新のものにするよう努めています。 Philと彼の妻は2016年に結婚した後、オンラインで働いている間、自転車とバックパックだけで人生を詰め、東南アジア全域を旅してきました。',
+
+        'user-stories.breadCrumb.paths1': 'Home',
+        'user-stories.breadCrumb.lastCrumb': 'User Stories',
+        'user-stories.header.title': 'User Stories',
+        'user-stories.card1.header': 'User Story 1',
+        'user-stories.card1.date': 'Sep 8, 2017',
+        'user-stories.card1.blurb': 'The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.',
       },
     },
   },

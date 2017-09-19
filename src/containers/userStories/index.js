@@ -25,13 +25,11 @@ class UserStories extends React.Component {
         messages: {
           'user-stories.breadCrumb.paths1': bcPaths1,
           'user-stories.breadCrumb.lastCrumb': lastCrumb,
-          'user-stories.header.title': title,
         },
       },
     } = props;
 
     this.intl = {
-      title,
       bcPaths1,
       lastCrumb,
     };
@@ -43,12 +41,12 @@ class UserStories extends React.Component {
   }
 
   renderHelper = data =>
-    data.content.map((dataObj) => { // eslint-disable-line
+    data.map((dataObj) => { // eslint-disable-line
       if (dataObj.component === 'UserCard') {
         return (
           <UserCard
             {...dataObj.props}
-            key={new Buffer(dataObj.props.CardHdr.header + Date.now(), 'utf8').toString('base64')}
+            key={new Buffer(dataObj.props.CardHdr.header, 'utf8').toString('base64')}
           />
         );
       }
@@ -58,15 +56,15 @@ class UserStories extends React.Component {
     return (
       <div className="vape-news__container" key={moment().format('YYMMDDSSSS')} >
         <BreadCrumb
-          paths={[this.intl.paths1]}
+          paths={[this.intl.bcPaths1]}
           classes={['home']}
           destination={['']}
           lastCrumb={this.intl.lastCrumb}
         />
 
-        <HdrPage header={this.intl.title} />
+        <HdrPage header={'user-stories.header.title'} />
 
-        {this.renderHelper(contentData.english)}
+        {this.renderHelper(contentData.content)}
       </div>
     );
   }
