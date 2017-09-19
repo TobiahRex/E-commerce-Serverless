@@ -1,6 +1,9 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import {
+  HdrPage
+} from './components';
 
 export default function ShippingPolicy() {
   return (
@@ -18,9 +21,7 @@ export default function ShippingPolicy() {
           </li>
         </ul>
       </div>
-      <div className="main__title">
-        <h1>Shipping Policy</h1>
-      </div>
+      <HdrPage header="Shipping Policy" />
       <br />
       <div className="main__body">
         <p>

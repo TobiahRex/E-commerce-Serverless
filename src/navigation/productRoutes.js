@@ -14,14 +14,14 @@ const ProductRoutes = () => (
         .catch(errorLoading);
       }}
     />
-    {/* <Route
+    <Route
       path="juices"
       getComponent={(location, cb) => {
         System.import('../containers/products/components/allProducts')
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
-    /> */}
+    />
   </div>
 );
 

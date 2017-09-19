@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function ShippingPolicy() {
   return (
