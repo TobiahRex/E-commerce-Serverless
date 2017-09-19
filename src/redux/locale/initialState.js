@@ -76,7 +76,6 @@ export default {
         'cart.action-btn.express-checkout': 'Express Checkout',
         'cart.action-btn.clear-cart': 'Clear Shopping Cart',
         'cart.action-btn.back-home': 'Back To Homepage',
-
         'checkout.breadCrumb.paths1': 'Home',
         'checkout.breadCrumb.lastCrumb': 'Express Checkout',
         'checkout.title': 'Express Checkout',
@@ -106,7 +105,6 @@ export default {
         'checkout.success.summary.total.shipping': 'Free International Shipping',
         'checkout.success.summary.total.discount': 'Discount',
         'checkout.success.summary.total.grand-total': 'Grand Total',
-
         'checkout.success.actions.back-to-home': 'Back To Homepage',
         'checkout.product-review.title': 'Product Review',
         'checkout.product-review.table.strength': 'Nicotine Strength',
@@ -343,6 +341,11 @@ export default {
         'contactus.button.label.submitting': 'Submitting...',
         'contactus.button.label.success': 'Success',
         'contactus.button.error.label': 'Error',
+
+        'aboutus.breadCrumb.paths1': 'Home',
+        'aboutus.breadCrumb.lastCrumb': 'About Us',
+        'aboutus.header.title': 'About Us',
+        'aboutus.header.subtitle': 'NJ2JP Team',
       },
     },
     ja: {
@@ -584,14 +587,12 @@ export default {
         'checkout.success.summary.total.discount': 'ディスカウント',
         'checkout.success.summary.total.grand-total': '総計',
         'checkout.success.actions.back-to-home': 'ホームページに戻る',
-
         'checkout.error.title': 'エラー！',
         'checkout.warning.title': '警告！',
         'checkout.loading.title': 'お待ちください',
         'checkout.loading.subtitle': '私たちはあなたの注文を提出中...',
         'checkout.submit.success.title': '成功！',
         'checkout.submit.success.message': '請求書の生成中にしばらくお待ちください...',
-
         'checkout.product-review.title': '製品レビュー',
         'checkout.product-review.table.strength': 'ニコチンの強さ',
         'checkout.product-review.table.header.product': '製品',
@@ -648,7 +649,6 @@ export default {
         'checkout.total.grand-total.terms-agreements2': '利用規約',
         'checkout.submit1': '今すぐ注文する',
         'checkout.action-btn.back-to-home': 'ホームページに戻る',
-
         'form.validation.error.api': 'フォームの入力が無効です。',
         'form.validation.error.required': '必須',
         'form.validation.error.bool.required': '必須',
