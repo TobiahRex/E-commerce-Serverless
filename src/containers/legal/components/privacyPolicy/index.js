@@ -78,29 +78,31 @@ function PrivacyPolicy({ intl }) {
             <br />
         * Close your account at any time. When you close your account, we’ll deactivate it. We may retain archived copies of your information as required by law or for legitimate business purposes (including to help address fraud and spam). */}
         <br />
-        When you register with a Social Provider, you are able to choose which data we receive from that social provider on your behalf.  You may change the default list of data Nic Juice To Japan (NJ2JP) receives at the time of registration.  Be advised, you must provide at least your email address from the social provider so we can send you an Order Invoice upon successfully purchasing a product.
+        <IntlMsg id="legal.policy.privacy.what-choices.desc2" />
         <br />
-        You may have choices available to you through the device or software you use to access Nic Juice To Japan (NJ2JP). For example:
+        <IntlMsg id="legal.policy.privacy.what-choices.desc3" />
         <br />
-        * The browser you use may provide you with the ability to control cookies or other types of local data storage;
+        <IntlMsg id="legal.policy.privacy.what-choices.desc4" />
         <br />
-        * Your mobile device may provide you with choices around how and whether location or other data is shared with us.
+        <IntlMsg id="legal.policy.privacy.what-choices.desc5" />
         <br />
-        To learn more about these choices, please see the information provided by the device or software provider.
-        <br />
-        <br />
-        <h4>HOW DO WE SHARE THE INFORMATION WE COLLECT?</h4>
-        <br />
-        Pinterest is a tool people use to find their inspirations, make them a reality, and inspire others in the process. When you create public boards and pins, anyone can view them. You may also provide us with profile page information that that anyone can view. The other limited instances where we may share your personal information include:
+        <IntlMsg id="legal.policy.privacy.what-choices.desc6" />
         <br />
         <br />
-        * We may employ third party companies or individuals to process personal information on our behalf based on our instructions and in compliance with this Privacy Policy. For example, we may share data with a security consultant to help us get better at identifying spam or with our accountants to make sure we’re keeping the books right. In addition, some of the information we request may be collected by third party providers on our behalf.
+        <h4>
+          <IntlMsg id="legal.policy.privacy.sharing.title" />
+        </h4>
         <br />
-        * If we believe that disclosure is reasonably necessary to comply with a law, regulation or legal request; to protect the safety, rights, or property of the public, any person, or Nic Juice To Japan (NJ2JP); or to detect, prevent, or otherwise address fraud, security or technical issues.
+        <IntlMsg id="legal.policy.privacy.sharing.desc1" />
         <br />
-        * We may engage in a merger, acquisition, bankruptcy, dissolution, reorganization, or similar transaction or proceeding that involves the transfer of the information described in this Policy.
         <br />
-        We may also share aggregated or non-personally identifiable information with our partners or others.
+        <IntlMsg id="legal.policy.privacy.sharing.desc2" />
+        <br />
+        <IntlMsg id="legal.policy.privacy.sharing.desc3" />
+        <br />
+        <IntlMsg id="legal.policy.privacy.sharing.desc4" />
+        <br />
+        <IntlMsg id="legal.policy.privacy.sharing.desc5" />
         <br />
         <br />
         <h4>HOW DO WE MAKE CHANGES TO THIS POLICY?</h4>
