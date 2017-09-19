@@ -369,6 +369,7 @@ export default {
 
         'legal.breadCrumb.paths1': 'Home',
         'legal.breadCrumb.lastCrumb': 'Shipping Policy',
+        'legal.policy.shipping.title': 'Shipping Policy',
       },
     },
     ja: {
