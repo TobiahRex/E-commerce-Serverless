@@ -346,6 +346,7 @@ export default {
         'aboutus.breadCrumb.lastCrumb': 'About Us',
         'aboutus.header.title': 'About Us',
         'aboutus.header.subtitle': 'NJ2JP Team',
+        'aboutus.header.blurb': 'Thank you for visiting NJ2JP!  If you have purchased any of our products, then we trust that you understand why we started this business!  We could not help but share our creation of amazing Nicotine e-Juice with everyone.  Below is an introduction of our team who are making NJ2JP possible.  Please follow us, and connect with us on Social Media.  We would love to hear from you and hear about your experience with NJ2JP.  Thanks for being a part of our new and exciting community of Vapers.',
       },
     },
     ja: {

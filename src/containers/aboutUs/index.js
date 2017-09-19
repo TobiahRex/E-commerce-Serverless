@@ -56,7 +56,7 @@ class AboutUs extends React.Component {
         />
         <HdrPage header={this.intl.header} />
         <AboutBlurb />
-        <SubHdr header={subHeader} />
+        <SubHdr header={this.intl.subHeader} />
         <AboutMembers members={contentData.english} />
       </div>
     );
