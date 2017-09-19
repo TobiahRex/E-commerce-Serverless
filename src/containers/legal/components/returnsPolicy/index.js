@@ -1,23 +1,25 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
+import {
+  injectIntl,
+  intlShape,
+  FormattedMessage as IntlMsg,
+} from 'react-intl';
+import {
+  BreadCrumb,
+  HdrPage,
+} from './components';
 
-export default function ReturnsPolicy() {
+function ReturnsPolicy() {
   return (
     <div className="returns-policy__main">
-      <div className="main__breadcrumb--container">
-        <ul className="breadcrumb--list">
-          <li className="list--home">
-            <Link to="/">
-              Home
-              <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
-            </Link>
-          </li>
-          <li className="list--path last">
-            Returns Policy
-          </li>
-        </ul>
-      </div>
+      <BreadCrumb
+        paths={[this.intl.bcPaths1]}
+        classes={['home']}
+        destination={['']}
+        lastCrumb={this.intl.lastCrumb}
+      />
+      <HdrPage header={'user-stories.header.title'} />
+
       <div className="main__title">
         <h1>Returns Policy</h1>
       </div>
@@ -36,3 +38,8 @@ export default function ReturnsPolicy() {
     </div>
   );
 }
+ReturnsPolicy.propTypes = {
+  intl: intlShape.isRequired,
+};
+const ReturnsPolicyWithIntl = injectIntl(ReturnsPolicy);
+export default ReturnsPolicyWithIntl;

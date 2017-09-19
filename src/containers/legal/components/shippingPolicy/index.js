@@ -29,11 +29,11 @@ function ShippingPolicy({ intl }) {
       <br />
       <div className="main__body">
         <h4>
-          <IntlMsg id="legal.policyy.shipping.order-process.title" />
+          <IntlMsg id="legal.policy.shipping.order-process.title" />
         </h4>
         <br />
         <p>
-          <IntlMsg id="legal.policyy.shipping.order-process.desc" />
+          <IntlMsg id="legal.policy.shipping.order-process.desc" />
         </p>
         <br />
         <br />
