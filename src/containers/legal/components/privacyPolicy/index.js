@@ -1,26 +1,31 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import {
+  injectIntl,
+  intlShape,
+  FormattedMessage as IntlMsg,
+} from 'react-intl';
 
-export default function PrivacyPolicy() {
+function PrivacyPolicy({ intl }) {
+  const {
+    messages: {
+      '': bcPaths,
+      '': lastCrumb,
+      '': header,
+    },
+  } = intl;
+
   return (
     <div className="privacy-policy__main">
-      <div className="main__breadcrumb--container">
-        <ul className="breadcrumb--list">
-          <li className="list--home">
-            <Link to="/">
-              Home
-              <FontAwesome className="breadcrumb-chevron-right" name="angle-right" />
-            </Link>
-          </li>
-          <li className="list--path last">
-            Privacy Policy
-          </li>
-        </ul>
-      </div>
-      <div className="main__title">
-        <h1>Privacy Policy</h1>
-      </div>
+      <BreadCrumb
+        paths={[bcPaths1]}
+        classes={['home']}
+        destination={['']}
+        lastCrumb={lastCrumb}
+      />
+      <HdrPage header={header} />
+      <br />
       <div className="main__body">
         <p>
           Your privacy is important to us. We have developed a privacy policy to help you understand what information we collect, how we use it, and what choices you have.
@@ -99,3 +104,8 @@ export default function PrivacyPolicy() {
     </div>
   );
 }
+PrivacyPolicy.propTypes = {
+  intl: intlShape.isRequired,
+};
+const PrivacyPolicyWithIntl = injectIntl(PrivacyPolicy);
+export default PrivacyPolicyWithIntl;
