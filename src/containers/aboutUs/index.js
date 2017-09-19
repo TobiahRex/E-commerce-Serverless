@@ -17,7 +17,6 @@ import {
 class AboutUs extends React.Component {
   constructor(props) {
     super(props);
-
     const {
       intl: {
         messages: {
@@ -27,17 +26,13 @@ class AboutUs extends React.Component {
           'aboutus.header.subtitle': subHeader,
         },
       },
-    } = props.intl;
+    } = props;
 
     this.intl = {
       bcPaths1,
       lastCrumb,
       header,
       subHeader,
-    };
-
-    this.state = {
-      x: '',
     };
   }
 
