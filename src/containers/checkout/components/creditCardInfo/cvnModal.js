@@ -60,9 +60,9 @@ class CvnModal extends PureComponent {
             <br />
             <p className="cvn-blurb__sub-title">
               {'\"CVN\"'} / {'\"CVV\"'}
-              &nbps;
+              &nbsp;
               <IntlMsg id="checkout.credit-card.cvn.modal.is-a" />
-              &nbps;
+              &nbsp;
               <i>
                 <IntlMsg id="checkout.credit-card.cvn.modal.cvn-title" />
               </i>

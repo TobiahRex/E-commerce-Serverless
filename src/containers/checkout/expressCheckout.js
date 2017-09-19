@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
-import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
+import {
+  injectIntl,
+  intlShape,
+  FormattedMessage as IntlMsg,
+} from 'react-intl';
 import {
   apiActions,
   orderActions,
@@ -57,6 +61,10 @@ class ExpressCheckout extends React.Component {
         messages: {
           'checkout.breadCrumb.paths1': bcPaths1,
           'checkout.breadCrumb.lastCrumb': lastCrumb,
+          'checkout.shipping-address.line1.label': addressL1Label,
+          'checkout.shipping-address.line1.placeholder': addressL1Placeholder,
+          'checkout.shipping-address.line2.label': addressL2Label,
+          'checkout.shipping-address.line2.placeholder': addressL2Placeholder,
         },
       },
     } = props;
@@ -64,6 +72,10 @@ class ExpressCheckout extends React.Component {
     this.intl = {
       bcPaths1,
       lastCrumb,
+      addressL1Label,
+      addressL1Placeholder,
+      addressL2Label,
+      addressL2Placeholder,
     };
 
     this.state = {
@@ -486,21 +498,21 @@ class ExpressCheckout extends React.Component {
                 />
 
                 <AddressLine
+                  required={false}
+                  disabled
                   line={1}
                   type="shipping"
-                  title={'Kanji Address'}
-                  disabled
-                  required={false}
-                  placeHolder={'Generated from Postal Code...'}
+                  title={this.intl.addressL1Label}
+                  placeHolder={this.intl.addressL1Placeholder}
                   addressLine={shippingAddressLine1}
                 />
 
                 <AddressLine
                   required
-                  type="shipping"
                   line={2}
-                  placeHolder={'RM3 1-1-8 Odakicho'}
-                  title={'Room # | Street # | Street Name'}
+                  type="shipping"
+                  title={this.intl.addressL2Label}
+                  placeHolder={this.intl.addressL2Placeholder}
                   addressLine={shippingAddressLine2}
                   handleOnChange={this.handleOnChange}
                 />
