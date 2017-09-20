@@ -139,6 +139,7 @@ export default {
     'product.single.price-info.free-shipping': '送料無料',
     'product.single.price-info.in-stock': '在庫あり',
     'product.single.price-info.out-of-stock': '在庫切れ',
+    'product.single.actions.add-to-cart': 'カートに追加',
     'product.breadcrumb.paths1': '自宅',
     'product.breadcrumb.lastCrumb': 'ジュースページ',
     'product.modal.bulk.title': 'お取引をしよう!',
