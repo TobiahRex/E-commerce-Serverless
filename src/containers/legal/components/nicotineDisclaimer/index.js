@@ -43,4 +43,4 @@ NicotineDisclaimer.propTypes = {
   intl: intlShape.isRequired,
 };
 const NicotineDisclaimerWithIntl = injectIntl(NicotineDisclaimer);
-export default (NicotineDisclaimerWithIntl)
+export default (NicotineDisclaimerWithIntl);
