@@ -12,26 +12,15 @@ function AddToCartButton({ added, addToCart }) {
     >
       <span className="btn-flex-parent">
         {
-          added ?
-          [
-            <span key="add-to-cart-success" >
-              <IntlMsg id="product.single.actions.add-success" />
-            </span>,
-          <FontAwesome
-            key="add-to-cart-success-icon"
-            className="success-cart-icon hover-dropin"
-            name="check"
-          />,
-          ]
+          added ? [<span key="add-to-cart-success" >
+            <IntlMsg id="product.single.actions.add-success" />
+          </span>, <FontAwesome name="check" key="add-to-cart-success-icon" className="success-cart-icon hover-dropin" />]
           :
-          [
-          <FontAwesome
+          [<FontAwesome
+            name="shopping-cart"
             key="add-to-cart-idle"
             className="sp-cart-icon"
-            name="shopping-cart"
-          />,
-            'Add To Cart',
-          ]
+          />, <IntlMsg id="product.single.actions.add-to-cart" />]
         }
       </span>
     </button>

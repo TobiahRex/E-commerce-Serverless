@@ -82,6 +82,7 @@
           box-shadow: 0px 4px 10px rgba(1,1,1,.5);
           p {
             color: $p-white;
+            font-size: 1.2em;
           }
         }
       }
@@ -178,6 +179,7 @@
           align-items: center;
           max-width: 47.6em;
           padding: 2em 1.5em 4em 1.5em;
+          text-indent: 2em;
           p {
             font-family: $p-font;
             font-size: 1.8em;
@@ -234,7 +236,6 @@
           & .nicotine__list {
             height: 6em;
             max-width: 35.5em;
-            width: 100%;
             @include prefixflex();
             justify-content: space-around;
             align-items: center;
@@ -300,7 +301,7 @@
                 align-items: center;
                 height: 100%;
                 list-style-type: none;
-                padding: 0;
+                padding: .3em;
                 margin: 0;
                 background-color: $p-grey;
                 & .list--qty-title,
@@ -313,6 +314,9 @@
                   }
                 }
                 & .list--qty-title {
+                  @include prefixflex();
+                  justify-content: center;
+                  flex-grow: 1;
                   padding: 0 .5em;
                 }
                 & .list--qty-readout {
@@ -329,6 +333,8 @@
                   }
                 }
                 & .list--qty-adjust {
+                  @include prefixflex();
+                  flex-direction: column;
                   button {
                     font-size: 10px;
                     border: none;
@@ -488,9 +494,13 @@
           @include prefixflex();
           justify-content: center;
           align-items: center;
-          & span {
+          & span.fa {
             color: $p-white;
             font-size: 1.57em;
+          }
+          & span {
+            color: $p-white;
+            font-size: 1em;
           }
         }
       }

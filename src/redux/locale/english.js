@@ -37,6 +37,7 @@ export default {
     'product.single.actions.juices': 'Juices',
     'product.single.actions.quantity.title': 'Quantity',
     'product.single.actions.add-success': 'Success',
+    'product.single.actions.add-to-cart': 'Add To Cart',
     'product.single.errors.max-bottles.part1': 'Maximum of 4 bottles, per customer, per address. More info',
     'product.single.errors.max-bottles.part2': 'here.',
     'product.single.errors.not-enough': 'Oops! Please choose a quantity of at least 1. 😀 ',
