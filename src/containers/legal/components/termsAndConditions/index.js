@@ -62,7 +62,7 @@ function TermsAndConditions({ intl }) {
         <br />
         <br />
         <h4>
-          <IntlMsg id="" />
+          <IntlMsg id="legal.policy.terms.submissions.title" />
         </h4>
         <br />
         <br />
@@ -75,7 +75,9 @@ function TermsAndConditions({ intl }) {
           <IntlMsg id="legal.policy.terms.termination.title" />
         </h4>
         <br />
-        <IntlMsg id="" />
+        <p>
+          <IntlMsg id="legal.policy.terms.termination.desc" />
+        </p>
       </div>
     </div>
   );
