@@ -38,39 +38,63 @@ function PrivacyPolicy({ intl }) {
           <IntlMsg id="legal.policy.privacy.what-info.title" />
         </h4>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-info.desc1" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-info.desc1" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-info.desc2" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-info.desc2" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-info.desc3" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-info.desc3" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-info.desc4" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-info.desc4" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-info.desc5" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-info.desc5" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-info.desc6" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-info.desc6" />
+        </p>
         <br />
         <br />
         <h4>
           <IntlMsg id="legal.policy.privacy.how-used.title" />
         </h4>
         <br />
-        <IntlMsg id="legal.policy.privacy.how-used.desc1" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.how-used.desc1" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.how-used.desc2" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.how-used.desc2" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.how-used.desc3" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.how-used.desc3" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.how-used.desc4" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.how-used.desc4" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.how-used.desc5" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.how-used.desc5" />
+        </p>
         <br />
         <br />
         <h4>
           <IntlMsg id="legal.policy.privacy.what-choices.title" />
         </h4>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-choices.desc1" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-choices.desc1" />
+        </p>
         {/*
             TODO:  This info is not accurate until we build a User Dashboard.
             <br />
@@ -78,36 +102,60 @@ function PrivacyPolicy({ intl }) {
             <br />
         * Close your account at any time. When you close your account, we’ll deactivate it. We may retain archived copies of your information as required by law or for legitimate business purposes (including to help address fraud and spam). */}
         <br />
-        <IntlMsg id="legal.policy.privacy.what-choices.desc2" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-choices.desc2" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-choices.desc3" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-choices.desc3" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-choices.desc4" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-choices.desc4" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-choices.desc5" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-choices.desc5" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.what-choices.desc6" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.what-choices.desc6" />
+        </p>
         <br />
         <br />
         <h4>
           <IntlMsg id="legal.policy.privacy.sharing.title" />
         </h4>
         <br />
-        <IntlMsg id="legal.policy.privacy.sharing.desc1" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.sharing.desc1" />
+        </p>
         <br />
         <br />
-        <IntlMsg id="legal.policy.privacy.sharing.desc2" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.sharing.desc2" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.sharing.desc3" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.sharing.desc3" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.sharing.desc4" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.sharing.desc4" />
+        </p>
         <br />
-        <IntlMsg id="legal.policy.privacy.sharing.desc5" />
+        <p>
+          <IntlMsg id="legal.policy.privacy.sharing.desc5" />
+        </p>
         <br />
         <br />
-        <h4>HOW DO WE MAKE CHANGES TO THIS POLICY?</h4>
+        <h4>
+          <IntlMsg id="legal.policy.privacy.changes.title" />
+        </h4>
         <br />
-        We may change this policy from time to time, and if we do we’ll post any changes on this page. If you continue to use our website after those changes are in effect, you agree to the revised policy. If the changes are significant, we may provide more prominent notice or obtain your consent as required by law.
+        <p>
+          <IntlMsg id="legal.policy.privacy.changes.desc1" />
+        </p>
         <br />
         <br />
       </div>
