@@ -194,100 +194,187 @@ class Splash extends React.Component {
                   </p>
                 </div>
               </div>
-              <div className="slider__nav w-round w-shadow w-slider-nav"></div>
+              <div className="slider__nav w-round w-shadow w-slider-nav" />
+            </div>
+          </div>
+          <div className="splash-fastest-delivery">
+            <div className="fastest-delivery__header" data-ix="fastest-delivery-scroll">
+              <h2 className="header__text" data-ix="fastest-delivery-scroll">
+                Fastest Delivery
+              </h2>
+            </div>
+            <div className="fastest-delivery__blurb-container">
+              <div className="blurb-container__content">
+                <div className="content__text-container" data-ix="fastest-delivery-scroll">
+                  <div className="text-container__heading-blurb">
+                    <h3 className="heading-blurb__content--heading">
+                      Nobody Is Faster In Japan
+                    </h3>
+                  </div>
+                  <div className="text-container__blurb">
+                    <p className="blurb__content--text">
+                      No one can deliver Nicotine E-Juice to Japan faster than us.
+                      <br />
+                      <br />
+                      Once you shop with us and see how fast we are,&nbsp;we're confident you&nbsp;won't&nbsp;want to buy Nicotine vape juice from anywhere else.
+                      <br />
+                      <br />
+                      Hard to believe? Try us now! You’ll be happy you did.
+                    </p>
                   </div>
                 </div>
-                <div className="splash-fastest-delivery">
-                  <div className="fastest-delivery__header" data-ix="fastest-delivery-scroll">
-                    <h2 className="header__text" data-ix="fastest-delivery-scroll">Fastest Delivery</h2>
+                <div className="content__button-container" data-ix="fade-up">
+                  <a className="large__button w-inline-block" data-ix="large-button-hover" href="#">
+                    <div className="large__button--alt" />
+                    <p className="large-button__text">
+                      Buy Now
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div
+                className="blurb-container__img-container" data-ix="fastest-delivery-fade-in-right">
+                <img
+                  className="image-container__img"
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 375px, 49vw"
+                  src="images/fastest-delivery-scan.jpg"
+                  srcset="images/fastest-delivery-scan-p-500.jpeg 500w, images/fastest-delivery-scan.jpg 648w"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="splash-how">
+            <div className="how__header">
+              <div className="header__text--container">
+                <h2 className="text-container__header-button" data-ix="show-hide">
+                  How
+                </h2>
+              </div>
+              <div className="header__text--container">
+                <h2 className="container__heading--moving" data-ix="questionmark-tilt">
+                  ?
+                </h2>
+              </div>
+            </div>
+            <div className="how__curious-person">
+              <img
+                className="curious-person__img"
+                sizes="(max-width: 479px) 195px, (max-width: 767px) 273px, (max-width: 991px) 389.859375px, 587.140625px"
+                src="images/girl-wondering.png"
+                srcset="images/girl-wondering-p-500.png 500w, images/girl-wondering.png 640w"
+              />
+              <div className="how__action-btn">
+                <a
+                  className="show-me__button w-inline-block"
+                  data-ix="show-me"
+                  href="#"
+                >
+                  <div className="show-me__button--alt-1" />
+                  <div className="show-me__button--alt-2" />
+                  <div className="show-me__text">
+                    Show Me
                   </div>
-                  <div className="fastest-delivery__blurb-container">
-                    <div className="blurb-container__content">
-                      <div className="content__text-container" data-ix="fastest-delivery-scroll">
-                        <div className="text-container__heading-blurb">
-                          <h3 className="heading-blurb__content--heading">Nobody Is Faster In Japan</h3>
-                        </div>
-                        <div className="text-container__blurb">
-                          <p className="blurb__content--text">No one can deliver Nicotine E-Juice to Japan faster than us.<br><br>Once you shop with us and see how fast we are,&nbsp;we're confident you&nbsp;won't&nbsp;want to buy Nicotine vape juice from anywhere else.<br><br>Hard to believe? Try us now! You’ll be happy you did.</p>
-                                        </div>
-                                        </div>
-                                          <div className="content__button-container" data-ix="fade-up">
-                                            <a className="large__button w-inline-block" data-ix="large-button-hover" href="#">
-                                              <div className="large__button--alt"></div>
-                                              <p className="large-button__text">Buy Now</p>
-                                            </a>
-                                          </div>
-                                        </div>
-                                          <div className="blurb-container__img-container" data-ix="fastest-delivery-fade-in-right"><img className="image-container__img" sizes="(max-width: 767px) 100vw, (max-width: 991px) 375px, 49vw" src="images/fastest-delivery-scan.jpg" srcset="images/fastest-delivery-scan-p-500.jpeg 500w, images/fastest-delivery-scan.jpg 648w"></div>
-                                          </div>
-                                        </div>
-                                        <div className="splash-how">
-                                          <div className="how__header">
-                                            <div className="header__text--container">
-                                              <h2 className="text-container__header-button" data-ix="show-hide">How</h2>
-                                            </div>
-                                            <div className="header__text--container">
-                                              <h2 className="container__heading--moving" data-ix="questionmark-tilt">?</h2>
-                                            </div>
-                                          </div>
-                                          <div className="how__curious-person"><img className="curious-person__img" sizes="(max-width: 479px) 195px, (max-width: 767px) 273px, (max-width: 991px) 389.859375px, 587.140625px" src="images/girl-wondering.png" srcset="images/girl-wondering-p-500.png 500w, images/girl-wondering.png 640w">
-                                            <div className="how__action-btn">
-                                              <a className="show-me__button w-inline-block" data-ix="show-me" href="#">
-                                                <div className="show-me__button--alt-1"></div>
-                                                <div className="show-me__button--alt-2"></div>
-                                                <div className="show-me__text">Show Me</div>
-                                              </a>
-                                            </div>
-                                          </div>
-                                          </div>
-                                          <div className="splash-expanding-how-steps" data-ix="hide-on-load">
-                                            <div className="how-steps__outer-container" data-ix="fade-on-scroll-first-how-section">
-                                              <div className="how-steps__inner-container inner-container--white-background">
-                                                <div className="inner-container__left--container"><img className="container__img" sizes="(max-width: 767px) 100vw, 50vw" src="images/nj2jp-homepage-carousel-couple-800x486.png" srcset="images/nj2jp-homepage-carousel-couple-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-couple-800x486.png 800w"></div>
-                                                  <div className="inner-container__blurb">
-                                                    <p className="blurb__text"><strong className="text--number">1.</strong> Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.</p>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              <div className="divider--gradient how-steps__outer-container">
-                                                <div className="how-steps__inner-container inner-container--gradient">
-                                                  <div className="inner-container__blurb" data-ix="fade-on-scroll">
-                                                    <p className="blurb__text"><strong className="text--number">2.</strong> Moments later, we receive your order at our Distribution Center in California.</p>
-                                                  </div>
-                                                  <div className="inner-container__right--container"><img className="container__img" data-ix="slide-on-scroll-right" sizes="(max-width: 767px) 100vw, 50vw" src="images/nj2jp-homepage-carousel-distribution-800x486.png" srcset="images/nj2jp-homepage-carousel-distribution-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-distribution-800x486.png 800w"></div>
-                                                  </div>
-                                                </div>
-                                                <div className="divider--grey how-steps__outer-container">
-                                                  <div className="how-steps__inner-container">
-                                                    <div className="inner-container__left--container"><img className="container__img" data-ix="slide-on-scroll-left" sizes="(max-width: 767px) 100vw, 50vw" src="images/nj2jp-homepage-carousel-warehouse-800x486.png" srcset="images/nj2jp-homepage-carousel-warehouse-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-warehouse-800x486.png 800w"></div>
-                                                      <div className="inner-container__blurb" data-ix="fade-on-scroll">
-                                                        <p className="blurb__text"><strong className="text--number">3.</strong> Our distribution center then quickly prepares your package.</p>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                  <div className="divider--grey how-steps__outer-container">
-                                                    <div className="how-steps__inner-container inner-container--mobile">
-                                                      <div className="inner-container__blurb" data-ix="fade-on-scroll">
-                                                        <p className="blurb__text"><strong className="text--number">4.</strong> A few hours later, your package is put on a direct flight from California to Japan.</p>
-                                                      </div>
-                                                      <div className="inner-container__right--container"><img className="container__img" data-ix="slide-on-scroll-right" sizes="(max-width: 767px) 100vw, 50vw" src="images/nj2jp-homepage-carousel-flight-800x486.png" srcset="images/nj2jp-homepage-carousel-flight-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-flight-800x486.png 800w"></div>
-                                                      </div>
-                                                    </div>
-                                                    <div className="divider--grey how-steps__outer-container">
-                                                      <div className="how-steps__inner-container">
-                                                        <div className="inner-container__left--container"><img className="container__img" data-ix="slide-on-scroll-left" sizes="(max-width: 767px) 100vw, 50vw" src="images/nj2jp-homepage-carousel-truck-800x486.png" srcset="images/nj2jp-homepage-carousel-truck-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-truck-800x486.png 800w"></div>
-                                                          <div className="inner-container__blurb" data-ix="fade-on-scroll">
-                                                            <p className="blurb__text"><strong className="text--number">5.</strong> Soon after landing, your package is on a delivery truck, on its way to your Japanese address.</p>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                      <div className="divider--grey how-steps__outer-container">
-                                                        <div className="how-steps__inner-container inner-container--mobile">
-                                                          <div className="inner-container__blurb section-blurb--grey" data-ix="fade-on-scroll">
-                                                            <div className="blurb__text-container">
-                                                              <p className="blurb__text text--alt"><strong className="text--number">6.&nbsp;</strong>A few days later, you receive your package from Nic Juice 2 Japan. 😁</p>
-                                                            </div>
-                                                            <div className="blurb__button--container" data-ix="fade-up-2">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="splash-expanding-how-steps" data-ix="hide-on-load">
+            <div className="how-steps__outer-container" data-ix="fade-on-scroll-first-how-section">
+              <div className="how-steps__inner-container inner-container--white-background">
+                <div className="inner-container__left--container">
+                  <img
+                    className="container__img"
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    src="images/nj2jp-homepage-carousel-couple-800x486.png"
+                    srcset="images/nj2jp-homepage-carousel-couple-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-couple-800x486.png 800w"
+                  />
+                </div>
+                <div className="inner-container__blurb">
+                  <p className="blurb__text">
+                    <strong className="text--number">1.</strong>&nbsp;
+                    Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="divider--gradient how-steps__outer-container">
+              <div className="how-steps__inner-container inner-container--gradient">
+                <div className="inner-container__blurb" data-ix="fade-on-scroll">
+                  <p className="blurb__text">
+                    <strong className="text--number">2.</strong>&nbsp;
+                    Moments later, we receive your order at our Distribution Center in California.
+                  </p>
+                </div>
+                <div className="inner-container__right--container">
+                  <img
+                    className="container__img"
+                    data-ix="slide-on-scroll-right"
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    src="images/nj2jp-homepage-carousel-distribution-800x486.png"
+                    srcset="images/nj2jp-homepage-carousel-distribution-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-distribution-800x486.png 800w" />
+                </div>
+              </div>
+            </div>
+            <div className="divider--grey how-steps__outer-container">
+              <div className="how-steps__inner-container">
+                <div className="inner-container__left--container">
+                  <img
+                    className="container__img"
+                    data-ix="slide-on-scroll-left"
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    src="images/nj2jp-homepage-carousel-warehouse-800x486.png"
+                    srcset="images/nj2jp-homepage-carousel-warehouse-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-warehouse-800x486.png 800w" />
+                </div>
+                <div className="inner-container__blurb" data-ix="fade-on-scroll">
+                  <p className="blurb__text">
+                    <strong className="text--number">3.</strong>&nbsp;
+                    Our distribution center then quickly prepares your package.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="divider--grey how-steps__outer-container">
+              <div className="how-steps__inner-container inner-container--mobile">
+                <div className="inner-container__blurb" data-ix="fade-on-scroll">
+                  <p className="blurb__text">
+                    <strong className="text--number">4.</strong>&nbsp;
+                    A few hours later, your package is put on a direct flight from California to Japan.
+                  </p>
+                </div>
+                <div className="inner-container__right--container">
+                  <img
+                    className="container__img"
+                    data-ix="slide-on-scroll-right"
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    src="images/nj2jp-homepage-carousel-flight-800x486.png"
+                    srcset="images/nj2jp-homepage-carousel-flight-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-flight-800x486.png 800w"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="divider--grey how-steps__outer-container">
+              <div className="how-steps__inner-container">
+                <div className="inner-container__left--container">
+                  <img
+                    className="container__img"
+                    data-ix="slide-on-scroll-left"
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    src="images/nj2jp-homepage-carousel-truck-800x486.png"
+                    srcset="images/nj2jp-homepage-carousel-truck-800x486-p-500.png 500w, images/nj2jp-homepage-carousel-truck-800x486.png 800w" />
+                </div>
+                <div className="inner-container__blurb" data-ix="fade-on-scroll">
+                  <p className="blurb__text">
+                    <strong className="text--number">5.</strong> Soon after landing, your package is on a delivery truck, on its way to your Japanese address.</p>
+                </div>
+              </div>
+            </div>
+            <div className="divider--grey how-steps__outer-container">
+              <div className="how-steps__inner-container inner-container--mobile">
+                <div className="inner-container__blurb section-blurb--grey" data-ix="fade-on-scroll">
+                  <div className="blurb__text-container">
+                    <p className="blurb__text text--alt"><strong className="text--number">6.&nbsp;</strong>A few days later, you receive your package from Nic Juice 2 Japan. 😁</p>
+                  </div>
+                  <div className="blurb__button--container" data-ix="fade-up-2">
                                                               <a className="large__button w-inline-block" data-ix="large-button-hover" href="#">
                                                                 <div className="large__button--alt"></div>
                                                                 <p className="large-button__text text--phone-landscape">Buy Now</p>
