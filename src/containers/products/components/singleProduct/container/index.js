@@ -118,11 +118,8 @@ class SingleProduct extends React.Component {
   * @return {function call} - calls "toggleModal" || "toggleModalAndGo"
   */
   modalHandler = (e) => {
-    let parentEl = e.target.dataset.parent;
-    let tagEl = e.target.dataset.tag;
-
-    if (!parentEl) parentEl = e.target.parentNode.dataset.parent;
-    if (!tagEl) tagEl = e.target.parentNode.dataset.tag;
+    const parentEl = e.target.dataset.parent || e.target.parentNode.dataset.parent || e.target.parentNode.parentNode.dataset.parent;
+    const tagEl = e.target.dataset.tag || e.target.parentNode.dataset.tag || e.target.parentNode.parentNode.dataset.tag;
 
     const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 
