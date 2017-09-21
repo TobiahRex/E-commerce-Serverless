@@ -1,12 +1,13 @@
 import React from 'react';
-// import { FormattedMessage as IntlMsg } from 'react-intl';
+import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function Reviews() {
   return (
     <div className="splash-reviews">
       <div className="splash-reviews__header">
         <h2 className="splash-reviews__header--text">
-          Reviews
+          <IntlMsg id="home.reviews.title" />
         </h2>
       </div>
       <div
@@ -23,79 +24,69 @@ export default function Reviews() {
           <div className="mask__slide-1 w-slide">
             <p className="slide__blurb slide__blurb--portrait">
               <em className="blurb--fa-text review-special-text">
-                
+                <FontAwesome name="quote-left" />
               </em>&nbsp;&nbsp;
-              NicJuice2Japan (NJ2JP) are killing it with these delivery speeds.
-              <br />
-              Not to mention the juice line is delicious. Looking forward to more juices flavors.
+              <IntlMsg id="home.reviews.slide1.blurb" />
               <em className="blurb--fa-text">
-                
+                <FontAwesome name="quote-right" />
               </em>
               <br />
               <br />
               <em className="blurb--fa-text fa-text--signature-dash">
-                
+                <FontAwesome name="minus" />
               </em>&nbsp;
-              Robert McNair, Sasebo
+              <IntlMsg id="home.reviews.slide1.author" />
             </p>
           </div>
           <div className="mask-slide__2 w-slide">
             <p className="slide__blurb">
               <em className="blurb--fa-text review-special-text">
-                
+                <FontAwesome name="quote-left" />
               </em>&nbsp;&nbsp;
-              Wow! Fruity Bamm-Bamm = Delicious.
-              <br />
-              4 Day Delivery = Fast.
-              <br />
-              My New Juice Source = NJ2JP.
+              <IntlMsg id="home.reviews.slide2.blurb" />
               <em className="blurb--fa-text">
-                
+                <FontAwesome name="quote-right" />
               </em>
               <br />
               <br />
               <em className="blurb--fa-text fa-text--signature-dash">
-                
+                <FontAwesome name="minus" />
               </em>&nbsp;
-              Gene Smith, Okinawa
+              <IntlMsg id="home.reviews.slide2.author" />
             </p>
           </div>
           <div className="mask-slide__3 w-slide">
             <p className="slide__blurb">
               <em className="blurb--fa-text review-special-text">
-                
+                <FontAwesome name="quote-left" />
               </em>&nbsp;
-              Well, NJ2JP wasn’t lying. 5 days to Fukuoka.
-              <br />
-              Way faster than all of my previous online choices. I’m sold.
+              <IntlMsg id="home.reviews.slide3.blurb" />
               <em className="blurb--fa-text">
-                
+                <FontAwesome name="quote-right" />
               </em>
               <br />
               <br />
               <em className="blurb--fa-text fa-text--signature-dash">
-                
+                <FontAwesome name="minus" />
               </em>&nbsp;
-              Matt Shipmen, Okinawa
+              <IntlMsg id="home.reviews.slide3.author" />
             </p>
           </div>
           <div className="mask-slide__4 w-slide">
             <p className="slide__blurb">
               <em className="blurb--fa-text review-special-text">
-                
+                <FontAwesome name="quote-left" />
               </em>&nbsp;
-              I placed my order on Monday, by Thursday morning,
-              <br />
-              I was vaping Nicotine e-juice. Nj2jp is blazing fast!
+              <IntlMsg id="home.reviews.slide4.blurb" />
               <em className="blurb--fa-text">
-                
+                <FontAwesome name="quote-right" />
               </em>
               <br />
               <br />
               <em className="blurb--fa-text fa-text--signature-dash">
-                
+                <FontAwesome name="minus" />
               </em>&nbsp;
-              Justin Arians, Yokosuka
+              <IntlMsg id="home.reviews.slide4.author" />
             </p>
           </div>
         </div>
