@@ -29,7 +29,7 @@ export default function How() {
             <div className="show-me__button--alt-1" />
             <div className="show-me__button--alt-2" />
             <div className="show-me__text">
-              Show Me
+              <IntlMsg id="home.how.show-me" />
             </div>
           </a>
         </div>

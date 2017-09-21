@@ -1,5 +1,5 @@
 import React from 'react';
-// import { FormattedMessage as IntlMsg } from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import { propTypes } from './assets/propValidation';
 import { contentData } from './assets/utils';
 import { CardReview, CardArticle } from './components';
@@ -44,7 +44,7 @@ class NewsReviews extends React.Component {
       <div className="splash-news-reviews">
         <div className="news-reviews__header-container">
           <h2 className="header__text" data-ix="flyout-footer">
-            News & Reviews
+            <IntlMsg id="home.news.title" />
           </h2>
         </div>
         <div className="news-reviews__masonry-container">
