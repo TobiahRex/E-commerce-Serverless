@@ -30,14 +30,11 @@ class Splash extends React.Component {
     return window.innerHeight - 60;
   };
 
-  componentDidUpdate() {
+  render() {
     WebflowJs();
     WebflowAnimations();
-  }
-
-  render() {
     return (
-      <div className="homepage">
+      <div className="homepage" key={Date.now()}>
         <div className="splash-container">
           <Header
             height={this.calculateHeight(true)}

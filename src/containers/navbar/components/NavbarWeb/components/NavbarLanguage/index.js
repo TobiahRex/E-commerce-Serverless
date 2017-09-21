@@ -51,7 +51,7 @@ class NavbarLanguage extends React.Component {
     this.setState(() => ({ activeLanguage: language }),
     () => {
       this.props.saveLanguage(language);
-      this.props.push(this.props.location);
+      this.props.push(location);
     });
   }
 
@@ -86,7 +86,7 @@ export default connect(
     location: routing.locationBeforeTransitions.pathname,
   }),
   dispatch => ({
-    push: location => push(location),
+    push: location => dispatch(push(location)),
     saveLanguage: language => dispatch(localeActions.setLanguage(language)),
   }),
 )(NavbarLanguage);
