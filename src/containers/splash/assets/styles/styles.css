@@ -1,7 +1,3 @@
-.homepage {
-  width: 100%;
-}
-
 .splash-img {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1560,6 +1556,18 @@
 }
 
 .splash-img__background {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: #000;
@@ -1752,6 +1760,9 @@ html.w-mod-js *[data-ix="fade-up-2"] {
 }
 
 @media (max-width: 991px) {
+  .homepage {
+    width: 100%;
+  }
   .splash-img {
     width: 100%;
     height: 610px;
@@ -1940,6 +1951,9 @@ html.w-mod-js *[data-ix="fade-up-2"] {
 }
 
 @media (max-width: 767px) {
+  .homepage {
+    width: 100%;
+  }
   .splash-img {
     height: 549px;
     max-height: 549px;
