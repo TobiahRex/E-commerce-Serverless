@@ -31,7 +31,7 @@ function Header({ height, mobile }) {
           </button>
         </div>
       </div>
-      { !mobile && <NavBob className={'header__nav-down--container'} height={navBob} />}
+      { !mobile && <NavBob className="header__nav-down--container" height={navBob} />}
     </header>
   );
 }

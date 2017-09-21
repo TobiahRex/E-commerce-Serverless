@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function PostalCode({
   validatePostal,
@@ -11,7 +12,10 @@ function PostalCode({
   return (
     <div className="input__row">
       <div className="input__row--postal-code">
-        <p>Postal Code <span className="required">*</span></p>
+        <p>
+          <IntlMsg id="checkout.shipping-address.postal" />&nbsp;
+          <span className="required">*</span>
+        </p>
         <Validation.components.Input
           errorClassName="is-invalid-input"
           type="text"

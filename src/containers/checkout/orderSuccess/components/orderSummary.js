@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
@@ -25,30 +26,41 @@ function OrderSummary({
     <div className="ordered__order-summary">
       <fieldset className="order-summary--fieldset">
         <legend className="order-summary--legend">
-          <p>Order Summary</p>
+          <p>
+            <IntlMsg id="checkout.success.summary.title" />
+          </p>
         </legend>
         <table className="order-summary__table" cellPadding="0" cellSpacing="0">
           <thead className="table--thead">
             <tr>
               <th colSpan="1">
-                <p>Qty</p>
+                <p>
+                  <IntlMsg id="checkout.success.summary.header.qty" />
+                </p>
               </th>
               <th colSpan="3">
-                <p>Juice Description</p>
+                <p>
+                  <IntlMsg id="checkout.success.summary.header.description" />
+                </p>
               </th>
               <th colSpan="2">
-                <p>Price</p>
+                <p>
+                  <IntlMsg id="checkout.success.summary.header.price" />
+                </p>
               </th>
             </tr>
           </thead>
           <tbody className="table--body">
             <tr className="body--shipping-status-row">
               <td colSpan="5">
-                <p>{shippingStatus} {'\u2013'} Tracking #:
+                <p>{shippingStatus} {'\u2013'}
+                  <IntlMsg id="checkout.success.summary.row.tracking" />
                   <Link
                     className="tracking-id"
                     to={trackingLink}
-                  >{'\u00A0'}{trackingNumber}</Link>
+                  >&nbsp;
+                    {trackingNumber}
+                  </Link>
                 </p>
               </td>
             </tr>
@@ -76,13 +88,15 @@ function OrderSummary({
                         <p>{NicotineStrengthConverter(nicotineStrength)}</p>
                       </li>
                       <li className="list--sku">
-                        <p>SKU: {sku}</p>
+                        <p>SKU:&nbsp;
+                          {sku}
+                        </p>
                       </li>
                     </ul>
                   </td>
                   <td colSpan="2">
                     <p>
-                      <FontAwesome name="usd" />{'\u00A0'}
+                      <FontAwesome name="usd" />&nbsp;
                       {price}.00
                     </p>
                   </td>
@@ -93,22 +107,34 @@ function OrderSummary({
               <td colSpan="4">
                 <ul className="total-analysis--list-title">
                   <li className="list-title--subtotal">
-                    <p>USD / JPY Rate</p>
+                    <p>
+                      <IntlMsg id="checkout.success.summary.total.rate" />
+                    </p>
                   </li>
                   <li className="list-title--subtotal">
-                    <p>Subtotal</p>
+                    <p>
+                      <IntlMsg id="checkout.success.summary.total.subtotal" />
+                    </p>
                   </li>
                   <li className="list-title--tax">
-                    <p>Tax</p>
+                    <p>
+                      <IntlMsg id="checkout.success.summary.total.tax" />
+                    </p>
                   </li>
                   <li className="list-title--shipping">
-                    <p>Free International Shipping</p>
+                    <p>
+                      <IntlMsg id="checkout.success.summary.total.shipping" />
+                    </p>
                   </li>
                   <li className="list-title--shipping">
-                    <p>Discount</p>
+                    <p>
+                      <IntlMsg id="checkout.success.summary.total.discount" />
+                    </p>
                   </li>
                   <li className="list-title--order-total">
-                    <p>Grand Total</p>
+                    <p>
+                      <IntlMsg id="checkout.success.summary.total.grand-total" />
+                    </p>
                   </li>
                 </ul>
               </td>
@@ -116,34 +142,39 @@ function OrderSummary({
                 <ul className="total-analysis--list-value">
                   <li className="list-value--subtotal">
                     <p>
-                      <FontAwesome name="usd" />{'\u00A0'}{(jpyFxRate / 100).toFixed(3)}
+                      <FontAwesome name="usd" />&nbsp;
+                      {(jpyFxRate / 100).toFixed(3)}
                     </p>
                   </li>
                   <li className="list-value--subtotal">
                     <p>
-                      <FontAwesome name="usd" />{'\u00A0'}{subTotal}.00
+                      <FontAwesome name="usd" />&nbsp;
+                      {subTotal}.00
                     </p>
                   </li>
                   <li className="list-value--tax">
                     <p>
-                      <FontAwesome name="usd" />{'\u00A0'}{taxes}
+                      <FontAwesome name="usd" />&nbsp;
+                      {taxes}
                     </p>
                   </li>
                   <li className="list-value--shipping">
                     <p>
-                      <FontAwesome name="usd" />{'\u00A0'}0.00
+                      <FontAwesome name="usd" />&nbsp;
+                      0.00
                     </p>
                   </li>
                   <li className="list-value--shipping">
                     <p className="required">
-                      -{'\u00A0'}<FontAwesome name="usd" />{'\u00A0'}
+                      -&nbsp;
+                      <FontAwesome name="usd" />&nbsp;
                       {(Number(qtyAmount) + Number(registerAmount)).toFixed(2)}
                     </p>
                   </li>
                   <li className="list-value--order-total">
                     <p>
                       <FontAwesome name="usd" />
-                      {'\u00A0'}
+                      &nbsp;
                       {`${String(grandTotal).slice(0, 2)}.${String(grandTotal).slice(2, 4)}`}
                     </p>
                   </li>

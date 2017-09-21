@@ -1,12 +1,12 @@
 /* eslint-disable no-lone-blocks, import/first*/
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
+import { FormattedMessage as IntlMsg, injectIntl, intlShape } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
-
-import { propTypes, defaultProps } from './propTypes';
 import orderActions from '../../../../../redux/orders/';
 import userActions from '../../../../../redux/user/';
 import {
@@ -30,10 +30,26 @@ import {
 } from './utilities.imports';
 
 class SingleProduct extends React.Component {
-  static propTypes = propTypes
-  static defaultProps = defaultProps
   constructor(props) {
     super(props);
+
+    const {
+      intl: {
+        messages: {
+          'product.breadcrumb.paths1': bcPaths1,
+          'product.breadcrumb.lastCrumb': lastCrumb,
+          'product.title.main': mainTitle,
+          'product.title.vendor': vendorTitle,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
+      mainTitle,
+      vendorTitle,
+    };
 
     this.state = {
       qty: 0,
@@ -42,7 +58,7 @@ class SingleProduct extends React.Component {
       product: null,
       errorMsg: '',
       showBulkModal: false,
-      chosenStrength: 0,
+      chosenStrength: -1,
       showSuccessModal: false,
       showRegisterModal: false,
     };
@@ -102,11 +118,8 @@ class SingleProduct extends React.Component {
   * @return {function call} - calls "toggleModal" || "toggleModalAndGo"
   */
   modalHandler = (e) => {
-    let parentEl = e.target.dataset.parent;
-    let tagEl = e.target.dataset.tag;
-
-    if (!parentEl) parentEl = e.target.parentNode.dataset.parent;
-    if (!tagEl) tagEl = e.target.parentNode.dataset.tag;
+    const parentEl = e.target.dataset.parent || e.target.parentNode.dataset.parent || e.target.parentNode.parentNode.dataset.parent;
+    const tagEl = e.target.dataset.tag || e.target.parentNode.dataset.tag || e.target.parentNode.parentNode.dataset.tag;
 
     const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 
@@ -282,10 +295,8 @@ class SingleProduct extends React.Component {
       updated = true;
       const updatedUserCart = userCart
       .map((userCartProduct) => {
-        // Apollo & GraphQL add "__typename" property for id purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
-        if (!!userCartProduct.__typename) {
-          delete userCartProduct.__typename;
-        }
+        // Apollo & GraphQL add "__typename" property for cache purposes to query results.  When mutating the result, this property must be removed if object is to be used in a subsequent query/mutation different than it's originating query.
+        if (!!userCartProduct.__typename) delete userCartProduct.__typename;
 
         if (
           !!userCartProduct.product &&
@@ -369,7 +380,7 @@ class SingleProduct extends React.Component {
         error: true,
         errorMsg: 'You must choose a quantity of at least 1.',
       }));
-    } else if (!this.state.chosenStrength) {
+    } else if (this.state.chosenStrength <= -1) {
       this.setState(() => ({
         error: true,
         errorMsg: 'No strength',
@@ -536,16 +547,16 @@ class SingleProduct extends React.Component {
     return (
       <div className="juice-page__main">
         <BreadCrumb
-          paths={['Home', 'Juices']}
+          paths={[this.intl.bcPaths1]}
           classes={['home', 'home']}
-          destination={['', 'juices']}
-          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title : 'Juice Page'}
+          destination={['/', 'juices']}
+          lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title[IntlLocale] : this.intl.lastCrumb}
         />
         {
           data.FindProductsByFlavor ?
             <MainTitle
-              vendor={data.FindProductsByFlavor[0].product.vendor}
-              mainTitle={data.FindProductsByFlavor[0].product.mainTitle}
+              vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
+              mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''
         }
         {
@@ -553,7 +564,7 @@ class SingleProduct extends React.Component {
           (<h1 className="main__loading">
             <FontAwesome name="spinner" pulse size="3x" />
             <br />
-            Loading...
+            <IntlMsg id="product.single.loading" />
           </h1>) :
           <ProductDisplay
             qty={qty}
@@ -576,7 +587,7 @@ class SingleProduct extends React.Component {
 
         <SuccessModal
           qty={qty}
-          productTitle={data.FindProductById ? data.FindProductById.product.title : ''}
+          productTitle={data.FindProductById ? data.FindProductById.product.title[IntlLocale] : ''}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
         />
@@ -598,6 +609,7 @@ class SingleProduct extends React.Component {
   }
 }
 
+const SingleProductIntl = injectIntl(SingleProduct);
 /**
 * NOTE: This component calls GraphQL compose function first, and provides the results to the react-redux-connect function as props.
 *
@@ -626,7 +638,7 @@ const SingleProductWithState = connect(null,
 
     updateToReduxMemberCart: products => dispatch(orderActions.updateToReduxMemberCart(products)),
   }),
-)(SingleProduct);
+)(SingleProductIntl);
 
 const SingleProductWithStateAndData = compose(
   graphql(FindProductsByFlavor, {
@@ -651,5 +663,88 @@ const SingleProductWithStateAndData2 = connect(
   userCart: auth.loggedIn ? user.profile.shopping.cart : [],
   guestCart: orders.cart,
 }))(SingleProductWithStateAndData);
+
+const {
+  any,
+  func,
+  number,
+  bool,
+  string,
+  shape,
+  arrayOf,
+  objectOf,
+} = PropTypes;
+
+const ProductShape = shape({
+  _id: string,
+  product: shape({
+    qty: number,
+    price: string,
+    title: shape({
+      en: string,
+      ja: string,
+    }).isRequired,
+    slug: string,
+    strength: number,
+    mainTitle: shape({
+      en: string,
+      ja: string,
+    }).isRequired,
+    nicotineStrength: string,
+    images: arrayOf(shape({
+      purpose: string,
+      url: string,
+    })),
+    quantities: shape({
+      available: number,
+      inCarts: number,
+      purchased: number,
+    }),
+  }),
+});
+
+SingleProduct.propTypes = {
+  intl: intlShape.isRequired,
+  push: func.isRequired,
+  goBack: func.isRequired,
+  userId: string,
+  flavor: string,
+  taxRate: number.isRequired,
+  loggedIn: bool.isRequired,
+  saveUser: func.isRequired,
+  addToGuestCart: func.isRequired,
+  AddToMemberCart: func.isRequired,
+  saveGuestCart: func.isRequired,
+  EditToMemberCart: func.isRequired,
+  addToReduxMemberCart: func.isRequired,
+  addToReduxProfileCart: func.isRequired,
+  updateToReduxMemberCart: func.isRequired,
+  userCart: arrayOf(
+    shape({
+      qty: number,
+      strength: number,
+      product: string,
+    }),
+  ),
+  guestCart: arrayOf(
+    shape({
+      _id: string,
+      qty: number,
+      strength: number,
+      userId: string,
+      product: objectOf(any),
+    }),
+  ),
+  data: shape({
+    FindProductById: ProductShape,
+    FindProductsByFlavor: arrayOf(ProductShape),
+  }).isRequired,
+};
+SingleProduct.defaultProps = {
+  userId: '',
+  flavor: '',
+  userCart: null,
+  guestCart: null,
+};
 
 export default SingleProductWithStateAndData2;

@@ -3,8 +3,7 @@ import FontAwesome from 'react-fontawesome';
 
 export default () => (
   <a
-    onClick={() => console.warn('Need to create and add Twitter link here')}
-    href="/"
+    href="https://twitter.com/nicjuice2japan"
     id="media-dropdown-twitter-icon"
     className="media-dropdown-content-bottomThird-innerContainer-smedia"
   >

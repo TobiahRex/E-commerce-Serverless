@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import _ from 'lodash';
-// import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { string, func, bool } = PropTypes;
 
@@ -36,18 +35,11 @@ class CreditCardNumber extends React.Component {
     return (
       <div className="input__row" style={{ display: show ? '' : 'none' }}>
         <div className="input__row--cc-number">
-          <p>Credit Card Number <span className="required">*</span></p>
+          <p>
+            <IntlMsg id="checkout.credit-card.number" />&nbsp;
+            <span className="required">*</span>
+          </p>
           <div id="sq-card-number" />
-          {/* <Validation.components.Input
-            id="sq-card-number"
-            errorClassName="is-invalid-input"
-            type="text"
-            containerClassName=""
-            name="ccNumber"
-            validations={['required', 'ccNumber']}
-            onChange={this.handleOnChange}
-            value={this.state.ccNumber}
-          /> */}
         </div>
       </div>
     );

@@ -20,14 +20,14 @@ function ShoppingCartWebProductRow({
             <Link to={`/juice/${productObj.product.slug}`}>
               <img
                 src={productObj.product.images[0].url}
-                className="shopping-cart-table-body-infobox-img-src" alt={productObj.product.title}
+                className="shopping-cart-table-body-infobox-img-src" alt={productObj.product.title[IntlLocale]}
               />
             </Link>
           </div>
           <ul className="shopping-cart-table-body-infobox-list">
             <li className="shopping-cart-table-body-infobox-title">
               <Link to={`/juice/${productObj.product.slug}`}>
-                <p>{productObj.product.title}</p>
+                <p>{productObj.product.title[IntlLocale]}</p>
               </Link>
             </li>
             <li className="shopping-cart-table-body-infobox-nicotine">
@@ -82,7 +82,7 @@ function ShoppingCartWebProductRow({
               </button>
             </li>
           </ul>
-          <ErrorMsg error={productObj.error} errorMsg={productObj.error.message} />
+          <ErrorMsg error={productObj.error} errorMsg={productObj.error.message[IntlLocale]} />
         </div>
       </td>
       <td className="shopping-cart-table-body-total">

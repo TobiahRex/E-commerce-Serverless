@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ErrorMsg,
   AddToCartButton,
@@ -23,7 +24,7 @@ function ProductActions({
           <div className="btn-container__qty--container">
             <ul className="qty__list">
               <li className="list--qty-title">
-                <p>Quantity</p>
+                <p><IntlMsg id="product.single.actions.quantity.title" /></p>
               </li>
               <li className="list--qty-readout">
                 <p>{quantity}</p>

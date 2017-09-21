@@ -200,7 +200,7 @@ new Promise((resolve, reject) => {
       title: { $first: '$product.title' },
       slug: { $first: '$product.slug' },
       images: { $first: '$product.images' },
-      completedCheckouts: { $first: '$statistics.completed_checkouts' },
+      completedCheckouts: { $first: '$statistics.completedCheckouts' },
     } },
     { $sort: { completedCheckouts: -1 } },
     { $limit: qty },

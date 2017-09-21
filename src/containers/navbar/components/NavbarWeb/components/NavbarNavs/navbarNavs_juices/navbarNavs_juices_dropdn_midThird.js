@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import NavbarNavsJuicesDropdnJuiceCards from './navbarNavs_juices_dropdn_midThird_juiceCard';
 
 const { arrayOf, object, func } = PropTypes;
@@ -32,7 +33,9 @@ class NavbarNavsJuicesDropdnMidthird extends Component {
       <div className="shop-dropdown-content-midThird">
         <div className="shop-dropdown-content-midThird-title">
           <h2>
-            <i className="required">Choose A Flavor!</i>
+            <i className="required">
+              <IntlMsg id="navbar.nav.juices.choose-flavor.title" />
+            </i>
           </h2>
         </div>
         <div className="shop-dropdown-content-midThird-juices">

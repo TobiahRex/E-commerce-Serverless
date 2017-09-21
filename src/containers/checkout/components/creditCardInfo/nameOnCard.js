@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Validation from 'react-validation';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { func, string, bool } = PropTypes;
 
@@ -32,7 +33,10 @@ class NameOnCard extends React.PureComponent {
     return (
       <div className="input__row" style={{ display: show ? '' : 'none' }}>
         <div className="input__row--name-on-card">
-          <p>Name on Card <span className="required">*</span></p>
+          <p>
+            <IntlMsg id="checkout.credit-card.name-on-card" />&nbsp;
+            <span className="required">*</span>
+          </p>
           <Validation.components.Input
             errorClassName="is-invalid-input"
             type="text"

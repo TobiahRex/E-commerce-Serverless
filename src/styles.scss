@@ -33,30 +33,30 @@
 // --------------------------- Auth ---------------------------
 // ------------------------------------------------------------
 // "Login" Master Stylesheets
-@import "containers/auth/Login/styles/login_styles_web";
-@import "containers/auth/Login/styles/login_styles_mobile";
+@import "containers/auth/login/styles/login_styles_web";
+@import "containers/auth/login/styles/login_styles_mobile";
 
 // ------------------------------------------------------------
 // "Register" Master Stylesheets
-@import "containers/auth/Register/register_styles_web";
-@import "containers/auth/Register/register_styles_mobile";
+@import "containers/auth/register/register_styles_web";
+@import "containers/auth/register/register_styles_mobile";
 
 // ------------------------------------------------------------
 // "Forgot" Master Stylesheets
-@import "containers/auth/Forgot/forgot_styles_web";
-@import "containers/auth/Forgot/forgot_styles_mobile";
+@import "containers/auth/forgot/forgot_styles_web";
+@import "containers/auth/forgot/forgot_styles_mobile";
 
 // ------------------------------------------------------------
 // "Reset Password" Master Stylesheets
-@import "containers/auth/ResetEmail/reset_styles_web";
-@import "containers/auth/ResetEmail/reset_styles_mobile";
+@import "containers/auth/resetEmail/reset_styles_web";
+@import "containers/auth/resetEmail/reset_styles_mobile";
 
 // ------------------------------------------------------------
 // -------------------------- Products ------------------------
 // ------------------------------------------------------------
 // "Homepage" Master Stylesheets
-@import "containers/home/assets/styles/styles_web";
-@import "containers/home/assets/styles/styles_mobile";
+// @import "containers/home/assets/styles/styles_web";
+// @import "containers/home/assets/styles/styles_mobile";
 
 // ------------------------------------------------------------
 // "Single Product" Master Stylesheets

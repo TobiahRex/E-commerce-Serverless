@@ -11,6 +11,10 @@ parserOptions:
   ecmaFeatures:
     jsx: true
 
+globals:
+  IntlMessage: true
+  IntlLocale: true
+
 env:
   es6: true
   browser: true

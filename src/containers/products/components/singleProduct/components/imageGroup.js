@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ImageGroup({ modalHandler, imageUrl }) {
   return (
@@ -15,9 +16,13 @@ function ImageGroup({ modalHandler, imageUrl }) {
         className="image__promotion sweep-right-red"
         onClick={modalHandler}
       >
-        <p>Buy 4 Bottles</p>
+        <p>
+          <IntlMsg id="product.single.image.promotion1" />
+        </p>
         <br />
-        <p>Get 25% Off Your Order</p>
+        <p>
+          <IntlMsg id="product.single.image.promotion2" />
+        </p>
       </button>
     </div>
   );

@@ -9,7 +9,7 @@
 * @return {bool} - Final answer.
 */
 
-export default (user, loggedIn) => {
+export default function checkNewUser(user, loggedIn) {
   if (!loggedIn) return false;
   return !user.profile.shopping.transactions.length;
-};
+}

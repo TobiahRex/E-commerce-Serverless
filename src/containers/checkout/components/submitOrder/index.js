@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
 import { withHandlers } from 'recompose';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 import {
   squarePaymentForm as SqrPaymentForm,
@@ -18,8 +19,10 @@ function SubmitOrder({ enable, requestCardNonce, loading }) {
           onClick={requestCardNonce}
         >
           <span className="btn-flex-parent">
-            <p>Place Order Now</p>
-            {'\u00A0'}
+            <p>
+              <IntlMsg id="checkout.submit1" />
+            </p>
+            &nbsp;
             <FontAwesome name="opencart" />
           </span>
         </Validation.components.Button>
@@ -30,8 +33,10 @@ function SubmitOrder({ enable, requestCardNonce, loading }) {
     <div className="checkout__purchase-btn">
       <button className="button" disabled>
         <span className="btn-flex-parent">
-          <p>Place Order Now</p>
-          {'\u00A0'}
+          <p>
+            <IntlMsg id="checkout.submit1" />
+          </p>
+          &nbsp;
           <FontAwesome name="opencart" />
         </span>
       </button>

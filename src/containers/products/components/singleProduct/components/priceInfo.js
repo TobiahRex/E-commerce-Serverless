@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function PriceInfo({ price, sku, inStock }) {
   return (
@@ -8,17 +9,15 @@ function PriceInfo({ price, sku, inStock }) {
       <ul className="price-row__list">
         <li className="list--price">
           <h1>
-            <FontAwesome name="usd" className="price__fa" />{'\u00A0'}{price}.00
+            <FontAwesome name="usd" className="price__fa" />&nbsp;{price}.00
           </h1>
         </li>
         <li className="list--tax">
           <div className="tax__tax--title">
-            <p>+ Tax</p>
+            <p>+ <IntlMsg id="product.single.price-info.tax" /></p>
           </div>
           <div className="tax__shipping--title">
-            <p>
-              Free Shipping
-            </p>
+            <p><IntlMsg id="product.single.price-info.free-shipping" /></p>
           </div>
         </li>
         <li className="list--stock">
@@ -26,7 +25,11 @@ function PriceInfo({ price, sku, inStock }) {
             <p>SKU: {sku}</p>
           </div>
           <div className="stock__stock--title">
-            <h3>{inStock ? 'IN STOCK' : 'OUT OF STOCK'}</h3>
+            <h3>{
+              inStock ?
+                <IntlMsg id="product.single.price-info.in-stock" /> :
+                <IntlMsg id="product.single.price-info.out-of-stock" />
+            }</h3>
           </div>
         </li>
       </ul>

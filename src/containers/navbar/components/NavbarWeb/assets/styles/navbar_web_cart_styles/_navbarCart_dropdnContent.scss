@@ -209,6 +209,11 @@
           cursor: pointer;
         }
       }
+      & .action-links-checkout.ja {
+        font-size: 1.1em;
+        height: 3rem;
+        width: 9rem;
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { bool, func } = PropTypes;
 
@@ -54,15 +55,21 @@ class CvnModal extends PureComponent {
           </div>
           <div className="dialogue__cvn-blurb">
             <h1 className="cvn-blurb__title">
-              {'What\'s'} A CVN / CVV?
+              <IntlMsg id="checkout.credit-card.cvn.modal.what-is" />
             </h1>
             <br />
             <p className="cvn-blurb__sub-title">
-              {'\"CVN\"'} / {'\"CVV\"'} is a <i>{'\"Card Verification Number\"'}</i>
+              {'\"CVN\"'} / {'\"CVV\"'}
+              &nbsp;
+              <IntlMsg id="checkout.credit-card.cvn.modal.is-a" />
+              &nbsp;
+              <i>
+                <IntlMsg id="checkout.credit-card.cvn.modal.cvn-title" />
+              </i>
             </p>
             <br />
             <p className="cvn-blurb__description">
-              It is a 3 digit number, usually located on the back of your credit card.
+              <IntlMsg id="checkout.credit-card.cvn.modal.description" />
             </p>
             <br />
             <img
@@ -78,8 +85,7 @@ class CvnModal extends PureComponent {
               data-modal="showCvnModal"
               className="action-btn__close primary-button sweep-right"
               onClick={this.toggleModal}
-            >Close
-            </button>
+            ><IntlMsg id="checkout.credit-card.cvn.modal.close-btn" /></button>
 
           </div>
         </div>

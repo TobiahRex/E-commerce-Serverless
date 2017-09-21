@@ -5,8 +5,14 @@ import FontAwesome from 'react-fontawesome';
 import { graphql, compose } from 'react-apollo';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
+import {
+  injectIntl,
+  intlShape,
+  FormattedMessage as IntlMsg
+} from 'react-intl';
 
 import {
+  BreadCrumb,
   OrderHeader,
   ShipTo,
   BillTo,
@@ -26,6 +32,20 @@ import {
 class OrderSuccess extends React.Component {
   constructor(props) {
     super(props);
+
+    const {
+      intl: {
+        messages: {
+          'checkout.success.breadCrumb.paths1': bcPaths1,
+          'checkout.success.breadCrumb.lastCrumb': lastCrumb,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
+    };
 
     this.state = {
       loading: props.sagawaInfo.loading,
@@ -121,20 +141,26 @@ class OrderSuccess extends React.Component {
     return (
       <div className="ordered--main">
         <div className="ordered--container">
+          <BreadCrumb
+            paths={[this.intl.bcPaths1]}
+            classes={['home']}
+            destination={['']}
+            lastCrumb={this.intl.lastCrumb}
+          />
           <div className="ordered__title">
             <div className="title--icon">
               <FontAwesome name="check-circle" />
             </div>
             <div className="title--msg">
-              <h1>Your order has been successfully placed!</h1>
-              <h4>The invoice shown below has been sent to your email:</h4>
+              <h1><IntlMsg id="checkout.success.title" /></h1>
+              <h4><IntlMsg id="checkout.success.sub-title" /></h4>
               <h4>{emailAddress}</h4>
             </div>
           </div>
 
           <OrderHeader
             date={date}
-            status={shippingStatus}
+            status={shippingStatus[IntlLocale]}
             invoiceId={sagawaId}
             trackingId={referenceId}
             orderId={transactionId}
@@ -178,8 +204,8 @@ class OrderSuccess extends React.Component {
               onClick={this.routeChange}
             >
               <span className="flex-btn-parent">
-                <FontAwesome name="angle-double-left" />
-                {'\u00A0'}Back To Homepage
+                <FontAwesome name="angle-double-left" />&nbsp;
+                <IntlMsg id="checkout.success.actions.back-to-home" />
               </span>
             </button>
           </div>
@@ -196,7 +222,7 @@ class OrderSuccess extends React.Component {
             <h1 className="main__loading">
               <FontAwesome name="spinner" pulse size="3x" />
               <br />
-              Loading...
+              <IntlMsg id="checkout.subtitle.loading" />
             </h1>
           :
           this.renderBody(this.props)
@@ -205,6 +231,8 @@ class OrderSuccess extends React.Component {
     );
   }
 }
+
+const OrderSuccessWithIntl = injectIntl(OrderSuccess);
 
 const OrderSuccessWithState = compose(
   graphql(FetchSagawa, {
@@ -222,7 +250,7 @@ const OrderSuccessWithState = compose(
       });
     },
   }),
-)(OrderSuccess);
+)(OrderSuccessWithIntl);
 
 const OrderSuccessWithStateAndData = connect(({ checkout }) => ({
   transactionInfo: checkout.transaction || {
@@ -236,6 +264,7 @@ const OrderSuccessWithStateAndData = connect(({ checkout }) => ({
 const { func, shape, string, bool, number, arrayOf, objectOf, any } = PropTypes;
 
 OrderSuccess.propTypes = {
+  intl: intlShape.isRequired,
   push: func.isRequired,
   products: objectOf(any),
   transactionInfo: shape({

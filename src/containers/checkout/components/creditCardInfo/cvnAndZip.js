@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { func, string, bool } = PropTypes;
 
@@ -48,7 +49,8 @@ class CvnAndZip extends React.Component {
       <div className="input__row cvn" style={{ display: show ? '' : 'none' }}>
         <div className="input__row--cvn-number">
           <div className="cvn-number--wrapper">
-            <p>CVV <span className="required">*</span>
+            <p>CVV
+              <span className="required">*</span>
             </p>
             <button
               type="button"
@@ -56,7 +58,7 @@ class CvnAndZip extends React.Component {
               className="button--cvn-modal"
               onClick={this.props.toggleModal}
             >
-              Whats this ?
+              <IntlMsg id="checkout.credit-card.cvn.whats-this" />
             </button>
           </div>
           <div id="sq-cvv" />
@@ -65,7 +67,8 @@ class CvnAndZip extends React.Component {
           className="input__row--zip-code"
           style={{ visibility: enableZip ? 'visible' : 'hidden' }}
         >
-          <p>Zip Code {'\u0020'}
+          <p>
+            <IntlMsg id="checkout.credit-card.postal-code" />&nbsp;
             <span className="required">*</span>
           </p>
           <div id="sq-postal-code" />

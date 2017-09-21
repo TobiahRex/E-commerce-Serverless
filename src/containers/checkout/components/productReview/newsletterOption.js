@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function NewsletterOption({ newsletterDecision, handleOnChange }) {
   return (
@@ -16,7 +17,7 @@ function NewsletterOption({ newsletterDecision, handleOnChange }) {
             },
           })}
         />
-        <p>Sign Up for Newsletters</p>
+        <p><IntlMsg id="checkout.newsletter.sign-up.title" /></p>
       </div>
     </div>
   );

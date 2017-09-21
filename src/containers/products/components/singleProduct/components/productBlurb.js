@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 function ProductBlurb({ description }) {
   return (
     <div className="desc__blurb">
-      <p>{description}</p>
+      <p>{description[IntlLocale]}</p>
     </div>
   );
 }
-const { string } = PropTypes;
+const { string, shape } = PropTypes;
 ProductBlurb.propTypes = {
-  description: string.isRequired,
+  description: shape({
+    en: string,
+    ja: string,
+  }).isRequired,
 };
 export default ProductBlurb;

@@ -1,7 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import {
+  intlShape,
+  injectIntl,
+} from 'react-intl';
 import './assets/styles';
-import { propTypes } from './assets/propValidation';
 import {
   WebflowJs,
   WebflowAnimations,
@@ -14,13 +17,21 @@ import {
 } from './components';
 
 class UserStories extends React.Component {
-  static propTypes = propTypes;
-
   constructor(props) {
     super(props);
 
-    this.state = {
-      x: '',
+    const {
+      intl: {
+        messages: {
+          'user-stories.breadCrumb.paths1': bcPaths1,
+          'user-stories.breadCrumb.lastCrumb': lastCrumb,
+        },
+      },
+    } = props;
+
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
     };
   }
 
@@ -30,12 +41,12 @@ class UserStories extends React.Component {
   }
 
   renderHelper = data =>
-    data.content.map((dataObj) => { // eslint-disable-line
+    data.map((dataObj) => { // eslint-disable-line
       if (dataObj.component === 'UserCard') {
         return (
           <UserCard
             {...dataObj.props}
-            key={new Buffer(dataObj.props.CardHdr.header + Date.now(), 'utf8').toString('base64')}
+            key={new Buffer(dataObj.props.CardHdr.header, 'utf8').toString('base64')}
           />
         );
       }
@@ -43,20 +54,23 @@ class UserStories extends React.Component {
 
   render() {
     return (
-      <div className="japanese vape-news__container" key={moment().format('YYMMDDSSSS')} >
+      <div className="vape-news__container" key={moment().format('YYMMDDSSSS')} >
         <BreadCrumb
-          paths={['Home']}
+          paths={[this.intl.bcPaths1]}
           classes={['home']}
           destination={['']}
-          lastCrumb="User Stories"
+          lastCrumb={this.intl.lastCrumb}
         />
 
-        <HdrPage header="User Stories" />
+        <HdrPage header={'user-stories.header.title'} />
 
-        {this.renderHelper(contentData.english)}
+        {this.renderHelper(contentData.content)}
       </div>
     );
   }
 }
-
-export default UserStories;
+UserStories.propTypes = {
+  intl: intlShape.isRequired,
+};
+const UserStoriesWithIntl = injectIntl(UserStories);
+export default UserStoriesWithIntl;

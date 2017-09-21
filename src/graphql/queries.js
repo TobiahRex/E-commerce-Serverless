@@ -9,19 +9,34 @@ export const FindProductsByFlavor = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       product {
-        mainTitle
-        title
+        mainTitle {
+          en
+          ja
+        }
+        title {
+          en
+          ja
+        }
         flavor
         price
         sku
         size
         nicotineStrength
         slug
-        vendor
-        blurb
+        vendor {
+          en
+          ja
+        }
+        blurb {
+          en
+          ja
+        }
         images {
           purpose
           url
@@ -42,19 +57,34 @@ export const FindProductById = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       product {
-        mainTitle
-        title
+        mainTitle {
+          en
+          ja
+        }
+        title {
+          en
+          ja
+        }
         flavor
         price
         sku
         size
         nicotineStrength
         slug
-        vendor
-        blurb
+        vendor {
+          en
+          ja
+        }
+        blurb {
+          en
+          ja
+        }
         images {
           purpose
           url
@@ -75,19 +105,41 @@ export const FetchMultipleProducts = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       product {
-        title
+        mainTitle {
+          en
+          ja
+        }
+        title {
+          en
+          ja
+        }
         flavor
         price
         sku
-        slug
-        vendor
+        size
         nicotineStrength
+        slug
+        vendor {
+          en
+          ja
+        }
+        blurb {
+          en
+          ja
+        }
         images {
           purpose
           url
+        }
+        quantities {
+          available
+          inCarts
         }
       }
     }
@@ -113,7 +165,10 @@ export const FetchSagawa = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       userId
       transactionId
@@ -137,7 +192,10 @@ export const FetchTrackingInfo = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       shipDate
       orderId
@@ -146,7 +204,10 @@ export const FetchTrackingInfo = gql`
       orderId
       totalPaid
       totalCurrency
-      orderStatus
+      orderStatus {
+        en
+        ja
+      }
       trackingInfo {
         location
         date

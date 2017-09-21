@@ -1,7 +1,6 @@
 import React from 'react';
-
+import { injectIntl, intlShape } from 'react-intl';
 import './assets/styles/style.css';
-import { propTypes } from './assets/propValidation';
 import {
   WebflowJs,
   contentData,
@@ -16,13 +15,24 @@ import {
 } from './components';
 
 class AboutUs extends React.Component {
-  static propTypes = propTypes
-
   constructor(props) {
     super(props);
+    const {
+      intl: {
+        messages: {
+          'aboutus.breadCrumb.paths1': bcPaths1,
+          'aboutus.breadCrumb.lastCrumb': lastCrumb,
+          'aboutus.header.title': header,
+          'aboutus.header.subtitle': subHeader,
+        },
+      },
+    } = props;
 
-    this.state = {
-      x: '',
+    this.intl = {
+      bcPaths1,
+      lastCrumb,
+      header,
+      subHeader,
     };
   }
 
@@ -34,18 +44,21 @@ class AboutUs extends React.Component {
     return (
       <div className="about__container-main">
         <BreadCrumb
-          paths={['Home']}
+          paths={[this.intl.bcPaths1]}
           classes={['home']}
           destination={['']}
-          lastCrumb="About Us"
+          lastCrumb={this.intl.lastCrumb}
         />
-        <HdrPage header="About Us" />
+        <HdrPage header={this.intl.header} />
         <AboutBlurb />
-        <SubHdr header="NJ2JP Team" />
+        <SubHdr header={this.intl.subHeader} />
         <AboutMembers members={contentData.english} />
       </div>
     );
   }
 }
-
-export default AboutUs;
+AboutUs.propTypes = {
+  intl: intlShape.isRequired,
+};
+const AboutUsWithIntl = injectIntl(AboutUs);
+export default AboutUsWithIntl;

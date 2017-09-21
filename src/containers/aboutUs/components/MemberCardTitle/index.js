@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import { WebflowJs } from './assets/utils';
 
 const MemberCardTitle = (props) => {
@@ -9,10 +9,10 @@ const MemberCardTitle = (props) => {
   return (
     <div className="content--heading__container">
       <h3 className="content--heading staff__content">
-        {props.header}
+        <IntlMsg id={props.header} />
       </h3>
       <h4 className="content--sub-heading staff__content">
-        {props.subHeader}
+        <IntlMsg id={props.subHeader} />
       </h4>
     </div>
   );

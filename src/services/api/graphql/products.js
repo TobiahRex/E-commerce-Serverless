@@ -18,18 +18,44 @@ const createAPI = () => {
     query: `query FetchProductById($_id: String!) {
       FetchProductById(_id: $_id) {
         _id
+        error {
+          hard
+          soft
+          message {
+            en
+            ja
+          }
+        }
         product {
-          mainTitle
-          title
+          mainTitle {
+            en
+            ja
+          }
+          title {
+            en
+            ja
+          }
+          flavor
           price
+          sku
+          size
+          nicotineStrength
+          slug
+          vendor {
+            en
+            ja
+          }
+          blurb {
+            en
+            ja
+          }
           images {
             purpose
             url
           }
-          nicotineStrength
-          slug
           quantities {
             available
+            inCarts
           }
         }
       }
@@ -48,7 +74,10 @@ const createAPI = () => {
           purpose
           url
         }
-        title
+        title {
+          en
+          ja
+        }
         completedCheckouts
       }
     }`,
@@ -62,16 +91,44 @@ const createAPI = () => {
     query FetchMultipleProducts($ids: [ID]!){
       FetchMultipleProducts(ids: $ids){
         _id
+        error {
+          hard
+          soft
+          message {
+            en
+            ja
+          }
+        }
         product {
-          title
+          mainTitle {
+            en
+            ja
+          }
+          title {
+            en
+            ja
+          }
           flavor
           price
           sku
+          size
+          nicotineStrength
           slug
-          vendor
-          images{
+          vendor {
+            en
+            ja
+          }
+          blurb {
+            en
+            ja
+          }
+          images {
             purpose
             url
+          }
+          quantities {
+            available
+            inCarts
           }
         }
       }

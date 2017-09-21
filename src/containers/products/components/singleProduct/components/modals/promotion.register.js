@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
   let style;
@@ -37,50 +38,61 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
         </div>
         <div className="dialogue__product-title">
           <h1 className="product-title__title">
-            Not A Member Yet?
+            <IntlMsg id="product.modal.register.title" />
           </h1>
           <br />
           <p className="product-title__sub-title">
-            Become a member and get
+
+            <IntlMsg id="product.modal.register.become" />&nbsp;
             <span className="required sub-title__bold">
               {'\u00A0'}10% OFF{'\u00A0'}
             </span>
-            your first order!
+            <IntlMsg id="product.modal.register.first-order" />
           </p>
           <br />
           <p className="product-title__sub-title">
-            Also,
+            <IntlMsg id="product.modal.register.discount-also" />&nbsp;
             <span className="required sub-title__bold">
-              {'\u00A0'}Buy 4 Bottles{'\u00A0'}
+              {'\u00A0'}
+              <IntlMsg id="product.modal.register.discount-bottles" />
+              {'\u00A0'}
             </span>
-            and get an additional
+            <IntlMsg id="product.modal.register.discount-additional" />
             <span className="required sub-title__bold">
               {'\u00A0'}25% OFF!{'\u00A0'}
             </span>
           </p>
           <br />
           <p className="product-title__sub-title">
-            Whoah! {'That\'s'}
+            <IntlMsg id="product.modal.register.discount-whoah" />
             <span className="required sub-title__bold">
               {'\u00A0'}35% OFF!{'\u00A0'}
             </span>
           </p>
           <br />
           <p className="product-title__example">
-            <i>Example:</i>
+            <i>
+              <IntlMsg id="product.modal.register.discount-example" />
+            </i>
           </p>
         </div>
         <table className="dialogue__table">
           <thead className="table__header">
             <tr className="header__row">
               <th className="header--qty">
-                <h4>QTY</h4>
+                <h4>
+                  <IntlMsg id="product.modal.register.header.qty" />
+                </h4>
               </th>
               <th className="header--description">
-                <h4>Juice Description</h4>
+                <h4>
+                  <IntlMsg id="product.modal.register.header.description" />
+                </h4>
               </th>
               <th className="header--price">
-                <h4>Price</h4>
+                <h4>
+                  <IntlMsg id="product.modal.register.header.price" />
+                </h4>
               </th>
             </tr>
           </thead>
@@ -90,10 +102,13 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
                 <p>4</p>
               </td>
               <td className="body--description">
-                <p className="description__title">Fruity Bamm-Bamm</p>
+                <p className="description__title">
+                  <IntlMsg id="product.modal.register.row.flavor" />
+                </p>
                 <br />
                 <p className="description__nicotine-strength">
-                  Nicotine Strenght: <i>6mg</i>
+                  <IntlMsg id="product.modal.register.row.strength" />&nbsp;
+                  <i>6mg</i>
                 </p>
                 <br />
                 <p className="description__sku">
@@ -108,15 +123,25 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
             </tr>
             <tr className="body__row--totals">
               <td className="body__totals--categories" colSpan="2">
-                <p className="category__subtotal">Subtotal</p>
+                <p className="category__subtotal">
+                  <IntlMsg id="product.modal.register.row.subtotal" />
+                </p>
                 <br />
-                <p className="category__tax">Tax</p>
+                <p className="category__tax">
+                  <IntlMsg id="product.modal.register.row.tax" />
+                </p>
                 <br />
-                <p className="category__discount required">Discount</p>
+                <p className="category__discount required">
+                  <IntlMsg id="product.modal.register.row.discount" />
+                </p>
                 <br />
-                <p className="category__shipping">Free International Shipping</p>
+                <p className="category__shipping">
+                  <IntlMsg id="product.modal.register.row.shipping" />
+                </p>
                 <br />
-                <p className="category__order-total">Order Total</p>
+                <p className="category__order-total">
+                  <IntlMsg id="product.modal.register.row.total" />
+                </p>
               </td>
               <td className="body__totals--prices">
                 <p className="price__subtotal">$ 120.00</p>
@@ -140,14 +165,18 @@ function RegisterModal({ showModal, loggedIn, modalHandler, taxRate }) {
             data-tag=""
             className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
-          >Close</button>
+          >
+            <IntlMsg id="product.modal.register.btns.close" />
+          </button>
 
           <button
             data-parent="promotion-register"
             data-tag="view-signup"
             className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
-          >Sign Me Up</button>
+          >
+            <IntlMsg id="product.modal.register.btns.sign-up" />
+          </button>
         </div>
       </div>
     </div>

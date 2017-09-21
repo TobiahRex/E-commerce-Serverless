@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ErrorMsg({ error, errorMsg }) {
   let style;
@@ -15,41 +16,43 @@ function ErrorMsg({ error, errorMsg }) {
     switch (errorMsg) {
       case 'Too much': {
         showErrorMsg = () => ([
-          <p
-            key={new Buffer('maximum-of-4-bottles', 'utf8').toString('base64')}
-          >
-            Maximum of 4 bottles, per customer, per address. More info {'\u00A0'}
-            <Link to={'/shipping_policy'}>here.</Link>
-          </p>,
-          <p
-            key={new Buffer('japanese-statute', 'utf8').toString('base64')}
-          >
-            Japanese Statute # 123123123.
+          <p key={new Buffer('maximum-of-4-bottles', 'utf8').toString('base64')}>
+            <IntlMsg id="product.single.errors.max-bottles.part1" />
+            &nbsp;
+            <Link to={'/shipping_policy'}>
+              <IntlMsg id="product.single.errors.max-bottles.part2" />
+            </Link>
           </p>,
         ]);
       } break;
 
       case 'Not enough': {
         showErrorMsg = () => (
-          <p>Oops! Please choose a quantity of at least 1. 😀 </p>
+          <p>
+            <IntlMsg id="product.single.errors.not-enough" />
+          </p>
         );
       } break;
 
       case 'No strength': {
         showErrorMsg = () => (
-          <p>You must choose a Nicotine Strength.</p>
+          <p>
+            <IntlMsg id="product.single.errors.no-strength" />
+          </p>
         );
       } break;
 
       case 'Max items': {
         showErrorMsg = () => ([
-          <p
-            key={new Buffer('max-allowed', 'utf8').toString('base64')}
-          >
-            You already have the max allowed quantity.
+          <p key={new Buffer('max-allowed', 'utf8').toString('base64')} >
+            <IntlMsg id="product.single.errors.max-items" />
           </p>,
           <p key={new Buffer('max-allowed-link', 'utf8').toString('base64')}>
-            Click{'\u00A0'}<Link to={'/cart'}>here</Link> to remove some items.
+            <IntlMsg id="product.single.errors.max-items.help1" />
+            <Link to={'/cart'}>
+              &nbsp;<IntlMsg id="product.single.errors.max-items.help2" />
+            </Link>
+            &nbsp;<IntlMsg id="product.single.errors.max-items.help3" />
           </p>,
         ]);
       } break;
@@ -57,7 +60,7 @@ function ErrorMsg({ error, errorMsg }) {
       case 'Out of stock': {
         showErrorMsg = () => ([
           <p key={new Buffer('out-of-stock', 'utf8').toString('base64')}>
-            We apologize, but this item is currently OUT OF STOCK. 😕
+            <IntlMsg id="product.single.errors.out-of-stock" />
           </p>,
         ]);
       } break;

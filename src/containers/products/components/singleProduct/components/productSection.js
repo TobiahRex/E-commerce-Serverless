@@ -21,7 +21,10 @@ class ProductSection extends Component {
     loggedIn: bool.isRequired,
     juiceObj: shape({
       id: string,
-      title: string,
+      title: shape({
+        en: string,
+        ja: string,
+      }).isRequired,
       nicotineStrength: string,
       imageUrl: string,
       slug: string,

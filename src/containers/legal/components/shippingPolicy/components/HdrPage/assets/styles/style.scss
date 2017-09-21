@@ -1,0 +1,18 @@
+.main__title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  // height: 8em;
+}
+.main__title.title--header {
+  font-size: 5em;
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  color: #365899;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+}

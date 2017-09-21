@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import ProductTable from './productTable';
 import NewsletterOption from './newsletterOption';
 import ProductReviewComment from './productReviewComment';
@@ -16,10 +17,11 @@ function ProductReview({
   return (
     <div className="checkout__product-review">
       <div className="title">
-        <h3>Product Review</h3>
+        <h3><IntlMsg id="checkout.product-review.title" /></h3>
       </div>
+
       <ProductTable cart={cart || []} />
-      
+
       <ProductReviewComment
         comments={comments}
         handleOnChange={handleOnChange}

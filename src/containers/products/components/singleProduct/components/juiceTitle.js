@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 function JuiceTitle({ title }) {
   return (
     <div className="desc__title">
-      <h1>{title}</h1>
+      <h1>{title[IntlLocale]}</h1>
     </div>
   );
 }
-const { string } = PropTypes;
+const { string, shape } = PropTypes;
 JuiceTitle.propTypes = {
-  title: string.isRequired,
+  title: shape({
+    en: string,
+    ja: string,
+  }).isRequired,
 };
 export default JuiceTitle;

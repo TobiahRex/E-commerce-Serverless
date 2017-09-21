@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl'
 
 function BulkSaleModal({ taxRate, showModal, modalHandler }) {
   let style;
@@ -37,43 +38,60 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
         </div>
         <div className="dialogue__product-title">
           <h1 className="product-title__title">
-            {'Let\'s Make a Deal'}!
+            <IntlMsg id="product.modal.bulk.title" />&nbsp;
           </h1>
           <p className="product-title__sub-title">
-            <span className="required sub-title__bold"> BUY 4 BOTTLES </span>
-            and we’ll slice
-            <span className="required sub-title__bold"> 25% OFF </span>
-            the price.
+            <span className="required sub-title__bold">
+              <IntlMsg id="product.modal.bulk.subtitle1" />&nbsp;
+            </span>
+            <IntlMsg id="product.modal.bulk.subtitle2" />&nbsp;
+            <span className="required sub-title__bold">
+              25% OFF&nbsp;
+            </span>
+            <IntlMsg id="product.modal.bulk.subtitle3" />&nbsp;
           </p>
           <br />
           <p className="product-title__example">
-            <i>Example:</i>
+            <i>
+              <IntlMsg id="product.modal.bulk.title.example" />
+            </i>
           </p>
         </div>
         <table className="dialogue__table">
           <thead className="table__header">
             <tr className="header__row">
               <th className="header--qty">
-                <h4>QTY</h4>
+                <h4>
+                  <IntlMsg id="product.modal.bulk.header.qty" />
+                </h4>
               </th>
               <th className="header--description">
-                <h4>Description</h4>
+                <h4>
+                  <IntlMsg id="product.modal.bulk.header.description" />
+                </h4>
               </th>
               <th className="header--price">
-                <h4>Price</h4>
+                <h4>
+                  <IntlMsg id="product.modal.bulk.header.price" />
+                </h4>
               </th>
             </tr>
           </thead>
           <tbody className="table__body">
             <tr className="body__row--main">
               <td className="body--qty">
-                <p>4</p>
+                <p>
+                  <IntlMsg id="product.modal.bulk.row.qty" />
+                </p>
               </td>
               <td className="body--description">
-                <p className="description__title">Fruity Bamm-Bamm</p>
+                <p className="description__title">
+                  <IntlMsg id="product.modal.bulk.row.flavor" />
+                </p>
                 <br />
                 <p className="description__nicotine-strength">
-                  Nicotine Strenght: <i>6mg</i>
+                  <IntlMsg id="product.modal.bulk.row.strength" />&nbsp;
+                  <i>6mg</i>
                 </p>
                 <br />
                 <p className="description__sku">
@@ -88,15 +106,25 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             </tr>
             <tr className="body__row--totals">
               <td className="body__totals--categories" colSpan="2">
-                <p className="category__subtotal">Subtotal</p>
+                <p className="category__subtotal">
+                  <IntlMsg id="product.modal.bulk.row.subtotal" />
+                </p>
                 <br />
-                <p className="category__tax">Tax</p>
+                <p className="category__tax">
+                  <IntlMsg id="product.modal.bulk.row.tax" />
+                </p>
                 <br />
-                <p className="category__discount required">Discount</p>
+                <p className="category__discount required">
+                  <IntlMsg id="product.modal.bulk.row.discount" />
+                </p>
                 <br />
-                <p className="category__shipping">Free International Shipping</p>
+                <p className="category__shipping">
+                  <IntlMsg id="product.modal.bulk.row.shipping" />
+                </p>
                 <br />
-                <p className="category__order-total">Order Total</p>
+                <p className="category__order-total">
+                  <IntlMsg id="product.modal.bulk.row.total" />
+                </p>
               </td>
               <td className="body__totals--prices">
                 <p className="price__subtotal">$ 120.00</p>
@@ -120,17 +148,21 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             data-tag=""
             className="action-btn__close primary-button sweep-right"
             onClick={modalHandler}
-          >Close</button>
+          >
+            <IntlMsg id="product.modal.bulk.btns.close" />
+          </button>
           <div className="action-btn__msg">
             <div className="msg__title">
-              <p>Oh!</p>
+              <p>
+                <IntlMsg id="product.modal.bulk.msg.oh" />
+              </p>
             </div>
             <p className="msg__sub-title">
-              Did we mention you get
+              <IntlMsg id="product.modal.bulk.msg.mention" />&nbsp;
               <span className="sub-title__free required">
                 {'\u00A0'}FREE{'\u00A0'}
               </span>
-              International Shipping?!
+              <IntlMsg id="product.modal.bulk.msg.intl-shipping" />
             </p>
           </div>
           <button
@@ -138,7 +170,9 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
             data-tag="view-juices"
             className="action-btn__juices primary-button sweep-right"
             onClick={modalHandler}
-          >{'Let\'s Do It!'}</button>
+          >
+            <IntlMsg id="product.modal.bulk.msg.lets-do-it" />
+          </button>
         </div>
       </div>
     </div>
