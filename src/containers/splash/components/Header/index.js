@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import { NavBob } from '../'
+import { NavBob } from '../';
 
 const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import Scroll from 'react-scroll';
-import './assets/styles/style.scss';
+import './assets/styles/style.css';
 
 const scroll = Scroll.animateScroll;
 const { number, string } = PropTypes;
