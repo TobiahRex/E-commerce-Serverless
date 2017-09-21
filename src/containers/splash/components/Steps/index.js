@@ -1,5 +1,5 @@
 import React from 'react';
-// import { FormattedMessage as IntlMsg } from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function Steps() {
   return (
@@ -18,7 +18,7 @@ export default function Steps() {
           <div className="inner-container__blurb">
             <p className="blurb__text">
               <strong className="text--number">1.</strong>&nbsp;
-              Start by choosing from our delicious Juice Flavors with 4 different Nicotine Strengths and place your order.
+              <IntlMsg id="home.how.buying.desc" />
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function Steps() {
           <div className="inner-container__blurb" data-ix="fade-on-scroll">
             <p className="blurb__text">
               <strong className="text--number">2.</strong>&nbsp;
-              Moments later, we receive your order at our Distribution Center in California.
+              <IntlMsg id="home.how.distro.desc" />
             </p>
           </div>
           <div className="inner-container__right--container">
@@ -58,7 +58,7 @@ export default function Steps() {
           <div className="inner-container__blurb" data-ix="fade-on-scroll">
             <p className="blurb__text">
               <strong className="text--number">3.</strong>&nbsp;
-              Our distribution center then quickly prepares your package.
+              <IntlMsg id="home.how.warehouse.desc" />
             </p>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function Steps() {
           <div className="inner-container__blurb" data-ix="fade-on-scroll">
             <p className="blurb__text">
               <strong className="text--number">4.</strong>&nbsp;
-              A few hours later, your package is put on a direct flight from California to Japan.
+              <IntlMsg id="home.how.flight.desc" />
             </p>
           </div>
           <div className="inner-container__right--container">
@@ -98,7 +98,7 @@ export default function Steps() {
           <div className="inner-container__blurb" data-ix="fade-on-scroll">
             <p className="blurb__text">
               <strong className="text--number">5.</strong>&nbsp;
-              Soon after landing, your package is on a delivery truck, on its way to your Japanese address.
+              <IntlMsg id="home.how.truck.desc" />
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function Steps() {
             <div className="blurb__text-container">
               <p className="blurb__text text--alt">
                 <strong className="text--number">6.</strong>&nbsp;
-                A few days later, you receive your package from Nic Juice 2 Japan. 😁
+                <IntlMsg id="home.how.delivery.desc" />
               </p>
             </div>
             <div className="blurb__button--container" data-ix="fade-up-2">
@@ -120,7 +120,7 @@ export default function Steps() {
               >
                 <div className="large__button--alt" />
                 <p className="large-button__text text--phone-landscape">
-                  Buy Now
+                  <IntlMsg id="home.how.delivery.desc.buyNow" />
                 </p>
               </a>
             </div>

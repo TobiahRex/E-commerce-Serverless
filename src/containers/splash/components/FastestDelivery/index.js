@@ -6,7 +6,7 @@ export default function FastestDelivery() {
     <div className="splash-fastest-delivery">
       <div className="fastest-delivery__header" data-ix="fastest-delivery-scroll">
         <h2 className="header__text" data-ix="fastest-delivery-scroll">
-          Fastest Delivery
+          <IntlMsg id="home.fastest.title" />
         </h2>
       </div>
       <div className="fastest-delivery__blurb-container">
@@ -14,23 +14,18 @@ export default function FastestDelivery() {
           <div className="content__text-container" data-ix="fastest-delivery-scroll">
             <div className="text-container__heading-blurb">
               <h3 className="heading-blurb__content--heading">
-                Nobody Is Faster In Japan
+                <IntlMsg id="home.fastest.subtitle" />
               </h3>
             </div>
             <div className="text-container__blurb">
               <p className="blurb__content--text">
-                No one can deliver Nicotine E-Juice to Japan faster than us.
+                <IntlMsg id="home.fastest.desc1" />
                 <br />
                 <br />
-                Once you shop with us and see how fast we are,&nbsp;
-                {"we're"}
-                {' '}
-                confident you&nbsp;
-                {"won't"}
-                &nbsp;want to buy Nicotine vape juice from anywhere else.
+                <IntlMsg id="home.fastest.desc2" />
                 <br />
                 <br />
-                Hard to believe? Try us now! You’ll be happy you did.
+                <IntlMsg id="home.fastest.desc3" />
               </p>
             </div>
           </div>
@@ -38,7 +33,7 @@ export default function FastestDelivery() {
             <a className="large__button w-inline-block" data-ix="large-button-hover">
               <div className="large__button--alt" />
               <p className="large-button__text">
-                Buy Now
+                <IntlMsg id="home.fastest.buyNow" />
               </p>
             </a>
           </div>

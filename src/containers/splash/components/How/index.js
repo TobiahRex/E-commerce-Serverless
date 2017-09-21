@@ -1,5 +1,5 @@
 import React from 'react';
-// import { FormattedMessage as IntlMsg } from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function How() {
   return (
@@ -7,7 +7,7 @@ export default function How() {
       <div className="how__header">
         <div className="header__text--container">
           <h2 className="text-container__header-button" data-ix="show-hide">
-            How
+            <IntlMsg id="home.how.title" />
           </h2>
         </div>
         <div className="header__text--container">
