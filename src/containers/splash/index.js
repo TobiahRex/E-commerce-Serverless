@@ -15,6 +15,7 @@ import {
 import './assets/styles/styles.css';
 
 class Splash extends React.Component {
+
   calculateHeight = (header) => {
     const { mobile } = this.props;
     const height = window.innerHeight;
@@ -38,7 +39,10 @@ class Splash extends React.Component {
     return (
       <div className="homepage">
         <div className="splash-container">
-          <Header />
+          <Header
+            height={this.calculateHeight(true)}
+            mobile={this.props.mobile}
+          />
           <Reviews />
           <FastestDelivery />
           <How />

@@ -5,3 +5,4 @@ export How from './How';
 export Steps from './Steps';
 export NewsReviews from './NewsReviews';
 export Promotion from './Promotion';
+export NavBob from './NavBob';

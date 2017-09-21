@@ -661,6 +661,7 @@
   font-family: Ubuntu, Helvetica, sans-serif;
   font-size: 18px;
   text-decoration: none;
+  background-color: #FC2525;
 }
 
 .box__button:hover {
@@ -1483,6 +1484,7 @@
 }
 
 .nav-button {
+  cursor: pointer;
   display: block;
   width: 100%;
   max-width: 1080px;
@@ -1563,7 +1565,7 @@
   padding-top: 0px;
   font-family: Fontawesome, sans-serif;
   color: #fff;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 20px;
 }
 

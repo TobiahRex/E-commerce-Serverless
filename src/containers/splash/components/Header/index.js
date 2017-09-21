@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import { NavBob } from '../'
 
-export default function Header() {
+const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+
+function Header({ mobile, height }) {
   return (
-    <div className="splash-img__background">
+    <div className="splash-img__background" style={{ height }}>
       <div className="splash-img">
         <div className="splash-img__header-container">
           <div className="header-container__box" data-ix="fade-in-on-load">
@@ -26,30 +31,30 @@ export default function Header() {
               </h1>
             </div>
             <div className="box__button-container">
-              <a
-                className="box__button w-inline-block"
+              <button
+                className="box__button w-inline-block primary-button shutter-out-horizontal"
                 data-ix="button-load-hover"
-                href="http://www.google.com"
+                onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}
               >
-                <div className="box__button--alt" data-ix="button-load-hover" />
-                <div className="box__button--alt-2" data-ix="button-load-hover" />
-                <p className="box__button--text" data-ix="button-load-hover">
+                <p className="box__button--text">
                   <IntlMsg id="home.header.button.buyNow" />
                 </p>
-              </a>
+              </button>
             </div>
           </div>
         </div>
-        <div className="nav-button">
-          <div className="nav-button__container">
-            <div className="container__nav-button">
-              <div className="nav-button__fa-chevron">
-                
-              </div>
-            </div>
-          </div>
-        </div>
+        { !mobile && <NavBob className="header__nav-down--container" height={height} />}
       </div>
     </div>
   );
 }
+const { bool, number } = PropTypes;
+Header.propTypes = {
+  mobile: bool,
+  height: number,
+};
+Header.defaultProps = {
+  mobile: false,
+  height: 0,
+};
+export default Header;
