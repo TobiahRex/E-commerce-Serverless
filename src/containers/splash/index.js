@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { intlShape, injectIntl } from 'react-intl';
 import { WebflowJs, WebflowAnimations } from './assets/utils/index';
 import {
   Header,
@@ -70,19 +69,17 @@ class Splash extends React.Component {
   }
 }
 Splash.propTypes = {
-  intl: intlShape.isRequired,
   mobile: PropTypes.bool,
 };
 Splash.defaultProps = {
   mobile: false,
 };
-const SplashWithIntl = injectIntl(Splash);
-const SplashWithStateAndIntl = connect(
+const SplashWithState = connect(
   ({ mobile }) => ({
     mobile: !!mobile.mobileType,
   }),
   dispatch => ({
     push: location => dispatch(push(location)),
   }),
-)(SplashWithIntl);
-export default SplashWithStateAndIntl;
+)(Splash);
+export default SplashWithState;

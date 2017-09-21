@@ -1,11 +1,11 @@
 import React from 'react';
-import { FormattedMessage as IntlMsg } from 'react-intl';
-import './assets/styles/style.css';
-import './assets/styles/reviews.css';
-import './assets/styles/news.css';
+// import { FormattedMessage as IntlMsg } from 'react-intl';
 import { propTypes } from './assets/propValidation';
 import { contentData } from './assets/utils';
 import { CardReview, CardArticle } from './components';
+import './assets/styles/style.css';
+import './assets/styles/reviews.css';
+import './assets/styles/news.css';
 
 class NewsReviews extends React.Component {
   static propTypes = propTypes;
