@@ -4,8 +4,9 @@
 import { exec } from 'child_process';
 import dotenv from 'dotenv';
 import colors from 'colors'; // eslint-disable-line
+import path from 'path';
 
-dotenv.load({ silent: true });
+dotenv.config({ silent: true, path: path.resolve('.env-prod') });
 
 exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIBUTIONID} --paths '/*'`, (err, result) => {
   if (err) {
