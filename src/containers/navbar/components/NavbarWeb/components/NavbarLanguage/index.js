@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import localeActions from '../../../../../../redux/locale';
 
 import {
@@ -17,6 +18,8 @@ const { string, func } = PropTypes;
 
 class NavbarLanguage extends React.Component {
   static propTypes = {
+    location: string.isRequired,
+    push: func.isRequired,
     saveLanguage: func.isRequired,
     activeLanguage: string.isRequired,
   }
@@ -46,7 +49,10 @@ class NavbarLanguage extends React.Component {
 
   onLanguageChange = (language) => {
     this.setState(() => ({ activeLanguage: language }),
-    () => this.props.saveLanguage(language));
+    () => {
+      this.props.saveLanguage(language);
+      this.props.push(this.props.location);
+    });
   }
 
   render() {
@@ -75,8 +81,12 @@ class NavbarLanguage extends React.Component {
   }
 }
 export default connect(
-  ({ locale }) => ({ activeLanguage: locale.activeLanguage }),
+  ({ locale, routing }) => ({
+    activeLanguage: locale.activeLanguage,
+    location: routing.locationBeforeTransitions.pathname,
+  }),
   dispatch => ({
+    push: location => push(location),
     saveLanguage: language => dispatch(localeActions.setLanguage(language)),
   }),
 )(NavbarLanguage);
