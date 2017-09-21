@@ -15,24 +15,6 @@ import {
 import './assets/styles/styles.css';
 
 class Splash extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const {
-      intl: {
-        messages: {
-          'user-stories.breadCrumb.paths1': bcPaths1,
-          'user-stories.breadCrumb.lastCrumb': lastCrumb,
-        },
-      },
-    } = props;
-
-    this.intl = {
-      bcPaths1,
-      lastCrumb,
-    };
-  }
-
   calculateHeight = (header) => {
     const { mobile } = this.props;
     const height = window.innerHeight;

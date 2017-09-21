@@ -1,5 +1,5 @@
 import React from 'react';
-// import { FormattedMessage as IntlMsg } from 'react-intl';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 export default function Header() {
   return (
@@ -19,10 +19,10 @@ export default function Header() {
             </div>
             <div className="box__header-container">
               <h1 className="header-container__header" data-ix="staggered-load">
-                Fastest Nicotine e-Juice Delivery in Japan
+                <IntlMsg id="home.header.title" />
               </h1>
               <h1 className="header--2 header-container__header" data-ix="staggered-load-2">
-                Guaranteed!
+                <IntlMsg id="home.header.subtitle" />
               </h1>
             </div>
             <div className="box__button-container">
@@ -34,7 +34,7 @@ export default function Header() {
                 <div className="box__button--alt" data-ix="button-load-hover" />
                 <div className="box__button--alt-2" data-ix="button-load-hover" />
                 <p className="box__button--text" data-ix="button-load-hover">
-                  Buy Now
+                  <IntlMsg id="home.header.button.buyNow" />
                 </p>
               </a>
             </div>

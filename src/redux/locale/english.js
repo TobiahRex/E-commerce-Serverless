@@ -217,7 +217,7 @@ export default {
     'product.modal.success.express-checkout': 'Express Checkout',
     'home.header.title': 'Fastest Nicotine e-Juice Delivery In Japan',
     'home.header.subtitle': 'Guaranteed!',
-    'home.header.button.buyNow': 'Buy Now!',
+    'home.header.button.buyNow': 'Buy Now',
     'home.fastest.title': 'Fastest Delivery',
     'home.fastest.subtitle': 'Nobody is faster in Japan',
     'home.fastest.desc1': 'No one can deliver Nicotine E-Juice to Japan faster than us.',
