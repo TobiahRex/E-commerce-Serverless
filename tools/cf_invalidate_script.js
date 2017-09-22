@@ -7,9 +7,9 @@ import colors from 'colors'; // eslint-disable-line
 import path from 'path';
 
 <<<<<<< HEAD
-dotenv.load({ path: path.resolve('.env-dev') });
+dotenv.load({ path: path.resolve('.env-prod') });
 =======
-dotenv.config({ silent: true, path: path.resolve('.env-dev') });
+dotenv.config({ silent: true, path: path.resolve('.env-prod') });
 >>>>>>> nj2jp-development
 
 exec(`aws cloudfront create-invalidation --distribution-id ${process.env.DISTRIBUTIONID} --paths '/*'`, (err, result) => {
