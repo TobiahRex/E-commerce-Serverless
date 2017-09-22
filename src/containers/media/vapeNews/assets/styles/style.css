@@ -3,6 +3,7 @@
   max-width: 1080px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 10em;
 }
 
 .news-top-section {
@@ -47,8 +48,10 @@
   text-decoration: none;
 }
 
-.header__text {
+h1.header__text {
+  line-height: 1.5em;
   position: relative;
+  /*top: -90px;*/
   z-index: 2;
   display: block;
   max-width: 1000px;
@@ -57,7 +60,7 @@
   background-color: #fff;
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #385a97;
-  font-size: 38px;
+  font-size: 30px;
   line-height: 46px;
   font-weight: 500;
   text-align: left;

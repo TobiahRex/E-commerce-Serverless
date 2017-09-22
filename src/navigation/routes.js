@@ -20,7 +20,7 @@ const parseAuthHash = (nextState) => {
 };
 const errorLoading = (error) => {
   throw new Error(`Dynamic page loading failed.
-  ERROR: ${error.message}`);
+  ERROR: ${error}`);
 };
 const loadRoute = cb => module => cb(null, module.default);
 
