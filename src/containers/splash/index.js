@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -34,7 +35,7 @@ class Splash extends React.Component {
     WebflowJs();
     WebflowAnimations();
     return (
-      <div className="homepage" key={Date.now()}>
+      <div className="homepage" key={moment().format('YYMMDDSSSS')} >
         <div className="splash-container">
           <Header
             height={this.calculateHeight(true)}

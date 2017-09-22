@@ -1,11 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 import { intlShape, injectIntl } from 'react-intl';
 import { WebflowJs, WebflowAnimations } from './assets/utils/index';
 import {
   HdrPage,
   BreadCrumb,
 } from './components';
-import './assets/styles';
+import './assets/styles/style.css';
 
 class VapeNews extends React.Component {
   constructor(props) {
@@ -29,13 +30,12 @@ class VapeNews extends React.Component {
   }
 
   componentDidUpdate() {
-    WebflowJs();
     WebflowAnimations();
   }
 
   render() {
     return (
-      <div className="vape-news">
+      <div className="vape-news" key={moment().format('YYMMDDSSSS')}>
         <BreadCrumb
           paths={[this.intl.bcPaths1]}
           classes={['home']}
@@ -43,7 +43,7 @@ class VapeNews extends React.Component {
           lastCrumb={this.intl.lastCrumb}
         />
 
-        <HdrPage header={this.intl.header} />
+        <HdrPage header={'vapenews.header.title'} />
 
         <div className="news-top-section">
           <a
@@ -64,7 +64,7 @@ class VapeNews extends React.Component {
             </div>
             <div className="top-section__header">
               <h1 className="header__text" data-ix="fade-down-3">
-                Japan: The fear of secondhand&nbsp;smoke to propagate to heat-not-burn cigarettes
+                Japan: The fear of secondhand smoke to propagate to heat-not-burn cigarettes
               </h1>
             </div>
             <div className="top-section__author-info" data-ix="fade-down-3">

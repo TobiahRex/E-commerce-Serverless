@@ -4,7 +4,6 @@ import {
   intlShape,
   injectIntl,
 } from 'react-intl';
-import './assets/styles';
 import {
   WebflowJs,
   WebflowAnimations,
@@ -15,6 +14,7 @@ import {
   BreadCrumb,
   UserCard,
 } from './components';
+import './assets/styles/style.css';
 
 class UserStories extends React.Component {
   constructor(props) {
@@ -36,7 +36,6 @@ class UserStories extends React.Component {
   }
 
   componentDidUpdate() {
-    WebflowJs();
     WebflowAnimations();
   }
 
