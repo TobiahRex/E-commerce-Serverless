@@ -1,1 +1,1 @@
-import './user-stories.css';
+import './style.css';

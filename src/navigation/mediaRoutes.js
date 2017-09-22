@@ -2,11 +2,8 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
-// import About from '../containers/legal/components/about/';
-// import ContactUs from '../containers/contactUs';
 import Phone from '../containers/legal/components/phone';
-// import UserStories from '../containers/media/userStories';
-import VapeNews from '../containers/media/vapeNews';
+import VapeNews from '../containers/media/vapeNews/';
 import Faqs from '../containers/legal/faqs';
 import MissionStatement from '../containers/legal/missionStatement';
 import SocialMedia from '../containers/legal/socialMedia';
