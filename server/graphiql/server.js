@@ -11,7 +11,7 @@ import api from './api/index';
 import authCheck from './api/authentication';
 import envCheck from './envCheck';
 
-require('dotenv').config({ path: path.resolve('.env-prod') });
+require('dotenv').config({ path: path.resolve('.env-dev') });
 
 envCheck(process.env.NODE_ENV);
 const PORT = process.env.GRAPHQL_PORT;

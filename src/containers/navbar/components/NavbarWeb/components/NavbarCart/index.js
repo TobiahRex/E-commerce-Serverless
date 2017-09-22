@@ -6,13 +6,8 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import {
-<<<<<<< HEAD:src/containers/navbar/components/NavbarWeb/components/NavbarCart/index.js
-  NavbarCartMainButton,
-  NavbarCartDropdnContent,
-=======
   NavbarCartBtn,
   NavbarDropdown,
->>>>>>> nj2jp-development:src/containers/navbar/components/NavbarWeb/components/NavbarCart/index.js
 } from './components';
 import {
   orderActions,
