@@ -11,6 +11,9 @@ config.yml
 config.dev.yml
 config.tsh.yml
 config.prod.yml
+config.development.yml
+config.troubleshoot.yml
+config.production.yml
 config.json
 
 # miscellaneous
