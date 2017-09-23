@@ -12,14 +12,14 @@ webpack(webpackConfig).run((err, stats) => {
 
   const jsonStats = stats.toJson();
 
-  if (jsonStats.hasErrors) {
+  if (jsonStats.errors.length !== 0) {
     process.stdout.write('\nWebpack generated the following errors: '.red.bold);
-    return jsonStats.errors.map(error => process.stdout.write(`
+    return jsonStats.errors.map(error => process.stderr.write(`
       ❌ ${error}
     `.red));
   }
 
-  if (jsonStats.hasWarnings) {
+  if (jsonStats.warnings.length !== 0) {
     process.stdout.write('Webpack generated the following warnings: '.bold.yellow);
     jsonStats.warnings.map(warning =>
       process.stdout.write(`
