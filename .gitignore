@@ -11,6 +11,9 @@ config.yml
 config.dev.yml
 config.tsh.yml
 config.prod.yml
+config.development.yml
+config.troubleshoot.yml
+config.production.yml
 config.json
 
 # miscellaneous
@@ -22,3 +25,4 @@ config.json
 .env-tsh
 npm-debug.log
 _syntax_tests.js
+build-report.html
