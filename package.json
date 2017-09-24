@@ -24,7 +24,7 @@
     "sls-deploy-development": "cd ./serverless && serverless deploy --stage development -vvvv",
     "sls-deploy-troubleshoot": "cd ./serverless && serverless deploy --stage troubleshoot -vvvv",
     "sls-deploy-production": "cd ./serverless && serverless deploy --stage production -vvvv",
-    "start": "babel-watch ./server/server.js",
+    "start": "NODE_ENV=development babel-watch ./server/server.js",
     "start-prod": "babel-node ./tools/distServer.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf ./dist && mkdir dist"
