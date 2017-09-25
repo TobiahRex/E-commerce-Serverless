@@ -40,7 +40,7 @@ export default (
     {Routes.CheckoutRoutes()}
     {Routes.NotFoundRoute()}
     {Routes.TrackingRoute()}
-    {Routes.UserDashboardRoutes(requireAuth)}
+    {/* {Routes.UserDashboardRoutes(requireAuth)} */}
     {/* {Routes.AdminDashboardRoutes(requireAuth)} */}
   </Route>
 );
