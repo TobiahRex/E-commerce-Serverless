@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
-import BreadCrumb from '../../../../components/breadcrumbs';
-import UserSideBar from '../userDashboard_sidebar/userSideBar';
-import UserWelcomeMsg from '../userDashboard_welcomeMsg/userWelcomeMsg';
-
-const { objectOf, any } = PropTypes;
-const propTypes = {
-  location: objectOf(any).isRequired,
-};
+import {
+  SideBar,
+  BreadCrumb,
+  WelcomeMsg,
+} from '../../components';
 
 function UserHomeDash({ location }) {
   return (
@@ -22,9 +18,9 @@ function UserHomeDash({ location }) {
           lastCrumb="Home Dashboard"
         />
 
-        <UserWelcomeMsg />
+        <WelcomeMsg />
         <div className="user-home-dash__body">
-          <UserSideBar location={location} />
+          <SideBar location={location} />
           <div className="body__dashboard">
             <div className="dashboard--container">
               <div className="dashboard--title">
@@ -176,5 +172,9 @@ function UserHomeDash({ location }) {
     </div>
   );
 }
+const { objectOf, any } = PropTypes;
+const propTypes = {
+  location: objectOf(any).isRequired,
+};
 UserHomeDash.propTypes = propTypes;
 export default UserHomeDash;

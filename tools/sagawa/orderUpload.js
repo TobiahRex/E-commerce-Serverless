@@ -42,17 +42,17 @@ sagawaUploadAPI.uploadOrder(`
 <DATA>
   <ADDRESS>
     <PRINTERNAME />
-    <BOXID>NJ2JP201708200001</BOXID>
-    <SHIPDATE>2017/08/20</SHIPDATE>
-    <KANA>トーバーヤ　ビークリー</KANA>
+    <BOXID>NJ2017092400001</BOXID>
+    <SHIPDATE>2017/09/25</SHIPDATE>
+    <KANA>Brian Wilson</KANA>
     <POSTAL>1400012</POSTAL>
-    <JPADDRESS1>東京都品川区勝島</JPADDRESS1>
-    <JPADDRESS2>1-1-1　東京SRC4F</JPADDRESS2>
-    <CONTEL>08039188013</CONTEL>
-    <KBN>${process.env.SAGAWA_TEST_JAPANESE}</KBN>
-    <WGT>0.15</WGT>
+    <JPADDRESS1>神奈川県横浜市金沢区釜利谷西</JPADDRESS1>
+    <JPADDRESS2>5-2-22 Kamariya Nishi</JPADDRESS2>
+    <CONTEL>08040538791</CONTEL>
+    <KBN></KBN>
+    <WGT>0.12</WGT>
     <SHINADAI>120.00</SHINADAI>
-    <SHITEIBI>2017/07/29</SHITEIBI>
+    <SHITEIBI>2017/09/29</SHITEIBI>
     <SHITEIJIKAN>1200</SHITEIJIKAN>
     <SOURYO>0</SOURYO>
     <TESURYO>0</TESURYO>
@@ -61,7 +61,7 @@ sagawaUploadAPI.uploadOrder(`
   </ADDRESS>
   <ITEM>
     <ITEMCD>NJ2JP0001</ITEMCD>
-    <ITEMNAME>VAPE SWITCH - FRENCH VANILLA MOCHA NICOTINE 6mg E-JUICE 30 mil</ITEMNAME>
+    <ITEMNAME>VAPE SWITCH - FRENCH VANILLA MOCHA NICOTINE 8mg E-JUICE 30 mil</ITEMNAME>
     <USAGE>0</USAGE>
     <ORIGIN>US</ORIGIN>
     <PIECE>4</PIECE>
@@ -86,31 +86,31 @@ sagawaUploadAPI.uploadOrder(`
     });
   }
 });
-
-const createSagawaCheckZipAPI = () => {
-  const api = create({
-    baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
-    credentials: 'omit',
-    headers: {
-      'Content-Type': 'text/xml; charset=utf-8',
-      SOAPAction: 'http://ws.com',
-    },
-  });
-
-  const checkZip = zip => api.post('getAddr',
-  `<?xml version='1.0' encoding='utf-8'?>
-  <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-  <soap:Body>
-    <getAddr xmlns='http://ws.com'>
-    <zipcode>${xmlOut(zip)}</zipcode>
-  </getAddr>
-</soap:body>
-</soap:Envelope>`);
-
-  return {
-    checkZip,
-  };
-};
+//
+// const createSagawaCheckZipAPI = () => {
+//   const api = create({
+//     baseURL: 'http://asp4.cj-soft.co.jp/SWebServiceComm/services/CommService',
+//     credentials: 'omit',
+//     headers: {
+//       'Content-Type': 'text/xml; charset=utf-8',
+//       SOAPAction: 'http://ws.com',
+//     },
+//   });
+//
+//   const checkZip = zip => api.post('getAddr',
+//   `<?xml version='1.0' encoding='utf-8'?>
+//   <soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'  xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+//   <soap:Body>
+//     <getAddr xmlns='http://ws.com'>
+//     <zipcode>${xmlOut(zip)}</zipcode>
+//   </getAddr>
+// </soap:body>
+// </soap:Envelope>`);
+//
+//   return {
+//     checkZip,
+//   };
+// };
 
 
 /**

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 // --------------------------- User
-import UserDashboard from '../containers/userDashboard/userDashComponents/userDashboard';
-import UserHomeDash from '../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash';
-import UserAddressBook from '../containers/userDashboard/userDashComponents/userDashboard_addressBook/userAddressBook';
+// import UserDashboard from '../containers/userDashboard/userDashComponents/userDashboard';
+// import UserHomeDash from '../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash';
+// import UserAddressBook from '../containers/userDashboard/userDashComponents/userDashboard_addressBook/userAddressBook';
 import UserManageLogin from '../containers/userDashboard/userDashComponents/userDashboard_manageLogin/userManageLogin';
 import UserNewsLetter from '../containers/userDashboard/userDashComponents/userDashboard_newsletter/userNewsLetter';
 import UserProductReviews from '../containers/userDashboard/userDashComponents/userDashboard_productReviews/userProductReviews';
@@ -32,72 +32,77 @@ function UserDashboardRoutes(requireAuth) {
     >
       <IndexRoute
         getComponet={(location, cb) => {
-          import('../containers/userDashboard/userDashComponents/userDashboard_home/userHomeDash' /* webpackChunkName: "userDashboard.home" */)
+          import('../containers/userDashboard/userDashComponents/userDashboard_home/' /* webpackChunkName: "userDash-home" */)
           .then(loadRoute(cb))
           .catch(errorLoading);
         }}
       />
-      <Route
+      {/* <Route
         path="address_book"
-        component={UserAddressBook}
+        getComponet={(location, cb) => {
+          import('../containers/userDashboard/userDashComponents/userDashboard_addressBook/userAddressBook')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+        }}
         onEnter={requireAuth}
-      />
-      <Route
+      /> */}
+
+      {/* <Route
         path="orders"
         component={UserOrders}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="order_:orderid/tracking_:trackingid"
         component={UserOrderTracking}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="product_reviews"
         component={UserProductReviews}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="login_apps"
         component={UserLoginApp}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="newsletter"
         component={UserNewsLetter}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="terms_and_conditions"
         component={UserLegal.TermsConditions}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="privacy_policy"
         component={UserLegal.PrivacyPolicy}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="shipping_policy"
         component={UserLegal.ShippingPolicy}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="return_policy"
         component={UserLegal.ReturnPolicy}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="nicotine_disclaimer"
         component={UserLegal.NicotineDisclaimer}
         onEnter={requireAuth}
-      />
-      <Route
+        />
+        <Route
         path="manage_login"
         component={UserManageLogin}
         onEnter={requireAuth}
-      />
-      <Route path="faqs" component={UserFaqs} />
+      /> */}
+      {/* <Route path="faqs" component={UserFaqs} /> */}
     </Route>
   );
 }
