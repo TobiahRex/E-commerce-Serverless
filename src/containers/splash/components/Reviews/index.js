@@ -1,8 +1,10 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import { WebflowJs } from './assets/utils';
 
 export default function Reviews() {
+  WebflowJs();
   return (
     <div className="splash-reviews">
       <div className="splash-reviews__header">

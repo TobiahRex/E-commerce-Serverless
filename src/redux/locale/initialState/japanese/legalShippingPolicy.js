@@ -1,0 +1,18 @@
+export default {
+  'legal.breadCrumb.paths1': '自宅',
+  'legal.breadCrumb.lastCrumb': '配送ポリシー',
+  'legal.policy.shipping.title': '配送ポリシー',
+  'legal.policy.shipping.order-process.title': 'ご注文処理と配送時間',
+  'legal.policy.shipping.order-process.desc': '注文は処理され、次の利用可能な営業日に出荷されます。 営業日は月曜日（07:00 PST）〜金曜日（07:00 PST）です。 すべての週末の注文（07:00 PST、土曜日＆日曜日の後の金曜日）は、月曜日の朝の午前7時（PST）に最初に処理されます。 この時間枠では、通常、お支払いの全額を受け取ってから1〜3営業日以内にご注文が発送されます。 出荷時の輸送時間は、実際の住所、住所情報の正確性、あいまいな出荷情報がある場合の配送担当者からの質問（連絡先番号による回答）、および/またはその他の不快な点に応じて2〜7営業日かかります 状況。 ご理解いただきありがとうございます。',
+  'legal.policy.shipping.quantity-restrictions.title': '数量制限',
+  'legal.policy.shipping.quantity-restrictions.blurb1': '日本の厚生労働省は、ニコチンの電子ジュースの輸入規制を受けています。 1人の人は、一人当たり、住所ごと、月に一度に最大120ミリリットルまで輸入することができます。 詳細はこちらのWebサイトをご覧ください：',
+  'legal.policy.shipping.quantity-restrictions.blurb2': '日本厚生労働省',
+  'legal.policy.shipping.cods.title': 'CODs',
+  'legal.policy.shipping.cods.desc': '私たちは現金による引き渡しを受け付けません。',
+  'legal.policy.shipping.hurry.title': 'ひどいですか？',
+  'legal.policy.shipping.hurry.desc': '私たちは、要望に応じて、ほとんどのアイテムに優先処理と配送を提供します。 特別な指示については、電話でご注文ください。',
+  'legal.policy.shipping.tax.title': '消費税',
+  'legal.policy.shipping.tax.desc': 'ワシントン州の税金要件に準拠して注文する際、当社は独占的な消費税を徴収します。 日本への出荷はすべてワシントン州販売税の対象となります。',
+  'legal.policy.shipping.customer-service.title': '消費税',
+  'legal.policy.shipping.customer-service.desc': '私たちの役立つカスタマーサービス部門はあらゆる面であなたを支援することを約束しています。 注文に関するご質問や問題がある場合は、月曜日〜金曜日、午前8時〜午後5時（UTC + 9）までカスタマーサービスに1-855-587-8888までお電話ください。 またはsupport@vapeswitch.comまで24時間、週7日電子メールでお問い合わせください。 注文が出荷される前に、特別なリクエストや調整をカスタマーサービス部門と調整する必要があります。',
+};

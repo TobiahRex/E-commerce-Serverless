@@ -1,0 +1,16 @@
+export default {
+  'contactus.header': 'お問い合わせ',
+  'contactus.breadcrumb.paths1': '自宅',
+  'contactus.breadcrumb.lastcrumb': 'お問い合わせ',
+  'contactus.label.name': '名前',
+  'contactus.label.email': '電子メイル',
+  'contactus.label.message': 'メッセージ',
+  'contactus.input.placeholder.name': 'あなたの名前を入力してください',
+  'contactus.input.placeholder.email': 'メールアドレスを入力してください',
+  'contactus.input.placeholder.message': 'あなたは何を言いたいのですか？',
+  'contactus.checkbox.label': 'あなたにこのメールのコピーを送ってください',
+  'contactus.button.label.send': '送る',
+  'contactus.button.label.submitting': 'プロセッシング。。。',
+  'contactus.button.label.success': 'サクセス',
+  'contactus.button.error.label': 'エラー',
+};

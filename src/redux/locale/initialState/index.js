@@ -1,5 +1,5 @@
-import english from './english';
-import japanese from './japanese';
+import english from './english/';
+import japanese from './japanese/';
 
 export default {
   activeLanguage: navigator.language.slice(0, 2),
