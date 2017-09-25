@@ -348,7 +348,7 @@ const tshConfig = {
 
 switch (process.env.NODE_ENV) {
   case 'production':
-    webpackConfig = prodConfig
+    webpackConfig = prodConfig;
     break;
   case 'troubleshoot':
     webpackConfig = tshConfig;
@@ -356,6 +356,7 @@ switch (process.env.NODE_ENV) {
   case 'development':
     webpackConfig = devConfig;
     break;
+  default: break;
 }
 
 export default webpackConfig;
