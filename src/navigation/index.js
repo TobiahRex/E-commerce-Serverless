@@ -1,6 +1,6 @@
 import LegalRoutes from './legalRoutes';
 import AuthRoutes from './authRoutes';
-import UserDashboardRoutes from './userDashboardRoutes';
+// import UserDashboardRoutes from './userDashboardRoutes';
 import CheckoutRoutes from './checkoutRoutes';
 import MediaRoutes from './mediaRoutes';
 import ProductRoutes from './productRoutes';
@@ -11,7 +11,7 @@ import TrackingRoute from './trackingRoutes';
 export default {
   LegalRoutes,
   AuthRoutes,
-  UserDashboardRoutes,
+  // UserDashboardRoutes,
   CheckoutRoutes,
   MediaRoutes,
   ProductRoutes,
