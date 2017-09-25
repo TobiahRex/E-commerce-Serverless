@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import AuthService from '../../../../services/utils/authService';
 import RecaptchaWidget from '../../../../components/recaptcha';
 import LoginFormInputParent from './loginForm.inputParent';
@@ -38,7 +39,9 @@ class LoginForm extends Component {
         <ul className="sign-in__list">
           <li className="sign-in__left-break" />
           <li className="title-or">
-            <p>Or</p>
+            <p>
+              <IntlMsg id="auth.login.subheader.or" />
+            </p>
           </li>
           <li className="sign-in__right-break" />
         </ul>
@@ -64,7 +67,7 @@ class LoginForm extends Component {
         </div>
         <div className="form__login-btn">
           <button type="submit" className="login-btn primary-button sweep-right" >
-            Login
+            <IntlMsg id="auth.login.actions.login" />
           </button>
         </div>
       </form>

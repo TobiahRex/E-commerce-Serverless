@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SocialLoginButton from './loginForm.socialButton';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { func, bool } = PropTypes;
 class SocialButtonList extends PureComponent {
@@ -17,7 +18,9 @@ class SocialButtonList extends PureComponent {
       <div className="sign-in__social--container" style={{ display }} >
         <div className="social--title">
           <div className="social--title-msg">
-            <h5>Login or Register with...</h5>
+            <h5>
+              <IntlMsg id="auth.login.subheader" />
+            </h5>
           </div>
         </div>
         <div className="social--btns__list" >

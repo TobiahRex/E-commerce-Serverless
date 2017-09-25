@@ -1,0 +1,16 @@
+export default {
+  'contactus.header': 'Contact Us',
+  'contactus.breadcrumb.paths1': 'Home',
+  'contactus.breadcrumb.lastcrumb': 'Contact Us',
+  'contactus.label.name': 'Name',
+  'contactus.label.email': 'Email',
+  'contactus.label.message': 'Message',
+  'contactus.input.placeholder.name': 'Enter your name',
+  'contactus.input.placeholder.email': 'Enter your email',
+  'contactus.input.placeholder.message': 'What would you like to say?',
+  'contactus.checkbox.label': 'Send a copy of this email to yourself',
+  'contactus.button.label.send': 'Send',
+  'contactus.button.label.submitting': 'Submitting...',
+  'contactus.button.label.success': 'Success',
+  'contactus.button.error.label': 'Error',
+};
