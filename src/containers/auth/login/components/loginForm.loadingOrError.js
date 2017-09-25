@@ -14,7 +14,7 @@ function LoadingOrError({ errorMessage, authInProgress }) {
           <br />
           Example: <i>batman@wayne.enterprises.com</i>
         </h5> */}
-        <h5>{errorMessage || 'No Error'}</h5>
+        <h5>{errorMessage || 'Error'}</h5>
       </div>
     );
   } else if (authInProgress) {

@@ -1,6 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
-import initialState from './initialState';
+import initialState from './initialState/';
 
 const { Types, Creators } = createActions({
   setLanguage: ['language'],

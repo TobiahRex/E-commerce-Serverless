@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import FontAwesome from 'react-fontawesome';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import authActions from '../../../../redux/auth';
 import LoadingOrError from '../components/loginForm.loadingOrError';
 import SocialButtonList from '../components/loginForm.socialButtonList';
@@ -77,7 +78,9 @@ class Login extends Component {
       <div className="sign-in--main">
         <div className="sign-in--container">
           <div className="sign-in__title">
-            <h1>Login</h1>
+            <h1>
+              <IntlMsg id="auth.login.header.title" />
+            </h1>
           </div>
 
           <LoadingOrError
@@ -102,9 +105,8 @@ class Login extends Component {
             <div className="action-btns__back-to-home">
               <button className="back-to-home-btn sweep-right" onClick={() => this.props.push('/')}>
                 <span className="flex-btn-parent">
-                  <FontAwesome name="angle-double-left" />
-                  {'\u00A0'}
-                  Back
+                  <FontAwesome name="angle-double-left" />&nbsp;
+                  <IntlMsg id="auth.login.actions.back-to-home" />
                 </span>
               </button>
             </div>
