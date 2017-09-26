@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { lifecycle } from 'recompose';
 import {
   intlShape,
   injectIntl,
@@ -133,4 +134,10 @@ Faqs.propTypes = {
   intl: intlShape.isRequired,
 };
 const FaqsWithIntl = injectIntl(Faqs);
-export default (FaqsWithIntl);
+const FaqsWithLifecycleAndIntl = lifecycle({
+  componentDidMount() {
+    WebflowJs();
+    WebflowAnimations();
+  },
+})(FaqsWithIntl);
+export default (FaqsWithLifecycleAndIntl);

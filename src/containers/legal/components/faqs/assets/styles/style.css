@@ -3,23 +3,9 @@
   max-width: 1080px;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 20px;
-}
-
-.hdr-container__hdr-text {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-bottom: 10px;
-  font-family: Ubuntu, Helvetica, sans-serif;
-  color: #365899;
-  font-size: 38px;
-  line-height: 44px;
-  font-weight: 700;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
 }
 
 .faq-body__content-container {
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 
