@@ -16,7 +16,6 @@ import {
 import './assets/styles/styles.css';
 
 class Splash extends React.Component {
-
   calculateHeight = (header) => {
     const { mobile } = this.props;
     const height = window.innerHeight;
@@ -31,11 +30,18 @@ class Splash extends React.Component {
     return window.innerHeight - 60;
   };
 
-  render() {
+  componentDidMount() {
     WebflowJs();
     WebflowAnimations();
+  }
+
+  componentDidUpdate() {
+    WebflowAnimations();
+  }
+
+  render() {
     return (
-      <div className="homepage" key={moment().format('YYMMDDSSSS')} >
+      <div className="homepage" >
         <div className="splash-container">
           <Header
             height={this.calculateHeight(true)}
