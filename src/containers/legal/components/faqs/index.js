@@ -17,8 +17,6 @@ import {
 import './assets/styles/style.css';
 
 function Faqs({ intl }) {
-  WebflowJs();
-  WebflowAnimations();
   const {
     messages: {
       'legal.faqs.header.title': header,
@@ -135,9 +133,7 @@ Faqs.propTypes = {
 };
 const FaqsWithIntl = injectIntl(Faqs);
 const FaqsWithLifecycleAndIntl = lifecycle({
-  componentDidMount() {
-    WebflowJs();
-    WebflowAnimations();
-  },
+  componentDidUpdate () { WebflowAnimations(); },
 })(FaqsWithIntl);
+
 export default (FaqsWithLifecycleAndIntl);
