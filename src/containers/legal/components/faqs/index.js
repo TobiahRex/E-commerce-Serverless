@@ -8,8 +8,14 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import {
+  WebflowJs,
+  WebflowAnimations,
+} from './assets/utils';
 
 function Faqs({ intl }) {
+  WebflowJs();
+  WebflowAnimations();
   const {
     messages: {
       'legal.policy.nicotine.breadCrumb.paths1': bcPaths1,
