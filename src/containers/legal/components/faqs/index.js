@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import {
   intlShape,
   injectIntl,
@@ -12,15 +13,16 @@ import {
   WebflowJs,
   WebflowAnimations,
 } from './assets/utils';
+import './assets/styles/style.css';
 
 function Faqs({ intl }) {
   WebflowJs();
   WebflowAnimations();
   const {
     messages: {
-      'legal.policy.nicotine.breadCrumb.paths1': bcPaths1,
-      'legal.policy.nicotine.breadCrumb.lastCrumb': lastCrumb,
-      'legal.policy.nicotine.header.title': header,
+      'legal.faqs.header.title': header,
+      'legal.faqs.breadCrumb.paths1': bcPaths1,
+      'legal.faqs.breadCrumb.lastCrumb': lastCrumb,
     },
   } = intl;
 
@@ -35,9 +37,6 @@ function Faqs({ intl }) {
       <HdrPage header={header} />
       <br />
       <div className="faq-body">
-        <div className="faq-body__hdr-container">
-          <h1 className="hdr-container__hdr-text" data-ix="hdr-slide-from-top">{'FAQ\'s'}</h1>
-        </div>
         <div className="faq-body__content-container">
           <div className="content-container__faq-content">
             <div className="faq-content__question-container">
@@ -105,10 +104,10 @@ function Faqs({ intl }) {
             </div>
             <div className="faq-content__answer-container">
               <p className="answer-container__blurb-text" data-ix="hdr-slide-from-right">
-                <IntlMsg id="legal.faqs.5.body.1" />&nbps;
-                <a className="blurb-text__link" href="/contact_us">
-                  <IntlMsg id="legal.faqs.5.body.2" />&nbps;
-                </a>
+                <IntlMsg id="legal.faqs.5.body.1" />&nbsp;
+                <Link className="blurb-text__link2" to="/contact_us">
+                  <IntlMsg id="legal.faqs.5.body.2" />&nbsp;
+                </Link>
                 <IntlMsg id="legal.faqs.5.body.3" />
               </p>
             </div>

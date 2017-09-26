@@ -1,4 +1,5 @@
 export default {
+  'legal.faqs.header.title': 'FAQ\'s',
   'legal.faqs.breadCrumb.paths1': 'Home',
   'legal.faqs.breadCrumb.lastCrumb': 'FAQ\'s',
   'legal.faqs.1.header': 'Why can’t I buy more than 4 bottles?',
@@ -14,7 +15,7 @@ export default {
   'legal.faqs.4.body.2': 'http://www.vapeswitch.com',
   'legal.faqs.5.header': 'How do I Delete my account?',
   'legal.faqs.5.body.1': 'Users are not currently able to delete their accounts.  If you strongly feel that you would like to remove your account, please send us an email via the',
-  'legal.faqs.5.body.2': '"Contact Us"',
+  'legal.faqs.5.body.2': 'Contact Us',
   'legal.faqs.5.body.3': 'page and we\'d be happy to address your request.',
   'legal.faqs.6.header': 'Where do I access my User Information?',
   'legal.faqs.6.body': 'NJ2JP does not currently support User Dashboards.  This feature is currently in development and will be available soon.  We\'ll inform all users via Social Media and Email once this feature is available.',
