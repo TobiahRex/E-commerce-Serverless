@@ -29,7 +29,7 @@ const MediaRoutes = () => (
     <Route
       path="/contact_us"
       getComponent={(_, cb) => {
-        import('../containers/contactUs' /* webpackChunkName: "contact-us" */)
+        import('../containers/media/contactUs' /* webpackChunkName: "contact-us" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}
@@ -46,7 +46,14 @@ const MediaRoutes = () => (
     <Route path="/vape_news" component={VapeNews} />
     <Route path="/social_media" component={SocialMedia} />
     <Route path="/mission_statement" component={MissionStatement} />
-    <Route path="/faqs" component={Faqs} />
+    <Route
+      path="/faqs"
+      getComponent={(_, cb) => {
+        import('../containers/legal/components/faqs' /* webpackChunkName: "faqs" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     <Route path="/wholesale" component={Wholesale} />
     <Route path="/affiliate_program" component={Affiliates} />
   </div>
