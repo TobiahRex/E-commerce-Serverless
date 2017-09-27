@@ -47,7 +47,6 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -197,6 +196,7 @@
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #365899;
   font-size: 16px;
+  resize: vertical;
 }
 
 .email__input {

@@ -1,17 +1,17 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import { replace, push } from 'react-router-redux';
+// import { replace, push } from 'react-router-redux';
 import App from '../App';
 import Routes from './index';
 import AuthService from '../services/utils/authService';
 
 export const auth = new AuthService();
-const requireAuth = () => {
-  if (!auth.loggedIn()) {
-    replace({ pathname: '/login' });
-    push('/login');
-  }
-};
+// const requireAuth = () => {
+//   if (!auth.loggedIn()) {
+//     replace({ pathname: '/login' });
+//     push('/login');
+//   }
+// };
 const parseAuthHash = (nextState) => {
   const hash = nextState.location.hash;
   if (/access_token|id_token|error/.test(hash)) {

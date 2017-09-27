@@ -2,12 +2,12 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
-import Phone from '../containers/legal/components/phone';
+import Phone from '../containers/info/legal/components/phone';
 import VapeNews from '../containers/media/vapeNews/';
-import MissionStatement from '../containers/legal/missionStatement';
-import SocialMedia from '../containers/legal/socialMedia';
-import Wholesale from '../containers/legal/wholesale';
-import Affiliates from '../containers/legal/affiliateProgram';
+import MissionStatement from '../containers/info/legal/missionStatement';
+import SocialMedia from '../containers/info/legal/socialMedia';
+import Wholesale from '../containers/info/legal/wholesale';
+import Affiliates from '../containers/info/legal/affiliateProgram';
 
 const errorLoading = (error) => {
   throw new Error(`Dynamic page loading failed ${error}`);
