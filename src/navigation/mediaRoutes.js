@@ -32,13 +32,15 @@ const MediaRoutes = () => (
         import('../containers/media/vapeNews/' /* webpackChunkName: "vape-news" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
-      }} />
+      }}
+    />
     <Route
       path="/social_media"
       getComponent={(_, cb) => {
         import('../containers/media/socialMedia' /* webpackChunkName: "social-media" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
+      }}
     />
   </div>
 );
