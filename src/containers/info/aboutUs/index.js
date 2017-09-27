@@ -3,6 +3,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import './assets/styles/style.css';
 import {
   WebflowJs,
+  WebflowAnimations,
   contentData,
 } from './assets/utils';
 
@@ -36,13 +37,13 @@ class AboutUs extends React.Component {
     };
   }
 
-  componentDidMount() {
-    WebflowJs(); // eslint-disable-line
+  componentDidUpdate() {
+    WebflowAnimations(); // eslint-disable-line
   }
 
   render() {
     return (
-      <div className="about__container-main">
+      <div className="about-us__container">
         <BreadCrumb
           paths={[this.intl.bcPaths1]}
           classes={['home']}
