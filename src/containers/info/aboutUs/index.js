@@ -2,7 +2,6 @@ import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 import './assets/styles/style.css';
 import {
-  WebflowJs,
   WebflowAnimations,
   contentData,
 } from './assets/utils';
