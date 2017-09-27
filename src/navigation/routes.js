@@ -35,7 +35,7 @@ export default (
     />
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
-    {Routes.LegalRoutes()}
+    {Routes.InfoRoutes()}
     {Routes.AuthRoutes(auth, parseAuthHash)}
     {Routes.CheckoutRoutes()}
     {Routes.NotFoundRoute()}

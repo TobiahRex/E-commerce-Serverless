@@ -6,6 +6,7 @@ export AboutMembers from './AboutMembers';
 export MemberCard from './MemberCard';
 export MemberCardPhoto from './MemberCardPhoto';
 export MemberCardTitle from './MemberCardTitle';
+export MemberCardSubTitle from './MemberCardSubTitle';
 export MemberCardBlurb from './MemberCardBlurb';
 export MemberCardSocial from './MemberCardSocial';
 export MemberSocialFacebook from './MemberSocialFacebook';
