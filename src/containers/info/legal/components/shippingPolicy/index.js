@@ -18,7 +18,7 @@ function ShippingPolicy({ intl }) {
     },
   } = intl;
   return (
-    <div className="shipping-policy__main">
+    <div className="shipping-body">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -27,16 +27,19 @@ function ShippingPolicy({ intl }) {
       />
       <HdrPage header={header} />
       <br />
-      <div className="main__body">
-        <h4>
-          <IntlMsg id="legal.policy.shipping.order-process.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.shipping.order-process.desc" />
-        </p>
-        <br />
-        <br />
+      <div className="shipping-body__content-container">
+        <div className="content-container__shipping-content">
+          <div className="shipping-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.shipping.order-process.title" />
+            </h4>
+          </div>
+          <div className="shipping-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.shipping.order-process.desc" />
+            </p>
+          </div>
+        </div>
         <h4>
           <IntlMsg id="legal.policy.shipping.quantity-restrictions.title" />
         </h4>
