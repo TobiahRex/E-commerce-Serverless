@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 const ContactForm = props => (
-  <div className="main__body" data-ix="slide-from-above">
-    <div className="main__body-form w-form">
+  <div className="main__contact-us">
+    <div className="main__contact-us-form w-form">
 
       <Validation.components.Form
         ref={props.assignRefToForm}
         onSubmit={props.handleOnSubmit}
-        className="body__container"
-      >
-        {props.children}
-      </Validation.components.Form>
+        className="contact-us__container"
+      >{props.children}</Validation.components.Form>
 
     </div>
   </div>

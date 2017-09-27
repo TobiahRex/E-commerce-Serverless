@@ -13,10 +13,7 @@ const TextAreaWithLabel = ({
     <label
       className="message__label"
       htmlFor="message-field"
-    >
-      {label}
-      <span className="required">&nbsp;*</span>
-    </label>
+    >{label}</label>
 
     <Validation.components.Textarea
       errorClassName="is-invalid-input"
@@ -27,7 +24,6 @@ const TextAreaWithLabel = ({
       onChange={handleOnChange}
       validations={['required', 'contactUsTextArea']}
       placeholder={placeholder}
-      maxLength="5000"
     />
 
   </div>

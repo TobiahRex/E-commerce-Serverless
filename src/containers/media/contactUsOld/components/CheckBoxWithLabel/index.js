@@ -6,7 +6,7 @@ const CheckBoxWithLabel = ({
   value,
   handleOnChange,
 }) => (
-  <div className="body__send-copy--container container--checkbox w-checkbox">
+  <div className="contact-us__send-copy--container container--checkbox w-checkbox">
 
     <input
       data-name="Checkbox"
@@ -26,7 +26,7 @@ const CheckBoxWithLabel = ({
     />
 
     <label
-      className="body__send-copy w-form-label"
+      className="contact-us__send-copy w-form-label"
       htmlFor="checkbox"
     >{label}</label>
 

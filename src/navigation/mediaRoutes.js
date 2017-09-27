@@ -4,7 +4,6 @@ import { Route } from 'react-router';
 // ----------------------------- Media -------------------------------
 import Phone from '../containers/legal/components/phone';
 import VapeNews from '../containers/media/vapeNews/';
-import Faqs from '../containers/legal/faqs';
 import MissionStatement from '../containers/legal/missionStatement';
 import SocialMedia from '../containers/legal/socialMedia';
 import Wholesale from '../containers/legal/wholesale';

@@ -10,10 +10,7 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
-import {
-  WebflowJs,
-  WebflowAnimations,
-} from './assets/utils';
+import { WebflowAnimations } from './assets/utils';
 import './assets/styles/style.css';
 
 function Faqs({ intl }) {
@@ -133,7 +130,9 @@ Faqs.propTypes = {
 };
 const FaqsWithIntl = injectIntl(Faqs);
 const FaqsWithLifecycleAndIntl = lifecycle({
-  componentDidUpdate () { WebflowAnimations(); },
+  componentDidUpdate() {
+    WebflowAnimations();
+  },
 })(FaqsWithIntl);
 
 export default (FaqsWithLifecycleAndIntl);
