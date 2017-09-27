@@ -1,7 +1,7 @@
 export const WebflowJs = () => {
   require('./webflow.js'); // eslint-disable-line global-require
 };
-
+export WebflowAnimations from './webflow.animations.js';
 export const contentData = {
   english: [
     {
@@ -9,7 +9,7 @@ export const contentData = {
       props: {
         ix: 'slide-in-brians-card',
         MemberCardPhoto: {
-          src: 'images/brian-wilson-264x200.png',
+          src: 'images/BRIAN_264x200.png',
         },
         MemberCardTitle: {
           header: 'aboutus.brian.name',
@@ -32,7 +32,7 @@ export const contentData = {
       props: {
         ix: 'slide-in-tobys-card',
         MemberCardPhoto: {
-          src: 'images/toby-2-264x200.png',
+          src: 'images/TOBY_264x200.png',
         },
         MemberCardTitle: {
           header: 'aboutus.toby.name',
@@ -53,9 +53,9 @@ export const contentData = {
     {
       component: 'MemberCard',
       props: {
-        ix: 'slide-in-lds-card',
+        ix: 'slide-in-lds-card-2',
         MemberCardPhoto: {
-          src: 'images/ID3-264x200.png',
+          src: 'images/LD-264x200.jpg',
         },
         MemberCardTitle: {
           header: 'aboutus.ld.name',
@@ -78,7 +78,7 @@ export const contentData = {
       props: {
         ix: 'slide-in-phils-card',
         MemberCardPhoto: {
-          src: 'images/phil-264x200.png',
+          src: 'images/PHIL_264x200.png',
         },
         MemberCardTitle: {
           header: 'aboutus.phil.name',

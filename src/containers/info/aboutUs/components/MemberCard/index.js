@@ -12,14 +12,16 @@ const MemberCard = props => (
   <div className="about-container__staff" data-ix={props.ix}>
     <MemberCardPhoto src={props.MemberCardPhoto.src} />
     <div className="about-container__staff staff--content">
-      <MemberCardTitle
-        class="content--heading staff__content"
-        title={props.MemberCardTitle.header}
-      />
-      <MemberCardSubTitle
-        class="content--sub-heading staff__content"
-        title={props.MemberCardTitle.subHeader}
-      />
+      <div className="staff-titles">
+        <MemberCardTitle
+          class="content--heading staff__content"
+          title={props.MemberCardTitle.header}
+        />
+        <MemberCardSubTitle
+          class="content--sub-heading staff__content"
+          title={props.MemberCardTitle.subHeader}
+        />
+      </div>
       <MemberCardBlurb blurb={props.MemberCardBlurb.blurb} />
     </div>
     <MemberCardSocial socials={props.Socials} />
