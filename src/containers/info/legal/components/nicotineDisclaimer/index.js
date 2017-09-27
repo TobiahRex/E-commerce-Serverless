@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   intlShape,
   injectIntl,
@@ -8,6 +9,10 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import {
+  WebflowAnimations,
+} from './assets/utils/';
+import './assets/styles/style.css';
 
 function NicotineDisclaimer({ intl }) {
   const {
@@ -19,7 +24,7 @@ function NicotineDisclaimer({ intl }) {
   } = intl;
 
   return (
-    <div className="nicotine-disclaimer__main">
+    <div className="nicotine-disclamer">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -28,13 +33,17 @@ function NicotineDisclaimer({ intl }) {
       />
       <HdrPage header={header} />
       <br />
-      <div className="main__body">
-        <p>
-          <span className="required">
-            <IntlMsg id="legal.policy.nicotine.header.desc1" />
-          </span>
-          <IntlMsg id="legal.policy.nicotine.header.desc2" />
-        </p>
+      <div className="nicotine-disclamer__content-container">
+        <div className="content-container__shipping-content">
+          <div className="shipping-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <span className="required">
+                <IntlMsg id="legal.policy.nicotine.header.desc1" />
+              </span>
+              <IntlMsg id="legal.policy.nicotine.header.desc2" />
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -42,5 +51,10 @@ function NicotineDisclaimer({ intl }) {
 NicotineDisclaimer.propTypes = {
   intl: intlShape.isRequired,
 };
-const NicotineDisclaimerWithIntl = injectIntl(NicotineDisclaimer);
-export default (NicotineDisclaimerWithIntl);
+const NicotineDisclaimerWithLifecycle = lifecycle({
+  componentDidUpdate() {
+    WebflowAnimations();
+  },
+});
+const NicotineDisclaimerWithIntlAndLifecycle = injectIntl(NicotineDisclaimerWithLifecycle);
+export default (NicotineDisclaimerWithIntlAndLifecycle);
