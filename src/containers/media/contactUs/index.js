@@ -113,11 +113,7 @@ class ContactUs extends React.Component {
   }
 
   componentDidUpdate() {
-    if (Webflow) WebflowAnimations();
-    else {
-      WebflowJs();
-      WebflowAnimations();
-    }
+    WebflowAnimations();
   }
 
   shouldComponentUpdate(nextProps, nextState) {

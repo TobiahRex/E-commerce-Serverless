@@ -1,3 +1,6 @@
+export const WeblfowJs = () => {
+  require('./webflow.js');
+}
 export WebflowAnimations from './webflow.animations.js';
 export const contentData = [
   {
