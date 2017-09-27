@@ -20,7 +20,7 @@ const AboutMembers = (props) => {
 
   return (
     <div className="about-section">
-      <div className="abouet-container">
+      <div className="about-container">
         <div className="about-container__staff--section">
           {renderHelper(props.members.slice(0, 2))}
         </div>

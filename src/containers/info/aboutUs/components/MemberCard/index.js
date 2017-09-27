@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   MemberCardPhoto,
   MemberCardTitle,
+  MemberCardSubTitle,
   MemberCardBlurb,
   MemberCardSocial,
 } from '../../components';
@@ -15,7 +16,7 @@ const MemberCard = props => (
         class="content--heading staff__content"
         title={props.MemberCardTitle.header}
       />
-      <MemberCardTitle
+      <MemberCardSubTitle
         class="content--sub-heading staff__content"
         title={props.MemberCardTitle.subHeader}
       />

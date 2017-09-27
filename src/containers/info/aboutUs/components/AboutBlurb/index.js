@@ -2,12 +2,13 @@ import React from 'react';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const AboutBlurb = () => (
-  <div class="about__container" data-ix="fade-in">
-    <p class="about-container__body-text">
-      <IntlMsg id="aboutus.header.blurb" />
-    </p>
+  <div className="about-section">
+    <div className="about__container" data-ix="fade-in">
+      <p className="about-container__body-text">
+        <IntlMsg id="aboutus.header.blurb" />
+      </p>
+    </div>
   </div>
 );
 
 export default AboutBlurb;
- start
