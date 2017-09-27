@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
-
+import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   MemberCardPhoto,
   MemberCardTitle,
@@ -9,25 +8,23 @@ import {
   MemberCardSocial,
 } from '../../components';
 
-const MemberCard = (props) => {
-  WebflowJs(); //eslint-disable-line
-
-  return (
-    <div className="about-container__staff" data-ix="slide-in-brians-card">
-      <MemberCardPhoto src={props.MemberCardPhoto.src} />
-      <div className="about-container__staff staff--content">
-        <MemberCardTitle
-          header={props.MemberCardTitle.header}
-          subHeader={props.MemberCardTitle.subHeader}
-        />
-        <div className="about-container__staff staff--scrolling-cointainer">
-          <MemberCardBlurb blurb={props.MemberCardBlurb.blurb} />
-        </div>
-      </div>
-      <MemberCardSocial socials={props.Socials} />
+const MemberCard = props => (
+  <div className="about-container__staff" data-ix="slide-in-brians-card">
+    <MemberCardPhoto src={props.MemberCardPhoto.src} />
+    <div className="about-container__staff staff--content">
+      <MemberCardTitle
+        class="content--heading staff__content"
+        title={props.MemberCardTitle.header}
+      />
+      <MemberCardTitle
+        class="content--sub-heading staff__content"
+        title={props.MemberCardTitle.subHeader}
+      />
+      <MemberCardBlurb blurb={props.MemberCardBlurb.blurb} />
     </div>
-  );
-};
+    <MemberCardSocial socials={props.Socials} />
+  </div>
+);
 
 const { shape, string } = PropTypes;
 MemberCard.propTypes = {

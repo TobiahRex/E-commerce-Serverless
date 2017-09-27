@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebflowJs } from './assets/utils';
-
 import {
   MemberSocialFacebook,
   MemberSocialGithub,
@@ -11,8 +9,6 @@ import {
 } from '../../components';
 
 const MemberCardSocial = (props) => {
-  WebflowJs(); //eslint-disable-line
-
   const {
     facebook,
     github,
@@ -23,11 +19,13 @@ const MemberCardSocial = (props) => {
 
   return (
     <div className="about-container__staff staff--social-media">
-      {facebook && <MemberSocialFacebook link={facebook} />}
-      {github && <MemberSocialGithub link={github} />}
-      {linkedin && <MemberSocialLinkedin link={linkedin} />}
-      {twitter && <MemberSocialTwitter link={twitter} />}
-      {instagram && <MemberSocialInstagram link={instagram} />}
+      <div className="about-container__staff staff--social-media staff-social-media--mobile">
+        {facebook && <MemberSocialFacebook link={facebook} />}
+        {github && <MemberSocialGithub link={github} />}
+        {linkedin && <MemberSocialLinkedin link={linkedin} />}
+        {twitter && <MemberSocialTwitter link={twitter} />}
+        {instagram && <MemberSocialInstagram link={instagram} />}
+      </div>
     </div>
   );
 };
