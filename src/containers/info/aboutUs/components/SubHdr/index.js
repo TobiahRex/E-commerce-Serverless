@@ -1,17 +1,13 @@
 import React from 'react';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
-import { WebflowJs } from './assets/utils';
-
-const SubHdr = () => {
-  WebflowJs(); //eslint-disable-line
-
-  return (
-    <div className="about-container__sub-heading about-container">
-      <h2 className="about-container__sub-heading">NJ2JP Team
-      </h2>
-    </div>
-  );
-};
+const SubHdr = () => (
+  <div class="about__container" data-ix="fade-in-2">
+    <h2 class="about-container__sub-heading">
+      <IntlMsg id="aboutus.header.subtitle" />
+    </h2>
+  </div>
+);
 
 
 export default SubHdr;
