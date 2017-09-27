@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   MemberCardPhoto,
   MemberCardTitle,
@@ -9,7 +8,7 @@ import {
 } from '../../components';
 
 const MemberCard = props => (
-  <div className="about-container__staff" data-ix="slide-in-brians-card">
+  <div className="about-container__staff" data-ix={props.ix}>
     <MemberCardPhoto src={props.MemberCardPhoto.src} />
     <div className="about-container__staff staff--content">
       <MemberCardTitle
@@ -28,6 +27,7 @@ const MemberCard = props => (
 
 const { shape, string } = PropTypes;
 MemberCard.propTypes = {
+  ix: string.isRequired,
   MemberCardPhoto: shape({
     src: string,
   }).isRequired,
