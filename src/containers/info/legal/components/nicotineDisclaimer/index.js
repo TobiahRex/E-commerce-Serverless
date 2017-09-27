@@ -51,10 +51,10 @@ function NicotineDisclaimer({ intl }) {
 NicotineDisclaimer.propTypes = {
   intl: intlShape.isRequired,
 };
-const NicotineDisclaimerWithLifecycle = lifecycle({
+const NicotineDisclaimerWithIntl = injectIntl(NicotineDisclaimer);
+const NicotineDisclaimerWithIntlAndLifecycle = lifecycle({
   componentDidUpdate() {
     WebflowAnimations();
   },
-});
-const NicotineDisclaimerWithIntlAndLifecycle = injectIntl(NicotineDisclaimerWithLifecycle);
+})(NicotineDisclaimerWithIntl);
 export default (NicotineDisclaimerWithIntlAndLifecycle);
