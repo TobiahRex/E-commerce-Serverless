@@ -13,14 +13,15 @@ const MdSendButton = ({
 
   if (toast.type === 'success') {
     return (
-      <div className="body__submit--container">
+      <div className="contact-us__submit--container">
         <button
-          className="body__success--button w-button"
+          className="contact-us__success--button w-button"
           onClick={submitMsg}
           type="button"
           disabled
         >
-          {toast.message}&nbsp;
+          {toast.message}
+          {'\u00A0'}
           <FontAwesome name="check" className="hover-dropin" />
         </button>
       </div>
@@ -29,21 +30,23 @@ const MdSendButton = ({
 
   if (toast.type === 'error') {
     return (
-      <div className="body__submit--container">
+      <div className="contact-us__submit--container">
         <Validation.components.Button
-          className="body__submit--button w-button"
+          className="contact-us__submit--button w-button"
           errorClassName=""
           onClick={submitMsg}
         >
-          <FontAwesome name="send" />&nbsp;
+          <FontAwesome name="send" />
+          {'\u00A0'}
           {labels.send}
         </Validation.components.Button>
-        <div className="body__error">
+        <div className="contact-us__error">
           <div className="error-hard__title">
-            <FontAwesome className="error-icon" name="exclamation-circle" />&nbsp;
+            <FontAwesome className="error-icon" name="exclamation-circle" />
+            {'\u00A0'}
             <h2>{labels.errorHdr}</h2>
           </div>
-          <p className="body__error--message ">
+          <p className="contact-us__error--message ">
             {toast.message}
           </p>
         </div>
@@ -53,13 +56,14 @@ const MdSendButton = ({
 
   if (apiFetching) {
     return (
-      <div className="body__submit--container">
+      <div className="contact-us__submit--container">
         <button
-          className="body__loading--button w-button"
+          className="contact-us__loading--button w-button"
           type="button"
           disabled
         >
-          <FontAwesome name="spinner" pulse />&nbsp;
+          <FontAwesome name="spinner" pulse />
+          {'\u00A0'}
           {labels.submitting}
         </button>
       </div>
@@ -74,7 +78,8 @@ const MdSendButton = ({
           type="button"
           disabled
         >
-          <FontAwesome name="send" />&nbsp;
+          <FontAwesome name="send" />
+          {'\u00A0'}
           {labels.send}
         </button>
       </div>
@@ -88,7 +93,8 @@ const MdSendButton = ({
           errorClassName=""
           onClick={submitMsg}
         >
-          <FontAwesome name="send" />&nbsp;
+          <FontAwesome name="send" />
+          {'\u00A0'}
           {labels.send}
         </Validation.components.Button>
       </div>

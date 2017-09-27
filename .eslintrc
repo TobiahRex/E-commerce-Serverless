@@ -12,6 +12,7 @@ parserOptions:
     jsx: true
 
 globals:
+  Webflow: true
   IntlMessage: true
   IntlLocale: true
 

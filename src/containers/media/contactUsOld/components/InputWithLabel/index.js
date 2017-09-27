@@ -22,10 +22,7 @@ const InputWithLabel = ({
       <label
         className={labelInfo.className}
         htmlFor={labelInfo.htmlFor}
-      >
-        {label}
-        <span className="required">&nbsp;*</span>
-      </label>
+      >{label}</label>
 
       <Validation.components.Input
         errorClassName="is-invalid-input"

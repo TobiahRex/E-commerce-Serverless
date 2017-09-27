@@ -12,7 +12,7 @@ const propTypes = {
 
 function RecaptchaWidget({ verifyCb, onLoadCb, expiredCb, assignRefToRecaptcha }) {
   return (
-    <div className="body__recaptcha--container">
+    <div className="contact-us__recaptcha--container">
       <Recaptcha
         ref={assignRefToRecaptcha}
         sitekey={process.env.RECAPTCHA_KEY}

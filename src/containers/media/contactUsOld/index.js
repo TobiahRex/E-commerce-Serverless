@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import { injectIntl, intlShape } from 'react-intl';
 import _ from 'lodash';
-import './assets/css/style.css';
+import './assets/css/contact-us.css';
 import {
   contentData,
   apiActions,
   toasterActions,
   CheckForToast,
   CleanOffTypename,
-  WebflowJs,
-  WebflowAnimations,
-} from './assets/utils/';
+} from './assets/utils';
 import {
   BreadCrumb,
   HdrPage,
@@ -36,6 +34,21 @@ const {
 } = PropTypes;
 
 class ContactUs extends React.Component {
+  static propTypes = {
+    intl: intlShape.isRequired,
+    clearToaster: func.isRequired,
+    apiFetching: bool.isRequired,
+    apiIsFetching: func.isRequired,
+    GraphQLsubmitContactMsg: func.isRequired,
+    GraphQLhandleError: func.isRequired,
+    apiFail: func.isRequired,
+    apiSuccess: func.isRequired,
+    toastSuccess: func.isRequired,
+    toast: shape({
+      type: string,
+      message: string,
+    }).isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -109,14 +122,6 @@ class ContactUs extends React.Component {
         ...prevState,
         ...nextProps,
       }));
-    }
-  }
-
-  componentDidUpdate() {
-    if (Webflow) WebflowAnimations();
-    else {
-      WebflowJs();
-      WebflowAnimations();
     }
   }
 
@@ -277,21 +282,6 @@ class ContactUs extends React.Component {
     );
   }
 }
-ContactUs.propTypes = {
-  intl: intlShape.isRequired,
-  clearToaster: func.isRequired,
-  apiFetching: bool.isRequired,
-  apiIsFetching: func.isRequired,
-  GraphQLsubmitContactMsg: func.isRequired,
-  GraphQLhandleError: func.isRequired,
-  apiFail: func.isRequired,
-  apiSuccess: func.isRequired,
-  toastSuccess: func.isRequired,
-  toast: shape({
-    type: string,
-    message: string,
-  }).isRequired,
-};
 const ContactUsIntl = injectIntl(ContactUs);
 
 const ContactUsWithState = connect(null, (dispatch, ownProps) => ({

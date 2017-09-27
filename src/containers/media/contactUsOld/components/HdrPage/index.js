@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const HdrPage = props => (
   <div className="main__title">
-    <h1 className="main__title title--header" data-ix="slide-from-above">
+    <h1 className="main__title title--header">
       {props.header}
     </h1>
   </div>
