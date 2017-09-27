@@ -13,7 +13,7 @@ const MemberCard = (props) => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <div className="about-container__staff">
+    <div className="about-container__staff" data-ix="slide-in-brians-card">
       <MemberCardPhoto src={props.MemberCardPhoto.src} />
       <div className="about-container__staff staff--content">
         <MemberCardTitle
