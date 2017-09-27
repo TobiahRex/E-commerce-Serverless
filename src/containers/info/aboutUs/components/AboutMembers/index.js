@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  WebflowJs,
-} from './assets/utils';
-
-import {
   MemberCard,
 } from '../../components';
 
 const AboutMembers = (props) => {
-  WebflowJs(); //eslint-disable-line
-
   const renderHelper = data =>
   data.map((dataObj) => {
     if (dataObj.component === 'MemberCard') {
@@ -25,14 +19,20 @@ const AboutMembers = (props) => {
   });
 
   return (
-    <div className="about-container about-container__staff">
-      {renderHelper(props.members)}
+    <div className="about-section">
+      <div className="abouet-container">
+        <div className="about-container__staff--section">
+          {renderHelper(props.members.slice(0, 2))}
+        </div>
+        <div className="about-container__staff--section">
+          {renderHelper(props.members.slice(2, 4))}
+        </div>
+      </div>
     </div>
   );
 };
 
 const { arrayOf, object } = PropTypes;
-
 AboutMembers.propTypes = {
   members: arrayOf(object).isRequired,
 };
