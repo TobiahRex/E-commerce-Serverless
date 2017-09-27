@@ -11,7 +11,7 @@ const AboutMembers = (props) => {
       return (
         <MemberCard
           {...dataObj.props}
-          key={new Buffer(`${dataObj.props.MemberCardTitle.header + Date.now()}`, 'utf8').toString('base64')}
+          key={new Buffer(`${dataObj.props.ix + Date.now()}`, 'utf8').toString('base64')}
         />
       );
     }
