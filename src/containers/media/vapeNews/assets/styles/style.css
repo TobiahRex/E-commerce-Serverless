@@ -51,7 +51,6 @@
 h1.header__text {
   line-height: 1.5em;
   position: relative;
-  /*top: -90px;*/
   z-index: 2;
   display: block;
   max-width: 1000px;
@@ -480,11 +479,13 @@ html.w-mod-js *[data-ix="pop-in"] {
     max-width: 600px;
   }
   .header__text {
-    top: -51px;
+    position: relative;
+    top: 51px;
     display: block;
     width: 95%;
     max-width: 600px;
     margin: 0px auto;
+    line-height: 1.5em;
     padding-right: 10px;
     padding-left: 10px;
     background-color: #fff;
@@ -675,7 +676,7 @@ html.w-mod-js *[data-ix="pop-in"] {
     margin-bottom: -15px;
     padding-bottom: 0px;
     font-size: 22px;
-    line-height: 28px;
+    line-height: 1.5em;
   }
   .top-section__author-info {
     top: 11px;

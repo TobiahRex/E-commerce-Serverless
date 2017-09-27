@@ -68,9 +68,9 @@ const MdSendButton = ({
 
   if (!enable) {
     return (
-      <div className="contact-us__submit--container">
+      <div className="body__submit--container">
         <button
-          className="contact-us__submit--button w-button"
+          className="body__submit--button w-button"
           type="button"
           disabled
         >
@@ -82,9 +82,9 @@ const MdSendButton = ({
   }
   if (enable) {
     return (
-      <div className="contact-us__submit--container">
+      <div className="body__submit--container">
         <Validation.components.Button
-          className="contact-us__submit--button w-button"
+          className="body__submit--button w-button"
           errorClassName=""
           onClick={submitMsg}
         >
