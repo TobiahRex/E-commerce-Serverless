@@ -6,12 +6,14 @@ const MemberCardPhoto = (props) => {
   WebflowJs(); //eslint-disable-line
 
   return (
-    <img
-      alt="member"
-      className="about-container__staff staff--image"
-      role="presentation"
-      src={props.src}
-    />
+    <div className="about__container--img">
+      <img
+        alt="member"
+        className="about-container__staff staff--image"
+        role="presentation"
+        src={props.src}
+      />
+    </div>
   );
 };
 
