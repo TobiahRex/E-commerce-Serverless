@@ -364,8 +364,8 @@ new Promise((resolve, reject) => {
           $set: {
             'shippingAddress.awbId': uploadData.awbId,
             'shippingAddress.referenceId': uploadData.referenceId,
-            uploadStatus: 'pending',
-            // uploadStatus: 'upload',
+            // uploadStatus: 'pending',
+            uploadStatus: 'upload',
           },
         }, { new: true }),
         Email.findEmailAndFilterLanguage(
@@ -389,7 +389,7 @@ new Promise((resolve, reject) => {
     };
     const {
       JWT_SECRET: jwtSecret,
-      LAMBDA_ENV: lambdaEnv,
+      // LAMBDA_ENV: lambdaEnv,
       BASE_URL: baseUrl,
     } = process.env;
 

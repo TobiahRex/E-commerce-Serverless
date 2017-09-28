@@ -7,11 +7,11 @@ const router = new express.Router();
 router.post('/createEmail', (req, res) => {
   Email.createEmail(req.body)
     .then((response) => {
-      console.log('\nSUCCEEDED: Upload Email and Send Invoice Email.');
+      console.log('\nSUCCEEDED: Create New Email.');
       res.status(200).send(response);
     })
     .catch((error) => {
-      console.log('\nFAILED: Upload Email and Send Invoice Email: ', error);
+      console.log('\nFAILED: Create New Email: ', error);
       res.status(400).send(error);
     });
 });
@@ -19,11 +19,11 @@ router.post('/createEmail', (req, res) => {
 router.post('/refundNotification', (req, res) => {
   Email.refundNotification(req.body)
   .then((response) => {
-    console.log('\nSUCCEEDED: Upload Email and Send Invoice Email.');
+    console.log('\nSUCCEEDED: Send Refund notification.');
     res.status(200).send(response);
   })
   .catch((error) => {
-    console.log('\nFAILED: Upload Email and Send Invoice Email: ', error);
+    console.log('\nFAILED: Send Refund notification: ', error);
     res.status(400).send(error);
   });
 });
