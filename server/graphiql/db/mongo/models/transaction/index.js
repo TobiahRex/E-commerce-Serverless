@@ -62,7 +62,10 @@ new Promise((resolve, reject) => {
         newLocation.error = {
           hard: true,
           soft: false,
-          message: `Location "${newLocation.name}" does not have permission "CREDIT_CARD_PROCESSING".`,
+          message: {
+            en: `Location "${newLocation.name}" does not have permission "CREDIT_CARD_PROCESSING".`,
+            ja: `場所「${newLocation.name}」には「CREDIT_CARD_PROCESSING」の権限がありません。`,
+          },
         };
         resolve(newLocation);
       }
