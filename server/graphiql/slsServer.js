@@ -6,7 +6,7 @@ import schema from './db/graphql/schema';
 import { startDB } from './db/mongo/connection';
 import runGraphQL from './db/graphql/runGraphQL';
 
-require('dotenv').config({ path: path.resolve('.env'), silent: true }); //eslint-disable-line
+require('dotenv').config({ path: path.resolve('.dev-server-env'), silent: true }); //eslint-disable-line
 
 const PORT = process.env.GRAPHIQL_PORT || 3002;
 const server = express();

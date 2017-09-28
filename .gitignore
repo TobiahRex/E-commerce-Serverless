@@ -20,7 +20,7 @@ config.json
 .DS_Store
 .sass-cache
 .env
-.env-dev
+.dev-server-env
 .env-prod
 .env-tsh
 npm-debug.log
