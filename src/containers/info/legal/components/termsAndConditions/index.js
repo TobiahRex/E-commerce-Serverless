@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   injectIntl,
   intlShape,
@@ -8,6 +9,8 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import { WebflowAnimations } from './assets/utils';
+import './assets/styles/style.css';
 
 function TermsAndConditions({ intl }) {
   const {
@@ -19,7 +22,7 @@ function TermsAndConditions({ intl }) {
   } = intl;
 
   return (
-    <div className="terms-and-conditions__main">
+    <div className="terms-conditions">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -28,56 +31,67 @@ function TermsAndConditions({ intl }) {
       />
       <HdrPage header={header} />
       <br />
-      <div className="main__body">
-        <p>
-          <IntlMsg id="legal.policy.terms.header.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.terms.restrictions.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.terms.restrictions.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.terms.disclaimer.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.terms.disclaimer.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.terms.links.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.terms.links.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.terms.submissions.title" />
-        </h4>
-        <br />
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.terms.submissions.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.terms.termination.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.terms.termination.desc" />
-        </p>
+      <div className="terms-conditions__content-container">
+        <div className="content-container__terms-conditions-content">
+          <div className="terms-conditions-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.terms.restrictions.title" />
+            </h4>
+          </div>
+          <div className="terms-conditions-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.terms.restrictions.desc" />
+            </p>
+          </div>
+        </div>
+        <div className="content-container__terms-conditions-content">
+          <div className="terms-conditions-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.terms.disclaimer.title" />
+            </h4>
+          </div>
+          <div className="terms-conditions-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.terms.disclaimer.desc" />
+            </p>
+          </div>
+        </div>
+        <div className="content-container__terms-conditions-content">
+          <div className="terms-conditions-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.terms.links.title" />
+            </h4>
+          </div>
+          <div className="terms-conditions-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.terms.links.desc" />
+            </p>
+          </div>
+        </div>
+        <div className="content-container__terms-conditions-content">
+          <div className="terms-conditions-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.terms.submissions.title" />
+            </h4>
+          </div>
+          <div className="terms-conditions-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.terms.submissions.desc" />
+            </p>
+          </div>
+        </div>
+        <div className="content-container__terms-conditions-content">
+          <div className="terms-conditions-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.terms.termination.title" />
+            </h4>
+          </div>
+          <div className="terms-conditions-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.terms.termination.desc" />
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -86,4 +100,9 @@ TermsAndConditions.propTypes = {
   intl: intlShape.isRequired,
 };
 const TermsAndConditionsWithIntl = injectIntl(TermsAndConditions);
-export default TermsAndConditionsWithIntl;
+const TermsAndConditionsWithIntlAndLifecycle = lifecycle({
+  componentWillUpdate() {
+    WebflowAnimations();
+  },
+})(TermsAndConditionsWithIntl);
+export default TermsAndConditionsWithIntlAndLifecycle;

@@ -76,7 +76,7 @@ export default () => {
       },
     },
     {
-      slug: 'fade-in',
+      slug: 'contactus-fade-in',
       name: 'Fade In',
       value: {
         style: { opacity: 0 },

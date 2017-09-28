@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
 const ContactForm = props => (
-  <div className="main__body" data-ix="slide-from-above">
+  <div className="main__body" data-ix="contactus-fade-in">
     <div className="main__body-form w-form">
 
       <Validation.components.Form

@@ -1,7 +1,7 @@
 export default () => {
   Webflow.require('ix').init([
     {
-      slug: 'spolicy-slide-from-top',
+      slug: 'terms-slide-from-top',
       name: 'Slide from Top',
       value: {
         style: { x: '0px', y: '-100px', z: '0px' },
@@ -25,7 +25,7 @@ export default () => {
             offsetTop: '25%',
             offsetBot: '10%',
             stepsA: [
-              { wait: '250ms' },
+              { wait: '500ms' },
               {
                 opacity: 1,
                 transition: 'transform 500ms ease-in-out 0, opacity 500ms ease 0',
@@ -53,7 +53,7 @@ export default () => {
             offsetTop: '25%',
             offsetBot: '10%',
             stepsA: [
-              { wait: '250ms' },
+              { wait: '500ms' },
               {
                 opacity: 1,
                 transition: 'transform 500ms ease-in-out 0, opacity 500ms ease 0',
