@@ -7,7 +7,7 @@
 *
 * @return {string} productListHtmlString - The final resulting html string with the dynamically generated product rows.
 */
-export default function createEmailProductList(emailDoc, cart) {
+export default function createEmailProductList(emailDoc, cart, language) {
   const productListHtmlString = cart.reduce((accum, next) => {
     accum += `
     <div style="background-color:transparent;">
@@ -26,7 +26,7 @@ export default function createEmailProductList(emailDoc, cart) {
                       <span style="font-size: 14px; line-height: 16px; color: rgb(54, 88, 153);">
                         <strong>
                           <span style="line-height: 16px; font-size: 14px;">
-                            ${next.product.title}
+                            ${next.product.title[language]}
                           </span>
                         </strong>
                       </span>
