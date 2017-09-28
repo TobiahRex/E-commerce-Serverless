@@ -117,18 +117,13 @@
             }
             & input {
               height: 2.5em;
-              width: 9em;
-              margin-left: .71em;
+              width: 9.5em;
             }
           }
           & .input__row--first-name {
+            width: 14.5em;
             & input, p {
               margin-left: 0;
-            }
-          }
-          & .input__row--last-name {
-            & span.form-error.is-visible {
-              margin-left: 1.5em;
             }
           }
           & .input__row--country,
@@ -140,7 +135,7 @@
               color: $p-blue;
               font-family: $p-font;
               font-size: 1.4em;
-              width: 21em;
+              width: 20em;
               height: 2.5em;
               padding-left: .71em;
               border: 0;
@@ -186,6 +181,12 @@
       & .checkout__credit-card {
         order: 5;
         padding-bottom: 2em;
+        & .input__row--name-on-card {
+          width: 29em;
+          & *[name="ccNameOnCard"] {
+            width: 20.7em;
+          }
+        }
         & .input__row--country {
           @include prefixflex();
           align-items: flex-start;
