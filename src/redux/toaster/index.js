@@ -16,10 +16,7 @@ const INITIAL_STATE = Immutable({
   error: false,
   warning: false,
   success: false,
-  message: {
-    en: '',
-    ja: '',
-  },
+  message: '',
 });
 
 const toastError = (state, { error, message }) => ({
@@ -44,10 +41,7 @@ const clearToaster = () => ({
   error: false,
   warning: false,
   success: false,
-  message: {
-    en: '',
-    ja: '',
-  },
+  message: '',
 });
 
 export const toasterReducer = createReducer(INITIAL_STATE, {

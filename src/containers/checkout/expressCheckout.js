@@ -390,7 +390,7 @@ class ExpressCheckout extends React.Component {
         if (!!error.hard || !!error.soft) {
           this.props.apiFail();
           this.props.gotInvalidPostal({ error: true });
-          this.props.toastError(true, error.message[this.IntlLocale]);
+          this.props.toastError(true, error.message[IntlLocale]);
         } else {
           this.setState(
             prevState => ({
