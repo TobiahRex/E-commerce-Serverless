@@ -14,7 +14,7 @@ function BillTo({
       <fieldset className="billto--fieldset">
         <legend className="billto__legend">
           <p>
-            <IntlMsg id="checkout.success.bill-to" />
+            <IntlMsg id="checkout.success.bill-to.title" />
           </p>
         </legend>
         <div className="billto__name">

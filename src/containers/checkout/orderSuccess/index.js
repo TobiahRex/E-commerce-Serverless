@@ -37,6 +37,7 @@ class OrderSuccess extends React.Component {
       intl: {
         messages: {
           'checkout.success.breadCrumb.paths1': bcPaths1,
+          'checkout.success.breadCrumb.paths2': bcPaths2,
           'checkout.success.breadCrumb.lastCrumb': lastCrumb,
         },
       },
@@ -44,6 +45,7 @@ class OrderSuccess extends React.Component {
 
     this.intl = {
       bcPaths1,
+      bcPaths2,
       lastCrumb,
     };
 
@@ -142,9 +144,9 @@ class OrderSuccess extends React.Component {
       <div className="ordered--main">
         <div className="ordered--container">
           <BreadCrumb
-            paths={[this.intl.bcPaths1]}
-            classes={['home']}
-            destination={['']}
+            paths={[this.intl.bcPaths1, this.intl.bcPaths2]}
+            classes={['home', 'home']}
+            destination={['', 'express_checkout']}
             lastCrumb={this.intl.lastCrumb}
           />
           <div className="ordered__title">
@@ -192,6 +194,7 @@ class OrderSuccess extends React.Component {
             trackingNumber={referenceId}
             orderProducts={zippedProducts}
             grandTotal={amountMoney.amount}
+            currency={amountMoney.currency}
             subTotal={subTotal}
             taxes={taxes}
             discount={discount}
@@ -216,17 +219,23 @@ class OrderSuccess extends React.Component {
 
   render() {
     return (
-      <div>
-        {
-          this.state.loading ?
-            <h1 className="main__loading">
-              <FontAwesome name="spinner" pulse size="3x" />
-              <br />
-              <IntlMsg id="checkout.subtitle.loading" />
-            </h1>
-          :
-          this.renderBody(this.props)
-        }
+      <div className="ordered--main">
+        <div className="ordered__header">
+          {
+            this.state.loading ?
+              <div className="loading-content">
+                <h1 className="main__loading">
+                  <FontAwesome name="spinner" pulse size="2x" />
+                </h1>
+                <br />
+                <h2>
+                  <IntlMsg id="checkout.success.subtitle.loading" />
+                </h2>
+              </div>
+            :
+            this.renderBody(this.props)
+          }
+        </div>
       </div>
     );
   }

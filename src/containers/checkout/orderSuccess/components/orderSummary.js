@@ -15,6 +15,7 @@ function OrderSummary({
   orderProducts,
   grandTotal,
   subTotal,
+  currency,
   taxes,
   discount: {
     qtyAmount,
@@ -53,7 +54,8 @@ function OrderSummary({
           <tbody className="table--body">
             <tr className="body--shipping-status-row">
               <td colSpan="5">
-                <p>{shippingStatus} {'\u2013'}
+                <p>
+                  {shippingStatus[IntlLocale]} &nbsp;
                   <IntlMsg id="checkout.success.summary.row.tracking" />
                   <Link
                     className="tracking-id"
@@ -82,7 +84,7 @@ function OrderSummary({
                   <td colSpan="3">
                     <ul className="product-row__list">
                       <li className="list--title">
-                        <p>{title}</p>
+                        <p>{title[IntlLocale]}</p>
                       </li>
                       <li className="list--nic-strength">
                         <p>{NicotineStrengthConverter(nicotineStrength)}</p>
@@ -173,7 +175,7 @@ function OrderSummary({
                   </li>
                   <li className="list-value--order-total">
                     <p>
-                      <FontAwesome name="usd" />
+                      <FontAwesome name={currency.toLowerCase()} />
                       &nbsp;
                       {`${String(grandTotal).slice(0, 2)}.${String(grandTotal).slice(2, 4)}`}
                     </p>
@@ -188,13 +190,17 @@ function OrderSummary({
   );
 }
 
-const { string, arrayOf, object, objectOf, any, number } = PropTypes;
+const { shape, string, arrayOf, object, objectOf, any, number } = PropTypes;
 OrderSummary.propTypes = {
-  shippingStatus: string.isRequired,
+  shippingStatus: shape({
+    en: string.isRequired,
+    ja: string.isRequired,
+  }).isRequired,
   trackingLink: string.isRequired,
   trackingNumber: string.isRequired,
   orderProducts: arrayOf(object).isRequired,
   subTotal: string.isRequired,
+  currency: string.isRequired,
   taxes: string.isRequired,
   grandTotal: number.isRequired,
   discount: objectOf(any).isRequired,
