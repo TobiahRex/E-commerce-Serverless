@@ -65,6 +65,7 @@ class ExpressCheckout extends React.Component {
           'checkout.shipping-address.line1.placeholder': addressL1Placeholder,
           'checkout.shipping-address.line2.label': addressL2Label,
           'checkout.shipping-address.line2.placeholder': addressL2Placeholder,
+          'checkout.order.success': orderSuccess,
         },
       },
     } = props;
@@ -72,6 +73,7 @@ class ExpressCheckout extends React.Component {
     this.intl = {
       bcPaths1,
       lastCrumb,
+      orderSuccess,
       addressL1Label,
       addressL1Placeholder,
       addressL2Label,
@@ -369,7 +371,7 @@ class ExpressCheckout extends React.Component {
             } else {
               this.props.saveUser(user);
               this.props.saveTransaction(transaction);
-              this.props.toastSuccess(true, 'Order successfully submitted!');
+              this.props.toastSuccess(true, this.intl.orderSuccess);
               this.props.apiSuccess();
               setTimeout(() => this.props.push('/successfully_ordered'), 4000);
             }
@@ -388,7 +390,7 @@ class ExpressCheckout extends React.Component {
         if (!!error.hard || !!error.soft) {
           this.props.apiFail();
           this.props.gotInvalidPostal({ error: true });
-          this.props.toastError(true, error.message);
+          this.props.toastError(true, error.message[this.IntlLocale]);
         } else {
           this.setState(
             prevState => ({
