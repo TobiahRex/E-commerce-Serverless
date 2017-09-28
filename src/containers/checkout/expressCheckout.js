@@ -131,6 +131,11 @@ class ExpressCheckout extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.resetPostal();
+    this.props.clearToaster();
+  }
+
   componentWillReceiveProps(nextProps) {
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
