@@ -4,9 +4,7 @@ import { Route } from 'react-router';
 import Cart from '../containers/cart';
 import EmptyCart from '../containers/cart/components/EmptyCart/emptyCart';
 import ExpressCheckout from '../containers/checkout/expressCheckout';
-
-const errorLoading = (e) => { throw new Error(e.message); };
-const loadRoute = cb => module => cb(null, module.default);
+import OrderSuccess from '../containers/checkout/orderSuccess/index';
 
 const CheckoutRoutes = () => (
   <div>
@@ -24,11 +22,7 @@ const CheckoutRoutes = () => (
     />
     <Route
       path="successfully_ordered"
-      getComponent={(location, cb) => {
-        import('../containers/checkout/orderSuccess/index' /* webpackChunkName: "orderSuccess" */)
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
+      component={OrderSuccess}
     />
   </div>
 );
