@@ -16,13 +16,13 @@
   padding-bottom: 10px;
 }
 
-.hdr-container__hdr-blurb {
+.blurb-container__hdr-blurb {
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
   padding-bottom: 10px;
   font-family: 'Open Sans', sans-serif;
-  color: #365899;
+  color: #FC2525;
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
@@ -43,7 +43,7 @@
   margin-bottom: 100px;
 }
 
-html.w-mod-js *[data-ix="slide-from-top"] {
+html.w-mod-js *[data-ix="nicotine-slide-from-top"] {
   -webkit-transform: translate(0px, -100px);
   -ms-transform: translate(0px, -100px);
   transform: translate(0px, -100px);
