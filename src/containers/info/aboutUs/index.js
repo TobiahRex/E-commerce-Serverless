@@ -5,7 +5,6 @@ import {
   WebflowAnimations,
   contentData,
 } from './assets/utils';
-
 import {
   BreadCrumb,
   HdrPage,

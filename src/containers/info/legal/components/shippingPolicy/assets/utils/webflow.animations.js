@@ -1,7 +1,7 @@
 export default () => {
   Webflow.require('ix').init([
     {
-      slug: 'ppolicy-slide-from-top',
+      slug: 'spolicy-slide-from-top',
       name: 'Slide from Top',
       value: {
         style: { x: '0px', y: '-100px', z: '0px' },

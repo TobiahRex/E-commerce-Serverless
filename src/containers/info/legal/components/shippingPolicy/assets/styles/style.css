@@ -44,7 +44,7 @@
   font-size: 16px;
 }
 
-html.w-mod-js *[data-ix="ppolicy-slide-from-top"] {
+html.w-mod-js *[data-ix="spolicy-slide-from-top"] {
   -webkit-transform: translate(0px, -100px);
   -ms-transform: translate(0px, -100px);
   transform: translate(0px, -100px);
