@@ -372,7 +372,10 @@ class ShoppingCart extends Component {
   }
 
   routerPush = (e) => {
-    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
+    this.props.push(
+      e.target.dataset.slug ||
+      e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug,
+    );
   }
 
   /**

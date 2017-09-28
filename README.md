@@ -4,7 +4,7 @@ E-commerce store providing nicotine vape juice to Japanese customers faster than
   - Backend API = **GraphQL**.
   - Database utilizes a **Mongo Cluster** with 3 nodes. 2 Full + 1 Arbiter.
   - Client-side API requests are generated from **Apollo Client** wrapped components.
-  - Other Client-side API requests are also generated using **redux-sagas** and the npm library **api-sauce** that adds abstraction layer to **axios**.
+  - Other Client-side API requests are generated using **redux-sagas** and the npm library **api-sauce** that adds an abstraction layer to **axios**.
   - The rest of the app sits on **React.js** & **React Router*(V3)** (with Code splitting), **Redux** & **Redux Persist** (with WebStorage).
 
 ## Cloud Architecture
