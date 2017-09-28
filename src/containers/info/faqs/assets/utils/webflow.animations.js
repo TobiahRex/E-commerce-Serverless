@@ -22,13 +22,13 @@ export default () => {
         triggers: [
           {
             type: 'scroll',
-            offsetTop: '10%',
-            offsetBot: '15%',
+            offsetTop: '25%',
+            offsetBot: '10%',
             stepsA: [
               { wait: '500ms' },
               {
                 opacity: 1,
-                transition: 'transform 600ms ease-in-out 0, opacity 550ms ease 0',
+                transition: 'transform 500ms ease-in-out 0, opacity 500ms ease 0',
                 x: '0px',
                 y: '0px',
                 z: '0px',
@@ -54,13 +54,13 @@ export default () => {
         triggers: [
           {
             type: 'scroll',
-            offsetTop: '10%',
-            offsetBot: '15%',
+            offsetTop: '25%',
+            offsetBot: '10%',
             stepsA: [
               { wait: '500ms' },
               {
                 opacity: 1,
-                transition: 'transform 600ms ease-in-out 0, opacity 550ms ease 0',
+                transition: 'transform 500ms ease-in-out 0, opacity 500ms ease 0',
                 x: '0px',
                 y: '0px',
                 z: '0px',

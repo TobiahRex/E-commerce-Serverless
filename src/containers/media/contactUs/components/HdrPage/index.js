@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './assets/styles/style.scss';
 
 const HdrPage = props => (
   <div className="main__title">

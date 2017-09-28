@@ -1,7 +1,6 @@
 .contact-us {
   max-width: 1086px;
   width: 100%;
-  padding-bottom: 100px;
 }
 
 .contact-us.contact-us__container {
@@ -43,6 +42,7 @@
   text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
 }
 .main__body {
+  margin-top: 50px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -51,6 +51,7 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-bottom: 100px;
 }
 
 .body__submit--button:disabled {
@@ -461,7 +462,7 @@ html.w-mod-js *[data-ix="slide-from-above"] {
   transform: translate(0px, -100px);
 }
 
-html.w-mod-js *[data-ix="fade-in"] {
+html.w-mod-js *[data-ix="contactus-fade-in"] {
   opacity: 0;
 }
 

@@ -217,6 +217,8 @@ class ContactUs extends React.Component {
           />
           <HdrPage header={this.intl.header} />
 
+          <br />
+
           <ContactForm
             key={this.state.formKey}
             handleOnSubmit={this.handleOnSubmit}
