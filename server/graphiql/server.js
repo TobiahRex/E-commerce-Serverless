@@ -16,7 +16,7 @@ require('dotenv').config({ path: path.resolve('.dev-server-env') });
 envCheck(process.env.NODE_ENV);
 const PORT = process.env.GRAPHQL_PORT;
 const app = express();
-app.use('*', cors({ origin: process.env.BASE_URL_DEV }));
+app.use('*', cors({ origin: process.env.BASE_URL }));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
