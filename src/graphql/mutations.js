@@ -570,6 +570,7 @@ mutation SubmitFinalOrder(
           }
           type
           card_details {
+            status
             card {
               card_brand
               last_4
@@ -591,10 +592,7 @@ mutation SubmitFinalOrder(
             amount
             currency
           }
-          status {
-            en
-            ja
-          }
+          status
         }
       }
     }
