@@ -10,7 +10,7 @@ function Discounts({ title, amount }) {
         <IntlMsg id="checkout.total.subtotal.discount.title" />
       </p>
       <p>
-        <FontAwesome name="usd" />&nbps;
+        <FontAwesome name="usd" />&nbsp;
         -{amount.toFixed(2)}
       </p>
     </div>

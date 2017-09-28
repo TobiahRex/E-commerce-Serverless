@@ -11,6 +11,7 @@ import {
 import Discounts from './discounts';
 
 function TotalContent({
+  intl,
   subTotal,
   taxes,
   discount,
@@ -48,7 +49,7 @@ function TotalContent({
         {
           !!discount.qty &&
             <Discounts
-              title={this.props.intl.messages[
+              title={intl.messages[
                 'checkout.total.subtotal.quantity.title'
               ]}
               amount={discount.qtyAmount}
@@ -58,7 +59,7 @@ function TotalContent({
         {
           !!discount.register &&
             <Discounts
-              title={this.props.intl.messages[
+              title={intl.messages[
                 'checkout.total.subtotal.register.title'
               ]}
               amount={discount.registerAmount}
@@ -101,7 +102,7 @@ function TotalContent({
           })}
         />
         <p>
-          <IntlMsg id="checkout.total.grand-total.terms-agreements1" />
+          <IntlMsg id="checkout.total.grand-total.terms-agreements1" />&nbsp;
           <Link to="/terms_and_conditions">
             <IntlMsg id="checkout.total.grand-total.terms-agreements2" />
           </Link>
