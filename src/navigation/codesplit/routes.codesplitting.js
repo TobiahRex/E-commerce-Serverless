@@ -4,20 +4,35 @@ import { Route, IndexRoute } from 'react-router';
 import App from '../App';
 import Routes from './index';
 import AuthService from '../services/utils/authService';
-import Splash from '../containers/splash';
 
 export const auth = new AuthService();
-
+// const requireAuth = () => {
+//   if (!auth.loggedIn()) {
+//     replace({ pathname: '/login' });
+//     push('/login');
+//   }
+// };
 const parseAuthHash = (nextState) => {
   const hash = nextState.location.hash;
   if (/access_token|id_token|error/.test(hash)) {
     auth.parseHash(hash);
   }
 };
+const errorLoading = (error) => {
+  throw new Error(`Dynamic page loading failed.
+  ERROR: ${error}`);
+};
+const loadRoute = cb => module => cb(null, module.default);
 
 export default (
   <Route path="/" component={App} auth={auth}>
-    <IndexRoute component={Splash} />
+    <IndexRoute
+      getComponent={(location, cb) => {
+        import('../containers/splash' /* webpackChunkName: "homePage" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
+    />
     {Routes.ProductRoutes()}
     {Routes.MediaRoutes()}
     {Routes.InfoRoutes()}
@@ -29,12 +44,3 @@ export default (
     {/* {Routes.AdminDashboardRoutes(requireAuth)} */}
   </Route>
 );
-
-/* TODO MVP2
-const requireAuth = () => {
-  if (!auth.loggedIn()) {
-    replace({ pathname: '/login' });
-    push('/login');
-  }
-};
-*/
