@@ -149,7 +149,19 @@ const mutationTypes = {
             },
             message: {
               description: 'Amplifying information about error.  Should be written for user readibility.',
-              type: StringType,
+              type: new ObjectType({
+                name: 'ValidatePostalErrorMsg',
+                fields: () => ({
+                  en: {
+                    description: 'English message.',
+                    type: StringType,
+                  },
+                  ja: {
+                    description: 'Japanese message.',
+                    type: StringType,
+                  },
+                }),
+              }),
             },
           }),
         }),
