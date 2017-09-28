@@ -376,7 +376,10 @@ export const ValidatePostal = gql`
       error {
         hard
         soft
-        message
+        message {
+          en
+          ja
+        }
       }
       postalInfo {
         postalCode
