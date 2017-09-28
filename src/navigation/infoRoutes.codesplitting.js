@@ -2,10 +2,6 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // ----------------------------- Media -------------------------------
-import About from '../containers/info/aboutUs';
-import Faqs from '../containers/info/faqs';
-import Returns from '../containers/info/legal/components/returnsPolicy';
-import Shipping from '../containers/info/legal/components/shippingPolicy';
 // import Wholesale from '../containers/info/legal/wholesale';
 // import Affiliates from '../containers/info/legal/affiliateProgram';
 
@@ -18,19 +14,35 @@ const InfoRoutes = () => (
   <div>
     <Route
       path="/about"
-      component={About}
+      getComponent={(_, cb) => {
+        import('../containers/info/aboutUs' /* webpackChunkName: "about" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
     />
     <Route
       path="/faqs"
-      component={Faqs}
+      getComponent={(_, cb) => {
+        import('../containers/info/faqs' /* webpackChunkName: "faqs" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
     />
     <Route
       path="/return_policy"
-      component={Returns}
+      getComponent={(location, cb) => {
+        import('../containers/info/legal/components/returnsPolicy' /* webpackChunkName: "returnPolicy" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
     />
     <Route
       path="/shipping_policy"
-      component={Shipping}
+      getComponent={(location, cb) => {
+        import('../containers/info/legal/components/shippingPolicy' /* webpackChunkName: "shippingPolicy" */)
+        .then(loadRoute(cb))
+        .catch(errorLoading);
+      }}
     />
     <Route
       path="/privacy_policy"
