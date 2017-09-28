@@ -77,7 +77,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: problem,
+          message: {
+            en: 'That postal code is invalid. Please try again.',
+            ja: 'その郵便番号は無効です。 もう一度お試しください。',
+          },
         },
       });
     } else {
@@ -86,7 +89,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: false,
           soft: false,
-          message: '',
+          message: {
+            en: '',
+            ja: '',
+          },
         },
         postalInfo: { ...data.postalInfo },
       });
