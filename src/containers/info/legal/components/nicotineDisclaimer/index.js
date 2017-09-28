@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   intlShape,
   injectIntl,
@@ -8,6 +9,9 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import {
+  WebflowAnimations,
+} from './assets/utils/';
 import './assets/styles/style.css';
 
 function NicotineDisclaimer({ intl }) {
@@ -20,7 +24,7 @@ function NicotineDisclaimer({ intl }) {
   } = intl;
 
   return (
-    <div className="nicotine-disclaimer__main">
+    <div className="nicotine-disclaimer">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -50,4 +54,9 @@ NicotineDisclaimer.propTypes = {
   intl: intlShape.isRequired,
 };
 const NicotineDisclaimerWithIntl = injectIntl(NicotineDisclaimer);
-export default (NicotineDisclaimerWithIntl);
+const NicotineDisclaimerWithIntlAndLifecycle = lifecycle({
+  componentDidUpdate() {
+    WebflowAnimations();
+  },
+})(NicotineDisclaimerWithIntl);
+export default (NicotineDisclaimerWithIntlAndLifecycle);

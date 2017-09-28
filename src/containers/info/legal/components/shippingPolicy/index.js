@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   injectIntl,
   intlShape,
@@ -8,6 +9,9 @@ import {
   HdrPage,
   BreadCrumb,
 } from './components';
+import {
+  WebflowAnimations,
+} from './assets/utils/';
 import './assets/styles/style.css';
 
 function ShippingPolicy({ intl }) {
@@ -19,7 +23,7 @@ function ShippingPolicy({ intl }) {
     },
   } = intl;
   return (
-    <div className="shipping-policy__main">
+    <div className="shipping-body">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -97,4 +101,9 @@ ShippingPolicy.propTypes = {
   intl: intlShape.isRequired,
 };
 const ShippingPolicyWithIntl = injectIntl(ShippingPolicy);
-export default ShippingPolicyWithIntl;
+const ShippingPolicyWithLifecycleAndIntl = lifecycle({
+  componentDidUpdate() {
+    WebflowAnimations();
+  },
+})(ShippingPolicyWithIntl);
+export default ShippingPolicyWithLifecycleAndIntl;

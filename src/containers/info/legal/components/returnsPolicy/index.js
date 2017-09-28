@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   injectIntl,
   intlShape,
@@ -8,19 +9,20 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import { WebflowAnimations } from './assets/utils';
 import './assets/styles/style.css';
 
 function ReturnsPolicy({ intl }) {
   const {
     messages: {
-      'legal.breadCrumb.paths1': bcPaths1,
-      'legal.breadCrumb.lastCrumb': lastCrumb,
+      'legal.policy.returns.breadCrumb.paths1': bcPaths1,
+      'legal.policy.returns.breadCrumb.lastCrumb': lastCrumb,
       'legal.policy.returns.header.title': header,
     },
   } = intl;
 
   return (
-    <div className="returns-policy__main">
+    <div className="returns-body">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -62,4 +64,9 @@ ReturnsPolicy.propTypes = {
   intl: intlShape.isRequired,
 };
 const ReturnsPolicyWithIntl = injectIntl(ReturnsPolicy);
-export default ReturnsPolicyWithIntl;
+const ReturnsPolicyWithIntlAndLifecycle = lifecycle({
+  componentDidUpdate() {
+    WebflowAnimations();
+  },
+})(ReturnsPolicyWithIntl);
+export default ReturnsPolicyWithIntlAndLifecycle;
