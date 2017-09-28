@@ -19,7 +19,7 @@ function ReturnsPolicy({ intl }) {
   } = intl;
 
   return (
-    <div className="returns-policy__main">
+    <div className="returns-body">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -28,7 +28,7 @@ function ReturnsPolicy({ intl }) {
       />
       <HdrPage header={header} />
       <br />
-      <div className="main__body">
+      <div className="returns-body__content-container">
         <h4>
           <IntlMsg id="legal.policy.returns.refunds.title" />
         </h4>
