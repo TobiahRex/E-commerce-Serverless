@@ -22,28 +22,11 @@ function NetworkStatus({ routerPush, renderHelper }) {
     </div>
   );
 }
-const { shape, string, bool, func } = PropTypes;
-NetworkStatus.propTypes = {
-  toast: shape({
-    type: string,
-    message: string,
-  }).isRequired,
-  errors: shape({
-    hard: bool,
-    soft: bool,
-    messages: string,
-  }).isRequired,
-  loading: bool,
-  routerPush: func.isRequired,
-  renderHelper: func.isRequired,
-};
-NetworkStatus.defaultProps = {
-  loading: false,
-};
 
 const NetworkStatusWithHandlers = withHandlers({
   renderHelper: ({ errors, loading, success, toast }) => () => {
     let { message, hard } = errors;
+    console.log('%cmessage', 'background:red;', message);
     // message = message[IntlLocale];
     const { soft } = errors;
     const showError = !!hard || !!soft || !!message.length || !!toast.message;
@@ -51,6 +34,9 @@ const NetworkStatusWithHandlers = withHandlers({
     if (!!toast.message) {
       message = toast.message;
     }
+    // else if (!!toast.message[IntlLocale]) {
+    //   message = toast.message[IntlLocale];
+    // }
 
     const hardError = (
       <div className="checkout__error-hard">
@@ -119,5 +105,25 @@ const NetworkStatusWithHandlers = withHandlers({
     return '';
   },
 })(NetworkStatus);
-
+const { shape, string, bool, func } = PropTypes;
+NetworkStatus.propTypes = {
+  toast: shape({
+    type: string,
+    message: shape({
+      en: string,
+      ja: string,
+    }),
+  }).isRequired,
+  errors: shape({
+    hard: bool,
+    soft: bool,
+    messages: string,
+  }).isRequired,
+  loading: bool,
+  routerPush: func.isRequired,
+  renderHelper: func.isRequired,
+};
+NetworkStatus.defaultProps = {
+  loading: false,
+};
 export default NetworkStatusWithHandlers;
