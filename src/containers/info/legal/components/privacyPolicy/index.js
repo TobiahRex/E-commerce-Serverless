@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   injectIntl,
   intlShape,
@@ -8,6 +9,7 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import { WebflowAnimations } from './assets/utils';
 import './assets/styles/style.css';
 
 function PrivacyPolicy({ intl }) {
@@ -20,7 +22,7 @@ function PrivacyPolicy({ intl }) {
   } = intl;
 
   return (
-    <div className="privacy-policy__main">
+    <div className="privacy-policy">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
@@ -142,4 +144,9 @@ PrivacyPolicy.propTypes = {
   intl: intlShape.isRequired,
 };
 const PrivacyPolicyWithIntl = injectIntl(PrivacyPolicy);
-export default PrivacyPolicyWithIntl;
+const PrivacyPolicyWithIntlAndLifecycle = lifecycle({
+  componentWillUpdate() {
+    WebflowAnimations();
+  },
+})(PrivacyPolicyWithIntl);
+export default PrivacyPolicyWithIntlAndLifecycle;

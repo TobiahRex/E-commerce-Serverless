@@ -1,3 +1,12 @@
+.nicotine-disclaimer {
+  display: block;
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  margin-bottom: 100px;
+}
+
 .hdr-container__hdr-text {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -32,15 +41,6 @@
   font-family: 'Open Sans', sans-serif;
   color: #365899;
   font-size: 16px;
-}
-
-.nicotine-disclamer {
-  display: block;
-  max-width: 1080px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 20px;
-  margin-bottom: 100px;
 }
 
 html.w-mod-js *[data-ix="nicotine-slide-from-top"] {
