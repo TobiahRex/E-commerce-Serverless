@@ -179,7 +179,10 @@ class ExpressCheckout extends React.Component {
   routerPush = (e) => {
     const target = e.target.dataset.slug || e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug;
 
-    if (target === '/' && SqrPaymentForm.paymentForm) SqrPaymentForm.destroy();
+    if (target === '/' && SqrPaymentForm.paymentForm) {
+      this.props.clearToaster();
+      SqrPaymentForm.destroy();
+    }
 
     this.props.push(target);
   };
@@ -330,7 +333,7 @@ class ExpressCheckout extends React.Component {
           hard: true,
           soft: false,
           message: errors.reduce((accum, next, i) => {
-            accum += `   ${i + 1}) ${next.message}.`;
+            accum += `   ${i + 1}) ${next.message[IntlLocale]}.`;
             return accum;
           }, ''),
         },
@@ -416,7 +419,7 @@ class ExpressCheckout extends React.Component {
     const userHasProducts = !!cartLength;
     const networkErrors =
       /(Network Error)|(Server Error)g/.test(toast.message) ||
-      /(Network Error)|(Server Error)g/.test(errors.message);
+      /(Network Error)|(Server Error)g/.test(errors.message.en);
 
     if (networkErrors) return false;
     if (userLoggedIn && userHasProducts) return true;
@@ -604,18 +607,18 @@ const ExpressCheckoutWithState = connect(
     GraphQLhandleError: (error) => {
       let errorMsg = '';
 
-      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message)) {
+      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message.en)) {
         errorMsg = 'You must login or register to complete this transaction.';
-      } else if (/(GraphQL error: )/.test(error.message)) {
-        errorMsg = error.message.replace(/(GraphQL error: )+/g, '');
+      } else if (/(GraphQL error: )/.test(error.message.en)) {
+        errorMsg = error.message.en.replace(/(GraphQL error: )+/g, '');
       }
 
       if (error.soft) {
-        ownProps.toastWarning(true, error.message);
+        ownProps.toastWarning(true, error.message[IntlLocale]);
       } else if (error.hard) {
-        ownProps.toastError(true, error.message);
+        ownProps.toastError(true, error.message[IntlLocale]);
       } else {
-        ownProps.toastError(true, errorMsg || error.message);
+        ownProps.toastError(true, errorMsg || error.message[IntlLocale]);
       }
       ownProps.apiFail();
     },
