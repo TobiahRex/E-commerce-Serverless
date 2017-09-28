@@ -16,7 +16,7 @@ const createAPI = () => {
 
   const FetchProductById = _id => api.post('', {
     query: `query FetchProductById($_id: String!) {
-      FetchProductById(_id: $_id) {
+      FindProductById(_id: $_id) {
         _id
         error {
           hard

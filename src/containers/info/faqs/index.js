@@ -23,7 +23,7 @@ function Faqs({ intl }) {
   } = intl;
 
   return (
-    <div className="nicotine-disclaimer__main">
+    <div className="faq-body">
       <BreadCrumb
         paths={[bcPaths1]}
         classes={['home']}
