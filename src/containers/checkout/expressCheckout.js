@@ -581,7 +581,7 @@ class ExpressCheckout extends React.Component {
               <NetworkStatus
                 toast={toast}
                 errors={errors}
-                loading={true}
+                loading={apiFetching}
                 success={false}
                 routerPush={this.routerPush}
               />
