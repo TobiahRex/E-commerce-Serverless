@@ -447,7 +447,7 @@
         }
         & .terms-agreement {
           @include prefixflex();
-          align-items: flex-start;
+          align-items: center;
           & input {
             cursor: pointer;
           }

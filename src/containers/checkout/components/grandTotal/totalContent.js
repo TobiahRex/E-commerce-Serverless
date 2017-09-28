@@ -101,6 +101,7 @@ function TotalContent({
             },
           })}
         />
+        &nbsp;
         <p>
           <IntlMsg id="checkout.total.grand-total.terms-agreements1" />&nbsp;
           <Link to="/terms_and_conditions">

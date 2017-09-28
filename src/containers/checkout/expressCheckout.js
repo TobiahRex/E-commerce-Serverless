@@ -175,7 +175,11 @@ class ExpressCheckout extends React.Component {
   }
 
   routerPush = (e) => {
-    this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
+    const target = e.target.dataset.slug || e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug;
+
+    if (target === '/' && SqrPaymentForm.paymentForm) SqrPaymentForm.destroy();
+
+    this.props.push(target);
   };
 
   /**
