@@ -8,6 +8,7 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import './assets/styles/style.css';
 
 function ReturnsPolicy({ intl }) {
   const {
@@ -28,23 +29,31 @@ function ReturnsPolicy({ intl }) {
       />
       <HdrPage header={header} />
       <br />
-      <div className="main__body">
-        <h4>
-          <IntlMsg id="legal.policy.returns.refunds.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.returns.refunds.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.returns.cancellations.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.returns.cancellations.desc" />
-        </p>
+      <div className="returns-body__content-container">
+        <div className="content-container__returns-content">
+          <div className="returns-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.returns.refunds.title" />
+            </h4>
+          </div>
+          <div className="returns-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.returns.refunds.desc" />
+            </p>
+          </div>
+        </div>
+        <div className="content-container__returns-content">
+          <div className="returns-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.returns.cancellations.title" />
+            </h4>
+          </div>
+          <div className="returns-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.returns.cancellations.desc" />
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
