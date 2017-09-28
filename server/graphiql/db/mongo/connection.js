@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import path from 'path';
 import colors from 'colors';
 
-require('dotenv').config({ path: path.resolve('.env-prod'), silent: true }); //eslint-disable-line
+require('dotenv').config({ path: path.resolve('.env'), silent: true }); //eslint-disable-line
 
 mongoose.Promise = Promise;
 const MONGO_DB = `mongodb://localhost/${colors.bold('nj2jp-development')}`;

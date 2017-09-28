@@ -4,7 +4,7 @@ import path from 'path';
 import { Promise as bbPromise } from 'bluebird';
 import marketHeroSchema from '../../schemas/marketHeroSchema';
 import db from '../../connection';
-require('dotenv').config({ path: path.resolve('.env-dev'), silent: true });
+require('dotenv').config({ path: path.resolve('.env'), silent: true });
 
 /**
 * Function: "checkForLead"

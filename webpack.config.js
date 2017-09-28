@@ -1,7 +1,5 @@
 /* eslint-disable no-use-before-define, max-len, import/first */
-
 import path from 'path';
-import dotenv from 'dotenv';
 import webpack from 'webpack';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -16,7 +14,7 @@ import webpackEnvs from './tools/webpack.envs';
 // -----------------------------------------------------------------------------
 const extractCSS = new ExtractTextPlugin('[contenthash]-css.css');
 const extractSCSS = new ExtractTextPlugin('[contenthash]-scss.css');
-let webpackConfig = {};
+let webpackConfig = {}; // eslint-disable-line
 
 const devConfig = {
   resolve: {

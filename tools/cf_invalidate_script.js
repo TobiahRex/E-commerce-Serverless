@@ -3,7 +3,6 @@
 
 import { exec } from 'child_process';
 import colors from 'colors'; // eslint-disable-line
-import path from 'path';
 import webpackEnvs from './webpack.envs';
 
 const distributionId = process.env.NODE_ENV === 'production' ? webpackEnvs.production.DISTRIBUTION_ID : webpackEnvs.troubleshoot.DISTRIBUTION_ID;
