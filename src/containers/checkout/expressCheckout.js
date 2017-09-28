@@ -168,7 +168,7 @@ class ExpressCheckout extends React.Component {
     return false;
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     const masonry = new Masonry('.grid', { // eslint-disable-line
       itemSelector: '.checkout__grid',
       columnWidth: 340,
@@ -183,7 +183,8 @@ class ExpressCheckout extends React.Component {
       this.props.clearToaster();
       SqrPaymentForm.destroy();
     }
-
+    this.props.clearToaster();
+    this.props.resetPotal();
     this.props.push(target);
   };
 
@@ -389,10 +390,9 @@ class ExpressCheckout extends React.Component {
       .GraphQLvalidatePostal(this.state.shippingPostalCode)
       .then((response) => {
         const { data: { ValidatePostal: { error, postalInfo } } } = CleanOffTypename(response);
-        console.log('%cerror.message[IntlLocale]', 'background:pink;', error.message[IntlLocale]);
         if (!!error.hard || !!error.soft) {
           this.props.apiFail();
-          this.props.gotInvalidPostal({ error: true });
+          this.props.gotInvalidPostal(true);
           this.props.toastError(true, error.message[IntlLocale]);
         } else {
           this.setState(
@@ -576,7 +576,7 @@ class ExpressCheckout extends React.Component {
               <NetworkStatus
                 toast={toast}
                 errors={errors}
-                loading={apiFetching}
+                loading={true}
                 success={false}
                 routerPush={this.routerPush}
               />
@@ -671,6 +671,7 @@ const ExpressCheckoutWithStateAndData2 = connect(
     apiFail: () => dispatch(apiActions.apiFail()),
     apiSuccess: () => dispatch(apiActions.apiSuccess()),
     //
+    resetPostal: () => dispatch(orderActions.resetPostal()),
     gotInvalidPostal: postalInfo => dispatch(orderActions.gotInvalidPostal(postalInfo)),
     gotValidPostal: postalInfo => dispatch(orderActions.gotValidPostal(postalInfo)),
     //
@@ -685,6 +686,7 @@ ExpressCheckout.propTypes = {
   intl: intlShape.isRequired,
   push: func.isRequired,
   // ---
+  resetPostal: func.isRequired,
   gotValidPostal: func.isRequired,
   gotInvalidPostal: func.isRequired,
   postalError: bool.isRequired,
