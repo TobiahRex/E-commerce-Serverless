@@ -58,7 +58,10 @@ export default (db) => {
           newLocation.error = {
             hard: true,
             soft: false,
-            message: `Location "${newLocation.name}" does not have permission "CREDIT_CARD_PROCESSING".`,
+            message: {
+              en: `Location "${newLocation.name}" does not have permission "CREDIT_CARD_PROCESSING".`,
+              ja: `場所「${newLocation.name}」には「CREDIT_CARD_PROCESSING」の権限がありません。`,
+            },
           };
           resolve(newLocation);
         }
@@ -68,7 +71,8 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Did not find requested lcoation in Square locations.',
+            en: 'Did not find requested lcoation in Square locations.',
+            ja: 'スクエアの場所で要求された場所が見つかりませんでした。',
           },
         });
       }
@@ -252,7 +256,10 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            message: {
+              en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+              ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+            },
           },
           user: null,
           transaction: null,
@@ -320,7 +327,10 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            message: {
+              en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+              ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+            },
           },
           user: null,
           transaction: null,
@@ -376,7 +386,10 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            message: {
+              en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+              ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+            },
           },
           user: null,
           transaction: null,
@@ -434,7 +447,10 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            message: {
+              en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+              ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+            },
           },
           user: null,
           transaction: null,
@@ -446,7 +462,10 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            message: {
+              en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+              ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+            },
           },
           user: null,
           transaction: null,
@@ -498,7 +517,8 @@ export default (db) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
+          en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+          ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
         },
         user: null,
         transaction: null,
