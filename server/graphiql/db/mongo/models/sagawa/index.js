@@ -78,7 +78,7 @@ new Promise((resolve, reject) => {
           hard: true,
           soft: false,
           message: {
-            en: problem,
+            en: 'That postal code is invalid. Please try again.',
             ja: 'その郵便番号は無効です。 もう一度お試しください。',
           },
         },
