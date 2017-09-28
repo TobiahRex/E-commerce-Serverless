@@ -75,7 +75,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Did not find requested lcoation in Square locations.',
+          message: {
+            en: 'Did not find requested lcoation in Square locations.',
+            ja: 'スクエアの場所で要求された場所が見つかりませんでした。',
+          },
         },
       });
     }
