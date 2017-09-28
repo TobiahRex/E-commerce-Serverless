@@ -389,7 +389,7 @@ class ExpressCheckout extends React.Component {
       .GraphQLvalidatePostal(this.state.shippingPostalCode)
       .then((response) => {
         const { data: { ValidatePostal: { error, postalInfo } } } = CleanOffTypename(response);
-
+        console.log('%cerror.message[IntlLocale]', 'background:pink;', error.message[IntlLocale]);
         if (!!error.hard || !!error.soft) {
           this.props.apiFail();
           this.props.gotInvalidPostal({ error: true });
