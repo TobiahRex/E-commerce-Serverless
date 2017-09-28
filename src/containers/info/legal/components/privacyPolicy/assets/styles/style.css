@@ -4,6 +4,7 @@
   margin-right: auto;
   margin-left: auto;
   padding-top: 20px;
+  margin-bottom: 100px;
 }
 
 .hdr-container__hdr-text {
@@ -25,6 +26,7 @@
 }
 
 .hdr-container__hdr-blurb {
+  text-align: left;
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
