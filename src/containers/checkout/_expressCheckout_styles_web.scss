@@ -556,7 +556,7 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        height: 15em;
+        min-height: 15em;
         width: 34em;
         padding: 1.5em;
         & .spinner-icon {
@@ -579,9 +579,9 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        min-height: 10em;
-        padding: 15em;
+        min-height: 15em;
         width: 34em;
+        padding: 1.5em;
         background-color: rgb(218, 203, 201);
         border: 2px solid #ec5840;
         & .error-hard__title {

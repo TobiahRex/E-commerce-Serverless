@@ -134,6 +134,7 @@ class ExpressCheckout extends React.Component {
   componentDidMount() {
     this.props.resetPostal();
     this.props.clearToaster();
+    if (SqrPaymentForm.paymentForm) SqrPaymentForm.destroy();
   }
 
   componentWillReceiveProps(nextProps) {

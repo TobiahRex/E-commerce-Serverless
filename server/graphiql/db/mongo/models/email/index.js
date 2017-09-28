@@ -275,6 +275,8 @@ new Promise((resolve, reject) => {
     transaction,
   } = orderInfo;
 
+  console.log('\n\nlanguage: \n\n', language);
+
   const today = moment().format('dddd');
   const nonBusinessDays = ['Saturday', 'Sunday'];
   let emailType = '';
