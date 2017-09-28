@@ -428,11 +428,11 @@ const mutationTypes = {
                 name: 'SubmitOrderErrorMessage',
                 fields: () => ({
                   en: {
-                    description: 'English translation.',
+                    description: 'English error message.',
                     type: StringType,
                   },
                   ja: {
-                    description: 'Japanese translation.',
+                    description: 'Japanese error message.',
                     type: StringType,
                   },
                 }),
