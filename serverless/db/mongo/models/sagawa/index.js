@@ -73,7 +73,10 @@ export default (db) => {
           error: {
             hard: true,
             soft: false,
-            message: problem,
+            message: {
+              en: problem,
+              ja: 'その郵便番号は無効です。 もう一度お試しください。',
+            },
           },
         });
       } else {
