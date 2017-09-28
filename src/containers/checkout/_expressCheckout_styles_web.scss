@@ -556,8 +556,8 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        height: 10em;
-        width: 31em;
+        height: 15em;
+        width: 34em;
         padding: 1.5em;
         & .spinner-icon {
           @include prefixed(transform, scale(1, -1));
@@ -580,7 +580,7 @@
         flex-direction: column;
         margin-right: 0;
         min-height: 10em;
-        padding: 1.5em;
+        padding: 15em;
         width: 34em;
         background-color: rgb(218, 203, 201);
         border: 2px solid #ec5840;
@@ -623,8 +623,8 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        min-height: 10em;
-        width: 31em;
+        min-height: 15em;
+        width: 34em;
         padding: 1.5em;
         background-color: #FF9C00;
         border: 2px solid #FF6300;
@@ -667,8 +667,8 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        min-height: 10em;
-        width: 31em;
+        min-height: 15em;
+        width: 34em;
         padding: 1.5em;
         background-color: $p-green;
         border: 2px solid $s-green;
