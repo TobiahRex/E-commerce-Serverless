@@ -38,8 +38,8 @@ const transactionSchema = new Schema({
   emailAddress: { type: String, default: '' },
   emailLanguage: {
     type: String,
-    enum: ['english', 'japanese'],
-    default: 'english',
+    enum: ['en', 'ja'],
+    default: 'en',
   },
   invoiceEmailNoTracking: { type: String, default: '' },
   invoiceEmail: { type: String, default: '' },
