@@ -249,7 +249,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+          message: {
+            en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+          },
         },
         user: null,
         transaction: null,
@@ -317,7 +320,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+          message: {
+            en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+          },
         },
         user: null,
         transaction: null,
@@ -373,7 +379,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like we had a Network Error.  Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
+          message: {
+            en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+          },
         },
         user: null,
         transaction: null,
@@ -408,7 +417,10 @@ new Promise((resolve, reject) => {
         error: {
           hard: true,
           soft: false,
-          message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+          message: {
+            en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+            ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+          },
         },
         user: null,
         transaction: null,
@@ -448,7 +460,14 @@ new Promise((resolve, reject) => {
 
       console.log('\n8] Order complete! Resolving with 1) User doc, 2) Transaction doc.');
       resolve({
-        error: { hard: false, soft: false, message: '' },
+        error: {
+          hard: false,
+          soft: false,
+          message: {
+            en: '',
+            ja: '',
+          },
+        },
         user: userDoc,
         transaction: newTransactionDoc,
       });
@@ -460,7 +479,10 @@ new Promise((resolve, reject) => {
       error: {
         hard: true,
         soft: false,
-        message: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan.  Please try your order again later.',
+        message: {
+          en: 'Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.',
+          ja: 'おっとっと！ ネットワークエラーが発生したようです。 スタッフにお知らせがあり、twitter @ NicJuice2Japanに関する最新情報を提供します。 後でもう一度お試しください。',
+        },
       },
       user: null,
       transaction: null,
