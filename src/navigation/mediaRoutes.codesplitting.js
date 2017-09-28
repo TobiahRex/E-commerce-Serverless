@@ -5,11 +5,7 @@ import { Route } from 'react-router';
 import Contactus from '../containers/media/contactUs';
 import Stories from '../containers/media/userStories';
 import Vapenews from '../containers/media/vapeNews/';
-
-const errorLoading = (error) => {
-  throw new Error(`Dynamic page loading failed ${error}`);
-};
-const loadRoute = cb => module => cb(null, module.default);
+import Social from '../containers/media/socialMedia';
 
 const MediaRoutes = () => (
   <div>
@@ -23,19 +19,11 @@ const MediaRoutes = () => (
     />
     <Route
       path="/vape_news"
-      getComponent={(_, cb) => {
-        import('../containers/media/vapeNews/' /* webpackChunkName: "vape-news" */)
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
+      component={Vapenews}
     />
     <Route
       path="/social_media"
-      getComponent={(_, cb) => {
-        import('../containers/media/socialMedia' /* webpackChunkName: "social-media" */)
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
+      component={Social}
     />
   </div>
 );
