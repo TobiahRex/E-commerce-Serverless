@@ -230,6 +230,7 @@ export default (db) => {
         termsAgreement,
         user: userId,
         products: cart,
+        emailLanguage: language,
         emailAddress: sagawa.shippingAddress.email,
         jpyFxRate,
         taxes,
