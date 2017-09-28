@@ -287,15 +287,11 @@ new Promise((resolve, reject) => {
     emailType = 'invoiceEmail';
   }
 
-  let i8lnLanguage;
-  if (language === 'japanese') i8lnLanguage = 'ja';
-  if (language === 'english') i8lnLanguage = 'en';
-
   Email.findEmailAndFilterLanguage(emailType, language)
   .then((dbEmail) => {
     console.log('\nSUCCEEDED: Find Template Invoice Email for language: ', language);
 
-    const productListHtmlString = CreateEmailProductList(dbEmail, cart, i8lnLanguage);
+    const productListHtmlString = CreateEmailProductList(dbEmail, cart, language);
 
     const updatedHtmlString = dbEmail.bodyHtmlData
     .replace(/(SHIPPING_STATUS_HERE)+/g, 'Packaging')

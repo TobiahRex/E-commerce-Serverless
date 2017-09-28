@@ -7,8 +7,8 @@ const marketHeroSchema = new Schema({
     language: {
       type: String,
       required: true,
-      default: 'english',
-      enum: ['english', 'japanese'],
+      default: 'en',
+      enum: ['en', 'ja'],
     },
     email: { type: String, required: true },
     givenName: { type: String, default: 'John' },

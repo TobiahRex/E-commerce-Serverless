@@ -100,12 +100,12 @@ const rootType = new ObjectType({
       type: new EnumType({
         name: 'EmailLanguageEnum',
         values: {
-          english: {
-            value: 'english',
+          en: {
+            value: 'en',
             description: 'The user is assumed to speak english.',
           },
-          japanese: {
-            value: 'japanese',
+          ja: {
+            value: 'ja',
             description: 'The user is assumed to speak japanese.',
           },
         },
