@@ -1,4 +1,6 @@
 export default {
+  'legal.policy.returns.breadCrumb.paths1': 'Home',
+  'legal.policy.returns.breadCrumb.lastCrumb': 'Returns Policy',
   'legal.policy.returns.header.title': 'Returns Policy',
   'legal.policy.returns.refunds.title': 'REFUNDS',
   'legal.policy.returns.refunds.desc': '100% Money back guarantee for defective items. Defective items or missing parts must be reported within 15 days of delivery. Shipping damage(s) must be reported immediately (same day as delivery | UTC +9:00 TimeZone) upon receipt of package(s). Returns and exchanges for any other reason will not be accepted.',

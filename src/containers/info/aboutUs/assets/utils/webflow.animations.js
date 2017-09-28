@@ -1,7 +1,21 @@
 export default () => {
   Webflow.require('ix').init([
     {
-      slug: 'fade-in',
+      slug: 'aboutus-hdr-slide-from-top',
+      name: 'About Hdr Slide From Top',
+      value: {
+        style: { x: '0px', y: '-100px', z: '0px' },
+        triggers: [
+          {
+            type: 'load',
+            stepsA: [{ transition: 'transform 450ms ease 0', x: '0px', y: '0px', z: '0px' }],
+            stepsB: [],
+          },
+        ],
+      },
+    },
+    {
+      slug: 'aboutus-fade-in',
       name: 'Fade In',
       value: {
         style: { opacity: 0, x: '0px', y: '-80px', z: '0px' },
@@ -10,6 +24,7 @@ export default () => {
             type: 'load',
             preload: true,
             stepsA: [
+              { wait: '250ms' },
               {
                 opacity: 1,
                 transition: 'opacity 1s ease 0, transform 1s ease-out 0',
@@ -24,7 +39,7 @@ export default () => {
       },
     },
     {
-      slug: 'fade-in-2',
+      slug: 'aboutus-fade-in-2',
       name: 'Fade In 2',
       value: {
         style: { opacity: 0, x: '0px', y: '-80px', z: '0px' },

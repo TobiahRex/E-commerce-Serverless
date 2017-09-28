@@ -21,17 +21,9 @@ const InfoRoutes = () => (
       }}
     />
     <Route
-      path="/phone"
-      getComponent={(_, cb) => {
-        import('../containers/info/legal/components/phone' /* webpackChunkName: "phone" */)
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
-    />
-    <Route
       path="/faqs"
       getComponent={(_, cb) => {
-        import('../containers/info/legal/components/faqs' /* webpackChunkName: "faqs" */)
+        import('../containers/info/faqs' /* webpackChunkName: "faqs" */)
         .then(loadRoute(cb))
         .catch(errorLoading);
       }}

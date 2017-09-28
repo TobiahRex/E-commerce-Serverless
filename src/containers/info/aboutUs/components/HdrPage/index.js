@@ -4,7 +4,7 @@ import './assets/styles/style.scss';
 
 const HdrPage = props => (
   <div className="main__title">
-    <h1 className="main__title title--header">
+    <h1 className="main__title title--header" data-ix="aboutus-hdr-slide-from-top">
       {props.header}
     </h1>
   </div>
