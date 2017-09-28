@@ -52,6 +52,12 @@
         flex-direction: column;
         width: 100%;
         margin: 3em auto;
+        & .loading-content {
+          @include prefixflex();
+          & h1 {
+            text-align: center;
+          }
+        }
         & .header--date {
           @include prefixflex();
           justify-content: space-between;

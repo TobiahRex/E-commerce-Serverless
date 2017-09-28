@@ -84,7 +84,7 @@ const NetworkStatusWithHandlers = withHandlers({
     const successMsg = (
       <div className="checkout__successful-purchase">
         <div className="successful-purchase__title">
-          <FontAwesome className="success-icon" name="check-circle" />&nbps;
+          <FontAwesome className="success-icon" name="check-circle" />&nbsp;
           <h2><IntlMsg id="checkout.submit.success.title" /></h2>
         </div>
         <br />
