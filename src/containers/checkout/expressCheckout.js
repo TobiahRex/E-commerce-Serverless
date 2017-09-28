@@ -606,6 +606,7 @@ const ExpressCheckoutWithState = connect(
     push: location => dispatch(push(location)),
     GraphQLhandleError: (error) => {
       let errorMsg = '';
+      console.log('%cIntlLocale', 'background:cyan;', IntlLocale);
 
       if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message.en)) {
         errorMsg = 'You must login or register to complete this transaction.';
