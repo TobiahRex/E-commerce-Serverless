@@ -1,4 +1,6 @@
 export default {
+  'legal.policy.returns.breadCrumb.paths1': '自宅',
+  'legal.policy.returns.breadCrumb.lastCrumb': '返品ポリシー',
   'legal.policy.returns.header.title': '返品ポリシー',
   'legal.policy.returns.refunds.title': '払い戻し',
   'legal.policy.returns.refunds.desc': '不良品の100％返金保証。 不良品または不足している部品は、出荷後15日以内に報告する必要があります。 パッケージの受領後、すぐに配送損害（UTC + 9：00 TimeZoneと同じ日）を報告しなければなりません。 他の理由による返品および交換は受け付けられません。',

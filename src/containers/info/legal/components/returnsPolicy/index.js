@@ -1,4 +1,5 @@
 import React from 'react';
+import { lifecycle } from 'recompose';
 import {
   injectIntl,
   intlShape,
@@ -8,12 +9,14 @@ import {
   BreadCrumb,
   HdrPage,
 } from './components';
+import { WebflowAnimations } from './assets/utils';
+import './assets/styles/style.css';
 
 function ReturnsPolicy({ intl }) {
   const {
     messages: {
-      'legal.breadCrumb.paths1': bcPaths1,
-      'legal.breadCrumb.lastCrumb': lastCrumb,
+      'legal.policy.returns.breadCrumb.paths1': bcPaths1,
+      'legal.policy.returns.breadCrumb.lastCrumb': lastCrumb,
       'legal.policy.returns.header.title': header,
     },
   } = intl;
@@ -29,22 +32,30 @@ function ReturnsPolicy({ intl }) {
       <HdrPage header={header} />
       <br />
       <div className="returns-body__content-container">
-        <h4>
-          <IntlMsg id="legal.policy.returns.refunds.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.returns.refunds.desc" />
-        </p>
-        <br />
-        <br />
-        <h4>
-          <IntlMsg id="legal.policy.returns.cancellations.title" />
-        </h4>
-        <br />
-        <p>
-          <IntlMsg id="legal.policy.returns.cancellations.desc" />
-        </p>
+        <div className="content-container__returns-content">
+          <div className="returns-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.returns.refunds.title" />
+            </h4>
+          </div>
+          <div className="returns-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.returns.refunds.desc" />
+            </p>
+          </div>
+        </div>
+        <div className="content-container__returns-content">
+          <div className="returns-content__hdr-container">
+            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+              <IntlMsg id="legal.policy.returns.cancellations.title" />
+            </h4>
+          </div>
+          <div className="returns-content__blurb-container">
+            <p className="blurb-container__blurb-text" data-ix="slide-from-right">
+              <IntlMsg id="legal.policy.returns.cancellations.desc" />
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -53,4 +64,9 @@ ReturnsPolicy.propTypes = {
   intl: intlShape.isRequired,
 };
 const ReturnsPolicyWithIntl = injectIntl(ReturnsPolicy);
-export default ReturnsPolicyWithIntl;
+const ReturnsPolicyWithIntlAndLifecycle = lifecycle({
+  componentDidUpdate() {
+    WebflowAnimations();
+  },
+})(ReturnsPolicyWithIntl);
+export default ReturnsPolicyWithIntlAndLifecycle;
