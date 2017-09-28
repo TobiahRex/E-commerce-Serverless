@@ -229,6 +229,7 @@ new Promise((resolve, reject) => {
       termsAgreement,
       user: userId,
       products: cart,
+      emailLanguage: language,
       emailAddress: sagawa.shippingAddress.email,
       jpyFxRate,
       taxes,
