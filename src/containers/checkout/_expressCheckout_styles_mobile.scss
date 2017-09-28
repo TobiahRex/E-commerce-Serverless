@@ -467,9 +467,9 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        height: 15em;
+        min-height: 15em;
         width: 34em;
-        padding: 1.5em 0 1.5em 0;
+        padding: 1.5em;
         & .spinner-icon {
           @include prefixed(transform, scale(1, -1));
           color: $p-blue;
@@ -490,9 +490,9 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        padding: 1.5em;
-        height: 15em;
+        min-height: 15em;
         width: 34em;
+        padding: 1.5em;
         background-color: #cb0000;
         border: 2px solid #910000;
         & .error-hard__title {
@@ -534,7 +534,7 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        height: 15em;
+        min-height: 15em;
         width: 34em;
         padding: 1.5em;
         background-color: #FF9C00;
@@ -578,7 +578,7 @@
         align-items: center;
         flex-direction: column;
         margin-right: 0;
-        height: 15em;
+        min-height: 15em;
         width: 34em;
         padding: 1.5em;
         background-color: $p-green;
