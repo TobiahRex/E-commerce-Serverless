@@ -68,7 +68,7 @@ Object.assign(Validation.rules, {
     rule: value => /(^\d{7}$)|(^\d{3}-\d{4}$)/.test(value),
     hint: () => (
       <span className="form-error is-visible">
-        <IntlMsg id="form.validation.error.japan-postal" />
+        <IntlMsg id="form.validation.error.postal" />
       </span>
     ),
   },
@@ -193,7 +193,7 @@ Object.assign(Validation.rules, {
   postalApi: {
     hint: () => (
       <span className="form-error is-visible">
-        <IntlMsg id="form.valdation.error.postalApi" />
+        <IntlMsg id="form.validation.error.postalApi" />
       </span>
     ),
   },
