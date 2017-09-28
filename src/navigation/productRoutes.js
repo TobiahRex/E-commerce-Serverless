@@ -1,26 +1,18 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-const errorLoading = (error) => { throw new Error(`Code Split page loading failed: ${error.message}`); };
-const loadRoute = cb => module => cb(null, module.default);
+import Juice from '../containers/products/components/singleProduct/container';
+import Juices from '../containers/products/components/allProducts';
 
 const ProductRoutes = () => (
   <div>
     <Route
       path="juice/:product"
-      getComponent={(location, cb) => {
-        import('../containers/products/components/singleProduct/container' /* webpackChunkName: "singleProduct" */)
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
+      component={Juice}
     />
     <Route
       path="juices"
-      getComponent={(location, cb) => {
-        System.import('../containers/products/components/allProducts')
-        .then(loadRoute(cb))
-        .catch(errorLoading);
-      }}
+      component={Juices}
     />
   </div>
 );
