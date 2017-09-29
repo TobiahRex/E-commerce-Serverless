@@ -130,56 +130,6 @@ const rootType = new ObjectType({
   },
 });
 
-const mutationTypes = {
-  ValidatePostal: new ObjectType({
-    name: 'SagawaValidatePostalResponse',
-    fields: () => ({
-      error: {
-        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
-        type: new ObjectType({
-          name: 'SagawaValidatePostalError',
-          fields: () => ({
-            hard: {
-              description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
-              type: BoolType,
-            },
-            soft: {
-              description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
-              type: BoolType,
-            },
-            message: {
-              description: 'Amplifying information about error.  Should be written for user readibility.',
-              type: new ObjectType({
-                name: 'ValidatePostalErrorMsg',
-                fields: () => ({
-                  en: {
-                    description: 'English message.',
-                    type: StringType,
-                  },
-                  ja: {
-                    description: 'Japanese message.',
-                    type: StringType,
-                  },
-                }),
-              }),
-            },
-          }),
-        }),
-      },
-      postalInfo: {
-        description: 'The postal code validation response from Sagawa.',
-        type: new ObjectType({
-          name: 'SagawaValidatePostalInfo',
-          fields: () => ({
-            verified: { type: BoolType },
-            postalCode: { type: StringType },
-            jpAddress: { type: StringType },
-          }),
-        }),
-      },
-    }),
-  }),
-};
 
 const queryTypes = {
   FetchTrackingInfo: new ObjectType({
@@ -284,7 +234,6 @@ const queryTypes = {
     }),
   }),
 };
-
 const queries = {
   FetchSagawa: {
     type: rootType,
@@ -308,6 +257,57 @@ const queries = {
   },
 };
 
+
+const mutationTypes = {
+  ValidatePostal: new ObjectType({
+    name: 'SagawaValidatePostalResponse',
+    fields: () => ({
+      error: {
+        description: 'Any errors that occur during a backend operation will be flagged and provided a message within this object.',
+        type: new ObjectType({
+          name: 'SagawaValidatePostalError',
+          fields: () => ({
+            hard: {
+              description: 'Boolean flag for a hard failure. Operations should not continue until action by user has been taken.',
+              type: BoolType,
+            },
+            soft: {
+              description: 'Boolean flag for a soft failure.  Operations should be allowed to continue.',
+              type: BoolType,
+            },
+            message: {
+              description: 'Amplifying information about error.  Should be written for user readibility.',
+              type: new ObjectType({
+                name: 'ValidatePostalErrorMsg',
+                fields: () => ({
+                  en: {
+                    description: 'English message.',
+                    type: StringType,
+                  },
+                  ja: {
+                    description: 'Japanese message.',
+                    type: StringType,
+                  },
+                }),
+              }),
+            },
+          }),
+        }),
+      },
+      postalInfo: {
+        description: 'The postal code validation response from Sagawa.',
+        type: new ObjectType({
+          name: 'SagawaValidatePostalInfo',
+          fields: () => ({
+            verified: { type: BoolType },
+            postalCode: { type: StringType },
+            jpAddress: { type: StringType },
+          }),
+        }),
+      },
+    }),
+  }),
+};
 const mutations = {
   ValidatePostal: {
     type: mutationTypes.ValidatePostal,
