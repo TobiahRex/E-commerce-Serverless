@@ -11,7 +11,7 @@
       align-items: center;
       flex-direction: column;
       width: 100%;
-      margin: 5em auto;
+      margin-bottom: 10em;
       & .ordered__title {
         @include prefixflex();
         justify-content: center;
@@ -107,9 +107,11 @@
           width: 100%;
           & fieldset {
             height: 22em;
+            padding: 1em;
+            border: solid;
             border-color: $p-blue;
-            border-style: solid;
             & legend {
+              padding: 0em .5em;
               & p {
                 font-size: 2em;
                 font-weight: 400;
@@ -134,11 +136,14 @@
         }
       }
       & .ordered__order-summary {
-        margin: 2em auto;
+        width: 100%;
+        margin-bottom: 10em;
         & fieldset {
           border-color: $p-blue;
-          border-style: solid;
+          border: solid;
+          padding: 1em;
           & legend {
+            padding: 0em .5em;
             & p {
               font-size: 2em;
               font-weight: 400;
@@ -146,6 +151,7 @@
           }
           & .order-summary__table {
             border-collapse: collapse;
+            width: 100%;
             & .table--thead {
               & tr {
                 border-bottom: 1px solid rgba(0,0,0,.15);
@@ -179,6 +185,7 @@
                 }
               }
               & .body--product-row {
+                text-align: center;
                 height: 10em;
                 border-bottom: 1px solid rgba(0,0,0,.1);
                 & td {
@@ -216,6 +223,7 @@
                   text-align: right;
                   & .total-analysis--list-title,
                   .total-analysis--list-value {
+                    text-align: right;
                     margin: 0;
                     list-style-type: none;
                     & li {

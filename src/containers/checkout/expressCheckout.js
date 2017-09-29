@@ -612,18 +612,17 @@ const ExpressCheckoutWithState = connect(
     push: location => dispatch(push(location)),
     GraphQLhandleError: (error) => {
       let errorMsg = '';
-      console.log('%cIntlLocale', 'background:cyan;', IntlLocale);
 
-      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message.en)) {
+      if (/(ObjectID failed for value \"\" at path \"userId\")/g.test(error.message.en || error.message)) {
         errorMsg = 'You must login or register to complete this transaction.';
-      } else if (/(GraphQL error: )/.test(error.message.en)) {
-        errorMsg = error.message.en.replace(/(GraphQL error: )+/g, '');
+      } else if (/(GraphQL error: )/.test(error.message.en || error.message)) {
+        errorMsg = error.message.en.replace(/(GraphQL error: )+/g, '') || error.message.replace(/(GraphQL error: )+/g, '');
       }
 
       if (error.soft) {
-        ownProps.toastWarning(true, error.message[IntlLocale]);
+        ownProps.toastWarning(true, errorMsg || error.message[IntlLocale]);
       } else if (error.hard) {
-        ownProps.toastError(true, error.message[IntlLocale]);
+        ownProps.toastError(true, errorMsg || error.message[IntlLocale]);
       } else {
         ownProps.toastError(true, errorMsg || error.message[IntlLocale]);
       }

@@ -129,8 +129,6 @@ const rootType = new ObjectType({
     },
   },
 });
-
-
 const queryTypes = {
   FetchTrackingInfo: new ObjectType({
     name: 'SagawaFetchTrackingInfo',
@@ -256,8 +254,6 @@ const queries = {
     resolve: (_, { token }) => Sagawa.FetchTrackingInfo(token),
   },
 };
-
-
 const mutationTypes = {
   ValidatePostal: new ObjectType({
     name: 'SagawaValidatePostalResponse',
