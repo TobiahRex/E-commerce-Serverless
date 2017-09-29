@@ -13,9 +13,9 @@ const propTypes = {
 
 function NavBob({ height, className }) {
   return (
-    <div className={`${className} hover-bob-active`}>
+    <div className={`${className}`}>
       <button
-        className="navBob__button"
+        className="navBob__button hover-bob-active"
         onClick={() => scroll.scrollTo(height, {
           duration: 1500,
           delay: 100,
