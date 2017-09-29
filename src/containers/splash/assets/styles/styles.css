@@ -29,7 +29,7 @@
   background-repeat: repeat-x;
 }
 
-.header__nav-down--container {
+.splash-navbob {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
