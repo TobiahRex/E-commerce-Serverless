@@ -21,7 +21,6 @@
     "s3:deploy": "aws s3 sync dist/ s3://nj2jp-react",
     "s3:cleanTroubleshoot": "aws s3 rm s3://nj2jp-troubleshoot --recursive",
     "s3:deployTroubleshoot": "aws s3 sync dist/ s3://nj2jp-troubleshoot",
-    "sls-deploy-development": "cd ./serverless && serverless deploy --stage development -vvvv",
     "sls-deploy-troubleshoot": "cd ./serverless && serverless deploy --stage troubleshoot -vvvv",
     "sls-deploy-production": "cd ./serverless && serverless deploy --stage production -vvvv",
     "start": "NODE_ENV=development babel-watch ./server/server.js",
