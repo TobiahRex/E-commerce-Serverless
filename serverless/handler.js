@@ -11,11 +11,11 @@ module.exports.graphql = (event, context) => {
   .then(dbResults => runGraphQL({ event, ...dbResults }))
   .then((GraphQLResponse) => {
     console.log('\n//Final Lambda SUCCESS Response: ', GraphQLResponse);
-    context.succeed && context.succeed(GraphQLResponse);
+    context.succeed(GraphQLResponse) && context.done();
   })
   .catch((error) => {
     console.log('\n//Final Lambda ERROR: ', error);
-    context.error && context.error(error);
+    context.fail(error) && context.done();
   });
 };
 

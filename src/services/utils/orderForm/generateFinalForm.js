@@ -56,7 +56,8 @@ export default function ComposeLocalData({
       tender: {
         amount_money: {
           amount: ComposeAmount(billingCountry, total.grandTotal, jpyFxRate),
-          currency: billingCountry === 'US' ? 'USD' : 'JPY',
+          currency: 'USD',
+          // currency: billingCountry === 'US' ? 'USD' : 'JPY',
         },
         card_details: {
           card: {
