@@ -1,0 +1,45 @@
+############################ GENERAL SETTINGS ############################
+#----- API Environments -----#
+squareEnv: development
+lambdaEnv: development
+sagawaEnv: development
+#----- VPC Settings -----#
+subnetId: subnet-10464166
+securityGroupId: sg-75f53413
+mongoURI: mongodb://stackinet:odV9WmWq1Tm752KO@stackinet-cluster-shard-00-00-wqafo.mongodb.net:27017,stackinet-cluster-shard-00-01-wqafo.mongodb.net:27017,stackinet-cluster-shard-00-02-wqafo.mongodb.net:27017/nj2jp-development?ssl=true&replicaSet=stackinet-cluster-shard-0&authSource=admin
+#--------------- DOMAINS ---------------#
+baseUrl: http://localhost:3000
+
+#--------------- EMAIL ADDRESSES ---------------#
+ctoEmail: tobiah.rex@gmail.com
+ceoEmail: tobiah.rex@gmail.com
+cdoEmail: diwaakartg@gmail.com
+################################# API SETTINGS ###########################
+#--------------- AUTH 0 ---------------#
+auth0JwtSecret: RwrjHft8endvvrHD-kZGJ7yLtesu9E5KrwXSXJ-mNUYdquxhngJEChp_z4x6RZJY
+#--------------- MARKET HERO ---------------#
+marketHeroApiKey: e0d183f827b7c267b0786d9057f3ed7bcf9709abdee5185faea93955846b0fd3
+#--------------- Recaptcha ---------------#
+recaptchaSecretKey: 6Le1fBwUAAAAAE68caOOYZHbfHpKUxPW5m2gSgxy
+#--------------- AWS ---------------#
+awsSesRegion: us-east-1
+lambdaSecretAccessKey: 1AGVJmY4FVZYEQCRBSX7QF4g8ogug1sj49W+UTm+
+lambdaAccessKeyId: AKIAI5HNTZMCF5ZJZ37A
+#--------------- SQUARE ---------------#
+# USA
+usSquareLocation: Coffee & Toffee SF
+usSquareAccessToken: sandbox-sq0atb-gmI-lR3Os2z3Ym3OOIzAvg
+usSquareApplicationId: sandbox-sq0idp-YWMJtx9YsEeo6TQjEyASoQ
+# JAPAN
+jpSquareLocation: ヤマモト 東京
+jpSquareAccessToken: sandbox-sq0atb-v0kc0TRPfGqNcgMCf5C-Fw
+jpSquareApplicationId: sandbox-sq0idp-cAah-f0lBV_8opL4u0agEg
+#--------------- JWT TRACKING TOKEN ---------------#
+jwtSecret: 27s763635272bdu2gdfw2mcivydg2548592826sgcb38d83y3bjcv82uy2bdnxi2he
+#--------------- SAGAWA ---------------#
+sagawaJapanese: TEST1569
+sagawaEnglish: TEST1568
+#--------------- SLACK ---------------#
+slackSupportWebhook: https://hooks.slack.com/services/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
+slackErrorNotificationWebhook: https://hooks.slack.com/services/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
+slackGeneralNotificationWebhook: https://hooks.slack.com/services/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
