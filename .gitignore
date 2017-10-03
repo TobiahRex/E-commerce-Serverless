@@ -7,21 +7,13 @@ public
 
 # serverless
 .serverless
-config.yml
-config.dev.yml
-config.tsh.yml
-config.prod.yml
-config.development.yml
 config.troubleshoot.yml
 config.production.yml
-config.json
 
 # miscellaneous
 .DS_Store
 .sass-cache
 .env
 .dev-server-env
-.env-prod
-.env-tsh
 npm-debug.log
 _syntax_tests.js
