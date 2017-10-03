@@ -6,7 +6,7 @@ sagawaEnv: development
 #----- VPC Settings -----#
 subnetId: subnet-10464166
 securityGroupId: sg-75f53413
-mongoURI: mongodb://stackinet:odV9WmWq1Tm752KO@stackinet-cluster-shard-00-00-wqafo.mongodb.net:27017,stackinet-cluster-shard-00-01-wqafo.mongodb.net:27017,stackinet-cluster-shard-00-02-wqafo.mongodb.net:27017/nj2jp-development?ssl=true&replicaSet=stackinet-cluster-shard-0&authSource=admin
+mongoURI: mongodb://stackinet:7O3xbVbrCWqqlMYt@stackinet-cluster-shard-00-00-wqafo.mongodb.net:27017,stackinet-cluster-shard-00-01-wqafo.mongodb.net:27017,stackinet-cluster-shard-00-02-wqafo.mongodb.net:27017/nj2jp-development?ssl=true&replicaSet=stackinet-cluster-shard-0&authSource=admin
 #--------------- DOMAINS ---------------#
 baseUrl: http://localhost:3000
 
@@ -16,30 +16,30 @@ ceoEmail: tobiah.rex@gmail.com
 cdoEmail: diwaakartg@gmail.com
 ################################# API SETTINGS ###########################
 #--------------- AUTH 0 ---------------#
-auth0JwtSecret: RwrjHft8endvvrHD-kZGJ7yLtesu9E5KrwXSXJ-mNUYdquxhngJEChp_z4x6RZJY
+auth0JwtSecret: J-7IXMLuZo5GyvX4jMWgmzlHV-mc22ORaKTZSv2TBPRnabwqTTKSq8p_FAo72wHM
 #--------------- MARKET HERO ---------------#
-marketHeroApiKey: e0d183f827b7c267b0786d9057f3ed7bcf9709abdee5185faea93955846b0fd3
+marketHeroApiKey: fb003eda0dc5d73e4a3384252b93da07b109e1cb4ac68ae958f1046126573603
 #--------------- Recaptcha ---------------#
-recaptchaSecretKey: 6Le1fBwUAAAAAE68caOOYZHbfHpKUxPW5m2gSgxy
+recaptchaSecretKey: 6LcQCDMUAAAAAIT1nW_sZ3Jr359bcYaFDS_yietv
 #--------------- AWS ---------------#
 awsSesRegion: us-east-1
-lambdaSecretAccessKey: 1AGVJmY4FVZYEQCRBSX7QF4g8ogug1sj49W+UTm+
-lambdaAccessKeyId: AKIAI5HNTZMCF5ZJZ37A
+lambdaSecretAccessKey: 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
+lambdaAccessKeyId: AKIAIZWINLYN3KF5BNWA
 #--------------- SQUARE ---------------#
 # USA
 usSquareLocation: Coffee & Toffee SF
-usSquareAccessToken: sandbox-sq0atb-gmI-lR3Os2z3Ym3OOIzAvg
+usSquareAccessToken: sq0atp-GSToZCKnR0G3CVfqAWZbPg
 usSquareApplicationId: sandbox-sq0idp-YWMJtx9YsEeo6TQjEyASoQ
 # JAPAN
 jpSquareLocation: ヤマモト 東京
-jpSquareAccessToken: sandbox-sq0atb-v0kc0TRPfGqNcgMCf5C-Fw
+jpSquareAccessToken: sq0atp-a3HpT62fhl3pWOyCfDTppQ
 jpSquareApplicationId: sandbox-sq0idp-cAah-f0lBV_8opL4u0agEg
 #--------------- JWT TRACKING TOKEN ---------------#
-jwtSecret: 27s763635272bdu2gdfw2mcivydg2548592826sgcb38d83y3bjcv82uy2bdnxi2he
+jwtSecret: 4648fyvbgxbasfztzrqewcdmvibopt9e873h4nfic97323gbrjgvivuywtgqvxjcifi
 #--------------- SAGAWA ---------------#
 sagawaJapanese: TEST1569
 sagawaEnglish: TEST1568
 #--------------- SLACK ---------------#
-slackSupportWebhook: https://hooks.slack.com/services/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
-slackErrorNotificationWebhook: https://hooks.slack.com/services/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
-slackGeneralNotificationWebhook: https://hooks.slack.com/services/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
+slackSupportWebhook: https://hooks.slack.com/services/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
+slackErrorNotificationWebhook: https://hooks.slack.com/services/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
+slackGeneralNotificationWebhook: https://hooks.slack.com/services/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
