@@ -66,7 +66,7 @@ functions:
   graphql:
     handler: handler.graphql
     memorySize: 1024
-    timeout: 10
+    timeout: 20
     vpc:
       securityGroupIds:
         - ${file(./config.${self:provider.stage}.yml):securityGroupId}

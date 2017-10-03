@@ -1,18 +1,18 @@
 const {
   NODE_ENV: nodeEnv,
   US_SQUARE_APPLICATION_ID: usSquareApplicationId,
-  JP_SQUARE_APPLICATION_ID: jpSquareApplicationId,
+  // JP_SQUARE_APPLICATION_ID: jpSquareApplicationId,
 } = process.env;
 
 export const getSqAppId = (country) => {
-  if (country === 'JP') return jpSquareApplicationId;
+  // if (country === 'JP') return jpSquareApplicationId;
   return usSquareApplicationId;
 };
 
 /* eslint-disable no-console */
 if (nodeEnv !== 'production') {
   if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
-  if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+  // if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
 }
 /* eslint-enable no-console */
 
