@@ -69,7 +69,7 @@ export default (dbEmail, dbOrders) => {
     }
     return a;
   }, '');
-  const htmlBody = dbEmail[0].bodyHtmlBody;
+  const htmlBody = dbEmail[0].bodyHtmlData;
 
   htmlBody
   .replace(/DATE_HERE/g, m().format('LL'))

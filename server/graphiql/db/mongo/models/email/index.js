@@ -6,6 +6,7 @@ import isEmail from 'validator/lib/isEmail';
 import axios from 'axios';
 import emailSchema from '../../schemas/emailSchema';
 import db from '../../connection';
+
 import {
   getBillingCountry as GetBillingCountry,
   createEmailProductList as CreateEmailProductList,
@@ -15,7 +16,7 @@ import {
   getRefundAmount as GetRefundAmount,
 } from './helpers';
 import Transaction from '../transaction';
-// import User from '../user';
+import User from '../user';
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
@@ -138,56 +139,65 @@ emailSchema.statics.sendEmail = ({ to, htmlBody }, emailDoc) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendEmail\n');
 
-  if (!isEmail(to)) {
+  let ToAddresses;
+
+  if (Array.isArray(to)) {
+    to.forEach((email) => {
+      if (!isEmail(email)) {
+        console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+        reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
+      } else {
+        ToAddresses = [...ToAddresses, email];
+      }
+    });
+  } else if (!isEmail(to)) {
     console.log(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
     reject(`FAILED: Send SES Email:"${to}" is not a valid email.  `);
   } else {
-    let ToAddresses;
-    if (Array.isArray(to)) ToAddresses = [...to];
-    else ToAddresses = [to];
-
-    const emailRequest = {
-      Destination: {
-        ToAddresses,
-      },
-      Source: emailDoc.replyToAddress,
-      ReplyToAddresses: [emailDoc.replyToAddress],
-      Message: {
-        Body: {
-          Html: {
-            Data: htmlBody,
-            Charset: emailDoc.bodyHtmlCharset,
-          },
-          Text: {
-            Data: emailDoc.bodyTextData,
-            Charset: emailDoc.bodyTextCharset,
-          },
-        },
-        Subject: {
-          Data: emailDoc.subjectData,
-          Charset: emailDoc.subjectCharset,
-        },
-      },
-    };
-    return bbPromise
-    .fromCallback(cb => ses.sendEmail(emailRequest, cb))
-    .then((data) => {
-      console.log('\nSUCCEEDED: Send SES email: \n', data,
-      '\nSaving record of email to MONGO Email collection...');
-
-      emailDoc.sentEmails.push({ messageId: data.MessageId });
-
-      return emailDoc.save({ new: true });
-    })
-    .then((savedEmail) => {
-      console.log('\nSUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
-      resolve();
-    })
-    .catch((error) => {
-      console.log('\nFAILED: Send Email and save Message Id in Email Template: ', error);
-      reject('\nFAILED: Send Email and save Message Id in Email Template.');
-    });
+    ToAddresses = [to];
   }
+
+  const emailRequest = {
+    Destination: {
+      ToAddresses,
+    },
+    Source: emailDoc.replyToAddress,
+    ReplyToAddresses: [emailDoc.replyToAddress],
+    Message: {
+      Body: {
+        Html: {
+          Data: htmlBody,
+          Charset: emailDoc.bodyHtmlCharset,
+        },
+        Text: {
+          Data: emailDoc.bodyTextData,
+          Charset: emailDoc.bodyTextCharset,
+        },
+      },
+      Subject: {
+        Data: emailDoc.subjectData,
+        Charset: emailDoc.subjectCharset,
+      },
+    },
+  };
+  return bbPromise
+  .fromCallback(cb => ses.sendEmail(emailRequest, cb))
+  .then((data) => {
+    console.log('\nSUCCEEDED: Send SES email: \n', data,
+    '\nSaving record of email to MONGO Email collection...');
+
+    emailDoc.sentEmails.push({ messageId: data.MessageId });
+
+    return emailDoc.save({ new: true });
+  })
+  .then((savedEmail) => {
+    console.log('\nSUCCEEDED: Save Message Id in Email Template: ', savedEmail.sentEmails.pop().messageId);
+    resolve();
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Send Email and save Message Id in Email Template: ', error);
+    reject('\nFAILED: Send Email and save Message Id in Email Template.');
+  });
 });
 
 /**
