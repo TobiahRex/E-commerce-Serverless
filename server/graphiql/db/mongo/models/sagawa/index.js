@@ -717,6 +717,8 @@ sagawaSchema.statics.notifyShippers = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.notifyShippers\n');
 
+  const pendingOrders = {};
+
   Sagawa
   .find({ uploadStatus: 'pending' })
   .exec()
@@ -725,6 +727,7 @@ new Promise((resolve, reject) => {
       console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> No pending orders.');
       resolve();
     } else {
+      pendingOrders = dbSagawas;
       console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Found pending order(s) info to send.');
       return Email
       .find({ type: 'notifyShippers' })
@@ -733,7 +736,7 @@ new Promise((resolve, reject) => {
   })
   .then((dbEmail) => {
     console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
-    const htmlBody = GenerateNotifyShippers(dbEmail);
+    const htmlBody = GenerateNotifyShippers(dbEmail, dbSagawas);
     const {
       SAGAWA_SHIPPER_1: shipper1,
       SAGAWA_SHIPPER_2: shipper2,
