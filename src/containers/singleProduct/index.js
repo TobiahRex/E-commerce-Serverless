@@ -16,7 +16,7 @@ import {
 } from './graphql';
 
 import {
-  MainTitle,
+  ProductTitle,
   BreadCrumb,
   ActionBtns,
   SuccessModal,
@@ -556,7 +556,7 @@ class SingleProduct extends React.Component {
         />
         {
           data.FindProductsByFlavor ?
-            <MainTitle
+            <ProductTitle
               vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
               mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''
