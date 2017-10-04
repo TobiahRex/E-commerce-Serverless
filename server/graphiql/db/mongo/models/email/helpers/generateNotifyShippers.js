@@ -54,12 +54,26 @@ const dynamicOrderTemplate = `
 `;
 
 export default (htmlBody, dbOrders) => {
-  dbOrders.reduce((a, n, i) => {
-    dynamicOrderTemplate
-    .replace(/QTY_HERE/g, (i + 1))
-    .replace()
+  let totalOrders = 0;
+
+  const customerOrders = dbOrders.reduce((a, n, i) => {
+    if (n && typeof n === 'object') {
+      totalOrders += 1;
+
+      a += dynamicOrderTemplate
+      .replace(/QTY_HERE/g, (i + 1))
+      .replace(/REFERENCE_ID_HERE/g, n.shippingAddress.referenceId)
+      .replace(/CUSTOMER_NAME_HERE/g, n.shippingAddress.customerName);
+
+      return a;
+    }
+    return a;
   }, '');
-  // htmlBody
-  // .replace(/DATE_HERE/g, m().format('LL'))
-  // .replace(//g,)
-}
+
+  htmlBody
+  .replace(/DATE_HERE/g, m().format('LL'))
+  .replace(/CUSTOMER_ORDERS_HERE/g, customerOrders)
+  .replace(/TOTAL_ORDERS_HERE/g, totalOrders);
+
+  return htmlBody;
+};
