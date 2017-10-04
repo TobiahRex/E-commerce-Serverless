@@ -139,7 +139,7 @@ emailSchema.statics.sendEmail = ({ to, htmlBody }, emailDoc) =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Email.sendEmail\n');
 
-  let ToAddresses;
+  let ToAddresses = [];
 
   if (Array.isArray(to)) {
     to.forEach((email) => {
