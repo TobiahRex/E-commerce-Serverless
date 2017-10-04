@@ -510,7 +510,6 @@ export default (db) => {
       };
       const {
         JWT_SECRET: jwtSecret,
-        LAMBDA_ENV: lambdaEnv,
         BASE_URL: baseUrl,
       } = process.env;
 

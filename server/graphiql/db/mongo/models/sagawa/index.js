@@ -18,6 +18,7 @@ import {
   getShippingDay as GetShippingDay,
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
+  generateNotifyShippers as GenerateNotifyShippers,
 } from './helpers';
 
 /**
@@ -710,6 +711,38 @@ new Promise((resolve) => {
   }
 
   recursiveUpload(reqObjs);
+});
+
+sagawaSchema.statics.notifyShippers = () =>
+new Promise((resolve, reject) => {
+  console.log('\n\n@Sagawa.notifyShippers\n');
+
+  Sagawa
+  .find({ uploadStatus: 'pending' })
+  .exec()
+  .then((dbSagawas) => {
+    if (!dbSagawas.length) {
+      console.log('\nNo pending orders.');
+      resolve();
+    } else {
+      return Email
+      .find({ type: 'notifyShippers' })
+      .exec();
+    }
+  })
+  .then((dbEmail) => {
+    const htmlBody = GenerateNotifyShippers(dbEmail);
+    const {
+      SAGAWA_SHIPPER_1: shipper1,
+      SAGAWA_SHIPPER_2: shipper2,
+      SAGAWA_SHIPPER_3: shipper3,
+      SAGAWA_SHIPPER_4: shipper4,
+    } = process.env;
+    return Email.sendEmail({
+      to: [shipper1, shipper2, shipper3, shipper4],
+      htmlBody,
+    });
+  });
 });
 
 const Sagawa = db.model('Sagawa', sagawaSchema);
