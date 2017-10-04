@@ -364,6 +364,8 @@ new Promise((resolve, reject) => {
       });
     });
 
+    dbUser.shopping.cart = [];
+
     return dbUser.save({ validateBeforeSave: true });
   })
   .then((updatedUser) => {

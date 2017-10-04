@@ -25,7 +25,7 @@ NavbarUserActions.propTypes = {
   activeUser: objectOf(any),
 };
 NavbarUserActions.defaultProps = {
-  activeUser: false,
+  activeUser: {},
 };
 export default connect(
   ({ user }) => ({ activeUser: user.profile }),
