@@ -139,9 +139,9 @@
         width: 100%;
         margin-bottom: 10em;
         & fieldset {
-          border-color: $p-blue;
           border: solid;
           padding: 1em;
+          border-color: $p-blue;
           & legend {
             padding: 0em .5em;
             & p {
