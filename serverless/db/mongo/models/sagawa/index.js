@@ -486,7 +486,7 @@ export default (db) => {
             $set: {
               'shippingAddress.awbId': uploadData.awbId,
               'shippingAddress.referenceId': uploadData.referenceId,
-              uploadStatus: 'upload',
+              uploadStatus: 'uploaded',
             },
           }, { new: true }),
           Email.findEmailAndFilterLanguage(
