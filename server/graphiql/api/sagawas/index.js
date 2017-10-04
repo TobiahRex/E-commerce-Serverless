@@ -31,4 +31,13 @@ router.post('/cronjob', (req, res) => {
     });
 });
 
+router.post('/notifyShippers', (req, res) => {
+  Sagawa.notifyShippers()
+    .then(() => res.status(200).send())
+    .catch((error) => {
+      console.log('\nFAILED: Upload Sagawa and Send Invoice Email: ', error);
+      res.status(400).send(error);
+    });
+});
+
 export default router;
