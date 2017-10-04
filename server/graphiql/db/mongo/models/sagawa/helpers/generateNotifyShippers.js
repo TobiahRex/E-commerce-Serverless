@@ -53,7 +53,7 @@ const dynamicOrderTemplate = `
 </div>
 `;
 
-export default (htmlBody, dbOrders) => {
+export default (dbEmail, dbOrders) => {
   let totalOrders = 0;
 
   const customerOrders = dbOrders.reduce((a, n, i) => {
@@ -69,6 +69,7 @@ export default (htmlBody, dbOrders) => {
     }
     return a;
   }, '');
+  const htmlBody = dbEmail[0].bodyHtmlBody;
 
   htmlBody
   .replace(/DATE_HERE/g, m().format('LL'))
