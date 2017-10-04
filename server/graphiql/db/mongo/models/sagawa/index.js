@@ -760,6 +760,10 @@ new Promise((resolve, reject) => {
       }, dbEmail);
     }
   })
+  .then(() => {
+    console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Email.sendEmail');
+    resolve();
+  })
   .catch((error) => {
     console.log('\nFAILED: Sagawa.notifyShippers >>> .catch: ', error);
     reject(error);

@@ -69,9 +69,10 @@ export default (dbEmail, dbOrders) => {
     }
     return a;
   }, '');
-  const htmlBody = dbEmail.bodyHtmlData;
 
-  htmlBody
+  let htmlBody = dbEmail.bodyHtmlData;
+
+  htmlBody = htmlBody
   .replace(/DATE_HERE/g, m().format('LL'))
   .replace(/CUSTOMER_ORDERS_HERE/g, customerOrders)
   .replace(/TOTAL_ORDERS_HERE/g, totalOrders);
