@@ -717,7 +717,7 @@ sagawaSchema.statics.notifyShippers = () =>
 new Promise((resolve, reject) => {
   console.log('\n\n@Sagawa.notifyShippers\n');
 
-  const pendingOrders = {};
+  let pendingOrders = {};
 
   Sagawa
   .find({ uploadStatus: 'pending' })
@@ -735,22 +735,27 @@ new Promise((resolve, reject) => {
     }
   })
   .then((dbEmail) => {
-    console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
-    const htmlBody = GenerateNotifyShippers(dbEmail, dbSagawas);
-    const {
-      SAGAWA_SHIPPER_1: shipper1,
-      SAGAWA_SHIPPER_2: shipper2,
-      SAGAWA_SHIPPER_3: shipper3,
-      SAGAWA_SHIPPER_4: shipper4,
-    } = process.env;
-    return Email.sendEmail({
-      to: [shipper1, shipper2, shipper3, shipper4],
-      htmlBody,
-    });
+    if (!dbEmail) {
+      console.log('\nFAILED: Sagawa.notifyShippers >>> Email.find');
+      reject();
+    } else {
+      console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
+      const htmlBody = GenerateNotifyShippers(dbEmail, pendingOrders);
+      const {
+        SAGAWA_SHIPPER_1: shipper1,
+        SAGAWA_SHIPPER_2: shipper2,
+        SAGAWA_SHIPPER_3: shipper3,
+        SAGAWA_SHIPPER_4: shipper4,
+      } = process.env;
+      return Email.sendEmail({
+        to: [shipper1, shipper2, shipper3, shipper4],
+        htmlBody,
+      });
+    }
   })
   .catch((error) => {
     console.log('\nFAILED: Sagawa.notifyShippers >>> .catch: ', error);
-    reject(`FAILED: Sagawa.notifyShippers >>> .catch: ${error}`);
+    reject(error);
   });
 });
 
