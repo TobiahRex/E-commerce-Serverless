@@ -734,12 +734,13 @@ new Promise((resolve, reject) => {
       .exec();
     }
   })
-  .then((dbEmail) => {
-    if (!dbEmail) {
+  .then((dbEmails) => {
+    if (!dbEmails || !dbEmails.length) {
       console.log('\nFAILED: Sagawa.notifyShippers >>> Email.find');
       reject();
     } else {
       console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
+      const dbEmail = dbEmails[0];
       const htmlBody = GenerateNotifyShippers(dbEmail, pendingOrders);
       const {
         SAGAWA_SHIPPER_1: shipper1,
@@ -756,7 +757,7 @@ new Promise((resolve, reject) => {
           // shipper4,
         ],
         htmlBody,
-      });
+      }, dbEmail);
     }
   })
   .catch((error) => {
