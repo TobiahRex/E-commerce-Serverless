@@ -365,8 +365,8 @@ new Promise((resolve, reject) => {
           $set: {
             'shippingAddress.awbId': uploadData.awbId,
             'shippingAddress.referenceId': uploadData.referenceId,
-            // uploadStatus: 'pending',
-            uploadStatus: 'uploaded',
+            uploadStatus: 'pending', // NOTE: only use this for testing...
+            // uploadStatus: 'uploaded',
           },
         }, { new: true }),
         Email.findEmailAndFilterLanguage(
