@@ -363,7 +363,7 @@ class ShoppingCart extends Component {
 
     if (loggedIn) {
       this.props.EmptyMemberCart({ variables: { userId } })
-      .then(({ data: { ClearShoppingCart: updatedUser } }) => {
+      .then(({ data: { EmptyMemberCart: updatedUser } }) => {
         saveUser(updatedUser);
       });
     } else {
