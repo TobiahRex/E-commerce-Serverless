@@ -722,9 +722,10 @@ new Promise((resolve, reject) => {
   .exec()
   .then((dbSagawas) => {
     if (!dbSagawas.length) {
-      console.log('\nNo pending orders.');
+      console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> No pending orders.');
       resolve();
     } else {
+      console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Found pending order(s) info to send.');
       return Email
       .find({ type: 'notifyShippers' })
       .exec();
