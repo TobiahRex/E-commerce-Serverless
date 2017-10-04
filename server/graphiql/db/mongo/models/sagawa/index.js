@@ -742,6 +742,10 @@ new Promise((resolve, reject) => {
       to: [shipper1, shipper2, shipper3, shipper4],
       htmlBody,
     });
+  })
+  .catch((error) => {
+    console.log('\nFAILED: Sagawa.notifyShippers >>> .catch: ', error);
+    reject(`FAILED: Sagawa.notifyShippers >>> .catch: ${error}`);
   });
 });
 
