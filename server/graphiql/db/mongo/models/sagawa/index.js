@@ -732,6 +732,7 @@ new Promise((resolve, reject) => {
     }
   })
   .then((dbEmail) => {
+    console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
     const htmlBody = GenerateNotifyShippers(dbEmail);
     const {
       SAGAWA_SHIPPER_1: shipper1,
