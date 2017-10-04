@@ -366,7 +366,7 @@ new Promise((resolve, reject) => {
             'shippingAddress.awbId': uploadData.awbId,
             'shippingAddress.referenceId': uploadData.referenceId,
             // uploadStatus: 'pending',
-            uploadStatus: 'upload',
+            uploadStatus: 'uploaded',
           },
         }, { new: true }),
         Email.findEmailAndFilterLanguage(
@@ -747,6 +747,7 @@ new Promise((resolve, reject) => {
         SAGAWA_SHIPPER_3: shipper3,
         SAGAWA_SHIPPER_4: shipper4,
       } = process.env;
+
       return Email.sendEmail({
         to: [shipper1, shipper2, shipper3, shipper4],
         htmlBody,
