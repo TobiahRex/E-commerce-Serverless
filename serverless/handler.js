@@ -45,8 +45,8 @@ module.exports.sagawa = (event, context) => {
       context.fail(error) && context.done();
     });
   } else if (event['type'] === 'daily mail') {
-    // Logic for daily mail here    
-
+    // Logic for daily mail here
+    context.succeed() && context.done();
   } else {
     verifyDb()
     .then((dbResults) => {
