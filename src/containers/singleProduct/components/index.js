@@ -1,4 +1,4 @@
-export ProductTitle from './ProductTitle';
+export ProductPageHdr from './ProductPageHdr';
 export BreadCrumb from './BreadCrumb';
 export ProductDisplay from './ProductDisplay';
 export ActionBtns from './ActionBtns';

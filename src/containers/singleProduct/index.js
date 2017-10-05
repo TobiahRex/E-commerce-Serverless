@@ -7,24 +7,21 @@ import { graphql, compose } from 'react-apollo';
 import { FormattedMessage as IntlMsg, injectIntl, intlShape } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
-
 import {
   FindProductById,
   AddToMemberCart,
   EditToMemberCart,
   FindProductsByFlavor,
 } from './graphql';
-
 import {
-  ProductTitle,
+  ProductPageHdr,
   BreadCrumb,
   ActionBtns,
   SuccessModal,
-  BulkSaleModal,
+  QuantityModal,
   RegisterModal,
   ProductDisplay,
 } from './components';
-
 import {
   arrayDeepEquality as ArrayDeepEquality,
   WebflowAnimations,
@@ -560,7 +557,7 @@ class SingleProduct extends React.Component {
         />
         {
           data.FindProductsByFlavor ?
-            <ProductTitle
+            <ProductPageHdr
               vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
               mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''
@@ -598,7 +595,7 @@ class SingleProduct extends React.Component {
           modalHandler={this.modalHandler}
         />
 
-        <BulkSaleModal
+        <QuantityModal
           taxRate={taxRate}
           showModal={showBulkModal}
           modalHandler={this.modalHandler}
