@@ -8,3 +8,4 @@ export getShippingDay from './getShippingDay';
 export getOrderWeight from './getOrderWeight';
 export generateItemObjs from './generateItemObjs';
 export uploadGenerator from './uploadGenerator';
+export generateNotifyShippers from './generateNotifyShippers';

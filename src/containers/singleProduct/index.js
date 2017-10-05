@@ -7,27 +7,30 @@ import { graphql, compose } from 'react-apollo';
 import _ from 'lodash';
 import { FormattedMessage as IntlMsg, injectIntl, intlShape } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
-import orderActions from '../../../../../redux/orders/';
-import userActions from '../../../../../redux/user/';
+
 import {
   FindProductById,
   AddToMemberCart,
   EditToMemberCart,
   FindProductsByFlavor,
-} from './graphql.imports';
+} from './graphql';
+
 import {
-  MainTitle,
+  ProductTitle,
   BreadCrumb,
   ActionBtns,
   SuccessModal,
   BulkSaleModal,
   RegisterModal,
   ProductDisplay,
-} from './component.imports';
+} from './components';
 
 import {
   arrayDeepEquality as ArrayDeepEquality,
-} from './utilities.imports';
+  WebflowAnimations,
+  orderActions,
+  userActions,
+} from './assets/utils';
 
 class SingleProduct extends React.Component {
   constructor(props) {
@@ -104,6 +107,20 @@ class SingleProduct extends React.Component {
     if (!_.isEqual(nextState, this.state)) return true;
 
     return false;
+  }
+
+  /**
+  * Function: "componentDidUpdate"
+  * Resets the state variable "added" to false to reset dynamic animations after user adds item to their cart.
+  * @param none.
+  *
+  * @return none.
+  */
+  componentDidUpdate() {
+    WebflowAnimations();
+    setTimeout(() => {
+      this.setState({ added: false });
+    }, 5000);
   }
 
   /**
@@ -512,21 +529,6 @@ class SingleProduct extends React.Component {
     this.props.push(e.target.dataset.slug || e.target.parentNode.dataset.slug);
   }
 
-  /**
-  * Function: "componentDidUpdate"
-  * Resets the state variable "added" to false to reset dynamic animations after user adds item to their cart.
-  * @param none.
-  *
-  * @return none.
-  */
-  componentDidUpdate() {
-    if (this.state.added) {
-      setTimeout(() => {
-        this.setState({ added: false });
-      }, 5000);
-    }
-  }
-
   render() {
     const {
       qty,
@@ -555,7 +557,7 @@ class SingleProduct extends React.Component {
         />
         {
           data.FindProductsByFlavor ?
-            <MainTitle
+            <ProductTitle
               vendor={data.FindProductsByFlavor[0].product.vendor[IntlLocale]}
               mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''

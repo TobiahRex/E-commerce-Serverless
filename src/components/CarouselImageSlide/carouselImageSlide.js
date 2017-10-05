@@ -28,7 +28,8 @@ function CarouselSlide({ maxWidth, className, name, description, alt }) {
             {description}
           </p>
           <Link
-            to={`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`}
+            to="/juice/french_vanilla_mocha"
+            // to={`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`}
             className={`${name}__btn--buy sweep-right`}
             style={{ display: `${name === 'delivery' ? 'flex' : 'none'}` }}
           >Buy Now</Link>

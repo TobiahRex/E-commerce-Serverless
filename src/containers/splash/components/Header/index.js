@@ -33,8 +33,8 @@ function Header({ mobile, height }) {
             <div className="box__button-container">
               <button
                 className="box__button w-inline-block primary-button shutter-out-horizontal"
-                data-ix="button-load-hover"
-                onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}
+                onClick={() => browserHistory.push('/juice/french_vanilla_mocha')}
+                // onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}
               >
                 <p className="box__button--text">
                   <IntlMsg id="home.header.button.buyNow" />

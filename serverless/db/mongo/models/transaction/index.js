@@ -107,7 +107,7 @@ export default (db) => {
       shippingCountry,
       billingCountry,
       amount,
-      currency,
+      // currency,
       cardNonce,
     } = chargeInfo;
 
@@ -128,7 +128,7 @@ export default (db) => {
         },
         amount_money: {
           amount,
-          currency,
+          currency: 'USD',
         },
         card_nonce: cardNonce,
         reference_id: transactionId,
@@ -417,9 +417,11 @@ export default (db) => {
 
         const promiseArray = [];
         if (marketHeroOp === 'createMongoLead') {
-          promiseArray.push(User.findByIdAndUpdate(userId, {
+          const updateUser = User.findByIdAndUpdate(userId, {
             $set: { 'marketing.marketHero': results[1]._id },
-          }, { new: true }));
+          }, { new: true });
+
+          promiseArray.push(updateUser);
         }
 
         return Promise.all([

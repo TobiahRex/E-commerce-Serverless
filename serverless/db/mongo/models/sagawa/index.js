@@ -486,7 +486,7 @@ export default (db) => {
             $set: {
               'shippingAddress.awbId': uploadData.awbId,
               'shippingAddress.referenceId': uploadData.referenceId,
-              uploadStatus: 'upload',
+              uploadStatus: 'uploaded',
             },
           }, { new: true }),
           Email.findEmailAndFilterLanguage(
@@ -510,7 +510,6 @@ export default (db) => {
       };
       const {
         JWT_SECRET: jwtSecret,
-        LAMBDA_ENV: lambdaEnv,
         BASE_URL: baseUrl,
       } = process.env;
 

@@ -51,6 +51,10 @@ provider:
     CDO_EMAIL: ${file(./config.${self:provider.stage}.yml):cdoEmail}
     AWS_SES_REGION: ${file(./config.${self:provider.stage}.yml):awsSesRegion}
     RECAPTCHA_SECRET_KEY: ${file(./config.${self:provider.stage}.yml):recaptchaSecretKey}
+    SAGAWA_SHIPPER_1: ${file(./config.${self:provider.stage}.yml):shipper1}
+    SAGAWA_SHIPPER_2: ${file(./config.${self:provider.stage}.yml):shipper2}
+    SAGAWA_SHIPPER_3: ${file(./config.${self:provider.stage}.yml):shipper3}
+    SAGAWA_SHIPPER_4: ${file(./config.${self:provider.stage}.yml):shipper4}
 
 plugins:
   - serverless-webpack
@@ -66,7 +70,7 @@ functions:
   graphql:
     handler: handler.graphql
     memorySize: 1024
-    timeout: 10
+    timeout: 20
     vpc:
       securityGroupIds:
         - ${file(./config.${self:provider.stage}.yml):securityGroupId}
@@ -99,7 +103,7 @@ functions:
   sagawa:
     handler: handler.sagawa
     memorySize: 1024
-    timeout: 10
+    timeout: 20
     vpc:
       securityGroupIds:
         - ${file(./config.${self:provider.stage}.yml):securityGroupId}
