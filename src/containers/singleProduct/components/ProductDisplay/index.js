@@ -9,12 +9,11 @@ import {
   ProductActions,
   NewMemberPromotionBtn,
   NicotineBtns,
-  // SocialMediaBtns, TODO: MVP 2
-} from '../../container/component.imports';
+} from '../';
 
 import {
   arrayDeepEquality as ArrayDeepEquality,
-} from '../../container/utilities.imports';
+} from '../../assets/utils';
 
 class ProductDisplay extends React.Component {
   constructor(props) {
