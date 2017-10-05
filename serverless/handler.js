@@ -45,8 +45,26 @@ module.exports.sagawa = (event, context) => {
       context.fail(error) && context.done();
     });
   } else if (event.type === 'daily mail') {
-    // Logic for daily mail here
-    context.succeed() && context.done();
+    verifyDb()
+    .then((dbResults) => {
+      console.log('\n//MongoDb Connection Response: ', dbResults);
+      const {
+        User,
+        Email,
+        Report,
+        Sagawa,
+        Transaction,
+      } = dbResults.dbModels;
+      return Sagawa.cronJob(Report, Email, Transaction, User);
+    })
+    .then(() => {
+      console.log('\nSUCCEEDED: Notify Sagawa shippers of pending orders.');
+      context.succeed() && context.done();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Notify Sagawa shippers of pending orders.', error);
+      context.fail(error) && context.done();
+    });
   } else {
     verifyDb()
     .then((dbResults) => {
