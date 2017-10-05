@@ -19,7 +19,6 @@ function ProductTextInfo({ price, sku, inStock }) {
 }
 const { string, bool } = PropTypes;
 ProductTextInfo.propTypes = {
-  id: string.isRequired,
   sku: string.isRequired,
   price: string.isRequired,
   inStock: bool.isRequired,
