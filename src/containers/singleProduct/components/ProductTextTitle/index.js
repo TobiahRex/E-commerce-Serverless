@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 function ProductTitle({ title }) {
   return (
-    <div className="desc__title">
-      <h1>{title[IntlLocale]}</h1>
+    <div className="product-text__product-title">
+      <h2 className="product-title__blurb" data-ix="product-page-title-scroll">
+        {title[IntlLocale]}
+      </h2>
     </div>
   );
 }
