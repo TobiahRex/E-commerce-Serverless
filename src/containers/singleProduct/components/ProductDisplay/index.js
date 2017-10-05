@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
   ImgGrp,
-  ProductTitle,
-  PriceInfo,
-  ProductBlurb,
+  ProductText,
+  ProductTextTitle,
+  // ProductTitle,
+  // PriceInfo,
+  // ProductBlurb,
+  ProductTextInfo,
+  ProductTextBlurb,
   ProductActions,
   NewMemberPromotionBtn,
   NicotineBtns,
@@ -108,16 +112,21 @@ class ProductDisplay extends React.Component {
           modalHandler={modalHandler}
         />
         <div className="main__info--desc">
-          <ProductTitle title={title} />
 
-          <PriceInfo
-            id={productId}
-            sku={sku}
-            price={price}
-            inStock={!!available}
-          />
+          <ProductText>
 
-          <ProductBlurb description={blurb} />
+            <ProductTextTitle title={title} />
+
+            <ProductTextInfo
+              id={productId}
+              sku={sku}
+              price={price}
+              inStock={!!available}
+            />
+
+            <ProductTextBlurb description={blurb} />
+
+          </ProductText>
 
           <NewMemberPromotionBtn
             loggedIn={loggedIn}
