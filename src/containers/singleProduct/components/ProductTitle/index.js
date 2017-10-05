@@ -5,8 +5,14 @@ import PropTypes from 'prop-types';
 function ProductTitle({ vendor, mainTitle }) {
   return (
     <div className="main__title">
-      <h1>{mainTitle}</h1>
-      <p className="main__title--vendor">by {vendor}</p>
+      <h1 data-ix="product-page-category-title-load">
+        {mainTitle}
+      </h1>
+      <p className="main__title--vendor" data-ix="product-page-category-title-load-2">
+        by
+        &nbsp;
+        {vendor}
+      </p>
     </div>
   );
 }
