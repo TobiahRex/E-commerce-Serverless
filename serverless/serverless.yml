@@ -124,4 +124,17 @@ functions:
           - ses:SendRawEmail
           - lambda:InvokeFunction
     events:
-      - schedule: cron(0 13 ? * MON *)
+      - schedule:
+          name: weekly-upload
+          description: Upload orders that happened during weekend to sagawa
+          rate: cron(0 13 ? * MON *)
+          enabled: true
+          input:
+            type: weekly upload
+      - schedule:
+          name: daily-mail
+          description: Send mail to sagawa consisting of orders made that day
+          rate: cron(0 14 * * ? *)
+          enabled: true
+          input:
+            type: daily mail

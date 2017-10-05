@@ -22,7 +22,7 @@ module.exports.graphql = (event, context) => {
 module.exports.sagawa = (event, context) => {
   console.log('\nPayload: ', event);
 
-  if (event['detail-type'] === 'Scheduled Event') {
+  if (event['type'] === 'weekly upload') {
     console.log('Cron Job');
     verifyDb()
     .then((dbResults) => {
@@ -44,6 +44,9 @@ module.exports.sagawa = (event, context) => {
       console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', error);
       context.fail(error) && context.done();
     });
+  } else if (event['type'] === 'daily mail') {
+    // Logic for daily mail here
+    context.succeed() && context.done();
   } else {
     verifyDb()
     .then((dbResults) => {
