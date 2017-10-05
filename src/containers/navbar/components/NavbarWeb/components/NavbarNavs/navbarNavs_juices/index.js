@@ -56,7 +56,8 @@ class NavbarNavsShop extends Component {
     return (
       <div className="navbar-actionSection-lower-shop" >
         <Link
-          to={`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`}
+          to="/juice/french_vanilla_mocha"
+          // to={`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`}
           className="shop-main-button"
         >
           <div className="shop-main-button-title">

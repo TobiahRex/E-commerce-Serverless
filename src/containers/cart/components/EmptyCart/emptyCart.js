@@ -18,7 +18,11 @@ export default function EmptyCart() {
       </div>
       <div className="empty-cart-oops-msg" />
       <div className="empty-cart-shopping-btn">
-        <button className="sweep-right" onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}>
+        <button
+          className="sweep-right"
+          onClick={() => browserHistory.push('/juice/french_vanilla_mocha')}
+          // onClick={() => browserHistory.push(`/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`)}
+        >
           <IntlMsg id="cart.empty.action-btn" />
         </button>
       </div>
