@@ -153,7 +153,8 @@ class SingleProduct extends React.Component {
       case 'promotion-bulk': {
         switch (tagEl) {
           case 'view-juices':
-            this.toggleModalAndGo('showBulkModal', `/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`); break;
+            this.toggleModalAndGo('showBulkModal', '/juice/french_vanilla_mocha'); break;
+            // this.toggleModalAndGo('showBulkModal', `/juice/${juices[Math.floor(Math.random() * (juices.length - 1))]}`); break;
           default: this.toggleModal('showBulkModal');
         }
       } break;
