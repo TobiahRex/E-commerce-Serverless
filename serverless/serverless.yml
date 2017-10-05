@@ -126,14 +126,14 @@ functions:
     events:
       - schedule:
           name: weekly-upload
-          description: Upload orders that happened during weekend to sagawa
+          description: Upload weekend orders to sagawa
           rate: cron(0 13 ? * MON *)
           enabled: true
           input:
             type: weekly upload
       - schedule:
           name: notify-sagawa
-          description: Send mail to sagawa consisting of orders made that day
+          description: Send mail to sagawa of pending orders
           rate: cron(0 14 * * ? *)
           enabled: true
           input:
