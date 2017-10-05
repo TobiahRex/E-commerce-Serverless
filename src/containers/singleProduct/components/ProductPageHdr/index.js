@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function ProductTitle({ vendor, mainTitle }) {
+function ProductPageHdr({ vendor, mainTitle }) {
   return (
     <div className="main__title">
       <h1 data-ix="product-page-category-title-load">
@@ -17,8 +17,8 @@ function ProductTitle({ vendor, mainTitle }) {
   );
 }
 const { string } = PropTypes;
-ProductTitle.propTypes = {
+ProductPageHdr.propTypes = {
   vendor: string.isRequired,
   mainTitle: string.isRequired,
 };
-export default ProductTitle;
+export default ProductPageHdr;
