@@ -25,6 +25,6 @@ function ProductSku({ sku, inStock }) {
 }
 ProductSku.propTypes = {
   sku: PropTypes.string.isRequired,
-  inStock: PropTypes.string.isRequired,
+  inStock: PropTypes.bool.isRequired,
 };
 export default ProductSku;
