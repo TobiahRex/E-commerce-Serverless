@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function BulkSaleModal({ taxRate, showModal, modalHandler }) {
+function QuantityModal({ taxRate, showModal, modalHandler }) {
   let style;
   if (showModal) {
     style = {
@@ -179,9 +179,9 @@ function BulkSaleModal({ taxRate, showModal, modalHandler }) {
   );
 }
 const { bool, func, number } = PropTypes;
-BulkSaleModal.propTypes = {
+QuantityModal.propTypes = {
   taxRate: number.isRequired,
   showModal: bool.isRequired,
   modalHandler: func.isRequired,
 };
-export default BulkSaleModal;
+export default QuantityModal;
