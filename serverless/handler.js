@@ -44,7 +44,7 @@ module.exports.sagawa = (event, context) => {
       console.log('\nFAILED: Upload Sagawa and Send Invoice Email.', error);
       context.fail(error) && context.done();
     });
-  } else if (event.type === 'daily mail') {
+  } else if (event.type === 'notify sagawa') {
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
@@ -52,7 +52,7 @@ module.exports.sagawa = (event, context) => {
         Email,
         Sagawa,
       } = dbResults.dbModels;
-      return Sagawa.notifyShippers(Email);
+      return Sagawa.notifySagawa(Email);
     })
     .then(() => {
       console.log('\nSUCCEEDED: Notify Sagawa shippers of pending orders.');
