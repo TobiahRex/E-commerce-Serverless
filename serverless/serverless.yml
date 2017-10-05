@@ -132,9 +132,9 @@ functions:
           input:
             type: weekly upload
       - schedule:
-          name: daily-mail
+          name: notify-sagawa
           description: Send mail to sagawa consisting of orders made that day
           rate: cron(0 14 * * ? *)
           enabled: true
           input:
-            type: daily mail
+            type: notify sagawa

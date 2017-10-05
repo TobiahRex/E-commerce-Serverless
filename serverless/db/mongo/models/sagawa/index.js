@@ -13,7 +13,7 @@ import {
   getShippingDay as GetShippingDay,
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
-  generateNotifyShippers as GenerateNotifyShippers,
+  generateNotifySagawa as GenerateNotifySagawa,
 } from './helpers';
 
 export default (db) => {
@@ -710,9 +710,9 @@ export default (db) => {
     });
   });
 
-  sagawaSchema.statics.notifyShippers = Email =>
+  sagawaSchema.statics.notifySagawa = Email =>
   new Promise((resolve, reject) => {
-    console.log('\n\n@Sagawa.notifyShippers\n');
+    console.log('\n\n@Sagawa.notifySagawa\n');
 
     let pendingOrders = {};
 
@@ -721,24 +721,24 @@ export default (db) => {
     .exec()
     .then((dbSagawas) => { // eslint-disable-line consistent-return
       if (!dbSagawas.length) {
-        console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> No pending orders.');
+        console.log('\nSUCCEEDED: Sagawa.notifySagawa >>> No pending orders.');
         resolve();
       } else {
         pendingOrders = dbSagawas;
-        console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Found pending order(s) info to send.');
+        console.log('\nSUCCEEDED: Sagawa.notifySagawa >>> Found pending order(s) info to send.');
         return Email
-        .find({ type: 'notifyShippers' })
+        .find({ type: 'notifySagawa' })
         .exec();
       }
     })
     .then((dbEmails) => { // eslint-disable-line consistent-return
       if (!dbEmails || !dbEmails.length) {
-        console.log('\nFAILED: Sagawa.notifyShippers >>> Email.find');
+        console.log('\nFAILED: Sagawa.notifySagawa >>> Email.find');
         reject();
       } else {
-        console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
+        console.log('\nSUCCEEDED: Sagawa.notifySagawa >>> Generating dynamic email...');
         const dbEmail = dbEmails[0];
-        const htmlBody = GenerateNotifyShippers(dbEmail, pendingOrders);
+        const htmlBody = GenerateNotifySagawa(dbEmail, pendingOrders);
         const {
           SAGAWA_SHIPPER_1: shipper1,
           SAGAWA_SHIPPER_2: shipper2,
@@ -758,11 +758,11 @@ export default (db) => {
       }
     })
     .then(() => {
-      console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Email.sendEmail');
+      console.log('\nSUCCEEDED: Sagawa.notifySagawa >>> Email.sendEmail');
       resolve();
     })
     .catch((error) => {
-      console.log('\nFAILED: Sagawa.notifyShippers >>> .catch: ', error);
+      console.log('\nFAILED: Sagawa.notifySagawa >>> .catch: ', error);
       reject(error);
     });
   });
