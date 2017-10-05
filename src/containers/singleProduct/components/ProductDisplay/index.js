@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
-  ImageGroup,
-  JuiceTitle,
+  ImgGrp,
+  ProductTitle,
   PriceInfo,
   ProductBlurb,
   ProductActions,
@@ -103,12 +103,12 @@ class ProductDisplay extends React.Component {
 
     return (
       <div className="main__parent">
-        <ImageGroup
+        <ImgGrp
           imageUrl={this.filterImages(images)}
           modalHandler={modalHandler}
         />
         <div className="main__info--desc">
-          <JuiceTitle title={title} />
+          <ProductTitle title={title} />
 
           <PriceInfo
             id={productId}

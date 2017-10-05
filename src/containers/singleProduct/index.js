@@ -17,7 +17,6 @@ import {
   ProductPageHdr,
   BreadCrumb,
   ActionBtns,
-  SuccessModal,
   QuantityModal,
   RegisterModal,
   ProductDisplay,
@@ -588,12 +587,12 @@ class SingleProduct extends React.Component {
           routerPush={this.routerPush}
         />
 
-        <SuccessModal
+        {/* <SuccessModal
           qty={qty}
           productTitle={data.FindProductById ? data.FindProductById.product.title[IntlLocale] : ''}
           showModal={showSuccessModal}
           modalHandler={this.modalHandler}
-        />
+        /> */}
 
         <QuantityModal
           taxRate={taxRate}
