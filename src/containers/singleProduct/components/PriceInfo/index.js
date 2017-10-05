@@ -5,32 +5,6 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function PriceInfo({ price, sku, inStock }) {
   return (
-    <div className="product-text__product-info">
-      <div className="product-info__product-price">
-        <div className="product-price__blurb" data-ix="product-page-price-scroll">
-          &nbsp;
-          $&nbsp;{price}.00
-        </div>
-      </div>
-      <div className="product-info__additional-info">
-        <div className="additional-info__product-shipping" data-ix="product-page-price-scroll-2">
-          <div className="product-shipping__blurb-container" id="product-shipping__blurb-container">
-            <div className="blurb-container__tax-blurb">+ TAX</div>
-          </div>
-          <div className="product-shipping__blurb-container" id="product-shipping__blurb-container">
-            <div className="blurb-container__shipping-blurb">Free Shipping</div>
-          </div>
-        </div>
-        <div className="additional-info__product-sku" data-ix="product-page-price-scroll-3">
-          <div className="product-sku__sku-blurb">
-            <div className="sku-blurb__sku-text">SKU: NJ2JP0001</div>
-          </div>
-          <div className="product-sku__stock-info">
-            <div className="stock-info__stock-text">IN STOCK</div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div className="desc__price-row">
       <ul className="price-row__list">
         <li className="list--price">
@@ -52,8 +26,8 @@ function PriceInfo({ price, sku, inStock }) {
           </div>
           <div className="stock__stock--title">
             <h3>{
-                 inStock ?
-                   <IntlMsg id="product.single.price-info.in-stock" /> :
+              inStock ?
+                <IntlMsg id="product.single.price-info.in-stock" /> :
               <IntlMsg id="product.single.price-info.out-of-stock" />
             }</h3>
           </div>

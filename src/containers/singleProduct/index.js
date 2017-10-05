@@ -27,6 +27,7 @@ import {
   orderActions,
   userActions,
 } from './assets/utils';
+import './assets/styles/style.css';
 
 class SingleProduct extends React.Component {
   constructor(props) {
