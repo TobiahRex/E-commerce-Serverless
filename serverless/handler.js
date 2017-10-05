@@ -49,13 +49,10 @@ module.exports.sagawa = (event, context) => {
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
       const {
-        User,
         Email,
-        Report,
         Sagawa,
-        Transaction,
       } = dbResults.dbModels;
-      return Sagawa.cronJob(Report, Email, Transaction, User);
+      return Sagawa.notifyShippers(Email);
     })
     .then(() => {
       console.log('\nSUCCEEDED: Notify Sagawa shippers of pending orders.');
