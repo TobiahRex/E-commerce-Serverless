@@ -13,6 +13,7 @@ import {
   getShippingDay as GetShippingDay,
   getOrderWeight as GetOrderWeight,
   generateItemObjs as GenerateItemObjs,
+  generateNotifyShippers as GenerateNotifyShippers,
 } from './helpers';
 
 export default (db) => {
@@ -706,6 +707,63 @@ export default (db) => {
           reject('\nFAILED: @Sagawa.cronJob');
         });
       }
+    });
+  });
+
+  sagawaSchema.statics.notifyShippers = Email =>
+  new Promise((resolve, reject) => {
+    console.log('\n\n@Sagawa.notifyShippers\n');
+
+    let pendingOrders = {};
+
+    Sagawa
+    .find({ uploadStatus: 'pending' })
+    .exec()
+    .then((dbSagawas) => { // eslint-disable-line consistent-return
+      if (!dbSagawas.length) {
+        console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> No pending orders.');
+        resolve();
+      } else {
+        pendingOrders = dbSagawas;
+        console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Found pending order(s) info to send.');
+        return Email
+        .find({ type: 'notifyShippers' })
+        .exec();
+      }
+    })
+    .then((dbEmails) => { // eslint-disable-line consistent-return
+      if (!dbEmails || !dbEmails.length) {
+        console.log('\nFAILED: Sagawa.notifyShippers >>> Email.find');
+        reject();
+      } else {
+        console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Generating dynamic email...');
+        const dbEmail = dbEmails[0];
+        const htmlBody = GenerateNotifyShippers(dbEmail, pendingOrders);
+        const {
+          SAGAWA_SHIPPER_1: shipper1,
+          SAGAWA_SHIPPER_2: shipper2,
+          SAGAWA_SHIPPER_3: shipper3,
+          SAGAWA_SHIPPER_4: shipper4,
+        } = process.env;
+
+        return Email.sendEmail({
+          to: [
+            shipper1,
+            shipper2,
+            shipper3,
+            shipper4,
+          ],
+          htmlBody,
+        }, dbEmail);
+      }
+    })
+    .then(() => {
+      console.log('\nSUCCEEDED: Sagawa.notifyShippers >>> Email.sendEmail');
+      resolve();
+    })
+    .catch((error) => {
+      console.log('\nFAILED: Sagawa.notifyShippers >>> .catch: ', error);
+      reject(error);
     });
   });
 
