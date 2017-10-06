@@ -9,13 +9,15 @@ function OptionsNicotine({
 }) {
   const style = {
     active: {
+      outline: 'none',
       backgroundColor: '#063A7A',
     },
     inactive: {
+      outline: 'none',
       backgroundColor: '#FC2525',
     },
   };
-  nicotineStrekngths = convertStrengthToNumber(nicotineStrengths);
+  nicotineStrengths = convertStrengthToNumber(nicotineStrengths);
 
   return (
     <div className="product-options__options-nicotine">
@@ -24,16 +26,15 @@ function OptionsNicotine({
           <div
             key={_id}
             className="options-nicotine__nicotine-button-container"
-            style={
-              nicotineStrength === chosenStrength ?
-              style.active : style.inactive
-            }
           >
             <button
+              style={
+                nicotineStrength === chosenStrength ?
+                style.active : style.inactive
+              }
               data-nicotinestrength={nicotineStrength}
               data-product={_id}
-              data-ix="new-interaction"
-              className="nicotine-button-container__nicotine-button w-inline-block"
+              className="nicotine-button-container__nicotine-button"
               onClick={nicotineHandler}
             >
               <div className="nicotine-button__text">

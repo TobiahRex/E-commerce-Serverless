@@ -11,7 +11,10 @@ function NicotineBtns({
   nicotineHandler,
 }) {
   return (
-    <div className="desc__nicotine">
+    <div
+      className="product-blurb__product-options"
+      data-ix="product-page-button-section"
+    >
       <OptionsHdr />
       <OptionsNicotine
         chosenStrength={chosenStrength}
