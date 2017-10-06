@@ -11,6 +11,7 @@ export OptionsHdr from './OptionsHdr';
 export OptionsNicotine from './OptionsNicotine';
 // export PriceInfo from './PriceInfo';
 export ProductActions from './ProductActions';
+export ProductOptions from './ProductOptions';
 // export ProductBlurb from './ProductBlurb';
 export ProductText from './ProductText';
 export ProductTextBlurb from './ProductTextBlurb';

@@ -11,9 +11,8 @@ import {
   ProductTextInfo,
   ProductTextBlurb,
   ProductActions,
+  ProductOptions,
   ProductRegisterPromotion,
-  // NewMemberPromotionBtn,
-  NicotineBtns,
 } from '../';
 
 import {
@@ -134,10 +133,18 @@ class ProductDisplay extends React.Component {
             modalHandler={modalHandler}
           />
 
-          <NicotineBtns
+          <ProductOptions
             chosenStrength={chosenStrength}
             nicotineHandler={nicotineHandler}
             nicotineStrengths={nicotineStrengths}
+
+            inStock={!!available}
+            added={added}
+            error={error}
+            quantity={qty}
+            errorMsg={errorMsg}
+            qtyHandler={qtyHandler}
+            addToCartHandler={addToCartHandler}
           />
 
           <ProductActions
