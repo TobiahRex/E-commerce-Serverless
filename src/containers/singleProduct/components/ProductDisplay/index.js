@@ -113,39 +113,37 @@ class ProductDisplay extends React.Component {
         />
         <div className="main__info--desc">
 
-          <ProductText>
+          <div className="product-content__product-blurb">
+            <ProductText>
+              <ProductTextTitle title={title} />
+              <ProductTextInfo
+                id={productId}
+                sku={sku}
+                price={price}
+                inStock={!!available}
+              />
+              <ProductTextBlurb description={blurb} />
+            </ProductText>
 
-            <ProductTextTitle title={title} />
-
-            <ProductTextInfo
-              id={productId}
-              sku={sku}
-              price={price}
-              inStock={!!available}
+            <ProductRegisterPromotion
+              loggedIn={loggedIn}
+              modalHandler={modalHandler}
             />
+            
+            <ProductOptions
+              chosenStrength={chosenStrength}
+              nicotineHandler={nicotineHandler}
+              nicotineStrengths={nicotineStrengths}
 
-            <ProductTextBlurb description={blurb} />
-
-          </ProductText>
-
-          <ProductRegisterPromotion
-            loggedIn={loggedIn}
-            modalHandler={modalHandler}
-          />
-
-          <ProductOptions
-            chosenStrength={chosenStrength}
-            nicotineHandler={nicotineHandler}
-            nicotineStrengths={nicotineStrengths}
-
-            inStock={!!available}
-            added={added}
-            error={error}
-            quantity={qty}
-            errorMsg={errorMsg}
-            qtyHandler={qtyHandler}
-            addToCartHandler={addToCartHandler}
-          />
+              inStock={!!available}
+              added={added}
+              error={error}
+              quantity={qty}
+              errorMsg={errorMsg}
+              qtyHandler={qtyHandler}
+              addToCartHandler={addToCartHandler}
+            />
+          </div>
 
           <ProductActions
             inStock={!!available}
