@@ -54,7 +54,7 @@ OptionsNicotine.propTypes = {
   nicotineHandler: func.isRequired,
   nicotineStrengths: arrayOf(shape({
     _id: string,
-    nicotineStrength: number,
+    nicotineStrength: string,
   })).isRequired,
 };
 export default OptionsNicotine;

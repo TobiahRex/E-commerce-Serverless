@@ -19,7 +19,7 @@ function AddToCartButton({ added, addToCart }) {
           [<FontAwesome
             name="shopping-cart"
             key="add-to-cart-idle"
-            className="sp-cart-icon" />, <IntlMsg id="product.single.actions.add-to-cart" key="product.single.actions.add-to-cart" />]
+             className="sp-cart-icon" />, <IntlMsg id="product.single.actions.add-to-cart" key="product.single.actions.add-to-cart" />]
         }
       </span>
     </button>

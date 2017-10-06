@@ -5,12 +5,9 @@ import {
   ImgGrp,
   ProductText,
   ProductTextTitle,
-  // ProductTitle,
-  // PriceInfo,
-  // ProductBlurb,
   ProductTextInfo,
   ProductTextBlurb,
-  ProductActions,
+  ProductContent,
   ProductOptions,
   ProductRegisterPromotion,
 } from '../';
@@ -78,7 +75,6 @@ class ProductDisplay extends React.Component {
 
   render() {
     const {
-      // fbLike,
       qty,
       added,
       error,
@@ -112,8 +108,9 @@ class ProductDisplay extends React.Component {
           modalHandler={modalHandler}
         />
         <div className="main__info--desc">
+          
+          <ProductContent>
 
-          <div className="product-content__product-blurb">
             <ProductText>
               <ProductTextTitle title={title} />
               <ProductTextInfo
@@ -129,7 +126,7 @@ class ProductDisplay extends React.Component {
               loggedIn={loggedIn}
               modalHandler={modalHandler}
             />
-            
+
             <ProductOptions
               chosenStrength={chosenStrength}
               nicotineHandler={nicotineHandler}
@@ -143,18 +140,8 @@ class ProductDisplay extends React.Component {
               qtyHandler={qtyHandler}
               addToCartHandler={addToCartHandler}
             />
-          </div>
+          </ProductContent>
 
-          <ProductActions
-            inStock={!!available}
-            added={added}
-            error={error}
-            quantity={qty}
-            errorMsg={errorMsg}
-            qtyHandler={qtyHandler}
-            chosenStrength={chosenStrength}
-            addToCartHandler={addToCartHandler}
-          />
 
           {/* TODO: MVP 2
             <SocialMediaBtns
