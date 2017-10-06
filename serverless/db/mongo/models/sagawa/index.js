@@ -744,6 +744,7 @@ export default (db) => {
           SAGAWA_SHIPPER_2: shipper2,
           SAGAWA_SHIPPER_3: shipper3,
           SAGAWA_SHIPPER_4: shipper4,
+          SAGAWA_SHIPPER_5: shipper5,
         } = process.env;
 
         return Email.sendEmail({
@@ -752,6 +753,7 @@ export default (db) => {
             shipper2,
             shipper3,
             shipper4,
+            shipper5,
           ],
           htmlBody,
         }, dbEmail);

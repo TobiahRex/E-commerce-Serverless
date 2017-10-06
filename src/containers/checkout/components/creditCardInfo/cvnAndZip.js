@@ -7,7 +7,6 @@ const { func, string, bool } = PropTypes;
 
 class CvnAndZip extends React.Component {
   static propTypes = {
-    ccRenderKey: string.isRequired,
     toggleModal: func.isRequired,
     ccCvn: string.isRequired,
     ccZip: string.isRequired,
@@ -18,7 +17,6 @@ class CvnAndZip extends React.Component {
     super(props);
 
     this.state = {
-      ccRenderKey: props.ccRenderKey,
       ccCvn: '',
       ccZip: '',
       zipError: '',
@@ -61,10 +59,7 @@ class CvnAndZip extends React.Component {
           </div>
           <div id="sq-cvv" />
         </div>
-        <div
-          className="input__row--zip-code"
-          style={{ visibility: enableZip ? 'visible' : 'hidden' }}
-        >
+        <div className="input__row--zip-code">
           <p>
             <IntlMsg id="checkout.credit-card.postal-code" />&nbsp;
             <span className="required">*</span>

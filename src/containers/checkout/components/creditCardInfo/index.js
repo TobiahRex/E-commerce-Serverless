@@ -9,9 +9,7 @@ import {
   CreditCardExpiration,
   CvnAndZip,
 } from './component.imports';
-import {
-  squarePaymentForm as SqrPaymentForm,
-} from '../../../../services/utils/squarePaymentForm';
+import SqrPaymentForm from '../../../../services/utils/squarePaymentForm';
 
 const { func, string } = PropTypes;
 
@@ -36,10 +34,6 @@ class CreditCardInfo extends React.Component {
       ccCvn: '',
       ccZip: '',
     };
-  }
-
-  componentDidMount() {
-    SqrPaymentForm.build();
   }
 
   componentWillReceiveProps(nextProps) {
