@@ -59,7 +59,7 @@ class CreditCardInfo extends React.Component {
     const {
       ccNameOnCard,
       ccRenderKey,
-      ccCountry,
+      // ccCountry,
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
@@ -90,32 +90,32 @@ class CreditCardInfo extends React.Component {
           </div>
         </div>
 
-        <Country
+        {/* <Country
           country={ccCountry}
           handleOnChange={this.handleOnChange}
-        />
+        /> */}
 
         <NameOnCard
-          show={!!ccCountry}
+          // show={!!ccCountry}
           ccNameOnCard={ccNameOnCard}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardNumber
-          show={!!ccCountry}
+          // show={!!ccCountry}
           ccNumber={ccNumber}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardExpiration
-          show={!!ccCountry}
+          // show={!!ccCountry}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}
         />
 
         <CvnAndZip
-          show={!!ccCountry}
+          // show={!!ccCountry}
           ccRenderKey={ccRenderKey}
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
