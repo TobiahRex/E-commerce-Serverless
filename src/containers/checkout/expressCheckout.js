@@ -467,9 +467,7 @@ class ExpressCheckout extends React.Component {
             </div>
             <div className="checkout__grid">
               <CreditCardInfo
-                ccRenderKey={ccRenderKey}
                 ccNameOnCard={ccNameOnCard}
-                ccCountry={ccCountry}
                 ccNumber={ccNumber}
                 ccExpireMonth={ccExpireMonth}
                 ccExpireYear={ccExpireYear}

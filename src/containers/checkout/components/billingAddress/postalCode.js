@@ -25,19 +25,6 @@ class PostalCode extends React.PureComponent {
 
   handleOnChange = e => this.props.handleOnChange(e)
 
-  determineValidations = (country) => {
-    const validations = ['required'];
-    if (country === 'United States') {
-      validations.push('us-zip');
-      return validations;
-    } else if (this.props.billingCountry === 'Japan') {
-      validations.push('japan-postal');
-      return validations;
-    }
-    validations.push('numeric');
-    return validations;
-  }
-
   render() {
     return (
       <div className="input__row">
@@ -48,7 +35,7 @@ class PostalCode extends React.PureComponent {
             type="text"
             containerClassName=""
             name="billingPostalCode"
-            validations={this.determineValidations(this.props.billingCountry)}
+            validations={['required', 'numeric']}
             onChange={this.handleOnChange}
             value={this.props.billingPostalCode}
           />
