@@ -221,103 +221,17 @@ class ExpressCheckout extends React.Component {
   * @return: null
   */
   handleOnChange = (e) => {
-    // if (e.target.name === 'ccCountry') {
-    //   const country = e.target.value.split('-')[1];
-    //   // const countIsTooHigh = SqrPaymentForm.count === 1;
-    //
-    //   // if (countIsTooHigh) {
-    //   //   window.location.reload();
-    //   // } else {
-    //     const countriesWithPostal = ['US', 'CA', 'UK'];
-    //     if (countriesWithPostal.includes(country)) {
-    //       if (!!SqrPaymentForm.options) {
-    //         if (SqrPaymentForm.type === 'renderWithZip') {
-    //           this.setState(
-    //             prevState => ({
-    //               ...prevState,
-    //               [e.target.name]: e.target.value,
-    //             }),
-    //             () => {
-    //               SqrPaymentForm.build();
-    //             },
-    //           );
-    //         } else {
-    //           this.setState(
-    //             prevState => ({
-    //               ...prevState,
-    //               [e.target.name]: e.target.value,
-    //             }),
-    //             () => {
-    //               SqrPaymentForm.destroy();
-    //               SqrPaymentForm.create(this.handleNonceResponse);
-    //               SqrPaymentForm.build();
-    //             },
-    //           );
-    //         }
-    //       } else {
-    //         this.setState(
-    //           prevState => ({
-    //             ...prevState,
-    //             [e.target.name]: e.target.value,
-    //           }),
-    //           () => {
-    //             SqrPaymentForm.create(this.handleNonceResponse);
-    //             SqrPaymentForm.build();
-    //           },
-    //         );
-    //       }
-    //     }
-    //     // else if (!!SqrPaymentForm.options) {
-    //     //   if (SqrPaymentForm.type === 'renderWithoutZip') {
-    //     //     this.setState(
-    //     //       prevState => ({
-    //     //         ...prevState,
-    //     //         [e.target.name]: e.target.value,
-    //     //       }),
-    //     //       () => {
-    //     //         SqrPaymentForm.build();
-    //     //       },
-    //     //     );
-    //     //   } else {
-    //     //     this.setState(
-    //     //       prevState => ({
-    //     //         ...prevState,
-    //     //         [e.target.name]: e.target.value,
-    //     //       }),
-    //     //       () => {
-    //     //         SqrPaymentForm.destroy();
-    //     //         SqrPaymentForm.create(this.handleNonceResponse);
-    //     //         SqrPaymentForm.build();
-    //     //       },
-    //     //     );
-    //     //   }
-    //     // }
-    //     else {
-    //     }
-    //     this.setState(
-    //       prevState => ({
-    //         ...prevState,
-    //         [e.target.name]: e.target.value,
-    //       }),
-    //       () => {
-    //         SqrPaymentForm.create(this.handleNonceResponse);
-    //         SqrPaymentForm.build();
-    //       },
-    //     );
-    //   }
-    // } else {
-      this.setState(
-        {
-          [e.target.name]: e.target.value,
-          errors: {
-            hard: false,
-            soft: false,
-            message: '',
-          },
+    this.setState(
+      {
+        [e.target.name]: e.target.value,
+        errors: {
+          hard: false,
+          soft: false,
+          message: '',
         },
-        () => this.props.clearToaster(),
-      );
-    }
+      },
+      () => this.props.clearToaster(),
+    );
   };
 
   toggleModal = (e) => {

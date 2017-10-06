@@ -28,7 +28,7 @@ class SqrPaymentForm {
   create(handleNonceResponse) {
     const postalCode = {
       elementId: 'sq-postal-code',
-      placeholder: '98564 (USA) or 2380008 (JP)',
+      placeholder: '98564(USA) / 2380008(JP)',
     };
 
     this.paymentForm = new SqPaymentForm({
