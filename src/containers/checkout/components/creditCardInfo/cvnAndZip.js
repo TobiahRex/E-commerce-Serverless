@@ -7,7 +7,6 @@ const { func, string, bool } = PropTypes;
 
 class CvnAndZip extends React.Component {
   static propTypes = {
-    show: bool.isRequired,
     ccRenderKey: string.isRequired,
     toggleModal: func.isRequired,
     ccCvn: string.isRequired,
@@ -44,9 +43,8 @@ class CvnAndZip extends React.Component {
 
   render() {
     const enableZip = this.state.ccRenderKey === 'renderWithZip';
-    const { show } = this.props;
     return (
-      <div className="input__row cvn" style={{ display: show ? '' : 'none' }}>
+      <div className="input__row cvn">
         <div className="input__row--cvn-number">
           <div className="cvn-number--wrapper">
             <p>CVV
