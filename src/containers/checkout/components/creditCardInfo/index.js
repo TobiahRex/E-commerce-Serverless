@@ -4,7 +4,6 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import {
-  Country,
   NameOnCard,
   CreditCardNumber,
   CreditCardExpiration,
@@ -15,8 +14,6 @@ const { func, string } = PropTypes;
 
 class CreditCardInfo extends React.Component {
   static propTypes = {
-    ccRenderKey: string.isRequired,
-    ccCountry: string.isRequired,
     ccNumber: string.isRequired,
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
@@ -30,8 +27,6 @@ class CreditCardInfo extends React.Component {
     super(props);
     this.state = {
       ccNameOnCard: '',
-      ccRenderKey: props.ccRenderKey,
-      ccCountry: '',
       ccNumber: '',
       ccExpireMonth: '',
       ccExpireYear: '',
@@ -58,8 +53,6 @@ class CreditCardInfo extends React.Component {
   render() {
     const {
       ccNameOnCard,
-      ccRenderKey,
-      // ccCountry,
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
@@ -90,33 +83,23 @@ class CreditCardInfo extends React.Component {
           </div>
         </div>
 
-        {/* <Country
-          country={ccCountry}
-          handleOnChange={this.handleOnChange}
-        /> */}
-
         <NameOnCard
-          // show={!!ccCountry}
           ccNameOnCard={ccNameOnCard}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardNumber
-          // show={!!ccCountry}
           ccNumber={ccNumber}
           handleOnChange={this.handleOnChange}
         />
 
         <CreditCardExpiration
-          // show={!!ccCountry}
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}
         />
 
         <CvnAndZip
-          // show={!!ccCountry}
-          ccRenderKey={ccRenderKey}
           toggleModal={this.props.toggleModal}
           ccCvn={ccCvn}
           ccZip={ccZip}
