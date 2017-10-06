@@ -4,8 +4,8 @@ import { convertStrengthToNumber } from '../../assets/utils';
 
 function OptionsNicotine({
   chosenStrength,
-  nicotineStrengths,
   nicotineHandler,
+  nicotineStrengths,
 }) {
   const style = {
     active: {
@@ -15,7 +15,7 @@ function OptionsNicotine({
       backgroundColor: '#FC2525',
     },
   };
-  nicotineStrengths = convertStrengthToNumber(nicotineStrengths);
+  nicotineStrekngths = convertStrengthToNumber(nicotineStrengths);
 
   return (
     <div className="product-options__options-nicotine">
@@ -53,7 +53,7 @@ OptionsNicotine.propTypes = {
   nicotineHandler: func.isRequired,
   nicotineStrengths: arrayOf(shape({
     _id: string,
-    nicotineStrength: string,
+    nicotineStrength: number,
   })).isRequired,
 };
 export default OptionsNicotine;

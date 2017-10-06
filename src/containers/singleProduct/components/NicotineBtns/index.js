@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { convertStrengthToNumber } from '../../assets/utils';
 import {
   OptionsHdr,
   OptionsNicotine,
@@ -11,15 +10,13 @@ function NicotineBtns({
   nicotineStrengths,
   nicotineHandler,
 }) {
-  nicotineStrengths = convertStrengthToNumber(nicotineStrengths);
-
   return (
     <div className="desc__nicotine">
       <OptionsHdr />
       <OptionsNicotine
         chosenStrength={chosenStrength}
-        nicotineStrength={nicotineStrengths}
         nicotineHandler={nicotineHandler}
+        nicotineStrengths={nicotineStrengths}
       />
     </div>
   );
