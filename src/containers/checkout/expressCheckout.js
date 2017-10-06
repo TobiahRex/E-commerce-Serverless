@@ -81,7 +81,6 @@ class ExpressCheckout extends React.Component {
     };
 
     this.state = {
-      ccRenderKey: 'renderWithZip',
       showCvnModal: false,
       // --- Error handling ---
       toast: {
@@ -134,7 +133,15 @@ class ExpressCheckout extends React.Component {
   componentDidMount() {
     this.props.resetPostal();
     this.props.clearToaster();
-    if (SqrPaymentForm.paymentForm) SqrPaymentForm.destroy();
+
+    if (SqrPaymentForm.get()) {
+      SqrPaymentForm.destroy();
+      SqrPaymentForm.create(this.handleNonceResponse);
+      SqrPaymentForm.build();
+    } else {
+      SqrPaymentForm.create(this.handleNonceResponse);
+      SqrPaymentForm.build();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -214,96 +221,91 @@ class ExpressCheckout extends React.Component {
   * @return: null
   */
   handleOnChange = (e) => {
-    if (e.target.name === 'ccCountry') {
-      const country = e.target.value.split('-')[1];
-      const countIsTooHigh = SqrPaymentForm.count === 2;
-      const postalNotReq = SqrPaymentForm.type === 'renderWithoutZip';
-
-      if (countIsTooHigh || postalNotReq) {
-        window.location.reload();
-      } else {
-        const countriesWithPostal = ['US', 'CA', 'UK'];
-        if (countriesWithPostal.includes(country)) {
-          if (!!SqrPaymentForm.options) {
-            if (SqrPaymentForm.type === 'renderWithZip') {
-              this.setState(
-                prevState => ({
-                  ...prevState,
-                  [e.target.name]: e.target.value,
-                  ccRenderKey: 'renderWithZip',
-                }),
-                () => {
-                  SqrPaymentForm.build();
-                },
-              );
-            } else {
-              this.setState(
-                prevState => ({
-                  ...prevState,
-                  [e.target.name]: e.target.value,
-                  ccRenderKey: 'renderWithZip',
-                }),
-                () => {
-                  SqrPaymentForm.destroy();
-                  SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
-                  SqrPaymentForm.build();
-                },
-              );
-            }
-          } else {
-            this.setState(
-              prevState => ({
-                ...prevState,
-                [e.target.name]: e.target.value,
-                ccRenderKey: 'renderWithZip',
-              }),
-              () => {
-                SqrPaymentForm.create('renderWithZip', country, this.handleNonceResponse);
-                SqrPaymentForm.build();
-              },
-            );
-          }
-        } else if (!!SqrPaymentForm.options) {
-          if (SqrPaymentForm.type === 'renderWithoutZip') {
-            this.setState(
-              prevState => ({
-                ...prevState,
-                [e.target.name]: e.target.value,
-                ccRenderKey: 'renderWithoutZip',
-              }),
-              () => {
-                SqrPaymentForm.build();
-              },
-            );
-          } else {
-            this.setState(
-              prevState => ({
-                ...prevState,
-                [e.target.name]: e.target.value,
-                ccRenderKey: 'renderWithoutZip',
-              }),
-              () => {
-                SqrPaymentForm.destroy();
-                SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
-                SqrPaymentForm.build();
-              },
-            );
-          }
-        } else {
-          this.setState(
-            prevState => ({
-              ...prevState,
-              [e.target.name]: e.target.value,
-              ccRenderKey: 'renderWithoutZip',
-            }),
-            () => {
-              SqrPaymentForm.create('renderWithoutZip', country, this.handleNonceResponse);
-              SqrPaymentForm.build();
-            },
-          );
-        }
-      }
-    } else {
+    // if (e.target.name === 'ccCountry') {
+    //   const country = e.target.value.split('-')[1];
+    //   // const countIsTooHigh = SqrPaymentForm.count === 1;
+    //
+    //   // if (countIsTooHigh) {
+    //   //   window.location.reload();
+    //   // } else {
+    //     const countriesWithPostal = ['US', 'CA', 'UK'];
+    //     if (countriesWithPostal.includes(country)) {
+    //       if (!!SqrPaymentForm.options) {
+    //         if (SqrPaymentForm.type === 'renderWithZip') {
+    //           this.setState(
+    //             prevState => ({
+    //               ...prevState,
+    //               [e.target.name]: e.target.value,
+    //             }),
+    //             () => {
+    //               SqrPaymentForm.build();
+    //             },
+    //           );
+    //         } else {
+    //           this.setState(
+    //             prevState => ({
+    //               ...prevState,
+    //               [e.target.name]: e.target.value,
+    //             }),
+    //             () => {
+    //               SqrPaymentForm.destroy();
+    //               SqrPaymentForm.create(this.handleNonceResponse);
+    //               SqrPaymentForm.build();
+    //             },
+    //           );
+    //         }
+    //       } else {
+    //         this.setState(
+    //           prevState => ({
+    //             ...prevState,
+    //             [e.target.name]: e.target.value,
+    //           }),
+    //           () => {
+    //             SqrPaymentForm.create(this.handleNonceResponse);
+    //             SqrPaymentForm.build();
+    //           },
+    //         );
+    //       }
+    //     }
+    //     // else if (!!SqrPaymentForm.options) {
+    //     //   if (SqrPaymentForm.type === 'renderWithoutZip') {
+    //     //     this.setState(
+    //     //       prevState => ({
+    //     //         ...prevState,
+    //     //         [e.target.name]: e.target.value,
+    //     //       }),
+    //     //       () => {
+    //     //         SqrPaymentForm.build();
+    //     //       },
+    //     //     );
+    //     //   } else {
+    //     //     this.setState(
+    //     //       prevState => ({
+    //     //         ...prevState,
+    //     //         [e.target.name]: e.target.value,
+    //     //       }),
+    //     //       () => {
+    //     //         SqrPaymentForm.destroy();
+    //     //         SqrPaymentForm.create(this.handleNonceResponse);
+    //     //         SqrPaymentForm.build();
+    //     //       },
+    //     //     );
+    //     //   }
+    //     // }
+    //     else {
+    //     }
+    //     this.setState(
+    //       prevState => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.value,
+    //       }),
+    //       () => {
+    //         SqrPaymentForm.create(this.handleNonceResponse);
+    //         SqrPaymentForm.build();
+    //       },
+    //     );
+    //   }
+    // } else {
       this.setState(
         {
           [e.target.name]: e.target.value,

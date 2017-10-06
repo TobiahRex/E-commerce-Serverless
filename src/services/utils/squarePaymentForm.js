@@ -1,26 +1,15 @@
 const {
   NODE_ENV: nodeEnv,
   US_SQUARE_APPLICATION_ID: usSquareApplicationId,
-  // JP_SQUARE_APPLICATION_ID: jpSquareApplicationId,
 } = process.env;
 
-export const getSqAppId = (country) => {
-  // if (country === 'JP') return jpSquareApplicationId;
-  return usSquareApplicationId;
-};
-
-/* eslint-disable no-console */
-if (nodeEnv !== 'production') {
-  if (usSquareApplicationId === '') console.error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
-  // if (jpSquareApplicationId === '') console.error('You need to provide a value for the JP_SQUARE_APPLICATION_ID variable.');
+if (nodeEnv !== 'production' && usSquareApplicationId === '') {
+  throw Error('You need to provide a value for the US_SQUARE_APPLICATION_ID variable.');
 }
-/* eslint-enable no-console */
 
 class SqrPaymentForm {
   constructor() {
     this.paymentForm = null;
-    this.type = '';
-    this.count = 0;
   }
 
   destroy() {
@@ -36,22 +25,14 @@ class SqrPaymentForm {
     this.paymentForm.build();
   }
 
-  create(type, country, handleNonceResponse) {
-    let postalCode = null;
-    this.type = type;
-    this.count += 1;
+  create(handleNonceResponse) {
+    const postalCode = {
+      elementId: 'sq-postal-code',
+      placeholder: '98564 (USA) or 2380008 (JP)',
+    };
 
-    if (type === 'renderWithZip') {
-      postalCode = {
-        elementId: 'sq-postal-code',
-        placeholder: '99999',
-      };
-    } else if (type === 'renderWithoutZip') {
-      postalCode = false;
-    }
-
-    this.paymentForm = new SqPaymentForm({ // eslint-disable-line
-      applicationId: getSqAppId(country),
+    this.paymentForm = new SqPaymentForm({
+      applicationId: usSquareApplicationId,
       inputClass: 'sq-input',
       inputStyles: [
         {
@@ -75,7 +56,6 @@ class SqrPaymentForm {
       },
       postalCode,
       callbacks: {
-
         // Called when the SqPaymentForm completes a request to generate a card
         // nonce, even if the request failed because of an error.
         cardNonceResponseReceived: (errors, nonce, cardData) => {
@@ -91,24 +71,25 @@ class SqrPaymentForm {
         inputEventReceived: (inputEvent) => {
           switch (inputEvent.eventType) {
             case 'focusClassAdded':
-            // Handle as desired
+              // Handle as desired
               break;
             case 'focusClassRemoved':
-            // Handle as desired
+              // Handle as desired
               break;
             case 'errorClassAdded':
-            // Handle as desired
+              // Handle as desired
               break;
             case 'errorClassRemoved':
-            // Handle as desired
+              // Handle as desired
               break;
             case 'cardBrandChanged':
-            // Handle as desired
+              // Handle as desired
               break;
             case 'postalCodeChanged':
-            // Handle as desired
+              // Handle as desired
               break;
-            default: break;
+            default:
+              break;
           }
         },
 
@@ -119,7 +100,7 @@ class SqrPaymentForm {
         },
       },
     });
-    return (this.paymentForm);
+    return this.paymentForm;
   }
 }
 
