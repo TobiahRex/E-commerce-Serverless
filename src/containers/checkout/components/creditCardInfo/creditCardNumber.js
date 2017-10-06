@@ -31,9 +31,8 @@ class CreditCardNumber extends React.Component {
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
-    const { show } = this.props;
     return (
-      <div className="input__row" style={{ display: show ? '' : 'none' }}>
+      <div className="input__row">
         <div className="input__row--cc-number">
           <p>
             <IntlMsg id="checkout.credit-card.number" />&nbsp;

@@ -4,11 +4,10 @@ import _ from 'lodash';
 import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-const { func, string, bool } = PropTypes;
+const { func, string } = PropTypes;
 
 class NameOnCard extends React.PureComponent {
   static propTypes = {
-    show: bool.isRequired,
     ccNameOnCard: string.isRequired,
     handleOnChange: func.isRequired,
   }
@@ -29,9 +28,8 @@ class NameOnCard extends React.PureComponent {
   handleOnChange = e => this.props.handleOnChange(e)
 
   render() {
-    const { show } = this.props;
     return (
-      <div className="input__row" style={{ display: show ? '' : 'none' }}>
+      <div className="input__row" >
         <div className="input__row--name-on-card">
           <p>
             <IntlMsg id="checkout.credit-card.name-on-card" />&nbsp;

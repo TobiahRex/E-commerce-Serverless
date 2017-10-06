@@ -137,11 +137,16 @@ class ExpressCheckout extends React.Component {
     if (SqrPaymentForm.get()) {
       SqrPaymentForm.destroy();
       SqrPaymentForm.create(this.handleNonceResponse);
-      SqrPaymentForm.build();
-    } else {
-      SqrPaymentForm.create(this.handleNonceResponse);
-      SqrPaymentForm.build();
+      // SqrPaymentForm.build();
     }
+    // if (SqrPaymentForm.get()) {
+    //   SqrPaymentForm.destroy();
+    //   SqrPaymentForm.create(this.handleNonceResponse);
+    //   SqrPaymentForm.build();
+    // } else {
+    //   SqrPaymentForm.create(this.handleNonceResponse);
+    //   SqrPaymentForm.build();
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -197,7 +202,7 @@ class ExpressCheckout extends React.Component {
       SqrPaymentForm.destroy();
     }
     this.props.clearToaster();
-    this.props.resetPotal();
+    this.props.resetPostal();
     this.props.push(target);
   };
 
