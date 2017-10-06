@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-// import Juice from '../containers/singleProduct';
-import Juice from '../containers/products/components/singleProduct/container';
+import Juice from '../containers/singleProduct';
+// import Juice from '../containers/products/components/singleProduct/container';
 import Juices from '../containers/products/components/allProducts';
 
 const ProductRoutes = () => (

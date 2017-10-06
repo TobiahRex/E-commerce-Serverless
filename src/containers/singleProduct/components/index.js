@@ -7,6 +7,8 @@ export ImgGrp from './ImgGrp';
 // export NewMemberPromotionBtn from './NewMemberPromotionBtn';
 export ProductRegisterPromotion from './ProductRegisterPromotion';
 export NicotineBtns from './NicotineBtns';
+export OptionsHdr from './OptionsHdr';
+export OptionsNicotine from './OptionsNicotine';
 // export PriceInfo from './PriceInfo';
 export ProductActions from './ProductActions';
 // export ProductBlurb from './ProductBlurb';
