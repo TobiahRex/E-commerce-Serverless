@@ -134,19 +134,14 @@ class ExpressCheckout extends React.Component {
     this.props.resetPostal();
     this.props.clearToaster();
 
-    if (SqrPaymentForm.get()) {
+    if (!!SqrPaymentForm.paymentForm) {
       SqrPaymentForm.destroy();
       SqrPaymentForm.create(this.handleNonceResponse);
-      // SqrPaymentForm.build();
+      SqrPaymentForm.build();
+    } else {
+      SqrPaymentForm.create(this.handleNonceResponse);
+      SqrPaymentForm.build();
     }
-    // if (SqrPaymentForm.get()) {
-    //   SqrPaymentForm.destroy();
-    //   SqrPaymentForm.create(this.handleNonceResponse);
-    //   SqrPaymentForm.build();
-    // } else {
-    //   SqrPaymentForm.create(this.handleNonceResponse);
-    //   SqrPaymentForm.build();
-    // }
   }
 
   componentWillReceiveProps(nextProps) {

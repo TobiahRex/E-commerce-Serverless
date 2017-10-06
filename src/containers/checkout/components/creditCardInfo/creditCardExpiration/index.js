@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-const { string, func, bool } = PropTypes;
+const { string, func } = PropTypes;
 
 class CreditCardExpiration extends React.Component {
   static propTypes = {
-    show: bool.isRequired,
     ccExpireMonth: string.isRequired,
     ccExpireYear: string.isRequired,
     handleOnChange: func.isRequired,
@@ -53,9 +52,8 @@ class CreditCardExpiration extends React.Component {
   ))
 
   render() {
-    const { show } = this.props;
     return (
-      <div className="input__row" style={{ display: show ? '' : 'none' }}>
+      <div className="input__row">
         <div className="input__row--exp-date">
 
           <div className="input__container--exp-month">
