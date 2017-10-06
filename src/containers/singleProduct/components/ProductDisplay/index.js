@@ -11,7 +11,8 @@ import {
   ProductTextInfo,
   ProductTextBlurb,
   ProductActions,
-  NewMemberPromotionBtn,
+  ProductRegisterPromotion,
+  // NewMemberPromotionBtn,
   NicotineBtns,
 } from '../';
 
@@ -128,7 +129,7 @@ class ProductDisplay extends React.Component {
 
           </ProductText>
 
-          <NewMemberPromotionBtn
+          <ProductRegisterPromotion
             loggedIn={loggedIn}
             modalHandler={modalHandler}
           />

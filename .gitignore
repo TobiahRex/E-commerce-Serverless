@@ -7,7 +7,6 @@ public
 
 # serverless
 .serverless
-config.development.yml
 config.troubleshoot.yml
 config.production.yml
 
