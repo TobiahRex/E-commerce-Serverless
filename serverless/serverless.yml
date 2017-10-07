@@ -125,14 +125,14 @@ functions:
           - lambda:InvokeFunction
     events:
       - schedule:
-          name: weekly-upload
+          name: ${self:provider.stage}-weekly-upload
           description: Upload weekend orders to sagawa
           rate: cron(0 13 ? * MON *)
           enabled: true
           input:
             type: weekly upload
       - schedule:
-          name: notify-sagawa
+          name: ${self:provider.stage}-notify-sagawa
           description: Send mail to sagawa of pending orders
           rate: cron(0 14 * * ? *)
           enabled: true
