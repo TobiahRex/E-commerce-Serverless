@@ -1,5 +1,5 @@
-@import "./mobile_navbar_UserActions_signedIn";
-@import "./mobile_navbar_UserActions_notSignedIn";
+@import "./mobile_navbar_userActions_signedIn";
+@import "./mobile_navbar_userActions_notSignedIn";
 
 .navbar__mobile--actions {
   @extend .mobile-flex-center;

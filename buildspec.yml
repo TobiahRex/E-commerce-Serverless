@@ -1,0 +1,43 @@
+version: 0.2
+
+phases:
+    install:
+        commands:
+            # Yarn installation
+            - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            - sudo apt-get -y update
+            - apt-get install -y yarn
+            # Installing serverless globally
+            - yarn global add serverless
+            - yarn -v
+            # Installing react and serverless dependencies
+            - yarn install
+            - cd serverless && yarn install
+    pre_build:
+        commands:
+            # Pulling the environment files from private bucket
+            - aws s3 cp s3://nj2jp-environment-files/react ../ --recursive
+            - aws s3 cp s3://nj2jp-environment-files/serverless . --recursive
+            # CloudFront configuration
+            - aws configure set preview.cloudfront true
+    build:
+        commands:
+            # Building the react app and deploying to S3 bucket, invalidating the CloudFront
+            - cd ../ && ls -al
+            - pwd
+            - yarn $DEPLOY_REACT_BASED_ON_ENV
+            # - ls -al
+            # Building the serverless and deploying to APIGateway and Lambda
+            - yarn $DEPLOY_SERVERLESS_BASED_ON_ENV
+            # - echo $CODEBUILD_SRC_DIR
+            # - pwd
+    # post_build:
+    #     commands:
+    #         – sls deploy –v
+
+artifacts:
+    files:
+        - serverless.yml
+    base-directory: 'serverless'
+    discard-paths: yes
