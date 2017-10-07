@@ -14,9 +14,10 @@ webpack(webpackConfig).run((err, stats) => {
 
   if (jsonStats.errors.length !== 0) {
     process.stdout.write('\nWebpack generated the following errors: '.red.bold);
-    return jsonStats.errors.map(error => process.stderr.write(`
+    jsonStats.errors.map(error => process.stderr.write(`
       ❌ ${error}
     `.red));
+    throw jsonStats.errors;
   }
 
   if (jsonStats.warnings.length !== 0) {
