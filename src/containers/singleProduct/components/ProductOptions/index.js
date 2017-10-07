@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
+// import FontAwesome from 'react-fontawesome';
 // import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ErrorMsg,
   // AddToCartBtn,
+  AddToCartSection,
   QtySection,
   OptionsHdr,
   OptionsNicotine,
@@ -17,7 +18,7 @@ function ProductOptions({
   inStock,
   qtyHandler,
   quantity,
-  // added,
+  added,
   addToCartHandler,
   error,
   errorMsg,
@@ -41,49 +42,11 @@ function ProductOptions({
       />
 
       <div className="product-options__options-qty-cart">
-        {/* <div className="options-qty-cart__qty-container">
-          <div className="qty-container__qty-blurb">
-            <div className="qty-blurb__blurb-text">
-              <IntlMsg id="product.single.actions.quantity.title" />
-            </div>
-          </div>
-          <div className="qty-container__qty-input">
-            <div className="qty-input__qty-text">
-              {quantity}
-            </div>
-          </div>
-          <div className="qty-container__qty-buttons">
-            <div className="qty-buttons__button-container">
-              <button
-                data-tag="qty-plus"
-                className="button-container__qty-adjust" data-ix="new-interaction"
-                onClick={qtyHandler}
-              >
-                <div className="qty-adj__text">
-                  <FontAwesome name="plus" />
-                </div>
-              </button>
-            </div>
-            <div className="qty-buttons__button-container">
-              <button
-                data-tag="qty-minus"
-                data-ix="qty-adjust-hover-2"
-                className="button-container__qty-adjust"
-                onClick={qtyHandler}
-              >
-                <div className="qty-adj__text">
-                  <FontAwesome name="minus" />
-                </div>
-              </button>
-            </div>
-          </div>
-        </div> */}
-
         <QtySection
           quantity={quantity}
           qtyHandler={qtyHandler}
         />
-        <div className="options-qty-cart__cart-button-container">
+        {/* <div className="options-qty-cart__cart-button-container">
           <button
             className="cart-button-container__cart-button"
             data-ix="product-page-cart-button-hover"
@@ -96,7 +59,12 @@ function ProductOptions({
               Add To Cart
             </div>
           </button>
-        </div>
+        </div> */}
+
+        <AddToCartSection
+          added={added}
+          addToCartHandler={addToCartHandler}
+        />
       </div>
 
       <ErrorMsg

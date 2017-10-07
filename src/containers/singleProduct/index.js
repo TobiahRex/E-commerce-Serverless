@@ -29,6 +29,8 @@ import {
 } from './assets/utils';
 import './assets/styles/style.css';
 
+let showAnimations = true;
+
 class SingleProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +54,7 @@ class SingleProduct extends React.Component {
     };
 
     this.state = {
+      showAnimations: true,
       qty: 0,
       error: false,
       added: false,
@@ -69,7 +72,18 @@ class SingleProduct extends React.Component {
       loggedIn,
     } = nextProps;
 
-    if (loggedIn !== this.props.loggedIn) this.setState(() => ({ loggedIn }));
+    if (loggedIn !== this.props.loggedIn) {
+      this.setState(prevState => ({
+        ...prevState,
+        loggedIn,
+        showAnimations: false,
+      }));
+    } else {
+      this.setState(prevState => ({
+        ...prevState,
+        showAnimations: false,
+      }));
+    }
   }
 
   /**
@@ -114,7 +128,11 @@ class SingleProduct extends React.Component {
   * @return none.
   */
   componentDidUpdate() {
-    WebflowAnimations();
+    if (showAnimations) {
+      WebflowAnimations();
+      showAnimations = false;
+    }
+
     setTimeout(() => {
       this.setState({ added: false });
     }, 5000);
@@ -537,7 +555,7 @@ class SingleProduct extends React.Component {
       errorMsg,
       showBulkModal,
       chosenStrength,
-      showSuccessModal,
+      // showSuccessModal,
       showRegisterModal,
     } = this.state;
 
