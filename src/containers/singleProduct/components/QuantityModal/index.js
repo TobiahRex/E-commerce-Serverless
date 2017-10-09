@@ -24,7 +24,7 @@ function QuantityModal({ taxRate, showModal, modalHandler }) {
   const discount = ((120 + Number(newTaxRate)) * -0.25).toFixed(2);
   const orderTotal = ((120 + Number(newTaxRate)) * 0.75).toFixed(2);
   return (
-    <div style={style} className="bulk-modal">
+    <div style={style} className="product-page__4-bottles-modal">
       <div className="bulk-modal__dialogue">
         <div className="dialogue__exit--container">
           <button
