@@ -41,6 +41,12 @@ function ProductOptions({
         nicotineStrengths={nicotineStrengths}
       />
 
+      <OptionsQtyCart
+        qty={qty}
+        qtyHandler={qtyHandler}
+        added={added}
+        addToCartHandler={addToCartHandler}
+      />
       <div className="product-options__options-qty-cart">
         <QtySection
           quantity={quantity}
@@ -66,7 +72,6 @@ function ProductOptions({
           addToCartHandler={addToCartHandler}
         />
       </div>
-
       <ErrorMsg
         error={error}
         errorMsg={errorMsg}

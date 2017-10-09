@@ -108,7 +108,7 @@ class ProductDisplay extends React.Component {
           modalHandler={modalHandler}
         />
         <div className="main__info--desc">
-          
+
           <ProductContent>
 
             <ProductText>
