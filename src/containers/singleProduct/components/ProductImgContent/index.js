@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
+  ImgGrp,
   ImgBanner,
 } from '../';
 
@@ -9,7 +10,7 @@ import {
   arrayDeepEquality as ArrayDeepEquality,
 } from '../../assets/utils';
 
-class ProductContent extends React.Component {
+class ProductImgContent extends React.Component {
   constructor(props) {
     super(props);
 
@@ -82,12 +83,12 @@ class ProductContent extends React.Component {
       <div className="product-content__content-img" data-ix="product-page-img-scroll">
         <ImgBanner modalHandler={modalHandler} />
         <ImgGrp imageUrl={this.filterImages(images)} />
-        <div class="content-img__fade-gradient"></div>
+        <div className="content-img__fade-gradient" />
       </div>
     );
   }
 }
-const { arrayOf, shape, bool, func, string, number } = PropTypes;
+const { arrayOf, shape, func, string, number } = PropTypes;
 
 const ProductShape = shape({
   _id: string,
@@ -117,23 +118,9 @@ const ProductShape = shape({
   }),
 });
 
-ProductContent.propTypes = {
-  qty: number.isRequired,
-  added: bool,
-  error: bool,
-  errorMsg: string,
-  loggedIn: bool.isRequired,
-  qtyHandler: func.isRequired,
+ProductImgContent.propTypes = {
   modalHandler: func.isRequired,
   productsArray: arrayOf(ProductShape).isRequired,
-  chosenStrength: number.isRequired,
-  nicotineHandler: func.isRequired,
-  addToCartHandler: func.isRequired,
-};
-ProductContent.defaultProps = {
-  added: false,
-  error: false,
-  errorMsg: '',
 };
 
-export default ProductContent;
+export default ProductImgContent;

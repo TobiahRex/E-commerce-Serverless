@@ -19,7 +19,8 @@ import {
   ActionBtns,
   QuantityModal,
   RegisterModal,
-  ProductDisplay,
+  ProductImgContent,
+  ProductContent,
 } from './components';
 import {
   arrayDeepEquality as ArrayDeepEquality,
@@ -587,7 +588,11 @@ class SingleProduct extends React.Component {
             <br />
             <IntlMsg id="product.single.loading" />
           </h1>) :
-          <ProductDisplay
+          <ProductImgContent
+            modalHandler={this.modalHandler}
+            productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : []}
+          />
+          <ProductContent
             qty={qty}
             added={added}
             error={error}
