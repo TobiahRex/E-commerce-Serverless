@@ -1,8 +1,6 @@
 .product-page {
-  position: relative;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-main {
@@ -297,6 +295,7 @@
   overflow: hidden;
   width: 450px;
   height: 40px;
+  text-transform: uppercase;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -323,6 +322,10 @@
   text-align: center;
   letter-spacing: 0.8px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.banner-container__banner-text:hover {
+  color: #FFFFFF;
 }
 
 .body {
@@ -656,6 +659,7 @@
   display: flex;
   width: 450px;
   height: 90px;
+  text-transform: uppercase;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -675,6 +679,7 @@
 .img-banner__banner-text {
   position: absolute;
   font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
   color: #fff;
   font-size: 22px;
   line-height: 32px;
@@ -696,7 +701,7 @@
   top: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 3;
+  z-index: 30;
   display: none;
   overflow: scroll;
   -webkit-box-pack: center;
@@ -713,15 +718,15 @@
 
 ._4-bottles-modal__content-container {
   position: relative;
-  top: 150px;
+  top: 50px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   overflow: visible;
-  width: 977px;
-  padding-right: 60px;
-  padding-left: 60px;
+  width: 800px;
+  padding-right: 30px;
+  padding-left: 30px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -1185,6 +1190,7 @@
   opacity: 0;
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #fff;
+  text-transform: uppercase;
   font-size: 16px;
   font-weight: 700;
   text-align: center;
@@ -1714,6 +1720,7 @@ html.w-mod-js *[data-ix="product-page-price-scroll-3"] {
     width: 350px;
     height: 50px;
   }
+
   .banner-container__banner-text {
     padding-right: 35px;
     padding-left: 35px;
