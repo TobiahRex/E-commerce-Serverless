@@ -2,77 +2,154 @@
   <div className="_4-bottles-modal__content-container">
     <div className="content-container__exit-btn">
       <div className="exit-btn__btn-container" data-ix="product-page-exit-button-hover">
-        <button className="btn-container__exit-btn w-inline-block" data-ix="product-page-close-4-bottles-modal">
-          <div className="exit-btn__alt" data-ix="product-page-exit-button-hover"></div>
-          <div className="exit-btn__text"></div>
+        <button
+          data-parent="promotion-bulk"
+          data-tag=""
+          data-ix="product-page-close-4-bottles-modal"
+          className="btn-container__exit-btn w-inline-block sweep-right"
+          onClick={modalHandler}
+        >
+          <div className="exit-btn__alt" data-ix="product-page-exit-button-hover" />
+          <div className="exit-btn__text">
+            <FontAwesome name="plus" />
+          </div>
         </button>
       </div>
     </div>
     <div className="content-container__hdr-container">
-      <h1 className="hdr-container__hdr-text">Lets Make a Deal!</h1>
+      <h1 className="hdr-container__hdr-text">
+        <IntlMsg id="product.modal.bulk.title" />&nbsp;
+      </h1>
     </div>
     <div className="content-container__sub-hdr-container">
-      <div className="sub-hdr-container__blurb-text"><strong className="blurb-text__bold-text">BUY 4 BOTTLES</strong>&nbsp;and we'll slice&nbsp;<strong className="blurb-text__bold-text">25% OFF</strong>&nbsp;the price.</div>
+      <div className="sub-hdr-container__blurb-text">
+        <strong className="blurb-text__bold-text">
+          <IntlMsg id="product.modal.bulk.subtitle1" />&nbsp;
+        </strong>&nbsp;
+        <IntlMsg id="product.modal.bulk.subtitle2" />&nbsp;
+        <strong className="blurb-text__bold-text">
+          25% OFF
+        </strong>&nbsp;
+        <IntlMsg id="product.modal.bulk.subtitle3" />&nbsp;
+      </div>
     </div>
     <div className="content-container__example-container">
       <div className="example-container__section-hdr">
-        <div className="section-hdr__example-blurb">Example:</div>
+        <div className="section-hdr__example-blurb">
+          <i>
+            <IntlMsg id="product.modal.bulk.title.example" />
+          </i>
+        </div>
       </div>
       <div className="example-container__product-table">
         <div className="product-table__top-row">
           <div className="top-row__table-hdr">
-            <div className="table-hdr__hdr-blurb">QTY</div>
+            <div className="table-hdr__hdr-blurb">
+              <IntlMsg id="product.modal.bulk.header.qty" />
+            </div>
           </div>
           <div className="top-row__table-hdr">
-            <div className="table-hdr__hdr-blurb">Description</div>
+            <div className="table-hdr__hdr-blurb">
+              <IntlMsg id="product.modal.bulk.header.description" />
+            </div>
           </div>
           <div className="top-row__table-hdr">
-            <div className="table-hdr__hdr-blurb">Price</div>
+            <div className="table-hdr__hdr-blurb">
+              <IntlMsg id="product.modal.bulk.header.price" />
+            </div>
           </div>
         </div>
         <div className="product-table__content-row">
           <div className="content-row__content-container">
-            <div className="content-container__blurb-text">4</div>
+            <div className="content-container__blurb-text">
+              <IntlMsg id="product.modal.bulk.row.qty" />
+            </div>
           </div>
           <div className="content-row__content-container">
             <div className="content-container__body-text">
               <div className="body-text__product-title">
-                <div className="product-title__blurb-text">Fruity Bamm-Bamm</div>
+                <div className="product-title__blurb-text">
+                  <IntlMsg id="product.modal.bulk.row.flavor" />
+                </div>
               </div>
               <div className="body-text__nicotine-description">
-                <div className="nicotine-description__blurb-text">Nicotine Strength:&nbsp;6mg</div>
+                <div className="nicotine-description__blurb-text">
+                  <IntlMsg id="product.modal.bulk.row.strength" />&nbsp;
+                  <i>6mg</i>
+                </div>
               </div>
               <div className="body-text__sku">
-                <div className="sku__blurb-text">SKU: NJ2JP0001</div>
+                <div className="sku__blurb-text">
+                  SKU: NJ2JP0001
+                </div>
               </div>
             </div>
           </div>
           <div className="content-row__content-container">
-            <div className="content-container__blurb-text">$ 120.00</div>
+            <div className="content-container__blurb-text">
+              $ 120.00
+            </div>
           </div>
         </div>
         <div className="product-table__order-summary">
           <div className="order-summary__order-text">
-            <p className="order-text__blurb">Sub Total<br>Tax<br><em className="blurb__red-text red-text--order-text">Discount</em><br>Free International Shipping<br>Grand Total</p>
+            <p className="order-text__blurb">
+              <IntlMsg id="product.modal.bulk.row.subtotal" />
+              <br />
+              <IntlMsg id="product.modal.bulk.row.tax" />
+              <br />
+              <em className="blurb__red-text red-text--order-text">
+                <IntlMsg id="product.modal.bulk.row.discount" />
+              </em>
+              <br />
+              <IntlMsg id="product.modal.bulk.row.shipping" />
+              <br />
+              <IntlMsg id="product.modal.bulk.row.total" />
+            </p>
           </div>
           <div className="order-summary__order-cost">
-            <p className="order-cost__blurb">$ 120.00<br>$ 10.10<br><em className="blurb__red-text red-text--order-text">25% OFF = $ -32.52</em><br><em>$0.00</em><br><em className="blurb__total-text--mobile-position">$97.57</em></p>
+            <p className="order-cost__blurb">
+              $ 120.00
+              <br />
+              {newTaxRate}
+              <br />
+              <em className="blurb__red-text red-text--order-text">
+                25% OFF = $ {discount}
+              </em>
+              <br />
+              <em>$0.00</em>
+              <br />
+              <em className="blurb__total-text--mobile-position">{orderTotal}</em>
+            </p>
           </div>
         </div>
       </div>
     </div>
     <div className="content-container__action-btn">
       <div className="action-btn__top-text">
-        <div className="top-text__blurb">Oh!</div>
+        <div className="top-text__blurb">
+          <IntlMsg id="product.modal.bulk.msg.oh" />
+        </div>
       </div>
       <div className="action-btn__btn-row">
         <div className="btn-row__shipping-text">
-          <div className="shipping-text__blurb">Did we mention you get&nbsp;<em className="shipping-text__red-text">FREE</em>&nbsp;International Shipping!?</div>
+          <div className="shipping-text__blurb">
+            <IntlMsg id="product.modal.bulk.msg.mention" />&nbsp;
+            <em className="shipping-text__red-text">FREE</em>&nbsp;
+            <IntlMsg id="product.modal.bulk.msg.intl-shipping" />
+          </div>
         </div>
         <div className="btn-row__btn-container" data-ix="product-page-action-button-hover">
-          <a className="btn-container__action-btn w-inline-block" href="#">
-            <div className="action-btn__blurb-text">Lets Do It!</div>
-          </a>
+          <button
+            data-parent="promotion-bulk"
+            data-tag="view-juices"
+            className="btn-container__action-btn w-inline-block"
+            onClick={modalHandler}
+          >
+            <div className="action-btn__blurb-text">
+              <IntlMsg id="product.modal.bulk.msg.lets-do-it" />
+            </div>
+          </button>
         </div>
       </div>
     </div>
