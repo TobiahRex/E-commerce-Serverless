@@ -5,6 +5,17 @@
   margin-left: auto;
 }
 
+.added {
+  background-color: #365899;
+}
+.added:hover,:active,:focus {
+  background-color: #365899;
+}
+
+.added .btn-flex-parent .success-cart-icon {
+  opacity: 0;
+}
+
 .product-page__product-hdr-container {
   display: -webkit-box;
   display: -webkit-flex;
