@@ -233,7 +233,7 @@ class SingleProduct extends React.Component {
   * @return {new state} - returns new state with new qty value.
   */
   qtyHandler = (e) => {
-    const buttonEl = e.target.dataset.tag || e.target.parentNode.dataset.tag;
+    const buttonEl = e.target.dataset.tag || e.target.parentNode.dataset.tag || e.target.parentNode.parentNode.dataset.tag;
 
     const qtyToCheck = 1;
     const { globalRequestQty } = this.composeGlobalCartInfo();

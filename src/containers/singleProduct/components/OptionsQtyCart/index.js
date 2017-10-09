@@ -6,7 +6,7 @@ import {
 } from '../';
 
 function OptionsQtyCart({
-  qty,
+  quantity,
   qtyHandler,
   added,
   addToCartHandler,
@@ -14,24 +14,9 @@ function OptionsQtyCart({
   return (
     <div className="product-options__options-qty-cart">
       <QtySection
-        quantity={qty}
+        quantity={quantity}
         qtyHandler={qtyHandler}
       />
-      {/* <div className="options-qty-cart__cart-button-container">
-        <button
-          className="cart-button-container__cart-button"
-          data-ix="product-page-cart-button-hover"
-          onClick={addToCartHandler}
-        >
-          <div className="cart-button__cart-text">
-            <em className="cart-text__fa-text">
-              <FontAwesome name="shopping-cart" />
-            </em> &nbsp;&nbsp;
-            Add To Cart
-          </div>
-        </button>
-      </div> */}
-
       <AddToCartSection
         added={added}
         addToCartHandler={addToCartHandler}
@@ -41,7 +26,7 @@ function OptionsQtyCart({
 }
 const { number, bool, func } = PropTypes;
 OptionsQtyCart.propTypes = {
-  qty: number.isRequired,
+  quantity: number.isRequired,
   qtyHandler: func.isRequired,
   added: bool.isRequired,
   addToCartHandler: func.isRequired,

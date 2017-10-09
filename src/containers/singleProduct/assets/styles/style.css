@@ -479,6 +479,7 @@
   align-items: center;
   background-color: #fc2525;
   text-decoration: none;
+  outline: none;
 }
 
 .qty-adjust__alt {
@@ -542,6 +543,21 @@
   height: 100%;
   background-color: #fc2525;
   text-decoration: none;
+}
+
+.actions__warning-msg {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.actions__warning-msg p {
+  color: #FC2525;
+}
+
+.actions__warning-msg a {
+  text-decoration: underline;
+  color: #FC2525;
+  transition: all .5s ease-in-out;
 }
 
 .cart-button__cart-text {
