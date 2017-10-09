@@ -4,26 +4,6 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ImgBanner({ modalHandler }) {
   return (
-    // <div className="main__info--image">
-    //   <img
-    //     src={imageUrl}
-    //     className="image__src"
-    //     alt="Switch Juice"
-    //   />
-    //   <button
-    //     data-parent="promotion-bulk"
-    //     data-tag=""
-    //     className="image__promotion sweep-right-red"
-    //     onClick={modalHandler}
-    //   >
-    //     <p>
-    //     </p>
-    //     <br />
-    //     <p>
-    //     </p>
-    //   </button>
-    // </div>
-
     <button
       data-parent="promotion-bulk"
       data-tag=""
@@ -39,9 +19,7 @@ function ImgBanner({ modalHandler }) {
     </button>
   );
 }
-const { string, func } = PropTypes;
 ImgBanner.propTypes = {
-  modalHandler: func.isRequired,
-  imageUrl: string.isRequired,
+  modalHandler: PropTypes.func.isRequired,
 };
 export default ImgBanner;
