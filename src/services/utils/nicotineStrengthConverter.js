@@ -1,5 +1,6 @@
 export default (strength) => {
   switch (strength) {
+    case 'zero': return '0 mg';
     case 'two': return '2 mg';
     case 'four': return '4 mg';
     case 'six': return '6 mg';

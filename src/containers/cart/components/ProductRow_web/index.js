@@ -6,9 +6,6 @@ import {
   ErrorMsg,
   ProductDetails,
 } from '../';
-import {
-  nicotineStrengthConverter as NicotineStrengthConverter,
-} from '../../assets/utils';
 
 function ShoppingCartWebProductRow({
   productObj,
