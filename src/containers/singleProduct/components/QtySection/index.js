@@ -23,7 +23,7 @@ function QtySection({
         <div className="qty-buttons__button-container">
           <button
             data-tag="qty-plus"
-            className="button-container__qty-adjust"
+            className="button-container__qty-adjust sweep-right"
             onClick={qtyHandler}
           >
             <div className="qty-adj__text">
@@ -35,7 +35,7 @@ function QtySection({
           <button
             data-tag="qty-minus"
             data-ix="qty-adjust-hover-2"
-            className="button-container__qty-adjust"
+            className="button-container__qty-adjust sweep-right"
             onClick={qtyHandler}
           >
             <div className="qty-adj__text">

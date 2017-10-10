@@ -19,7 +19,8 @@ import {
   ActionBtns,
   QuantityModal,
   RegisterModal,
-  ProductDisplay,
+  ProductImgContent,
+  ProductContent,
 } from './components';
 import {
   arrayDeepEquality as ArrayDeepEquality,
@@ -233,7 +234,7 @@ class SingleProduct extends React.Component {
   * @return {new state} - returns new state with new qty value.
   */
   qtyHandler = (e) => {
-    const buttonEl = e.target.dataset.tag || e.target.parentNode.dataset.tag;
+    const buttonEl = e.target.dataset.tag || e.target.parentNode.dataset.tag || e.target.parentNode.parentNode.dataset.tag;
 
     const qtyToCheck = 1;
     const { globalRequestQty } = this.composeGlobalCartInfo();
@@ -566,13 +567,14 @@ class SingleProduct extends React.Component {
     } = this.props;
 
     return (
-      <div className="juice-page__main">
+      <div className="product-page">
         <BreadCrumb
           paths={[this.intl.bcPaths1]}
           classes={['home', 'home']}
           destination={['/', 'juices']}
           lastCrumb={data.FindProductsByFlavor ? data.FindProductsByFlavor[0].product.title[IntlLocale] : this.intl.lastCrumb}
         />
+        {/* Page Header */}
         {
           data.FindProductsByFlavor ?
             <ProductPageHdr
@@ -580,6 +582,8 @@ class SingleProduct extends React.Component {
               mainTitle={data.FindProductsByFlavor[0].product.mainTitle[IntlLocale]}
             /> : ''
         }
+
+        {/* Page Content */}
         {
           data.loading ?
           (<h1 className="main__loading">
@@ -587,19 +591,25 @@ class SingleProduct extends React.Component {
             <br />
             <IntlMsg id="product.single.loading" />
           </h1>) :
-          <ProductDisplay
-            qty={qty}
-            added={added}
-            error={error}
-            errorMsg={errorMsg}
-            loggedIn={loggedIn}
-            qtyHandler={this.qtyHandler}
-            chosenStrength={chosenStrength}
-            modalHandler={this.modalHandler}
-            nicotineHandler={this.nicotineHandler}
-            addToCartHandler={this.addToCartHandler}
-            productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : []}
-          />
+          <div className="product-main">
+            <ProductImgContent
+              modalHandler={this.modalHandler}
+              productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : []}
+            />
+            <ProductContent
+              qty={qty}
+              added={added}
+              error={error}
+              errorMsg={errorMsg}
+              loggedIn={loggedIn}
+              qtyHandler={this.qtyHandler}
+              chosenStrength={chosenStrength}
+              modalHandler={this.modalHandler}
+              nicotineHandler={this.nicotineHandler}
+              addToCartHandler={this.addToCartHandler}
+              productsArray={data.FindProductsByFlavor ? data.FindProductsByFlavor : []}
+            />
+          </div>
         }
         <ActionBtns
           routerBack={this.props.goBack}
