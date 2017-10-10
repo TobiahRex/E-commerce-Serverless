@@ -24,6 +24,7 @@ function ShoppingCartWebProductRow({
               />
             </Link>
           </div>
+
           <ul className="shopping-cart-table-body-infobox-list">
             <li className="shopping-cart-table-body-infobox-title">
               <Link to={`/juice/${productObj.product.slug}`}>
@@ -48,6 +49,7 @@ function ShoppingCartWebProductRow({
               </button>
             </li>
           </ul>
+
         </div>
       </td>
       <td className="shopping-cart-table-body-price">
