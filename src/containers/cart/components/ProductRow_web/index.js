@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router';
 import {
   ErrorMsg,
   ProductImg,
   ProductDetails,
+  ProductUnitPrice,
 } from '../';
 
 function ShoppingCartWebProductRow({
@@ -27,14 +27,12 @@ function ShoppingCartWebProductRow({
 
       </td>
       <td className="shopping-cart-table-body-price">
-        <div className="shopping-cart-table-body-price-flexparent">
+        {/* <div className="shopping-cart-table-body-price-flexparent">
           <FontAwesome name="usd" />&nbsp;
           <h3>{Number(productObj.product.price).toFixed(2)}</h3>
-        </div>
+        </div> */}
 
-        <div className="line-item__price-container">
-          <div className="price-container__blurb">$ 30.00</div>
-        </div>
+        <ProductUnitPrice productObj={productObj} />
       </td>
       <td className="shopping-cart-table-body-qty">
         <div className="shopping-cart-table-body-qty-flexparent">
