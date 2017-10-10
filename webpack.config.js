@@ -147,6 +147,7 @@ const prodConfig = {
     }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.production }),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: 'tools/index.template.html',
       minify: {
@@ -264,6 +265,7 @@ const tshConfig = {
     }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({ 'process.env': webpackEnvs.troubleshoot }),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: 'tools/index.template.html',
       minify: {

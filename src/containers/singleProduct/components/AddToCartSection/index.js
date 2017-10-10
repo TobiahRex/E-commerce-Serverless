@@ -8,9 +8,9 @@ function AddToCartSection({
   addToCartHandler,
 }) {
   return (
-    <div className={`options-qty-cart__cart-button-container ${added ? 'added' : 'sweep-right'}`}>
+    <div className="options-qty-cart__cart-button-container">
       <button
-        className="cart-button-container__cart-button"
+        className={`cart-button-container__cart-button ${added ? ' added' : ' sweep-right'}`}
         data-ix="product-page-cart-button-hover"
         onClick={addToCartHandler}
       >
