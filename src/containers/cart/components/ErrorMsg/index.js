@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 function ErrorMsg({ error: { hard, soft }, errorMsg }) {
   let style;
@@ -19,23 +20,27 @@ function ErrorMsg({ error: { hard, soft }, errorMsg }) {
             key={new Buffer('maximum-of-4-bottles', 'utf8').toString('base64')}
             className="error-msg__blurb-container"
           >
-            Maximum of 4 bottles, per customer, per address. More info
+            <IntlMsg id="cart.errors.max.sub1" />
             <Link to={'/shipping_policy'}>
-              <em className="error-msg__link">here</em>.
+              <em className="error-msg__link">
+                <IntlMsg id="cart.errors.max.sub2" />
+              </em>.
             </Link>
-            <br />
-            Japanese Statute # 123123123.
           </p>,
         ]);
       } break;
       case 'Not enough': {
         showErrorMsg = () => (
-          <p>Oops! Please choose a quantity of at least 1. 😀 </p>
+          <p>
+            <IntlMsg id="cart.errors.not-enough" />
+          </p>
         );
       } break;
       case 'No strength': {
         showErrorMsg = () => (
-          <p>You must choose a Nicotine Strength.</p>
+          <p>
+            You must choose a Nicotine Strength.
+          </p>
         );
       } break;
       case 'Max items': {
