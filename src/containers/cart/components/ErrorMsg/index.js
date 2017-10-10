@@ -39,7 +39,7 @@ function ErrorMsg({ error: { hard, soft }, errorMsg }) {
       case 'No strength': {
         showErrorMsg = () => (
           <p>
-            You must choose a Nicotine Strength.
+            <IntlMsg id="cart.errors.no-strength" />
           </p>
         );
       } break;

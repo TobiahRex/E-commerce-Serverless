@@ -21,4 +21,6 @@ export default {
   'cart.action-btn.back-home': '帰宅',
   'cart.errors.max.sub1': '1つの住所につき、顧客1人当たり最大4本。 詳細は',
   'cart.errors.max.sub2': 'こちらをクリック',
+  'cart.errors.not-enough': 'おっとっと！ 少なくとも1の数量を選択してください。😀',
+  'cart.errors.no-strength': 'ニコチンの強さを選択する必要があります。',
 };
