@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import ErrorMsg from './errorMsgCart';
+import { ErrorMsg } from '../';
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
-} from '../../utilities.imports';
-
+} from '../../assets/utils';
 
 function ShoppingCartMobileProductCard({
   productObj,

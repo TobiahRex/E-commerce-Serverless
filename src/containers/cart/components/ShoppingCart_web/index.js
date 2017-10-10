@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import ShoppingCartTotal from './ShoppingCartTotal';
+import { ShoppingCartTotal } from '../';
 
 function ShoppingCartWeb({
   cart,

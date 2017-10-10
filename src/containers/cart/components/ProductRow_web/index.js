@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
-import ErrorMsg from './errorMsgCart';
+import { ErrorMsg } from '../';
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
-} from '../../utilities.imports';
+} from '../../assets/utils';
 
 function ShoppingCartWebProductRow({
   productObj,
@@ -52,8 +52,8 @@ function ShoppingCartWebProductRow({
       </td>
       <td className="shopping-cart-table-body-price">
         <div className="shopping-cart-table-body-price-flexparent">
-          <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{Number(productObj.product.price).toFixed(2)}</h3>
+          <FontAwesome name="usd" />&nbsp;
+          <h3>{Number(productObj.product.price).toFixed(2)}</h3>
         </div>
       </td>
       <td className="shopping-cart-table-body-qty">
