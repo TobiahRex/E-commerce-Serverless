@@ -32,11 +32,10 @@ function QuantityModal({ taxRate, showModal, modalHandler }) {
               data-parent="promotion-bulk"
               data-tag=""
               data-ix="product-page-close-4-bottles-modal"
-              className="btn-container__exit-btn w-inline-block sweep-right"
+              className="btn-container__exit-btn w-inline-block"
               onClick={modalHandler}
             >
-              <div className="exit-btn__alt" data-ix="product-page-exit-button-hover" />
-              <div className="exit-btn__text">
+              <div className="exit-btn__text sweep-right-red">
                 <FontAwesome name="plus" />
               </div>
             </button>

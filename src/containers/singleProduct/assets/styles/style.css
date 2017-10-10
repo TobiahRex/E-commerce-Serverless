@@ -696,7 +696,7 @@
 }
 
 .product-page__4-bottles-modal {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   right: 0px;
@@ -1098,6 +1098,7 @@
   height: 30px;
   background-color: #365899;
   text-decoration: none;
+  outline: none;
 }
 
 .exit-btn__alt {
@@ -1105,6 +1106,12 @@
   height: 100%;
   background-color: #fc2525;
   text-decoration: none;
+}
+
+.exit-btn__alt span {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .exit-btn__text {
@@ -1132,13 +1139,20 @@
   text-decoration: none;
 }
 
+.exit-btn__text span {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
 .product-page__member-modal {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 3;
+  z-index: 30;
   display: none;
   width: 100%;
   height: 100%;
@@ -1156,13 +1170,20 @@
 
 .member-modal__content-container {
   position: relative;
-  top: 150px;
-  display: block;
-  width: 977px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 60px;
-  padding-left: 60px;
+  top: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: visible;
+  width: 800px;
+  padding-right: 30px;
+  padding-left: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   background-color: #fff;
 }
 
@@ -1234,6 +1255,46 @@
 .shipping-text__red-text {
   color: #fc2525;
   font-style: normal;
+}
+
+.product-page__action-btns {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.product-page__back-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 13.8em;
+  height: 3.33em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #FC2525;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .5);
+  color: #fff;
+  font-size: 1.8em;
+  font-weight: 300;
+  cursor: pointer;
+  outline: none;
 }
 
 html.w-mod-js *[data-ix="product-page-4-bottles-banner"] {
