@@ -16,15 +16,13 @@ function ProductImg({ productObj }) {
     </div>
   );
 }
-const { shape, string, func } = PropTypes;
+const { shape, string, arrayOf, object } = PropTypes;
 ProductImg.propTypes = {
-  deleteFromCart: func.isRequired,
   productObj: shape({
     _id: string,
     product: shape({
       slug: string,
-      sku: string,
-      nicotineStrength: string,
+      imags: arrayOf(object),
       title: shape({
         en: string,
         ja: string,

@@ -30,14 +30,6 @@ function ProductQty({ productObj, qtyHandler }) {
           </button>
         </div>
       </div>
-      <div className="qty-container__error-msg">
-        <p className="error-msg__blurb-container">
-          Maximum of 4 bottles, per customer, per address. More info
-          <em className="error-msg__link">here</em>.
-          <br />
-          Japanese Statute # 123123123.
-        </p>
-      </div>
       <ErrorMsg
         error={productObj.error}
         errorMsg={productObj.error.message[IntlLocale]}

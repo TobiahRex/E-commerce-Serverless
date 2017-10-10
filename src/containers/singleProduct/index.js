@@ -289,7 +289,7 @@ class SingleProduct extends React.Component {
   nicotineHandler = (e) => {
     const productId = e.target.dataset.product || e.target.parentNode.dataset.product;
     const nicStrength = e.target.dataset.nicotinestrength || e.target.parentNode.dataset.nicotinestrength;
-
+    console.log('%cthis.props.data', 'background:pink;', this.props.data);
     const product = this.props.data.FindProductsByFlavor
     .filter(({ _id }) => _id === productId)[0];
 
