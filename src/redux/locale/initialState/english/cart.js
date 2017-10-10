@@ -21,5 +21,6 @@ export default {
   'cart.action-btn.back-home': 'Back To Homepage',
   'cart.errors.max.sub1': 'Maximum of 4 bottles, per customer, per address. More info',
   'cart.errors.max.sub2': 'here',
-  'cart.errors.max.sub3': 'Japanese Statute # 123123123.',
+  'cart.errors.not-enough': 'Oops! Please choose a quantity of at least 1. 😀',
+  'cart.errors.no-strength': 'You must choose a Nicotine Strength.',
 };
