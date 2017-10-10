@@ -1,0 +1,242 @@
+@media only screen and (max-width: 930px) {
+// @media only screen and (max-width: 640px) {
+  .ordered--main {
+    max-width: 1086px;
+    width: 100%;
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    & .ordered--container {
+      @include prefixflex();
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      margin: 2em auto;
+      & .ordered__title {
+        @include prefixflex();
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1em;
+        & .title--icon {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          height: 10em;
+          width: 10em;
+          background-color: $p-green;
+          padding: 1em;
+          & span {
+            color: $p-white;
+            font-size: 10em;
+          }
+        }
+        & .title--msg {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          margin-left: 2em;
+          & h1, h4 {
+            color: $s-green;
+          }
+          & h4 {
+            font-size: 1.6em;
+            margin-top: 1em;
+            line-height: 2em;
+          }
+          & h1 {
+            text-align: center;
+            margin-top: .5em;
+          }
+        }
+      }
+      & .ordered__header {
+        @include prefixflex();
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 3em auto;
+        & .header--date {
+          @include prefixflex();
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          & p {
+            padding: 1em;
+          }
+        }
+        & .header--status {
+          @include prefixflex();
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          & h3 {
+            line-height: 2em;
+            font-style: italic;
+            font-weight: 800;
+          }
+        }
+        & .header--info {
+          @include prefixflex();
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          & div {
+            padding: 1em;
+          }
+          & .header__price {
+            @include prefixflex();
+            justify-content: flex-end;
+            align-items: flex-end;
+            & p {
+              font-size: 1.8em;
+            }
+          }
+        }
+      }
+      & .ordered__addresses {
+        @include prefixflex();
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        & .addresses--shipto,
+        .addresses--billto {
+          max-width: 35em;
+          width: 100%;
+          & fieldset {
+            height: 22em;
+            border-color: $p-blue;
+            border-style: solid;
+            & legend {
+              & p {
+                font-size: 2em;
+                font-weight: 400;
+              }
+            }
+            & div {
+              & p {
+                font-weight: 200;
+              }
+            }
+            & .shipto__name,
+            .billto__name,
+            .shipto__city-prefecture,
+            .billto__city-prefecture,
+            .shipto__telephone,
+            .billto__telephone {
+              @include prefixflex();
+              justify-content: flex-start;
+              align-items: flex-start;
+            }
+          }
+        }
+      }
+      & .ordered__order-summary {
+        margin: 2em auto;
+        & fieldset {
+          border-color: $p-blue;
+          border-style: solid;
+          & legend {
+            & p {
+              font-size: 2em;
+              font-weight: 400;
+            }
+          }
+          & .order-summary__table {
+            border-collapse: collapse;
+            & .table--thead {
+              & tr {
+                border-bottom: 1px solid rgba(0,0,0,.15);
+                & th {
+                  & p {
+                    font-size: 1.6em;
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+            & .table--body {
+              & .body--shipping-status-row {
+                height: 4em;
+                background-color: $s-white;
+                & td {
+                  text-align: center;
+                }
+                & p {
+                  font-weight: 200;
+                  & .tracking-id {
+                    font-weight: 200;
+                    color: $p-red;
+                    &:hover,
+                    &:focus,
+                    &:active {
+                      text-decoration: underline;
+                    }
+                  }
+                }
+              }
+              & .body--product-row {
+                height: 10em;
+                border-bottom: 1px solid rgba(0,0,0,.1);
+                & td {
+                  text-align: center;
+                  & p {
+                    font-weight: 200;
+                  }
+                  & .product-row__list {
+                    padding: 0;
+                    margin: 0;
+                    list-style-type: none;
+                    & .list--nic-strength {
+                      p {
+                        font-style: italic;
+                        font-size: 1.2em;
+                        font-weight: 200;
+                      }
+                    }
+                    & .list--sku {
+                      & p {
+                        font-size: 1em;
+                        font-weight: 200;
+                      }
+                    }
+                  }
+                }
+                & td:nth-child(2) {
+                  text-align: left;
+                }
+                & td:nth-child(3) {
+                  text-align: right;
+                }
+              }
+              & .body--total-analysis {
+                & td {
+                  text-align: right;
+                  & .total-analysis--list-title,
+                  .total-analysis--list-value {
+                    margin: 0;
+                    list-style-type: none;
+                    & li {
+                      & p {
+                        font-weight: 200;
+                      }
+                    }
+                  }
+                }
+                // & td:nth-child(2) {
+                //   text-align: center;
+                // }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

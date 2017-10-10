@@ -32,7 +32,7 @@ import {
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
-} from './assets/utils';
+} from './utilities.imports';
 
 class ShoppingCart extends Component {
   constructor(props) {

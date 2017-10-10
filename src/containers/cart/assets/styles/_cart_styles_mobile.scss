@@ -1,0 +1,5 @@
+@media only screen and (max-width : 930px) {
+// @media only screen and (max-width : 640px) {
+  @import './components/EmptyCart/emptyCart_styles_mobile.scss';
+  @import './components/ShoppingCart/shoppingCart_styles_mobile.scss';
+}
