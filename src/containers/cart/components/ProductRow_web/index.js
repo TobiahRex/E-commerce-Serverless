@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 import {
   ErrorMsg,
+  ProductImg,
   ProductDetails,
 } from '../';
 
@@ -16,39 +17,8 @@ function ShoppingCartWebProductRow({
     <tr key={`shopping-cart-table-row-${productObj._id}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">
         <div className="shopping-cart-table-body-infobox-flexparent">
-          <div className="shopping-cart-table-body-infobox-img">
-            <Link to={`/juice/${productObj.product.slug}`}>
-              <img
-                src={productObj.product.images[0].url}
-                className="shopping-cart-table-body-infobox-img-src" alt={productObj.product.title[IntlLocale]}
-              />
-            </Link>
-          </div>
 
-          {/* <ul className="shopping-cart-table-body-infobox-list">
-            <li className="shopping-cart-table-body-infobox-title">
-              <Link to={`/juice/${productObj.product.slug}`}>
-                <p>{productObj.product.title[IntlLocale]}</p>
-              </Link>
-            </li>
-            <li className="shopping-cart-table-body-infobox-nicotine">
-              <p>Nicotine Strength:{'\u00A0'}</p>
-              <i>{NicotineStrengthConverter(productObj.product.nicotineStrength)}</i>
-            </li>
-            <li className="shopping-cart-table-body-infobox-sku">
-              <p>SKU:{'\u00A0'}</p>
-              <p>{productObj.product.sku}</p>
-            </li>
-            <li className="shopping-cart-table-body-infobox-trash">
-              <button
-                data-id={productObj._id}
-                className="sweep-right"
-                onClick={deleteFromCart}
-              >
-                <FontAwesome name="trash-o" />
-              </button>
-            </li>
-          </ul> */}
+          <ProductImg productObj={productObj} />
           <ProductDetails
             productObj={productObj}
             deleteFromCart={deleteFromCart}

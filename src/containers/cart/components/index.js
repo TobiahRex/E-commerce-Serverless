@@ -7,6 +7,7 @@ export ErrorMsg from './ErrorMsg';
 export ProductCardMobile from './ProductCard_mobile';
 export ProductRowWeb from './ProductRow_web';
 export ProductDetails from './ProductDetails';
+export ProductImg from './ProductImg';
 
 export ShoppingCartMobile from './ShoppingCart_mobile';
 export ShoppingCartWeb from './ShoppingCart_web';

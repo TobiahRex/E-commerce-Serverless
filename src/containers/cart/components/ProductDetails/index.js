@@ -41,7 +41,9 @@ function ProductDetails({ productObj, deleteFromCart }) {
           className="delete-container__button w-button"
           onClick={deleteFromCart}
         >
-          <FontAwesome name="trash-o" />
+          <span className="btn-flex-parent">
+            <FontAwesome name="trash-o" />
+          </span>
         </button>
       </div>
     </div>
