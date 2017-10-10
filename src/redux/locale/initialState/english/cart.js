@@ -19,4 +19,7 @@ export default {
   'cart.action-btn.express-checkout': 'Express Checkout',
   'cart.action-btn.clear-cart': 'Clear Shopping Cart',
   'cart.action-btn.back-home': 'Back To Homepage',
+  'cart.errors.max.sub1': 'Maximum of 4 bottles, per customer, per address. More info',
+  'cart.errors.max.sub2': 'here',
+  'cart.errors.max.sub3': 'Japanese Statute # 123123123.',
 };

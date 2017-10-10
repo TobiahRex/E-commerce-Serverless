@@ -17,13 +17,13 @@ function ErrorMsg({ error: { hard, soft }, errorMsg }) {
         showErrorMsg = () => ([
           <p
             key={new Buffer('maximum-of-4-bottles', 'utf8').toString('base64')}
+            className="error-msg__blurb-container"
           >
-            Maximum of 4 bottles, per customer, per address. More info {'\u00A0'}
-            <Link to={'/shipping_policy'}>here.</Link>
-          </p>,
-          <p
-            key={new Buffer('japanese-statute', 'utf8').toString('base64')}
-          >
+            Maximum of 4 bottles, per customer, per address. More info
+            <Link to={'/shipping_policy'}>
+              <em className="error-msg__link">here</em>.
+            </Link>
+            <br />
             Japanese Statute # 123123123.
           </p>,
         ]);
@@ -59,7 +59,7 @@ function ErrorMsg({ error: { hard, soft }, errorMsg }) {
     };
   }
   return (
-    <div className="actions__warning-msg" style={style}>
+    <div className="qty-container__error-msg" style={style}>
       {showErrorMsg()}
     </div>
   );
