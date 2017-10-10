@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import {
-  ErrorMsg,
   ProductImg,
   ProductDetails,
   ProductUnitPrice,
+  ProductQty,
 } from '../';
 
 function ShoppingCartWebProductRow({
@@ -35,7 +35,7 @@ function ShoppingCartWebProductRow({
         <ProductUnitPrice productObj={productObj} />
       </td>
       <td className="shopping-cart-table-body-qty">
-        <div className="shopping-cart-table-body-qty-flexparent">
+        {/* <div className="shopping-cart-table-body-qty-flexparent">
           <ul className="shopping-cart-table-body-qty-items">
             <li className="shopping-cart-table-body-qty-readout">
               <p>{productObj.qty}</p>
@@ -61,7 +61,11 @@ function ShoppingCartWebProductRow({
             </li>
           </ul>
           <ErrorMsg error={productObj.error} errorMsg={productObj.error.message[IntlLocale]} />
-        </div>
+        </div> */}
+        <ProductQty
+          productObj={productObj}
+          qtyHandler={qtyHandler}
+        />
       </td>
       <td className="shopping-cart-table-body-total">
         <div className="shopping-cart-table-body-total-flexparent">
