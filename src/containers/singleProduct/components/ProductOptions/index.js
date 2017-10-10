@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import {
   ErrorMsg,
   // AddToCartBtn,
-  AddToCartSection,
-  QtySection,
+  // AddToCartSection,
+  // QtySection,
   OptionsHdr,
+  OptionsQtyCart,
   OptionsNicotine,
 } from '../';
 
@@ -40,33 +41,12 @@ function ProductOptions({
         nicotineHandler={nicotineHandler}
         nicotineStrengths={nicotineStrengths}
       />
-
-      <div className="product-options__options-qty-cart">
-        <QtySection
-          quantity={quantity}
-          qtyHandler={qtyHandler}
-        />
-        {/* <div className="options-qty-cart__cart-button-container">
-          <button
-            className="cart-button-container__cart-button"
-            data-ix="product-page-cart-button-hover"
-            onClick={addToCartHandler}
-          >
-            <div className="cart-button__cart-text">
-              <em className="cart-text__fa-text">
-                <FontAwesome name="shopping-cart" />
-              </em> &nbsp;&nbsp;
-              Add To Cart
-            </div>
-          </button>
-        </div> */}
-
-        <AddToCartSection
-          added={added}
-          addToCartHandler={addToCartHandler}
-        />
-      </div>
-
+      <OptionsQtyCart
+        quantity={quantity}
+        qtyHandler={qtyHandler}
+        added={added}
+        addToCartHandler={addToCartHandler}
+      />
       <ErrorMsg
         error={error}
         errorMsg={errorMsg}
