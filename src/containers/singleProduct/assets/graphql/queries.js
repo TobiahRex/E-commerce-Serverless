@@ -1,4 +1,4 @@
 export {
   FindProductById,
   FindProductsByFlavor,
-} from '../../../graphql/queries';
+} from '../../../../graphql/queries';

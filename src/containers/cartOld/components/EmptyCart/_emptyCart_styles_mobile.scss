@@ -1,0 +1,64 @@
+.empty-cart-main {
+  @include prefixflex();
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1080px;
+  width: 100%;
+  min-height: 50em;
+  & .empty-cart-main-title {
+    @include prefixflex();
+    align-items: center;
+    height: 8em;
+    h1 {
+      font-size: 3em;
+      padding-left: .1em;
+      text-align: center;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+    }
+  }
+  & .empty-cart-main-icon {
+    span {
+      font-size: 18em;
+      color: $p-blue;
+      font-weight: 800;
+      margin: .1em;
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+    }
+  }
+  & .empty-cart-oops-msg {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    & h1 {
+      @include prefixed(text-shadow, 0 1px 1px rgba(0,0,0,.5));
+    }
+    & .confused_emoji {
+      content: $confused_emoji;
+      max-width: 5em;
+    }
+  }
+  & .empty-cart-shopping-btn {
+    @include prefixflex();
+    justify-content: center;
+    align-items: center;
+    min-height: 14em;
+    width: 100%;
+    button {
+      @include prefixflex();
+      justify-content: center;
+      align-items: center;
+      height: 4em;
+      width: 80%;
+      padding: 0;
+      border: none;
+      font-family: $p-font;
+      font-size: 1.8em;
+      letter-spacing: .02em;
+      background-color: $p-red;
+      color: $p-white;
+      cursor: pointer;
+      @include prefixed(box-shadow, 3px 3px 3px rgba(0,0,0,.25));
+    }
+  }
+}

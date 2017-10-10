@@ -8,12 +8,6 @@ import { FormattedMessage as IntlMsg, injectIntl, intlShape } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import {
-  FindProductById,
-  AddToMemberCart,
-  EditToMemberCart,
-  FindProductsByFlavor,
-} from './graphql';
-import {
   ProductPageHdr,
   BreadCrumb,
   ActionBtns,
@@ -28,6 +22,12 @@ import {
   orderActions,
   userActions,
 } from './assets/utils';
+import {
+  FindProductById,
+  AddToMemberCart,
+  EditToMemberCart,
+  FindProductsByFlavor,
+} from './assets/graphql';
 import './assets/styles/style.css';
 
 let showAnimations = true;
