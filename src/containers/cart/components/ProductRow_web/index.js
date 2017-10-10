@@ -16,20 +16,24 @@ function ShoppingCartWebProductRow({
   return (
     <tr key={`shopping-cart-table-row-${productObj._id}`} className="shopping-cart-table-body-row">
       <td className="shopping-cart-table-body-infobox">
-        <div className="shopping-cart-table-body-infobox-flexparent">
 
+        <div className="line-item__juice-container">
           <ProductImg productObj={productObj} />
           <ProductDetails
             productObj={productObj}
             deleteFromCart={deleteFromCart}
           />
-
         </div>
+
       </td>
       <td className="shopping-cart-table-body-price">
         <div className="shopping-cart-table-body-price-flexparent">
           <FontAwesome name="usd" />&nbsp;
           <h3>{Number(productObj.product.price).toFixed(2)}</h3>
+        </div>
+
+        <div className="line-item__price-container">
+          <div className="price-container__blurb">$ 30.00</div>
         </div>
       </td>
       <td className="shopping-cart-table-body-qty">
