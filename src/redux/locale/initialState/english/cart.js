@@ -8,6 +8,7 @@ export default {
   'cart.table.header.price': 'Price',
   'cart.table.header.qty': 'Quantity',
   'cart.table.header.total': 'Total',
+  'cart.table.details.nstrength': 'Nicotine Strength',
   'cart.total.subtotal': 'Subtotal',
   'cart.total.taxes': 'Taxes',
   'cart.total.shipping': 'International Shipping',

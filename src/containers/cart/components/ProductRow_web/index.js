@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
-import { ErrorMsg } from '../';
+import {
+  ErrorMsg,
+  ProductDetails,
+} from '../';
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
 } from '../../assets/utils';
@@ -25,7 +28,7 @@ function ShoppingCartWebProductRow({
             </Link>
           </div>
 
-          <ul className="shopping-cart-table-body-infobox-list">
+          {/* <ul className="shopping-cart-table-body-infobox-list">
             <li className="shopping-cart-table-body-infobox-title">
               <Link to={`/juice/${productObj.product.slug}`}>
                 <p>{productObj.product.title[IntlLocale]}</p>
@@ -48,7 +51,11 @@ function ShoppingCartWebProductRow({
                 <FontAwesome name="trash-o" />
               </button>
             </li>
-          </ul>
+          </ul> */}
+          <ProductDetails
+            productObj={productObj}
+            deleteFromCart={deleteFromCart}
+          />
 
         </div>
       </td>
