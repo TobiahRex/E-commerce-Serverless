@@ -5,34 +5,34 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
-import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import _ from 'lodash';
-import userActions from '../../redux/user';
-import orderActions from '../../redux/orders';
 import {
-  EmptyMemberCart,
-  DeleteFromMemberCart,
-  EditToMemberCart,
-} from '../../graphql/mutations';
-import {
-  FetchMultipleProducts,
-  FetchMultipleProductsOptions,
-} from '../../graphql/queries';
-import {
+  HdrPage,
   BreadCrumb,
   EmptyCart,
   ShoppingCartWeb,
   ShoppingCartMobile,
-  ShoppingCartWebProductRow,
-  ShoppingCartMobileProductCard,
+  ProductRowWeb,
+  ProductCardMobile,
 } from './components';
 import {
+  EmptyMemberCart,
+  EditToMemberCart,
+  DeleteFromMemberCart,
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from './assets/graphql';
+import {
+  userActions,
+  orderActions,
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
 } from './assets/utils';
+import './assets/styles/style.css';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -41,6 +41,7 @@ class ShoppingCart extends Component {
     const {
       intl: {
         messages: {
+          'cart.title': header,
           'cart.breadCrumb.paths1': bcPaths1,
           'cart.breadCrumb.lastCrumb': lastCrumb,
         },
@@ -48,6 +49,7 @@ class ShoppingCart extends Component {
     } = props;
 
     this.intl = {
+      header,
       bcPaths1,
       lastCrumb,
     };
@@ -395,7 +397,7 @@ class ShoppingCart extends Component {
     cart.map((productObj) => {
       if (mobileActive === false) {
         return (
-          <ShoppingCartWebProductRow
+          <ProductRowWeb
             key={`shopping-cart-table-row-${productObj._id}`}
             productObj={productObj}
             qtyHandler={this.qtyHandler}
@@ -404,7 +406,7 @@ class ShoppingCart extends Component {
         );
       }
       return (
-        <ShoppingCartMobileProductCard
+        <ProductCardMobile
           key={`shopping-cart-table-row-${productObj._id}`}
           productObj={productObj}
           qtyHandler={this.qtyHandler}
@@ -458,9 +460,7 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    const {
-      newUser,
-    } = this.props;
+    const { newUser } = this.props;
 
     const {
       total,
@@ -478,11 +478,8 @@ class ShoppingCart extends Component {
           destination={['']}
           lastCrumb={this.intl.lastCrumb}
         />
-        <div className="shopping-cart-main-title">
-          <h1>
-            <IntlMsg id="cart.title" />
-          </h1>
-        </div>
+        <HdrPage header={this.intl.header} />
+
         { !cartHasProducts ?
 
           <EmptyCart /> :
@@ -494,6 +491,7 @@ class ShoppingCart extends Component {
             total,
           )
         }
+
       </div>
     );
   }

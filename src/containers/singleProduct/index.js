@@ -17,10 +17,10 @@ import {
   ProductContent,
 } from './components';
 import {
-  arrayDeepEquality as ArrayDeepEquality,
-  WebflowAnimations,
-  orderActions,
   userActions,
+  orderActions,
+  WebflowAnimations,
+  arrayDeepEquality as ArrayDeepEquality,
 } from './assets/utils';
 import {
   FindProductById,
