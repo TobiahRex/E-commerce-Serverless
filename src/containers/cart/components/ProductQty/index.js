@@ -14,7 +14,7 @@ function ProductQty({ productObj, qtyHandler }) {
           <button
             data-id={productObj._id}
             data-tag="qty-plus"
-            className="qty-buttons__btn w-button"
+            className="qty-buttons__btn w-button sweep-right"
             onClick={qtyHandler}
           >
             <FontAwesome name="plus" />
@@ -23,7 +23,7 @@ function ProductQty({ productObj, qtyHandler }) {
           <button
             data-id={productObj._id}
             data-tag="qty-minus"
-            className="qty-buttons__btn w-button"
+            className="qty-buttons__btn w-button sweep-right"
             onClick={qtyHandler}
           >
             <FontAwesome name="minus" />

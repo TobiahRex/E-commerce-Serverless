@@ -24,6 +24,7 @@ import {
 import {
   userActions,
   orderActions,
+  WebflowAnimations,
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
@@ -70,6 +71,10 @@ class ShoppingCart extends Component {
         subTotal: 0,
       },
     };
+  }
+
+  componentDidMount() {
+    WebflowAnimations();
   }
 
   componentWillReceiveProps(nextProps) {
