@@ -19,7 +19,7 @@ export default {
   'cart.total.grand-total': 'Grand Total',
   'cart.action-btn.express-checkout': 'Express Checkout',
   'cart.action-btn.clear-cart': 'Clear Cart',
-  'cart.action-btn.back-home': 'Back To Homepage',
+  'cart.action-btn.back': 'Back',
   'cart.errors.max.sub1': 'Maximum of 4 bottles, per customer, per address. More info',
   'cart.errors.max.sub2': 'here',
   'cart.errors.not-enough': 'Oops! Please choose a quantity of at least 1. 😀',

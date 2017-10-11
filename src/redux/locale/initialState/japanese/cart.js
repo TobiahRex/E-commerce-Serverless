@@ -19,7 +19,7 @@ export default {
   'cart.total.grand-total': '総計',
   'cart.action-btn.express-checkout': 'チェックアウト',
   'cart.action-btn.clear-cart': '空のカート',
-  'cart.action-btn.back-home': '帰宅',
+  'cart.action-btn.back': '戻る',
   'cart.errors.max.sub1': '1つの住所につき、顧客1人当たり最大4本。 詳細は',
   'cart.errors.max.sub2': 'こちらをクリック',
   'cart.errors.not-enough': 'おっとっと！ 少なくとも1の数量を選択してください。😀',
