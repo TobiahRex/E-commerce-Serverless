@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function ShoppingCartTotal({ total }) {
+function TotalSummary({ total }) {
   const { discount, subTotal, grandTotal, taxes } = total;
 
   return (
     <div className="shopping-cart__total-analysis">
       <div className="total-analysis__title-container">
         <div className="total-analysis__title-frame">
-          <h3>Total</h3>
+          <h3>
+            <IntlMsg id="cart.total.title" />
+          </h3>
         </div>
       </div>
       <div className="total-analysis__subtotal">
@@ -91,7 +93,7 @@ function ShoppingCartTotal({ total }) {
   );
 }
 const { bool, shape, number } = PropTypes;
-ShoppingCartTotal.propTypes = {
+TotalSummary.propTypes = {
   total: shape({
     discount: shape({
       qty: bool.isRequired,
@@ -104,7 +106,7 @@ ShoppingCartTotal.propTypes = {
     subTotal: number.isRequired,
   }),
 };
-ShoppingCartTotal.defaultProps = {
+TotalSummary.defaultProps = {
   total: {
     discount: {
       qty: false,
@@ -117,4 +119,4 @@ ShoppingCartTotal.defaultProps = {
     subTotal: 0,
   },
 };
-export default ShoppingCartTotal;
+export default TotalSummary;

@@ -9,6 +9,7 @@ export default {
   'cart.table.header.qty': 'Quantity',
   'cart.table.header.total': 'Total',
   'cart.table.details.nstrength': 'Nicotine Strength',
+  'cart.total.title': 'Total',
   'cart.total.subtotal': 'Subtotal',
   'cart.total.taxes': 'Taxes',
   'cart.total.shipping': 'International Shipping',

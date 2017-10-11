@@ -9,6 +9,7 @@ export default {
   'cart.table.header.qty': '量',
   'cart.table.header.total': '合計',
   'cart.table.details.nstrength': 'ニコチンの強さ',
+  'cart.total.title': '合計',
   'cart.total.subtotal': '小計',
   'cart.total.taxes': '税金',
   'cart.total.shipping': '海外発送',

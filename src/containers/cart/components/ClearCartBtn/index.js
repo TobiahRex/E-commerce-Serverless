@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function ActionBtns({ emptyCart }) {
+function ClearCartBtn({ emptyCart }) {
   return (
     <div className="shopping-cart__clear-btn-container" data-ix="shopping-cart-clear-btn">
       <button
@@ -15,7 +15,7 @@ function ActionBtns({ emptyCart }) {
   );
 }
 const { func } = PropTypes;
-ActionBtns.propTypes = {
+ClearCartBtn.propTypes = {
   emptyCart: func.isRequired,
 };
-export default ActionBtns;
+export default ClearCartBtn;
