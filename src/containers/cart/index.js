@@ -60,7 +60,6 @@ class ShoppingCart extends Component {
       taxes: 0,
       error: false,
       grandTotal: 0,
-      mobileActive: props.mobileActive,
       total: {
         discount: {
           qty: false,
@@ -399,54 +398,9 @@ class ShoppingCart extends Component {
     )
   );
 
-  /**
-  * Function: "showShoppingCart"
-  * 1) Dynamically render device cart based on mobile or web version.
-  *
-  * @param {none} N/A
-  *
-  * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
-  */
-  showShoppingCart = (
-    cart,
-    newUser,
-    mobileActive,
-    total,
-  ) => {
-    if (mobileActive === false) {
-      return (
-        <ShoppingCartWeb
-          cart={cart}
-          taxes={total.taxes}
-          grandTotal={total.grandTotal}
-          emptyCart={this.emptyCart}
-          routerPush={this.routerPush}
-          mobileActive={mobileActive}
-          showProductRow={this.showProductRow}
-          total={total}
-        />
-      );
-    }
-    return (
-      <ShoppingCartMobile
-        cart={cart}
-        taxes={total.taxes}
-        newUser={newUser}
-        grandTotal={total.grandTotal}
-        routerPush={this.routerPush}
-        mobileActive={mobileActive}
-        showProductRow={this.showProductRow}
-        total={total}
-      />
-    );
-  }
-
   render() {
-    const { newUser } = this.props;
-
     const {
       total,
-      mobileActive,
       updatedCart,
     } = this.state;
 
@@ -461,17 +415,20 @@ class ShoppingCart extends Component {
           lastCrumb={this.intl.lastCrumb}
         />
         <HdrPage header={this.intl.header} />
-
+        
         { !cartHasProducts ?
 
           <EmptyCart /> :
 
-          this.showShoppingCart(
-            updatedCart,
-            newUser,
-            mobileActive,
-            total,
-          )
+          <ShoppingCartWeb
+            cart={updatedCart}
+            taxes={total.taxes}
+            grandTotal={total.grandTotal}
+            emptyCart={this.emptyCart}
+            routerPush={this.routerPush}
+            showProductRow={this.showProductRow}
+            total={total}
+          />
         }
 
       </div>
@@ -501,7 +458,6 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
 };
 
 const ShoppingCartWithIntl = injectIntl(ShoppingCart);
-
 const ShoppingCartWithState = connect(
   (state, ownProps) => {
     const total = ComposeFinalTotal(ownProps);
@@ -529,7 +485,6 @@ const ShoppingCartWithState = connect(
     },
   }),
 )(ShoppingCartWithIntl);
-
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
@@ -539,9 +494,8 @@ const ShoppingCartWithStateAndData = compose(
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCartWithState);
-
 const ShoppingCartWithStateAndData2 = connect(
-  ({ mobile, orders, auth, user }) => ({
+  ({ orders, auth, user }) => ({
     qty: calculateCartQty(auth, user, orders),
     userId: user.profile ? user.profile._id : '',
     taxRate: orders.taxRate,
@@ -549,7 +503,6 @@ const ShoppingCartWithStateAndData2 = connect(
     loggedIn: auth.loggedIn || false,
     userCart: auth.loggedIn ? user.profile.shopping.cart : [],
     guestCart: orders.cart,
-    mobileActive: !!mobile.mobileType || false,
   }),
 )(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
@@ -565,7 +518,6 @@ const {
   arrayOf,
   objectOf,
 } = PropTypes;
-
 ShoppingCart.propTypes = {
   intl: intlShape.isRequired,
   qty: number.isRequired,
@@ -582,7 +534,6 @@ ShoppingCart.propTypes = {
   saveUser: func.isRequired,
   saveUserCart: func.isRequired,
   saveGuestCart: func.isRequired,
-  mobileActive: bool.isRequired,
   EmptyMemberCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,
