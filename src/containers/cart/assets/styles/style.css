@@ -343,6 +343,8 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  margin-top: 0px;
+  padding: 2px 0px 0px 0px;
   background-color: #fc2525;
   font-family: Fontawesome, sans-serif;
   font-size: 12px;
