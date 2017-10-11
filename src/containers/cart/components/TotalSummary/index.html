@@ -1,0 +1,74 @@
+<div class="shopping-cart__total-analysis" data-ix="shopping-cart-total">
+  <div class="total-analysis__box-container">
+    <div class="box-container__total-box">
+      <div class="total-box__blurb">
+        <IntlMsg id="cart.total.title" />
+      </div>
+    </div>
+    <div class="box-container__sub-total-container">
+      <div class="sub-total-container__blurb">
+        <IntlMsg id="cart.total.subtotal" />
+      </div>
+      <div class="sub-total-container__cost">
+        <FontAwesome name="usd" />&nbsp;
+        {`${subTotal.toFixed(2)}`}
+      </div>
+    </div>
+    <div class="box-container__taxes-container">
+      <div class="taxes-container__blurb">
+        <IntlMsg id="cart.total.taxes" />
+      </div>
+      <div class="taxes-container__cost">
+        <FontAwesome name="usd" />&nbsp;
+        {`${taxes.toFixed(2)}`}
+      </div>
+    </div>
+    <div class="box-container__register-discount">
+      <div class="discount__blurb">
+        <IntlMsg id="cart.total.register-discount" />
+      </div>
+      <div class="discount__cost">
+        10%
+        &nbsp;<FontAwesome name="usd" />
+        &nbsp;
+        -{discount.registerAmount.toFixed(2)}
+      </div>
+    </div>
+    <div class="box-container__qty-discount-container">
+      <div class="discount__blurb">
+        <IntlMsg id="cart.total.quantity-discount" />
+      </div>
+      <div class="discount__cost">
+        25%
+        &nbsp;<FontAwesome name="usd" />&nbsp;
+        -{discount.qtyAmount.toFixed(2)}
+      </div>
+    </div>
+    <div class="box-container__taxes-container">
+      <div class="taxes-container__blurb">
+        <IntlMsg id="cart.total.taxes" />
+      </div>
+      <div class="taxes-container__cost">
+        <FontAwesome name="usd" />&nbsp;
+        {`${taxes.toFixed(2)}`}
+      </div>
+    </div>
+    <div class="box-container__shipping">
+      <div class="shipping__blurb">
+        <IntlMsg id="cart.total.shipping" />
+      </div>
+      <div class="shipping__cost">
+        <IntlMsg id="cart.total.free" />
+      </div>
+    </div>
+    <div class="box-container__total">
+      <div class="total__blurb">
+        Grand Total
+      </div>
+      <div class="total__cost">
+        $
+        33.03
+      </div>
+    </div>
+  </div>
+</div>
