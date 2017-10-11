@@ -17,8 +17,6 @@ import {
   checkoutActions,
   toasterActions,
   userActions,
-} from './redux.imports';
-import {
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
