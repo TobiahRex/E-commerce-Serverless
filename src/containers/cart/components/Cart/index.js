@@ -14,6 +14,7 @@ function Cart({
   emptyCart,
   grandTotal,
   routerPush,
+  routerBack,
   showProductRow,
 }) {
   return (
@@ -29,9 +30,11 @@ function Cart({
 
       <TotalSummary total={total} />
 
-      <ActionBtns routerPush={routerPush} />
+      <ActionBtns
+        routerPush={routerPush}
+        routerBack={routerBack}
+      />
     </div>
-
   );
 }
 const { func, number, arrayOf, object, bool, shape } = PropTypes;
@@ -40,6 +43,7 @@ Cart.propTypes = {
   taxes: number,
   grandTotal: number,
   routerPush: func.isRequired,
+  routerBack: func.isRequired,
   showProductRow: func.isRequired,
   emptyCart: func.isRequired,
   total: shape({

@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function ActionBtns({ routerPush }) {
+function ActionBtns({ routerPush, routerBack }) {
   return (
     <div
       className="shopping-cart__action-buttons" data-ix="shopping-cart-action-btn"
     >
       <div className="action-buttons__container">
         <button
-          data-slug="/"
           className="back-btn-container__button w-button"
-          onClick={routerPush}
+          onClick={routerBack}
         >
           <em className="button--fa-text">
             <FontAwesome name="angle-double-left" />&nbsp;
           </em>
-          <IntlMsg id="cart.action-btn.back-home" />
+          <IntlMsg id="cart.action-btn.back" />
         </button>
       </div>
       <div className="action-buttons__container">
@@ -38,5 +37,6 @@ function ActionBtns({ routerPush }) {
 const { func } = PropTypes;
 ActionBtns.propTypes = {
   routerPush: func.isRequired,
+  routerBack: func.isRequired,
 };
 export default ActionBtns;

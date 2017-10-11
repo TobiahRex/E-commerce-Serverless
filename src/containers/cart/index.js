@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import { injectIntl, intlShape } from 'react-intl';
 import _ from 'lodash';
@@ -374,6 +374,8 @@ class ShoppingCart extends Component {
     );
   }
 
+  routerBack = () => this.props.goBack()
+
   /**
   * Function: "showProductRow"
   * 1) Depending on view (mobile or web) dynamically assign cart values to repsective components.
@@ -421,6 +423,7 @@ class ShoppingCart extends Component {
             grandTotal={total.grandTotal}
             emptyCart={this.emptyCart}
             routerPush={this.routerPush}
+            routerBack={this.routerBack}
             showProductRow={this.showProductRow}
             total={total}
           />
@@ -463,6 +466,7 @@ const ShoppingCartWithState = connect(
     });
   }, (dispatch, ownProps) => ({
     push: location => dispatch(push(location)),
+    goBack: () => dispatch(goBack()),
     saveGuestCart: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
     saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
     saveUserCart: (updatedCart) => {
@@ -517,6 +521,7 @@ ShoppingCart.propTypes = {
   intl: intlShape.isRequired,
   qty: number.isRequired,
   push: func.isRequired,
+  goBack: func.isRequired,
   userId: string,
   newUser: bool.isRequired,
   updatedCart: arrayOf(object),
