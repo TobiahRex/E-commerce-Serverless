@@ -1,7 +1,20 @@
+export ActionBtns from './ActionBtns';
 export BreadCrumb from './BreadCrumb';
-export ShoppingCartWeb from './ShoppingCart/shoppingCart_web';
-export ShoppingCartMobile from './ShoppingCart/shoppingCart_mobile';
-export ShoppingCartWebProductRow from './ShoppingCart/shoppingCart_web_productRow';
-export ShoppingCartMobileProductCard from './ShoppingCart/shoppingCart_mobile_productCard';
+
+export Cart from './Cart';
+export CartProductRow from './CartProductRow';
+export ClearCartBtn from './ClearCartBtn';
 
 export EmptyCart from './EmptyCart/emptyCart';
+export ErrorMsg from './ErrorMsg';
+
+export HdrPage from './HdrPage';
+
+export ProductDetails from './ProductDetails';
+export ProductImg from './ProductImg';
+export ProductQty from './ProductQty';
+export ProductSubtotal from './ProductSubtotal';
+export ProductTable from './ProductTable';
+export ProductUnitPrice from './ProductUnitPrice';
+
+export TotalSummary from './TotalSummary';

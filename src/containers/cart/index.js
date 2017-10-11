@@ -3,36 +3,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
-import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import _ from 'lodash';
-import userActions from '../../redux/user';
-import orderActions from '../../redux/orders';
 import {
-  EmptyMemberCart,
-  DeleteFromMemberCart,
-  EditToMemberCart,
-} from '../../graphql/mutations';
-import {
-  FetchMultipleProducts,
-  FetchMultipleProductsOptions,
-} from '../../graphql/queries';
-import {
+  HdrPage,
   BreadCrumb,
   EmptyCart,
-  ShoppingCartWeb,
-  ShoppingCartMobile,
-  ShoppingCartWebProductRow,
-  ShoppingCartMobileProductCard,
+  Cart,
+  CartProductRow,
 } from './components';
 import {
+  EmptyMemberCart,
+  EditToMemberCart,
+  DeleteFromMemberCart,
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from './assets/graphql';
+import {
+  userActions,
+  orderActions,
+  WebflowAnimations,
   zipUserCart as ZipUserCart,
   determineCartType as DetermineCartType,
   checkNewUser as CheckNewUser,
   arrayDeepEquality as ArrayDeepEquality,
   composeFinalTotal as ComposeFinalTotal,
-} from './utilities.imports';
+} from './assets/utils';
+import './assets/styles/style.css';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -41,6 +40,7 @@ class ShoppingCart extends Component {
     const {
       intl: {
         messages: {
+          'cart.title': header,
           'cart.breadCrumb.paths1': bcPaths1,
           'cart.breadCrumb.lastCrumb': lastCrumb,
         },
@@ -48,6 +48,7 @@ class ShoppingCart extends Component {
     } = props;
 
     this.intl = {
+      header,
       bcPaths1,
       lastCrumb,
     };
@@ -58,7 +59,6 @@ class ShoppingCart extends Component {
       taxes: 0,
       error: false,
       grandTotal: 0,
-      mobileActive: props.mobileActive,
       total: {
         discount: {
           qty: false,
@@ -73,24 +73,25 @@ class ShoppingCart extends Component {
     };
   }
 
+  componentDidMount() {
+    WebflowAnimations();
+  }
+
   componentWillReceiveProps(nextProps) {
     const {
       qty,
       total,
       updatedCart,
-      mobileActive,
     } = nextProps;
 
     if (
       this.state.qty !== qty ||
       !_.isEqual(total, this.state.total) ||
-      !ArrayDeepEquality(updatedCart, this.state.userCart) ||
-      this.state.mobileActive !== mobileActive
+      !ArrayDeepEquality(updatedCart, this.state.userCart)
     ) {
       this.setState(prevState => ({
         ...prevState,
         qty,
-        mobileActive,
         updatedCart,
         total: { ...total },
       }));
@@ -378,6 +379,8 @@ class ShoppingCart extends Component {
     );
   }
 
+  routerBack = () => this.props.goBack()
+
   /**
   * Function: "showProductRow"
   * 1) Depending on view (mobile or web) dynamically assign cart values to repsective components.
@@ -386,114 +389,51 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (
-    cart,
-    taxes,
-    grandTotal,
-    mobileActive,
-  ) => (
-    cart.map((productObj) => {
-      if (mobileActive === false) {
-        return (
-          <ShoppingCartWebProductRow
-            key={`shopping-cart-table-row-${productObj._id}`}
-            productObj={productObj}
-            qtyHandler={this.qtyHandler}
-            deleteFromCart={this.deleteFromCart}
-          />
-        );
-      }
-      return (
-        <ShoppingCartMobileProductCard
-          key={`shopping-cart-table-row-${productObj._id}`}
-          productObj={productObj}
-          qtyHandler={this.qtyHandler}
-          deleteFromCart={this.deleteFromCart}
-          emptyCart={this.emptyCart}
-        />
-      );
-    })
+  showProductRow = cart => (
+    cart.map(productObj =>
+      <CartProductRow
+        key={`shopping-cart-table-row-${productObj._id}`}
+        productObj={productObj}
+        qtyHandler={this.qtyHandler}
+        deleteFromCart={this.deleteFromCart}
+      />,
+    )
   );
-
-  /**
-  * Function: "showShoppingCart"
-  * 1) Dynamically render device cart based on mobile or web version.
-  *
-  * @param {none} N/A
-  *
-  * @return {component} - Return either Web or Mobile version of parent Shopping Cart component.
-  */
-  showShoppingCart = (
-    cart,
-    newUser,
-    mobileActive,
-    total,
-  ) => {
-    if (mobileActive === false) {
-      return (
-        <ShoppingCartWeb
-          cart={cart}
-          taxes={total.taxes}
-          grandTotal={total.grandTotal}
-          emptyCart={this.emptyCart}
-          routerPush={this.routerPush}
-          mobileActive={mobileActive}
-          showProductRow={this.showProductRow}
-          total={total}
-        />
-      );
-    }
-    return (
-      <ShoppingCartMobile
-        cart={cart}
-        taxes={total.taxes}
-        newUser={newUser}
-        grandTotal={total.grandTotal}
-        routerPush={this.routerPush}
-        mobileActive={mobileActive}
-        showProductRow={this.showProductRow}
-        total={total}
-      />
-    );
-  }
 
   render() {
     const {
-      newUser,
-    } = this.props;
-
-    const {
       total,
-      mobileActive,
       updatedCart,
     } = this.state;
 
     const cartHasProducts = !!updatedCart.length;
 
     return (
-      <div className="shopping-cart-main">
+      <div className="shopping-cart__container">
         <BreadCrumb
           paths={[this.intl.bcPaths1]}
           classes={['home']}
           destination={['']}
           lastCrumb={this.intl.lastCrumb}
         />
-        <div className="shopping-cart-main-title">
-          <h1>
-            <IntlMsg id="cart.title" />
-          </h1>
-        </div>
+        <HdrPage header={this.intl.header} />
+
         { !cartHasProducts ?
 
           <EmptyCart /> :
 
-          this.showShoppingCart(
-            updatedCart,
-            newUser,
-            mobileActive,
-            total,
-          )
+          <Cart
+            cart={updatedCart}
+            taxes={total.taxes}
+            grandTotal={total.grandTotal}
+            emptyCart={this.emptyCart}
+            routerPush={this.routerPush}
+            routerBack={this.routerBack}
+            showProductRow={this.showProductRow}
+            total={total}
+          />
         }
+
       </div>
     );
   }
@@ -521,7 +461,6 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
 };
 
 const ShoppingCartWithIntl = injectIntl(ShoppingCart);
-
 const ShoppingCartWithState = connect(
   (state, ownProps) => {
     const total = ComposeFinalTotal(ownProps);
@@ -532,6 +471,7 @@ const ShoppingCartWithState = connect(
     });
   }, (dispatch, ownProps) => ({
     push: location => dispatch(push(location)),
+    goBack: () => dispatch(goBack()),
     saveGuestCart: updatedCart => dispatch(orderActions.saveGuestCart(updatedCart)),
     saveUser: userProfile => dispatch(userActions.saveUser(userProfile)),
     saveUserCart: (updatedCart) => {
@@ -549,7 +489,6 @@ const ShoppingCartWithState = connect(
     },
   }),
 )(ShoppingCartWithIntl);
-
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
@@ -559,9 +498,8 @@ const ShoppingCartWithStateAndData = compose(
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCartWithState);
-
 const ShoppingCartWithStateAndData2 = connect(
-  ({ mobile, orders, auth, user }) => ({
+  ({ orders, auth, user }) => ({
     qty: calculateCartQty(auth, user, orders),
     userId: user.profile ? user.profile._id : '',
     taxRate: orders.taxRate,
@@ -569,7 +507,6 @@ const ShoppingCartWithStateAndData2 = connect(
     loggedIn: auth.loggedIn || false,
     userCart: auth.loggedIn ? user.profile.shopping.cart : [],
     guestCart: orders.cart,
-    mobileActive: !!mobile.mobileType || false,
   }),
 )(ShoppingCartWithStateAndData);
 export default ShoppingCartWithStateAndData2;
@@ -585,11 +522,11 @@ const {
   arrayOf,
   objectOf,
 } = PropTypes;
-
 ShoppingCart.propTypes = {
   intl: intlShape.isRequired,
   qty: number.isRequired,
   push: func.isRequired,
+  goBack: func.isRequired,
   userId: string,
   newUser: bool.isRequired,
   updatedCart: arrayOf(object),
@@ -602,7 +539,6 @@ ShoppingCart.propTypes = {
   saveUser: func.isRequired,
   saveUserCart: func.isRequired,
   saveGuestCart: func.isRequired,
-  mobileActive: bool.isRequired,
   EmptyMemberCart: func.isRequired,
   DeleteFromMemberCart: func.isRequired,
   FetchMultipleProducts: objectOf(any).isRequired,

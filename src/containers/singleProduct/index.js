@@ -8,12 +8,6 @@ import { FormattedMessage as IntlMsg, injectIntl, intlShape } from 'react-intl';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import {
-  FindProductById,
-  AddToMemberCart,
-  EditToMemberCart,
-  FindProductsByFlavor,
-} from './graphql';
-import {
   ProductPageHdr,
   BreadCrumb,
   ActionBtns,
@@ -23,14 +17,19 @@ import {
   ProductContent,
 } from './components';
 import {
-  arrayDeepEquality as ArrayDeepEquality,
-  WebflowAnimations,
-  orderActions,
   userActions,
+  orderActions,
+  WebflowAnimations,
+  arrayDeepEquality as ArrayDeepEquality,
 } from './assets/utils';
-import './assets/styles/style.css';
 
-let showAnimations = true;
+import {
+  FindProductById,
+  AddToMemberCart,
+  EditToMemberCart,
+  FindProductsByFlavor,
+} from './assets/graphql';
+import './assets/styles/style.css';
 
 class SingleProduct extends React.Component {
   constructor(props) {
@@ -55,7 +54,6 @@ class SingleProduct extends React.Component {
     };
 
     this.state = {
-      showAnimations: true,
       qty: 0,
       error: false,
       added: false,
@@ -66,6 +64,10 @@ class SingleProduct extends React.Component {
       showSuccessModal: false,
       showRegisterModal: false,
     };
+  }
+
+  componentDidMount() {
+    WebflowAnimations();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -129,11 +131,6 @@ class SingleProduct extends React.Component {
   * @return none.
   */
   componentDidUpdate() {
-    if (showAnimations) {
-      WebflowAnimations();
-      showAnimations = false;
-    }
-
     setTimeout(() => {
       this.setState({ added: false });
     }, 5000);
@@ -289,6 +286,19 @@ class SingleProduct extends React.Component {
   nicotineHandler = (e) => {
     const productId = e.target.dataset.product || e.target.parentNode.dataset.product;
     const nicStrength = e.target.dataset.nicotinestrength || e.target.parentNode.dataset.nicotinestrength;
+
+    // let products = {};
+    // if (!this.props.data.FindProductsByFlavor) {
+    //   this.props.data.refetch()
+    //   .then((data) => {
+    //     console.log('%cdata', 'background:cyan;', data);
+    //     products = data;
+    //   })
+    //   .error((error) => {
+    //     console.error('Could not refetch produts.');
+    //     throw Error(error);
+    //   });
+    // }
 
     const product = this.props.data.FindProductsByFlavor
     .filter(({ _id }) => _id === productId)[0];
