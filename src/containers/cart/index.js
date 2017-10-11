@@ -11,7 +11,7 @@ import {
   HdrPage,
   BreadCrumb,
   EmptyCart,
-  CartProducts,
+  Cart,
   CartProductRow,
 } from './components';
 import {
@@ -77,19 +77,16 @@ class ShoppingCart extends Component {
       qty,
       total,
       updatedCart,
-      mobileActive,
     } = nextProps;
 
     if (
       this.state.qty !== qty ||
       !_.isEqual(total, this.state.total) ||
-      !ArrayDeepEquality(updatedCart, this.state.userCart) ||
-      this.state.mobileActive !== mobileActive
+      !ArrayDeepEquality(updatedCart, this.state.userCart)
     ) {
       this.setState(prevState => ({
         ...prevState,
         qty,
-        mobileActive,
         updatedCart,
         total: { ...total },
       }));
@@ -405,7 +402,7 @@ class ShoppingCart extends Component {
     const cartHasProducts = !!updatedCart.length;
 
     return (
-      <div className="shopping-cart">
+      <div className="shopping-cart__container">
         <BreadCrumb
           paths={[this.intl.bcPaths1]}
           classes={['home']}
@@ -418,7 +415,7 @@ class ShoppingCart extends Component {
 
           <EmptyCart /> :
 
-          <CartProducts
+          <Cart
             cart={updatedCart}
             taxes={total.taxes}
             grandTotal={total.grandTotal}

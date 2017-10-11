@@ -7,7 +7,7 @@ import {
   ProductTable,
 } from '../';
 
-function ShoppingCart({
+function Cart({
   cart,
   taxes,
   total,
@@ -35,7 +35,7 @@ function ShoppingCart({
   );
 }
 const { func, number, arrayOf, object, bool, shape } = PropTypes;
-ShoppingCart.propTypes = {
+Cart.propTypes = {
   cart: arrayOf(object),
   taxes: number,
   grandTotal: number,
@@ -54,9 +54,9 @@ ShoppingCart.propTypes = {
     subTotal: number.isRequired,
   }).isRequired,
 };
-ShoppingCart.defaultProps = {
+Cart.defaultProps = {
   cart: [],
   taxes: 0,
   grandTotal: 0,
 };
-export default ShoppingCart;
+export default Cart;
