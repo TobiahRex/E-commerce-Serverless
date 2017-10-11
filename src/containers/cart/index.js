@@ -11,10 +11,8 @@ import {
   HdrPage,
   BreadCrumb,
   EmptyCart,
-  ShoppingCartWeb,
-  ShoppingCartMobile,
+  CartProducts,
   CartProductRow,
-  // ProductCardMobile,
 } from './components';
 import {
   EmptyMemberCart,
@@ -415,12 +413,12 @@ class ShoppingCart extends Component {
           lastCrumb={this.intl.lastCrumb}
         />
         <HdrPage header={this.intl.header} />
-        
+
         { !cartHasProducts ?
 
           <EmptyCart /> :
 
-          <ShoppingCartWeb
+          <CartProducts
             cart={updatedCart}
             taxes={total.taxes}
             grandTotal={total.grandTotal}

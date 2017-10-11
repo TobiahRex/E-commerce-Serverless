@@ -16,7 +16,8 @@ function CartProductRow({
 }) {
   return (
     <div
-      key={key} className="product-list_line-item" data-ix="shopping-list-line-item-slide"
+      key={key}
+      className="product-list_line-item" data-ix="shopping-list-line-item-slide"
     >
       <div className="line-item__juice-container">
         <ProductImg productObj={productObj} />
