@@ -10,7 +10,7 @@ function ActionBtns({ routerPush, routerBack }) {
     >
       <div className="action-buttons__container">
         <button
-          className="back-btn-container__button w-button"
+          className="back-btn-container__button sweep-right-red"
           onClick={routerBack}
         >
           <em className="button--fa-text">
@@ -22,7 +22,7 @@ function ActionBtns({ routerPush, routerBack }) {
       <div className="action-buttons__container">
         <button
           data-slug="express_checkout"
-          className="container__checkout-btn w-button"
+          className="container__checkout-btn sweep-right"
           onClick={routerPush}
         >
           <em className="checkout-btn__fa-text">

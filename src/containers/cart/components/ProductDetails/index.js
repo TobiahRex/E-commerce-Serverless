@@ -7,9 +7,9 @@ import {
   nicotineStrengthConverter as NicotineStrengthConverter,
 } from '../../assets/utils';
 
-function ProductDetails({ productObj, deleteFromCart }) {
+function ProductDetails({ key, productObj, deleteFromCart }) {
   return (
-    <div className="juice-container__product-details">
+    <div className="juice-container__product-details" key={key}>
       <div className="product-details__title">
         <div className="title__blurb">
           <Link to={`/juice/${productObj.product.slug}`}>
@@ -38,7 +38,7 @@ function ProductDetails({ productObj, deleteFromCart }) {
       <div className="product-details__delete-container">
         <button
           data-id={productObj._id}
-          className="delete-container__button w-button"
+          className="delete-container__button w-button sweep-right"
           onClick={deleteFromCart}
         >
           <span className="btn-flex-parent">
@@ -51,6 +51,7 @@ function ProductDetails({ productObj, deleteFromCart }) {
 }
 const { shape, string, func } = PropTypes;
 ProductDetails.propTypes = {
+  key: string.isRequired,
   deleteFromCart: func.isRequired,
   productObj: shape({
     _id: string,
