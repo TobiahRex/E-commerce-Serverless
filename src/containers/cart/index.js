@@ -13,8 +13,8 @@ import {
   EmptyCart,
   ShoppingCartWeb,
   ShoppingCartMobile,
-  ProductRowWeb,
-  ProductCardMobile,
+  CartProductRow,
+  // ProductCardMobile,
 } from './components';
 import {
   EmptyMemberCart,
@@ -388,33 +388,15 @@ class ShoppingCart extends Component {
   *
   * @return {N/A} Return either Web or Mobile version of Shopping Cart child component.
   */
-  showProductRow = (
-    cart,
-    taxes,
-    grandTotal,
-    mobileActive,
-  ) => (
-    cart.map((productObj) => {
-      if (mobileActive === false) {
-        return (
-          <ProductRowWeb
-            key={`shopping-cart-table-row-${productObj._id}`}
-            productObj={productObj}
-            qtyHandler={this.qtyHandler}
-            deleteFromCart={this.deleteFromCart}
-          />
-        );
-      }
-      return (
-        <ProductCardMobile
-          key={`shopping-cart-table-row-${productObj._id}`}
-          productObj={productObj}
-          qtyHandler={this.qtyHandler}
-          deleteFromCart={this.deleteFromCart}
-          emptyCart={this.emptyCart}
-        />
-      );
-    })
+  showProductRow = cart => (
+    cart.map(productObj =>
+      <CartProductRow
+        key={`shopping-cart-table-row-${productObj._id}`}
+        productObj={productObj}
+        qtyHandler={this.qtyHandler}
+        deleteFromCart={this.deleteFromCart}
+      />,
+    )
   );
 
   /**
