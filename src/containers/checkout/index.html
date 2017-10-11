@@ -1,0 +1,221 @@
+<body>
+  <div class="express-checkout">
+    <div class="express-checkout__hdr-container">
+      <h1 class="hdr-container__hdr-blurb" data-ix="express-checkout-title-load">Express Checkout</h1>
+    </div>
+    <div class="express-checkout__main-container">
+      <div class="main-container__form-block w-form">
+        <form class="form-block__form--main-section" data-name="Email Form 4" id="email-form-4" name="email-form-4">
+          <div class="main-section__product-review">
+            <div class="product-review__hdr-section">
+              <div class="hdr-section__hdr-box">
+                <h2 class="hdr-box__hdr-blurb">Product Review</h2>
+              </div>
+            </div>
+            <div class="product-review__table-container">
+              <div class="table-container__top-row">
+                <div class="top-row__hdr-container">
+                  <div class="hdr-container__blurb">Product</div>
+                </div>
+                <div class="product-review__qty-container">
+                  <div class="qty-container__blurb">Qty</div>
+                </div>
+                <div class="product-review__total-container">
+                  <div class="total-container__blurb">Subtotal</div>
+                </div>
+              </div>
+              <div class="table-container__product-list">
+                <div class="product-list__product">
+                  <div class="product__juice-container">
+                    <div class="juice-container__img-container"><img class="img-container__img" src="images/nj2jp_juice_card_fvm.png"></div>
+                    <div class="juice-container__product-description">
+                      <div class="product-description__product-title">French Vanilla Mocha</div>
+                      <div class="product-description__additional-info">Nicotine Strength:&nbsp;<em>8 mg</em></div>
+                    </div>
+                  </div>
+                  <div class="product-list__qty">
+                    <div class="qty__blurb">1</div>
+                  </div>
+                  <div class="product-list__sub-total">
+                    <div class="sub-total__blurb">$ 30.00</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="product-review__comments-box">
+              <div class="comments-box__form"><textarea class="form__text-area w-input" data-name="Comments Area" id="Comments-Area" maxlength="5000" name="Comments-Area" placeholder="Comments..."></textarea>
+                <div class="form__newsletter w-checkbox"><input checked="checked" class="newsletter__checkbox w-checkbox-input" data-name="Sign Up for Newsletters" id="Sign-Up-for-Newsletters" name="Sign-Up-for-Newsletters" type="checkbox"><label class="checkbox__label w-form-label" for="Sign-Up-for-Newsletters">Sign Up for Newsletters</label></div>
+              </div>
+            </div>
+            <div class="product-review__logged-out">
+              <div class="logged-out__warning">
+                <p class="warning__blurb"><strong class="blurb__red-text">WARNING:</strong>&nbsp;&nbsp;You are currently trying to checkout out as a “Guest”. You will need to login or register to complete this transaction. If it is your first purchase with us you will receive 10% off your first order!&nbsp;<strong class="blurb__red-text">*</strong></p>
+              </div>
+              <div class="logged-out__register">
+                <a class="register__button w-inline-block" href="#">
+                  <div class="button__blurb">Register &amp; Save 10%</div>
+                </a>
+              </div>
+              <div class="logged-out__disclaimer">
+                <div class="disclaimer__blurb"><em class="blurb__red-text--alt">*</em> Your credit card information is extremely sensitive and we respect that. We will never save your credit card information.</div>
+              </div>
+            </div>
+          </div>
+          <div class="main-section__shipping-method">
+            <div class="shipping-method__hdr-section">
+              <h2 class="hdr-box__hdr-blurb">Shipping Method</h2>
+            </div>
+            <div class="shipping-method__form">
+              <div class="form__checkbox w-checkbox"><input checked="checked" class="checkbox w-checkbox-input" data-name="Checkbox 2" id="checkbox-2" name="checkbox-2" type="checkbox"><label class="field-label w-form-label" for="checkbox-2">Free International Shipping</label></div>
+            </div>
+          </div>
+          <div class="main-section__shipping">
+            <div class="shipping__hdr-section">
+              <div class="hdr-section__hdr-box">
+                <h2 class="hdr-box__hdr-blurb">Shipping Address</h2>
+              </div>
+            </div>
+            <div class="shipping__adderss-form">
+              <div class="address-form__name-section">
+                <div class="name-section__container"><label class="container__label" for="Given-Name">Given Name <strong class="label__asterisk">*</strong></label><input class="container__text-field text-field__error w-input" data-name="Given Name" id="Given-Name" maxlength="256" name="Given-Name" required="required" type="text">
+                  <div class="form__error-blurb">String should contain only letters (a-zA-Z).</div>
+                </div>
+                <div class="name-section__container"><label class="container__label" for="Last-Name">Last Name <strong class="label__asterisk">*</strong></label><input class="container__text-field text-field__error w-input" data-name="Last Name" id="Last-Name" maxlength="256" name="Last-Name" required="required" type="text">
+                  <div class="form__error-blurb">String should contain only letters (a-zA-Z).</div>
+                </div>
+              </div><label class="form__label" for="Email">Email <strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Email" id="Email" maxlength="256" name="Email" required="required" type="email">
+              <div class="form__error-blurb">{input} is not an email.</div><label class="form__label" for="Post-Code">Post Code <strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Post Code" id="Post-Code" maxlength="256" name="Post-Code" required="required" type="text">
+              <div class="form__error-blurb">Japanese postal codes must be in format (123-4567) or (1234567) and 7 digits long.</div><label class="form__label" for="Kanji-Address">Kanji Address</label><input class="form__text-field text-field__error w-input" data-name="Kanji Address" id="Kanji-Address" maxlength="256" name="Kanji-Address" placeholder="Generated from Post Code..." type="text"><label class="form__label" for="Room-Street-Street-Name">Room # | Street # | Street Name&nbsp;<strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Room | Street # | Street Name" id="Room-Street-Street-Name" maxlength="256" name="Room-Street-Street-Name" placeholder="RM3 1-1-8 Odakicho" required="required" type="text"><label class="form__label" for="Country">Country&nbsp;<strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Country" id="Country" maxlength="256" name="Country" required="required" type="text"><label class="form__label" for="Prefecture">Prefecture&nbsp;<strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Prefecture" id="Prefecture" maxlength="256" name="Prefecture" required="required" type="text"><label class="form__label" for="City">City&nbsp;<strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="City" id="City" maxlength="256" name="City" required="required" type="text">
+              <div class="form__error-blurb">Not a valid city name.</div><label class="form__label" for="Phone">Phone Number (Japanese)&nbsp;<strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Phone" id="Phone" maxlength="256" name="Phone" required="required" type="text">
+              <div class="form__error-blurb">Not a valid phone number. Acceptable Format: "01234567890" Either 10 digits (Landline) or 11 digits (Cell).</div>
+            </div>
+          </div>
+          <div class="main-section__credit-card">
+            <div class="creidt-card__hdr-section">
+              <div class="hdr-section__hdr-box">
+                <h2 class="hdr-box__hdr-blurb">Credit Card Information</h2>
+              </div>
+            </div>
+            <div class="credit-card__cc-type">
+              <div class="cc-type__blurb">Accepted Credit Cards</div>
+              <div class="cc-type__card-logos">
+                <div class="card-logos__fa-blurb"></div>
+                <div class="card-logos__fa-blurb"></div>
+                <div class="card-logos__fa-blurb"></div>
+                <div class="card-logos__fa-blurb"></div>
+                <div class="card-logos__fa-blurb"></div>
+              </div>
+            </div>
+            <div class="credit-card__form"><label class="form__label" for="Billing-Country">Billing Country <strong class="label__asterisk">*</strong></label><input class="form__text-field text-field__error w-input" data-name="Billing Country" id="Billing-Country" maxlength="256" name="Billing-Country" placeholder="Choose" required="required" type="text"></div>
+            <div class="credit-card__info-container-form"><label class="form__label" for="Name-On-Card">Name On Card <em class="label__asterisk">*</em></label><input class="form__text-field text-field__error w-input" data-name="Name On Card" id="Name-On-Card" maxlength="256" name="Name-On-Card" required="required" type="text">
+              <div class="form__error-blurb">You must include a First name &amp; a Last name.</div><label class="form__label" for="Credit-Card-Number">Credit Card Number <em class="label__asterisk">*</em></label><input class="form__text-field text-field__error w-input" data-name="Credit Card Number" id="Credit-Card-Number" maxlength="256" name="Credit-Card-Number" placeholder="**** **** **** ****" required="required" type="text"><label class="form__label" for="Expiration-Date">Expiration Date<em class="label__asterisk">*</em></label><input class="form__text-field text-field__error w-input" data-name="Expiration Date" id="Expiration-Date" maxlength="256" name="Expiration-Date" placeholder="MM/YY" required="required" type="text"><label class="form__label" for="CVV">CVV <em class="label__asterisk">*</em> &nbsp;<a data-ix="new-interaction-2" href="#" class="label__modal">What's this?</a></label><input class="form__text-field text-field__error w-input" data-name="CVV" id="CVV" maxlength="256" name="CVV" placeholder="CVV" required="required" type="text"></div>
+          </div>
+          <div class="main-section__total">
+            <div class="total__logged-in">
+              <div class="logged-in__hdr-section">
+                <div class="hdr-section__hdr-box">
+                  <h2 class="hdr-box__hdr-blurb">Total</h2>
+                </div>
+              </div>
+              <div class="logged-in__analysis-container">
+                <div class="analysis-container__row">
+                  <div class="row__blurb">Subtotal</div>
+                  <div class="row__price">$ 30.00</div>
+                </div>
+                <div class="analysis-container__row">
+                  <div class="row__blurb">Shipping &amp; Handling</div>
+                  <div class="price--free row__price">Free</div>
+                </div>
+                <div class="analysis-container__row">
+                  <div class="blurb__red row__blurb">Quantity Discount</div>
+                  <div class="price--red row__price">$ -30.00</div>
+                </div>
+                <div class="analysis-container__row">
+                  <div class="blurb__red row__blurb">Register Discount</div>
+                  <div class="price--red row__price">$ -30.00</div>
+                </div>
+                <div class="analysis-container__row">
+                  <div class="row__blurb">Taxes</div>
+                  <div class="row__price">$ 3.03</div>
+                </div>
+                <div class="analysis-container__row">
+                  <div class="blurb__large row__blurb">Grand Total</div>
+                  <div class="price__large row__price">$ 33.03</div>
+                </div>
+              </div>
+              <div class="logged-in__checkbox">
+                <div class="checkbox__field w-checkbox"><input class="field__checkbox-button w-checkbox-input" data-name="Checkbox 3" id="checkbox-3" name="checkbox-3" type="checkbox"><label class="field__label w-form-label" for="checkbox-3">Required</label></div>
+                <div class="checkbox__blurb">I have read &amp; agree to all&nbsp;<strong class="blurb__underlined">Terms &amp; Conditions</strong></div>
+              </div>
+            </div>
+            <div class="total__logged-out">
+              <div class="logged-out__blurb">Your cart is currently Empty</div>
+            </div>
+            <div class="total__calculating-total">
+              <div class="calculating-total__spinner-container">
+                <div class="spinner-container__fa-spinner"></div>
+              </div>
+              <div class="calculating-total__blurb-container">
+                <div class="blurb-container__blurb">Calculating your total...</div>
+              </div>
+            </div>
+          </div>
+          <div class="main-section__loading-state">
+            <div class="loading-state__spinner">
+              <div class="spinner__blurb"></div>
+            </div>
+            <div class="loading-state__blurb">
+              <div class="blurb__text">Please Wait <br>while we submit your order....</div>
+            </div>
+          </div>
+          <div class="main-section__success">
+            <div class="success__hdr-section">
+              <div class="hd-section__hdr-container">
+                <h2 class="hdr-container__success-blurb"><em class="success-blurb__fa-text"></em>&nbsp;Success!</h2>
+              </div>
+            </div>
+            <div class="success__blurb-section">
+              <div class="blurb-section__success-blurb">Please wait one moment while we generate your invoice...&nbsp;<em class="success-blurb__fa-spinner"></em></div>
+            </div>
+          </div>
+          <div class="main-section__error">
+            <div class="error__hdr-section">
+              <div class="hdr-section__hdr-container">
+                <h2 class="hdr-container__error-blurb"><em class="error-blurb__fa-text"></em> &nbsp;Error!</h2>
+              </div>
+            </div>
+            <div class="error__blurb-section">
+              <div class="blurb-section__blurb">Oops! Looks like we had a Network Error. Our staff has been notified and will provide updates on twitter @NicJuice2Japan. Please try your order again later.</div>
+            </div>
+          </div>
+          <div class="main-section__checkout-btn">
+            <div class="checkout-btn__container"><a class="container__btn w-button" href="#">Place Order Now&nbsp;<strong class="important-text"></strong></a></div>
+          </div>
+          <div class="main-section__back-btn"><a class="back-btn__btn w-button" href="#"><em class="btn__fa-text"></em>&nbsp;Back</a></div>
+        </form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form.</div>
+        </div>
+      </div>
+    </div>
+    <div class="express-checkout__cvv-modal" data-ix="express-checkout-modal-close">
+      <div class="cvv-modal__dialogue">
+        <div class="dialogue__cvn-content">
+          <div class="cvn-content__hdr-container">
+            <h2 class="heading">What's a CVN / CVV?</h2>
+          </div>
+          <div class="cvn-content__sub-hdr">
+            <div class="sub-hdr__blurb">"CVN"&nbsp;/&nbsp;"CVV"&nbsp;is a&nbsp;"<em class="blurb__italic">Card Verification Number</em>"</div>
+            <div class="sub-hdr__blurb">It is a 3 digit number, usually located on the back of your credit card.</div>
+          </div>
+          <div class="cvn-content__img"><img class="img__img" src="images/cvn-example.jpg"></div>
+        </div>
+        <div class="dialogue__close-btn"><a class="close-btn__btn w-button" data-ix="express-checkout-modal-close" href="#">Close</a></div>
+        <div class="dialogue__exit-container"><a class="exit-container__btn w-button" data-ix="express-checkout-modal-close" href="#"></a></div>
+      </div>
+    </div>
+  </div>
+</body>
