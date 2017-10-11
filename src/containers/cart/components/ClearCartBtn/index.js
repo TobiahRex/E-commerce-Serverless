@@ -6,7 +6,7 @@ function ClearCartBtn({ emptyCart }) {
   return (
     <div className="shopping-cart__clear-btn-container" data-ix="shopping-cart-clear-btn">
       <button
-        className="container__clear-cart w-button"
+        className="container__clear-cart w-button sweep-right-red"
         onClick={emptyCart}
       >
         <IntlMsg id="cart.action-btn.clear-cart" />
