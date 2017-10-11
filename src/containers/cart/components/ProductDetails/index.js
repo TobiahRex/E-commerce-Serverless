@@ -38,7 +38,7 @@ function ProductDetails({ key, productObj, deleteFromCart }) {
       <div className="product-details__delete-container">
         <button
           data-id={productObj._id}
-          className="delete-container__button w-button sweep-right"
+          className="delete-container__button w-button sweep-right-red"
           onClick={deleteFromCart}
         >
           <span className="btn-flex-parent">
