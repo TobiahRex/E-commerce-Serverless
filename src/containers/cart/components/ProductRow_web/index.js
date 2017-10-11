@@ -68,10 +68,14 @@ function ShoppingCartWebProductRow({
         />
       </td>
       <td className="shopping-cart-table-body-total">
-        <div className="shopping-cart-table-body-total-flexparent">
+        {/* <div className="shopping-cart-table-body-total-flexparent">
           <FontAwesome name="usd" />
-          <h3>{'\u00A0'}{(productObj.qty * Number(productObj.product.price)).toFixed(2)}</h3>
-        </div>
+          <h3>
+            {(productObj.qty * Number(productObj.product.price)).toFixed(2)}
+          </h3>
+        </div> */}
+
+        <ProductSubtotal productObj={productObj} />
       </td>
     </tr>
   );
