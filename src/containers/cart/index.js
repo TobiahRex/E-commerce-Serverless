@@ -405,7 +405,7 @@ class ShoppingCart extends Component {
     const cartHasProducts = !!updatedCart.length;
 
     return (
-      <div className="shopping-cart-main">
+      <div className="shopping-cart">
         <BreadCrumb
           paths={[this.intl.bcPaths1]}
           classes={['home']}

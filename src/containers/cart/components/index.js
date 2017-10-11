@@ -18,4 +18,4 @@ export ProductUnitPrice from './ProductUnitPrice';
 export ProductSubtotal from './ProductSubtotal';
 
 export ShoppingCartMobile from './ShoppingCart_mobile';
-export ShoppingCartTotal from './ShoppingCartTotal';
+export TotalSummary from './TotalSummary';
