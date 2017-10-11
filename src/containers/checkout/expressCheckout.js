@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
-import {
-  injectIntl,
-  intlShape,
-  FormattedMessage as IntlMsg,
-} from 'react-intl';
+import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
 import {
   apiActions,
   orderActions,
@@ -26,7 +22,13 @@ import {
   cleanOffTypename as CleanOffTypename,
   checkForToast as CheckForToast,
   generateFinalForm as GenerateFinalForm,
-} from './utilities.imports';
+} from './assets/utils';
+import {
+  ValidatePostal,
+  SubmitFinalOrder,
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+} from './assets/graphql';
 import {
   BreadCrumb,
   ShippingAddress,
@@ -47,8 +49,6 @@ import {
   PostalCode,
   PhoneNumber,
 } from './component.imports';
-import { FetchMultipleProducts, FetchMultipleProductsOptions } from '../../graphql/queries';
-import { ValidatePostal, SubmitFinalOrder } from '../../graphql/mutations';
 
 class ExpressCheckout extends React.Component {
   constructor(props) {
