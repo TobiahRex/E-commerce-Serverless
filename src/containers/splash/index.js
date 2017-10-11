@@ -30,7 +30,6 @@ class Splash extends React.Component {
   };
 
   componentDidMount() {
-    WebflowJs();
     WebflowAnimations();
   }
 
