@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ProductImg,
-  ProductDetails,
-  ProductUnitPrice,
-  ProductSubtotal,
   ProductQty,
+  ProductDetails,
+  ProductSubtotal,
+  ProductUnitPrice,
 } from '../';
 
 function CartProductRow({
+  key,
   productObj,
   qtyHandler,
   deleteFromCart,
 }) {
   return (
     <div
-      key={`shopping-cart-table-row-${productObj._id}`} className="product-list_line-item" data-ix="shopping-list-line-item-slide"
+      key={key} className="product-list_line-item" data-ix="shopping-list-line-item-slide"
     >
       <div className="line-item__juice-container">
         <ProductImg productObj={productObj} />
@@ -36,14 +37,16 @@ function CartProductRow({
     </div>
   );
 }
-const { objectOf, any, func } = PropTypes;
-
-const propTypes = {
+const {
+  any,
+  func,
+  string,
+  objectOf,
+} = PropTypes;
+CartProductRow.propTypes = {
+  key: string.isRequired,
   productObj: objectOf(any).isRequired,
   qtyHandler: func.isRequired,
   deleteFromCart: func.isRequired,
 };
-
-CartProductRow.propTypes = propTypes;
-
 export default CartProductRow;
