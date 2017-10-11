@@ -32,36 +32,36 @@ function TotalSummary({ total }) {
             {`${taxes.toFixed(2)}`}
           </div>
         </div>
-        <div className="box-container__register-discount">
-          <div className="discount__blurb">
-            <IntlMsg id="cart.total.register-discount" />
-          </div>
-          <div className="discount__cost">
-            10%
-            &nbsp;<FontAwesome name="usd" />
-            &nbsp;
-            -{discount.registerAmount.toFixed(2)}
-          </div>
-        </div>
-        <div className="box-container__qty-discount-container">
-          <div className="discount__blurb">
-            <IntlMsg id="cart.total.quantity-discount" />
-          </div>
-          <div className="discount__cost">
-            25%
-            &nbsp;<FontAwesome name="usd" />&nbsp;
-            -{discount.qtyAmount.toFixed(2)}
-          </div>
-        </div>
-        <div className="box-container__taxes-container">
-          <div className="taxes-container__blurb">
-            <IntlMsg id="cart.total.taxes" />
-          </div>
-          <div className="taxes-container__cost">
-            <FontAwesome name="usd" />&nbsp;
-            {`${taxes.toFixed(2)}`}
-          </div>
-        </div>
+
+        {
+          discount.register &&
+            <div className="box-container__register-discount">
+              <div className="discount__blurb">
+                <IntlMsg id="cart.total.register-discount" />
+              </div>
+              <div className="discount__cost">
+                10%
+                &nbsp;<FontAwesome name="usd" />
+                &nbsp;
+                -{discount.registerAmount.toFixed(2)}
+              </div>
+            </div>
+        }
+
+        {
+          discount.qty &&
+            <div className="box-container__qty-discount-container">
+              <div className="discount__blurb">
+                <IntlMsg id="cart.total.quantity-discount" />
+              </div>
+              <div className="discount__cost">
+                25%
+                &nbsp;<FontAwesome name="usd" />&nbsp;
+                -{discount.qtyAmount.toFixed(2)}
+              </div>
+            </div>
+        }
+
         <div className="box-container__shipping">
           <div className="shipping__blurb">
             <IntlMsg id="cart.total.shipping" />
