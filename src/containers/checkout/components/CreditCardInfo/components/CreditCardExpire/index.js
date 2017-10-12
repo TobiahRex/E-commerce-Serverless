@@ -3,8 +3,7 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
 
-
-function CreditCardExpiration() {
+function CreditCardExpire() {
   return (
     <div className="input__row">
       <div className="input__row--exp-date">
@@ -21,10 +20,10 @@ function CreditCardExpiration() {
     </div>
   );
 }
-const CreditCardExpirationWithLifecycle = lifecycle({
+const CreditCardExpireWithLifecycle = lifecycle({
   shouldComponentUpdate(nextProps) {
     if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   },
-})(CreditCardExpiration);
-export default CreditCardExpirationWithLifecycle;
+})(CreditCardExpire);
+export default CreditCardExpireWithLifecycle;
