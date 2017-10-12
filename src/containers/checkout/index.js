@@ -17,7 +17,7 @@ import {
   NetworkStatus,
   CvnModal,
   SubmitOrder,
-  FirstName,
+  GivenName,
   LastName,
   Email,
   AddressLine,
@@ -408,7 +408,7 @@ class ExpressCheckout extends React.Component {
             <div className="checkout__grid">
               <ShippingAddress>
                 <div className="input__row">
-                  <FirstName
+                  <GivenName
                     shippingFirstName={shippingFirstName}
                     handleOnChange={this.handleOnChange}
                   />

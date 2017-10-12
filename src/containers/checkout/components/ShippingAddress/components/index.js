@@ -1,0 +1,1 @@
+export GivenName from './GivenName';

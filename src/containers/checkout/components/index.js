@@ -7,7 +7,7 @@ export ProductReview from './ProductReview/';
 export GrandTotal from './GrandTotal/';
 export SubmitOrder from './SubmitOrder/';
 export NetworkStatus from './NetworkStatus/';
-export FirstName from './ShippingAddress/firstName';
+export GivenName from './ShippingAddress/components/GivenName';
 export LastName from './ShippingAddress/lastName';
 export Email from './ShippingAddress/email';
 export AddressLine from './ShippingAddress/addressLine';
