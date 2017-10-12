@@ -4,7 +4,6 @@ import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
-
 import { PrefectureConstants } from '../../assets/utils';
 
 function Prefecture({
