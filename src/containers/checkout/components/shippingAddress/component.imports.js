@@ -7,6 +7,3 @@ export Prefecture from './prefecture';
 export PostalCode from './postalCode';
 export City from './city';
 export PhoneNumber from './phoneNumber';
-export Prefectures from '../prefectureConstants';
-export Countries from '../countryConstants';
-export States from '../stateConstants';

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
+import { withHandlers } from 'recompose';
 
 function ProductReviewComments({ handleOnChange }) {
   return (
@@ -21,6 +22,9 @@ function ProductReviewComments({ handleOnChange }) {
   );
 }
 const ProductReviewCommentsWithIntl = injectIntl(ProductReviewComments);
+const ProductReviewCommentsWithIntlAndHandlers = withHandlers({
+  handleOnChange: e => this.props.handleOnChange(e),
+})(ProductReviewCommentsWithIntl);
 const { string, func } = PropTypes;
 ProductReviewComments.propTypes = {
   intl: intlShape.isRequired,
@@ -31,4 +35,4 @@ ProductReviewComments.defaultProps = {
   comments: '',
 };
 
-export default ProductReviewCommentsWithIntl;
+export default ProductReviewCommentsWithIntlAndHandlers;

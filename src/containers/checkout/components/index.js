@@ -1,13 +1,12 @@
 export BreadCrumb from './BreadCrumb';
-export BillingAddress from './BillingAddress/';
+// export BillingAddress from './BillingAddress/';
 export ShippingAddress from './ShippingAddress/';
-export ShippingMethod from './ShippingMethod';
+export ShippingMethod from './ShippingMethod/';
 export CreditCardInfo from './CreditCardInfo/';
 export ProductReview from './ProductReview/';
 export GrandTotal from './GrandTotal/';
 export SubmitOrder from './SubmitOrder/';
-export NetworkStatus from './NetworkStatus';
-export CvnModal from './CreditCardInfo/cvnModal';
+export NetworkStatus from './NetworkStatus/';
 export FirstName from './ShippingAddress/firstName';
 export LastName from './ShippingAddress/lastName';
 export Email from './ShippingAddress/email';
