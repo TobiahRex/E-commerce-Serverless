@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
-} from '../../utilities.imports';
+} from '../../assets/utils';
 
 const { arrayOf, object } = PropTypes;
 
