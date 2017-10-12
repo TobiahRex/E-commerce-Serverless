@@ -8,7 +8,7 @@ export GrandTotal from './GrandTotal/';
 export SubmitOrder from './SubmitOrder/';
 export NetworkStatus from './NetworkStatus/';
 export GivenName from './ShippingAddress/components/GivenName';
-export LastName from './ShippingAddress/lastName';
+export FamilyName from './ShippingAddress/components/FamilyName';
 export Email from './ShippingAddress/email';
 export AddressLine from './ShippingAddress/addressLine';
 export Country from './ShippingAddress/country';
