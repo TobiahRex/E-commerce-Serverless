@@ -20,7 +20,7 @@ function ErrorMsg({ error: { hard, soft }, errorMsg }) {
             key={new Buffer('maximum-of-4-bottles', 'utf8').toString('base64')}
             className="error-msg__blurb-container"
           >
-            <IntlMsg id="cart.errors.max.sub1" />
+            <IntlMsg id="cart.errors.max.sub1" />&nbsp;
             <Link to={'/shipping_policy'}>
               <em className="error-msg__link">
                 <IntlMsg id="cart.errors.max.sub2" />
@@ -64,8 +64,10 @@ function ErrorMsg({ error: { hard, soft }, errorMsg }) {
     };
   }
   return (
-    <div className="qty-container__error-msg" style={style}>
-      {showErrorMsg()}
+    <div className="error-msg__container">
+      <div className="qty-container__error-msg" style={style}>
+        {showErrorMsg()}
+      </div>
     </div>
   );
 }

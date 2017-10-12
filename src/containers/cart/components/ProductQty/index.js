@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { ErrorMsg } from '../';
 
 function ProductQty({ productObj, qtyHandler }) {
   return (
@@ -30,10 +29,6 @@ function ProductQty({ productObj, qtyHandler }) {
           </button>
         </div>
       </div>
-      <ErrorMsg
-        error={productObj.error}
-        errorMsg={productObj.error.message[IntlLocale]}
-      />
     </div>
   );
 }

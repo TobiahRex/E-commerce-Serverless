@@ -57,7 +57,14 @@ class ShoppingCart extends Component {
       qty: props.qty,
       updatedCart: [],
       taxes: 0,
-      error: false,
+      error: {
+        hard: false,
+        soft: false,
+      },
+      errorMsg: {
+        en: '',
+        ja: '',
+      },
       grandTotal: 0,
       total: {
         discount: {
@@ -290,13 +297,15 @@ class ShoppingCart extends Component {
     if (result.error) {
       this.setState(prevState => ({
         ...prevState,
-        error: result.error,
+        error: { hard: false, soft: true },
+        errorMsg: { en: 'Too much', ja: '' },
         updatedCart: [...result.newCart],
       }));
     } else {
       this.setState(prevState => ({
         ...prevState,
-        error: false,
+        error: { hard: false, soft: false },
+        errorMsg: { en: '', ja: '' },
         updatedCart: [...result.newCart],
       }), () => {
         this.props[`save${cartOwner}Cart`]([...result.newCart]);
@@ -322,7 +331,7 @@ class ShoppingCart extends Component {
       saveGuestCart,
     } = this.props;
 
-    const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
+    const productId = e.target.dataset.id || e.target.parentNode.dataset.id || e.target.parentNode.parentNode.dataset.id;
 
     if (loggedIn) {
       /**
@@ -392,7 +401,6 @@ class ShoppingCart extends Component {
   showProductRow = cart => (
     cart.map(productObj =>
       <CartProductRow
-        key={`shopping-cart-table-row-${productObj._id}`}
         productObj={productObj}
         qtyHandler={this.qtyHandler}
         deleteFromCart={this.deleteFromCart}
@@ -403,6 +411,8 @@ class ShoppingCart extends Component {
   render() {
     const {
       total,
+      error,
+      errorMsg,
       updatedCart,
     } = this.state;
 
@@ -423,6 +433,8 @@ class ShoppingCart extends Component {
           <EmptyCart /> :
 
           <Cart
+            error={error}
+            errorMsg={errorMsg}
             cart={updatedCart}
             taxes={total.taxes}
             grandTotal={total.grandTotal}
