@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ProductTable,
+  NewUserDiscount,
   NewsletterOptIn,
   ProductReviewComment,
-  NewUserDiscountOffer,
 } from './components';
 
 function ProductReview({
@@ -34,7 +34,7 @@ function ProductReview({
         newsletterDecision={newsletterDecision}
       />
 
-      {!loggedIn && <NewUserDiscountOffer routerPush={routerPush} />}
+      {!loggedIn && <NewUserDiscount routerPush={routerPush} />}
     </div>
   );
 }
