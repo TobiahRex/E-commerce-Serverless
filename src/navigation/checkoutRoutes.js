@@ -3,8 +3,8 @@ import { Route } from 'react-router';
 
 import Cart from '../containers/cart';
 import EmptyCart from '../containers/cart/components/EmptyCart/emptyCart';
-import ExpressCheckout from '../containers/checkout/expressCheckout';
-import OrderSuccess from '../containers/checkout/orderSuccess/index';
+import ExpressCheckout from '../containers/checkout';
+import OrderSuccess from '../containers/checkout/components';
 
 const CheckoutRoutes = () => (
   <div>

@@ -4,7 +4,6 @@ import FontAwesome from 'react-fontawesome';
 import uuid from 'uuid';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-
 export default function OrderSuccess() {
   return (
     <div className="ordered--main">
