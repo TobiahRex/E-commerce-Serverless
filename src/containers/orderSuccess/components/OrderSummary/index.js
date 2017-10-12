@@ -6,7 +6,7 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 
 import {
   nicotineStrengthConverter as NicotineStrengthConverter,
-} from '../../utilities.imports';
+} from '../../assets/utils';
 
 function OrderSummary({
   shippingStatus,

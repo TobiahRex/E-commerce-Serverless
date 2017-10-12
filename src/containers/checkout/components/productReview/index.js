@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ProductTable,
-  NewsletterOption,
+  NewsletterOptIn,
   ProductReviewComment,
   NewUserDiscountOffer,
 } from './components';
@@ -29,7 +29,7 @@ function ProductReview({
         handleOnChange={handleOnChange}
       />
 
-      <NewsletterOption
+      <NewsletterOptIn
         handleOnChange={handleOnChange}
         newsletterDecision={newsletterDecision}
       />

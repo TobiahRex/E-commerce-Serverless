@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function NewsletterOption({ newsletterDecision, handleOnChange }) {
+function NewsletterOptIn({ newsletterDecision, handleOnChange }) {
   return (
     <div className="input__row">
       <div className="input__row--newsletter">
@@ -23,8 +23,8 @@ function NewsletterOption({ newsletterDecision, handleOnChange }) {
   );
 }
 const { bool, func } = PropTypes;
-NewsletterOption.propTypes = {
+NewsletterOptIn.propTypes = {
   newsletterDecision: bool.isRequired,
   handleOnChange: func.isRequired,
 };
-export default NewsletterOption;
+export default NewsletterOptIn;

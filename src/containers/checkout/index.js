@@ -351,7 +351,7 @@ class ExpressCheckout extends React.Component {
     const { userId, toast, loggedIn, apiFetching } = this.props;
 
     const {
-      ccRenderKey,
+      // ccRenderKey,
       cart,
       errors,
       prComments,
@@ -371,7 +371,7 @@ class ExpressCheckout extends React.Component {
       ccNumber,
       ccExpireMonth,
       ccExpireYear,
-      ccCountry,
+      // ccCountry,
       ccCvn,
       ccZip,
       // ---
