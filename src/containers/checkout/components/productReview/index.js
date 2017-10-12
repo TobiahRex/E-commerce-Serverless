@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+import { lifecycle } from 'recompose';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ProductTable,
@@ -38,6 +40,15 @@ function ProductReview({
     </div>
   );
 }
+const ProductReviewWithLifecycle = lifecycle({
+  shouldComponentUpdate(nextProps) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!_.isEqual(npCopy, tpCopy)) return true;
+    return false;
+  },
+})(ProductReview);
 const { arrayOf, object, func, bool, string } = PropTypes;
 ProductReview.propTypes = {
   cart: arrayOf(object),
@@ -51,4 +62,4 @@ ProductReview.defaultProps = {
   comments: '',
   cart: [],
 };
-export default ProductReview;
+export default ProductReviewWithLifecycle;
