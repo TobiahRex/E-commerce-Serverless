@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import { Prefectures } from './component.imports';
+import { Prefectures } from '../../assets/utils';
 
 class Prefecture extends PureComponent {
   constructor(props) {
