@@ -7,7 +7,7 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 
 import {
   squarePaymentForm as SqrPaymentForm,
-} from './utilities.imports';
+} from '../../assets/utils';
 
 function SubmitOrder({ enable, requestCardNonce, loading }) {
   if (enable) {
