@@ -1,0 +1,2 @@
+
+export PrefectureConstants from './prefectureConstants';
