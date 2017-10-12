@@ -7,9 +7,12 @@ import {
   nicotineStrengthConverter as NicotineStrengthConverter,
 } from '../../assets/utils';
 
-function ProductDetails({ key, productObj, deleteFromCart }) {
+function ProductDetails({ productObj, deleteFromCart }) {
   return (
-    <div className="juice-container__product-details" key={key}>
+    <div
+      key={`product-details-${productObj._id}`}
+      className="juice-container__product-details"
+    >
       <div className="product-details__title">
         <div className="title__blurb">
           <Link to={`/juice/${productObj.product.slug}`}>
@@ -51,7 +54,6 @@ function ProductDetails({ key, productObj, deleteFromCart }) {
 }
 const { shape, string, func } = PropTypes;
 ProductDetails.propTypes = {
-  key: string.isRequired,
   deleteFromCart: func.isRequired,
   productObj: shape({
     _id: string,
