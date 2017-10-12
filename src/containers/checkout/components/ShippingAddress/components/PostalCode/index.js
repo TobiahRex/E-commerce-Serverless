@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import _ from 'lodash';
+import { lifecycle } from 'recompose';
 
 function PostalCode({
   validatePostal,
@@ -31,7 +33,12 @@ function PostalCode({
     </div>
   );
 }
-
+const PostalCodeWithLifecycle = lifecycle({
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return true;
+    return false;
+  },
+})(PostalCode);
 const { func, string } = PropTypes;
 PostalCode.propTypes = {
   handleOnChange: func.isRequired,
@@ -45,4 +52,4 @@ PostalCode.defaultProps = {
   shippingPostalCode: '',
 };
 
-export default PostalCode;
+export default PostalCodeWithLifecycle;
