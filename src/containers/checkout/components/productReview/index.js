@@ -42,7 +42,8 @@ function ProductReview({
 }
 const ProductReviewWithLifecycle = lifecycle({
   shouldComponentUpdate(nextProps) {
-
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
 
     if (!_.isEqual(npCopy, tpCopy)) return true;
     return false;

@@ -12,6 +12,7 @@ function AddressLine({
   required,
   addressLine,
   placeHolder,
+  handleOnChange,
 }) {
   const validations = [];
   if (required) validations.push('required');
@@ -30,7 +31,7 @@ function AddressLine({
           type="text"
           name={`${type}AddressLine${line}`}
           validations={[...validations]}
-          onChange={this.handleOnChange}
+          onChange={handleOnChange}
           value={addressLine}
         />
       </div>
