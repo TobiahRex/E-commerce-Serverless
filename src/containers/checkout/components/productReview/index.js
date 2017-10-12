@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import ProductTable from './productTable';
-import NewsletterOption from './newsletterOption';
-import ProductReviewComment from './productReviewComment';
-import NewUserDiscountOffer from './newUserDiscountOffer';
+import {
+  ProductTable,
+  NewsletterOption,
+  ProductReviewComment,
+  NewUserDiscountOffer,
+} from './components';
 
 function ProductReview({
   cart,
