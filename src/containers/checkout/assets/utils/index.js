@@ -20,3 +20,4 @@ export generateFinalForm from '../../../../services/utils/orderForm/generateFina
 export countryConstants from './countryConstants';
 export prefectureConstants from './prefectureConstants';
 export stateConstants from './stateConstants';
+export SqrPaymentForm from '../../../../services/utils/squarePaymentForm';

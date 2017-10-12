@@ -4,12 +4,11 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import {
+  CvnAndZip,
   NameOnCard,
   CreditCardNumber,
   CreditCardExpiration,
-  CvnAndZip,
-} from './component.imports';
-import SqrPaymentForm from '../../../../services/utils/squarePaymentForm';
+} from './components';
 
 const { func, string } = PropTypes;
 
