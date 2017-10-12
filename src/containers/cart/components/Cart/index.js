@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  ErrorMsg,
   ActionBtns,
   ClearCartBtn,
   TotalSummary,
@@ -8,6 +9,8 @@ import {
 } from '../';
 
 function Cart({
+  error,
+  errorMsg,
   cart,
   taxes,
   total,
@@ -26,6 +29,11 @@ function Cart({
         showProductRow={showProductRow}
       />
 
+      <ErrorMsg
+        error={error}
+        errorMsg={errorMsg[IntlLocale]}
+      />
+
       <ClearCartBtn emptyCart={emptyCart} />
 
       <TotalSummary total={total} />
@@ -37,8 +45,24 @@ function Cart({
     </div>
   );
 }
-const { func, number, arrayOf, object, bool, shape } = PropTypes;
+const {
+  func,
+  number,
+  arrayOf,
+  object,
+  bool,
+  shape,
+  string,
+} = PropTypes;
 Cart.propTypes = {
+  error: shape({
+    hard: bool,
+    soft: bool,
+  }).isRequired,
+  errorMsg: shape({
+    en: string,
+    ja: string,
+  }).isRequired,
   cart: arrayOf(object),
   taxes: number,
   grandTotal: number,
