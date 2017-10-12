@@ -1,7 +1,9 @@
 import React from 'react';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import _ from 'lodash';
+import { lifecycle } from 'recompose';
 
-export default function ShippingMethod() {
+function ShippingMethod() {
   return (
     <div className="checkout__shipping-method">
       <div className="title">
@@ -24,3 +26,11 @@ export default function ShippingMethod() {
     </div>
   );
 }
+const ShippingMethodWithLifecycle = lifecycle({
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return true;
+    return false;
+  },
+})(ShippingMethod);
+
+export default ShippingMethodWithLifecycle;
