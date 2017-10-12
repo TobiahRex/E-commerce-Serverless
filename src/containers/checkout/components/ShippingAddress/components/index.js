@@ -4,5 +4,6 @@ export Email from './Email';
 export PostalCode from './PostalCode';
 export AddressLine from './AddressLine';
 export Country from './Country';
+export Prefecture from './Prefecture';
 export City from './City';
 export PhoneNumber from './PhoneNumber';
