@@ -5,12 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { graphql, compose } from 'react-apollo';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
-import {
-  injectIntl,
-  intlShape,
-  FormattedMessage as IntlMsg
-} from 'react-intl';
-
+import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
 import {
   BreadCrumb,
   OrderHeader,
@@ -18,16 +13,14 @@ import {
   BillTo,
   OrderSummary,
 } from './components';
-
 import {
   FetchSagawa,
   FetchMultipleProducts,
-} from '../../../graphql/queries';
-
+} from './assets/graphql';
 import {
-  arrayDeepEquality as ArrayDeepEquality,
   zipArrays as ZipArrays,
-} from '../utilities.imports';
+  arrayDeepEquality as ArrayDeepEquality,
+} from './assets/utils';
 
 class OrderSuccess extends React.Component {
   constructor(props) {

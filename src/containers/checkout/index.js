@@ -8,6 +8,26 @@ import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
 import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
 import {
+  BreadCrumb,
+  ShippingAddress,
+  ShippingMethod,
+  CreditCardInfo,
+  ProductReview,
+  GrandTotal,
+  NetworkStatus,
+  CvnModal,
+  SubmitOrder,
+  FirstName,
+  LastName,
+  Email,
+  AddressLine,
+  Country,
+  Prefecture,
+  City,
+  PostalCode,
+  PhoneNumber,
+} from './components';
+import {
   apiActions,
   orderActions,
   checkoutActions,
@@ -29,26 +49,7 @@ import {
   FetchMultipleProducts,
   FetchMultipleProductsOptions,
 } from './assets/graphql';
-import {
-  BreadCrumb,
-  ShippingAddress,
-  ShippingMethod,
-  CreditCardInfo,
-  ProductReview,
-  GrandTotal,
-  NetworkStatus,
-  CvnModal,
-  SubmitOrder,
-  FirstName,
-  LastName,
-  Email,
-  AddressLine,
-  Country,
-  Prefecture,
-  City,
-  PostalCode,
-  PhoneNumber,
-} from './component.imports';
+import './assets/styles/style.css';
 
 class ExpressCheckout extends React.Component {
   constructor(props) {
