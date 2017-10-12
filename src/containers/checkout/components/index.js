@@ -16,3 +16,4 @@ export Prefecture from './ShippingAddress/prefecture';
 export PostalCode from './ShippingAddress/postalCode';
 export City from './ShippingAddress/city';
 export PhoneNumber from './ShippingAddress/phoneNumber';
+export CvnModal from './CreditCardInfo/components/CvnModal';
