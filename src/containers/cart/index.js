@@ -401,6 +401,7 @@ class ShoppingCart extends Component {
   showProductRow = cart => (
     cart.map(productObj =>
       <CartProductRow
+        key={productObj._id}
         productObj={productObj}
         qtyHandler={this.qtyHandler}
         deleteFromCart={this.deleteFromCart}

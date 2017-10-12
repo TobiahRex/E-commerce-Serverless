@@ -43,7 +43,10 @@ class CreditCardInfo extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!_.isEqual(nextProps, this.props)) return true;
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!_.isEqual(npCopy, tpCopy)) return true;
     if (!_.isEqual(nextState, this.state)) return true;
     return false;
   }
