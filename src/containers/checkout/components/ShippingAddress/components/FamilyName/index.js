@@ -5,37 +5,36 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
 
-function GivenName({
+function FamilyName({
   handleOnChange,
-  shippingFirstName,
+  shippingLastName,
 }) {
   return (
-    <div className="input__row--first-name">
+    <div className="input__row--last-name">
       <p>
-        <IntlMsg id="checkout.shipping-address.given-name" />&nbsp;
+        <IntlMsg id="checkout.shipping-address.last-name" />&nbsp;
         <span className="required">*</span>
       </p>
       <Validation.components.Input
         errorClassName="is-invalid-input"
         type="text"
         containerClassName=""
-        name="shippingFirstName"
+        name="shippingLastName"
         validations={['required', 'alpha']}
         onChange={handleOnChange}
-        value={shippingFirstName}
+        value={shippingLastName}
       />
     </div>
   );
 }
-const GivenNameWithLifecycle = lifecycle({
+const FamilyNameWithLifecycle = lifecycle({
   shouldComponentUpdate(nextProps) {
     if (!_.isEqual(nextProps, this.props)) return true;
     return false;
   },
-})(GivenName);
-
-GivenName.propTypes = {
+})(FamilyName);
+FamilyName.propTypes = {
   handleOnChange: PropTypes.func.isRequired,
-  shippingFirstName: PropTypes.string.isRequired,
+  shippingLastName: PropTypes.string.isRequired,
 };
-export default GivenNameWithLifecycle;
+export default FamilyNameWithLifecycle;
