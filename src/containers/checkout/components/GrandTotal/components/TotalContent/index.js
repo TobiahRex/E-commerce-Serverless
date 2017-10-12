@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import Validation from 'react-validation';
 import { Link } from 'react-router';
-import {
-  intlShape,
-  injectIntl,
-  FormattedMessage as IntlMsg,
-} from 'react-intl';
-import Discounts from './discounts';
+import { intlShape, injectIntl, FormattedMessage as IntlMsg } from 'react-intl';
+
+import Discounts from '../';
 
 function TotalContent({
   intl,

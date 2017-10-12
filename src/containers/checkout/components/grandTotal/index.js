@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import TotalContent from './totalContent';
-import Loading from './loading';
+import {
+  Loading,
+  TotalContent,
+} from './components';
 
 const { bool, shape, number, func } = PropTypes;
 
