@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-const { func, string, bool } = PropTypes;
+const { func, string } = PropTypes;
 
 class CvnAndZip extends React.Component {
   static propTypes = {
@@ -40,7 +40,6 @@ class CvnAndZip extends React.Component {
   handleOnChange = e => this.props.handleOnChange(e);
 
   render() {
-    const enableZip = this.state.ccRenderKey === 'renderWithZip';
     return (
       <div className="input__row cvn">
         <div className="input__row--cvn-number">

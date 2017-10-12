@@ -25,8 +25,8 @@ function NetworkStatus({ routerPush, renderHelper }) {
 
 const NetworkStatusWithHandlers = withHandlers({
   renderHelper: ({ errors, loading, success, toast }) => () => {
-    let { message, hard } = errors;
-    console.log('%cmessage', 'background:red;', message);
+    let { message } = errors;
+    const { hard } = errors;
     // message = message[IntlLocale];
     const { soft } = errors;
     const showError = !!hard || !!soft || !!message.length || !!toast.message;
