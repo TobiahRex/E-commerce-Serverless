@@ -7,7 +7,7 @@ import {
   CvnAndZip,
   NameOnCard,
   CreditCardNumber,
-  CreditCardExpiration,
+  CreditCardExpire,
 } from './components';
 
 const { func, string } = PropTypes;
@@ -93,7 +93,7 @@ class CreditCardInfo extends React.Component {
           handleOnChange={this.handleOnChange}
         />
 
-        <CreditCardExpiration
+        <CreditCardExpire
           ccExpireMonth={ccExpireMonth}
           ccExpireYear={ccExpireYear}
           handleOnChange={this.handleOnChange}
