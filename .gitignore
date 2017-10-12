@@ -17,3 +17,4 @@ config.production.yml
 .dev-server-env
 npm-debug.log
 _syntax_tests.js
+lambdaOutput.json
