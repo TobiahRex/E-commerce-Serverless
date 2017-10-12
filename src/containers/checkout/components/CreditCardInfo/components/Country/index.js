@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-// import { Countries } from './component.imports';
 
 class Country extends React.Component {
   static propTypes = {
