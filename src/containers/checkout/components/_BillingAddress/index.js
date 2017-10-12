@@ -80,7 +80,7 @@ class BillingAddress extends React.PureComponent {
           billingAddressLine={this.state.billingAddressLine1}
           handleOnChange={this.handleOnChange}
           />
-          
+
           <AddressLine
           lineNumber={2}
           billingAddressLine={this.state.billingAddressLine2}
