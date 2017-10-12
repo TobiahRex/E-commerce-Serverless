@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import _ from 'lodash';
+import { lifecycle } from 'recompose';
 
 function Country({ disabled }) {
   return (
@@ -22,6 +24,13 @@ function Country({ disabled }) {
     </div>
   );
 }
+const CountryWithLifecycle = lifecycle({
+  shouldComponentUpdate(nextProps) {
+    if (!_.isEqual(nextProps, this.props)) return true;
+    return false;
+  },
+})(Country);
+
 Country.propTypes = {
   disabled: PropTypes.bool,
 };
@@ -29,4 +38,4 @@ Country.defaultProps = {
   disabled: false,
 };
 
-export default Country;
+export default CountryWithLifecycle;
