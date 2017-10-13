@@ -71,7 +71,7 @@ export default {
   'checkout.credit-card.cvn.modal.what-is': 'What\'s a CVN / CVV?',
   'checkout.credit-card.cvn.modal.cvn-title': '"Card Verification Number"',
   'checkout.credit-card.cvn.modal.is-a': 'is a',
-  'checkout.credit-card.cvn.modal.close-btn': 'Close',
+  'checkout.credit-card.cvn.modal.close-btn': 'Ok',
   'checkout.credit-card.name-on-card': 'Name On Card',
   'checkout.credit-card.expiration': 'Expiration Date',
   'checkout.total.empty-cart': 'Your cart is currently Empty',

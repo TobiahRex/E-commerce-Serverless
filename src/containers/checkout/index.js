@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Masonry from 'masonry-layout';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import { graphql, compose } from 'react-apollo';
 import Validation from 'react-validation';
 import { injectIntl, intlShape, FormattedMessage as IntlMsg } from 'react-intl';
@@ -199,6 +199,8 @@ class ExpressCheckout extends React.Component {
     this.props.resetPostal();
     this.props.push(target);
   };
+
+  routerBack = () => this.props.goBack();
 
   /**
   * Function: "handleOnChange"
@@ -527,6 +529,7 @@ const ExpressCheckoutWithState = connect(
   },
   (dispatch, ownProps) => ({
     push: location => dispatch(push(location)),
+    goBack: () => dispatch(goBack()),
     GraphQLhandleError: (error) => {
       let errorMsg = '';
 
@@ -607,6 +610,7 @@ const { func, bool, any, shape, object, string, number, arrayOf, objectOf } = Pr
 ExpressCheckout.propTypes = {
   intl: intlShape.isRequired,
   push: func.isRequired,
+  goBack: func.isRequired,
   // ---
   resetPostal: func.isRequired,
   gotValidPostal: func.isRequired,
