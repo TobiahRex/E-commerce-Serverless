@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
+import './assets/styles/style.css';
 
 function AddressLine({
   type,
@@ -18,23 +19,21 @@ function AddressLine({
   if (required) validations.push('required');
 
   return (
-    <div className="input__row">
-      <div className={`input__row--address-line${disabled ? '-disabled' : ''}`}>
-        <p>{title}&nbsp;
-          {required && <span className="required">*</span>}
-        </p>
-        <Validation.components.Input
-          errorClassName="is-invalid-input"
-          placeholder={placeHolder}
-          disabled={disabled}
-          containerClassName=""
-          type="text"
-          name={`${type}AddressLine${line}`}
-          validations={[...validations]}
-          onChange={handleOnChange}
-          value={addressLine}
-        />
-      </div>
+    <div className={`kanji-section__container${disabled ? '-disabled' : ''}`}>
+      <label className="form__label" htmlFor="Kanji-Address">
+        {title}&nbsp;
+      </label>
+      <Validation.components.Input
+        errorClassName="form__error-blurb"
+        placeholder={placeHolder}
+        disabled={disabled}
+        containerClassName="container__text-field"
+        type="text"
+        name={`${type}AddressLine${line}`}
+        validations={[...validations]}
+        onChange={handleOnChange}
+        value={addressLine}
+      />
     </div>
   );
 }

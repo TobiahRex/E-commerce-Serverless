@@ -13,7 +13,12 @@ Object.assign(Validation.rules, {
   },
 
   required: {
-    rule: value => value.toString().trim(),
+    rule: (value) => {
+      if (value) {
+        return value.toString().trim();
+      }
+      return '';
+    },
     hint: () => (
       <span className="form-error is-visible">
         <IntlMsg id="form.validation.error.required" />
@@ -22,7 +27,10 @@ Object.assign(Validation.rules, {
   },
 
   boolRequired: {
-    rule: value => Boolean(value),
+    rule: (value) => {
+      if (value) return Boolean(value);
+      return '';
+    },
     hint: () => (
       <span className="form-error is-visible">
         <IntlMsg id="form.validation.error.bool.required" />
@@ -31,7 +39,10 @@ Object.assign(Validation.rules, {
   },
 
   email: {
-    rule: value => validator.isEmail(value),
+    rule: (value) => {
+      if (value) return validator.isEmail(value);
+      return '';
+    },
     /* eslint-disable no-undef */
     hint: value => (
       <span className="form-error is-visible">
