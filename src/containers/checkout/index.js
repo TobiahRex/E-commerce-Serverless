@@ -396,6 +396,7 @@ class ExpressCheckout extends React.Component {
         </div>
         <Validation.components.Form ref={this.assignRefToForm} onSubmit={this.handleOnSubmit}>
           <div className="checkout__body grid">
+
             <div className="checkout__grid">
               <ProductReview
                 cart={cart}
@@ -407,8 +408,8 @@ class ExpressCheckout extends React.Component {
               />
               <ShippingMethod />
             </div>
-            <div className="checkout__grid">
 
+            <div className="checkout__grid">
               <ShippingAddress>
                 <NameGroup
                   shippingFirstName={shippingFirstName}
@@ -456,7 +457,11 @@ class ExpressCheckout extends React.Component {
                   handleOnChange={this.handleOnChange}
                 />
 
-                <City type="shipping" city={shippingCity} handleOnChange={this.handleOnChange} />
+                <City
+                  type="shipping"
+                  city={shippingCity}
+                  handleOnChange={this.handleOnChange}
+                />
 
                 <PhoneNumber
                   type="shipping"
@@ -465,6 +470,7 @@ class ExpressCheckout extends React.Component {
                 />
               </ShippingAddress>
             </div>
+
             <div className="checkout__grid">
               <CreditCardInfo
                 ccNameOnCard={ccNameOnCard}
