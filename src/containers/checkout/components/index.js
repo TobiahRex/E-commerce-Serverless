@@ -10,8 +10,7 @@ export NetworkStatus from './NetworkStatus/';
 export CvnModal from './CreditCardInfo/components/CvnModal';
 
 export {
-  GivenName,
-  FamilyName,
+  NameGroup,
   Email,
   PostalCode,
   AddressLine,

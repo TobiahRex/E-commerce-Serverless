@@ -1,0 +1,42 @@
+.name-section__container {
+  width: 47%;
+  margin-bottom: .5em;
+}
+
+.container__label {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.label__asterisk {
+  color: #fc2525;
+  font-weight: 500;
+}
+
+.container__text-field input {
+  width: 100%;
+  min-height: 2.5em;
+  border: 1px solid #9e9ea5;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 14px;
+  line-height: 1.5em;
+  border-radius: 0px;
+  padding-left: 7px;
+}
+
+.container__text-field input.form__error-blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fc2525;
+  min-height: 2.5em;
+  background-color: #d9cbc9;
+  border: 1px solid #fc2525;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+.container__text-field span.form-error.is-visible {
+  padding: .2em 0em 1em 0em;
+}
