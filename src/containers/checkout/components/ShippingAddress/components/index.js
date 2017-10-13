@@ -1,3 +1,4 @@
+export HdrBox from './HdrBox';
 export GivenName from './GivenName';
 export FamilyName from './FamilyName';
 export Email from './Email';

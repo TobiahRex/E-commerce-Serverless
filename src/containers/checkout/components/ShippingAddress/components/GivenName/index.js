@@ -10,15 +10,15 @@ function GivenName({
   shippingFirstName,
 }) {
   return (
-    <div className="input__row--first-name">
-      <p>
+    <div className="name-section__container">
+      <label className="container__label" htmlFor="Given-Name">
         <IntlMsg id="checkout.shipping-address.given-name" />&nbsp;
-        <span className="required">*</span>
-      </p>
+        <strong className="label__asterisk">*</strong>
+      </label>
       <Validation.components.Input
-        errorClassName="is-invalid-input"
+        errorClassName="form__error-blurb"
         type="text"
-        containerClassName=""
+        containerClassName="container__text-field"
         name="shippingFirstName"
         validations={['required', 'alpha']}
         onChange={handleOnChange}

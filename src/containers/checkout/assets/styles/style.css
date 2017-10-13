@@ -337,17 +337,17 @@
   font-size: 10px;
 }
 
-.main-section__shipping {
+/*.main-section__shipping {
   width: 340px;
   margin: 10px;
   padding: 20px;
   background-color: #d8d8d8;
-}
+}*/
 
-.shipping__hdr-section {
+/*.shipping__hdr-section {
   padding-top: 0px;
   padding-bottom: 20px;
-}
+}*/
 
 .address-form__name-section {
   display: -webkit-box;
@@ -360,18 +360,29 @@
   justify-content: space-between;
 }
 
-.container__text-field {
+.container__text-field input {
   width: 100%;
+  min-height: 2.5em;
   border: 1px solid #9e9ea5;
   font-family: 'Open Sans', sans-serif;
   color: #365899;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 1.5em;
+  border-radius: 0px;
+  padding-left: 7px;``
 }
 
-.container__text-field.text-field__error {
-  border-color: #fc2525;
+.container__text-field input.form__error-blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fc2525;
   background-color: #d9cbc9;
+  border: 1px solid #fc2525;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.container__text-field span.form-error.is-visible {
+  padding: .2em 0em 1em 0em;
 }
 
 .name-section__container {
@@ -1133,11 +1144,12 @@ padding-top: 10px;
   font-size: 18px;
 }
 
-.form__error-blurb {
+.form__error-blurb input {
   margin-top: -5px;
   margin-bottom: 10px;
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #fc2525;
+  border-color: #fc2525;
   font-size: 12px;
   line-height: 20px;
 }
