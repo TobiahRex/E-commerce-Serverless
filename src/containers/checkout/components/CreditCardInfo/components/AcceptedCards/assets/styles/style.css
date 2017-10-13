@@ -2,6 +2,12 @@
   margin-bottom: 20px;
 }
 
+.credit-card__cc-type {
+  border-bottom: 1px solid #a9a9a9;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
 .hdr-section__hdr-box {
   height: 6.5em;
   background-color: #365899;

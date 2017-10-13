@@ -1,0 +1,27 @@
+.cvn-zip-section__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.cvn-section__container, .zip-section__container {
+  margin-bottom: .5em;
+}
+
+.cvn-section__container {
+  padding-right: 10px;
+}
+
+#sq-cvv.sq-input, #sq-postal-code.sq-input {
+  border-radius: 0px;
+}
+
+.button--cvn-modal {
+  padding: 0px;
+  background-color: #d8d8d8;
+}

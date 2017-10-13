@@ -10,21 +10,6 @@ function CvnAndZip({
 }) {
   return (
     <div className="cvn-zip-section__container">
-      {/* <div className="input__row--cvn-number">
-        <div className="cvn-number--wrapper">
-          <p>CVV
-            <span className="required">*</span>
-          </p>
-          <button
-            type="button"
-            data-modal="showCvnModal"
-            className="button--cvn-modal"
-            onClick={toggleModal}
-          >
-            <IntlMsg id="checkout.credit-card.cvn.whats-this" />
-          </button>
-        </div>
-      <div id="sq-cvv" /> */}
       <div className="cvn-section__container">
         <label className="form__label" htmlFor="CVV">
           CVV
