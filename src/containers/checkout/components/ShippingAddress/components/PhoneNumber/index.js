@@ -4,6 +4,7 @@ import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
+import './assets/styles/style.css';
 
 function PhoneNumber({
   type,
@@ -11,22 +12,20 @@ function PhoneNumber({
   handleOnChange,
 }) {
   return (
-    <div className="input__row">
-      <div className="input__row--phone">
-        <p>
-          <IntlMsg id="checkout.shipping-address.phone" />&nbsp;
-          <span className="required">*</span>
-        </p>
-        <Validation.components.Input
-          errorClassName="is-invalid-input"
-          type="string"
-          containerClassName=""
-          name={`${type}PhoneNumber`}
-          validations={['required', 'numeric', 'phone-startWithZero', 'phone-japanLength']}
-          onChange={handleOnChange}
-          value={phoneNumber}
-        />
-      </div>
+    <div className="phone-section__container">
+      <label className="form__label" htmlFor="city">
+        <IntlMsg id="checkout.shipping-address.phone" />
+        <strong className="label__asterisk">*</strong>
+      </label>
+      <Validation.components.Input
+        errorClassName="form__error-blurb"
+        type="string"
+        containerClassName="container__text-field"
+        name={`${type}PhoneNumber`}
+        validations={['required', 'numeric', 'phone-startWithZero', 'phone-japanLength']}
+        onChange={handleOnChange}
+        value={phoneNumber}
+      />
     </div>
   );
 }

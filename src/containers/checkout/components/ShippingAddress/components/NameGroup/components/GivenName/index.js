@@ -8,7 +8,7 @@ import './assets/styles/style.css';
 
 function GivenName({
   handleOnChange,
-  shippingName,
+  shippingFirstName,
 }) {
   return (
     <div className="name-section__container">
@@ -24,7 +24,7 @@ function GivenName({
         name="shippingFirstName"
         validations={['required', 'alpha']}
         onChange={handleOnChange}
-        value={shippingName}
+        value={shippingFirstName}
       />
     </div>
   );
@@ -41,6 +41,6 @@ GivenName.propTypes = {
   intlId: string.isRequired,
   identifier: string.isRequired,
   handleOnChange: func.isRequired,
-  shippingName: string.isRequired,
+  shippingFirstName: string.isRequired,
 };
 export default GivenNameWithLifecycle;
