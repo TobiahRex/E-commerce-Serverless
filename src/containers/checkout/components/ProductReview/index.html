@@ -1,0 +1,122 @@
+<div className="main-section__product-review">
+  <div className="product-review__hdr-section">
+    <div className="hdr-section__hdr-box">
+      <h2 className="hdr-box__hdr-blurb">
+        <IntlMsg id="checkout.product-review.title" />
+      </h2>
+    </div>
+  </div>
+  <div className="product-review__table-container">
+    <div className="table-container__top-row">
+      <div className="top-row__hdr-container">
+        <div className="hdr-container__blurb">
+          <IntlMsg id="checkout.product-review.table.header.product" />
+        </div>
+      </div>
+      <div className="product-review__qty-container">
+        <div className="qty-container__blurb">
+          <IntlMsg id="checkout.product-review.table.header.qty" />
+        </div>
+      </div>
+      <div className="product-review__total-container">
+        <div className="total-container__blurb">
+          <IntlMsg id="checkout.product-review.table.header.subtotal" />
+        </div>
+      </div>
+    </div>
+    <div className="table-container__product-list">
+      <div className="product-list__product">
+        <div className="product__juice-container">
+          <div className="juice-container__img-container">
+            <img alt="Juice" className="img-container__img" src="/images/nj2jp_juice_card_fvm.png" />
+          </div>
+          <div className="juice-container__product-description">
+            <div className="product-description__product-title">
+              {product.title[IntlLocale]}
+            </div>
+            <div className="product-description__additional-info">
+              <IntlMsg id="checkout.product-review.table.strength" />&nbsp; <i>{NicotineStrengthConverter(product.nicotineStrength)}</i>
+            </div>
+          </div>
+        </div>
+        <div className="product-list__qty">
+          <div className="qty__blurb">
+            {qty}
+          </div>
+        </div>
+        <div className="product-list__sub-total">
+          <div className="sub-total__blurb">
+            <FontAwesome name="usd" />&nbsp;
+            {(Number(product.price) * qty).toFixed(2)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="product-review__comments-box">
+    <div className="comments-box__form">
+      <textarea
+        cols="40"
+        rows="5"
+        className="form__text-area w-input"
+        data-name="Comments Area"
+        id="Comments-Area"
+        maxlength="5000"
+        name="Comments-Area"
+        placeholder={
+          intl.messages[
+            'checkout.product-review.table.comments.placeholder'
+          ]
+        }
+        value={comments}
+        onChange={handleOnChange}
+      />
+      <div className="form__newsletter w-checkbox">
+        <input
+          id="Sign-Up-for-Newsletters"
+          type="checkbox"
+          name="newsletterDecision"
+          checked={newsletterDecision}
+          className="newsletter__checkbox w-checkbox-input"
+          onChange={() => handleOnChange({
+            target: {
+              name: 'newsletterDecision',
+              value: !newsletterDecision,
+            },
+          })}
+        />
+        <label className="checkbox__label w-form-label" for="Sign-Up-for-Newsletters">
+          <IntlMsg id="checkout.newsletter.sign-up.title" />
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- <div className="product-review__logged-out">
+    <div className="logged-out__warning">
+      <p className="warning__blurb">
+        <strong className="blurb__red-text">
+            <IntlMsg id="checkout.product-review.new-user.discount.warning.title" />&nbsp;&nbsp;
+        </strong>
+        <IntlMsg id="checkout.product-review.new-user.discount.warning.description" />&nbsp;
+        <strong className="blurb__red-text">*</strong>&nbsp;
+      </p>
+    </div>
+    <div className="logged-out__register">
+      <a
+        className="register__button w-inline-block"
+        data-slug="login"
+        onClick={routerPush}
+      >
+        <div className="button__blurb">
+          <IntlMsg id="checkout.product-review.new-user.discount.register" />
+        </div>
+      </a>
+    </div>
+    <div className="logged-out__disclaimer">
+      <div className="disclaimer__blurb">
+        <em className="blurb__red-text--alt">*</em>&nbsp;
+        <IntlMsg id="checkout.product-review.new-user.discount.credit-card" />
+      </div>
+    </div>
+  </div> -->
+</div>
