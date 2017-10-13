@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Validation from 'react-validation';
 import FontAwesome from 'react-fontawesome';
-import { withHandlers } from 'recompose';
+import { withHandlers, lifecycle } from 'recompose';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
 import {
@@ -53,5 +54,13 @@ const SubmitOrderWithHandlers = withHandlers({
     SqrPaymentForm.get().requestCardNonce();
   },
 })(SubmitOrder);
+const SubmitOrderWithHandlersAndLifecycle = lifecycle({
+  shouldComponentUpdate(nextProps) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
 
-export default SubmitOrderWithHandlers;
+    if (!_.isEqual(npCopy, tpCopy)) return true;
+    return false;
+  },
+})(SubmitOrderWithHandlers);
+export default SubmitOrderWithHandlersAndLifecycle;
