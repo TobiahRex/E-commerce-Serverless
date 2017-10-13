@@ -1,7 +1,11 @@
 .country-section__container-disabled {
   margin-bottom: .5em;
+}
+
+.country-section__container-disabled input {
   cursor: not-allowed;
 }
+
 
 .container__text-field input {
   width: 100%;
