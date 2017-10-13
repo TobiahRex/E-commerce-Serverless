@@ -13,6 +13,7 @@ export default function IntlShippingForm() {
           id="checkbox-2"
           name="checkbox-2"
           type="checkbox"
+          readOnly
         />
         <label className="shipping-method__field-label w-form-label" htmlFor="checkbox-2">
           <IntlMsg id="checkout.shipping-method.free-shipping" />

@@ -14,16 +14,20 @@ Object.assign(Validation.rules, {
 
   required: {
     rule: value => value.toString().trim(),
-    hint: () => <span className="form-error is-visible">
-      <IntlMsg id="form.validation.error.required" />
-    </span>,
+    hint: () => (
+      <span className="form-error is-visible">
+        <IntlMsg id="form.validation.error.required" />
+      </span>
+    ),
   },
 
   boolRequired: {
     rule: value => Boolean(value),
-    hint: () => <span className="form-error is-visible">
-      <IntlMsg id="form.validation.error.bool.required" />
-    </span>,
+    hint: () => (
+      <span className="form-error is-visible">
+        <IntlMsg id="form.validation.error.bool.required" />
+      </span>
+    ),
   },
 
   email: {
@@ -31,7 +35,9 @@ Object.assign(Validation.rules, {
     /* eslint-disable no-undef */
     hint: value => (
       <span className="form-error is-visible">
-        {!!IntlMessages ? IntlMessages['form.validation.error.email'].replace(/EMAIL_VALUE/g, value) : ''}
+        {!!IntlMessages
+          ? IntlMessages['form.validation.error.email'].replace(/EMAIL_VALUE/g, value)
+          : ''}
       </span>
     ),
     /* eslint-enable no-undef */
@@ -76,8 +82,8 @@ Object.assign(Validation.rules, {
   'phone-japanLength': {
     rule: (value) => {
       const validPhone = /(^\d{10}$)|(^\d{11}$)/.test(value);
-      const minLength = (value.length === 10) || (value.length === 11);
-      return (validPhone && minLength);
+      const minLength = value.length === 10 || value.length === 11;
+      return validPhone && minLength;
     },
     hint: () => (
       <span className="form-error is-visible">
@@ -87,7 +93,7 @@ Object.assign(Validation.rules, {
   },
 
   'phone-startWithZero': {
-    rule: value => (value[0] === '0'),
+    rule: value => value[0] === '0',
     hint: () => (
       <span className="form-error is-visible">
         <IntlMsg id="form.validation.error.phone-startWithZero" />
@@ -105,7 +111,10 @@ Object.assign(Validation.rules, {
   },
 
   ccName: {
-    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    rule: value =>
+      /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+        value,
+      ),
     hint: () => (
       <span className="form-error is-visible">
         <IntlMsg id="form.validation.error.ccName" />
@@ -123,7 +132,10 @@ Object.assign(Validation.rules, {
   },
 
   contactUsName: {
-    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    rule: value =>
+      /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+        value,
+      ),
     hint: () => (
       <span className="form-error is-visible">
         <IntlMsg id="form.validation.error.contactUsName" />
@@ -132,7 +144,10 @@ Object.assign(Validation.rules, {
   },
 
   contactUsTextArea: {
-    rule: value => /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(value),
+    rule: value =>
+      /^[a-zA-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+        value,
+      ),
     hint: () => (
       <span className="form-error is-visible">
         <IntlMsg id="form.validation.error.contactUsTextArea" />
@@ -171,10 +186,7 @@ Object.assign(Validation.rules, {
     rule: (value, components) => {
       const password = components.password.state;
       const passwordConfirm = components.passwordConfirm.state;
-      const isBothUsed = password
-      && passwordConfirm
-      && password.isUsed
-      && passwordConfirm.isUsed;
+      const isBothUsed = password && passwordConfirm && password.isUsed && passwordConfirm.isUsed;
       const isBothChanged = isBothUsed && password.isChanged && passwordConfirm.isChanged;
 
       if (!isBothUsed || !isBothChanged) {

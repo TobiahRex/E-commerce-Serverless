@@ -349,7 +349,7 @@
   padding-bottom: 20px;
 }*/
 
-.address-form__name-section {
+/*.address-form__name-section {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -358,8 +358,8 @@
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
+}*/
+/*
 .container__text-field input {
   width: 100%;
   min-height: 2.5em;
@@ -369,23 +369,24 @@
   font-size: 14px;
   line-height: 1.5em;
   border-radius: 0px;
-  padding-left: 7px;``
+  padding-left: 7px;
 }
 
 .container__text-field input.form__error-blurb {
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #fc2525;
+  min-height: 2.5em;
   background-color: #d9cbc9;
   border: 1px solid #fc2525;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 1.5em;
 }
 
 .container__text-field span.form-error.is-visible {
   padding: .2em 0em 1em 0em;
-}
+}*/
 
-.name-section__container {
+/*.name-section__container {
   width: 47%;
 }
 
@@ -395,12 +396,12 @@
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;
-}
+}*/
 
-.label__asterisk {
+/*.label__asterisk {
   color: #fc2525;
   font-weight: 500;
-}
+}*/
 
 .form__label {
   margin-bottom: 3px;
