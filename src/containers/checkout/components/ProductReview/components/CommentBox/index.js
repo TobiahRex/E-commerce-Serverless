@@ -6,7 +6,7 @@ import {
   FormattedMessage as IntlMsg,
 } from 'react-intl';
 
-function ProductReviewComments({
+function CommentBox({
   intl,
   comments,
   handleOnChange,
@@ -55,17 +55,17 @@ function ProductReviewComments({
     </div>
   );
 }
-const ProductReviewCommentsWithIntl = injectIntl(ProductReviewComments);
+const CommentBoxWithIntl = injectIntl(CommentBox);
 
 const { string, func, bool } = PropTypes;
-ProductReviewComments.propTypes = {
+CommentBox.propTypes = {
   intl: intlShape.isRequired,
   comments: string,
   newsletterDecision: bool.isRequired,
   handleOnChange: func.isRequired,
 };
-ProductReviewComments.defaultProps = {
+CommentBox.defaultProps = {
   comments: '',
 };
 
-export default ProductReviewCommentsWithIntl;
+export default CommentBoxWithIntl;

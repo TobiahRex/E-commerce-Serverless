@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
+  HdrBox,
   ProductTable,
-  NewUserDiscount,
-  NewsletterOptIn,
-  ProductReviewComment,
+  CommentBox,
+  DiscountMsg,
 } from './components';
 
 function ProductReview({
@@ -19,14 +18,10 @@ function ProductReview({
   handleOnChange,
 }) {
   return (
-    <div className="checkout__product-review">
-      <div className="title">
-        <h3><IntlMsg id="checkout.product-review.title" /></h3>
-      </div>
-
+    <div className="main-section__product-review">
+      <HdrBox />
       <ProductTable cart={cart || []} />
-
-      <ProductReviewComment
+      <CommentBox
         comments={comments}
         handleOnChange={handleOnChange}
         newsletterDecision={newsletterDecision}
@@ -34,7 +29,7 @@ function ProductReview({
 
       {
         !loggedIn &&
-        <NewUserDiscount routerPush={routerPush} />
+          <DiscountMsg routerPush={routerPush} />
       }
     </div>
   );
