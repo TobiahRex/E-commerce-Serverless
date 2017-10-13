@@ -4,6 +4,7 @@ import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
+import './assets/styles/style.css';
 
 function City({
   city,
@@ -11,22 +12,21 @@ function City({
   handleOnChange,
 }) {
   return (
-    <div className="input__row">
-      <div className="input__row--city">
-        <p>
-          <IntlMsg id="checkout.shipping-address.city" />&nbsp;
-          <span className="required">*</span>
-        </p>
-        <Validation.components.Input
-          errorClassName="is-invalid-input"
-          type="text"
-          containerClassName=""
-          name={`${type}City`}
-          validations={['required', 'alpha', 'city']}
-          onChange={handleOnChange}
-          value={city}
-        />
-      </div>
+    <div className="city-section__container">
+      <label className="form__label" htmlFor="city">
+        <IntlMsg id="checkout.shipping-address.city" />&nbsp;
+        <strong className="label__asterisk">*</strong>
+      </label>
+      <Validation.components.Input
+        id="city"
+        errorClassName="form__error-blurb"
+        type="text"
+        containerClassName="container__text-field"
+        name={`${type}City`}
+        validations={['required', 'alpha', 'city']}
+        onChange={handleOnChange}
+        value={city}
+      />
     </div>
   );
 }
