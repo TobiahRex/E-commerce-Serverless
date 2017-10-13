@@ -23,20 +23,19 @@ function ProductReview({
       <div className="title">
         <h3><IntlMsg id="checkout.product-review.title" /></h3>
       </div>
-      
+
       <ProductTable cart={cart || []} />
 
       <ProductReviewComment
         comments={comments}
         handleOnChange={handleOnChange}
-      />
-
-      <NewsletterOptIn
-        handleOnChange={handleOnChange}
         newsletterDecision={newsletterDecision}
       />
 
-      {!loggedIn && <NewUserDiscount routerPush={routerPush} />}
+      {
+        !loggedIn &&
+        <NewUserDiscount routerPush={routerPush} />
+      }
     </div>
   );
 }
