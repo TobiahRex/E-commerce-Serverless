@@ -4,6 +4,7 @@ import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
+import './assets/styles/style.css';
 
 function PostalCode({
   validatePostal,
@@ -12,40 +13,22 @@ function PostalCode({
   clearValidationError,
 }) {
   return (
-    <div className="input__row">
-      <div className="input__row--postal-code">
-        <p>
-          <IntlMsg id="checkout.shipping-address.postal" />&nbsp;
-          <span className="required">*</span>
-        </p>
-        <Validation.components.Input
-          errorClassName="is-invalid-input"
-          type="text"
-          containerClassName=""
-          name="shippingPostalCode"
-          validations={['required', 'japan-postal']}
-          onChange={handleOnChange}
-          onBlur={validatePostal}
-          onFocus={() => clearValidationError('shippingPostalCode')}
-          value={shippingPostalCode}
-        />
-      </div>
-    </div>
-
     <div className="postal-section__container">
-      <label className="form__label" for="Post-Code">
-        Post Code
+      <label className="form__label" htmlFor="postalCode">
+        <IntlMsg id="checkout.shipping-address.postal" />&nbsp;
         <strong className="label__asterisk">*</strong>
       </label>
-      <input
-        className="form__text-field text-field__error w-input"
-        data-name="Post Code"
-        id="Post-Code"
-        maxlength="256"
-        name="Post-Code"
-        required="required"
+      <Validation.components.Input
+        errorClassName="form__error-blurb"
         type="text"
-      >
+        containerClassName="container__text-field"
+        name="shippingPostalCode"
+        validations={['required', 'japan-postal']}
+        onChange={handleOnChange}
+        onBlur={validatePostal}
+        onFocus={() => clearValidationError('shippingPostalCode')}
+        value={shippingPostalCode}
+      />
     </div>
   );
 }
