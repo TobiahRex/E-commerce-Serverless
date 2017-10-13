@@ -23,7 +23,7 @@ function ProductReview({
       <div className="title">
         <h3><IntlMsg id="checkout.product-review.title" /></h3>
       </div>
-
+      
       <ProductTable cart={cart || []} />
 
       <ProductReviewComment
