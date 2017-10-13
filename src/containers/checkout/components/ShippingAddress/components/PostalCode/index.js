@@ -31,6 +31,22 @@ function PostalCode({
         />
       </div>
     </div>
+
+    <div className="postal-section__container">
+      <label className="form__label" for="Post-Code">
+        Post Code
+        <strong className="label__asterisk">*</strong>
+      </label>
+      <input
+        className="form__text-field text-field__error w-input"
+        data-name="Post Code"
+        id="Post-Code"
+        maxlength="256"
+        name="Post-Code"
+        required="required"
+        type="text"
+      >
+    </div>
   );
 }
 const PostalCodeWithLifecycle = lifecycle({

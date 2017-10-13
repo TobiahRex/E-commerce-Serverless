@@ -1,6 +1,5 @@
 export HdrBox from './HdrBox';
-export GivenName from './GivenName';
-export FamilyName from './FamilyName';
+export NameGroup from './NameGroup';
 export Email from './Email';
 export PostalCode from './PostalCode';
 export AddressLine from './AddressLine';
