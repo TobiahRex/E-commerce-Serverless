@@ -17,7 +17,9 @@ function NewsletterOptIn({ newsletterDecision, handleOnChange }) {
             },
           })}
         />
-        <p><IntlMsg id="checkout.newsletter.sign-up.title" /></p>
+        <p>
+          <IntlMsg id="checkout.newsletter.sign-up.title" />
+        </p>
       </div>
     </div>
   );
