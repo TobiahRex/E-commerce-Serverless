@@ -19,6 +19,7 @@ function GrandTotal(props) {
       },
       showTotal,
       termsAgreement,
+      handleOnChange,
     } = compProps;
 
     if (showTotal) {
@@ -30,7 +31,7 @@ function GrandTotal(props) {
             discount={discount}
             grandTotal={grandTotal}
             termsAgreement={termsAgreement}
-            handleOnChange={this.handleOnChange}
+            handleOnChange={handleOnChange}
           />
           :
           <Loading />

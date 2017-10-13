@@ -220,17 +220,17 @@ class ExpressCheckout extends React.Component {
   * @return: null
   */
   handleOnChange = (e) => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value,
-        errors: {
-          hard: false,
-          soft: false,
-          message: '',
-        },
+    this.setState({
+      [e.target.name]: e.target.value,
+      errors: {
+        hard: false,
+        soft: false,
+        message: '',
       },
-      () => this.props.clearToaster(),
-    );
+    }, () => {
+      const { type, message } = this.state.toast;
+      if (type || message) this.props.clearToaster();
+    });
   };
 
   toggleModal = (e) => {
