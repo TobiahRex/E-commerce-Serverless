@@ -1,0 +1,33 @@
+.cc-number-section__container {
+  margin-bottom: .5em;
+}
+
+#sq-card-number.sq-input {
+  border-radius: 0px;
+}
+
+.container__text-field input {
+  width: 100%;
+  min-height: 2.5em;
+  border: 1px solid #9e9ea5;
+  font-family: 'Open Sans', sans-serif;
+  color: #365899;
+  font-size: 14px;
+  line-height: 1.5em;
+  border-radius: 0px;
+  padding-left: 7px;
+}
+
+.container__text-field input.form__error-blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fc2525;
+  min-height: 2.5em;
+  background-color: #d9cbc9;
+  border: 1px solid #fc2525;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+.container__text-field span.form-error.is-visible {
+  padding: .2em 0em 1em 0em;
+}
