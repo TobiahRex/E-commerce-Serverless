@@ -1,4 +1,3 @@
-export NewsletterOptIn from './NewsletterOptIn';
-export NewUserDiscount from './NewUserDiscount';
-export ProductReviewComment from './ProductReviewComment';
+export DiscountMsg from './DiscountMsg';
+export CommentBox from './CommentBox';
 export ProductTable from './ProductTable';

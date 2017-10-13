@@ -26,32 +26,36 @@ class ProductReviewTable extends PureComponent {
 
   renderTableRow = cart => cart
     .map(({ _id, qty, product }) => (
-      <tr className="body__row" key={_id}>
-        <td className="body__row--product-name">
-          <div className="image__container">
-            <img alt="Juice" className="image--source" />
+      <div className="product-list__product" key={_id}>
+        <div className="product__juice-container">
+          <div className="checkout-juice-container__img-container">
+            <img
+              alt="Juice"
+              className="express-checkout__img-container--img"
+              src="/images/nj2jp_juice_card_fvm.png"
+            />
           </div>
-          <div className="description__container">
-            <p>{product.title[IntlLocale]}</p>
-            <p>
+          <div className="juice-container__product-description">
+            <div className="product-description__product-title">
+              {product.title[IntlLocale]}
+            </div>
+            <div className="product-description__additional-info">
               <IntlMsg id="checkout.product-review.table.strength" />&nbsp; <i>{NicotineStrengthConverter(product.nicotineStrength)}</i>
-            </p>
+            </div>
           </div>
-        </td>
-        <td className="body__row--product-qty">
-          <div className="qty--container">
-            <p>{qty}</p>
+        </div>
+        <div className="product-list__qty">
+          <div className="qty__blurb">
+            {qty}
           </div>
-        </td>
-        <td className="body__row--product-subtotal">
-          <div className="product-subtotal-container">
-            <p>
-              <FontAwesome name="usd" />&nbsp;
-              {(Number(product.price) * qty).toFixed(2)}
-            </p>
+        </div>
+        <div className="product-list__sub-total">
+          <div className="sub-total__blurb">
+            <FontAwesome name="usd" />&nbsp;
+            {(Number(product.price) * qty).toFixed(2)}
           </div>
-        </td>
-      </tr>
+        </div>
+      </div>
     ));
 
   render() {
@@ -60,24 +64,28 @@ class ProductReviewTable extends PureComponent {
     } = this.props;
 
     return (
-      <table className="table__container">
-        <thead className="table__header">
-          <tr className="header__row">
-            <th className="header__row--product-name">
+      <div className="product-review__table-container">
+        <div className="table-container__top-row">
+          <div className="top-row__hdr-container">
+            <div className="hdr-container__blurb">
               <IntlMsg id="checkout.product-review.table.header.product" />
-            </th>
-            <th className="header__row--qty">
+            </div>
+          </div>
+          <div className="product-review__qty-container">
+            <div className="qty-container__blurb">
               <IntlMsg id="checkout.product-review.table.header.qty" />
-            </th>
-            <th className="header__row--subtotal">
+            </div>
+          </div>
+          <div className="product-review__total-container">
+            <div className="total-container__blurb">
               <IntlMsg id="checkout.product-review.table.header.subtotal" />
-            </th>
-          </tr>
-        </thead>
-        <tbody className="table__body">
+            </div>
+          </div>
+        </div>
+        <div className="table-container__product-list">
           {this.renderTableRow(cart)}
-        </tbody>
-      </table>
+        </div>
+      </div>
     );
   }
 }

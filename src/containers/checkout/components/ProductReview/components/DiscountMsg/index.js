@@ -6,7 +6,7 @@ import {
   Disclaimer,
 } from './components';
 
-function NewUserDiscountOffer({ routerPush }) {
+function DiscountMsg({ routerPush }) {
   return (
     <div className="product-review__logged-out">
       <Warning />
@@ -15,7 +15,7 @@ function NewUserDiscountOffer({ routerPush }) {
     </div>
   );
 }
-NewUserDiscountOffer.propTypes = {
+DiscountMsg.propTypes = {
   routerPush: PropTypes.func.isRequired,
 };
-export default NewUserDiscountOffer;
+export default DiscountMsg;
