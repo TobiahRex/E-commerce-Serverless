@@ -4,28 +4,28 @@ import _ from 'lodash';
 import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import { lifecycle } from 'recompose';
+import './assets/styles/style.css';
 
 function NameOnCard({
   ccNameOnCard,
   handleOnChange,
 }) {
   return (
-    <div className="input__row" >
-      <div className="input__row--name-on-card">
-        <p>
-          <IntlMsg id="checkout.credit-card.name-on-card" />&nbsp;
-          <span className="required">*</span>
-        </p>
-        <Validation.components.Input
-          errorClassName="is-invalid-input"
-          type="text"
-          containerClassName=""
-          name="ccNameOnCard"
-          validations={['required', 'ccName', 'ccName-firstLast']}
-          onChange={handleOnChange}
-          value={ccNameOnCard}
-        />
-      </div>
+    <div className="card-name-section__container">
+      <label className="form__label" htmlFor="cardName">
+        <IntlMsg id="checkout.credit-card.name-on-card" />&nbsp;
+        <em className="label__asterisk">*</em>
+      </label>
+      <Validation.components.Input
+        id="cardName"
+        errorClassName="form__error-blurb"
+        type="text"
+        containerClassName="container__text-field"
+        name="ccNameOnCard"
+        validations={['required', 'ccName', 'ccName-firstLast']}
+        onChange={handleOnChange}
+        value={ccNameOnCard}
+      />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import {
+  HdrBox,
+  AcceptedCards,
   CvnAndZip,
   NameOnCard,
   CreditCardNumber,
@@ -64,50 +64,35 @@ class CreditCardInfo extends React.Component {
     } = this.state;
 
     return (
-      <div className="checkout__credit-card">
-        <div className="title">
-          <h3>
-            <IntlMsg id="checkout.credit-card.title" />
-          </h3>
+      <div className="main-section__credit-card">
+        <HdrBox />
+
+        <AcceptedCards />
+
+        <div className="credit-card__info-container-form">
+          <NameOnCard
+            ccNameOnCard={ccNameOnCard}
+            handleOnChange={this.handleOnChange}
+          />
+
+          <CreditCardNumber
+            ccNumber={ccNumber}
+            handleOnChange={this.handleOnChange}
+          />
+
+          <CreditCardExpire
+            ccExpireMonth={ccExpireMonth}
+            ccExpireYear={ccExpireYear}
+            handleOnChange={this.handleOnChange}
+          />
+
+          <CvnAndZip
+            toggleModal={this.props.toggleModal}
+            ccCvn={ccCvn}
+            ccZip={ccZip}
+            handleOnChange={this.handleOnChange}
+          />
         </div>
-
-        <div className="input__row">
-          <div className="input__row--cc-type">
-            <p>
-              <IntlMsg id="checkout.credit-card.accepted" />
-            </p>
-            <div className="types">
-              <FontAwesome name="cc-visa" />
-              <FontAwesome name="cc-mastercard" />
-              <FontAwesome name="cc-discover" />
-              <FontAwesome name="cc-jcb" />
-              <FontAwesome name="cc-amex" />
-            </div>
-          </div>
-        </div>
-
-        <NameOnCard
-          ccNameOnCard={ccNameOnCard}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CreditCardNumber
-          ccNumber={ccNumber}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CreditCardExpire
-          ccExpireMonth={ccExpireMonth}
-          ccExpireYear={ccExpireYear}
-          handleOnChange={this.handleOnChange}
-        />
-
-        <CvnAndZip
-          toggleModal={this.props.toggleModal}
-          ccCvn={ccCvn}
-          ccZip={ccZip}
-          handleOnChange={this.handleOnChange}
-        />
 
       </div>
     );
