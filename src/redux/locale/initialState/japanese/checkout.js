@@ -77,7 +77,7 @@ export default {
   'checkout.credit-card.cvn.modal.what-is': 'CVN / CVVとは何ですか？',
   'checkout.credit-card.cvn.modal.cvn-title': 'です',
   'checkout.credit-card.cvn.modal.is-a': '「カード確認番号」',
-  'checkout.credit-card.cvn.modal.close-btn': '閉じる',
+  'checkout.credit-card.cvn.modal.close-btn': 'はい',
   'checkout.credit-card.name-on-card': 'カード上の名前',
   'checkout.credit-card.expiration': '有効期限',
   'checkout.total.empty-cart': 'あなたのカートは現在空です',
