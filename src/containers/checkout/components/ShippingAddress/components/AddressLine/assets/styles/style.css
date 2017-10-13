@@ -6,7 +6,7 @@
   margin-bottom: .5em;
 }
 
-.kanji-section__container-disabled input {
+.kanji-section__container-disabled .container__text-field input {
   cursor: not-allowed;
 }
 
