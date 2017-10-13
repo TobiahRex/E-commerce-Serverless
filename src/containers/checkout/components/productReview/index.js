@@ -21,16 +21,14 @@ function ProductReview({
     <div className="main-section__product-review">
       <HdrBox />
       <ProductTable cart={cart || []} />
+
       <CommentBox
         comments={comments}
         handleOnChange={handleOnChange}
         newsletterDecision={newsletterDecision}
       />
 
-      {
-        !loggedIn &&
-          <DiscountMsg routerPush={routerPush} />
-      }
+      {!loggedIn && <DiscountMsg routerPush={routerPush} />}
     </div>
   );
 }
