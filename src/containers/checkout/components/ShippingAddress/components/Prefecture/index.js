@@ -5,6 +5,7 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
 import { PrefectureConstants } from '../../assets/utils';
+import './assets/styles/style.css';
 
 function Prefecture({
   type,
@@ -28,22 +29,29 @@ function Prefecture({
           <IntlMsg id="checkout.shipping-address.prefecture" />&nbsp;
           <span className="required">*</span>
         </p>
-        <Validation.components.Select
-          errorClassName="is-invalid-input"
-          name={`${type}Prefecture`}
-          containerClassName=""
-          validations={['required']}
-          value={prefecture}
-          onChange={handleOnChange}
-        >
-          <option value="">
-            <IntlMsg id="checkout.shipping-address.prefecture.choose" />
-          </option>
-          {
-            renderOptions(PrefectureConstants)
-          };
-        </Validation.components.Select>
       </div>
+    </div>
+
+    <div className="kanji-section__container">
+      <label className="form__label" for="Kanji-Address">
+        <IntlMsg id="checkout.shipping-address.prefecture" />&nbsp;
+      </label>
+      <Validation.components.Select
+        errorClassName="form__error-blurb"
+        name={`${type}Prefecture`}
+        containerClassName="container__text-field"
+        validations={['required']}
+        value={prefecture}
+        onChange={handleOnChange}
+        placeholder="Generated from Postal Code..."
+      >
+        <option value="">
+          <IntlMsg id="checkout.shipping-address.prefecture.choose" />
+        </option>
+        {
+          renderOptions(PrefectureConstants)
+        };
+      </Validation.components.Select>
     </div>
   );
 }
