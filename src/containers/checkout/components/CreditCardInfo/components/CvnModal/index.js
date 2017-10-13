@@ -6,12 +6,11 @@ import _ from 'lodash';
 import { lifecycle } from 'recompose';
 
 function CvnModal({
-  show,
   toggleModal,
+  showModal,
 }) {
   let style = {};
-
-  if (show) {
+  if (showModal) {
     style = {
       display: 'flex',
       opacity: 1,
@@ -29,53 +28,59 @@ function CvnModal({
   }
 
   return (
-    <div style={style} className="checkout__cvn-modal">
-      <div className="cvn-modal__dialogue">
-        <div className="dialogue__exit--container">
-
-          <button
-            data-parent="exit__btn"
-            data-modal="showCvnModal"
-            className="exit-btn"
-            onClick={toggleModal}
-          ><FontAwesome name="plus" />
-          </button>
-
+    <div
+      style={style}
+      className="express-checkout__cvv-modal"
+      data-ix="express-checkout-modal-close"
+    >
+      <div className="cvv-modal__dialogue">
+        <div className="dialogue__cvn-content">
+          <div className="cvn-content__hdr-container">
+            <h2 className="cvn-modal__header">
+              <IntlMsg id="checkout.credit-card.cvn.modal.what-is" />
+            </h2>
+          </div>
+          <div className="cvn-content__sub-hdr">
+            <div className="sub-hdr__blurb">
+              {'\"CVN\"'} / {'\"CVV\"'}&nbsp;
+              <IntlMsg id="checkout.credit-card.cvn.modal.is-a" />&nbsp;
+              <em className="blurb__italic">
+                <IntlMsg id="checkout.credit-card.cvn.modal.cvn-title" />
+              </em>
+            </div>
+            <div className="sub-hdr__blurb">
+              <IntlMsg id="checkout.credit-card.cvn.modal.description" />
+            </div>
+          </div>
+          <div className="cvn-content__img">
+            <img
+              className="img__img"
+              src="/images/cvn-example.jpg"
+              alt="CVN Example"
+            />
+          </div>
         </div>
-        <div className="dialogue__cvn-blurb">
-          <h1 className="cvn-blurb__title">
-            <IntlMsg id="checkout.credit-card.cvn.modal.what-is" />
-          </h1>
-          <br />
-          <p className="cvn-blurb__sub-title">
-            {'\"CVN\"'} / {'\"CVV\"'}
-            &nbsp;
-            <IntlMsg id="checkout.credit-card.cvn.modal.is-a" />
-            &nbsp;
-            <i>
-              <IntlMsg id="checkout.credit-card.cvn.modal.cvn-title" />
-            </i>
-          </p>
-          <br />
-          <p className="cvn-blurb__description">
-            <IntlMsg id="checkout.credit-card.cvn.modal.description" />
-          </p>
-          <br />
-          <img
-            className="cvn-blurb__image-src"
-            src="/images/cvn-example.jpg"
-            alt="CVN Example"
-          />
-        </div>
-        <div className="dialogue__action-btns">
-
+        <div className="dialogue__close-btn">
           <button
             data-parent="promotion-register"
             data-modal="showCvnModal"
-            className="action-btn__close primary-button sweep-right"
+            className="close-btn__btn w-button"
+            data-ix="express-checkout-modal-close"
             onClick={toggleModal}
-          ><IntlMsg id="checkout.credit-card.cvn.modal.close-btn" /></button>
-
+          >
+            <IntlMsg id="checkout.credit-card.cvn.modal.close-btn" />
+          </button>
+        </div>
+        <div className="dialogue__exit-container">
+          <button
+            data-parent="exit__btn"
+            data-modal="showCvnModal"
+            className="exit-container__btn w-button"
+            data-ix="express-checkout-modal-close"
+            onClick={toggleModal}
+          >
+            <FontAwesome name="plus" className="express-checkout__cvv-modal--close-icon" />
+          </button>
         </div>
       </div>
     </div>
@@ -90,7 +95,7 @@ const CvnModalWithLifecycle = lifecycle({
 
 const { bool, func } = PropTypes;
 CvnModal.propTypes = {
-  show: bool.isRequired,
   toggleModal: func.isRequired,
+  showModal: bool.isRequired,
 };
 export default CvnModalWithLifecycle;

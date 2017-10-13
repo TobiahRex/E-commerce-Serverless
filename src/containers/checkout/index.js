@@ -234,7 +234,8 @@ class ExpressCheckout extends React.Component {
   };
 
   toggleModal = (e) => {
-    const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal;
+    const modal = e.target.dataset.modal || e.target.parentNode.dataset.modal || e.target.parentNode.parentNode.dataset.modal;
+
     this.setState(prevState => ({ [modal]: !prevState[modal] }));
   };
 
@@ -351,6 +352,7 @@ class ExpressCheckout extends React.Component {
     const { userId, toast, loggedIn, apiFetching } = this.props;
 
     const {
+      showCvnModal,
       // ccRenderKey,
       cart,
       errors,
@@ -378,7 +380,6 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
-
     return (
       <div className="checkout__container">
         <BreadCrumb
@@ -503,7 +504,10 @@ class ExpressCheckout extends React.Component {
           </div>
         </Validation.components.Form>
 
-        <CvnModal showModal={this.state.showCvnModal} toggleModal={this.toggleModal} />
+        <CvnModal
+          showModal={showCvnModal}
+          toggleModal={this.toggleModal}
+        />
 
       </div>
     );

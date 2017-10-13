@@ -1030,6 +1030,16 @@
   align-items: center;
   background-color: rgba(0, 0, 0, .75);
   opacity: 1;
+  z-index: 30;
+}
+
+.express-checkout__cvv-modal--close-icon {
+  left: 2px;
+  position: relative;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  cursor: pointer;
 }
 
 .cvv-modal__dialogue {
@@ -1040,11 +1050,12 @@
 }
 
 .cvn-content__hdr-container {
+  color: #fc2525;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-.heading {
+.cvn-modal__header {
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #365899;
   font-size: 35px;
@@ -1155,6 +1166,7 @@
   background-color: #fc2525;
   font-family: Fontawesome, sans-serif;
   font-size: 18px;
+  padding: 0px;
 }
 
 .form__error-blurb {
