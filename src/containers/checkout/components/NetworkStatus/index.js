@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { withHandlers } from 'recompose';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function NetworkStatus({ routerPush, renderHelper }) {
+function NetworkStatus({ routerBack, renderHelper }) {
   return (
     <div>
       {renderHelper()}
@@ -13,7 +13,7 @@ function NetworkStatus({ routerPush, renderHelper }) {
           className="sweep-right"
           data-slug="/"
           type="button"
-          onClick={routerPush}
+          onClick={routerBack}
         >
           <FontAwesome name="angle-double-left" />&nbsp;
           <IntlMsg id="checkout.action-btn.back-to-home" />
@@ -120,7 +120,7 @@ NetworkStatus.propTypes = {
     messages: string,
   }).isRequired,
   loading: bool,
-  routerPush: func.isRequired,
+  routerBack: func.isRequired,
   renderHelper: func.isRequired,
 };
 NetworkStatus.defaultProps = {

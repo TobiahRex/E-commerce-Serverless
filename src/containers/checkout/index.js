@@ -500,7 +500,7 @@ class ExpressCheckout extends React.Component {
                 errors={errors}
                 loading={apiFetching}
                 success={false}
-                routerPush={this.routerPush}
+                routerBack={this.routerBack}
               />
             </div>
           </div>
