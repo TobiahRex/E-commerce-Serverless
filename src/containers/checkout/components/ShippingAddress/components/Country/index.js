@@ -4,23 +4,25 @@ import Validation from 'react-validation';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
+import './assets/styles/style.css';
 
 function Country({ disabled }) {
   return (
-    <div className="input__row">
-      <div className={`input__row--country${disabled ? '-disabled' : ''}`}>
-        <p>
-          <IntlMsg id="checkout.shipping-address.country" />&nbsp;
-          <span className="required">*</span>
-        </p>
-        <Validation.components.Input
-          disabled={disabled}
-          errorClassName="is-invalid-input"
-          name="shippingCountry"
-          validations={['required']}
-          value="Japan"
-        />
-      </div>
+    <div className={`country-section__container${disabled ? '-disabled' : ''}`}>
+      <label className="form__label" htmlFor="Country">
+        <IntlMsg id="checkout.shipping-address.country" />&nbsp;
+        <strong className="label__asterisk">*</strong>
+      </label>
+      <Validation.components.Input
+        disabled={disabled}
+        errorClassName="form__error-blurb"
+        containerClassName="container__text-field"
+        name="shippingCountry"
+        type="text"
+        validations={['required']}
+        value="Japan"
+        readOnly
+      />
     </div>
   );
 }
