@@ -15,7 +15,7 @@ export default function ComposeLocalData({
     shippingCity,
     shippingPhoneNumber,
     ccNameOnCard,
-    ccCountry,
+    billingCountry,
     termsAgreement,
     cart,
     total,
@@ -28,8 +28,6 @@ export default function ComposeLocalData({
   },
   cardData,
 }) {
-  const billingCountry = ccCountry.split('-')[1];
-
   return ({
     userId,
     comments,

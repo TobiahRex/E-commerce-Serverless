@@ -104,6 +104,10 @@
   line-height: .5em;
 }
 
+.field__checkbox-button input {
+  cursor: pointer;
+}
+
 .field__error-label {
   display: -webkit-box;
   display: -webkit-flex;

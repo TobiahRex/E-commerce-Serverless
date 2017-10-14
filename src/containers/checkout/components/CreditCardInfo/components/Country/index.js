@@ -34,13 +34,13 @@ class Country extends React.Component {
             <IntlMsg id="checkout.credit-card.billing-country" />&nbsp;
             <span className="required">*</span>
           </p>
-          <Validation.components.Select
+          {/* <Validation.components.Select
             errorClassName="is-invalid-input"
             name="ccCountry"
             validations={['required']}
             value={this.props.country}
             onChange={this.handleOnChange}
-          >
+            >
             <option value="">
               <IntlMsg id="checkout.credit-card.billing-country.choose" />
             </option>
@@ -51,9 +51,10 @@ class Country extends React.Component {
             <option value="Japan-JP">
               Japan (JP)
             </option>
-            {/* <hr /> */}
-            {/* {this.renderCountryOptions(Countries)} */}
-          </Validation.components.Select>
+            <hr />
+            {this.renderCountryOptions(Countries)}
+            </Validation.components.Select>
+          */}
         </div>
       </div>
     );
