@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import _ from 'lodash';
+import { lifecycle } from 'recompose';
 
 function ErrorMsg({ message }) {
   return (
@@ -22,7 +24,17 @@ function ErrorMsg({ message }) {
     </div>
   );
 }
+const ErrorMsgWithLifecycle = lifecycle({
+  shouldComponentUpdate(nextProps) {
+    const npCopy = _.cloneDeep(nextProps);
+    const tpCopy = _.cloneDeep(this.props);
+
+    if (!_.isEqual(npCopy, tpCopy)) return true;
+    return false;
+  },
+})(ErrorMsg);
+
 ErrorMsg.propTypes = {
   message: PropTypes.string.isRequired,
 };
-export default ErrorMsg;
+export default ErrorMsgWithLifecycle;
