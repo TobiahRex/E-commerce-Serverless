@@ -5,8 +5,6 @@ import { FormattedMessage as IntlMsg } from 'react-intl';
 import './assets/styles/style.css';
 
 function Discounts({ title, amount }) {
-  console.log('%ctitle, amount', 'background:pink;', title, amount);
-
   return (
     <div className="analysis-container__row">
       <div className="blurb__red row__blurb">
