@@ -4,7 +4,6 @@ import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import { lifecycle } from 'recompose';
-import './assets/styles/style.css';
 
 function ErrorMsg({ message }) {
   return (
