@@ -1,0 +1,15 @@
+.total__empty-cart {
+  display: block;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.logged-out__blurb {
+  border-color: #fc2525;
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #fc2525;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: center;
+}

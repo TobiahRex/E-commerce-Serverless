@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import './assets/styles/style.css';
 
 function Discounts({ title, amount }) {
+  console.log('%ctitle, amount', 'background:pink;', title, amount);
+
   return (
-    <div className="analysis-container--discount">
-      <p>{title}&nbsp;
+    <div className="analysis-container__row">
+      <div className="blurb__red row__blurb">
+        {title}&nbsp;
         <IntlMsg id="checkout.total.subtotal.discount.title" />
-      </p>
-      <p>
+      </div>
+      <div className="price--red row__price">
         <FontAwesome name="usd" />&nbsp;
         -{amount.toFixed(2)}
-      </p>
+      </div>
     </div>
   );
 }

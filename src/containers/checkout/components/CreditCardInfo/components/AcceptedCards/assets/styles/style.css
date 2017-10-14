@@ -31,3 +31,35 @@
   font-weight: 300;
   letter-spacing: 1px;
 }
+
+.cc-type__blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.cc-type__card-logos {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.card-logos__fa-blurb {
+  margin-right: 3px;
+  margin-left: 3px;
+  font-family: Fontawesome, sans-serif;
+  color: #365899;
+  font-size: 35px;
+  line-height: 35px;
+}
