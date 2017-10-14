@@ -1,0 +1,28 @@
+.main-section__loading-state {
+  width: 340px;
+  height: 150px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #d8d8d8;
+}
+
+.loading-state__spinner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.spinner__blurb {
+  font-family: Fontawesome, sans-serif;
+  color: #365899;
+  font-size: 46px;
+  line-height: 46px;
+  text-align: center;
+}
+
+.blurb__text {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+}

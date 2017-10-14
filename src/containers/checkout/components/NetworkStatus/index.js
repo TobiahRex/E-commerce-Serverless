@@ -5,6 +5,8 @@ import { withHandlers } from 'recompose';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ErrorMsg,
+  WarningMsg,
+  PleaseWait,
 } from './components';
 
 function NetworkStatus({ routerBack, renderHelper }) {
@@ -43,35 +45,11 @@ const NetworkStatusWithHandlers = withHandlers({
 
     const hardError = <ErrorMsg message={message} />;
 
-    const softError = (
-      <div className="checkout__error-soft">
-        <div className="error-soft__title">
-          <FontAwesome className="error-icon" name="exclamation-triangle" />
-          <h2><IntlMsg id="checkout.error.title" /></h2>
-        </div>
-        <br />
-        <p>{message}</p>
-      </div>
-    );
+    const softError = <WarningMsg message={message} />;
 
-    const warningMsg = (
-      <div className="checkout__error-soft">
-        <div className="error-soft__title">
-          <FontAwesome className="error-icon" name="exclamation-triangle" />
-          <h2><IntlMsg id="checkout.warning.title" /></h2>
-        </div>
-        <br />
-        <p>{message}</p>
-      </div>
-    );
+    const warningMsg = <WarningMsg message={message} />;
 
-    const loadingMsg = (
-      <div className="checkout__loading-icon">
-        <FontAwesome className="spinner-icon" name="spinner" pulse />
-        <p><IntlMsg id="checkout.loading.title" /></p>
-        <p><IntlMsg id="checkout.loading.subtitle" /></p>
-      </div>
-    );
+    const loadingMsg = <PleaseWait />;
 
     const successMsg = (
       <div className="checkout__successful-purchase">
