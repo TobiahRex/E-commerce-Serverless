@@ -73,8 +73,8 @@
 
 // ------------------------------------------------------------
 // "Checkout" Master Stylesheets
-// @import "containers/checkout/expressCheckout_styles_web";
-// @import "containers/checkout/expressCheckout_styles_mobile";
+@import "containers/checkout/expressCheckout_styles_web";
+@import "containers/checkout/expressCheckout_styles_mobile";
 
 // ------------------------------------------------------------
 // "Order Success" Master Stylesheets

@@ -29,8 +29,8 @@ const FooterLower = () => (
             className="payment-method payment-method--portrait"
             height="35"
             sizes="(max-width: 479px) 267.390625px, 382px"
-            src="images/payment-methods.png"
-            srcSet="images/payment-methods.png 500w, images/payment-methods.png 765w"
+            src="/images/payment-methods.png"
+            srcSet="/images/payment-methods.png 500w, /images/payment-methods.png 765w"
             width="382"
           />
         </div>
