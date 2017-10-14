@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { withHandlers } from 'recompose';
 import { FormattedMessage as IntlMsg } from 'react-intl';
+import {
+  ErrorMsg,
+} from './components';
 
 function NetworkStatus({ routerBack, renderHelper }) {
   return (
@@ -38,18 +41,7 @@ const NetworkStatusWithHandlers = withHandlers({
     //   message = toast.message[IntlLocale];
     // }
 
-    const hardError = (
-      <div className="checkout__error-hard">
-        <div className="error-hard__title">
-          <FontAwesome className="error-icon" name="times-circle" />
-          <h2>
-            <IntlMsg id="checkout.error.title" />
-          </h2>
-        </div>
-        <br />
-        <p>{message}</p>
-      </div>
-    );
+    const hardError = <ErrorMsg message={message} />;
 
     const softError = (
       <div className="checkout__error-soft">
