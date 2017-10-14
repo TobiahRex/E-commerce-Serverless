@@ -7,7 +7,6 @@
 }
 
 .loading-state__spinner {
-  padding-top: 10px;
   padding-bottom: 10px;
 }
 
@@ -19,10 +18,10 @@
   text-align: center;
 }
 
-.blurb__text {
+.loading-blurb__text {
   font-family: Ubuntu, Helvetica, sans-serif;
   color: #365899;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 1.5em;
   text-align: center;
 }

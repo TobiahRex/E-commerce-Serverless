@@ -7,7 +7,7 @@ export default function HdrBox() {
     <div className="grand-total__hdr-section">
       <div className="hdr-section__hdr-box">
         <h2 className="hdr-box__hdr-blurb">
-          <IntlMsg id="checkout.credit-card.title" />
+          <IntlMsg id="checkout.success.summary.title" />
         </h2>
       </div>
     </div>

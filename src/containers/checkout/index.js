@@ -93,6 +93,7 @@ class ExpressCheckout extends React.Component {
       },
       // --- Form Data from Nested Components ---
       prComments: '',
+      billingCountry: 'US',
       newsletterDecision: true,
       shippingFirstName: '',
       shippingLastName: '',
@@ -381,6 +382,7 @@ class ExpressCheckout extends React.Component {
       total,
       termsAgreement,
     } = this.state;
+
     return (
       <div className="checkout__container">
         <BreadCrumb
@@ -482,6 +484,7 @@ class ExpressCheckout extends React.Component {
                 handleOnChange={this.handleOnChange}
                 toggleModal={this.toggleModal}
               />
+
               <GrandTotal
                 total={total}
                 showTotal={!!cart.length}
