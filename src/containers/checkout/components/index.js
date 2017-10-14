@@ -18,4 +18,4 @@ export {
   Prefecture,
   City,
   PhoneNumber,
-} from './ShippingAddress/components/';
+} from './ShippingAddress/components';
