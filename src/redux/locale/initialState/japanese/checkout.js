@@ -32,7 +32,7 @@ export default {
   'checkout.success.summary.total.shipping': '無料国際配送',
   'checkout.success.summary.total.discount': 'ディスカウント',
   'checkout.success.summary.total.grand-total': '総計',
-  'checkout.success.actions.back-to-home': 'ホームページに戻る',
+  'checkout.success.actions.back': '戻る',
   'checkout.error.title': 'エラー！',
   'checkout.warning.title': '警告！',
   'checkout.loading.title': 'お待ちください',
@@ -94,5 +94,5 @@ export default {
   'checkout.total.grand-total.terms-agreements1': '私はすべてを読んだ＆同意した',
   'checkout.total.grand-total.terms-agreements2': '利用規約',
   'checkout.submit1': '今すぐ注文する',
-  'checkout.action-btn.back-to-home': 'ホームページに戻る',
+  'checkout.action-btn.back': '戻る',
 };
