@@ -1,7 +1,13 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import './assets/styles/style.css';
+import {
+  Amex,
+  Discover,
+  Jcb,
+  MasterCard,
+  Visa,
+} from './components';
 
 export default function AcceptedCards() {
   return (
@@ -10,21 +16,11 @@ export default function AcceptedCards() {
         <IntlMsg id="checkout.credit-card.accepted" />
       </div>
       <div className="cc-type__card-logos">
-        <div className="card-logos__fa-blurb">
-          <FontAwesome name="cc-visa" />
-        </div>
-        <div className="card-logos__fa-blurb">
-          <FontAwesome name="cc-mastercard" />
-        </div>
-        <div className="card-logos__fa-blurb">
-          <FontAwesome name="cc-discover" />
-        </div>
-        <div className="card-logos__fa-blurb">
-          <FontAwesome name="cc-jcb" />
-        </div>
-        <div className="card-logos__fa-blurb">
-          <FontAwesome name="cc-amex" />
-        </div>
+        <Visa />
+        <MasterCard />
+        <Discover />
+        <Jcb />
+        <Amex />
       </div>
     </div>
   );

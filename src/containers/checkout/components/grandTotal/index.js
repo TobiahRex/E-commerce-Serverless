@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import { lifecycle } from 'recompose';
 import {
-  Loading,
+  HdrBox,
+  EmptyCart,
+  Calculating,
   TotalContent,
 } from './components';
+import './assets/styles/style.css';
 
 function GrandTotal(props) {
   const renderHelper = (compProps) => {
@@ -22,35 +24,27 @@ function GrandTotal(props) {
       handleOnChange,
     } = compProps;
 
-    if (showTotal) {
+    if (showTotal && grandTotal) {
       return (
-        grandTotal ?
-          <TotalContent
-            subTotal={subTotal}
-            taxes={taxes}
-            discount={discount}
-            grandTotal={grandTotal}
-            termsAgreement={termsAgreement}
-            handleOnChange={handleOnChange}
-          />
-          :
-          <Loading />
+        <TotalContent
+          subTotal={subTotal}
+          taxes={taxes}
+          discount={discount}
+          grandTotal={grandTotal}
+          termsAgreement={termsAgreement}
+          handleOnChange={handleOnChange}
+        />
       );
     }
 
-    return (
-      <div>
-        <h4 style={{ color: '#365899', padding: '2em 0em 1em 0em' }}>
-          <span className="required">
-            <IntlMsg id="checkout.total.empty-cart" />
-          </span>
-        </h4>
-      </div>
-    );
+    if (showTotal && !grandTotal) return <Calculating />;
+
+    return <EmptyCart />;
   };
 
   return (
-    <div className="checkout__grand-total">
+    <div className="main-section__total">
+      <HdrBox />
       {renderHelper(props)}
     </div>
   );

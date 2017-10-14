@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import Validation from 'react-validation';
 import { Link } from 'react-router';
 import { intlShape, injectIntl, FormattedMessage as IntlMsg } from 'react-intl';
+import './assets/styles/style.css';
 
 import Discounts from '../';
 
@@ -18,29 +19,25 @@ function TotalContent({
 }) {
   return (
     <div>
-      <div className="title">
-        <h3><IntlMsg id="checkout.total.title" /></h3>
-      </div>
+      <div className="logged-in__analysis-container">
 
-      <div className="analysis-container">
-
-        <div className="analysis-container--subtotal">
-          <p>
+        <div className="analysis-container__row">
+          <div className="row__blurb">
             <IntlMsg id="checkout.total.subtotal.title" />
-          </p>
-          <p>
+          </div>
+          <div className="row__price">
             <FontAwesome name="usd" />&nbsp;
             {subTotal}
-          </p>
+          </div>
         </div>
 
-        <div className="analysis-container--shipping">
-          <p>
+        <div className="analysis-container__row">
+          <div className="row__blurb">
             <IntlMsg id="checkout.total.subtotal.shipping" />
-          </p>
-          <p>
-            <i><IntlMsg id="checkout.total.subtotal.shipping.free" /></i>
-          </p>
+          </div>
+          <div className="price--free row__price">
+            <IntlMsg id="checkout.total.subtotal.shipping.free" />
+          </div>
         </div>
 
         {
@@ -63,48 +60,54 @@ function TotalContent({
             />
         }
 
-        <div className="analysis-container--taxes">
-          <p>
+        <div className="analysis-container__row">
+          <div className="row__blurb">
             <IntlMsg id="checkout.total.taxes.title" />
-          </p>
-          <p>
+          </div>
+          <div className="row__price">
             <FontAwesome name="usd" />&nbsp;
             {taxes.toFixed(2)}
-          </p>
+          </div>
         </div>
 
-        <div className="analysis-container--grand-total">
-          <h3>
+
+        <div className="analysis-container__row">
+          <div className="blurb__large row__blurb">
             <IntlMsg id="checkout.total.grand-total.title" />
-          </h3>
-          <h3>
+          </div>
+          <div className="price__large row__price">
             <FontAwesome name="usd" />&nbsp;
             {grandTotal.toFixed(2)}
-          </h3>
+          </div>
         </div>
       </div>
-      <div className="terms-agreement">
-        <Validation.components.Input
-          id="policy"
-          type="checkbox"
-          errorClassName="is-invalid-input"
-          name="termsAgreement"
-          value={!!termsAgreement ? termsAgreement : ''}
-          validations={['required']}
-          onChange={() => handleOnChange({
-            target: {
-              name: 'termsAgreement',
-              value: !termsAgreement,
-            },
-          })}
-        />
-        &nbsp;
-        <p>
-          <IntlMsg id="checkout.total.grand-total.terms-agreements1" />&nbsp;
-          <Link to="/terms_and_conditions">
-            <IntlMsg id="checkout.total.grand-total.terms-agreements2" />
-          </Link>
-        </p>
+
+      <div className="logged-in__checkbox">
+        <div className="checkbox__field">
+          <Validation.components.Input
+            id="policy"
+            type="checkbox"
+            containerClassName="field__checkbox-button"
+            errorClassName="field__error-label"
+            name="termsAgreement"
+            value={!!termsAgreement ? termsAgreement : ''}
+            validations={['required']}
+            onChange={() => handleOnChange({
+              target: {
+                name: 'termsAgreement',
+                value: !termsAgreement,
+              },
+            })}
+          />&nbsp;
+        </div>
+        <div className="checkbox__blurb">
+          <IntlMsg id="checkout.total.grand-total.terms-agreements1" />&nbsp;&nbsp;
+          <strong className="blurb__underlined">
+            <Link to="/terms_and_conditions">
+              <IntlMsg id="checkout.total.grand-total.terms-agreements2" />
+            </Link>
+          </strong>
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
   HdrBox,
+  CcForm,
   AcceptedCards,
   CvnAndZip,
   NameOnCard,
@@ -69,7 +70,7 @@ class CreditCardInfo extends React.Component {
 
         <AcceptedCards />
 
-        <div className="credit-card__info-container-form">
+        <CcForm>
           <NameOnCard
             ccNameOnCard={ccNameOnCard}
             handleOnChange={this.handleOnChange}
@@ -92,8 +93,7 @@ class CreditCardInfo extends React.Component {
             ccZip={ccZip}
             handleOnChange={this.handleOnChange}
           />
-        </div>
-
+        </CcForm>
       </div>
     );
   }
