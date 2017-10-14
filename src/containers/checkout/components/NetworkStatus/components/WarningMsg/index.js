@@ -6,14 +6,14 @@ import _ from 'lodash';
 import { lifecycle } from 'recompose';
 import './assets/styles/style.css';
 
-function ErrorMsg({ message }) {
+function WarningMsg({ message }) {
   return (
     <div className="main-section__error">
       <div className="error__hdr-section">
         <div className="hdr-section__hdr-container">
           <h2 className="hdr-container__error-blurb">
             <em className="error-blurb__fa-text">
-              <FontAwesome className="error-icon" name="times-circle" />&nbsp;
+              <FontAwesome className="error-icon" name="exclamation-triangle" />&nbsp;
             </em>
             <IntlMsg id="checkout.error.title" />
           </h2>
@@ -25,7 +25,7 @@ function ErrorMsg({ message }) {
     </div>
   );
 }
-const ErrorMsgWithLifecycle = lifecycle({
+const WarningMsgWithLifecycle = lifecycle({
   shouldComponentUpdate(nextProps) {
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
@@ -33,9 +33,9 @@ const ErrorMsgWithLifecycle = lifecycle({
     if (!_.isEqual(npCopy, tpCopy)) return true;
     return false;
   },
-})(ErrorMsg);
+})(WarningMsg);
 
-ErrorMsg.propTypes = {
+WarningMsg.propTypes = {
   message: PropTypes.string.isRequired,
 };
-export default ErrorMsgWithLifecycle;
+export default WarningMsgWithLifecycle;
