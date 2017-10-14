@@ -148,3 +148,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.form-error.is-visible span {
+  font-size: 10px;
+}

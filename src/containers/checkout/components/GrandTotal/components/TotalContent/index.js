@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import { intlShape, injectIntl, FormattedMessage as IntlMsg } from 'react-intl';
 import './assets/styles/style.css';
 
-import Discounts from '../';
+import { Discounts } from '../';
 
 function TotalContent({
   intl,
@@ -18,7 +18,7 @@ function TotalContent({
   handleOnChange,
 }) {
   return (
-    <div>
+    <div className="total__logged-in">
       <div className="logged-in__analysis-container">
 
         <div className="analysis-container__row">
@@ -27,7 +27,7 @@ function TotalContent({
           </div>
           <div className="row__price">
             <FontAwesome name="usd" />&nbsp;
-            {subTotal}
+            {subTotal.toFixed(2)}
           </div>
         </div>
 
