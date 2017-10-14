@@ -1,6 +1,7 @@
 export HdrBox from './HdrBox';
 export AcceptedCards from './AcceptedCards';
 export Country from './Country';
+export CcForm from './CcForm';
 export CvnModal from './CvnModal';
 export CvnAndZip from './CvnAndZip';
 export NameOnCard from './NameOnCard';

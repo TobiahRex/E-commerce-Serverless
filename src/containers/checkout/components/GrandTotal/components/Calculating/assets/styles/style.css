@@ -1,0 +1,22 @@
+.total__calculating-total {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.blurb-container__blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.spinner-container__fa-spinner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: Fontawesome, sans-serif;
+  color: #365899;
+  font-size: 46px;
+  line-height: 46px;
+  text-align: center;
+}

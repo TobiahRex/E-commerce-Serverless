@@ -90,13 +90,13 @@
               <div class="form__error-blurb">Not a valid phone number. Acceptable Format: "01234567890" Either 10 digits (Landline) or 11 digits (Cell).</div>
             </div>
           </div> -->
-          <div class="main-section__credit-card">
-            <!-- <div class="creidt-card__hdr-section"> -->
+          <!-- <div class="main-section__credit-card">
+            <div class="creidt-card__hdr-section">
               <div class="hdr-section__hdr-box">
                 <h2 class="hdr-box__hdr-blurb">Credit Card Information</h2>
               </div>
             </div>
-            <!-- <div class="credit-card__cc-type"> -->
+            <div class="credit-card__cc-type">
               <div class="cc-type__blurb">Accepted Credit Cards</div>
               <div class="cc-type__card-logos">
                 <div class="card-logos__fa-blurb"></div>
@@ -106,30 +106,30 @@
                 <div class="card-logos__fa-blurb"></div>
               </div>
             </div>
-            <!-- <div class="credit-card__form">
+            <div class="credit-card__form">
               <label class="form__label" for="Billing-Country">
                 Billing Country
                 <strong class="label__asterisk">*</strong>
               </label>
               <input class="form__text-field text-field__error w-input" data-name="Billing Country" id="Billing-Country" maxlength="256" name="Billing-Country" placeholder="Choose" required="required" type="text">
-            </div> -->
+            </div>
             <div class="credit-card__info-container-form">
-              <!-- <label class="form__label" for="Name-On-Card">
+              <label class="form__label" for="Name-On-Card">
                 Name On Card
                 <em class="label__asterisk">*</em>
               </label>
-              <input class="form__text-field text-field__error w-input" data-name="Name On Card" id="Name-On-Card" maxlength="256" name="Name-On-Card" required="required" type="text"> -->
+              <input class="form__text-field text-field__error w-input" data-name="Name On Card" id="Name-On-Card" maxlength="256" name="Name-On-Card" required="required" type="text">
 
-              <!-- <label class="form__label" for="Credit-Card-Number">
+              <label class="form__label" for="Credit-Card-Number">
                 Credit Card Number <em class="label__asterisk">*</em>
               </label>
-                <input class="form__text-field text-field__error w-input" data-name="Credit Card Number" id="Credit-Card-Number" maxlength="256" name="Credit-Card-Number" placeholder="**** **** **** ****" required="required" type="text"> -->
+                <input class="form__text-field text-field__error w-input" data-name="Credit Card Number" id="Credit-Card-Number" maxlength="256" name="Credit-Card-Number" placeholder="**** **** **** ****" required="required" type="text">
 
-                <!-- <label class="form__label" for="Expiration-Date">
+                <label class="form__label" for="Expiration-Date">
                   Expiration Date
                   <em class="label__asterisk">*</em>
                 </label>
-                <input class="form__text-field text-field__error w-input" data-name="Expiration Date" id="Expiration-Date" maxlength="256" name="Expiration-Date" placeholder="MM/YY" required="required" type="text"> -->
+                <input class="form__text-field text-field__error w-input" data-name="Expiration Date" id="Expiration-Date" maxlength="256" name="Expiration-Date" placeholder="MM/YY" required="required" type="text">
                 <label class="form__label" for="CVV">
                   CVV
                   <em class="label__asterisk">*</em> &nbsp;
@@ -139,58 +139,121 @@
                 </label>
                 <input class="form__text-field text-field__error w-input" data-name="CVV" id="CVV" maxlength="256" name="CVV" placeholder="CVV" required="required" type="text">
             </div>
-          </div>
+          </div> -->
 
           <div class="main-section__total">
             <div class="total__logged-in">
-              <div class="logged-in__hdr-section">
+              <!-- <div class="logged-in__hdr-section">
                 <div class="hdr-section__hdr-box">
                   <h2 class="hdr-box__hdr-blurb">Total</h2>
                 </div>
-              </div>
+              </div> -->
               <div class="logged-in__analysis-container">
                 <div class="analysis-container__row">
-                  <div class="row__blurb">Subtotal</div>
-                  <div class="row__price">$ 30.00</div>
+                  <div class="row__blurb">
+                    <IntlMsg id="checkout.total.subtotal.title" />
+                  </div>
+                  <div class="row__price">
+                    <FontAwesome name="usd" />&nbsp;
+                    {subTotal}
+                  </div>
                 </div>
-                <div class="analysis-container__row">
-                  <div class="row__blurb">Shipping &amp; Handling</div>
-                  <div class="price--free row__price">Free</div>
-                </div>
-                <div class="analysis-container__row">
-                  <div class="blurb__red row__blurb">Quantity Discount</div>
-                  <div class="price--red row__price">$ -30.00</div>
-                </div>
-                <div class="analysis-container__row">
+                <!-- <div class="analysis-container__row">
+                  <div class="row__blurb">
+                    <IntlMsg id="checkout.total.subtotal.shipping" />
+                  </div>
+                  <div class="price--free row__price">
+                    <IntlMsg id="checkout.total.subtotal.shipping.free" />
+                  </div>
+                </div> -->
+
+                <!-- DISCOUNTS START -->
+                <!-- <div class="analysis-container__row">
+                  <div class="blurb__red row__blurb">
+                    {title}&nbsp;
+                    <IntlMsg id="checkout.total.subtotal.discount.title" />
+                  </div>
+                  <div class="price--red row__price">
+                    <FontAwesome name="usd" />&nbsp;
+                    -{amount.toFixed(2)}
+                  </div>
+                </div> -->
+
+                <!-- <div class="analysis-container__row">
                   <div class="blurb__red row__blurb">Register Discount</div>
                   <div class="price--red row__price">$ -30.00</div>
-                </div>
-                <div class="analysis-container__row">
-                  <div class="row__blurb">Taxes</div>
-                  <div class="row__price">$ 3.03</div>
-                </div>
-                <div class="analysis-container__row">
-                  <div class="blurb__large row__blurb">Grand Total</div>
-                  <div class="price__large row__price">$ 33.03</div>
-                </div>
+                </div> -->
+
+                <!-- Discounts END -->
+
+                <!-- <div class="analysis-container__row">
+                  <div class="row__blurb">
+                  <IntlMsg id="checkout.total.taxes.title" />
+                  </div>
+                  <div class="row__price">
+                    <FontAwesome name="usd" />&nbsp;
+                    {taxes.toFixed(2)}
+                  </div>
+                </div> -->
+
+                <!-- <div class="analysis-container__row">
+                  <div class="blurb__large row__blurb">
+                    <IntlMsg id="checkout.total.grand-total.title" />
+                  </div>
+                  <div class="price__large row__price">
+                    <FontAwesome name="usd" />&nbsp;
+                    {grandTotal.toFixed(2)}
+                  </div>
+                </div> -->
               </div>
-              <div class="logged-in__checkbox">
-                <div class="checkbox__field w-checkbox"><input class="field__checkbox-button w-checkbox-input" data-name="Checkbox 3" id="checkbox-3" name="checkbox-3" type="checkbox"><label class="field__label w-form-label" for="checkbox-3">Required</label></div>
-                <div class="checkbox__blurb">I have read &amp; agree to all&nbsp;<strong class="blurb__underlined">Terms &amp; Conditions</strong></div>
-              </div>
+
+              <!-- <div class="logged-in__checkbox">
+                <div class="checkbox__field w-checkbox">
+                  <input class="field__checkbox-button w-checkbox-input" data-name="Checkbox 3" id="checkbox-3" name="checkbox-3" type="checkbox">
+                  <Validation.components.Input
+                    id="policy"
+                    type="checkbox"
+                    contaierClassName="field__checkbox-button"
+                    errorClassName="field__error-label"
+                    name="termsAgreement"
+                    value={!!termsAgreement ? termsAgreement : ''}
+                    validations={['required']}
+                    onChange={() => handleOnChange({
+                      target: {
+                        name: 'termsAgreement',
+                        value: !termsAgreement,
+                      },
+                    })}
+                  />&nbsp;
+                  <label class="field__error-label w-form-label" for="checkbox-3">
+                    Required
+                  </label>
+                </div>
+                <div class="checkbox__blurb">
+                  <IntlMsg id="checkout.total.grand-total.terms-agreements1" />&nbsp;
+                  <strong class="blurb__underlined">
+                    <Link to="/terms_and_conditions">
+                      <IntlMsg id="checkout.total.grand-total.terms-agreements2" />
+                    </Link>
+                  </strong>
+                </div>
+              </div> -->
             </div>
+
             <div class="total__logged-out">
               <div class="logged-out__blurb">Your cart is currently Empty</div>
             </div>
-            <div class="total__calculating-total">
+
+            <!-- <div class="total__calculating-total">
               <div class="calculating-total__spinner-container">
                 <div class="spinner-container__fa-spinner"></div>
               </div>
               <div class="calculating-total__blurb-container">
                 <div class="blurb-container__blurb">Calculating your total...</div>
               </div>
-            </div>
+            </div> -->
           </div>
+
           <div class="main-section__loading-state">
             <div class="loading-state__spinner">
               <div class="spinner__blurb"></div>
@@ -199,6 +262,7 @@
               <div class="blurb__text">Please Wait <br>while we submit your order....</div>
             </div>
           </div>
+
           <div class="main-section__success">
             <div class="success__hdr-section">
               <div class="hd-section__hdr-container">
