@@ -12,7 +12,7 @@ function CreditCardNumber() {
         <IntlMsg id="checkout.credit-card.number" />&nbsp;
         <em className="label__asterisk">*</em>
       </label>
-      <div id="sq-card-number" />
+      <input id="sq-card-number" required />
     </div>
   );
 }

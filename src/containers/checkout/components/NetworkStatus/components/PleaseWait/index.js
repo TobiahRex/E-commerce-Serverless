@@ -14,7 +14,7 @@ function PleaseWait() {
         </div>
       </div>
       <div className="loading-state__blurb">
-        <div className="blurb__text">
+        <div className="loading-blurb__text">
           <IntlMsg id="checkout.loading.title" />
           <br />
           <IntlMsg id="checkout.loading.subtitle" />

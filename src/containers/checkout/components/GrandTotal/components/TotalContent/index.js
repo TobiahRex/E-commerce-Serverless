@@ -85,7 +85,6 @@ function TotalContent({
       <div className="logged-in__checkbox">
         <div className="checkbox__field">
           <Validation.components.Input
-            id="policy"
             type="checkbox"
             containerClassName="field__checkbox-button"
             errorClassName="field__error-label"
@@ -98,6 +97,7 @@ function TotalContent({
                 value: !termsAgreement,
               },
             })}
+            required
           />&nbsp;
         </div>
         <div className="checkbox__blurb">

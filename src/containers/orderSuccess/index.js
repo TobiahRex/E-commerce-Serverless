@@ -201,7 +201,7 @@ class OrderSuccess extends React.Component {
             >
               <span className="flex-btn-parent">
                 <FontAwesome name="angle-double-left" />&nbsp;
-                <IntlMsg id="checkout.success.actions.back-to-home" />
+                <IntlMsg id="checkout.success.actions.back" />
               </span>
             </button>
           </div>
