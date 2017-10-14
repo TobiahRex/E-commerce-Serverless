@@ -1,29 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import { withHandlers } from 'recompose';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import {
   ErrorMsg,
   WarningMsg,
   PleaseWait,
+  SuccessMsg,
+  BackBtn,
 } from './components';
 
 function NetworkStatus({ routerBack, renderHelper }) {
   return (
     <div>
       {renderHelper()}
-      <div className="checkout__back-home-btn ">
-        <button
-          className="sweep-right"
-          data-slug="/"
-          type="button"
-          onClick={routerBack}
-        >
-          <FontAwesome name="angle-double-left" />&nbsp;
-          <IntlMsg id="checkout.action-btn.back-to-home" />
-        </button>
-      </div>
+      <BackBtn routerBack={routerBack} />
     </div>
   );
 }
@@ -43,35 +33,13 @@ const NetworkStatusWithHandlers = withHandlers({
     //   message = toast.message[IntlLocale];
     // }
 
-    const hardError = <ErrorMsg message={message} />;
-
-    const softError = <WarningMsg message={message} />;
-
-    const warningMsg = <WarningMsg message={message} />;
-
-    const loadingMsg = <PleaseWait />;
-
-    const successMsg = (
-      <div className="checkout__successful-purchase">
-        <div className="successful-purchase__title">
-          <FontAwesome className="success-icon" name="check-circle" />&nbsp;
-          <h2><IntlMsg id="checkout.submit.success.title" /></h2>
-        </div>
-        <br />
-        <p>
-          <IntlMsg id="checkout.submit.success.message" />&nbsp;
-          <FontAwesome className="success-spinner-icon" name="spinner" pulse />
-        </p>
-      </div>
-    );
-
-    if (hard) return hardError;
-    if (soft) return softError;
-    if (toast.type === 'error') return hardError;
-    if (toast.type === 'warning') return warningMsg;
-    if (toast.type === 'success') return successMsg;
-    if (!showError && loading) return loadingMsg;
-    if (!showError && success) return successMsg;
+    if (hard) return <ErrorMsg message={message} />;
+    if (soft) return <WarningMsg message={message} />;
+    if (toast.type === 'error') return <ErrorMsg message={message} />;
+    if (toast.type === 'warning') return <WarningMsg message={message} />;
+    if (toast.type === 'success') return <SuccessMsg />;
+    if (!showError && loading) return <PleaseWait />;
+    if (!showError && success) return <SuccessMsg />;
     return '';
   },
 })(NetworkStatus);
