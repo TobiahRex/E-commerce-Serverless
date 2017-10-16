@@ -1,6 +1,6 @@
 export BreadCrumb from './BreadCrumb';
 // export BillingAddress from './BillingAddress/';
-export ShippingAddress from './ShippingAddress/';
+export ShippingAddress from './ShippingAddress';
 export ShippingMethod from './ShippingMethod/';
 export CreditCardInfo from './CreditCardInfo/';
 export ProductReview from './ProductReview/';
