@@ -112,7 +112,7 @@ class ProductContent extends React.Component {
           />
           <ProductTextBlurb description={blurb} />
         </ProductText>
-        
+
         <ProductRegisterPromotion
           loggedIn={loggedIn}
           modalHandler={modalHandler}

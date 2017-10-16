@@ -597,9 +597,9 @@ class SingleProduct extends React.Component {
         {
           data.loading ?
           (<h1 className="main__loading">
-            <FontAwesome name="spinner" pulse size="3x" />
+            <FontAwesome name="spinner" pulse size="5x" />
             <br />
-            <IntlMsg id="product.single.loading" />
+            <IntlMsg id="product.single.loading" className="loading-blurb" />
           </h1>) :
           <div className="product-main">
             <ProductImgContent

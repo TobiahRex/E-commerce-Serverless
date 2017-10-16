@@ -48,13 +48,16 @@ function Header({ mobile, height }) {
     </div>
   );
 }
-const { bool, number } = PropTypes;
+const {
+  // bool,
+  number,
+} = PropTypes;
 Header.propTypes = {
-  mobile: bool,
+  // mobile: bool,
   height: number,
 };
 Header.defaultProps = {
-  mobile: false,
+  // mobile: false,
   height: 0,
 };
 export default Header;

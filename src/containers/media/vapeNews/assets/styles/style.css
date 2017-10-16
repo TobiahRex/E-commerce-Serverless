@@ -32,7 +32,7 @@
 
 .top-section {
   position: relative;
-  border-radius: 50px;
+  border-radius: 50%;
   text-decoration: none;
 }
 
@@ -110,7 +110,7 @@ h1.header__text {
   max-height: 31px;
   max-width: 31px;
   margin-left: 0px;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 
 .author-info__author-text--container {
@@ -339,7 +339,7 @@ h1.header__text {
 }
 
 .image {
-  border-radius: 50px;
+  border-radius: 50%;
 }
 
 .image-container--feed-image {

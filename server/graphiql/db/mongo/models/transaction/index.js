@@ -12,8 +12,6 @@ import Sagawa from '../sagawa';
 import Product from '../product';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  getSquareToken as GetSquareToken,
-  getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
 } from './helpers';
 import {
@@ -33,19 +31,19 @@ require('dotenv').config({ path: path.resolve('.dev-server-env'), silent: true }
 *
 * @return {string} locationId.
 */
-transactionSchema.statics.fetchSquareLocation = country =>
+transactionSchema.statics.fetchSquareLocation = () =>
 new Promise((resolve, reject) => {
   console.log('@fetchSquareLocation');
 
   axios({
     method: 'get',
     url: 'https://connect.squareup.com/v2/locations',
-    headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
+    headers: { Authorization: `Bearer ${process.env.US_SQUARE_ACCESS_TOKEN}` },
   })
   .then((response) => {
     console.log('\nSUCCEEDED: Fetch Square Location: ', response.data);
 
-    const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
+    const locations = response.data.locations.filter(({ name }) => name === process.env.US_SQUARE_LOCATION);
 
     if (locations.length) {
       const newLocation = { ...locations[0] };
@@ -111,7 +109,6 @@ new Promise((resolve, reject) => {
     shippingPrefecture,
     shippingPostalCode,
     shippingCountry,
-    billingCountry,
     amount,
     currency,
     cardNonce,
@@ -143,7 +140,7 @@ new Promise((resolve, reject) => {
     },
     {
       headers: {
-        Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
+        Authorization: `Bearer ${process.env.US_SQUARE_ACCESS_TOKEN}`,
       },
     },
   )
@@ -247,7 +244,7 @@ new Promise((resolve, reject) => {
         },
       },
     }, { new: true }),
-    Transaction.fetchSquareLocation(square.billingCountry),
+    Transaction.fetchSquareLocation(),
     Product.find({ _id: { $in: cart.map(({ _id }) => _id) } }).exec(),
   ])
   .then((results) => { // eslint-disable-line
@@ -521,7 +518,7 @@ new Promise((resolve, reject) => {
         },
       }, {
         headers: {
-          Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
+          Authorization: `Bearer ${process.env.US_SQUARE_ACCESS_TOKEN}`,
         },
       });
     }
