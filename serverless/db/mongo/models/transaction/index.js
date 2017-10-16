@@ -6,8 +6,6 @@ import moment from 'moment';
 import { Promise as bbPromise } from 'bluebird';
 import transactionSchema from '../../schemas/transactionSchema';
 import {
-  getSquareToken as GetSquareToken,
-  getSquareLocation as GetSquareLocation,
   handleSquareErrors as HandleSquareErrors,
 } from './helpers';
 import {
@@ -29,19 +27,19 @@ export default (db) => {
   *
   * @return {string} locationId.
   */
-  transactionSchema.statics.fetchSquareLocation = country =>
+  transactionSchema.statics.fetchSquareLocation = () =>
   new Promise((resolve, reject) => {
     console.log('@fetchSquareLocation');
 
     axios({
       method: 'get',
       url: 'https://connect.squareup.com/v2/locations',
-      headers: { Authorization: `Bearer ${GetSquareToken(country)}` },
+      headers: { Authorization: `Bearer ${process.env.US_SQUARE_ACCESS_TOKEN}` },
     })
     .then((response) => {
       console.log('\nSUCCEEDED: Fetch Square Location: ', response.data);
 
-      const locations = response.data.locations.filter(({ name }) => name === GetSquareLocation(country));
+      const locations = response.data.locations.filter(({ name }) => name === process.env.US_SQUARE_LOCATION);
 
       if (locations.length) {
         const newLocation = { ...locations[0] };
@@ -65,6 +63,7 @@ export default (db) => {
           };
           resolve(newLocation);
         }
+        resolve(newLocation);
       } else {
         console.log('Did not find requested location in Square locations.');
         resolve({
@@ -105,9 +104,8 @@ export default (db) => {
       shippingPrefecture,
       shippingPostalCode,
       shippingCountry,
-      billingCountry,
       amount,
-      // currency,
+      currency,
       cardNonce,
     } = chargeInfo;
 
@@ -128,7 +126,7 @@ export default (db) => {
         },
         amount_money: {
           amount,
-          currency: 'USD',
+          currency,
         },
         card_nonce: cardNonce,
         reference_id: transactionId,
@@ -137,7 +135,7 @@ export default (db) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${GetSquareToken(billingCountry)}`,
+          Authorization: `Bearer ${process.env.US_SQUARE_ACCESS_TOKEN}`,
         },
       },
     )
@@ -553,7 +551,7 @@ export default (db) => {
           },
         }, {
           headers: {
-            Authorization: `Bearer ${GetSquareToken(dbTransaction.billingCountry)}`,
+            Authorization: `Bearer ${process.env.US_SQUARE_ACCESS_TOKEN}`,
           },
         });
       }
