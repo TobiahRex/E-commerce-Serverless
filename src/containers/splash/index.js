@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { WebflowJs, WebflowAnimations } from './assets/utils/index';
+import { WebflowAnimations } from './assets/utils/index';
 import {
   Header,
   Reviews,
@@ -43,9 +43,10 @@ class Splash extends React.Component {
         <div className="splash-container">
           <Header
             height={this.calculateHeight(true)}
-            mobile={this.props.mobile}
           />
-          <Reviews />
+          <Reviews
+            height={this.calculateHeight(true)}
+          />
           <FastestDelivery />
           <How />
           <Steps />

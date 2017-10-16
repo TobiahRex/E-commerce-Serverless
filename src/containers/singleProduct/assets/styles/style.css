@@ -340,6 +340,14 @@ h1.main__loading span {
   box-shadow: none;
 }
 
+.product-banner__banner-container:hover div.banner-container__banner-text span {
+  color: #FFFFFF;
+}
+
+.product-banner__banner-container.sweep-right {
+  /*display: */
+}
+
 .banner-container__banner-text {
   position: absolute;
   font-family: Ubuntu, Helvetica, sans-serif;

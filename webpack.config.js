@@ -196,17 +196,17 @@ const prodConfig = {
     rules: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
-        test: /(\.css)$/,
-        use: extractCSS.extract({
-          fallback: 'style-loader',
-          use: ['css-loader'],
-        }),
-      },
-      {
         test: /(\.s[ac]ss)$/,
         use: extractSCSS.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'postcss-loader', 'sass-loader'],
+        }),
+      },
+      {
+        test: /(\.css)$/,
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
         }),
       },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?name=[name].[ext]' },

@@ -51,9 +51,9 @@
   nav.navbar-web {
     @include prefixflex();
     justify-content: center;
-    position: fixed;
-    z-index: 20;
-    @include prefixed(box-shadow, 3px 4px 3px rgba(1,1,1,.25));
+    // position: fixed;
+    // z-index: 20;
+    // @include prefixed(box-shadow, 3px 4px 3px rgba(1,1,1,.25));
   }
   nav.navbar__mobile {
     display: none;

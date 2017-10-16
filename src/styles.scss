@@ -121,7 +121,7 @@ a {
   #main-section {
     @include prefixflex();
     justify-content: center;
-    padding-top: 12rem;
+    // padding-top: 12rem;
     min-height: 55rem;
   }
 }

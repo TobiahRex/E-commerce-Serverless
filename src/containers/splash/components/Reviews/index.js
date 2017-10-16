@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-export default function Reviews() {
+function Reviews({ height }) {
   return (
-    <div className="splash-reviews">
+    <div className="splash-reviews" style={{ height: height / 2 }}>
       <div className="splash-reviews__header">
         <h2 className="splash-reviews__header--text">
           <IntlMsg id="home.reviews.title" />
@@ -95,3 +96,17 @@ export default function Reviews() {
     </div>
   );
 }
+
+const {
+  // bool,
+  number,
+} = PropTypes;
+Reviews.propTypes = {
+  // mobile: bool,
+  height: number,
+};
+Reviews.defaultProps = {
+  // mobile: false,
+  height: 0,
+};
+export default Reviews;
