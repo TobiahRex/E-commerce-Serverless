@@ -6,7 +6,9 @@ import colors from 'colors'; // eslint-disable-line
 import webpackEnvs from './webpack.envs';
 
 const lambdaFunctionName = process.env.NODE_ENV === 'production' ? webpackEnvs.production.LAMBDA_FUNCTION_NAME : webpackEnvs.troubleshoot.LAMBDA_FUNCTION_NAME;
+
 const lambdaRegion = process.env.NODE_ENV === 'production' ? webpackEnvs.production.LAMBDA_REGION : webpackEnvs.troubleshoot.LAMBDA_REGION;
+
 const lambdaPayload = process.env.NODE_ENV === 'production' ? webpackEnvs.production.LAMBDA_PAYLOAD : webpackEnvs.troubleshoot.LAMBDA_PAYLOAD;
 
 exec(`aws lambda invoke --invocation-type RequestResponse --function-name ${lambdaFunctionName} --region ${lambdaRegion} --log-type None --payload ${lambdaPayload} lambdaOutput.json`, (err, result) => {
