@@ -38,3 +38,8 @@ function enableScroll() {
     document.onkeydown = null;
   }
 }
+
+export default ({
+  disableScroll,
+  enableScroll,
+});
