@@ -20,6 +20,9 @@ export default {
     FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID_PROD),
     DISTRIBUTION_ID: JSON.stringify(process.env.DISTRIBUTION_ID_PROD),
     BASE_URL: JSON.stringify(process.env.BASE_URL_PROD),
+    LAMBDA_FUNCTION_NAME: JSON.stringify(process.env.LAMBDA_FUNCTION_NAME_PROD),
+    LAMBDA_REGION: JSON.stringify(process.env.LAMBDA_REGION_PROD),
+    LAMBDA_PAYLOAD: JSON.stringify(process.env.LAMBDA_PAYLOAD_PROD),
   },
   troubleshoot: {
     US_SQUARE_APPLICATION_ID: JSON.stringify(process.env.US_SQUARE_APPLICATION_ID_TSH),
@@ -37,6 +40,9 @@ export default {
     FACEBOOK_APP_ID: JSON.stringify(process.env.FACEBOOK_APP_ID_TSH),
     DISTRIBUTION_ID: JSON.stringify(process.env.DISTRIBUTION_ID_TSH),
     BASE_URL: JSON.stringify(process.env.BASE_URL_TSH),
+    LAMBDA_FUNCTION_NAME: JSON.stringify(process.env.LAMBDA_FUNCTION_NAME_TSH),
+    LAMBDA_REGION: JSON.stringify(process.env.LAMBDA_REGION_TSH),
+    LAMBDA_PAYLOAD: JSON.stringify(process.env.LAMBDA_PAYLOAD_TSH),
   },
   development: {
     US_SQUARE_APPLICATION_ID: JSON.stringify(process.env.US_SQUARE_APPLICATION_ID_DEV),
