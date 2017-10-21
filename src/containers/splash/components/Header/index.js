@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import { FormattedMessage as IntlMsg } from 'react-intl';
-import { NavBob } from '../';
 
-const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+// const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
 
-function Header({ mobile, height }) {
+function Header({ height }) {
   return (
     <div className="splash-img__background" style={{ height }}>
       <div className="splash-img">
@@ -43,7 +42,6 @@ function Header({ mobile, height }) {
             </div>
           </div>
         </div>
-        { !mobile && <NavBob className="splash-navbob" height={height} />}
       </div>
     </div>
   );
