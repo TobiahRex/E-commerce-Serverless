@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FontAwesome from 'react-fontawesome';
+import './assets/styles/style.css';
 
 const { objectOf, any } = PropTypes;
 
@@ -15,11 +17,11 @@ class NavbarMobile extends React.PureComponent {
     return (
       <nav className="navbar">
         <div className="navbar-container">
-          <a className="navbar__hamburger-container w-inline-block" data-ix="mobile-navbar-ppic-fade-in" href="#">
+          <button className="navbar__hamburger-container w-inline-block" data-ix="mobile-navbar-ppic-fade-in" type="button">
             <div className="hamburger-btn-top" />
             <div className="hamburger-btn-mid" />
             <div className="hamburger-btn-bottom" />
-          </a>
+          </button>
           <div className="navbar__action-section">
             <a className="navbar__logo-container w-inline-block" href="/">
               <img alt="logo" className="image" sizes="(max-width: 767px) 31vw, (max-width: 991px) 20vw, 766px" src="images/nj2jp-small-logo-2-white_shadow.png" srcSet="images/nj2jp-small-logo-2-white_shadow-p-500.png 500w, images/nj2jp-small-logo-2-white_shadow.png 766w" />
@@ -183,18 +185,21 @@ class NavbarMobile extends React.PureComponent {
                 CONNECT WITH US
               </h3>
               <div className="media-btns__container">
-                <button className="social-media-btn w-inline-block">
-                  <div>FA</div>
-                </button>
-                <button className="social-media-btn w-inline-block" >
-                  <div>FA</div>
-                </button>
-                <button className="social-media-btn w-inline-block" >
-                  <div>FA</div>
-                </button>
-                <button className="social-media-btn w-inline-block" >
-                  <div>FA</div>
-                </button>
+                <a className="social-media-btn w-inline-block" href="https://www.facebook.com/nj2jp/" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <FontAwesome name="facebook" />
+                  </div>
+                </a>
+                <a className="social-media-btn w-inline-block" href="https://www.instagram.com/nicjuice2japan/" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <FontAwesome name="instagram" />
+                  </div>
+                </a>
+                <a className="social-media-btn w-inline-block" href="https://www.twitter.com/nicjuice2japan/" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <FontAwesome name="twitter" />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
