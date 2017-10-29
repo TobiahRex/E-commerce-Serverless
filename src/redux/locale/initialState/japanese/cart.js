@@ -1,7 +1,7 @@
 export default {
   'cart.title': 'ショッピングカート',
-  'cart.empty.header': 'Shopping Cart Is Empty',
-  'cart.empty.subheader': 'Oops :(',
+  'cart.empty.header': 'ショッピングカートが空です',
+  'cart.empty.subheader': 'おっとっと :(',
   'cart.empty.message': 'ショッピングカートに商品がありません',
   'cart.empty.action-btn': 'ショッピングを開始する',
   'cart.breadCrumb.paths1': '自宅',
