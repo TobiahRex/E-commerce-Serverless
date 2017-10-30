@@ -23,8 +23,8 @@ export default (
     {Routes.InfoRoutes()}
     {Routes.AuthRoutes(auth, parseAuthHash)}
     {Routes.CheckoutRoutes()}
-    {Routes.NotFoundRoute()}
     {Routes.TrackingRoute()}
+    {Routes.NotFoundRoute()}
     {/* {Routes.UserDashboardRoutes(requireAuth)} */}
     {/* {Routes.AdminDashboardRoutes(requireAuth)} */}
   </Route>
