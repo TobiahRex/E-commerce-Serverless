@@ -5,7 +5,7 @@ export Cart from './Cart';
 export CartProductRow from './CartProductRow';
 export ClearCartBtn from './ClearCartBtn';
 
-export EmptyCart from './EmptyCart/emptyCart';
+export EmptyCart from './EmptyCart';
 export ErrorMsg from './ErrorMsg';
 
 export HdrPage from './HdrPage';
