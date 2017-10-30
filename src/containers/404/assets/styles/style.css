@@ -1,0 +1,125 @@
+_404-page__img-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 180px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.img-container__img {
+  width: 500px;
+  height: 240px;
+}
+
+._404-page__blurb-container {
+  display: block;
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.hdr-box__blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 48px;
+  line-height: 50px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.blurb-container__blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 20px;
+  line-height: 2em;
+  text-align: center;
+}
+
+.sub-hdr-box__blurb {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-size: 24px;
+  line-height: 50px;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  ._404-page__img-container {
+    padding-top: 120px;
+  }
+  ._404-page__blurb-container {
+    padding-left: 20px;
+  }
+  .sub-hdr-box__blurb {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  ._404-page__img-container {
+    padding-top: 80px;
+  }
+  .img-container__img {
+    width: 380px;
+    height: 180px;
+  }
+  ._404-page__blurb-container {
+    padding-left: 0px;
+  }
+  .hdr-box__blurb {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
+    text-align: center;
+  }
+  .blurb-container__blurb {
+    font-size: 14px;
+    line-height: 1.5em;
+    text-align: center;
+  }
+  .sub-hdr-box__blurb {
+    margin-top: 0px;
+    font-size: 18px;
+    line-height: 2em;
+    text-align: center;
+  }
+}
+
+@media (max-width: 479px) {
+  ._404-page__img-container {
+    padding: 50px 5px 0px;
+  }
+  .img-container__img {
+    height: 150px;
+  }
+  .hdr-box__blurb {
+    font-size: 24px;
+  }
+  .blurb-container__blurb {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5em;
+  }
+  .sub-hdr-box__blurb {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 18px;
+    line-height: 1.5em;
+  }
+}

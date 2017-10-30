@@ -1,6 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router';
-import NotFound from '../containers/404/notFound404';
+import { Route, Redirect } from 'react-router';
+import NotFound from '../containers/404/index';
 
-const NotFoundRoute = () => (<Route path="/404" component={NotFound} />);
+const NotFoundRoute = () => (
+  <div>
+    <Route path="/404" component={NotFound} />
+    <Redirect from="*" to="/404" />
+  </div>
+);
 export default NotFoundRoute;
