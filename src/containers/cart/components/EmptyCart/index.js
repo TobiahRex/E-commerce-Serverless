@@ -4,6 +4,9 @@ import FontAwesome from 'react-fontawesome';
 import { goBack } from 'react-router';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import { connect } from 'react-redux';
+import { lifecycle } from 'recompose';
+import { WebflowAnimations } from './assets/utils';
+import './assets/styles/style.css';
 
 function EmptyCart({ routerBack }) {
   return (
@@ -52,8 +55,13 @@ function EmptyCart({ routerBack }) {
 const EmptyCartWithState = connect(null, dispatch => ({
   routerBack: () => dispatch(goBack()),
 }))(EmptyCart);
+const EmptyCartWithStateAndLifecycle = lifecycle({
+  ComponentDidMount: () => {
+    WebflowAnimations();
+  },
+})(EmptyCartWithState);
 
 EmptyCart.propTypes = {
   routerBack: PropTypes.func.isRequired,
 };
-export default EmptyCartWithState;
+export default EmptyCartWithStateAndLifecycle;
