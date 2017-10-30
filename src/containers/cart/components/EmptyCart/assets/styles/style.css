@@ -112,10 +112,11 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #365899;
+  background-color: #FC2525;
   box-shadow: 0 3px 20px 0 rgba(0, 0, 0, .5);
   text-decoration: none;
   cursor: pointer;
+  outline: none;
 }
 
 .container__lg-button:active {
@@ -160,14 +161,21 @@
   font-size: 18px;
 }
 
-html.w-mod-js *[data-ix="cart-animation"] {
+.empty-cart__subheader {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  color: #365899;
+  font-weight: 700;
+  text-align: center;
+}
+
+html.w-mod-js *[data-ix="empty-cart-animation"] {
   opacity: 0;
   -webkit-transform: scale(0.9, 0.9);
   -ms-transform: scale(0.9, 0.9);
   transform: scale(0.9, 0.9);
 }
 
-html.w-mod-js *[data-ix="slide-from-above"] {
+html.w-mod-js *[data-ix="empty-cart-slide-from-above"] {
   -webkit-transform: translate(0px, -100px);
   -ms-transform: translate(0px, -100px);
   transform: translate(0px, -100px);

@@ -1,6 +1,6 @@
 export default {
   'cart.title': 'ショッピングカート',
-  'cart.empty.header': 'ショッピングカートが空です',
+  'cart.empty.header': 'カートが空',
   'cart.empty.subheader': 'おっとっと :(',
   'cart.empty.message': 'ショッピングカートに商品がありません',
   'cart.empty.action-btn': 'ショッピングを開始する',
