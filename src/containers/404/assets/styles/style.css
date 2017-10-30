@@ -1,14 +1,13 @@
-_404-page__img-container {
+._404-page__img-container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   max-width: 1080px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 180px;
-  padding-bottom: 20px;
-  padding-left: 10px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
