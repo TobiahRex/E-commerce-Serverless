@@ -150,7 +150,7 @@ class ExpressCheckout extends React.Component {
     if (!!nextProps.postalError) {
       this.form.showError('shippingPostalCode', 'postalApi');
     }
-
+    // props comparison
     if (!_.isEqual(npCopy, tpCopy)) {
       this.setState(prevState => ({
         ...prevState,
@@ -158,6 +158,7 @@ class ExpressCheckout extends React.Component {
       }));
     }
 
+    // state comparison
     if (
       !ArrayDeepEquality(this.state.cart, nextProps.cart) ||
       !_.isEqual(this.state.total, nextProps.total)
@@ -173,8 +174,10 @@ class ExpressCheckout extends React.Component {
     const npCopy = _.cloneDeep(nextProps);
     const tpCopy = _.cloneDeep(this.props);
 
+    // props comparison
     if (!_.isEqual(npCopy, tpCopy)) return true;
 
+    // state comparison
     if (!_.isEqual(nextState, this.state)) return true;
 
     return false;

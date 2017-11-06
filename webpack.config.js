@@ -119,10 +119,6 @@ const prodConfig = {
     reasons: true,
     chunks: true,
   },
-  // entry: [
-  //   // './src/styles.scss',
-  //   './src/index.js',
-  // ],
   entry: {
     app: path.resolve('./src/index'),
   },

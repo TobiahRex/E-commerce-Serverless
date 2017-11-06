@@ -16,6 +16,7 @@ import legalPrivacyPolicy from './legalPrivacyPolicy';
 import legalTermsPolicy from './legalTermsPolicy';
 import legalNicotineDisclaimer from './legalNicotineDisclaimer';
 import legalFaqs from './legalFaqs';
+import notFound from './notFound';
 
 export default {
   messages: {
@@ -37,5 +38,6 @@ export default {
     ...legalShippingPolicy,
     ...legalNicotineDisclaimer,
     ...legalFaqs,
+    ...notFound,
   },
 };
