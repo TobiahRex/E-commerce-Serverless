@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 
 export default () => (
   <a
-    href="http://instragram.com/nicjuice2japan"
+    href="http://instagram.com/nicjuice2japan"
     id="media-dropdown-instagram-icon"
     className="media-dropdown-content-bottomThird-innerContainer-smedia"
   >

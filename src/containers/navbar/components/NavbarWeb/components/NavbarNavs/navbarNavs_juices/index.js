@@ -52,7 +52,7 @@ class NavbarNavsShop extends Component {
   }
 
   render() {
-    const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
+    // const juices = ['pina_colada', 'french_vanilla_mocha', 'strawberries_n_cream', 'fruity_bamm_bamm', 'papple_berry', 'key_lime_pie'];
     return (
       <div className="navbar-actionSection-lower-shop" >
         <Link
