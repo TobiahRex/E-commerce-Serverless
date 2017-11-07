@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import {
-  // NavbarLower,
-} from './components';
+// import {
+//   NavbarLower,
+// } from './components';
 import './assets/styles/style.css';
 
 function NavbarWebMini() {
@@ -353,7 +353,10 @@ function NavbarWebMini() {
             </div>
             <div className="product-stage__product-list-card">
               <div className="product-list-card__img-container">
-                <img className="img-container__cart-card-img" src="images/nj2jp-fvm-small-shadow.png" />
+                <img
+                  alt="French Vanilla Mocha"
+                  className="img-container__cart-card-img" src="images/nj2jp-fvm-small-shadow.png"
+                />
               </div>
               <div className="product-list-card__product-info">
                 <div className="product-info__product-title">
@@ -416,12 +419,12 @@ function NavbarWebMini() {
             </div>
           </div>
           <div className="floating-cart-container__btn-section">
-            <a className="btn-section__checkout-btn w-button" href="#">
+            <Link className="btn-section__checkout-btn w-button" to="/express_checkout">
               Checkout
-            </a>
-            <a className="btn-section__view-cart-btn w-button" href="#">
+            </Link>
+            <Link className="btn-section__view-cart-btn w-button" to="/cart">
               View Cart
-            </a>
+            </Link>
           </div>
         </div>
       </div>
