@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import {
   // NavbarLower,
 } from './components';
@@ -217,22 +218,22 @@ function NavbarWebMini() {
           </div>
           <div className="foating-media-container__bottom-section">
             <div className="bottom-section__inner-container">
-              <button
+              <Link
                 className="inner-container__media-icon media-icon__fb w-inline-block"
                 data-ix="nav-s-media-social-hover"
                 href="http://facebook.com/nj2jp"
               >
                 <p className="media-icon__fa-icon">
-                  
+                  <FontAwesome name="facebook" />
                 </p>
-              </button>
+              </Link>
               <a
                 className="inner-container__media-icon media-icon__twitter w-inline-block"
                 data-ix="nav-s-media-social-hover"
                 href="http://twitter.com/nicjuice2japan"
               >
                 <p className="media-icon__fa-icon">
-                  
+                  <FontAwesome name="twitter" />
                 </p>
               </a>
               <a
@@ -241,7 +242,7 @@ function NavbarWebMini() {
                 href="http://instagram.com/nicjuice2japan"
               >
                 <p className="media-icon__fa-icon">
-                  
+                  <FontAwesome name="instragram" />
                 </p>
               </a>
             </div>
@@ -298,14 +299,14 @@ function NavbarWebMini() {
       </div>
       <div className="navbar__cart-dropdown">
         <div className="cart-dropdown__floating-cart-container" data-ix="nav-s-cart-hover">
-          <a className="floating-cart-container__promotion-box w-inline-block" href="#">
+          <Link className="floating-cart-container__promotion-box w-inline-block" to="/login">
             <p className="promotion-box__promotion-blurb">
               BUY 4 BOTTLES
             </p>
             <p className="promotion-box__promotion-blurb">
               GET 25% OFF
             </p>
-          </a>
+          </Link>
           <div className="floating-cart-container__recently-added">
             <p className="recently-added__blurb-text">
               Recently Added Item(s)
@@ -314,7 +315,11 @@ function NavbarWebMini() {
           <div className="floating-cart-container__product-stage">
             <div className="product-stage__product-list-card">
               <div className="product-list-card__img-container">
-                <img className="img-container__cart-card-img" src="images/nj2jp-fvm-small-shadow.png" />
+                <img
+                  alt="French Vanilla Mocha"
+                  className="img-container__cart-card-img"
+                  src="images/nj2jp-fvm-small-shadow.png"
+                />
               </div>
               <div className="product-list-card__product-info">
                 <div className="product-info__product-title">
@@ -336,12 +341,12 @@ function NavbarWebMini() {
               <div className="product-list-card__card-btn">
                 <div className="card-btn__nav-cart-edit">
                   <p className="nav-cart-edit__fa-text">
-                    
+                    <FontAwesome name="pencil" />
                   </p>
                 </div>
                 <div className="card-btn__nav-cart-delete">
                   <p className="nav-cart-delete__fa-text">
-                    
+                    <FontAwesome name="trash-o" />
                   </p>
                 </div>
               </div>
