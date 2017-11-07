@@ -183,31 +183,37 @@ function NavbarWebMini() {
             </Link>
           </div>
           <div className="floating-media-container__middle-section">
-            <div className="middle-section__contact--img-container">
+            <Link className="middle-section__contact--img-container" to="/contact_us">
               <img
+                alt="Contact Us"
                 className="img-container__media-section-img media-section-img--contact-us"
                 data-ix="nav-s-media-hdr-hover-2"
-                src="images/navbar_web_media_contactUs.png" />
-            </div>
-            <div className="middle-section__reviews--img-container">
+                src="images/navbar_web_media_contactUs.png"
+              />
+            </Link>
+            <Link className="middle-section__reviews--img-container" to="/juice_reviews">
               <img
+                alt="Juice Reviews"
                 className="img-container__media-section-img media-section-img--juice-reviews"
                 data-ix="nav-s-media-img-hover"
-                src="images/navbar_web_media_juiceReviews.png" />
-            </div>
-            <div className="middle-section__news--img-container">
+                src="images/navbar_web_media_juiceReviews.png"
+              />
+            </Link>
+            <Link className="middle-section__news--img-container" to="/vape_news">
               <img
+                alt="Vape News"
                 className="img-container__media-section-img media-section-img--vape-news"
                 data-ix="nav-s-media-img-hover"
                 src="images/navbar_web_media_vapeNews.png"
               />
-            </div>
-            <div className="middle-section__stories--img-container">
+            </Link>
+            <Link className="middle-section__stories--img-container" to="/user_stories">
               <img
+                alt="User Stories"
                 className="img-container__media-section-img media-section-img--usr-stories"
                 src="images/navbar_web_media_userStories.png"
               />
-            </div>
+            </Link>
           </div>
           <div className="foating-media-container__bottom-section">
             <div className="bottom-section__inner-container">
