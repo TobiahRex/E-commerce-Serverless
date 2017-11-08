@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { lifecycle } from 'recompose';
-import {
-  NavbarHdrSxn,
-  NavbarLogoSxn,
-} from './components';
 import './assets/styles/style.css';
 import {
   WebflowJs,
   WebflowAnimations,
   WebflowAnimations2,
 } from './assets/utils';
+import {
+  NavbarHdrSxn,
+  NavbarLogoSxn,
+} from './components';
 
 function NavbarWeb() {
   return (
@@ -79,22 +79,23 @@ function NavbarWeb() {
             </div>
             <div className="action-section__navbar-action-bottom">
               <div className="navbar-action-bottom__nav-container">
-                <Link className="nav-container__hdr-section w-inline-block" data-ix="nav-b-juice-hover" to="#">
-                  <div className="hdr-section__option--title">
-                    juices
-                  </div>
-                </Link>
-                <NavbarHdrSxn header="juices" />
-                <div className="nav-container__hdr-section" data-ix="nav-b-media-hover">
+                <NavbarHdrSxn
+                  link="/juices"
+                  header="navbar.nav.juices.title"
+                  ix="nav-b-juice-hover"
+                />
+                <NavbarHdrSxn header="navbar.nav.media.title" ix="nav-b-media-hover" />
+                <NavbarHdrSxn header="navbar.nav.info.title" ix="nav-b-info-hover" />
+                {/* <div className="nav-container__hdr-section" data-ix="nav-b-media-hover">
                   <div className="hdr-section__option--title">
                     media
                   </div>
-                </div>
-                <div className="nav-container__hdr-section" data-ix="nav-b-info-hover">
+                  </div>
+                  <div className="nav-container__hdr-section" data-ix="nav-b-info-hover">
                   <div className="hdr-section__option--title">
                     info
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
