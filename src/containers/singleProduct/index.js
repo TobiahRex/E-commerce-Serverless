@@ -216,7 +216,8 @@ class SingleProduct extends React.Component {
   toggleModalAndGo = (modal, location) => {
     this.setState(prevState => ({
       [modal]: !prevState[modal],
-    }), () => this.props.push(location));
+    }),
+    () => this.props.push(location));
   }
 
   /**

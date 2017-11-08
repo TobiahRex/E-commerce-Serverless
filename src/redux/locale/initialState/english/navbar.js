@@ -30,4 +30,6 @@ export default {
   'navbar.nav.info.links.privacy-policy': 'Privacy Policy',
   'navbar.nav.info.links.terms-and-conditions': 'Terms & Conditions',
   'navbar.nav.info.links.nicotine-disclaimer': 'Nicotine Disclaimer',
+  // navbar image alts
+  'navbar.alt.logo': 'Nj2jp Logo',
 };
