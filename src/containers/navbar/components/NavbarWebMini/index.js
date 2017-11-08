@@ -12,29 +12,35 @@ function NavbarWebMini() {
       <div className="navbar-big__nav-section">
         <div className="nav-section__navbar-content">
           <div className="navbar-content__logo-container">
-            <img alt="Nj2jp Logo" className="logo-container__nav-img-sml" sizes="(max-width: 767px) 100vw, (max-width: 991px) 146px, 15vw" src="images/nj2jp_web_friendly.png" srcSet="images/nj2jp_web_friendly-p-500.png 500w, images/nj2jp_web_friendly-p-800.png 800w, images/nj2jp_web_friendly-p-1080.png 1080w, images/nj2jp_web_friendly.png 1509w" width="383" />
+            <img alt="Nj2jp Logo" className="logo-container__nav-img-sml" sizes="(max-width: 767px) 100vw, (max-width: 991px) 146px, 15vw" src="/images/nj2jp_web_friendly.png" srcSet="/images/nj2jp_web_friendly-p-500.png 500w, /images/nj2jp_web_friendly-p-800.png 800w, /images/nj2jp_web_friendly-p-1080.png 1080w, /images/nj2jp_web_friendly.png 1509w" width="383" />
           </div>
           <div className="navbar-content__action-section">
             <div className="action-section__navbar-action-top">
               <div className="nav-action-top__left-side">
                 <Link className="left-side__language-switcher w-inline-block" to="#">
                   <div className="language-switcher__img-container">
-                    <img alt=""alt="" className="img-container__navbar-language-img" src="images/english-flag.png" />
+                    <img alt="English" className="img-container__navbar-language-img" src="/images/english-flag.png" />
                   </div>
                   <div className="language-switcher__blurb-container">
-                    <p className="blurb-container__navbar-language-blurb">ENGLISH</p>
+                    <p className="blurb-container__navbar-language-blurb">
+                      ENGLISH
+                    </p>
                   </div>
                   <div className="language-switcher__arrow-container">
-                    <p className="arrow-container__nav-language-arrow" data-ix="nav-b-language-arrow-bounce"></p>
+                    <p className="arrow-container__nav-language-arrow" data-ix="nav-b-language-arrow-bounce">
+                      
+                    </p>
                   </div>
                 </Link>
                 <Link className="left-side__alt-language w-inline-block" to="#">
                   <div className="alt-language__language-container">
                     <div className="language-container__img-container">
-                      <img alt="Langauge Flag" className="img-container__navbar-language-img" src="images/nihongo-flag-border.png" />
+                      <img alt="Japanese" className="img-container__navbar-language-img" src="/images/nihongo-flag-border.png" />
                     </div>
                     <div className="language-container__blurb-container">
-                      <p className="blurb-container__alt-nav-language">JAPANESE</p>
+                      <p className="blurb-container__alt-nav-language">
+                        JAPANESE
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -43,19 +49,25 @@ function NavbarWebMini() {
                 <div className="right-side__logged-section" data-ix="nav-b-logged-section-load">
                   <div className="logged-section__login-prompt">
                     <div className="logged-section__login-prompt">
-                      <p className="login-prompt__nav-s-login">Login</p>
+                      <p className="login-prompt__nav-s-login">
+                        Login
+                      </p>
                     </div>
                   </div>
                   <div className="logged-section__usr-icon">
-                    <img alt="" className="usr-icon__nav-s-img" src="images/default-avatar-150px.png" />
+                    <img alt="" className="usr-icon__nav-s-img" src="/images/default-avatar-150px.png" />
                   </div>
                 </div>
                 <Link className="right-side__mycart-container w-inline-block" data-ix="nav-b-cart-hover" to="/cart">
                   <div className="mycart-container__mycart-title">
-                    <div className="mycart-title__blurb">my cart</div>
+                    <div className="mycart-title__blurb">
+                      my cart
+                    </div>
                   </div>
                   <div className="mycart-container__mycart-qty">
-                    <div className="mycart-qty__blurb">0</div>
+                    <div className="mycart-qty__blurb">
+                      0
+                    </div>
                   </div>
                 </Link>
               </div>
@@ -63,13 +75,19 @@ function NavbarWebMini() {
             <div className="action-section__navbar-action-bottom">
               <div className="navbar-action-bottom__nav-container">
                 <Link className="nav-container__hdr-section w-inline-block" data-ix="nav-b-juice-hover" to="#">
-                  <div className="hdr-section__option--title">Juices</div>
+                  <div className="hdr-section__option--title">
+                    juices
+                  </div>
                 </Link>
                 <div className="nav-container__hdr-section" data-ix="nav-b-media-hover">
-                  <div className="hdr-section__option--title">Media</div>
+                  <div className="hdr-section__option--title">
+                    media
+                  </div>
                 </div>
                 <div className="nav-container__hdr-section" data-ix="nav-b-info-hover">
-                  <div className="hdr-section__option--title">info</div>
+                  <div className="hdr-section__option--title">
+                    info
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,23 +98,31 @@ function NavbarWebMini() {
         <div className="juice-dropdown__floating-juice-container" data-ix="nav-b-juice-hover">
           <div className="floating-juice-container__top-section">
             <div className="top-section__juice-hdr">
-              <h2 className="juice-hdr__hdr-blurb">Mission Statement</h2>
+              <h2 className="juice-hdr__hdr-blurb">
+                Mission Statement
+              </h2>
             </div>
             <div className="top-section__juice-blurb">
-              <p className="paragraph">N2JP prides itself on offering our customers top quality products and service. We want your experiences doing business with us to be so good, that we become your #1 choice for all your vape juice needs. Our customers love us, and we plan on making sure you do to. You’ll find all our juice offers below. If you have any questions, don’t hesitate to ask us. Enjoy your experience “making the switch.”</p>
+              <p className="paragraph">
+                N2JP prides itself on offering our customers top quality products and service. We want your experiences doing business with us to be so good, that we become your #1 choice for all your vape juice needs. Our customers love us, and we plan on making sure you do to. You’ll find all our juice offers below. If you have any questions, don’t hesitate to ask us. Enjoy your experience “making the switch.”
+              </p>
             </div>
           </div>
           <div className="floating-juice-container__middle-section">
             <div className="middle-section__section-hdr">
-              <h2 className="section-hdr__flavor-hdr">Choose A Flavor!</h2>
+              <h2 className="section-hdr__flavor-hdr">
+                Choose A Flavor!
+              </h2>
             </div>
             <div className="middle-section__card-container">
               <Link className="card-container__juice-card juice-card--1 w-inline-block" to="#">
                 <div className="hdr-container--1 juice-card__hdr-container">
-                  <h4 className="hdr-container__juice-card-hdr juice-card-hdr--1">French Vanilla Mocha</h4>
+                  <h4 className="hdr-container__juice-card-hdr juice-card-hdr--1">
+                    French Vanilla Mocha
+                  </h4>
                 </div>
                 <div className="juice-card__juice-img juice-img--1">
-                  <img alt="" className="card-img--1 juice-img__card-img" src="images/nj2jp-fvm-small-shadow.png" />
+                  <img alt="" className="card-img--1 juice-img__card-img" src="/images/nj2jp-fvm-small-shadow.png" />
                 </div>
               </Link>
             </div>
@@ -147,16 +173,16 @@ function NavbarWebMini() {
           </div>
           <div className="floating-media-container__middle-section">
             <Link className="middle-section__contact--img-container w-inline-block" to="/contact_us">
-              <img alt="" className="img-container__media-section-img media-section-img--contact-us" data-ix="nav-s-media-hdr-hover-2" src="images/navbar_web_media_contactUs.png" />
+              <img alt="" className="img-container__media-section-img media-section-img--contact-us" data-ix="nav-s-media-hdr-hover-2" src="/images/navbar_web_media_contactUs.png" />
             </Link>
             <Link className="middle-section__reviews--img-container w-inline-block" to="/juice_reviews">
-              <img alt="Juice Reviews" className="img-container__media-section-img media-section-img--juice-reviews" data-ix="nav-s-media-img-hover" src="images/navbar_web_media_juiceReviews.png" />
+              <img alt="Juice Reviews" className="img-container__media-section-img media-section-img--juice-reviews" data-ix="nav-s-media-img-hover" src="/images/navbar_web_media_juiceReviews.png" />
             </Link>
             <Link className="middle-section__news--img-container w-inline-block" to="/vape_news">
-              <img alt="Vape News" className="img-container__media-section-img media-section-img--vape-news" data-ix="nav-s-media-img-hover" src="images/navbar_web_media_vapeNews.png" />
+              <img alt="Vape News" className="img-container__media-section-img media-section-img--vape-news" data-ix="nav-s-media-img-hover" src="/images/navbar_web_media_vapeNews.png" />
             </Link>
             <Link className="middle-section__stories--img-container w-inline-block" to="/user_stories">
-              <img alt="User Stories" className="img-container__media-section-img media-section-img--usr-stories" src="images/navbar_web_media_userStories.png" />
+              <img alt="User Stories" className="img-container__media-section-img media-section-img--usr-stories" src="/images/navbar_web_media_userStories.png" />
             </Link>
           </div>
           <div className="foating-media-container__bottom-section">
@@ -244,7 +270,7 @@ function NavbarWebMini() {
           <div className="floating-cart-container__product-stage">
             <div className="product-stage__product-list-card">
               <div className="product-list-card__img-container">
-                <img alt="French Vanilla Mocha" className="img-container__cart-card-img" src="images/nj2jp-fvm-small-shadow.png" />
+                <img alt="French Vanilla Mocha" className="img-container__cart-card-img" src="/images/nj2jp-fvm-small-shadow.png" />
               </div>
               <div className="product-list-card__product-info">
                 <div className="product-info__product-title">
@@ -278,7 +304,7 @@ function NavbarWebMini() {
             </div>
             <div className="product-stage__product-list-card">
               <div className="product-list-card__img-container">
-                <img alt="" className="img-container__cart-card-img" src="images/nj2jp-fvm-small-shadow.png" />
+                <img alt="" className="img-container__cart-card-img" src="/images/nj2jp-fvm-small-shadow.png" />
               </div>
               <div className="product-list-card__product-info">
                 <div className="product-info__product-title">
