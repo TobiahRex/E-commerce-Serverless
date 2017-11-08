@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { lifecycle } from 'recompose';
 import {
+  NavbarHdrSxn,
   NavbarLogoSxn,
 } from './components';
 import './assets/styles/style.css';
@@ -83,6 +84,7 @@ function NavbarWeb() {
                     juices
                   </div>
                 </Link>
+                <NavbarHdrSxn header="juices" />
                 <div className="nav-container__hdr-section" data-ix="nav-b-media-hover">
                   <div className="hdr-section__option--title">
                     media
