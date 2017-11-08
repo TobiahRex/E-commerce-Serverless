@@ -30,4 +30,6 @@ export default {
   'navbar.nav.info.links.privacy-policy': '個人情報保護方針',
   'navbar.nav.info.links.terms-and-conditions': '利用規約',
   'navbar.nav.info.links.nicotine-disclaimer': 'ニコチンの免責事項',
+  // navbar image alts
+  'navbar.alt.logo': 'Nj2jpロゴ',
 };
