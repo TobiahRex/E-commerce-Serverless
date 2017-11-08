@@ -1,15 +1,13 @@
 import React from 'react';
 import {
   NavbarWeb,
-  NavbarMobile,
-  NavbarWebMini,
+  // NavbarMobile,
 } from './components';
 
 const Navbar = () => (
   <header className="navbar-comp-container">
     <NavbarWeb />
-    <NavbarWebMini />
-    <NavbarMobile />
+    {/* <NavbarMobile /> */}
   </header>
 );
 

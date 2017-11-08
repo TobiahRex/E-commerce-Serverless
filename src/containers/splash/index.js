@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { WebflowAnimations } from './assets/utils/index';
+import {
+  // WebflowJs,
+  WebflowAnimations,
+} from './assets/utils/index';
 import {
   Header,
   Reviews,
@@ -30,6 +33,7 @@ class Splash extends React.Component {
   };
 
   componentDidMount() {
+    // WebflowJs();
     WebflowAnimations();
   }
 
