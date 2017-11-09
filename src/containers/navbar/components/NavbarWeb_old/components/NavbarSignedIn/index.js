@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { auth as AuthService } from './assets/utils';
+import { FormattedMessage as IntlMsg } from 'react-intl';
 
 const { objectOf, any } = PropTypes;
 
@@ -25,12 +26,12 @@ class NavbarUserActionsSignedin extends PureComponent {
       <ul className="upper-actions__signedIn" >
         <li className="signedIn__logout--title">
           <button onClick={this.logout} className="logout__button" >
-            Logout
+            <IntlMsg id="navbar.logout.title" />
           </button>
         </li>
         <li className="signedIn__checkout--title" >
           <Link to={'/express_checkout'} className="checkout__link">
-            Checkout
+            <IntlMsg id="navbar.checkout.title" />
           </Link>
         </li>
         <li className="signedIn__myAccount--title">
