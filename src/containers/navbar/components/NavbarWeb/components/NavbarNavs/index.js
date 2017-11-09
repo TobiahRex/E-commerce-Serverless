@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  NavbarNavHdr,
-} from './';
+import { NavbarNavHdr } from './';
 
 function NavbarNavs() {
   return (

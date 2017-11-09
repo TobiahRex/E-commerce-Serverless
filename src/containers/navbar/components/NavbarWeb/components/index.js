@@ -1,2 +1,3 @@
 export NavbarLogoSxn from './NavbarLogoSxn';
-export NavbarHdrSxn from './NavbarHdrSxn';
+export NavbarNavs from './NavbarNavs';
+export NavbarNavHdr from './NavbarNavHdr';

@@ -10,7 +10,7 @@ import {
 } from './assets/utils';
 import {
   NavbarNavs,
-  // NavbarHdrSxn,
+  NavbarAuthSxn,
   NavbarLogoSxn,
 } from './components';
 
@@ -25,7 +25,11 @@ function NavbarWeb() {
               <div className="nav-action-top__left-side">
                 <Link className="left-side__language-switcher w-inline-block" to="#">
                   <div className="language-switcher__img-container">
-                    <img alt="English" className="img-container__navbar-language-img" src="/images/english-flag.png" />
+                    <img
+                      alt="English"
+                      className="img-container__navbar-language-img"
+                      src="/images/english-flag.png"
+                    />
                   </div>
                   <div className="language-switcher__blurb-container">
                     <p className="blurb-container__navbar-language-blurb">
@@ -41,7 +45,11 @@ function NavbarWeb() {
                 <Link className="left-side__alt-language w-inline-block" to="#">
                   <div className="alt-language__language-container">
                     <div className="language-container__img-container">
-                      <img alt="Japanese" className="img-container__navbar-language-img" src="/images/nihongo-flag-border.png" />
+                      <img
+                        alt="Japanese"
+                        className="img-container__navbar-language-img"
+                        src="/images/nihongo-flag-border.png"
+                      />
                     </div>
                     <div className="language-container__blurb-container">
                       <p className="blurb-container__alt-nav-language">
@@ -52,18 +60,7 @@ function NavbarWeb() {
                 </Link>
               </div>
               <div className="navbar-action-top__right-side">
-                <div className="right-side__logged-section" data-ix="nav-b-logged-section-load">
-                  <div className="logged-section__login-prompt">
-                    <div className="logged-section__login-prompt">
-                      <p className="login-prompt__nav-s-login">
-                        Login
-                      </p>
-                    </div>
-                  </div>
-                  <div className="logged-section__usr-icon">
-                    <img alt="" className="usr-icon__nav-s-img" src="/images/default-avatar-150px.png" />
-                  </div>
-                </div>
+                <NavbarAuthSxn />
                 <Link className="right-side__mycart-container w-inline-block" data-ix="nav-b-cart-hover" to="/cart">
                   <div className="mycart-container__mycart-title">
                     <div className="mycart-title__blurb">
