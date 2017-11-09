@@ -9,7 +9,8 @@ import {
   WebflowAnimations2,
 } from './assets/utils';
 import {
-  NavbarHdrSxn,
+  NavbarNavs,
+  // NavbarHdrSxn,
   NavbarLogoSxn,
 } from './components';
 
@@ -77,27 +78,7 @@ function NavbarWeb() {
                 </Link>
               </div>
             </div>
-            <div className="action-section__navbar-action-bottom">
-              <div className="navbar-action-bottom__nav-container">
-                <NavbarHdrSxn
-                  link="/juices"
-                  header="navbar.nav.juices.title"
-                  ix="nav-b-juice-hover"
-                />
-                <NavbarHdrSxn header="navbar.nav.media.title" ix="nav-b-media-hover" />
-                <NavbarHdrSxn header="navbar.nav.info.title" ix="nav-b-info-hover" />
-                {/* <div className="nav-container__hdr-section" data-ix="nav-b-media-hover">
-                  <div className="hdr-section__option--title">
-                    media
-                  </div>
-                  </div>
-                  <div className="nav-container__hdr-section" data-ix="nav-b-info-hover">
-                  <div className="hdr-section__option--title">
-                    info
-                  </div>
-                </div> */}
-              </div>
-            </div>
+            <NavbarNavs />
           </div>
         </div>
       </div>
