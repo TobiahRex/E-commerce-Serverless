@@ -2,7 +2,7 @@ export default {
   'navbar.login.title': 'Login',
   'navbar.logout.title': 'Logout',
   'navbar.checkout.title': 'Checkout',
-  'navbar.language.english.title': 'ENGLISH',
+  'navbar.language.english.title': 'English',
   'navbar.language.japanese.title': '英語',
   'navbar.cart.total-price': 'Total Price',
   'navbar.cart.cart-button': 'My Cart',
