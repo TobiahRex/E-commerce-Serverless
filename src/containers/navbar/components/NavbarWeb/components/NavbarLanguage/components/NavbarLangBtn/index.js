@@ -8,7 +8,7 @@ function NavbarLangBtn({ activeLanguage }) {
 
   return (
     <div className="left-side__language-switcher w-inline-block">
-      <div className="language-switcher__container">
+      <div className="language-switcher__displayed">
         <div className="language-switcher__img-container">
           <img
             alt={language}

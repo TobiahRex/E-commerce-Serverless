@@ -14,8 +14,8 @@ import {
   NavbarLogoSxn,
   NavbarLangBtn,
   NavbarLangOption,
+  NavbarLanguage,
 } from './components';
-console.log('%cNavbarLangOption', 'background:red;', NavbarLangOption);
 
 class NavbarWeb extends React.Component {
   constructor(props) {
@@ -49,27 +49,10 @@ class NavbarWeb extends React.Component {
             <NavbarLogoSxn />
             <div className="navbar-content__action-section">
               <div className="action-section__navbar-action-top">
-                <div className="nav-action-top__left-side">
-
-                  {
-                    activeLanguage === 'en' ?
-                      <NavbarLangBtn activeLanguage="english" /> :
-                    <NavbarLangBtn activeLanguage="japanese" />
-                  }
-
-                  {
-                    activeLanguage === 'en' ?
-                      <NavbarLangOption
-                        onChange={this.handleLangChange}
-                        language="japanese"
-                      /> :
-                    <NavbarLangOption
-                      onChange={this.handleLangChange}
-                      language="english"
-                    />
-
-                  }
-                </div>
+                <NavbarLanguage
+                  handleLangChange={this.handleLangChange}
+                  activeLanguage={activeLanguage}
+                />
                 <div className="navbar-action-top__right-side">
                   <NavbarAuthSxn />
                   <Link className="right-side__mycart-container w-inline-block" data-ix="nav-b-cart-hover" to="/cart">
