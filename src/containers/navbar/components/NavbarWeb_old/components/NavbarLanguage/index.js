@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import localeActions from '../../../../../../redux/locale';
-
 import {
   NavbarLanguageButton,
   NavbarLanguageButtonEnglish,
