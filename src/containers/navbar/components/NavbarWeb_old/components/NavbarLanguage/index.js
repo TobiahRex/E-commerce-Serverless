@@ -24,10 +24,6 @@ class NavbarLanguage extends React.Component {
     activeLanguage: string.isRequired,
   }
 
-  static defaultProps = {
-    activeUser: null,
-  }
-
   constructor(props) {
     super(props);
     this.state = {
