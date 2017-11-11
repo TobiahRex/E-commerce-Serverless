@@ -14,12 +14,12 @@ function NavbarLangBtn({ onChange, language }) {
           <img
             alt={language}
             className="img-container__navbar-language-img"
-            src={`/images/${language}-flag-border.png`}
+            src={`/images/${language}-flag.png`}
           />
         </div>
         <div className="language-container__blurb-container">
           <p className="blurb-container__alt-nav-language">
-            <IntlMsg id={`navbar.language.${language}`} />
+            <IntlMsg id={`navbar.language.${language}.title`} />
           </p>
         </div>
       </div>
