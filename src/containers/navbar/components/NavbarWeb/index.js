@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import { lifecycle } from 'recompose';
 import './assets/styles/style.css';
 import {
@@ -12,10 +11,12 @@ import {
   NavbarNavs,
   NavbarAuthSxn,
   NavbarLogoSxn,
-  NavbarLanguageButton,
+  NavbarLangBtn,
 } from './components';
 
 function NavbarWeb() {
+  const { activeLanguage } = this.props;
+
   return (
     <nav className="navbar-big">
       <div className="navbar-big__nav-section">
@@ -24,8 +25,13 @@ function NavbarWeb() {
           <div className="navbar-content__action-section">
             <div className="action-section__navbar-action-top">
               <div className="nav-action-top__left-side">
-                <NavbarLanguageButton activeLanguage="english" />
-                <Link className="left-side__alt-language w-inline-block" to="#">
+
+                {
+                  activeLanguage === 'en' ?
+                    <NavbarLangBtn activeLanguage="english" /> :
+                  <NavbarLangBtn activeLanguage="japanese" />
+                }
+                <button className="left-side__alt-language w-inline-block" to="#">
                   <div className="alt-language__language-container">
                     <div className="language-container__img-container">
                       <img
@@ -40,7 +46,7 @@ function NavbarWeb() {
                       </p>
                     </div>
                   </div>
-                </Link>
+                </button>
               </div>
               <div className="navbar-action-top__right-side">
                 <NavbarAuthSxn />
