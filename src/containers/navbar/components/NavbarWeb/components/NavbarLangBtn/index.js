@@ -7,8 +7,8 @@ function NavbarLangBtn({ activeLanguage }) {
   const language = activeLanguage.toLowerCase();
 
   return (
-    <div className="left-side__language-switcher w-inline-block" to="#">
-      <div>
+    <div className="left-side__language-switcher w-inline-block">
+      <div className="language-switcher__container">
         <div className="language-switcher__img-container">
           <img
             alt={language}
@@ -18,7 +18,7 @@ function NavbarLangBtn({ activeLanguage }) {
         </div>
         <div className="language-switcher__blurb-container">
           <p className="blurb-container__navbar-language-blurb">
-            <IntlMsg id={`navbar.language.${language}`} />
+            <IntlMsg id={`navbar.language.${language}.title`} />
           </p>
         </div>
       </div>

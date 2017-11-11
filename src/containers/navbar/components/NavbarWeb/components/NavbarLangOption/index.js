@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function NavbarLangBtn({ handleLangChange, language }) {
+function NavbarLangBtn({ onChange, language }) {
   return (
     <button
       data-language={language}
       className="left-side__alt-language w-inline-block"
-      onClick={handleLangChange}
+      onClick={onChange}
     >
       <div className="alt-language__language-container">
         <div className="language-container__img-container">
@@ -27,7 +27,7 @@ function NavbarLangBtn({ handleLangChange, language }) {
   );
 }
 NavbarLangBtn.propTypes = {
-  handleLangChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   language: PropTypes.string.isRequired,
 };
 export default NavbarLangBtn;

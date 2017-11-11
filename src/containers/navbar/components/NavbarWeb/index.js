@@ -15,6 +15,7 @@ import {
   NavbarLangBtn,
   NavbarLangOption,
 } from './components';
+console.log('%cNavbarLangOption', 'background:red;', NavbarLangOption);
 
 class NavbarWeb extends React.Component {
   constructor(props) {
@@ -58,8 +59,14 @@ class NavbarWeb extends React.Component {
 
                   {
                     activeLanguage === 'en' ?
-                      <NavbarLangOption locale="japanese" /> :
-                    <NavbarLangOption locale="english" />
+                      <NavbarLangOption
+                        onChange={this.handleLangChange}
+                        language="japanese"
+                      /> :
+                    <NavbarLangOption
+                      onChange={this.handleLangChange}
+                      language="english"
+                    />
 
                   }
                 </div>
