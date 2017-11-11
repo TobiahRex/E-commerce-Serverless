@@ -26,7 +26,9 @@ class NavbarWeb extends React.Component {
     };
   }
 
-  handleLangChange = (language) => {
+  handleLangChange = (e) => {
+    const language = e.target.dataset.language || e.target.dataset.parentNode.language;
+
     this.setState(() => ({
       activeLanguage: language,
     }),
