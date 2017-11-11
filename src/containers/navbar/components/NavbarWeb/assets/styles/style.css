@@ -1117,6 +1117,11 @@
   align-items: center;
 }
 
+.logged-section__login-prompt {
+  background-color: transparent;
+  outline: none;
+}
+
 .logged-section__usr-icon {
   width: 50px;
   margin-right: 15px;
