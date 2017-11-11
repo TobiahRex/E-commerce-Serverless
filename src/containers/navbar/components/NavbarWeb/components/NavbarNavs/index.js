@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavbarNavHdr } from './';
+import { NavbarNavHdr } from './components';
 
 function NavbarNavs() {
   return (

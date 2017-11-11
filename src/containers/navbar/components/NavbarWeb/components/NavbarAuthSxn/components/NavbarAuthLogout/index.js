@@ -5,7 +5,10 @@ import { withHandlers } from 'recompose';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 import { auth as AuthService } from './assets/utils';
 
-function NavbarAuthLogout({ logout }) {
+function NavbarAuthLogout({
+  logout,
+  activeUser,
+}) {
   return (
     <div className="right-side__logged-section" data-ix="nav-b-logged-section-load">
       <button
@@ -30,11 +33,11 @@ function NavbarAuthLogout({ logout }) {
       </Link>
       <div className="logged-section__usr-icon">
         <img
-          alt={this.props.activeUser.profile.givenName}
+          alt={activeUser.profile.name.display}
           className="usr-icon__nav-s-img"
           src={
-            this.props.activeUser.pictures.small ||
-            this.props.activeUser.pictures.default
+            activeUser.pictures.small ||
+            activeUser.pictures.default
           }
         />
       </div>
@@ -53,6 +56,11 @@ NavbarAuthLogout.propTypes = {
 };
 NavbarAuthLogout.defaultProps = {
   activeUser: {
+    profile: {
+      name: {
+        display: 'Avatar',
+      },
+    },
     pictures: {
       small: '',
       default: '/images/default-avatar-150px.png',

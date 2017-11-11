@@ -12,6 +12,7 @@ import {
   NavbarNavs,
   NavbarAuthSxn,
   NavbarLogoSxn,
+  NavbarLanguageButton,
 } from './components';
 
 function NavbarWeb() {
@@ -23,25 +24,7 @@ function NavbarWeb() {
           <div className="navbar-content__action-section">
             <div className="action-section__navbar-action-top">
               <div className="nav-action-top__left-side">
-                <Link className="left-side__language-switcher w-inline-block" to="#">
-                  <div className="language-switcher__img-container">
-                    <img
-                      alt="English"
-                      className="img-container__navbar-language-img"
-                      src="/images/english-flag.png"
-                    />
-                  </div>
-                  <div className="language-switcher__blurb-container">
-                    <p className="blurb-container__navbar-language-blurb">
-                      ENGLISH
-                    </p>
-                  </div>
-                  <div className="language-switcher__arrow-container">
-                    <p className="arrow-container__nav-language-arrow" data-ix="nav-b-language-arrow-bounce">
-                      <FontAwesome name="angle-down" />
-                    </p>
-                  </div>
-                </Link>
+                <NavbarLanguageButton activeLanguage="english" />
                 <Link className="left-side__alt-language w-inline-block" to="#">
                   <div className="alt-language__language-container">
                     <div className="language-container__img-container">

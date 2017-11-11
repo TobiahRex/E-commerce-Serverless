@@ -4,14 +4,20 @@ import { connect } from 'react-redux';
 import {
   NavbarAuthLogin,
   NavbarAuthLogout,
-} from './';
+} from './components';
 
-function NavbarAuthSxn({ activeUser }) {
+function NavbarAuthSxn({
+  activeUser = {
+    profile: {
+      name: 'Avatar',
+    },
+  },
+}) {
   return (
     <div>
       {
         activeUser ?
-          <NavbarAuthLogout /> :
+          <NavbarAuthLogout activeUser={activeUser} /> :
           <NavbarAuthLogin />
       }
     </div>
@@ -22,7 +28,11 @@ NavbarAuthSxn.propTypes = {
   activeUser: objectOf(any),
 };
 NavbarAuthSxn.defaultProps = {
-  activeUser: {},
+  activeUser: {
+    profile: {
+      name: 'Avatar',
+    },
+  },
 };
 export default connect(({ user }) => ({
   activeUser: user.profile,

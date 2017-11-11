@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function NavbarHdrSxn({
+function NavbarNavHdr({
   ix,
   header,
   link = '',
@@ -33,9 +33,12 @@ function NavbarHdrSxn({
     </div>
   );
 }
-NavbarHdrSxn.propTypes = {
-  link: PropTypes.string.isRequired,
+NavbarNavHdr.propTypes = {
+  link: PropTypes.string,
   header: PropTypes.string.isRequired,
   ix: PropTypes.string.isRequired,
 };
-export default NavbarHdrSxn;
+NavbarNavHdr.defaultProps = {
+  link: '',
+};
+export default NavbarNavHdr;
