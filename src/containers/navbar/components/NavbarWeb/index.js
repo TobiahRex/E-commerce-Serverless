@@ -9,12 +9,11 @@ import {
   WebflowAnimations2,
 } from './assets/utils';
 import {
-  NavbarNavs,
-  NavbarAuthSxn,
   NavbarLogoSxn,
-  NavbarLangBtn,
-  NavbarLangOption,
   NavbarLanguage,
+  NavbarAuthSxn,
+  NavbarCart,
+  NavbarNavs,
 } from './components';
 
 class NavbarWeb extends React.Component {
@@ -55,18 +54,7 @@ class NavbarWeb extends React.Component {
                 />
                 <div className="navbar-action-top__right-side">
                   <NavbarAuthSxn />
-                  <Link className="right-side__mycart-container w-inline-block" data-ix="nav-b-cart-hover" to="/cart">
-                    <div className="mycart-container__mycart-title">
-                      <div className="mycart-title__blurb">
-                        my cart
-                      </div>
-                    </div>
-                    <div className="mycart-container__mycart-qty">
-                      <div className="mycart-qty__blurb">
-                        0
-                      </div>
-                    </div>
-                  </Link>
+                  <NavbarCart />
                 </div>
               </div>
               <NavbarNavs />

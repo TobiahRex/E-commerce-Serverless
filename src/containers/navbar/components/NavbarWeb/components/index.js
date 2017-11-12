@@ -1,5 +1,6 @@
 export NavbarLogoSxn from './NavbarLogoSxn';
-export NavbarAuthSxn from './NavbarAuthSxn';
-export NavbarNavs from './NavbarNavs';
 export NavbarLanguage from './NavbarLanguage';
+export NavbarAuthSxn from './NavbarAuthSxn';
+export NavbarCart from './NavbarCart';
+export NavbarNavs from './NavbarNavs';
 // export NavbarNavHdr from './NavbarNavHdr';
