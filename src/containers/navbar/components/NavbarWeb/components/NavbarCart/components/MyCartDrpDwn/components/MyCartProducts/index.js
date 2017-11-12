@@ -44,55 +44,52 @@ class MyCartProducts extends Component {
   renderListContent = ({ cartItems, loading }) => {
     if (loading) return (<MyCartLoading />);
 
-    if (!cartItems.length && !loading) {
-      return (
-        // <div className="products-list-empty">
-        //   <IntlMsg id="navbar.cart.empty" />
-        // </div>
-        <MyCartEmpty />
-      );
-    }
+    if (!cartItems.length && !loading) return (<MyCartEmpty />);
+
     return this.renderCartItems(cartItems);
   }
 
-  renderCartItems = productItems => productItems.map((productObj) => {
-    const {
-      _id,
-      qty,
-      product: {
-        title,
-        price,
-        images,
-        nicotineStrength,
-        slug,
-      },
-    } = productObj;
+  renderCartItems = productItems =>
+    productItems.map((productObj) => {
+      const {
+        _id,
+        qty,
+        product: {
+          title,
+          price,
+          images,
+          nicotineStrength,
+          slug,
+        },
+      } = productObj;
 
-    return (
-      <li
-        className="products-list-card"
-        key={_id}
-      >
-        <NavbarProductsCardImage
-          imageUrl={this.filterImages(images)}
-          title={title[IntlLocale]}
-        />
+      return (
+        <li
+          className="products-list-card"
+          key={_id}
+        >
+          <NavbarProductsCardImage
+            imageUrl={this.filterImages(images)}
+            title={title[IntlLocale]}
+          />
 
-        <NavbarProductsCardInfo
-          qty={qty}
-          title={title[IntlLocale]}
-          price={price}
-          nicotineStrength={nicotineStrength}
-        />
+          <NavbarProductsCardInfo
+            qty={qty}
+            title={title[IntlLocale]}
+            price={price}
+            nicotineStrength={nicotineStrength}
+          />
 
-        <NavbarProductsCardActions
-          productId={_id}
-          slug={slug}
-          editCartItem={this.props.editCartItem}
-          deleteFromCart={this.props.deleteFromCart}
-        />
-      </li>);
-  });
+          <NavbarProductsCardActions
+            productId={_id}
+            slug={slug}
+            editCartItem={this.props.editCartItem}
+            deleteFromCart={this.props.deleteFromCart}
+          />
+        </li>
+      );
+    },
+  );
 
   render() {
     return (
