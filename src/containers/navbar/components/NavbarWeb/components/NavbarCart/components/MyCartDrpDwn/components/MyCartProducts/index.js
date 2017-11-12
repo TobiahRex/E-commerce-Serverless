@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
-import { FormattedMessage as IntlMsg } from 'react-intl';
 import _ from 'lodash';
 import {
   NavbarProductsCardImage,
@@ -9,11 +7,12 @@ import {
   NavbarProductsCardActions,
   MyCartLoading,
   MyCartEmpty,
+  MyCartTotal,
 } from '../';
 
 const { bool, func, object, number, arrayOf } = PropTypes;
 
-class NavbarProducts extends Component {
+class MyCartProducts extends Component {
   static propTypes = {
     loading: bool.isRequired,
     cartItems: arrayOf(object),
@@ -103,17 +102,9 @@ class NavbarProducts extends Component {
             {this.renderListContent(this.props)}
           </ul>
         </div>
-        <div className="total-price">
-          <span className="total-price-title">
-            <IntlMsg id="navbar.cart.total-price" />
-          </span>
-          <span className="total-price-amount">
-            <FontAwesome name="usd" />&nbsp;
-            {this.props.cartTotal}.00
-          </span>
-        </div>
+        <MyCartTotal total={this.props.cartTotal} />
       </div>
     );
   }
 }
-export default NavbarProducts;
+export default MyCartProducts;
