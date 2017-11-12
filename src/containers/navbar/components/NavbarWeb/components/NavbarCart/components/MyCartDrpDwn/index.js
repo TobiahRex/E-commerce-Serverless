@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  NavbarPromotion,
-  NavbarRecentAdd,
-  NavbarLinkBtns,
-  NavbarProducts,
-} from '../';
+  MyCartDdPrmxn,
+  MyCartRecentAdd,
+  // NavbarLinkBtns,
+  // NavbarProducts,
+} from './components';
 
 function NavbarDropdown({
   loading,
@@ -15,20 +15,21 @@ function NavbarDropdown({
   editCartItem,
 }) {
   return (
-    <span className="dropdown-content">
-      <div className="dropdown-content__container">
-        <NavbarPromotion />
-        <NavbarRecentAdd />
-        <NavbarProducts
+    <div className="navbar-big__cart-dropdown">
+      <div className="cart-dropdown__nav-b-cart-container" data-ix="nav-b-cart-hover">
+        <MyCartDdPrmxn />
+        <MyCartRecentAdd />
+        {/* <NavbarRecentAdd />
+          <NavbarProducts
           loading={loading}
           cartItems={cartItems}
           cartTotal={cartTotal}
           deleteFromCart={deleteFromCart}
           editCartItem={editCartItem}
-        />
-        <NavbarLinkBtns />
+          />
+        <NavbarLinkBtns /> */}
       </div>
-    </span>
+    </div>
   );
 }
 const { bool, arrayOf, object, number, func } = PropTypes;

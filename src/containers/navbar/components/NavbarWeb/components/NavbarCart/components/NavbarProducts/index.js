@@ -43,17 +43,25 @@ class NavbarProducts extends Component {
   renderListContent = ({ cartItems, loading }) => {
     if (loading) {
       return (
-        <div className="products-list-empty">
-          <FontAwesome name="spinner" size="3x" pulse />
-          <br />
-          <br />
-          <IntlMsg id="navbar.cart.loading" />
-        </div>
+        // <div className="products-list-empty">
+        //   <FontAwesome name="spinner" size="3x" pulse />
+        //   <br />
+        //   <br />
+        //   <IntlMsg id="navbar.cart.loading" />
+        // </div>
+        <MyCartLoading />
       );
     } else if (!cartItems.length && !loading) {
       return (
-        <div className="products-list-empty">
-          <IntlMsg id="navbar.cart.empty" />
+        // <div className="products-list-empty">
+        //   <IntlMsg id="navbar.cart.empty" />
+        // </div>
+        <div className="floating-cart-container__empty-stage">
+          <div className="empty-stage__empty-blurb">
+            <p className="empty-blurb__nav-cart-blurb">
+              <IntlMsg id="navbar.cart.empty" />
+            </p>
+          </div>
         </div>
       );
     }
