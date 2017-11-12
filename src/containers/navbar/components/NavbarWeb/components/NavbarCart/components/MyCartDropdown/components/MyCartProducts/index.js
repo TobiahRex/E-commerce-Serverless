@@ -2,27 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
-  // NavbarProductsCardImage,
-  NavbarProductsCardInfo,
-  NavbarProductsCardActions,
-  MyCartLoading,
   MyCartEmpty,
-  MyCartTotal,
-} from '../';
-
-import {
+  MyCartLoading,
   MyCartProductImage,
   MyCartProductInfo,
   MyCartProductActions,
+  MyCartProductCard,
 } from './components';
 
-const { bool, func, object, number, arrayOf } = PropTypes;
+const { bool, func, object, arrayOf } = PropTypes;
 
 class MyCartProducts extends Component {
   static propTypes = {
     loading: bool.isRequired,
     cartItems: arrayOf(object),
-    cartTotal: number.isRequired,
     editCartItem: func.isRequired,
     deleteFromCart: func.isRequired,
   };
@@ -70,10 +63,7 @@ class MyCartProducts extends Component {
       } = productObj;
 
       return (
-        <li
-          className="products-list-card"
-          key={_id}
-        >
+        <MyCartProductCard id={_id}>
           <MyCartProductImage
             imageUrl={this.filterImages(images)}
             title={title[IntlLocale]}
@@ -92,20 +82,15 @@ class MyCartProducts extends Component {
             editCartItem={this.props.editCartItem}
             deleteFromCart={this.props.deleteFromCart}
           />
-        </li>
+        </MyCartProductCard>
       );
     },
   );
 
   render() {
     return (
-      <div>
-        <div className="products">
-          <ul className="products-list">
-            {this.renderListContent(this.props)}
-          </ul>
-        </div>
-        <MyCartTotal total={this.props.cartTotal} />
+      <div className="floating-cart-container__product-stage">
+        {this.renderListContent(this.props)}
       </div>
     );
   }
