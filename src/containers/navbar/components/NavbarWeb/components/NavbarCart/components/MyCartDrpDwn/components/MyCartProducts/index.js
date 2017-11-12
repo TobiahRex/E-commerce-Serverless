@@ -12,6 +12,8 @@ import {
 
 import {
   MyCartProductImage,
+  MyCartProductInfo,
+  MyCartProductActions,
 } from './components';
 
 const { bool, func, object, number, arrayOf } = PropTypes;
@@ -77,14 +79,14 @@ class MyCartProducts extends Component {
             title={title[IntlLocale]}
           />
 
-          <NavbarProductsCardInfo
+          <MyCartProductInfo
             qty={qty}
             title={title[IntlLocale]}
             price={price}
             nicotineStrength={nicotineStrength}
           />
 
-          <NavbarProductsCardActions
+          <MyCartProductActions
             productId={_id}
             slug={slug}
             editCartItem={this.props.editCartItem}
