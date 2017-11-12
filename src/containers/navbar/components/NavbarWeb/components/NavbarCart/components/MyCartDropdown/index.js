@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import {
   MyCartDdPrmxn,
   MyCartRecentAdd,
-  // NavbarLinkBtns,
-  // NavbarProducts,
+  MyCartProducts,
+  MyCartTotal,
+  MyCartLinks,
 } from './components';
 
-function NavbarDropdown({
+function MyCartDropdown({
   loading,
   cartItems,
   cartTotal,
@@ -19,25 +20,24 @@ function NavbarDropdown({
       <div className="cart-dropdown__nav-b-cart-container" data-ix="nav-b-cart-hover">
         <MyCartDdPrmxn />
         <MyCartRecentAdd />
-        {/* <NavbarRecentAdd />
-          <NavbarProducts
+        <MyCartProducts
           loading={loading}
           cartItems={cartItems}
-          cartTotal={cartTotal}
-          deleteFromCart={deleteFromCart}
           editCartItem={editCartItem}
-          />
-        <NavbarLinkBtns /> */}
+          deleteFromCart={deleteFromCart}
+        />
+        <MyCartTotal cartTotal={cartTotal} />
+        <MyCartLinks />
       </div>
     </div>
   );
 }
 const { bool, arrayOf, object, number, func } = PropTypes;
-NavbarDropdown.propTypes = {
+MyCartDropdown.propTypes = {
   loading: bool.isRequired,
   cartItems: arrayOf(object).isRequired,
   cartTotal: number.isRequired,
   editCartItem: func.isRequired,
   deleteFromCart: func.isRequired,
 };
-export default NavbarDropdown;
+export default MyCartDropdown;
