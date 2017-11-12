@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import {
   MyCartBox,
-  MyCartDrpDwn,
+  MyCartDropdown,
 } from './components';
 import {
   orderActions,
@@ -132,7 +132,7 @@ class NavbarCart extends Component {
       <div className="navbar actionSection upper mycart-container">
         <div className="mycart-main">
           <MyCartBox qty={qty} />
-          <MyCartDrpDwn
+          <MyCartDropdown
             loading={!!fetchProductsResult && fetchProductsResult.loading}
             cartItems={cartItems}
             editCartItem={this.editCartItem}
