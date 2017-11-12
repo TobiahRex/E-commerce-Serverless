@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
-  NavbarProductsCardImage,
+  // NavbarProductsCardImage,
   NavbarProductsCardInfo,
   NavbarProductsCardActions,
   MyCartLoading,
   MyCartEmpty,
   MyCartTotal,
 } from '../';
+
+import {
+  MyCartProductImage,
+} from './components';
 
 const { bool, func, object, number, arrayOf } = PropTypes;
 
@@ -68,7 +72,7 @@ class MyCartProducts extends Component {
           className="products-list-card"
           key={_id}
         >
-          <NavbarProductsCardImage
+          <MyCartProductImage
             imageUrl={this.filterImages(images)}
             title={title[IntlLocale]}
           />
