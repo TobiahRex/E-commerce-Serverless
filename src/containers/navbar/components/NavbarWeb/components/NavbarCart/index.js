@@ -6,8 +6,8 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import {
-  NavbarCartBtn,
-  NavbarDropdown,
+  MyCartBox,
+  MyCartDrpDwn,
 } from './components';
 import {
   orderActions,
@@ -131,9 +131,8 @@ class NavbarCart extends Component {
     return (
       <div className="navbar actionSection upper mycart-container">
         <div className="mycart-main">
-          <NavbarCartBtn qty={qty} />
-
-          <NavbarDropdown
+          <MyCartBox qty={qty} />
+          <MyCartDrpDwn
             loading={!!fetchProductsResult && fetchProductsResult.loading}
             cartItems={cartItems}
             editCartItem={this.editCartItem}
