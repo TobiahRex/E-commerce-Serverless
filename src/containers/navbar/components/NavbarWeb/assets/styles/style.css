@@ -1009,6 +1009,14 @@
   cursor: pointer;
 }
 
+.btn-section__view-cart-btn.en {
+  font-size: 12px;
+}
+
+.btn-section__view-cart-btn.ja {
+  font-size: 10px;
+}
+
 .btn-section__checkout-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1027,7 +1035,7 @@
   background-color: #fc2525;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);
   font-family: Ubuntu, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 300;
   cursor: pointer;
 }
