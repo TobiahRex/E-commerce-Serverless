@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  PopularProductHdr,
   PopularProductCard,
-  ProductsMidHdr,
 } from './components';
 
 function ProductsMid({ popularProducts, routerPush }) {
   return (
     <div className="floating-juice-container__middle-section">
-      <ProductsMidHdr />
+      <PopularProductHdr />
       <div className="middle-section__card-container">
         {
           popularProducts.map(productObj => (
