@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { injectIntl, intlShape } from 'react-intl';
 
 function NavbarLogoSxn({ intl }) {
   return (
-    <div className="navbar-content__logo-container">
+    <Link className="navbar-content__logo-container" to="/">
       <img
         alt={intl.messages['navbar.alt.logo']}
         className="logo-container__nav-img-sml"
@@ -12,7 +13,7 @@ function NavbarLogoSxn({ intl }) {
         srcSet="/images/nj2jp_web_friendly-p-500.png 500w, /images/nj2jp_web_friendly-p-800.png 800w, /images/nj2jp_web_friendly-p-1080.png 1080w, /images/nj2jp_web_friendly.png 1509w"
         width="383"
       />
-    </div>
+    </Link>
   );
 }
 const NavbarLogoSxnWithIntl = injectIntl(NavbarLogoSxn);

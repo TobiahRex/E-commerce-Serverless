@@ -728,7 +728,6 @@
 }
 
 .cart-dropdown__nav-b-cart-container {
-  position: absolute;
   top: 60px;
   right: 330px;
   z-index: 8;
@@ -1080,6 +1079,7 @@
   background-color: #fff;
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .5);
   text-decoration: none;
+  outline: none;
 }
 
 .juice-card__hdr-container {

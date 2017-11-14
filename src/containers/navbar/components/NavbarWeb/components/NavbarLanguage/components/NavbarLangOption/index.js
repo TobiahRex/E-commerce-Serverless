@@ -8,8 +8,9 @@ function NavbarLangBtn({ onChange, language }) {
       data-language={language}
       className="left-side__alt-language w-inline-block"
       onClick={onChange}
+      data-w-id="e9f32610-a155-548f-827d-226f00b30fd4"
     >
-      <div className="alt-language__language-container">
+      <div className="alt-language__language-container" data-w-id="c7a6150e-3c9f-7c03-49b3-e0ecf90cb46b">
         <div className="language-container__img-container">
           <img
             alt={language}
@@ -18,7 +19,7 @@ function NavbarLangBtn({ onChange, language }) {
           />
         </div>
         <div className="language-container__blurb-container">
-          <p className="blurb-container__alt-nav-language">
+          <p className="blurb-container__alt-nav-language" data-w-id="036eb129-a653-57f8-fd66-62821743c287" >
             <IntlMsg id={`navbar.language.${language}.title`} />
           </p>
         </div>

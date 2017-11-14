@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 import { lifecycle } from 'recompose';
 import './assets/styles/style.css';
 import {
+  localeActions,
   WebflowJs,
   WebflowAnimations,
   WebflowAnimations2,
@@ -44,7 +47,7 @@ class NavbarWeb extends React.Component {
     const { activeLanguage } = this.props;
 
     return (
-      <nav className="navbar-big">
+      <nav className="navbar-big" data-wf-page="5a0147c7240da900013d1bee" data-wf-site="5a0147c7240da900013d1bed">
         <div className="navbar-big__nav-section">
           <div className="nav-section__navbar-content">
             <NavbarLogoSxn />
@@ -83,10 +86,21 @@ const NavbarWebWithLifecycle = lifecycle({
     WebflowAnimations();
     WebflowAnimations2();
   },
-  componentDidUpdate: () => {
-    WebflowAnimations();
-    WebflowAnimations2();
-  },
+  // componentDidUpdate: () => {
+  //   WebflowAnimations();
+  //   WebflowAnimations2();
+  // },
 })(NavbarWeb);
 
-export default NavbarWebWithLifecycle;
+const NavbarWebWithLifecycleAndState = connect(
+  ({ locale, routing }) => ({
+    activeLanguage: locale.activeLanguage,
+    location: routing.locationBeforeTransitions.pathname,
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
+    saveLanguage: language => dispatch(localeActions.setLanguage(language)),
+  }),
+)(NavbarWebWithLifecycle);
+
+export default NavbarWebWithLifecycleAndState;
