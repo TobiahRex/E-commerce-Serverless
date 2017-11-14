@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage as IntlMsg } from 'react-intl';
 
-function ProductsLow({ popularProducts, routerPush }) {
+function ProductsMid({ popularProducts, routerPush }) {
   return (
     <div className="floating-juice-container__middle-section">
       <div className="middle-section__section-hdr">
@@ -31,8 +31,8 @@ function ProductsLow({ popularProducts, routerPush }) {
 }
 
 const { arrayOf, object, func } = PropTypes;
-ProductsLow.propTypes = {
+ProductsMid.propTypes = {
   popularProducts: arrayOf(object).isRequired,
   routerPush: func.isRequired,
 };
-export default ProductsLow;
+export default ProductsMid;
