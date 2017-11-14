@@ -121,19 +121,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--usr-stories',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--usr-stories',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '686b16b4-2ad1-d5ca-964c-2c9f34a8caba',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--usr-stories',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
                 ],
                 limitAffectedElements: null,
               },
@@ -162,19 +162,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--usr-stories',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--usr-stories',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '686b16b4-2ad1-d5ca-964c-2c9f34a8caba',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--usr-stories',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
                 ],
                 limitAffectedElements: null,
               },
@@ -203,19 +203,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--vape-news',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--vape-news',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--vape-news',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
                 ],
                 limitAffectedElements: null,
               },
@@ -244,19 +244,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--vape-news',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--vape-news',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--vape-news',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
                 ],
                 limitAffectedElements: null,
               },
@@ -285,19 +285,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--vape-news',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--vape-news',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--vape-news',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
                 ],
                 limitAffectedElements: null,
               },
@@ -326,19 +326,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--vape-news',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--vape-news',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--vape-news',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
                 ],
                 limitAffectedElements: null,
               },
@@ -367,19 +367,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--juice-reviews',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  '82bd36a0-d121-307f-4791-8ab7bb4b14f3',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--juice-reviews',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   '62ec9f07-5662-3d48-b6c2-a5267689bd93',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--juice-reviews',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  '82bd36a0-d121-307f-4791-8ab7bb4b14f3',
                 ],
                 limitAffectedElements: null,
               },
@@ -408,19 +408,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--juice-reviews',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  '82bd36a0-d121-307f-4791-8ab7bb4b14f3',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--juice-reviews',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   '62ec9f07-5662-3d48-b6c2-a5267689bd93',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--juice-reviews',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  '82bd36a0-d121-307f-4791-8ab7bb4b14f3',
                 ],
                 limitAffectedElements: null,
               },
@@ -449,19 +449,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--contact-us',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  '6d352bfd-4e8d-0c8c-086a-a8ba111a8533',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--contact-us',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   '481bc689-376d-33c9-7593-36b3c81ce6a7',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--contact-us',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  '6d352bfd-4e8d-0c8c-086a-a8ba111a8533',
                 ],
                 limitAffectedElements: null,
               },
@@ -490,19 +490,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
-                selector: '.img-container__media-section-img.media-section-img--contact-us',
-                selectorGuids: [
-                  '7865729e-346e-f4e6-4b58-531373c54251',
-                  '6d352bfd-4e8d-0c8c-086a-a8ba111a8533',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
                 selector: '.media-hdr__section-text.section-text--contact-us',
                 selectorGuids: [
                   'd2de667d-4712-4c82-f2e0-34295e75a4f6',
                   '481bc689-376d-33c9-7593-36b3c81ce6a7',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
+                selector: '.img-container__media-section-img.media-section-img--contact-us',
+                selectorGuids: [
+                  '7865729e-346e-f4e6-4b58-531373c54251',
+                  '6d352bfd-4e8d-0c8c-086a-a8ba111a8533',
                 ],
                 limitAffectedElements: null,
               },
@@ -552,11 +552,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-3',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--1',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--1',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '5a16c943-0ad4-7da7-7b15-d29a48dbe872',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  'd37e3675-7bbe-75c6-4d38-12113988ab8c',
                 ],
                 limitAffectedElements: null,
               },
@@ -568,11 +568,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--1',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--1',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  'd37e3675-7bbe-75c6-4d38-12113988ab8c',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '5a16c943-0ad4-7da7-7b15-d29a48dbe872',
                 ],
                 limitAffectedElements: null,
               },
@@ -601,11 +601,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-4',
             affectedElements: {
-              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
-                selector: '.card-container__juice-card.juice-card--1',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--1',
                 selectorGuids: [
-                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
-                  'a469b944-cb88-37df-301c-2a34b856cf6e',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '5a16c943-0ad4-7da7-7b15-d29a48dbe872',
                 ],
                 limitAffectedElements: null,
               },
@@ -617,11 +617,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--1',
+              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
+                selector: '.card-container__juice-card.juice-card--1',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '5a16c943-0ad4-7da7-7b15-d29a48dbe872',
+                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
+                  'a469b944-cb88-37df-301c-2a34b856cf6e',
                 ],
                 limitAffectedElements: null,
               },
@@ -650,11 +650,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-3',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--2',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--2',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  'e08f52fc-8bf5-67df-6d2c-2897c226751a',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  '64ab5bd0-ba9b-69cb-cf51-10509badcbf5',
                 ],
                 limitAffectedElements: null,
               },
@@ -666,11 +666,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--2',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--2',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  '64ab5bd0-ba9b-69cb-cf51-10509badcbf5',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  'e08f52fc-8bf5-67df-6d2c-2897c226751a',
                 ],
                 limitAffectedElements: null,
               },
@@ -699,11 +699,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-4',
             affectedElements: {
-              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
-                selector: '.card-container__juice-card.juice-card--2',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--2',
                 selectorGuids: [
-                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
-                  '3e72efe6-cd6f-d396-bd02-f673ad57591a',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  'e08f52fc-8bf5-67df-6d2c-2897c226751a',
                 ],
                 limitAffectedElements: null,
               },
@@ -715,11 +715,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--2',
+              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
+                selector: '.card-container__juice-card.juice-card--2',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  'e08f52fc-8bf5-67df-6d2c-2897c226751a',
+                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
+                  '3e72efe6-cd6f-d396-bd02-f673ad57591a',
                 ],
                 limitAffectedElements: null,
               },
@@ -748,11 +748,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-3',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--3',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--3',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '654fa687-804e-2cc1-8255-0cc9b6239f74',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  'b40b0706-7b2e-d38b-2d4f-5fa2bc6cb61d',
                 ],
                 limitAffectedElements: null,
               },
@@ -764,11 +764,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--3',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--3',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  'b40b0706-7b2e-d38b-2d4f-5fa2bc6cb61d',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '654fa687-804e-2cc1-8255-0cc9b6239f74',
                 ],
                 limitAffectedElements: null,
               },
@@ -797,11 +797,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-4',
             affectedElements: {
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--3',
+              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
+                selector: '.card-container__juice-card.juice-card--3',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  'b40b0706-7b2e-d38b-2d4f-5fa2bc6cb61d',
+                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
+                  '588f53ee-1dee-5145-eb7b-19010118f0a9',
                 ],
                 limitAffectedElements: null,
               },
@@ -813,11 +813,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
-                selector: '.card-container__juice-card.juice-card--3',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--3',
                 selectorGuids: [
-                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
-                  '588f53ee-1dee-5145-eb7b-19010118f0a9',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  'b40b0706-7b2e-d38b-2d4f-5fa2bc6cb61d',
                 ],
                 limitAffectedElements: null,
               },
@@ -846,11 +846,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-3',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--4',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--4',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '274d58e8-a6b8-aed6-2c79-f8fe9a0f9613',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  '9f8fda80-b385-02c0-48f1-7136ebbc866e',
                 ],
                 limitAffectedElements: null,
               },
@@ -862,11 +862,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--4',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--4',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  '9f8fda80-b385-02c0-48f1-7136ebbc866e',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '274d58e8-a6b8-aed6-2c79-f8fe9a0f9613',
                 ],
                 limitAffectedElements: null,
               },
@@ -895,11 +895,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-4',
             affectedElements: {
-              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
-                selector: '.card-container__juice-card.juice-card--4',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--4',
                 selectorGuids: [
-                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
-                  '1fb3ca3c-34b9-e722-2e77-65e7c2e67948',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '274d58e8-a6b8-aed6-2c79-f8fe9a0f9613',
                 ],
                 limitAffectedElements: null,
               },
@@ -911,11 +911,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--4',
+              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
+                selector: '.card-container__juice-card.juice-card--4',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '274d58e8-a6b8-aed6-2c79-f8fe9a0f9613',
+                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
+                  '1fb3ca3c-34b9-e722-2e77-65e7c2e67948',
                 ],
                 limitAffectedElements: null,
               },
@@ -944,11 +944,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-3',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--5',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--5',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '55001b37-210c-074b-437b-092151d94dc2',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  '4fb45721-1035-df1d-ebfe-7f0a5bee6249',
                 ],
                 limitAffectedElements: null,
               },
@@ -960,11 +960,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--5',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--5',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  '4fb45721-1035-df1d-ebfe-7f0a5bee6249',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '55001b37-210c-074b-437b-092151d94dc2',
                 ],
                 limitAffectedElements: null,
               },
@@ -993,11 +993,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-4',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--5',
+              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
+                selector: '.card-container__juice-card.juice-card--5',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '55001b37-210c-074b-437b-092151d94dc2',
+                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
+                  '24a15d36-9d11-a96a-c63c-15b280bd4d21',
                 ],
                 limitAffectedElements: null,
               },
@@ -1009,11 +1009,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
-                selector: '.card-container__juice-card.juice-card--5',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--5',
                 selectorGuids: [
-                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
-                  '24a15d36-9d11-a96a-c63c-15b280bd4d21',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '55001b37-210c-074b-437b-092151d94dc2',
                 ],
                 limitAffectedElements: null,
               },
@@ -1042,11 +1042,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-3',
             affectedElements: {
-              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
-                selector: '.juice-img__card-img.card-img--6',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--6',
                 selectorGuids: [
-                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
-                  '7791a7bc-e287-efa8-5587-66e806e979c4',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  '90c3d349-52fc-b526-8173-7e6f03d76ba5',
                 ],
                 limitAffectedElements: null,
               },
@@ -1058,11 +1058,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--6',
+              '5a0147c7240da900013d1bee|33dd70ee-da17-2354-e582-355026faf0a8': {
+                selector: '.juice-img__card-img.card-img--6',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  '90c3d349-52fc-b526-8173-7e6f03d76ba5',
+                  '54121f4c-ce5e-724f-b76a-bd04f7500d5f',
+                  '7791a7bc-e287-efa8-5587-66e806e979c4',
                 ],
                 limitAffectedElements: null,
               },
@@ -1091,11 +1091,11 @@ export default () => {
             duration: 0,
             actionListId: 'a-4',
             affectedElements: {
-              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
-                selector: '.card-container__juice-card.juice-card--6',
+              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
+                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--6',
                 selectorGuids: [
-                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
-                  '4ad627df-42fa-0e88-ccbb-5a956e3df4c8',
+                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
+                  '90c3d349-52fc-b526-8173-7e6f03d76ba5',
                 ],
                 limitAffectedElements: null,
               },
@@ -1107,11 +1107,11 @@ export default () => {
                 ],
                 limitAffectedElements: null,
               },
-              '5a0147c7240da900013d1bee|2ff1c2f5-6d5e-0b6c-a47d-13c589299bc6': {
-                selector: '.hdr-container__juice-card-hdr.juice-card-hdr--6',
+              '5a0147c7240da900013d1bee|47e6690d-24d0-3c57-a9fd-d83e836e0077': {
+                selector: '.card-container__juice-card.juice-card--6',
                 selectorGuids: [
-                  'cf711f95-00f6-92fc-1ee1-fdc9f7542c0c',
-                  '90c3d349-52fc-b526-8173-7e6f03d76ba5',
+                  'f7bee97f-110d-2a31-beec-ae7a02a825f6',
+                  '4ad627df-42fa-0e88-ccbb-5a956e3df4c8',
                 ],
                 limitAffectedElements: null,
               },
@@ -1140,19 +1140,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--usr-stories',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--usr-stories',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '686b16b4-2ad1-d5ca-964c-2c9f34a8caba',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--usr-stories',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
                 ],
                 limitAffectedElements: null,
               },
@@ -1181,19 +1181,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--usr-stories',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--usr-stories',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '686b16b4-2ad1-d5ca-964c-2c9f34a8caba',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--usr-stories',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ee9d3a43-1148-ff18-5ea1-52e718760dd7',
                 ],
                 limitAffectedElements: null,
               },
@@ -1222,19 +1222,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--vape-news',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--vape-news',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--vape-news',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
                 ],
                 limitAffectedElements: null,
               },
@@ -1263,19 +1263,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--vape-news',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--vape-news',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   'bcc4bbc2-932a-bd87-30aa-5d6e68b5d676',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--vape-news',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  'ecadbd54-b2dd-18a4-d380-e56eaf814c26',
                 ],
                 limitAffectedElements: null,
               },
@@ -1304,19 +1304,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--juice-reviews',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  '62ec9f07-5662-3d48-b6c2-a5267689bd93',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--juice-reviews',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '82bd36a0-d121-307f-4791-8ab7bb4b14f3',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--juice-reviews',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  '62ec9f07-5662-3d48-b6c2-a5267689bd93',
                 ],
                 limitAffectedElements: null,
               },
@@ -1345,19 +1345,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--juice-reviews',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  '62ec9f07-5662-3d48-b6c2-a5267689bd93',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--juice-reviews',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '82bd36a0-d121-307f-4791-8ab7bb4b14f3',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--juice-reviews',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  '62ec9f07-5662-3d48-b6c2-a5267689bd93',
                 ],
                 limitAffectedElements: null,
               },
@@ -1386,19 +1386,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-7',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--contact-us',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  '481bc689-376d-33c9-7593-36b3c81ce6a7',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--contact-us',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '6d352bfd-4e8d-0c8c-086a-a8ba111a8533',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--contact-us',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  '481bc689-376d-33c9-7593-36b3c81ce6a7',
                 ],
                 limitAffectedElements: null,
               },
@@ -1427,19 +1427,19 @@ export default () => {
             duration: 0,
             actionListId: 'a-8',
             affectedElements: {
-              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
-                selector: '.media-hdr__section-text.section-text--contact-us',
-                selectorGuids: [
-                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
-                  '481bc689-376d-33c9-7593-36b3c81ce6a7',
-                ],
-                limitAffectedElements: null,
-              },
               '5a0147c7240da900013d1bee|5e088016-08ed-f6bf-90c4-7bbc3792af61': {
                 selector: '.img-container__media-section-img.media-section-img--contact-us',
                 selectorGuids: [
                   '7865729e-346e-f4e6-4b58-531373c54251',
                   '6d352bfd-4e8d-0c8c-086a-a8ba111a8533',
+                ],
+                limitAffectedElements: null,
+              },
+              '5a0147c7240da900013d1bee|6803b97a-57b2-25d2-ef50-b1d970923613': {
+                selector: '.media-hdr__section-text.section-text--contact-us',
+                selectorGuids: [
+                  'd2de667d-4712-4c82-f2e0-34295e75a4f6',
+                  '481bc689-376d-33c9-7593-36b3c81ce6a7',
                 ],
                 limitAffectedElements: null,
               },
