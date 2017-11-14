@@ -114,7 +114,7 @@ class NavbarWeb extends React.Component {
             <div className="floating-juice-container__nav-b-menu-box" />
           </div>
         </div> */}
-        <div className="navbar-big__media-dropdown">
+        {/* <div className="navbar-big__media-dropdown">
           <div className="media-dropdown__floating-media-container" data-ix="nav-b-media-hover">
             <div className="floating-media-container__top-section">
               <Link className="top-section__media-hdr w-inline-block" to="#">
@@ -175,8 +175,8 @@ class NavbarWeb extends React.Component {
             </div>
             <div className="floating-media-container__nav-b-menu-box" />
           </div>
-        </div>
-        <div className="navbar-big__info-dropdown">
+        </div> */}
+        {/* <div className="navbar-big__info-dropdown">
           <div className="info-dropdown__floating-info-container" data-ix="nav-s-info-hover">
             <div className="floating-info-container__left-section">
               <div className="left-section__menu-container">
@@ -220,7 +220,7 @@ class NavbarWeb extends React.Component {
             </div>
             <div className="floating-info-container__nav-b-menu-box" />
           </div>
-        </div>
+        </div> */}
       </nav>
     );
   }
