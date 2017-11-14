@@ -45,7 +45,6 @@ class NavbarWeb extends React.Component {
 
   render() {
     const { activeLanguage } = this.props;
-
     return (
       <nav className="navbar-big" >
         <div className="navbar-big__nav-section">
@@ -82,7 +81,7 @@ NavbarWeb.propTypes = {
 };
 const NavbarWebWithLifecycle = lifecycle({
   componentDidMount: () => {
-    // WebflowJs();
+    WebflowJs();
     // WebflowAnimations();
     // WebflowAnimations2();
   },

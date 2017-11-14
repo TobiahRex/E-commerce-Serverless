@@ -10,10 +10,10 @@ import {
 } from './components';
 
 class NavbarProducts extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    if (!_.isEqual(nextProps, this.props)) return true;
-    return false;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   if (!_.isEqual(nextProps, this.props)) return true;
+  //   return false;
+  // }
 
   routerPush = (e) => {
     const location = e.target.dataset.slug || e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug;
