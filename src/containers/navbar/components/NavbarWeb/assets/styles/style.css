@@ -92,10 +92,6 @@
   text-decoration: none;
 }
 
-.nav-container__hdr-section.hdr-section__btn {
-  cursor: pointer;
-}
-
 .hdr-section__option--title {
   position: relative;
   z-index: 10;
@@ -206,7 +202,7 @@
   font-size: 19px;
 }
 
-.logo-container__nav-img-sml {
+.logo-container__nav-img-big {
   width: 229px;
   height: 100px;
 }
@@ -728,8 +724,9 @@
 }
 
 .cart-dropdown__nav-b-cart-container {
-  top: 60px;
-  right: 330px;
+  position: relative;
+  top: -60px;
+  right: -430px;
   z-index: 8;
   width: 250px;
   padding: 15px;
@@ -1008,14 +1005,6 @@
   cursor: pointer;
 }
 
-.btn-section__view-cart-btn.en {
-  font-size: 12px;
-}
-
-.btn-section__view-cart-btn.ja {
-  font-size: 10px;
-}
-
 .btn-section__checkout-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1034,7 +1023,7 @@
   background-color: #fc2525;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);
   font-family: Ubuntu, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 300;
   cursor: pointer;
 }
@@ -1079,7 +1068,6 @@
   background-color: #fff;
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .5);
   text-decoration: none;
-  outline: none;
 }
 
 .juice-card__hdr-container {
@@ -1105,10 +1093,8 @@
 }
 
 .juice-img__card-img {
-  /* NOTE - distorts image with explicit H & W values set.
   width: 36px;
   height: 120px;
-  */
 }
 
 .right-side__logged-section {
@@ -1125,11 +1111,6 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.logged-section__login-prompt {
-  background-color: transparent;
-  outline: none;
 }
 
 .logged-section__usr-icon {
@@ -1257,22 +1238,6 @@
   text-decoration: none;
 }
 
-.language-switcher__displayed {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: justify;
-  justify-content: space-around;
-  text-decoration: none;
-  width: 100%;
-}
-
 .language-switcher__img-container {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1286,10 +1251,10 @@
   align-items: stretch;
 }
 
-/*.img-container__navbar-language-img {
-  width: 100%;
-  height: 100%;
-}*/
+.img-container__navbar-language-img {
+  width: 25px;
+  height: 14px;
+}
 
 .language-switcher__blurb-container {
   margin-left: 5px;
@@ -1346,8 +1311,6 @@
 }
 
 .language-container__img-container {
-  width: 25px;
-  height: 25px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;

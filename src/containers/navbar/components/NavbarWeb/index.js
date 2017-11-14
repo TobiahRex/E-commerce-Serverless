@@ -47,7 +47,7 @@ class NavbarWeb extends React.Component {
     const { activeLanguage } = this.props;
 
     return (
-      <nav className="navbar-big" data-wf-page="5a0147c7240da900013d1bee" data-wf-site="5a0147c7240da900013d1bed">
+      <nav className="navbar-big" >
         <div className="navbar-big__nav-section">
           <div className="nav-section__navbar-content">
             <NavbarLogoSxn />
@@ -82,14 +82,15 @@ NavbarWeb.propTypes = {
 };
 const NavbarWebWithLifecycle = lifecycle({
   componentDidMount: () => {
-    WebflowJs();
-    WebflowAnimations();
-    WebflowAnimations2();
+    // WebflowJs();
+    // WebflowAnimations();
+    // WebflowAnimations2();
   },
-  // componentDidUpdate: () => {
-  //   WebflowAnimations();
-  //   WebflowAnimations2();
-  // },
+  componentDidUpdate: () => {
+    // WebflowJs();
+    // WebflowAnimations();
+    // WebflowAnimations2();
+  },
 })(NavbarWeb);
 
 const NavbarWebWithLifecycleAndState = connect(
