@@ -2,8 +2,15 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default function MediaMid() {
+  const setRenderKey = key => (key += 1);
+  const renderKey = setRenderKey(0);
+
   return (
-    <div className="floating-media-container__middle-section">
+    <div
+      key={renderKey}
+      onMouseEnter={() => setRenderKey(renderKey)}
+      className="floating-media-container__middle-section"
+    >
 
       <Link
         className="middle-section__contact--img-container w-inline-block"
