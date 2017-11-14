@@ -27,6 +27,7 @@ function ProductsMid({ popularProducts, routerPush }) {
               routerPush={routerPush}
               product={productObj}
               wix={cardIx[i]}
+              cardNumber={i + 1}
             />
           ))
         }

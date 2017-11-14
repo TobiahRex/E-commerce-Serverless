@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function PopularProductCard({ routerPush, product, slug }) {
+function PopularProductCard({ routerPush, product, slug, wix, cardNumber }) {
   const imageUrl = product.images.reduce((a, n) => {
     switch (a.purpose) {
       case '': return '';
@@ -12,21 +12,22 @@ function PopularProductCard({ routerPush, product, slug }) {
 
   return (
     <button
+      data-w-id={wix}
       data-slug={`/juice/${slug}`}
-      className="card-container__juice-card juice-card--1 w-inline-block"
+      className={`card-container__juice-card juice-card--${cardNumber} w-inline-block`}
       href="/french_vanilla_mocha"
       onClick={routerPush}
     >
-      <div className="hdr-container--1 juice-card__hdr-container">
-        <h4 className="hdr-container__juice-card-hdr juice-card-hdr--1">
+      <div className={`hdr-container--${cardNumber} juice-card__hdr-container`}>
+        <h4 className={`hdr-container__juice-card-hdr juice-card-hdr--${cardNumber}`}>
           {product.title[IntlLocale]}
         </h4>
       </div>
-      <div className="juice-card__juice-img juice-img--1">
+      <div className={`juice-card__juice-img juice-img--${cardNumber}`}>
         <img
           src={imageUrl}
           alt={`${product.title[IntlLocale]} Juice`}
-          className="card-img--1 juice-img__card-img"
+          className={`card-img--${cardNumber} juice-img__card-img`}
         />
       </div>
     </button>
@@ -34,6 +35,8 @@ function PopularProductCard({ routerPush, product, slug }) {
 }
 const { arrayOf, shape, string, func } = PropTypes;
 PopularProductCard.propTypes = {
+  wix: string.isRequired,
+  cardNumber: string.isRequired,
   product: shape({
     title: shape({
       en: string,
