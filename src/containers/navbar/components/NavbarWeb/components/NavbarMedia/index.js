@@ -1,35 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { NavbarNavHdr } from './components';
+import {
+  MediaTop,
+} from './components';
 
 function NavbarNavs() {
   return (
     <div className="navbar-big__media-dropdown">
       <div className="media-dropdown__floating-media-container" data-ix="nav-b-media-hover">
-        <div className="floating-media-container__top-section">
-          <Link className="top-section__media-hdr w-inline-block" to="#">
-            <h3 className="media-hdr__section-text section-text--contact-us">
-              Contact Us
-            </h3>
-          </Link>
-          <Link className="top-section__media-hdr w-inline-block" to="#">
-            <h3 className="media-hdr__section-text section-text--juice-reviews">
-              Juice Reviews
-            </h3>
-          </Link>
-          <div className="top-section__media-hdr" data-ix="nav-s-media-review-hdr-hover-2">
-            <Link className="top-section__media-hdr w-inline-block" to="#">
-              <h3 className="media-hdr__section-text section-text--vape-news">
-                Vape News
-              </h3>
-            </Link>
-          </div>
-          <Link className="top-section__media-hdr w-inline-block" to="#">
-            <h3 className="media-hdr__section-text section-text--usr-stories">
-              User Stories
-            </h3>
-          </Link>
-        </div>
+        <MediaTop />
         <div className="floating-media-container__middle-section">
           <Link className="middle-section__contact--img-container w-inline-block" to="/contact_us">
             <img alt="" className="img-container__media-section-img media-section-img--contact-us" data-ix="nav-s-media-hdr-hover-2" src="/images/navbar_web_media_contactUs.png" />
