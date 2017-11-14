@@ -24,9 +24,9 @@ function PopularProductCard({ routerPush, product, slug }) {
       </div>
       <div className="juice-card__juice-img juice-img--1">
         <img
+          src={imageUrl}
           alt={`${product.title[IntlLocale]} Juice`}
           className="card-img--1 juice-img__card-img"
-          src={imageUrl}
         />
       </div>
     </button>
@@ -49,7 +49,7 @@ PopularProductCard.propTypes = {
     ),
   }),
   slug: string,
-  push: func.isRequired,
+  routerPush: func.isRequired,
 };
 PopularProductCard.defaultProps = {
   product: {
