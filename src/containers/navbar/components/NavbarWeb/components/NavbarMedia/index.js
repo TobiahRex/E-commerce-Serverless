@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router';
 import {
   MediaTop,
   MediaMid,
   MediaLow,
 } from './components';
 
-function NavbarNavs() {
+function NavbarMedia() {
   return (
     <div className="navbar-big__media-dropdown">
       <div className="media-dropdown__floating-media-container" data-ix="nav-b-media-hover">
@@ -18,4 +17,4 @@ function NavbarNavs() {
     </div>
   );
 }
-export default NavbarNavs;
+export default NavbarMedia;
