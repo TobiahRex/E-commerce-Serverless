@@ -7,7 +7,7 @@ function NavbarLangBtn({ activeLanguage }) {
   const language = activeLanguage.toLowerCase();
 
   return (
-    <div className="left-side__language-switcher w-inline-block">
+    <div className="left-side__language-switcher w-inline-block" data-w-id="09dc2a28-68cd-fc3e-d475-3c752121f228">
       <div className="language-switcher__displayed">
         <div className="language-switcher__img-container">
           <img
