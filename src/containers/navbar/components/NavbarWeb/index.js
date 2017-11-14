@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { lifecycle } from 'recompose';
 import './assets/styles/style.css';
 import {
@@ -15,6 +14,8 @@ import {
   NavbarCart,
   NavbarNavs,
   NavbarProducts,
+  NavbarMedia,
+  NavbarInfo,
 } from './components';
 
 class NavbarWeb extends React.Component {
@@ -63,6 +64,8 @@ class NavbarWeb extends React.Component {
           </div>
         </div>
         <NavbarProducts />
+        <NavbarMedia />
+        <NavbarInfo />
         {/* <div className="navbar-big__juice-dropdown">
           <div className="juice-dropdown__floating-juice-container" data-ix="nav-b-juice-hover">
             <div className="floating-juice-container__top-section">
