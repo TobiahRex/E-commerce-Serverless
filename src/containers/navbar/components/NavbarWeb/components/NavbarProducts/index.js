@@ -16,13 +16,13 @@ class NavbarProducts extends React.Component {
   }
 
   routerPush = (e) => {
-    const location = e.target.dataset.slug || e.target.parentNode.dataset.slug;
+    const location = e.target.dataset.slug || e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug;
     this.props.push(location);
   }
 
   render() {
     return (
-      <div className="navbar-big__juice-dropdown">
+      <div className="navbar-big__juice-dropdown" style={{ display: 'flex', opacity: '1' }}>
         <div className="juice-dropdown__floating-juice-container" data-ix="nav-b-juice-hover">
           <ProductsTop />
           <ProductsMid

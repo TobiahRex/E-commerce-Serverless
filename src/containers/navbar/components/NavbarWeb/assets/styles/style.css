@@ -1105,8 +1105,10 @@
 }
 
 .juice-img__card-img {
+  /* NOTE - distorts image with explicit H & W values set.
   width: 36px;
   height: 120px;
+  */
 }
 
 .right-side__logged-section {
