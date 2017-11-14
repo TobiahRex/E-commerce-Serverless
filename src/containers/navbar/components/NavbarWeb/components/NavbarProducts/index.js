@@ -36,9 +36,9 @@ class NavbarProducts extends React.Component {
     );
   }
 }
-const { array, shape, string, arrayOf, func } = PropTypes;
+const { shape, string, arrayOf, func } = PropTypes;
 NavbarProducts.propTypes = {
-  popularProducts: array(
+  popularProducts: arrayOf(
     shape({
       _id: string,
       product: shape({

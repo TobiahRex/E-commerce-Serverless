@@ -15,7 +15,7 @@ function ProductsLow({ routerPush }) {
       </div>
       <div className="bottom-section__register-blurb" data-ix="nav-b-juice-register-hover">
         <p className="register-blurb__blurb-text">
-          <IntlMsg id="navbar.nav.juices.discount.percentage" /> &nbps;
+          <IntlMsg id="navbar.nav.juices.discount.percentage" /> &nbsp;
           <strong className="blurb-text__register-bold-text">
             <IntlMsg id="navbar.nav.juices.discount.reason" />
           </strong>

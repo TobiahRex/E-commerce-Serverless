@@ -14,6 +14,7 @@ import {
   NavbarAuthSxn,
   NavbarCart,
   NavbarNavs,
+  NavbarProducts,
 } from './components';
 
 class NavbarWeb extends React.Component {
@@ -61,7 +62,8 @@ class NavbarWeb extends React.Component {
             </div>
           </div>
         </div>
-        <div className="navbar-big__juice-dropdown">
+        <NavbarProducts />
+        {/* <div className="navbar-big__juice-dropdown">
           <div className="juice-dropdown__floating-juice-container" data-ix="nav-b-juice-hover">
             <div className="floating-juice-container__top-section">
               <div className="top-section__juice-hdr">
@@ -111,7 +113,7 @@ class NavbarWeb extends React.Component {
             </div>
             <div className="floating-juice-container__nav-b-menu-box" />
           </div>
-        </div>
+        </div> */}
         <div className="navbar-big__media-dropdown">
           <div className="media-dropdown__floating-media-container" data-ix="nav-b-media-hover">
             <div className="floating-media-container__top-section">

@@ -1,0 +1,1 @@
+export MediaTop from './MediaTop';
