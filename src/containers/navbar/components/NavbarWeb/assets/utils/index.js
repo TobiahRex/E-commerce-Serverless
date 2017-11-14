@@ -3,3 +3,4 @@ export function WebflowJs() {
 }
 export WebflowAnimations from './webflow.animations';
 export WebflowAnimations2 from './webflow.animations2';
+export localeActions from '../../../../../../redux/locale';

@@ -62,7 +62,7 @@ class App extends Component {
         />
         <Navbar />
         <section id="main-section">
-          {this.props.children}
+          {/* {this.props.children} */}
         </section>
         <footer>
           <Footer />

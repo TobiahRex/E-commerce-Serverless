@@ -22,7 +22,7 @@ class NavbarProducts extends React.Component {
 
   render() {
     return (
-      <div className="navbar-big__juice-dropdown" style={{ display: 'flex', opacity: '1' }}>
+      <div className="navbar-big__juice-dropdown">
         <div className="juice-dropdown__floating-juice-container" data-ix="nav-b-juice-hover">
           <ProductsTop />
           <ProductsMid
