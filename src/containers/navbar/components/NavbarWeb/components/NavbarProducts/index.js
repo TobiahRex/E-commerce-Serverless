@@ -45,15 +45,18 @@ NavbarProducts.propTypes = {
 NavbarProducts.defaultProps = {
   popularProducts: [],
 };
+
 const NavbarProductsWithProps = connect(({ products }) => ({
   popularProducts: products.popularProducts,
 }), dispatch => ({
   push: location => dispatch(push(location)),
 }))(NavbarProducts);
+
 const NavbarProductsWithPropsAndHandlers = withHandlers({
   routerPush: (e) => {
     const location = e.target.dataset.slug || e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug;
     this.props.push(location);
   },
 })(NavbarProductsWithProps);
+
 export default NavbarProductsWithPropsAndHandlers;
