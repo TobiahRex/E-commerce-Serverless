@@ -12,7 +12,7 @@ function PopularProductCard({ routerPush, product, slug }) {
 
   return (
     <button
-      data-slug={slug}
+      data-slug={`/juice/${slug}`}
       className="card-container__juice-card juice-card--1 w-inline-block"
       href="/french_vanilla_mocha"
       onClick={routerPush}
