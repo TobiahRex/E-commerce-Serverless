@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
-import { lifecycle } from 'recompose';
+import { graphql, compose } from 'react-apollo';
 import './assets/styles/style.css';
 import {
   localeActions,
   WebflowJs,
+  orderActions,
+  userActions,
+  DeleteFromMemberCart,
+  FetchMultipleProducts,
+  FetchMultipleProductsOptions,
+  zipUserCart as ZipUserCart,
+  determineCartType as DetermineCartType,
 } from './assets/utils';
 import {
   NavbarLogoSxn,
@@ -30,6 +37,8 @@ class NavbarWeb extends React.Component {
       activeLanguage: '',
     };
   }
+
+  componentDidMount() { WebflowJs(); }
 
   shouldComponentUpdate(nextProps) {
     /**
@@ -88,7 +97,7 @@ class NavbarWeb extends React.Component {
   *
   * @return {na} no return.
   */
-  deleteFromCart = () => {
+  deleteFromCart = (e) => {
     const productId = e.target.dataset.id || e.target.parentNode.dataset.id;
     const {
       userId,
@@ -109,7 +118,7 @@ class NavbarWeb extends React.Component {
       *
       * @return {promise} - Resolved or Rejected promise result.
       */
-      this.props.DeleteFromCart({
+      this.props.DeleteFromMemberCart({
         variables: {
           userId,
           productId,
@@ -132,7 +141,26 @@ class NavbarWeb extends React.Component {
   }
 
   render() {
-    const { activeLanguage } = this.props;
+    const {
+      activeLanguage,
+      loggedIn,
+      guestCart,
+      userCart,  // only contains id's and quantities.
+      FetchMultipleProducts: fetchProductsResult,
+    } = this.props;
+
+    const cartItems = DetermineCartType({
+      loggedIn,
+      guestCart,
+      userCart,
+      FetchMultipleProducts: fetchProductsResult,
+    }, ZipUserCart);
+
+    let qty = 0;
+    if (!!cartItems.length) {
+      qty = cartItems.reduce((accum, next) => accum + next.qty, 0);
+    }
+
     return (
       <nav className="navbar-big">
         <div className="navbar-big__nav-section">
@@ -146,7 +174,7 @@ class NavbarWeb extends React.Component {
                 />
                 <div className="navbar-action-top__right-side">
                   <NavbarAuthSxn />
-                  <NavbarCart />
+                  <NavbarCart qty={qty} />
                 </div>
               </div>
               <NavbarNavs />
@@ -156,40 +184,101 @@ class NavbarWeb extends React.Component {
         <NavbarProducts />
         <NavbarMedia />
         <NavbarInfo />
-        <NavbarCartDropdown />
+        <NavbarCartDropdown
+          loading={!!fetchProductsResult && fetchProductsResult.loading}
+          cartItems={cartItems}
+          editCartItem={this.editCartItem}
+          deleteFromCart={this.deleteFromCart}
+          cartTotal={
+            cartItems.length ?
+            cartItems.reduce((acc, next) =>
+              acc + (Number(next.product.price) * next.qty), 0,
+            ) : 0
+          }
+        />
       </nav>
     );
   }
 }
-const { func, string } = PropTypes;
+const NavbarWithData = compose(
+  graphql(FetchMultipleProducts, {
+    name: 'FetchMultipleProducts',
+    options: FetchMultipleProductsOptions,
+  }),
+  graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
+)(NavbarWeb);
+
+const NavbarWebWithLifecycleAndState = connect(
+  ({ user, auth, orders, locale, routing }) => ({
+    qty: 0,
+    userId: auth.loggedIn ? user.profile._id : '',
+    loggedIn: auth.loggedIn,
+    guestCart: orders.cart,
+    userCart: auth.loggedIn ? user.profile.shopping.cart : [],
+    location: routing.locationBeforeTransitions.pathname,
+    activeLanguage: locale.activeLanguage,
+  }),
+  dispatch => ({
+    push: location => dispatch(push(location)),
+    saveLanguage: language => dispatch(localeActions.setLanguage(language)),
+    saveGuestCart: updatedCartProducts =>
+    dispatch(orderActions.saveGuestCart(updatedCartProducts)),
+    saveUser: updatedUser => dispatch(userActions.saveUser(updatedUser)),
+  }),
+)(NavbarWithData);
+
+const {
+  any,
+  bool,
+  func,
+  shape,
+  number,
+  object,
+  string,
+  arrayOf,
+  objectOf,
+} = PropTypes;
 NavbarWeb.propTypes = {
   location: string.isRequired,
   activeLanguage: string.isRequired,
   saveLanguage: func.isRequired,
   push: func.isRequired,
+  qty: number.isRequired,
+  userId: string.isRequired,
+  loggedIn: bool.isRequired,
+  guestCart: arrayOf(object),
+  saveUser: func.isRequired,
+  saveGuestCart: func.isRequired,
+  DeleteFromMemberCart: func.isRequired,
+  FetchMultipleProducts: objectOf(any).isRequired,
+  data: shape({
+    FetchUserProfile: shape({
+      qty: number,
+      strength: number,
+      product: shape({
+        sku: string,
+        title: string,
+        price: string,
+        vendor: string,
+        flavor: string,
+        images: shape({
+          purpose: string,
+          url: string,
+        }),
+      }),
+    }),
+  }),
+  userCart: arrayOf(
+    shape({
+      qty: number,
+      productId: string,
+    }),
+  ),
 };
-const NavbarWebWithLifecycle = lifecycle({
-  componentDidMount: () => {
-    WebflowJs();
-    // WebflowAnimations();
-    // WebflowAnimations2();
-  },
-  componentDidUpdate: () => {
-    // WebflowJs();
-    // WebflowAnimations();
-    // WebflowAnimations2();
-  },
-})(NavbarWeb);
-
-const NavbarWebWithLifecycleAndState = connect(
-  ({ locale, routing }) => ({
-    activeLanguage: locale.activeLanguage,
-    location: routing.locationBeforeTransitions.pathname,
-  }),
-  dispatch => ({
-    push: location => dispatch(push(location)),
-    saveLanguage: language => dispatch(localeActions.setLanguage(language)),
-  }),
-)(NavbarWebWithLifecycle);
+NavbarWeb.defaultProps = {
+  data: null,
+  guestCart: null,
+  userCart: null,
+};
 
 export default NavbarWebWithLifecycleAndState;
