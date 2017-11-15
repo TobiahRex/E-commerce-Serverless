@@ -5,10 +5,7 @@ import _ from 'lodash';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
-import {
-  MyCartBox,
-  MyCartDropdown,
-} from './components';
+import { MyCartBox } from './components';
 import {
   orderActions,
   userActions,
@@ -132,7 +129,7 @@ class NavbarCart extends Component {
       <div className="navbar actionSection upper mycart-container">
         <div className="mycart-main">
           <MyCartBox qty={qty} />
-          <MyCartDropdown
+          {/* <MyCartDropdown
             loading={!!fetchProductsResult && fetchProductsResult.loading}
             cartItems={cartItems}
             editCartItem={this.editCartItem}
@@ -143,7 +140,7 @@ class NavbarCart extends Component {
                 acc + (Number(next.product.price) * next.qty)
               , 0) : 0
             }
-          />
+          /> */}
         </div>
       </div>
     );
