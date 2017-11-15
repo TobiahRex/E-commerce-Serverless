@@ -1093,8 +1093,7 @@
 }
 
 .juice-img__card-img {
-  width: 36px;
-  height: 120px;
+  max-width: 95%;
 }
 
 .right-side__logged-section {
@@ -1258,6 +1257,17 @@
 
 .language-switcher__blurb-container {
   margin-left: 5px;
+}
+
+.language-switcher__displayed {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
 }
 
 .blurb-container__navbar-language-blurb {

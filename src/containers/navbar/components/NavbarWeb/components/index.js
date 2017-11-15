@@ -6,4 +6,5 @@ export NavbarNavs from './NavbarNavs';
 export NavbarProducts from './NavbarProducts';
 export NavbarMedia from './NavbarMedia';
 export NavbarInfo from './NavbarInfo';
+export NavbarCartDropdown from './NavbarCartDropdown';
 // export NavbarNavHdr from './NavbarNavHdr';
