@@ -11,9 +11,9 @@ import {
 function NavbarCartDropdown({
   loading,
   cartItems,
-  cartTotal,
-  deleteFromCart,
   editCartItem,
+  deleteFromCart,
+  cartTotal,
 }) {
   return (
     <div
