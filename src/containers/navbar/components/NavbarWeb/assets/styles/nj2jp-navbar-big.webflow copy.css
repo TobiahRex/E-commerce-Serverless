@@ -179,10 +179,6 @@
   text-transform: capitalize;
 }
 
-.mycart-title__blurb.ja {
-  font-size: 15px;
-}
-
 .mycart-container__mycart-qty {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1032,14 +1028,6 @@
   cursor: pointer;
 }
 
-.btn-section__view-cart-btn.ja {
-  font-size: 10px;
-}
-
-.btn-section__view-cart-btn.en {
-  font-size: 12px;
-}
-
 .btn-section__checkout-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1058,7 +1046,7 @@
   background-color: #fc2525;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);
   font-family: Ubuntu, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 300;
   cursor: pointer;
 }
@@ -1128,7 +1116,8 @@
 }
 
 .juice-img__card-img {
-  max-width: 95%;
+  width: 36px;
+  height: 120px;
 }
 
 .right-side__logged-section {
@@ -1270,7 +1259,6 @@
   -ms-flex-align: center;
   align-items: center;
   text-decoration: none;
-  cursor: pointer;
 }
 
 .language-switcher__img-container {
@@ -1293,17 +1281,6 @@
 
 .language-switcher__blurb-container {
   margin-left: 5px;
-}
-
-.language-switcher__displayed {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
 }
 
 .blurb-container__navbar-language-blurb {
@@ -1333,10 +1310,9 @@
   top: 50px;
   z-index: 15;
   display: none;
-  width: 110px;
+  width: 120px;
   height: 40px;
   padding: 5px;
-  border-radius: 0px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1355,7 +1331,6 @@
   text-decoration: none;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  outline: none;
 }
 
 .language-container__img-container {
@@ -1401,7 +1376,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 25px;
+  height: 100%;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1417,4 +1392,71 @@ html.w-mod-js *[data-ix="nav-b-logged-section-load"] {
   -webkit-transform: translate(30px, 0px);
   -ms-transform: translate(30px, 0px);
   transform: translate(30px, 0px);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Bold.ttf') format('truetype'), url('../fonts/OpenSans-ExtraBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Opensans';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fontawesome';
+  src: url('../fonts/FontAwesome.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 }
