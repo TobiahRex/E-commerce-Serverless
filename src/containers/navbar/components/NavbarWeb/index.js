@@ -20,7 +20,7 @@ import {
   NavbarLogoSxn,
   NavbarLanguage,
   NavbarAuthSxn,
-  NavbarCart,
+  NavbarMyCart,
   NavbarNavs,
   NavbarProducts,
   NavbarMedia,
@@ -174,7 +174,7 @@ class NavbarWeb extends React.Component {
                 />
                 <div className="navbar-action-top__right-side">
                   <NavbarAuthSxn />
-                  <NavbarCart qty={qty} />
+                  <NavbarMyCart qty={qty} />
                 </div>
               </div>
               <NavbarNavs />

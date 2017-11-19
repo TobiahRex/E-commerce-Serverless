@@ -208,7 +208,11 @@
 }
 
 .navbar-big__juice-dropdown {
-  position: relative;
+  position: absolute;
+  left: 0px;
+  top: 120px;
+  right: 0px;
+  z-index: 9;
   display: none;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -421,6 +425,11 @@
 }
 
 .navbar-big__media-dropdown {
+  position: absolute;
+  left: 0px;
+  top: 120px;
+  right: 0px;
+  z-index: 9;
   display: none;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -609,7 +618,16 @@
   box-shadow: 2px -2px 10px 0 rgba(0, 0, 0, .5);
 }
 
+.navbar-big {
+  position: relative;
+}
+
 .navbar-big__info-dropdown {
+  position: absolute;
+  left: 0px;
+  top: 120px;
+  right: 0px;
+  z-index: 9;
   display: none;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -711,6 +729,11 @@
 }
 
 .navbar-big__cart-dropdown {
+  position: absolute;
+  left: 0px;
+  top: 120px;
+  right: 0px;
+  z-index: 9;
   display: none;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -720,7 +743,7 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  opacity: 1;
+  opacity: 0;
 }
 
 .cart-dropdown__nav-b-cart-container {
@@ -1005,6 +1028,14 @@
   cursor: pointer;
 }
 
+.btn-section__view-cart-btn.ja {
+  font-size: 10px;
+}
+
+.btn-section__view-cart-btn.en {
+  font-size: 12px;
+}
+
 .btn-section__checkout-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1023,7 +1054,7 @@
   background-color: #fc2525;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);
   font-family: Ubuntu, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 300;
   cursor: pointer;
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MyCartBox } from './components';
 
-function NavbarCart({ qty }) {
+function NavbarMyCart({ qty }) {
   return (
     <div className="navbar actionSection upper mycart-container">
       <div className="mycart-main">
@@ -13,7 +13,7 @@ function NavbarCart({ qty }) {
   );
 }
 
-NavbarCart.propTypes = {
+NavbarMyCart.propTypes = {
   qty: PropTypes.number.isRequired,
 };
-export default NavbarCart;
+export default NavbarMyCart;
