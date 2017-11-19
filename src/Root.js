@@ -30,7 +30,7 @@ class Root extends React.Component {
             onUpdate={() => saveLocation(store.dispatch)}
           />
         </IntlProvider>
-        </ApolloProvider >
+      </ApolloProvider >
     );
   }
 }

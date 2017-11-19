@@ -11,7 +11,7 @@ function MyCartBox({ qty }) {
       to="/cart"
     >
       <div className="mycart-container__mycart-title">
-        <div className="mycart-title__blurb">
+        <div className={`mycart-title__blurb ${IntlLocale}`}>
           <IntlMsg id="navbar.cart.cart-button" />
         </div>
       </div>
