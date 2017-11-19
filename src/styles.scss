@@ -116,6 +116,10 @@ a {
   display: none;
 }
 
+button {
+  border-radius: 0px;
+}
+
 @media (min-width: 931px) {
   #main-section {
     @include prefixflex();

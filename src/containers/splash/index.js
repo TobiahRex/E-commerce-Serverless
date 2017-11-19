@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {
   // WebflowJs,
-  WebflowAnimations,
+  // WebflowAnimations,
 } from './assets/utils/index';
 import {
   Header,
@@ -34,11 +34,11 @@ class Splash extends React.Component {
 
   componentDidMount() {
     // WebflowJs();
-    WebflowAnimations();
+    // WebflowAnimations();
   }
 
   componentDidUpdate() {
-    WebflowAnimations();
+    // WebflowAnimations();
   }
 
   render() {

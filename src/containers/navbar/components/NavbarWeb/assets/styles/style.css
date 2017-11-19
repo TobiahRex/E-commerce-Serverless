@@ -1103,6 +1103,7 @@
   background-color: #fff;
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .5);
   text-decoration: none;
+  border-radius: 0px;
 }
 
 .juice-card__hdr-container {
