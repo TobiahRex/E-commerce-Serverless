@@ -19,11 +19,12 @@ import {
   determineCartType as DetermineCartType,
 } from './assets/utils';
 import {
-  NavbarLogoSxn,
-  NavbarLanguage,
-  NavbarAuthSxn,
-  NavbarMyCart,
-  NavbarNavs,
+  // NavbarLogoSxn,
+  // NavbarLanguage,
+  // NavbarAuthSxn,
+  // NavbarMyCart,
+  // NavbarNavs,
+  NavbarMain,
   NavbarProducts,
   NavbarMedia,
   NavbarInfo,
@@ -173,24 +174,11 @@ class NavbarWeb extends React.Component {
 
     return (
       <nav className="navbar-big">
-        <div className="navbar-big__nav-section">
-          <div className="nav-section__navbar-content">
-            <NavbarLogoSxn />
-            <div className="navbar-content__action-section">
-              <div className="action-section__navbar-action-top">
-                <NavbarLanguage
-                  handleLangChange={this.handleLangChange}
-                  activeLanguage={activeLanguage}
-                />
-                <div className="navbar-action-top__right-side">
-                  <NavbarAuthSxn />
-                  <NavbarMyCart qty={qty} />
-                </div>
-              </div>
-              <NavbarNavs />
-            </div>
-          </div>
-        </div>
+        <NavbarMain
+          qty={qty}
+          handleLangChange={this.handleLangChange}
+          activeLanguage={activeLanguage}
+        />
         <NavbarProducts />
         <NavbarMedia />
         <NavbarInfo />
