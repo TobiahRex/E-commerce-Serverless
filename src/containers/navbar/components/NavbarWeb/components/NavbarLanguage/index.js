@@ -6,24 +6,25 @@ import {
 } from './components';
 
 function NavbarLanguage({ handleLangChange, activeLanguage }) {
+  console.log('%cFIRE', 'background:red;', '');
   return (
     <div className="nav-action-top__left-side" data-w-id="f0db6205-47f1-21c7-784b-18b8d37a443f">
       {
         activeLanguage === 'en' ?
-          <NavbarLangBtn activeLanguage="english" /> :
-          <NavbarLangBtn activeLanguage="japanese" />
+          <NavbarLangBtn activeLanguage="en" /> :
+        <NavbarLangBtn activeLanguage="ja" />
       }
 
       {
         activeLanguage === 'en' ?
           <NavbarLangOption
             onChange={handleLangChange}
-            language="japanese"
+            language="ja"
           /> :
-          <NavbarLangOption
-            onChange={handleLangChange}
-            language="english"
-          />
+        <NavbarLangOption
+          onChange={handleLangChange}
+          language="en"
+        />
 
       }
     </div>

@@ -8,6 +8,8 @@ import './assets/styles/style.css';
 import {
   localeActions,
   WebflowJs,
+  WebflowAnimations,
+  WebflowAnimations2,
   orderActions,
   userActions,
   DeleteFromMemberCart,
@@ -38,7 +40,14 @@ class NavbarWeb extends React.Component {
     };
   }
 
-  componentDidMount() { WebflowJs(); }
+  componentDidMount() {
+    WebflowJs();
+  }
+
+  componentWillUpdate() {
+    WebflowAnimations();
+    WebflowAnimations2();
+  }
 
   shouldComponentUpdate(nextProps) {
     /**
@@ -70,7 +79,8 @@ class NavbarWeb extends React.Component {
   }
 
   handleLangChange = (e) => {
-    const language = e.target.dataset.language || e.target.dataset.parentNode.language;
+    // Depending on what element the user clicks, an upward dom traversal will take place from a max element depth of 5, thus 5 possibilities.
+    const language = e.target.dataset.language || e.target.parentNode.dataset.language || e.target.parentNode.parentNode.dataset.language || e.target.parentNode.parentNode.parentNode.dataset.language || e.target.parentNode.parentNode.parentNode.parentNode.dataset.language;
 
     this.setState(() => ({
       activeLanguage: language,
