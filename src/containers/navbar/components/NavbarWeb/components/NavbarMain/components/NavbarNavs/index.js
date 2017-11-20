@@ -6,7 +6,6 @@ function NavbarNavs({
   renderKey,
   reRenderNavbar,
 }) {
-  console.log('%crenderKey', 'background:red;', renderKey);
   return (
     <div className="action-section__navbar-action-bottom">
       <div className="navbar-action-bottom__nav-container" key={renderKey}>
