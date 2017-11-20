@@ -82,8 +82,9 @@ class NavbarWeb extends React.Component {
     // Depending on what element the user clicks, an upward dom traversal will take place from a max element depth of 5, thus 5 possibilities.
     const language = e.target.dataset.language || e.target.parentNode.dataset.language || e.target.parentNode.parentNode.dataset.language || e.target.parentNode.parentNode.parentNode.dataset.language || e.target.parentNode.parentNode.parentNode.parentNode.dataset.language;
 
-    this.setState(() => ({
+    this.setState(prevState => ({
       activeLanguage: language,
+      renderKey: prevState.renderKey + 1,
     }),
     () => {
       this.props.saveLanguage(language);
@@ -95,7 +96,13 @@ class NavbarWeb extends React.Component {
   * Function: "editCartItem"
   * 1) Navigate to the cart page.
   */
-  editCartItem = () => this.props.push('/cart');
+  editCartItem = () => {
+    this.setState(prevState => ({
+      renderKey: prevState.renderKey + 1,
+    }), () => {
+      this.props.push('/cart');
+    });
+  };
 
   /**
   * Function: "deleteFromCart"
@@ -135,7 +142,11 @@ class NavbarWeb extends React.Component {
         },
       })
       .then(({ data: { DeleteFromCart: updatedUser } }) => {
-        saveUser(updatedUser);
+        this.setState(prevState => ({
+          renderKey: prevState.renderKey + 1,
+        }), () => {
+          saveUser(updatedUser);
+        });
       });
     } else {
       /**
@@ -146,8 +157,18 @@ class NavbarWeb extends React.Component {
       *
       * @return N/A
       */
-      saveGuestCart(guestCart.filter(({ _id }) => _id !== productId));
+      this.setState(prevState => ({
+        renderKey: prevState.renderKey + 1,
+      }), () => {
+        saveGuestCart(guestCart.filter(({ _id }) => _id !== productId));
+      });
     }
+  }
+
+  reRenderNavbar = () => {
+    this.setState(prevState => ({
+      renderKey: prevState.renderKey + 1,
+    }));
   }
 
   render() {
@@ -172,16 +193,18 @@ class NavbarWeb extends React.Component {
     }
 
     return (
-      <nav className="navbar-big">
+      <nav className="navbar-big" key={this.state.renderKey} >
         <NavbarMain
           qty={qty}
           activeLanguage={activeLanguage}
           handleLangChange={this.handleLangChange}
+          reRenderNavbar={this.reRenderNavbar}
         />
-        <NavbarProducts />
-        <NavbarMedia />
-        <NavbarInfo />
+        <NavbarProducts reRenderNavbar={this.reRenderNavbar} />
+        <NavbarMedia reRenderNavbar={this.reRenderNavbar} />
+        <NavbarInfo reRenderNavbar={this.reRenderNavbar} />
         <NavbarCartDropdown
+          reRenderNavbar={this.reRenderNavbar}
           loading={!!fetchProductsResult && fetchProductsResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
