@@ -41,43 +41,41 @@ class NavbarWeb extends React.Component {
     WebflowJs();
     WebflowAnimations();
     WebflowAnimations2();
-    console.log('%ccomponentDidMount', 'background:cyan;', '');
   }
 
   componentWillUpdate() {
     WebflowAnimations();
     WebflowAnimations2();
-    console.log('%ccomponentWillUpdate', 'background:pink;', '');
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   /**
-  //   * Function: "isArrayEqual"
-  //   * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
-  //   *
-  //   * @param {object} np - nextProps
-  //   * @param {object} tp - this.props
-  //   *
-  //   * @return {boolean} true/false.
-  //   */
-  //   const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
-  //
-  //     { FetchMultipleProducts:
-  //       { FetchMultipleProducts: nextUserCart },
-  //     } = nextProps,
-  //
-  //     { FetchMultipleProducts:
-  //       { FetchMultipleProducts: thisUserCart },
-  //     } = this.props,
-  //
-  //     reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
-  //     userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
-  //
-  //   if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  shouldComponentUpdate(nextProps) {
+    /**
+    * Function: "isArrayEqual"
+    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+    *
+    * @param {object} np - nextProps
+    * @param {object} tp - this.props
+    *
+    * @return {boolean} true/false.
+    */
+    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
+
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: nextUserCart },
+      } = nextProps,
+
+      { FetchMultipleProducts:
+        { FetchMultipleProducts: thisUserCart },
+      } = this.props,
+
+      reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
+      userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
+
+    if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
+      return true;
+    }
+    return false;
+  }
 
   handleLangChange = (e) => {
     // Depending on what element the user clicks, an upward dom traversal will take place from a max element depth of 5, thus 5 possibilities.
