@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { lifecycle } from 'recompose';
 import {
   NavbarAuthLogin,
   NavbarAuthLogout,
 } from './components';
 
-function NavbarAuthSxn({
-  activeUser = {
-    profile: {
-      name: 'Avatar',
-    },
-  },
-}) {
-  return (
-    <div>
-      {
-        activeUser ?
-          <NavbarAuthLogout activeUser={activeUser} /> :
-          <NavbarAuthLogin />
-      }
-    </div>
-  );
+class NavbarAuthSxn extends React.PureComponent {
+  render() {
+    const { activeUser } = this.props;
+    return (
+      <div>
+        {
+          activeUser ?
+            <NavbarAuthLogout activeUser={activeUser} /> :
+            <NavbarAuthLogin />
+        }
+      </div>
+    );
+  }
 }
 const { objectOf, any } = PropTypes;
 NavbarAuthSxn.propTypes = {
