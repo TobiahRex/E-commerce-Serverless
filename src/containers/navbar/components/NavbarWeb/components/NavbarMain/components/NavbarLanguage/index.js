@@ -5,15 +5,19 @@ import {
   NavbarLangOption,
 } from './components';
 
-function NavbarLanguage({ handleLangChange, activeLanguage }) {
+function NavbarLanguage({ handleLangChange, activeLanguage, renderKey }) {
   return (
-    <div className="nav-action-top__left-side" data-w-id="f0db6205-47f1-21c7-784b-18b8d37a443f">
+    <div
+      renderKey={renderKey}
+      className="nav-action-top__left-side"
+      data-w-id="f0db6205-47f1-21c7-784b-18b8d37a443f"
+    >
       {
         activeLanguage === 'en' ?
           <NavbarLangBtn activeLanguage="en" /> :
-          <NavbarLangBtn activeLanguage="ja" />
+        <NavbarLangBtn activeLanguage="ja" />
       }
-
+      
       {
         activeLanguage === 'en' ?
           <NavbarLangOption
@@ -29,8 +33,10 @@ function NavbarLanguage({ handleLangChange, activeLanguage }) {
     </div>
   );
 }
+const { string, func } = PropTypes;
 NavbarLanguage.propTypes = {
-  handleLangChange: PropTypes.func.isRequired,
-  activeLanguage: PropTypes.string.isRequired,
+  renderKey: string.isRequired,
+  handleLangChange: func.isRequired,
+  activeLanguage: string.isRequired,
 };
 export default NavbarLanguage;

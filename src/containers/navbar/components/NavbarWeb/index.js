@@ -33,6 +33,7 @@ class NavbarWeb extends React.Component {
     this.state = {
       location: '',
       activeLanguage: '',
+      renderKey: 1,
     };
   }
 
@@ -43,40 +44,40 @@ class NavbarWeb extends React.Component {
     console.log('%ccomponentDidMount', 'background:cyan;', '');
   }
 
-  // componentWillUpdate() {
-  //   WebflowAnimations();
-  //   WebflowAnimations2();
-  //   console.log('%ccomponentWillUpdate', 'background:pink;', '');
-  // }
-
-  shouldComponentUpdate(nextProps) {
-    /**
-    * Function: "isArrayEqual"
-    * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
-    *
-    * @param {object} np - nextProps
-    * @param {object} tp - this.props
-    *
-    * @return {boolean} true/false.
-    */
-    const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
-
-      { FetchMultipleProducts:
-        { FetchMultipleProducts: nextUserCart },
-      } = nextProps,
-
-      { FetchMultipleProducts:
-        { FetchMultipleProducts: thisUserCart },
-      } = this.props,
-
-      reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
-      userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
-
-    if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
-      return true;
-    }
-    return false;
+  componentWillUpdate() {
+    WebflowAnimations();
+    WebflowAnimations2();
+    console.log('%ccomponentWillUpdate', 'background:pink;', '');
   }
+
+  // shouldComponentUpdate(nextProps) {
+  //   /**
+  //   * Function: "isArrayEqual"
+  //   * 1) Uses lodash to determine if an array of nested values are different between nextProps "np" & this.props "tp".
+  //   *
+  //   * @param {object} np - nextProps
+  //   * @param {object} tp - this.props
+  //   *
+  //   * @return {boolean} true/false.
+  //   */
+  //   const isArrayEqual = (np, tp) => _(np).differenceWith(tp, _.isEqual).isEmpty(),
+  //
+  //     { FetchMultipleProducts:
+  //       { FetchMultipleProducts: nextUserCart },
+  //     } = nextProps,
+  //
+  //     { FetchMultipleProducts:
+  //       { FetchMultipleProducts: thisUserCart },
+  //     } = this.props,
+  //
+  //     reduxCartDiff = isArrayEqual(nextProps.guestCart, this.props.guestCart),
+  //     userCartDiff = isArrayEqual(nextUserCart, thisUserCart);
+  //
+  //   if (!_.isEqual(nextProps, this.props) || reduxCartDiff || userCartDiff) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   handleLangChange = (e) => {
     // Depending on what element the user clicks, an upward dom traversal will take place from a max element depth of 5, thus 5 possibilities.
@@ -167,6 +168,7 @@ class NavbarWeb extends React.Component {
 
   reRenderNavbar = () => {
     this.setState(prevState => ({
+      ...prevState,
       renderKey: prevState.renderKey + 1,
     }));
   }
@@ -193,22 +195,33 @@ class NavbarWeb extends React.Component {
     }
 
     return (
-      <nav className="navbar-big" key={this.state.renderKey} >
+      <nav className="navbar-big">
         <NavbarMain
           qty={qty}
           activeLanguage={activeLanguage}
           handleLangChange={this.handleLangChange}
           reRenderNavbar={this.reRenderNavbar}
+          renderKey={this.state.renderKey}
         />
-        <NavbarProducts reRenderNavbar={this.reRenderNavbar} />
-        <NavbarMedia reRenderNavbar={this.reRenderNavbar} />
-        <NavbarInfo reRenderNavbar={this.reRenderNavbar} />
+        <NavbarProducts
+          reRenderNavbar={this.reRenderNavbar}
+          renderKey={this.state.renderKey}
+        />
+        <NavbarMedia
+          reRenderNavbar={this.reRenderNavbar}
+          renderKey={this.state.renderKey}
+        />
+        <NavbarInfo
+          reRenderNavbar={this.reRenderNavbar}
+          renderKey={this.state.renderKey}
+        />
         <NavbarCartDropdown
           reRenderNavbar={this.reRenderNavbar}
           loading={!!fetchProductsResult && fetchProductsResult.loading}
           cartItems={cartItems}
           editCartItem={this.editCartItem}
           deleteFromCart={this.deleteFromCart}
+          renderKey={this.state.renderKey}
           cartTotal={
             cartItems.length ?
             cartItems.reduce((acc, next) =>
