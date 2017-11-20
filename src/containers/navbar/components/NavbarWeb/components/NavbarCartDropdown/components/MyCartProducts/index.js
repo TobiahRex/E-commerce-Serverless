@@ -14,6 +14,7 @@ const { bool, func, object, arrayOf } = PropTypes;
 
 class MyCartProducts extends Component {
   static propTypes = {
+    reRenderNavbar: func.isRequired,
     loading: bool.isRequired,
     cartItems: arrayOf(object),
     editCartItem: func.isRequired,
