@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-export default function MediaMid() {
+export default function MediaMid({ reRenderNavbar }) {
   const setRenderKey = key => (key += 1);
   const renderKey = setRenderKey(0);
 
@@ -15,6 +16,7 @@ export default function MediaMid() {
       <Link
         className="middle-section__contact--img-container w-inline-block"
         to="/contact_us"
+        onClick={reRenderNavbar}
       >
         <img
           alt="Contact Us"
@@ -28,6 +30,7 @@ export default function MediaMid() {
       <Link
         className="middle-section__reviews--img-container w-inline-block"
         to="/juice_reviews"
+        onClick={reRenderNavbar}
       >
         <img
           alt="Juice Reviews"
@@ -40,6 +43,7 @@ export default function MediaMid() {
       <Link
         className="middle-section__news--img-container w-inline-block"
         to="/vape_news"
+        onClick={reRenderNavbar}
       >
         <img
           alt="Vape News"
@@ -52,6 +56,7 @@ export default function MediaMid() {
       <Link
         className="middle-section__stories--img-container w-inline-block"
         to="/user_stories"
+        onClick={reRenderNavbar}
       >
         <img
           alt="User Stories"
@@ -63,3 +68,7 @@ export default function MediaMid() {
     </div>
   );
 }
+reRenderNavbar.propTypes = {
+  reRenderNavbar: PropTypes.func.isRequired,
+};
+export default reRenderNavbar;
