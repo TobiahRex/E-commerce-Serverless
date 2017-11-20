@@ -8,6 +8,7 @@ function NavbarNavHdr({
   wid,
   header,
   link = '',
+  reRenderNavbar,
 }) {
   if (link) {
     return (
@@ -16,6 +17,7 @@ function NavbarNavHdr({
         data-ix={ix}
         data-w-id={wid}
         to={link}
+        onClick={reRenderNavbar}
       >
         <div className="hdr-section__option--title">
           <IntlMsg id={header} />
@@ -23,7 +25,6 @@ function NavbarNavHdr({
       </Link>
     );
   }
-
   return (
     <div
       className="nav-container__hdr-section w-inline-block"
@@ -35,12 +36,13 @@ function NavbarNavHdr({
     </div>
   );
 }
-const { string } = PropTypes;
+const { string, func } = PropTypes;
 NavbarNavHdr.propTypes = {
   ix: string.isRequired,
   wid: string.isRequired,
   link: string,
   header: string.isRequired,
+  reRenderNavbar: func.isRequired,
 };
 NavbarNavHdr.defaultProps = {
   link: '',

@@ -8,7 +8,13 @@ import {
   NavbarMyCart,
 } from './components';
 
-function NavbarMain({ qty, handleLangChange, activeLanguage, reRenderNavbar }) {
+function NavbarMain({
+  qty,
+  renderKey,
+  handleLangChange,
+  activeLanguage,
+  reRenderNavbar,
+}) {
   return (
     <div className="navbar-big__nav-section">
       <div className="nav-section__navbar-content">
@@ -18,13 +24,17 @@ function NavbarMain({ qty, handleLangChange, activeLanguage, reRenderNavbar }) {
             <NavbarLanguage
               handleLangChange={handleLangChange}
               activeLanguage={activeLanguage}
+              renderKey={renderKey}
             />
             <div className="navbar-action-top__right-side">
               <NavbarAuthSxn />
               <NavbarMyCart qty={qty} />
             </div>
           </div>
-          <NavbarNavs reRenderNavbar={reRenderNavbar} />
+          <NavbarNavs
+            reRenderNavbar={reRenderNavbar}
+            renderKey={renderKey}
+          />
         </div>
       </div>
     </div>
@@ -33,6 +43,7 @@ function NavbarMain({ qty, handleLangChange, activeLanguage, reRenderNavbar }) {
 const { number, string, func } = PropTypes;
 NavbarMain.propTypes = {
   qty: number.isRequired,
+  renderKey: number.isRequired,
   activeLanguage: string.isRequired,
   handleLangChange: func.isRequired,
   reRenderNavbar: func.isRequired,
