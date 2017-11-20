@@ -76,9 +76,8 @@ h1.main__loading {
   text-align: center;
 }
 
-h1.main__loading span {
-  line-height: 2em;
-  font-size: 2rem;
+h1.main__loading div.loading-blurb {
+  margin-top: 20px;
 }
 
 .hdr-vendor__blurb-text {

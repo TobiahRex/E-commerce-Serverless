@@ -1,1 +1,1 @@
-export { auth } from '../../../../../../../../../../navigation/routes';
+export { auth } from '../../../../../../../../../../../../navigation/routes';
