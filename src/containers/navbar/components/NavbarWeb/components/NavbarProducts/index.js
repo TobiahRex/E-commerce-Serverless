@@ -11,6 +11,7 @@ import {
 class NavbarProducts extends React.Component {
   routerPush = (e) => {
     const location = e.target.dataset.slug || e.target.parentNode.dataset.slug || e.target.parentNode.parentNode.dataset.slug;
+    this.props.reRenderNavbar();
     this.props.push(location);
   }
   render() {
@@ -47,6 +48,7 @@ NavbarProducts.propTypes = {
     }),
   ),
   push: func.isRequired,
+  reRenderNavbar: func.isRequired,
 };
 NavbarProducts.defaultProps = {
   popularProducts: [],

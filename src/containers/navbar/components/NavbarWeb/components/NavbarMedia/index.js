@@ -6,19 +6,21 @@ import {
   MediaLow,
 } from './components';
 
-function NavbarMedia({ renderKey }) {
+function NavbarMedia({ renderKey, reRenderNavbar }) {
   return (
     <div className="navbar-big__media-dropdown" key={renderKey}>
       <div className="media-dropdown__floating-media-container" data-ix="nav-b-media-hover">
-        <MediaTop />
-        <MediaMid />
-        <MediaLow />
+        <MediaTop reRenderNavbar={reRenderNavbar} />
+        <MediaMid reRenderNavbar={reRenderNavbar} />
+        <MediaLow reRenderNavbar={reRenderNavbar} />
         <div className="floating-media-container__nav-b-menu-box" />
       </div>
     </div>
   );
 }
+const { number, func } = PropTypes;
 NavbarMedia.propTypes = {
-  renderKey: PropTypes.number.isRequired,
+  renderKey: number.isRequired,
+  reRenderNavbar: func.isRequired,
 };
 export default NavbarMedia;
