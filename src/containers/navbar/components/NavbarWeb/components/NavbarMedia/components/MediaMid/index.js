@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-export default function MediaMid({ reRenderNavbar }) {
-  const setRenderKey = key => (key += 1);
-  const renderKey = setRenderKey(0);
+function MediaMid({ reRenderNavbar }) {
+  // const setRenderKey = key => (key += 1);
+  // const renderKey = setRenderKey(0);
 
   return (
     <div
-      key={renderKey}
-      onMouseEnter={() => setRenderKey(renderKey)}
+      // key={renderKey}
+      // onMouseEnter={() => setRenderKey(renderKey)}
       className="floating-media-container__middle-section"
     >
 
@@ -68,7 +68,7 @@ export default function MediaMid({ reRenderNavbar }) {
     </div>
   );
 }
-reRenderNavbar.propTypes = {
+MediaMid.propTypes = {
   reRenderNavbar: PropTypes.func.isRequired,
 };
-export default reRenderNavbar;
+export default MediaMid;
