@@ -15,7 +15,7 @@ class NavbarProducts extends React.Component {
   }
   render() {
     return (
-      <div className="navbar-big__juice-dropdown">
+      <div className="navbar-big__juice-dropdown" key={this.props.renderKey}>
         <div className="juice-dropdown__floating-juice-container" data-ix="nav-b-juice-hover">
           <ProductsTop />
           <ProductsMid
@@ -29,8 +29,9 @@ class NavbarProducts extends React.Component {
     );
   }
 }
-const { shape, string, arrayOf, func } = PropTypes;
+const { shape, string, arrayOf, func, number } = PropTypes;
 NavbarProducts.propTypes = {
+  renderKey: number.isRequired,
   popularProducts: arrayOf(
     shape({
       _id: string,
