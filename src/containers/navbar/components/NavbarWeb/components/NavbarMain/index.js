@@ -8,7 +8,7 @@ import {
   NavbarMyCart,
 } from './components';
 
-function NavbarMain({ qty, handleLangChange, activeLanguage }) {
+function NavbarMain({ qty, handleLangChange, activeLanguage, reRenderNavbar }) {
   return (
     <div className="navbar-big__nav-section">
       <div className="nav-section__navbar-content">
@@ -24,7 +24,7 @@ function NavbarMain({ qty, handleLangChange, activeLanguage }) {
               <NavbarMyCart qty={qty} />
             </div>
           </div>
-          <NavbarNavs />
+          <NavbarNavs reRenderNavbar={reRenderNavbar} />
         </div>
       </div>
     </div>
@@ -35,5 +35,6 @@ NavbarMain.propTypes = {
   qty: number.isRequired,
   activeLanguage: string.isRequired,
   handleLangChange: func.isRequired,
+  reRenderNavbar: func.isRequired,
 };
 export default NavbarMain;
