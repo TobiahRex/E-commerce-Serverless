@@ -19,11 +19,6 @@ import {
   determineCartType as DetermineCartType,
 } from './assets/utils';
 import {
-  // NavbarLogoSxn,
-  // NavbarLanguage,
-  // NavbarAuthSxn,
-  // NavbarMyCart,
-  // NavbarNavs,
   NavbarMain,
   NavbarProducts,
   NavbarMedia,
@@ -43,12 +38,16 @@ class NavbarWeb extends React.Component {
 
   componentDidMount() {
     WebflowJs();
-  }
-
-  componentWillUpdate() {
     WebflowAnimations();
     WebflowAnimations2();
+    console.log('%ccomponentDidMount', 'background:cyan;', '');
   }
+
+  // componentWillUpdate() {
+  //   WebflowAnimations();
+  //   WebflowAnimations2();
+  //   console.log('%ccomponentWillUpdate', 'background:pink;', '');
+  // }
 
   shouldComponentUpdate(nextProps) {
     /**
@@ -176,8 +175,8 @@ class NavbarWeb extends React.Component {
       <nav className="navbar-big">
         <NavbarMain
           qty={qty}
-          handleLangChange={this.handleLangChange}
           activeLanguage={activeLanguage}
+          handleLangChange={this.handleLangChange}
         />
         <NavbarProducts />
         <NavbarMedia />

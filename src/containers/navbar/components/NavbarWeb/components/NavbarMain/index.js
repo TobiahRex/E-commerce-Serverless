@@ -16,7 +16,7 @@ function NavbarMain({ qty, handleLangChange, activeLanguage }) {
         <div className="navbar-content__action-section">
           <div className="action-section__navbar-action-top">
             <NavbarLanguage
-              handleLangChange={this.handleLangChange}
+              handleLangChange={handleLangChange}
               activeLanguage={activeLanguage}
             />
             <div className="navbar-action-top__right-side">
