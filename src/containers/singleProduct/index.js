@@ -66,7 +66,7 @@ class SingleProduct extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillUpdate() {
     WebflowAnimations();
   }
 
@@ -598,9 +598,11 @@ class SingleProduct extends React.Component {
         {
           data.loading ?
           (<h1 className="main__loading">
-            <FontAwesome name="spinner" pulse size="5x" />
+            <FontAwesome name="spinner" pulse size="3x" />
             <br />
-            <IntlMsg id="product.single.loading" className="loading-blurb" />
+            <div className="loading-blurb">
+              <IntlMsg id="product.single.loading" />
+            </div>
           </h1>) :
           <div className="product-main">
             <ProductImgContent
