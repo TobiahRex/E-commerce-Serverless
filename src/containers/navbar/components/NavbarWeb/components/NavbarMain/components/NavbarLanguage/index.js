@@ -15,9 +15,9 @@ function NavbarLanguage({ handleLangChange, activeLanguage, renderKey }) {
       {
         activeLanguage === 'en' ?
           <NavbarLangBtn activeLanguage="en" /> :
-        <NavbarLangBtn activeLanguage="ja" />
+          <NavbarLangBtn activeLanguage="ja" />
       }
-      
+
       {
         activeLanguage === 'en' ?
           <NavbarLangOption
