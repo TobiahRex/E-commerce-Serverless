@@ -14,7 +14,7 @@ const MediaRoutes = () => (
       component={Contactus}
     />
     <Route
-      path="/stories"
+      path="/user_stories"
       component={Stories}
     />
     <Route
