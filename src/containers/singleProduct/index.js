@@ -19,7 +19,7 @@ import {
 import {
   userActions,
   orderActions,
-  WebflowAnimations,
+  reactWebflow,
   arrayDeepEquality as ArrayDeepEquality,
 } from './assets/utils';
 
@@ -67,7 +67,17 @@ class SingleProduct extends React.Component {
   }
 
   componentDidMount() {
-    WebflowAnimations();
+    reactWebflow.callAnimations('mount');
+  }
+
+  componentWillUnmount() {
+    reactWebflow.setStateWebflow({ firstFire: false, secondFire: false });
+  }
+
+  componentWillUpdate() {
+    if (this.props.data.FindProductsByFlavor) {
+      reactWebflow.callAnimations('update');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
