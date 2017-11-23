@@ -1,4 +1,4 @@
-class CallWebflow {
+class ReactWebflow {
   constructor() {
     this.state = {
       firstFire: false,
@@ -6,16 +6,35 @@ class CallWebflow {
     };
   }
 
-  setState = (newState) => {
-    this.state = {
-      ...this.state,
-      ...newState,
-    };
+  setStateWebflow = (param, cb) => {
+    if (typeof param === 'function') {
+      this.state = param(this.state);
+      if (cb && typeof cb === 'function') {
+        cb();
+        return true;
+      } else if (cb && typeof cb !== 'function') {
+        throw new Error('When calling "setStateWebflow" with a first argument function, the optional second argument, must also be a function.');
+      }
+      return true;
+    } else if (param && typeof param === 'object') {
+      this.state = {
+        ...this.state,
+        ...param,
+      };
+      return true;
+    }
+
+    throw new Error('You must pass a function or an object as the first argument when calling "setStateWebflow".');
   }
 
-  callWebflow = () => {
+  callAnimations = () => {
     if (!this.state.firstFire) {
-      this.fireAnimations1();
+      this.setStateWebflow(prevState => ({
+        ...prevState,
+        firstFire: true,
+      }), () => {
+        this.fireAnimations1();
+      });
       return true;
     }
     return false;
@@ -504,9 +523,13 @@ class CallWebflow {
   }
 }
 
-const myWebflow = new CallWebflow();
+const myWebflow = new ReactWebflow();
 
 const componentDidMount = () => {
   myWebflow.callWebflow();
 };
 componentDidMount();
+const componentWillUpdate = () => {
+  myWebflow.callWebflow();
+};
+componentWillUpdate();
