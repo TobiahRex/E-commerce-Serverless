@@ -66,9 +66,10 @@ class SingleProduct extends React.Component {
     };
   }
 
-  componentWillUpdate() {
-    WebflowAnimations();
-  }
+  // componentDidMount() {
+  //   WebflowAnimations();
+  //   console.log('%cWebflowAnimations', 'background:red;', '');
+  // }
 
   componentWillReceiveProps(nextProps) {
     const {
@@ -79,12 +80,10 @@ class SingleProduct extends React.Component {
       this.setState(prevState => ({
         ...prevState,
         loggedIn,
-        showAnimations: false,
       }));
     } else {
       this.setState(prevState => ({
         ...prevState,
-        showAnimations: false,
       }));
     }
   }
@@ -131,9 +130,11 @@ class SingleProduct extends React.Component {
   * @return none.
   */
   componentDidUpdate() {
-    setTimeout(() => {
-      this.setState({ added: false });
-    }, 5000);
+    if (this.state.added) {
+      setTimeout(() => {
+        this.setState({ added: false });
+      }, 5000);
+    }
   }
 
   routerPush = (e) => {
