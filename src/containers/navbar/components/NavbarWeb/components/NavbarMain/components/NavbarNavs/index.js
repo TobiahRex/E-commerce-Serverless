@@ -32,9 +32,9 @@ function NavbarNavs({
     </div>
   );
 }
-const { string, func } = PropTypes;
+const { number, func } = PropTypes;
 NavbarNavs.propTypes = {
-  renderKey: string.isRequired,
+  renderKey: number.isRequired,
   reRenderNavbar: func.isRequired,
 };
 export default NavbarNavs;

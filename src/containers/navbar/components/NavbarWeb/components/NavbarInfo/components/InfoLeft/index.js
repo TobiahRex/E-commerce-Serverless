@@ -17,7 +17,7 @@ function InfoLeft({ reRenderNavbar }) {
         <Link
           className="menu-container__link-blurb"
           to="/faqs"
-          onCLick={reRenderNavbar}
+          onClick={reRenderNavbar}
         >
           <IntlMsg id="navbar.nav.info.links.faqs" />
         </Link>

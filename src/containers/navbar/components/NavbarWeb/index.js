@@ -26,6 +26,10 @@ import {
   NavbarCartDropdown,
 } from './components';
 
+import {
+  WebflowAnimations as productAnimations1,
+} from '../../../singleProduct/assets/utils';
+
 class NavbarWeb extends React.Component {
   constructor(props) {
     super(props);
@@ -44,8 +48,14 @@ class NavbarWeb extends React.Component {
   }
 
   componentWillUpdate() {
-    WebflowAnimations();
-    WebflowAnimations2();
+    [
+      WebflowAnimations,
+      WebflowAnimations2,
+      productAnimations1,
+    ].reduce((acc, nextFunc) => nextFunc());
+    // WebflowAnimations();
+    // WebflowAnimations2();
+    // productAnimations1();
   }
 
   shouldComponentUpdate(nextProps) {
