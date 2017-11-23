@@ -27,17 +27,31 @@ class ReactWebflow {
     throw new Error('You must pass a function or an object as the first argument when calling "setStateWebflow".');
   }
 
-  callAnimations = () => {
-    if (!this.state.firstFire) {
-      this.setStateWebflow(prevState => ({
-        ...prevState,
-        firstFire: true,
-      }), () => {
-        this.fireAnimations1();
-      });
-      return true;
+  callAnimations = (type) => {
+    if (type === 'mount') {
+      if (!this.state.firstFire) {
+        this.setStateWebflow(prevState => ({
+          ...prevState,
+          firstFire: true,
+        }), () => {
+          this.fireAnimations1();
+        });
+        return true;
+      }
+      return false;
+    } else if (type === 'update') {
+      if (!this.state.secondFire) {
+        this.setStateWebflow(prevState => ({
+          ...prevState,
+          secondFire: true,
+        }), () => {
+          this.fireAnimations1();
+        });
+        return true;
+      }
+      return false;
     }
-    return false;
+    throw new Error('You are missing a required arugment when calling "setStateWebflow".  \nIt must be either "mount" if calling this function in the "componentDidMount" function, or "update" if calling this function in the "componentDidUpdate" function.');
   }
 
   fireAnimations1 = () => {
@@ -523,12 +537,6 @@ class ReactWebflow {
   }
 }
 
-const myWebflow = new ReactWebflow();
+const newWebflow = new ReactWebflow();
 
-const componentDidMount = () => myWebflow.callAnimations();
-console.log('componentDidMount', componentDidMount());
-
-const componentWillUpdate = () => myWebflow.callAnimations();
-console.log('componentWillUpdate', componentWillUpdate());
-
-console.log(myWebflow.state);
+export default newWebflow;
