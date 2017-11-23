@@ -526,10 +526,10 @@ class ReactWebflow {
 const myWebflow = new ReactWebflow();
 
 const componentDidMount = () => {
-  myWebflow.callWebflow();
+  myWebflow.callAnimations();
 };
-componentDidMount();
+console.log('componentDidMount', componentDidMount());
 const componentWillUpdate = () => {
-  myWebflow.callWebflow();
+  myWebflow.callAnimations();
 };
-componentWillUpdate();
+console.log('componentWillUpdate', componentWillUpdate());
