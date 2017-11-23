@@ -35,7 +35,7 @@ function ShippingPolicy({ intl }) {
       <div className="shipping-body__content-container">
         <div className="content-container__shipping-content">
           <div className="shipping-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.shipping.order-process.title" />
             </h4>
           </div>
@@ -47,7 +47,7 @@ function ShippingPolicy({ intl }) {
         </div>
         <div className="content-container__shipping-content">
           <div className="shipping-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.shipping.quantity-restrictions.title" />
             </h4>
           </div>
@@ -59,7 +59,7 @@ function ShippingPolicy({ intl }) {
         </div>
         <div className="content-container__shipping-content">
           <div className="shipping-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.shipping.cods.title" />
             </h4>
           </div>
@@ -71,7 +71,7 @@ function ShippingPolicy({ intl }) {
         </div>
         <div className="content-container__shipping-content">
           <div className="shipping-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.shipping.tax.title" />
             </h4>
           </div>
@@ -83,7 +83,7 @@ function ShippingPolicy({ intl }) {
         </div>
         <div className="content-container__shipping-content">
           <div className="shipping-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.shipping.customer-service.title" />
             </h4>
           </div>

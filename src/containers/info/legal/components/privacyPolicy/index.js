@@ -39,7 +39,7 @@ function PrivacyPolicy({ intl }) {
         </div>
         <div className="content-container__privacy-content">
           <div className="privacy-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.privacy.what-info.title" />
             </h4>
           </div>
@@ -61,7 +61,7 @@ function PrivacyPolicy({ intl }) {
         </div>
         <div className="content-container__privacy-content">
           <div className="privacy-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.privacy.how-used.title" />
             </h4>
           </div>
@@ -82,7 +82,7 @@ function PrivacyPolicy({ intl }) {
         </div>
         <div className="content-container__privacy-content">
           <div className="privacy-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.privacy.what-choices.title" />
             </h4>
           </div>
@@ -105,7 +105,7 @@ function PrivacyPolicy({ intl }) {
         </div>
         <div className="content-container__privacy-content">
           <div className="privacy-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.privacy.sharing.title" />
             </h4>
           </div>
@@ -126,7 +126,7 @@ function PrivacyPolicy({ intl }) {
         </div>
         <div className="content-container__privacy-content">
           <div className="privacy-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.privacy.changes.title" />
             </h4>
           </div>
