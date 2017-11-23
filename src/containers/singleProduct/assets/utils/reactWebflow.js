@@ -28,6 +28,8 @@ class ReactWebflow {
   }
 
   callAnimations = (type) => {
+    console.log('%ctype', 'background:red;', type);
+
     if (type === 'mount') {
       if (!this.state.firstFire) {
         this.setStateWebflow(prevState => ({
@@ -55,8 +57,7 @@ class ReactWebflow {
   }
 
   fireAnimations1 = () => {
-    console.log('hi toby');
-    /*
+    console.log('%ccalled', 'background:pink;', '');
     Webflow.require('ix').init([
       {
         slug: 'product-page-4-bottles-banner',
@@ -533,7 +534,6 @@ class ReactWebflow {
         },
       },
     ]);
-    */
   }
 }
 
