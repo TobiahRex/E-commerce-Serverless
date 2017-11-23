@@ -66,10 +66,9 @@ class SingleProduct extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   WebflowAnimations();
-  //   console.log('%cWebflowAnimations', 'background:red;', '');
-  // }
+  componentDidMount() {
+    WebflowAnimations();
+  }
 
   componentWillReceiveProps(nextProps) {
     const {
