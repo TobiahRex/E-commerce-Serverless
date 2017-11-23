@@ -36,7 +36,7 @@ function NicotineDisclaimer({ intl }) {
       <div className="nicotine-disclamer__content-container">
         <div className="content-container__shipping-content">
           <div className="shipping-content__blurb-container">
-            <p className="blurb-container__hdr-blurb" data-ix="slide-from-left">
+            <p className="legal_blurb-container__hdr-blurb" data-ix="slide-from-left">
               <span className="required">
                 <IntlMsg id="legal.policy.nicotine.header.desc1" />
               </span>

@@ -34,7 +34,7 @@ function TermsAndConditions({ intl }) {
       <div className="terms-conditions__content-container">
         <div className="content-container__terms-conditions-content">
           <div className="terms-conditions-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.terms.restrictions.title" />
             </h4>
           </div>
@@ -46,7 +46,7 @@ function TermsAndConditions({ intl }) {
         </div>
         <div className="content-container__terms-conditions-content">
           <div className="terms-conditions-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.terms.disclaimer.title" />
             </h4>
           </div>
@@ -58,7 +58,7 @@ function TermsAndConditions({ intl }) {
         </div>
         <div className="content-container__terms-conditions-content">
           <div className="terms-conditions-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.terms.links.title" />
             </h4>
           </div>
@@ -70,7 +70,7 @@ function TermsAndConditions({ intl }) {
         </div>
         <div className="content-container__terms-conditions-content">
           <div className="terms-conditions-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.terms.submissions.title" />
             </h4>
           </div>
@@ -82,7 +82,7 @@ function TermsAndConditions({ intl }) {
         </div>
         <div className="content-container__terms-conditions-content">
           <div className="terms-conditions-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.terms.termination.title" />
             </h4>
           </div>

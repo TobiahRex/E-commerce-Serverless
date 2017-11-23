@@ -34,7 +34,7 @@ function ReturnsPolicy({ intl }) {
       <div className="returns-body__content-container">
         <div className="content-container__returns-content">
           <div className="returns-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.returns.refunds.title" />
             </h4>
           </div>
@@ -46,7 +46,7 @@ function ReturnsPolicy({ intl }) {
         </div>
         <div className="content-container__returns-content">
           <div className="returns-content__hdr-container">
-            <h4 className="hdr-container__hdr-blurb" data-ix="slide-from-left">
+            <h4 className="legal_hdr-container__hdr-blurb" data-ix="slide-from-left">
               <IntlMsg id="legal.policy.returns.cancellations.title" />
             </h4>
           </div>
