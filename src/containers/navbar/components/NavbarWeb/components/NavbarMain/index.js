@@ -14,9 +14,10 @@ function NavbarMain({
   handleLangChange,
   activeLanguage,
   reRenderNavbar,
+  fireAnimations,
 }) {
   return (
-    <div className="navbar-big__nav-section">
+    <div className="navbar-big__nav-section" onMouseEnter={fireAnimations}>
       <div className="nav-section__navbar-content">
         <NavbarLogoSxn />
         <div className="navbar-content__action-section">
@@ -47,5 +48,6 @@ NavbarMain.propTypes = {
   activeLanguage: string.isRequired,
   handleLangChange: func.isRequired,
   reRenderNavbar: func.isRequired,
+  fireAnimations: func.isRequired,
 };
 export default NavbarMain;

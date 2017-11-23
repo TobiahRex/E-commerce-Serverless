@@ -26,10 +26,6 @@ import {
   NavbarCartDropdown,
 } from './components';
 
-import {
-  WebflowAnimations as productAnimations1,
-} from '../../../singleProduct/assets/utils';
-
 class NavbarWeb extends React.Component {
   constructor(props) {
     super(props);
@@ -45,17 +41,6 @@ class NavbarWeb extends React.Component {
     WebflowJs();
     WebflowAnimations();
     WebflowAnimations2();
-  }
-
-  componentWillUpdate() {
-    [
-      WebflowAnimations,
-      WebflowAnimations2,
-      productAnimations1,
-    ].reduce((acc, nextFunc) => nextFunc());
-    // WebflowAnimations();
-    // WebflowAnimations2();
-    // productAnimations1();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -181,6 +166,11 @@ class NavbarWeb extends React.Component {
     }));
   }
 
+  fireAnimations = () => {
+    WebflowAnimations();
+    WebflowAnimations2();
+  }
+
   render() {
     const {
       activeLanguage,
@@ -210,6 +200,7 @@ class NavbarWeb extends React.Component {
           handleLangChange={this.handleLangChange}
           reRenderNavbar={this.reRenderNavbar}
           renderKey={this.state.renderKey}
+          fireAnimations={this.fireAnimations}
         />
         <NavbarProducts
           reRenderNavbar={this.reRenderNavbar}

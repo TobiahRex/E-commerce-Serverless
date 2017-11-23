@@ -67,7 +67,7 @@ class SingleProduct extends React.Component {
   }
 
   componentWillUpdate() {
-    // WebflowAnimations();
+    WebflowAnimations();
   }
 
   componentWillReceiveProps(nextProps) {
