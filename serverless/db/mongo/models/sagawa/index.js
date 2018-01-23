@@ -741,19 +741,19 @@ export default (db) => {
         const htmlBody = GenerateNotifySagawa(dbEmail, pendingOrders);
         const {
           SAGAWA_SHIPPER_1: shipper1,
-          SAGAWA_SHIPPER_2: shipper2,
-          SAGAWA_SHIPPER_3: shipper3,
-          SAGAWA_SHIPPER_4: shipper4,
-          SAGAWA_SHIPPER_5: shipper5,
+          // SAGAWA_SHIPPER_2: shipper2,
+          // SAGAWA_SHIPPER_3: shipper3,
+          // SAGAWA_SHIPPER_4: shipper4,
+          // SAGAWA_SHIPPER_5: shipper5,
         } = process.env;
 
         return Email.sendEmail({
           to: [
             shipper1,
-            shipper2,
-            shipper3,
-            shipper4,
-            shipper5,
+            // shipper2,
+            // shipper3,
+            // shipper4,
+            // shipper5,
           ],
           htmlBody,
         }, dbEmail);
