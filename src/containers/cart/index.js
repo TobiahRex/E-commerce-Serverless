@@ -269,7 +269,7 @@ class ShoppingCart extends Component {
   * 4a) Step 3 returns a "result" object.  If the key "problem" has a non-falsey value, it calls the appropriate qty update method for either the "guest" || "user" cart from the Component props.
   * 4b) If the key "problem" has a truthy value, then local state is updated by calling "setState" assigning appropriate values for "error" & "errorMsg".
   * 5) Step 4a must explicitly set the "error" & "errorMsg" fields to initial values.
-  * @param {e} object - the click event object.
+  * @param {Object} event - the click event object.
   *
   * @return {new state} - returns new state with new qty value.
   */
@@ -456,9 +456,9 @@ class ShoppingCart extends Component {
 * 2) verifies the next object has a key of "qty", if not, returns the final accumulated value. If so...
 * 3) Increments the accumulated value by the value of "qty".  Returns the result to the next iteration.
 *
-* @param {array} cart - an array of product objects.
+* @param {Array} cart - an array of product objects.
 *
-* @return {number} accum - the final qty number;
+* @return {Number} accum - the final qty number;
 */
 const calculateCartQty = (auth, userObj, ordersObj) => {
   const cart = auth.loggedIn ? userObj.profile.shopping.cart : ordersObj.cart;
@@ -473,6 +473,7 @@ const calculateCartQty = (auth, userObj, ordersObj) => {
 };
 
 const ShoppingCartWithIntl = injectIntl(ShoppingCart);
+
 const ShoppingCartWithState = connect(
   (state, ownProps) => {
     const total = ComposeFinalTotal(ownProps);
@@ -501,6 +502,7 @@ const ShoppingCartWithState = connect(
     },
   }),
 )(ShoppingCartWithIntl);
+
 const ShoppingCartWithStateAndData = compose(
   graphql(FetchMultipleProducts, {
     name: 'FetchMultipleProducts',
@@ -510,6 +512,7 @@ const ShoppingCartWithStateAndData = compose(
   graphql(EditToMemberCart, { name: 'EditToMemberCart' }),
   graphql(DeleteFromMemberCart, { name: 'DeleteFromMemberCart' }),
 )(ShoppingCartWithState);
+
 const ShoppingCartWithStateAndData2 = connect(
   ({ orders, auth, user }) => ({
     qty: calculateCartQty(auth, user, orders),

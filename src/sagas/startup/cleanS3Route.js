@@ -12,9 +12,7 @@ export default function* cleanS3Route() {
     replace(path);
 
     yield put(push(path));
-  } else if (
-    /^#access_token.*/.test(hash)
-  ) {
+  } else if (/^#access_token.*/.test(hash)) {
     const newPath = `/login/${hash}`;
     replace(newPath);
 

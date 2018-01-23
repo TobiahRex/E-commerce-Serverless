@@ -23,7 +23,7 @@ module.exports.sagawa = (event, context) => {
   console.log('\nPayload: ', event);
 
   if (event.type === 'weekly upload') {
-    console.log('Cron Job');
+    console.log('W-1: Upload Weekend Orders');
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
@@ -45,6 +45,7 @@ module.exports.sagawa = (event, context) => {
       context.fail(error) && context.done();
     });
   } else if (event.type === 'notify sagawa') {
+    console.log('D-2R: Notify Sagawa of Todays Orders');
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
@@ -63,6 +64,7 @@ module.exports.sagawa = (event, context) => {
       context.fail(error) && context.done();
     });
   } else {
+    console.log('D-1R: New Order Upload');
     verifyDb()
     .then((dbResults) => {
       console.log('\n//MongoDb Connection Response: ', dbResults);
