@@ -9,7 +9,7 @@ provider:
   cfLogs: true
   timeout: 20
   stage: ${opt:stage}
-  region: ap-northeast-1
+  region: us-east-1
   iamRoleStatements:
     - Effect: Allow
       Resource: "*"
