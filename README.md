@@ -1,4 +1,4 @@
-# [Nic Juice 2 Japan](https://nj2jp.com) (_NJ2JP_):
+# [E-commerce | Serverless | "Nic Juice 2 Japan"](https://nj2jp.com) (_NJ2JP_):
 E-commerce store providing nicotine vape juice to Japanese customers faster than anyone.
   - Deployed using _Serverless_ | AWS Lambda | AWS S3.  
   - Backend API = **GraphQL**.
